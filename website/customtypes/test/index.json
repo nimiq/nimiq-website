@@ -1,0 +1,10 @@
+{
+  "id": "test",
+  "label": "test",
+  "repeatable": true,
+  "json": {
+    "Main": {}
+  },
+  "status": false,
+  "format": "custom"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "n_simple_headline",
+  "type": "SharedSlice",
+  "name": "NSimpleHeadline",
+  "description": "NSimpleHeadline",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}
