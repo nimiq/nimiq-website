@@ -16,7 +16,10 @@ export default defineNuxtConfig({
   ],
 
   prismic: {
-    endpoint: apiEndpoint || repositoryName
+    endpoint: apiEndpoint || repositoryName,
+    clientConfig: {
+      accessToken: process.env.PRISMIC_ACCESS_TOKEN
+    }
   },
 
   hub: {
