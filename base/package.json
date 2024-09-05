@@ -23,6 +23,7 @@
     "@unocss/preset-rem-to-px": "^0.62.3",
     "@unocss/reset": "^0.62.3",
     "@unocss/transformer-directives": "^0.62.3",
+    "@vueuse/core": "^11.0.3",
     "@vueuse/nuxt": "^11.0.3",
     "eslint": "^9.9.1",
     "eslint-plugin-format": "^0.1.2",
@@ -32,8 +33,9 @@
     "typescript": "catalog:",
     "vite-plugin-top-level-await": "^1.4.4",
     "vite-plugin-wasm": "^3.3.0",
-    "@vueuse/core": "^11.0.3",
     "vue": "latest"
   },
-  "dependencies": {}
+  "dependencies": {
+    "radix-vue": "^1.9.5"
+  }
 }

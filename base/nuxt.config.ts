@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
     '@nuxt/image',
+    'radix-vue/nuxt',
   ],
 
   devtools: { enabled: true },
