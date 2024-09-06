@@ -1,5 +1,5 @@
 {
-  "name": "nimiq-webiste",
+  "name": "nimiq-marketing",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,5 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "packageManager": "pnpm@9.8.0"
+  "packageManager": "pnpm@9.8.0",
+  "devDependencies": {
+    "lint-staged": "^15.2.10",
+    "simple-git-hooks": "^2.11.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "pnpm --stream -r lint:fix"
+  }
 }
