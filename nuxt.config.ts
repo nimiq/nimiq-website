@@ -73,6 +73,10 @@ export default defineNuxtConfig({
     inlineStyles: false,
   },
 
+  unocss: {
+    nuxtLayers: true,
+  },
+  
   eslint: {
     config: {
       standalone: false,

@@ -1,24 +1,52 @@
 {
-  "name": "nimiq-marketing",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "my-nuxt-layer",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
   "scripts": {
-    "dev:web": "pnpm --filter website run dev",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint:fix": "pnpm --stream -r lint:fix"
+    "dev": "nuxi dev .playground",
+    "dev:web": "nuxi dev website",
+    "postinstall": "nuxt prepare & nuxt prepare .playground & nuxt prepare website",
+    "build": "nuxt build .playground",
+    "build:web": "nuxt build website",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
+    "preview:web": "nuxt preview website",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
-  "keywords": [],
-  "packageManager": "pnpm@9.8.0",
   "devDependencies": {
+    "@antfu/eslint-config": "^3.2.0",
+    "@nimiq/core": "next",
+    "@nimiq/utils": "^0.11.3",
+    "@nuxt/eslint": "latest",
+    "@nuxt/image": "^1.8.0",
+    "@nuxthub/core": "^0.7.9",
+    "@nuxtjs/color-mode": "^3.4.4",
+    "@nuxtjs/prismic": "^3.4.0",
+    "@pinia/nuxt": "^0.5.4",
+    "@unocss/eslint-plugin": "^0.62.3",
     "@unocss/nuxt": "^0.62.3",
-    "lint-staged": "^15.2.10",
-    "simple-git-hooks": "^2.11.1"
+    "@unocss/preset-rem-to-px": "^0.62.3",
+    "@unocss/reset": "^0.62.3",
+    "@unocss/transformer-directives": "^0.62.3",
+    "@vueuse/core": "^11.0.3",
+    "@vueuse/nuxt": "^11.0.3",
+    "eslint": "^9.9.1",
+    "eslint-plugin-format": "^0.1.2",
+    "nimiq-css": "^0.1.11",
+    "nimiq-rpc-client-ts": "https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575",
+    "nuxt": "^3.13.0",
+    "pinia": "^2.2.2",
+    "typescript": "^5.5.4",
+    "unocss": "0.62.3",
+    "valibot": "^0.41.0",
+    "vite-plugin-top-level-await": "^1.4.4",
+    "vite-plugin-wasm": "^3.3.0",
+    "vue": "latest",
+    "vue-router": "latest"
   },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
-  },
-  "lint-staged": {
-    "*": "pnpm run lint:fix"
+  "dependencies": {
+    "radix-vue": "^1.9.5"
   }
 }

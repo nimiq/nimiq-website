@@ -3,7 +3,7 @@ import { repositoryName } from './slicemachine.config.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['../base'],
+  extends: ['..'],
 
   future: {
     compatibilityVersion: 4,

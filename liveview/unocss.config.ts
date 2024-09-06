@@ -1,5 +1,5 @@
 import { defineConfig } from 'unocss';
-import layer from '../base/unocss.config';
+import layer from '../unocss.config';
 
 export default defineConfig({
   presets: [layer],
