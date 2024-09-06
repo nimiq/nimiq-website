@@ -1,9 +1,9 @@
-import { apiEndpoint, repositoryName } from "./slicemachine.config.json";
 import process from 'node:process'
+import { repositoryName } from './slicemachine.config.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ["../base"],
+  extends: ['../base'],
 
   future: {
     compatibilityVersion: 4,
@@ -12,14 +12,15 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-08-31',
 
   modules: [
-    '@nuxthub/core', '@nuxtjs/prismic'
+    '@nuxthub/core',
+    '@nuxtjs/prismic',
   ],
 
   prismic: {
-    endpoint: apiEndpoint || repositoryName,
+    endpoint: repositoryName,
     clientConfig: {
-      accessToken: process.env.PRISMIC_ACCESS_TOKEN
-    }
+      accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+    },
   },
 
   hub: {
