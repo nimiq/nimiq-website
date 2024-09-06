@@ -1,13 +1,13 @@
 <script setup lang="ts">
-const { navigation } = storeToRefs(useNavigation())
+// const { navigation } = storeToRefs(useNavigation())
 </script>
 
 <template>
+  <!-- eslint-disable vue/no-multiple-template-root -->
   <header>TODO</header>
   <main>
-    {{ { navigation } }}
     <slot />
   </main>
 
-  <footer></footer>
+  <footer />
 </template>

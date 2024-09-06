@@ -1,11 +1,17 @@
 <script setup lang="ts">
+import { components } from '~/slices'
+
 const { client } = usePrismic()
-const { data: home } = await useAsyncData('home', () => client.getByUID('page', 'home'))
+
+const { data: document } = await useAsyncData('page', async () => {
+  const document = await client.getSingle('home')
+  if (!document)
+    throw createError({ statusCode: 404, message: 'Page not found' })
+  console.log(document)
+  return document
+})
 </script>
 
 <template>
-  <h2 text-pink>Hello world!</h2>
-  <p>
-    {{ home }}
-  </p>
+  <slice-zone :components="components" :slices="document!.data.slices" />
 </template>
