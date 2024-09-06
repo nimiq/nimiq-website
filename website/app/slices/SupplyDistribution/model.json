@@ -1,0 +1,74 @@
+{
+  "id": "supply_distribution",
+  "type": "SharedSlice",
+  "name": "SupplyDistribution",
+  "description": "SupplyDistribution",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "SupplyDistribution",
+      "primary": {
+        "backgroundColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["white", "grey"]
+          }
+        }
+      },
+      "items": {
+        "type": {
+          "type": "Select",
+          "config": {
+            "label": "Type",
+            "placeholder": "",
+            "options": ["block_reward", "crowdfunding", "charity", "early_contributors_&_team", "foundation"]
+          }
+        },
+        "name": {
+          "type": "Text",
+          "config": {
+            "label": "Name",
+            "placeholder": ""
+          }
+        },
+        "color": {
+          "type": "Select",
+          "config": {
+            "label": "Color",
+            "placeholder": "",
+            "options": ["green", "blue-light", "gold", "orange", "red"]
+          }
+        },
+        "percentage": {
+          "type": "Number",
+          "config": {
+            "label": "Percentage",
+            "placeholder": ""
+          }
+        },
+        "tooltipHeadline": {
+          "type": "Text",
+          "config": {
+            "label": "Tooltip Headline",
+            "placeholder": ""
+          }
+        },
+        "tooltipDescription": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Tooltip Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

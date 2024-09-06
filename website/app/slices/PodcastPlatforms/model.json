@@ -1,0 +1,93 @@
+{
+  "id": "podcast_platforms",
+  "type": "SharedSlice",
+  "name": "PodcastPlatforms",
+  "description": "PodcastPlatforms",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "PodcastPlatforms",
+      "primary": {
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline",
+            "placeholder": "Listen on your favorite platforms",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subline",
+            "placeholder": "Download this episode to listen...",
+            "allowTargetBlank": true,
+            "single": "paragraph,em,strong,hyperlink,preformatted"
+          }
+        },
+        "spotifyUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Spotify Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "applePodcastUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Apple Podcast Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "googlePodcastsUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Google Podcasts Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "castboxUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Castbox Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "overcastUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Overcast Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "pocketcastsUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Pocketcasts Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "stitcherUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Stitcher Url",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

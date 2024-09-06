@@ -1,0 +1,43 @@
+{
+  "id": "newsletter_subscription",
+  "type": "SharedSlice",
+  "name": "NewsletterSubscription",
+  "description": "NewsletterSubscription",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "NewsletterSubscription",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue-dark"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "cta": {
+          "type": "StructuredText",
+          "config": {
+            "label": "CTA",
+            "placeholder": "Sign up for a monthly newsletter",
+            "allowTargetBlank": false,
+            "single": "em,heading4"
+          }
+        },
+        "placeholder": {
+          "config": {
+            "label": "Input placeholder",
+            "placeholder": "Default: Enter email address..."
+          },
+          "type": "Text"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

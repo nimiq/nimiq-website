@@ -1,0 +1,103 @@
+{
+  "id": "link_grid",
+  "type": "SharedSlice",
+  "name": "LinkGrid",
+  "description": "LinkGrid",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "LinkGrid",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["grey", "white", "blue", "blue-dark", "green", "blue-s3"],
+            "default_value": "grey"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading4"
+          },
+          "type": "StructuredText"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,em,strong,hyperlink,embed,list-item,o-list-item"
+          },
+          "type": "StructuredText"
+        },
+        "primaryLink": {
+          "config": {
+            "label": "Primary Link",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "primaryLinkLabel": {
+          "config": {
+            "label": "Primary Link Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "secondaryLink": {
+          "config": {
+            "label": "Secondary Link",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "secondaryLinkLabel": {
+          "config": {
+            "label": "Secondary Link Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "dimmed": {
+          "type": "Boolean",
+          "config": {
+            "label": "Dimmed",
+            "default_value": false,
+            "placeholder_true": "true",
+            "placeholder_false": "false"
+          }
+        },
+        "pillLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Pill Label",
+            "placeholder": ""
+          }
+        },
+        "icon": {
+          "type": "Link",
+          "config": {
+            "label": "Icon",
+            "placeholder": "",
+            "select": "media"
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

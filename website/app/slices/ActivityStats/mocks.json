@@ -1,0 +1,49 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "grey",
+        "type": "Select"
+      },
+      "statsFromLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "day",
+        "type": "Text"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "stat",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "GitHub additions",
+              "type": "Select"
+            }
+          ],
+          [
+            "label",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "sport",
+              "type": "Text"
+            }
+          ],
+          [
+            "color",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "gold",
+              "type": "Select"
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]

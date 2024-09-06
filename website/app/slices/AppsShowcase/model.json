@@ -1,0 +1,68 @@
+{
+  "id": "apps_showcase",
+  "type": "SharedSlice",
+  "name": "AppsShowcase",
+  "description": "AppsShowcase",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "AppsShowcase",
+      "primary": {
+        "labelAll": {
+          "config": {
+            "label": "Label for every app",
+            "placeholder": "All"
+          },
+          "type": "Text"
+        },
+        "labelOfficial": {
+          "config": {
+            "label": "Label for official apps",
+            "placeholder": "Official"
+          },
+          "type": "Text"
+        },
+        "labelCommunity": {
+          "config": {
+            "label": "Label for community apps",
+            "placeholder": "Community"
+          },
+          "type": "Text"
+        },
+        "labelBy": {
+          "config": {
+            "label": "Label for \"by\"",
+            "placeholder": "Used in \"By [community-developer]\""
+          },
+          "type": "Text"
+        },
+        "labelLearnMore": {
+          "config": {
+            "label": "Label for \"Learn more\"",
+            "placeholder": "Learn more"
+          },
+          "type": "Text"
+        },
+        "labelInnovation": {
+          "config": {
+            "label": "Label for \"Nimiq Innovation\"",
+            "placeholder": "Nimiq Innovation"
+          },
+          "type": "Text"
+        },
+        "labelTeamNimiq": {
+          "type": "Text",
+          "config": {
+            "label": "Label for \"Team Nimiq\"",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

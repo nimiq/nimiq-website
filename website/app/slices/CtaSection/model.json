@@ -1,0 +1,165 @@
+{
+  "id": "cta_section",
+  "type": "SharedSlice",
+  "name": "CtaSection",
+  "description": "CtaSection",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CtaSection",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue-dark"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "icon": {
+          "type": "Image",
+          "config": {
+            "label": "Icon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading4"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "linkHref": {
+          "config": {
+            "label": "Link href",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "linkLabel": {
+          "config": {
+            "label": "Link label",
+            "placeholder": "Mandatory if the Link href is set"
+          },
+          "type": "Text"
+        },
+        "twitterUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Twitter Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "telegramUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Telegram Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "redditUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Reddit Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "githubUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Github Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "youtubeUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Youtube Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "discordUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Discord Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "facebookUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Facebook Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "instagramUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Instagram Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "nimiqForumUrl": {
+          "type": "Link",
+          "config": {
+            "label": "Nimiq Forum Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "playStore": {
+          "type": "Link",
+          "config": {
+            "label": "Play Store",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "appStore": {
+          "type": "Link",
+          "config": {
+            "label": "App Store",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

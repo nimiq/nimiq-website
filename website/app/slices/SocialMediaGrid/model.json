@@ -1,0 +1,64 @@
+{
+  "id": "social_media_grid",
+  "type": "SharedSlice",
+  "name": "SocialMediaGrid",
+  "description": "SocialMediaGrid",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "SocialMediaGrid",
+      "primary": {
+        "newsAndAnnouncementsLabel": {
+          "config": {
+            "label": "News And Announcements Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "discussionsAndSupportLabel": {
+          "config": {
+            "label": "Discussions And Support Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "cultureAndInsightsLabel": {
+          "config": {
+            "label": "Culture And Insights Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue-dark"]
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "category": {
+          "config": {
+            "label": "Category",
+            "placeholder": "",
+            "options": ["NEWS & ANNOUNCEMENTS", "DISCUSSIONS & SUPPORT", "CULTURE & INSIGHTS"]
+          },
+          "type": "Select"
+        },
+        "socialMedia": {
+          "config": {
+            "label": "Social Media",
+            "placeholder": "",
+            "options": ["twitter", "nimiq_forum", "reddit", "facebook", "discord", "telegram", "instagram", "youtube"]
+          },
+          "type": "Select"
+        }
+      }
+    }
+  ]
+}

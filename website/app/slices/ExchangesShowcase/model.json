@@ -1,0 +1,64 @@
+{
+  "id": "exchanges_showcase",
+  "type": "SharedSlice",
+  "name": "ExchangesShowcase",
+  "description": "ExchangesShowcase",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "ExchangesShowcase",
+      "primary": {},
+      "items": {
+        "logo": {
+          "config": {
+            "label": "Logo*",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "name": {
+          "config": {
+            "label": "Name*",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "label": {
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          },
+          "type": "StructuredText"
+        },
+        "linkHref": {
+          "config": {
+            "label": "Link href*",
+            "placeholder": "",
+            "allowTargetBlank": false
+          },
+          "type": "Link"
+        },
+        "linkLabel": {
+          "config": {
+            "label": "Link label*",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}
