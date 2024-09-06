@@ -1,5 +1,5 @@
 {
-  "name": "nimiq-website",
+  "name": "website",
   "type": "module",
   "private": true,
   "scripts": {

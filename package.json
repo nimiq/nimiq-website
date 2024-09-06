@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev:web": "pnpm --filter website run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:fix": "pnpm --stream -r lint:fix"
   },
   "keywords": [],
   "packageManager": "pnpm@9.8.0",
   "devDependencies": {
+    "@unocss/nuxt": "^0.62.3",
     "lint-staged": "^15.2.10",
     "simple-git-hooks": "^2.11.1"
   },

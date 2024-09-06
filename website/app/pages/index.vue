@@ -12,5 +12,8 @@ const { data: document, status } = await useAsyncData('page', async () => {
 </script>
 
 <template>
-  <slice-zone v-if="status === 'success'" :components="components" :slices="document?.data.body" />
+  <div text-neutral>
+    <HelloWorld />
+    <slice-zone v-if="status === 'success'" :components="components" :slices="document?.data.body" />
+  </div>
 </template>
