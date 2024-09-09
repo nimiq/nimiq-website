@@ -2,8 +2,7 @@
 import { components } from '~/slices'
 
 const prismic = usePrismic()
-const { data: page } = useAsyncData('[home_2024]', () =>
-  prismic.client.getSingle('home_2024'))
+const { data: page } = useAsyncData('[home_2024]', () => prismic.client.getSingle('home_2024'))
 
 useHead({
   title: page.value?.data.meta_title,
@@ -17,9 +16,5 @@ useHead({
 </script>
 
 <template>
-  <SliceZone
-    wrapper="main"
-    :slices="page?.data.slices ?? []"
-    :components="components"
-  />
+  <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components="components" />
 </template>

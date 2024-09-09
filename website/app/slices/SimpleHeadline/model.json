@@ -15,7 +15,15 @@
           "config": {
             "label": "Background color*",
             "placeholder": "",
-            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3", "blue-dark-dimmed"],
+            "options": [
+              "white",
+              "grey",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3",
+              "blue-dark-dimmed"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -68,6 +76,15 @@
             "placeholder": "Mandatory if the Link href is set"
           },
           "type": "Text"
+        },
+        "dark": {
+          "type": "Boolean",
+          "config": {
+            "label": "Dark",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {},
@@ -84,7 +101,15 @@
           "config": {
             "label": "Background color*",
             "placeholder": "",
-            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3", "blue-dark-dimmed"],
+            "options": [
+              "white",
+              "grey",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3",
+              "blue-dark-dimmed"
+            ],
             "default_value": "white"
           },
           "type": "Select"

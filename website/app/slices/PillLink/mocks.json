@@ -12,6 +12,10 @@
         "__TYPE__": "FieldContent",
         "type": "Text",
         "value": "The Map"
+      },
+      "dark": {
+        "__TYPE__": "BooleanContent",
+        "value": true
       }
     },
     "items": []

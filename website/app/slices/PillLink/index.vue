@@ -16,5 +16,7 @@ const items = slices.value
 </script>
 
 <template>
-  <PillLinks :items />
+  <section class="pt-200" :class="{ dark: slice.primary.dark }">
+    <PillLinks :items />
+  </section>
 </template>

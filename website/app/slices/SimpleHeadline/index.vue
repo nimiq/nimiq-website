@@ -5,14 +5,9 @@ defineProps(getSliceComponentProps<Content.SimpleHeadlineSlice>())
 </script>
 
 <template>
-  <SliceWrapper>
-    <HeadlineSection>
-      <template #headline>
-        <PrismicText :field="slice.primary.headline" />
-      </template>
-      <template #subheadline>
-        <PrismicText :field="slice.primary.subline" />
-      </template>
-    </HeadlineSection>
-  </SliceWrapper>
+  <section v-if="slice.variation === 'default'" class="pt-24" :class="{ dark: !!slice.primary.dark }">
+    <span v-if="slice.primary.label" text="14/16.8 center" mb-8 nq-label>{{ slice.primary.label }}</span>
+    <PrismicText wrapper="h2" :field="slice.primary.headline" />
+    <PrismicText v-if="slice.primary.subline" wrapper="p" :field="slice.primary.subline" />
+  </section>
 </template>

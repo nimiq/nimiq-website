@@ -1,0 +1,174 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "blue-dark",
+        "type": "Select"
+      },
+      "icon": {
+        "__TYPE__": "ImageContent",
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89",
+          "width": 3456,
+          "height": 3456
+        },
+        "url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89",
+        "width": 3456,
+        "height": 3456,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "thumbnails": {}
+      },
+      "label": {
+        "__TYPE__": "FieldContent",
+        "value": "like",
+        "type": "Text"
+      },
+      "headline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Serve"
+            }
+          }
+        ]
+      },
+      "subline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Laborum non magna non duis qui nostrud veniam eu duis minim nulla cillum cillum dolore."
+            }
+          }
+        ]
+      },
+      "linkHref": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com"
+        }
+      },
+      "linkLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "darkness",
+        "type": "Text"
+      },
+      "dark": {
+        "__TYPE__": "BooleanContent",
+        "value": true
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "withApps",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      },
+      "icon": {
+        "__TYPE__": "ImageContent",
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1587613865763-4b8b0d19e8ab",
+          "width": 12288,
+          "height": 16384
+        },
+        "url": "https://images.unsplash.com/photo-1587613865763-4b8b0d19e8ab",
+        "width": 12288,
+        "height": 16384,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "thumbnails": {}
+      },
+      "label": {
+        "__TYPE__": "FieldContent",
+        "value": "swimming",
+        "type": "Text"
+      },
+      "headline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Bridge"
+            }
+          }
+        ]
+      },
+      "subline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Pariatur laborum adipisicing cillum enim velit aute veniam ex aliqua occaecat. Nostrud ut eu est."
+            }
+          }
+        ]
+      },
+      "linkHref": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://prismic.io"
+        }
+      },
+      "linkLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "replace",
+        "type": "Text"
+      },
+      "googlePlay": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev"
+        }
+      },
+      "appStore": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev"
+        }
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

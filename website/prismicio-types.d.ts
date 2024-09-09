@@ -4049,28 +4049,9 @@ export type GridSectionSliceWithBackground = prismic.SharedSliceVariation<
 >
 
 /**
- * Primary content in *GridSection → Thee columns Image Text → Primary*
- */
-export interface GridSectionSliceTheeColumnsImageTextPrimary {
-  /**
-   * Background Color* field in *GridSection → Thee columns Image Text → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: white
-   * - **API ID Path**: grid_section.theeColumnsImageText.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  backgroundColor: prismic.SelectField<
-    'white' | 'grey' | 'green' | 'blue-dark' | 'blue' | 'blue-s3',
-    'filled'
-  >
-}
-
-/**
  * Primary content in *GridSection → Items*
  */
-export interface GridSectionSliceTheeColumnsImageTextItem {
+export interface GridSectionSliceThreeColumnsImageTextItem {
   /**
    * Headline* field in *GridSection → Items*
    *
@@ -4093,17 +4074,18 @@ export interface GridSectionSliceTheeColumnsImageTextItem {
 }
 
 /**
- * Thee columns Image Text variation for GridSection Slice
+ * Three columns Image Text variation for GridSection Slice
  *
- * - **API ID**: `theeColumnsImageText`
+ * - **API ID**: `threeColumnsImageText`
  * - **Description**: GridSection
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type GridSectionSliceTheeColumnsImageText = prismic.SharedSliceVariation<
-  'theeColumnsImageText',
-  Simplify<GridSectionSliceTheeColumnsImageTextPrimary>,
-  Simplify<GridSectionSliceTheeColumnsImageTextItem>
->
+export type GridSectionSliceThreeColumnsImageText =
+  prismic.SharedSliceVariation<
+    'threeColumnsImageText',
+    Record<string, never>,
+    Simplify<GridSectionSliceThreeColumnsImageTextItem>
+  >
 
 /**
  * Slice variation for *GridSection*
@@ -4111,7 +4093,7 @@ export type GridSectionSliceTheeColumnsImageText = prismic.SharedSliceVariation<
 type GridSectionSliceVariation =
   | GridSectionSliceDefault
   | GridSectionSliceWithBackground
-  | GridSectionSliceTheeColumnsImageText
+  | GridSectionSliceThreeColumnsImageText
 
 /**
  * GridSection Shared Slice
@@ -6243,6 +6225,17 @@ export interface PillLinkSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   label: prismic.KeyTextField
+
+  /**
+   * Dark field in *PillLink → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: pill_link.default.primary.dark
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  dark: prismic.BooleanField
 }
 
 /**
@@ -7675,6 +7668,17 @@ export interface SimpleHeadlineSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   linkLabel: prismic.KeyTextField
+
+  /**
+   * Dark field in *SimpleHeadline → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: simple_headline.default.primary.dark
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  dark: prismic.BooleanField
 }
 
 /**
@@ -9340,9 +9344,8 @@ declare module '@prismicio/client' {
       GridSectionSliceDefault,
       GridSectionSliceDefaultItem,
       GridSectionSliceDefaultPrimary,
-      GridSectionSliceTheeColumnsImageText,
-      GridSectionSliceTheeColumnsImageTextItem,
-      GridSectionSliceTheeColumnsImageTextPrimary,
+      GridSectionSliceThreeColumnsImageText,
+      GridSectionSliceThreeColumnsImageTextItem,
       GridSectionSliceVariation,
       GridSectionSliceWithBackground,
       GridSectionSliceWithBackgroundItem,
