@@ -8,7 +8,7 @@ h2 + p {
 
 section {
   --uno: 'px-32 md:px-64 xl:px-72 2xl:px-136 *:mx-auto *:max-w-screen-2xl';
-  --uno: 'flex flex-col items-center justify-center bg-neutral-0 text-neutral';
+  --uno: 'flex flex-col items-center justify-center bg-neutral-100 text-neutral';
 
   &.dark {
     --uno: 'bg-darkblue';

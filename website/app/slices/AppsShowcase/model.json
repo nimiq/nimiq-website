@@ -77,14 +77,6 @@
             "label": "Apps",
             "repeat": true,
             "fields": {
-              "logo": {
-                "type": "Image",
-                "config": {
-                  "label": "Logo",
-                  "constraint": {},
-                  "thumbnails": []
-                }
-              },
               "highlight": {
                 "type": "Boolean",
                 "config": {
@@ -114,6 +106,27 @@
                   "label": "Preview",
                   "constraint": {},
                   "thumbnails": []
+                }
+              },
+              "item": {
+                "type": "Select",
+                "config": {
+                  "label": "Item",
+                  "placeholder": "",
+                  "options": [
+                    "Nimiq Pay",
+                    "CPL",
+                    "Nimiq Wallet"
+                  ]
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "select": null
                 }
               }
             }

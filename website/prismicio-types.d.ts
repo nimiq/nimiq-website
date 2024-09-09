@@ -2142,16 +2142,6 @@ export type AlbatrossStatsSlice = prismic.SharedSlice<
  */
 export interface AppsShowcaseSliceNimiqsAppsPrimaryAppsItem {
   /**
-   * Logo field in *AppsShowcase → Nimiqs Apps → Primary → Apps*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[].logo
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  logo: prismic.ImageField<never>
-
-  /**
    * Highlight field in *AppsShowcase → Nimiqs Apps → Primary → Apps*
    *
    * - **Field Type**: Boolean
@@ -2191,6 +2181,26 @@ export interface AppsShowcaseSliceNimiqsAppsPrimaryAppsItem {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   preview: prismic.ImageField<never>
+
+  /**
+   * Item field in *AppsShowcase → Nimiqs Apps → Primary → Apps*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[].item
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  item: prismic.SelectField<'Nimiq Pay' | 'CPL' | 'Nimiq Wallet'>
+
+  /**
+   * Link field in *AppsShowcase → Nimiqs Apps → Primary → Apps*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
 }
 
 /**

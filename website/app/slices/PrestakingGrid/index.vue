@@ -14,7 +14,7 @@ defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
         <div aria-hidden absolute inset-0 rounded-6 class="glass" />
       </li>
     </ul>
-    <PrismicLink :field="slice.primary.cta" mt-32 nq-arrow nq-pill-blue>
+    <PrismicLink :field="slice.primary.cta" mt-32 nq-arrow nq-pill-lg nq-pill-blue>
       {{ slice.primary.cta_label }}
     </PrismicLink>
   </section>
