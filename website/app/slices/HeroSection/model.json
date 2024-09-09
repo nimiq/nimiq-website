@@ -1,0 +1,763 @@
+{
+  "id": "hero_section",
+  "type": "SharedSlice",
+  "name": "HeroSection",
+  "description": "HeroSection",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "label": {
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "linkHref": {
+          "config": {
+            "label": "Link href",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "linkLabel": {
+          "config": {
+            "label": "Link label",
+            "placeholder": "Mandatory if the Link href is set"
+          },
+          "type": "Text"
+        },
+        "secondaryLinkHref": {
+          "type": "Link",
+          "config": {
+            "label": "Secondary Link Href",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "secondaryLinkLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Secondary Link Label",
+            "placeholder": ""
+          }
+        },
+        "videoHref": {
+          "config": {
+            "label": "Video href",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "videoLabel": {
+          "config": {
+            "label": "Video label",
+            "placeholder": "Mandatory if the Video href is set"
+          },
+          "type": "Text"
+        },
+        "note": {
+          "config": {
+            "label": "Note",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "lottieAnimation": {
+          "type": "Link",
+          "config": {
+            "label": "Lottie Animation",
+            "placeholder": "",
+            "select": "media"
+          }
+        },
+        "playStore": {
+          "type": "Link",
+          "config": {
+            "label": "Play Store",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "appStore": {
+          "type": "Link",
+          "config": {
+            "label": "App Store",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {
+        "highlight": {
+          "config": {
+            "label": "Highlight",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue-dark"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em"
+          }
+        },
+        "linkHref": {
+          "config": {
+            "label": "Link Href",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "linkLabel": {
+          "config": {
+            "label": "Link label",
+            "placeholder": "Mandatory if the Link href is set"
+          },
+          "type": "Text"
+        },
+        "prenote": {
+          "config": {
+            "label": "Prenote*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "videoHigh": {
+          "config": {
+            "label": "High Quality Video*",
+            "placeholder": "",
+            "select": "media"
+          },
+          "type": "Link"
+        },
+        "videoMedium": {
+          "config": {
+            "label": "Medium Quality Video*",
+            "placeholder": "",
+            "select": "media"
+          },
+          "type": "Link"
+        },
+        "videoLow": {
+          "config": {
+            "label": "Low Quality Video*",
+            "placeholder": "",
+            "select": "media"
+          },
+          "type": "Link"
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "twoColumn",
+      "name": "Two column",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "text": {
+          "config": {
+            "label": "Text*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item,heading3"
+          },
+          "type": "StructuredText"
+        },
+        "linkHref": {
+          "config": {
+            "label": "Link href*",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "linkLabel": {
+          "config": {
+            "label": "Link label*",
+            "placeholder": "Mandatory if the Link href is set"
+          },
+          "type": "Text"
+        },
+        "image": {
+          "config": {
+            "label": "Image*",
+            "constraint": {
+              "width": 1120
+            },
+            "thumbnails": [
+              {
+                "name": "tablet",
+                "width": 944
+              }
+            ]
+          },
+          "type": "Image"
+        },
+        "backgroundImage": {
+          "config": {
+            "label": "Background Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "leftAligned",
+      "name": "Left Aligned",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3"]
+          },
+          "type": "Select"
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "oasis",
+      "name": "Oasis",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "getUpdatedLabel": {
+          "config": {
+            "label": "Label for \"Be the first to know\"",
+            "placeholder": "Be the first to know"
+          },
+          "type": "Text"
+        },
+        "europeHeadline": {
+          "config": {
+            "label": "Europe Headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading3"
+          },
+          "type": "StructuredText"
+        },
+        "europeSubline": {
+          "config": {
+            "label": "Europe Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          },
+          "type": "StructuredText"
+        },
+        "europeLinkLabel": {
+          "config": {
+            "label": "Europe Link Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "centralAmericaHeadline": {
+          "config": {
+            "label": "Central America Headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading3"
+          },
+          "type": "StructuredText"
+        },
+        "centralAmericaSubline": {
+          "config": {
+            "label": "Central America Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          },
+          "type": "StructuredText"
+        },
+        "worldHeadline": {
+          "config": {
+            "label": "Rest of World Headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading3"
+          },
+          "type": "StructuredText"
+        },
+        "worldSubline": {
+          "config": {
+            "label": "Rest of World Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          },
+          "type": "StructuredText"
+        },
+        "worldLinkLabel": {
+          "config": {
+            "label": "Rest of World Link Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "halfImage",
+      "name": "Half Image",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1,heading2,heading3,heading4,strong,heading6,heading5,em,hyperlink"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,strong,em,hyperlink,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "contactTitleLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Contact Title Label",
+            "placeholder": ""
+          }
+        },
+        "contactName": {
+          "type": "Text",
+          "config": {
+            "label": "Contact Name",
+            "placeholder": ""
+          }
+        },
+        "contactRole": {
+          "type": "Text",
+          "config": {
+            "label": "Contact Role",
+            "placeholder": ""
+          }
+        },
+        "contactPicture": {
+          "type": "Image",
+          "config": {
+            "label": "Contact Picture",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "backgroundColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["grey", "white"]
+          }
+        },
+        "contactEmail": {
+          "type": "Link",
+          "config": {
+            "label": "Contact Email",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "contactTelegram": {
+          "type": "Link",
+          "config": {
+            "label": "Contact Telegram",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "contactLinkedin": {
+          "type": "Link",
+          "config": {
+            "label": "Contact Linkedin",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "tokenomicsHero",
+      "name": "TokenomicsHero",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "backgroundColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["grey", "white"]
+          }
+        },
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1,heading2,heading3,heading4,strong,heading6,heading5,em,hyperlink"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,strong,em,hyperlink,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "buttonLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Button Label",
+            "placeholder": ""
+          }
+        },
+        "buttonHref": {
+          "type": "Link",
+          "config": {
+            "label": "Button Href",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "priceLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Price Label",
+            "placeholder": ""
+          }
+        },
+        "circulatingSupplyLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Circulating Supply Label",
+            "placeholder": ""
+          }
+        },
+        "marketCapLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Market Cap Label",
+            "placeholder": ""
+          }
+        },
+        "24hTradingVolumeLabel": {
+          "type": "Text",
+          "config": {
+            "label": "24h Trading Volume Label",
+            "placeholder": ""
+          }
+        },
+        "disclaimer": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Disclaimer",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "heroSectionWithImage",
+      "name": "Hero Section With Image",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "label": {
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "linkHref": {
+          "config": {
+            "label": "Link href",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "linkLabel": {
+          "config": {
+            "label": "Link label",
+            "placeholder": "Mandatory if the Link href is set"
+          },
+          "type": "Text"
+        },
+        "secondaryLinkHref": {
+          "type": "Link",
+          "config": {
+            "label": "Secondary Link Href",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "secondaryLinkLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Secondary Link Label",
+            "placeholder": ""
+          }
+        },
+        "videoHref": {
+          "config": {
+            "label": "Video href",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "videoLabel": {
+          "config": {
+            "label": "Video label",
+            "placeholder": "Mandatory if the Video href is set"
+          },
+          "type": "Text"
+        },
+        "note": {
+          "config": {
+            "label": "Note",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "lottieAnimation": {
+          "type": "Link",
+          "config": {
+            "label": "Lottie Animation",
+            "placeholder": "",
+            "select": "media"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {
+        "highlight": {
+          "config": {
+            "label": "Highlight",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "id": "consensus_map",
+  "type": "SharedSlice",
+  "name": "ConsensusMap",
+  "description": "ConsensusMap",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "ConsensusMap",
+      "primary": {
+        "thisIsYou": {
+          "config": {
+            "label": "thisIsYou",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "consensus": {
+          "config": {
+            "label": "consensus",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "established": {
+          "config": {
+            "label": "established",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "notConnected": {
+          "config": {
+            "label": "notConnected",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "connected": {
+          "config": {
+            "label": "connected",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "connect": {
+          "config": {
+            "label": "connect",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "connecting": {
+          "config": {
+            "label": "connecting",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "connectedTo": {
+          "config": {
+            "label": "connectedTo",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "blockHeight": {
+          "config": {
+            "label": "blockHeight",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "notApplicableAcronym": {
+          "config": {
+            "label": "notApplicableAcronym",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["blue-dark", "grey"],
+            "default_value": "blue-dark"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

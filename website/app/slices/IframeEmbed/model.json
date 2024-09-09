@@ -1,0 +1,99 @@
+{
+  "id": "iframe_embed",
+  "type": "SharedSlice",
+  "name": "IframeEmbed",
+  "description": "IframeEmbed",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "IframeEmbed",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["grey", "white", "blue", "blue-dark", "green", "blue-s3"],
+            "default_value": "grey"
+          },
+          "type": "Select"
+        },
+        "url": {
+          "config": {
+            "label": "URL",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "width": {
+          "config": {
+            "label": "Width",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "height": {
+          "config": {
+            "label": "Height",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "fullscreen",
+      "name": "Fullscreen",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "IframeEmbed",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["grey", "white", "blue", "blue-dark", "green", "blue-s3"],
+            "default_value": "grey"
+          },
+          "type": "Select"
+        },
+        "url": {
+          "config": {
+            "label": "URL",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "openFullscreenLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Open Fullscreen Label",
+            "placeholder": ""
+          }
+        },
+        "exitFullscreenLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Exit Fullscreen Label",
+            "placeholder": ""
+          }
+        },
+        "overlapsNextSection": {
+          "type": "Boolean",
+          "config": {
+            "label": "Overlaps Next Section",
+            "default_value": false,
+            "placeholder_true": "true",
+            "placeholder_false": "false"
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

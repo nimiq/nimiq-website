@@ -1,0 +1,113 @@
+{
+  "id": "podcast_episode",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID",
+          "placeholder": "The page name displayed in the URL"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "heading1",
+          "label": "Title"
+        }
+      },
+      "subline": {
+        "type": "StructuredText",
+        "config": {
+          "multi": "paragraph,strong,em",
+          "label": "Introduction"
+        }
+      },
+      "episode_label": {
+        "type": "Text",
+        "config": {
+          "label": "episode label",
+          "placeholder": "Episode"
+        }
+      },
+      "episode_number": {
+        "type": "Number",
+        "config": {
+          "label": "Episode number"
+        }
+      },
+      "authors": {
+        "type": "Group",
+        "config": {
+          "fields": {
+            "name": {
+              "type": "Text",
+              "config": {
+                "label": "Name"
+              }
+            }
+          },
+          "label": "Authors"
+        }
+      },
+      "duration": {
+        "type": "Text",
+        "config": {
+          "label": "duration",
+          "placeholder": "e.g.: 16min | 1h 02min"
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Image"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {},
+          "choices": {}
+        }
+      }
+    },
+    "Meta & SEO": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta title",
+          "placeholder": "Uses blog title if not set"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta description",
+          "placeholder": "Uses blog introduction if not set"
+        }
+      },
+      "meta_keywords": {
+        "type": "Text",
+        "config": {
+          "label": "Meta keywords",
+          "placeholder": "Uses default keywords if unset. Example: keyword1, keyword2, keyword3"
+        }
+      },
+      "meta_image": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Social Media Preview (uses blog image if unset)"
+        }
+      }
+    }
+  },
+  "label": "Podcast episode",
+  "repeatable": true,
+  "status": true,
+  "format": "custom"
+}

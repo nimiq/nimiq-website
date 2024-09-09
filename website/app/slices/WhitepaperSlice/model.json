@@ -1,0 +1,91 @@
+{
+  "id": "whitepaper_slice",
+  "type": "SharedSlice",
+  "name": "WhitepaperSlice",
+  "description": "WhitepaperSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "WhitepaperSlice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["white", "grey"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "headline": {
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          },
+          "type": "StructuredText"
+        },
+        "subline": {
+          "config": {
+            "label": "Subline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,strong,em,hyperlink,list-item,o-list-item"
+          },
+          "type": "StructuredText"
+        },
+        "version": {
+          "config": {
+            "label": "Version*",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "versionNumber": {
+          "config": {
+            "label": "Version Number",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "date": {
+          "config": {
+            "label": "Date*",
+            "placeholder": ""
+          },
+          "type": "Date"
+        },
+        "content": {
+          "config": {
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+            "allowTargetBlank": true,
+            "placeholder": "",
+            "label": "Content",
+            "labels": ["tooltip", "badge", "HTML"]
+          },
+          "type": "StructuredText"
+        },
+        "jumpToTheLatestChanges": {
+          "config": {
+            "label": "Jump To The Latest Changes",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "updated": {
+          "config": {
+            "label": "Updated*",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

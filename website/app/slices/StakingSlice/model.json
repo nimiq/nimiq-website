@@ -1,0 +1,54 @@
+{
+  "id": "staking_slice",
+  "type": "SharedSlice",
+  "name": "StakingSlice",
+  "description": "StakingSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "StakingSlice",
+      "primary": {
+        "backgroundColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["white", "grey"]
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": 1440,
+              "height": 330
+            },
+            "thumbnails": [
+              {
+                "name": "large",
+                "width": 1152,
+                "height": 330
+              },
+              {
+                "name": "medium",
+                "width": 768,
+                "height": 330
+              },
+              {
+                "name": "small",
+                "width": 375,
+                "height": 384
+              }
+            ]
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "blogposts_grid",
+  "type": "SharedSlice",
+  "name": "BlogpostsGrid",
+  "description": "BlogpostsGrid",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "BlogpostsGrid",
+      "primary": {
+        "labelBy": {
+          "config": {
+            "label": "Label for \"by\"",
+            "placeholder": "Used in \"By [Nimiq Team]\""
+          },
+          "type": "Text"
+        },
+        "labelLearnMore": {
+          "config": {
+            "label": "Label for \"Learn more\"",
+            "placeholder": "Learn more"
+          },
+          "type": "Text"
+        },
+        "mediaType": {
+          "type": "Select",
+          "config": {
+            "label": "Media Type",
+            "placeholder": "",
+            "options": ["blog", "podcast"],
+            "default_value": "blog"
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

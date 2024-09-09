@@ -1,0 +1,46 @@
+{
+  "id": "rich_text_cards",
+  "type": "SharedSlice",
+  "name": "RichTextCards",
+  "description": "RichTextCards",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "RichTextCards",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["grey", "white", "blue", "blue-dark", "green", "blue-s3"],
+            "default_value": "grey"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["white", "blue-dark"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "content": {
+          "config": {
+            "label": "Content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,heading2,heading3,heading4,hyperlink,em,strong,o-list-item,list-item,image,embed"
+          },
+          "type": "StructuredText"
+        }
+      }
+    }
+  ]
+}

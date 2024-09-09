@@ -1,0 +1,65 @@
+{
+  "id": "s3_currency_banner",
+  "type": "SharedSlice",
+  "name": "S3CurrencyBanner",
+  "description": "S3CurrencyBanner",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "S3CurrencyBanner",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue-dark", "blue", "green", "blue-s3"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "feeLabel": {
+          "config": {
+            "label": "Fee Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "feeImage": {
+          "config": {
+            "label": "Fee Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        }
+      },
+      "items": {
+        "image": {
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "cards_carousel",
+  "type": "SharedSlice",
+  "name": "CardsCarousel",
+  "description": "CardsCarousel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CardsCarousel",
+      "primary": {
+        "dontUseMePlease": {
+          "type": "Text",
+          "config": {
+            "label": "DONT USE ME, USE ANOTHER VARIATION",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "apps",
+      "name": "Apps",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CardsCarousel",
+      "primary": {
+        "backgroundColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["white", "grey"],
+            "default_value": "white"
+          }
+        },
+        "appsMadeBy": {
+          "type": "Select",
+          "config": {
+            "label": "Apps Made By",
+            "placeholder": "",
+            "options": ["Anyone", "Nimiq", "Community"],
+            "default_value": "Anyone"
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CardsCarousel",
+      "primary": {
+        "backgroundColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["white", "grey"],
+            "default_value": "white"
+          }
+        },
+        "learnMore": {
+          "type": "Text",
+          "config": {
+            "label": "Learn More",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

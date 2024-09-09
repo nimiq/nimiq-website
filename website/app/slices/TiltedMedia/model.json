@@ -1,0 +1,88 @@
+{
+  "id": "tilted_media",
+  "type": "SharedSlice",
+  "name": "TiltedMedia",
+  "description": "TiltedMedia",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TiltedMedia",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color*",
+            "placeholder": "",
+            "options": ["white", "blue-dark", "blue", "grey", "green", "gold", "blue-s3"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "overlapsNextSection": {
+          "config": {
+            "label": "Overlaps Next Section",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "media": {
+          "config": {
+            "label": "Media*",
+            "placeholder": "",
+            "select": "media"
+          },
+          "type": "Link"
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "withVideo",
+      "name": "WithVideo",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TiltedMedia",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color*",
+            "placeholder": "",
+            "options": ["white", "blue-dark", "blue", "grey", "green", "gold", "blue-s3"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "overlapsNextSection": {
+          "config": {
+            "label": "Overlaps Next Section",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          },
+          "type": "Boolean"
+        },
+        "video": {
+          "config": {
+            "label": "Video *",
+            "placeholder": ""
+          },
+          "type": "Embed"
+        },
+        "headline": {
+          "config": {
+            "label": "Headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

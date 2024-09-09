@@ -1,0 +1,83 @@
+{
+  "id": "team_members",
+  "type": "SharedSlice",
+  "name": "TeamMembers",
+  "description": "TeamMembers",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "TeamMembers",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["white", "grey", "blue-dark"],
+            "default_value": "white"
+          },
+          "type": "Select"
+        }
+      },
+      "items": {
+        "picture": {
+          "config": {
+            "label": "Picture",
+            "constraint": {
+              "width": 690,
+              "height": 510
+            },
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "fullName": {
+          "config": {
+            "label": "Full Name*",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "role": {
+          "config": {
+            "label": "Role*",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "description": {
+          "config": {
+            "label": "Description*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,em,strong,list-item,o-list-item"
+          },
+          "type": "StructuredText"
+        },
+        "linkedin": {
+          "config": {
+            "label": "Linked In (only username)",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "github": {
+          "config": {
+            "label": "Github (only username)",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "twitter": {
+          "config": {
+            "label": "Twitter (Only username)",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      }
+    }
+  ]
+}

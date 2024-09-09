@@ -1,0 +1,85 @@
+{
+  "id": "banner_slice",
+  "type": "SharedSlice",
+  "name": "BannerSlice",
+  "description": "BannerSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "BannerSlice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": ["blue-dark", "green", "white", "grey", "blue"]
+          },
+          "type": "Select"
+        },
+        "overlapsNextSection": {
+          "type": "Boolean",
+          "config": {
+            "label": "Overlaps Next Section",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        }
+      },
+      "items": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color (only slice)",
+            "placeholder": "",
+            "options": ["green", "blue-dark"]
+          },
+          "type": "Select"
+        },
+        "label": {
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "headline": {
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading3,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "subline": {
+          "config": {
+            "label": "Subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,em,hyperlink,strong,list-item,o-list-item"
+          },
+          "type": "StructuredText"
+        },
+        "linkHref": {
+          "type": "Link",
+          "config": {
+            "label": "Link Href",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "linkLabel": {
+          "config": {
+            "label": "Link Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "id": "child_page",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID",
+          "placeholder": "The page name displayed in the URL"
+        },
+        "type": "UID"
+      },
+      "draft": {
+        "type": "Boolean",
+        "config": {
+          "label": "Draft",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      },
+      "parent": {
+        "type": "Link",
+        "config": {
+          "select": "document",
+          "customtypes": ["page"],
+          "label": "Parent Page"
+        }
+      },
+      "headerBackgroundColor": {
+        "type": "Select",
+        "config": {
+          "options": ["white", "grey", "blue-dark", "blue", "green", "blue-s3"],
+          "default_value": "white",
+          "label": "Header background color"
+        }
+      },
+      "footerBackgroundColor": {
+        "type": "Select",
+        "config": {
+          "options": ["white", "grey", "blue-dark"],
+          "default_value": "white",
+          "label": "Footer background color"
+        }
+      },
+      "show_table_of_contents": {
+        "type": "Select",
+        "config": {
+          "options": ["None", "Short (Only h2)", "Long (h2 and h3)"],
+          "default_value": "None",
+          "label": "Show table of contents"
+        }
+      },
+      "show_disclaimer": {
+        "type": "Boolean",
+        "config": {
+          "placeholder_false": "No",
+          "placeholder_true": "Yes",
+          "default_value": false,
+          "label": "Show Disclaimer"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "Meta & SEO": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta title",
+          "placeholder": "Used default title if unset"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta description",
+          "placeholder": "Used default description if unset"
+        }
+      },
+      "meta_keywords": {
+        "type": "Text",
+        "config": {
+          "label": "Meta keywords",
+          "placeholder": "Used default keywords if unset. Example: keyword1, keyword2, keyword3"
+        }
+      },
+      "meta_image": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Social Media Preview (uses default image if unset)"
+        }
+      }
+    }
+  },
+  "label": "Child Page",
+  "repeatable": true,
+  "status": true,
+  "format": "custom"
+}

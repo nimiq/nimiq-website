@@ -1,0 +1,67 @@
+{
+  "id": "home",
+  "json": {
+    "Main": {
+      "headerBackgroundColor": {
+        "config": {
+          "label": "Header background color",
+          "placeholder": "",
+          "options": ["white", "grey", "blue-dark", "blue", "green"],
+          "default_value": "white"
+        },
+        "type": "Select"
+      },
+      "footerBackgroundColor": {
+        "type": "Select",
+        "config": {
+          "options": ["white", "grey", "blue-dark"],
+          "default_value": "white",
+          "label": "Footer background color"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": {},
+          "choices": {}
+        }
+      }
+    },
+    "Meta & SEO": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta title",
+          "placeholder": "Used default title if unset"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta description",
+          "placeholder": "Used default description if unset"
+        }
+      },
+      "meta_keywords": {
+        "type": "Text",
+        "config": {
+          "label": "Meta keywords",
+          "placeholder": "Used default keywords if unset. Example: keyword1, keyword2, keyword3"
+        }
+      },
+      "meta_image": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Social Media Preview (uses default image if unset)"
+        }
+      }
+    }
+  },
+  "label": "Home",
+  "repeatable": false,
+  "status": true,
+  "format": "custom"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "my-nuxt-layer",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev:web": "pnpm --filter website run dev",
+    "lint:fix": "pnpm --stream -r lint:fix"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "lint-staged": "^15.2.10",
+    "simple-git-hooks": "^2.11.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "pnpm lint:fix"
+  },
+  "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276"
+}

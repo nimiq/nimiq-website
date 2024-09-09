@@ -1,0 +1,106 @@
+{
+  "id": "nimiq_app",
+  "json": {
+    "Main": {
+      "isHighlighted": {
+        "config": {
+          "label": "Is this an highlighted app?",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        },
+        "type": "Boolean"
+      },
+      "isOfficial": {
+        "config": {
+          "label": "Is this an official app?",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        },
+        "type": "Boolean"
+      },
+      "name": {
+        "config": {
+          "label": "Name*",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "description": {
+        "config": {
+          "label": "Description*",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,list-item"
+        },
+        "type": "StructuredText"
+      },
+      "linkHref": {
+        "config": {
+          "label": "Link Href*",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
+        },
+        "type": "Link"
+      },
+      "type": {
+        "type": "Select",
+        "config": {
+          "options": [
+            "Insights",
+            "E-commerce",
+            "Games",
+            "Faucet",
+            "Promotion",
+            "Miner",
+            "Wallets",
+            "Infrastructure",
+            "Bots"
+          ],
+          "label": "Type"
+        }
+      },
+      "logo": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Logo (.svg)"
+        }
+      },
+      "priority_level": {
+        "type": "Select",
+        "config": {
+          "options": ["low", "medium", "high"],
+          "default_value": "low",
+          "label": "Priority Level",
+          "placeholder": "High: Will be shown first in lists. Medium and low: will be shown after"
+        }
+      }
+    },
+    "Official App": {
+      "screenshot": {
+        "type": "Image",
+        "config": {
+          "constraint": {},
+          "thumbnails": [],
+          "label": "Screenshot"
+        }
+      }
+    },
+    "Community App": {
+      "developer": {
+        "type": "Text",
+        "config": {
+          "label": "developer"
+        }
+      }
+    }
+  },
+  "label": "App",
+  "repeatable": true,
+  "status": true,
+  "format": "custom"
+}
