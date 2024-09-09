@@ -1,0 +1,19 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "item": {
+        "__TYPE__": "FieldContent",
+        "type": "Select",
+        "value": "The Map"
+      },
+      "label": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "The Map"
+      }
+    },
+    "items": []
+  }
+]

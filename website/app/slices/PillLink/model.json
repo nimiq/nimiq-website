@@ -1,0 +1,38 @@
+{
+  "id": "pill_link",
+  "type": "SharedSlice",
+  "name": "PillLink",
+  "description": "PillLink",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "item": {
+          "type": "Select",
+          "config": {
+            "label": "Item",
+            "placeholder": "",
+            "options": [
+              "The Tech",
+              "The Apps",
+              "The Map"
+            ]
+          }
+        },
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
