@@ -1,13 +1,48 @@
 {
   "id": "home_2024",
+  "label": "Home 2024",
+  "repeatable": false,
+  "status": true,
+  "format": "page",
   "json": {
     "Main": {
       "slices": {
-        "config": {
-          "choices": {}
-        },
+        "type": "Slices",
         "fieldset": "Slice Zone",
-        "type": "Slices"
+        "config": {
+          "choices": {
+            "banner_slice": {
+              "type": "SharedSlice"
+            },
+            "grid_section": {
+              "type": "SharedSlice"
+            },
+            "prestaking_grid": {
+              "type": "SharedSlice"
+            },
+            "apps_showcase": {
+              "type": "SharedSlice"
+            },
+            "crypto_map_continent_selector": {
+              "type": "SharedSlice"
+            },
+            "albatross_stats": {
+              "type": "SharedSlice"
+            },
+            "logos_grid": {
+              "type": "SharedSlice"
+            },
+            "pill_link": {
+              "type": "SharedSlice"
+            },
+            "simple_headline": {
+              "type": "SharedSlice"
+            },
+            "hero_section": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     },
     "SEO & Metadata": {
@@ -37,9 +72,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Home 2024",
-  "repeatable": false,
-  "status": true,
-  "format": "page"
+  }
 }

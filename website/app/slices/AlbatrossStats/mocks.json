@@ -1,0 +1,29 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "tx_sec_label": {
+        "__TYPE__": "FieldContent",
+        "value": "friend",
+        "type": "Text"
+      },
+      "tx_speed_label": {
+        "__TYPE__": "FieldContent",
+        "value": "slip",
+        "type": "Text"
+      },
+      "avg_rewards_label": {
+        "__TYPE__": "FieldContent",
+        "value": "else",
+        "type": "Text"
+      },
+      "notice_label": {
+        "__TYPE__": "FieldContent",
+        "value": "had",
+        "type": "Text"
+      }
+    },
+    "items": []
+  }
+]

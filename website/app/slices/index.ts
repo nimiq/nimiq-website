@@ -7,6 +7,9 @@ export const components = defineSliceZoneComponents({
   activity_stats: defineAsyncComponent(
     () => import('./ActivityStats/index.vue'),
   ),
+  albatross_stats: defineAsyncComponent(
+    () => import('./AlbatrossStats/index.vue'),
+  ),
   apps_showcase: defineAsyncComponent(() => import('./AppsShowcase/index.vue')),
   banner_slice: defineAsyncComponent(() => import('./BannerSlice/index.vue')),
   blogposts_grid: defineAsyncComponent(
@@ -20,6 +23,9 @@ export const components = defineSliceZoneComponents({
   ),
   consensus_map: defineAsyncComponent(() => import('./ConsensusMap/index.vue')),
   contact_form: defineAsyncComponent(() => import('./ContactForm/index.vue')),
+  crypto_map_continent_selector: defineAsyncComponent(
+    () => import('./CryptoMapContinentSelector/index.vue'),
+  ),
   cta_section: defineAsyncComponent(() => import('./CtaSection/index.vue')),
   exchanges_showcase: defineAsyncComponent(
     () => import('./ExchangesShowcase/index.vue'),
@@ -52,6 +58,9 @@ export const components = defineSliceZoneComponents({
   pill_link: defineAsyncComponent(() => import('./PillLink/index.vue')),
   podcast_platforms: defineAsyncComponent(
     () => import('./PodcastPlatforms/index.vue'),
+  ),
+  prestaking_grid: defineAsyncComponent(
+    () => import('./PrestakingGrid/index.vue'),
   ),
   puzzle_grid: defineAsyncComponent(() => import('./PuzzleGrid/index.vue')),
   rib_cage_grid: defineAsyncComponent(() => import('./RibCageGrid/index.vue')),

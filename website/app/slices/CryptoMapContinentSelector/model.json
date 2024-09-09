@@ -1,0 +1,56 @@
+{
+  "id": "crypto_map_continent_selector",
+  "type": "SharedSlice",
+  "name": "CryptoMapContinentSelector",
+  "description": "CryptoMapContinentSelector",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "continents": {
+          "type": "Group",
+          "config": {
+            "label": "Continents",
+            "repeat": true,
+            "fields": {
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label",
+                  "placeholder": ""
+                }
+              },
+              "crypto_map_link": {
+                "type": "Embed",
+                "config": {
+                  "label": "Crypto Map Link",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "powered_by_label": {
+          "type": "Text",
+          "config": {
+            "label": "Powered by label",
+            "placeholder": ""
+          }
+        },
+        "crypto_map_label": {
+          "type": "Text",
+          "config": {
+            "label": "Crypto Map Label",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

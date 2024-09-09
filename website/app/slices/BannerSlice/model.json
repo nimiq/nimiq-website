@@ -15,7 +15,13 @@
           "config": {
             "label": "Background Color",
             "placeholder": "",
-            "options": ["blue-dark", "green", "white", "grey", "blue"]
+            "options": [
+              "blue-dark",
+              "green",
+              "white",
+              "grey",
+              "blue"
+            ]
           },
           "type": "Select"
         },
@@ -34,7 +40,10 @@
           "config": {
             "label": "Background Color (only slice)",
             "placeholder": "",
-            "options": ["green", "blue-dark"]
+            "options": [
+              "green",
+              "blue-dark"
+            ]
           },
           "type": "Select"
         },
@@ -77,6 +86,47 @@
             "placeholder": ""
           },
           "type": "Text"
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "bannerWithBackgroundImage",
+      "name": "Banner With Background Image",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "BannerSlice",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "CTA",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          }
+        },
+        "background": {
+          "type": "Image",
+          "config": {
+            "label": "Background",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"

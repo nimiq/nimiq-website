@@ -431,7 +431,17 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, 'home', Lang>
 
-type Home2024DocumentDataSlicesSlice = never
+type Home2024DocumentDataSlicesSlice =
+  | BannerSliceSlice
+  | GridSectionSlice
+  | PrestakingGridSlice
+  | AppsShowcaseSlice
+  | CryptoMapContinentSelectorSlice
+  | AlbatrossStatsSlice
+  | LogosGridSlice
+  | PillLinkSlice
+  | SimpleHeadlineSlice
+  | HeroSectionSlice
 
 /**
  * Content for Home 2024 documents
@@ -2053,6 +2063,137 @@ export type ActivityStatsSlice = prismic.SharedSlice<
 >
 
 /**
+ * Primary content in *AlbatrossStats → Default → Primary*
+ */
+export interface AlbatrossStatsSliceDefaultPrimary {
+  /**
+   * Tx Sec Label field in *AlbatrossStats → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatross_stats.default.primary.tx_sec_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tx_sec_label: prismic.KeyTextField
+
+  /**
+   * Tx Speed Label field in *AlbatrossStats → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatross_stats.default.primary.tx_speed_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tx_speed_label: prismic.KeyTextField
+
+  /**
+   * Avg rewards label field in *AlbatrossStats → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatross_stats.default.primary.avg_rewards_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  avg_rewards_label: prismic.KeyTextField
+
+  /**
+   * Notice Label field in *AlbatrossStats → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatross_stats.default.primary.notice_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  notice_label: prismic.KeyTextField
+}
+
+/**
+ * Default variation for AlbatrossStats Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AlbatrossStatsSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<AlbatrossStatsSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *AlbatrossStats*
+ */
+type AlbatrossStatsSliceVariation = AlbatrossStatsSliceDefault
+
+/**
+ * AlbatrossStats Shared Slice
+ *
+ * - **API ID**: `albatross_stats`
+ * - **Description**: AlbatrossStats
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AlbatrossStatsSlice = prismic.SharedSlice<
+  'albatross_stats',
+  AlbatrossStatsSliceVariation
+>
+
+/**
+ * Item in *AppsShowcase → Nimiqs Apps → Primary → Apps*
+ */
+export interface AppsShowcaseSliceNimiqsAppsPrimaryAppsItem {
+  /**
+   * Logo field in *AppsShowcase → Nimiqs Apps → Primary → Apps*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[].logo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>
+
+  /**
+   * Highlight field in *AppsShowcase → Nimiqs Apps → Primary → Apps*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[].highlight
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  highlight: prismic.BooleanField
+
+  /**
+   * Title field in *AppsShowcase → Nimiqs Apps → Primary → Apps*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField
+
+  /**
+   * Description field in *AppsShowcase → Nimiqs Apps → Primary → Apps*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[].description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField
+
+  /**
+   * Preview field in *AppsShowcase → Nimiqs Apps → Primary → Apps*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[].preview
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  preview: prismic.ImageField<never>
+}
+
+/**
  * Primary content in *AppsShowcase → Default → Primary*
  */
 export interface AppsShowcaseSliceDefaultPrimary {
@@ -2141,9 +2282,41 @@ export type AppsShowcaseSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *AppsShowcase → Nimiqs Apps → Primary*
+ */
+export interface AppsShowcaseSliceNimiqsAppsPrimary {
+  /**
+   * Apps field in *AppsShowcase → Nimiqs Apps → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  apps: prismic.GroupField<
+    Simplify<AppsShowcaseSliceNimiqsAppsPrimaryAppsItem>
+  >
+}
+
+/**
+ * Nimiqs Apps variation for AppsShowcase Slice
+ *
+ * - **API ID**: `nimiqsApps`
+ * - **Description**: AppsShowcase
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AppsShowcaseSliceNimiqsApps = prismic.SharedSliceVariation<
+  'nimiqsApps',
+  Simplify<AppsShowcaseSliceNimiqsAppsPrimary>,
+  never
+>
+
+/**
  * Slice variation for *AppsShowcase*
  */
-type AppsShowcaseSliceVariation = AppsShowcaseSliceDefault
+type AppsShowcaseSliceVariation =
+  | AppsShowcaseSliceDefault
+  | AppsShowcaseSliceNimiqsApps
 
 /**
  * AppsShowcase Shared Slice
@@ -2264,9 +2437,70 @@ export type BannerSliceSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *BannerSlice → Banner With Background Image → Primary*
+ */
+export interface BannerSliceSliceBannerWithBackgroundImagePrimary {
+  /**
+   * Title field in *BannerSlice → Banner With Background Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField
+
+  /**
+   * Description field in *BannerSlice → Banner With Background Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField
+
+  /**
+   * CTA field in *BannerSlice → Banner With Background Image → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField
+
+  /**
+   * Background field in *BannerSlice → Banner With Background Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background: prismic.ImageField<never>
+}
+
+/**
+ * Banner With Background Image variation for BannerSlice Slice
+ *
+ * - **API ID**: `bannerWithBackgroundImage`
+ * - **Description**: BannerSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BannerSliceSliceBannerWithBackgroundImage =
+  prismic.SharedSliceVariation<
+    'bannerWithBackgroundImage',
+    Simplify<BannerSliceSliceBannerWithBackgroundImagePrimary>,
+    never
+  >
+
+/**
  * Slice variation for *BannerSlice*
  */
-type BannerSliceSliceVariation = BannerSliceSliceDefault
+type BannerSliceSliceVariation =
+  | BannerSliceSliceDefault
+  | BannerSliceSliceBannerWithBackgroundImage
 
 /**
  * BannerSlice Shared Slice
@@ -2923,6 +3157,100 @@ type ContactFormSliceVariation = ContactFormSliceDefault
 export type ContactFormSlice = prismic.SharedSlice<
   'contact_form',
   ContactFormSliceVariation
+>
+
+/**
+ * Item in *CryptoMapContinentSelector → Default → Primary → Continents*
+ */
+export interface CryptoMapContinentSelectorSliceDefaultPrimaryContinentsItem {
+  /**
+   * Label field in *CryptoMapContinentSelector → Default → Primary → Continents*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: crypto_map_continent_selector.default.primary.continents[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField
+
+  /**
+   * Crypto Map Link field in *CryptoMapContinentSelector → Default → Primary → Continents*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: crypto_map_continent_selector.default.primary.continents[].crypto_map_link
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  crypto_map_link: prismic.EmbedField
+}
+
+/**
+ * Primary content in *CryptoMapContinentSelector → Default → Primary*
+ */
+export interface CryptoMapContinentSelectorSliceDefaultPrimary {
+  /**
+   * Continents field in *CryptoMapContinentSelector → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: crypto_map_continent_selector.default.primary.continents[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  continents: prismic.GroupField<
+    Simplify<CryptoMapContinentSelectorSliceDefaultPrimaryContinentsItem>
+  >
+
+  /**
+   * Powered by label field in *CryptoMapContinentSelector → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: crypto_map_continent_selector.default.primary.powered_by_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  powered_by_label: prismic.KeyTextField
+
+  /**
+   * Crypto Map Label field in *CryptoMapContinentSelector → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: crypto_map_continent_selector.default.primary.crypto_map_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  crypto_map_label: prismic.KeyTextField
+}
+
+/**
+ * Default variation for CryptoMapContinentSelector Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CryptoMapContinentSelectorSliceDefault =
+  prismic.SharedSliceVariation<
+    'default',
+    Simplify<CryptoMapContinentSelectorSliceDefaultPrimary>,
+    never
+  >
+
+/**
+ * Slice variation for *CryptoMapContinentSelector*
+ */
+type CryptoMapContinentSelectorSliceVariation =
+  CryptoMapContinentSelectorSliceDefault
+
+/**
+ * CryptoMapContinentSelector Shared Slice
+ *
+ * - **API ID**: `crypto_map_continent_selector`
+ * - **Description**: CryptoMapContinentSelector
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CryptoMapContinentSelectorSlice = prismic.SharedSlice<
+  'crypto_map_continent_selector',
+  CryptoMapContinentSelectorSliceVariation
 >
 
 /**
@@ -3721,11 +4049,69 @@ export type GridSectionSliceWithBackground = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *GridSection → Thee columns Image Text → Primary*
+ */
+export interface GridSectionSliceTheeColumnsImageTextPrimary {
+  /**
+   * Background Color* field in *GridSection → Thee columns Image Text → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: grid_section.theeColumnsImageText.primary.backgroundColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  backgroundColor: prismic.SelectField<
+    'white' | 'grey' | 'green' | 'blue-dark' | 'blue' | 'blue-s3',
+    'filled'
+  >
+}
+
+/**
+ * Primary content in *GridSection → Items*
+ */
+export interface GridSectionSliceTheeColumnsImageTextItem {
+  /**
+   * Headline* field in *GridSection → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.items[].headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.RichTextField
+
+  /**
+   * Image field in *GridSection → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+}
+
+/**
+ * Thee columns Image Text variation for GridSection Slice
+ *
+ * - **API ID**: `theeColumnsImageText`
+ * - **Description**: GridSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GridSectionSliceTheeColumnsImageText = prismic.SharedSliceVariation<
+  'theeColumnsImageText',
+  Simplify<GridSectionSliceTheeColumnsImageTextPrimary>,
+  Simplify<GridSectionSliceTheeColumnsImageTextItem>
+>
+
+/**
  * Slice variation for *GridSection*
  */
 type GridSectionSliceVariation =
   | GridSectionSliceDefault
   | GridSectionSliceWithBackground
+  | GridSectionSliceTheeColumnsImageText
 
 /**
  * GridSection Shared Slice
@@ -3921,20 +4307,6 @@ export type HeroSectionSliceDefaultSlice = prismic.SharedSliceVariation<
  */
 export interface HeroSectionSliceHomePrimary {
   /**
-   * Background color field in *HeroSection → Home → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: white
-   * - **API ID Path**: hero_section.home.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  backgroundColor: prismic.SelectField<
-    'white' | 'grey' | 'blue-dark',
-    'filled'
-  >
-
-  /**
    * Headline* field in *HeroSection → Home → Primary*
    *
    * - **Field Type**: Title
@@ -3945,14 +4317,14 @@ export interface HeroSectionSliceHomePrimary {
   headline: prismic.TitleField
 
   /**
-   * Subline field in *HeroSection → Home → Primary*
+   * Subheadline field in *HeroSection → Home → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.home.primary.subline
+   * - **API ID Path**: hero_section.home.primary.Subheadline
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  subline: prismic.RichTextField
+  Subheadline: prismic.RichTextField
 
   /**
    * Link Href field in *HeroSection → Home → Primary*
@@ -4722,6 +5094,54 @@ export type HeroSectionSliceHeroSectionWithImage = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *HeroSection → Home 2024 → Primary*
+ */
+export interface HeroSectionSliceHome2024Primary {
+  /**
+   * Headline* field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField
+
+  /**
+   * Subheadline field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.Subheadline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  Subheadline: prismic.RichTextField
+
+  /**
+   * CTA field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField
+}
+
+/**
+ * Home 2024 variation for HeroSection Slice
+ *
+ * - **API ID**: `home2024`
+ * - **Description**: HeroSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSectionSliceHome2024 = prismic.SharedSliceVariation<
+  'home2024',
+  Simplify<HeroSectionSliceHome2024Primary>,
+  never
+>
+
+/**
  * Slice variation for *HeroSection*
  */
 type HeroSectionSliceVariation =
@@ -4733,6 +5153,7 @@ type HeroSectionSliceVariation =
   | HeroSectionSliceHalfImage
   | HeroSectionSliceTokenomicsHero
   | HeroSectionSliceHeroSectionWithImage
+  | HeroSectionSliceHome2024
 
 /**
  * HeroSection Shared Slice
@@ -5977,6 +6398,88 @@ type PodcastPlatformsSliceVariation = PodcastPlatformsSliceDefault
 export type PodcastPlatformsSlice = prismic.SharedSlice<
   'podcast_platforms',
   PodcastPlatformsSliceVariation
+>
+
+/**
+ * Item in *PrestakingGrid → Default → Primary → Items*
+ */
+export interface PrestakingGridSliceDefaultPrimaryItemsItem {
+  /**
+   * Image field in *PrestakingGrid → Default → Primary → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: prestaking_grid.default.primary.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>
+
+  /**
+   * Content field in *PrestakingGrid → Default → Primary → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: prestaking_grid.default.primary.items[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField
+}
+
+/**
+ * Primary content in *PrestakingGrid → Default → Primary*
+ */
+export interface PrestakingGridSliceDefaultPrimary {
+  /**
+   * Items field in *PrestakingGrid → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: prestaking_grid.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<
+    Simplify<PrestakingGridSliceDefaultPrimaryItemsItem>
+  >
+
+  /**
+   * CTA field in *PrestakingGrid → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: prestaking_grid.default.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField
+}
+
+/**
+ * Default variation for PrestakingGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PrestakingGridSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<PrestakingGridSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *PrestakingGrid*
+ */
+type PrestakingGridSliceVariation = PrestakingGridSliceDefault
+
+/**
+ * PrestakingGrid Shared Slice
+ *
+ * - **API ID**: `prestaking_grid`
+ * - **Description**: PrestakingGrid
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PrestakingGridSlice = prismic.SharedSlice<
+  'prestaking_grid',
+  PrestakingGridSliceVariation
 >
 
 /**
@@ -8752,12 +9255,21 @@ declare module '@prismicio/client' {
       ActivityStatsSliceDefaultItem,
       ActivityStatsSliceDefaultPrimary,
       ActivityStatsSliceVariation,
+      AlbatrossStatsSlice,
+      AlbatrossStatsSliceDefault,
+      AlbatrossStatsSliceDefaultPrimary,
+      AlbatrossStatsSliceVariation,
       AllDocumentTypes,
       AppsShowcaseSlice,
       AppsShowcaseSliceDefault,
       AppsShowcaseSliceDefaultPrimary,
+      AppsShowcaseSliceNimiqsApps,
+      AppsShowcaseSliceNimiqsAppsPrimary,
+      AppsShowcaseSliceNimiqsAppsPrimaryAppsItem,
       AppsShowcaseSliceVariation,
       BannerSliceSlice,
+      BannerSliceSliceBannerWithBackgroundImage,
+      BannerSliceSliceBannerWithBackgroundImagePrimary,
       BannerSliceSliceDefault,
       BannerSliceSliceDefaultItem,
       BannerSliceSliceDefaultPrimary,
@@ -8794,6 +9306,11 @@ declare module '@prismicio/client' {
       ContactFormSliceDefault,
       ContactFormSliceDefaultPrimary,
       ContactFormSliceVariation,
+      CryptoMapContinentSelectorSlice,
+      CryptoMapContinentSelectorSliceDefault,
+      CryptoMapContinentSelectorSliceDefaultPrimary,
+      CryptoMapContinentSelectorSliceDefaultPrimaryContinentsItem,
+      CryptoMapContinentSelectorSliceVariation,
       CtaSectionSlice,
       CtaSectionSliceDefault,
       CtaSectionSliceDefaultPrimary,
@@ -8823,6 +9340,9 @@ declare module '@prismicio/client' {
       GridSectionSliceDefault,
       GridSectionSliceDefaultItem,
       GridSectionSliceDefaultPrimary,
+      GridSectionSliceTheeColumnsImageText,
+      GridSectionSliceTheeColumnsImageTextItem,
+      GridSectionSliceTheeColumnsImageTextPrimary,
       GridSectionSliceVariation,
       GridSectionSliceWithBackground,
       GridSectionSliceWithBackgroundItem,
@@ -8837,6 +9357,8 @@ declare module '@prismicio/client' {
       HeroSectionSliceHeroSectionWithImageItem,
       HeroSectionSliceHeroSectionWithImagePrimary,
       HeroSectionSliceHome,
+      HeroSectionSliceHome2024,
+      HeroSectionSliceHome2024Primary,
       HeroSectionSliceHomePrimary,
       HeroSectionSliceLeftAligned,
       HeroSectionSliceLeftAlignedPrimary,
@@ -8936,6 +9458,11 @@ declare module '@prismicio/client' {
       PodcastPlatformsSliceDefault,
       PodcastPlatformsSliceDefaultPrimary,
       PodcastPlatformsSliceVariation,
+      PrestakingGridSlice,
+      PrestakingGridSliceDefault,
+      PrestakingGridSliceDefaultPrimary,
+      PrestakingGridSliceDefaultPrimaryItemsItem,
+      PrestakingGridSliceVariation,
       PuzzleGridSlice,
       PuzzleGridSliceDefault,
       PuzzleGridSliceDefaultItem,

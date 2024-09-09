@@ -15,7 +15,14 @@
           "config": {
             "label": "Background color",
             "placeholder": "",
-            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3"],
+            "options": [
+              "white",
+              "grey",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -144,15 +151,6 @@
       "version": "sktwi1xtmkfgx8626",
       "description": "HeroSection",
       "primary": {
-        "backgroundColor": {
-          "config": {
-            "label": "Background color",
-            "placeholder": "",
-            "options": ["white", "grey", "blue-dark"],
-            "default_value": "white"
-          },
-          "type": "Select"
-        },
         "headline": {
           "type": "StructuredText",
           "config": {
@@ -162,10 +160,10 @@
             "single": "heading1"
           }
         },
-        "subline": {
+        "Subheadline": {
           "type": "StructuredText",
           "config": {
-            "label": "Subline",
+            "label": "Subheadline",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "paragraph,strong,em"
@@ -235,7 +233,14 @@
           "config": {
             "label": "Background color",
             "placeholder": "",
-            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3"],
+            "options": [
+              "white",
+              "grey",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -321,7 +326,14 @@
           "config": {
             "label": "Background color",
             "placeholder": "",
-            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3"]
+            "options": [
+              "white",
+              "grey",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3"
+            ]
           },
           "type": "Select"
         },
@@ -507,7 +519,10 @@
           "config": {
             "label": "Background Color",
             "placeholder": "",
-            "options": ["grey", "white"]
+            "options": [
+              "grey",
+              "white"
+            ]
           }
         },
         "contactEmail": {
@@ -550,7 +565,10 @@
           "config": {
             "label": "Background Color",
             "placeholder": "",
-            "options": ["grey", "white"]
+            "options": [
+              "grey",
+              "white"
+            ]
           }
         },
         "label": {
@@ -645,7 +663,14 @@
           "config": {
             "label": "Background color",
             "placeholder": "",
-            "options": ["white", "grey", "blue", "blue-dark", "green", "blue-s3"],
+            "options": [
+              "white",
+              "grey",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -757,6 +782,44 @@
           "type": "Text"
         }
       },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "home2024",
+      "name": "Home 2024",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          }
+        },
+        "Subheadline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subheadline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em"
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "CTA",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          }
+        }
+      },
+      "items": {},
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
