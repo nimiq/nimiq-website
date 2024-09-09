@@ -46,6 +46,13 @@
             "allowTargetBlank": false,
             "select": null
           }
+        },
+        "cta_label": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Label",
+            "placeholder": ""
+          }
         }
       },
       "items": {}

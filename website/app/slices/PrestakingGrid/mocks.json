@@ -59,6 +59,11 @@
           "__TYPE__": "ExternalLink",
           "url": "http://google.com"
         }
+      },
+      "cta_label": {
+        "__TYPE__": "FieldContent",
+        "value": "fighting",
+        "type": "Text"
       }
     },
     "items": []

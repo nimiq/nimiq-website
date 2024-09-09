@@ -2479,6 +2479,16 @@ export interface BannerSliceSliceBannerWithBackgroundImagePrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   background: prismic.ImageField<never>
+
+  /**
+   * CTA Label field in *BannerSlice → Banner With Background Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.cta_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_label: prismic.KeyTextField
 }
 
 /**
@@ -5108,6 +5118,16 @@ export interface HeroSectionSliceHome2024Primary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   cta: prismic.LinkField
+
+  /**
+   * CTA Label field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.cta_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_label: prismic.KeyTextField
 }
 
 /**
@@ -6443,6 +6463,16 @@ export interface PrestakingGridSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   cta: prismic.LinkField
+
+  /**
+   * CTA Label field in *PrestakingGrid → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: prestaking_grid.default.primary.cta_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_label: prismic.KeyTextField
 }
 
 /**

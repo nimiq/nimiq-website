@@ -7,11 +7,11 @@ h2 + p {
 }
 
 section {
-  --uno: 'px-32 md:px-64 xl:px-72 2xl:px-136 mx-auto max-w-screen-2xl';
+  --uno: 'px-32 md:px-64 xl:px-72 2xl:px-136 *:mx-auto *:max-w-screen-2xl';
   --uno: 'flex flex-col items-center justify-center bg-neutral-0 text-neutral';
 
   &.dark {
-    --uno: 'bg-neutral-100';
+    --uno: 'bg-darkblue';
   }
 
   &.pt-24 {
@@ -26,6 +26,13 @@ section {
     --uno: 'pt-160 lg:pt-200';
     &.dark {
       --uno: 'mt-160 lg:mt-200';
+    }
+  }
+
+  &.pb-200 {
+    --uno: 'pb-160 lg:pb-200';
+    &.dark {
+      --uno: 'mb-160 lg:mb-200';
     }
   }
 }

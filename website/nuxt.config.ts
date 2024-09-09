@@ -5,6 +5,8 @@ import { repositoryName } from './slicemachine.config.json'
 export default defineNuxtConfig({
   extends: ['../base'],
 
+  ssr: false,
+
   future: {
     compatibilityVersion: 4,
   },
