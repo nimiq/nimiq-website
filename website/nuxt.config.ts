@@ -16,6 +16,10 @@ export default defineNuxtConfig({
     '@nuxtjs/prismic',
   ],
 
+  unocss: {
+    nuxtLayers: true,
+  },
+
   // TODO this rules should be part of a new nimiq sub lib
   css: ['~/assets/css/main.css'],
 

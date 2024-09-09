@@ -1,10 +1,9 @@
 import { presetRemToPx } from '@unocss/preset-rem-to-px'
 import transformerDirectives from '@unocss/transformer-directives'
 import { presetNimiq } from 'nimiq-css'
-import { definePreset, presetAttributify, presetIcons, presetUno } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
-export default definePreset({
-  name: 'base-config',
+export default defineConfig({
   presets: [
     presetUno({ attributifyPseudo: true }),
     presetNimiq({
