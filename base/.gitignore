@@ -1,6 +1,8 @@
 node_modules
 *.log
 .nuxt
+!./.playground/.nuxt/tsconfig.json
+
 nuxt.d.ts
 .output
 .data
