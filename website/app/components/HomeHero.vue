@@ -54,26 +54,25 @@ section {
   --mt-ellipsis: 128px;
   --aspect-ratio: 1.6;
   --uno: '[--ellipsis-width:200vw] md:[--ellipsis-width:300vh]';
-  --uno: '[--ratio:5] md:[--ratio:3] lg:[--ratio:2]';
   --ellipsis-height: calc(var(--ellipsis-width) / var(--aspect-ratio));
-  --ellipsis-container: calc((var(--ellipsis-height) / var(--ratio)) + var(--mt-ellipsis));
 
   .world-container {
     margin-top: var(--mt-ellipsis);
-    height: var(--ellipsis-container);
+    --uno: 'h-220 lg:h-330';
+
     .ellipse {
       height: var(--ellipsis-height);
       clip-path: ellipse(50% 50% at 50% 50%);
       aspect-ratio: var(--aspect-ratio);
     }
-  }
 
-  .world-container:has(.blue-ring) {
-    height: calc(var(--ellipsis-container) + 32px);
-  }
+    &:has(.blue-ring) {
+      --uno: 'h-252 lg:h-362';
+    }
 
-  .blue-ring {
-    background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%);
+    .blue-ring {
+      background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%);
+    }
   }
 }
 </style>
