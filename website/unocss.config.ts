@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { mergeConfigs } from '@unocss/core'
 import { presetIcons } from 'unocss'
-import config from './.nuxt/uno.config.mjs'
+import config from '../base/unocss.config.js'
 
 export default mergeConfigs([config, {
   // Custom config
