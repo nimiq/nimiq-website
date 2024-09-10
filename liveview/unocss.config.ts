@@ -1,6 +1,5 @@
-import { defineConfig } from 'unocss';
-import layer from '../unocss.config';
+import { mergeConfigs } from '@unocss/core'
+import config from './.nuxt/uno.config.mjs'
 
-export default defineConfig({
-  presets: [layer],
-});
+export default mergeConfigs([config, {
+}])
