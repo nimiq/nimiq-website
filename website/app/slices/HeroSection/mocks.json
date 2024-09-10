@@ -838,17 +838,6 @@
           }
         ]
       },
-      "Subheadline": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Dolor exercitation ad nulla et aliqua pariatur officia. Sint non excepteur qui aliqua eiusmod consequat amet aliquip deserunt voluptate voluptate est dolor. Anim ad in consectetur aliquip."
-            }
-          }
-        ]
-      },
       "cta": {
         "__TYPE__": "LinkContent",
         "value": {
@@ -859,6 +848,11 @@
       "cta_label": {
         "__TYPE__": "FieldContent",
         "value": "hung",
+        "type": "Text"
+      },
+      "subheadline": {
+        "__TYPE__": "FieldContent",
+        "value": "title",
         "type": "Text"
       }
     },

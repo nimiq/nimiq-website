@@ -800,15 +800,6 @@
             "single": "heading1"
           }
         },
-        "Subheadline": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Subheadline",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "paragraph,strong,em"
-          }
-        },
         "cta": {
           "type": "Link",
           "config": {
@@ -822,6 +813,13 @@
           "type": "Text",
           "config": {
             "label": "CTA Label",
+            "placeholder": ""
+          }
+        },
+        "subheadline": {
+          "type": "Text",
+          "config": {
+            "label": "subheadline",
             "placeholder": ""
           }
         }

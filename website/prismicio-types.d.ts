@@ -5110,16 +5110,6 @@ export interface HeroSectionSliceHome2024Primary {
   headline: prismic.TitleField
 
   /**
-   * Subheadline field in *HeroSection → Home 2024 → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.home2024.primary.Subheadline
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  Subheadline: prismic.RichTextField
-
-  /**
    * CTA field in *HeroSection → Home 2024 → Primary*
    *
    * - **Field Type**: Link
@@ -5138,6 +5128,16 @@ export interface HeroSectionSliceHome2024Primary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   cta_label: prismic.KeyTextField
+
+  /**
+   * subheadline field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.subheadline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheadline: prismic.KeyTextField
 }
 
 /**
