@@ -37,10 +37,41 @@ const subheadline = computed(() => {
   const post = props.sublineTemplate?.split('}}')[1]?.toString()
   return h('p', {}, [pre, locationsSpan, post])
 })
+
+const [DefineNimFly, ReuseNimFly] = createReusableTemplate<{ css: string }>()
+
+const shouldJump = ref(false)
+
+function onHover() {
+  // 30% chance to jump
+  shouldJump.value = Math.random() < 0.07
+}
+
+function onHoverEnd() {
+  shouldJump.value = false
+}
 </script>
 
 <template>
   <section class="dark pt-96 *:!max-w-initial" relative of-hidden>
+    <DefineNimFly v-slot="{ css }">
+      <div
+        :class="css"
+        grid="~ *:row-span-full *:col-span-full *:self-center *:justify-self-center"
+        group z-1 op-70
+        @mouseenter="onHover"
+        @mouseleave="onHoverEnd"
+      >
+        <div op="3 group-hover:1" pointer-events-none size-64 mix-blend-overlay blur-4 transition-opacity style="background: radial-gradient(circle, #FFFFFF 40%, rgba(255, 255, 255, 0) 100%);" />
+        <div
+          class="nim-fly-icon"
+          :class="{ 'jump-and-flip': shouldJump }"
+          i-nimiq:logos-shiny-nim
+          size-25
+        />
+        <div size-40 mix-blend-screen blur-28 op="100 group-hover:60" transition-opacity style="background: radial-gradient(circle, #FFFFFF 30%, rgba(255, 255, 255, 0) 100%);" />
+      </div>
+    </DefineNimFly>
     <div z-10 children:md:mx-auto>
       <PrismicText :field="headline" wrapper="h1" />
       <component :is="subheadline" text="white/80" />
@@ -50,6 +81,10 @@ const subheadline = computed(() => {
     </div>
     <NuxtImg pointer-events-none absolute inset-0 m-0 size-full src="/assets/images/gods-light.webp" />
     <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
+    <ReuseNimFly css="absolute left-100 top-200 scale-105 [--delay:700ms]" />
+    <ReuseNimFly css="absolute right-80 top-170 scale-80 [--delay:2500ms]" />
+    <ReuseNimFly css="absolute left-30vw bottom-400 scale-95 [--delay:4350ms]" />
+    <ReuseNimFly css="absolute right-32 bottom-550" />
     <div class="world-container" pointer-events-none absolute bottom-0 flex="~ justify-center" mx-0 of-y-hidden>
       <div class="ellipse blue-ring" of-hidden />
     </div>
@@ -86,6 +121,50 @@ section {
     .blue-ring {
       background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%);
     }
+  }
+
+  .nim-fly-icon {
+    --animation-play-state: running;
+    animation: float 6s ease-in-out infinite;
+    animation-play-state: var(--animation-play-state);
+    animation-delay: var(--delay, 0s);
+    transition:
+      filter 0.3s ease,
+      transform 0.5s ease;
+    --drop-shadow: 10px;
+    filter: drop-shadow(0 0 var(--drop-shadow) rgba(255, 255, 255, 0.7));
+  }
+
+  [group]:hover .nim-fly-icon {
+    --animation-play-state: paused;
+    --drop-shadow: 12px;
+  }
+
+  .jump-and-flip {
+    animation: jump-flip 0.5s ease-out;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+  }
+}
+
+@keyframes jump-flip {
+  0%,
+  100% {
+    transform: translateY(0) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateY(180deg);
+  }
+  100% {
+    transform: translateY(0) rotateY(360deg);
   }
 }
 </style>
