@@ -14,7 +14,9 @@ const { data: stats } = useAsyncData('continentStats', async () => {
   return data
 })
 
-const formatter = new Intl.NumberFormat(navigator.language, { notation: 'compact', maximumFractionDigits: 1 })
+const { language } = useNavigatorLanguage()
+
+const formatter = computed(() => new Intl.NumberFormat(language.value, { notation: 'compact', maximumFractionDigits: 1 }))
 
 // @unocss-include
 const continentsSvg = {
@@ -35,7 +37,7 @@ const continents = computed(() => {
     if (!statContinent)
       throw createError(`Continent ${continent.label} not found in stats`)
     const cryptoCitiesCount = statContinent.cryptocities_count
-    const locationsCount = formatter.format(statContinent.locations_count)
+    const locationsCount = formatter.value.format(statContinent.locations_count)
     const hasCryptoCities = cryptoCitiesCount > 0
     const hasLocations = statContinent.locations_count > 0
     if (Object.keys(continentsSvg).includes(continent.label!) === false)

@@ -1,5 +1,5 @@
 import { mergeConfigs } from '@unocss/core'
-import config from './.nuxt/uno.config.mjs'
+import config from '../base/unocss.config.js'
 
 export default mergeConfigs([config, {
 }])

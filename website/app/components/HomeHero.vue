@@ -1,25 +1,38 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
 import type { Database } from '~/types/database.types'
+import TweenedNumber from '../../../base/components/TweenedNumber.vue'
+// import type { Database } from '~/types/database.types'
 
 const props = defineProps<{ headline: TitleField, sublineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
 
 const supabase = useSupabaseClient<Database>()
 
-const formatter = new Intl.NumberFormat(navigator.language, { style: 'decimal' })
-
-const { data: locationsCount } = await useAsyncData('locationStats', async () => {
+const { data: locationsCount } = useAsyncData('locationStats', async () => {
   const { data, error } = await supabase.rpc('get_stats')
   if (error || !data)
     throw createError('Error fetching continent stats')
   const locations = (data as { locations: number }).locations!
-  return formatter.format(locations)
+  return locations
 })
 
 // @unocss-include
 
+const { language } = useNavigatorLanguage()
+
+const locationsSpan = h('span', { class: 'text-blue' }, [
+  h(TweenedNumber, {
+    value: locationsCount.value || 0,
+    min: 0,
+    max: locationsCount.value || 20_000,
+    animationDuration: 1300,
+    locale: language.value,
+    digitsCount: 5,
+  }),
+  ' locations',
+])
+
 const subheadline = computed(() => {
-  const locationsSpan = h('span', { class: 'text-blue' }, `${locationsCount.value} locations`)
   const pre = props.sublineTemplate?.split('{{')[0]?.toString()
   const post = props.sublineTemplate?.split('}}')[1]?.toString()
   return h('p', {}, [pre, locationsSpan, post])
@@ -43,7 +56,7 @@ const subheadline = computed(() => {
     <div bg="darkblue/10" pointer-events-none absolute inset-0 backdrop-blur-40 />
     <div class="world-container" flex="~ justify-center" pointer-events-none mx-0 of-y-hidden>
       <div class="ellipse" flex="~ justify-center" of-hidden bg-white pt="16 lg:24">
-        <div h="220 lg:330" i-continents:world-dots min-w-600 op-20 lg:w-1200 />
+        <div h="220 lg:330 xl:550" i-continents:world-dots min-w-600 op-20 lg:w-1200 />
       </div>
     </div>
   </section>
