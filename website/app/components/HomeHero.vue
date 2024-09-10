@@ -8,7 +8,7 @@ const supabase = useSupabaseClient<Database>()
 
 const formatter = new Intl.NumberFormat(navigator.language, { style: 'decimal' })
 
-const { data: locationsCount } = useAsyncData('locationStats', async () => {
+const { data: locationsCount } = await useAsyncData('locationStats', async () => {
   const { data, error } = await supabase.rpc('get_stats')
   if (error || !data)
     throw createError('Error fetching continent stats')
