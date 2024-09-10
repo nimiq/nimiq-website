@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
 import type { Database } from '~/types/database.types'
-import TweenedNumber from '../../../base/components/TweenedNumber.vue'
+import TweenedNumber from '../../../base/components/TweenedNumber.client.vue'
 // import type { Database } from '~/types/database.types'
 
 const props = defineProps<{ headline: TitleField, sublineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
@@ -53,7 +53,7 @@ function onHoverEnd() {
 </script>
 
 <template>
-  <section class="dark pt-96 *:!max-w-initial" relative of-hidden>
+  <section class="sgap-96 dark darkblue *:!max-w-initial" relative of-hidden>
     <DefineNimFly v-slot="{ css }">
       <div
         :class="css"

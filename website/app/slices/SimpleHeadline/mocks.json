@@ -5,7 +5,7 @@
     "primary": {
       "backgroundColor": {
         "__TYPE__": "FieldContent",
-        "value": "blue-dark",
+        "value": "white",
         "type": "Select"
       },
       "icon": {
@@ -69,6 +69,11 @@
         "__TYPE__": "FieldContent",
         "value": "darkness",
         "type": "Text"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "grey",
+        "type": "Select"
       }
     },
     "items": [

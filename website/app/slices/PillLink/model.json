@@ -31,13 +31,17 @@
             "placeholder": ""
           }
         },
-        "dark": {
-          "type": "Boolean",
+        "bgColor": {
+          "type": "Select",
           "config": {
-            "label": "Dark",
-            "placeholder_false": "false",
-            "placeholder_true": "true",
-            "default_value": false
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ],
+            "default_value": "grey"
           }
         }
       },

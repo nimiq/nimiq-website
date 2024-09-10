@@ -26,7 +26,7 @@ const activeItem = computed(() => props.items.filter(({ active }) => active)[0]?
   <ul :id="activeItem" flex="~ items-center md:gap-12 md:justify-center" my-1.5>
     <li v-for="({ item, label, active }, i) in items" :key="item" flex="~ items-center gap-12">
       <NuxtLink :to="`#${item}`" flex="~ items-center gap-10" rounded-full py-6 :class="active ? 'mr-8 pl-8 pr-20 ring-1.5 ring-neutral-500' : 'max-lg:hidden px-8'">
-        <div :class="colors[item]" aria-hidden size-28 rounded-full grid="~ place-content-center">
+        <div v-if="active" :class="colors[item]" aria-hidden size-28 rounded-full grid="~ place-content-center">
           <div :class="icons[item]" h-18 w-16 />
         </div>
         <span text="18 neutral-700" nq-label>{{ label }}</span>

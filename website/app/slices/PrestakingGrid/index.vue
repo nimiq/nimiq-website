@@ -5,10 +5,10 @@ defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
 </script>
 
 <template>
-  <section class="dark pb-200" style="--top: 136px; top: calc(var(--top) * -1)" data-gradient relative top--136 of-hidden>
+  <section class="darkblue dark pb-200" style="--top: 136px; top: calc(var(--top) * -1)" data-gradient relative top--136 of-hidden>
     <NuxtImg src="/assets/images/prestaking-glowing-background.webp" alt="" pointer-events-nonce absolute inset-0 z-0 object-cover />
     <ul flex="~ items-center col lg:row gap-x-24 gap-y-20 justify-center" style="padding-top: calc(var(--top) + 4rem)">
-      <li v-for="({ image, content }, i) in slice.primary.items" :key="i" flex="~ col lg:row md:items-center gap-x-12 gap-y-24" relative rounded-6 p-32>
+      <li v-for="({ image, content }, i) in slice.primary.items" :key="i" flex="~ col self-stretch lg:row md:items-center gap-x-12 gap-y-24" relative rounded-6 p-32>
         <PrismicImage :field="image" :imgix-params="{ w: 80, h: 80 }" z-1 size-80 md:mx-auto />
         <PrismicRichText :field="content" z-1 text="16/24 md:17/25.5 lg:18:28 neutral-900" />
         <div aria-hidden absolute inset-0 rounded-6 class="glass" />

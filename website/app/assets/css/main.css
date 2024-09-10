@@ -42,27 +42,33 @@ section {
     --uno: 'bg-neutral-100';
   }
 
-  &.blue-dark,
-  &.dark {
+  &.darkblue {
     --uno: 'bg-darkblue text-white';
   }
 
-  &.pt-24 {
+  &.sgap-24 {
     --uno: 'pt-16 lg:pt-24';
   }
 
-  &.pt-96 {
+  &.sgap-96 {
     --uno: 'pt-72 lg:pt-96';
   }
 
-  &.pt-200 {
+  /* Apply pt-200 only to elements that don't have a previous sibling with pt-200 */
+  &.sgap-200 {
     --uno: 'pt-160 lg:pt-200';
-    &.dark {
-      --uno: 'mt-160 lg:mt-200';
+    --uno: 'mt-160 lg:mt-200';
+
+    & + .sgap-200 {
+      --uno: 'pt-24';
+    }
+
+    & + .sgap-200 {
+      --uno: 'mt-0';
     }
   }
 
-  &.pb-200 {
+  &.pb-200:not(.sgap-200 ~ &) {
     --uno: 'pb-160 lg:pb-200';
     &.dark {
       --uno: 'mb-160 lg:mb-200';

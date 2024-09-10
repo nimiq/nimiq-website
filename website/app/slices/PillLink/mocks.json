@@ -13,9 +13,10 @@
         "type": "Text",
         "value": "The Map"
       },
-      "dark": {
-        "__TYPE__": "BooleanContent",
-        "value": true
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "darkblue",
+        "type": "Select"
       }
     },
     "items": []

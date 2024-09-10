@@ -6267,15 +6267,15 @@ export interface PillLinkSliceDefaultPrimary {
   label: prismic.KeyTextField
 
   /**
-   * Dark field in *PillLink → Default → Primary*
+   * Background Color field in *PillLink → Default → Primary*
    *
-   * - **Field Type**: Boolean
+   * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: pill_link.default.primary.dark
-   * - **Documentation**: https://prismic.io/docs/field#boolean
+   * - **Default Value**: grey
+   * - **API ID Path**: pill_link.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
-  dark: prismic.BooleanField
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 }
 
 /**
@@ -7640,7 +7640,7 @@ export type SimpleCarouselSlice = prismic.SharedSlice<
  */
 export interface SimpleHeadlineSliceDefaultPrimary {
   /**
-   * Background color* field in *SimpleHeadline → Default → Primary*
+   * Background color (DEPRECATED) field in *SimpleHeadline → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -7718,6 +7718,17 @@ export interface SimpleHeadlineSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   linkLabel: prismic.KeyTextField
+
+  /**
+   * Background Color field in *SimpleHeadline → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: grey
+   * - **API ID Path**: simple_headline.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 }
 
 /**

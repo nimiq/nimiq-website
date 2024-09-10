@@ -13,7 +13,7 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background color*",
+            "label": "Background color (DEPRECATED)",
             "placeholder": "",
             "options": [
               "white",
@@ -76,6 +76,19 @@
             "placeholder": "Mandatory if the Link href is set"
           },
           "type": "Text"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ],
+            "default_value": "grey"
+          }
         }
       },
       "items": {},
