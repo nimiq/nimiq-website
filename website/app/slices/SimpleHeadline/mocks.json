@@ -9,7 +9,6 @@
         "type": "Select"
       },
       "icon": {
-        "__TYPE__": "ImageContent",
         "origin": {
           "id": "main",
           "url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89",
@@ -27,6 +26,9 @@
           },
           "background": "transparent"
         },
+        "credits": null,
+        "alt": null,
+        "__TYPE__": "ImageContent",
         "thumbnails": {}
       },
       "label": {
@@ -67,10 +69,6 @@
         "__TYPE__": "FieldContent",
         "value": "darkness",
         "type": "Text"
-      },
-      "dark": {
-        "__TYPE__": "BooleanContent",
-        "value": true
       }
     },
     "items": [
@@ -90,7 +88,6 @@
         "type": "Select"
       },
       "icon": {
-        "__TYPE__": "ImageContent",
         "origin": {
           "id": "main",
           "url": "https://images.unsplash.com/photo-1587613865763-4b8b0d19e8ab",
@@ -108,6 +105,9 @@
           },
           "background": "transparent"
         },
+        "credits": null,
+        "alt": null,
+        "__TYPE__": "ImageContent",
         "thumbnails": {}
       },
       "label": {

@@ -41,7 +41,7 @@ const subheadline = computed(() => {
       <div class="ellipse blue-ring" of-hidden />
     </div>
     <div bg="darkblue/10" pointer-events-none absolute inset-0 backdrop-blur-40 />
-    <div class="world-container" flex="~ justify-center" mx-0 of-y-hidden>
+    <div class="world-container" flex="~ justify-center" pointer-events-none mx-0 of-y-hidden>
       <div class="ellipse" flex="~ justify-center" of-hidden bg-white pt="16 lg:24">
         <div h="220 lg:330" i-continents:world-dots min-w-600 op-20 lg:w-1200 />
       </div>
@@ -54,8 +54,9 @@ section {
   --mt-ellipsis: 128px;
   --aspect-ratio: 1.6;
   --uno: '[--ellipsis-width:200vw] md:[--ellipsis-width:300vh]';
+  --uno: '[--ratio:5] md:[--ratio:3] lg:[--ratio:2]';
   --ellipsis-height: calc(var(--ellipsis-width) / var(--aspect-ratio));
-  --ellipsis-container: calc((var(--ellipsis-height) / 5) + var(--mt-ellipsis));
+  --ellipsis-container: calc((var(--ellipsis-height) / var(--ratio)) + var(--mt-ellipsis));
 
   .world-container {
     margin-top: var(--mt-ellipsis);

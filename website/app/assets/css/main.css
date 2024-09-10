@@ -32,10 +32,19 @@ section {
   padding-left: var(--px);
 
   --uno: '*:mx-auto *:max-w-screen-2xl';
-  --uno: 'flex flex-col items-center justify-center bg-neutral-100 text-neutral';
+  --uno: 'flex flex-col items-center justify-center text-neutral';
 
+  &.white {
+    --uno: 'bg-white';
+  }
+
+  &.grey {
+    --uno: 'bg-neutral-100';
+  }
+
+  &.blue-dark,
   &.dark {
-    --uno: 'bg-darkblue';
+    --uno: 'bg-darkblue text-white';
   }
 
   &.pt-24 {

@@ -5745,6 +5745,16 @@ export interface LogosGridSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   logo: prismic.ImageField<never>
+
+  /**
+   * Link field in *LogosGrid → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logos_grid.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
 }
 
 /**
@@ -7708,17 +7718,6 @@ export interface SimpleHeadlineSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   linkLabel: prismic.KeyTextField
-
-  /**
-   * Dark field in *SimpleHeadline → Default → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: simple_headline.default.primary.dark
-   * - **Documentation**: https://prismic.io/docs/field#boolean
-   */
-  dark: prismic.BooleanField
 }
 
 /**

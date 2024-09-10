@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.GridSectionSlice>())
 </script>
 
 <template>
-  <section class="pt-96">
+  <section class="white pt-96">
     <template v-if="slice.variation === 'threeColumnsImageText'">
       <ul flex="~ col lg:row gap-24" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1>
