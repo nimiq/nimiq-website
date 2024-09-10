@@ -13,10 +13,7 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2024-08-31',
 
-  modules: [
-    '@nuxthub/core',
-    '@nuxtjs/prismic',
-  ],
+  modules: ['@nuxthub/core', '@nuxtjs/prismic', '@nuxtjs/supabase'],
 
   unocss: {
     nuxtLayers: true,
@@ -32,12 +29,20 @@ export default defineNuxtConfig({
     },
   },
 
+  supabase: {
+    redirect: false,
+    types: './app/types/database.types.ts',
+  },
+
   hub: {
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
   },
 
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'en',
+      },
       title: 'Nimiq Home',
     },
   },

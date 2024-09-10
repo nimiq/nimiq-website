@@ -1,3 +1,7 @@
+body {
+  --uno: bg-neutral-100 text-neutral;
+}
+
 h2 {
   --uno: 'font-bold md:text-center text-32/41.6 text-neutral lg:text-36/43.2 xl:text-40/48';
 }

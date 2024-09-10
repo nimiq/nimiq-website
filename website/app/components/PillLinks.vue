@@ -23,7 +23,7 @@ const activeItem = computed(() => props.items.filter(({ active }) => active)[0]?
 </script>
 
 <template>
-  <ul :id="activeItem" flex="~ items-center gap-12 md:justify-center" my-1.5>
+  <ul :id="activeItem" flex="~ items-center md:gap-12 md:justify-center" my-1.5>
     <li v-for="({ item, label, active }, i) in items" :key="item" flex="~ items-center gap-12">
       <NuxtLink :to="`#${item}`" flex="~ items-center gap-10" rounded-full py-6 :class="active ? 'mr-8 pl-8 pr-20 ring-1.5 ring-neutral-500' : 'max-lg:hidden px-8'">
         <div :class="colors[item]" aria-hidden size-28 rounded-full grid="~ place-content-center">
