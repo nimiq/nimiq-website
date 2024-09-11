@@ -56,6 +56,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/api/liveview/policy': { swr: 3600 }, // cache 1 hour
+    '/iframes/albatross-liveview': { ssr: false },
   },
 
   watch: ['server/**/*'],
