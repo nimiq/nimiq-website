@@ -5,7 +5,7 @@ const props = defineProps<{
   statsTooltipContent?: string
   txSecLabel?: string
   txSpeedLabel?: string
-  averageRewardsLabel: string
+  averageRewardsLabel?: string
 }>()
 
 const { canSendTx } = storeToRefs(useLiveviewTx())
@@ -13,6 +13,8 @@ watch(() => props.allowSendTx, value => canSendTx.value = value || false, { imme
 </script>
 
 <template>
-  <AlbatrossLiveviewBlockchain w-screen />
-  <AlbatrossInfo :network-notice :stats-tooltip-content :tx-sec-label :average-rewards-label :tx-speed-label mt="32 lg:48 xl:72" />
+  <div flex="~ col items-center">
+    <AlbatrossLiveviewBlockchain w-screen />
+    <AlbatrossInfo :network-notice :stats-tooltip-content :tx-sec-label :average-rewards-label :tx-speed-label mt="32 lg:48 xl:72" />
+  </div>
 </template>

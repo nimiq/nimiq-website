@@ -59,7 +59,7 @@ const batchNumberClass = computed(() => {
 
     <div
       text="14 neutral-900 center" flex="~ justify-center col items-center" relative ml-4 size-44 shrink-0 rounded-8
-      bg-neutral-600 font-bold op-60 transition-colors :class="batchClass"
+      bg-neutral-600 font-bold op-60 transition-all :class="batchClass"
     >
       <span>M</span>
       <span :class="batchNumberClass">{{ batchNumber }}</span>

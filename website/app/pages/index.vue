@@ -16,5 +16,8 @@ useHead({
 </script>
 
 <template>
-  <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components="components" />
+  <NuxtLayout>
+    <NuxtRouteAnnouncer />
+    <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components="components" />
+  </NuxtLayout>
 </template>

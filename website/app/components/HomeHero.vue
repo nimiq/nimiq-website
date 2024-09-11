@@ -44,7 +44,6 @@ const [DefineNimFly, ReuseNimFly] = createReusableTemplate<{ css: string }>()
 const shouldJump = ref(false)
 
 function onHover() {
-  // 30% chance to jump
   shouldJump.value = Math.random() < 0.07
 }
 
@@ -54,7 +53,7 @@ function onHoverEnd() {
 </script>
 
 <template>
-  <section class="nq-block-96 dark darkblue *:!max-w-initial" relative of-hidden>
+  <section class="dark darkblue wide" relative of-hidden>
     <DefineNimFly v-slot="{ css }">
       <div
         :class="css"

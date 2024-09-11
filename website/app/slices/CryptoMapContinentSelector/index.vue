@@ -62,7 +62,7 @@ const iframeUrl = computed(() => {
 </script>
 
 <template>
-  <section class="nq-block-96 px-0 lg:px-72" flex="col lg:row gap-x-24 gap-y-32">
+  <section class="wide nq-block-96 px-0 lg:px-72" flex="col lg:row gap-x-24 gap-y-32">
     <div max-lg:my--40 max-lg:w-full>
       <ul w-full flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-40">
         <li
@@ -72,7 +72,7 @@ const iframeUrl = computed(() => {
           rounded-8
           :data-selected="selected ? '' : undefined"
         >
-          <button p="x-24 y-20" active="[--un-shadow:var(--nq-shadow)]" relative w-full rounded-8 transition ease-out lg:max-w-410 md:min-w-385 not-selected:hocus:translate-y--4 bg="not-selected:neutral-300 selected:white hocus:white" selected:ring="1.5 neutral-200" @click="activeContinent = label">
+          <button p="x-24 y-20" active="[--un-shadow:var(--nq-shadow)]" relative w-full of-hidden rounded-8 transition ease-out lg:max-w-410 md:min-w-385 not-selected:hocus:translate-y--4 bg="not-selected:neutral-300 selected:white hocus:white" selected:ring="1.5 neutral-200" @click="activeContinent = label">
             <p text="20/26 lg:22/28.6" whitespace-nowrap text-left font-semibold>
               {{ label }}
             </p>
@@ -96,9 +96,9 @@ const iframeUrl = computed(() => {
         </li>
       </ul>
     </div>
-    <div max-lg:w-full lg:self-stretch max-lg:px-32>
+    <div flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-32>
       <iframe
-        aspect="9/16 lg:initial" mx-auto size-full max-h-80dvh rounded-8 ring="1.5 neutral-200" title="Crypto Map"
+        aspect="9/16 lg:initial" mx-auto size-full rounded-8 lg:h-full max-lg:max-h-80dvh ring="1.5 neutral-200" title="Crypto Map"
         :src="iframeUrl"
         sandbox="allow-scripts allow-same-origin allow-popups"
         frameborder="0"

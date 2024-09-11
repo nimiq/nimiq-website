@@ -2,7 +2,7 @@
 const { txSecLabel = 'TX/sec', averageRewardsLabel = 'Avg rewarsd', txSpeedLabel = 'TX Speed' } = defineProps<{
   txSecLabel?: string
   txSpeedLabel?: string
-  averageRewardsLabel: string
+  averageRewardsLabel?: string
 }>()
 
 const { txPerSecond, blockTime } = storeToRefs(useAlbatrossStats())
@@ -13,7 +13,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
 <template>
   <DefineStat v-slot="{ icon, iconBgColor, label, value, decimals = 1, suffix }">
     <div flex="~ col max-sm:items-center gap-12">
-      <span font-semibold text="26 lg:32" lh-none flex="~">
+      <span font-semibold text="26 lg:32 neutral" lh-none flex="~">
         <TweenedNumber :value :decimals :animation-duration="500" />
         {{ suffix }}
       </span>

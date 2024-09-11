@@ -85,7 +85,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
 </script>
 
 <template>
-  <div relative pt-128>
+  <div relative>
     <div flex="~ justify-end items-center" min-h-224 of-hidden px-24 pr-84>
       <transition-group
         tag="div" flex="~ justify-end items-center" enter-from-class="op-0" enter-active-class="transition-opacity duration-400 ease-in"

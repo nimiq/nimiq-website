@@ -6,7 +6,7 @@ const { networkNotice, statsTooltipContent, txSecLabel, averageRewardsLabel, txS
   statsTooltipContent?: string
   txSecLabel?: string
   txSpeedLabel?: string
-  averageRewardsLabel: string
+  averageRewardsLabel?: string
 }>()
 
 const { status, animationActive, nonce, canSendTx } = storeToRefs(useLiveviewTx())

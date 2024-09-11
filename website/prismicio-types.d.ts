@@ -7766,129 +7766,9 @@ export type SimpleHeadlineSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
- * Primary content in *SimpleHeadline → WithApps → Primary*
- */
-export interface SimpleHeadlineSliceWithAppsPrimary {
-  /**
-   * Background color* field in *SimpleHeadline → WithApps → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: white
-   * - **API ID Path**: simple_headline.withApps.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  backgroundColor: prismic.SelectField<
-    | 'white'
-    | 'grey'
-    | 'blue'
-    | 'blue-dark'
-    | 'green'
-    | 'blue-s3'
-    | 'blue-dark-dimmed',
-    'filled'
-  >
-
-  /**
-   * Icon field in *SimpleHeadline → WithApps → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: simple_headline.withApps.primary.icon
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  icon: prismic.ImageField<never>
-
-  /**
-   * Label field in *SimpleHeadline → WithApps → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: simple_headline.withApps.primary.label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  label: prismic.KeyTextField
-
-  /**
-   * Headline* field in *SimpleHeadline → WithApps → Primary*
-   *
-   * - **Field Type**: Title
-   * - **Placeholder**: This is where it all begins...
-   * - **API ID Path**: simple_headline.withApps.primary.headline
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  headline: prismic.TitleField
-
-  /**
-   * Subline* field in *SimpleHeadline → WithApps → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: A nice description of your product
-   * - **API ID Path**: simple_headline.withApps.primary.subline
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  subline: prismic.RichTextField
-
-  /**
-   * Link href field in *SimpleHeadline → WithApps → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: simple_headline.withApps.primary.linkHref
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  linkHref: prismic.LinkField
-
-  /**
-   * Link label field in *SimpleHeadline → WithApps → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Mandatory if the Link href is set
-   * - **API ID Path**: simple_headline.withApps.primary.linkLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  linkLabel: prismic.KeyTextField
-
-  /**
-   * Google Play field in *SimpleHeadline → WithApps → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: simple_headline.withApps.primary.googlePlay
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  googlePlay: prismic.LinkField
-
-  /**
-   * App Store field in *SimpleHeadline → WithApps → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: simple_headline.withApps.primary.appStore
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  appStore: prismic.LinkField
-}
-
-/**
- * WithApps variation for SimpleHeadline Slice
- *
- * - **API ID**: `withApps`
- * - **Description**: SimpleHeadline
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type SimpleHeadlineSliceWithApps = prismic.SharedSliceVariation<
-  'withApps',
-  Simplify<SimpleHeadlineSliceWithAppsPrimary>,
-  never
->
-
-/**
  * Slice variation for *SimpleHeadline*
  */
-type SimpleHeadlineSliceVariation =
-  | SimpleHeadlineSliceDefault
-  | SimpleHeadlineSliceWithApps
+type SimpleHeadlineSliceVariation = SimpleHeadlineSliceDefault
 
 /**
  * SimpleHeadline Shared Slice
@@ -9589,8 +9469,6 @@ declare module '@prismicio/client' {
       SimpleHeadlineSliceDefault,
       SimpleHeadlineSliceDefaultPrimary,
       SimpleHeadlineSliceVariation,
-      SimpleHeadlineSliceWithApps,
-      SimpleHeadlineSliceWithAppsPrimary,
       SocialMediaGridSlice,
       SocialMediaGridSliceDefault,
       SocialMediaGridSliceDefaultItem,
