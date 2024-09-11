@@ -13,6 +13,6 @@ watch(() => props.allowSendTx, value => canSendTx.value = value || false, { imme
 </script>
 
 <template>
-  <!-- <AlbatrossLiveviewBlockchain /> -->
-  <AlbatrossInfo :network-notice :stats-tooltip-content :tx-sec-label :average-rewards-label :tx-speed-label />
+  <AlbatrossLiveviewBlockchain w-screen />
+  <AlbatrossInfo :network-notice :stats-tooltip-content :tx-sec-label :average-rewards-label :tx-speed-label mt="32 lg:48 xl:72" />
 </template>

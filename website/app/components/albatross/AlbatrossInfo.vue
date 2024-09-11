@@ -25,9 +25,9 @@ const pillClass = computed(() => getLiveviewPillColor({ nonce: nonce.value }))
         {{ statsTooltipContent }}
       </Tooltip>
     </div>
-    <div v-if="networkNotice" text="14 neutral" bg="white/5" flex="~ gap-16 wrap justify-center items-center" self-stretch rounded-8 px-48 py-24 md:mx-auto>
+    <div v-if="networkNotice" text="14 neutral" bg="white/5" flex="~ gap-16 wrap justify-center items-center" self-stretch rounded-8 px-32 py-24 md:mx-auto>
       <div i-nimiq:tools-2 size="24 lg:38" />
-      <p text="15/21 md:16/22 max-md:center neutral-900" font-semibold lg:max-w-16ch>
+      <p text="15/21 md:16/22 max-md:center neutral-900" font-semibold lg:max-w-15ch>
         {{ networkNotice }}
       </p>
     </div>

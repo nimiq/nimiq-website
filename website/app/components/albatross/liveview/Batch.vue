@@ -49,17 +49,17 @@ const batchNumberClass = computed(() => {
     <div flex="~ col wrap" h="70 sm:56 md:44">
       <!-- :style="showColors && validators && `background: #${n}`" -->
       <div
-        v-for="n in createdBlockCount" :key="`micro-block-${n}`" m-4 inline-block size-6 rounded-2 bg-neutral op-60
+        v-for="n in createdBlockCount" :key="`micro-block-${n}`" m-4 inline-block size-6 rounded-2 bg-neutral-700
       />
       <div
         v-for="n in remainingBlockCount" :key="`micro-block-${createdBlockCount + n}`" m-4 inline-block size-6
-        rounded-2 bg-neutral-300
+        rounded-2 bg-neutral-500
       />
     </div>
 
     <div
-      text="14 neutral-800 center" flex="~ justify-center col items-center" relative ml-4 size-44 shrink-0 rounded-8
-      bg-neutral-200 font-bold op-60 transition-colors :class="batchClass"
+      text="14 neutral-900 center" flex="~ justify-center col items-center" relative ml-4 size-44 shrink-0 rounded-8
+      bg-neutral-600 font-bold op-60 transition-colors :class="batchClass"
     >
       <span>M</span>
       <span :class="batchNumberClass">{{ batchNumber }}</span>

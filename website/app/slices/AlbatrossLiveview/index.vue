@@ -2,10 +2,11 @@
 import type { Content } from '@prismicio/client'
 
 defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
+const classes = useSectionColor('darkblue')
 </script>
 
 <template>
-  <section :class="`nq-section-96 ${useSectionColor('darkblue')}`">
+  <section :class="classes" class="wide" px-0>
     <AlbatrossLiveview
       :allow-send-tx="slice.primary.allowSendTx"
       :average-rewards-label="slice.primary.averageRewardsLabel!"

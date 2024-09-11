@@ -31,7 +31,9 @@ section {
   padding-right: var(--px);
   padding-left: var(--px);
 
-  --uno: '*:mx-auto *:max-w-screen-2xl';
+  &:not(.wide) {
+    --uno: '*:mx-auto *:max-w-screen-2xl';
+  }
   --uno: 'flex flex-col items-center justify-center text-neutral';
 
   &.white {
