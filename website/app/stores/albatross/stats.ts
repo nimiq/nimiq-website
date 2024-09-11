@@ -9,13 +9,16 @@ export const useAlbatrossStats = defineStore('albatross-stats', () => {
     },
   })
 
-  const emptyStats: LiveviewStats = { duration: 0, numberBlocks: 0, txLimit: 0, throughput: 0, blockTime: 0, fromBlock: 0, toBlock: 0 }
+  const emptyStats: LiveviewStats = { txPerSecond: 0, blockTime: 0 }
   const stats = computed<LiveviewStats>(() => data.value ? JSON.parse(data.value) : emptyStats)
 
   return {
     status,
     error,
+    data,
     stats,
+    txPerSecond: computed(() => stats.value.txPerSecond),
+    blockTime: computed(() => stats.value.blockTime),
   }
 })
 

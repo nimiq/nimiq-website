@@ -1,12 +1,9 @@
 import { NimiqRPCClient } from 'nimiq-rpc-client-ts'
-import type { Block, MicroBlock, PartialBlock, PolicyConstants } from 'nimiq-rpc-client-ts'
+import type { Block, MicroBlock } from 'nimiq-rpc-client-ts'
 
 const STATS_WINDOW_SIZE = 3 * 128
 const STATS_REFRESH_EVERY = 3
-const TXS_PER_BLOCK = 500 // Adjust this value as needed
-
-const matchedTxsCount = (block: Block) => block.transactions.filter(tx => tx.to.length === 8).length
-const unmatchedTxsCount = (block: Block) => block.transactions.filter(tx => tx.to.length !== 8).length
+// const TXS_PER_BLOCK = 500 // Adjust this value as needed
 
 export default defineEventHandler(async (event) => {
   const blocks: Block[] = []
@@ -15,78 +12,10 @@ export default defineEventHandler(async (event) => {
 
   const client = new NimiqRPCClient(nodeRpcUrl)
 
-  // Fetch the latest block number and policy
-  const { data: head, error: headError } = await client.blockchain.getBlockNumber()
-  const { data: policy, error: policyError } = await client.policy.getPolicyConstants()
-  if (!head || headError || !policy || policyError)
-    throw createError({ statusCode: 500, message: 'Failed to fetch head block' })
-
-  function getThroughput() {
-    if (blocks.length < 3)
-      return 0
-    // Blocks in the array might be placeholders, so we split the array at placeholders into segments
-    // of length >= 3 and compute throughput individually per segment. The overall throughput is calculated
-    // as the segment-length-weighted average of the individual throughput values.
-    const segments: MicroBlock[][] = []
-    for (const block of blocks.reverse()) {
-      if (block.type === 'micro') {
-        segments.at(-1)?.push(block)
-        continue
-      }
-      segments.push([])
-      if (segments.length >= 3)
-        break
-    }
-
-    const weightedTxps = segments.reduce((sum, segment) => {
-      const txs = segment.reduce((txs, block) => txs + matchedTxsCount(block) + unmatchedTxsCount(block), 0)
-      const [first, last] = [segment.at(0), segment.at(-1)]
-      if (!first || !last)
-        return sum
-      const timespan = (first.timestamp - last.timestamp) / 1000
-      return sum + (segment.length * (txs / timespan))
-    }, 0)
-    const numBlocks = segments.reduce((sum, segment) => sum + segment.length, 0)
-    return Math.round(weightedTxps / numBlocks)
-  }
-
-  async function getLatestBlock() {
-    if (blocks.length === 0) {
-      const { data: block } = await client.blockchain.getBlockByNumber(head!)
-      return block!
-    }
-    const latestBlock = blocks.at(-1)
-    return latestBlock
-  }
-
-  async function getFirstBlock(latestBlock: PartialBlock) {
-    const blockNumber = Math.max(1, latestBlock.number - STATS_WINDOW_SIZE)
-    const maybeBlock = blocks.find(block => block.number === blockNumber)
-    if (maybeBlock)
-      return maybeBlock
-    const { data: block, error } = await client.blockchain.getBlockByNumber(blockNumber)
-    if (!block || error) {
-      console.error(`Error fetching block ${blockNumber}: ${JSON.stringify(error)}`)
-      return blocks[0]
-    }
-    return block
-  }
-
   async function sendStats() {
-    const latestBlock = await getLatestBlock()
-    if (!latestBlock)
-      return
-    const firstBlock = await getFirstBlock(latestBlock)
-    if (!firstBlock)
-      return
-    const fromBlock = firstBlock.number
-    const toBlock = latestBlock.number
-    const numberBlocks = toBlock - fromBlock + 1
-    const duration = latestBlock.timestamp - firstBlock.timestamp
-    const blockTime = roundToSignificant(duration / 1000 / numberBlocks, 2)
-    const txLimit = getTxLimit({ numberBlocks, duration, blocksPerBatch: policy!.blocksPerBatch })
-    const throughput = getThroughput()
-    const stats: LiveviewStats = { duration, txLimit, throughput, blockTime, fromBlock, toBlock, numberBlocks }
+    const txPerSecond = calculateTxPerSecond(blocks)
+    const blockTime = calculateBlockTime(blocks)
+    const stats: LiveviewStats = { txPerSecond, blockTime }
     eventStream.push(`${JSON.stringify(stats)}\n`)
   }
 
@@ -113,9 +42,23 @@ export default defineEventHandler(async (event) => {
   return eventStream.send()
 })
 
-function getTxLimit({ numberBlocks, duration, blocksPerBatch }: Pick<LiveviewStats, 'numberBlocks' | 'duration'> & Pick<PolicyConstants, 'blocksPerBatch'>) {
-  const microBlockCount = numberBlocks - Math.floor(numberBlocks / blocksPerBatch)
-  return Math.round(microBlockCount * TXS_PER_BLOCK / (duration / 1000))
+function calculateTxPerSecond(blocks: Block[]): number {
+  if (blocks.length < 2)
+    return 0
+
+  const totalTransactions = blocks.reduce((sum, block) => sum + block.transactions.length, 0)
+  const timeSpan = blocks[blocks.length - 1].timestamp - blocks[0].timestamp
+
+  return timeSpan > 0 ? roundToSignificant(totalTransactions / (timeSpan / 1000)) : 0
+}
+
+function calculateBlockTime(blocks: Block[]): number {
+  if (blocks.length < 2)
+    return 0
+
+  const microblocks = blocks.filter((block): block is MicroBlock => block.type === 'micro')
+  const timeSpan = microblocks[microblocks.length - 1].timestamp - microblocks[0].timestamp
+  return timeSpan > 0 ? roundToSignificant(timeSpan / 1000 / (microblocks.length - 1), 0) : 0
 }
 
 function roundToSignificant(number: number, places = 1) {

@@ -5,15 +5,18 @@ const { txSecLabel = 'TX/sec', averageRewardsLabel = 'Avg rewarsd', txSpeedLabel
   averageRewardsLabel: string
 }>()
 
-const { stats } = storeToRefs(useAlbatrossStats())
+const { txPerSecond, blockTime } = storeToRefs(useAlbatrossStats())
 
-const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgColor: string, value: number, label: string, decimals?: number }>()
+const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgColor: string, value: number, label: string, decimals?: number, suffix?: string }>()
 </script>
 
 <template>
-  <DefineStat v-slot="{ icon, iconBgColor, label, value, decimals = 1 }">
-    <div flex="~ col gap-12">
-      <TweenedNumber font-semibold text="26 lg:32" lh-none :value :decimals :animation-duration="500" />
+  <DefineStat v-slot="{ icon, iconBgColor, label, value, decimals = 1, suffix }">
+    <div flex="~ col max-sm:items-center gap-12">
+      <span font-semibold text="26 lg:32" lh-none flex="~">
+        <TweenedNumber :value :decimals :animation-duration="500" />
+        {{ suffix }}
+      </span>
       <div flex="~ items-center gap-8">
         <div size="20 lg:24" rounded-full :class="iconBgColor" flex="~ items-center justify-center">
           <div text-neutral-0 :class="icon" />
@@ -24,15 +27,15 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
       </div>
     </div>
   </DefineStat>
-  <ul flex="~ items-center justify-between gap-32 col md:row">
+  <ul flex="~ items-center justify-between gap-32 lg:gap-48 sm:row col">
     <li>
-      <ReuseStat icon="i-nimiq:sand-clock size-14" icon-bg-color="bg-gradient-orange" :value="stats.throughput" :label="txSecLabel" />
+      <ReuseStat icon="i-nimiq:sand-clock size-14" icon-bg-color="bg-gradient-orange" :value="txPerSecond" :label="txSecLabel" />
     </li>
     <li>
-      <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="stats.blockTime" :label="txSpeedLabel" />
+      <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="blockTime" :label="txSpeedLabel" :decimals="0" suffix="&nbsp;sec" />
     </li>
     <li>
-      <ReuseStat icon="i-nimiq:leaf-2 size-12 ml-1" icon-bg-color="bg-gradient-green" :value="stats.txLimit" :label="averageRewardsLabel" />
+      <ReuseStat icon="i-nimiq:leaf-2 size-12 ml-1" icon-bg-color="bg-gradient-green" :value="0" :label="averageRewardsLabel" suffix="% p.a" />
     </li>
   </ul>
 </template>
