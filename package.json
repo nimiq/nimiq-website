@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
   "scripts": {
+    "postinstall": "pnpm --filter base run dev:prepare",
     "dev": "pnpm --filter website run dev",
     "slicemachine": "pnpm --filter website run slicemachine",
     "lint:fix": "pnpm --filter base run dev:prepare && pnpm --stream -r lint:fix"
