@@ -6,7 +6,7 @@ defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
 
 <template>
   <section :class="`nq-section-96 ${useSectionColor('darkblue')}`">
-    <Liveview
+    <AlbatrossLiveview
       :allow-send-tx="slice.primary.allowSendTx"
       :average-rewards-label="slice.primary.averageRewardsLabel!"
       :network-notice="slice.primary.networkNotice!"

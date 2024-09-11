@@ -46,11 +46,11 @@ section {
     --uno: 'bg-darkblue text-white';
   }
 
-  &.sgap-24 {
+  &.nq-block-24 {
     --uno: 'pt-16 lg:pt-24';
   }
 
-  &.sgap-96 {
+  &.nq-block-96 {
     --uno: 'pt-72 lg:pt-96';
   }
 
@@ -58,14 +58,6 @@ section {
   &.nq-block-200 {
     --uno: 'pt-160 lg:pt-200';
     --uno: 'mt-160 lg:mt-200';
-
-    & + .nq-block-200 {
-      --uno: 'pt-24';
-    }
-
-    & + .nq-block-200 {
-      --uno: 'mt-0';
-    }
   }
 
   &.pb-200:not(.nq-block-200 ~ &) {

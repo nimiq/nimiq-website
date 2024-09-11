@@ -42,7 +42,7 @@ const fontSizeClass = computed(() => {
         No Transactions
       </div>
       <div v-else grow-1>
-        <LiveviewTransactionCanvas absolute bottom-0 left-0 origin="[0_100%]" scale-50 :nonces :hashes />
+        <AlbatrossLiveviewTransactionCanvas absolute bottom-0 left-0 origin="[0_100%]" scale-50 :nonces :hashes />
       </div>
     </div>
 

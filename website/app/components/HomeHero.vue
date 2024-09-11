@@ -54,7 +54,7 @@ function onHoverEnd() {
 </script>
 
 <template>
-  <section class="sgap-96 dark darkblue *:!max-w-initial" relative of-hidden>
+  <section class="nq-block-96 dark darkblue *:!max-w-initial" relative of-hidden>
     <DefineNimFly v-slot="{ css }">
       <div
         :class="css"

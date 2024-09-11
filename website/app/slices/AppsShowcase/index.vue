@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.AppsShowcaseSlice>())
 </script>
 
 <template>
-  <section class="sgap-96">
+  <section class="nq-block-96">
     <ul v-if="slice.variation === 'nimiqsApps'" grid="~ cols-1 lg:cols-2 gap-20 md:gap-22">
       <li
         v-for="({ description, highlight, item, preview, title, link }, i) in slice.primary.apps" :key="i" :class="{ 'lg:col-span-full': highlight }"

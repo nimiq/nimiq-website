@@ -16,7 +16,7 @@ const progress = computed(() => Math.min(props.block.votes / requiredVotes.value
       M{{ block.batch }}
     </div>
 
-    <LiveviewRadialProgress
+    <AlbatrossLiveviewRadialProgress
       :progress="progress" :radius="36" stroke="#FFFFFFFF" inner-stroke="#FFFFFF66" :stroke-width="2"
       :inner-stroke-width="2"
     />

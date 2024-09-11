@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
 </script>
 
 <template>
-  <section v-if="slice.variation === 'bannerWithBackgroundImage'" class="sgap-96">
+  <section v-if="slice.variation === 'bannerWithBackgroundImage'" class="nq-block-96">
     <div border="1 solid neutral/15" relative w-full rounded-8 bg-neutral-0 px-32 py-72>
       <PrismicImage :field="slice.primary.background" pointer-events-none absolute inset-0 />
       <h2>{{ slice.primary.title }}</h2>

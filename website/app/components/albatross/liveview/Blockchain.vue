@@ -81,7 +81,7 @@ function stopAnimation() {
 }
 
 const { canSendTx } = storeToRefs(useLiveviewTx())
-const LiveviewTxPending = defineAsyncComponent(() => import('./LiveviewTxPending.vue'))
+const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPending.vue'))
 </script>
 
 <template>
@@ -91,11 +91,11 @@ const LiveviewTxPending = defineAsyncComponent(() => import('./LiveviewTxPending
         tag="div" flex="~ justify-end items-center" enter-from-class="op-0" enter-active-class="transition-opacity duration-400 ease-in"
         :style="{ transform: `translate3d(${offset}px, 0, 0)` }"
       >
-        <LiveviewBlock v-for="block in blocks" :key="`block-${block.number}`" :block :style="{ width: BLOCK_WIDTH }" />
+        <AlbatrossLiveviewBlock v-for="block in blocks" :key="`block-${block.number}`" :block :style="{ width: BLOCK_WIDTH }" />
       </transition-group>
 
       <div v-if="canSendTx" absolute right-32>
-        <LiveviewTxPending />
+        <AlbatrossLiveviewTxPending />
       </div>
     </div>
 
@@ -111,7 +111,7 @@ const LiveviewTxPending = defineAsyncComponent(() => import('./LiveviewTxPending
     <div v-show="status === 'OPEN'" w-full flex="~ justify-center" of-hidden px-32>
       <!-- :class="{ unimate: isMacro || isFirstBatchAfterPageLoad }"> -->
       <div flex="~ justify-center">
-        <LiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 3 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number mt-64 shrink-0 class="animate-batch-unshift" />
+        <AlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 3 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number mt-64 shrink-0 class="animate-batch-unshift" />
       </div>
     </div>
   </div>
