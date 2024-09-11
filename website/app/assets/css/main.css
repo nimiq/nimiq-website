@@ -55,20 +55,20 @@ section {
   }
 
   /* Apply pt-200 only to elements that don't have a previous sibling with pt-200 */
-  &.sgap-200 {
+  &.nq-block-200 {
     --uno: 'pt-160 lg:pt-200';
     --uno: 'mt-160 lg:mt-200';
 
-    & + .sgap-200 {
+    & + .nq-block-200 {
       --uno: 'pt-24';
     }
 
-    & + .sgap-200 {
+    & + .nq-block-200 {
       --uno: 'mt-0';
     }
   }
 
-  &.pb-200:not(.sgap-200 ~ &) {
+  &.pb-200:not(.nq-block-200 ~ &) {
     --uno: 'pb-160 lg:pb-200';
     &.dark {
       --uno: 'mb-160 lg:mb-200';

@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "dev:web": "pnpm --filter website run dev",
+    "dev": "pnpm --filter website run dev",
+    "slicemachine": "pnpm --filter website run slicemachine",
     "lint:fix": "pnpm --filter base run dev:prepare && pnpm --stream -r lint:fix"
   },
   "devDependencies": {

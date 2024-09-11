@@ -44,7 +44,7 @@ importers:
         version: 0.5.4(magicast@0.3.5)(rollup@4.21.2)(typescript@5.6.2)(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)
       '@slicemachine/adapter-nuxt':
         specifier: ^0.3.49
-        version: 0.3.49(@types/uuid@9.0.8)(nuxt@3.13.1(@parcel/watcher@2.4.1)(@types/node@22.5.4)(bufferutil@4.0.8)(eslint@9.10.0(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.21.2)(terser@5.32.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3))(uuid@9.0.1)
+        version: 0.3.49(@types/uuid@9.0.8)(nuxt@3.13.1(@parcel/watcher@2.4.1)(@types/node@22.5.4)(bufferutil@4.0.8)(eslint@9.10.0(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.21.2)(terser@5.32.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3))(uuid@10.0.0)
       '@unocss/eslint-plugin':
         specifier: ^0.62.3
         version: 0.62.3(eslint@9.10.0(jiti@1.21.6))(typescript@5.6.2)
@@ -92,7 +92,7 @@ importers:
         version: 2.11.1
       slice-machine-ui:
         specifier: ^2.7.1
-        version: 2.7.1(@types/uuid@9.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(uuid@9.0.1)
+        version: 2.7.1(@types/uuid@9.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(uuid@10.0.0)
       typescript:
         specifier: ^5.5.4
         version: 5.6.2
@@ -113,7 +113,7 @@ importers:
         version: 3.5.4(typescript@5.6.2)
       vue-router:
         specifier: latest
-        version: 4.4.3(vue@3.5.4(typescript@5.6.2))
+        version: 4.4.4(vue@3.5.4(typescript@5.6.2))
 
   website:
     dependencies:
@@ -125,7 +125,7 @@ importers:
         version: 3.5.4(typescript@5.6.2)
       vue-router:
         specifier: latest
-        version: 4.4.3(vue@3.5.4(typescript@5.6.2))
+        version: 4.4.4(vue@3.5.4(typescript@5.6.2))
     devDependencies:
       '@nuxthub/core':
         specifier: ^0.7.10
@@ -141,13 +141,13 @@ importers:
         version: 7.8.1
       '@slicemachine/adapter-nuxt':
         specifier: ^0.3.49
-        version: 0.3.49(@types/uuid@9.0.8)(nuxt@3.13.1(@parcel/watcher@2.4.1)(@types/node@22.5.4)(bufferutil@4.0.8)(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.21.2)(terser@5.32.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3))(uuid@10.0.0)
+        version: 0.3.49(@types/uuid@9.0.8)(nuxt@3.13.1(@parcel/watcher@2.4.1)(@types/node@22.5.4)(bufferutil@4.0.8)(eslint@9.10.0(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.21.2)(terser@5.32.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3))(uuid@9.0.1)
       cookie:
         specifier: ^0.6.0
         version: 0.6.0
       slice-machine-ui:
         specifier: ^2.7.1
-        version: 2.7.1(@types/uuid@9.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(uuid@10.0.0)
+        version: 2.7.1(@types/uuid@9.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(uuid@9.0.1)
       typescript:
         specifier: ^5.5.4
         version: 5.6.2
@@ -5671,8 +5671,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  vue-router@4.4.3:
-    resolution: {integrity: sha512-sv6wmNKx2j3aqJQDMxLFzs/u/mjA9Z5LCgy6BE0f7yFWMjrPLnS/sPNn8ARY/FXw6byV18EFutn5lTO6+UsV5A==}
+  vue-router@4.4.4:
+    resolution: {integrity: sha512-3MlnDqwRwZwCQVbtVfpsU+nrNymNjnXSsQtXName5925NVC1+326VVfYH9vSrA0N13teGEo8z5x7gbRnGjCDiQ==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -7155,7 +7155,7 @@ snapshots:
       '@prismicio/client': 7.8.1
       isomorphic-unfetch: 3.1.0
       vue: 3.5.4(typescript@5.6.2)
-      vue-router: 4.4.3(vue@3.5.4(typescript@5.6.2))
+      vue-router: 4.4.4(vue@3.5.4(typescript@5.6.2))
     transitivePeerDependencies:
       - encoding
 
@@ -7341,10 +7341,10 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@slicemachine/adapter-nuxt@0.3.49(@types/uuid@9.0.8)(nuxt@3.13.1(@parcel/watcher@2.4.1)(@types/node@22.5.4)(bufferutil@4.0.8)(eslint@9.10.0(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.21.2)(terser@5.32.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3))(uuid@9.0.1)':
+  '@slicemachine/adapter-nuxt@0.3.49(@types/uuid@9.0.8)(nuxt@3.13.1(@parcel/watcher@2.4.1)(@types/node@22.5.4)(bufferutil@4.0.8)(eslint@9.10.0(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.21.2)(terser@5.32.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3))(uuid@10.0.0)':
     dependencies:
       '@prismicio/simulator': 0.1.4
-      '@prismicio/types-internal': 2.6.1(@types/uuid@9.0.8)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))(uuid@9.0.1)
+      '@prismicio/types-internal': 2.6.1(@types/uuid@9.0.8)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))(uuid@10.0.0)
       '@slicemachine/plugin-kit': 0.4.49
       common-tags: 1.8.2
       fp-ts: 2.16.9
@@ -7360,10 +7360,10 @@ snapshots:
       - '@types/uuid'
       - uuid
 
-  '@slicemachine/adapter-nuxt@0.3.49(@types/uuid@9.0.8)(nuxt@3.13.1(@parcel/watcher@2.4.1)(@types/node@22.5.4)(bufferutil@4.0.8)(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.21.2)(terser@5.32.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3))(uuid@10.0.0)':
+  '@slicemachine/adapter-nuxt@0.3.49(@types/uuid@9.0.8)(nuxt@3.13.1(@parcel/watcher@2.4.1)(@types/node@22.5.4)(bufferutil@4.0.8)(eslint@9.10.0(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.21.2)(terser@5.32.0)(typescript@5.6.2)(utf-8-validate@5.0.10)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))(webpack-sources@3.2.3))(uuid@9.0.1)':
     dependencies:
       '@prismicio/simulator': 0.1.4
-      '@prismicio/types-internal': 2.6.1(@types/uuid@9.0.8)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))(uuid@10.0.0)
+      '@prismicio/types-internal': 2.6.1(@types/uuid@9.0.8)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))(uuid@9.0.1)
       '@slicemachine/plugin-kit': 0.4.49
       common-tags: 1.8.2
       fp-ts: 2.16.9
@@ -10967,13 +10967,13 @@ snapshots:
       unenv: 1.10.0
       unimport: 3.11.1(rollup@4.21.2)(webpack-sources@3.2.3)
       unplugin: 1.14.0(webpack-sources@3.2.3)
-      unplugin-vue-router: 0.10.8(rollup@4.21.2)(vue-router@4.4.3(vue@3.5.4(typescript@5.6.2)))(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)
+      unplugin-vue-router: 0.10.8(rollup@4.21.2)(vue-router@4.4.4(vue@3.5.4(typescript@5.6.2)))(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)
       unstorage: 1.12.0(ioredis@5.4.1)
       untyped: 1.4.2
       vue: 3.5.4(typescript@5.6.2)
       vue-bundle-renderer: 2.1.0
       vue-devtools-stub: 0.1.0
-      vue-router: 4.4.3(vue@3.5.4(typescript@5.6.2))
+      vue-router: 4.4.4(vue@3.5.4(typescript@5.6.2))
     optionalDependencies:
       '@parcel/watcher': 2.4.1
       '@types/node': 22.5.4
@@ -12369,7 +12369,7 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin-vue-router@0.10.8(rollup@4.21.2)(vue-router@4.4.3(vue@3.5.4(typescript@5.6.2)))(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3):
+  unplugin-vue-router@0.10.8(rollup@4.21.2)(vue-router@4.4.4(vue@3.5.4(typescript@5.6.2)))(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3):
     dependencies:
       '@babel/types': 7.25.6
       '@rollup/pluginutils': 5.1.0(rollup@4.21.2)
@@ -12386,7 +12386,7 @@ snapshots:
       unplugin: 1.14.0(webpack-sources@3.2.3)
       yaml: 2.5.1
     optionalDependencies:
-      vue-router: 4.4.3(vue@3.5.4(typescript@5.6.2))
+      vue-router: 4.4.4(vue@3.5.4(typescript@5.6.2))
     transitivePeerDependencies:
       - rollup
       - vue
@@ -12629,7 +12629,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vue-router@4.4.3(vue@3.5.4(typescript@5.6.2)):
+  vue-router@4.4.4(vue@3.5.4(typescript@5.6.2)):
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.4(typescript@5.6.2)

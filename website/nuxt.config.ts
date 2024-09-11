@@ -17,6 +17,10 @@ export default defineNuxtConfig({
     nuxtLayers: true,
   },
 
+  pinia: {
+    storesDirs: ['./app/stores/**'],
+  },
+
   // TODO this rules should be part of a new nimiq sub lib
   css: ['~/assets/css/main.css'],
 
@@ -27,6 +31,20 @@ export default defineNuxtConfig({
     },
   },
 
+  runtimeConfig: {
+    albatross: {
+      nodeRpcUrl: process.env.NUXT_NODE_RPC_URL,
+      liveview: {
+        privateKey: process.env.NUXT_ALBATROSS_LIVEVIEW_PRIVATE_KEY,
+        txRecipient: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT,
+        txValue: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_VALUE,
+        txFee: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_FEE,
+      },
+    },
+    public: {
+    },
+  },
+
   supabase: {
     redirect: false,
     types: './app/types/database.types.ts',
@@ -34,6 +52,19 @@ export default defineNuxtConfig({
 
   hub: {
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
+  },
+
+  routeRules: {
+    '/api/liveview/policy': { swr: 3600 }, // cache 1 hour
+  },
+
+  watch: ['server/**/*'],
+
+  nitro: {
+    experimental: {
+      wasm: true,
+      websocket: true,
+    },
   },
 
   app: {

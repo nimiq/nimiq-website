@@ -1,0 +1,63 @@
+{
+  "id": "albatross_liveview",
+  "type": "SharedSlice",
+  "name": "AlbatrossLiveview",
+  "description": "AlbatrossLiveview",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "allowSendTx": {
+          "type": "Boolean",
+          "config": {
+            "label": "Allow Send Transactions",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        },
+        "networkNotice": {
+          "type": "Text",
+          "config": {
+            "label": "Network Notice",
+            "placeholder": ""
+          }
+        },
+        "statsTooltipContent": {
+          "type": "Text",
+          "config": {
+            "label": "Stats Tooltip Content",
+            "placeholder": ""
+          }
+        },
+        "txSecLabel": {
+          "type": "Text",
+          "config": {
+            "label": "TX/Sec Label",
+            "placeholder": ""
+          }
+        },
+        "txSpeedLabel": {
+          "type": "Text",
+          "config": {
+            "label": "TX Speed Label",
+            "placeholder": ""
+          }
+        },
+        "averageRewardsLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Average Rewards Label",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
 import type { Database } from '~/types/database.types'
-import TweenedNumber from '../../../base/components/TweenedNumber.client.vue'
+import TweenedNumber from '../../../base/components/TweenedNumber.vue'
 // import type { Database } from '~/types/database.types'
 
 const props = defineProps<{ headline: TitleField, sublineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
@@ -28,6 +28,7 @@ const locationsSpan = h('span', { class: 'text-blue' }, [
     animationDuration: 1300,
     locale: language.value,
     digitsCount: 5,
+    allowAnimation: true,
   }),
   ' locations',
 ])

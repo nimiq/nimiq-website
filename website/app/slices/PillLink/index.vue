@@ -16,7 +16,7 @@ const items = slices.value
 </script>
 
 <template>
-  <section class="sgap-200 *:mx-0 max-md:items-start" :class="useBgColor(slice.primary.bgColor)">
+  <section class="nq-block-200 *:mx-0 max-md:items-start" :class="useSectionColor(slice.primary.bgColor)">
     <PillLinks :items />
   </section>
 </template>

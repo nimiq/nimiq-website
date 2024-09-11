@@ -7,8 +7,8 @@ export const components = defineSliceZoneComponents({
   activity_stats: defineAsyncComponent(
     () => import('./ActivityStats/index.vue'),
   ),
-  albatross_stats: defineAsyncComponent(
-    () => import('./AlbatrossStats/index.vue'),
+  albatross_liveview: defineAsyncComponent(
+    () => import('./AlbatrossLiveview/index.vue'),
   ),
   apps_showcase: defineAsyncComponent(() => import('./AppsShowcase/index.vue')),
   banner_slice: defineAsyncComponent(() => import('./BannerSlice/index.vue')),

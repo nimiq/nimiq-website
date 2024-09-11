@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "albatross_liveview": {
+              "type": "SharedSlice"
+            },
             "banner_slice": {
               "type": "SharedSlice"
             },
@@ -24,9 +27,6 @@
               "type": "SharedSlice"
             },
             "crypto_map_continent_selector": {
-              "type": "SharedSlice"
-            },
-            "albatross_stats": {
               "type": "SharedSlice"
             },
             "logos_grid": {

@@ -1,0 +1,38 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "allowSendTx": {
+        "__TYPE__": "BooleanContent",
+        "value": false
+      },
+      "txSecLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "darkness",
+        "type": "Text"
+      },
+      "txSpeedLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "distant",
+        "type": "Text"
+      },
+      "averageRewardsLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "recall",
+        "type": "Text"
+      },
+      "networkNotice": {
+        "__TYPE__": "FieldContent",
+        "value": "rock",
+        "type": "Text"
+      },
+      "statsTooltipContent": {
+        "__TYPE__": "FieldContent",
+        "value": "powder",
+        "type": "Text"
+      }
+    },
+    "items": []
+  }
+]

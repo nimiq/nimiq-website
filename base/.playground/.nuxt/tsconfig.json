@@ -30,7 +30,7 @@
         "../../../node_modules/.pnpm/@vue+compiler-sfc@3.5.4/node_modules/@vue/compiler-sfc"
       ],
       "unplugin-vue-router/client": [
-        "../../../node_modules/.pnpm/unplugin-vue-router@0.10.8_rollup@4.21.2_vue-router@4.4.3_vue@3.5.4_typescript@5.6.2___vue@3._wrjt5cxc5oew4xvlw4r7ifizvy/node_modules/unplugin-vue-router/client"
+        "../../../node_modules/.pnpm/unplugin-vue-router@0.10.8_rollup@4.21.2_vue-router@4.4.4_vue@3.5.4_typescript@5.6.2___vue@3._zowktw5qf2o5hfstyrdxw5thdm/node_modules/unplugin-vue-router/client"
       ],
       "@nuxt/schema": [
         "../../../node_modules/.pnpm/@nuxt+schema@3.13.1_rollup@4.21.2_webpack-sources@3.2.3/node_modules/@nuxt/schema"
@@ -87,13 +87,13 @@
         "../../../node_modules/.pnpm/@nuxt+image@1.8.0_ioredis@5.4.1_magicast@0.3.5_rollup@4.21.2_webpack-sources@3.2.3/node_modules/@nuxt/image/dist/runtime/*"
       ],
       "#vue-router": [
-        "../../../node_modules/.pnpm/vue-router@4.4.3_vue@3.5.4_typescript@5.6.2_/node_modules/vue-router"
+        "../../../node_modules/.pnpm/vue-router@4.4.4_vue@3.5.4_typescript@5.6.2_/node_modules/vue-router"
       ],
       "#imports": [
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/8a786276-be64-4a64-8f2f-cfddce1b76ca.json"
+        "./manifest/meta/5ec1c9e5-0ecc-4232-be67-9020f28a9987.json"
       ],
       "#build": [
         "."
@@ -158,7 +158,7 @@
     "../../../node_modules/.pnpm/nuxt@3.13.1_@parcel+watcher@2.4.1_@types+node@22.5.4_bufferutil@4.0.8_eslint@9.10.0_jiti@1.21_32eehj35rmsrfozhzklmrkgahy/node_modules/nuxt/dist/app",
     "../../../node_modules/.pnpm/nuxt@3.13.1_@parcel+watcher@2.4.1_@types+node@22.5.4_bufferutil@4.0.8_eslint@9.10.0_jiti@1.21_32eehj35rmsrfozhzklmrkgahy/node_modules/nuxt/dist/app/compat/vue-demi",
     "../../../node_modules/.pnpm/pinia@2.2.2_typescript@5.6.2_vue@3.5.4_typescript@5.6.2_/node_modules/pinia/dist/pinia",
-    "../../../node_modules/.pnpm/vue-router@4.4.3_vue@3.5.4_typescript@5.6.2_/node_modules/vue-router/dist/vue-router.node"
+    "../../../node_modules/.pnpm/vue-router@4.4.4_vue@3.5.4_typescript@5.6.2_/node_modules/vue-router/dist/vue-router.node"
   ],
   "exclude": [
     "../dist",

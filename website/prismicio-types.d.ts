@@ -432,12 +432,12 @@ export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, 'home', Lang>
 
 type Home2024DocumentDataSlicesSlice =
+  | AlbatrossLiveviewSlice
   | BannerSliceSlice
   | GridSectionSlice
   | PrestakingGridSlice
   | AppsShowcaseSlice
   | CryptoMapContinentSelectorSlice
-  | AlbatrossStatsSlice
   | LogosGridSlice
   | PillLinkSlice
   | SimpleHeadlineSlice
@@ -2063,78 +2063,99 @@ export type ActivityStatsSlice = prismic.SharedSlice<
 >
 
 /**
- * Primary content in *AlbatrossStats → Default → Primary*
+ * Primary content in *AlbatrossLiveview → Default → Primary*
  */
-export interface AlbatrossStatsSliceDefaultPrimary {
+export interface AlbatrossLiveviewSliceDefaultPrimary {
   /**
-   * Tx Sec Label field in *AlbatrossStats → Default → Primary*
+   * Allow Send Transactions field in *AlbatrossLiveview → Default → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Boolean
    * - **Placeholder**: *None*
-   * - **API ID Path**: albatross_stats.default.primary.tx_sec_label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Default Value**: false
+   * - **API ID Path**: albatross_liveview.default.primary.allowSendTx
+   * - **Documentation**: https://prismic.io/docs/field#boolean
    */
-  tx_sec_label: prismic.KeyTextField
+  allowSendTx: prismic.BooleanField
 
   /**
-   * Tx Speed Label field in *AlbatrossStats → Default → Primary*
+   * Network Notice field in *AlbatrossLiveview → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: albatross_stats.default.primary.tx_speed_label
+   * - **API ID Path**: albatross_liveview.default.primary.networkNotice
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  tx_speed_label: prismic.KeyTextField
+  networkNotice: prismic.KeyTextField
 
   /**
-   * Avg rewards label field in *AlbatrossStats → Default → Primary*
+   * Stats Tooltip Content field in *AlbatrossLiveview → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: albatross_stats.default.primary.avg_rewards_label
+   * - **API ID Path**: albatross_liveview.default.primary.statsTooltipContent
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  avg_rewards_label: prismic.KeyTextField
+  statsTooltipContent: prismic.KeyTextField
 
   /**
-   * Notice Label field in *AlbatrossStats → Default → Primary*
+   * TX/Sec Label field in *AlbatrossLiveview → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: albatross_stats.default.primary.notice_label
+   * - **API ID Path**: albatross_liveview.default.primary.txSecLabel
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  notice_label: prismic.KeyTextField
+  txSecLabel: prismic.KeyTextField
+
+  /**
+   * TX Speed Label field in *AlbatrossLiveview → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatross_liveview.default.primary.txSpeedLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  txSpeedLabel: prismic.KeyTextField
+
+  /**
+   * Average Rewards Label field in *AlbatrossLiveview → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatross_liveview.default.primary.averageRewardsLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  averageRewardsLabel: prismic.KeyTextField
 }
 
 /**
- * Default variation for AlbatrossStats Slice
+ * Default variation for AlbatrossLiveview Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type AlbatrossStatsSliceDefault = prismic.SharedSliceVariation<
+export type AlbatrossLiveviewSliceDefault = prismic.SharedSliceVariation<
   'default',
-  Simplify<AlbatrossStatsSliceDefaultPrimary>,
+  Simplify<AlbatrossLiveviewSliceDefaultPrimary>,
   never
 >
 
 /**
- * Slice variation for *AlbatrossStats*
+ * Slice variation for *AlbatrossLiveview*
  */
-type AlbatrossStatsSliceVariation = AlbatrossStatsSliceDefault
+type AlbatrossLiveviewSliceVariation = AlbatrossLiveviewSliceDefault
 
 /**
- * AlbatrossStats Shared Slice
+ * AlbatrossLiveview Shared Slice
  *
- * - **API ID**: `albatross_stats`
- * - **Description**: AlbatrossStats
+ * - **API ID**: `albatross_liveview`
+ * - **Description**: AlbatrossLiveview
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type AlbatrossStatsSlice = prismic.SharedSlice<
-  'albatross_stats',
-  AlbatrossStatsSliceVariation
+export type AlbatrossLiveviewSlice = prismic.SharedSlice<
+  'albatross_liveview',
+  AlbatrossLiveviewSliceVariation
 >
 
 /**
@@ -9309,10 +9330,10 @@ declare module '@prismicio/client' {
       ActivityStatsSliceDefaultItem,
       ActivityStatsSliceDefaultPrimary,
       ActivityStatsSliceVariation,
-      AlbatrossStatsSlice,
-      AlbatrossStatsSliceDefault,
-      AlbatrossStatsSliceDefaultPrimary,
-      AlbatrossStatsSliceVariation,
+      AlbatrossLiveviewSlice,
+      AlbatrossLiveviewSliceDefault,
+      AlbatrossLiveviewSliceDefaultPrimary,
+      AlbatrossLiveviewSliceVariation,
       AllDocumentTypes,
       AppsShowcaseSlice,
       AppsShowcaseSliceDefault,
