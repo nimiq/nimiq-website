@@ -29,7 +29,7 @@ const locale = toRef(props, 'locale')
 const digitsCount = toRef(props, 'digitsCount')
 const allowAnimation = toRef(props, 'allowAnimation')
 
-const tweeningValue = ref(value)
+const tweeningValue = ref(value.value)
 let abortController: AbortController | null = null
 
 const formatter = new Intl.NumberFormat(locale.value, {

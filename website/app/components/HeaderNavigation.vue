@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NavigationMenu } from 'radix-vue/namespaced'
 import type { NavigationDocumentData } from '~~/prismicio-types'
+import { SocialMedia } from '~/stores/global-content'
 
 // @unocss-include
 
@@ -9,84 +10,8 @@ const props = defineProps<{ navigation: NavigationDocumentData, isTriggerColorIn
 const currentTrigger = ref('')
 const selectedApp = ref(0)
 
-// TODO: move this to a store or something
-interface SocialMedia {
-  name: string
-  key: string
-  href: string
-  color?: `#${string}`
-  icon?: string
-}
+const { socialMedias } = storeToRefs(useGlobalContent())
 
-const socialMedias: SocialMedia[] = [
-  {
-    href: 'https://twitter.com/nimiq',
-    name: 'Twitter',
-    key: 'twitter',
-    color: '#1da1f2',
-    icon: 'i-nimiq:logos-twitter-mono',
-  },
-  {
-    href: 'https://t.me/Nimiq',
-    name: 'Telegram',
-    key: 'telegram',
-    color: '#0088cc',
-    icon: 'i-nimiq:logos-telegram-mono text-20',
-  },
-  {
-    href: 'https://www.reddit.com/r/Nimiq',
-    name: 'Reddit',
-    key: 'reddit',
-    color: '#ff4500',
-    icon: 'i-nimiq:logos-reddit-mono text-20',
-  },
-  {
-    href: 'https://github.com/nimiq',
-    name: 'Github',
-    key: 'github',
-    color: '#333333',
-    icon: 'i-nimiq:logos-github-mono',
-  },
-  {
-    href: 'https://www.youtube.com/c/nimiq',
-    name: 'Youtube',
-    key: 'youtube',
-    color: '#ff0000',
-    icon: 'i-nimiq:logos-youtube-mono',
-  },
-  {
-    href: 'https://discord.gg/cMHemg8',
-    name: 'Discord',
-    key: 'discord',
-    color: '#5865F2',
-    icon: 'i-nimiq:logos-discord-mono',
-  },
-  {
-    href: 'https://forum.nimiq.community',
-    name: 'Nimiq Forum',
-    key: 'nimiq_forum',
-    color: '#E9B213',
-    icon: 'i-nimiq:logos-nimiq-forum-mono',
-  },
-  {
-    href: 'https://www.facebook.com/nimiq',
-    name: 'Facebook',
-    key: 'facebook',
-    color: '#4267B2',
-    icon: 'i-nimiq:logos-facebook-mono',
-  },
-  {
-    href: 'https://www.instagram.com/wearenimiq',
-    name: 'Instagram',
-    key: 'instagram',
-    color: '#c13584',
-    icon: 'i-nimiq:logos-instagram-mono',
-  },
-]
-
-const githubSocialMedia = socialMedias.find(socialMedia => socialMedia.key === 'github')!
-const techSocialLinks = socialMedias.filter(socialMedia => ['reddit', 'discord', 'telegram'].includes(socialMedia.key))
-const communitySocialLinks = socialMedias.filter(socialMedia => ['twitter', 'reddit', 'facebook', 'youtube', 'instagram', 'discord', 'telegram', 'nimiq_forum', 'github'].includes(socialMedia.key))
 const internalProjectLinks = computed(() => props.navigation.projectLinks.length
   ? props.navigation.projectLinks.filter(link => link.href.link_type === 'Document')
   : [])
@@ -172,36 +97,13 @@ const externalProjectLinks = computed(() => props.navigation.projectLinks.length
               </li>
             </ul>
             <!-- Footer -->
-            <div flex items-center justify-between gap-x-20 p-32>
-              <ArrowLink
-                v-if="navigation.githubLinkLabel"
-                :href="{ link_type: 'Web', url: githubSocialMedia.href }"
-                :label="navigation.githubLinkLabel"
-                has-arrow
-                class="w-full flex items-center font-semibold opacity-50 transition-opacity hocus:opacity-80"
-              >
-                <div class="i-nimiq:logos-github-mono" mr-14 text-32 />
-              </ArrowLink>
-
-              <!-- Separator -->
-              <hr h-28 w-1 bg-neutral opacity-20>
-
-              <!-- Footer -->
-              <ul v-if="techSocialLinks.length" role="list" flex items-center gap-20>
-                <li
-                  v-for="({ href, icon, key }) in techSocialLinks"
-                  :key="`header-tech-socials-link-${key}`"
-                  aria-label="Links to some of our social media pages"
-                >
-                  <a
-                    :href target="_blank" rel="noopener noreferrer"
-                    :aria-label="`Visit Nimiq on ${key}`"
-                    text-neutral="700 hocus:800" noopener noreferrer block max-w-max rounded-4 p-8 text-18 focusable hocus:bg-neutral-200
-                  >
-                    <div :class="icon" />
-                  </a>
-                </li>
-              </ul>
+            <div flex="~ items-center justify-between gap-x-20" px-32 py-20>
+              <PrismicLink v-if="socialMedias.github" :field="socialMedias.github.link" flex="~ items-center gap-12" un-text="15 neutral-800" pr-4 nq-arrow after:ml--4>
+                <div :class="socialMedias.github.icon" text-20 />
+                {{ navigation.githubLinkLabel }}
+              </PrismicLink>
+              <div ml-auto w-1 self-stretch bg-neutral-600 />
+              <SocialMediaLogosList flex-nowrap :items="[SocialMedia.reddit, SocialMedia.discord, SocialMedia.telegram]" />
             </div>
           </div>
         </NavigationMenu.Content>
@@ -229,23 +131,7 @@ const externalProjectLinks = computed(() => props.navigation.projectLinks.length
               </li>
             </ul>
             <!-- Footer -->
-            <ul
-              v-if="communitySocialLinks.length"
-              role="list"
-              aria-label="Links to some of our social media pages"
-              flex flex-wrap items-center gap-x-4 gap-y-18 p-24 pt-40
-            >
-              <li v-for="({ href, key, icon }) in communitySocialLinks" :key="`header-community-socials-link-${key}`">
-                <a
-                  :href target="_blank" rel="noopener noreferrer"
-                  :aria-label="`Visit Nimiq on ${key}`"
-                  text-neutral="700 hocus:800" noopener noreferrer block max-w-max rounded-4 p-8 text-18 focusable hocus:bg-neutral-200
-                >
-                  <!-- Using size to prevent some wide icons to take more space than needed and making the grid look weird -->
-                  <div :class="icon" size-20 />
-                </a>
-              </li>
-            </ul>
+            <SocialMediaLogosList mt-16 :items="[SocialMedia.x, SocialMedia.reddit, SocialMedia.facebook, SocialMedia.youtube, SocialMedia.instagram, SocialMedia.discord, SocialMedia.telegram, SocialMedia.nimiqForum, SocialMedia.github]" />
           </div>
         </NavigationMenu.Content>
       </NavigationMenu.Item>

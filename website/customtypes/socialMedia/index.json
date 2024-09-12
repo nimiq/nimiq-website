@@ -1,0 +1,44 @@
+{
+  "format": "custom",
+  "id": "socialMedia",
+  "label": "Social Media",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "link": {
+        "type": "Link",
+        "config": {
+          "label": "link",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "select": null
+        }
+      },
+      "platform": {
+        "type": "Select",
+        "config": {
+          "label": "Platform",
+          "placeholder": "",
+          "options": [
+            "x",
+            "telegram",
+            "reddit",
+            "github",
+            "youtube",
+            "discord",
+            "nimiqForum",
+            "facebook",
+            "instagram"
+          ]
+        }
+      }
+    }
+  }
+}

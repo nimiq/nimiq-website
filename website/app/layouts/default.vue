@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { navigation } = storeToRefs(useNavigation())
+const { navigation } = storeToRefs(useGlobalContent())
 
 const { arrivedState, directions } = useScroll(window)
 const isHeaderVisible = ref(true)

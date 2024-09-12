@@ -1,5 +1,9 @@
 {
   "id": "home",
+  "label": "Home",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
   "json": {
     "Main": {
       "headerBackgroundColor": {
@@ -21,10 +25,163 @@
       },
       "body": {
         "type": "Slices",
-        "fieldset": "Slice zone",
+        "fieldset": "Slice Zone",
         "config": {
-          "labels": {},
-          "choices": {}
+          "choices": {
+            "crypto_map_continent_selector": {
+              "type": "SharedSlice"
+            },
+            "zig_zag_content": {
+              "type": "SharedSlice"
+            },
+            "prestaking_grid": {
+              "type": "SharedSlice"
+            },
+            "pill_link": {
+              "type": "SharedSlice"
+            },
+            "tweets_marquee": {
+              "type": "SharedSlice"
+            },
+            "apps_showcase": {
+              "type": "SharedSlice"
+            },
+            "simple_headline": {
+              "type": "SharedSlice"
+            },
+            "logos_grid": {
+              "type": "SharedSlice"
+            },
+            "hero_section": {
+              "type": "SharedSlice"
+            },
+            "banner_slice": {
+              "type": "SharedSlice"
+            },
+            "grid_section": {
+              "type": "SharedSlice"
+            },
+            "albatross_liveview": {
+              "type": "SharedSlice"
+            },
+            "youtube_video": {
+              "type": "SharedSlice"
+            },
+            "activity_stats": {
+              "type": "SharedSlice"
+            },
+            "team_members": {
+              "type": "SharedSlice"
+            },
+            "whitepaper_slice": {
+              "type": "SharedSlice"
+            },
+            "supply_distribution": {
+              "type": "SharedSlice"
+            },
+            "tilted_media": {
+              "type": "SharedSlice"
+            },
+            "rib_cage_grid": {
+              "type": "SharedSlice"
+            },
+            "stepped_slides": {
+              "type": "SharedSlice"
+            },
+            "social_media_grid": {
+              "type": "SharedSlice"
+            },
+            "rich_text_carousel": {
+              "type": "SharedSlice"
+            },
+            "stepped_lottie": {
+              "type": "SharedSlice"
+            },
+            "staking_slice": {
+              "type": "SharedSlice"
+            },
+            "s3_currency_banner": {
+              "type": "SharedSlice"
+            },
+            "roadmap_section": {
+              "type": "SharedSlice"
+            },
+            "simple_carousel": {
+              "type": "SharedSlice"
+            },
+            "rich_text_cards": {
+              "type": "SharedSlice"
+            },
+            "new_york_grid": {
+              "type": "SharedSlice"
+            },
+            "newsletter_subscription": {
+              "type": "SharedSlice"
+            },
+            "podcast_platforms": {
+              "type": "SharedSlice"
+            },
+            "rich_text": {
+              "type": "SharedSlice"
+            },
+            "puzzle_grid": {
+              "type": "SharedSlice"
+            },
+            "lottie_slice": {
+              "type": "SharedSlice"
+            },
+            "link_grid": {
+              "type": "SharedSlice"
+            },
+            "latest_blogpost": {
+              "type": "SharedSlice"
+            },
+            "iframe_embed": {
+              "type": "SharedSlice"
+            },
+            "gallery_section": {
+              "type": "SharedSlice"
+            },
+            "large_grid": {
+              "type": "SharedSlice"
+            },
+            "hero_stats": {
+              "type": "SharedSlice"
+            },
+            "full_screen_image": {
+              "type": "SharedSlice"
+            },
+            "cta_section": {
+              "type": "SharedSlice"
+            },
+            "contact_form": {
+              "type": "SharedSlice"
+            },
+            "flags_marquee": {
+              "type": "SharedSlice"
+            },
+            "exchanges_showcase": {
+              "type": "SharedSlice"
+            },
+            "buy_sell_wallet": {
+              "type": "SharedSlice"
+            },
+            "starting_grid": {
+              "type": "SharedSlice"
+            },
+            "consensus_map": {
+              "type": "SharedSlice"
+            },
+            "cards_carousel": {
+              "type": "SharedSlice"
+            },
+            "blogposts_grid": {
+              "type": "SharedSlice"
+            },
+            "floating_video": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },
@@ -59,9 +216,5 @@
         }
       }
     }
-  },
-  "label": "Home",
-  "repeatable": false,
-  "status": true,
-  "format": "custom"
+  }
 }

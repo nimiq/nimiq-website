@@ -19,7 +19,7 @@ export interface BlogPageDocumentDataAuthorsItem {
   name: prismic.KeyTextField
 }
 
-type BlogPageDocumentDataBodySlice = never
+type BlogPageDocumentDataBodySlice = FullScreenImageSlice | RichTextSlice
 
 /**
  * Content for Blog Article documents
@@ -173,7 +173,58 @@ export type BlogPageDocument<Lang extends string = string> =
     Lang
   >
 
-type ChildPageDocumentDataSlicesSlice = never
+type ChildPageDocumentDataSlicesSlice =
+  | PrestakingGridSlice
+  | CryptoMapContinentSelectorSlice
+  | ZigZagContentSlice
+  | SimpleHeadlineSlice
+  | AppsShowcaseSlice
+  | TweetsMarqueeSlice
+  | PillLinkSlice
+  | HeroSectionSlice
+  | LogosGridSlice
+  | AlbatrossLiveviewSlice
+  | GridSectionSlice
+  | BannerSliceSlice
+  | TeamMembersSlice
+  | ActivityStatsSlice
+  | YoutubeVideoSlice
+  | SupplyDistributionSlice
+  | TiltedMediaSlice
+  | WhitepaperSliceSlice
+  | SocialMediaGridSlice
+  | SteppedSlidesSlice
+  | RibCageGridSlice
+  | StakingSliceSlice
+  | SteppedLottieSlice
+  | RichTextCarouselSlice
+  | SimpleCarouselSlice
+  | S3CurrencyBannerSlice
+  | RoadmapSectionSlice
+  | NewYorkGridSlice
+  | RichTextCardsSlice
+  | PuzzleGridSlice
+  | NewsletterSubscriptionSlice
+  | RichTextSlice
+  | PodcastPlatformsSlice
+  | LinkGridSlice
+  | LottieSliceSlice
+  | LargeGridSlice
+  | GallerySectionSlice
+  | LatestBlogpostSlice
+  | IframeEmbedSlice
+  | CtaSectionSlice
+  | FullScreenImageSlice
+  | HeroStatsSlice
+  | ExchangesShowcaseSlice
+  | FlagsMarqueeSlice
+  | ContactFormSlice
+  | BlogpostsGridSlice
+  | CardsCarouselSlice
+  | BuySellWalletSlice
+  | StartingGridSlice
+  | ConsensusMapSlice
+  | FloatingVideoSlice
 
 /**
  * Content for Child Page documents
@@ -329,7 +380,58 @@ export type ChildPageDocument<Lang extends string = string> =
     Lang
   >
 
-type HomeDocumentDataBodySlice = never
+type HomeDocumentDataBodySlice =
+  | CryptoMapContinentSelectorSlice
+  | ZigZagContentSlice
+  | PrestakingGridSlice
+  | PillLinkSlice
+  | TweetsMarqueeSlice
+  | AppsShowcaseSlice
+  | SimpleHeadlineSlice
+  | LogosGridSlice
+  | HeroSectionSlice
+  | BannerSliceSlice
+  | GridSectionSlice
+  | AlbatrossLiveviewSlice
+  | YoutubeVideoSlice
+  | ActivityStatsSlice
+  | TeamMembersSlice
+  | WhitepaperSliceSlice
+  | SupplyDistributionSlice
+  | TiltedMediaSlice
+  | RibCageGridSlice
+  | SteppedSlidesSlice
+  | SocialMediaGridSlice
+  | RichTextCarouselSlice
+  | SteppedLottieSlice
+  | StakingSliceSlice
+  | S3CurrencyBannerSlice
+  | RoadmapSectionSlice
+  | SimpleCarouselSlice
+  | RichTextCardsSlice
+  | NewYorkGridSlice
+  | NewsletterSubscriptionSlice
+  | PodcastPlatformsSlice
+  | RichTextSlice
+  | PuzzleGridSlice
+  | LottieSliceSlice
+  | LinkGridSlice
+  | LatestBlogpostSlice
+  | IframeEmbedSlice
+  | GallerySectionSlice
+  | LargeGridSlice
+  | HeroStatsSlice
+  | FullScreenImageSlice
+  | CtaSectionSlice
+  | ContactFormSlice
+  | FlagsMarqueeSlice
+  | ExchangesShowcaseSlice
+  | BuySellWalletSlice
+  | StartingGridSlice
+  | ConsensusMapSlice
+  | CardsCarouselSlice
+  | BlogpostsGridSlice
+  | FloatingVideoSlice
 
 /**
  * Content for Home documents
@@ -366,7 +468,7 @@ interface HomeDocumentData {
   >
 
   /**
-   * Slice zone field in *Home*
+   * Slice Zone field in *Home*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -1532,7 +1634,57 @@ export type NimiqEventDocument<Lang extends string = string> =
     Lang
   >
 
-type PageDocumentDataSlicesSlice = never
+type PageDocumentDataSlicesSlice =
+  | CryptoMapContinentSelectorSlice
+  | PrestakingGridSlice
+  | ZigZagContentSlice
+  | SimpleHeadlineSlice
+  | AppsShowcaseSlice
+  | PillLinkSlice
+  | BannerSliceSlice
+  | HeroSectionSlice
+  | LogosGridSlice
+  | GridSectionSlice
+  | AlbatrossLiveviewSlice
+  | YoutubeVideoSlice
+  | ActivityStatsSlice
+  | TeamMembersSlice
+  | WhitepaperSliceSlice
+  | TiltedMediaSlice
+  | SupplyDistributionSlice
+  | RibCageGridSlice
+  | SteppedSlidesSlice
+  | SocialMediaGridSlice
+  | RichTextCarouselSlice
+  | SteppedLottieSlice
+  | StakingSliceSlice
+  | RoadmapSectionSlice
+  | S3CurrencyBannerSlice
+  | SimpleCarouselSlice
+  | RichTextCardsSlice
+  | RichTextSlice
+  | NewYorkGridSlice
+  | NewsletterSubscriptionSlice
+  | PodcastPlatformsSlice
+  | PuzzleGridSlice
+  | LottieSliceSlice
+  | LargeGridSlice
+  | LinkGridSlice
+  | LatestBlogpostSlice
+  | IframeEmbedSlice
+  | GallerySectionSlice
+  | CtaSectionSlice
+  | FullScreenImageSlice
+  | HeroStatsSlice
+  | ExchangesShowcaseSlice
+  | FlagsMarqueeSlice
+  | ContactFormSlice
+  | BlogpostsGridSlice
+  | CardsCarouselSlice
+  | BuySellWalletSlice
+  | StartingGridSlice
+  | ConsensusMapSlice
+  | FloatingVideoSlice
 
 /**
  * Content for Page documents
@@ -1943,6 +2095,59 @@ export type RoadmapEntryDocument<Lang extends string = string> =
     Lang
   >
 
+/**
+ * Content for Social Media documents
+ */
+interface SocialMediaDocumentData {
+  /**
+   * link field in *Social Media*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: socialMedia.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+
+  /**
+   * Platform field in *Social Media*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: socialMedia.platform
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  platform: prismic.SelectField<
+    | 'x'
+    | 'telegram'
+    | 'reddit'
+    | 'github'
+    | 'youtube'
+    | 'discord'
+    | 'nimiqForum'
+    | 'facebook'
+    | 'instagram'
+  >
+}
+
+/**
+ * Social Media document from Prismic
+ *
+ * - **API ID**: `socialMedia`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SocialMediaDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<SocialMediaDocumentData>,
+    'socialMedia',
+    Lang
+  >
+
 interface TestDocumentData {}
 
 /**
@@ -1968,6 +2173,7 @@ export type AllDocumentTypes =
   | PageDocument
   | PodcastEpisodeDocument
   | RoadmapEntryDocument
+  | SocialMediaDocument
   | TestDocument
 
 /**
@@ -4344,10 +4550,10 @@ export interface HeroSectionSliceHomePrimary {
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.home.primary.Subheadline
+   * - **API ID Path**: hero_section.home.primary.subline
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  Subheadline: prismic.RichTextField
+  subline: prismic.RichTextField
 
   /**
    * Link Href field in *HeroSection → Home → Primary*
@@ -4408,6 +4614,16 @@ export interface HeroSectionSliceHomePrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   videoLow: prismic.LinkToMediaField
+
+  /**
+   * Background Color field in *HeroSection → Home → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home.primary.backgroundColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  backgroundColor: prismic.SelectField<'white' | 'grey' | 'blue-dark'>
 }
 
 /**
@@ -9469,6 +9685,8 @@ declare module '@prismicio/client' {
       SimpleHeadlineSliceDefault,
       SimpleHeadlineSliceDefaultPrimary,
       SimpleHeadlineSliceVariation,
+      SocialMediaDocument,
+      SocialMediaDocumentData,
       SocialMediaGridSlice,
       SocialMediaGridSliceDefault,
       SocialMediaGridSliceDefaultItem,

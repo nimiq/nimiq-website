@@ -139,17 +139,6 @@
           }
         ]
       },
-      "Subheadline": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Nulla proident dolor duis pariatur dolor et enim amet deserunt minim exercitation quis. Adipisicing magna fugiat eu Lorem dolore. Adipisicing consequat ea enim cupidatat nostrud elit cillum non laboris id cillum."
-            }
-          }
-        ]
-      },
       "linkHref": {
         "__TYPE__": "LinkContent",
         "value": {
@@ -205,6 +194,22 @@
           "size": "0",
           "__TYPE__": "FileLink"
         }
+      },
+      "subline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Consectetur enim duis deserunt elit pariatur veniam elit."
+            }
+          }
+        ]
+      },
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
       }
     },
     "items": [
