@@ -14,7 +14,7 @@ const classes = useSectionColor(props.slice.primary.bgColor)
 </template>
 
 <style scoped>
-section:has(+ section[data-gradient]) {
+/* section:has(+ section[data-gradient]) {
   --uno: '!bg-transparent';
 }
 
@@ -28,5 +28,5 @@ section:has(+ section[data-gradient]) {
 section:not(.dark) + section:not(.dark),
 section.dark + section.dark {
   --uno: 'mt-0 pt-160 lg:pt-200';
-}
+} */
 </style>

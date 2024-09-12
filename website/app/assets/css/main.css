@@ -1,25 +1,23 @@
-@layer default {
-  body {
-    --uno: bg-neutral-100 text-neutral;
-  }
+body {
+  --uno: bg-neutral-100 text-neutral;
+}
 
-  h1 {
-    --uno: 'font-bold md:text-center text-44/52.8 text-neutral lg:text-64/76.8 max-w-680';
+h1 {
+  --uno: 'font-bold md:text-center text-44/52.8 text-neutral lg:text-64/76.8 max-w-680';
 
-    & + p {
-      --uno: 'mt-24 md:text-center text-neutral-700 text-20/30 lg:text-22/33 max-w-526 font-semibold';
-    }
+  & + p {
+    --uno: 'mt-24 md:text-center text-neutral-700 text-20/30 lg:text-22/33 max-w-526 font-semibold';
   }
+}
 
-  h2 {
-    --uno: 'font-bold md:text-center text-32/41.6 text-neutral lg:text-36/43.2 xl:text-40/48 max-w-33ch';
-    & + p {
-      --uno: 'font-semibold mt-16 md:text-center text-neutral-700 text-20/30 lg:text-22/33 max-w-70ch';
-    }
+h2 {
+  --uno: 'font-bold md:text-center text-32/41.6 text-neutral lg:text-36/43.2 xl:text-40/48 max-w-33ch';
+  & + p {
+    --uno: 'font-semibold mt-16 md:text-center text-neutral-700 text-20/30 lg:text-22/33 max-w-70ch';
   }
+}
 
-  section {
-    --uno: 'px-32 md:px-64 xl:px-72 2xl:px-80';
-    --uno: 'flex flex-col items-center justify-center text-neutral';
-  }
+section {
+  --uno: 'px-32 md:px-64 xl:px-72 2xl:px-80';
+  --uno: 'flex flex-col items-center justify-center text-neutral';
 }
