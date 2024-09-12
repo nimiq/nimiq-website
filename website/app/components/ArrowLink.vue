@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { KeyTextField, LinkField } from '~~/prismicio-types'
+import type { KeyTextField, LinkField } from '@prismicio/client'
 
 defineProps({
   href: {
@@ -29,7 +29,7 @@ const onClick = () => emit('onClick')
 
 <template>
   <a
-    v-if="href.link_type === 'Web' && label"
+    v-if="href.link_type === 'Web' && label && 'url' in href"
     :href="href.url"
     target="_blank"
     rel="noopener noreferrer"
@@ -44,7 +44,7 @@ const onClick = () => emit('onClick')
   </a>
 
   <nuxt-link
-    v-else-if="href.link_type === 'Document' && label"
+    v-else-if="href.link_type === 'Document' && label && 'uid' in href"
     :to="href.uid"
     :aria-disabled="disabled"
     @focus="onFocus"

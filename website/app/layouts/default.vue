@@ -59,5 +59,7 @@ const ctaHref = computed(() => {
   <slot />
   <div h-550 />
 
-  <footer />
+  <footer v-if="navigation">
+    <FooterNavigation :navigation="navigation.data" />
+  </footer>
 </template>
