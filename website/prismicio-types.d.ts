@@ -2708,24 +2708,24 @@ export interface BannerSliceSliceBannerWithBackgroundImagePrimary {
   cta: prismic.LinkField
 
   /**
-   * Background field in *BannerSlice → Banner With Background Image → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.background
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  background: prismic.ImageField<never>
-
-  /**
    * CTA Label field in *BannerSlice → Banner With Background Image → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.cta_label
+   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.ctaLabel
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  cta_label: prismic.KeyTextField
+  ctaLabel: prismic.KeyTextField
+
+  /**
+   * Background field in *BannerSlice → Banner With Background Image → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: None
+   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  background: prismic.SelectField<'Social Media' | 'Nimiq Apps'>
 }
 
 /**

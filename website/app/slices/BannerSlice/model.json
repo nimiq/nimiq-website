@@ -120,19 +120,22 @@
             "select": null
           }
         },
-        "background": {
-          "type": "Image",
-          "config": {
-            "label": "Background",
-            "constraint": {},
-            "thumbnails": []
-          }
-        },
-        "cta_label": {
+        "ctaLabel": {
           "type": "Text",
           "config": {
             "label": "CTA Label",
             "placeholder": ""
+          }
+        },
+        "background": {
+          "type": "Select",
+          "config": {
+            "label": "Background",
+            "placeholder": "None",
+            "options": [
+              "Social Media",
+              "Nimiq Apps"
+            ]
           }
         }
       },

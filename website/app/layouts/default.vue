@@ -57,6 +57,7 @@ const ctaHref = computed(() => {
     <HeaderNavigation :navigation="navigation.data" :is-trigger-color-inverted="arrivedState.top" />
   </header>
   <slot />
+  <div h-550 />
 
   <footer />
 </template>

@@ -105,31 +105,13 @@
         }
       },
       "background": {
-        "origin": {
-          "id": "main",
-          "url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a",
-          "width": 4000,
-          "height": 4000
-        },
-        "url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a",
-        "width": 4000,
-        "height": 4000,
-        "edit": {
-          "zoom": 1,
-          "crop": {
-            "x": 0,
-            "y": 0
-          },
-          "background": "transparent"
-        },
-        "credits": null,
-        "alt": null,
-        "__TYPE__": "ImageContent",
-        "thumbnails": {}
-      },
-      "cta_label": {
         "__TYPE__": "FieldContent",
-        "value": "obtain",
+        "value": "Nimiq Apps",
+        "type": "Select"
+      },
+      "ctaLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "proud",
         "type": "Text"
       }
     },
