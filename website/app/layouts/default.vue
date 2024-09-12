@@ -35,9 +35,9 @@ const ctaHref = computed(() => {
   <!-- eslint-disable vue/no-multiple-template-root -->
   <header
     v-if="navigation"
-    will-change-shadow fixed top-16 z-50 mx-16 mb-32 mt-0 flex items-center justify-between rounded-8 bg-white p-16 opacity-100 shadow-xl transition-all duration-250 will-change-opacity
+    fixed top-16 z-50 mx-16 mb-32 mt-0 flex items-center justify-between gap-x-12 rounded-8 bg-white p-16 opacity-100 shadow-xl transition-all duration-250 will-change-opacity
     class="w-[calc(100%-32px)]"
-    :class="{ '!opacity-0': !isHeaderVisible, '!shadow-none !bg-transparent': arrivedState.top && isHeaderVisible }"
+    :class="{ '!opacity-0 pointer-events-none': !isHeaderVisible, '!shadow-none !bg-transparent': arrivedState.top && isHeaderVisible }"
   >
     <NuxtLink to="/">
       <div
@@ -46,14 +46,18 @@ const ctaHref = computed(() => {
         :class="{ 'i-nimiq:logos-nimiq-white-horizontal': arrivedState.top }"
       />
     </NuxtLink>
-    <NuxtLink
-      v-if="showHotCta"
-      :to="ctaHref"
-      mx-16 flex items-center gap-x-8 rounded-full bg-neutral-200 px-12 py-4 text-neutral font-bold transition-colors md:mx-20 hocus:bg-neutral-400 md:px-16
-    >
-      <div class="i-nimiq:flame aspect-[10/14] text-14 md:text-16" />
-      <span truncate text-14 max-md:pt-1 md:text-16>{{ navigation.data.hottext }}</span>
-    </NuxtLink>
+    <div mr-auto>
+      <NuxtLink
+        v-if="showHotCta"
+        :to="ctaHref"
+        class="grid grid-cols-[auto_1fr] items-center gap-x-8 rounded-full bg-neutral-200 px-12 py-4 text-14 font-bold transition-colors md:mx-20 hocus:bg-neutral-400 md:px-16 md:text-16"
+        :class="{ 'bg-neutral/60 text-neutral-100 hocus:bg-neutral/70': arrivedState.top }"
+      >
+        <div class="i-nimiq:flame" />
+        <span class="truncate max-md:pt-1">{{ navigation.data.hottext }}</span>
+      </NuxtLink>
+    </div>
+
     <HeaderNavigation :navigation="navigation.data" :is-trigger-color-inverted="arrivedState.top" />
   </header>
   <slot />
