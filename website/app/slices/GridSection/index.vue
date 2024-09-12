@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-defineProps(getSliceComponentProps<Content.GridSectionSlice>())
-const classes = useSectionColor('white')
+const props = defineProps(getSliceComponentProps<Content.GridSectionSlice>())
+useSlice(props.slice.id, 'grey')
 </script>
 
 <template>
-  <section :class="classes">
+  <section :ref="slice.id">
     <template v-if="slice.variation === 'threeColumnsImageText'">
       <ul flex="~ col lg:row gap-24" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1>

@@ -8828,6 +8828,33 @@ export type TeamMembersSlice = prismic.SharedSlice<
 >
 
 /**
+ * Default variation for Test Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TestSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  never
+>
+
+/**
+ * Slice variation for *Test*
+ */
+type TestSliceVariation = TestSliceDefault
+
+/**
+ * Test Shared Slice
+ *
+ * - **API ID**: `test`
+ * - **Description**: Test
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TestSlice = prismic.SharedSlice<'test', TestSliceVariation>
+
+/**
  * Primary content in *TiltedMedia → Default → Primary*
  */
 export interface TiltedMediaSliceDefaultPrimary {
@@ -9726,6 +9753,9 @@ declare module '@prismicio/client' {
       TeamMembersSliceVariation,
       TestDocument,
       TestDocumentData,
+      TestSlice,
+      TestSliceDefault,
+      TestSliceVariation,
       TiltedMediaSlice,
       TiltedMediaSliceDefault,
       TiltedMediaSliceDefaultPrimary,

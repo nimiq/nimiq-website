@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
-const classes = useSectionColor('darkblue')
+const props = defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
+useSlice(props.slice.id, 'darkblue')
 </script>
 
 <template>
-  <section :class="classes" style="--top: 248px; top: calc(var(--top) * -1)" data-gradient relative top--136 of-hidden>
+  <section :ref="slice.id" style="--top: 248px; top: calc(var(--top) * -1)" data-gradient relative top--136 of-hidden>
     <NuxtImg src="/assets/images/prestaking-glowing-background.webp" alt="" pointer-events-nonce absolute inset-0 z-0 object-cover />
     <ul flex="~ items-center col lg:row gap-x-24 gap-y-20 justify-center" style="padding-top: calc(var(--top) + 4rem)">
       <li v-for="({ image, content }, i) in slice.primary.items" :key="i" flex="~ col self-stretch lg:row md:items-center gap-x-12 gap-y-24" relative rounded-6 p-32>

@@ -20,4 +20,21 @@ h2 {
 section {
   --uno: 'px-32 md:px-64 xl:px-72 2xl:px-80';
   --uno: 'flex flex-col items-center justify-center text-neutral';
+
+  &:not(.no-py) {
+    &.dark + section.light,
+    &.light + section.dark {
+      --uno: 'pt-160 lg:pt-200';
+    }
+
+    &.dark:has(+ section.light),
+    &.light:has(+ section.dark) {
+      --uno: 'pb-160 lg:pb-200';
+    }
+
+    &.dark + section.dark,
+    &.light + section.light {
+      --uno: 'pt-72 lg:pt-96';
+    }
+  }
 }

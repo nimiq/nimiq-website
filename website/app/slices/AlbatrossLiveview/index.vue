@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
-const classes = useSectionColor('darkblue')
+const props = defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
+useSlice(props.slice.id, 'darkblue')
 </script>
 
 <template>
-  <section :class="classes" px-0>
+  <section :ref="slice.id" px-0>
     <AlbatrossLiveview
       :allow-send-tx="slice.primary.allowSendTx"
       :average-rewards-label="slice.primary.averageRewardsLabel!"

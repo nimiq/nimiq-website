@@ -13,11 +13,12 @@ const items = slices.value
     label: primary.label!,
     active: slice.value.primary.item === primary.item,
   }))
-const classes = useSectionColor(slice.value.primary.bgColor)
+
+useSlice(props.slice.id, slice.value.primary.bgColor)
 </script>
 
 <template>
-  <section class="pb-16 *:mx-0 max-md:items-start" :class="classes">
+  <section :ref="slice.id" class="pb-16 *:mx-0 max-md:items-start" :data-slice="slice">
     <PillLinks :items />
   </section>
 </template>

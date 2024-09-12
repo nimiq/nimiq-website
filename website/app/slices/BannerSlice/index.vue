@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
+const props = defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
+useSlice(props.slice.id, 'grey')
 </script>
 
 <template>
-  <section v-if="slice.variation === 'bannerWithBackgroundImage'">
+  <section v-if="slice.variation === 'bannerWithBackgroundImage'" :ref="slice.id">
     <Banner
       :title="slice.primary.title!"
       :cta="slice.primary.cta!"

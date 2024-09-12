@@ -51,11 +51,12 @@ function onHoverEnd() {
   shouldJump.value = false
 }
 
-const classes = useSectionColor('darkblue')
+const id = 'home-hero'
+useSlice(id, 'darkblue')
 </script>
 
 <template>
-  <section :class="classes" relative of-hidden>
+  <section :ref="id" class="no-py" relative of-hidden>
     <DefineNimFly v-slot="{ css }">
       <div
         :class="css"
