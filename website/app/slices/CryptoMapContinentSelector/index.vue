@@ -62,7 +62,7 @@ const iframeUrl = computed(() => {
 </script>
 
 <template>
-  <section class="nq-block-96 wide" max-lg:px-0 flex="col lg:row gap-x-24 gap-y-32">
+  <section max-lg:px-0 flex="col lg:row gap-x-24 gap-y-32">
     <div max-lg:mx--32 max-lg:my--40 max-lg:w-full>
       <ul w-full flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-40">
         <li

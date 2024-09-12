@@ -1,11 +1,12 @@
+// @unocss-include
 export function useSectionColor(color: 'white' | 'grey' | 'darkblue') {
   switch (color) {
-    case 'white':
     case 'grey':
-      return color
+      return 'bg-neutral-100'
     case 'darkblue':
-      return 'darkblue dark'
+      return 'bg-neutral dark text-neutral-0'
+    case 'white':
     default:
-      return 'white'
+      return 'bg-neutral-0'
   }
 }

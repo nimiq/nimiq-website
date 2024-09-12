@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
 </script>
 
 <template>
-  <section v-if="slice.variation === 'bannerWithBackgroundImage'" class="nq-block-96">
+  <section v-if="slice.variation === 'bannerWithBackgroundImage'">
     <Banner
       :title="slice.primary.title!"
       :cta="slice.primary.cta!"

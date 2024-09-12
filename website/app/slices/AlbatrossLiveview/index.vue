@@ -6,7 +6,7 @@ const classes = useSectionColor('darkblue')
 </script>
 
 <template>
-  <section :class="classes" class="wide" px-0>
+  <section :class="classes" px-0>
     <AlbatrossLiveview
       :allow-send-tx="slice.primary.allowSendTx"
       :average-rewards-label="slice.primary.averageRewardsLabel!"

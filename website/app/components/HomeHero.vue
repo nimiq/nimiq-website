@@ -50,10 +50,12 @@ function onHover() {
 function onHoverEnd() {
   shouldJump.value = false
 }
+
+const classes = useSectionColor('darkblue')
 </script>
 
 <template>
-  <section class="dark darkblue wide" relative of-hidden>
+  <section :class="classes" relative of-hidden>
     <DefineNimFly v-slot="{ css }">
       <div
         :class="css"

@@ -2,10 +2,11 @@
 import type { Content } from '@prismicio/client'
 
 defineProps(getSliceComponentProps<Content.GridSectionSlice>())
+const classes = useSectionColor('white')
 </script>
 
 <template>
-  <section class="nq-block-96 white">
+  <section :class="classes">
     <template v-if="slice.variation === 'threeColumnsImageText'">
       <ul flex="~ col lg:row gap-24" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1>
