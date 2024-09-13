@@ -16,7 +16,7 @@ export const useLiveviewBlocks = defineStore('liveview-blocks', () => {
   function pushBlock(block: LiveviewBlock) {
     if (block.kind === LiveviewBlockType.MacroBlock || block.kind === LiveviewBlockType.MicroBlock)
       latestBlock.value = block
-    blocks.value = [...blocks.value, block].slice(-30)
+    blocks.value = [...blocks.value, block].slice(-60)
   }
   watch(data, (data) => {
     if (!data)
@@ -27,6 +27,7 @@ export const useLiveviewBlocks = defineStore('liveview-blocks', () => {
   return {
     status,
     blocks,
+    microblocks: computed(() => blocks.value.filter(block => block.kind === LiveviewBlockType.MicroBlock) as LiveviewMicroBlock[]),
     blockNumber: computed(() => latestBlock.value?.number || -1),
     batchNumber: computed(() => latestBlock.value?.batch || -1),
     matchedTxs: computed(() => blocks.value.filter(block => block.kind === LiveviewBlockType.MicroBlock).map(block => block.matchedTxs).flat()),

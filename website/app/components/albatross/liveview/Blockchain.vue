@@ -6,7 +6,7 @@ const TARGET_OFFSET = -BLOCK_WIDTH / 4
 // Too low, and the animation can't catch up to new blocks.
 // Too high, and the animation finishes too fast and stops between blocks.
 // A factor of 0.55-0.65 works well for block times of ~0.2s.
-const CHAIN_SPEED_FACTOR = 0.6
+const CHAIN_SPEED_FACTOR = 0.55
 
 const { blocks, batchNumber, blockNumber, status } = storeToRefs(useLiveviewBlocks())
 
@@ -111,7 +111,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
     <div v-show="status === 'OPEN'" w-full flex="~ justify-center" of-hidden px-32>
       <!-- :class="{ unimate: isMacro || isFirstBatchAfterPageLoad }"> -->
       <div flex="~ justify-center">
-        <AlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 3 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number mt-64 shrink-0 class="animate-batch-unshift" />
+        <AlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 2 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number class="animate-batch-unshift" />
       </div>
     </div>
   </div>

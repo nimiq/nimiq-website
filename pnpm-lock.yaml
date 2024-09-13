@@ -76,8 +76,8 @@ importers:
         specifier: ^15.2.10
         version: 15.2.10
       nimiq-css:
-        specifier: ^0.1.17
-        version: 0.1.17(typescript@5.6.2)(unocss@0.62.3(@unocss/webpack@0.62.3(rollup@4.21.2)(webpack@5.94.0(esbuild@0.23.1)))(postcss@8.4.45)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0)))(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))
+        specifier: ^0.1.23
+        version: 0.1.23(@unocss/webpack@0.62.3(rollup@4.21.2)(webpack@5.94.0(esbuild@0.23.1)))(postcss@8.4.45)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))
       nimiq-rpc-client-ts:
         specifier: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
         version: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -4141,13 +4141,9 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  nimiq-css@0.1.17:
-    resolution: {integrity: sha512-TC46FWNwODwEa7mlyfSTmlayzWRsSL1bHPVBUXRyqaKFi0Xw1TRSlDirNbXWLIqcCNvX5GNtXwI7S666knxYLg==}
+  nimiq-css@0.1.23:
+    resolution: {integrity: sha512-VhDYIhd3bfdHdaonCN4OIL4mSYjktRo/b7ZKMLDP3HV/Y1MCcu6tRE3aL9jsPuEACAbz6hKVSUwAF9rjRyIZ8A==}
     engines: {node: '>=14'}
-    peerDependencies:
-      typescript: ^5.0.0
-      unocss: ^0.58.5
-      vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0 || ^5.0.0-0
 
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575:
     resolution: {tarball: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575}
@@ -10726,13 +10722,17 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  nimiq-css@0.1.17(typescript@5.6.2)(unocss@0.62.3(@unocss/webpack@0.62.3(rollup@4.21.2)(webpack@5.94.0(esbuild@0.23.1)))(postcss@8.4.45)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0)))(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0)):
+  nimiq-css@0.1.23(@unocss/webpack@0.62.3(rollup@4.21.2)(webpack@5.94.0(esbuild@0.23.1)))(postcss@8.4.45)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0)):
     dependencies:
       '@unocss/reset': 0.62.3
       ts-cssjson: 3.0.1
-      typescript: 5.6.2
       unocss: 0.62.3(@unocss/webpack@0.62.3(rollup@4.21.2)(webpack@5.94.0(esbuild@0.23.1)))(postcss@8.4.45)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))
-      vite: 5.4.3(@types/node@22.5.4)(terser@5.32.0)
+    transitivePeerDependencies:
+      - '@unocss/webpack'
+      - postcss
+      - rollup
+      - supports-color
+      - vite
 
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:

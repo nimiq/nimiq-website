@@ -5,6 +5,8 @@ import { repositoryName } from './slicemachine.config.json'
 export default defineNuxtConfig({
   extends: ['../base'],
 
+  ssr: false,
+
   future: {
     compatibilityVersion: 4,
   },
@@ -22,7 +24,7 @@ export default defineNuxtConfig({
   },
 
   // TODO this rules should be part of a new nimiq sub lib
-  css: ['~/assets/css/main.css'],
+  // css: ['~/assets/css/main.css'],
 
   prismic: {
     endpoint: repositoryName,

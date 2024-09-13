@@ -4,7 +4,6 @@ import { presetIcons } from 'unocss'
 import config from '../base/unocss.config.js'
 
 export default mergeConfigs([config, {
-  // Custom config
   presets: [
     presetIcons({
       collections: {

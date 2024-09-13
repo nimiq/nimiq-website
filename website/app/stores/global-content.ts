@@ -4,13 +4,13 @@ export type SocialMediaAttributes = SocialMediaDocument['data'] & { color: `#${s
 export type AppsAttributes = NimiqAppDocument['data'] & { color: `#${string}` }
 
 const appColor: Record<Exclude<NimiqAppDocumentData['type'], null>, string> = {
-  'E-commerce': 'rgb(var(--nq-blue) / 1)',
-  'Games': 'rgb(var(--nq-purple) / 1)',
-  'Infrastructure': 'rgb(var(--nq-red) / 1)',
-  'Insights': 'rgb(var(--nq-green) / 1)',
+  'E-commerce': colors.blue,
+  'Games': colors.purple,
+  'Infrastructure': colors.red,
+  'Insights': colors.green,
   'Miner': 'rgb(var(--nq-neutral) / 1)',
-  'Wallets': 'rgb(var(--nq-orange) / 1)',
-  'Bots': 'rgb(var(--nq-gold) / 1)',
+  'Wallets': colors.orange,
+  'Bots': colors.gold,
   'Faucet': '#FA7268', // pink
   'Promotion': '#795548', // brown
 }

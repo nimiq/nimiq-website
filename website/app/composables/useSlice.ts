@@ -2,12 +2,12 @@
 function getColorClass(color: 'white' | 'grey' | 'darkblue') {
   switch (color) {
     case 'grey':
-      return 'bg-neutral-100 light'
+      return 'bg-neutral-100'
     case 'darkblue':
       return 'bg-darkblue dark text-neutral'
     case 'white':
     default:
-      return 'bg-neutral-0 light'
+      return 'bg-neutral-0'
   }
 }
 

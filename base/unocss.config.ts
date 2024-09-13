@@ -11,6 +11,7 @@ export default defineConfig({
       attributifyUtilities: true,
       icons: false,
       reset: '../base/node_modules/@unocss/reset/tailwind-compat.css',
+      staticContent: true,
     }),
     presetRemToPx({ baseFontSize: 4 }),
     presetAttributify(),

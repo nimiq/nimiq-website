@@ -2,6 +2,15 @@
 const props = defineProps<{ batchNumber: number, blockNumber: number }>()
 
 const { blocksPerBatch, genesisBlockNumber } = storeToRefs(useAlbatrossPolicy())
+const { microblocks } = storeToRefs(useLiveviewBlocks())
+
+function getBlockColor(n: number) {
+  const blockNumber = genesisBlockNumber.value + (props.batchNumber - 1) * blocksPerBatch.value + n
+  const block = microblocks.value.find(b => b.number === blockNumber)
+  return block?.producer.publicKey
+    ? getLiveviewColorValue({ publicKey: block.producer.publicKey })
+    : 'rgb(var(--nq-neutral) / 1)'
+}
 
 const showColors = ref(false)
 const toggleColors = useToggle(showColors)
@@ -22,7 +31,7 @@ const isWaitingForMacro = computed(() => props.blockNumber === (props.batchNumbe
 const batchClass = computed(() => {
   const classes = []
   if (isWaitingForMacro.value)
-    classes.push('pulsing')
+    classes.push('animate-pulse')
   else if (pastMacro.value)
     classes.push('text-neutral-0 op-1')
   else if (props.batchNumber > 999)
@@ -47,9 +56,9 @@ const batchNumberClass = computed(() => {
     @click="() => toggleColors()"
   >
     <div flex="~ col wrap" h="70 sm:56 md:44">
-      <!-- :style="showColors && validators && `background: #${n}`" -->
       <div
-        v-for="n in createdBlockCount" :key="`micro-block-${n}`" m-4 inline-block size-6 rounded-2 bg-neutral-700
+        v-for="n in createdBlockCount" :key="`micro-block-${n}`" m-4 inline-block size-6 rounded-2 transition-colors
+        :style="{ backgroundColor: showColors ? getBlockColor(n) : 'rgb(var(--nq-neutral-700) / 1)' }"
       />
       <div
         v-for="n in remainingBlockCount" :key="`micro-block-${createdBlockCount + n}`" m-4 inline-block size-6
@@ -66,21 +75,3 @@ const batchNumberClass = computed(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.macro-block.pulsing {
-  animation: batch-pulse 1s linear infinite;
-}
-
-@keyframes batch-pulse {
-  from {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.6;
-  }
-}
-</style>

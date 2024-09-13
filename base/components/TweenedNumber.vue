@@ -30,6 +30,8 @@ const digitsCount = toRef(props, 'digitsCount')
 const allowAnimation = toRef(props, 'allowAnimation')
 
 const tweeningValue = ref(value.value)
+watch(value, v => tweeningValue.value = v)
+
 let abortController: AbortController | null = null
 
 const formatter = new Intl.NumberFormat(locale.value, {

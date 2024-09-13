@@ -14,4 +14,14 @@ useSlice(props.slice.id, props.slice.primary.bgColor)
 </template>
 
 <style scoped>
+/* After Pill Slice, we don't leave space */
+section[data-slice-type='pill_link'] + section[data-slice-type='simple_headline'] {
+  --uno: 'pt-24';
+}
+
+/* If the headline is after a slice that is the same theme (dark or light) we increase space */
+section.dark:not([data-slice-type='pill_link']) + section[data-slice-type='simple_headline'].dark,
+section.light:not([data-slice-type='pill_link']) + section[data-slice-type='simple_headline'].light {
+  --uno: 'pt-160 lg:pt-200';
+}
 </style>

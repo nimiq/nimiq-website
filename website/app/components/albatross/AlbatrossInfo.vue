@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getLiveviewPillColor } from '~/composables/useLiveviewColors'
+import { getLiveviewPillColor } from '~/composables/useColors'
 
 const { networkNotice, statsTooltipContent, txSecLabel, averageRewardsLabel, txSpeedLabel } = defineProps<{
   networkNotice?: string

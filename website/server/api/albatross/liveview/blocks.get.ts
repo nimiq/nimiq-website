@@ -1,7 +1,7 @@
 import { NimiqRPCClient, RetrieveType } from 'nimiq-rpc-client-ts'
 import type { Block, MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
 
-const INITIAL_BLOCK_FETCH = 12
+const INITIAL_BLOCK_FETCH = 60
 const CACHE_SIZE = 100
 const blockCache = new Map<number, Block>()
 
@@ -25,8 +25,6 @@ async function handleStream(eventStream: ReturnType<typeof createEventStream>) {
   const rpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
   const client = new NimiqRPCClient(rpcUrl)
 
-  // let lastCalculatedDelay = 0
-  // let latestBlock: Block | undefined
   let lastBlockTimestamp: number | undefined
 
   function sendPayload(block: LiveviewBlock) {
