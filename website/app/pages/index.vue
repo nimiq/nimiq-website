@@ -13,6 +13,8 @@ useHead({
     },
   ],
 })
+
+defineOgImageComponent('DefaultImage', { title: 'Nimiq' })
 </script>
 
 <template>

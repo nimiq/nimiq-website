@@ -5,7 +5,7 @@ import { repositoryName } from './slicemachine.config.json'
 export default defineNuxtConfig({
   extends: ['../base'],
 
-  ssr: false,
+  // ssr: false,
 
   future: {
     compatibilityVersion: 4,
@@ -14,6 +14,18 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-08-31',
 
   modules: ['@nuxthub/core', '@nuxtjs/prismic', '@nuxtjs/supabase'],
+
+  site: {
+    url: 'https://nimiq.com',
+
+    // These are just default values and they should be overwritten by the page
+    name: 'Nimiq Website',
+    description: '',
+  },
+
+  ogImage: {
+    fonts: ['Mulish:700'],
+  },
 
   unocss: {
     nuxtLayers: true,

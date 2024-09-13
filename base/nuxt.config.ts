@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     'radix-vue/nuxt',
+    '@nuxtjs/seo',
   ],
 
   devtools: { enabled: true },
