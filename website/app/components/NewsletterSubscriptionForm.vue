@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import type { KeyTextField } from '@prismicio/client'
-
 defineProps({
   placeholder: {
     default: null,
-    type: Object as () => KeyTextField,
+    type: String,
   },
   isInverted: {
     default: false,

@@ -47,11 +47,11 @@ const copyrightYear = process.env.COPYRIGHT_YEAR
           <p v-if="navigation.newsletterCta">
             {{ navigation.newsletterCta }}
           </p>
-          <NewsletterSubscriptionForm :placeholder="navigation.newsletterPlaceholder" />
+          <NewsletterSubscriptionForm :placeholder="navigation.newsletterPlaceholder!" />
           <p v-if="navigation.socialMediaCta" mt-16>
             {{ navigation.socialMediaCta }}
           </p>
-          <SocialMediaLogosList class="[&_div]:text-20 [&_a]:text-neutral-600" :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
+          <SocialMediaLogosList :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
         </div>
       </div>
       <div>
