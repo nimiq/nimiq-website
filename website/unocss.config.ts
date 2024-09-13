@@ -42,4 +42,5 @@ export default mergeConfigs([config, {
       }
     },
   ],
+  outputToCssLayers: true,
 }])
