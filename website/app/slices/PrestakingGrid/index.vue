@@ -6,16 +6,16 @@ useSlice(props.slice.id, 'darkblue')
 </script>
 
 <template>
-  <section :ref="slice.id" data-gradient relative top--136 of-hidden>
-    <NuxtImg src="/assets/images/prestaking-glowing-background.webp" alt="" pointer-events-nonce absolute inset-0 z-0 object-cover />
-    <ul flex="~ items-center col lg:row gap-x-24 gap-y-20 justify-center" pt-32>
+  <section :ref="slice.id" data-gradient relative pt-32>
+    <NuxtImg src="/assets/images/prestaking-glowing-background.webp" alt="" pointer-events-none absolute inset-0 top-0 z-1 size-full rotate-180 object-cover object-bottom />
+    <ul flex="~ items-center col lg:row gap-x-24 gap-y-20 justify-center" z-10>
       <li v-for="({ image, content }, i) in slice.primary.items" :key="i" flex="~ col self-stretch lg:row md:items-center gap-x-12 gap-y-24" relative rounded-6 p-32>
-        <PrismicImage :field="image" :imgix-params="{ w: 80, h: 80 }" z-1 size-80 md:mx-auto />
+        <PrismicImage :field="image" :imgix-params="{ w: 80, h: 80 }" z-20 size-80 md:mx-auto />
         <PrismicRichText :field="content" z-1 text="16/24 md:17/25.5 lg:18:28 neutral-900" />
         <div aria-hidden absolute inset-0 rounded-6 class="glass" ring="1.5 neutral-0/15" backdrop-blur-20 />
       </li>
     </ul>
-    <PrismicLink :field="slice.primary.cta" mt-32 nq-arrow nq-pill-lg nq-pill-blue>
+    <PrismicLink :field="slice.primary.cta" z-10 mt-32 nq-arrow nq-pill-lg nq-pill-blue>
       {{ slice.primary.cta_label }}
     </PrismicLink>
   </section>
@@ -25,13 +25,5 @@ useSlice(props.slice.id, 'darkblue')
 .glass {
   background: radial-gradient(83.64% 49.88% at 50% 0, #ffffff1a 0, #fff0 50%), #ffffff0d;
   background-blend-mode: normal, color-dodge, normal;
-}
-
-:global(section[data-slice-type='simple_headline']:has(+ section[data-slice-type='prestaking_grid'])) {
-  --uno: 'bg-transparent h-0 !pt-0 top-100';
-}
-
-section {
-  --uno: 'pt-246 lg:pt-286';
 }
 </style>

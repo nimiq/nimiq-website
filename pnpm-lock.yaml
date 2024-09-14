@@ -79,8 +79,8 @@ importers:
         specifier: ^15.2.10
         version: 15.2.10
       nimiq-css:
-        specifier: ^0.1.26
-        version: 0.1.26(@unocss/webpack@0.62.3(rollup@4.21.2)(webpack@5.94.0(esbuild@0.23.1)))(postcss@8.4.45)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))
+        specifier: ^0.1.29
+        version: 0.1.29(@unocss/webpack@0.62.3(rollup@4.21.2)(webpack@5.94.0(esbuild@0.23.1)))(postcss@8.4.45)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0))
       nimiq-rpc-client-ts:
         specifier: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
         version: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -4369,8 +4369,8 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  nimiq-css@0.1.26:
-    resolution: {integrity: sha512-KxavfXXZBQ5SERXF9rD34tV63BYsalmM9Cpb6unbAkKpd6xvxhdXY3ChnOoCdYL/0Ac2DS1e8c1VugFXh8PCag==}
+  nimiq-css@0.1.29:
+    resolution: {integrity: sha512-cxTSeEh7YePFf8fa3faWVoX0rIC2rhywLwEs0AUASL7vqStEgPPv1e+Rpgx0PJ1TzepmYmTus1fPe9DYRectXw==}
     engines: {node: '>=14'}
 
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575:
@@ -11363,7 +11363,7 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  nimiq-css@0.1.26(@unocss/webpack@0.62.3(rollup@4.21.2)(webpack@5.94.0(esbuild@0.23.1)))(postcss@8.4.45)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0)):
+  nimiq-css@0.1.29(@unocss/webpack@0.62.3(rollup@4.21.2)(webpack@5.94.0(esbuild@0.23.1)))(postcss@8.4.45)(rollup@4.21.2)(vite@5.4.3(@types/node@22.5.4)(terser@5.32.0)):
     dependencies:
       '@unocss/reset': 0.62.3
       ts-cssjson: 3.0.1
