@@ -56,7 +56,7 @@ useSlice(id, 'darkblue')
 </script>
 
 <template>
-  <section :ref="id" class="no-py" relative of-hidden>
+  <section :ref="id" class="no-py" relative of-hidden pt="148 md:153 lg:160">
     <DefineNimFly v-slot="{ css }">
       <div
         :class="css"
