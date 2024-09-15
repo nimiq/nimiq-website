@@ -2,9 +2,8 @@
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
 import type { Database } from '~/types/database.types'
 import TweenedNumber from '../../../base/components/TweenedNumber.vue'
-// import type { Database } from '~/types/database.types'
 
-const props = defineProps<{ headline: TitleField, sublineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
+const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
 
 const supabase = useSupabaseClient<Database>()
 
@@ -34,8 +33,8 @@ const locationsSpan = h('span', { class: 'text-blue' }, [
 ])
 
 const subheadline = computed(() => {
-  const pre = props.sublineTemplate?.split('{{')[0]?.toString()
-  const post = props.sublineTemplate?.split('}}')[1]?.toString()
+  const pre = props.subHeadlineTemplate?.split('{{')[0]?.toString()
+  const post = props.subHeadlineTemplate?.split('}}')[1]?.toString()
   return h('p', {}, [pre, locationsSpan, post])
 })
 
@@ -51,12 +50,11 @@ function onHoverEnd() {
   shouldJump.value = false
 }
 
-const id = 'home-hero'
-useSlice(id, 'darkblue')
+const { sectionRef } = useSlice('home-hero', 'darkblue')
 </script>
 
 <template>
-  <section :ref="id" class="no-py" relative of-hidden pt="148 md:153 lg:160">
+  <section ref="sectionRef" class="no-py" relative of-hidden pt="148 md:153 lg:160">
     <DefineNimFly v-slot="{ css }">
       <div
         :class="css"

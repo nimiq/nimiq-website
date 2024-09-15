@@ -50,7 +50,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <div border="1 solid neutral-400" relative w-full of-hidden rounded-8 bg-neutral-0 px-32 py-72 nq-shadow>
+  <div border="1 solid neutral-400" relative w-full of-hidden rounded-8 bg-neutral-0 px-32 py-72 shadow>
     <BannerBackground v-if="items.length > 0" :items />
     <div relative z-10 mx-auto max-w-full w-max lg:max-w-50ch md:max-w-40ch>
       <h2>{{ title }}</h2>

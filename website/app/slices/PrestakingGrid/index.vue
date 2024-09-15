@@ -2,11 +2,11 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
-useSlice(props.slice.id, 'darkblue')
+const { sectionRef } = useSlice(props.slice.id, 'darkblue')
 </script>
 
 <template>
-  <section :ref="slice.id" data-gradient relative pt-32>
+  <section ref="sectionRef" data-gradient relative pt-32>
     <NuxtImg src="/assets/images/prestaking-glowing-background.webp" alt="" pointer-events-none absolute inset-0 top-0 z-1 size-full rotate-180 object-cover object-bottom />
     <ul flex="~ items-center col lg:row gap-x-24 gap-y-20 justify-center" z-10>
       <li v-for="({ image, content }, i) in slice.primary.items" :key="i" flex="~ col self-stretch lg:row md:items-center gap-x-12 gap-y-24" relative rounded-6 p-32>

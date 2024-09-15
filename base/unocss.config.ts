@@ -9,6 +9,7 @@ export default defineConfig({
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
+      typography: true,
       icons: false,
       reset: '../base/node_modules/@unocss/reset/tailwind-compat.css',
       staticContent: true,

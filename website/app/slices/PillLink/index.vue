@@ -14,11 +14,11 @@ const items = slices.value
     active: slice.value.primary.item === primary.item,
   }))
 
-useSlice(props.slice.id, slice.value.primary.bgColor)
+const { sectionRef } = useSlice(props.slice.id, slice.value.primary.bgColor)
 </script>
 
 <template>
-  <section :ref="slice.id" class="pb-16 *:mx-0 max-md:items-start" :data-slice="slice">
+  <section ref="sectionRef" class="pb-16 *:mx-0 max-md:items-start" :data-slice="slice">
     <PillLinks :items />
   </section>
 </template>

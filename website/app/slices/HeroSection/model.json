@@ -13,7 +13,7 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
             "options": [
               "white",
@@ -130,6 +130,18 @@
             "label": "App Store",
             "placeholder": "",
             "select": null
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "darkblue"
+            ]
           }
         }
       },

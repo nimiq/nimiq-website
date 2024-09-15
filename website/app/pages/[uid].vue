@@ -2,7 +2,12 @@
 import type { Content } from '@prismicio/client'
 import { components } from '~/slices'
 
-const { data: page } = useSinglePrismicDocument<Content.Home2024Document>('home_2024')
+const route = useRoute()
+
+// @ts-expect-error - `uid` is defined
+const uid = route.params.uid
+
+const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('page', uid)
 
 useHead({
   title: page.value?.data.meta_title,
@@ -11,12 +16,13 @@ useHead({
   ],
 })
 
-defineOgImageComponent('DefaultImage', { title: 'Nimiq' })
+// TODO Do image
+defineOgImageComponent('DefaultImage')
 </script>
 
 <template>
   <NuxtLayout>
     <NuxtRouteAnnouncer />
-    <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
+    <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components="components" />
   </NuxtLayout>
 </template>

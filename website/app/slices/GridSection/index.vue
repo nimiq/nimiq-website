@@ -2,11 +2,11 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.GridSectionSlice>())
-useSlice(props.slice.id, 'white')
+const { sectionRef } = useSlice(props.slice.id, 'white')
 </script>
 
 <template>
-  <section :ref="slice.id">
+  <section ref="sectionRef">
     <template v-if="slice.variation === 'threeColumnsImageText'">
       <ul flex="~ col lg:row gap-x-24 gap-y-40" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1>

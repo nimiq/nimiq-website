@@ -98,7 +98,6 @@ export const components = defineSliceZoneComponents({
     () => import('./SupplyDistribution/index.vue'),
   ),
   team_members: defineAsyncComponent(() => import('./TeamMembers/index.vue')),
-  test: defineAsyncComponent(() => import('./Test/index.vue')),
   tilted_media: defineAsyncComponent(() => import('./TiltedMedia/index.vue')),
   tweets_marquee: defineAsyncComponent(
     () => import('./TweetsMarquee/index.vue'),

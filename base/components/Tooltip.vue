@@ -13,7 +13,7 @@ const { dark = true } = defineProps<{
     </PopoverTrigger>
     <PopoverPortal>
       <PopoverContent as-child class="tooltip-animation" :side-offset="8" :collision-padding="8" side="bottom">
-        <div z-300 rounded-8 p-16 :class="dark ? 'bg-gradient-neutral' : 'bg-white nq-shadow'">
+        <div z-300 rounded-8 p-16 :class="dark ? 'bg-gradient-neutral' : 'bg-white shadow'">
           <slot />
         </div>
         <PopoverArrow as-child>
