@@ -1635,6 +1635,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | NewsletterFormSlice
   | CryptoMapContinentSelectorSlice
   | PrestakingGridSlice
   | ZigZagContentSlice
@@ -6421,6 +6422,36 @@ export type NewYorkGridSlice = prismic.SharedSlice<
 >
 
 /**
+ * Default variation for NewsletterForm Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsletterFormSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  never
+>
+
+/**
+ * Slice variation for *NewsletterForm*
+ */
+type NewsletterFormSliceVariation = NewsletterFormSliceDefault
+
+/**
+ * NewsletterForm Shared Slice
+ *
+ * - **API ID**: `newsletter_form`
+ * - **Description**: NewsletterForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsletterFormSlice = prismic.SharedSlice<
+  'newsletter_form',
+  NewsletterFormSliceVariation
+>
+
+/**
  * Primary content in *NewsletterSubscription → Default → Primary*
  */
 export interface NewsletterSubscriptionSliceDefaultPrimary {
@@ -9619,6 +9650,9 @@ declare module '@prismicio/client' {
       NavigationDocumentDataProjectLinksItem,
       NavigationDocumentDataTechAdditionalFooterLinksItem,
       NavigationDocumentDataTechLinksItem,
+      NewsletterFormSlice,
+      NewsletterFormSliceDefault,
+      NewsletterFormSliceVariation,
       NewsletterSubscriptionSlice,
       NewsletterSubscriptionSliceDefault,
       NewsletterSubscriptionSliceDefaultPrimary,

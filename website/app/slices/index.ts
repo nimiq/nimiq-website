@@ -52,6 +52,9 @@ export const components = defineSliceZoneComponents({
   logos_grid: defineAsyncComponent(() => import('./LogosGrid/index.vue')),
   lottie_slice: defineAsyncComponent(() => import('./LottieSlice/index.vue')),
   new_york_grid: defineAsyncComponent(() => import('./NewYorkGrid/index.vue')),
+  newsletter_form: defineAsyncComponent(
+    () => import('./NewsletterForm/index.vue'),
+  ),
   newsletter_subscription: defineAsyncComponent(
     () => import('./NewsletterSubscription/index.vue'),
   ),
