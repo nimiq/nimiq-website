@@ -59,19 +59,17 @@ const linkGroups = [
           :side-offset="12"
         >
           <DropdownMenuItem class="flex gap-20">
-            <ArrowLink class="bg-neutral-300 nq-pill [&_span]:text-neutral" :href="navigation.getStartedLinks[0]?.href" :label="navigation.getStartedLinks[0]?.label" />
-            <ArrowLink class="nq-pill-blue" has-arrow :href="navigation.getStartedLinks[1]?.href" :label="navigation.getStartedLinks[1]?.label" />
+            <PrismicLink v-if="navigation.getStartedLinks.at(0)?.href" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
+              {{ navigation.getStartedLinks[0]?.label }}
+            </PrismicLink>
+            <PrismicLink v-if="navigation.getStartedLinks.at(1)?.href" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
+              {{ navigation.getStartedLinks[2]?.label }}
+            </PrismicLink>
           </DropdownMenuItem>
           <DropdownMenuItem class="my-32">
-            <ArrowLink
-              has-arrow
-              :href="navigation.getStartedLinks[2]?.href" :label="navigation.getStartedLinks[2]?.label"
-              class="w-full flex flex-col-reverse rounded-4 bg-white font-semibold opacity-60"
-            >
-              <div mt-16 text-14 font-normal opacity-70 transition-opacity>
-                {{ navigation.getStartedLinks[2]?.description }}
-              </div>
-            </ArrowLink>
+            <PrismicLink v-if="navigation.getStartedLinks.at(2)?.href" :field="navigation.getStartedLinks.at(2)!.href" nq-arrow nq-pill-tertiary>
+              {{ navigation.getStartedLinks[2]?.description }}
+            </PrismicLink>
           </DropdownMenuItem>
 
           <DropdownMenuSub>
@@ -100,11 +98,9 @@ const linkGroups = [
                     </AccordionTrigger>
                   </AccordionHeader>
                   <AccordionContent class="content overflow-hidden">
-                    <ArrowLink
-                      v-for="link, index in links" :key="`${name}-link-${index}`"
-                      :href="link.href" :label="link.label"
-                      w-full flex items-center gap-16 whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold
-                    />
+                    <PrismicLink v-for="{ label, href }, index in links" :key="`${name}-link-${index}`" :field="href" w-full flex items-center gap-16 whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold nq-arrow>
+                      {{ label }}
+                    </PrismicLink>
                   </AccordionContent>
                 </AccordionItem>
               </template>
