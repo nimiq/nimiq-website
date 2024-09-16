@@ -29,21 +29,27 @@ function getAbstract(post: BlogPageDocument): string {
   const { prose } = useProse(post)
   return prose.value.slice(0, 120)
 }
+
+const active = useState()
 </script>
 
 <template>
   <section ref="sectionRef" grid="~ cols-1 md:cols-2 lg:cols-3 gap-16">
     <article v-for="(post, i) in posts" :key="post.id" :class="page === 1 ? { 'md:self-end': i === 1, 'md:self-stretch': i > 1, 'md:first:col-span-2': true } : 'self-stretch'">
-      <NuxtLink :to="`/blog/${post.uid}`" relative h-full nq-hoverable>
+      <NuxtLink :to="`/blog/${post.uid}`" relative h-full nq-hoverable @click="active = post.uid">
         <div v-if="post.data.draft" absolute right-12 top-12 ring="1.5 white" nq-pill-orange>
           <div i-nimiq:locked-lock />
           Draft
         </div>
         <div p-4>
-          <PrismicImage :field="post.data.image" h-max w-full rounded-4 object-cover />
+          <PrismicImage :field="post.data.image" h-max w-full rounded-4 object-cover :class="{ 'view-transition-post-img contain-layout': active === post.uid }" />
         </div>
         <div flex="~ col" h-full p-24>
-          <PrismicText wrapper="h2" text-left :field="post.data.title" :style=" i === 0 ? '--font-size-min:30; --font-size-max:26' : '--font-size-min:20;--font-size-max:22'" />
+          <PrismicText
+            wrapper="h2" text-left :field="post.data.title" :style=" i === 0 ? '--font-size-min:30; --font-size-max:26' : '--font-size-min:20;--font-size-max:22'"
+            :class="{ 'view-transition-post-title contain-layout': active === post.uid }"
+          />
+
           <p line-clamp-2 mt-8 text="16 neutral-900 left">
             {{ getAbstract(post) }}
           </p>

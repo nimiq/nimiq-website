@@ -16,11 +16,12 @@ export function useSlice(_sliceType: string, color?: 'white' | 'grey' | 'darkblu
   const sliceType = _sliceType.split('$').at(0)
 
   watchEffect(() => {
-    if (!sectionRef.value)
+    const el: HTMLElement | undefined = sectionRef.value && '$el' in sectionRef.value ? sectionRef.value.$el as HTMLElement : sectionRef.value
+    if (!el)
       return
-    sectionRef.value.dataset.sliceType = sliceType
-    sectionRef.value.classList.remove('bg-neutral-0', 'bg-neutral-100', 'bg-darkblue', 'dark', 'text-neutral')
-    sectionRef.value.classList.add(...getColorClass(color || 'grey').split(' '))
+    el.dataset.sliceType = sliceType
+    el.classList.remove('bg-neutral-0', 'bg-neutral-100', 'bg-darkblue', 'dark', 'text-neutral')
+    el.classList.add(...getColorClass(color || 'grey').split(' '))
   })
 
   return { sectionRef, id: sliceType }
