@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { NavigationMenu } from 'radix-vue/namespaced'
 import type { NavigationDocumentData } from '~~/prismicio-types'
+import { NavigationMenu } from 'radix-vue/namespaced'
 import { SocialMedia } from '~/stores/global-content'
 
 // @unocss-include

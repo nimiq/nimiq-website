@@ -2,11 +2,11 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
-useSlice(props.slice.id, 'grey')
+const { sectionRef } = useSlice(props.slice.id, 'grey')
 </script>
 
 <template>
-  <section v-if="slice.variation === 'bannerWithBackgroundImage'" :ref="slice.id">
+  <section v-if="slice.variation === 'bannerWithBackgroundImage'" ref="sectionRef">
     <Banner
       :title="slice.primary.title!"
       :cta="slice.primary.cta!"

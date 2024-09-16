@@ -1,8 +1,8 @@
 {
-  "id": "test",
+  "id": "newsletter_form",
   "type": "SharedSlice",
-  "name": "Test",
-  "description": "Test",
+  "name": "NewsletterForm",
+  "description": "NewsletterForm",
   "variations": [
     {
       "id": "default",

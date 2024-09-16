@@ -47,7 +47,7 @@ const copyrightYear = process.env.COPYRIGHT_YEAR
           <p v-if="navigation.newsletterCta">
             {{ navigation.newsletterCta }}
           </p>
-          <NewsletterSubscriptionForm :placeholder="navigation.newsletterPlaceholder!" />
+          <NewsletterEmailInput :placeholder="navigation.newsletterPlaceholder!" />
           <p v-if="navigation.socialMediaCta" mt-16>
             {{ navigation.socialMediaCta }}
           </p>

@@ -61,8 +61,8 @@ const ctaHref = computed(() => {
     <HeaderNavigation :navigation="navigation.data" :is-trigger-color-inverted="arrivedState.top" class="hidden md:flex" />
     <MobileMenu :navigation="navigation.data" :is-trigger-color-inverted="arrivedState.top" class="block md:hidden" />
   </header>
+
   <slot />
-  <div h-550 />
 
   <footer v-if="navigation">
     <FooterNavigation :navigation="navigation.data" />

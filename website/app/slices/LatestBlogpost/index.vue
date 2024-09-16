@@ -3,5 +3,6 @@ defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
 </script>
 
 <template>
-  TODO
+  <!-- TODO Remove this component once new layout is done -->
+  <div sr-only />
 </template>

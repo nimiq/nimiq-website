@@ -1,7 +1,11 @@
 <script setup lang="ts">
-defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
+import type { Content } from '@prismicio/client'
+
+const props = defineProps(getSliceComponentProps<Content.RichTextSlice>())
+
+const { sectionRef } = useSlice(props.slice.id, 'grey')
 </script>
 
 <template>
-  TODO
+  <PrismicRichText ref="sectionRef" class="nq-prose" text="18 neutral-900/90" wrapper="article" :field="slice.primary.richText" />
 </template>

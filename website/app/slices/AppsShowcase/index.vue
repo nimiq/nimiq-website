@@ -2,16 +2,16 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.AppsShowcaseSlice>())
-useSlice(props.slice.id, 'grey')
+const { sectionRef } = useSlice(props.slice.id, 'grey')
 </script>
 
 <template>
-  <section :ref="slice.id">
+  <section ref="sectionRef">
     <ul v-if="slice.variation === 'nimiqsApps'" grid="~ cols-1 lg:cols-2 gap-20 md:gap-22">
       <li
         v-for="({ description, highlight, item, preview, title, link }, i) in slice.primary.apps" :key="i" :class="{ 'lg:col-span-full': highlight }"
       >
-        <PrismicLink p="32 md:40 lg:48 b-0" bg-gradient="to-b from-[#ededef] to-[#e3e3e7]" of-hidden :field="link" rounded-8 :grid="`~ gap-x-48 lg:gap-x-80 md:rows-[auto_auto_1fr] md:cols-[221px_1fr] md:flow-col ${highlight ? '' : 'lg:rows-[repeat(4,auto)] lg:cols-1'}`">
+        <PrismicLink p="32 md:40 lg:48 b-0" bg-gradient="to-b from-[#ededef] to-[#e3e3e7]" :field="link" of-hidden nq-hoverable style="--ring-color: rgb(var(--nq-neutral-400))" :grid="`~ gap-x-48 lg:gap-x-80 md:rows-[auto_auto_1fr] md:cols-[221px_1fr] md:flow-col ${highlight ? '' : 'lg:rows-[repeat(4,auto)] lg:cols-1'}`">
           <div v-if="item === 'Nimiq Pay'" size-48 rounded-12 bg-gradient-gold grid="~ place-content-center" :class="{ 'lg:mx-auto': !highlight, 'max-xl:row-span-ful': highlight }">
             <div i-nimiq:logos-nimiq-pay-vertical-mono text="32 [#ededee]" />
           </div>

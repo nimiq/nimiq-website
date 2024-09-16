@@ -14,6 +14,7 @@
     "cryptomap:types": "npx supabase gen types --lang=typescript --project-id mycbdmurjytbdahjljoh > app/types/database.types.ts"
   },
   "dependencies": {
+    "medium-zoom": "^1.1.0",
     "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-router": "latest"

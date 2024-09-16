@@ -1,5 +1,5 @@
-import { NimiqRPCClient, RetrieveType } from 'nimiq-rpc-client-ts'
 import type { Block, MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
+import { NimiqRPCClient, RetrieveType } from 'nimiq-rpc-client-ts'
 
 const INITIAL_BLOCK_FETCH = 60
 const CACHE_SIZE = 100
