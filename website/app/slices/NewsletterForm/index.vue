@@ -5,6 +5,7 @@ const props = defineProps(getSliceComponentProps<Content.NewsletterFormSlice>())
 const { sectionRef } = useSlice(props.slice.id, 'grey')
 
 const email = ref('')
+
 const communicationPermission = ref(false)
 const nimiqTopicsOptions = reactive([
   { label: 'Education', model: ref(false) },
@@ -106,7 +107,9 @@ async function submitForm() {
 </template>
 
 <style scoped>
-p {
-  --uno: 'text-14 lg:text-16 text-neutral-700 text-left font-normal max-w-40ch';
+@layer components {
+  p {
+    --uno: 'text-14 lg:text-16 text-neutral-700 text-left font-normal max-w-40ch';
+  }
 }
 </style>
