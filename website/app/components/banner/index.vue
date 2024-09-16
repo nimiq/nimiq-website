@@ -57,7 +57,7 @@ const items = computed(() => {
       <p v-if="description" mx-auto>
         {{ description }}
       </p>
-      <PrismicLink v-if="ctaLabel" :field="cta" nq-arrow nq-pill-lg nq-pill-blue md:mx-auto mt="32 md:24">
+      <PrismicLink v-if="ctaLabel && cta" :field="cta" nq-arrow nq-pill-lg nq-pill-blue md:mx-auto mt="32 md:24">
         {{ ctaLabel }}
       </PrismicLink>
     </div>

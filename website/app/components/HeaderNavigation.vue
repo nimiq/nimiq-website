@@ -15,9 +15,9 @@ const { socialMedias } = storeToRefs(useGlobalContent())
 const internalProjectLinks = computed(() => props.navigation.projectLinks.length
   ? props.navigation.projectLinks.filter(link => link.href.link_type === 'Document')
   : [])
-const externalProjectLinks = computed(() => props.navigation.projectLinks.length
-  ? props.navigation.projectLinks.filter(link => link.href.link_type === 'Web')
-  : [])
+// const externalProjectLinks = computed(() => props.navigation.projectLinks.length
+//   ? props.navigation.projectLinks.filter(link => link.href.link_type === 'Web')
+//   : [])
 </script>
 
 <template>
@@ -25,31 +25,24 @@ const externalProjectLinks = computed(() => props.navigation.projectLinks.length
     <NavigationMenu.List flex="~ items-center gap-x-32 justify-between" :class="isTriggerColorInverted ? 'text-white' : 'text-neutral'">
       <!-- Apps -->
       <NavigationMenu.Item v-if="navigation.appsGroupName && navigation.appsLinks.length">
-        <NavigationMenu.Trigger bg-transparent font-bold opacity-50 transition-opacity hover:opacity-80 class="data-[state='open']:opacity-80">
+        <NavigationMenu.Trigger class="trigger">
           {{ navigation.appsGroupName }}
         </NavigationMenu.Trigger>
         <NavigationMenu.Content class="navigation-menu" absolute left-0 top-0 min-w-max>
           <div>
-            <div flex gap-20 px-20 py-32>
-              <ul :aria-label="`${navigation.appsGroupName} links`" role="link" w-max flex flex-col>
-                <li
-                  v-for="({ label, href, logo }, index) in navigation.appsLinks"
-                  :key="label!"
-                  w-full
-                  @focus="selectedApp = index" @mouseover="selectedApp = index"
-                >
+            <div flex="~ gap-20" px-20 py-32>
+              <ul :aria-label="`${navigation.appsGroupName} links`" role="link" w-max flex="~ col">
+                <li v-for="({ label, href, logo }, index) in navigation.appsLinks" :key="label!" group class="link-item" @focus="selectedApp = index" @mouseover="selectedApp = index">
                   <NavigationMenu.Link as-child>
-                    <ArrowLink
-                      :href="href" :label="label"
-                      class="w-full flex items-center gap-16 whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold opacity-50 transition-colors transition-opacity hocus:bg-neutral/5 hocus:opacity-80"
-                    >
-                      <prismic-image :field="logo" h-24 transition-opacity :class="index === selectedApp ? 'opacity-100' : 'opacity-20'" />
-                    </ArrowLink>
+                    <PrismicImage :field="logo" h-22 max-w-21 op="20 group-hocus:100" transition-opacity />
+                    <PrismicLink :field="href">
+                      {{ label }}
+                    </PrismicLink>
                   </NavigationMenu.Link>
                 </li>
               </ul>
 
-              <prismic-image v-if="navigation.appsLinks[selectedApp]?.visual" :field="navigation.appsLinks[selectedApp]!.visual" class="relative h-full w-[300px] rounded-4 object-contain object-left-top shadow" />
+              <PrismicImage v-if="navigation.appsLinks[selectedApp]?.visual" :field="navigation.appsLinks[selectedApp]!.visual" relative h-full w-300 rounded-4 object-contain object-left-top shadow />
             </div>
             <!-- Footer -->
             <div v-if="navigation.howToTitle && navigation.howToLinks.length" bg-neutral-200 px-40 py-32>
@@ -58,15 +51,11 @@ const externalProjectLinks = computed(() => props.navigation.projectLinks.length
               </p>
 
               <ul role="list" :aria-label="`${navigation.howToTitle} links`" mt-18 flex flex-wrap gap-x-32>
-                <li v-for="(link, index) in navigation.howToLinks" :key="`how-to-link-${index}`">
+                <li v-for="({ href, label }, index) in navigation.howToLinks" :key="`how-to-link-${index}`">
                   <NavigationMenu.Link as-child>
-                    <ArrowLink
-                      v-if="link.label && link.href"
-                      :href="link.href"
-                      :label="link.label"
-                      has-arrow
-                      class="w-full font-semibold opacity-50 transition-opacity hocus:opacity-80"
-                    />
+                    <PrismicLink :field="href" un-text="neutral-700 hocus:neutral-800" transition-colors nq-arrow>
+                      {{ label }}
+                    </PrismicLink>
                   </NavigationMenu.Link>
                 </li>
               </ul>
@@ -77,25 +66,21 @@ const externalProjectLinks = computed(() => props.navigation.projectLinks.length
 
       <!-- Tech -->
       <NavigationMenu.Item v-if="navigation.techGroupName && navigation.techLinks.length">
-        <NavigationMenu.Trigger bg-transparent font-bold opacity-50 transition-opacity hover:opacity-80 class="data-[state='open']:opacity-80">
+        <NavigationMenu.Trigger class="trigger">
           {{ navigation.techGroupName }}
         </NavigationMenu.Trigger>
-        <NavigationMenu.Content class="navigation-menu" absolute left-0 top-0 min-w-max>
+        <NavigationMenu.Content absolute left-0 top-0 min-w-max>
           <div>
-            <ul :aria-label="`${navigation.techGroupName} links`" role="link" border-space-20 grid grid-cols-2 gap-x-8 border-b-1 p-24>
-              <li
-                v-for="({ label, href }) in navigation.techLinks"
-                :key="label!"
-                w-full
-              >
+            <ul :aria-label="`${navigation.techGroupName} links`" role="link" grid="~ cols-2 gap-x-8" p-24>
+              <li v-for="({ label, href }) in navigation.techLinks" :key="label!" flex="~" w-full class="link-item">
                 <NavigationMenu.Link as-child>
-                  <ArrowLink
-                    :href="href" :label="label"
-                    class="w-full flex items-center whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold opacity-50 transition-colors transition-opacity hocus:bg-neutral/5 hocus:opacity-80"
-                  />
+                  <PrismicLink :field="href">
+                    {{ label }}
+                  </PrismicLink>
                 </NavigationMenu.Link>
               </li>
             </ul>
+            <hr h-1 w-full bg-neutral-400>
             <!-- Footer -->
             <div flex="~ items-center justify-between gap-x-20" px-32 py-20>
               <PrismicLink v-if="socialMedias.github" :field="socialMedias.github.link" flex="~ items-center gap-12" un-text="15 neutral-800" pr-4 nq-arrow after:ml--4>
@@ -111,22 +96,17 @@ const externalProjectLinks = computed(() => props.navigation.projectLinks.length
 
       <!-- Community -->
       <NavigationMenu.Item v-if="navigation.communityGroupName && navigation.communityLinks.length">
-        <NavigationMenu.Trigger bg-transparent font-bold opacity-50 transition-opacity hover:opacity-80 class="data-[state='open']:opacity-80">
+        <NavigationMenu.Trigger class="trigger">
           {{ navigation.communityGroupName }}
         </NavigationMenu.Trigger>
         <NavigationMenu.Content class="navigation-menu" absolute left-0 top-0 min-w-max>
           <div grid grid-cols-1 max-w-6xl p-16>
             <ul :aria-label="`${navigation.communityGroupName} links`" role="link" border-space-20 flex flex-col border-b-1 pb-32>
-              <li
-                v-for="({ label, href }) in navigation.communityLinks"
-                :key="label!"
-                w-full
-              >
+              <li v-for="({ label, href }) in navigation.communityLinks" :key="label!" class="link-item">
                 <NavigationMenu.Link as-child>
-                  <ArrowLink
-                    :href="href" :label="label"
-                    class="w-full flex items-center whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold opacity-50 transition-colors transition-opacity hocus:bg-neutral/5 hocus:opacity-80"
-                  />
+                  <PrismicLink :field="href">
+                    {{ label }}
+                  </PrismicLink>
                 </NavigationMenu.Link>
               </li>
             </ul>
@@ -138,81 +118,41 @@ const externalProjectLinks = computed(() => props.navigation.projectLinks.length
 
       <!-- Project -->
       <NavigationMenu.Item v-if="navigation.projectGroupName && internalProjectLinks.length">
-        <NavigationMenu.Trigger bg-transparent font-bold opacity-50 transition-opacity hover:opacity-80 class="data-[state='open']:opacity-80">
+        <NavigationMenu.Trigger class="trigger">
           {{ navigation.projectGroupName }}
         </NavigationMenu.Trigger>
         <NavigationMenu.Content class="navigation-menu" absolute left-0 top-0 min-w-max>
           <ul :aria-label="`${navigation.projectGroupName} internal links`" role="link" border-space-20 flex flex-col border-b-1 p-24>
-            <li
-              v-for="({ label, href }) in internalProjectLinks"
-              :key="label!"
-              w-full
-            >
+            <li v-for="({ label, href }) in internalProjectLinks" :key="label!" class="link-item">
               <NavigationMenu.Link as-child>
-                <ArrowLink
-                  :href="href" :label="label"
-                  class="w-full flex items-center whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold opacity-50 transition-colors transition-opacity hocus:bg-neutral/5 hocus:opacity-80"
-                />
-              </NavigationMenu.Link>
-            </li>
-          </ul>
-          <!-- Footer -->
-          <ul
-            v-if="externalProjectLinks.length"
-            :aria-label="`${navigation.projectGroupName} internal links`" role="link"
-            flex flex-col
-          >
-            <li
-              v-for="({ label, href }) in externalProjectLinks"
-              :key="label!"
-              w-full
-            >
-              <NavigationMenu.Link as-child>
-                <ArrowLink
-                  :href="href" :label="label"
-                  class="w-full flex items-center whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold opacity-50 transition-colors transition-opacity hocus:bg-neutral/5 hocus:opacity-80"
-                />
+                <PrismicLink :field="href">
+                  {{ label }}
+                </PrismicLink>
               </NavigationMenu.Link>
             </li>
           </ul>
         </NavigationMenu.Content>
       </NavigationMenu.Item>
 
-      <!-- Extra links -->
-      <ArrowLink
-        v-for="({ label, href }) in navigation.extraHeaderLinks"
-        :key="label!"
-        :href="href" :label="label"
-        class="w-full flex items-center gap-16 whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold lh-[1] opacity-50 transition-colors transition-opacity hocus:bg-neutral/5 hocus:opacity-80"
-      />
-
       <!-- Get started -->
       <NavigationMenu.Item v-if="navigation.getStartedGroupName && navigation.getStartedLinks.length">
-        <NavigationMenu.Trigger
-          px-16 py-4 text-16 font-semibold transition-colors
-          :class="isTriggerColorInverted
-            ? 'data-[state=\'open\']:bg-white/20 bg-white/10 nq-pill focus:bg-white/20'
-            : 'data-[state=\'open\']:bg-gradient-blue-darkened nq-pill-blue focus:bg-gradient-blue-darkened'
-          "
-        >
+        <NavigationMenu.Trigger nq-pill-lg nq-pill-blue>
           {{ navigation.getStartedGroupName }}
         </NavigationMenu.Trigger>
         <NavigationMenu.Content class="navigation-menu" absolute left-0 top-0 min-w-max>
-          <ul :aria-label="`${navigation.getStartedGroupName} links`" role="link" grid grid-cols-3 p-16>
+          <ul :aria-label="`${navigation.getStartedGroupName} links`" role="link" flex p-16 divide="x-1 solid neutral-400 hover:transparent">
             <li
-              v-for="({ label, href, description }) in navigation.getStartedLinks"
-              :key="label!"
-              max-w-240 w-full
+              v-for="({ label, href, description }) in navigation.getStartedLinks" :key="label!" max-w-240 w-full flex transition-border
             >
               <NavigationMenu.Link as-child>
-                <ArrowLink
-                  :href="href" :label="label"
-                  class="w-full flex flex-col-reverse rounded-4 bg-white p-24 font-semibold opacity-60 transition-colors transition-opacity hocus:bg-neutral/5 hocus:opacity-100"
-                >
-                  <div mt-16 text-14 font-normal opacity-70 transition-opacity>
+                <PrismicLink :field="href" w-full flex="~ col gap-12" rounded-4 bg="neutral-0 hocus:neutral-200" un-text="neutral-700 hocus:neutral-800" p-24 transition-colors>
+                  <p font-semibold lh-none>
+                    {{ label }}
+                  </p>
+                  <p text-14>
                     {{ description }}
-                  </div>
-                </ArrowLink>
+                  </p>
+                </PrismicLink>
               </NavigationMenu.Link>
             </li>
           </ul>
@@ -235,6 +175,16 @@ const externalProjectLinks = computed(() => props.navigation.projectLinks.length
 
 <style>
 header nav {
+  .trigger {
+    --uno: 'bg-transparent font-bold op-50 hocus:op-80 data-open:op-80';
+  }
+  li.link-item {
+    --uno: 'flex items-center gap-x-16 w-full bg-neutral-0 hocus:bg-neutral-200 rounded-4 px-16 py-10 transition-colors';
+    a {
+      --uno: 'flex-1 whitespace-nowrap font-semibold transition-colors text-neutral-700/90 hocus:text-neutral-800';
+    }
+  }
+
   [i-nimiq\:chevron-down] {
     --uno: text-9 transition-transform duration-250;
   }

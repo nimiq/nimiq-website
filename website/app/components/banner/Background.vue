@@ -5,7 +5,7 @@ defineProps<{ items: ({ color?: string, icon: ImageField | string, link: LinkFie
 </script>
 
 <template>
-  <PrismicLink v-for="({ classes, color, icon, link, name }, i) in items" :key="i" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
+  <PrismicLink v-for="({ classes, color, icon, link, name }, i) in items.filter(i => i.link)" :key="i" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
     <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />
     <PrismicImage v-else :field="icon" pointer-events-none />
     <div :style="{ borderColor: color }" top="50%" left="50%" border="2 solid" translate-x="-50%" translate-y="-50%" pointer-events-none absolute size-full scale-100 rounded-full op-0 />

@@ -53,7 +53,8 @@ const active = useState()
           <p line-clamp-2 mt-8 text="16 neutral-900 left">
             {{ getAbstract(post) }}
           </p>
-          <ArticleMetadata :date="new Date(post.data.publish_date!)" :authors="post.data.authors.map(a => a.name).join(', ')" mt-auto h-max gap-x-8 pt-16 />
+          <ArticleMetadata :style="`--content: '${slice.primary.labelLearnMore}'`" after="text-blue content-$content text-16" :date="new Date(post.data.publish_date!)" :authors="post.data.authors.map(a => a.name).join(', ')" mt-auto h-max gap-x-8 pt-16 nq-hoverable-cta />
+          <span sr-only>{{ slice.primary.labelLearnMore }}</span>
         </div>
       </NuxtLink>
     </article>
@@ -79,11 +80,10 @@ const active = useState()
 </template>
 
 <style scoped>
-  .item {
+.item {
   --uno: 'rounded-4 size-32 shrink-0 bg-neutral-100 text-neutral-900 text-12 font-semibold hocus:bg-neutral-200 transition-colors ring-1.5 ring-neutral-400 flex items-center justify-center';
   &[data-selected] {
     --uno: 'bg-blue text-white ring-none';
   }
 }
 </style>
-}
