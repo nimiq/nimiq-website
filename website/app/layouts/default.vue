@@ -58,7 +58,8 @@ const ctaHref = computed(() => {
       </NuxtLink>
     </div>
 
-    <HeaderNavigation :navigation="navigation.data" :is-trigger-color-inverted="arrivedState.top" />
+    <HeaderNavigation :navigation="navigation.data" :is-trigger-color-inverted="arrivedState.top" class="hidden md:flex" />
+    <MobileMenu :navigation="navigation.data" :is-trigger-color-inverted="arrivedState.top" class="block md:hidden" />
   </header>
   <slot />
   <div h-550 />

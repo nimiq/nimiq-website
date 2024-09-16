@@ -51,6 +51,8 @@ const onClick = () => emit('onClick')
     @blur="onBlur"
   >
     <slot />
-    <span lh="[1.5]">{{ label }}</span>
+    <div :class="{ 'nq-arrow': hasArrow }">
+      <span lh="[1.5]">{{ label }}</span>
+    </div>
   </nuxt-link>
 </template>

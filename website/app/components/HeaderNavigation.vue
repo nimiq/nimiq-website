@@ -21,7 +21,7 @@ const externalProjectLinks = computed(() => props.navigation.projectLinks.length
 </script>
 
 <template>
-  <NavigationMenu.Root v-model="currentTrigger" relative flex items-center justify-end>
+  <NavigationMenu.Root v-model="currentTrigger" relative items-center justify-end>
     <NavigationMenu.List flex="~ items-center gap-x-32 justify-between" :class="isTriggerColorInverted ? 'text-white' : 'text-neutral'">
       <!-- Apps -->
       <NavigationMenu.Item v-if="navigation.appsGroupName && navigation.appsLinks.length">
