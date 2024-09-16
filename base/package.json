@@ -13,6 +13,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@vueuse/router": "^11.1.0",
     "radix-vue": "^1.9.5"
   },
   "devDependencies": {
@@ -46,6 +47,6 @@
     "vite-plugin-top-level-await": "^1.4.4",
     "vite-plugin-wasm": "^3.3.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "^4.4.5"
   }
 }
