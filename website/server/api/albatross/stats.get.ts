@@ -1,5 +1,5 @@
-import { NimiqRPCClient } from 'nimiq-rpc-client-ts'
 import type { Block, MicroBlock } from 'nimiq-rpc-client-ts'
+import { NimiqRPCClient } from 'nimiq-rpc-client-ts'
 
 const STATS_WINDOW_SIZE = 3 * 128
 const STATS_REFRESH_EVERY = 3

@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { Content } from '@prismicio/client'
 import mediumZoom from 'medium-zoom'
 import { ref } from 'vue'
-import type { Content } from '@prismicio/client'
 import { components } from '~/slices'
 
 // @ts-expect-error - `post` is defined

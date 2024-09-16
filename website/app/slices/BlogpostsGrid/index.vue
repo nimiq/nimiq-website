@@ -10,7 +10,7 @@ const { sectionRef } = useSlice(props.slice.id, 'grey')
 const showDrafts = true // TODO Change this depending on the NODE_ENV
 
 const itemsPerPage = 25
-const page = useRouteQuery('page', 1)
+const page = useRouteQuery<number>('page', 1, { transform: Number })
 
 const { client } = usePrismic()
 
@@ -21,7 +21,7 @@ const { data: result } = useAsyncData('blog_posts', async () => {
     pageSize: itemsPerPage,
     page: page.value,
   })
-})
+}, { watch: [page] })
 const posts = computed(() => result.value?.results ?? [])
 const totalPages = computed(() => result.value?.total_pages ?? 0)
 
@@ -33,7 +33,7 @@ function getAbstract(post: BlogPageDocument): string {
 
 <template>
   <section ref="sectionRef" grid="~ cols-1 md:cols-2 lg:cols-3 gap-16">
-    <article v-for="(post, i) in posts" :key="post.id" :class="{ 'md:self-end': i === 1, 'md:self-stretch': i > 1 }" md:first:col-span-2>
+    <article v-for="(post, i) in posts" :key="post.id" :class="page === 1 ? { 'md:self-end': i === 1, 'md:self-stretch': i > 1, 'md:first:col-span-2': true } : 'self-stretch'">
       <NuxtLink :to="`/blog/${post.uid}`" relative h-full nq-hoverable>
         <div v-if="post.data.draft" absolute right-12 top-12 ring="1.5 white" nq-pill-orange>
           <div i-nimiq:locked-lock />
@@ -51,17 +51,16 @@ function getAbstract(post: BlogPageDocument): string {
         </div>
       </NuxtLink>
     </article>
-    {{ page }}
     <PaginationRoot v-model:page="page" :total="totalPages * itemsPerPage" :items-per-page show-edges col-span-full mt-32>
       <PaginationList v-slot="{ items }" flex="~ gap-16 items-center justify-center">
         <PaginationPrev class="item">
           <div i-nimiq:chevron-left text-9 op-70 />
         </PaginationPrev>
-        <template v-for="(page, index) in items">
-          <PaginationListItem v-if="page.type === 'page'" :key="index" class="item" :value="page.value">
-            {{ page.value }}
+        <template v-for="(pageItem, index) in items">
+          <PaginationListItem v-if="pageItem.type === 'page'" :key="index" class="item" :value="pageItem.value">
+            {{ pageItem.value }}
           </PaginationListItem>
-          <PaginationEllipsis v-else :key="page.type" :index="index" class="item">
+          <PaginationEllipsis v-else :key="pageItem.type" :index="index" class="item">
             &#8230;
           </PaginationEllipsis>
         </template>
