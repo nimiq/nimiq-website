@@ -36,10 +36,7 @@ useDark()
   <NuxtLayout v-if="post">
     <NuxtRouteAnnouncer />
     <div ref="articleRef">
-      <div v-if="isDraft" title="The current blog post is a draft, and therefore it won't be shown in the Nimiq Blog." fixed bottom-32 right-32 z-102 cursor-default gap-8 shadow nq-pill-lg nq-pill-orange>
-        <div i-nimiq:locked-lock />
-        Draft
-      </div>
+      <LockBadge v-if="isDraft" fixed bottom-32 right-32 z-102 />
 
       <header data-section max-w="$nq-prose-max-width" pt="148 md:153 lg:160" px="32 lg:64">
         <PrismicText wrapper="h1" :field="post.data.title" style="--font-size-min: 32;--font-size-max: 40" view-transition-post-title />

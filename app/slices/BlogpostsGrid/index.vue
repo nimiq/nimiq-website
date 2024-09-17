@@ -34,48 +34,47 @@ const active = useState()
 </script>
 
 <template>
-  <section ref="sectionRef" grid="~ cols-1 md:cols-2 lg:cols-3 gap-16">
-    <article v-for="(post, i) in posts" :key="post.id" :class="page === 1 ? { 'md:self-end': i === 1, 'md:self-stretch': i > 1, 'md:first:col-span-2': true } : 'self-stretch'">
-      <NuxtLink :to="`/blog/${post.uid}`" relative h-full nq-hoverable @click="active = post.uid">
-        <div v-if="post.data.draft" absolute right-12 top-12 ring="1.5 white" nq-pill-orange>
-          <div i-nimiq:locked-lock />
-          Draft
-        </div>
-        <div p-4>
-          <PrismicImage :field="post.data.image" h-max w-full rounded-4 object-cover :class="{ 'view-transition-post-img contain-layout': active === post.uid }" />
-        </div>
-        <div flex="~ col" h-full p-24>
-          <PrismicText
-            wrapper="h2" text-left :field="post.data.title" :style=" i === 0 ? '--font-size-min:30; --font-size-max:26' : '--font-size-min:20;--font-size-max:22'"
-            :class="{ 'view-transition-post-title contain-layout': active === post.uid }"
-          />
+  <section ref="sectionRef">
+    <div grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
+      <article v-for="(post, i) in posts" :key="post.id" :class="page === 1 ? { 'md:self-end': i === 1, 'md:self-stretch': i > 1, 'md:first:col-span-2': true } : 'self-stretch'">
+        <NuxtLink :to="`/blog/${post.uid}`" relative h-full nq-hoverable @click="active = post.uid">
+          <LockBadge v-if="post.data.draft" absolute right-12 top-12 />
+          <div p-4>
+            <PrismicImage :field="post.data.image" h-max w-full rounded-4 object-cover :class="{ 'view-transition-post-img contain-layout': active === post.uid }" />
+          </div>
+          <div flex="~ col" h-full p-24>
+            <PrismicText
+              wrapper="h2" text-left :field="post.data.title" :style=" i === 0 ? '--font-size-min:30; --font-size-max:26' : '--font-size-min:20;--font-size-max:22'"
+              :class="{ 'view-transition-post-title contain-layout': active === post.uid }"
+            />
 
-          <p line-clamp-2 mt-8 text="16 neutral-900 left">
-            {{ getAbstract(post) }}
-          </p>
-          <ArticleMetadata :style="`--content: '${slice.primary.labelLearnMore}'`" after="text-blue content-$content text-16" :date="new Date(post.data.publish_date!)" :authors="post.data.authors.map(a => a.name).join(', ')" mt-auto h-max gap-x-8 pt-16 nq-hoverable-cta />
-          <span sr-only>{{ slice.primary.labelLearnMore }}</span>
-        </div>
-      </NuxtLink>
-    </article>
-    <PaginationRoot v-model:page="page" :total="totalPages * itemsPerPage" :items-per-page show-edges col-span-full mt-32>
-      <PaginationList v-slot="{ items }" flex="~ gap-16 items-center justify-center">
-        <PaginationPrev class="item">
-          <div i-nimiq:chevron-left text-9 op-70 />
-        </PaginationPrev>
-        <template v-for="(pageItem, index) in items">
-          <PaginationListItem v-if="pageItem.type === 'page'" :key="index" class="item" :value="pageItem.value">
-            {{ pageItem.value }}
-          </PaginationListItem>
-          <PaginationEllipsis v-else :key="pageItem.type" :index="index" class="item">
-            &#8230;
-          </PaginationEllipsis>
-        </template>
-        <PaginationNext class="item">
-          <div i-nimiq:chevron-right text-9 op-70 />
-        </PaginationNext>
-      </PaginationList>
-    </PaginationRoot>
+            <p line-clamp-2 mt-8 text="16 neutral-900 left">
+              {{ getAbstract(post) }}
+            </p>
+            <ArticleMetadata :style="`--content: '${slice.primary.labelLearnMore}'`" after="text-blue content-$content text-16" :date="new Date(post.data.publish_date!)" :authors="post.data.authors.map(a => a.name).join(', ')" mt-auto h-max gap-x-8 pt-16 nq-hoverable-cta />
+            <span sr-only>{{ slice.primary.labelLearnMore }}</span>
+          </div>
+        </NuxtLink>
+      </article>
+      <PaginationRoot v-model:page="page" :total="totalPages * itemsPerPage" :items-per-page show-edges col-span-full mt-32>
+        <PaginationList v-slot="{ items }" flex="~ gap-16 items-center justify-center">
+          <PaginationPrev class="item">
+            <div i-nimiq:chevron-left text-9 op-70 />
+          </PaginationPrev>
+          <template v-for="(pageItem, index) in items">
+            <PaginationListItem v-if="pageItem.type === 'page'" :key="index" class="item" :value="pageItem.value">
+              {{ pageItem.value }}
+            </PaginationListItem>
+            <PaginationEllipsis v-else :key="pageItem.type" :index="index" class="item">
+              &#8230;
+            </PaginationEllipsis>
+          </template>
+          <PaginationNext class="item">
+            <div i-nimiq:chevron-right text-9 op-70 />
+          </PaginationNext>
+        </PaginationList>
+      </PaginationRoot>
+    </div>
   </section>
 </template>
 

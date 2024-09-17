@@ -13,7 +13,10 @@ function getColorClass(color: 'white' | 'grey' | 'darkblue') {
 
 export interface SliceUIOptions {
   /**
-   * Whether the slice should be full width
+   * Whether the slice should be full width.
+   * If you need to remove the max-width only for a child you can do so by adding the class `nq-no-max-width` to the child
+   * or adding `mx-0 max-w-none` to the child.
+   *
    * @default true
    */
   maxWidth?: boolean
@@ -25,13 +28,15 @@ export interface SliceUIOptions {
   paddingY?: boolean
 
   /**
-   * The padding on the x-axis. This can be also overridden using classes
-   * @default undefined
+   * Have a padding on x-axis. This can be also overridden using classes
+   * @default true
    */
-  paddingX?: number
+  paddingX?: boolean
 }
 
-export function useSlice(_sliceType: string, color?: 'white' | 'grey' | 'darkblue' | null, { maxWidth = true, paddingY = true, paddingX }: SliceUIOptions = {}) {
+export function useSlice(_sliceType: string, color?: 'white' | 'grey' | 'darkblue' | null, options: SliceUIOptions = {}) {
+  const { maxWidth = true, paddingY = true, paddingX = true } = options
+
   const sectionRef = ref<HTMLElement>()
   const sliceType = _sliceType.split('$').at(0)
 
@@ -46,7 +51,7 @@ export function useSlice(_sliceType: string, color?: 'white' | 'grey' | 'darkblu
       el.classList.add('nq-no-mx')
     if (!paddingY)
       el.classList.add('nq-no-py')
-    if (paddingX)
+    if (!paddingX)
       el.classList.add('nq-no-px')
   })
 
