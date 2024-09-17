@@ -83,6 +83,12 @@ export default defineNuxtConfig({
     },
     public: {
     },
+    zoho: {
+      requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
+      clientId: process.env.NUXT_ZOHO_CLIENT_ID,
+      clientSecret: process.env.NUXT_ZOHO_CLIENT_SECRET,
+      scope: process.env.NUXT_ZOHO_SCOPE,
+    },
   },
 
   supabase: {
