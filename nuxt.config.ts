@@ -154,4 +154,12 @@ export default defineNuxtConfig({
       standalone: false,
     },
   },
+
+  robots: {
+    // https://nuxtseo.com/robots/api/config
+    allow: ['/'],
+    disallow: ['/iframes'],
+    sitemap: '/sitemap.xml',
+  },
+
 })
