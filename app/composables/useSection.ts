@@ -34,7 +34,7 @@ export interface SliceUIOptions {
   paddingX?: boolean
 }
 
-export function useSlice(_sliceType: string, color?: 'white' | 'grey' | 'darkblue' | null, options: SliceUIOptions = {}) {
+export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkblue' | null, options: SliceUIOptions = {}) {
   const { maxWidth = true, paddingY = true, paddingX = true } = options
 
   const sectionRef = ref<HTMLElement>()
