@@ -45,9 +45,5 @@
     "scss",
     "pcss",
     "postcss"
-  ],
-  "unocss.root": [
-      "base",
-      "website"
-    ]
+  ]
 }

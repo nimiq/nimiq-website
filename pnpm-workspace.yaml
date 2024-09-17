@@ -1,4 +1,0 @@
-packages:
-  - "./base"
-  - "./website"
-  - "./liveview"

@@ -1,24 +1,70 @@
 {
-  "name": "my-nuxt-layer",
+  "name": "website",
   "type": "module",
-  "version": "0.0.1",
-  "main": "./nuxt.config.ts",
+  "private": true,
+  "packageManager": "pnpm@9.10.0",
   "scripts": {
-    "postinstall": "pnpm --filter base run dev:prepare",
-    "dev": "pnpm --filter website run dev",
-    "slicemachine": "pnpm --filter website run slicemachine",
-    "lint:fix": "pnpm --filter base run dev:prepare && pnpm --stream -r lint:fix"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "slicemachine": "start-slicemachine",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "cryptomap:types": "npx supabase gen types --lang=typescript --project-id mycbdmurjytbdahjljoh > app/types/database.types.ts"
+  },
+  "dependencies": {
+    "@vueuse/router": "^11.1.0",
+    "medium-zoom": "^1.1.0",
+    "nuxt": "^3.13.2",
+    "radix-vue": "^1.9.5",
+    "vue": "latest",
+    "vue-router": "latest"
   },
   "devDependencies": {
-    "@types/node": "^22.5.4",
+    "@antfu/eslint-config": "^3.6.2",
+    "@nimiq/core": "next",
+    "@nimiq/utils": "^0.11.3",
+    "@nuxt/eslint": "latest",
+    "@nuxt/image": "^1.8.0",
+    "@nuxthub/core": "^0.7.18",
+    "@nuxtjs/prismic": "^3.4.1",
+    "@nuxtjs/seo": "2.0.0-rc.21",
+    "@nuxtjs/supabase": "^1.4.0",
+    "@pinia/nuxt": "^0.5.4",
+    "@prismicio/client": "^7.8.1",
+    "@slicemachine/adapter-nuxt": "^0.3.49",
+    "@types/node": "^22.5.5",
+    "@unocss/eslint-plugin": "^0.62.4",
+    "@unocss/nuxt": "^0.62.4",
+    "@unocss/preset-rem-to-px": "^0.62.4",
+    "@unocss/reset": "^0.62.4",
+    "@unocss/transformer-directives": "^0.62.4",
+    "@vueuse/core": "^11.1.0",
+    "@vueuse/nuxt": "^11.1.0",
+    "cookie": "^0.6.0",
+    "eslint": "^9.10.0",
+    "eslint-plugin-format": "^0.1.2",
     "lint-staged": "^15.2.10",
-    "simple-git-hooks": "^2.11.1"
+    "nimiq-css": "^0.1.51",
+    "nimiq-rpc-client-ts": "https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575",
+    "nuxt": "^3.13.2",
+    "pinia": "^2.2.2",
+    "simple-git-hooks": "^2.11.1",
+    "slice-machine-ui": "^2.7.1",
+    "typescript": "^5.6.2",
+    "unocss": "0.62.4",
+    "valibot": "^0.42.0",
+    "vite-plugin-top-level-await": "^1.4.4",
+    "vite-plugin-wasm": "^3.3.0",
+    "vue": "latest",
+    "vue-router": "^4.4.5"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
     "*": "pnpm lint:fix"
-  },
-  "packageManager": "pnpm@9.10.0"
+  }
 }

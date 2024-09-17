@@ -1,10 +1,21 @@
 import { readFile } from 'node:fs/promises'
-import { mergeConfigs } from '@unocss/core'
-import { presetIcons } from 'unocss'
-import config from '../base/unocss.config.js'
+import { presetRemToPx } from '@unocss/preset-rem-to-px'
+import transformerDirectives from '@unocss/transformer-directives'
+import { presetNimiq } from 'nimiq-css'
+import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
-export default mergeConfigs([config, {
+export default defineConfig({
   presets: [
+    presetUno({ attributifyPseudo: true }),
+    presetNimiq({
+      utilities: true,
+      attributifyUtilities: true,
+      typography: true,
+      icons: false,
+      staticContent: true,
+    }),
+    presetRemToPx({ baseFontSize: 4 }),
+    presetAttributify(),
     presetIcons({
       collections: {
         nimiq: async () => {
@@ -24,22 +35,7 @@ export default mergeConfigs([config, {
       },
     }),
   ],
-  variants: [
-    (matcher) => {
-      if (!matcher.startsWith('selected:'))
-        return matcher
-      return {
-        matcher: matcher.slice(9),
-        selector: s => `[data-selected] ${s}`,
-      }
-    },
-    (matcher) => {
-      if (!matcher.startsWith('not-selected:'))
-        return matcher
-      return {
-        matcher: matcher.slice(13),
-        selector: s => `:not([data-selected]) ${s}`,
-      }
-    },
+  transformers: [
+    transformerDirectives(),
   ],
-}])
+})
