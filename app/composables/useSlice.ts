@@ -11,7 +11,27 @@ function getColorClass(color: 'white' | 'grey' | 'darkblue') {
   }
 }
 
-export function useSlice(_sliceType: string, color?: 'white' | 'grey' | 'darkblue' | null) {
+export interface SliceUIOptions {
+  /**
+   * Whether the slice should be full width
+   * @default true
+   */
+  maxWidth?: boolean
+
+  /**
+   * Have padding on the y-axis. This can be also overridden using classes
+   * @default true
+   */
+  paddingY?: boolean
+
+  /**
+   * The padding on the x-axis. This can be also overridden using classes
+   * @default undefined
+   */
+  paddingX?: number
+}
+
+export function useSlice(_sliceType: string, color?: 'white' | 'grey' | 'darkblue' | null, { maxWidth = true, paddingY = true, paddingX }: SliceUIOptions = {}) {
   const sectionRef = ref<HTMLElement>()
   const sliceType = _sliceType.split('$').at(0)
 
@@ -22,6 +42,12 @@ export function useSlice(_sliceType: string, color?: 'white' | 'grey' | 'darkblu
     el.dataset.sliceType = sliceType
     el.classList.remove('bg-neutral-0', 'bg-neutral-100', 'bg-darkblue', 'dark', 'text-neutral')
     el.classList.add(...getColorClass(color || 'grey').split(' '))
+    if (!maxWidth)
+      el.classList.add('nq-no-mx')
+    if (!paddingY)
+      el.classList.add('nq-no-py')
+    if (paddingX)
+      el.classList.add('nq-no-px')
   })
 
   return { sectionRef, id: sliceType }

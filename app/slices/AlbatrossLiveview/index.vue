@@ -2,11 +2,11 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
-const { sectionRef } = useSlice(props.slice.id, 'darkblue')
+const { sectionRef } = useSlice(props.slice.id, 'darkblue', { paddingX: 0, maxWidth: true })
 </script>
 
 <template>
-  <section ref="sectionRef" px-0>
+  <section ref="sectionRef">
     <AlbatrossLiveview
       :allow-send-tx="slice.primary.allowSendTx"
       :average-rewards-label="slice.primary.averageRewardsLabel!"

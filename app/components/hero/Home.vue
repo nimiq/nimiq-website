@@ -50,11 +50,11 @@ function onHoverEnd() {
   shouldJump.value = false
 }
 
-const { sectionRef } = useSlice('home-hero', 'darkblue')
+const { sectionRef } = useSlice('home-hero', 'darkblue', { paddingY: false, maxWidth: false })
 </script>
 
 <template>
-  <section ref="sectionRef" class="no-py" relative of-hidden pt="148 md:153 lg:160">
+  <section ref="sectionRef" relative of-hidden pt="148 md:153 lg:160">
     <DefineNimFly v-slot="{ css }">
       <div
         :class="css"
