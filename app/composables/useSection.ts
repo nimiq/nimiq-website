@@ -2,12 +2,12 @@
 function getColorClass(color: 'white' | 'grey' | 'darkblue') {
   switch (color) {
     case 'grey':
-      return 'bg-neutral-100'
+      return 'bg-neutral-100 grey [--bg:rgb(var(--nq-neutral-100))]'
     case 'darkblue':
-      return 'bg-darkblue dark text-neutral'
+      return 'bg-darkblue darkblue dark text-neutral [--bg:rgb(var(--nq-darkblue))]'
     case 'white':
     default:
-      return 'bg-neutral-0'
+      return 'bg-neutral-0 white [--bg:rgb(var(--nq-neutral-0))]'
   }
 }
 
@@ -61,12 +61,12 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
       el.classList.add('nq-no-px')
     if (text) {
       if (text === 'lg') {
-        el.style.setProperty('--font-size-min', '18px')
-        el.style.setProperty('--font-size-max', '24px')
+        sectionRef.value!.style.setProperty('--font-size-min', '16')
+        sectionRef.value!.style.setProperty('--font-size-max', '24')
       }
       if (text === 'xl') {
-        el.style.setProperty('--font-size-min', '24px')
-        el.style.setProperty('--font-size-max', '32px')
+        sectionRef.value!.style.setProperty('--font-size-min', '24')
+        sectionRef.value!.style.setProperty('--font-size-max', '32')
       }
     }
   })

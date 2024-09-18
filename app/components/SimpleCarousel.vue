@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T">
-const { slides, curtains = false } = defineProps<{ slides: T[], curtains?: boolean }>()
+const { slides, curtains = false, shadow } = defineProps<{ slides: T[], curtains?: boolean, shadow?: boolean }>()
 
 const emit = defineEmits(['indexChanged'])
 defineSlots<{ default: (props: { slide: T }) => any }>()
@@ -9,10 +9,10 @@ const { activeIndex, calculateStep, scroller, slideNext, slidePrev, slideTo } = 
 
 <template>
   <div flex="~ col" cursor-default>
-    <div relative mx-auto h-full max-w-full rounded="$r" v-bind="$attrs">
+    <div relative mx-auto h-full max-w-full rounded="$r" :class="{ shadow }">
       <template v-if="curtains">
-        <div pointer-events-none absolute inset-y-0 left-0 z-1 w-16 bg-gradient="to-r from-neutral-100 to-transparent" />
-        <div pointer-events-none absolute inset-y-0 right-0 z-1 w-16 bg-gradient="to-l from-neutral-100 to-transparent" />
+        <div pointer-events-none absolute inset-y-0 left-0 z-1 w-16 bg-gradient="to-r from-$bg to-transparent" />
+        <div pointer-events-none absolute inset-y-0 right-0 z-1 w-16 bg-gradient="to-l from-$bg to-transparent" />
       </template>
 
       <div class="arrow" :class="activeIndex > 0 ? 'visible' : 'invisible'">

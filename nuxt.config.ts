@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'radix-vue/nuxt',
     '@nuxtjs/seo',
-    // '@nuxthub/core',
+    '@nuxthub/core',
     '@nuxtjs/prismic',
     '@nuxtjs/supabase',
   ],
@@ -41,6 +41,8 @@ export default defineNuxtConfig({
     inlineStyles: false,
   },
 
+  css: ['~/assets/css/main.css'],
+
   site: {
     url: 'https://nimiq.com',
 
@@ -61,7 +63,6 @@ export default defineNuxtConfig({
     storesDirs: ['./app/stores/**'],
   },
 
-  // TODO this rules should be part of a new nimiq sub lib
   // css: ['~/assets/css/main.css'],
 
   prismic: {

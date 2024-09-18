@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
+import TweenedNumber from '#components'
 import type { Database } from '~/types/database.types'
-import TweenedNumber from '../TweenedNumber.vue'
 
 const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
 

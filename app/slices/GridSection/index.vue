@@ -14,10 +14,10 @@ const { sectionRef } = useSection(props.slice.id, 'white')
         <li
           v-for="(item, i) in slice.items"
           :key="i"
-          grid="~ cols-[auto_1fr] rows-[auto_1fr] gap-x-20 gap-y12 lg:gapy-16"
+          grid="~ cols-[auto_1fr] rows-[auto_1fr] gap-x-20 gap-y12 lg:gap-y-16 items-center"
         >
           <PrismicImage :field="item.icon" size="48 lg:56 xl:64" />
-          <PrismicRichText :field="item.headline" flex="~ items-center" />
+          <PrismicRichText :field="item.headline" />
           <PrismicRichText v-if="item.subline.length" :field="item.subline" col-span-2 />
         </li>
       </ul>

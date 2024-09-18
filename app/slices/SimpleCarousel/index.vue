@@ -2,15 +2,15 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SimpleCarouselSlice>())
-const { sectionRef } = useSection(props.slice.id, 'grey', { limitWidth: false, text: 'xl' })
+const { sectionRef } = useSection(props.slice.id, 'white', { limitWidth: false, text: 'lg' })
 </script>
 
 <template>
   <section ref="sectionRef">
     <SimpleCarousel v-if="slice.variation === 'default'" :slides="slice.items" curtains>
       <template #default="{ slide }">
-        <div flex="~ col gap-y-32" px="32 sm:64" sm:text-center>
-          <PrismicRichText w-full text-neutral font-semibold italic :field="slide.quote" />
+        <div flex="~ col gap-y-32" sm:text-center>
+          <PrismicRichText w-full text-neutral font-bold italic :field="slide.quote" />
           <div flex="~ items-baseline gap-x-8 sm:justify-center" text-12 nq-label class="author">
             <span text-neutral>{{ slide.author }}</span>
             <PrismicRichText :field="slide.authorDetail" />
@@ -23,6 +23,7 @@ const { sectionRef } = useSection(props.slice.id, 'grey', { limitWidth: false, t
 
 <style scoped>
 .author {
+  /* TODO Move this to global? */
   :global(a) {
     --uno: 'text-blue';
   }

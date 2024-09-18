@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.TiltedMediaSlice>())
-const { sectionRef } = useSection(props.slice.id, 'grey', { limitWidth: false, paddingX: false })
+const { sectionRef } = useSection(props.slice.id, 'white', { limitWidth: false, paddingX: false })
 const url = computed(() => {
   if (props.slice.variation === 'default')
     // @ts-expect-error The URL is always present in this case

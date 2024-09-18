@@ -17,18 +17,12 @@ export default defineConfig({
       utilities: true,
       attributifyUtilities: true,
       typography: true,
-      icons: false,
       staticContent: true,
     }),
     presetRemToPx({ baseFontSize: 4 }),
     presetAttributify(),
     presetIcons({
       collections: {
-        nimiq: async () => {
-          return await fetch(
-            'https://raw.githubusercontent.com/onmax/nimiq-ui/main/packages/nimiq-icons/dist/icons.json',
-          ).then(res => res.json() as any)
-        },
         continents: {
           'africa': () => readFile('./public/assets/continents/africa.svg', 'utf-8'),
           'south-america': () => readFile('./public/assets/continents/south-america.svg', 'utf-8'),
