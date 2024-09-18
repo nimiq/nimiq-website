@@ -40,7 +40,7 @@ export interface SliceUIOptions {
   text?: 'lg' | 'xl'
 }
 
-export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkblue' | null, options: SliceUIOptions = {}) {
+export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkblue', options: SliceUIOptions = {}) {
   const { limitWidth = true, paddingY = true, paddingX = true, text = undefined } = options
 
   const sectionRef = ref<HTMLElement>()

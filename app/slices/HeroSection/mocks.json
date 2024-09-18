@@ -109,7 +109,7 @@
       },
       "bgColor": {
         "__TYPE__": "FieldContent",
-        "value": "darkblue",
+        "value": "white",
         "type": "Select"
       }
     },

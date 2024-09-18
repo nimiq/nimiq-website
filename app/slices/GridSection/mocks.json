@@ -5,7 +5,7 @@
     "primary": {
       "backgroundColor": {
         "__TYPE__": "FieldContent",
-        "value": "white",
+        "value": "grey",
         "type": "Select"
       },
       "link": {
@@ -19,6 +19,11 @@
         "__TYPE__": "FieldContent",
         "value": "lion",
         "type": "Text"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "grey",
+        "type": "Select"
       }
     },
     "items": [
@@ -91,6 +96,11 @@
         "__TYPE__": "FieldContent",
         "value": "white",
         "type": "Select"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "darkblue",
+        "type": "Select"
       }
     },
     "items": [
@@ -154,6 +164,14 @@
               "value": "#336e8c",
               "type": "Color"
             }
+          ],
+          [
+            "iconName",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "cabin",
+              "type": "Text"
+            }
           ]
         ]
       }
@@ -206,6 +224,14 @@
               "__TYPE__": "ImageContent",
               "thumbnails": {}
             }
+          ],
+          [
+            "bgColor",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "white",
+              "type": "Select"
+            }
           ]
         ]
       },
@@ -231,7 +257,6 @@
           [
             "image",
             {
-              "__TYPE__": "ImageContent",
               "provider": "imgix",
               "url": "https://images.unsplash.com/photo-1597589022928-bb4002c099ec?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MjU4Mjg2ODZ8MA&ixlib=rb-4.0.3&q=85",
               "alt": "yellow lemon fruit beside green leaves",
@@ -251,7 +276,17 @@
                   "y": 0
                 }
               },
+              "credits": null,
+              "__TYPE__": "ImageContent",
               "thumbnails": {}
+            }
+          ],
+          [
+            "bgColor",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "white",
+              "type": "Select"
             }
           ]
         ]
@@ -262,7 +297,6 @@
           [
             "image",
             {
-              "__TYPE__": "ImageContent",
               "provider": "imgix",
               "url": "https://images.unsplash.com/photo-1568383245703-b6fccedeefba?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxMHx8Y2l0cnVzJTIwZnJ1aXR8ZW58MHx8fHwxNzI1ODI4Njg2fDA&ixlib=rb-4.0.3&q=85",
               "alt": "orange citrus",
@@ -282,6 +316,8 @@
                   "y": 0
                 }
               },
+              "credits": null,
+              "__TYPE__": "ImageContent",
               "thumbnails": {}
             }
           ],
@@ -299,6 +335,14 @@
                   "direction": "ltr"
                 }
               ]
+            }
+          ],
+          [
+            "bgColor",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "grey",
+              "type": "Select"
             }
           ]
         ]

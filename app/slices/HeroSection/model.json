@@ -141,7 +141,8 @@
               "white",
               "grey",
               "darkblue"
-            ]
+            ],
+            "default_value": "white"
           }
         }
       },

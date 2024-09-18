@@ -13,7 +13,7 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background Color*",
+            "label": "Background Color [Deprecated]",
             "placeholder": "",
             "options": [
               "white",
@@ -42,6 +42,19 @@
             "placeholder": ""
           },
           "type": "Text"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ],
+            "default_value": "grey"
+          }
         }
       },
       "items": {
@@ -92,6 +105,19 @@
             "default_value": "white"
           },
           "type": "Select"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "darkblue"
+            ],
+            "default_value": "white"
+          }
         }
       },
       "items": {
@@ -127,6 +153,13 @@
             "placeholder": ""
           },
           "type": "Color"
+        },
+        "iconName": {
+          "type": "Text",
+          "config": {
+            "label": "Icon Name",
+            "placeholder": ""
+          }
         }
       },
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
@@ -154,6 +187,19 @@
             "label": "Image",
             "constraint": {},
             "thumbnails": []
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ],
+            "default_value": "grey"
           }
         }
       },

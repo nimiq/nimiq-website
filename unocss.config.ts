@@ -38,4 +38,11 @@ export default defineConfig({
   transformers: [
     transformerDirectives(),
   ],
+
+  safelist: [
+    'three-hands-hexagon',
+    'document-text',
+    'document',
+    'document-vertical-line',
+  ].map(x => `i-nimiq:icons-lg-${x}`),
 })

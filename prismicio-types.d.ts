@@ -4140,7 +4140,7 @@ export type GallerySectionSlice = prismic.SharedSlice<
  */
 export interface GridSectionSliceDefaultPrimary {
   /**
-   * Background Color* field in *GridSection → Default → Primary*
+   * Background Color [Deprecated] field in *GridSection → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -4172,6 +4172,17 @@ export interface GridSectionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   linkLabel: prismic.KeyTextField
+
+  /**
+   * Background Color field in *GridSection → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: grey
+   * - **API ID Path**: grid_section.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 }
 
 /**
@@ -4236,6 +4247,17 @@ export interface GridSectionSliceWithBackgroundPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   backgroundColor: prismic.SelectField<'white' | 'grey', 'filled'>
+
+  /**
+   * Background Color field in *GridSection → With Background → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: grid_section.withBackground.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -4281,6 +4303,16 @@ export interface GridSectionSliceWithBackgroundItem {
    * - **Documentation**: https://prismic.io/docs/field#color
    */
   color: prismic.ColorField
+
+  /**
+   * Icon Name field in *GridSection → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.items[].iconName
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  iconName: prismic.KeyTextField
 }
 
 /**
@@ -4319,6 +4351,17 @@ export interface GridSectionSliceThreeColumnsImageTextItem {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>
+
+  /**
+   * Background Color field in *GridSection → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: grey
+   * - **API ID Path**: grid_section.items[].bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 }
 
 /**
@@ -4508,10 +4551,11 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: white
    * - **API ID Path**: hero_section.default-slice.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue'>
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -5667,6 +5711,17 @@ export interface LargeGridSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   backgroundColor: prismic.SelectField<'white' | 'grey', 'filled'>
+
+  /**
+   * Background Color field in *LargeGrid → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: grey
+   * - **API ID Path**: large_grid.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 }
 
 /**
@@ -5705,7 +5760,7 @@ export interface LargeGridSliceDefaultItem {
   subline: prismic.RichTextField
 
   /**
-   * Icon field in *LargeGrid → Items*
+   * Icon [DEPRECATED] field in *LargeGrid → Items*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -5733,6 +5788,16 @@ export interface LargeGridSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#color
    */
   color: prismic.ColorField
+
+  /**
+   * Icon name field in *LargeGrid → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: large_grid.items[].iconName
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  iconName: prismic.KeyTextField
 }
 
 /**
@@ -6494,10 +6559,11 @@ export interface NewsletterSubscriptionSliceDefaultPrimary {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: white
    * - **API ID Path**: newsletter_subscription.default.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue'>
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -7128,7 +7194,7 @@ export type RibCageGridSlice = prismic.SharedSlice<
  */
 export interface RichTextSliceDefaultPrimary {
   /**
-   * Background color field in *RichText → Default → Primary*
+   * Background color [DEPRECATED] field in *RichText → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -7161,6 +7227,17 @@ export interface RichTextSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   centerHeading: prismic.BooleanField
+
+  /**
+   * Background color field in *RichText → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: rich_text.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -7224,6 +7301,17 @@ export interface RichTextSliceWithLottiePrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   richText: prismic.RichTextField
+
+  /**
+   * Background Color field in *RichText → With Lottie → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: rich_text.withLottie.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**

@@ -13,9 +13,14 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
-            "options": ["white", "grey", "blue-dark", "blue-dark-dimmed"],
+            "options": [
+              "white",
+              "grey",
+              "blue-dark",
+              "blue-dark-dimmed"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -27,7 +32,14 @@
             "placeholder": "",
             "allowTargetBlank": false,
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,strong,em,hyperlink,image,embed,list-item,o-list-item",
-            "labels": ["nq_large-text", "nq_small-text", "text-gold nq_large-text", "HTML", "blockquote", "text-center"]
+            "labels": [
+              "nq_large-text",
+              "nq_small-text",
+              "text-gold nq_large-text",
+              "HTML",
+              "blockquote",
+              "text-center"
+            ]
           }
         },
         "centerHeading": {
@@ -37,6 +49,19 @@
             "default_value": false,
             "placeholder_true": "true",
             "placeholder_false": "false"
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "darkblue"
+            ],
+            "default_value": "white"
           }
         }
       },
@@ -54,7 +79,12 @@
           "config": {
             "label": "Background color",
             "placeholder": "",
-            "options": ["white", "grey", "blue-dark", "blue-dark-dimmed"],
+            "options": [
+              "white",
+              "grey",
+              "blue-dark",
+              "blue-dark-dimmed"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -83,7 +113,27 @@
             "placeholder": "",
             "allowTargetBlank": false,
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,strong,em,hyperlink,image,embed,list-item,o-list-item",
-            "labels": ["nq_large-text", "nq_small-text", "text-gold nq_large-text", "HTML", "blockquote", "text-center"]
+            "labels": [
+              "nq_large-text",
+              "nq_small-text",
+              "text-gold nq_large-text",
+              "HTML",
+              "blockquote",
+              "text-center"
+            ]
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "darkblue"
+            ],
+            "default_value": "white"
           }
         }
       },
