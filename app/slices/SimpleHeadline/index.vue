@@ -7,6 +7,7 @@ const { sectionRef } = useSection(props.slice.id, props.slice.primary.bgColor)
 
 <template>
   <section v-if="slice.variation === 'default'" ref="sectionRef" relative>
+    <PrismicImage v-if="Object.keys(slice.primary.icon).length > 0" max-w-112 nq-mb-24 :field="slice.primary.icon" />
     <span v-if="slice.primary.label" text="14/16.8 center" mb-8 nq-label>{{ slice.primary.label }}</span>
     <PrismicText wrapper="h2" :field="slice.primary.headline" z-20 />
     <PrismicText v-if="slice.primary.subline" wrapper="p" z-20 :field="slice.primary.subline" />

@@ -19,7 +19,7 @@ export interface SliceUIOptions {
    *
    * @default true
    */
-  maxWidth?: boolean
+  limitWidth?: boolean
 
   /**
    * Have padding on the y-axis. This can be also overridden using classes
@@ -32,10 +32,16 @@ export interface SliceUIOptions {
    * @default true
    */
   paddingX?: boolean
+
+  /**
+   * Change the base font size
+   * @default undefined
+   */
+  text?: 'lg' | 'xl'
 }
 
 export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkblue' | null, options: SliceUIOptions = {}) {
-  const { maxWidth = true, paddingY = true, paddingX = true } = options
+  const { limitWidth = true, paddingY = true, paddingX = true, text = undefined } = options
 
   const sectionRef = ref<HTMLElement>()
   const sliceType = _sliceType.split('$').at(0)
@@ -47,12 +53,22 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
     el.dataset.sliceType = sliceType
     el.classList.remove('bg-neutral-0', 'bg-neutral-100', 'bg-darkblue', 'dark', 'text-neutral')
     el.classList.add(...getColorClass(color || 'grey').split(' '))
-    if (!maxWidth)
+    if (!limitWidth)
       el.classList.add('nq-no-mx')
     if (!paddingY)
       el.classList.add('nq-no-py')
     if (!paddingX)
       el.classList.add('nq-no-px')
+    if (text) {
+      if (text === 'lg') {
+        el.style.setProperty('--font-size-min', '18px')
+        el.style.setProperty('--font-size-max', '24px')
+      }
+      if (text === 'xl') {
+        el.style.setProperty('--font-size-min', '24px')
+        el.style.setProperty('--font-size-max', '32px')
+      }
+    }
   })
 
   return { sectionRef, id: sliceType }

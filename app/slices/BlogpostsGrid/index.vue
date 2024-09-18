@@ -14,7 +14,7 @@ const page = useRouteQuery<number>('page', 1, { transform: Number })
 
 const { client } = usePrismic()
 
-const { data: result } = useAsyncData('blog_posts', async () => {
+const { data: result } = await useAsyncData('blog_posts', async () => {
   return await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
     filters: showDrafts ? undefined : [filter.not('my.blog_page.draft', true)],

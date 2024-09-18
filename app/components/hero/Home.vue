@@ -50,7 +50,7 @@ function onHoverEnd() {
   shouldJump.value = false
 }
 
-const { sectionRef } = useSection('home-hero', 'darkblue', { paddingY: false, maxWidth: false })
+const { sectionRef } = useSection('home-hero', 'darkblue', { paddingY: false, limitWidth: false })
 </script>
 
 <template>
@@ -74,7 +74,7 @@ const { sectionRef } = useSection('home-hero', 'darkblue', { paddingY: false, ma
       </div>
     </DefineNimFly>
     <div z-10 children:md:mx-auto>
-      <PrismicText :field="headline" wrapper="h1" />
+      <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text="white/80" />
       <PrismicLink mt-40 :field="cta" nq-arrow nq-pill-lg nq-pill-blue>
         {{ ctaLabel }}

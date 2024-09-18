@@ -1,7 +1,13 @@
 <script setup lang="ts">
-defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
+import type { Content } from '@prismicio/client'
+
+// TODO Replace CtaSectionSlice with your slice
+const props = defineProps(getSliceComponentProps<Content.CtaSectionSlice>())
+const { sectionRef } = useSection(props.slice.id, 'white')
 </script>
 
 <template>
-  TODO
+  <section ref="sectionRef">
+    TODO!
+  </section>
 </template>

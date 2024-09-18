@@ -1,16 +1,61 @@
 <script setup lang="ts">
-import type { RichTextField, TitleField } from '@prismicio/client'
+import type { Content } from '@prismicio/client'
 
-const props = defineProps<{ headline: TitleField, subHeadline: RichTextField, bgColor?: 'grey' | 'white' | 'darkblue' | null }>()
+interface Props {
+  primary: Content.HeroSectionSliceDefaultSlicePrimary
+  items: Content.HeroSectionSliceDefaultSliceItem[]
+}
+const { primary: p, items } = defineProps<Props>()
 
-const { sectionRef } = useSection('hero', props.bgColor, { paddingY: false })
+const isEmpty = (object: any) => Object.keys(object).length === 0
+const hasLink = computed(() => !isEmpty(p.linkHref) && p.linkLabel)
+const hasSecondaryLink = computed(() => !isEmpty(p.secondaryLinkHref) && p.secondaryLinkLabel)
+const hasVideoLink = computed(() => !isEmpty(p.videoHref) && p.videoLabel)
+const showLink = computed(() => hasLink.value || hasSecondaryLink.value || hasVideoLink.value)
+
+const { sectionRef } = useSection('hero', p.bgColor, { paddingY: false })
+const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filter(Boolean) || [])
 </script>
 
 <template>
   <section ref="sectionRef" relative of-hidden pt="148 md:153 lg:160">
-    <div z-10 children:md:mx-auto>
-      <PrismicText :field="headline" wrapper="h1" />
-      <PrismicRichText v-if="subHeadline" :field="subHeadline" wrapper="p" />
+    <PrismicText :field="p.headline" wrapper="h1" />
+    <PrismicText v-if="p.subline" :field="p.subline" wrapper="p" />
+    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline[0]?.text}`" role="list" nq-mt-16 flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
+      <li v-for="(highlight, i) in highlightsItems" :key="i" contents>
+        <div v-if="i > 0" size-6 rounded-full bg-neutral-500 />
+        <span text="20 md:22 xl:24 green" font-semibold>{{ highlight }}</span>
+      </li>
+    </ul>
+    <div v-if="showLink" class="nq_r-mt-48 link-wrapper" flex="~ wrap gap-x-32 gap-y-16" nq-mt-48 style="--font-size-min:18;--font-size-max:22">
+      <PrismicLink v-if="hasLink" nq-arrow nq-pill nq-pill-lg nq-pill-blue :field="p.linkHref">
+        {{ p.linkLabel }}
+      </PrismicLink>
+      <!-- <PrismicLink v-if="hasSecondaryLink" nq-arrow :field="p.secondaryLinkHref">
+        {{ p.secondaryLinkLabel }}
+      </PrismicLink> -->
+      <PrismicLink v-if="hasVideoLink" un-text="neutral-700 hocus:neutral-800" transition-colors :field="p.videoHref" flex="~ gap-10 items-center">
+        <div i-nimiq:triangle-right text-16 />
+        <span font-semibold>
+          {{ p.videoLabel }}
+        </span>
+      </PrismicLink>
+
+      <!-- <ArrowLink
+        v-if="secondaryLink.href && secondaryLink.label"
+        size="big"
+        :color="usableBackgroundColor.needsColorInversion ? 'white' : 'blue'"
+        :href="secondaryLink.href"
+        :label="secondaryLink.label"
+      />
+
+      <VideoLink
+        v-if="video.href && video.label"
+        is-big
+        :color="usableBackgroundColor.needsColorInversion ? 'white' : 'dark-grey'"
+        :href="video.href"
+        :label="video.label"
+      /> -->
     </div>
   </section>
 </template>
