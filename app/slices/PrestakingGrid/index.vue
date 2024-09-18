@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
-const { sectionRef } = useSlice(props.slice.id, 'darkblue')
+const { sectionRef } = useSection(props.slice.id, 'darkblue')
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.NewsletterSubscriptionSlice>())
-const { sectionRef } = useSlice(props.slice.id, props.slice.primary.bgColor)
+const { sectionRef } = useSection(props.slice.id, props.slice.primary.bgColor)
 </script>
 
 <template>

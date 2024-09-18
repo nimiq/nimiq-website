@@ -3,7 +3,7 @@ import type { RichTextField, TitleField } from '@prismicio/client'
 
 const props = defineProps<{ headline: TitleField, subHeadline: RichTextField, bgColor?: 'grey' | 'white' | 'darkblue' | null }>()
 
-const { sectionRef } = useSlice('hero', props.bgColor, { paddingY: false })
+const { sectionRef } = useSection('hero', props.bgColor, { paddingY: false })
 </script>
 
 <template>

@@ -5,7 +5,7 @@ import { filter } from '@prismicio/client'
 import ArticleMetadata from '~/components/ArticleMetadata.vue'
 
 const props = defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
-const { sectionRef } = useSlice(props.slice.id, 'grey')
+const { sectionRef } = useSection(props.slice.id, 'grey')
 
 const showDrafts = true // TODO Change this depending on the NODE_ENV
 

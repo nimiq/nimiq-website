@@ -3,7 +3,7 @@ import type { Content } from '@prismicio/client'
 import type { Database } from '~/types/database.types'
 
 const props = defineProps(getSliceComponentProps<Content.CryptoMapContinentSelectorSlice>())
-const { sectionRef } = useSlice(props.slice.id, 'grey')
+const { sectionRef } = useSection(props.slice.id, 'grey')
 
 const activeContinent = ref(props.slice.primary.continents.at(0)!.label)
 const supabase = useSupabaseClient<Database>()
