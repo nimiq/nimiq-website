@@ -3502,11 +3502,11 @@ export type CryptoMapContinentSelectorSlice = prismic.SharedSlice<
 >
 
 /**
- * Primary content in *CtaSection → Default → Primary*
+ * Primary content in *CtaSection → Default [DEPRECATED] → Primary*
  */
 export interface CtaSectionSliceDefaultPrimary {
   /**
-   * Background color field in *CtaSection → Default → Primary*
+   * Background color field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -3520,7 +3520,7 @@ export interface CtaSectionSliceDefaultPrimary {
   >
 
   /**
-   * Icon field in *CtaSection → Default → Primary*
+   * Icon [DEPRECATED] field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -3530,7 +3530,7 @@ export interface CtaSectionSliceDefaultPrimary {
   icon: prismic.ImageField<never>
 
   /**
-   * Label field in *CtaSection → Default → Primary*
+   * Label field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -3540,7 +3540,7 @@ export interface CtaSectionSliceDefaultPrimary {
   label: prismic.KeyTextField
 
   /**
-   * Headline* field in *CtaSection → Default → Primary*
+   * Headline* field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
@@ -3550,7 +3550,7 @@ export interface CtaSectionSliceDefaultPrimary {
   headline: prismic.TitleField
 
   /**
-   * Subline field in *CtaSection → Default → Primary*
+   * Subline field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -3560,7 +3560,7 @@ export interface CtaSectionSliceDefaultPrimary {
   subline: prismic.RichTextField
 
   /**
-   * Link href field in *CtaSection → Default → Primary*
+   * Link href field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3570,7 +3570,7 @@ export interface CtaSectionSliceDefaultPrimary {
   linkHref: prismic.LinkField
 
   /**
-   * Link label field in *CtaSection → Default → Primary*
+   * Link label field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Mandatory if the Link href is set
@@ -3580,7 +3580,7 @@ export interface CtaSectionSliceDefaultPrimary {
   linkLabel: prismic.KeyTextField
 
   /**
-   * Twitter Url field in *CtaSection → Default → Primary*
+   * Twitter Url field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3590,7 +3590,7 @@ export interface CtaSectionSliceDefaultPrimary {
   twitterUrl: prismic.LinkField
 
   /**
-   * Telegram Url field in *CtaSection → Default → Primary*
+   * Telegram Url field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3600,7 +3600,7 @@ export interface CtaSectionSliceDefaultPrimary {
   telegramUrl: prismic.LinkField
 
   /**
-   * Reddit Url field in *CtaSection → Default → Primary*
+   * Reddit Url field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3610,7 +3610,7 @@ export interface CtaSectionSliceDefaultPrimary {
   redditUrl: prismic.LinkField
 
   /**
-   * Github Url field in *CtaSection → Default → Primary*
+   * Github Url field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3620,7 +3620,7 @@ export interface CtaSectionSliceDefaultPrimary {
   githubUrl: prismic.LinkField
 
   /**
-   * Youtube Url field in *CtaSection → Default → Primary*
+   * Youtube Url field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3630,7 +3630,7 @@ export interface CtaSectionSliceDefaultPrimary {
   youtubeUrl: prismic.LinkField
 
   /**
-   * Discord Url field in *CtaSection → Default → Primary*
+   * Discord Url field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3640,7 +3640,7 @@ export interface CtaSectionSliceDefaultPrimary {
   discordUrl: prismic.LinkField
 
   /**
-   * Facebook Url field in *CtaSection → Default → Primary*
+   * Facebook Url field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3650,7 +3650,7 @@ export interface CtaSectionSliceDefaultPrimary {
   facebookUrl: prismic.LinkField
 
   /**
-   * Instagram Url field in *CtaSection → Default → Primary*
+   * Instagram Url field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3660,7 +3660,7 @@ export interface CtaSectionSliceDefaultPrimary {
   instagramUrl: prismic.LinkField
 
   /**
-   * Nimiq Forum Url field in *CtaSection → Default → Primary*
+   * Nimiq Forum Url field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3670,7 +3670,7 @@ export interface CtaSectionSliceDefaultPrimary {
   nimiqForumUrl: prismic.LinkField
 
   /**
-   * Play Store field in *CtaSection → Default → Primary*
+   * Play Store field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3680,7 +3680,7 @@ export interface CtaSectionSliceDefaultPrimary {
   playStore: prismic.LinkField
 
   /**
-   * App Store field in *CtaSection → Default → Primary*
+   * App Store field in *CtaSection → Default [DEPRECATED] → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -3688,10 +3688,20 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   appStore: prismic.LinkField
+
+  /**
+   * Icon Name field in *CtaSection → Default [DEPRECATED] → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cta_section.default.primary.iconName
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  iconName: prismic.KeyTextField
 }
 
 /**
- * Default variation for CtaSection Slice
+ * Default [DEPRECATED] variation for CtaSection Slice
  *
  * - **API ID**: `default`
  * - **Description**: CtaSection
@@ -8036,7 +8046,7 @@ export interface SimpleHeadlineSliceDefaultPrimary {
   >
 
   /**
-   * Icon field in *SimpleHeadline → Default → Primary*
+   * Icon [DEPRECATED] field in *SimpleHeadline → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -8105,6 +8115,16 @@ export interface SimpleHeadlineSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
+
+  /**
+   * Icon Name field in *SimpleHeadline → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_headline.default.primary.iconName
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  iconName: prismic.KeyTextField
 }
 
 /**
@@ -8199,7 +8219,7 @@ export interface SocialMediaGridSliceDefaultItem {
   >
 
   /**
-   * Social Media field in *SocialMediaGrid → Items*
+   * Social Media [DEPRECATED] field in *SocialMediaGrid → Items*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -8216,6 +8236,16 @@ export interface SocialMediaGridSliceDefaultItem {
     | 'instagram'
     | 'youtube'
   >
+
+  /**
+   * socialMedia field in *SocialMediaGrid → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_media_grid.items[].socialMediaItem
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  socialMediaItem: prismic.ContentRelationshipField<'socialMedia'>
 }
 
 /**

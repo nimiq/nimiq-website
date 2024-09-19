@@ -6,7 +6,7 @@
   "variations": [
     {
       "id": "default",
-      "name": "Default",
+      "name": "Default [DEPRECATED]",
       "docURL": "...",
       "version": "sktwi1xtmkfgx8626",
       "description": "CtaSection",
@@ -15,7 +15,11 @@
           "config": {
             "label": "Background color",
             "placeholder": "",
-            "options": ["white", "grey", "blue-dark"],
+            "options": [
+              "white",
+              "grey",
+              "blue-dark"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -23,7 +27,7 @@
         "icon": {
           "type": "Image",
           "config": {
-            "label": "Icon",
+            "label": "Icon [DEPRECATED]",
             "constraint": {},
             "thumbnails": []
           }
@@ -155,6 +159,13 @@
             "label": "App Store",
             "placeholder": "",
             "select": null
+          }
+        },
+        "iconName": {
+          "type": "Text",
+          "config": {
+            "label": "Icon Name",
+            "placeholder": ""
           }
         }
       },

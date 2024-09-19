@@ -1,6 +1,6 @@
 import type { NimiqAppDocument, NimiqAppDocumentData, SocialMediaDocument } from '~~/prismicio-types.js'
 
-export type SocialMediaAttributes = SocialMediaDocument['data'] & { color: `#${string}`, icon: string }
+export type SocialMediaAttributes = SocialMediaDocument['data'] & { color: `#${string}`, icon: string, id: string }
 export type AppsAttributes = NimiqAppDocument['data'] & { color: `#${string}` }
 
 const appColor: Record<Exclude<NimiqAppDocumentData['type'], null>, string> = {
@@ -15,7 +15,7 @@ const appColor: Record<Exclude<NimiqAppDocumentData['type'], null>, string> = {
   'Promotion': '#795548', // brown
 }
 
-type SocialMediaName = Exclude<SocialMediaAttributes['platform'], null>
+export type SocialMediaName = Exclude<SocialMediaAttributes['platform'], null>
 
 export const SocialMedia: Record<SocialMediaName, SocialMediaName> = { x: 'x', telegram: 'telegram', discord: 'discord', facebook: 'facebook', github: 'github', instagram: 'instagram', nimiqForum: 'nimiqForum', reddit: 'reddit', youtube: 'youtube' }
 
@@ -45,14 +45,18 @@ export const useGlobalContent = defineStore('global-content', () => {
 
     return Object.fromEntries(
       Object.entries(socialMediaConfigs).map(([socialMedia, config]) => {
-        const prismicData = socialMediaPrismic.value!.find(item => item.data.platform === socialMedia)?.data
+        const prismicData = socialMediaPrismic.value!.find(item => item.data.platform === socialMedia)
         if (!prismicData) {
           throw new Error(`Platform data not found for ${socialMedia}`)
         }
-        return [socialMedia, { ...prismicData, ...config }]
+        return [socialMedia, { ...prismicData.data, id: prismicData.id, ...config }]
       }),
     ) as Record<SocialMediaName, SocialMediaAttributes>
   })
+
+  function getSocialMediaById(id: string) {
+    return Object.values(socialMedias.value).find(socialMedia => socialMedia.id === id)
+  }
 
   const { data: nimiqAppsPrismic } = useAsyncData('apps', () => client.getByType('nimiq_app'), { transform: data => data.results })
   const nimiqApps = computed(() => {
@@ -71,6 +75,7 @@ export const useGlobalContent = defineStore('global-content', () => {
     navigation,
     socialMedias,
     nimiqApps,
+    getSocialMediaById,
   }
 })
 

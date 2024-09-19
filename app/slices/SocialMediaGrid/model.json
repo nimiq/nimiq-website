@@ -36,7 +36,11 @@
           "config": {
             "label": "Background Color",
             "placeholder": "",
-            "options": ["white", "grey", "blue-dark"]
+            "options": [
+              "white",
+              "grey",
+              "blue-dark"
+            ]
           },
           "type": "Select"
         }
@@ -46,19 +50,43 @@
           "config": {
             "label": "Category",
             "placeholder": "",
-            "options": ["NEWS & ANNOUNCEMENTS", "DISCUSSIONS & SUPPORT", "CULTURE & INSIGHTS"]
+            "options": [
+              "NEWS & ANNOUNCEMENTS",
+              "DISCUSSIONS & SUPPORT",
+              "CULTURE & INSIGHTS"
+            ]
           },
           "type": "Select"
         },
         "socialMedia": {
           "config": {
-            "label": "Social Media",
+            "label": "Social Media [DEPRECATED]",
             "placeholder": "",
-            "options": ["twitter", "nimiq_forum", "reddit", "facebook", "discord", "telegram", "instagram", "youtube"]
+            "options": [
+              "twitter",
+              "nimiq_forum",
+              "reddit",
+              "facebook",
+              "discord",
+              "telegram",
+              "instagram",
+              "youtube"
+            ]
           },
           "type": "Select"
+        },
+        "socialMediaItem": {
+          "type": "Link",
+          "config": {
+            "label": "socialMedia",
+            "select": "document",
+            "customtypes": [
+              "socialMedia"
+            ]
+          }
         }
-      }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
 }

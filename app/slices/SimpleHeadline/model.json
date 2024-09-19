@@ -31,7 +31,7 @@
         "icon": {
           "type": "Image",
           "config": {
-            "label": "Icon",
+            "label": "Icon [DEPRECATED]",
             "constraint": {},
             "thumbnails": []
           }
@@ -88,6 +88,13 @@
               "darkblue"
             ],
             "default_value": "grey"
+          }
+        },
+        "iconName": {
+          "type": "Text",
+          "config": {
+            "label": "Icon Name",
+            "placeholder": ""
           }
         }
       },

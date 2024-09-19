@@ -7,10 +7,6 @@ const { sectionRef } = useSection(props.slice.id, 'white')
 
 <template>
   <section ref="sectionRef">
-    <PrismicText wrapper="h2" :field="slice.primary.headline" z-20 />
-    <PrismicText v-if="slice.primary.subline" wrapper="p" z-20 :field="slice.primary.subline" />
-    <PrismicLink :field="slice.primary.linkHref" nq-arrow nq-pill-lg nq-pill-blue nq-mt-48>
-      {{ slice.primary.linkLabel }}
-    </PrismicLink>
+    <Headline :headline="slice.primary.headline" :label="slice.primary.label" :icon-name="slice.primary.iconName" :subline="slice.primary.subline" :cta-href="slice.primary.linkHref" :cta-label="slice.primary.linkLabel" />
   </section>
 </template>

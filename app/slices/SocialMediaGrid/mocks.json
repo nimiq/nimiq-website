@@ -1,0 +1,61 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "newsAndAnnouncementsLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "income",
+        "type": "Text"
+      },
+      "discussionsAndSupportLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "nervous",
+        "type": "Text"
+      },
+      "cultureAndInsightsLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "fewer",
+        "type": "Text"
+      },
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "blue-dark",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "category",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "DISCUSSIONS & SUPPORT",
+              "type": "Select"
+            }
+          ],
+          [
+            "socialMedia",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "nimiq_forum",
+              "type": "Select"
+            }
+          ],
+          [
+            "socialMediaItem",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "DocumentLink",
+                "id": "mock_document_id"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]

@@ -7,22 +7,12 @@ const { sectionRef } = useSection(props.slice.id, props.slice.primary.bgColor)
 
 <template>
   <section v-if="slice.variation === 'default'" ref="sectionRef" relative>
-    <PrismicImage v-if="Object.keys(slice.primary.icon).length > 0" max-w-112 nq-mb-24 :field="slice.primary.icon" />
-    <span v-if="slice.primary.label" text="14/16.8 center" mb-8 nq-label>{{ slice.primary.label }}</span>
-    <PrismicText wrapper="h2" :field="slice.primary.headline" z-20 />
-    <PrismicText v-if="slice.primary.subline" wrapper="p" z-20 :field="slice.primary.subline" />
+    <Headline
+      :headline="slice.primary.headline"
+      :subline="slice.primary.subline"
+      :cta-href="slice.primary.linkHref"
+      :cta-label="slice.primary.linkLabel"
+      :label="slice.primary.label" :icon-name="slice.primary.iconName"
+    />
   </section>
 </template>
-
-<style scoped>
-/* After Pill Slice, we don't leave space */
-section[data-slice-type='pill_link'] + section[data-slice-type='simple_headline'] {
-  --uno: 'pt-24';
-}
-
-/* If the headline is after a slice that is the same theme (dark or light) we increase space */
-section.dark:not([data-slice-type='pill_link']) + section[data-slice-type='simple_headline'].dark,
-section:not(.dark):not([data-slice-type='pill_link']) + section[data-slice-type='simple_headline']:not(.dark) {
-  --uno: 'pt-160 lg:pt-200';
-}
-</style>

@@ -7,6 +7,7 @@ import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 export default defineConfig({
   shortcuts: {
     'nq-mt-16': 'mt-12 xl:mt-16',
+    'nq-mt-32': 'mt-24 md:mt-32',
     'nq-mt-48': 'mt-32 xl:mt-40 2xl:mt-48',
     'nq-mb-24': 'mb-16 xl:mb-24',
     'nq-mb-48': 'mb-32 xl:mb-40 2xl:mb-48',
