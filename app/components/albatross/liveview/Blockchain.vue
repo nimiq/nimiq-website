@@ -1,16 +1,12 @@
 <script setup lang="ts">
+import { useRafFn } from '@vueuse/core'
+
 const BLOCK_WIDTH = 208
 const TARGET_OFFSET = -BLOCK_WIDTH / 4
-
-// Higher is faster.
-// Too low, and the animation can't catch up to new blocks.
-// Too high, and the animation finishes too fast and stops between blocks.
-// A factor of 0.55-0.65 works well for block times of ~0.2s.
 const CHAIN_SPEED_FACTOR = 0.55
 
 const { blocks, batchNumber, blockNumber, status } = storeToRefs(useLiveviewBlocks())
 
-const frame = ref<number | null>(null)
 const velocity = ref(1000000)
 const offset = ref(blocks.value.length * BLOCK_WIDTH)
 watch(blocks, () => {
@@ -18,24 +14,6 @@ watch(blocks, () => {
     return
   offset.value += BLOCK_WIDTH
 }, { deep: true })
-
-onUnmounted(() => stopAnimation())
-
-watch(status, async (newStatus) => {
-  await nextTick()
-  if (newStatus === 'OPEN') {
-    startAnimation()
-  }
-}, { immediate: true })
-
-const focused = useWindowFocus()
-
-watchWithFilter(focused, () => {
-  if (focused.value)
-    startAnimation()
-  else
-    stopAnimation()
-}, { immediate: true })
 
 /*
 Scrolling effect
@@ -52,33 +30,18 @@ the offset (which, again, updates the transform reactively).
 The velocity is calculated as a root over the distance the element has to travel.
 The lower the root (chain speed factor), the slower the element travels and vice-versa.
 */
-function startAnimation() {
-  if (frame.value || status.value !== 'OPEN')
+const focused = useWindowFocus()
+const { pause, resume } = useRafFn(() => {
+  if (!focused.value)
     return
+  velocity.value = -Math.floor((-TARGET_OFFSET + offset.value) ** CHAIN_SPEED_FACTOR)
+  offset.value += velocity.value
+}, { immediate: false })
 
-  // eslint-disable-next-line no-console
-  console.log('startAnimation')
+onUnmounted(() => pause())
 
-  function loop() {
-    if (!focused.value)
-      return
-    frame.value = requestAnimationFrame(loop)
-    velocity.value = -Math.floor((-TARGET_OFFSET + offset.value) ** CHAIN_SPEED_FACTOR)
-    offset.value += velocity.value
-  }
-  loop()
-}
-
-function stopAnimation() {
-  if (!frame.value)
-    return
-
-  // eslint-disable-next-line no-console
-  console.log('stopAnimation')
-
-  cancelAnimationFrame(frame.value)
-  frame.value = null
-}
+watch(status, async newStatus => (newStatus === 'OPEN' && focused.value) ? resume() : pause(), { immediate: true })
+watch(focused, () => (focused.value) ? resume() : pause(), { immediate: true })
 
 const { canSendTx } = storeToRefs(useLiveviewTx())
 const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPending.vue'))

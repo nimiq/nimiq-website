@@ -27,7 +27,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
         <span text="20 md:22 xl:24 green" font-semibold>{{ highlight }}</span>
       </li>
     </ul>
-    <div v-if="showLink" class="nq_r-mt-48 link-wrapper" flex="~ wrap gap-x-32 gap-y-16" nq-mt-48 style="--font-size-min:18;--font-size-max:22">
+    <div v-if="showLink" class="nq_r-mt-48 link-wrapper" flex="~ wrap gap-x-32 gap-y-16" nq-mt-48 style="--nq-font-size-min:18;--nq-font-size-max:22">
       <PrismicLink v-if="hasLink" nq-arrow nq-pill nq-pill-lg nq-pill-blue :field="p.linkHref">
         {{ p.linkLabel }}
       </PrismicLink>

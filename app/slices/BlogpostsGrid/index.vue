@@ -44,7 +44,7 @@ const active = useState()
           </div>
           <div flex="~ col" h-full p-24>
             <PrismicText
-              wrapper="h2" text-left :field="post.data.title" :style=" i === 0 ? '--font-size-min:30; --font-size-max:26' : '--font-size-min:20;--font-size-max:22'"
+              wrapper="h2" text-left :field="post.data.title" :style=" i === 0 ? '--nq-font-size-min:30; --nq-font-size-max:26' : '--nq-font-size-min:20;--nq-font-size-max:22'"
               :class="{ 'view-transition-post-title contain-layout': active === post.uid }"
             />
 

@@ -1,4 +1,5 @@
 import type { NimiqAppDocument, NimiqAppDocumentData, SocialMediaDocument } from '~~/prismicio-types.js'
+import type { Database } from '~/types/database.types'
 
 export type SocialMediaAttributes = SocialMediaDocument['data'] & { color: `#${string}`, icon: string, id: string }
 export type AppsAttributes = NimiqAppDocument['data'] & { color: `#${string}` }
@@ -71,11 +72,30 @@ export const useGlobalContent = defineStore('global-content', () => {
     ) as Record<string, AppsAttributes>
   })
 
+  const supabase = useSupabaseClient<Database>()
+
+  const { data: cryptoMapLocationsCount } = useAsyncData('locationStats', async () => {
+    const { data, error } = await supabase.rpc('get_stats')
+    if (error || !data)
+      throw createError('Error fetching continent stats')
+    const locations = (data as { locations: number }).locations!
+    return locations
+  })
+
+  const { data: cryptoMapContinentsStats } = useAsyncData('continentStats', async () => {
+    const { data, error } = await supabase.rpc('get_stats_for_all_continents')
+    if (error || !data)
+      throw createError('Error fetching continent stats')
+    return data
+  })
+
   return {
     navigation,
     socialMedias,
     nimiqApps,
     getSocialMediaById,
+    cryptoMapLocationsCount,
+    cryptoMapContinentsStats,
   }
 })
 

@@ -2601,7 +2601,7 @@ export interface BannerSliceSliceDefaultPrimary {
  */
 export interface BannerSliceSliceDefaultItem {
   /**
-   * Background Color (only slice) field in *BannerSlice → Items*
+   * Background Color [DEPRECATED] field in *BannerSlice → Items*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -2659,6 +2659,28 @@ export interface BannerSliceSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   linkLabel: prismic.KeyTextField
+
+  /**
+   * Background Color field in *BannerSlice → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.items[].bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'green'>
+
+  /**
+   * Background Pattern field in *BannerSlice → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.items[].backgroundPattern
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  backgroundPattern: prismic.SelectField<
+    'None' | 'Nimiq Apps' | 'Social Media' | 'Nimiq Hexagon'
+  >
 }
 
 /**

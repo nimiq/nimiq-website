@@ -49,7 +49,7 @@ async function submitForm() {
 <template>
   <section ref="sectionRef" pt="148 md:153 lg:160" mx-auto max-w-65ch>
     <div px="32 md:36 lg:40" rounded-6 bg-white py-60 shadow>
-      <h1 style="--font-size-min:24;--font-size-max:28" text-left>
+      <h1 style="--nq-font-size-min:24;--nq-font-size-max:28" text-left>
         Nimiq newsletter signup
       </h1>
       <p mt="12 lg:16">

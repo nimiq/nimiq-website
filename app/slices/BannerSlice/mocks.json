@@ -21,7 +21,7 @@
             "backgroundColor",
             {
               "__TYPE__": "FieldContent",
-              "value": "blue-dark",
+              "value": "green",
               "type": "Select"
             }
           ],
@@ -77,6 +77,22 @@
               "__TYPE__": "FieldContent",
               "value": "apartment",
               "type": "Text"
+            }
+          ],
+          [
+            "bgColor",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "white",
+              "type": "Select"
+            }
+          ],
+          [
+            "backgroundPattern",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "None",
+              "type": "Select"
             }
           ]
         ]

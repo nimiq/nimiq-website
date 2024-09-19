@@ -18,7 +18,7 @@ const image = computed(() => props.slice.primary.flags)
 <template>
   <section ref="sectionRef" w-screen of-x-hidden>
     <div
-      h="64 md:80" bg="repeat-x"
+      max-w-screen h="64 md:80" bg="repeat-x"
       :style="{
         backgroundImage: `url(${image.url})`,
         backgroundPosition: `${position}% center`,

@@ -2,12 +2,12 @@
 function getColorClass(color: 'white' | 'grey' | 'darkblue') {
   switch (color) {
     case 'grey':
-      return 'bg-neutral-100 grey [--bg:rgb(var(--nq-neutral-100))]'
+      return { classes: 'bg-neutral-100 grey', css: 'rgb(var(--nq-neutral-100))' }
     case 'darkblue':
-      return 'bg-darkblue darkblue dark text-neutral [--bg:rgb(var(--nq-darkblue))]'
+      return { classes: 'bg-darkblue darkblue dark text-neutral', css: 'rgb(var(--nq-darkblue))' }
     case 'white':
     default:
-      return 'bg-neutral-0 white [--bg:rgb(var(--nq-neutral-0))]'
+      return { classes: 'bg-neutral-0 white', css: 'rgb(var(--nq-neutral-0))' }
   }
 }
 
@@ -51,8 +51,11 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
     if (!el)
       return
     el.dataset.sliceType = sliceType
-    el.classList.remove('bg-neutral-0', 'bg-neutral-100', 'bg-darkblue', 'dark', 'text-neutral')
-    el.classList.add(...getColorClass(color || 'grey').split(' '))
+
+    const { classes, css } = getColorClass(color || 'grey')
+    el.classList.add(...classes.split(' '))
+    el.style.setProperty('--bg', css)
+
     if (!limitWidth)
       el.classList.add('nq-no-mx')
     if (!paddingY)
@@ -61,12 +64,12 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
       el.classList.add('nq-no-px')
     if (text) {
       if (text === 'lg') {
-        sectionRef.value!.style.setProperty('--font-size-min', '16')
-        sectionRef.value!.style.setProperty('--font-size-max', '24')
+        sectionRef.value!.style.setProperty('--nq-font-size-min', '16')
+        sectionRef.value!.style.setProperty('--nq-font-size-max', '24')
       }
       if (text === 'xl') {
-        sectionRef.value!.style.setProperty('--font-size-min', '24')
-        sectionRef.value!.style.setProperty('--font-size-max', '32')
+        sectionRef.value!.style.setProperty('--nq-font-size-min', '24')
+        sectionRef.value!.style.setProperty('--nq-font-size-max', '32')
       }
     }
   })

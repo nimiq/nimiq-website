@@ -1,19 +1,10 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
-import TweenedNumber from '#components'
-import type { Database } from '~/types/database.types'
+import { TweenedNumber } from '#components'
 
 const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
 
-const supabase = useSupabaseClient<Database>()
-
-const { data: locationsCount } = useAsyncData('locationStats', async () => {
-  const { data, error } = await supabase.rpc('get_stats')
-  if (error || !data)
-    throw createError('Error fetching continent stats')
-  const locations = (data as { locations: number }).locations!
-  return locations
-})
+const { cryptoMapLocationsCount: locationsCount } = storeToRefs(useGlobalContent())
 
 // @unocss-include
 

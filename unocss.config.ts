@@ -5,13 +5,11 @@ import { presetNimiq } from 'nimiq-css'
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
-  shortcuts: {
-    'nq-mt-16': 'mt-12 xl:mt-16',
-    'nq-mt-32': 'mt-24 md:mt-32',
-    'nq-mt-48': 'mt-32 xl:mt-40 2xl:mt-48',
-    'nq-mb-24': 'mb-16 xl:mb-24',
-    'nq-mb-48': 'mb-32 xl:mb-40 2xl:mb-48',
-  },
+  shortcuts: [
+    [/^nq-(mt|mb|pt|pb)-16$/, ([, t]) => `${t}-12 xl:${t}-16`],
+    [/^nq-(mt|mb|pt|pb)-32$/, ([, t]) => `${t}-24 md:${t}-32`],
+    [/^nq-(mt|mb|pt|pb)-48$/, ([, t]) => `${t}-32 xl:${t}-40 2xl:${t}-48`],
+  ],
   presets: [
     presetUno({ attributifyPseudo: true }),
     presetNimiq({
@@ -19,6 +17,8 @@ export default defineConfig({
       attributifyUtilities: true,
       typography: true,
       staticContent: true,
+      icons: false,
+      scrollbar: true,
     }),
     presetRemToPx({ baseFontSize: 4 }),
     presetAttributify(),

@@ -38,7 +38,7 @@
       "items": {
         "backgroundColor": {
           "config": {
-            "label": "Background Color (only slice)",
+            "label": "Background Color [DEPRECATED]",
             "placeholder": "",
             "options": [
               "green",
@@ -86,6 +86,30 @@
             "placeholder": ""
           },
           "type": "Text"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "green"
+            ]
+          }
+        },
+        "backgroundPattern": {
+          "type": "Select",
+          "config": {
+            "label": "Background Pattern",
+            "placeholder": "",
+            "options": [
+              "None",
+              "Nimiq Apps",
+              "Social Media",
+              "Nimiq Hexagon"
+            ]
+          }
         }
       },
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"

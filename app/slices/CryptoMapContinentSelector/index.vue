@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
-import type { Database } from '~/types/database.types'
 
 const props = defineProps(getSliceComponentProps<Content.CryptoMapContinentSelectorSlice>())
 const { sectionRef } = useSection(props.slice.id, 'grey')
 
 const activeContinent = ref(props.slice.primary.continents.at(0)!.label)
-const supabase = useSupabaseClient<Database>()
 
-const { data: stats } = useAsyncData('continentStats', async () => {
-  const { data, error } = await supabase.rpc('get_stats_for_all_continents')
-  if (error || !data)
-    throw createError('Error fetching continent stats')
-  return data
-})
-
+const { cryptoMapContinentsStats: stats } = storeToRefs(useGlobalContent())
 const { language } = useNavigatorLanguage()
 
 const formatter = computed(() => new Intl.NumberFormat(language.value, { notation: 'compact', maximumFractionDigits: 1 }))
