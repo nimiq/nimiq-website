@@ -180,7 +180,13 @@
   {
     "__TYPE__": "SharedSliceContent",
     "variation": "threeColumnsImageText",
-    "primary": {},
+    "primary": {
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      }
+    },
     "items": [
       {
         "__TYPE__": "GroupItemContent",

@@ -66,7 +66,7 @@ const { sectionRef } = useSection('home-hero', 'darkblue', { paddingY: false, li
     </DefineNimFly>
     <div z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
-      <component :is="subheadline" text="white/80" />
+      <component :is="subheadline" text-neutral-800 />
       <PrismicLink mt-40 :field="cta" nq-arrow nq-pill-lg nq-pill-blue>
         {{ ctaLabel }}
       </PrismicLink>
@@ -74,16 +74,16 @@ const { sectionRef } = useSection('home-hero', 'darkblue', { paddingY: false, li
     <NuxtImg pointer-events-none absolute inset-0 m-0 size-full src="/assets/images/gods-light.webp" />
     <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
     <ReuseNimFly css="absolute left-100 top-200 scale-105 [--delay:700ms]" />
-    <ReuseNimFly css="absolute right-80 top-170 scale-80 [--delay:2500ms]" />
-    <ReuseNimFly css="absolute left-30vw bottom-400 scale-95 [--delay:4350ms]" />
+    <ReuseNimFly css="absolute right-80 top-170 scale-70 [--delay:2500ms]" />
+    <ReuseNimFly css="absolute left-30vw bottom-400 scale-92 [--delay:4350ms]" />
     <ReuseNimFly css="absolute right-32 bottom-550" />
     <div class="world-container" pointer-events-none absolute bottom-0 flex="~ justify-center" mx-0 of-y-hidden>
       <div class="ellipse blue-ring" of-hidden />
     </div>
     <div bg="darkblue/10" pointer-events-none absolute inset-0 backdrop-blur-40 />
     <div class="world-container" flex="~ justify-center" pointer-events-none mx-0 of-y-hidden>
-      <div class="ellipse" flex="~ justify-center" of-hidden bg-white pt="16 lg:24">
-        <div h="220 lg:330 xl:550" i-continents:world-dots min-w-600 op-20 lg:w-1200 />
+      <div class="ellipse" flex="~ justify-center" of-hidden bg="neutral global-dark:neutral-0" pt="16 lg:24">
+        <div h="220 lg:330 xl:550" i-continents:world-dots min-w-600 text-neutral-800 lg:w-1200 />
       </div>
     </div>
   </section>

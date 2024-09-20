@@ -18,7 +18,7 @@ const { sectionRef } = useSection(props.slice.id, slice.value.primary.bgColor, {
 </script>
 
 <template>
-  <section ref="sectionRef" max-md:items-start :data-slice="slice">
+  <section ref="sectionRef" :data-slice="slice" relative max-md:items-start>
     <PillLinks :items />
   </section>
 </template>

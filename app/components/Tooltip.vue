@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { dark = true } = defineProps<{
-  dark?: boolean
-}>()
+defineProps<{ dark?: boolean }>()
 </script>
 
 <template>
@@ -13,12 +11,12 @@ const { dark = true } = defineProps<{
     </PopoverTrigger>
     <PopoverPortal>
       <PopoverContent as-child class="tooltip-animation" :side-offset="8" :collision-padding="8" side="bottom">
-        <div z-300 rounded-8 p-16 :class="dark ? 'bg-gradient-neutral' : 'bg-white shadow'">
+        <div :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow'" z-300 rounded-8 p-16>
           <slot />
         </div>
         <PopoverArrow as-child>
-          <div rotate-180>
-            <div aria-hidden i-nimiq:tooltip-triangle mt--1 h-8 w-16 class="tooltip-animation" :class="dark ? 'text-neutral' : 'text-white'" />
+          <div rotate-180 :class="{ dark }">
+            <div aria-hidden i-nimiq:tooltip-triangle mt--1 h-8 w-16 class="tooltip-animation" text="neutral dark:white" />
           </div>
         </PopoverArrow>
       </PopoverContent>

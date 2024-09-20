@@ -49,7 +49,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
 
 <template>
   <div relative>
-    <div flex="~ justify-end items-center" min-h-224 of-hidden px-24 pr-84>
+    <div flex="~ justify-end items-center" min-h-224 of-hidden px-24 :class="{ 'pr-84': canSendTx }">
       <transition-group
         tag="div" flex="~ justify-end items-center" enter-from-class="op-0" enter-active-class="transition-opacity duration-400 ease-in"
         :style="{ transform: `translate3d(${offset}px, 0, 0)` }"

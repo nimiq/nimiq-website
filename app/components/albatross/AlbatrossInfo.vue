@@ -21,7 +21,7 @@ const pillClass = computed(() => getLiveviewPillColor({ nonce: nonce.value }))
       <button v-if="canSendTx" :disabled="animationActive || status !== 'idle'" select-none :class="pillClass" @click="sendTx">
         Send Test Transaction
       </button>
-      <Tooltip absolute right-12 top-12>
+      <Tooltip dark absolute right-12 top-12>
         {{ statsTooltipContent }}
       </Tooltip>
     </div>

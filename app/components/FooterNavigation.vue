@@ -1,162 +1,92 @@
 <script lang="ts" setup>
-import type { NavigationDocumentData } from '~~/prismicio-types'
 import { SocialMedia } from '~/stores/global-content'
 
-// @unocss-include
-
-const props = defineProps<{ navigation: NavigationDocumentData }>()
-
-const linkGroups = computed(() => [
-  {
-    name: props.navigation.projectGroupName,
-    links: [...props.navigation.projectLinks, ...props.navigation.projectAdditionalFooterLinks],
-  },
-  {
-    name: props.navigation.techGroupName,
-    links: [...props.navigation.techLinks, ...props.navigation.techAdditionalFooterLinks],
-  },
-  {
-    name: props.navigation.appsGroupName,
-    links: [...props.navigation.appsLinks, ...props.navigation.appsAdditionalFooterLinks],
-  },
-  {
-    name: props.navigation.getStartedGroupName,
-    links: [...props.navigation.getStartedLinks, ...props.navigation.getStartedAdditionalFooterLinks],
-  },
-  {
-    name: props.navigation.communityGroupName,
-    links: [...props.navigation.communityLinks, ...props.navigation.communityAdditionalFooterLinks],
-  },
-  {
-    name: props.navigation.andMoreGroupName,
-    links: props.navigation.andMoreLinks.length ? props.navigation.andMoreLinks : [],
-  },
-])
-
-const currentYear = new Date().getFullYear()
-const copyrightYear = process.env.COPYRIGHT_YEAR
-  ? Math.max(Number.parseInt(process.env.COPYRIGHT_YEAR), currentYear)
-  : currentYear
+const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalContent())
 </script>
 
 <template>
-  <div class="mx-auto max-w-1440 flex flex-col justify-between gap-x-56 px-32 pb-80 pt-200 text-14 md:flex-row md:px-64">
-    <div class="order-2 flex flex-col justify-between md:order-0 lg:max-w-400 md:max-w-1/2">
-      <div class="flex flex-col">
-        <div class="flex flex-col gap-y-16">
-          <p v-if="navigation.newsletterCta">
-            {{ navigation.newsletterCta }}
-          </p>
-          <NewsletterEmailInput :placeholder="navigation.newsletterPlaceholder!" />
-          <p v-if="navigation.socialMediaCta" mt-16>
-            {{ navigation.socialMediaCta }}
-          </p>
-          <SocialMediaLogosList :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
-        </div>
-      </div>
-      <div>
-        <div i-nimiq:logos-nimiq-horizontal-mono class="mb-12 h-25 w-100 text-neutral-700" />
-        <p v-if="navigation.nimiqShortDescription" opacity-50>
-          {{ navigation.nimiqShortDescription }}
-        </p>
-        <ul aria-label="Links to our legal pages" role="list" class="legal-pages mt-32">
-          <li>
-            <a
-              href="https://www.iubenda.com/privacy-policy/78537710"
-              class="iubenda-nostyle no-brand iubenda-noiframe iubenda-embed"
-              title="Privacy Policy"
-            >
-              Privacy Policy
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.iubenda.com/privacy-policy/78537710/cookie-policy"
-              class="iubenda-nostyle no-brand iubenda-noiframe iubenda-embed"
-              title="Cookie Policy"
-            >
-              Cookie Policy
-            </a>
-          </li>
-        </ul>
+  <footer grid="~ gap-40 md:gap-64 items-start xl:gap-104" px="32 md:64 xl:72" pb="40 md:80 xl:104 2xl:136" data-section w-full max-w="$nq-max-width">
+    <div flex="~ col" area-contact text-sm>
+      <p v-if="navigation?.newsletterCta">
+        {{ navigation.newsletterCta }}
+      </p>
+      <NewsletterEmailInput nq-mt-16 :placeholder="navigation?.newsletterPlaceholder" />
+      <p v-if="navigation?.socialMediaCta" nq-mt-32>
+        {{ navigation.socialMediaCta }}
+      </p>
+      <SocialMediaLogosList mx--8 op-60 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
+    </div>
 
-        <div mt-24 opacity-30>
-          © Nimiq Foundation 2017-{{ copyrightYear }}
-        </div>
+    <div text="sm neutral-700" self-end area-meta>
+      <NuxtLink to="/" group w-max flex>
+        <div i-nimiq:logos-nimiq-horizontal-mono group-hocus:i-nimiq:logos-nimiq-horizontal text="20 md:22" op-80 />
+      </NuxtLink>
+      <p v-if="navigation?.nimiqShortDescription" nq-mt-16>
+        {{ navigation.nimiqShortDescription }}
+      </p>
+      <div text="neutral-800 hocus:neutral-900" transition-colors nq-mt-32 flex="~ gap-16 items-center">
+        <NuxtLink to="/privacy-policy" class="font-semibold op-60 hocus:op-90">
+          Privacy Policy
+        </NuxtLink>
+        <div aria-hidden size-4 rounded-full bg-current op-40 />
+        <NuxtLink to="/cookie-policy" class="font-semibold op-60 hocus:op-90">
+          Cookie Policy
+        </NuxtLink>
       </div>
+
+      <p text-neutral-600 nq-mt-32>
+        {{ copyrigthNotice }}
+      </p>
     </div>
-    <div v-if="linkGroups" class="grid grid-rows-[repeat(3,_min_content)] grid-cols-2 grow gap-y-40 overflow-hidden font-600 lg:grid-cols-3 md:max-w-555">
-      <div v-for="(linkGroup, index) in linkGroups" :key="`footer-nav-link-group-${index}`" border-b-1 border-neutral-400 pb-40 md:px-12 lg:pb-48>
-        <p mb-32 mt-0 w-full text-12 opacity-75 nq-label>
-          {{ linkGroup.name }}
-        </p>
-        <ul :aria-label="`${linkGroup.name} links`" role="list">
-          <li v-for="({ href, label }) in linkGroup.links" :key="`project-link-${href}`" mb-12>
-            <PrismicLink :field="href" class="font-semibold opacity-60 transition-opacity hocus:opacity-90">
-              {{ label }}
-            </PrismicLink>
-          </li>
-        </ul>
-      </div>
+
+    <div v-for="({ areaName, label, links }) in navigationBlocks" :key="areaName" :style="`grid-area ${areaName}`">
+      <p w-full text="xs neutral-700/80" nq-label>
+        {{ label }}
+      </p>
+      <ul nq-mt-32 :aria-label="`${label} links`" role="list">
+        <li v-for="({ href, label: linkLabel }, j) in links" :key="j" nq-mt-16>
+          <PrismicLink :field="href" font-semibold un-text="sm neutral-800 hocus:neutral-900" transition-colors>
+            {{ linkLabel }}
+          </PrismicLink>
+        </li>
+      </ul>
     </div>
-  </div>
+
+    <hr sr-only relative h-1 w-full bg-neutral-400 area-hr-1>
+    <hr sr-only relative h-1 w-full bg-neutral-400 area-hr-2 lg:hidden>
+    <hr sr-only relative h-1 w-full bg-neutral-400 area-hr-3 md:hidden>
+  </footer>
 </template>
 
 <style scoped>
-.grid div {
-  position: relative;
-}
+footer {
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'project tech'
+    'hr-1 hr-1'
+    'apps get-started'
+    'hr-2 hr-2'
+    'community and-more'
+    'hr-3 hr-3'
+    'contact contact'
+    'meta meta';
 
-.legal-pages {
-  @apply flex gap-16;
-
-  li + li {
-    @apply relative pl-20;
-
-    &:before {
-      @apply inline-block absolute left-0 top-1/2 -translate-y-1/2 transform rounded-full w-4 h-4 bg-neutral/40 content-empty;
-    }
+  @screen md {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      'contact project tech'
+      'contact hr-1 hr-1'
+      'contact apps get-started'
+      'contact hr-2 hr-2'
+      'meta community and-more';
   }
 
-  a {
-    @apply font-semibold transition-opacity opacity-60 hover:opacity-90 focus:opacity-90;
-  }
-}
-
-@media (min-width: 0px) {
-  .grid div:nth-child(2n + 1)::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    width: 100vw;
-    height: 1px;
-    background: white;
-    opacity: 0.1;
-  }
-}
-@media (min-width: 768px) {
-  .grid div:nth-child(2n + 1):not(:last-child)::after {
-    content: '';
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    width: 100vw;
-    height: 1px;
-    background: white;
-    opacity: 0.1;
-  }
-}
-@media (min-width: 1024px) {
-  .grid div:nth-child(6n + 1):not(:last-child)::after {
-    content: '';
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    width: 100vw;
-    height: 1px;
-    background: white;
-    opacity: 0.1;
+  @screen lg {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-areas:
+      'contact project tech apps'
+      'contact hr-1 hr-1 hr-1'
+      'meta get-started community and-more';
   }
 }
 </style>

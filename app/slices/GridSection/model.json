@@ -170,7 +170,20 @@
       "docURL": "...",
       "version": "sktwi1xtmkfgx8626",
       "description": "GridSection",
-      "primary": {},
+      "primary": {
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ]
+          }
+        }
+      },
       "items": {
         "headline": {
           "config": {

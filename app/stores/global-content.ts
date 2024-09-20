@@ -36,7 +36,57 @@ const socialMediaConfigs: Record<SocialMediaName, Pick<SocialMediaAttributes, 'c
 export const useGlobalContent = defineStore('global-content', () => {
   const { client } = usePrismic()
 
-  const { data: navigation } = useAsyncData('navigation', () => client.getSingle('navigation'))
+  const { data: navigationPage } = useAsyncData('navigation', () => client.getSingle('navigation'))
+  const navigation = computed(() => navigationPage.value?.data)
+
+  const navigationBlocks = computed(() => navigation.value
+    ? [
+        {
+          areaName: 'project',
+          label: navigation.value.projectGroupName,
+          links: [...navigation.value.projectLinks, ...navigation.value.projectAdditionalFooterLinks],
+        },
+        {
+          areaName: 'tech',
+          label: navigation.value.techGroupName,
+          links: [...navigation.value.techLinks, ...navigation.value.techAdditionalFooterLinks],
+        },
+        {
+          areaName: 'apps',
+          label: navigation.value.appsGroupName,
+          links: [...navigation.value.appsLinks, ...navigation.value.appsAdditionalFooterLinks],
+        },
+        {
+          areaName: 'get-started',
+          label: navigation.value.getStartedGroupName,
+          links: [...navigation.value.getStartedLinks, ...navigation.value.getStartedAdditionalFooterLinks],
+        },
+        {
+          areaName: 'community',
+          label: navigation.value.communityGroupName,
+          links: [...navigation.value.communityLinks, ...navigation.value.communityAdditionalFooterLinks],
+        },
+        {
+          areaName: 'and-more',
+          label: navigation.value.andMoreGroupName,
+          links: navigation.value.andMoreLinks,
+        },
+      ]
+    : [])
+
+  const currentDate = new Date()
+  const showHotCta = computed(() => navigation.value?.hottext
+    && (navigation.value?.hotsince ? new Date(navigation.value?.hotsince) <= currentDate : true)
+    && (navigation.value?.hotuntil ? new Date(navigation.value?.hotuntil) >= currentDate : true))
+  const hotCtaLink = computed(() => {
+    if (!showHotCta.value)
+      return
+    if (navigation.value?.hothref?.link_type !== 'Document' && navigation.value?.hothref?.link_type !== 'Web')
+      return
+    if ((navigation.value?.hothref as { type: string }).type === 'blog_page')
+      return `/blog/${(navigation.value?.hothref as { uid: string }).uid}`
+    return (navigation.value.hothref as { url: string }).url
+  })
 
   const { data: socialMediaPrismic } = useAsyncData('socialMedia', () => client.getByType('socialMedia'), { transform: data => data.results })
 
@@ -91,6 +141,9 @@ export const useGlobalContent = defineStore('global-content', () => {
 
   return {
     navigation,
+    navigationBlocks,
+    copyrigthNotice: `© Nimiq Foundation 2017-${new Date().getFullYear()}`,
+    hotCtaLink,
     socialMedias,
     nimiqApps,
     getSocialMediaById,

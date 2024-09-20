@@ -1,30 +1,27 @@
 <script setup lang="ts">
-import type { NavigationDocumentData } from '~~/prismicio-types'
 import { NavigationMenu } from 'radix-vue/namespaced'
 import { SocialMedia } from '~/stores/global-content'
 
-// @unocss-include
-
-const props = defineProps<{ navigation: NavigationDocumentData, isTriggerColorInverted: boolean }>()
+const { navigation } = storeToRefs(useGlobalContent())
 
 const currentTrigger = ref('')
 const selectedApp = ref(0)
 
 const { socialMedias } = storeToRefs(useGlobalContent())
 
-const internalProjectLinks = computed(() => props.navigation.projectLinks.length
-  ? props.navigation.projectLinks.filter(link => link.href.link_type === 'Document')
+const internalProjectLinks = computed(() => navigation.value?.projectLinks.length
+  ? navigation.value.projectLinks.filter(link => link.href.link_type === 'Document')
   : [])
-// const externalProjectLinks = computed(() => props.navigation.projectLinks.length
-//   ? props.navigation.projectLinks.filter(link => link.href.link_type === 'Web')
+// const externalProjectLinks = computed(() => navigation.value.projectLinks.length
+//   ? navigation.value.projectLinks.filter(link => link.href.link_type === 'Web')
 //   : [])
 </script>
 
 <template>
   <NavigationMenu.Root v-model="currentTrigger" relative items-center justify-end>
-    <NavigationMenu.List flex="~ items-center gap-x-32 justify-between" :class="isTriggerColorInverted ? 'text-white' : 'text-neutral'">
+    <NavigationMenu.List flex="~ items-center gap-x-32 justify-between" :class="false ? 'text-white' : 'text-neutral'">
       <!-- Apps -->
-      <NavigationMenu.Item v-if="navigation.appsGroupName && navigation.appsLinks.length">
+      <NavigationMenu.Item v-if="navigation?.appsGroupName && navigation?.appsLinks.length > 0">
         <NavigationMenu.Trigger class="trigger">
           {{ navigation.appsGroupName }}
         </NavigationMenu.Trigger>
@@ -65,7 +62,7 @@ const internalProjectLinks = computed(() => props.navigation.projectLinks.length
       </NavigationMenu.Item>
 
       <!-- Tech -->
-      <NavigationMenu.Item v-if="navigation.techGroupName && navigation.techLinks.length">
+      <NavigationMenu.Item v-if="navigation?.techGroupName && navigation?.techLinks.length > 0">
         <NavigationMenu.Trigger class="trigger">
           {{ navigation.techGroupName }}
         </NavigationMenu.Trigger>
@@ -95,7 +92,7 @@ const internalProjectLinks = computed(() => props.navigation.projectLinks.length
       </NavigationMenu.Item>
 
       <!-- Community -->
-      <NavigationMenu.Item v-if="navigation.communityGroupName && navigation.communityLinks.length">
+      <NavigationMenu.Item v-if="navigation?.communityGroupName && navigation.communityLinks.length > 0">
         <NavigationMenu.Trigger class="trigger">
           {{ navigation.communityGroupName }}
         </NavigationMenu.Trigger>
@@ -117,7 +114,7 @@ const internalProjectLinks = computed(() => props.navigation.projectLinks.length
       </NavigationMenu.Item>
 
       <!-- Project -->
-      <NavigationMenu.Item v-if="navigation.projectGroupName && internalProjectLinks.length">
+      <NavigationMenu.Item v-if="navigation?.projectGroupName && internalProjectLinks.length > 0">
         <NavigationMenu.Trigger class="trigger">
           {{ navigation.projectGroupName }}
         </NavigationMenu.Trigger>
@@ -135,7 +132,7 @@ const internalProjectLinks = computed(() => props.navigation.projectLinks.length
       </NavigationMenu.Item>
 
       <!-- Get started -->
-      <NavigationMenu.Item v-if="navigation.getStartedGroupName && navigation.getStartedLinks.length">
+      <NavigationMenu.Item v-if="navigation?.getStartedGroupName && navigation.getStartedLinks.length > 0">
         <NavigationMenu.Trigger nq-pill-lg nq-pill-blue>
           {{ navigation.getStartedGroupName }}
         </NavigationMenu.Trigger>

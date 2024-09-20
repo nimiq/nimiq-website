@@ -56,8 +56,10 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
     el.classList.add(...classes.split(' '))
     el.style.setProperty('--bg', css)
 
-    if (!limitWidth)
+    if (!limitWidth) {
       el.classList.add('nq-no-mx')
+      el.style.setProperty('--nq-max-width', 'none')
+    }
     if (!paddingY)
       el.classList.add('nq-no-py')
     if (!paddingX)

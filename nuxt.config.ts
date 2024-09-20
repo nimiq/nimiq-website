@@ -103,6 +103,9 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/api/liveview/policy': { swr: 3600 }, // cache 1 hour
+
+    '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
+    '/cookie-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710/cookie-policy' },
   },
 
   watch: ['server/**/*'],

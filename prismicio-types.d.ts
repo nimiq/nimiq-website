@@ -4361,6 +4361,21 @@ export type GridSectionSliceWithBackground = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *GridSection → Three columns Image Text → Primary*
+ */
+export interface GridSectionSliceThreeColumnsImageTextPrimary {
+  /**
+   * Background Color field in *GridSection → Three columns Image Text → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.threeColumnsImageText.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue'>
+}
+
+/**
  * Primary content in *GridSection → Items*
  */
 export interface GridSectionSliceThreeColumnsImageTextItem {
@@ -4406,7 +4421,7 @@ export interface GridSectionSliceThreeColumnsImageTextItem {
 export type GridSectionSliceThreeColumnsImageText =
   prismic.SharedSliceVariation<
     'threeColumnsImageText',
-    Record<string, never>,
+    Simplify<GridSectionSliceThreeColumnsImageTextPrimary>,
     Simplify<GridSectionSliceThreeColumnsImageTextItem>
   >
 
@@ -9704,6 +9719,7 @@ declare module '@prismicio/client' {
       GridSectionSliceDefaultPrimary,
       GridSectionSliceThreeColumnsImageText,
       GridSectionSliceThreeColumnsImageTextItem,
+      GridSectionSliceThreeColumnsImageTextPrimary,
       GridSectionSliceVariation,
       GridSectionSliceWithBackground,
       GridSectionSliceWithBackgroundItem,

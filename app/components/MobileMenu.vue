@@ -1,42 +1,9 @@
 <script setup lang="ts">
-import type { NavigationDocumentData } from '~~/prismicio-types'
 import { SocialMedia } from '~/stores/global-content'
 
-const props = defineProps<{ navigation: NavigationDocumentData, isTriggerColorInverted: boolean }>()
-
 const menuVisible = ref(false)
-const currentYear = new Date().getFullYear()
-const copyrightYear = process.env.COPYRIGHT_YEAR
-  ? Math.max(Number.parseInt(process.env.COPYRIGHT_YEAR), currentYear)
-  : currentYear
 
-const linkGroups = [
-  {
-    name: props.navigation.getStartedGroupName,
-    links: props.navigation.getStartedAdditionalFooterLinks,
-  },
-  {
-    name: props.navigation.newToCryptoTitle,
-    links: props.navigation.newToCryptoLinks,
-  },
-  {
-    name: props.navigation.appsGroupName,
-    links: props.navigation.appsLinks,
-  },
-  {
-    name: props.navigation.techGroupName,
-    links: props.navigation.techLinks,
-  },
-  {
-    name: props.navigation.projectGroupName,
-    links: props.navigation.projectLinks,
-  },
-  {
-    name: props.navigation.communityGroupName,
-    links: props.navigation.communityLinks,
-  },
-
-]
+const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalContent())
 </script>
 
 <template>
@@ -49,7 +16,7 @@ const linkGroups = [
         <div
           cursor-pointer opacity-50 hocus:opacity-60
           class="i-nimiq:hamburger-menu scale-x--100"
-          :class="{ 'text-white': isTriggerColorInverted }"
+          :class="{ 'text-white': false }"
         />
       </DropdownMenuTrigger>
 
@@ -59,15 +26,15 @@ const linkGroups = [
           :side-offset="12"
         >
           <DropdownMenuItem class="flex gap-20">
-            <PrismicLink v-if="navigation.getStartedLinks.at(0)?.href" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
+            <PrismicLink v-if="navigation?.getStartedLinks.at(0)?.href" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
               {{ navigation.getStartedLinks[0]?.label }}
             </PrismicLink>
-            <PrismicLink v-if="navigation.getStartedLinks.at(1)?.href" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
+            <PrismicLink v-if="navigation?.getStartedLinks.at(1)?.href" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
               {{ navigation.getStartedLinks[2]?.label }}
             </PrismicLink>
           </DropdownMenuItem>
           <DropdownMenuItem class="my-32">
-            <PrismicLink v-if="navigation.getStartedLinks.at(2)?.href" :field="navigation.getStartedLinks.at(2)!.href" nq-arrow nq-pill-tertiary>
+            <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" :field="navigation.getStartedLinks.at(2)!.href" nq-arrow nq-pill-tertiary>
               {{ navigation.getStartedLinks[2]?.description }}
             </PrismicLink>
           </DropdownMenuItem>
@@ -78,28 +45,21 @@ const linkGroups = [
               type="single"
               :collapsible="true"
             >
-              <template
-                v-for="({ links, name }) in linkGroups"
-                :key="name"
-              >
+              <template v-for="({ links, label }) in navigationBlocks" :key="label">
                 <DropdownMenuSeparator v-if="links.length" h-1 bg-neutral-300 />
 
-                <AccordionItem
-                  v-if="links.length"
-                  overflow-hidden py-8
-                  :value="name!"
-                >
+                <AccordionItem v-if="links.length" of-hidden py-8 :value="label as string">
                   <AccordionHeader>
                     <AccordionTrigger h-45 flex flex-1 cursor-default items-center gap-x-8 bg-white px-5 leading-none outline-none>
-                      <span text-12 uppercase>{{ name }}</span>
+                      <span text-12 uppercase>{{ label }}</span>
                       <div
                         class="i-nimiq:chevron-down text-10 text-neutral transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180"
                       />
                     </AccordionTrigger>
                   </AccordionHeader>
-                  <AccordionContent class="content overflow-hidden">
-                    <PrismicLink v-for="{ label, href }, index in links" :key="`${name}-link-${index}`" :field="href" w-full flex items-center gap-16 whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold nq-arrow>
-                      {{ label }}
+                  <AccordionContent class="content" of-hidden>
+                    <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" :field="href" w-full flex="~ items-center gap-16" whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold nq-arrow>
+                      {{ linkLabel }}
                     </PrismicLink>
                   </AccordionContent>
                 </AccordionItem>
@@ -111,23 +71,18 @@ const linkGroups = [
 
           <SocialMediaLogosList :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
 
-          <!-- Legal pages -->
-          <ul
-            v-if="navigation.legalPages.length > 0"
-            aria-label="Links to our legal pages"
-            role="list"
-            class="legal-pages"
-          >
-            <li v-for="(legalPage, index) in navigation.legalPages" :key="`footer-legal-page-link-${index}`">
-              <prismic-link :field="legalPage.href">
-                {{ legalPage.label }}
-              </prismic-link>
-            </li>
-          </ul>
+          <div text="neutral-800 hocus:neutral-900" transition-colors nq-mt-32 flex="~ gap-16 items-center">
+            <NuxtLink to="/privacy-policy" class="font-semibold op-60 hocus:op-90">
+              Privacy Policy
+            </NuxtLink>
+            <div aria-hidden size-4 rounded-full bg-current op-40 />
+            <NuxtLink to="/cookie-policy" class="font-semibold op-60 hocus:op-90">
+              Cookie Policy
+            </NuxtLink>
+          </div>
 
-          <!-- Copyright notice -->
-          <p mt-16 font-normal opacity-30>
-            © Nimiq Foundation 2017-{{ copyrightYear }}
+          <p text-neutral-600 nq-mt-32>
+            {{ copyrigthNotice }}
           </p>
 
           <DropdownMenuArrow class="mr-4 fill-white" />

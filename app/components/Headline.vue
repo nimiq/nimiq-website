@@ -18,7 +18,7 @@ const headlineTag = computed(() => props.headline.filter(i => i.type.startsWith(
 </script>
 
 <template>
-  <div v-if="iconName" :class="iconName" text-54 op-15 nq-mb-24 />
+  <div v-if="iconName" :class="iconName" nq-mb-24 text-54 op-15 />
   <span v-if="label" text="14/16.8 center" mb-8 nq-label>{{ label }}</span>
   <PrismicText :wrapper="headlineTag" :field="headline" />
   <PrismicText v-if="!isEmpty(subline)" wrapper="p" :field="subline" />
