@@ -161,7 +161,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
       </NavigationMenu.Indicator>
     </NavigationMenu.List>
 
-    <div absolute right-0 top-full w-screen perspective-2000 flex="~ justify-end">
+    <div absolute right-0 top-full w-full perspective-2000 flex="~ justify-end">
       <NavigationMenu.Viewport
         class="viewport"
         relative mt-20 origin-top-center overflow-hidden rounded-6 bg-neutral-0 shadow duration-300
