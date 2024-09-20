@@ -53,6 +53,7 @@ useDark()
       </header>
     </div>
     <SliceZone pt="80 lg:96" wrapper="main" :slices="post?.data.body ?? []" :components />
+    <Disclaimer />
   </NuxtLayout>
 </template>
 
