@@ -6,11 +6,11 @@ import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
   shortcuts: [
+    // TODO move this to nimiq-css
     [/^nq-(mt|mb|pt|pb)-16$/, ([, t]) => `${t}-12 xl:${t}-16`],
     [/^nq-(mt|mb|pt|pb)-32$/, ([, t]) => `${t}-24 md:${t}-32`],
+    [/^nq-(mt|mb|pt|pb)-40$/, ([, t]) => `${t}-32 xl:${t}-40`],
     [/^nq-(mt|mb|pt|pb)-48$/, ([, t]) => `${t}-32 xl:${t}-40 2xl:${t}-48`],
-
-    // TODO move this to nimiq-css
     { 'text-xs': 'text-12 lg:text-13 2xl:text-14 lh-[1.3]' },
     { 'text-sm': 'text-14 lg:text-15 2xl:text-16 lh-[1.3]' },
   ],

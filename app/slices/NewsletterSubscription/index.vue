@@ -8,6 +8,6 @@ const { sectionRef } = useSection(props.slice.id, props.slice.primary.bgColor)
 <template>
   <section ref="sectionRef">
     <PrismicText :field="slice.primary.cta" wrapper="h3" />
-    <input type="text" nq-input-box>
+    <NewsletterEmailInput text-24 nq-mt-40 />
   </section>
 </template>
