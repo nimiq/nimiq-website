@@ -4,7 +4,7 @@ import type { Content } from '@prismicio/client'
 const props = defineProps(getSliceComponentProps<Content.NewsletterFormSlice>())
 const { sectionRef } = useSection(props.slice.id, 'grey')
 
-const email = ref('')
+const email = useRouteQuery('email', '')
 
 const communicationPermission = ref(false)
 const nimiqTopicsOptions = reactive([

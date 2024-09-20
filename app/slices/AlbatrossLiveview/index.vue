@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
-const { sectionRef } = useSection(props.slice.id, 'darkblue', { paddingX: false, limitWidth: true })
+const { sectionRef } = useSection(props.slice.id, 'darkblue', { paddingX: false, limitWidth: false })
 </script>
 
 <template>

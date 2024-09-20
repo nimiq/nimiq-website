@@ -11,7 +11,7 @@ const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalC
         {{ navigation.newsletterCta }}
       </p>
       <NewsletterEmailInput nq-mt-16 :placeholder="navigation?.newsletterPlaceholder" />
-      <p v-if="navigation?.socialMediaCta" nq-mt-32>
+      <p v-if="navigation?.socialMediaCta" nq-mt-16>
         {{ navigation.socialMediaCta }}
       </p>
       <SocialMediaLogosList mx--8 op-60 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />

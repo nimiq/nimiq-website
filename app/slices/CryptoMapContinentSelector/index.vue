@@ -52,6 +52,8 @@ const iframeUrl = computed(() => {
   const link = props.slice.primary.continents.find(c => c.label === activeContinent.value)!.crypto_map_link
   return link.embed_url
 })
+
+const allowMapInteraction = ref(false)
 </script>
 
 <template>
@@ -89,9 +91,21 @@ const iframeUrl = computed(() => {
         </li>
       </ul>
     </div>
-    <div flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-32>
+    <div grid="~ *:col-span-full *:row-span-full" mx-auto flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-32>
+      <transition leave-active-class="transition duration-500 [&_:is(button,p)]:duration-300 nq-ease [&_:is(button,p)]:ease-out [&_:is(button,p)]:transition" leave-to-class="op-0 [&_button]:translate-y-96 [&_p]:translate-y--96 [&_:is(button,p)]:op-0" leave-from-class="op-100 [&_p]:translate-y-0 [&_button]:translate-y-0 [&_:is(button,p)]:op-100">
+        <div v-if="!allowMapInteraction" flex="~ col gap-8 items-center justify-center" z-1 rounded-8 bg-neutral bg-op-80>
+          <p text="white min-18 max-24" font-bold>
+            Explore in {{ activeContinent }}
+          </p>
+          <button gap-12 nq-pill-lg nq-pill-blue @click="allowMapInteraction = true">
+            <div i-nimiq:pin />
+            <span>Let's go!</span>
+          </button>
+        </div>
+      </transition>
+
       <iframe
-        aspect="9/16 lg:initial" mx-auto size-full rounded-8 lg:h-full max-lg:max-h-80dvh ring="1.5 neutral-200" title="Crypto Map"
+        w-full aspect="9/16 lg:initial" rounded-8 lg:h-full max-lg:max-h-80dvh ring="1.5 neutral-200" title="Crypto Map"
         :src="iframeUrl"
         sandbox="allow-scripts allow-same-origin allow-popups"
         frameborder="0"
