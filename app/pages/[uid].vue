@@ -24,5 +24,8 @@ defineOgImageComponent('DefaultImage')
   <NuxtLayout>
     <NuxtRouteAnnouncer />
     <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components="components" />
+    <div fixed bottom-32 right-32 z-102>
+      <LockBadge v-if="page?.data.draft" />
+    </div>
   </NuxtLayout>
 </template>

@@ -47,8 +47,8 @@ export default defineNuxtConfig({
     url: 'https://nimiq.com',
 
     // These are just default values and they should be overwritten by the page
-    name: 'Nimiq Website',
-    description: '',
+    name: 'Nimiq',
+    description: 'The most accepted cryptocurrency in the world',
   },
 
   ogImage: {
@@ -134,7 +134,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',
-      title: 'Nimiq',
       link: [
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/icon', href: '/favicon.ico' },

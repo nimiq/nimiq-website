@@ -19,8 +19,20 @@ export function useProse(_post: MaybeRef<BlogPageDocument | null>) {
   const WPM = 225
   const readingTime = computed(() => Math.ceil(prose.value.trim().split(/\s+/).length / WPM))
 
+  const title = computed(() => post.value?.data.meta_title)
+  const description = computed(() => post.value?.data.meta_description || prose.value.trim().split(/(?<=[.?!:;])\s/).slice(0, 2).join(' '))
+  const image = computed(() => ({
+    alt: post.value?.data.image.alt || '',
+    url: post.value?.data.image.url || '',
+    width: post.value?.data.image.dimensions!.width,
+    height: post.value?.data.image.dimensions!.height,
+  }))
+
   return {
     prose,
     readingTime,
+    title,
+    description,
+    image,
   }
 }

@@ -7,22 +7,16 @@ import { components } from '~/slices'
 const postSlug = useRouteParams<string>('post')
 
 const { data: post } = usePrismicDocumentByUID<Content.BlogPageDocument>('blog_page', postSlug.value)
+if (!import.meta.dev && post.value?.data.draft)
+  throw new Error(`Post ${post.value?.href} is in draft but somehow we tried to generate it :/`)
 
-// TODO Seo
-useHead({
-  title: post.value?.data.meta_title,
-  meta: [
-    { name: 'description', content: post.value?.data.meta_description },
-  ],
-})
+const { readingTime, title, description, image } = useProse(post)
 
-// TODO Image
-defineOgImageComponent('DefaultImage')
-
-const { readingTime } = useProse(post)
+useHead({ title: title.value })
+useSeoMeta({ description: description.value, twitterTitle: title.value, twitterDescription: description.value, twitterCard: 'summary_large_image' })
+defineOgImage(image.value)
 
 const isDraft = computed(() => post.value?.data.draft === undefined ? true : post.value?.data.draft)
-// TODO Throw error if we are in production and the post is a draft
 
 const articleRef = ref<HTMLElement>()
 useIntersectionObserver(articleRef, () => {
