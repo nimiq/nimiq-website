@@ -7,7 +7,7 @@ const items = rows * columns.value / 2
 </script>
 
 <template>
-  <div w-screen of-hidden>
+  <div w-full of-hidden>
     <div aria-hidden="true" class="grid-parent" :style="`--rows:${rows};--cols:${columns}`">
       <div v-for="i in items" :key="i" i-nimiq:logos-nimiq-mono text-neutral-400 op="$op" :style="`--op: ${1}`" />
     </div>

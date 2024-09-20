@@ -37,9 +37,7 @@ watch([arrivedState, directions], () => {
   </header>
 
   <slot />
+  <HexagonsBackground />
 
-  <footer v-if="navigation">
-    <HexagonsBackground />
-    <FooterNavigation />
-  </footer>
+  <FooterNavigation />
 </template>
