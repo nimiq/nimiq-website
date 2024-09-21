@@ -6,7 +6,7 @@ import { components } from '~/slices'
 const postSlug = useRouteParams<string>('post')
 
 const { client } = usePrismic()
-const { data: post } = useAsyncData('blog_page', () => client.getByUID('blog_page', postSlug.value), { suspense: true })
+const { data: post } = useAsyncData('blog_page', () => client.getByUID('blog_page', postSlug.value))
 if (!import.meta.dev && post.value?.data.draft)
   throw new Error(`Post ${post.value?.href} is in draft but somehow we tried to generate it :/`)
 
