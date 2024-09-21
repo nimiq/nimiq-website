@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { Content } from '@prismicio/client'
 import mediumZoom from 'medium-zoom'
 import { ref } from 'vue'
 import { components } from '~/slices'
 
 const postSlug = useRouteParams<string>('post')
 
-const { data: post } = usePrismicDocumentByUID<Content.BlogPageDocument>('blog_page', postSlug.value)
+const { client } = usePrismic()
+const { data: post } = useAsyncData('blog_page', () => client.getByUID('blog_page', postSlug.value), { suspense: true })
 if (!import.meta.dev && post.value?.data.draft)
   throw new Error(`Post ${post.value?.href} is in draft but somehow we tried to generate it :/`)
 

@@ -27,7 +27,9 @@ export default defineNuxtModule({
       throw new Error('Could not find master ref')
 
     const pages = await prerenderPages({ prismicUrl, ref, prismicAccessToken, documentType: 'page' })
-    addPrerenderRoutes(pages)
+    // TODO Remove this in the future
+    const ignorePages = ['/contact']
+    addPrerenderRoutes(pages.filter(page => !ignorePages.includes(page)))
     const blogPosts = await prerenderPages({ prismicUrl, ref, prismicAccessToken, documentType: 'blog_page' }).then(uids => uids.map(uid => `/blog${uid}`))
     addPrerenderRoutes(blogPosts)
   },
