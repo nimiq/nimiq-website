@@ -7,7 +7,7 @@ const progress = computed(() => Math.min(props.block.votes / requiredVotes.value
 </script>
 
 <template>
-  <div :class="{ accepted: progress === 1 }" title="Macro Block" flex="~ col justify-between items-center shrink-0" text="14 white center" relative my--24 h-208 w-160 rounded-8 bg-green transition-300>
+  <div :class="{ accepted: progress === 1 }" title="Macro Block" flex="~ col justify-between items-center shrink-0" text="14 white center" relative my--24 h-208 w-160 rounded-8 bg-green text-white transition-300>
     <header text-11 font-bold lh-24 uppercase tracking="0.1em">
       Macro Block
     </header>
