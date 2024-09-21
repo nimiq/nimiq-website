@@ -25,11 +25,11 @@ const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalC
         {{ navigation.nimiqShortDescription }}
       </p>
       <div text="neutral-800 hocus:neutral-900" transition-colors nq-mt-32 flex="~ gap-16 items-center">
-        <NuxtLink to="/privacy-policy" class="font-semibold op-60 hocus:op-90">
+        <NuxtLink to="/privacy-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
           Privacy Policy
         </NuxtLink>
         <div aria-hidden size-4 rounded-full bg-current op-40 />
-        <NuxtLink to="/cookie-policy" class="font-semibold op-60 hocus:op-90">
+        <NuxtLink to="/cookie-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
           Cookie Policy
         </NuxtLink>
       </div>
