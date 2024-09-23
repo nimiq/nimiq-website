@@ -31,6 +31,41 @@ export default defineConfig({
         selector: s => `html.dark ${s}`,
       }
     },
+
+    (matcher) => {
+      const motionVariants = ['from-start', 'to-start', 'from-end', 'to-end']
+      for (const variant of motionVariants) {
+        if (matcher.startsWith(`motion-${variant}:`)) {
+          return {
+            matcher: matcher.slice(`motion-${variant}:`.length),
+            selector: s => `[data-motion=${variant}]${s}`,
+          }
+        }
+      }
+      return matcher
+    },
+
+    (matcher) => {
+      if (matcher.startsWith('data-visible:')) {
+        return {
+          matcher: matcher.slice('data-visible:'.length),
+          selector: s => `[data-state=visible]${s}, [data-state=visible] ${s}`,
+        }
+      }
+      if (matcher.startsWith('data-hidden:')) {
+        return {
+          matcher: matcher.slice('data-hidden:'.length),
+          selector: s => `[data-state=hidden]${s}, [data-state=hidden] ${s}`,
+        }
+      }
+      if (!matcher.startsWith('data-closed:'))
+        return matcher
+      return {
+        matcher: matcher.slice(12),
+        selector: s => `[data-state=closed]${s}, [data-state=closed] ${s}`,
+      }
+      return matcher
+    },
   ],
   presets: [
     presetUno({ attributifyPseudo: true }),
@@ -68,4 +103,39 @@ export default defineConfig({
     'document',
     'document-vertical-line',
   ].map(x => `i-nimiq:icons-lg-${x}`),
+
+  theme: {
+    animation: {
+      timingFns: {
+        'scale-in': 'ease',
+        'scale-out': 'ease',
+        'fade-in': 'ease',
+        'fade-out': 'ease',
+        'enter-from-left': 'ease',
+        'enter-from-right': 'ease',
+        'exit-to-left': 'ease',
+        'exit-to-right': 'ease',
+      },
+      durations: {
+        'scale-out': '200ms',
+        'scale-in': '200ms',
+        'fade-in': '200ms',
+        'fade-out': '200ms',
+        'enter-from-left': '250ms',
+        'enter-from-right': '250ms',
+        'exit-to-left': '250ms',
+        'exit-to-right': '250ms',
+      },
+      keyframes: {
+        'enter-from-right': '{from {opacity:0;transform:translateX(200px)} to {opacity:1;transform:translateX(0)}}',
+        'enter-from-left': '{from {opacity:0;transform:translateX(-200px)} to {opacity:1;transform:translateX(0)}}',
+        'exit-to-right': '{from {opacity:1;transform:translateX(0)} to {opacity:0;transform:translateX(200px)}}',
+        'exit-to-left': '{from {opacity:1;transform:translateX(0)} to {opacity:0;transform:translateX(-200px)}}',
+        'scale-in': '{from {opacity:0;transform:rotateX(-10deg) scale(0.9)} to {opacity:1;transform:rotateX(0deg) scale(1)}}',
+        'scale-out': '{from {opacity:1;transform:rotateX(0deg) scale(1)} to {opacity:0;transform:rotateX(-10deg) scale(0.95)}}',
+        'fade-in': '{from {opacity:0} to {opacity:1}}',
+        'fade-out': '{from {opacity:1} to {opacity:0}}',
+      },
+    },
+  },
 })
