@@ -85,12 +85,12 @@
       "lottieAnimation": {
         "__TYPE__": "LinkContent",
         "value": {
+          "__TYPE__": "FileLink",
           "id": "mock_Media_link",
-          "kind": "image/jpeg",
+          "kind": "file",
           "name": "mock_name",
           "url": "https://source.unsplash.com/daily",
-          "size": "0",
-          "__TYPE__": "FileLink"
+          "size": "0"
         }
       },
       "playStore": {
@@ -170,34 +170,34 @@
       "videoHigh": {
         "__TYPE__": "LinkContent",
         "value": {
+          "__TYPE__": "FileLink",
           "id": "mock_Media_link",
-          "kind": "image/jpeg",
+          "kind": "file",
           "name": "mock_name",
           "url": "https://source.unsplash.com/daily",
-          "size": "0",
-          "__TYPE__": "FileLink"
+          "size": "0"
         }
       },
       "videoMedium": {
         "__TYPE__": "LinkContent",
         "value": {
+          "__TYPE__": "FileLink",
           "id": "mock_Media_link",
-          "kind": "image/jpeg",
+          "kind": "file",
           "name": "mock_name",
           "url": "https://source.unsplash.com/daily",
-          "size": "0",
-          "__TYPE__": "FileLink"
+          "size": "0"
         }
       },
       "videoLow": {
         "__TYPE__": "LinkContent",
         "value": {
+          "__TYPE__": "FileLink",
           "id": "mock_Media_link",
-          "kind": "image/jpeg",
+          "kind": "file",
           "name": "mock_name",
           "url": "https://source.unsplash.com/daily",
-          "size": "0",
-          "__TYPE__": "FileLink"
+          "size": "0"
         }
       },
       "subline": {
@@ -785,12 +785,12 @@
       "lottieAnimation": {
         "__TYPE__": "LinkContent",
         "value": {
+          "__TYPE__": "FileLink",
           "id": "mock_Media_link",
-          "kind": "image/jpeg",
+          "kind": "file",
           "name": "mock_name",
           "url": "https://source.unsplash.com/daily",
-          "size": "0",
-          "__TYPE__": "FileLink"
+          "size": "0"
         }
       },
       "image": {
@@ -864,6 +864,11 @@
         "__TYPE__": "FieldContent",
         "value": "title",
         "type": "Text"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "grey",
+        "type": "Select"
       }
     },
     "items": [

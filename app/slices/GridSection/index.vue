@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-// TODO GridSectionSlice ahas a link and link label. Is that being used?
+// TODO GridSectionSlice has a link and link label. Is that being used?
 
 const props = defineProps(getSliceComponentProps<Content.GridSectionSlice>())
 const { sectionRef } = useSection(props.slice.id, props.slice.primary.bgColor)
@@ -38,7 +38,7 @@ const { sectionRef } = useSection(props.slice.id, props.slice.primary.bgColor)
     <template v-else-if="slice.variation === 'threeColumnsImageText'">
       <ul flex="~ col lg:row gap-x-24 gap-y-40" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1>
-          <PrismicImage :field="image" mx-auto max-h-229 w-full rounded-8 object-contain />
+          <ResponsiveImage :image mx-auto max-h-229 flex rounded object-contain w="initial md:w-max lg:initial" dark:bg-neutral-200 />
           <PrismicText wrapper="h3" text="20/26 md:center" mt-24 :field="headline" />
         </li>
       </ul>

@@ -847,6 +847,19 @@
             "label": "subheadline",
             "placeholder": ""
           }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "darkblue",
+              "grey",
+              "white"
+            ],
+            "default_value": "darkblue"
+          }
         }
       },
       "items": {},

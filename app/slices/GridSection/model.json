@@ -96,7 +96,7 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background Color*",
+            "label": "Background Color [DEPRECATED]",
             "placeholder": "",
             "options": [
               "white",
@@ -180,7 +180,8 @@
               "grey",
               "white",
               "darkblue"
-            ]
+            ],
+            "default_value": "grey"
           }
         }
       },
@@ -198,8 +199,27 @@
           "type": "Image",
           "config": {
             "label": "Image",
-            "constraint": {},
-            "thumbnails": []
+            "constraint": {
+              "width": 416,
+              "height": 229
+            },
+            "thumbnails": [
+              {
+                "name": "Lg",
+                "width": 320,
+                "height": 229
+              },
+              {
+                "name": "Md",
+                "width": 624,
+                "height": 229
+              },
+              {
+                "name": "Sm",
+                "width": 311,
+                "height": 229
+              }
+            ]
           }
         },
         "bgColor": {

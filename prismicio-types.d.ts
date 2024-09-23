@@ -4270,7 +4270,7 @@ export type GridSectionSliceDefault = prismic.SharedSliceVariation<
  */
 export interface GridSectionSliceWithBackgroundPrimary {
   /**
-   * Background Color* field in *GridSection → With Background → Primary*
+   * Background Color [DEPRECATED] field in *GridSection → With Background → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -4369,10 +4369,11 @@ export interface GridSectionSliceThreeColumnsImageTextPrimary {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: grey
    * - **API ID Path**: grid_section.threeColumnsImageText.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue'>
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 }
 
 /**
@@ -4397,7 +4398,7 @@ export interface GridSectionSliceThreeColumnsImageTextItem {
    * - **API ID Path**: grid_section.items[].image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>
+  image: prismic.ImageField<'Lg' | 'Md' | 'Sm'>
 
   /**
    * Background Color field in *GridSection → Items*
@@ -5477,6 +5478,17 @@ export interface HeroSectionSliceHome2024Primary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   subheadline: prismic.KeyTextField
+
+  /**
+   * Background Color field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: darkblue
+   * - **API ID Path**: hero_section.home2024.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'darkblue' | 'grey' | 'white', 'filled'>
 }
 
 /**

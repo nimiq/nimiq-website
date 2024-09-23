@@ -1,21 +1,23 @@
 <script setup lang="ts">
-import type { Content } from '@prismicio/client'
 import { components } from '~/slices'
 
-const { data: page } = useSinglePrismicDocument<Content.Home2024Document>('home_2024')
+const { client } = usePrismic()
+const { data: page } = useAsyncData('home', () => client.getByType('home_2024'), { transform: data => data.results[0] })
 
 useHead({
   title: page.value?.data.meta_title,
   meta: [
-    { name: 'description', content: page.value?.data.meta_description },
+    { name: 'description', content: page?.value?.data.meta_description },
   ],
 })
 
 defineOgImageComponent('DefaultImage', { title: 'Nimiq' })
+
+const darkHeader = computed(() => (page.value?.data.slices.at(0)?.primary as { bgColor: string }).bgColor === 'darkblue')
 </script>
 
 <template>
-  <NuxtLayout>
+  <NuxtLayout :dark-header>
     <NuxtRouteAnnouncer />
     <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
   </NuxtLayout>
