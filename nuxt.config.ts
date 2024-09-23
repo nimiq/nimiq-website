@@ -51,6 +51,10 @@ export default defineNuxtConfig({
     description: 'The most accepted cryptocurrency in the world',
   },
 
+  sitemap: {
+    // Read more in ./modules/prerender-routes.ts
+  },
+
   ogImage: {
     fonts: ['Mulish:700'],
   },
