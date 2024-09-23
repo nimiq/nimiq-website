@@ -102,6 +102,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
+    // Check ./modules/prerender-routes.ts to see more about this
+
     '/api/liveview/policy': { swr: 3600 }, // cache 1 hour
 
     '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
@@ -119,6 +121,9 @@ export default defineNuxtConfig({
       options: {
         target: 'esnext',
       },
+    },
+    prerender: {
+      routes: ['/sitemap.xml'],
     },
   },
 
