@@ -16,7 +16,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
 </script>
 
 <template>
-  <NavigationMenuRoot v-if="navigation" relative class="header-nav">
+  <NavigationMenuRoot v-if="navigation" class="header-nav" relative>
     <NavigationMenuList flex="~ items-center">
       <NavigationMenuItem>
         <NavigationMenuTrigger class="trigger">
@@ -154,14 +154,14 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>
-      <NavigationMenuIndicator flex="~ items-end justify-center" top-full z-100 mt-5 h-16 of-hidden transition-transform data-hidden:animate-fade-out data-visible:animate-fade-in data-hidden:op-0>
-        <div i-nimiq:tooltip-triangle border-space text-white shadow />
+      <NavigationMenuIndicator flex="~ items-end justify-center" top-full z-100 mt-5 h-16 of-hidden drop-shadow transition-transform data-hidden:animate-fade-out data-visible:animate-fade-in data-hidden:op-0>
+        <div i-nimiq:tooltip-triangle text-white />
       </NavigationMenuIndicator>
     </NavigationMenuList>
 
-    <div absolute right-0 top-full min-w-full flex="~ justify-center" perspective-2000>
+    <div flex="~ justify-center" absolute right-0 top-full z-10 min-w-full perspective-2000>
       <NavigationMenuViewport
-        transition="[width,height]" h="$radix-navigation-menu-viewport-height" animate="scale-in data-closed:scale-out" min-w="$radix-navigation-menu-viewport-width" relative mt-20 origin-top-center animate-scale-in of-hidden rounded-12 bg-white duration-300
+        transition="[width,height]" h="$radix-navigation-menu-viewport-height" animate="scale-in data-closed:scale-out" min-w="$radix-navigation-menu-viewport-width" relative z-1 mt-20 origin-top-center animate-scale-in of-hidden rounded-12 bg-white shadow duration-300
       />
     </div>
   </NavigationMenuRoot>
@@ -169,6 +169,9 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
 
 <style>
 nav.header-nav {
+  > div {
+    --uno: 'z-1';
+  }
   .trigger {
     --uno: 'bg-transparent px-16 py-4 font-bold text-neutral-800 hocus:text-neutral-900 data-open:op-80';
   }
