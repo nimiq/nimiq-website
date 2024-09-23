@@ -31,31 +31,13 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
       <PrismicLink v-if="hasLink" nq-arrow nq-pill nq-pill-lg nq-pill-blue :field="p.linkHref">
         {{ p.linkLabel }}
       </PrismicLink>
-      <!-- <PrismicLink v-if="hasSecondaryLink" nq-arrow :field="p.secondaryLinkHref">
-        {{ p.secondaryLinkLabel }}
-      </PrismicLink> -->
+
       <PrismicLink v-if="hasVideoLink" un-text="neutral-700 hocus:neutral-800" transition-colors :field="p.videoHref" flex="~ gap-10 items-center">
         <div i-nimiq:triangle-right text-16 />
         <span font-semibold>
           {{ p.videoLabel }}
         </span>
       </PrismicLink>
-
-      <!-- <ArrowLink
-        v-if="secondaryLink.href && secondaryLink.label"
-        size="big"
-        :color="usableBackgroundColor.needsColorInversion ? 'white' : 'blue'"
-        :href="secondaryLink.href"
-        :label="secondaryLink.label"
-      />
-
-      <VideoLink
-        v-if="video.href && video.label"
-        is-big
-        :color="usableBackgroundColor.needsColorInversion ? 'white' : 'dark-grey'"
-        :href="video.href"
-        :label="video.label"
-      /> -->
     </div>
   </section>
 </template>
