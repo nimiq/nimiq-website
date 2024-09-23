@@ -6,6 +6,6 @@ defineProps<{ darkHeader: boolean }>()
   <!-- eslint-disable vue/no-multiple-template-root -->
   <NavigationHeader :dark-header />
   <slot />
-  <HexagonsBackground z-1 mb="-130 md:-180" mt--200 />
+  <HexagonsBackground z-1 mb="-130 lg:-180" mt--200 />
   <NavigationFooter />
 </template>

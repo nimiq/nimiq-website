@@ -71,7 +71,7 @@ const items = computed(() => {
         </div>
       </div>
 
-      <div relative z-10 max-w-full w-full :class="{ 'lg:max-w-60ch items-center flex-col mx-auto': hasBgItems, 'items-end': !hasBgItems }" flex="~ wrap justify-between">
+      <div relative z-10 max-w-full :class="{ 'lg:max-w-60ch items-center flex-col mx-auto w-max': hasBgItems, 'items-end w-full': !hasBgItems }" flex="~ wrap justify-between">
         <div max-w-60ch>
           <p v-if="label" text-12 nq-label nq-mb-32>
             {{ label }}

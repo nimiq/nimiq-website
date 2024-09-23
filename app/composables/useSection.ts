@@ -38,10 +38,16 @@ export interface SliceUIOptions {
    * @default undefined
    */
   text?: 'lg' | 'xl'
+
+  /**
+   * Force a gap even if the previous slice has the same color
+   * @default false
+   */
+  forceGap?: boolean
 }
 
 export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkblue', options: SliceUIOptions = {}) {
-  const { limitWidth = true, paddingY = true, paddingX = true, text = undefined } = options
+  const { limitWidth = true, paddingY = true, paddingX = true, text = undefined, forceGap = false } = options
 
   const sectionRef = ref<HTMLElement>()
   const sliceType = _sliceType.split('$').at(0)
@@ -62,6 +68,8 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
       el.classList.add('nq-no-py')
     if (!paddingX)
       el.classList.add('nq-no-px')
+    if (forceGap)
+      el.classList.add('nq-section-gap')
     if (text) {
       if (text === 'lg') {
         sectionRef.value!.style.setProperty('--nq-font-size-min', '16')

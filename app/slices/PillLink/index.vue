@@ -14,7 +14,7 @@ const items = slices.value
     active: slice.value.primary.item === primary.item,
   }))
 
-const { sectionRef } = useSection(props.slice.id, slice.value.primary.bgColor, { limitWidth: false })
+const { sectionRef } = useSection(props.slice.id, slice.value.primary.bgColor, { limitWidth: false, forceGap: true })
 </script>
 
 <template>
