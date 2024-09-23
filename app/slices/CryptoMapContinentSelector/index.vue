@@ -99,7 +99,7 @@ const allowMapInteraction = ref(false)
           </p>
           <button gap-12 nq-pill-lg nq-pill-blue @click="allowMapInteraction = true">
             <div i-nimiq:pin />
-            <span>Let's go!</span>
+            <span text-white>Let's go!</span>
           </button>
         </div>
       </transition>

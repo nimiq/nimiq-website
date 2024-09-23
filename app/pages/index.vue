@@ -19,6 +19,6 @@ const darkHeader = computed(() => (page.value?.data.slices.at(0)?.primary as { b
 <template>
   <NuxtLayout :dark-header>
     <NuxtRouteAnnouncer />
-    <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
+    <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components relative />
   </NuxtLayout>
 </template>

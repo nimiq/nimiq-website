@@ -98,44 +98,5 @@
         ]
       }
     ]
-  },
-  {
-    "__TYPE__": "SharedSliceContent",
-    "variation": "bannerWithBackgroundImage",
-    "primary": {
-      "title": {
-        "__TYPE__": "FieldContent",
-        "value": "root",
-        "type": "Text"
-      },
-      "description": {
-        "__TYPE__": "FieldContent",
-        "value": "monkey",
-        "type": "Text"
-      },
-      "cta": {
-        "__TYPE__": "LinkContent",
-        "value": {
-          "__TYPE__": "ExternalLink",
-          "url": "https://slicemachine.dev"
-        }
-      },
-      "background": {
-        "__TYPE__": "FieldContent",
-        "value": "Nimiq Apps",
-        "type": "Select"
-      },
-      "ctaLabel": {
-        "__TYPE__": "FieldContent",
-        "value": "proud",
-        "type": "Text"
-      }
-    },
-    "items": [
-      {
-        "__TYPE__": "GroupItemContent",
-        "value": []
-      }
-    ]
   }
 ]

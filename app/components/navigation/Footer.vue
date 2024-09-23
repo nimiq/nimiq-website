@@ -5,7 +5,7 @@ const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalC
 </script>
 
 <template>
-  <footer grid="~ gap-40 md:gap-64 items-start xl:gap-104" px="32 md:64 xl:72" pb="40 md:80 xl:104 2xl:136" data-section w-full max-w="$nq-max-width">
+  <footer grid="~ gap-40 md:gap-48 items-start xl:gap-104" px="32 md:64 xl:72" pb="40 md:80 xl:104 2xl:136" data-section w-full max-w="$nq-max-width">
     <div flex="~ col" area-contact text-sm>
       <p v-if="navigation?.newsletterCta">
         {{ navigation.newsletterCta }}

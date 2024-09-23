@@ -43,19 +43,21 @@ function getBackgroundItems(background: BannerSliceSliceDefaultItem['backgroundP
   }
 }
 
-const items = computed(() => props.slice.items.map((item) => {
-  const bgItems = getBackgroundItems(item.backgroundPattern).filter(i => i.link)
-  return {
-    bgItems,
-    hasBgItems: bgItems.length > 0,
-    ...item,
-  }
-}))
+const items = computed(() => {
+  return props.slice.items.map((item) => {
+    const bgItems = getBackgroundItems(item.backgroundPattern).filter(i => i.link)
+    return {
+      bgItems,
+      hasBgItems: bgItems.length > 0,
+      ...item,
+    }
+  })
+})
 </script>
 
 <template>
-  <section ref="sectionRef">
-    <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'}-gradient)`" :data-inverted="bgColor === 'green' ? '' : undefined" relative w-full of-hidden rounded-8 px-32 py="24 lg:72" shadow>
+  <section ref="sectionRef" mx="$px" relative z-10 px-0>
+    <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative w-full of-hidden rounded-8 px-32 shadow>
       <PrismicLink v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
         <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />
         <PrismicImage v-else :field="icon" pointer-events-none />
@@ -69,9 +71,9 @@ const items = computed(() => props.slice.items.map((item) => {
         </div>
       </div>
 
-      <div relative z-10 max-w-full w-full :class="{ 'lg:max-w-50ch md:max-w-40ch flex-col': hasBgItems, 'items-end': !hasBgItems }" flex="~ wrap justify-between">
-        <div max-w-40ch>
-          <p v-if="label" nq-mb-24 text-12 nq-label>
+      <div relative z-10 max-w-full w-full :class="{ 'lg:max-w-60ch items-center flex-col mx-auto': hasBgItems, 'items-end': !hasBgItems }" flex="~ wrap justify-between">
+        <div max-w-60ch>
+          <p v-if="label" text-12 nq-label nq-mb-32>
             {{ label }}
           </p>
           <PrismicRichText :field="headline" />

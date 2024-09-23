@@ -1,20 +1,73 @@
 <script setup lang="ts">
-const rows = 8
+import { computed } from 'vue'
+
+const rows = 6
 const { width } = useWindowSize()
 const columns = computed(() => (Math.floor(width.value / 140) + 4) & ~1)
 
-const items = rows * columns.value / 2
+function calculateOpacity(rowIndex: number, colIndex: number) {
+  const normalizedRow = rowIndex / (rows - 1)
+  const normalizedCol = colIndex / (columns.value - 1)
+  const distance = Math.abs(normalizedRow + normalizedCol - 1)
+  const threshold = 0.8 // Adjust this value to control the path width
+  if (distance > threshold) // Hide items far from the path
+    return 0
+  else // Adjust opacity based on distance from the path
+    return 1 - (distance / threshold)
+}
+
+const items = computed(() => {
+  const result = []
+  for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
+    const isEvenRow = rowIndex % 2 === 0
+    const startCol = isEvenRow ? 0 : 1
+    for (let colIndex = startCol; colIndex < columns.value; colIndex += 2) {
+      const opacity = calculateOpacity(rowIndex, colIndex)
+      result.push({ rowIndex, colIndex, opacity })
+    }
+  }
+  return result
+})
 </script>
 
 <template>
-  <div w-full of-hidden>
-    <div aria-hidden="true" class="grid-parent" :style="`--rows:${rows};--cols:${columns}`">
-      <div v-for="i in items" :key="i" i-nimiq:logos-nimiq-mono text-neutral-400 op="$op" :style="`--op: ${1}`" />
+  <div group relative z-2 w-full of-x-hidden>
+    <div
+      aria-hidden="true"
+      class="grid-parent"
+      :style="`--rows:${rows}; --cols:${columns}`"
+    >
+      <div
+        v-for="item in items"
+        :key="`${item.rowIndex}-${item.colIndex}`"
+        :style="{
+          '--row': item.rowIndex,
+          '--col': item.colIndex,
+          'opacity': item.opacity,
+          'animation-delay': `${item.rowIndex * 0.1 + item.colIndex * 0.15}s`,
+          'animation-duration': `${(rows - item.rowIndex) * 2 + 4}s`,
+        }"
+        class="grid-item"
+        i-nimiq:logos-nimiq-mono
+        text="neutral-300 hocus:neutral-500"
+        motion-safe:transition="colors duration-800 hocus:duration-100"
+        motion-safe:animate="pulse group-hocus:none"
+      />
     </div>
   </div>
 </template>
 
 <style scoped>
+@keyframes pulse {
+  0%,
+  100% {
+    background-color: rgb(var(--nq-neutral-300));
+  }
+  50% {
+    background-color: rgb(var(--nq-neutral-400));
+  }
+}
+
 .grid-parent {
   --gap: 16px;
   --hexagon-w: 140px;
@@ -33,6 +86,7 @@ const items = rows * columns.value / 2
     height: var(--hexagon-h);
     grid-row: span 2;
     grid-column: span 2;
+    animation: pulse 2s infinite;
   }
 
   > div:nth-child(even) {

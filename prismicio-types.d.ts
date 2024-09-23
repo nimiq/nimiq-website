@@ -2697,80 +2697,9 @@ export type BannerSliceSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
- * Primary content in *BannerSlice → Banner With Background Image → Primary*
- */
-export interface BannerSliceSliceBannerWithBackgroundImagePrimary {
-  /**
-   * Title field in *BannerSlice → Banner With Background Image → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField
-
-  /**
-   * Description field in *BannerSlice → Banner With Background Image → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  description: prismic.KeyTextField
-
-  /**
-   * CTA field in *BannerSlice → Banner With Background Image → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.cta
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  cta: prismic.LinkField
-
-  /**
-   * CTA Label field in *BannerSlice → Banner With Background Image → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.ctaLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  ctaLabel: prismic.KeyTextField
-
-  /**
-   * Background field in *BannerSlice → Banner With Background Image → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: None
-   * - **API ID Path**: banner_slice.bannerWithBackgroundImage.primary.background
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  background: prismic.SelectField<'Social Media' | 'Nimiq Apps'>
-}
-
-/**
- * Banner With Background Image variation for BannerSlice Slice
- *
- * - **API ID**: `bannerWithBackgroundImage`
- * - **Description**: BannerSlice
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type BannerSliceSliceBannerWithBackgroundImage =
-  prismic.SharedSliceVariation<
-    'bannerWithBackgroundImage',
-    Simplify<BannerSliceSliceBannerWithBackgroundImagePrimary>,
-    never
-  >
-
-/**
  * Slice variation for *BannerSlice*
  */
-type BannerSliceSliceVariation =
-  | BannerSliceSliceDefault
-  | BannerSliceSliceBannerWithBackgroundImage
+type BannerSliceSliceVariation = BannerSliceSliceDefault
 
 /**
  * BannerSlice Shared Slice
@@ -9657,8 +9586,6 @@ declare module '@prismicio/client' {
       AppsShowcaseSliceNimiqsAppsPrimaryAppsItem,
       AppsShowcaseSliceVariation,
       BannerSliceSlice,
-      BannerSliceSliceBannerWithBackgroundImage,
-      BannerSliceSliceBannerWithBackgroundImagePrimary,
       BannerSliceSliceDefault,
       BannerSliceSliceDefaultItem,
       BannerSliceSliceDefaultPrimary,
