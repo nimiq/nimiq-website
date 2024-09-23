@@ -89,6 +89,7 @@ const allowMapInteraction = ref(false)
             </div>
           </button>
         </li>
+        <!-- Sorry if you're from Antarctica, we don't have any locations there **yet**. -->
       </ul>
     </div>
     <div grid="~ *:col-span-full *:row-span-full" mx-auto flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-32>

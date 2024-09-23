@@ -11,38 +11,49 @@ export default defineNuxtModule({
   meta: {
     name: 'nuxt-prerender-routes',
   },
-  async setup() {
-    const prismicUrl = new URL(`https://${repositoryName}.cdn.prismic.io`)
-
-    // https://prismic.io/docs/api#repository-api-fetch-refs
-    const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
-    if (!prismicAccessToken)
-      throw new Error('PRISMIC_ACCESS_TOKEN is required to prerender routes')
-
-    const refsUrl = new URL('/api/v2', prismicUrl)
-    refsUrl.searchParams.set('access_token', prismicAccessToken)
-    const refsResponse = await $fetch<RefsResponse>(refsUrl.href)
-    const ref = refsResponse?.refs.find(({ id }) => id === 'master')?.ref
-    if (!ref)
-      throw new Error('Could not find master ref')
-
-    const pages = await prerenderPages({ prismicUrl, ref, prismicAccessToken, documentType: 'page' })
-    // TODO Remove this in the future
-    const ignorePages = ['/contact']
-    addPrerenderRoutes(pages.filter(page => !ignorePages.includes(page)))
-    const blogPosts = await prerenderPages({ prismicUrl, ref, prismicAccessToken, documentType: 'blog_page' }).then(uids => uids.map(uid => `/blog${uid}`))
-    addPrerenderRoutes(blogPosts)
+  async setup(_options, nuxt) {
+    const pages = await getDynamicPages()
+    addPrerenderRoutes(pages)
+    nuxt.options.sitemap.urls = pages
   },
 })
+
+export async function getDynamicPages() {
+  const options = await getDynamicPagesOptions()
+  const pages = await getDynamicPagesByType('page', options)
+  const blogPosts = await getDynamicPagesByType('blog_page', options).then(uids => uids.map(uid => `/blog${uid}`))
+
+  // TODO Remove this in the future
+  const ignorePages = ['/contact']
+
+  return pages.concat(blogPosts).filter(page => !ignorePages.includes(page))
+}
+
+async function getDynamicPagesOptions() {
+  const prismicUrl = new URL(`https://${repositoryName}.cdn.prismic.io`)
+
+  // https://prismic.io/docs/api#repository-api-fetch-refs
+  const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
+  if (!prismicAccessToken)
+    throw new Error('PRISMIC_ACCESS_TOKEN is required to prerender routes')
+
+  const refsUrl = new URL('/api/v2', prismicUrl)
+  refsUrl.searchParams.set('access_token', prismicAccessToken)
+  const refsResponse = await $fetch<RefsResponse>(refsUrl.href)
+  const ref = refsResponse?.refs.find(({ id }) => id === 'master')?.ref
+  if (!ref)
+    throw new Error('Could not find master ref')
+
+  return { prismicUrl, ref, prismicAccessToken }
+}
 
 interface PrerenderPagesOptions {
   prismicUrl: URL
   ref: string
   prismicAccessToken: string
-  documentType: 'blog_page' | 'page'
 }
 
-async function prerenderPages({ prismicUrl, ref, prismicAccessToken, documentType }: PrerenderPagesOptions) {
+export async function getDynamicPagesByType(documentType: 'blog_page' | 'page', { prismicUrl, ref, prismicAccessToken }: PrerenderPagesOptions) {
   // Add routes for blog posts
   const url = new URL('/api/v2/documents/search', prismicUrl)
   const documentTypeQuery = `[at(document.type,"${documentType}")]`

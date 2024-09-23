@@ -160,7 +160,6 @@ export default defineNuxtConfig({
 
   robots: {
     // https://nuxtseo.com/robots/api/config
-    allow: ['/'],
     disallow: ['/iframes'],
     sitemap: '/sitemap.xml',
   },
