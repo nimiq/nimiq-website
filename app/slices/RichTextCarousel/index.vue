@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-// TODO Replace CtaSectionSlice with your slice
 const props = defineProps(getSliceComponentProps<Content.RichTextCarouselSlice>())
-const sectionRef = useSection(props.slice.id, 'grey')
+const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor)
 </script>
 
 <template>

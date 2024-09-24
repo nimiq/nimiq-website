@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { footerBgColor = 'grey' } = defineProps<{ darkHeader: boolean, footerBgColor: 'white' | 'grey' | 'darkblue' }>()
+const { darkHeader = false, footerBgColor = 'grey' } = defineProps<{ darkHeader: boolean, footerBgColor: 'white' | 'grey' | 'darkblue' }>()
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.RichTextCardsSlice>())
-const sectionRef = useSection(props.slice.id, 'grey')
+const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor)
 </script>
 
 <template>

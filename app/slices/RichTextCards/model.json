@@ -13,7 +13,7 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background Color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
             "options": [
               "grey",
@@ -26,6 +26,19 @@
             "default_value": "grey"
           },
           "type": "Select"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "darkblue"
+            ],
+            "default_value": "white"
+          }
         }
       },
       "items": {

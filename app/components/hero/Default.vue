@@ -12,6 +12,10 @@ const hasSecondaryLink = computed(() => hasLink(p.secondaryLinkHref) && p.second
 const hasVideoLink = computed(() => hasLink(p.videoHref) && p.videoLabel)
 const showLink = computed(() => hasPrimaryLink.value || hasSecondaryLink.value || hasVideoLink.value)
 
+const hasAppStore = computed(() => hasLink(p.appStore))
+const hasPlayStore = computed(() => hasLink(p.playStore))
+const hasAnApp = computed(() => hasAppStore.value || hasPlayStore.value)
+
 const sectionRef = useSection('hero', p.bgColor, { paddingY: false })
 const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filter(Boolean) || [])
 </script>
@@ -38,5 +42,18 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
         </span>
       </PrismicLink>
     </div>
+
+    <ul v-if="hasAnApp" nq-mt-40 flex="~ wrap gap-32 lg:gap-40">
+      <li v-if="hasAppStore">
+        <PrismicLink :field="p.appStore">
+          <NuxtImg v-if="hasAppStore" src="/assets/images/apple-store-badge.png" h="32 lg:40" alt="Get it on Apple Store" />
+        </PrismicLink>
+      </li>
+      <li v-if="hasPlayStore">
+        <PrismicLink :field="p.playStore">
+          <NuxtImg src="/assets/images/google-play-badge.png" h="32 lg:40" alt="Get it on Google Play" />
+        </PrismicLink>
+      </li>
+    </ul>
   </section>
 </template>

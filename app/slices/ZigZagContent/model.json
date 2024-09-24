@@ -14,9 +14,25 @@
         "backgroundColor": {
           "type": "Select",
           "config": {
+            "label": "Background color [DEPRECATED]",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey"
+            ]
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
             "label": "Background Color",
             "placeholder": "",
-            "options": ["white", "grey"]
+            "options": [
+              "white",
+              "grey",
+              "darkblue"
+            ],
+            "default_value": "white"
           }
         }
       },

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { SocialMedia } from '~/stores/global-content'
 
-const { bgColor } = defineProps<{ bgColor: 'white' | 'grey' | 'darkblue' }>()
+const { bgColor } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue' }>()
 const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalContent())
 
 const sectionRef = useSection('footer', bgColor, { limitWidth: false, paddingX: false, paddingY: false })

@@ -7348,7 +7348,7 @@ export type RichTextSlice = prismic.SharedSlice<
  */
 export interface RichTextCardsSliceDefaultPrimary {
   /**
-   * Background Color field in *RichTextCards → Default → Primary*
+   * Background color [DEPRECATED] field in *RichTextCards → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -7360,6 +7360,17 @@ export interface RichTextCardsSliceDefaultPrimary {
     'grey' | 'white' | 'blue' | 'blue-dark' | 'green' | 'blue-s3',
     'filled'
   >
+
+  /**
+   * Background color field in *RichTextCards → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: rich_text_cards.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -9000,7 +9011,7 @@ export type TeamMembersSlice = prismic.SharedSlice<
  */
 export interface TiltedMediaSliceDefaultPrimary {
   /**
-   * Background Color* field in *TiltedMedia → Default → Primary*
+   * Background color [DEPRECATED] field in *TiltedMedia → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -9033,6 +9044,17 @@ export interface TiltedMediaSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   media: prismic.LinkToMediaField
+
+  /**
+   * Background Color field in *TiltedMedia → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: tilted_media.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -9053,7 +9075,7 @@ export type TiltedMediaSliceDefault = prismic.SharedSliceVariation<
  */
 export interface TiltedMediaSliceWithVideoPrimary {
   /**
-   * Background Color* field in *TiltedMedia → WithVideo → Primary*
+   * Background color [DEPRECATED] field in *TiltedMedia → WithVideo → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -9096,6 +9118,17 @@ export interface TiltedMediaSliceWithVideoPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   headline: prismic.RichTextField
+
+  /**
+   * Background Color field in *TiltedMedia → WithVideo → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: tilted_media.withVideo.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -9404,7 +9437,7 @@ export type YoutubeVideoSlice = prismic.SharedSlice<
  */
 export interface ZigZagContentSliceDefaultPrimary {
   /**
-   * Background Color field in *ZigZagContent → Default → Primary*
+   * Background color [DEPRECATED] field in *ZigZagContent → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -9412,6 +9445,17 @@ export interface ZigZagContentSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   backgroundColor: prismic.SelectField<'white' | 'grey'>
+
+  /**
+   * Background Color field in *ZigZagContent → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: zig_zag_content.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { breakpointsTailwind } from '@vueuse/core'
 
-defineProps<{ darkHeader: boolean }>()
+defineProps<{ darkHeader?: boolean }>()
 
 const { navigation, hotCtaLink } = storeToRefs(useGlobalContent())
 
