@@ -3208,7 +3208,7 @@ export type ConsensusMapSlice = prismic.SharedSlice<
  */
 export interface ContactFormSliceDefaultPrimary {
   /**
-   * Background Color field in *ContactForm → Default → Primary*
+   * Background Color [DEPRECATED] field in *ContactForm → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -3326,6 +3326,17 @@ export interface ContactFormSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   youNeedToFillInTheFormLabel: prismic.KeyTextField
+
+  /**
+   * Background Color field in *ContactForm → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: contact_form.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -7356,7 +7367,7 @@ export interface RichTextCardsSliceDefaultPrimary {
  */
 export interface RichTextCardsSliceDefaultItem {
   /**
-   * Background Color field in *RichTextCards → Items*
+   * Background color [DEPRECATED] field in *RichTextCards → Items*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -7375,6 +7386,16 @@ export interface RichTextCardsSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField
+
+  /**
+   * Background Color field in *RichTextCards → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text_cards.items[].bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'darkblue'>
 }
 
 /**

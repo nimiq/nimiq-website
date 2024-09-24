@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import { SocialMedia } from '~/stores/global-content'
 
+const { bgColor } = defineProps<{ bgColor: 'white' | 'grey' | 'darkblue' }>()
 const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalContent())
+
+const sectionRef = useSection('footer', bgColor, { limitWidth: false, paddingX: false, paddingY: false })
 </script>
 
 <template>
-  <footer grid="~ gap-40 md:gap-48 items-start xl:gap-104" px="32 md:64 xl:72" pb="40 md:80 xl:104 2xl:136" data-section z-10 w-full max-w="$nq-max-width">
-    <div flex="~ col" area-contact text-sm>
+  <footer ref="sectionRef" grid="~ gap-40 md:gap-48 items-start xl:gap-104" px="32 md:64 xl:72" pb="40 md:80 xl:104 2xl:136" data-section z-10 w-full max-w="$nq-max-width">
+    <div flex="~ col" text-sm area-contact>
       <p v-if="navigation?.newsletterCta">
         {{ navigation.newsletterCta }}
       </p>

@@ -10,21 +10,21 @@ const props = defineProps<{
   ctaLabel?: KeyTextField
 }>()
 
-function isEmpty<T>(obj: T | undefined): obj is T & Record<string, never> {
-  return !!obj && Object.keys(obj).length === 0
-}
-
 const headlineTag = computed(() => props.headline.filter(i => i.type.startsWith('heading')).at(0)?.type.replace('heading', 'h') || 'h2')
 </script>
 
 <template>
-  <div v-if="iconName" :class="iconName" nq-mb-24 text-54 op-15 />
-  <span v-if="label" text="14/16.8 center" mb-8 nq-label>{{ label }}</span>
-  <PrismicText :wrapper="headlineTag" :field="headline" />
-  <PrismicText v-if="!isEmpty(subline)" wrapper="p" :field="subline" />
-  <PrismicLink v-if="ctaHref && ctaLabel" :field="ctaHref" nq-arrow nq-pill-lg nq-pill-blue nq-mt-48>
-    {{ ctaLabel }}
-  </PrismicLink>
+  <div>
+    <div v-if="iconName" :class="iconName" text-54 op-15 nq-mb-24 />
+    <p v-if="label" text="14/16.8" mx-auto mb-8 block w-max nq-label>
+      {{ label }}
+    </p>
+    <PrismicText :wrapper="headlineTag" :field="headline" />
+    <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" />
+    <PrismicLink v-if="ctaHref && ctaLabel" :field="ctaHref" nq-arrow nq-pill-lg nq-pill-blue md:mx-auto nq-mt-48>
+      {{ ctaLabel }}
+    </PrismicLink>
+  </div>
 </template>
 
 <style>
@@ -37,5 +37,11 @@ section[data-slice-type='pill_link'] + section[data-slice-type='simple_headline'
 section.dark:not([data-slice-type='pill_link']) + section[data-slice-type='simple_headline'].dark,
 section:not(.dark):not([data-slice-type='pill_link']) + section[data-slice-type='simple_headline']:not(.dark) {
   --uno: 'pt-160 lg:pt-200';
+}
+
+[nq-label] {
+  &:has(+ h2) {
+    --uno: 'ring-1.5 ring-neutral-500 rounded-full px-20 py-10 nq-mb-32';
+  }
 }
 </style>

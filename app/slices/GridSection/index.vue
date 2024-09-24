@@ -4,7 +4,7 @@ import type { Content } from '@prismicio/client'
 // TODO GridSectionSlice has a link and link label. Is that being used?
 
 const props = defineProps(getSliceComponentProps<Content.GridSectionSlice>())
-const { sectionRef } = useSection(props.slice.id, props.slice.primary.bgColor)
+const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor)
 </script>
 
 <template>
@@ -17,7 +17,7 @@ const { sectionRef } = useSection(props.slice.id, props.slice.primary.bgColor)
           grid="~ cols-[auto_1fr] rows-[auto_1fr] gap-x-20 gap-y12 lg:gap-y-16 items-center"
         >
           <PrismicImage :field="item.icon" size="48 lg:56 xl:64" />
-          <PrismicRichText :field="item.headline" />
+          <PrismicRichText :field="item.headline" children:text-left />
           <PrismicRichText v-if="item.subline.length" :field="item.subline" col-span-2 />
         </li>
       </ul>

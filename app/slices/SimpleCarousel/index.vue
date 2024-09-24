@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SimpleCarouselSlice>())
-const { sectionRef } = useSection(props.slice.id, 'white', { limitWidth: false, text: 'lg' })
+const sectionRef = useSection(props.slice.id, 'white', { limitWidth: false, text: 'lg' })
 </script>
 
 <template>

@@ -1,11 +1,17 @@
 <script setup lang="ts">
-defineProps<{ darkHeader: boolean }>()
+const { footerBgColor = 'grey' } = defineProps<{ darkHeader: boolean, footerBgColor: 'white' | 'grey' | 'darkblue' }>()
 </script>
 
 <template>
   <!-- eslint-disable vue/no-multiple-template-root -->
   <NavigationHeader :dark-header />
   <slot />
-  <HexagonsBackground z-1 mb="-130 lg:-180" mt--200 />
-  <NavigationFooter />
+  <HexagonsBackground z-1 class="hexagon-bg" :bg-color="footerBgColor" />
+  <NavigationFooter :bg-color="footerBgColor" />
 </template>
+
+<style scoped>
+.hexagon-bg {
+  --uno: 'nq-pt-32';
+}
+</style>

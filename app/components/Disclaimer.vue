@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { sectionRef } = useSection('disclaimer', 'grey', { limitWidth: false })
+const { color } = defineProps<{ color?: 'grey' | 'white' | 'darkblue' }>()
+const sectionRef = useSection('disclaimer', color, { limitWidth: false })
 </script>
 
 <template>

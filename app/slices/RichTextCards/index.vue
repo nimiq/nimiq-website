@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-// TODO Replace CtaSectionSlice with your slice
-const props = defineProps(getSliceComponentProps<Content.CtaSectionSlice>())
-const { sectionRef } = useSection(props.slice.id, 'white')
+const props = defineProps(getSliceComponentProps<Content.RichTextCardsSlice>())
+const sectionRef = useSection(props.slice.id, 'grey')
 </script>
 
 <template>
   <section ref="sectionRef">
-    TODO!
+    <ul grid="~ cols-1 gap-32 lg:cols-2">
+      <li v-for="({ bgColor, content }, i) in slice.items" :key="i" rounded-8 p="32 lg:40 xl:48" shadow :style="`background: rgb(var(--nq-${bgColor}))`">
+        <PrismicRichText :field="content" class="nq-prose-no-pb nq-prose-no-px nq-prose" />
+      </li>
+    </ul>
   </section>
 </template>

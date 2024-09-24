@@ -2,7 +2,7 @@
 import type { Content, FilledContentRelationshipField } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SocialMediaGridSlice>())
-const { sectionRef } = useSection(props.slice.id, 'grey')
+const sectionRef = useSection(props.slice.id, 'grey')
 
 const { getSocialMediaById } = useGlobalContent()
 

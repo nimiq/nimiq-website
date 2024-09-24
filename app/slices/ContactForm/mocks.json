@@ -1,0 +1,97 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "blue-dark",
+        "type": "Select"
+      },
+      "recipientImage": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1593642633279-1796119d5482",
+          "width": 4016,
+          "height": 6016
+        },
+        "url": "https://images.unsplash.com/photo-1593642633279-1796119d5482",
+        "width": 4016,
+        "height": 6016,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "credits": null,
+        "alt": null,
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "recipientFullName": {
+        "__TYPE__": "FieldContent",
+        "value": "master",
+        "type": "Text"
+      },
+      "recipientRole": {
+        "__TYPE__": "FieldContent",
+        "value": "deep",
+        "type": "Text"
+      },
+      "recipientEmail": {
+        "__TYPE__": "FieldContent",
+        "value": "stay",
+        "type": "Text"
+      },
+      "recipientTelegram": {
+        "__TYPE__": "FieldContent",
+        "value": "many",
+        "type": "Text"
+      },
+      "recipientLinkedIn": {
+        "__TYPE__": "FieldContent",
+        "value": "return",
+        "type": "Text"
+      },
+      "firstNameLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "special",
+        "type": "Text"
+      },
+      "emailAddressLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "lost",
+        "type": "Text"
+      },
+      "messageLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "lower",
+        "type": "Text"
+      },
+      "sendInquiryLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "exact",
+        "type": "Text"
+      },
+      "youNeedToFillInTheFormLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "operation",
+        "type": "Text"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "darkblue",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

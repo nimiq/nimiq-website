@@ -3,7 +3,7 @@ import type { Content } from '@prismicio/client'
 import { breakpointsTailwind } from '@vueuse/core'
 
 const props = defineProps(getSliceComponentProps<Content.StakingSliceSlice>())
-const { sectionRef } = useSection(props.slice.id, 'grey', { limitWidth: false, paddingX: false })
+const sectionRef = useSection(props.slice.id, 'grey', { limitWidth: false, paddingX: false })
 
 const { smallerOrEqual } = useBreakpoints(breakpointsTailwind)
 

@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.AppsShowcaseSlice>())
-const { sectionRef } = useSection(props.slice.id, 'grey')
+const sectionRef = useSection(props.slice.id, 'grey')
 </script>
 
 <template>

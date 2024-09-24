@@ -3,7 +3,7 @@ import type { Content, KeyTextField } from '@prismicio/client'
 
 // TODO Replace CtaSectionSlice with your slice
 const props = defineProps(getSliceComponentProps<Content.NewYorkGridSlice>())
-const { sectionRef } = useSection(props.slice.id, 'white', { limitWidth: false })
+const sectionRef = useSection(props.slice.id, 'white', { limitWidth: false })
 const [DefineStats, ReuseStat] = createReusableTemplate<{ label: KeyTextField, value: KeyTextField }>()
 </script>
 

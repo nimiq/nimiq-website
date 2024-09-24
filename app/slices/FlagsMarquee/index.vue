@@ -3,7 +3,7 @@ import type { Content } from '@prismicio/client'
 import { breakpointsTailwind } from '@vueuse/core'
 
 const props = defineProps(getSliceComponentProps<Content.FlagsMarqueeSlice>())
-const { sectionRef } = useSection(props.slice.id, 'white', { limitWidth: false, paddingX: false })
+const sectionRef = useSection(props.slice.id, 'white', { limitWidth: false, paddingX: false })
 
 const position = ref(0)
 const { smaller } = useBreakpoints(breakpointsTailwind)

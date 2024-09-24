@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.LogosGridSlice>())
-const { sectionRef } = useSection(props.slice.id, 'white', { paddingY: false })
+const sectionRef = useSection(props.slice.id, 'white', { paddingY: false })
 </script>
 
 <template>

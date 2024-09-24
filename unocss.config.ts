@@ -5,67 +5,9 @@ import { presetNimiq } from 'nimiq-css'
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
-  shortcuts: [
-    // TODO move this to nimiq-css
-    [/^nq-(mt|mb|pt|pb)-16$/, ([, t]) => `${t}-12 xl:${t}-16`],
-    [/^nq-(mt|mb|pt|pb)-32$/, ([, t]) => `${t}-24 md:${t}-32`],
-    [/^nq-(mt|mb|pt|pb)-40$/, ([, t]) => `${t}-32 xl:${t}-40`],
-    [/^nq-(mt|mb|pt|pb)-48$/, ([, t]) => `${t}-32 xl:${t}-40 2xl:${t}-48`],
-    { 'text-xs': 'text-12 lg:text-13 2xl:text-14 lh-[1.3]' },
-    { 'text-sm': 'text-14 lg:text-15 2xl:text-16 lh-[1.3]' },
-  ],
+  shortcuts: [],
   rules: [
     [/^area-(.*)$/, ([, t]) => ({ 'grid-area': t })],
-
-    // TODO move this to nimiq-css
-    [/^text-min-(.*)$/, ([, t]) => ({ '--nq-font-size-min': t })],
-    [/^text-max-(.*)$/, ([, t]) => ({ '--nq-font-size-max': t })],
-    ['nq-ease', { 'transition-timing-function': 'var(--nq-ease)' }],
-  ],
-  variants: [
-    (matcher) => {
-      if (!matcher.startsWith('global-dark:'))
-        return matcher
-      return {
-        matcher: matcher.slice('global-dark:'.length),
-        selector: s => `html.dark ${s}`,
-      }
-    },
-
-    (matcher) => {
-      const motionVariants = ['from-start', 'to-start', 'from-end', 'to-end']
-      for (const variant of motionVariants) {
-        if (matcher.startsWith(`motion-${variant}:`)) {
-          return {
-            matcher: matcher.slice(`motion-${variant}:`.length),
-            selector: s => `[data-motion=${variant}]${s}`,
-          }
-        }
-      }
-      return matcher
-    },
-
-    (matcher) => {
-      if (matcher.startsWith('data-visible:')) {
-        return {
-          matcher: matcher.slice('data-visible:'.length),
-          selector: s => `[data-state=visible]${s}, [data-state=visible] ${s}`,
-        }
-      }
-      if (matcher.startsWith('data-hidden:')) {
-        return {
-          matcher: matcher.slice('data-hidden:'.length),
-          selector: s => `[data-state=hidden]${s}, [data-state=hidden] ${s}`,
-        }
-      }
-      if (!matcher.startsWith('data-closed:'))
-        return matcher
-      return {
-        matcher: matcher.slice(12),
-        selector: s => `[data-state=closed]${s}, [data-state=closed] ${s}`,
-      }
-      return matcher
-    },
   ],
   presets: [
     presetUno({ attributifyPseudo: true }),
@@ -74,7 +16,6 @@ export default defineConfig({
       attributifyUtilities: true,
       typography: true,
       staticContent: true,
-      icons: false,
       scrollbar: true,
     }),
     presetRemToPx({ baseFontSize: 4 }),
@@ -98,11 +39,13 @@ export default defineConfig({
   ],
 
   safelist: [
-    'three-hands-hexagon',
-    'document-text',
-    'document',
-    'document-vertical-line',
-  ].map(x => `i-nimiq:icons-lg-${x}`),
+    'i-nimiq:icons-lg-hands-hexagon',
+    'i-nimiq:icons-lg-document',
+    'i-nimiq:icons-lg-document-vertical-line',
+    'i-nimiq:icons-lg-three-hands-hexagon',
+    'i-nimiq:logos-super-simple-swap-text',
+    'i-nimiq:logos-nimiq-horizontal',
+  ],
 
   theme: {
     animation: {

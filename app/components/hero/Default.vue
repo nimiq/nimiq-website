@@ -7,13 +7,12 @@ interface Props {
 }
 const { primary: p, items } = defineProps<Props>()
 
-const isEmpty = (object: any) => Object.keys(object).length === 0
-const hasLink = computed(() => !isEmpty(p.linkHref) && p.linkLabel)
-const hasSecondaryLink = computed(() => !isEmpty(p.secondaryLinkHref) && p.secondaryLinkLabel)
-const hasVideoLink = computed(() => !isEmpty(p.videoHref) && p.videoLabel)
-const showLink = computed(() => hasLink.value || hasSecondaryLink.value || hasVideoLink.value)
+const hasPrimaryLink = computed(() => hasLink(p.linkHref) && p.linkLabel)
+const hasSecondaryLink = computed(() => hasLink(p.secondaryLinkHref) && p.secondaryLinkLabel)
+const hasVideoLink = computed(() => hasLink(p.videoHref) && p.videoLabel)
+const showLink = computed(() => hasPrimaryLink.value || hasSecondaryLink.value || hasVideoLink.value)
 
-const { sectionRef } = useSection('hero', p.bgColor, { paddingY: false })
+const sectionRef = useSection('hero', p.bgColor, { paddingY: false })
 const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filter(Boolean) || [])
 </script>
 
@@ -28,7 +27,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
       </li>
     </ul>
     <div v-if="showLink" class="nq_r-mt-48 link-wrapper" flex="~ wrap gap-x-32 gap-y-16" nq-mt-48 style="--nq-font-size-min:18;--nq-font-size-max:22">
-      <PrismicLink v-if="hasLink" nq-arrow nq-pill nq-pill-lg nq-pill-blue :field="p.linkHref">
+      <PrismicLink v-if="hasPrimaryLink" nq-arrow nq-pill nq-pill-lg nq-pill-blue :field="p.linkHref">
         {{ p.linkLabel }}
       </PrismicLink>
 

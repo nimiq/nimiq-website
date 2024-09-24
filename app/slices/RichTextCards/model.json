@@ -15,7 +15,14 @@
           "config": {
             "label": "Background Color",
             "placeholder": "",
-            "options": ["grey", "white", "blue", "blue-dark", "green", "blue-s3"],
+            "options": [
+              "grey",
+              "white",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3"
+            ],
             "default_value": "grey"
           },
           "type": "Select"
@@ -24,9 +31,12 @@
       "items": {
         "backgroundColor": {
           "config": {
-            "label": "Background Color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
-            "options": ["white", "blue-dark"],
+            "options": [
+              "white",
+              "blue-dark"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -39,8 +49,20 @@
             "multi": "paragraph,heading2,heading3,heading4,hyperlink,em,strong,o-list-item,list-item,image,embed"
           },
           "type": "StructuredText"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "darkblue"
+            ]
+          }
         }
-      }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
 }

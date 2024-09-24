@@ -1,5 +1,5 @@
 // @unocss-include
-function getColorClass(color: 'white' | 'grey' | 'darkblue') {
+export function getColorClass(color: 'white' | 'grey' | 'darkblue') {
   switch (color) {
     case 'grey':
       return { classes: 'bg-neutral-100 grey', css: 'rgb(var(--nq-neutral-100))' }
@@ -44,10 +44,16 @@ export interface SliceUIOptions {
    * @default false
    */
   forceGap?: boolean
+
+  /**
+   * Applies default color to the texts
+   * @default true
+   */
+  useDefaultColors?: boolean
 }
 
 export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkblue', options: SliceUIOptions = {}) {
-  const { limitWidth = true, paddingY = true, paddingX = true, text = undefined, forceGap = false } = options
+  const { limitWidth = true, paddingY = true, paddingX = true, text = undefined, forceGap = false, useDefaultColors = true } = options
 
   const sectionRef = ref<HTMLElement>()
   const sliceType = _sliceType.split('$').at(0)
@@ -70,6 +76,8 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
       el.classList.add('nq-no-px')
     if (forceGap)
       el.classList.add('nq-section-gap')
+    if (!useDefaultColors)
+      el.classList.add('nq-no-color')
     if (text) {
       if (text === 'lg') {
         sectionRef.value!.style.setProperty('--nq-font-size-min', '16')
@@ -82,5 +90,5 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
     }
   })
 
-  return { sectionRef, id: sliceType }
+  return sectionRef
 }

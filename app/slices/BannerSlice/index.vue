@@ -3,7 +3,7 @@ import type { Content } from '@prismicio/client'
 import type { BannerSliceSliceDefaultItem } from '~~/prismicio-types'
 
 const props = defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
-const { sectionRef } = useSection(props.slice.id, 'grey', { paddingX: false })
+const sectionRef = useSection(props.slice.id, 'grey', { paddingX: false })
 
 const { socialMedias, nimiqApps } = storeToRefs(useGlobalContent())
 
@@ -34,7 +34,7 @@ function getBackgroundItems(background: BannerSliceSliceDefaultItem['backgroundP
         'invisible xl:visible xl:bottom--40 xl:left--30',
         'invisible xl:visible xl:bottom--40 xl:right--30',
       ]
-      const apps = Object.values(nimiqApps.value || []).filter(({ logo }) => Object.keys(logo).length > 0)
+      const apps = Object.values(nimiqApps.value || []).filter(({ logo }) => hasImage(logo))
       if (apps.length < 4)
         return []
       return apps.sort(() => Math.random() - 0.5).slice(0, 6).map(({ color, logo, linkHref, name }, i) => ({ color, icon: logo, link: linkHref, classes: `text-52 ${classesPositions[i]}`, name: name! }))
@@ -79,7 +79,7 @@ const items = computed(() => {
           <PrismicRichText :field="headline" />
           <PrismicRichText nq-mt-32 :field="subline" :class="{ 'text-center': hasBgItems }" />
         </div>
-        <PrismicLink v-if="Object.keys(linkHref).length > 0 && linkLabel" :field="linkHref" mt="32 md:24" text-blue nq-arrow nq-pill-lg nq-pill-tertiary :class="{ 'md:mx-auto': hasBgItems, 'lg:mr-128': !hasBgItems }">
+        <PrismicLink v-if="hasLink(linkHref) && linkLabel" :field="linkHref" mt="32 md:24" text-blue nq-arrow nq-pill-lg nq-pill-tertiary :class="{ 'md:mx-auto': hasBgItems, 'lg:mr-128': !hasBgItems }">
           {{ linkLabel }}
         </PrismicLink>
       </div>

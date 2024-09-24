@@ -41,7 +41,7 @@ function onHoverEnd() {
   shouldJump.value = false
 }
 
-const { sectionRef } = useSection('home-hero', 'darkblue', { paddingY: false, limitWidth: false })
+const sectionRef = useSection('home-hero', 'darkblue', { paddingY: false, limitWidth: false })
 </script>
 
 <template>

@@ -16,12 +16,14 @@ useHead({
   ],
 })
 
+const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
+
 // TODO Do image
 defineOgImageComponent('DefaultImage')
 </script>
 
 <template>
-  <NuxtLayout>
+  <NuxtLayout :footer-bg-color>
     <NuxtRouteAnnouncer />
     <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components="components" />
     <div fixed bottom-32 right-32 z-102>

@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const rows = 6
+const { bgColor, density = 2 } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue', density?: 1 | 2 | 3 }>()
+const sectionRef = useSection('hexagons-background', bgColor, { limitWidth: false, paddingX: false })
+
+const rows = computed(() => density * 3)
 const { width } = useWindowSize()
 const columns = computed(() => (Math.floor(width.value / 140) + 4) & ~1)
 
 function calculateOpacity(rowIndex: number, colIndex: number) {
-  const normalizedRow = rowIndex / (rows - 1)
+  const normalizedRow = rowIndex / (rows.value - 1)
   const normalizedCol = colIndex / (columns.value - 1)
   const distance = Math.abs(normalizedRow + normalizedCol - 1)
   const threshold = 0.8 // Adjust this value to control the path width
@@ -18,7 +21,7 @@ function calculateOpacity(rowIndex: number, colIndex: number) {
 
 const items = computed(() => {
   const result = []
-  for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
+  for (let rowIndex = 0; rowIndex < rows.value; rowIndex++) {
     const isEvenRow = rowIndex % 2 === 0
     const startCol = isEvenRow ? 0 : 1
     for (let colIndex = startCol; colIndex < columns.value; colIndex += 2) {
@@ -31,7 +34,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <div group relative z-2 w-full of-x-hidden>
+  <section ref="sectionRef" group relative z-2 w-full of-x-hidden>
     <div
       aria-hidden="true"
       class="grid-parent"
@@ -49,22 +52,22 @@ const items = computed(() => {
         }"
         class="grid-item"
         i-nimiq:logos-nimiq-mono
-        text="neutral-300 hocus:neutral-500"
+        text="neutral-300 dark:neutral-500 hocus:dark:neutral-700 hocus:neutral-500"
         motion-safe:transition="colors duration-800 hocus:duration-100"
         motion-safe:animate="pulse group-hocus:none"
       />
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>
 @keyframes pulse {
   0%,
   100% {
-    background-color: rgb(var(--nq-neutral-300));
+    background-color: rgb(var(--nq-neutral-400));
   }
   50% {
-    background-color: rgb(var(--nq-neutral-400));
+    background-color: rgb(var(--nq-neutral-500));
   }
 }
 
