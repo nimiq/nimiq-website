@@ -2,7 +2,7 @@
 import { SocialMedia } from '~/stores/global-content'
 
 const { bgColor } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue' }>()
-const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalContent())
+const { navigationBlocks, navigation, copyrightNotice } = storeToRefs(useGlobalContent())
 
 const sectionRef = useSection('footer', bgColor, { limitWidth: false, paddingX: false, paddingY: false })
 </script>
@@ -38,7 +38,7 @@ const sectionRef = useSection('footer', bgColor, { limitWidth: false, paddingX: 
       </div>
 
       <p text-neutral-600 nq-mt-32>
-        {{ copyrigthNotice }}
+        {{ copyrightNotice }}
       </p>
     </div>
 

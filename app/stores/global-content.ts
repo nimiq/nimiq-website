@@ -142,7 +142,7 @@ export const useGlobalContent = defineStore('global-content', () => {
   return {
     navigation,
     navigationBlocks,
-    copyrigthNotice: `© Nimiq Foundation 2017-${new Date().getFullYear()}`,
+    copyrightNotice: `© Nimiq Foundation 2017-${new Date().getFullYear()}`,
     hotCtaLink,
     socialMedias,
     nimiqApps,
