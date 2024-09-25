@@ -7454,7 +7454,7 @@ export interface RichTextCarouselSliceDefaultPrimary {
   content: prismic.RichTextField
 
   /**
-   * Background Color field in *RichTextCarousel → Default → Primary*
+   * Background color [DEPRECATED] field in *RichTextCarousel → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -7474,6 +7474,17 @@ export interface RichTextCarouselSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   withHexagonsBg: prismic.BooleanField
+
+  /**
+   * Background Color field in *RichTextCarousel → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: grey
+   * - **API ID Path**: rich_text_carousel.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 }
 
 /**
@@ -7509,7 +7520,7 @@ export type RichTextCarouselSliceDefault = prismic.SharedSliceVariation<
  */
 export interface RichTextCarouselSliceWithTabsPrimary {
   /**
-   * Background Color field in *RichTextCarousel → WithTabs → Primary*
+   * Background color [DEPRECATED] field in *RichTextCarousel → WithTabs → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -7539,6 +7550,17 @@ export interface RichTextCarouselSliceWithTabsPrimary {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   withHexagonsBg: prismic.BooleanField
+
+  /**
+   * Background Color field in *RichTextCarousel → WithTabs → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: grey
+   * - **API ID Path**: rich_text_carousel.withTabs.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 }
 
 /**

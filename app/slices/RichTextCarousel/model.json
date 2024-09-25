@@ -22,9 +22,12 @@
         },
         "backgroundColor": {
           "config": {
-            "label": "Background Color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
-            "options": ["white", "grey"],
+            "options": [
+              "white",
+              "grey"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -36,6 +39,19 @@
             "default_value": false,
             "placeholder_true": "true",
             "placeholder_false": "false"
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ],
+            "default_value": "grey"
           }
         }
       },
@@ -60,9 +76,12 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background Color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
-            "options": ["white", "grey"],
+            "options": [
+              "white",
+              "grey"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -83,6 +102,19 @@
             "default_value": false,
             "placeholder_true": "true",
             "placeholder_false": "false"
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ],
+            "default_value": "grey"
           }
         }
       },

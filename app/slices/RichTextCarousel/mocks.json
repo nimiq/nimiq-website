@@ -1,0 +1,193 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "content": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Incididunt culpa ex sit Lorem ad proident quis minim elit Lorem."
+            }
+          }
+        ]
+      },
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      },
+      "withHexagonsBg": {
+        "__TYPE__": "BooleanContent",
+        "value": false
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "slide",
+            {
+              "origin": {
+                "id": "main",
+                "url": "https://images.unsplash.com/photo-1587614295999-6c1c13675117",
+                "width": 3810,
+                "height": 5715
+              },
+              "url": "https://images.unsplash.com/photo-1587614295999-6c1c13675117",
+              "width": 3810,
+              "height": 5715,
+              "edit": {
+                "zoom": 1,
+                "crop": {
+                  "x": 0,
+                  "y": 0
+                },
+                "background": "transparent"
+              },
+              "credits": null,
+              "alt": null,
+              "__TYPE__": "ImageContent",
+              "thumbnails": {}
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "withTabs",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      },
+      "README": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Adipisicing excepteur commodo pariatur enim commodo sint. Elit minim id eiusmod eu sit Lorem Lorem anim consequat veniam voluptate proident. Culpa do in aute nulla deserunt irure."
+            }
+          }
+        ]
+      },
+      "withHexagonsBg": {
+        "__TYPE__": "BooleanContent",
+        "value": true
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "darkblue",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "key",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "take",
+              "type": "Text"
+            }
+          ],
+          [
+            "slide",
+            {
+              "origin": {
+                "id": "main",
+                "url": "https://images.unsplash.com/photo-1589321578146-4c1ba445cc88",
+                "width": 3168,
+                "height": 4752
+              },
+              "url": "https://images.unsplash.com/photo-1589321578146-4c1ba445cc88",
+              "width": 3168,
+              "height": 4752,
+              "edit": {
+                "zoom": 1,
+                "crop": {
+                  "x": 0,
+                  "y": 0
+                },
+                "background": "transparent"
+              },
+              "credits": null,
+              "alt": null,
+              "__TYPE__": "ImageContent",
+              "thumbnails": {}
+            }
+          ],
+          [
+            "buttonLogo",
+            {
+              "origin": {
+                "id": "main",
+                "url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
+                "width": 6597,
+                "height": 4398
+              },
+              "url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
+              "width": 6597,
+              "height": 4398,
+              "edit": {
+                "zoom": 1,
+                "crop": {
+                  "x": 0,
+                  "y": 0
+                },
+                "background": "transparent"
+              },
+              "credits": null,
+              "alt": null,
+              "__TYPE__": "ImageContent",
+              "thumbnails": {}
+            }
+          ],
+          [
+            "content",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Id ad labore aliquip incididunt reprehenderit exercitation Lorem. Eiusmod aliquip pariatur quis fugiat exercitation est voluptate est fugiat commodo adipisicing ad laborum occaecat. In ea ad ea officia ipsum consequat laborum consectetur aliqua minim reprehenderit minim nulla."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "comingSoon",
+            {
+              "__TYPE__": "BooleanContent",
+              "value": true
+            }
+          ],
+          [
+            "comingSoonLabel",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "like",
+              "type": "Text"
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]

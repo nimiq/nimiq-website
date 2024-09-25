@@ -5,7 +5,6 @@ import { presetNimiq } from 'nimiq-css'
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
-  shortcuts: [],
   rules: [
     [/^area-(.*)$/, ([, t]) => ({ 'grid-area': t })],
   ],
