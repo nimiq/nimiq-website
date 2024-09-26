@@ -29,14 +29,14 @@ const transition = computed(() => {
 <template>
   <header
     v-if="navigation"
-    flex="~ items-center justify-between gap-x-12" fixed inset-x-16 top-16 z-100 mx-16 mb-32 rounded-8 p-16
+    flex="~ items-center justify-between gap-x-12" fixed inset-x-16 z-100 mx-16 mb-32 rounded-8 p-16
     :class="{
       'bg-white shadow-xl': scrolled && direction === 'top',
       'op-100': scrolled && direction === 'top',
       'op-0': scrolled && direction === 'bottom',
       'dark': !scrolled && darkHeader,
     }"
-    :style="{ transition }"
+    :style="{ transition, '--y': `${y}px` }"
   >
     <NuxtLink to="/">
       <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" h-24 />
@@ -50,3 +50,10 @@ const transition = computed(() => {
     <NavigationDesktop v-else />
   </header>
 </template>
+
+<style scoped>
+header {
+  --default-top: 16px;
+  top: max(var(--default-top), calc((var(--annoucement-height, 0) - var(--y)) + var(--default-top)));
+}
+</style>

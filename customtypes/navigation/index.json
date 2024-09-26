@@ -1,5 +1,9 @@
 {
   "id": "navigation",
+  "label": "Navigation",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
   "json": {
     "Apps": {
       "appsGroupName": {
@@ -480,10 +484,40 @@
           "placeholder": "until when it should show. Optional"
         }
       }
+    },
+    "AnnouncementBanner": {
+      "announcementBannerHeadline": {
+        "type": "Text",
+        "config": {
+          "label": "headline",
+          "placeholder": ""
+        }
+      },
+      "announcementBannerCtaLabel": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Label",
+          "placeholder": ""
+        }
+      },
+      "announcementBannerCtaLink": {
+        "type": "Link",
+        "config": {
+          "label": "CTA Link",
+          "placeholder": "",
+          "allowTargetBlank": false,
+          "select": null
+        }
+      },
+      "announcementBannerShow": {
+        "type": "Boolean",
+        "config": {
+          "label": "Show",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      }
     }
-  },
-  "label": "Navigation",
-  "repeatable": false,
-  "status": true,
-  "format": "custom"
+  }
 }

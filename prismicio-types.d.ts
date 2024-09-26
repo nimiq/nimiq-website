@@ -1377,7 +1377,50 @@ interface NavigationDocumentData {
    * - **Tab**: 🔥 HOT
    * - **Documentation**: https://prismic.io/docs/field#date
    */
-  hotuntil: prismic.DateField
+  hotuntil: prismic.DateField /**
+                               * headline field in *Navigation*
+                               *
+                               * - **Field Type**: Text
+                               * - **Placeholder**: *None*
+                               * - **API ID Path**: navigation.announcementBannerHeadline
+                               * - **Tab**: AnnouncementBanner
+                               * - **Documentation**: https://prismic.io/docs/field#key-text
+                               */
+  announcementBannerHeadline: prismic.KeyTextField
+
+  /**
+   * CTA Label field in *Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.announcementBannerCtaLabel
+   * - **Tab**: AnnouncementBanner
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  announcementBannerCtaLabel: prismic.KeyTextField
+
+  /**
+   * CTA Link field in *Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.announcementBannerCtaLink
+   * - **Tab**: AnnouncementBanner
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  announcementBannerCtaLink: prismic.LinkField
+
+  /**
+   * Show field in *Navigation*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: navigation.announcementBannerShow
+   * - **Tab**: AnnouncementBanner
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  announcementBannerShow: prismic.BooleanField
 }
 
 /**
