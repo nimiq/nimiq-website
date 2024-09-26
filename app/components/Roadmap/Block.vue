@@ -8,7 +8,7 @@ const [DefineBlock, ReuseBlock] = createReusableTemplate()
 
 <template>
   <div
-    :class="{ 'px-8 py-4 rounded-6 bg-[hsla(0,0%,100%,0.25)] inset-y--4 relative h-max': withBg }" w-max lh-none
+    :class="{ 'px-8 py-4 rounded-6 bg-[hsla(0,0%,100%,0.25)] mt--4 h-max mx--8': withBg }" w-max lh-none
     :style="{ '--year': year, '--month': month, 'grid-row': row || 1, '--until-year': untilYear, '--until-month': untilMonth }"
   >
     <DefineBlock>
@@ -45,8 +45,6 @@ const [DefineBlock, ReuseBlock] = createReusableTemplate()
 <style scoped>
 .milestone {
   width: var(--vertical-lines-w);
-  /* left: calc(((var(--column-start) - 1) * var(--columns-w)) + var(--width-previous-blocks, 0)); */
-  /* left: calc(0 * var(--columns-w) + 0); */
-  margin-left: calc(-1 * var(--columns-w) + var(--vertical-lines-w) * 2);
+  margin-left: calc(-1 * var(--columns-w) + var(--vertical-lines-w) * 2 - var(--block-index, 0) * 6px);
 }
 </style>

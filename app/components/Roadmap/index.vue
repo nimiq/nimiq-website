@@ -22,21 +22,12 @@ function getNestedBlocksStyles(blocks: Block[][], i: number) {
   if (!nestedBlock)
     throw new Error(`Nested block at index ${i} is missing. Blocks: ${JSON.stringify(blocks)}`)
 
-  // Compute how wide are the blocks on the left
-  let columns = 0
-  blocks.slice(0, i).forEach((block, j) => {
-    const { year: firstYear, month: firstMonth } = block.at(0)!
-    const { year: untilYear, month: untilMonth } = blocks.at(j + 1)!.at(0) || { month: currentMonth, year: currentYear }
-    columns += (untilYear - firstYear) * 12 + untilMonth - firstMonth + 2
-  })
-  const gapsWidth = 16 * i
-  const previousWidth = `calc(${columns} * var(--columns-w) + ${gapsWidth}px)`
-
   const { year: firstYear, month: firstMonth } = nestedBlock.at(0)!
   const { year: untilYear, month: untilMonth } = blocks.at(i + 1)?.at(0) || { year: undefined, month: undefined }
-  if (!untilYear || !untilMonth)
-    return { '--first-month': firstMonth, '--first-year': firstYear, '--column-end': 'span -1', '--width-previous-blocks': previousWidth }
-  return { '--first-month': firstMonth, '--first-year': firstYear, '--until-month': untilMonth, '--until-year': untilYear, '--width-previous-blocks': previousWidth }
+  if (!untilYear || !untilMonth) {
+    return { '--first-month': firstMonth, '--first-year': firstYear, '--column-end': 'span -1' }
+  }
+  return { '--first-month': firstMonth, '--first-year': firstYear, '--until-month': untilMonth, '--until-year': untilYear }
 }
 
 function isNestedBlocks(blocks: Block[] | Block[][]): blocks is Block[][] {
@@ -99,7 +90,7 @@ const milestones = computed(() => {
 
     <ul flex="~ col gap-16" ml="$ml" w-max nq-mt-16 nq-pb-48>
       <li
-        v-for="layer in layers" :key="layer.name" :class="layer.layerClasses" flex="~ col justify-end"
+        v-for="(layer, l) in layers" :key="layer.name" :class="layer.layerClasses" flex="~ col justify-end"
         relative w-max self-end rounded-l-6 p-24 pr-0 pl="$pl"
       >
         <div v-for="block in layer.blocks" :key="block.name" mt-24 first:mt-0 flex="~ justify-end">
@@ -108,7 +99,7 @@ const milestones = computed(() => {
               {{ block.name }}
             </span>
 
-            <div v-if="isNestedBlocks(block.items)" flex="~ gap-8" relative right--3>
+            <div v-if="isNestedBlocks(block.items)" flex="~ gap-8" :style="`--block-index:${l}`" :class="{ 'mr--3': block.items.length > 1 }">
               <div
                 v-for="(subblock, i) in block.items" :key="i"
                 :style="getNestedBlocksStyles(block.items, i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" class="layer force-row-height" rounded-6 p="$p-block" shadow last:rounded-r-0
