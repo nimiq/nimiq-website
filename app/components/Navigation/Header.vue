@@ -54,6 +54,6 @@ const transition = computed(() => {
 <style scoped>
 header {
   --default-top: 16px;
-  top: max(var(--default-top), calc((var(--annoucement-height, 0) - var(--y)) + var(--default-top)));
+  top: max(var(--default-top), calc((var(--announcement-height, 0) - var(--y)) + var(--default-top)));
 }
 </style>
