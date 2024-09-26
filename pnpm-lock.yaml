@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@nimiq/network-client':
+        specifier: ^0.6.7
+        version: 0.6.7
+      '@popperjs/core':
+        specifier: ^2.11.8
+        version: 2.11.8
       '@vueuse/router':
         specifier: ^11.1.0
         version: 11.1.0(vue-router@4.4.5(vue@3.5.7(typescript@5.6.2)))(vue@3.5.7(typescript@5.6.2))
@@ -977,8 +983,20 @@ packages:
     resolution: {integrity: sha512-2KYkyluThg1AKfd0JWI7FzpS4A/fzVVGYIf6AM4ydWyNj8eI/86GQVLeRgDoH7CNOxt243R5tutWlmHpVq0/Ew==}
     engines: {node: '>=18.0.0'}
 
+  '@nimiq/core-web@1.5.3':
+    resolution: {integrity: sha512-W66SS9n3ygYgD52r1GJr1WtYYOkcZsqdtMmDCEwDvkrmeARnHs2sAvj77Wt4PQG8JA7GwK5svIJr6rGccCaekw==}
+
   '@nimiq/core@2.0.0-next.24.3':
     resolution: {integrity: sha512-cFGutW6e6BMt2bje0UEA6WbltybdrYdS/lYpbRz82WdhDpqWZRqcMCaCK7gMVTyPuVP8VQryivV9Nt63HqHhhg==}
+
+  '@nimiq/network-client@0.6.7':
+    resolution: {integrity: sha512-IIWr4Q8y9OkkNDLZj5t13qz/g9dPJmtvYF4cTz9ol6h2RQ5xiCumW3b7W8Se+hVzltiGb4gMtqU0REcDO+owTQ==}
+
+  '@nimiq/rpc-events@0.0.8':
+    resolution: {integrity: sha512-2KYmey23WD1yV/61N+ZdUmHsxXhhie9kZOwDf1PqKbYBEHHJaoqyQb1fEptja6yyVlnZc5tv806JhHWBjJNCVA==}
+
+  '@nimiq/rpc@0.1.5':
+    resolution: {integrity: sha512-oTRThXzpbQOY8jz8h+2KXucWzW40nVfYBWROKXKBrSozhTG0nR+rzCbEm4ZyTC26b4RnmB6y4nYabUXi7gNWcA==}
 
   '@nimiq/utils@0.11.3':
     resolution: {integrity: sha512-yklNKsj7MLL3sHaqIpfpWVtml09quJLU+yGI7olf0ay21+2g42yJrELeUVu8VYKeMp5ArIEG3cJqUjdUrfatxA==}
@@ -1184,6 +1202,9 @@ packages:
 
   '@polka/url@1.0.0-next.28':
     resolution: {integrity: sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw==}
+
+  '@popperjs/core@2.11.8':
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
   '@prismicio/api-renderer@3.2.3':
     resolution: {integrity: sha512-ait4zWrVGlRdNAgp+cH8OVt+yQtMOGeULYpsuKPaEmFNP5LzZf753md0dAKQcacwaSTvfrUebhpyS2SU6bGDSw==}
@@ -7028,12 +7049,25 @@ snapshots:
       '@netlify/node-cookies': 0.1.0
       urlpattern-polyfill: 8.0.2
 
+  '@nimiq/core-web@1.5.3': {}
+
   '@nimiq/core@2.0.0-next.24.3':
     dependencies:
       comlink: 4.4.1
       websocket: 1.0.35
     transitivePeerDependencies:
       - supports-color
+
+  '@nimiq/network-client@0.6.7':
+    dependencies:
+      '@nimiq/core-web': 1.5.3
+      '@nimiq/rpc-events': 0.0.8
+
+  '@nimiq/rpc-events@0.0.8':
+    dependencies:
+      '@nimiq/rpc': 0.1.5
+
+  '@nimiq/rpc@0.1.5': {}
 
   '@nimiq/utils@0.11.3':
     dependencies:
@@ -7587,6 +7621,8 @@ snapshots:
   '@pkgr/core@0.1.1': {}
 
   '@polka/url@1.0.0-next.28': {}
+
+  '@popperjs/core@2.11.8': {}
 
   '@prismicio/api-renderer@3.2.3(@types/uuid@9.0.8)(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.21(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.21(fp-ts@2.16.9))':
     dependencies:
