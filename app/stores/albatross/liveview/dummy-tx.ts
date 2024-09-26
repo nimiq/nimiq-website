@@ -5,7 +5,8 @@ export const useLiveviewTx = defineStore('liveview-tx', () => {
   const nonce = ref<number>(getNonce())
   const { matchedTxs, blockNumber } = storeToRefs(useLiveviewBlocks())
 
-  const { status, refresh: sendTxApi, error, clear } = useFetch('/api/albatross/liveview/send-dummy-tx', {
+  const url = `${useRuntimeConfig().public.apiDomain}/api/albatross/liveview/send-dummy-tx`
+  const { status, refresh: sendTxApi, error, clear } = useFetch(url, {
     method: 'POST',
     body: { nonce, validityStartHeight: blockNumber },
     timeout: 5_000,

@@ -25,7 +25,8 @@ async function submitForm() {
   const products = nimiqProducts.filter(product => product.model).map(product => product.label)
 
   try {
-    const response = await $fetch('/api/newsletter-signup', {
+    const url = `${useRuntimeConfig().public.apiDomain}/api/newsletter-signup`
+    const response = await $fetch(url, {
       method: 'POST',
       body: {
         email: email.value,

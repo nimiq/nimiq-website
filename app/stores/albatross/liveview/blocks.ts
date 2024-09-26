@@ -1,7 +1,8 @@
 import { LiveviewBlockType } from '~~/server/utils/liveview.types'
 
 export const useLiveviewBlocks = defineStore('liveview-blocks', () => {
-  const { status, data } = useEventSource('/api/albatross/liveview/blocks', [], {
+  const url = `${useRuntimeConfig().public.apiDomain}/api/albatross/liveview/blocks`
+  const { status, data } = useEventSource(url, [], {
     autoReconnect: {
       retries: 3,
       delay: 1000,

@@ -1,7 +1,8 @@
 import type { PolicyConstants } from 'nimiq-rpc-client-ts'
 
 export const useAlbatrossPolicy = defineStore('albatross-policy', () => {
-  const { data: policy } = useFetch<PolicyConstants>('/api/albatross/policy')
+  const url = `${useRuntimeConfig().public.apiDomain}/api/albatross/policy`
+  const { data: policy } = useFetch<PolicyConstants>(url)
 
   return {
     policy,

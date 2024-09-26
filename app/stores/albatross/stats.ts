@@ -1,5 +1,6 @@
 export const useAlbatrossStats = defineStore('albatross-stats', () => {
-  const { status, data, error } = useEventSource('/api/albatross/stats', [], {
+  const url = `${useRuntimeConfig().public.apiDomain}/api/albatross/stats`
+  const { status, data, error } = useEventSource(url, [], {
     autoReconnect: {
       retries: 3,
       delay: 1000,

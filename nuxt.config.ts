@@ -87,6 +87,7 @@ export default defineNuxtConfig({
       },
     },
     public: {
+      apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
     },
     zoho: {
       requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
