@@ -37,8 +37,8 @@ importers:
         specifier: ^3.7.1
         version: 3.7.1(@typescript-eslint/utils@8.6.0(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2))(@unocss/eslint-plugin@0.62.4(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2))(@vue/compiler-sfc@3.5.7)(eslint-plugin-format@0.1.2(eslint@9.11.0(jiti@1.21.6)))(eslint@9.11.0(jiti@1.21.6))(typescript@5.6.2)
       '@iconify-json/nimiq':
-        specifier: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317
-        version: nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+        specifier: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@d08df54
+        version: nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@d08df54(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@iconify/vue':
         specifier: ^4.1.2
         version: 4.1.2(vue@3.5.7(typescript@5.6.2))
@@ -4445,8 +4445,8 @@ packages:
     peerDependencies:
       '@unocss/reset': ^0.62.3
 
-  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317:
-    resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317}
+  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@d08df54:
+    resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@d08df54}
     version: 1.0.0
 
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575:
@@ -11542,7 +11542,7 @@ snapshots:
       - supports-color
       - vite
 
-  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@24e0317(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@d08df54(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@iconify/tools': 4.0.6
       '@iconify/utils': 2.1.33
