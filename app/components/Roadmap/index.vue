@@ -20,7 +20,10 @@ function getNestedBlocksStyles(blocks: Block[][], i: number) {
     throw new Error(`Nested block at index ${i} is missing. Blocks: ${JSON.stringify(blocks)}`)
 
   const { year: firstYear, month: firstMonth } = nestedBlock.at(0)!
-  const { year: untilYear, month: untilMonth } = blocks.at(i + 1)?.at(0) || { year: 1, month: 1 }
+  const { year: untilYear, month: untilMonth } = blocks.at(i + 1)?.at(0) || { year: undefined, month: undefined }
+  // --column-end
+  if (!untilYear || !untilMonth)
+    return { '--first-month': firstMonth, '--first-year': firstYear, '--column-end': 'span -1' }
   return { '--first-month': firstMonth, '--first-year': firstYear, '--until-month': untilMonth, '--until-year': untilYear }
 }
 
@@ -41,18 +44,18 @@ const currentMonth = new Date().getMonth()
 <template>
   <div class="roadmap" relative w-full of-x-auto flex="~ col" :style="`--first-month: ${firstMonth}; --first-year: ${firstYear}; --current-year: ${currentYear}; --current-month: ${currentMonth}`">
     <div absolute inset-y-0 w-max class="layer milestone-lines" of-hidden>
-      <div v-for="({ month, year }, i) in milestones.slice(1)" :key="i" :style="`--w:2px;--year: ${year}; --month: ${month};`" text="neutral/5" relative flex="~ col">
-        <div h="[calc(var(--pt)/2)]" w-2 bg-gradient="to-b from-$bg to-current" />
-        <div h="[calc(var(--pt)/2-4px)]" w-2 bg-current />
+      <div v-for="({ month, year }, i) in milestones.slice(1)" :key="i" :style="`--year: ${year}; --month: ${month};`" text="neutral/5" relative flex="~ col">
+        <div h="[calc(var(--pt)/2)]" w="$vertical-lines-w" bg-gradient="to-b from-$bg to-current" />
+        <div h="[calc(var(--pt)/2-4px)]" w="$vertical-lines-w" bg-current />
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="58" fill="none"><path stroke="currentColor" stroke-linecap="square" stroke-width="2" d="M1 57v-.88a6 6 0 0 1 .82-3.02l12.42-21.33a6 6 0 0 0 0-6.04L1.82 4.4A6 6 0 0 1 1 1.38V1" /></svg>
-        <div w-2 flex-1 bg-current />
-        <div h="[calc(var(--pt)/2)]" w-2 bg-gradient="to-t from-$bg to-current" />
+        <div w="$vertical-lines-w" flex-1 bg-current />
+        <div h="[calc(var(--pt)/2)]" w="$vertical-lines-w" bg-gradient="to-t from-$bg to-current" />
       </div>
 
-      <div style="--w:2px;--year: var(--current-year); --month: var(--current-month);" relative h-full text-red flex="~ col">
-        <div h="$pt" w-2 bg-gradient="to-b from-$bg to-current" />
-        <div w-2 flex-1 bg-current />
-        <div h="$pt" w-2 bg-gradient="to-t from-$bg to-current" />
+      <div style="--year: var(--current-year); --month: var(--current-month);" relative h-full text-red flex="~ col">
+        <div h="$pt" w="$vertical-lines-w" bg-gradient="to-b from-$bg to-current" />
+        <div w="$vertical-lines-w" flex-1 bg-current />
+        <div h="$pt" w="$vertical-lines-w" bg-gradient="to-t from-$bg to-current" />
       </div>
     </div>
 
@@ -95,14 +98,14 @@ const currentMonth = new Date().getMonth()
             <div v-if="Array.isArray(block.items[0])" flex="~ gap-8">
               <div
                 v-for="(subblock, i) in block.items as Block[][]" :key="i"
-                :style="getNestedBlocksStyles(block.items as Block[][], i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" class="layer" rounded-6 p="$p-block" shadow last:rounded-r-0
+                :style="getNestedBlocksStyles(block.items as Block[][], i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" class="layer force-row-height" rounded-6 p="$p-block" shadow last:rounded-r-0
               >
                 <RoadmapBlock v-for="item in subblock" :key="item.name" v-bind="item" />
               </div>
             </div>
             <div
               v-else
-              rounded-l-6 p-16 class="layer" :style="getStartOfBlock(block.items)"
+              rounded-l-6 p-16 class="layer force-row-height" :style="getStartOfBlock(block.items)"
               :class="[layer.blocksClasses, block.nestedBlocksClasses]" shadow
             >
               <RoadmapBlock v-for="item in block.items" :key="item.name" v-bind="item" />
@@ -130,7 +133,7 @@ const currentMonth = new Date().getMonth()
   --pl: 115px;
   --pt: 48px;
   --p-block: 16px;
-  --vertical-lines-center-visually: 2px;
+  --vertical-lines-w: 2px;
 
   .layer {
     --until-year: var(--last-displayed-year);
@@ -145,15 +148,18 @@ const currentMonth = new Date().getMonth()
       --column-end: calc((var(--until-year) - var(--first-year)) * 12 + var(--until-month) - var(--first-month));
       grid-column: var(--column-start) / var(--column-end, span 1);
     }
+
+    &.force-row-height {
+      grid-template-rows: repeat(auto-fill, 16px);
+    }
   }
 
   .milestone-lines {
     left: calc(var(--ml) + var(--pl) + var(--p-block));
 
     > div {
-      --w: 2px;
-      width: var(--w);
-      left: calc(var(--columns-width) * -1 + var(--w) + var(--vertical-lines-center-visually));
+      width: var(--vertical-lines-w);
+      left: calc(var(--columns-width) * -1 + var(--vertical-lines-w) + var(--vertical-lines-w));
       --column-end: span 1;
     }
   }

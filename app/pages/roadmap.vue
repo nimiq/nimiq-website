@@ -32,8 +32,8 @@ const layers: Layer[] = [
             year: firstYear,
             month: firstMonth,
             tooltip: {
-              label: 'Where it all started. Check out this blog post for more information.',
-              cta: { label: 'Read more', link: 'https://nimiq.com/blog' },
+              label: 'Highly customazible. You can edit each entry with the year and month + tooltip.',
+              cta: { label: 'See an example', link: 'https://github.com/nimiq/nimiq-website/blob/main/app/pages/roadmap.vue#L29-L39' },
             },
           },
           {
@@ -107,7 +107,7 @@ const layers: Layer[] = [
             month: 9,
           },
           {
-            icon: 'i-roadmap:rust',
+            icon: 'i-roadmap:rust relative scale-120',
             name: 'Rust implementation',
             year: 2019,
             month: 11,
@@ -175,7 +175,7 @@ const layers: Layer[] = [
             name: '1.0',
             withBg: true,
             year: 2019,
-            month: 1,
+            month: 2,
           },
           {
             icon: 'i-nimiq:logos-nimiq-wallet-horizontal-mono',
@@ -233,23 +233,23 @@ const layers: Layer[] = [
             {
               icon: 'i-nimiq:logos-nimiq-horizontal-mono w-68 h-16',
               name: 'Checkout',
-              year: 2018,
-              month: 3,
+              year: 2020,
+              month: 2,
             },
           ],
           [
             {
-              icon: 'i-nimiq:logos-cpl-horizontal-mono scale-120',
+              icon: 'i-nimiq:logos-cpl-horizontal-mono',
               name: '1.0',
               year: 2020,
-              month: 5,
-              milestone: 'Accessibility for Merchants',
+              month: 12,
             },
             {
-              icon: 'i-nimiq:logos-cpl-horizontal-mono scale-120',
-              name: '1.0',
+              icon: 'i-nimiq:logos-cpl-horizontal-mono',
+              name: '2.0',
               year: 2022,
               month: 1,
+              milestone: 'Accessibility for Merchants',
             },
           ],
         ],
@@ -269,8 +269,8 @@ const layers: Layer[] = [
           [
             {
               name: 'Paused for regulatory reasons',
-              year: 2024,
-              month: 5,
+              year: 2023,
+              month: 4,
             },
           ],
         ],
