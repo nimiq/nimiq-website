@@ -21,10 +21,13 @@ function getNestedBlocksStyles(blocks: Block[][], i: number) {
 
   const { year: firstYear, month: firstMonth } = nestedBlock.at(0)!
   const { year: untilYear, month: untilMonth } = blocks.at(i + 1)?.at(0) || { year: undefined, month: undefined }
-  // --column-end
   if (!untilYear || !untilMonth)
     return { '--first-month': firstMonth, '--first-year': firstYear, '--column-end': 'span -1' }
   return { '--first-month': firstMonth, '--first-year': firstYear, '--until-month': untilMonth, '--until-year': untilYear }
+}
+
+function isNestedBlocks(blocks: Block[] | Block[][]): blocks is Block[][] {
+  return Array.isArray(blocks[0])
 }
 
 const milestones = computed(() => {
@@ -95,10 +98,10 @@ const currentMonth = new Date().getMonth()
               {{ block.name }}
             </span>
 
-            <div v-if="Array.isArray(block.items[0])" flex="~ gap-8">
+            <div v-if="isNestedBlocks(block.items)" flex="~ gap-8">
               <div
-                v-for="(subblock, i) in block.items as Block[][]" :key="i"
-                :style="getNestedBlocksStyles(block.items as Block[][], i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" class="layer force-row-height" rounded-6 p="$p-block" shadow last:rounded-r-0
+                v-for="(subblock, i) in block.items" :key="i"
+                :style="getNestedBlocksStyles(block.items, i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" class="layer force-row-height" rounded-6 p="$p-block" shadow last:rounded-r-0
               >
                 <RoadmapBlock v-for="item in subblock" :key="item.name" v-bind="item" />
               </div>
@@ -108,7 +111,7 @@ const currentMonth = new Date().getMonth()
               rounded-l-6 p-16 class="layer force-row-height" :style="getStartOfBlock(block.items)"
               :class="[layer.blocksClasses, block.nestedBlocksClasses]" shadow
             >
-              <RoadmapBlock v-for="item in block.items" :key="item.name" v-bind="item" />
+              <RoadmapBlock v-for="(item, i) in block.items" :key="i" v-bind="item" />
             </div>
           </div>
         </div>
