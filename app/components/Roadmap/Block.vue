@@ -45,6 +45,8 @@ const [DefineBlock, ReuseBlock] = createReusableTemplate()
 <style scoped>
 .milestone {
   width: var(--vertical-lines-w);
-  left: calc(((var(--column-start) - 1) * var(--columns-width)) + (var(--vertical-lines-w) / 2));
+  /* left: calc(((var(--column-start) - 1) * var(--columns-w)) + var(--width-previous-blocks, 0)); */
+  /* left: calc(0 * var(--columns-w) + 0); */
+  margin-left: calc(-1 * var(--columns-w) + var(--vertical-lines-w) * 2);
 }
 </style>

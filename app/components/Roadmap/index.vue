@@ -3,6 +3,9 @@ import type { Block, Header, Layer } from './types'
 
 const { milestones: _milestones, layers: _layers } = defineProps<{ milestones: Header[], layers: Layer[], firstYear: number, firstMonth: number }>()
 
+const currentYear = new Date().getFullYear()
+const currentMonth = new Date().getMonth()
+
 function getStartOfBlock(block: Block | Block[] | Block[][]) {
   if (!block)
     throw new Error('Block is missing')
@@ -19,11 +22,21 @@ function getNestedBlocksStyles(blocks: Block[][], i: number) {
   if (!nestedBlock)
     throw new Error(`Nested block at index ${i} is missing. Blocks: ${JSON.stringify(blocks)}`)
 
+  // Compute how wide are the blocks on the left
+  let columns = 0
+  blocks.slice(0, i).forEach((block, j) => {
+    const { year: firstYear, month: firstMonth } = block.at(0)!
+    const { year: untilYear, month: untilMonth } = blocks.at(j + 1)!.at(0) || { month: currentMonth, year: currentYear }
+    columns += (untilYear - firstYear) * 12 + untilMonth - firstMonth + 2
+  })
+  const gapsWidth = 16 * i
+  const previousWidth = `calc(${columns} * var(--columns-w) + ${gapsWidth}px)`
+
   const { year: firstYear, month: firstMonth } = nestedBlock.at(0)!
   const { year: untilYear, month: untilMonth } = blocks.at(i + 1)?.at(0) || { year: undefined, month: undefined }
   if (!untilYear || !untilMonth)
-    return { '--first-month': firstMonth, '--first-year': firstYear, '--column-end': 'span -1' }
-  return { '--first-month': firstMonth, '--first-year': firstYear, '--until-month': untilMonth, '--until-year': untilYear }
+    return { '--first-month': firstMonth, '--first-year': firstYear, '--column-end': 'span -1', '--width-previous-blocks': previousWidth }
+  return { '--first-month': firstMonth, '--first-year': firstYear, '--until-month': untilMonth, '--until-year': untilYear, '--width-previous-blocks': previousWidth }
 }
 
 function isNestedBlocks(blocks: Block[] | Block[][]): blocks is Block[][] {
@@ -39,9 +52,6 @@ const milestones = computed(() => {
     return { ...item, untilYear, untilMonth }
   })
 })
-
-const currentYear = new Date().getFullYear()
-const currentMonth = new Date().getMonth()
 </script>
 
 <template>
@@ -71,7 +81,7 @@ const currentMonth = new Date().getMonth()
           <div v-for="i in 4" :key="i" h-1 w-5 bg-neutral-500 ring="y-0.5 neutral-500" />
         </div>
       </div>
-      <div class="layer" pl="$pl" z-1 grid-rows-1 items-center of-visible style="grid-template-columns: repeat(calc(1 + var(--columns)), var(--columns-width))">
+      <div class="layer" pl="$pl" z-1 grid-rows-1 items-center of-visible style="grid-template-columns: repeat(calc(1 + var(--columns)), var(--columns-w))">
         <div
           v-for="({ label, month, year, untilMonth, untilYear }, i) in milestones" :key="i" :style="`--year: ${year}; --month: ${month + (i > 0 ? 1 : 0)}; --until-year: ${untilYear}; --until-month:${untilMonth}`" drop-shadow first=""
         >
@@ -89,7 +99,7 @@ const currentMonth = new Date().getMonth()
 
     <ul flex="~ col gap-16" ml="$ml" w-max nq-mt-16 nq-pb-48>
       <li
-        v-for="layer in layers" :key="layer.name" :class="layer.bg" flex="~ col justify-end"
+        v-for="layer in layers" :key="layer.name" :class="layer.layerClasses" flex="~ col justify-end"
         relative w-max self-end rounded-l-6 p-24 pr-0 pl="$pl"
       >
         <div v-for="block in layer.blocks" :key="block.name" mt-24 first:mt-0 flex="~ justify-end">
@@ -98,7 +108,7 @@ const currentMonth = new Date().getMonth()
               {{ block.name }}
             </span>
 
-            <div v-if="isNestedBlocks(block.items)" flex="~ gap-8">
+            <div v-if="isNestedBlocks(block.items)" flex="~ gap-8" relative right--3>
               <div
                 v-for="(subblock, i) in block.items" :key="i"
                 :style="getNestedBlocksStyles(block.items, i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" class="layer force-row-height" rounded-6 p="$p-block" shadow last:rounded-r-0
@@ -130,7 +140,7 @@ const currentMonth = new Date().getMonth()
 .roadmap {
   /* We leave a gap of one year to "see" in the future */
   --last-displayed-year: calc(var(--current-year) + 1);
-  --columns-width: 19px;
+  --columns-w: 19px;
 
   --ml: 96px;
   --pl: 115px;
@@ -143,7 +153,7 @@ const currentMonth = new Date().getMonth()
     --until-month: var(--current-month);
     --columns: calc((var(--until-year) - var(--first-year)) * 12 + (var(--until-month) - var(--first-month)));
     display: grid;
-    grid-template-columns: repeat(var(--columns), var(--columns-width));
+    grid-template-columns: repeat(var(--columns), var(--columns-w));
     row-gap: 12px;
 
     > div {
@@ -162,7 +172,7 @@ const currentMonth = new Date().getMonth()
 
     > div {
       width: var(--vertical-lines-w);
-      left: calc(var(--columns-width) * -1 + var(--vertical-lines-w) + var(--vertical-lines-w));
+      left: calc(var(--columns-w) * -1 + var(--vertical-lines-w) + var(--vertical-lines-w));
       --column-end: span 1;
     }
   }

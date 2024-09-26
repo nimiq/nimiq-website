@@ -18,7 +18,7 @@ const milestones: Milestone[] = [
 const layers: Layer[] = [
   {
     name: 'Network Layer',
-    bg: 'bg-blue/10',
+    layerClasses: 'bg-blue/10',
     text: 'text-blue-1100',
     icon: 'i-nimiq:icons-lg-network',
     blocksClasses: 'bg-blue text-white',
@@ -162,7 +162,7 @@ const layers: Layer[] = [
 
   {
     name: 'App Layer',
-    bg: 'bg-gold/10',
+    layerClasses: 'bg-gold/10 pl-120',
     text: 'text-gold-1100',
     icon: 'i-nimiq:icons-lg-nim-phone',
     blocksClasses: 'bg-gold text-white',
@@ -289,7 +289,7 @@ const layers: Layer[] = [
   },
 
   {
-    bg: 'bg-orange/10',
+    layerClasses: 'bg-orange/10 pl-146',
     text: 'text-orange-1100',
     icon: 'i-nimiq:icons-lg-group',
     name: 'Adoption Layer',

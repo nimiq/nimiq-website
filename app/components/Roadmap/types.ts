@@ -24,7 +24,7 @@ export interface Header {
 
 export interface Layer {
   name: string
-  bg: string
+  layerClasses: string
   text: string
   icon: string
   blocksClasses?: string
