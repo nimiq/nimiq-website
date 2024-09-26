@@ -260,7 +260,7 @@ const layers: Layer[] = [
         items: [
           [
             {
-              icon: 'i-nimiq:logos-sss',
+              icon: 'i-nimiq:logos-super-simple-swap-mono',
               name: 'SuperSimpleSwap',
               year: 2020,
               month: 11,

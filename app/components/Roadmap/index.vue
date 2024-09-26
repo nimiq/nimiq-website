@@ -35,7 +35,7 @@ const milestones = computed(() => {
     const currentItem = _milestones.at(i)
     const nextItem = _milestones.at(i + 1)
     const untilYear = currentItem?.untilYear || nextItem?.year || 'var(--current-year)'
-    const untilMonth = currentItem?.untilMonth || (nextItem ? nextItem.month + 1 : 'var(--current-month)')
+    const untilMonth = currentItem?.untilMonth || (nextItem ? nextItem.month : 'var(--current-month)')
     return { ...item, untilYear, untilMonth }
   })
 })
@@ -71,7 +71,7 @@ const currentMonth = new Date().getMonth()
           <div v-for="i in 4" :key="i" h-1 w-5 bg-neutral-500 ring="y-0.5 neutral-500" />
         </div>
       </div>
-      <div class="layer" pl="$pl" z-1 grid-rows-1 items-center of-visible>
+      <div class="layer" pl="$pl" z-1 grid-rows-1 items-center of-visible style="grid-template-columns: repeat(calc(1 + var(--columns)), var(--columns-width))">
         <div
           v-for="({ label, month, year, untilMonth, untilYear }, i) in milestones" :key="i" :style="`--year: ${year}; --month: ${month + (i > 0 ? 1 : 0)}; --until-year: ${untilYear}; --until-month:${untilMonth}`" drop-shadow first=""
         >
@@ -79,7 +79,7 @@ const currentMonth = new Date().getMonth()
             {{ label }}
           </div>
         </div>
-        <div :style="`--year: ${milestones.at(-1)?.untilYear}; --month: ${Number(milestones.at(-1)?.untilMonth) - 1}; grid-column: var(--column-start) / -1`" h-full bg-repeat-x class="milestone-future" flex="~ items-center justify-center">
+        <div :style="`--year: ${milestones.at(-1)?.untilYear}; --month: ${Number(milestones.at(-1)?.untilMonth)}; grid-column: var(--column-start) / -1`" h-full bg-repeat-x class="milestone-future" flex="~ items-center justify-center">
           <span whitespace-nowrap text="12 neutral-900" nq-label>
             {{ currentYear + 1 }}
           </span>
@@ -108,7 +108,7 @@ const currentMonth = new Date().getMonth()
             </div>
             <div
               v-else
-              rounded-l-6 p-16 class="layer force-row-height" :style="getStartOfBlock(block.items)"
+              rounded-l-6 p-16 pr-0 class="layer force-row-height" :style="getStartOfBlock(block.items)"
               :class="[layer.blocksClasses, block.nestedBlocksClasses]" shadow
             >
               <RoadmapBlock v-for="(item, i) in block.items" :key="i" v-bind="item" />
@@ -147,9 +147,9 @@ const currentMonth = new Date().getMonth()
     row-gap: 12px;
 
     > div {
-      --column-start: calc((var(--year) - var(--first-year)) * 12 + var(--month) - var(--first-month) + 1);
+      --column-start: calc((var(--year) - var(--first-year)) * 12 + var(--month) - var(--first-month));
       --column-end: calc((var(--until-year) - var(--first-year)) * 12 + var(--until-month) - var(--first-month));
-      grid-column: var(--column-start) / var(--column-end, span 1);
+      grid-column: max(1, var(--column-start)) / var(--column-end, span 1);
     }
 
     &.force-row-height {
