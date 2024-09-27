@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'radix-vue/nuxt',
     '@nuxtjs/seo',
-    '@nuxthub/core',
+    // '@nuxthub/core',
     '@nuxtjs/prismic',
     '@nuxtjs/supabase',
   ],

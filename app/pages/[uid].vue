@@ -23,11 +23,7 @@ defineOgImageComponent('DefaultImage')
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color>
-    <NuxtRouteAnnouncer />
-    <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components="components" />
-    <div fixed bottom-32 right-32 z-102>
-      <LockBadge v-if="page?.data.draft" />
-    </div>
+  <NuxtLayout :footer-bg-color :draft="page?.data.draft">
+    <SliceZone :slices="page?.data.slices ?? []" :components="components" />
   </NuxtLayout>
 </template>

@@ -28,7 +28,6 @@ useDark()
 
 <template>
   <NuxtLayout v-if="post">
-    <NuxtRouteAnnouncer />
     <div ref="articleRef">
       <LockBadge v-if="isDraft" fixed bottom-32 right-32 z-102 />
 

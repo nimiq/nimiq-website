@@ -344,8 +344,7 @@ const refSection = useSection('roadmap', 'grey', { paddingX: false, limitWidth: 
 </script>
 
 <template>
-  <NuxtLayout footer-bg-color="grey">
-    <NuxtRouteAnnouncer />
+  <NuxtLayout footer-bg-color="grey" draft>
     <section ref="refSection" block>
       <Roadmap :milestones :layers :first-year :first-month />
     </section>

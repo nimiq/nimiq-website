@@ -30,12 +30,17 @@ const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalC
               {{ navigation.getStartedLinks[0]?.label }}
             </PrismicLink>
             <PrismicLink v-if="navigation?.getStartedLinks.at(1)?.href" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
-              {{ navigation.getStartedLinks[2]?.label }}
+              {{ navigation.getStartedLinks[1]?.label }}
             </PrismicLink>
           </DropdownMenuItem>
           <DropdownMenuItem class="my-32">
-            <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" :field="navigation.getStartedLinks.at(2)!.href" nq-arrow nq-pill-tertiary>
-              {{ navigation.getStartedLinks[2]?.description }}
+            <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" :field="navigation.getStartedLinks.at(2)!.href">
+              <p text="sm neutral-700" font-bold nq-arrow>
+                {{ navigation.getStartedLinks[2]?.label }}
+              </p>
+              <p text-14 nq-mt-16>
+                {{ navigation.getStartedLinks[2]?.description }}
+              </p>
             </PrismicLink>
           </DropdownMenuItem>
 
@@ -58,7 +63,7 @@ const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalC
                     </AccordionTrigger>
                   </AccordionHeader>
                   <AccordionContent class="content" of-hidden>
-                    <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" :field="href" w-full flex="~ items-center gap-16" whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold nq-arrow>
+                    <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" :field="href" w-full flex="~ items-center gap-16" whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold>
                       {{ linkLabel }}
                     </PrismicLink>
                   </AccordionContent>
@@ -122,22 +127,6 @@ const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalC
   }
   to {
     height: 0;
-  }
-}
-
-.legal-pages {
-  @apply flex gap-16 mt-32 flex-wrap;
-
-  li + li {
-    @apply relative pl-20;
-
-    &:before {
-      @apply empty-content inline-block absolute left-0 top-1/2 -translate-y-1/2 transform rounded w-4 h-4 bg-blue-dark/40;
-    }
-  }
-
-  a {
-    @apply font-semibold transition-opacity opacity-60 hover:opacity-90 focus:opacity-90;
   }
 }
 </style>

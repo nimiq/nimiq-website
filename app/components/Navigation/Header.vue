@@ -6,7 +6,7 @@ defineProps<{ darkHeader?: boolean }>()
 const { navigation, hotCtaLink } = storeToRefs(useGlobalContent())
 
 const { smaller } = useBreakpoints(breakpointsTailwind)
-const isMobile = smaller('md')
+const showMobileMenu = smaller('lg')
 
 const { y } = useScroll(window)
 
@@ -29,7 +29,7 @@ const transition = computed(() => {
 <template>
   <header
     v-if="navigation"
-    flex="~ items-center justify-between gap-x-12" fixed inset-x-16 z-100 mx-16 mb-32 rounded-8 p-16
+    flex="~ items-center justify-between gap-x-12" fixed sticky inset-x-16 top-16 z-100 mx-16 mb-32 mt-16 rounded-8 p-16
     :class="{
       'bg-white shadow-xl': scrolled && direction === 'top',
       'op-100': scrolled && direction === 'top',
@@ -39,21 +39,14 @@ const transition = computed(() => {
     :style="{ transition }"
   >
     <NuxtLink to="/">
-      <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" h-24 />
+      <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" text-20 />
     </NuxtLink>
     <NuxtLink v-if="hotCtaLink" :to="hotCtaLink" mr-auto gap-x9 bg="neutral/15 hocus:neutral/20" text-neutral nq-pill children:transition-colors :class="{ 'children:delay-200': direction === 'bottom' }">
       <div i-nimiq:flame />
       <span truncate text-neutral>{{ navigation.hottext }}</span>
     </NuxtLink>
 
-    <NavigationMobile v-if="isMobile" />
+    <NavigationMobile v-if="showMobileMenu" />
     <NavigationDesktop v-else />
   </header>
 </template>
-
-<style scoped>
-header {
-  top: 16px;
-  position: sticky;
-}
-</style>

@@ -130,5 +130,5 @@ function startLoadingAnimation() {
 </script>
 
 <template>
-  <span data-allow-mismatch style="font-variant-numeric: tabular">{{ formattedValue }}</span>
+  <span data-allow-mismatch tabular-nums>{{ formattedValue }}</span>
 </template>

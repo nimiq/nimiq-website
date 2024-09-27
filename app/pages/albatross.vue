@@ -21,7 +21,6 @@ const columnsSection = useSection('columns', 'darkblue')
 
 <template>
   <NuxtLayout dark-header footer-bg-color="darkblue">
-    <NuxtRouteAnnouncer />
     <section ref="heroSection">
       <Headline :headline :subline />
     </section>
