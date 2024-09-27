@@ -1,47 +1,49 @@
-body main section {
-  :where(h1, h2, h3, h4, h1 + p, h2 + p, h3 + p, h4 + p) {
-    max-width: var(--nq-max-width);
-  }
-
-  h2 + p {
-    color: rgb(var(--nq-neutral-800) / 0.85);
-  }
-
-  :where(
-      &.darkblue:has(+ :where(section, [data-section]).darkblue),
-      &.grey:has(+ :where(section, [data-section]).grey),
-      &.white:has(+ :where(section, [data-section]).white)
-    ) {
-    --pb: 36px;
-
-    @media screen and (min-width: 1024px) {
-      --pb: 48px;
+@layer tmp {
+  body main section {
+    :where(h1, h2, h3, h4, h1 + p, h2 + p, h3 + p, h4 + p) {
+      max-width: var(--nq-max-width);
     }
 
-    + :where(section, [data-section]) {
-      --pt: 36px;
+    h2 + p {
+      color: rgb(var(--nq-neutral-800) / 0.85);
+    }
+
+    :where(
+        &.darkblue:has(+ :where(section, [data-section]).darkblue),
+        &.grey:has(+ :where(section, [data-section]).grey),
+        &.white:has(+ :where(section, [data-section]).white)
+      ) {
+      --pb: 36px;
 
       @media screen and (min-width: 1024px) {
-        --pt: 48px;
+        --pb: 48px;
+      }
+
+      + :where(section, [data-section]) {
+        --pt: 36px;
+
+        @media screen and (min-width: 1024px) {
+          --pt: 48px;
+        }
+      }
+
+      :not(&) {
+        --pb: 160px;
+
+        @media screen and (min-width: 1024px) {
+          --pb: 200px;
+        }
       }
     }
-
-    :not(&) {
-      --pb: 160px;
-
-      @media screen and (min-width: 1024px) {
-        --pb: 200px;
-      }
-    }
-  }
-  /* Remove this part from nimiq-css */
-  /* &:not(:is(.nq-no-py, [nq-no-py])) {
+    /* Remove this part from nimiq-css */
+    /* &:not(:is(.nq-no-py, [nq-no-py])) {
         --pt: 160px;
 
         @media screen and (min-width: 1024px) {
           --pt: 200px;
         }
       } */
+  }
 }
 
 :root {
