@@ -8,7 +8,7 @@ const sectionRef = useSection('footer', bgColor, { limitWidth: false, paddingX: 
 </script>
 
 <template>
-  <footer ref="sectionRef" grid="~ gap-40 md:gap-48 items-start xl:gap-104" px="32 md:64 xl:72" pb="40 md:80 xl:104 2xl:136" data-section z-10 w-full max-w="$nq-max-width">
+  <footer ref="sectionRef" grid="~ gap-40 md:gap-48 items-start xl:gap-104" px="32 md:64 xl:72" data-section z-10 w-full nq-pb-72 max-w="$nq-max-width">
     <div flex="~ col" text-sm area-contact>
       <p v-if="navigation?.newsletterCta">
         {{ navigation.newsletterCta }}
