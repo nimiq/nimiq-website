@@ -29,7 +29,7 @@ const transition = computed(() => {
 <template>
   <header
     v-if="navigation"
-    flex="~ items-center justify-between gap-x-12" fixed sticky inset-x-16 top-16 z-100 mx-16 mb-32 mt-16 rounded-8 p-16
+    flex="~ items-center justify-between gap-x-20" fixed sticky inset-x-16 top-16 z-100 mx-16 mb-32 mt-16 rounded-8 p-16
     :class="{
       'bg-white shadow-xl': scrolled && direction === 'top',
       'op-100': scrolled && direction === 'top',
@@ -40,9 +40,9 @@ const transition = computed(() => {
     :data-scrolled="!scrolled ? '' : undefined"
   >
     <NuxtLink to="/">
-      <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" text-20 />
+      <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" text-24 />
     </NuxtLink>
-    <NuxtLink v-if="hotCtaLink" :to="hotCtaLink" mr-auto gap-x9 bg="neutral/15 hocus:neutral/20" text-neutral nq-pill children:transition-colors :class="{ 'children:delay-200': direction === 'bottom' }">
+    <NuxtLink v-if="hotCtaLink" :to="hotCtaLink" mr-auto gap-x-9 bg="neutral/15 hocus:neutral/20" text-neutral nq-pill children:transition-colors :class="{ 'children:delay-200': direction === 'bottom' }">
       <div i-nimiq:flame />
       <span truncate text-neutral>{{ navigation.hottext }}</span>
     </NuxtLink>
