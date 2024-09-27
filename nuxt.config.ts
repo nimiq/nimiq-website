@@ -74,6 +74,7 @@ export default defineNuxtConfig({
     clientConfig: {
       accessToken: process.env.PRISMIC_ACCESS_TOKEN,
     },
+    linkResolver: '~/prismic/link-resolver.ts',
   },
 
   runtimeConfig: {

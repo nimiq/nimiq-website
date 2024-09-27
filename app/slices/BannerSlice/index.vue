@@ -76,7 +76,7 @@ const items = computed(() => {
           <p v-if="label" text-12 nq-label nq-mb-32>
             {{ label }}
           </p>
-          <PrismicRichText :field="headline" />
+          <PrismicRichText :field="headline" :class="{ 'md:text-center': backgroundPattern === 'Nimiq Apps' || backgroundPattern === 'Social Media' }" />
           <PrismicRichText nq-mt-32 :field="subline" :class="{ 'text-center': hasBgItems }" />
         </div>
         <PrismicLink v-if="hasLink(linkHref) && linkLabel" :field="linkHref" mt="32 md:24" text-blue nq-arrow nq-pill-lg nq-pill-tertiary :class="{ 'md:mx-auto': hasBgItems, 'lg:mr-128': !hasBgItems }">

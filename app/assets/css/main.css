@@ -1,0 +1,5 @@
+body main section {
+  :where(h1, h2, h3, h4, h1 + p, h2 + p, h3 + p, h4 + p) {
+    max-width: var(--nq-max-width);
+  }
+}

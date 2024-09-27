@@ -12,23 +12,7 @@ const { md, lg } = useBreakpoints(breakpointsTailwind)
 </script>
 
 <template>
-  <div role="banner" h="$announcement-height" p="x-32 t-20 b-24 md:y-20" aria-label="Announcement" relative w-full of-hidden bg-black>
-    <div absolute z-100 flex="~ col md:items-center lg:row lg:justify-center gap-y-12 gap-x-16" left="50%" translate-x="-50%">
-      <p text="md white" whitespace-nowrap font-bold>
-        {{ headline }}
-      </p>
-      <PrismicLink v-if="hasLink(ctaLink)" :field="ctaLink" mx-0 nq-pill-secondary>
-        {{ ctaLabel }}
-      </PrismicLink>
-    </div>
-
-    <div inset-x="[calc((100%-1120px)/2)]" absolute inset-y-0 z-10 max-w-1120>
-      <div v-if="!lg" i-announcement:sm-identicons-right absolute right--65 top="-46 md:-60" h-223 w-220 />
-      <div v-if="md && !lg" i-announcement:md-identicons-left absolute left--65 top--60 h-231 w-220 />
-      <div v-if="lg" i-announcement:lg-identicons-right absolute right--65 top--80 h-223 w-220 />
-      <div v-if="lg" i-announcement:lg-identicons-left absolute left--65 top--80 h-223 w-220 />
-    </div>
-
+  <div role="banner" p="x-32 t-20 b-24 md:y-20" aria-label="Announcement" relative w-full of-hidden bg-purple flex="~ col md:items-center lg:row lg:justify-center gap-y-12 gap-x-16">
     <!-- Cool filters -->
     <div top="100%" absolute z-10 w-full flex>
       <div max-w-600 w-full opacity-30 class="circle-filter" />
@@ -37,22 +21,30 @@ const { md, lg } = useBreakpoints(breakpointsTailwind)
     </div>
     <div absolute left-0 top-0 h-full w-full opacity-10 class="radial-filter" />
     <div absolute left-0 top-0 h-full w-full class="linear-filter" />
+
+    <div xl:inset-x="0 [calc((100%-1120px)/2)]" absolute inset-y-0 max-w-1120 w-full>
+      <div v-if="!lg" i-announcement:sm-identicons-right absolute right--35 top="-56 md:-60" h-223 w-220 />
+      <div v-if="md && !lg" i-announcement:md-identicons-left absolute left--65 top--60 h-231 w-220 />
+      <div v-if="lg" i-announcement:lg-identicons-right absolute right--65 top--80 h-223 w-220 />
+      <div v-if="lg" i-announcement:lg-identicons-left absolute left--65 top--80 h-223 w-220 />
+    </div>
+
+    <p text="md white" font-bold>
+      {{ headline }}
+    </p>
+    <PrismicLink v-if="hasLink(ctaLink)" :field="ctaLink" mx-0 nq-pill-secondary>
+      {{ ctaLabel }}
+    </PrismicLink>
   </div>
 </template>
 
-<style>
-:root {
-  --announcement-height: 102px;
-
-  @screen md {
-    --announcement-height: 108px;
-  }
-
-  @screen lg {
-    --announcement-height: 72px;
-  }
+  <style>
+  main {
+  --uno: 'mt--91 md:mt--114';
 }
+</style>
 
+<style scoped>
 .radial-filter {
   background: radial-gradient(79% 73% at 12% 15%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.62) 100%);
 }

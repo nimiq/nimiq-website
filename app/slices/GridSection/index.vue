@@ -32,7 +32,7 @@ const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor)
         >
           <div :class="iconName" text="32 md:48 $c group-hocus:white" transition-colors />
           <PrismicRichText :field="headline" whitespace-nowrap flex="~ items-center" class="raw" text="neutral group-hocus:!white" />
-        </Prismiclink>
+        </PrismicLink>
       </div>
     </template>
     <template v-else-if="slice.variation === 'threeColumnsImageText'">

@@ -36,7 +36,7 @@ const transition = computed(() => {
       'op-0': scrolled && direction === 'bottom',
       'dark': !scrolled && darkHeader,
     }"
-    :style="{ transition, '--y': `${y}px` }"
+    :style="{ transition }"
   >
     <NuxtLink to="/">
       <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" h-24 />
@@ -53,7 +53,7 @@ const transition = computed(() => {
 
 <style scoped>
 header {
-  --default-top: 16px;
-  top: max(var(--default-top), calc((var(--announcement-height, 0) - var(--y)) + var(--default-top)));
+  top: 16px;
+  position: sticky;
 }
 </style>
