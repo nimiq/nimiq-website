@@ -17,7 +17,7 @@ const continentsSvg = {
   'Asia': 'i-continents:asia selected:text-red size-200 right--40 top--80',
   'Europe': 'i-continents:europe selected:text-gold size-200 right--40 top--90',
   'North America': 'i-continents:north-america selected:text-green size-268 right--40 top--156 rotate-2',
-  'Oceania': 'i-continents:oceania selected:text-blue size-180 right--40 top--8',
+  'Oceania': 'i-continents:oceania selected:text-blue size-170 right--15 top--42',
   'South America': 'i-continents:south-america selected:text-purple size-200 right--40 top--8',
 }
 

@@ -9,31 +9,28 @@ const { socialMedias, nimiqApps } = storeToRefs(useGlobalContent())
 
 // @unocss-include
 
+const classesPositions = [
+  'bottom--40 right--30 md:right-88 md:bottom--44 xl:right-180',
+  'invisible md:visible md:right--18 md:bottom-50 lg:bottom-100 lg:right--32 xl:right-70 xl:bottom-60',
+  'invisible md:visible md:left-88 md:bottom--52 xl:left-180',
+  'invisible md:visible md:left--36 md:bottom-42 lg:bottom-92 xl:left-70 xl:bottom-60',
+  'invisible xl:visible xl:bottom--40 xl:left--30',
+  'invisible xl:visible xl:bottom--40 xl:right--30',
+]
+
 function getBackgroundItems(background: BannerSliceSliceDefaultItem['backgroundPattern']) {
   switch (background) {
     case 'Social Media': {
-      const classesPositions = [
-        'bottom--40 right--30 md:right-88 md:bottom--44',
-        'invisible md:visible md:right--18 md:bottom-50 lg:bottom-100 lg:right--32',
-        'invisible md:visible md:left-88 md:bottom--52',
-        'invisible md:visible md:left--36 md:bottom-42 lg:bottom-92',
-      ]
       return [
         { ...socialMedias.value.youtube, name: 'Nimiq\'s YouTube', classes: `text-48 ${classesPositions[0]}` },
         { ...socialMedias.value.github, name: 'Nimiq \'s GitHub', classes: `text-60 ${classesPositions[1]}` },
         { ...socialMedias.value.x, name: 'Nimiq\'s X', classes: `text-54 ${classesPositions[2]}` },
         { ...socialMedias.value.telegram, name: 'Nimiq\'s Telegram', classes: `text-60 ${classesPositions[3]}` },
+        { ...socialMedias.value.instagram, name: 'Nimiq\'s Instagram', classes: `text-60 ${classesPositions[4]}` },
+        { ...socialMedias.value.facebook, name: 'Nimiq\'s Instagram', classes: `text-60 ${classesPositions[5]}` },
       ]
     }
     case 'Nimiq Apps': {
-      const classesPositions = [
-        'bottom--40 right--30 md:right-88 md:bottom--44 xl:right-180',
-        'invisible md:visible md:right--18 md:bottom-50 lg:bottom-100 lg:right--32 xl:right-70 xl:bottom-60',
-        'invisible md:visible md:left-88 md:bottom--52 xl:left-180',
-        'invisible md:visible md:left--36 md:bottom-42 lg:bottom-92 xl:left-70 xl:bottom-60',
-        'invisible xl:visible xl:bottom--40 xl:left--30',
-        'invisible xl:visible xl:bottom--40 xl:right--30',
-      ]
       const apps = Object.values(nimiqApps.value || []).filter(({ logo }) => hasImage(logo))
       if (apps.length < 4)
         return []

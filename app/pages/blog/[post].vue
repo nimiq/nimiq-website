@@ -45,7 +45,7 @@ useDark()
         <PrismicImage :field="post.data.image" mx-auto mt-104 max-w-1440 w-full rounded-8 object-contain view-transition-post-img />
       </header>
     </div>
-    <SliceZone pt="80 lg:96" wrapper="main" :slices="post?.data.body ?? []" :components />
+    <SliceZone pt="80 lg:96" :slices="post?.data.body ?? []" :components />
     <Disclaimer />
   </NuxtLayout>
 </template>

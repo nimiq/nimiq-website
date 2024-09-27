@@ -31,6 +31,7 @@ function getAbstract(post: BlogPageDocument): string {
 }
 
 const active = useState()
+const isDev = import.meta.dev
 </script>
 
 <template>
@@ -40,7 +41,22 @@ const active = useState()
         <NuxtLink :to="`/blog/${post.uid}`" relative h-full nq-hoverable @click="active = post.uid">
           <LockBadge v-if="post.data.draft" absolute right-12 top-12 />
           <div p-4>
-            <PrismicImage :field="post.data.image" h-max w-full rounded-4 object-cover :class="{ 'view-transition-post-img contain-layout': active === post.uid }" />
+            <PrismicImage v-if="hasImage(post.data.image)" :field="post.data.image" h-max w-full rounded-4 object-cover :class="{ 'view-transition-post-img contain-layout': active === post.uid }" />
+            <div v-else-if="isDev" size-full flex-1 rounded-4 py-64 text-green-400 bg-gradient-green grid="~ place-content-center">
+              <div flex="~ items-center gap-12">
+                <div i-nimiq:icons-lg-tools text-32 op-70 />
+
+                <p font-bold text-xl>
+                  Image not found
+                </p>
+              </div>
+              <p mt-8 max-w-40ch font-semibold op-80>
+                Something great is being redacted just right now and there is no image yet. 🤫
+              </p>
+              <p text-2xs italic op-70 nq-mt-12>
+                This is a development-only message.
+              </p>
+            </div>
           </div>
           <div flex="~ col" h-full p-24>
             <PrismicText

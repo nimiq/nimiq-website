@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const { bgColor, density = 2 } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue', density?: 1 | 2 | 3 }>()
+const { bgColor } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue' }>()
 const sectionRef = useSection('hexagons-background', bgColor, { limitWidth: false, paddingX: false })
 
-const rows = computed(() => density * 3)
+const rows = computed(() => 5)
 const { width } = useWindowSize()
 const columns = computed(() => (Math.floor(width.value / 140) + 4) & ~1)
 
