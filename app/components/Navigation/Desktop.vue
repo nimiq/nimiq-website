@@ -132,7 +132,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
       </NavigationMenuItem>
 
       <NavigationMenuItem v-if="navigation.getStartedGroupName && navigation.getStartedLinks.length > 0">
-        <NavigationMenuTrigger ml-16 nq-pill-lg nq-pill-blue>
+        <NavigationMenuTrigger class="get-started-btn" ml-16 nq-pill-lg nq-pill-blue>
           {{ navigation.getStartedGroupName }}
         </NavigationMenuTrigger>
         <NavigationMenuContent absolute left-0 top-0 min-w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
@@ -179,6 +179,12 @@ nav.header-nav {
   li.link-item {
     a {
       --uno: 'flex-1 cursor-pointer whitespace-nowrap  font-semibold rounded-4 transition-colors px-16 py-10 hocus:bg-darkblue/6 text-darkblue/60 hocus:text-darkblue';
+    }
+  }
+
+  .get-started-btn {
+    header[data-scrolled] & {
+      --uno: 'bg-none bg-white/10 transition-colors hocus:bg-white/15';
     }
   }
 }

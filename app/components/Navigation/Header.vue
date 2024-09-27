@@ -37,6 +37,7 @@ const transition = computed(() => {
       'dark': !scrolled && darkHeader,
     }"
     :style="{ transition }"
+    :data-scrolled="!scrolled ? '' : undefined"
   >
     <NuxtLink to="/">
       <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" text-20 />
