@@ -55,7 +55,7 @@ useIntersectionObserver(sectionRef, () => {
         >
           <PrismicImage v-if="hasImage(item.logo)" :field="item.logo" mx="auto md:unset" />
           <PrismicRichText nq-mt-24 :field="item.headline" />
-          <div text-12 nq-label nq-mt-12>
+          <div text-12 nq-mt-12 nq-label>
             {{ item.label }}
           </div>
           <PrismicRichText nq-mt-48 class="nq-prose-compact nq-prose" :field="item.description" />

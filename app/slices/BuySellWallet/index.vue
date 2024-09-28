@@ -17,7 +17,7 @@ const sectionRef = useSection(props.slice.id, 'white')
             <PrismicRichText v-if="paymentMethod" nq-mt-12 children:text-left children:text="neutral-0 inverted:white" :field="paymentMethod" />
             <PrismicRichText v-if="description" text="inverted:white/80 neutral-800" :field="description" min-h-3lh nq-mt-16 />
 
-            <p v-if="label" text="12 neutral-800 inverted:neutral-300" nq-label nq-mt-32>
+            <p v-if="label" text="12 neutral-800 inverted:neutral-300" nq-mt-32 nq-label>
               {{ label }}
             </p>
           </div>

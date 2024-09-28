@@ -75,14 +75,14 @@ const columnsSection = useSection('columns', 'darkblue')
 
     <section ref="columnsSection">
       <ul columns="1 md:2" gap-64 style="--nq-max-width: 716px">
-        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" children:m-0 nq-pb-96>
+        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" nq-pb-96 children:m-0>
           <NuxtImg src="/assets/images/albatross/micro-block.png" alt="Albatross Microblock representation" max-w-160 rounded-6 />
           <h3>
             Micro Block
           </h3>
           <p>Micro Blocks contain transactions. Creating and sharing a block is faster than one second on average, thus transactions are confirmed almost instantly.</p>
         </li>
-        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" children:m-0 nq-pb-96>
+        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" nq-pb-96 children:m-0>
           <NuxtImg src="/assets/images/albatross/skip-block.png" alt="Albatross Skip block representation" max-w-160 rounded-6 />
           <h3>
             Skip Block
@@ -92,7 +92,7 @@ const columnsSection = useSection('columns', 'darkblue')
           </p>
         </li>
 
-        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" children:m-0 nq-pb-96>
+        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" nq-pb-96 children:m-0>
           <h3>
             Validator
           </h3>
@@ -100,7 +100,7 @@ const columnsSection = useSection('columns', 'darkblue')
             Validators are responsible for creating blocks and validating blocks produced by others. They are chosen according to their stake — the higher the stake the more likely they are chosen. Validators are replaced in fixed intervals, called epochs. If a validator is found to be misbehaving, the validator will be punished. There are various severities of punishment, from taking away their block reward, slashing part of their stake, all the way to on-chain jail. Misbehavior includes producing invalid blocks or more than one block at a time (fork blocks). The potential loss of some of their stake and their block reward makes sure that validators don’t misbehave.
           </p>
         </li>
-        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" children:m-0 nq-pb-96>
+        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" nq-pb-96 children:m-0>
           <NuxtImg src="/assets/images/albatross/macro-block.png" alt="Albatross Macro block representation" max-w-160 rounded-6 />
           <h3>
             Macro Block
@@ -109,7 +109,7 @@ const columnsSection = useSection('columns', 'darkblue')
             Macro Blocks mark the beginning and end of batches and epochs. They must be voted for by at least two thirds of all active slots. A Macro Block finalizes all transactions of the current batch. Epoch-finalizing Macro Blocks additionally determine the slots and their validators for the next epoch.
           </p>
         </li>
-        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" children:m-0 nq-pb-96>
+        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" nq-pb-96 children:m-0>
           <NuxtImg src="/assets/images/albatross/batch-epoch.png" alt="Albatross Batch and epoch representation" rounded-6 />
           <h3>
             Batch and Epoch
@@ -118,7 +118,7 @@ const columnsSection = useSection('columns', 'darkblue')
             A batch is the time between two Macro Blocks. A fixed number of batches make up an epoch. For each epoch, 512 slots are randomly assigned to all potential validators proportionally to each validator’s stake. Parameters such as minimum stake, length of batches and epochs (i.e. number of micro blocks), number of slots, etc. are being tested and thus are subject to change before the Mainnet transition. For each micro block a slot is randomly selected — one after the other — so its validator can validate pending transactions and create the block.
           </p>
         </li>
-        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" children:m-0 nq-pb-96>
+        <li class="nq-prose-compact nq-prose" flex="~ col gap-24" nq-pb-96 children:m-0>
           <h3>
             Slot
           </h3>
