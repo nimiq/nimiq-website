@@ -84,7 +84,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
                 <div :class="socialMedias.github.icon" text-20 op-70 />
                 {{ navigation.githubLinkLabel }}
               </PrismicLink>
-              <SocialMediaLogosList flex-nowrap :items="[SocialMedia.reddit, SocialMedia.discord, SocialMedia.telegram]" op-80 />
+              <SocialMediaLogosList :items="[SocialMedia.reddit, SocialMedia.discord, SocialMedia.telegram]" flex-nowrap text-18 op-80 />
             </div>
           </div>
         </NavigationMenuContent>
@@ -106,7 +106,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
               </li>
             </ul>
             <hr h-1 w-full bg-darkblue op-10>
-            <SocialMediaLogosList mt-16 :items="[SocialMedia.x, SocialMedia.reddit, SocialMedia.facebook, SocialMedia.youtube, SocialMedia.instagram, SocialMedia.discord, SocialMedia.telegram, SocialMedia.nimiqForum, SocialMedia.github]" op-80 />
+            <SocialMediaLogosList :items="[SocialMedia.x, SocialMedia.reddit, SocialMedia.facebook, SocialMedia.youtube, SocialMedia.instagram, SocialMedia.discord, SocialMedia.telegram, SocialMedia.nimiqForum, SocialMedia.github]" mt-16 text-18 op-80 />
           </div>
         </NavigationMenuContent>
       </NavigationMenuItem>

@@ -17,7 +17,7 @@ const sectionRef = useSection('footer', bgColor, { limitWidth: false, paddingX: 
       <p v-if="navigation?.socialMediaCta" nq-mt-16>
         {{ navigation.socialMediaCta }}
       </p>
-      <SocialMediaLogosList mx--8 op-60 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
+      <SocialMediaLogosList mx--8 op-60 nq-text-xl :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
     </div>
 
     <div text="sm neutral-700" self-end area-meta>

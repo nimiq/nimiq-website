@@ -33,7 +33,7 @@ const transition = computed(() => {
     :class="{
       'bg-white shadow-xl': scrolled && direction === 'top',
       'op-100': scrolled && direction === 'top',
-      'op-0': scrolled && direction === 'bottom',
+      'op-0 pointer-events-none': scrolled && direction === 'bottom',
       'dark': !scrolled && darkHeader,
     }"
     :style="{ transition }"

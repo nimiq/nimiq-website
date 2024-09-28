@@ -58,8 +58,8 @@ const allowMapInteraction = ref(false)
 
 <template>
   <section ref="sectionRef" flex="col lg:row gap-x-24 gap-y-32" max-w="$nq-max-width">
-    <div w-full max-lg:my--40>
-      <ul w-full flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-40">
+    <div max-lg:my--40 max-md:w-full>
+      <ul max-md:w-full flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-40">
         <li
           v-for="({ label, hasCryptoCities, hasLocations, cryptoCitiesCount, locationsCount, svg, selected }) in continents"
           :key="label!"
