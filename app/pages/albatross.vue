@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RichTextField } from '@prismicio/client'
+import type { RichTextField, TitleField } from '@prismicio/client'
 
 useHead({
   title: 'Nimiq Albatross Liveview',
@@ -10,8 +10,7 @@ useHead({
 
 // defineOgImageComponent('DefaultImage', { title: 'Nimiq' })
 
-const heroSection = useSection('hero', 'darkblue')
-const headline = computed(() => ([{ type: 'heading1', text: 'Nimiq Proof-of-Stake Testnet', spans: [], direction: 'ltr' }] as RichTextField))
+const headline = computed(() => ({ type: 'heading1', text: 'Nimiq Proof-of-Stake Testnet', spans: [] } as unknown as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Nimiq\'s Albatross consensus algorithm running live in the Proof-of-Stake Testnet.', spans: [], direction: 'ltr' }] as RichTextField))
 
 const liveviewSection = useSection('liveview', 'darkblue', { paddingX: false, limitWidth: false })
@@ -21,9 +20,8 @@ const columnsSection = useSection('columns', 'darkblue')
 
 <template>
   <NuxtLayout dark-header footer-bg-color="darkblue">
-    <section ref="heroSection">
-      <Headline :headline :subline />
-    </section>
+    <HeroDefault :primary="{ headline, subline, bgColor: 'darkblue' }" />
+
     <section ref="liveviewSection">
       <AlbatrossLiveview allow-send-tx />
     </section>

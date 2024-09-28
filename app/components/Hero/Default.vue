@@ -2,10 +2,10 @@
 import type { Content } from '@prismicio/client'
 
 interface Props {
-  primary: Content.HeroSectionSliceDefaultSlicePrimary
-  items: Content.HeroSectionSliceDefaultSliceItem[]
+  primary: Partial<Content.HeroSectionSliceDefaultSlicePrimary>
+  items?: Content.HeroSectionSliceDefaultSliceItem[]
 }
-const { primary: p, items } = defineProps<Props>()
+const { primary: p, items = [] } = defineProps<Props>()
 
 const hasPrimaryLink = computed(() => hasLink(p.linkHref) && p.linkLabel)
 const hasSecondaryLink = computed(() => hasLink(p.secondaryLinkHref) && p.secondaryLinkLabel)

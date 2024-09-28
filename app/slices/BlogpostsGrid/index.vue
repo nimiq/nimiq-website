@@ -38,10 +38,10 @@ const isDev = import.meta.dev
   <section ref="sectionRef">
     <div grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
       <article v-for="(post, i) in posts" :key="post.id" :class="page === 1 ? { 'md:self-end': i === 1, 'md:self-stretch': i > 1, 'md:first:col-span-2': true } : 'self-stretch'">
-        <NuxtLink :to="`/blog/${post.uid}`" relative h-full nq-hoverable @click="active = post.uid">
+        <NuxtLink :to="`/blog/${post.uid}`" relative h-full p-0 nq-hoverable @click="active = post.uid">
           <LockBadge v-if="post.data.draft" absolute right-12 top-12 />
           <div p-4>
-            <PrismicImage v-if="hasImage(post.data.image)" :field="post.data.image" h-max w-full rounded-4 object-cover :class="{ 'view-transition-post-img contain-layout': active === post.uid }" />
+            <PrismicImage v-if="hasImage(post.data.image)" :field="post.data.image" h-max w-full rounded-6 object-cover :class="{ 'view-transition-post-img contain-layout': active === post.uid }" />
             <div v-else-if="isDev" size-full flex-1 rounded-4 py-64 text-green-400 bg-gradient-green grid="~ place-content-center">
               <div flex="~ items-center gap-12">
                 <div i-nimiq:icons-lg-tools text-32 op-70 />
