@@ -1,11 +1,11 @@
 <script setup lang="ts">
-const { txSecLabel = 'TX/sec', averageRewardsLabel = 'Avg rewarsd', txSpeedLabel = 'TX Speed' } = defineProps<{
+const { txSecLabel = 'TX/sec', averageRewardsLabel = 'Avg rewards', txSpeedLabel = 'TX Speed' } = defineProps<{
   txSecLabel?: string
   txSpeedLabel?: string
   averageRewardsLabel?: string
 }>()
 
-const { txPerSecond, blockTime } = storeToRefs(useAlbatrossStats())
+const { stats } = storeToRefs(useAlbatrossStats())
 
 const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgColor: string, value: number, label: string, decimals?: number, suffix?: string }>()
 </script>
@@ -29,10 +29,10 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
   </DefineStat>
   <ul flex="~ items-center justify-between gap-32 lg:gap-48 sm:row col">
     <li>
-      <ReuseStat icon="i-nimiq:sand-clock size-14" icon-bg-color="bg-gradient-orange" :value="txPerSecond" :label="txSecLabel" />
+      <ReuseStat icon="i-nimiq:sand-clock size-14" icon-bg-color="bg-gradient-orange" :value="stats.txPerSecond || 0" :label="txSecLabel" />
     </li>
     <li>
-      <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="blockTime" :label="txSpeedLabel" :decimals="0" suffix="&nbsp;sec" />
+      <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="stats.blockTime" :label="txSpeedLabel" :decimals="0" suffix="&nbsp;sec" />
     </li>
     <li>
       <ReuseStat icon="i-nimiq:leaf-2 size-12 ml-1" icon-bg-color="bg-gradient-green" :value="0" :label="averageRewardsLabel" suffix="% p.a" />

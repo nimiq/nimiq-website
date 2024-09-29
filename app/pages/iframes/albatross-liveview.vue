@@ -7,6 +7,6 @@ const networkNotice = 'Showing live Proof of Stake test net data'
 
 <template>
   <NuxtLayout name="iframe" class="dark" bg-neutral-100>
-    <AlbatrossLiveviewClient :allow-send-tx :network-notice />
+    <AlbatrossLiveview :allow-send-tx :network-notice />
   </NuxtLayout>
 </template>

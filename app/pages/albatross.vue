@@ -23,7 +23,7 @@ const columnsSection = useSection('columns', 'darkblue')
     <HeroDefault :primary="{ headline, subline, bgColor: 'darkblue' }" />
 
     <section ref="liveviewSection">
-      <AlbatrossLiveviewClient allow-send-tx />
+      <AlbatrossLiveview allow-send-tx />
     </section>
 
     <section ref="articleSection">

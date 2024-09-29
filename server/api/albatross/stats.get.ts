@@ -28,8 +28,6 @@ function calculateBlockTime(blocks: Block[]): number {
 
 export default defineWebSocketHandler({
   async open(peer) {
-    // eslint-disable-next-line no-console
-    console.log('[ws] open', peer)
     const nodeRpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
     client = new NimiqRPCClient(nodeRpcUrl)
 
@@ -62,15 +60,13 @@ export default defineWebSocketHandler({
   // async message(peer) {
   // },
 
-  close(peer, event) {
-    // eslint-disable-next-line no-console
-    console.log('[ws] close', peer, event)
-  },
+  // close(peer, event) {
+  // console.log('[ws] close', peer, event)
+  // },
 
-  error(peer, error) {
-    // eslint-disable-next-line no-console
-    console.log('[ws] error', peer, error)
-  },
+  // error(peer, error) {
+  // console.log('[ws] error', peer, error)
+  // },
 })
 
 function roundToSignificant(number: number, places = 1) {
