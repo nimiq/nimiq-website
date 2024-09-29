@@ -7,7 +7,7 @@ import ArticleMetadata from '~/components/ArticleMetadata.vue'
 const props = defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
 const sectionRef = useSection(props.slice.id, 'grey')
 
-const showDrafts = true // TODO Change this depending on the NODE_ENV
+const showDrafts = import.meta.dev // TODO Change this depending on the NODE_ENV
 
 const itemsPerPage = 25
 const page = useRouteQuery<number>('page', 1, { transform: Number })

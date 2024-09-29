@@ -39,7 +39,7 @@
     "@pinia/nuxt": "^0.5.4",
     "@prismicio/client": "^7.11.0",
     "@slicemachine/adapter-nuxt": "^0.3.49",
-    "@types/node": "^22.7.3",
+    "@types/node": "^22.7.4",
     "@unocss/eslint-plugin": "^0.62.4",
     "@unocss/nuxt": "^0.62.4",
     "@unocss/preset-rem-to-px": "^0.62.4",
@@ -63,7 +63,12 @@
     "vite-plugin-top-level-await": "^1.4.4",
     "vite-plugin-wasm": "^3.3.0",
     "vue": "latest",
-    "vue-router": "^4.4.5"
+    "vue-router": "^4.4.5",
+    "wrangler": "^3.78.12"
+  },
+  "resolutions": {
+    "h3": "npm:h3-nightly@latest",
+    "nitropack": "npm:nitropack-nightly@latest"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const withTxQuery = useRoute().query.withTx
-const withTx = withTxQuery === 'true'
+const allowSendTxQuery = useRouteQuery('allow-send-tx')
+const allowSendTx = computed(() => allowSendTxQuery.value === 'true')
 
 const networkNotice = 'Showing live Proof of Stake test net data'
 </script>
 
 <template>
   <NuxtLayout name="iframe" class="dark" bg-neutral-100>
-    <AlbatrossLiveview :allow-send-tx="withTx" :network-notice />
+    <AlbatrossLiveviewClient :allow-send-tx :network-notice />
   </NuxtLayout>
 </template>

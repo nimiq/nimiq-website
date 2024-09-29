@@ -1,6 +1,8 @@
+import type { LiveviewStats } from '~~/server/utils/albatross.types'
+
 export const useAlbatrossStats = defineStore('albatross-stats', () => {
   const url = `${useRuntimeConfig().public.apiDomain}/api/albatross/stats`
-  const { status, data, error } = useEventSource(url, [], {
+  const { status, data: stats } = useWebSocket<LiveviewStats>(url, {
     autoReconnect: {
       retries: 3,
       delay: 1000,
@@ -10,16 +12,11 @@ export const useAlbatrossStats = defineStore('albatross-stats', () => {
     },
   })
 
-  const emptyStats: LiveviewStats = { txPerSecond: 0, blockTime: 0 }
-  const stats = computed<LiveviewStats>(() => data.value ? JSON.parse(data.value) : emptyStats)
-
   return {
     status,
-    error,
-    data,
     stats,
-    txPerSecond: computed(() => stats.value.txPerSecond),
-    blockTime: computed(() => stats.value.blockTime),
+    txPerSecond: computed(() => stats.value?.txPerSecond || 0),
+    blockTime: computed(() => stats.value?.blockTime || 0),
   }
 })
 

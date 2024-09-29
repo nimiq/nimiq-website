@@ -10,7 +10,7 @@ useHead({
 
 // defineOgImageComponent('DefaultImage', { title: 'Nimiq' })
 
-const headline = computed(() => ({ type: 'heading1', text: 'Nimiq Proof-of-Stake Testnet', spans: [] } as unknown as TitleField))
+const headline = computed(() => ([{ type: 'heading1', text: 'Nimiq Proof-of-Stake Testnet', spans: [] }] as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Nimiq\'s Albatross consensus algorithm running live in the Proof-of-Stake Testnet.', spans: [], direction: 'ltr' }] as RichTextField))
 
 const liveviewSection = useSection('liveview', 'darkblue', { paddingX: false, limitWidth: false })
@@ -23,13 +23,15 @@ const columnsSection = useSection('columns', 'darkblue')
     <HeroDefault :primary="{ headline, subline, bgColor: 'darkblue' }" />
 
     <section ref="liveviewSection">
-      <AlbatrossLiveview allow-send-tx />
+      <AlbatrossLiveviewClient allow-send-tx />
     </section>
 
     <section ref="articleSection">
       <article class="nq-prose">
-        <h2>Albatross</h2>
-        <p>
+        <h2 text-left>
+          Albatross
+        </h2>
+        <p text-left>
           Albatross is a new proof-of-stake blockchain consensus protocol co-created by Nimiq. It achieves sub-second transaction confirmation and peak performances of over 1000 TPS without compromising censorship resistance. Validators need to deposit 100k NIM and delegated stakes can be as low as 100 NIM, offering everybody a chance to participate.
         </p>
         <p>
