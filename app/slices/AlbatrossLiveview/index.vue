@@ -7,7 +7,7 @@ const sectionRef = useSection(props.slice.id, 'darkblue', { paddingX: false, lim
 
 <template>
   <section ref="sectionRef">
-    <AlbatrossLiveview
+    <Albatross
       :allow-send-tx="slice.primary.allowSendTx"
       :average-rewards-label="slice.primary.averageRewardsLabel!"
       :network-notice="slice.primary.networkNotice!"

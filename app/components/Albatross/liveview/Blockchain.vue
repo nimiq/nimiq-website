@@ -67,7 +67,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
         Loading...
       </div>
       <div v-else-if="status === 'CLOSED'" text="18 white" rounded-4 bg-red px-32 py-24>
-        We couldn't connect to the Demonet
+        We couldn't connect to the Testnet
       </div>
     </div>
 
