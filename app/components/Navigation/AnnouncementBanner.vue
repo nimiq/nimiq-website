@@ -10,7 +10,7 @@ const {
 
 <template>
   <div role="banner" p="x-32 t-20 b-24 md:y-20" aria-label="Announcement" relative w-full of-hidden bg-darkblue flex="~ col md:items-center lg:row lg:justify-center gap-y-12 gap-x-16">
-    <p text="md white" z-1 font-bold>
+    <p text="md white" z-1 font-semibold>
       {{ headline }}
     </p>
     <PrismicLink v-if="hasLink(ctaLink)" z-1 :field="ctaLink" mx-0 nq-pill-secondary>
@@ -18,7 +18,7 @@ const {
     </PrismicLink>
 
     <!-- Ellipses on the sides -->
-    <div absolute inset-0 mx-auto max-w-1120 w-full>
+    <div absolute inset-0 mx-auto max-w-3120 w-full>
       <div absolute top="36 lg:40" right="-300 lg:-261" h-159 w-606 rounded-8 op-30 blur-120 style="background: radial-gradient(141.42% 141.42% at 100% 100%, #693bc4 0%, #8f3fd5 100%);" />
       <div top="36 lg:40" left="-300 lg:-261" absolute h-159 w-606 rounded-8 op-30 blur-120 max-md:hidden style="background: radial-gradient(141.42% 141.42% at 100% 100%, #693bc4 0%, #8f3fd5 100%);" />
     </div>

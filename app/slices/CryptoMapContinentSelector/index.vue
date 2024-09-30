@@ -17,7 +17,7 @@ const continentsSvg = {
   'Asia': 'i-continents:asia selected:text-red size-200 right--40 top--80',
   'Europe': 'i-continents:europe selected:text-gold size-200 right--40 top--90',
   'North America': 'i-continents:north-america selected:text-green size-268 right--40 top--156 rotate-2',
-  'Oceania': 'i-continents:oceania selected:text-blue size-180 right--40 top--8',
+  'Oceania': 'i-continents:oceania selected:text-blue size-170 right--15 top--42',
   'South America': 'i-continents:south-america selected:text-purple size-200 right--40 top--8',
 }
 
@@ -58,8 +58,8 @@ const allowMapInteraction = ref(false)
 
 <template>
   <section ref="sectionRef" flex="col lg:row gap-x-24 gap-y-32" max-w="$nq-max-width">
-    <div max-lg:mx--32 max-lg:my--40 max-lg:px-32>
-      <ul w-full flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-40">
+    <div max-lg:my--40 max-md:w-full>
+      <ul max-md:w-full flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-40">
         <li
           v-for="({ label, hasCryptoCities, hasLocations, cryptoCitiesCount, locationsCount, svg, selected }) in continents"
           :key="label!"

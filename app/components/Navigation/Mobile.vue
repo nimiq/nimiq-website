@@ -74,7 +74,7 @@ const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalC
 
           <DropdownMenuSeparator mb-32 h-1 bg-neutral-300 />
 
-          <SocialMediaLogosList :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
+          <SocialMediaLogosList text-18 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
 
           <div text="neutral-800 hocus:neutral-900" transition-colors nq-mt-32 flex="~ gap-16 items-center">
             <NuxtLink to="/privacy-policy" class="font-semibold op-60 hocus:op-90">

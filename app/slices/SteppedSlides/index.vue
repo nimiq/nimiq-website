@@ -45,7 +45,7 @@ function goToStep(step: number) {
       </li>
     </ul>
 
-    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" of-x-auto nq-scrollbar-hide nq-mt-96 @scroll.passive="calculateStep">
+    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" of-x-auto nq-mt-96 nq-scrollbar-hide @scroll.passive="calculateStep">
       <li
         v-for="(item, i) in slice.items" :key="i"
         :data-state="step - 1 === i ? 'active' : undefined" snap="center always" cursor="active:default pointer"
@@ -59,7 +59,7 @@ function goToStep(step: number) {
           :preload="i <= step + 1"
           :loop="i === 0"
         /> -->
-        <p nq-label text="neutral-800 xs" px="8 md:32 xl:48" nq-mt-48>
+        <p text="neutral-800 xs" px="8 md:32 xl:48" nq-mt-48 nq-label>
           {{ item.label }}
         </p>
         <PrismicRichText px="8 md:32 xl:48" :field="item.description" class="nq-prose-compact nq-prose" nq-mt-12 text="neutral-800 xl" />

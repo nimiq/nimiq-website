@@ -1,8 +1,19 @@
 <script setup lang="ts">
-import type { Content } from '@prismicio/client'
+import type { Content, LinkField } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.LogosGridSlice>())
 const sectionRef = useSection(props.slice.id, 'white', { paddingY: false })
+
+// @unocss-include
+function getCssClasses(link: LinkField) {
+  // @ts-expect-error - we know that link.url is a string
+  switch (link.url) {
+    case 'https://naka.com/':
+      return 'max-h-24'
+    default:
+      return 'max-h-36'
+  }
+}
 </script>
 
 <template>
@@ -13,7 +24,7 @@ const sectionRef = useSection(props.slice.id, 'white', { paddingY: false })
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
         <PrismicLink :field="link" op="40 hocus:80" transition-opacity>
-          <PrismicImage :field="logo" max-h-36 />
+          <PrismicImage :field="logo" :class="getCssClasses(link)" />
         </PrismicLink>
       </li>
     </ul>

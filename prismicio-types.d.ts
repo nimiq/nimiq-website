@@ -2376,6 +2376,16 @@ export interface AlbatrossLiveviewSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   averageRewardsLabel: prismic.KeyTextField
+
+  /**
+   * Estimated Average Rewards field in *AlbatrossLiveview → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatross_liveview.default.primary.estimatedAverageRewardsValue
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  estimatedAverageRewardsValue: prismic.KeyTextField
 }
 
 /**
@@ -9694,6 +9704,17 @@ declare module '@prismicio/client' {
       repositoryNameOrEndpoint: string,
       options?: prismic.ClientConfig,
     ): prismic.Client<AllDocumentTypes>
+  }
+
+  interface CreateWriteClient {
+    (
+      repositoryNameOrEndpoint: string,
+      options: prismic.WriteClientConfig,
+    ): prismic.WriteClient<AllDocumentTypes>
+  }
+
+  interface CreateMigration {
+    (): prismic.Migration<AllDocumentTypes>
   }
 
   namespace Content {

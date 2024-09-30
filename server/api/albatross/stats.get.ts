@@ -3,44 +3,9 @@ import { NimiqRPCClient } from 'nimiq-rpc-client-ts'
 
 const STATS_WINDOW_SIZE = 3 * 128
 const STATS_REFRESH_EVERY = 3
-// const TXS_PER_BLOCK = 500 // Adjust this value as needed
 
-export default defineEventHandler(async (event) => {
-  const blocks: Block[] = []
-  const { nodeRpcUrl } = useRuntimeConfig().albatross
-  const eventStream = createEventStream(event)
-
-  const client = new NimiqRPCClient(nodeRpcUrl)
-
-  async function sendStats() {
-    const txPerSecond = calculateTxPerSecond(blocks)
-    const blockTime = calculateBlockTime(blocks)
-    const stats: LiveviewStats = { txPerSecond, blockTime }
-    eventStream.push(`${JSON.stringify(stats)}\n`)
-  }
-
-  sendStats()
-
-  // Subscribe to new blocks
-  const { next: nextBlock } = await client.blockchainStreams.subscribeForBlocks()
-  nextBlock(async ({ error, data: block }) => {
-    if (error?.code || !block) {
-      console.error(`Error subscribing to head block: ${JSON.stringify(error)}`)
-      return
-    }
-
-    blocks.push(block)
-    if (blocks.length > STATS_WINDOW_SIZE) {
-      blocks.shift()
-    }
-
-    if (block.number % STATS_REFRESH_EVERY === 0) {
-      sendStats()
-    }
-  })
-
-  return eventStream.send()
-})
+const blocks: Block[] = []
+let client: NimiqRPCClient
 
 function calculateTxPerSecond(blocks: Block[]): number {
   if (blocks.length < 2)
@@ -60,6 +25,49 @@ function calculateBlockTime(blocks: Block[]): number {
   const timeSpan = microblocks[microblocks.length - 1].timestamp - microblocks[0].timestamp
   return timeSpan > 0 ? roundToSignificant(timeSpan / 1000 / (microblocks.length - 1), 0) : 0
 }
+
+export default defineWebSocketHandler({
+  async open(peer) {
+    const nodeRpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
+    client = new NimiqRPCClient(nodeRpcUrl)
+
+    const txPerSecond = calculateTxPerSecond(blocks)
+    const blockTime = calculateBlockTime(blocks)
+    const stats: LiveviewStats = { txPerSecond, blockTime }
+    peer.send(stats)
+
+    const { next: nextBlock } = await client.blockchainStreams.subscribeForBlocks()
+    nextBlock(async ({ error, data: block }) => {
+      if (error?.code || !block) {
+        console.error(`Error subscribing to head block: ${JSON.stringify(error)}`)
+        return
+      }
+
+      blocks.push(block)
+      if (blocks.length > STATS_WINDOW_SIZE) {
+        blocks.shift()
+      }
+
+      if (block.number % STATS_REFRESH_EVERY === 0) {
+        const txPerSecond = calculateTxPerSecond(blocks)
+        const blockTime = calculateBlockTime(blocks)
+        const stats: LiveviewStats = { txPerSecond, blockTime }
+        peer.send(stats)
+      }
+    })
+  },
+
+  // async message(peer) {
+  // },
+
+  // close(peer, event) {
+  // console.log('[ws] close', peer, event)
+  // },
+
+  // error(peer, error) {
+  // console.log('[ws] error', peer, error)
+  // },
+})
 
 function roundToSignificant(number: number, places = 1) {
   const roundingFactor = number < 0.01

@@ -36,10 +36,10 @@ const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor)
       </div>
     </template>
     <template v-else-if="slice.variation === 'threeColumnsImageText'">
-      <ul flex="~ col lg:row gap-x-24 gap-y-40" w-full>
+      <ul flex="~ col lg:row gap-x-24 gap-y-40 items-center" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1>
           <ResponsiveImage :image mx-auto max-h-229 flex rounded object-contain w="initial md:w-max lg:initial" dark:bg-neutral-200 />
-          <PrismicText wrapper="h3" text="20/26 md:center" mt-24 :field="headline" />
+          <PrismicText wrapper="h3" text="20/26 md:center" mx-auto mt-24 max-w-24ch :field="headline" />
         </li>
       </ul>
     </template>

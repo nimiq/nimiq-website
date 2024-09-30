@@ -9,31 +9,28 @@ const { socialMedias, nimiqApps } = storeToRefs(useGlobalContent())
 
 // @unocss-include
 
+const classesPositions = [
+  'bottom--40 right--30 md:right-88 md:bottom--44 xl:right-180',
+  'invisible md:visible md:right--18 md:bottom-50 lg:bottom-100 lg:right--32 xl:right-70 xl:bottom-60',
+  'invisible md:visible md:left-88 md:bottom--52 xl:left-180',
+  'invisible md:visible md:left--36 md:bottom-42 lg:bottom-92 xl:left-70 xl:bottom-60',
+  'invisible xl:visible xl:bottom--40 xl:left--30',
+  'invisible xl:visible xl:bottom--40 xl:right--30',
+]
+
 function getBackgroundItems(background: BannerSliceSliceDefaultItem['backgroundPattern']) {
   switch (background) {
     case 'Social Media': {
-      const classesPositions = [
-        'bottom--40 right--30 md:right-88 md:bottom--44',
-        'invisible md:visible md:right--18 md:bottom-50 lg:bottom-100 lg:right--32',
-        'invisible md:visible md:left-88 md:bottom--52',
-        'invisible md:visible md:left--36 md:bottom-42 lg:bottom-92',
-      ]
       return [
         { ...socialMedias.value.youtube, name: 'Nimiq\'s YouTube', classes: `text-48 ${classesPositions[0]}` },
         { ...socialMedias.value.github, name: 'Nimiq \'s GitHub', classes: `text-60 ${classesPositions[1]}` },
         { ...socialMedias.value.x, name: 'Nimiq\'s X', classes: `text-54 ${classesPositions[2]}` },
-        { ...socialMedias.value.telegram, name: 'Nimiq\'s Telegram', classes: `text-60 ${classesPositions[3]}` },
+        { ...socialMedias.value.telegram, name: 'Nimiq\'s Telegram', classes: `text-40 children:translate-y-3 children:translate-x--4 ${classesPositions[3]}` },
+        { ...socialMedias.value.instagram, name: 'Nimiq\'s Instagram', classes: `text-60 ${classesPositions[4]}` },
+        { ...socialMedias.value.facebook, name: 'Nimiq\'s Instagram', classes: `text-60 ${classesPositions[5]}` },
       ]
     }
     case 'Nimiq Apps': {
-      const classesPositions = [
-        'bottom--40 right--30 md:right-88 md:bottom--44 xl:right-180',
-        'invisible md:visible md:right--18 md:bottom-50 lg:bottom-100 lg:right--32 xl:right-70 xl:bottom-60',
-        'invisible md:visible md:left-88 md:bottom--52 xl:left-180',
-        'invisible md:visible md:left--36 md:bottom-42 lg:bottom-92 xl:left-70 xl:bottom-60',
-        'invisible xl:visible xl:bottom--40 xl:left--30',
-        'invisible xl:visible xl:bottom--40 xl:right--30',
-      ]
       const apps = Object.values(nimiqApps.value || []).filter(({ logo }) => hasImage(logo))
       if (apps.length < 4)
         return []
@@ -71,15 +68,15 @@ const items = computed(() => {
         </div>
       </div>
 
-      <div relative z-10 max-w-full :class="{ 'lg:max-w-60ch items-center flex-col mx-auto w-max': hasBgItems, 'items-end w-full': !hasBgItems }" flex="~ wrap justify-between">
+      <div relative z-10 max-w-full :class="{ 'lg:max-w-60ch md:items-center flex-col mx-auto w-max': hasBgItems, 'items-end w-full': !hasBgItems }" flex="~ wrap justify-between">
         <div max-w-60ch>
-          <p v-if="label" text-12 nq-label nq-mb-32>
+          <p v-if="label" text-12 nq-mb-32 nq-label>
             {{ label }}
           </p>
           <PrismicRichText :field="headline" :class="{ 'md:text-center': backgroundPattern === 'Nimiq Apps' || backgroundPattern === 'Social Media' }" />
-          <PrismicRichText nq-mt-32 :field="subline" :class="{ 'text-center': hasBgItems }" />
+          <PrismicRichText :field="subline" :class="{ 'md:text-center nq-mt-16': hasBgItems, 'nq-mt-32': !hasBgItems }" />
         </div>
-        <PrismicLink v-if="hasLink(linkHref) && linkLabel" :field="linkHref" mt="32 md:24" text-blue nq-arrow nq-pill-lg nq-pill-tertiary :class="{ 'md:mx-auto': hasBgItems, 'lg:mr-128': !hasBgItems }">
+        <PrismicLink v-if="hasLink(linkHref) && linkLabel" :field="linkHref" mt="32 md:24" nq-arrow nq-pill-lg :class="{ 'md:mx-auto nq-pill-blue': hasBgItems, 'lg:mr-128 nq-pill-tertiary text-blue': !hasBgItems }">
           {{ linkLabel }}
         </PrismicLink>
       </div>

@@ -1,40 +1,24 @@
 import type { Block, MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
-import { NimiqRPCClient, RetrieveType } from 'nimiq-rpc-client-ts'
+import { BlockType, NimiqRPCClient, RetrieveType } from 'nimiq-rpc-client-ts'
 
 const INITIAL_BLOCK_FETCH = 60
 const CACHE_SIZE = 100
 const blockCache = new Map<number, Block>()
+let lastBlockTimestamp: number | undefined
+let client: NimiqRPCClient
 
-export default defineEventHandler(async (event) => {
-  blockCache.clear()
-  const eventStream = createEventStream(event)
-  handleStream(eventStream)
-  return eventStream.send()
-})
+export default defineWebSocketHandler({
+  async open(peer) {
+    const nodeRpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
+    client = new NimiqRPCClient(nodeRpcUrl)
+    // Fetch initial blocks
+    const { data: head } = await client.blockchain.getBlockNumber()
+    if (!head)
+      throw createError({ status: 500, message: 'Failed to get block number' })
 
-function pruneCache() {
-  if (blockCache.size > CACHE_SIZE) {
-    const sortedKeys = [...blockCache.keys()].sort((a, b) => b - a)
-    for (let i = CACHE_SIZE; i < sortedKeys.length; i++) {
-      blockCache.delete(sortedKeys[i])
-    }
-  }
-}
-
-async function handleStream(eventStream: ReturnType<typeof createEventStream>) {
-  const rpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
-  const client = new NimiqRPCClient(rpcUrl)
-
-  let lastBlockTimestamp: number | undefined
-
-  function sendPayload(block: LiveviewBlock) {
-    eventStream.push(`${JSON.stringify(block)}\n`)
-  }
-
-  async function fetchAndCacheBlocks(startBlock: number, count: number) {
     const promises = []
-    for (let i = 0; i < count; i++) {
-      const blockNumber = startBlock - i
+    for (let i = 0; i < INITIAL_BLOCK_FETCH; i++) {
+      const blockNumber = head - i
       if (!blockCache.has(blockNumber)) {
         promises.push(
           client.blockchain.getBlockByNumber(blockNumber, { includeTransactions: true }).then(({ data: block, error }) => {
@@ -47,67 +31,74 @@ async function handleStream(eventStream: ReturnType<typeof createEventStream>) {
         )
       }
     }
-    const results = await Promise.all(promises)
-    return results.filter(result => result.block !== null)
-  }
+    const blocks = await Promise.all(promises)
 
-  async function processBlock(block: Block) {
-    if (block.type === 'micro') {
-      await sendMicroblock(block as MicroBlock)
+    for (const { block } of blocks) {
+      if (block) {
+        peer.send(await (block.type === BlockType.Macro ? getMacroblock(block as MacroBlock) : getMicroblock(block)))
+        lastBlockTimestamp = block.timestamp
+      }
     }
-    else if (block.type === 'macro') {
-      await sendMacroblock(block as MacroBlock)
-    }
-    lastBlockTimestamp = block.timestamp
-  }
 
-  // Fetch initial blocks
-  const { data: head } = await client.blockchain.getBlockNumber()
-  if (!head)
-    throw createError({ status: 500, message: 'Failed to get block number' })
+    // Subscribe to new blocks
+    const { next: nextMicroblock } = await client.blockchainStreams.subscribeForMicroBlocks({ retrieve: RetrieveType.Full })
+    const { next: nextMacroblock } = await client.blockchainStreams.subscribeForMacroBlocks({ retrieve: RetrieveType.Full })
 
-  const blocks = await fetchAndCacheBlocks(head, INITIAL_BLOCK_FETCH)
-  for (const { block } of blocks) {
-    if (block)
-      await processBlock(block)
-  }
+    nextMicroblock(async ({ data: block }) => {
+      if (block) {
+        peer.send(await getMicroblock(block))
+        lastBlockTimestamp = block.timestamp
+        blockCache.set(block.number, block)
+        pruneCache()
+      }
+    })
 
-  // Subscribe to new blocks
-  const { next: nextMicroblock } = await client.blockchainStreams.subscribeForMicroBlocks({ retrieve: RetrieveType.Full })
-  const { next: nextMacroblock } = await client.blockchainStreams.subscribeForMacroBlocks({ retrieve: RetrieveType.Full })
-
-  nextMicroblock(async ({ data: block }) => {
-    if (block) {
-      await processBlock(block)
+    nextMacroblock(async ({ data: block }) => {
+      if (!block)
+        return
+      peer.send(await getMacroblock(block))
+      lastBlockTimestamp = block.timestamp
       blockCache.set(block.number, block)
       pruneCache()
+    })
+  },
+
+  // async message(peer) {
+  // },
+
+  // close(peer, event) {
+  // console.log('[ws] close', peer, event)
+  // },
+
+  // error(peer, error) {
+  // console.log('[ws] error', peer, error)
+  // },
+})
+
+function pruneCache() {
+  if (blockCache.size > CACHE_SIZE) {
+    const sortedKeys = [...blockCache.keys()].sort((a, b) => b - a)
+    for (let i = CACHE_SIZE; i < sortedKeys.length; i++) {
+      blockCache.delete(sortedKeys[i])
     }
-  })
-
-  nextMacroblock(async ({ data: block }) => {
-    if (!block)
-      return
-    await processBlock(block)
-    blockCache.set(block.number, block)
-    pruneCache()
-  })
-
-  async function sendMicroblock(block: MicroBlock) {
-    const { producer, justification, transactions, number, batch, timestamp } = block
-    const isSkip = 'skip' in justification
-
-    const matchedTxs = transactions.filter(tx => tx.recipientData.length === 8).map(tx => Number.parseInt(tx.recipientData, 16))
-    const unmatchedTxs = transactions.filter(tx => tx.recipientData.length !== 8).map(tx => tx.hash.substring(0, 8))
-    const kind = LiveviewBlockType.MicroBlock
-    const delay = lastBlockTimestamp ? timestamp - lastBlockTimestamp : 0
-    sendPayload({ producer, isSkip, matchedTxs, unmatchedTxs, delay, kind, number, batch, timestamp })
   }
+}
 
-  async function sendMacroblock(block: MacroBlock) {
-    const { transactions, justification, batch, number } = block
-    const unmatchedTxs = transactions.map(tx => tx.hash.substring(0, 8))
-    const votes = justification.sig.signers.length
-    const kind = LiveviewBlockType.MacroBlock
-    sendPayload({ unmatchedTxs, votes, batch, kind, number })
-  }
+async function getMicroblock(block: MicroBlock) {
+  const { producer, justification, transactions, number, batch, timestamp } = block
+  const isSkip = 'skip' in justification
+
+  const matchedTxs = transactions.filter(tx => tx.recipientData.length === 8).map(tx => Number.parseInt(tx.recipientData, 16))
+  const unmatchedTxs = transactions.filter(tx => tx.recipientData.length !== 8).map(tx => tx.hash.substring(0, 8))
+  const kind = LiveviewBlockType.MicroBlock
+  const delay = lastBlockTimestamp ? timestamp - lastBlockTimestamp : 0
+  return { producer, isSkip, matchedTxs, unmatchedTxs, delay, kind, number, batch, timestamp }
+}
+
+async function getMacroblock(block: MacroBlock) {
+  const { transactions, justification, batch, number } = block
+  const unmatchedTxs = transactions.map(tx => tx.hash.substring(0, 8))
+  const votes = justification.sig.signers.length
+  const kind = LiveviewBlockType.MacroBlock
+  return { unmatchedTxs, votes, batch, kind, number }
 }

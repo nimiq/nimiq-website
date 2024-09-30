@@ -18,6 +18,6 @@ const darkHeader = computed(() => (page.value?.data.slices.at(0)?.primary as { b
 
 <template>
   <NuxtLayout :dark-header>
-    <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components relative />
+    <SliceZone :slices="page?.data.slices ?? []" :components relative />
   </NuxtLayout>
 </template>

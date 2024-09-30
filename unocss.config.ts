@@ -9,12 +9,6 @@ export default defineConfig({
     [/^area-(.*)$/, ([, t]) => ({ 'grid-area': t })],
   ],
   shortcuts: [
-    // TODO Move this to nimiq-css
-    // TODO Enable fluid typography in nimiq-css
-    ['text-3xs', 'text-9|11 lh-[1.3]'],
-    ['text-2xs', 'text-10|12 lh-[1.3]'],
-    ['text-md', 'text-14|16 lh-[1.3]'],
-    ['text-2xl', 'text-20|24 lh-[1.3]'],
   ],
   presets: [
     presetUno({ attributifyPseudo: true }),

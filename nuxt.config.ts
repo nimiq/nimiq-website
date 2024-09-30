@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'radix-vue/nuxt',
     '@nuxtjs/seo',
-    // '@nuxthub/core',
+    '@nuxthub/core',
     '@nuxtjs/prismic',
     '@nuxtjs/supabase',
   ],
@@ -79,7 +79,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     albatross: {
-      nodeRpcUrl: process.env.NUXT_NODE_RPC_URL,
+      nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
       liveview: {
         privateKey: process.env.NUXT_ALBATROSS_LIVEVIEW_PRIVATE_KEY,
         txRecipient: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT,
