@@ -21,7 +21,7 @@ export function useNimiq() {
     if (isLaunched.value)
       return
     isLaunched.value = true
-
+    consensus.value = 'connecting'
     await init()
 
     const config = new ClientConfiguration()

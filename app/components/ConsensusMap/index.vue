@@ -174,8 +174,8 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
 </script>
 
 <template>
-  <div id="network" h-full w-full class="relative">
-    <div class="w-[calc(100vw-calc(100vw-100%))] overflow-y-auto pb-[112px] lg:pb-[182px] sm:pb-[174px]">
+  <div id="network" class="relative h-full w-full">
+    <div class="w-[calc(100vw-calc(100vw-100%))] overflow-y-auto pb-112 lg:pb-182 sm:pb-174">
       <div
         ref="container$"
         class="relative mx-auto h-[95vh] w-[calc(95vh*(1082/502))] overflow-hidden lg:max-w-[100vw] sm:w-full"
@@ -203,7 +203,7 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
             <div class="flex" :class="tooltipPosition === 'top' ? 'flex-col-reverse' : 'flex-col'">
               <div
                 :class="{
-                  'text-blue-light': !isConnected,
+                  'text-blue': !isConnected,
                   'text-green': isConnected,
                   'rotate-180': tooltipPosition === 'top',
                 }"
@@ -219,24 +219,24 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
 
               <div id="tooltip">
                 <div
-                  class="flex items-center gap-x-14 rounded px-16 py-6 shadow"
+                  class="flex items-center gap-x-14 rounded-full px-16 py-6 shadow"
                   :class="{
-                    'bg-blue-light': !isConnected,
+                    'bg-blue': !isConnected,
                     'bg-green': isConnected,
                   }"
                 >
                   <template v-if="networkStatus === null">
-                    <span class="bold text-white">{{ texts.thisIsYou }}</span>
+                    <span class="text-white">{{ texts.thisIsYou }}</span>
                     <button
                       v-if="!initialized"
-                      class="nq_small-text text-blue-light cursor-pointer rounded bg-white px-12 py-5 font-bold -mr-10"
+                      class="nq_small-text cursor-pointer rounded-full bg-white px-12 py-5 text-blue font-bold -mr-10"
                       @click="connect"
                     >
                       {{ texts.connect }}
                     </button>
                   </template>
                   <template v-else-if="networkStatus === 'established'">
-                    <span class="bold text-white">{{ texts.connected }}</span>
+                    <span class="text-white">{{ texts.connected }}</span>
                     <svg
                       class="cursor-pointer"
                       width="12"
@@ -269,10 +269,8 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
                     </svg>
                   </template>
                   <template v-else>
-                    <span class="bold text-white">{{ texts.connecting }}</span>
-                    <div class="spinner">
-                      <div i-nimiq:spinner text="20 blue" />
-                    </div>
+                    <span class="text-white">{{ texts.connecting }}</span>
+                    <div i-nimiq:spinner text="18 white" />
                   </template>
                 </div>
               </div>
@@ -297,7 +295,7 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
             {{ texts.consensus }}
           </h4>
           <div class="ml-2 flex items-center gap-8" :class="{ 'opacity-40': !isConnected }">
-            <ConsensusIcon :consensus="networkStatus" :class="{ 'text-green': isConnected }" class="consensus" />
+            <ConsensusIcon :consensus="networkStatus" :class="{ 'text-green': isConnected }" class="consensus text-20" />
             <span v-if="isConnected">{{ texts.established }}</span>
             <span v-else-if="networkStatus === 'syncing'">{{ texts.connecting || 'Connecting' }}</span>
             <span v-else>{{ texts.notConnected }}</span>
@@ -326,69 +324,55 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
 
 <style scoped>
 *::-webkit-scrollbar {
-  @apply h-6;
+  --uno: h-6;
 }
 
 /* Handle */
 *::-webkit-scrollbar-thumb {
-  @apply rounded-6;
+  --uno: rounded-6;
   background-color: #4b4b5c;
 }
 
 .absolute-center {
-  @apply absolute inset-1/2 -translate-x-1/2 -translate-y-1/2;
-}
-
-.spinner {
-  @apply animate-spin w-min;
+  --uno: absolute inset-1/2 -translate-x-1/2 -translate-y-1/2;
 }
 
 .stat {
-  @apply flex flex-col items-start gap-y-8;
+  --uno: flex flex-col items-start gap-y-8;
 }
 
 .theme_grey {
-  @apply bg-blue-dark/10;
+  --uno: bg-neutral/10;
 
   .stat {
-    @apply text-blue-dark;
+    --uno: text-neutral;
 
-    .consensus ::v-deep svg path {
-      @apply stroke-current text-blue-dark/60;
+    .consensus :deep(svg path) {
+      --uno: stroke-current text-neutral/60;
     }
   }
 
   /* TODO Review this! */
   h4 {
-    @apply opacity-40;
+    --uno: opacity-40;
   }
 }
 
 .theme_blue-dark {
   .stat {
-    @apply text-white;
+    --uno: text-white;
 
     h4 {
-      @apply opacity-40;
+      --uno: opacity-40;
     }
   }
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-.spinner ::v-deep > svg path:first-child {
-  @apply stroke-current text-white;
-}
-
-/* stylelint-disable-next-line no-descending-specificity */
-.spinner ::v-deep > svg path:last-child {
-  @apply text-white opacity-30 stroke-current;
-}
-
 .stat span {
-  @apply text-20 leading-1 sm:text-24;
+  @apply text-20 lh-1 sm:text-24;
 }
 
-.stat ::v-deep svg {
+.stat :deep(svg) {
   @apply text-20 sm:text-24;
 }
 
