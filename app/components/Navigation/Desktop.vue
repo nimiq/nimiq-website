@@ -132,7 +132,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
       </NavigationMenuItem>
 
       <NavigationMenuItem v-if="navigation.getStartedGroupName && navigation.getStartedLinks.length > 0">
-        <NavigationMenuTrigger class="get-started-btn" ml-16 nq-pill-lg nq-pill-blue>
+        <NavigationMenuTrigger class="get-started-btn" ml-16 nq-pill-lg nq-pill-secondary>
           {{ navigation.getStartedGroupName }}
         </NavigationMenuTrigger>
         <NavigationMenuContent absolute left-0 top-0 min-w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
