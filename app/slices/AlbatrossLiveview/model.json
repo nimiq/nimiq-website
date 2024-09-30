@@ -55,6 +55,13 @@
             "label": "Average Rewards Label",
             "placeholder": ""
           }
+        },
+        "estimatedAverageRewardsValue": {
+          "type": "Text",
+          "config": {
+            "label": "Estimated Average Rewards",
+            "placeholder": ""
+          }
         }
       },
       "items": {}

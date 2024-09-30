@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
-import { TweenedNumber } from '#components'
+import { NuxtLink, TweenedNumber } from '#components'
 
 const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
 
@@ -10,7 +10,7 @@ const { cryptoMapLocationsCount: locationsCount } = storeToRefs(useGlobalContent
 
 const { language } = useNavigatorLanguage()
 
-const locationsSpan = h('span', { class: 'text-blue' }, [
+const locationsSpan = h(NuxtLink, { class: 'text-blue', to: 'https://map.nimiq.com', target: '_blank' }, [
   h(TweenedNumber, {
     value: locationsCount.value || 0,
     min: 0,

@@ -14,6 +14,7 @@ const sectionRef = useSection(props.slice.id, 'darkblue', { paddingX: false, lim
       :stats-tooltip-content="slice.primary.statsTooltipContent!"
       :tx-sec-label="slice.primary.txSecLabel!"
       :tx-speed-label="slice.primary.txSpeedLabel!"
+      :average-rewards-value="slice.primary.estimatedAverageRewardsValue!"
     />
   </section>
 </template>

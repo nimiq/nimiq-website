@@ -1,25 +1,27 @@
 <script setup lang="ts">
-const { txSecLabel = 'TX/sec', averageRewardsLabel = 'Avg rewards', txSpeedLabel = 'TX Speed' } = defineProps<{
+const { txSecLabel = 'TX/sec', averageRewardsLabel = 'Est. Avg. rewards', txSpeedLabel = 'TX Speed', averageRewardsValue = '14.9' } = defineProps<{
   txSecLabel?: string
   txSpeedLabel?: string
   averageRewardsLabel?: string
+  averageRewardsValue?: string
 }>()
 
 const { stats } = storeToRefs(useAlbatrossStats())
 
-const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgColor: string, value: number, label: string, decimals?: number, suffix?: string }>()
+const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgColor: string, value: number | string, label: string, decimals?: number, suffix?: string }>()
 </script>
 
 <template>
   <DefineStat v-slot="{ icon, iconBgColor, label, value, decimals = 1, suffix }">
     <div flex="~ col max-sm:items-center gap-12">
       <span font-semibold text="26 lg:32 neutral" lh-none flex="~">
-        <TweenedNumber :value :decimals :animation-duration="500" />
+        <TweenedNumber v-if="typeof value === 'number'" :value :decimals :animation-duration="500" />
+        <span v-else>{{ value }}</span>
         {{ suffix }}
       </span>
       <div flex="~ items-center gap-8">
         <div size="20 lg:24" rounded-full :class="iconBgColor" flex="~ items-center justify-center">
-          <div text-neutral-0 :class="icon" />
+          <div :class="icon" mr--0.5 text-neutral-0 />
         </div>
         <p text="15/27 lg:16/27 neutral-800" font-semibold>
           {{ label }}
@@ -35,7 +37,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
       <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="stats.blockTime" :label="txSpeedLabel" :decimals="0" suffix="&nbsp;sec" />
     </li>
     <li>
-      <ReuseStat icon="i-nimiq:leaf-2 size-12 ml-1" icon-bg-color="bg-gradient-green" :value="0" :label="averageRewardsLabel" suffix="% p.a" />
+      <ReuseStat icon="i-nimiq:leaf-2 size-12 ml-1" icon-bg-color="bg-gradient-green" :value="averageRewardsValue" :label="averageRewardsLabel" suffix="% p.a" />
     </li>
   </ul>
 </template>

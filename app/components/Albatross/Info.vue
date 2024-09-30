@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { getLiveviewPillColor } from '~/composables/useColors'
 
-const { networkNotice, statsTooltipContent, txSecLabel, averageRewardsLabel, txSpeedLabel } = defineProps<{
+defineProps<{
   networkNotice?: string
   statsTooltipContent?: string
   txSecLabel?: string
   txSpeedLabel?: string
   averageRewardsLabel?: string
+  averageRewardsValue?: string
 }>()
 
 const { status, animationActive, nonce, canSendTx } = storeToRefs(useLiveviewTx())
@@ -17,7 +18,7 @@ const pillClass = computed(() => getLiveviewPillColor({ nonce: nonce.value }))
 <template>
   <div flex="~ col lg:row gap-y-20 gap-x-24" pb-1 max-sm:mx-32>
     <div flex="~ items-center justify-center gap-x-80 gap-y-32 col md:row" ring="1.5 solid neutral-500" relative max-w-712 rounded-8 px-32 py-20 font-semibold>
-      <AlbatrossStats :average-rewards-label :tx-sec-label :tx-speed-label />
+      <AlbatrossStats :average-rewards-label :tx-sec-label :tx-speed-label :average-rewards-value />
       <button v-if="canSendTx" :disabled="animationActive || status !== 'idle'" select-none :class="pillClass" @click="sendTx">
         Send Test Transaction
       </button>

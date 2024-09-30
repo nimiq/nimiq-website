@@ -7,7 +7,7 @@ const CHAIN_SPEED_FACTOR = 0.55
 
 const { blocks, batchNumber, blockNumber, status } = storeToRefs(useLiveviewBlocks())
 
-const velocity = ref(1000000)
+const velocity = ref(0)
 const offset = ref(blocks.value.length * BLOCK_WIDTH)
 watch(blocks, () => {
   if (status.value !== 'OPEN')
@@ -38,7 +38,7 @@ const { pause, resume } = useRafFn(() => {
   offset.value += velocity.value
 }, { immediate: false })
 
-onUnmounted(() => pause())
+onUnmounted(pause)
 
 watch(status, async newStatus => (newStatus === 'OPEN' && focused.value) ? resume() : pause(), { immediate: true })
 watch(focused, () => (focused.value) ? resume() : pause(), { immediate: true })
@@ -71,7 +71,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
       </div>
     </div>
 
-    <div v-show="status === 'OPEN'" w-full flex="~ justify-center" of-hidden px-32>
+    <div v-else w-full flex="~ justify-center" of-hidden px-32>
       <!-- :class="{ unimate: isMacro || isFirstBatchAfterPageLoad }"> -->
       <div flex="~ justify-center">
         <AlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 2 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number class="animate-batch-unshift" />
