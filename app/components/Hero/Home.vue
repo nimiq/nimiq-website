@@ -78,12 +78,12 @@ const sectionRef = useSection('home-hero', 'darkblue', { paddingY: false, limitW
     <ReuseNimFly css="absolute left-30vw bottom-400 scale-92 [--delay:4350ms]" />
     <ReuseNimFly css="absolute right-32 bottom-550" />
     <div class="world-container" pointer-events-none absolute bottom-0 flex="~ justify-center" mx-0 of-y-hidden>
-      <div class="ellipse blue-ring" of-hidden />
+      <div class="ellipse blue-ring" min-w-900 of-hidden />
     </div>
     <div bg="darkblue/10" pointer-events-none absolute inset-0 backdrop-blur-40 />
-    <div class="world-container" flex="~ justify-center" pointer-events-none mx-0 of-y-hidden>
-      <div class="ellipse" flex="~ justify-center" of-hidden bg="neutral global-dark:neutral-0" pt="16 lg:24">
-        <div h="220 lg:330 xl:550" i-continents:world-dots min-w-600 text-neutral-800 lg:w-1200 />
+    <div class="world-container" flex="~ justify-center" pointer-events-none mx-0 mb--16 of-y-hidden>
+      <div class="ellipse" flex="~ justify-center" bg="neutral global-dark:neutral-0" min-w-900 of-hidden pt="16 lg:0">
+        <div h="220 lg:330 xl:550" i-continents:world-dots min-w-900 text-neutral-800 lg:w-1100 mt="lg:-36" />
       </div>
     </div>
   </section>
@@ -93,12 +93,12 @@ const sectionRef = useSection('home-hero', 'darkblue', { paddingY: false, limitW
 section {
   --mt-ellipsis: 128px;
   --aspect-ratio: 1.6;
-  --uno: '[--ellipsis-width:200vw] md:[--ellipsis-width:300vh]';
+  --uno: '[--ellipsis-width:200vw] md:[--ellipsis-width:340vh]';
   --ellipsis-height: calc(var(--ellipsis-width) / var(--aspect-ratio));
 
   .world-container {
     margin-top: var(--mt-ellipsis);
-    --uno: 'h-220 lg:h-330';
+    --uno: 'h-190 sm:h-225 md:h-300 lg:h-413 mx--32';
 
     .ellipse {
       height: var(--ellipsis-height);
@@ -107,7 +107,7 @@ section {
     }
 
     &:has(.blue-ring) {
-      --uno: 'h-252 lg:h-362';
+      --uno: 'h-190 sm:h-225 md:h-300 lg:h-413';
     }
 
     .blue-ring {
