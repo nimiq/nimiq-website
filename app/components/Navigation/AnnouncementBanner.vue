@@ -10,7 +10,7 @@ const {
 
 <template>
   <div role="banner" p="x-32 t-20 b-24 md:y-20" aria-label="Announcement" relative w-full of-hidden bg-darkblue flex="~ col md:items-center lg:row lg:justify-center gap-y-12 gap-x-16">
-    <p text="md white" z-1 font-bold>
+    <p text="md white" z-1 font-semibold>
       {{ headline }}
     </p>
     <PrismicLink v-if="hasLink(ctaLink)" z-1 :field="ctaLink" mx-0 nq-pill-secondary>
