@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { NodeHexagon, SelfHexagon } from './NetworkMap'
-import { NetworkStatus } from '@/types/network'
-import { NetworkClient } from '@nimiq/network-client'
 import { createPopper } from '@popperjs/core'
 import { computed, onMounted, ref, watch } from 'vue'
+import ConsensusIcon from './ConsensusIcon.vue'
 import NetworkMap, { HEIGHT, SCALING_FACTOR, WIDTH } from './NetworkMap'
-// import ConsensusIcon from './ConsensusIcon.vue'
 
 const props = defineProps({
   texts: {
@@ -55,12 +53,8 @@ const initialized = ref(false)
 const disconnected = ref(false)
 
 // Nimiq Network
-const networkStatus = ref<NetworkStatus>(NetworkStatus.CONNECTING)
-const networkHeight = ref(0)
-const networkPeerCount = ref(0)
-
 let popperInstance: ReturnType<typeof createPopper> | null = null
-const client = ref<NetworkClient | null>(null)
+const { client, addListeners, launchNetwork, consensus: networkStatus, peerAddress, numberOfPeers: networkPeerCount, height: networkHeight } = useNimiq()
 
 onMounted(() => init())
 
@@ -115,51 +109,19 @@ function selfNodeScrollIntoView(x: number) {
 
 useEventListener('resize', () => setDimensions())
 
-async function setNetworkClient() {
-  if (!client.value) {
-    client.value = NetworkClient.createInstance()
-    await client.value.init()
-  }
-}
-
-async function launchNetwork() {
-  await setNetworkClient()
-
-  client.value!.on(NetworkClient.Events.CONSENSUS, (state) => {
-    if (initialized.value && !disconnected.value && state === NetworkStatus.CONNECTING)
-      state = NetworkStatus.SYNCING
-    networkStatus.value = state
-  })
-  client.value!.on(NetworkClient.Events.HEAD_HEIGHT, height => networkHeight.value = height)
-  client.value!.on(NetworkClient.Events.PEER_COUNT, peerCount => networkPeerCount.value = peerCount)
-}
-
 async function connect() {
   if (!networkMap.value)
     return
 
-  networkStatus.value = NetworkStatus.SYNCING
   initialized.value = true
 
   await launchNetwork()
+  await addListeners()
+}
 
-  let askForAddressesTimeout = 0
-  const updateKnownAddresses = () => {
-    if (!askForAddressesTimeout) {
-      askForAddressesTimeout = window.setTimeout(async () => {
-        const newKnownAddresses = await NetworkClient.Instance.getPeerAddresses()
-        if (networkMap.value!.updateNodes(newKnownAddresses)) {
-          networkMap.value!.draw()
-        }
-        askForAddressesTimeout = 0
-      }, 500)
-    }
-  }
-
-  NetworkClient.Instance.on(NetworkClient.Events.PEER_ADDRESSES_ADDED, updateKnownAddresses)
-  NetworkClient.Instance.on(NetworkClient.Events.PEERS_CHANGED, updateKnownAddresses)
-  if (NetworkClient.Instance.consensusState === 'established') {
-    updateKnownAddresses()
+function updateKnownAddresses() {
+  if (networkMap.value!.updateNodes(peerAddress.value)) {
+    networkMap.value!.draw()
   }
 }
 
@@ -167,12 +129,15 @@ async function disconnect() {
   if (!client.value)
     return
 
-  networkStatus.value = NetworkStatus.CONNECTING
-  networkHeight.value = 0
-  networkPeerCount.value = 0
+  console.log('Disconnecting from network')
+  // TODO
+  // networkStatus.value = NetworkStatus.CONNECTING
+  // networkHeight.value = 0
+  // networkPeerCount.value = 0
 
-  disconnected.value = true
-  await client.value.disconnect()
+  // disconnected.value = true
+  // TODO: Disconnect from network
+  // client.value.free()
 }
 
 function setTooltip({ x: newX, y: newY, position }: SelfHexagon) {
@@ -201,14 +166,16 @@ function setTooltip({ x: newX, y: newY, position }: SelfHexagon) {
   })
 }
 
-const isConnected = computed(() => networkStatus.value === NetworkStatus.ESTABLISHED)
+const isConnected = computed(() => networkStatus.value === 'established')
 const showBlockHeight = computed(() => isConnected.value && networkHeight.value > 0)
-const showPeerCount = computed(() => isConnected.value && networkPeerCount.value > 0)
+const showPeerCount = computed(() => networkPeerCount.value > 0)
+
+watch([isConnected, networkPeerCount], updateKnownAddresses)
 </script>
 
 <template>
-  <div id="network" class="widest relative">
-    <div class="w-[calc(100vw-100vw-100%)] overflow-y-auto pb-[112px] lg:pb-[182px] sm:pb-[174px]">
+  <div id="network" h-full w-full class="relative">
+    <div class="w-[calc(100vw-calc(100vw-100%))] overflow-y-auto pb-[112px] lg:pb-[182px] sm:pb-[174px]">
       <div
         ref="container$"
         class="relative mx-auto h-[95vh] w-[calc(95vh*(1082/502))] overflow-hidden lg:max-w-[100vw] sm:w-full"
@@ -258,7 +225,7 @@ const showPeerCount = computed(() => isConnected.value && networkPeerCount.value
                     'bg-green': isConnected,
                   }"
                 >
-                  <template v-if="networkStatus === NetworkStatus.CONNECTING">
+                  <template v-if="networkStatus === null">
                     <span class="bold text-white">{{ texts.thisIsYou }}</span>
                     <button
                       v-if="!initialized"
@@ -268,7 +235,7 @@ const showPeerCount = computed(() => isConnected.value && networkPeerCount.value
                       {{ texts.connect }}
                     </button>
                   </template>
-                  <template v-else-if="networkStatus === NetworkStatus.ESTABLISHED">
+                  <template v-else-if="networkStatus === 'established'">
                     <span class="bold text-white">{{ texts.connected }}</span>
                     <svg
                       class="cursor-pointer"
@@ -330,10 +297,9 @@ const showPeerCount = computed(() => isConnected.value && networkPeerCount.value
             {{ texts.consensus }}
           </h4>
           <div class="ml-2 flex items-center gap-8" :class="{ 'opacity-40': !isConnected }">
-            <!-- TODO: consensusIcon -->
             <ConsensusIcon :consensus="networkStatus" :class="{ 'text-green': isConnected }" class="consensus" />
             <span v-if="isConnected">{{ texts.established }}</span>
-            <span v-else-if="networkStatus === NetworkStatus.SYNCING">{{ texts.connecting || 'Connecting' }}</span>
+            <span v-else-if="networkStatus === 'syncing'">{{ texts.connecting || 'Connecting' }}</span>
             <span v-else>{{ texts.notConnected }}</span>
           </div>
         </div>

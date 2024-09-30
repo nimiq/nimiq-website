@@ -9,6 +9,8 @@ const sectionRef = useSection(props.slice.id, 'white')
 
 <template>
   <section ref="sectionRef">
-    <ConsensusMap :texts="{ ...slice.primary }" :background-color="slice.primary.backgroundColor" />
+    <ClientOnly fallback-tag="span" fallback="Loading map...">
+      <ConsensusMap :texts="{ ...slice.primary }" :background-color="slice.primary.backgroundColor" />
+    </ClientOnly>
   </section>
 </template>

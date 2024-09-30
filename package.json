@@ -15,7 +15,6 @@
     "cryptomap:types": "npx supabase gen types --lang=typescript --project-id mycbdmurjytbdahjljoh > app/types/database.types.ts"
   },
   "dependencies": {
-    "@nimiq/network-client": "^0.6.7",
     "@popperjs/core": "^2.11.8",
     "@vueuse/router": "^11.1.0",
     "medium-zoom": "^1.1.0",

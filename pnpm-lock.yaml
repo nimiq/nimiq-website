@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@nimiq/network-client':
-        specifier: ^0.6.7
-        version: 0.6.7
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -987,20 +984,8 @@ packages:
     resolution: {integrity: sha512-2KYkyluThg1AKfd0JWI7FzpS4A/fzVVGYIf6AM4ydWyNj8eI/86GQVLeRgDoH7CNOxt243R5tutWlmHpVq0/Ew==}
     engines: {node: '>=18.0.0'}
 
-  '@nimiq/core-web@1.5.3':
-    resolution: {integrity: sha512-W66SS9n3ygYgD52r1GJr1WtYYOkcZsqdtMmDCEwDvkrmeARnHs2sAvj77Wt4PQG8JA7GwK5svIJr6rGccCaekw==}
-
   '@nimiq/core@2.0.0-next.24.3':
     resolution: {integrity: sha512-cFGutW6e6BMt2bje0UEA6WbltybdrYdS/lYpbRz82WdhDpqWZRqcMCaCK7gMVTyPuVP8VQryivV9Nt63HqHhhg==}
-
-  '@nimiq/network-client@0.6.7':
-    resolution: {integrity: sha512-IIWr4Q8y9OkkNDLZj5t13qz/g9dPJmtvYF4cTz9ol6h2RQ5xiCumW3b7W8Se+hVzltiGb4gMtqU0REcDO+owTQ==}
-
-  '@nimiq/rpc-events@0.0.8':
-    resolution: {integrity: sha512-2KYmey23WD1yV/61N+ZdUmHsxXhhie9kZOwDf1PqKbYBEHHJaoqyQb1fEptja6yyVlnZc5tv806JhHWBjJNCVA==}
-
-  '@nimiq/rpc@0.1.5':
-    resolution: {integrity: sha512-oTRThXzpbQOY8jz8h+2KXucWzW40nVfYBWROKXKBrSozhTG0nR+rzCbEm4ZyTC26b4RnmB6y4nYabUXi7gNWcA==}
 
   '@nimiq/utils@0.11.3':
     resolution: {integrity: sha512-yklNKsj7MLL3sHaqIpfpWVtml09quJLU+yGI7olf0ay21+2g42yJrELeUVu8VYKeMp5ArIEG3cJqUjdUrfatxA==}
@@ -7045,25 +7030,12 @@ snapshots:
       '@netlify/node-cookies': 0.1.0
       urlpattern-polyfill: 8.0.2
 
-  '@nimiq/core-web@1.5.3': {}
-
   '@nimiq/core@2.0.0-next.24.3':
     dependencies:
       comlink: 4.4.1
       websocket: 1.0.35
     transitivePeerDependencies:
       - supports-color
-
-  '@nimiq/network-client@0.6.7':
-    dependencies:
-      '@nimiq/core-web': 1.5.3
-      '@nimiq/rpc-events': 0.0.8
-
-  '@nimiq/rpc-events@0.0.8':
-    dependencies:
-      '@nimiq/rpc': 0.1.5
-
-  '@nimiq/rpc@0.1.5': {}
 
   '@nimiq/utils@0.11.3':
     dependencies:

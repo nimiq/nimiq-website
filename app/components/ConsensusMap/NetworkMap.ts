@@ -1,4 +1,4 @@
-import type { PlainAddressInfo } from '@nimiq/network-client'
+import type { Peer } from '@/composables/useNimiq'
 import { type GeoIpResponse, useGeoIp } from '@/composables/useGeoIp'
 import bitmap from './NetworkBitMap'
 import RobinsonProjection from './RobinsonProjection'
@@ -42,6 +42,7 @@ const sinEasing = (t: number) => (Math.sin(t * Math.PI - Math.PI / 2) / 2 + 0.5)
 /**
  * the PlainAddressInfo returned from the network, augmented with its asociated hexagon
  */
+type PlainAddressInfo = Peer
 export type Node = PlainAddressInfo & {
   hexagon: NodeHexagon
   selfNode: boolean
@@ -551,33 +552,25 @@ export default class NetworkMap {
    * 3. IP if available
    */
   private _getPeerLocator(addressInfo: PlainAddressInfo) {
-    if (addressInfo.netAddress && addressInfo.netAddress.reliable) {
-      return this._ipToString(addressInfo.netAddress.ip)
-    }
-
-    const { hostname } = new URL(addressInfo.peerAddress)
-    if (hostname && hostname !== '0.0.0.0') {
-      return hostname
-    }
-
-    if (addressInfo.netAddress) {
-      return this._ipToString(addressInfo.netAddress.ip)
+    const locator = addressInfo.multiAddress.split('/')[2]
+    if (locator && locator !== '0.0.0.0') {
+      return locator
     }
 
     return null
   }
 
-  private _ipToString(ip: Uint8Array) {
-    return Array.from(ip).join('.')
-  }
-
   private _getPeerHost(addressInfo: PlainAddressInfo) {
-    const { hostname } = new URL(addressInfo.peerAddress)
-    if (hostname && !/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.test(hostname)) {
-      return hostname
+    const locator = this._getPeerLocator(addressInfo)
+    if (locator && !this._isIp(locator)) {
+      return locator
     }
 
     return undefined
+  }
+
+  private _isIp(locator: string) {
+    return /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.test(locator) || locator.includes(':')
   }
 
   /**
