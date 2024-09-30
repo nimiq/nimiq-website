@@ -10,7 +10,7 @@ defineProps<{ dark?: boolean }>()
       </slot>
     </PopoverTrigger>
     <PopoverPortal>
-      <PopoverContent as-child class="tooltip-animation" :side-offset="8" :collision-padding="8" side="bottom" flex="~ col">
+      <PopoverContent as-child class="tooltip-animation" :side-offset="8" :collision-padding="8" side="bottom" flex="~ col" max-w-360>
         <div :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow dark'" z-300 rounded-8 p-16>
           <slot />
         </div>

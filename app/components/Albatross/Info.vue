@@ -22,7 +22,9 @@ const pillClass = computed(() => getLiveviewPillColor({ nonce: nonce.value }))
         Send Test Transaction
       </button>
       <Tooltip v-if="statsTooltipContent" dark absolute right-12 top-12>
-        {{ statsTooltipContent }}
+        <p style="font-size: var(--nq-font-size)" text-sm>
+          {{ statsTooltipContent }}
+        </p>
       </Tooltip>
     </div>
     <div v-if="networkNotice" text="14 neutral" bg="white/5" flex="~ gap-16 wrap justify-center items-center" self-stretch rounded-8 px-32 py-24>
