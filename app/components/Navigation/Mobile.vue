@@ -3,7 +3,8 @@ import { SocialMedia } from '~/stores/global-content'
 
 const menuVisible = ref(false)
 
-const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalContent())
+const { navigationBlocks, navigation } = storeToRefs(useGlobalContent())
+const { copyrightNotice } = useGlobalContent()
 </script>
 
 <template>
@@ -87,7 +88,7 @@ const { navigationBlocks, navigation, copyrigthNotice } = storeToRefs(useGlobalC
           </div>
 
           <p text-neutral-600 nq-mt-32>
-            {{ copyrigthNotice }}
+            {{ copyrightNotice }}
           </p>
 
           <DropdownMenuArrow class="mr-4 fill-white" />
