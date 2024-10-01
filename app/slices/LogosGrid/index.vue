@@ -23,7 +23,7 @@ function getCssClasses(link: LinkField) {
         <PrismicText text="14/16.8 neutral-700" mr-8 whitespace-nowrap nq-label :field="slice.primary.title" />
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
-        <PrismicLink :field="link" op="40 hocus:80" transition-opacity>
+        <PrismicLink internal-component="a" :field="link" op="40 hocus:80" transition-opacity>
           <PrismicImage :field="logo" :class="getCssClasses(link)" />
         </PrismicLink>
       </li>

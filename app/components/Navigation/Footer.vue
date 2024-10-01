@@ -48,7 +48,7 @@ const sectionRef = useSection('footer', bgColor, { limitWidth: false, paddingX: 
       </p>
       <ul nq-mt-32 :aria-label="`${label} links`" role="list">
         <li v-for="({ href, label: linkLabel }, j) in links" :key="j" nq-mt-16>
-          <PrismicLink :field="href" font-semibold un-text="sm neutral-800 hocus:neutral-900" transition-colors>
+          <PrismicLink internal-component="a" :field="href" font-semibold un-text="sm neutral-800 hocus:neutral-900" transition-colors>
             {{ linkLabel }}
           </PrismicLink>
         </li>
