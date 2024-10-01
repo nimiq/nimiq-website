@@ -95,7 +95,7 @@ const allowMapInteraction = ref(false)
     <div grid="~ *:col-span-full *:row-span-full" mx-auto flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-32>
       <transition leave-active-class="transition duration-500 [&_:is(button,p)]:duration-300 ease-nq [&_:is(button,p)]:ease-out [&_:is(button,p)]:transition" leave-to-class="op-0 [&_button]:translate-y-96 [&_p]:translate-y--96 [&_:is(button,p)]:op-0" leave-from-class="op-100 [&_p]:translate-y-0 [&_button]:translate-y-0 [&_:is(button,p)]:op-100">
         <div v-if="!allowMapInteraction" flex="~ col gap-8 items-center justify-center" z-1 rounded-8>
-          <p text="neutral xl" font-bold>
+          <p text="neutral xl" style="font-size: var(--nq-font-size)" font-bold>
             Explore in {{ activeContinent }}
           </p>
           <button gap-12 nq-pill-lg nq-pill-blue @click="allowMapInteraction = true">
@@ -112,7 +112,7 @@ const allowMapInteraction = ref(false)
         sandbox="allow-scripts allow-same-origin allow-popups"
         frameborder="0"
       />
-      <div v-else aspect="9/16 lg:initial" ring="1.5 neutral-200" h-full rounded-8 bg-neutral-200 max-lg:max-h-80dvh />
+      <div v-else aspect="9/16 lg:initial" ring="1.5 neutral-200" h-full rounded-8 bg-neutral-400 max-lg:max-h-80dvh />
     </div>
   </section>
 </template>
