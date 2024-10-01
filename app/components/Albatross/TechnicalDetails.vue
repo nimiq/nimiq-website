@@ -49,7 +49,7 @@ const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false
           <div bg-gradient="to-l from-neutral-0 to-transparent" pointer-events-none absolute inset-y-0 right-12 w-12 />
           <div bg-gradient="to-r from-neutral-0 to-transparent" pointer-events-none absolute inset-y-0 left-12 w-12 />
         </div>
-        <div flex="~" border="t neutral-500" mx--40 w="[calc(100%+80px)]" mb--32 rounded-b-8>
+        <div flex="~" border="t neutral-500" w="[calc(100%+80px)]" sticky bottom-0 mx--40 mb--32 rounded-b-8>
           <button :disabled="!canSlidePrev" bg="neutral-300 disabled:!neutral-200 :hocus:neutral-400" flex-1 shrink-0 py-24 transition disabled:op-70 text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900" border="r neutral-500" @click="slidePrev">
             <div i-nimiq:chevron-left mx-auto />
           </button>
