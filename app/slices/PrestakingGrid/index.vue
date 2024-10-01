@@ -17,7 +17,7 @@ const sectionRef = useSection(props.slice.id, 'darkblue')
     </ul>
     <Ember bottom-96 left-32 :scale=".65" />
     <Ember bottom-156 right-170 :scale=".85" />
-    <PrismicLink :field="slice.primary.cta" z-10 mt-32 nq-arrow nq-pill-lg nq-pill-blue>
+    <PrismicLink internal-component="a" :field="slice.primary.cta" z-10 mt-32 nq-arrow nq-pill-lg nq-pill-blue>
       {{ slice.primary.cta_label }}
     </PrismicLink>
   </section>

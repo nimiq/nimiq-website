@@ -15,10 +15,10 @@ const sectionRef = useSection(props.slice.id, 'darkblue')
         <PrismicRichText :field="description" nq-mt-24 />
 
         <div nq-mt-32 flex="~ gap-14">
-          <PrismicLink v-if="hasLink(primaryLink)" :field="primaryLink" nq-arrow nq-pill-blue>
+          <PrismicLink v-if="hasLink(primaryLink)" internal-component="a" :field="primaryLink" nq-arrow nq-pill-blue>
             {{ primaryLinkLabel }}
           </PrismicLink>
-          <PrismicLink v-if="hasLink(secondaryLink)" :field="secondaryLink" nq-arrow nq-pill-secondary>
+          <PrismicLink v-if="hasLink(secondaryLink)" internal-component="a" :field="secondaryLink" nq-arrow nq-pill-secondary>
             {{ secondaryLinkLabel }}
           </PrismicLink>
         </div>

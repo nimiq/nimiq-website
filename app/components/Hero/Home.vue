@@ -52,7 +52,7 @@ watch(subheadlineStr, () => {
     <div z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text-neutral-800 />
-      <PrismicLink mt-40 :field="cta" nq-arrow nq-pill-lg nq-pill-blue>
+      <PrismicLink internal-component="a" mt-40 :field="cta" nq-arrow nq-pill-lg nq-pill-blue>
         {{ ctaLabel }}
       </PrismicLink>
     </div>

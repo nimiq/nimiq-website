@@ -27,6 +27,7 @@ const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor)
         <PrismicLink
           v-for="({ color, headline, iconName, linkHref }, i) in slice.items"
           :key="i"
+          internal-component="a"
           flex="~ row gap-20 items-center" :style="`--c: ${color}`"
           :field="linkHref" hocus:bg="$c" group p-20 nq-hoverable
         >

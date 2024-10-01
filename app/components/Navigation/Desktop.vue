@@ -30,7 +30,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
               <ul :aria-label="`${navigation.appsGroupName} links`" role="link" w-max flex="~ col">
                 <li v-for="({ label, href, logo }, index) in navigation.appsLinks" :key="label!" group class="link-item" @focus="selectedApp = index" @mouseover="selectedApp = index">
                   <NavigationMenuLink as-child>
-                    <PrismicLink :field="href" flex="~ gap-12 items-center">
+                    <PrismicLink internal-component="a" :field="href" flex="~ gap-12 items-center">
                       <PrismicImage :field="logo" h-22 max-w-21 op="20 group-hocus:100" transition-opacity />
                       <span>
                         {{ label }}
@@ -52,7 +52,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
               <ul role="list" :aria-label="`${navigation.howToTitle} links`" mt-18 flex flex-wrap gap-x-32>
                 <li v-for="({ href, label }, index) in navigation.howToLinks" :key="`how-to-link-${index}`">
                   <NavigationMenuLink as-child>
-                    <PrismicLink :field="href" un-text="neutral-700 hocus:neutral-800" transition-colors nq-arrow>
+                    <PrismicLink internal-component="a" :field="href" un-text="neutral-700 hocus:neutral-800" transition-colors nq-arrow>
                       {{ label }}
                     </PrismicLink>
                   </NavigationMenuLink>
@@ -72,7 +72,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
             <ul :aria-label="`${navigation.techGroupName} links`" role="link" grid="~ cols-2 gap-x-8" p-24>
               <li v-for="({ label, href }) in navigation.techLinks" :key="label!" w-full flex class="link-item">
                 <NavigationMenuLink as-child>
-                  <PrismicLink :field="href">
+                  <PrismicLink internal-component="a" :field="href">
                     {{ label }}
                   </PrismicLink>
                 </NavigationMenuLink>
@@ -80,7 +80,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
             </ul>
             <hr h-1 w-full bg-darkblue op-10>
             <div flex="~ items-center justify-between gap-x-20" px-32 py-20>
-              <PrismicLink v-if="socialMedias.github" :field="socialMedias.github.link" flex-1 flex="~ items-center gap-12" un-text="15 neutral-800" pr-4 nq-arrow after:ml--4 border="r-1.5 solid darkblue/10">
+              <PrismicLink v-if="socialMedias.github" internal-component="a" :field="socialMedias.github.link" flex-1 flex="~ items-center gap-12" un-text="15 neutral-800" pr-4 nq-arrow after:ml--4 border="r-1.5 solid darkblue/10">
                 <div :class="socialMedias.github.icon" text-20 op-70 />
                 {{ navigation.githubLinkLabel }}
               </PrismicLink>
@@ -99,7 +99,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
             <ul :aria-label="`${navigation.communityGroupName} links`" role="link" flex="~ col" pb-24>
               <li v-for="({ label, href }) in navigation.communityLinks" :key="label!" w-full flex class="link-item">
                 <NavigationMenuLink as-child>
-                  <PrismicLink :field="href">
+                  <PrismicLink internal-component="a" :field="href">
                     {{ label }}
                   </PrismicLink>
                 </NavigationMenuLink>
@@ -121,7 +121,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
             <ul :aria-label="`${navigation.projectGroupName} links`" role="link" flex="~ col">
               <li v-for="({ label, href }) in navigation.projectLinks" :key="label!" w-full flex class="link-item">
                 <NavigationMenuLink as-child>
-                  <PrismicLink :field="href">
+                  <PrismicLink internal-component="a" :field="href">
                     {{ label }}
                   </PrismicLink>
                 </NavigationMenuLink>
@@ -141,7 +141,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
               v-for="({ label, href, description }) in navigation.getStartedLinks" :key="label!" max-w-240 w-full flex transition-border
             >
               <NavigationMenuLink as-child>
-                <PrismicLink :field="href" w-full rounded-4 flex="~ col gap-12" bg="hocus:darkblue/6" un-text="darkblue/90 hocus:darkblue" p-24 transition-colors>
+                <PrismicLink internal-component="a" :field="href" w-full rounded-4 flex="~ col gap-12" bg="hocus:darkblue/6" un-text="darkblue/90 hocus:darkblue" p-24 transition-colors>
                   <p font-semibold lh-none>
                     {{ label }}
                   </p>

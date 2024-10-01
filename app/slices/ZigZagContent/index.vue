@@ -60,10 +60,10 @@ useIntersectionObserver(sectionRef, () => {
           </div>
           <PrismicRichText nq-mt-48 class="nq-prose-compact nq-prose" :field="item.description" />
           <div flex="~ gap-24 md:col lg:row" max-w-lg nq-mt-24>
-            <PrismicLink v-if="hasLink(item.buttonHref)" :field="item.buttonHref" font-semibold nq-arrow nq-pill-lg nq-pill-blue>
+            <PrismicLink v-if="hasLink(item.buttonHref)" internal-component="a" :field="item.buttonHref" font-semibold nq-arrow nq-pill-lg nq-pill-blue>
               {{ item.buttonLabel }}
             </PrismicLink>
-            <PrismicLink v-if="hasLink(item.secondaryButtonHref)" :field="item.secondaryButtonHref" un-text-blue font-semibold nq-arrow>
+            <PrismicLink v-if="hasLink(item.secondaryButtonHref)" internal-component="a" :field="item.secondaryButtonHref" un-text-blue font-semibold nq-arrow>
               {{ item.secondaryButtonLabel }}
             </PrismicLink>
           </div>

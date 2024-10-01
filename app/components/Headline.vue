@@ -21,7 +21,7 @@ const headlineTag = computed(() => props.headline.filter(i => i.type.startsWith(
     </p>
     <PrismicText :wrapper="headlineTag" :field="headline" />
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" />
-    <PrismicLink v-if="ctaHref && ctaLabel" :field="ctaHref" nq-mt-48 nq-arrow nq-pill-lg nq-pill-blue md:mx-auto>
+    <PrismicLink v-if="ctaHref && ctaLabel" internal-component="a" :field="ctaHref" nq-mt-48 nq-arrow nq-pill-lg nq-pill-blue md:mx-auto>
       {{ ctaLabel }}
     </PrismicLink>
   </div>

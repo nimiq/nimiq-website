@@ -27,15 +27,15 @@ const { copyrightNotice } = useGlobalContent()
           :side-offset="12"
         >
           <DropdownMenuItem class="flex gap-20">
-            <PrismicLink v-if="navigation?.getStartedLinks.at(0)?.href" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
+            <PrismicLink v-if="navigation?.getStartedLinks.at(0)?.href" internal-component="a" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
               {{ navigation.getStartedLinks[0]?.label }}
             </PrismicLink>
-            <PrismicLink v-if="navigation?.getStartedLinks.at(1)?.href" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
+            <PrismicLink v-if="navigation?.getStartedLinks.at(1)?.href" internal-component="a" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
               {{ navigation.getStartedLinks[1]?.label }}
             </PrismicLink>
           </DropdownMenuItem>
           <DropdownMenuItem class="my-32">
-            <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" :field="navigation.getStartedLinks.at(2)!.href">
+            <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" internal-component="a" :field="navigation.getStartedLinks.at(2)!.href">
               <p text="sm neutral-700" font-bold nq-arrow>
                 {{ navigation.getStartedLinks[2]?.label }}
               </p>
@@ -64,7 +64,7 @@ const { copyrightNotice } = useGlobalContent()
                     </AccordionTrigger>
                   </AccordionHeader>
                   <AccordionContent class="content" of-hidden>
-                    <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" :field="href" w-full flex="~ items-center gap-16" whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold>
+                    <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" internal-component="a" :field="href" w-full flex="~ items-center gap-16" whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold>
                       {{ linkLabel }}
                     </PrismicLink>
                   </AccordionContent>
