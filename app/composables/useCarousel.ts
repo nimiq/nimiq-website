@@ -5,6 +5,7 @@ interface UseCarouselOptionsInterface {
 export function useCarousel(options: UseCarouselOptionsInterface = {}) {
   const activeIndex = ref(0)
   const scroller = ref<HTMLDivElement>()
+  const items = computed(() => scroller.value?.querySelectorAll('[data-slide]'))
 
   function calculateStep(event: Event) {
     const target = event.target as HTMLDivElement
@@ -34,8 +35,8 @@ export function useCarousel(options: UseCarouselOptionsInterface = {}) {
     },
   })
 
-  const slideNext = () => slideTo(activeIndex.value + 1)
-  const slidePrev = () => slideTo(activeIndex.value - 1)
+  const slideNext = () => slideTo(Math.min(activeIndex.value + 1, (items.value?.length || 1) - 1))
+  const slidePrev = () => slideTo(Math.max(activeIndex.value - 1, 0))
 
   return {
     activeIndex,
@@ -44,5 +45,10 @@ export function useCarousel(options: UseCarouselOptionsInterface = {}) {
     slideTo,
     slideNext,
     slidePrev,
+    canSlideNext: computed(() => {
+      const itemCount = items.value?.length ?? 0
+      return activeIndex.value < itemCount - 1
+    }),
+    canSlidePrev: computed(() => activeIndex.value > 0),
   }
 }

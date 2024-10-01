@@ -7,13 +7,13 @@ const { data } = useAsyncData('technical_details', () => client.getByType('albat
 const buttonLabel = computed(() => data.value?.results.at(0)?.data.buttonLabel)
 const slides = computed(() => data.value?.results.at(0)?.data.slides)
 
-const { slidePrev, scroller, slideNext, activeIndex, slideTo } = useCarousel()
+const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canSlidePrev } = useCarousel()
 const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false })
 </script>
 
 <template>
   <section ref="sectionRef">
-    <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary>
+    <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary @close="activeIndex = 0">
       <template #trigger>
         <div i-custom:cli-docs mr-8 />
         <span>{{ buttonLabel }}</span>
@@ -35,7 +35,7 @@ const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false
       </template>
       <template #description>
         <p sr-only>
-          Learn about Nimiq's Albatross Technical Details and what each of the elements are
+          Learn about the technical details of Nimiq's Albatross and what each of the elements are
         </p>
       </template>
 
@@ -43,17 +43,17 @@ const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false
         <div relative mx--32 w-full px-16 w="![calc(100%+64px)]">
           <ul ref="scroller" snap="x mandatory" flex="~ items-start gap-16" w-full of-x-auto class="nq-scrollbar-hide">
             <li v-for="({ richText }, i) in slides" :key="i" snap="center always" data-slide w-full shrink-0 px-8>
-              <PrismicRichText class="nq-prose-compact nq-prose" :field="richText" />
+              <PrismicRichText class="nq-prose-compact nq-prose" :field="richText" pb-32 />
             </li>
           </ul>
           <div bg-gradient="to-l from-neutral-0 to-transparent" pointer-events-none absolute inset-y-0 right-12 w-12 />
           <div bg-gradient="to-r from-neutral-0 to-transparent" pointer-events-none absolute inset-y-0 left-12 w-12 />
         </div>
         <div flex="~" border="t neutral-500" mx--40 w="[calc(100%+80px)]" mb--32 rounded-b-8>
-          <button bg="neutral-300 hocus:neutral-400" flex-1 shrink-0 py-24 transition-colors text="24 neutral-700 hocus:neutral-900" border="r neutral-500" @click="slidePrev">
+          <button :disabled="!canSlidePrev" bg="neutral-300 disabled:!neutral-200 :hocus:neutral-400" flex-1 shrink-0 py-24 transition disabled:op-70 text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900" border="r neutral-500" @click="slidePrev">
             <div i-nimiq:chevron-left mx-auto />
           </button>
-          <button bg="neutral-300 hocus:neutral-400" flex-1 text="24 neutral-700 hocus:neutral-900" shrink-0 py-24 transition-colors border="r neutral-500" @click="slideNext">
+          <button bg="neutral-300 disabled:!neutral-200 hocus:neutral-400" flex-1 text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900" shrink-0 py-24 transition border="r neutral-500" :disabled="!canSlideNext" disabled:op-70 @click="slideNext">
             <div i-nimiq:chevron-right mx-auto />
           </button>
         </div>

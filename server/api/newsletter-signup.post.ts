@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
   if (tokenIssues)
     throw createError({ statusCode: 400, statusMessage: 'Invalid token data', message: JSON.stringify(tokenIssues) })
 
-  // Create contact
+  // Create contact - https://www.zoho.com/contacts/api/add-contact.html
   const payload = { contacts: { emails: [{ email_id: body.email }] } }
   const headers = { Authorization: `${token.token_type} ${token.access_token}` }
   const domain = token.api_domain.split('.').at(-1)
