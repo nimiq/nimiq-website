@@ -1,40 +1,41 @@
 <script setup lang="ts">
+import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue'
 import { SocialMedia } from '~/stores/global-content'
-
-const menuVisible = ref(false)
 
 const { navigationBlocks, navigation } = storeToRefs(useGlobalContent())
 const { copyrightNotice } = useGlobalContent()
 </script>
 
 <template>
-  <div>
-    <DropdownMenuRoot v-model:open="menuVisible">
-      <DropdownMenuTrigger
-        bg-transparent
-        aria-label="Links menu"
-      >
-        <div
-          cursor-pointer opacity-50 hocus:opacity-60
-          class="i-nimiq:hamburger-menu scale-x--100"
-          :class="{ 'text-white': false }"
-        />
-      </DropdownMenuTrigger>
+  <DrawerRoot should-scale-background>
+    <DrawerTrigger
+      bg-transparent
+      aria-label="Links menu"
+    >
+      <div
+        opacity-50 hocus:opacity-60
+        class="i-nimiq:hamburger-menu scale-x--100"
+        :class="{ 'text-white': false }"
+      />
+    </DrawerTrigger>
 
-      <DropdownMenuPortal>
-        <DropdownMenuContent
-          class="mr-12 max-w-390 w-[calc(100vw-32px)] flex flex-col rounded-6 bg-white p-24 shadow outline-none"
-          :side-offset="12"
-        >
-          <DropdownMenuItem class="flex gap-20">
-            <PrismicLink v-if="navigation?.getStartedLinks.at(0)?.href" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
-              {{ navigation.getStartedLinks[0]?.label }}
-            </PrismicLink>
-            <PrismicLink v-if="navigation?.getStartedLinks.at(1)?.href" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
-              {{ navigation.getStartedLinks[1]?.label }}
-            </PrismicLink>
-          </DropdownMenuItem>
-          <DropdownMenuItem class="my-32">
+    <DrawerPortal>
+      <DrawerOverlay class="fixed inset-0 bg-neutral/40" />
+      <DrawerContent
+        class="fixed bottom-0 left-0 right-0 z-100 mt-24 h-full max-h-90dvh flex flex-col rounded-t-10 bg-white p-24"
+      >
+        <div class="mx-auto mb-32 h-4 w-80 flex-shrink-0 rounded-full bg-gray-300" />
+        <div class="mb-16 flex gap-20">
+          <PrismicLink v-if="navigation?.getStartedLinks.at(0)?.href" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
+            {{ navigation.getStartedLinks[0]?.label }}
+          </PrismicLink>
+          <PrismicLink v-if="navigation?.getStartedLinks.at(1)?.href" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
+            {{ navigation.getStartedLinks[1]?.label }}
+          </PrismicLink>
+        </div>
+
+        <div of-x-hidden of-y-auto class="nq-scrollbar-hide">
+          <div class="my-16">
             <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" :field="navigation.getStartedLinks.at(2)!.href">
               <p text="sm neutral-700" font-bold nq-arrow>
                 {{ navigation.getStartedLinks[2]?.label }}
@@ -43,37 +44,35 @@ const { copyrightNotice } = useGlobalContent()
                 {{ navigation.getStartedLinks[2]?.description }}
               </p>
             </PrismicLink>
-          </DropdownMenuItem>
+          </div>
 
-          <DropdownMenuSub>
-            <AccordionRoot
-              class="opacity-60"
-              type="single"
-              :collapsible="true"
-            >
-              <template v-for="({ links, label }) in navigationBlocks" :key="label">
-                <DropdownMenuSeparator v-if="links.length" h-1 bg-neutral-300 />
+          <AccordionRoot
+            class="mt-16 opacity-60"
+            type="single"
+            :collapsible="true"
+          >
+            <template v-for="({ links, label }) in navigationBlocks" :key="label">
+              <DropdownMenuSeparator v-if="links.length" h-1 bg-neutral-300 />
 
-                <AccordionItem v-if="links.length" of-hidden py-8 :value="label as string">
-                  <AccordionHeader>
-                    <AccordionTrigger h-45 flex flex-1 cursor-default items-center gap-x-8 bg-white px-5 leading-none outline-none>
-                      <span text-12 uppercase>{{ label }}</span>
-                      <div
-                        class="i-nimiq:chevron-down text-10 text-neutral transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180"
-                      />
-                    </AccordionTrigger>
-                  </AccordionHeader>
-                  <AccordionContent class="content" of-hidden>
-                    <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" :field="href" w-full flex="~ items-center gap-16" whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold>
-                      {{ linkLabel }}
-                    </PrismicLink>
-                  </AccordionContent>
-                </AccordionItem>
-              </template>
-            </AccordionRoot>
-          </DropdownMenuSub>
+              <AccordionItem v-if="links.length" of-hidden py-8 :value="label as string">
+                <AccordionHeader>
+                  <AccordionTrigger h-45 flex flex-1 cursor-default items-center gap-x-8 bg-white px-5 leading-none outline-none>
+                    <span text-12 uppercase>{{ label }}</span>
+                    <div
+                      class="i-nimiq:chevron-down text-10 text-neutral transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180"
+                    />
+                  </AccordionTrigger>
+                </AccordionHeader>
+                <AccordionContent class="content" of-hidden>
+                  <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" :field="href" w-full flex="~ items-center gap-16" whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold>
+                    {{ linkLabel }}
+                  </PrismicLink>
+                </AccordionContent>
+              </AccordionItem>
+            </template>
+          </AccordionRoot>
 
-          <DropdownMenuSeparator mb-32 h-1 bg-neutral-300 />
+          <hr mb-32 h-1 w-full bg-neutral-300>
 
           <SocialMediaLogosList text-18 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
 
@@ -90,19 +89,13 @@ const { copyrightNotice } = useGlobalContent()
           <p text-neutral-600 nq-mt-32>
             {{ copyrightNotice }}
           </p>
-
-          <DropdownMenuArrow class="mr-4 fill-white" />
-        </DropdownMenuContent>
-      </DropdownMenuPortal>
-    </DropdownMenuRoot>
-  </div>
+        </div>
+      </DrawerContent>
+    </DrawerPortal>
+  </DrawerRoot>
 </template>
 
 <style scoped>
-[data-radix-popper-content-wrapper] {
-  z-index: 20 !important;
-}
-
 .content {
   &:is([data-state='open']) {
     animation: slideDown 300ms var(--nq-ease, ease);
