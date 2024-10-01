@@ -29,6 +29,12 @@ const subheadline = computed(() => {
   return h('p', {}, [pre, locationsSpan, post])
 })
 
+const subheadlineStr = computed(() => {
+  const pre = props.subHeadlineTemplate?.split('{{')[0]?.toString()
+  const post = props.subHeadlineTemplate?.split('}}')[1]?.toString()
+  return `${pre} ${locationsCount.value} ${post}`
+})
+
 const [DefineNimFly, ReuseNimFly] = createReusableTemplate<{ css: string }>()
 
 const shouldJump = ref(false)
@@ -42,6 +48,15 @@ function onHoverEnd() {
 }
 
 const sectionRef = useSection('home-hero', 'darkblue', { paddingY: false, limitWidth: false })
+
+watch(subheadlineStr, () => {
+  useHead({
+    title: props.headline.at(0)!.text,
+    meta: [
+      { name: 'description', content: subheadlineStr.value },
+    ],
+  })
+})
 </script>
 
 <template>
