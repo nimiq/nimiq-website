@@ -48,11 +48,11 @@ const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false
           <div bg-gradient="to-r from-neutral-0 to-transparent" pointer-events-none absolute inset-y-0 left-12 w-12 />
         </div>
         <div flex="~" border="t neutral-500" mx--40 w="[calc(100%+80px)]" mb--32 rounded-b-8>
-          <button bg="neutral-300 hocus:neutral-400" flex-1 shrink-0 py-24 transition-colors border="r neutral-500" @click="slidePrev">
-            <div i-nimiq:chevron-left text="24 neutral" mx-auto />
+          <button bg="neutral-300 hocus:neutral-400" flex-1 shrink-0 py-24 transition-colors text="24 neutral-700 hocus:neutral-900" border="r neutral-500" @click="slidePrev">
+            <div i-nimiq:chevron-left mx-auto />
           </button>
-          <button bg="neutral-300 hocus:neutral-400" flex-1 shrink-0 py-24 transition-colors border="r neutral-500" @click="slideNext">
-            <div i-nimiq:chevron-right text="24 neutral" mx-auto />
+          <button bg="neutral-300 hocus:neutral-400" flex-1 text="24 neutral-700 hocus:neutral-900" shrink-0 py-24 transition-colors border="r neutral-500" @click="slideNext">
+            <div i-nimiq:chevron-right mx-auto />
           </button>
         </div>
       </template>
