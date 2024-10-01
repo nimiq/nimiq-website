@@ -114,3 +114,9 @@ async function submitForm() {
   }
 }
 </style>
+
+<style>
+section[data-slice-type='newsletter_form'] + section {
+  display: none;
+}
+</style>
