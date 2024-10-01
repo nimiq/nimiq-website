@@ -35,16 +35,6 @@ const subheadlineStr = computed(() => {
   return `${pre} ${locationsCount.value} ${post}`
 })
 
-// const shouldJump = ref(false)
-
-// function onHover() {
-//   shouldJump.value = Math.random() < 0.07
-// }
-
-// function onHoverEnd() {
-//   shouldJump.value = false
-// }
-
 const sectionRef = useSection('home-hero', 'darkblue', { paddingY: false, limitWidth: false })
 
 watch(subheadlineStr, () => {
@@ -59,24 +49,6 @@ watch(subheadlineStr, () => {
 
 <template>
   <section ref="sectionRef" relative of-hidden pt="148 md:153 lg:160">
-    <!-- <DefineNimFly v-slot="{ css }">
-      <div
-        :class="css"
-        grid="~ *:row-span-full *:col-span-full *:self-center *:justify-self-center"
-        group z-1 op-70
-        @mouseenter="onHover"
-        @mouseleave="onHoverEnd"
-      >
-        <div op="3 group-hover:1" pointer-events-none size-64 mix-blend-overlay blur-4 transition-opacity style="background: radial-gradient(circle, #FFFFFF 40%, rgba(255, 255, 255, 0) 100%);" />
-        <div
-          class="nim-fly-icon"
-          :class="{ 'jump-and-flip': shouldJump }"
-          i-nimiq:logos-shiny-nim
-          size-25
-        />
-        <div size-40 mix-blend-screen blur-28 op="100 group-hover:60" transition-opacity style="background: radial-gradient(circle, #FFFFFF 30%, rgba(255, 255, 255, 0) 100%);" />
-      </div>
-    </DefineNimFly> -->
     <div z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text-neutral-800 />
@@ -86,10 +58,10 @@ watch(subheadlineStr, () => {
     </div>
     <NuxtImg pointer-events-none absolute inset-0 m-0 size-full src="/assets/images/gods-light.webp" />
     <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
-    <Ember left-100 top-200 scale-105 />
-    <Ember right-80 top-170 scale-70 />
-    <Ember bottom-400 left-30vw scale-92 />
-    <Ember bottom-550 right-32 />
+    <Ember left-100 top-200 :scale="1.05" />
+    <Ember right-80 top-170 :scale="0.7" />
+    <Ember bottom-430 left-30vw :scale="0.92" />
+    <Ember bottom-460 right-32 />
     <div class="world-container" pointer-events-none absolute bottom-0 flex="~ justify-center" mx-0 of-y-hidden>
       <div class="ellipse blue-ring" min-w-900 of-hidden />
     </div>
@@ -127,26 +99,5 @@ section {
       background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%);
     }
   }
-
-  /* .nim-fly-icon {
-    --animation-play-state: running;
-    animation: float 6s ease-in-out infinite;
-    animation-play-state: var(--animation-play-state);
-    animation-delay: var(--delay, 0s);
-    transition:
-      filter 0.3s ease,
-      transform 0.5s ease;
-    --drop-shadow: 10px;
-    filter: drop-shadow(0 0 var(--drop-shadow) rgba(255, 255, 255, 0.7));
-  }
-
-  [group]:hover .nim-fly-icon {
-    --animation-play-state: paused;
-    --drop-shadow: 12px;
-  }
-
-  .jump-and-flip {
-    animation: jump-flip 0.5s ease-out;
-  } */
 }
 </style>
