@@ -28,22 +28,24 @@ function onHover() {
 </template>
 
 <style scoped>
-div {
-  --animation-play-state: running;
-  animation: float 15s ease-in-out infinite;
-  animation-play-state: var(--animation-play-state);
-  animation-delay: var(--delay, 0);
-  transition:
-    filter 0.3s ease,
-    transform 0.5s ease;
+@media (min-width: 768px) {
+  div {
+    --animation-play-state: running;
+    animation: float 15s ease-in-out infinite;
+    animation-play-state: var(--animation-play-state);
+    animation-delay: var(--delay, 0);
+    transition:
+      filter 0.3s ease,
+      transform 0.5s ease;
 
-  &:hover {
-    --animation-play-state: paused;
-  }
+    &:hover {
+      --animation-play-state: paused;
+    }
 
-  &::after,
-  &::before {
-    background: radial-gradient(rgba(var(--nq-neutral) / 0.25) 0%, rgba(var(--nq-neutral) / 0) 100%);
+    &::after,
+    &::before {
+      background: radial-gradient(rgba(var(--nq-neutral) / 0.25) 0%, rgba(var(--nq-neutral) / 0) 100%);
+    }
   }
 }
 
@@ -72,5 +74,9 @@ div {
 
 .jump-and-flip {
   animation: jump-flip 0.5s ease-out;
+
+  @media (max-width: 768px) {
+    animation: none;
+  }
 }
 </style>
