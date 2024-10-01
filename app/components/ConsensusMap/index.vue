@@ -50,7 +50,7 @@ const y = ref(0)
 const networkMap = ref<NetworkMap | null>(null)
 const tooltipPosition = ref<'top' | 'bottom'>('top')
 const initialized = ref(false)
-const disconnected = ref(false)
+// const disconnected = ref(false)
 
 // Nimiq Network
 let popperInstance: ReturnType<typeof createPopper> | null = null
@@ -129,6 +129,7 @@ async function disconnect() {
   if (!client.value)
     return
 
+  // eslint-disable-next-line no-console
   console.log('Disconnecting from network')
   // TODO
   // networkStatus.value = NetworkStatus.CONNECTING

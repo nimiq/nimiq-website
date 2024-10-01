@@ -34,6 +34,7 @@ export function useNimiq() {
     await until(client).not.toBeNull()
 
     client.value!.addConsensusChangedListener((state) => {
+      // eslint-disable-next-line no-console
       console.log('Consensus state changed:', state)
       consensus.value = state
     })
@@ -45,6 +46,7 @@ export function useNimiq() {
     })
 
     client.value!.addPeerChangedListener((peerId, reason, numPeers, peerInfo) => {
+      // eslint-disable-next-line no-console
       console.log('Peer changed:', peerId, reason, numPeers, peerInfo)
       if (reason === 'joined' && peerInfo) {
         peerAddress.value.push({
