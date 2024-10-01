@@ -62,7 +62,7 @@ const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false
   </section>
 </template>
 
-<style>
+<style scoped>
 .nq-prose {
   h3 {
     --uno: 'text-2xl text-center';

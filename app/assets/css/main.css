@@ -1,6 +1,8 @@
 section {
-  /* TODO Move this fix to nimiq-css. This rule applies to the technical details */
-  &.nq-no-py {
-    --pt: 16px;
+  :not(.nq-prose) {
+    /* TODO Move this fix to nimiq-css. This rule applies to the technical details */
+    &.nq-no-py {
+      --pt: 16px;
+    }
   }
 }
