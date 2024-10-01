@@ -62,8 +62,8 @@ const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false
   </section>
 </template>
 
-<style scoped>
-.nq-prose {
+<style>
+.modal-container .nq-prose {
   h3 {
     /* --uno: 'text-2xl text-center'; */
     --nq-font-size-min: 20;
