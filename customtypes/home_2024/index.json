@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "albatross_technical_details": {
+              "type": "SharedSlice"
+            },
             "albatross_liveview": {
               "type": "SharedSlice"
             },

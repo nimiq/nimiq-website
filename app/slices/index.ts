@@ -10,6 +10,9 @@ export const components = defineSliceZoneComponents({
   albatross_liveview: defineAsyncComponent(
     () => import('./AlbatrossLiveview/index.vue'),
   ),
+  albatross_technical_details: defineAsyncComponent(
+    () => import('./AlbatrossTechnicalDetails/index.vue'),
+  ),
   apps_showcase: defineAsyncComponent(() => import('./AppsShowcase/index.vue')),
   banner_slice: defineAsyncComponent(() => import('./BannerSlice/index.vue')),
   blogposts_grid: defineAsyncComponent(

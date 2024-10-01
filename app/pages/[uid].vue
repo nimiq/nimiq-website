@@ -7,6 +7,7 @@ const route = useRoute()
 // @ts-expect-error - `uid` is defined
 const uid = route.params.uid
 
+// TODO CHange to usePrismic
 const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('page', uid)
 
 useHead({

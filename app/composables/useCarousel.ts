@@ -13,13 +13,26 @@ export function useCarousel(options: UseCarouselOptionsInterface = {}) {
     options?.onStepChanged?.(activeIndex.value)
   }
 
+  let automaticScroll = false
   function slideTo(index: number) {
+    automaticScroll = true
+    setTimeout(() => automaticScroll = false, 500)
+
     scroller.value?.scrollTo({
       top: 0,
-      left: (scroller.value?.querySelectorAll('[data-slide]')[index] as HTMLElement).offsetLeft || 0,
+      left: (scroller.value?.querySelectorAll('[data-slide]')[index] as HTMLElement)?.offsetLeft || 0,
       behavior: 'smooth',
     })
+    activeIndex.value = index
   }
+
+  useScroll(scroller, {
+    onScroll: (event) => {
+      if (automaticScroll)
+        return
+      calculateStep(event)
+    },
+  })
 
   const slideNext = () => slideTo(activeIndex.value + 1)
   const slidePrev = () => slideTo(activeIndex.value - 1)

@@ -5,6 +5,66 @@ import type * as prismic from '@prismicio/client'
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] }
 
 /**
+ * Item in *AlbatrossSingleType → slides*
+ */
+export interface AlbatrossSingleTypeDocumentDataSlidesItem {
+  /**
+   * Rich Text field in *AlbatrossSingleType → slides*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatrossSingleType.slides[].richText
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  richText: prismic.RichTextField
+}
+
+/**
+ * Content for AlbatrossSingleType documents
+ */
+interface AlbatrossSingleTypeDocumentData {
+  /**
+   * Button Label field in *AlbatrossSingleType*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatrossSingleType.buttonLabel
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  buttonLabel: prismic.KeyTextField
+
+  /**
+   * slides field in *AlbatrossSingleType*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatrossSingleType.slides[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  slides: prismic.GroupField<
+    Simplify<AlbatrossSingleTypeDocumentDataSlidesItem>
+  >
+}
+
+/**
+ * AlbatrossSingleType document from Prismic
+ *
+ * - **API ID**: `albatrossSingleType`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AlbatrossSingleTypeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<AlbatrossSingleTypeDocumentData>,
+    'albatrossSingleType',
+    Lang
+  >
+
+/**
  * Item in *Blog Article → Authors*
  */
 export interface BlogPageDocumentDataAuthorsItem {
@@ -534,6 +594,7 @@ export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, 'home', Lang>
 
 type Home2024DocumentDataSlicesSlice =
+  | AlbatrossTechnicalDetailsSlice
   | AlbatrossLiveviewSlice
   | BannerSliceSlice
   | GridSectionSlice
@@ -2207,6 +2268,7 @@ export type TestDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<TestDocumentData>, 'test', Lang>
 
 export type AllDocumentTypes =
+  | AlbatrossSingleTypeDocument
   | BlogPageDocument
   | ChildPageDocument
   | HomeDocument
@@ -2416,6 +2478,34 @@ type AlbatrossLiveviewSliceVariation = AlbatrossLiveviewSliceDefault
 export type AlbatrossLiveviewSlice = prismic.SharedSlice<
   'albatross_liveview',
   AlbatrossLiveviewSliceVariation
+>
+
+/**
+ * Default variation for AlbatrossTechnicalDetails Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AlbatrossTechnicalDetailsSliceDefault =
+  prismic.SharedSliceVariation<'default', Record<string, never>, never>
+
+/**
+ * Slice variation for *AlbatrossTechnicalDetails*
+ */
+type AlbatrossTechnicalDetailsSliceVariation =
+  AlbatrossTechnicalDetailsSliceDefault
+
+/**
+ * AlbatrossTechnicalDetails Shared Slice
+ *
+ * - **API ID**: `albatross_technical_details`
+ * - **Description**: AlbatrossTechnicalDetails
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AlbatrossTechnicalDetailsSlice = prismic.SharedSlice<
+  'albatross_technical_details',
+  AlbatrossTechnicalDetailsSliceVariation
 >
 
 /**
@@ -9728,6 +9818,12 @@ declare module '@prismicio/client' {
       AlbatrossLiveviewSliceDefault,
       AlbatrossLiveviewSliceDefaultPrimary,
       AlbatrossLiveviewSliceVariation,
+      AlbatrossSingleTypeDocument,
+      AlbatrossSingleTypeDocumentData,
+      AlbatrossSingleTypeDocumentDataSlidesItem,
+      AlbatrossTechnicalDetailsSlice,
+      AlbatrossTechnicalDetailsSliceDefault,
+      AlbatrossTechnicalDetailsSliceVariation,
       AllDocumentTypes,
       AppsShowcaseSlice,
       AppsShowcaseSliceDefault,
