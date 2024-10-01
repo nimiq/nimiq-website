@@ -55,7 +55,7 @@ const fontSizeClass = computed(() => {
     </div>
 
     <footer flex="~ items-center justify-between" w-full px-8 pt-2 text="neutral-800 12">
-      <p>
+      <p whitespace-nowrap>
         Slot {{ block.producer.slotNumber }}
       </p>
       <p whitespace-nowrap>
