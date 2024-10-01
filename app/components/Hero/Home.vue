@@ -35,17 +35,15 @@ const subheadlineStr = computed(() => {
   return `${pre} ${locationsCount.value} ${post}`
 })
 
-const [DefineNimFly, ReuseNimFly] = createReusableTemplate<{ css: string }>()
+// const shouldJump = ref(false)
 
-const shouldJump = ref(false)
+// function onHover() {
+//   shouldJump.value = Math.random() < 0.07
+// }
 
-function onHover() {
-  shouldJump.value = Math.random() < 0.07
-}
-
-function onHoverEnd() {
-  shouldJump.value = false
-}
+// function onHoverEnd() {
+//   shouldJump.value = false
+// }
 
 const sectionRef = useSection('home-hero', 'darkblue', { paddingY: false, limitWidth: false })
 
@@ -61,7 +59,7 @@ watch(subheadlineStr, () => {
 
 <template>
   <section ref="sectionRef" relative of-hidden pt="148 md:153 lg:160">
-    <DefineNimFly v-slot="{ css }">
+    <!-- <DefineNimFly v-slot="{ css }">
       <div
         :class="css"
         grid="~ *:row-span-full *:col-span-full *:self-center *:justify-self-center"
@@ -78,7 +76,7 @@ watch(subheadlineStr, () => {
         />
         <div size-40 mix-blend-screen blur-28 op="100 group-hover:60" transition-opacity style="background: radial-gradient(circle, #FFFFFF 30%, rgba(255, 255, 255, 0) 100%);" />
       </div>
-    </DefineNimFly>
+    </DefineNimFly> -->
     <div z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text-neutral-800 />
@@ -88,10 +86,10 @@ watch(subheadlineStr, () => {
     </div>
     <NuxtImg pointer-events-none absolute inset-0 m-0 size-full src="/assets/images/gods-light.webp" />
     <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
-    <ReuseNimFly css="absolute left-100 top-200 scale-105 [--delay:700ms]" />
-    <ReuseNimFly css="absolute right-80 top-170 scale-70 [--delay:2500ms]" />
-    <ReuseNimFly css="absolute left-30vw bottom-400 scale-92 [--delay:4350ms]" />
-    <ReuseNimFly css="absolute right-32 bottom-550" />
+    <Ember left-100 top-200 scale-105 />
+    <Ember right-80 top-170 scale-70 />
+    <Ember bottom-400 left-30vw scale-92 />
+    <Ember bottom-550 right-32 />
     <div class="world-container" pointer-events-none absolute bottom-0 flex="~ justify-center" mx-0 of-y-hidden>
       <div class="ellipse blue-ring" min-w-900 of-hidden />
     </div>
@@ -130,7 +128,7 @@ section {
     }
   }
 
-  .nim-fly-icon {
+  /* .nim-fly-icon {
     --animation-play-state: running;
     animation: float 6s ease-in-out infinite;
     animation-play-state: var(--animation-play-state);
@@ -149,29 +147,6 @@ section {
 
   .jump-and-flip {
     animation: jump-flip 0.5s ease-out;
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-10px) scale(1.05);
-  }
-}
-
-@keyframes jump-flip {
-  0%,
-  100% {
-    transform: translateY(0) rotateY(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotateY(180deg);
-  }
-  100% {
-    transform: translateY(0) rotateY(360deg);
-  }
+  } */
 }
 </style>

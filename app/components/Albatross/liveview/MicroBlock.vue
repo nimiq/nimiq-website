@@ -3,10 +3,18 @@ const props = defineProps<{ block: LiveviewMicroBlock }>()
 
 const MAX_TXS = 1102
 
-const delay = computed(() => {
-  if (!props.block.delay)
+const { language } = useNavigatorLanguage()
+const durationFormatter = new Intl.NumberFormat(language.value, {
+  style: 'unit',
+  unit: 'second',
+  unitDisplay: 'short',
+  maximumFractionDigits: 1,
+})
+
+const duration = computed(() => {
+  if (!props.block.duration)
     return '?'
-  return (props.block.delay / 1000).toFixed(1)
+  return durationFormatter.format(props.block.duration / 1000)
 })
 
 const txCount = computed(() => props.block.matchedTxs.length + props.block.unmatchedTxs.length)
@@ -50,8 +58,8 @@ const fontSizeClass = computed(() => {
       <p>
         Slot {{ block.producer.slotNumber }}
       </p>
-      <p>
-        {{ delay }}s block time
+      <p whitespace-nowrap>
+        {{ duration }} block time
       </p>
     </footer>
   </div>

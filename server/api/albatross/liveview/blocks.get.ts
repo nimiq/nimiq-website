@@ -47,7 +47,6 @@ export default defineWebSocketHandler({
     nextMicroblock(async ({ data: block }) => {
       if (block) {
         peer.send(await getMicroblock(block))
-        lastBlockTimestamp = block.timestamp
         blockCache.set(block.number, block)
         pruneCache()
       }
@@ -57,7 +56,6 @@ export default defineWebSocketHandler({
       if (!block)
         return
       peer.send(await getMacroblock(block))
-      lastBlockTimestamp = block.timestamp
       blockCache.set(block.number, block)
       pruneCache()
     })
@@ -84,21 +82,23 @@ function pruneCache() {
   }
 }
 
-async function getMicroblock(block: MicroBlock) {
+async function getMicroblock(block: MicroBlock): Promise<LiveviewMicroBlock> {
   const { producer, justification, transactions, number, batch, timestamp } = block
   const isSkip = 'skip' in justification
 
   const matchedTxs = transactions.filter(tx => tx.recipientData.length === 8).map(tx => Number.parseInt(tx.recipientData, 16))
   const unmatchedTxs = transactions.filter(tx => tx.recipientData.length !== 8).map(tx => tx.hash.substring(0, 8))
   const kind = LiveviewBlockType.MicroBlock
-  const delay = lastBlockTimestamp ? timestamp - lastBlockTimestamp : 0
-  return { producer, isSkip, matchedTxs, unmatchedTxs, delay, kind, number, batch, timestamp }
+  const duration = lastBlockTimestamp ? timestamp - lastBlockTimestamp : 0
+  lastBlockTimestamp = timestamp
+  return { producer, isSkip, matchedTxs, unmatchedTxs, duration, kind, number, batch, timestamp }
 }
 
-async function getMacroblock(block: MacroBlock) {
-  const { transactions, justification, batch, number } = block
+async function getMacroblock(block: MacroBlock): Promise<LiveviewMacroBlock> {
+  const { transactions, justification, batch, number, timestamp } = block
   const unmatchedTxs = transactions.map(tx => tx.hash.substring(0, 8))
   const votes = justification.sig.signers.length
   const kind = LiveviewBlockType.MacroBlock
+  lastBlockTimestamp = timestamp
   return { unmatchedTxs, votes, batch, kind, number }
 }

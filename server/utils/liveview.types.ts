@@ -8,7 +8,7 @@ export enum LiveviewBlockType {
 
 export type LiveviewMicroBlock = {
   kind: LiveviewBlockType.MicroBlock
-  delay: number
+  duration: number
   matchedTxs: number[]
   unmatchedTxs: string[]
   isSkip: boolean

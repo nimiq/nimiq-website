@@ -29,7 +29,9 @@ const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false
       </template>
 
       <template #title>
-        Albatross Technical Details
+        <p sr-only>
+          Albatross Technical Details
+        </p>
       </template>
       <template #description>
         <p sr-only>
@@ -63,10 +65,10 @@ const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false
 <style>
 .nq-prose {
   h3 {
-    --uno: 'text-2xl';
+    --uno: 'text-2xl text-center';
   }
   img {
-    --uno: 'w-160';
+    --uno: 'w-160 mx-auto';
   }
 }
 </style>
