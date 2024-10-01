@@ -65,10 +65,15 @@ const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false
 <style scoped>
 .nq-prose {
   h3 {
-    --uno: 'text-2xl text-center';
+    /* --uno: 'text-2xl text-center'; */
+    --nq-font-size-min: 20;
+    --nq-font-size-max: 24;
+    text-align: center;
   }
   img {
-    --uno: 'w-160 mx-auto';
+    /* --uno: 'w-160 mx-auto'; */
+    width: 160px;
+    margin: auto;
   }
 }
 </style>
