@@ -67,7 +67,7 @@ const allowMapInteraction = ref(false)
           rounded-8
           :data-selected="selected ? '' : undefined"
         >
-          <button p="x-24 y-20" relative w-full of-hidden nq-hoverable lg:max-w-410 md:min-w-385 @click="activeContinent = label">
+          <button p="x-24 y-20" relative w-full of-hidden nq-hoverable lg:max-w-410 md:min-w-385 max-md:selected:bg-white @click="activeContinent = label">
             <p text="20/26 lg:22/28.6" whitespace-nowrap text-left font-semibold>
               {{ label }}
             </p>
