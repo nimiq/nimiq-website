@@ -39,7 +39,7 @@ const strToUrl = (str: string) => str?.toLowerCase().replace(/ /g, '-')
 <template>
   <section :class="colors" :data-slice="slice" relative max-md:items-start class="nq-no-mx nq-section-gap children:max-w-none" data-slice-type="pill-link">
     <!-- This element is just to avoid the user clicking on the menu and seeing the tab hidden behind the header -->
-    <div :id="strToUrl(activeItem!)" sr-only bottom="md:140" />
+    <div :id="strToUrl(activeItem!)" sr-only bottom="md:140" scroll-mt-60 />
     <ul flex="~ items-center md:gap-12 md:justify-center" my-1.5>
       <li v-for="({ item, label, active }, i) in items" :key="item" flex="~ items-center gap-12">
         <NuxtLink :to="`#${strToUrl(item)}`" flex="~ items-center gap-10" rounded-full py-6 :class="active ? 'mr-8 pl-8 pr-20 ring-1.5 ring-neutral-500' : 'max-lg:hidden px-8'">
