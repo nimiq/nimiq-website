@@ -28,55 +28,49 @@ function onHover() {
 </template>
 
 <style scoped>
-@media (min-width: 768px) {
-  div {
-    --animation-play-state: running;
-    animation: float 15s ease-in-out infinite;
-    animation-play-state: var(--animation-play-state);
-    animation-delay: var(--delay, 0);
-    transition:
-      filter 0.3s ease,
-      transform 0.5s ease;
+div {
+  --animation-play-state: running;
+  animation: float 15s ease-in-out infinite;
+  animation-play-state: var(--animation-play-state);
+  animation-delay: var(--delay, 0);
+  transition:
+    filter 0.3s ease,
+    transform 0.5s ease;
 
-    &:hover {
-      --animation-play-state: paused;
-    }
+  &:hover {
+    --animation-play-state: paused;
+  }
 
-    &::after,
-    &::before {
-      background: radial-gradient(rgba(var(--nq-neutral) / 0.25) 0%, rgba(var(--nq-neutral) / 0) 100%);
-    }
+  &::after,
+  &::before {
+    background: radial-gradient(rgba(var(--nq-neutral) / 0.25) 0%, rgba(var(--nq-neutral) / 0) 100%);
   }
 }
 
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0) scale(calc(var(--scale)));
+    transform: translate3d(0, 0, 0) scale(calc(var(--scale)));
   }
   50% {
-    transform: translateY(-10px) scale(calc(0.05 + var(--scale)));
+    transform: translate3d(0, -10px, 0) scale(calc(0.05 + var(--scale)));
   }
 }
 
 @keyframes jump-flip {
   0%,
   100% {
-    transform: translateY(0) rotateY(0deg) scale(var(--scale));
+    transform: translate3d(0, 0, 0) rotateY(0deg) scale(var(--scale));
   }
   50% {
-    transform: translateY(-20px) rotateY(180deg) scale(calc(0.05 + var(--scale)));
+    transform: translate3d(0, -20px, 0) rotateY(180deg) scale(calc(0.05 + var(--scale)));
   }
   100% {
-    transform: translateY(0) rotateY(360deg) scale(var(--scale));
+    transform: translate3d(0, 0, 0) rotateY(360deg) scale(var(--scale));
   }
 }
 
 .jump-and-flip {
   animation: jump-flip 0.5s ease-out;
-
-  @media (max-width: 768px) {
-    animation: none;
-  }
 }
 </style>
