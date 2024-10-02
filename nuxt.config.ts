@@ -79,14 +79,14 @@ export default defineNuxtConfig({
           type: 'page',
           path: '/:uid/',
         },
-        // {
-        //   type: 'blog_page',
-        //   path: '/blog/:uid/',
-        // },
-        // {
-        //   type: 'podcast_episode',
-        //   path: '/podcast/:uid/',
-        // },
+        {
+          type: 'blog_page',
+          path: '/blog/:uid/',
+        },
+        {
+          type: 'podcast_episode',
+          path: '/podcast/:uid/',
+        },
         {
           type: 'child_page',
           path: '/:parent/:uid/',
