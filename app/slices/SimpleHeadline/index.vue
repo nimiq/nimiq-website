@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SimpleHeadlineSlice>())
-const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor)
+const colors = getColorClass(props.slice.primary.bgColor)
 </script>
 
 <template>

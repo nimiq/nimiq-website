@@ -2,13 +2,12 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.TeamMembersSlice>())
-const sectionRef = useSection(props.slice.id, 'grey')
 
 const items = computed(() => [...props.slice.items].sort(() => Math.random() - 0.5))
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section class="grey bg-neutral-100">
     <ul columns="1 gap-x-2 sm:2 lg:3" style="column-rule: 2px solid rgb(var(--nq-neutral-400))">
       <li v-for="(member, i) in items" :key="i" break-inside-avoid-column nq-pb-32>
         <div v-if="hasImage(member.picture)" px-8 pt-8>

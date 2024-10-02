@@ -4,7 +4,7 @@ import type { ZigZagContentSliceDefaultItem } from '~~/prismicio-types'
 import mediumZoom from 'medium-zoom'
 
 const props = defineProps(getSliceComponentProps<Content.ZigZagContentSlice>())
-const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor, { paddingX: false })
+const colors = getColorClass(props.slice.primary.bgColor)
 
 function mediaType(item: ZigZagContentSliceDefaultItem) {
   if ('url' in item.videoHigh && 'url' in item.videoMedium && 'url' in item.videoLow) {
@@ -17,12 +17,13 @@ function mediaType(item: ZigZagContentSliceDefaultItem) {
 }
 
 useIntersectionObserver(sectionRef, () => {
-  mediumZoom(`[data-slice-type=${sectionRef.value!.dataset.sliceType}] img`, { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
+  // TODO Check if the selector works
+  mediumZoom(`[data-slice-type="zig-zag-content"] img`, { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
 })
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section ref="sectionRef" class="nq-no-px" data-slice-type="zig-zag-content">
     <ul>
       <!-- px-24 xl:pl-112 xl:pr-0  -->
       <li

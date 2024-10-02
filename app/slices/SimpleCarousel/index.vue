@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const props = defineProps(getSliceComponentProps<Content.SimpleCarouselSlice>())
-const sectionRef = useSection(props.slice.id, 'white', { limitWidth: false, text: 'lg' })
+defineProps(getSliceComponentProps<Content.SimpleCarouselSlice>())
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section class="nq-no-mx nq-no-max-width white bg-neutral-0 text-lg">
     <SimpleCarousel v-if="slice.variation === 'default'" :slides="slice.items" curtains>
       <template #default="{ slide }">
         <div flex="~ col gap-y-32" sm:text-center>

@@ -8,11 +8,10 @@ const buttonLabel = computed(() => data.value?.results.at(0)?.data.buttonLabel)
 const slides = computed(() => data.value?.results.at(0)?.data.slides)
 
 const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canSlidePrev } = useCarousel()
-const sectionRef = useSection('technical_details', 'darkblue', { paddingY: false })
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section class="nq-no-py darkblue dark bg-darkblue text-neutral">
     <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary @close="activeIndex = 0">
       <template #trigger>
         <div i-custom:cli-docs mr-8 />

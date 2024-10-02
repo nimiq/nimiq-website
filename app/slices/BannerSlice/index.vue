@@ -3,7 +3,6 @@ import type { Content } from '@prismicio/client'
 import type { BannerSliceSliceDefaultItem } from '~~/prismicio-types'
 
 const props = defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
-const sectionRef = useSection(props.slice.id, 'grey', { paddingX: false })
 
 const { socialMedias, nimiqApps } = storeToRefs(useGlobalContent())
 
@@ -53,7 +52,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" relative z-10 max-w="$nq-max-width" max-lg:px-32>
+  <section relative z-10 max-w="$nq-max-width" max-lg:px-32 class="nq-no-px grey bg-neutral-100">
     <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative w-full of-hidden rounded-8 px-32 shadow>
       <PrismicLink v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
         <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />

@@ -2,7 +2,6 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.CryptoMapContinentSelectorSlice>())
-const sectionRef = useSection(props.slice.id, 'grey', { paddingX: false })
 
 const activeContinent = ref(props.slice.primary.continents.at(0)!.label)
 
@@ -57,7 +56,7 @@ const allowMapInteraction = ref(false)
 </script>
 
 <template>
-  <section ref="sectionRef" flex="col lg:row gap-x-24 gap-y-64 lg:gap-y-32" max-w="$nq-max-width">
+  <section flex="col lg:row gap-x-24 gap-y-64 lg:gap-y-32" max-w="$nq-max-width" class="nq-no-px grey bg-neutral-100">
     <div max-lg:w-full>
       <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
         <li

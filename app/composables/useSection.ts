@@ -1,5 +1,5 @@
 // @unocss-include
-export function getColorClass(color: 'white' | 'grey' | 'darkblue') {
+export function getColorClass(color: 'white' | 'grey' | 'darkblue' = 'grey') {
   switch (color) {
     case 'grey':
       return { classes: 'bg-neutral-100 grey', css: 'rgb(var(--nq-neutral-100))' }
@@ -10,6 +10,8 @@ export function getColorClass(color: 'white' | 'grey' | 'darkblue') {
       return { classes: 'bg-neutral-0 white', css: 'rgb(var(--nq-neutral-0))' }
   }
 }
+
+// TODO Move the --bg variable
 
 export interface SliceUIOptions {
   /**
@@ -62,32 +64,32 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
     const el: HTMLElement | undefined = sectionRef.value && '$el' in sectionRef.value ? sectionRef.value.$el as HTMLElement : sectionRef.value
     if (!el)
       return
-    el.dataset.sliceType = sliceType
+    // el.dataset.sliceType = sliceType
 
     const { classes, css } = getColorClass(color || 'grey')
     el.classList.add(...classes.split(' '))
     el.style.setProperty('--bg', css)
 
-    if (!limitWidth)
-      el.classList.add('nq-no-mx', 'nq-no-max-width')
-    if (!paddingY)
-      el.classList.add('nq-no-py')
-    if (!paddingX)
-      el.classList.add('nq-no-px')
-    if (forceGap)
-      el.classList.add('nq-section-gap')
-    if (!useDefaultColors)
-      el.classList.add('nq-no-color')
-    if (text) {
-      if (text === 'lg') {
-        sectionRef.value!.style.setProperty('--nq-font-size-min', '16')
-        sectionRef.value!.style.setProperty('--nq-font-size-max', '24')
-      }
-      if (text === 'xl') {
-        sectionRef.value!.style.setProperty('--nq-font-size-min', '24')
-        sectionRef.value!.style.setProperty('--nq-font-size-max', '32')
-      }
-    }
+    // if (!limitWidth)
+    //   el.classList.add('nq-no-mx', 'nq-no-max-width')
+    // if (!paddingY)
+    //   el.classList.add('nq-no-py')
+    // if (!paddingX)
+    //   el.classList.add('nq-no-px')
+    // if (forceGap)
+    //   el.classList.add('nq-section-gap')
+    // if (!useDefaultColors)
+    //   el.classList.add('nq-no-color')
+    // if (text) {
+    //   if (text === 'lg') {
+    //     sectionRef.value!.style.setProperty('--nq-font-size-min', '16')
+    //     sectionRef.value!.style.setProperty('--nq-font-size-max', '24')
+    //   }
+    //   if (text === 'xl') {
+    //     sectionRef.value!.style.setProperty('--nq-font-size-min', '24')
+    //     sectionRef.value!.style.setProperty('--nq-font-size-max', '32')
+    //   }
+    // }
   })
 
   return sectionRef

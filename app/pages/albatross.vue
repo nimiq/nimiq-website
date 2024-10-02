@@ -12,21 +12,17 @@ useHead({
 
 const headline = computed(() => ([{ type: 'heading1', text: 'Nimiq Proof-of-Stake Testnet', spans: [] }] as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Nimiq\'s Albatross consensus algorithm running live in the Proof-of-Stake Testnet.', spans: [], direction: 'ltr' }] as RichTextField))
-
-const liveviewSection = useSection('liveview', 'darkblue', { paddingX: false, limitWidth: false })
-const articleSection = useSection('article', 'darkblue')
-const columnsSection = useSection('columns', 'darkblue')
 </script>
 
 <template>
   <NuxtLayout dark-header footer-bg-color="darkblue">
     <HeroDefault :primary="{ headline, subline, bgColor: 'darkblue' }" />
 
-    <section ref="liveviewSection">
+    <section class="nq-no-mx nq-no-max-width nq-no-px darkblue dark bg-darkblue text-neutral">
       <Albatross allow-send-tx />
     </section>
 
-    <section ref="articleSection">
+    <section class="darkblue dark bg-darkblue text-neutral">
       <article class="nq-prose">
         <h2 text-left>
           Albatross
@@ -73,7 +69,7 @@ const columnsSection = useSection('columns', 'darkblue')
       </article>
     </section>
 
-    <section ref="columnsSection">
+    <section class="darkblue dark bg-darkblue text-neutral">
       <ul columns="1 md:2" gap-64 style="--nq-max-width: 716px">
         <li class="nq-prose-compact nq-prose" flex="~ col gap-24" nq-pb-96 children:m-0>
           <NuxtImg src="/assets/images/albatross/micro-block.png" alt="Albatross Microblock representation" max-w-160 rounded-6 />

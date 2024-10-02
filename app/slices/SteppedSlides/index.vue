@@ -2,7 +2,6 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SteppedSlidesSlice>())
-const sectionRef = useSection(props.slice.id, 'white', { paddingX: false, limitWidth: false })
 
 const step = ref(1)
 const scroller = ref<HTMLUListElement>()
@@ -36,7 +35,7 @@ function goToStep(step: number) {
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section class="nq-no-mx nq-no-max-width nq-no-px white bg-neutral-0">
     <Headline :headline="slice.primary.headline" :subline="slice.primary.description" />
 
     <ul flex="~ gap-6" mx-auto nq-mt-48>

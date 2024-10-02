@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { color } = defineProps<{ color?: 'grey' | 'white' | 'darkblue' }>()
-const sectionRef = useSection('disclaimer', color, { limitWidth: false })
+const colors = getColorClass(color)
 </script>
 
 <template>
-  <section ref="sectionRef" group>
+  <section :class="colors" group class="nq-no-mx nq-no-max-width">
     <div class="nq-prose" transition-colors children:text="sm neutral-800 group-hocus:neutral-900">
       <h2>
         Disclaimer

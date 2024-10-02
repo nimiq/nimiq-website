@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const props = defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
-const sectionRef = useSection(props.slice.id, 'darkblue', { paddingX: false, limitWidth: false })
+defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section class="nq-no-mx nq-no-max-width nq-no-px grey bg-neutral-100">
     <Albatross
       :allow-send-tx="slice.primary.allowSendTx"
       :average-rewards-label="slice.primary.averageRewardsLabel!"

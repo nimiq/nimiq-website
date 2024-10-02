@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const props = defineProps(getSliceComponentProps<Content.AppsShowcaseSlice>())
-const sectionRef = useSection(props.slice.id, 'grey')
+defineProps(getSliceComponentProps<Content.AppsShowcaseSlice>())
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section class="grey bg-neutral-100">
     <ul v-if="slice.variation === 'nimiqsApps'" grid="~ cols-1 lg:cols-2 gap-20 md:gap-22">
       <li
         v-for="({ description, highlight, item, preview, title, link }, i) in slice.primary.apps" :key="i" :class="{ 'lg:col-span-full': highlight }"

@@ -35,8 +35,6 @@ const subheadlineStr = computed(() => {
   return `${pre} ${locationsCount.value} ${post}`
 })
 
-const sectionRef = useSection('home-hero', 'darkblue', { paddingY: false, limitWidth: false })
-
 watch(subheadlineStr, () => {
   useHead({
     title: props.headline.at(0)!.text,
@@ -48,7 +46,7 @@ watch(subheadlineStr, () => {
 </script>
 
 <template>
-  <section ref="sectionRef" relative of-hidden pt="148 md:153 lg:160">
+  <section relative of-hidden pt="148 md:153 lg:160" class="nq-no-py nq-no-mx nq-no-max-width darkblue dark bg-darkblue text-neutral" data-slice-type="hero">
     <div z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text-neutral-800 />

@@ -3,11 +3,10 @@ import type { Content } from '@prismicio/client'
 
 // TODO Replace CtaSectionSlice with your slice
 const props = defineProps(getSliceComponentProps<Content.CtaSectionSlice>())
-const sectionRef = useSection(props.slice.id, 'white')
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section class=""bg-neutral-0 white">
     TODO!
   </section>
 </template>
