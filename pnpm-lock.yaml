@@ -61,6 +61,9 @@ importers:
       '@nuxthub/core':
         specifier: ^0.7.20
         version: 0.7.20(ioredis@5.4.1)(magicast@0.3.5)(rollup@4.22.5)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(webpack-sources@3.2.3)
+      '@nuxtjs/device':
+        specifier: ^3.2.4
+        version: 3.2.4
       '@nuxtjs/prismic':
         specifier: ^3.4.1
         version: 3.4.1(magicast@0.3.5)(rollup@4.22.5)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vue@3.5.10(typescript@5.6.2))(webpack-sources@3.2.3)
@@ -1275,6 +1278,9 @@ packages:
 
   '@nuxthub/core@0.7.20':
     resolution: {integrity: sha512-Rv9Cn31r/L/+peuXrRGyVA8naS5bKxvA1RQHiegDiBlzcJa3673fEYb76a9seah5wj50qjcV+iqdS1gTccaFNA==}
+
+  '@nuxtjs/device@3.2.4':
+    resolution: {integrity: sha512-jIvN6QeodBNrUrL/1FCHk4bebsiLsGHlJd8c/m2ksLrGY4IZ0npA8IYhDTdYV92epGxoe8+3iZOzCjav+6TshQ==}
 
   '@nuxtjs/prismic@3.4.1':
     resolution: {integrity: sha512-zfx35tbluriW38ckrcrd0nMzI4+O6CSfZgJF7hJ4D8yxFRAT4WrFMN0IhymSPasYHmkdHmFdpUWfEvX3oqj2nQ==}
@@ -7975,6 +7981,10 @@ snapshots:
       - uWebSockets.js
       - vite
       - webpack-sources
+
+  '@nuxtjs/device@3.2.4':
+    dependencies:
+      defu: 6.1.4
 
   '@nuxtjs/prismic@3.4.1(magicast@0.3.5)(rollup@4.22.5)(vite@5.4.8(@types/node@22.7.4)(terser@5.34.1))(vue@3.5.10(typescript@5.6.2))(webpack-sources@3.2.3)':
     dependencies:

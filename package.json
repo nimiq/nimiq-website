@@ -33,6 +33,7 @@
     "@nuxt/eslint": "latest",
     "@nuxt/image": "^1.8.0",
     "@nuxthub/core": "^0.7.20",
+    "@nuxtjs/device": "^3.2.4",
     "@nuxtjs/prismic": "^3.4.1",
     "@nuxtjs/seo": "2.0.0-rc.21",
     "@nuxtjs/supabase": "^1.4.0",
