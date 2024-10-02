@@ -9,7 +9,7 @@ const shouldJump = ref(false)
 function onHover() {
   if (shouldJump.value)
     return
-  shouldJump.value = Math.random() < 0.07
+  shouldJump.value = true
   setTimeout(() => shouldJump.value = false, 500)
 }
 </script>
@@ -36,6 +36,7 @@ div {
   transition:
     filter 0.3s ease,
     transform 0.5s ease;
+  transform: scale(var(--scale));
 
   &:hover {
     --animation-play-state: paused;
