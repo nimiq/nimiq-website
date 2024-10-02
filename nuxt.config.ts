@@ -107,6 +107,12 @@ export default defineNuxtConfig({
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
   },
 
+  router: {
+    options: {
+      scrollBehaviorType: 'smooth',
+    },
+  },
+
   routeRules: {
     // Check ./modules/prerender-routes.ts to see more about this
 
