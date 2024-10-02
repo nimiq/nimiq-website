@@ -5,8 +5,10 @@ defineProps<{ darkHeader?: boolean }>()
 
 const { navigation, hotCtaLink } = storeToRefs(useGlobalContent())
 
+// Both are needed, one relies on User Agent and the other on the window size
+const { isMobileOrTablet } = useDevice()
 const { smaller } = useBreakpoints(breakpointsTailwind)
-const showMobileMenu = smaller('lg')
+const showMobileMenu = computed(() => isMobileOrTablet || smaller('lg').value)
 
 const { y } = useScroll(window)
 

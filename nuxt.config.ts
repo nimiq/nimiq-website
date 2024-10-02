@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxthub/core',
     '@nuxtjs/prismic',
     '@nuxtjs/supabase',
+    '@nuxtjs/device',
   ],
 
   devtools: { enabled: true },
