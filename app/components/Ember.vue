@@ -54,7 +54,7 @@ div {
     transform: translate3d(0, 0, 0) scale(calc(var(--scale)));
   }
   50% {
-    transform: translate3d(0, -10px, 0) scale(calc(0.05 + var(--scale)));
+    transform: translate3d(0, -20px, 0) scale(calc(0.05 + var(--scale)));
   }
 }
 
