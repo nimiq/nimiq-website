@@ -19,7 +19,6 @@ export default defineConfig({
       attributifyUtilities: true,
       typography: true,
       staticContent: true,
-      scrollbar: true,
     }),
     presetRemToPx({ baseFontSize: 4 }),
     presetAttributify(),

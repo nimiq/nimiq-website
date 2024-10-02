@@ -51,7 +51,7 @@
     "eslint": "^9.11.1",
     "eslint-plugin-format": "^0.1.2",
     "lint-staged": "^15.2.10",
-    "nimiq-css": "^0.2.2",
+    "nimiq-css": "^0.2.3",
     "nimiq-rpc-client-ts": "https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575",
     "nuxt": "^3.13.2",
     "pinia": "^2.2.2",
