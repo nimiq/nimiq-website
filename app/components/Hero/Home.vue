@@ -46,7 +46,7 @@ watch(subheadlineStr, () => {
 </script>
 
 <template>
-  <section relative of-hidden pt="148 md:153 lg:160" class="nq-no-mx darkblue dark bg-darkblue py-0 text-neutral children:max-w-none" data-slice-type="hero">
+  <section relative of-hidden pt="148 md:153 lg:160" class="nq-no-py nq-no-mx nq-no-max-width darkblue dark bg-darkblue text-neutral" data-slice-type="hero">
     <div z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text-neutral-800 />
