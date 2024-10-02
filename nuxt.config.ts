@@ -74,8 +74,28 @@ export default defineNuxtConfig({
     endpoint: repositoryName,
     clientConfig: {
       accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+      routes: [
+        {
+          type: 'page',
+          path: '/:uid/',
+        },
+        // {
+        //   type: 'blog_page',
+        //   path: '/blog/:uid/',
+        // },
+        // {
+        //   type: 'podcast_episode',
+        //   path: '/podcast/:uid/',
+        // },
+        {
+          type: 'child_page',
+          path: '/:parent/:uid/',
+          resolvers: {
+            parent: 'parent',
+          },
+        },
+      ],
     },
-    linkResolver: '~/prismic/link-resolver.ts',
   },
 
   runtimeConfig: {
