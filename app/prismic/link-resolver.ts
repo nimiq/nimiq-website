@@ -6,6 +6,8 @@ export default (doc: PrismicDocument) => {
       return `/blog/${doc.uid}`
     case 'home_2024':
       return `/`
+    case 'child_page':
+      return `/${doc.data.parent}/${doc.uid}`
     case 'page':
     default:
       return `/${doc.uid}`
