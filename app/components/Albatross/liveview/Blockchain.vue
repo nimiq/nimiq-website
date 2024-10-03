@@ -31,8 +31,6 @@ const { pause, resume } = useRafFn(() => {
   offset.value += velocity.value
 }, { immediate: false })
 
-onUnmounted(pause)
-
 // const target = useTemplateRef('blockchain')
 const target = ref<HTMLElement>()
 const blockchainIsVisible = useElementVisibility(target)

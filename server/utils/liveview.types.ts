@@ -1,4 +1,4 @@
-import type { Block, MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
+import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
 
 export enum LiveviewBlockType {
   MicroBlock = 'micro',
@@ -20,5 +20,5 @@ export type LiveviewMacroBlock = {
   votes: number
 } & Pick<MacroBlock, 'batch' | 'number'>
 
-export type KiveviewPlaceholderBlock = Pick<Block, 'timestamp'> & { kind: LiveviewBlockType.PlaceholderBlock, number?: undefined }
-export type LiveviewBlock = LiveviewMicroBlock | LiveviewMacroBlock | KiveviewPlaceholderBlock
+export interface LiveviewPlaceholderBlock { kind: LiveviewBlockType.PlaceholderBlock, number?: undefined, timestamp?: undefined }
+export type LiveviewBlock = LiveviewMicroBlock | LiveviewMacroBlock | LiveviewPlaceholderBlock
