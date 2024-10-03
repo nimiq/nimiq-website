@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getLiveviewPillColor } from '~/composables/useColors'
 
-defineProps<{
+const { statsTooltipContent } = defineProps<{
   networkNotice?: string
   statsTooltipContent?: string
   txSecLabel?: string
@@ -13,6 +13,12 @@ defineProps<{
 const { status, animationActive, nonce, canSendTx } = storeToRefs(useLiveviewTx())
 const { sendTx } = useLiveviewTx()
 const pillClass = computed(() => getLiveviewPillColor({ nonce: nonce.value }))
+
+const tooltipParagraphs = computed(() => {
+  if (!statsTooltipContent)
+    return []
+  return statsTooltipContent.split('\n')
+})
 </script>
 
 <template>
@@ -23,8 +29,8 @@ const pillClass = computed(() => getLiveviewPillColor({ nonce: nonce.value }))
         Send Test Transaction
       </button>
       <Tooltip v-if="statsTooltipContent" dark absolute right-12 top-12>
-        <p style="font-size: var(--nq-font-size)" text-sm>
-          {{ statsTooltipContent }}
+        <p v-for="(p, i) in tooltipParagraphs" :key="i" style="font-size: var(--nq-font-size)" text-sm>
+          {{ p }}
         </p>
       </Tooltip>
     </div>

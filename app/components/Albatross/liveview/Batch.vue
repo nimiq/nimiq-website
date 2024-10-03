@@ -33,7 +33,7 @@ const batchClass = computed(() => {
   if (isWaitingForMacro.value)
     classes.push('animate-pulse')
   else if (pastMacro.value)
-    classes.push('text-neutral-0 op-1')
+    classes.push('text-neutral op-100')
   else if (props.batchNumber > 999)
     classes.push('text-9')
   return classes.join(' ')

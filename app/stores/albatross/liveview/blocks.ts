@@ -28,8 +28,8 @@ export const useLiveviewBlocks = defineStore('liveview-blocks', () => {
     }
     else if (blocks.value.length >= BLOCKS_WINDOW_SIZE) {
       const newBlock = JSON.parse(d) as LiveviewBlock
-      // we keep 60 because is the number of blocks in a batch and we want to display block colors in the bacth
-      blocks.value = [...blocks.value, newBlock].slice(-60)
+      // we keep 180 because is the number of blocks in 3 batches and we want to display block colors in the bacth
+      blocks.value = [...blocks.value, newBlock].slice(-180)
     }
   })
   const microblocks = computed(() => blocks.value.filter(block => block.kind === LiveviewBlockType.MicroBlock) as LiveviewMicroBlock[])

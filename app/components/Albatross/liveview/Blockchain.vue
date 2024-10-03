@@ -68,7 +68,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
       <div v-if="status === 'CONNECTING' || blocks.length === 0" text-18>
         Loading...
       </div>
-      <div v-else-if="status === 'CLOSED'" text="18 white" rounded-4 bg-red px-32 py-24>
+      <div v-else-if="status === 'CLOSED'" text="18 white" rounded-4 bg-red px-32 py-24 shadow ring="1.5 red/3">
         We couldn't connect to the Testnet
       </div>
     </div>
