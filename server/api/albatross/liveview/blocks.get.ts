@@ -1,86 +1,90 @@
-import type { Block, MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
-import { BlockType, NimiqRPCClient, RetrieveType } from 'nimiq-rpc-client-ts'
+import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
+import { BLOCKS_WINDOW_SIZE } from '~~/server/utils/albatross.types'
+import { BlockType, NimiqRPCClient } from 'nimiq-rpc-client-ts'
 
-const INITIAL_BLOCK_FETCH = 60
-const CACHE_SIZE = 100
-const blockCache = new Map<number, Block>()
+/**
+ * This WebSocket handler provides real-time block updates for the Albatross Liveview blockchain.
+ * It performs the following tasks:
+ * 1. Initialise a connection to the Nimiq RPC client.
+ * 2. Subscribes to new micro and macro blocks and keeps them in a queue.
+ * 3. Fetches the initial set of blocks (BLOCKS_WINDOW_SIZE) to populate the view and sends them to the client as an array.
+ * 4. Sends the elements of the queue 1 by 1.
+ * 5. Processes incoming blocks and sends them to the client.
+ * 6. Clears subscriptions on connection close or error.
+ */
+
 let lastBlockTimestamp: number | undefined
-let client: NimiqRPCClient
+let shouldEnqueue = true
+const blockQueue = new Map<number, any>()
+let closeFn: (() => void) | undefined
 
 export default defineWebSocketHandler({
   async open(peer) {
+    // Resets the state. This is useful for dev
+    lastBlockTimestamp = undefined
+    shouldEnqueue = true
+    blockQueue.clear()
+    if (closeFn)
+      closeFn()
+
     const nodeRpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
-    client = new NimiqRPCClient(nodeRpcUrl)
+    const client = new NimiqRPCClient(nodeRpcUrl)
+
+    // Subscribe to new blocks
+    const { next: nextBlock, close } = await client.blockchainStreams.subscribeForBlocks()
+    closeFn = close
+
+    // Handler for incoming blocks
+    nextBlock(async ({ data: block }) => {
+      if (block) {
+        const processedBlock = await (block.type === BlockType.Micro ? getMicroblock(block) : getMacroblock(block as MacroBlock))
+        if (shouldEnqueue)
+          blockQueue.set(processedBlock.number, processedBlock)
+        else
+          peer.send(processedBlock)
+      }
+    })
+
     // Fetch initial blocks
     const { data: head } = await client.blockchain.getBlockNumber()
     if (!head)
       throw createError({ status: 500, message: 'Failed to get block number' })
-
     const promises = []
-    for (let i = 0; i < INITIAL_BLOCK_FETCH; i++) {
+    for (let i = 0; i < BLOCKS_WINDOW_SIZE; i++) {
       const blockNumber = head - i
-      if (!blockCache.has(blockNumber)) {
-        promises.push(
-          client.blockchain.getBlockByNumber(blockNumber, { includeTransactions: true }).then(({ data: block, error }) => {
-            if (block && !error) {
-              blockCache.set(blockNumber, block)
-              return { blockNumber, block }
-            }
-            return { blockNumber, block: null }
-          }),
-        )
-      }
+      promises.unshift(
+        client.blockchain.getBlockByNumber(blockNumber, { includeTransactions: true }).then(async ({ data: block, error }) => {
+          if (!block || error)
+            throw createError({ status: 500, message: `Failed to get block ${blockNumber}` })
+          return await (block.type === BlockType.Macro ? getMacroblock(block as MacroBlock) : getMicroblock(block))
+        }),
+      )
     }
+
     const blocks = await Promise.all(promises)
-
-    for (const { block } of blocks) {
-      if (block) {
-        peer.send(await (block.type === BlockType.Macro ? getMacroblock(block as MacroBlock) : getMicroblock(block)))
-        lastBlockTimestamp = block.timestamp
-      }
+    const blockNumbers = blocks.map(block => block.number)
+    peer.send(JSON.stringify(blocks))
+    const sortedBlockNumbers = Array.from(blockQueue.keys()).filter(b => !blockNumbers.includes(b)).sort((a, b) => a - b)
+    for (const blockNumber of sortedBlockNumbers) {
+      peer.send(blockQueue.get(blockNumber))
     }
-
-    // Subscribe to new blocks
-    const { next: nextMicroblock } = await client.blockchainStreams.subscribeForMicroBlocks({ retrieve: RetrieveType.Full })
-    const { next: nextMacroblock } = await client.blockchainStreams.subscribeForMacroBlocks({ retrieve: RetrieveType.Full })
-
-    nextMicroblock(async ({ data: block }) => {
-      if (block) {
-        peer.send(await getMicroblock(block))
-        blockCache.set(block.number, block)
-        pruneCache()
-      }
-    })
-
-    nextMacroblock(async ({ data: block }) => {
-      if (!block)
-        return
-      peer.send(await getMacroblock(block))
-      blockCache.set(block.number, block)
-      pruneCache()
-    })
+    shouldEnqueue = false
+    blockQueue.clear()
   },
 
   // async message(peer) {
   // },
 
-  // close(peer, event) {
-  // console.log('[ws] close', peer, event)
-  // },
+  close(_peer, _event) {
+    if (closeFn)
+      closeFn()
+  },
 
-  // error(peer, error) {
-  // console.log('[ws] error', peer, error)
-  // },
+  error(_peer, _event) {
+    if (closeFn)
+      closeFn()
+  },
 })
-
-function pruneCache() {
-  if (blockCache.size > CACHE_SIZE) {
-    const sortedKeys = [...blockCache.keys()].sort((a, b) => b - a)
-    for (let i = CACHE_SIZE; i < sortedKeys.length; i++) {
-      blockCache.delete(sortedKeys[i])
-    }
-  }
-}
 
 async function getMicroblock(block: MicroBlock): Promise<LiveviewMicroBlock> {
   const { producer, justification, transactions, number, batch, timestamp } = block

@@ -55,7 +55,7 @@ const batchNumberClass = computed(() => {
     w-388 max-w="[calc(100vw-12px)] md:full" flex="~ justify-between items-start" px-16
     @click="() => toggleColors()"
   >
-    <div flex="~ col wrap" h="70 sm:56 md:44">
+    <div flex="~ col wrap" h="56 md:44">
       <div
         v-for="n in createdBlockCount" :key="`micro-block-${n}`" m-4 inline-block size-6 rounded-2 transition-colors
         :style="{ backgroundColor: showColors ? getBlockColor(n) : 'rgb(var(--nq-neutral-700) / 1)' }"

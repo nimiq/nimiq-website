@@ -60,6 +60,7 @@ export default defineNuxtConfig({
     fonts: ['Mulish:700'],
   },
 
+  // TODO Remove this option
   unocss: {
     nuxtLayers: true,
   },
