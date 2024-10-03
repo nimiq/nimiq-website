@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { status: statsStatus, stats } = storeToRefs(useStats())
-const { status: blocksStatus } = storeToRefs(useBlocks())
+const { status: statsStatus, stats } = storeToRefs(useAlbatrossStats())
+const { status: blocksStatus } = storeToRefs(useLiveviewBlocks())
 const isDark = useDark()
 </script>
 

@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { Tweenable } from '@nimiq/utils'
 
-const props = withDefaults(defineProps<{
+const {
+  decimals = 0,
+  value = 0,
+  animationDuration = 1000,
+  locale = 'en-US',
+  digitsCount,
+  min,
+  max,
+} = defineProps<{
   value?: number
   decimals?: number
   animationDuration?: number
@@ -9,80 +17,51 @@ const props = withDefaults(defineProps<{
   max?: number
   locale?: string
   digitsCount?: number
-  allowAnimation?: boolean
-}>(), {
-  decimals: 0,
-  value: 0,
-  animationDuration: 1000,
-  min: 0,
-  max: 100,
-  locale: 'en-US',
-  allowAnimation: false,
-})
+}>()
 
-const value = toRef(props, 'value')
-const decimals = toRef(props, 'decimals')
-const animationDuration = toRef(props, 'animationDuration')
-const min = toRef(props, 'min')
-const max = toRef(props, 'max')
-const locale = toRef(props, 'locale')
-const digitsCount = toRef(props, 'digitsCount')
-const allowAnimation = toRef(props, 'allowAnimation')
-
-const tweeningValue = ref(value.value)
-watch(value, v => tweeningValue.value = v)
+const tweeningValue = ref(value)
 
 let abortController: AbortController | null = null
 
-const formatter = new Intl.NumberFormat(locale.value, {
+const formatter = new Intl.NumberFormat(locale, {
   style: 'decimal',
-  minimumFractionDigits: decimals.value,
-  maximumFractionDigits: decimals.value,
+  minimumFractionDigits: decimals,
+  maximumFractionDigits: decimals,
 })
 
 const formattedValue = computed(() => {
   const formatted = formatter.format(tweeningValue.value)
-  if (digitsCount.value) {
+  if (digitsCount) {
     const parts = formatted.split('.')
     const integerPart = parts[0]!.replace(/\D/g, '')
-    const padding = '0'.repeat(Math.max(0, digitsCount.value - integerPart.length))
+    const padding = '0'.repeat(Math.max(0, digitsCount - integerPart.length))
     return padding + formatted
   }
   return formatted
 })
 
 onMounted(() => {
-  if (allowAnimation.value) { // Check allowAnimation prop
-    if (value.value === 0 && min.value !== undefined && max.value !== undefined) {
-      startLoadingAnimation()
-    }
-    else {
-      tween(0, tweeningValue.value || 0)
-    }
+  if (value === 0 && min && max) {
+    startLoadingAnimation()
   }
   else {
-    tweeningValue.value = value.value
+    tween(0, tweeningValue.value || 0)
   }
 })
 
-watch(value, (newValue) => {
-  if (allowAnimation.value) { // Check allowAnimation prop
-    if (abortController) {
-      abortController.abort()
-      abortController = null
-    }
-    tween(tweeningValue.value, newValue)
+watch(() => value, (newValue) => {
+  if (abortController) {
+    abortController.abort()
+    abortController = null
   }
-  else {
-    tweeningValue.value = newValue
-  }
+  tween(tweeningValue.value, newValue)
 })
 
 function tween(startValue: number, endValue: number) {
   if (import.meta.server)
     return
 
-  const transition = new Tweenable(endValue, startValue, animationDuration.value)
+  const transition = new Tweenable(endValue, startValue, animationDuration)
 
   function animate() {
     const progress = transition.progress
@@ -96,13 +75,16 @@ function tween(startValue: number, endValue: number) {
 }
 
 function startLoadingAnimation() {
+  if (!min || !max)
+    return
+
   abortController = new AbortController()
 
   function animate() {
     if (abortController?.signal.aborted)
       return
 
-    const randomValue = Math.random() * (max.value - min.value) + min.value
+    const randomValue = Math.random() * (max! - min!) + min!
     const randomDuration = Math.random() * 1000 + 500 // Random duration between 500ms and 1500ms
 
     const transition = new Tweenable(randomValue, tweeningValue.value, randomDuration)

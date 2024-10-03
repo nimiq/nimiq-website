@@ -1,3 +1,14 @@
+/**
+ * This WebSocket handler provides real-time statistics updates for the Albatross blockchain.
+ * It performs the following tasks:
+ * 1. Initialise a connection to the Nimiq RPC client.
+ * 2. Subscribes to new blocks and maintains a rolling window of recent blocks.
+ * 3. Calculates key statistics: transactions per second and average block time.
+ * 4. Sends initial statistics to the client on connection.
+ * 5. Periodically updates and sends new statistics based on incoming blocks.
+ * 6. Clears subscriptions on connection termination or error.
+ */
+
 import type { Block, MicroBlock } from 'nimiq-rpc-client-ts'
 import { NimiqRPCClient } from 'nimiq-rpc-client-ts'
 
@@ -5,7 +16,7 @@ const STATS_WINDOW_SIZE = 3 * 128
 const STATS_REFRESH_EVERY = 3
 
 const blocks: Block[] = []
-let client: NimiqRPCClient
+let closeFn: (() => void) | undefined
 
 function calculateTxPerSecond(blocks: Block[]): number {
   if (blocks.length < 2)
@@ -29,14 +40,16 @@ function calculateBlockTime(blocks: Block[]): number {
 export default defineWebSocketHandler({
   async open(peer) {
     const nodeRpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
-    client = new NimiqRPCClient(nodeRpcUrl)
+    const client = new NimiqRPCClient(nodeRpcUrl)
 
     const txPerSecond = calculateTxPerSecond(blocks)
     const blockTime = calculateBlockTime(blocks)
     const stats: LiveviewStats = { txPerSecond, blockTime }
     peer.send(stats)
 
-    const { next: nextBlock } = await client.blockchainStreams.subscribeForBlocks()
+    const { next: nextBlock, close } = await client.blockchainStreams.subscribeForBlocks()
+    closeFn = close
+
     nextBlock(async ({ error, data: block }) => {
       if (error?.code || !block) {
         console.error(`Error subscribing to head block: ${JSON.stringify(error)}`)
@@ -60,13 +73,15 @@ export default defineWebSocketHandler({
   // async message(peer) {
   // },
 
-  // close(peer, event) {
-  // console.log('[ws] close', peer, event)
-  // },
+  close(_peer, _event) {
+    if (closeFn)
+      closeFn()
+  },
 
-  // error(peer, error) {
-  // console.log('[ws] error', peer, error)
-  // },
+  error(_peer, _event) {
+    if (closeFn)
+      closeFn()
+  },
 })
 
 function roundToSignificant(number: number, places = 1) {

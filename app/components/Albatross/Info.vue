@@ -16,7 +16,7 @@ const pillClass = computed(() => getLiveviewPillColor({ nonce: nonce.value }))
 </script>
 
 <template>
-  <div flex="~ col lg:row gap-y-20 gap-x-24" pb-1 max-sm:mx-32>
+  <div flex="~ col lg:row gap-y-20 gap-x-24" pb-1 max-sm:mx-24>
     <div flex="~ items-center justify-center gap-x-80 gap-y-32 col md:row" ring="1.5 solid neutral-500" relative max-w-712 rounded-8 px-32 py-20 font-semibold>
       <AlbatrossStats :average-rewards-label :tx-sec-label :tx-speed-label :average-rewards-value />
       <button v-if="canSendTx" :disabled="animationActive || status !== 'idle'" select-none :class="pillClass" @click="sendTx">

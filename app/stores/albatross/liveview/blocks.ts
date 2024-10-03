@@ -1,3 +1,4 @@
+import { BLOCKS_WINDOW_SIZE } from '~~/server/utils/albatross.types'
 import { LiveviewBlockType } from '~~/server/utils/liveview.types'
 
 export const useLiveviewBlocks = defineStore('liveview-blocks', () => {
@@ -12,25 +13,36 @@ export const useLiveviewBlocks = defineStore('liveview-blocks', () => {
     },
   })
 
-  const latestBlock = ref<LiveviewMicroBlock | LiveviewMacroBlock>()
   const blocks = ref<LiveviewBlock[]>([])
-  function pushBlock(block: LiveviewBlock) {
-    if (block.kind === LiveviewBlockType.MacroBlock || block.kind === LiveviewBlockType.MicroBlock)
-      latestBlock.value = block
-    blocks.value = [...blocks.value, block].slice(-60)
-  }
-  watch(data, (data) => {
-    if (!data)
+  watch(data, (d) => {
+    if (!d)
       return
-    pushBlock(JSON.parse(data) as LiveviewBlock)
+
+    /**
+     * The websocket sends an array of blocks when the connection is established the first time.
+     * After that, it sends a single block at a time.
+     */
+    const isArray = d.startsWith('[') && d.endsWith(']')
+    if (isArray) {
+      blocks.value = JSON.parse(d) as LiveviewBlock[]
+    }
+    else if (blocks.value.length >= BLOCKS_WINDOW_SIZE) {
+      const newBlock = JSON.parse(d) as LiveviewBlock
+      // we keep 60 because is the number of blocks in a batch and we want to display block colors in the bacth
+      blocks.value = [...blocks.value, newBlock].slice(-60)
+    }
   })
+  const microblocks = computed(() => blocks.value.filter(block => block.kind === LiveviewBlockType.MicroBlock) as LiveviewMicroBlock[])
+  const latestBlock = computed(() => microblocks.value.at(-1))
+  const batchNumber = computed(() => latestBlock.value?.batch || -1)
+  const blockNumber = computed(() => latestBlock.value?.number || -1)
 
   return {
     status,
     blocks,
-    microblocks: computed(() => blocks.value.filter(block => block.kind === LiveviewBlockType.MicroBlock) as LiveviewMicroBlock[]),
-    blockNumber: computed(() => latestBlock.value?.number || -1),
-    batchNumber: computed(() => latestBlock.value?.batch || -1),
+    microblocks,
+    blockNumber,
+    batchNumber,
     matchedTxs: computed(() => blocks.value.filter(block => block.kind === LiveviewBlockType.MicroBlock).map(block => block.matchedTxs).flat()),
   }
 })
