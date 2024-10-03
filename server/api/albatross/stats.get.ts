@@ -34,7 +34,7 @@ function calculateBlockTime(blocks: Block[]): number {
 
   const microblocks = blocks.filter((block): block is MicroBlock => block.type === 'micro')
   const timeSpan = microblocks[microblocks.length - 1].timestamp - microblocks[0].timestamp
-  return timeSpan > 0 ? roundToSignificant(timeSpan / 1000 / (microblocks.length - 1), 0) : 0
+  return timeSpan > 0 ? roundToSignificant(timeSpan / 1000 / (microblocks.length - 1), 1) : 0
 }
 
 export default defineWebSocketHandler({
