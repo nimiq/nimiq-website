@@ -2,13 +2,10 @@
 import type { Content } from '@prismicio/client'
 import { components } from '~/slices'
 
-const route = useRoute()
-
-// @ts-expect-error - `uid` is defined
-const uid = route.params.uid
+const uid = useRouteQuery('uid')
 
 // TODO CHange to usePrismic
-const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('child_page', uid)
+const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('child_page', uid.value as string)
 
 useHead({
   title: page.value?.data.meta_title,
