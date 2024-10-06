@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const props = defineProps(getSliceComponentProps<Content.LinkGridSlice>())
-const sectionRef = useSection(props.slice.id, 'darkblue')
+defineProps(getSliceComponentProps<Content.LinkGridSlice>())
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section class="dark" bg-darkblue text-neutral>
     <ul grid="~ cols-1 gap-20 md:cols-2" pb-2>
       <li v-for="({ description, pillLabel, primaryLink, primaryLinkLabel, secondaryLink, secondaryLinkLabel, title }, i) in slice.items" :key="i" p="32 xl:40 2xl:48" rounded-6 ring="1.5 white/25">
         <!-- <PrismicMedia v-if="icon" :field="icon" w="48 md:56 xl:64" op-60 nq-mb-16 /> -->

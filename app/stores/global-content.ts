@@ -1,5 +1,4 @@
 import type { NimiqAppDocument, NimiqAppDocumentData, SocialMediaDocument } from '~~/prismicio-types.js'
-import type { Database } from '~/types/database.types'
 
 export type SocialMediaAttributes = SocialMediaDocument['data'] & { color: `#${string}`, icon: string, id: string }
 export type AppsAttributes = NimiqAppDocument['data'] & { color: `#${string}` }
@@ -122,22 +121,22 @@ export const useGlobalContent = defineStore('global-content', () => {
     ) as Record<string, AppsAttributes>
   })
 
-  const supabase = useSupabaseClient<Database>()
+  function getRandomApps(n: number) {
+    const randomApps = useState('random_apps', () => {
+      const apps = Object.values(nimiqApps.value || []).filter(({ logo }) => hasImage(logo))
+      return apps
+        .sort(() => Math.random() - 0.5)
+        .slice(0, Math.min(n, apps.length))
+    })
+    return randomApps
+  }
 
-  const { data: cryptoMapLocationsCount } = useAsyncData('locationStats', async () => {
-    const { data, error } = await supabase.rpc('get_stats')
-    if (error || !data)
-      throw createError('Error fetching continent stats')
-    const locations = (data as { locations: number }).locations!
-    return locations
-  })
+  const { supabase } = useRuntimeConfig().public
 
-  const { data: cryptoMapContinentsStats } = useAsyncData('continentStats', async () => {
-    const { data, error } = await supabase.rpc('get_stats_for_all_continents')
-    if (error || !data)
-      throw createError('Error fetching continent stats')
-    return data
-  })
+  const getSupabaseEndpoint = (fn: string) => `${supabase.url}/rest/v1/rpc/${fn}?apikey=${supabase.key}`
+  const { data: cryptoMapStats } = useAsyncData('get_stats', () => $fetch<{ locations: number }>(getSupabaseEndpoint('get_stats')))
+  const cryptoMapLocationsCount = computed(() => cryptoMapStats.value?.locations)
+  const { data: cryptoMapContinentsStats } = useAsyncData('get_stats_for_all_continents', () => $fetch<{ locations: number }>(getSupabaseEndpoint('get_stats_for_all_continents')))
 
   return {
     navigation,
@@ -149,6 +148,7 @@ export const useGlobalContent = defineStore('global-content', () => {
     getSocialMediaById,
     cryptoMapLocationsCount,
     cryptoMapContinentsStats,
+    getRandomApps,
   }
 })
 

@@ -51,7 +51,7 @@ onUnmounted(() => router.replace({ query: { ...route.query, [queryName]: undefin
               <slot name="description" />
             </DialogDescription>
 
-            <div mt-12 px-24 lg:px-40>
+            <div mt-12 rounded-b-8 px-24 lg:px-40>
               <slot name="content" />
             </div>
 

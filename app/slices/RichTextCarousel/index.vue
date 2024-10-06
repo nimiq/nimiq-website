@@ -2,11 +2,11 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.RichTextCarouselSlice>())
-const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor)
+const colors = getColorClass(props.slice.primary.bgColor)
 </script>
 
 <template>
-  <section ref="sectionRef" :class="{ 'md:flex-row': slice.variation === 'default' }">
+  <section :class="{ colors, 'md:flex-row': slice.variation === 'default' }">
     <RichTextCarouselDefault v-if="slice.variation === 'default'" :content="slice.primary.content" :images="slice.items.map(i => i.slide)" />
     <RichTextCarouselWithTabs v-if="slice.variation === 'withTabs'" v-bind="slice" />
   </section>

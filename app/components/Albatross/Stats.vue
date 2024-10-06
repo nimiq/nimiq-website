@@ -14,7 +14,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
 <template>
   <DefineStat v-slot="{ icon, iconBgColor, label, value, decimals = 1, suffix }">
     <div flex="~ col max-sm:items-center gap-12">
-      <span font-semibold text="26 lg:32 neutral" lh-none flex="~">
+      <span text="3xl neutral" font-semibold lh-none flex="~">
         <TweenedNumber v-if="typeof value === 'number'" :value :decimals :animation-duration="500" />
         <span v-else>{{ value }}</span>
         {{ suffix }}
@@ -34,7 +34,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
       <ReuseStat icon="i-nimiq:sand-clock size-14" icon-bg-color="bg-gradient-orange" :value="stats.txPerSecond || 0" :label="txSecLabel" />
     </li>
     <li>
-      <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="stats.blockTime" :label="txSpeedLabel" :decimals="0" suffix="&nbsp;sec" />
+      <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="stats.blockTime" :label="txSpeedLabel" :decimals="1" suffix="&nbsp;sec" />
     </li>
     <li>
       <ReuseStat icon="i-nimiq:leaf-2 size-12 ml-1" icon-bg-color="bg-gradient-green" :value="averageRewardsValue" :label="averageRewardsLabel" suffix="% p.a" />

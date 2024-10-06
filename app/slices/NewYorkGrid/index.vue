@@ -2,8 +2,7 @@
 import type { Content, KeyTextField } from '@prismicio/client'
 
 // TODO Replace CtaSectionSlice with your slice
-const props = defineProps(getSliceComponentProps<Content.NewYorkGridSlice>())
-const sectionRef = useSection(props.slice.id, 'white', { limitWidth: false })
+defineProps(getSliceComponentProps<Content.NewYorkGridSlice>())
 const [DefineStats, ReuseStat] = createReusableTemplate<{ label: KeyTextField, value: KeyTextField }>()
 </script>
 
@@ -15,7 +14,7 @@ const [DefineStats, ReuseStat] = createReusableTemplate<{ label: KeyTextField, v
     </div>
   </DefineStats>
 
-  <section ref="sectionRef">
+  <section class="white mx-0 bg-neutral-0 children:max-w-none">
     <div
       class="grid grid-flow-row gap-8 lg:grid-rows-[auto,1fr,auto] lg:gap-24 children:rounded-6 children:shadow"
       :class="slice.variation === 'default' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4 one-image' : 'multiple-images grid-cols-1 md:grid-cols-2'"

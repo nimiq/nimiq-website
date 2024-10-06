@@ -2,7 +2,6 @@
 import type { Content, FilledContentRelationshipField } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SocialMediaGridSlice>())
-const sectionRef = useSection(props.slice.id, 'grey')
 
 const { getSocialMediaById } = useGlobalContent()
 
@@ -32,7 +31,7 @@ const columns = [
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section bg-neutral-100>
     <ul grid="~ cols-1 md:cols-3 gap-x-8 lg:gap-x-16 gap-y-24" w-full>
       <li v-for="(column, i) in columns" :key="i" flex="~ col md:items-center">
         <span text="12 md:14 neutral-700" nq-label>{{ column.label }}</span>

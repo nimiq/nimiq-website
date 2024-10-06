@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.TiltedMediaSlice>())
-const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor, { limitWidth: false, paddingX: false })
+const colors = getColorClass(props.slice.primary.bgColor)
 const url = computed(() => {
   if (props.slice.variation === 'default')
     // @ts-expect-error The URL is always present in this case
@@ -12,7 +12,7 @@ const url = computed(() => {
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section :class="colors" class="mx-0 px-0 children:max-w-none">
     <TiltedMedia v-if="slice.variation === 'default'">
       <NuxtImg :src="url" />
     </TiltedMedia>

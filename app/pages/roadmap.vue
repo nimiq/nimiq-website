@@ -4,15 +4,13 @@ import { firstMonth, firstYear, layers, milestones } from '~/components/Roadmap/
 
 const headline = computed(() => ([{ type: 'heading1', text: 'Roadmap', spans: [] }] as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Browse the project\'s past and future. Click on milestones to learn more.', spans: [], direction: 'ltr' }] as RichTextField))
-
-const refSection = useSection('roadmap', 'grey', { paddingX: false, limitWidth: false, useDefaultColors: false })
 </script>
 
 <template>
   <NuxtLayout footer-bg-color="grey" draft>
     <HeroDefault :primary="{ headline, subline, bgColor: 'grey' }" />
 
-    <section ref="refSection" block>
+    <section class="nq-no-color" mx-0 block bg-neutral-100 px-0 children:max-w-none>
       <Roadmap :milestones :layers :first-year :first-month />
     </section>
   </NuxtLayout>

@@ -4,7 +4,7 @@ import type { ZigZagContentSliceDefaultItem } from '~~/prismicio-types'
 import mediumZoom from 'medium-zoom'
 
 const props = defineProps(getSliceComponentProps<Content.ZigZagContentSlice>())
-const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor, { paddingX: false })
+const colors = getColorClass(props.slice.primary.bgColor)
 
 function mediaType(item: ZigZagContentSliceDefaultItem) {
   if ('url' in item.videoHigh && 'url' in item.videoMedium && 'url' in item.videoLow) {
@@ -17,12 +17,13 @@ function mediaType(item: ZigZagContentSliceDefaultItem) {
 }
 
 useIntersectionObserver(sectionRef, () => {
-  mediumZoom(`[data-slice-type=${sectionRef.value!.dataset.sliceType}] img`, { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
+  // TODO Check if the selector works
+  mediumZoom(`[data-slice-type="zig-zag-content"] img`, { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
 })
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section :class="colors" class="px-0" data-slice-type="zig-zag-content">
     <ul>
       <!-- px-24 xl:pl-112 xl:pr-0  -->
       <li
@@ -58,7 +59,7 @@ useIntersectionObserver(sectionRef, () => {
           <div text-12 nq-mt-12 nq-label>
             {{ item.label }}
           </div>
-          <PrismicRichText nq-mt-48 class="nq-prose-compact nq-prose" :field="item.description" />
+          <PrismicRichText nq-mt-48 class="nq-prose-compact" :field="item.description" />
           <div flex="~ gap-24 md:col lg:row" max-w-lg nq-mt-24>
             <PrismicLink v-if="hasLink(item.buttonHref)" internal-component="a" :field="item.buttonHref" font-semibold nq-arrow nq-pill-lg nq-pill-blue>
               {{ item.buttonLabel }}

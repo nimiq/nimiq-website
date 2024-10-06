@@ -49,7 +49,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
 
 <template>
   <div ref="target" relative>
-    <div flex="~ justify-end items-center" min-h="312 sm:368" of-hidden px-24 :class="{ 'pr-84': canSendTx }">
+    <div flex="~ justify-end items-center" min-h="208 sm:368" of-hidden px-24 :class="{ 'pr-84': canSendTx }">
       <transition-group
         tag="div" flex="~ justify-end items-center" enter-from-class="op-0" enter-active-class="transition-opacity duration-400 ease-in"
         :style="{ transform: `translate3d(${offset}px, 0, 0)` }"
@@ -71,7 +71,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
       </div>
     </div>
 
-    <div v-else w-full flex="~ justify-center" of-hidden px-32>
+    <div v-else flex="~ justify-center" mt-32 w-full of-hidden px-32>
       <!-- :class="{ unimate: isMacro || isFirstBatchAfterPageLoad }"> -->
       <div flex="~ justify-center">
         <AlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 2 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number class="animate-batch-unshift" />

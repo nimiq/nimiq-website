@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 const { bgColor } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue' }>()
-const sectionRef = useSection('hexagons-background', bgColor, { limitWidth: false, paddingX: false })
+const colors = getColorClass(bgColor)
 
 const rows = computed(() => 5)
 const { width } = useWindowSize()
@@ -34,7 +34,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" group relative z-2 w-full of-x-hidden>
+  <section :class="colors" group relative z-2 mx-0 w-full of-x-hidden px-0 children:max-w-none>
     <div
       aria-hidden="true"
       class="grid-parent"

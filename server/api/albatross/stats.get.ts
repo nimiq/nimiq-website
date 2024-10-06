@@ -45,7 +45,7 @@ export default defineWebSocketHandler({
     const txPerSecond = calculateTxPerSecond(blocks)
     const blockTime = calculateBlockTime(blocks)
     const stats: LiveviewStats = { txPerSecond, blockTime }
-    peer.send(stats)
+    peer.send(JSON.stringify(stats))
 
     const { next: nextBlock, close } = await client.blockchainStreams.subscribeForBlocks()
     closeFn = close
@@ -65,7 +65,7 @@ export default defineWebSocketHandler({
         const txPerSecond = calculateTxPerSecond(blocks)
         const blockTime = calculateBlockTime(blocks)
         const stats: LiveviewStats = { txPerSecond, blockTime }
-        peer.send(stats)
+        peer.send(JSON.stringify(stats))
       }
     })
   },

@@ -6800,7 +6800,7 @@ type PillLinkSliceVariation = PillLinkSliceDefault
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type PillLinkSlice = prismic.SharedSlice<
-  'pill_link',
+  'pill-link',
   PillLinkSliceVariation
 >
 

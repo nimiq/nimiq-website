@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const props = defineProps(getSliceComponentProps<Content.BuySellWalletSlice>())
-const sectionRef = useSection(props.slice.id, 'white')
+defineProps(getSliceComponentProps<Content.BuySellWalletSlice>())
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section bg-neutral-0>
     <div flex="~ col lg:row">
       <Headline children:text-left :headline="slice.primary.headline" :subline="slice.primary.text" :cta-href="slice.primary.linkHref" :cta-label="slice.primary.linkLabel" />
 

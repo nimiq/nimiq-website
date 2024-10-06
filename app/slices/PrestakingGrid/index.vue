@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const props = defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
-const sectionRef = useSection(props.slice.id, 'darkblue')
+defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
 </script>
 
 <template>
-  <section ref="sectionRef" data-gradient relative pt-32>
-    <NuxtImg src="/assets/images/prestaking-glowing-background.webp" alt="" nq-no-max-width pointer-events-none absolute inset-0 top-0 z-1 size-full rotate-180 object-cover object-bottom />
+  <section class="dark" data-gradient relative bg-darkblue pt-32 text-neutral>
+    <NuxtImg src="/assets/images/prestaking-glowing-background.webp" alt="" pointer-events-none absolute inset-0 top-0 z-1 size-full max-w-none rotate-180 object-cover object-bottom />
     <ul flex="~ items-center col lg:row gap-x-24 gap-y-20 justify-center" z-10>
       <li v-for="({ image, content }, i) in slice.primary.items" :key="i" flex="~ col self-stretch lg:row md:items-center gap-x-12 gap-y-24" relative rounded-6 p-32>
         <PrismicImage :field="image" :imgix-params="{ w: 80, h: 80 }" z-20 size-80 md:mx-auto />

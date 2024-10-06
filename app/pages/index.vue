@@ -13,7 +13,7 @@ useHead({
 
 defineOgImage({ url: '/assets/og-images/home.jpg' })
 
-const darkHeader = computed(() => (page.value?.data.slices.at(0)?.primary as { bgColor: string }).bgColor === 'darkblue')
+const darkHeader = computed(() => (page.value?.data.slices.at(0)?.primary as { bgColor: string })?.bgColor === 'darkblue')
 </script>
 
 <template>

@@ -3,7 +3,6 @@ import type { Content } from '@prismicio/client'
 import { breakpointsTailwind } from '@vueuse/core'
 
 const props = defineProps(getSliceComponentProps<Content.StakingSliceSlice>())
-const sectionRef = useSection(props.slice.id, 'grey', { limitWidth: false, paddingX: false })
 
 const { smallerOrEqual } = useBreakpoints(breakpointsTailwind)
 
@@ -19,7 +18,7 @@ const image = computed(() => {
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section mx-0 bg-neutral-100 px-0 children:max-w-none>
     <PrismicImage :field="image" size-full />
   </section>
 </template>

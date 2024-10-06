@@ -3,7 +3,6 @@ import type { Content } from '@prismicio/client'
 import { breakpointsTailwind } from '@vueuse/core'
 
 const props = defineProps(getSliceComponentProps<Content.FlagsMarqueeSlice>())
-const sectionRef = useSection(props.slice.id, 'white', { limitWidth: false, paddingX: false })
 
 const position = ref(0)
 const { smaller } = useBreakpoints(breakpointsTailwind)
@@ -16,7 +15,7 @@ const image = computed(() => props.slice.primary.flags)
 </script>
 
 <template>
-  <section ref="sectionRef" max-w-full of-x-hidden>
+  <section max-w-full of-x-hidden class="white mx-0 bg-neutral-0 px-0 children:max-w-none">
     <div
       max-w-screen h="64 md:80" bg="repeat-x"
       :style="{

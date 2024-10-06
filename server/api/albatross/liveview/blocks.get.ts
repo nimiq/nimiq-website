@@ -41,7 +41,7 @@ export default defineWebSocketHandler({
         if (shouldEnqueue)
           blockQueue.set(processedBlock.number, processedBlock)
         else
-          peer.send(processedBlock)
+          peer.send(JSON.stringify(processedBlock))
       }
     })
 
@@ -66,7 +66,7 @@ export default defineWebSocketHandler({
     peer.send(JSON.stringify(blocks))
     const sortedBlockNumbers = Array.from(blockQueue.keys()).filter(b => !blockNumbers.includes(b)).sort((a, b) => a - b)
     for (const blockNumber of sortedBlockNumbers) {
-      peer.send(blockQueue.get(blockNumber))
+      peer.send(JSON.stringify(blockQueue.get(blockNumber)))
     }
     shouldEnqueue = false
     blockQueue.clear()

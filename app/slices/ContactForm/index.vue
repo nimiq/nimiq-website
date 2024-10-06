@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-// TODO Replace CtaSectionSlice with your slice
-const props = defineProps(getSliceComponentProps<Content.ContactFormSlice>())
-const sectionRef = useSection(props.slice.id, props.slice.primary.bgColor)
+defineProps(getSliceComponentProps<Content.ContactFormSlice>())
 </script>
 
 <template>
-  <section ref="sectionRef">
+  <section bg-neutral-0>
     TODO!
   </section>
 </template>

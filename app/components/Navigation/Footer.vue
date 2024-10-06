@@ -4,11 +4,11 @@ import { SocialMedia } from '~/stores/global-content'
 const { bgColor } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue' }>()
 const { navigationBlocks, navigation, copyrightNotice } = storeToRefs(useGlobalContent())
 
-const sectionRef = useSection('footer', bgColor, { limitWidth: false, paddingX: false, paddingY: false })
+const colors = getColorClass(bgColor)
 </script>
 
 <template>
-  <footer ref="sectionRef" grid="~ gap-40 md:gap-48 items-start xl:gap-104" px="32 md:64 xl:72" data-section z-10 w-full nq-pb-72 max-w="$nq-max-width">
+  <footer :class="colors" grid="~ gap-40 md:gap-48 items-start xl:gap-104" px="32 md:64 xl:72" data-section z-10 mx-0 w-full nq-pb-72 children:max-w-none>
     <div flex="~ col" text-sm area-contact>
       <p v-if="navigation?.newsletterCta">
         {{ navigation.newsletterCta }}
@@ -17,7 +17,7 @@ const sectionRef = useSection('footer', bgColor, { limitWidth: false, paddingX: 
       <p v-if="navigation?.socialMediaCta" nq-mt-16>
         {{ navigation.socialMediaCta }}
       </p>
-      <SocialMediaLogosList mx--8 op-60 nq-text-xl :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
+      <SocialMediaLogosList nq-text-xl mx--8 op-60 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
     </div>
 
     <div text="sm neutral-700" self-end area-meta>
