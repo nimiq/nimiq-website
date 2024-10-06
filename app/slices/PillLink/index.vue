@@ -37,7 +37,7 @@ const strToUrl = (str: string) => str?.toLowerCase().replace(/ /g, '-')
 </script>
 
 <template>
-  <section :class="colors" :data-slice="slice" class="nq-section-gap" relative mx-0 children:max-w-none max-md:items-start data-slice-type="pill-link">
+  <section :class="colors" :data-slice="slice" class="nq-section-gap" data-slice-type="pill-link" relative mx-0 pb-0 children:max-w-none max-md:items-start>
     <!-- This element is just to avoid the user clicking on the menu and seeing the tab hidden behind the header -->
     <div :id="strToUrl(activeItem!)" sr-only bottom="md:140" scroll-mt-60 />
     <ul flex="~ items-center md:gap-12 md:justify-center" my-1.5>

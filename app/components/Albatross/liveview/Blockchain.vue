@@ -71,7 +71,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
       </div>
     </div>
 
-    <div v-else w-full flex="~ justify-center" of-hidden px-32>
+    <div v-else flex="~ justify-center" mt-32 w-full of-hidden px-32>
       <!-- :class="{ unimate: isMacro || isFirstBatchAfterPageLoad }"> -->
       <div flex="~ justify-center">
         <AlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 2 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number class="animate-batch-unshift" />

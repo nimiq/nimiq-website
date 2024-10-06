@@ -28,17 +28,6 @@ const headlineTag = computed(() => props.headline.filter(i => i.type.startsWith(
 </template>
 
 <style>
-/* After Pill Slice, we don't leave space */
-section[data-slice-type='pill-link'] + section[data-slice-type='simple_headline'] {
-  --uno: 'pt-24';
-}
-
-/* If the headline is after a slice that is the same theme (dark or light) we increase space */
-section.dark:not([data-slice-type='pill-link']) + section[data-slice-type='simple_headline'].dark,
-section:not(.dark):not([data-slice-type='pill-link']) + section[data-slice-type='simple_headline']:not(.dark) {
-  --uno: 'pt-160 lg:pt-200';
-}
-
 [nq-label] {
   &:has(+ h2) {
     --uno: 'ring-1.5 ring-neutral-500 rounded-full px-20 py-10 nq-mb-32';
