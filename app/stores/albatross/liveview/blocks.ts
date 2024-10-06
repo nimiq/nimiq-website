@@ -39,11 +39,6 @@ export const useLiveviewBlocks = defineStore('liveview-blocks', () => {
       return
     }
 
-    if (typeof d !== 'string') {
-      console.error('Invalid data type', typeof d, d)
-      return
-    }
-
     /**
      * The websocket sends an array of blocks when the connection is established the first time.
      * After that, it sends a single block at a time.

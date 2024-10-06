@@ -36,11 +36,11 @@ const fontSizeClass = computed(() => {
 
 <template>
   <div title="Micro Block">
-    <header v-if="block.isSkip" text="12 neutral-0 center" mt--22 w-160 rounded-t-8 py-4 bg-gradient-orange nq-label>
+    <header v-if="block.isSkip" text="12 white center" mt--22 w-160 rounded-t-8 py-4 bg-gradient-orange nq-label>
       Skip Block
     </header>
 
-    <div flex="~ col shrink-0" relative size-160 bg-white text-darkblue :class="!block.isSkip ? 'rounded-8' : 'rounded-b-8'">
+    <div flex="~ col shrink-0" relative size-160 bg-neutral text-neutral-0 :class="!block.isSkip ? 'rounded-8' : 'rounded-b-8'">
       <div px-16 pb-10 pt-14 flex="~ items-center justify-between" text-15>
         <p font-bold :class="fontSizeClass">
           #{{ block.number }}
