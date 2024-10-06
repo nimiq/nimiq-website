@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { Policy } from '@nimiq/core'
+
 const props = defineProps<{ block: LiveviewMacroBlock }>()
-const { policy } = storeToRefs(useAlbatrossPolicy())
-const slots = computed(() => policy.value?.slots || 512)
-const requiredVotes = computed(() => Math.ceil(slots.value * 2 / 3))
+const requiredVotes = computed(() => Math.ceil(Policy.SLOTS * 2 / 3))
 const progress = computed(() => Math.min(props.block.votes / requiredVotes.value, 1))
 </script>
 
@@ -22,7 +22,7 @@ const progress = computed(() => Math.min(props.block.votes / requiredVotes.value
     />
 
     <div mb-16 text-24>
-      {{ block.votes }} / {{ slots }}
+      {{ block.votes }} / {{ Policy.SLOTS }}
       <div text-12 lh-none>
         Votes
       </div>
