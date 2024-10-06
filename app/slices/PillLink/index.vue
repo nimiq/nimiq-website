@@ -33,11 +33,11 @@ const icons: Record<Item, string> = {
 
 const activeItem = computed(() => items.filter(({ active }) => active)[0]?.item)
 
-const strToUrl = (str: string) => str.toLowerCase().replace(/ /g, '-')
+const strToUrl = (str: string) => str?.toLowerCase().replace(/ /g, '-')
 </script>
 
 <template>
-  <section :class="colors" :data-slice="slice" relative max-md:items-start class="nq-no-mx nq-no-max-width nq-section-gap" data-slice-type="pill-link">
+  <section :class="colors" :data-slice="slice" relative max-md:items-start class="nq-no-mx nq-section-gap children:max-w-none" data-slice-type="pill-link">
     <!-- This element is just to avoid the user clicking on the menu and seeing the tab hidden behind the header -->
     <div :id="strToUrl(activeItem!)" sr-only bottom="md:140" />
     <ul flex="~ items-center md:gap-12 md:justify-center" my-1.5>

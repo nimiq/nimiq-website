@@ -35,7 +35,7 @@ function goToStep(step: number) {
 </script>
 
 <template>
-  <section class="nq-no-mx nq-no-max-width nq-no-px white bg-neutral-0">
+  <section class="nq-no-mx white bg-neutral-0 px-0 children:max-w-none">
     <Headline :headline="slice.primary.headline" :subline="slice.primary.description" />
 
     <ul flex="~ gap-6" mx-auto nq-mt-48>

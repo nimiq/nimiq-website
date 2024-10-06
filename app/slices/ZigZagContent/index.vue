@@ -23,7 +23,7 @@ useIntersectionObserver(sectionRef, () => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="nq-no-px" data-slice-type="zig-zag-content">
+  <section :class="colors" class="px-0" data-slice-type="zig-zag-content">
     <ul>
       <!-- px-24 xl:pl-112 xl:pr-0  -->
       <li

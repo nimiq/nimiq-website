@@ -18,7 +18,7 @@ const subline = computed(() => ([{ type: 'paragraph', text: 'Nimiq\'s Albatross 
   <NuxtLayout dark-header footer-bg-color="darkblue">
     <HeroDefault :primary="{ headline, subline, bgColor: 'darkblue' }" />
 
-    <section class="nq-no-mx nq-no-max-width nq-no-px darkblue dark bg-darkblue text-neutral">
+    <section class="nq-no-mx darkblue dark bg-darkblue px-0 text-neutral children:max-w-none">
       <Albatross allow-send-tx />
     </section>
 

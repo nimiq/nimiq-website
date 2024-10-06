@@ -16,7 +16,7 @@ export function getColorClass(color: 'white' | 'grey' | 'darkblue' = 'grey') {
 export interface SliceUIOptions {
   /**
    * Whether the slice should be full width.
-   * If you need to remove the max-width only for a child you can do so by adding the class `nq-no-max-width` to the child
+   * If you need to remove the max-width only for a child you can do so by adding the class `children:max-w-none` to the child
    * or adding `mx-0 max-w-none` to the child.
    *
    * @default true
@@ -71,11 +71,11 @@ export function useSection(_sliceType: string, color?: 'white' | 'grey' | 'darkb
     el.style.setProperty('--bg', css)
 
     // if (!limitWidth)
-    //   el.classList.add('nq-no-mx', 'nq-no-max-width')
+    //   el.classList.add('nq-no-mx', 'children:max-w-none')
     // if (!paddingY)
-    //   el.classList.add('nq-no-py')
+    //   el.classList.add('py-0')
     // if (!paddingX)
-    //   el.classList.add('nq-no-px')
+    //   el.classList.add('px-0')
     // if (forceGap)
     //   el.classList.add('nq-section-gap')
     // if (!useDefaultColors)

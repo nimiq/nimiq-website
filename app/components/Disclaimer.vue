@@ -4,7 +4,7 @@ const colors = getColorClass(color)
 </script>
 
 <template>
-  <section :class="colors" group class="nq-no-mx nq-no-max-width">
+  <section :class="colors" group class="nq-no-mx children:max-w-none">
     <div class="nq-prose" transition-colors children:text="sm neutral-800 group-hocus:neutral-900">
       <h2>
         Disclaimer
@@ -25,7 +25,7 @@ const colors = getColorClass(color)
 </template>
 
 <style>
-section:not(.nq-no-max-width, [nq-no-max-width]) > * {
+section:not(.children:max-w-none, [children:max-w-none]) > * {
   max-width: var(--nq-max-width);
 }
 </style>

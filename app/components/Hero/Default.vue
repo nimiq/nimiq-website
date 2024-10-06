@@ -21,7 +21,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
 </script>
 
 <template>
-  <section :class="colors" relative pt="148 md:153 lg:160" class="nq-no-py">
+  <section :class="colors" relative pt="148 md:153 lg:160" class="py-0">
     <PrismicText :field="p.headline" wrapper="h1" />
     <PrismicText v-if="p.subline" :field="p.subline" wrapper="p" />
     <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline[0]?.text}`" role="list" nq-mt-16 flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">

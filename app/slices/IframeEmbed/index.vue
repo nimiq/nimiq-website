@@ -6,7 +6,7 @@ const props = defineProps(getSliceComponentProps<Content.CtaSectionSlice>())
 </script>
 
 <template>
-  <section class=""bg-neutral-0 white">
+  <section class="" white" bg-neutral-0>
     TODO!
   </section>
 </template>

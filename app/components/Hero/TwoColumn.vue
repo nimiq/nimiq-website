@@ -14,7 +14,7 @@ defineProps<{ primary: Content.HeroSectionSliceTwoColumnPrimary }>()
 
     <div flex="~ col lg:row justify-between gap-x-32" relative w-full nq-mt-32 lg:bottom--60>
       <div flex="~ col sm:items-center lg:items-start">
-        <PrismicRichText :field="primary.text" class="nq-white nq-no-pb nq-no-px nq-prose" />
+        <PrismicRichText :field="primary.text" class="nq-white nq-no-pb px-0 nq-prose" />
         <PrismicLink internal-component="a" :field="primary.linkHref" nq-arrow nq-pill-tertiary>
           {{ primary.linkLabel }}
         </PrismicLink>
