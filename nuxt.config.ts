@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     '@nuxtjs/prismic',
     '@nuxtjs/supabase',
     '@nuxtjs/device',
+    'nuxt-security',
   ],
 
   devtools: { enabled: true },
@@ -70,6 +71,35 @@ export default defineNuxtConfig({
   },
 
   // css: ['~/assets/css/main.css'],
+
+  security: {
+    corsHandler: {
+      origin: ['https://nimiq.com', process.env.NIMIQ_STATIC_PREVIEW || '', 'https://prestaking.nimiq.network'],
+    },
+    headers: {
+      contentSecurityPolicy: {
+        'script-src': [
+          '\'self\'',
+          '\'unsafe-inline\'',
+          'https://static.cdn.prismic.io',
+          `https://${repositoryName}.prismic.io`,
+          '\'nonce-{{nonce}}\'',
+          '\'strict-dynamic\'',
+        ],
+        'img-src': ['\'self\'', 'data:', 'https://images.prismic.io', `https://${repositoryName}.cdn.prismic.io`],
+        'script-src-attr': [
+          '\'unsafe-inline\'',
+          // '\'unsafe-hashes\'',
+          // '\'sha256-jp2rwKRAEWWbK5cz0grQYZbTZyihHbt00dy2fY8AuWY=\'',
+        ],
+        'frame-src': ['\'self\'', `https://${repositoryName}.prismic.io`, 'https://map.nimiq.com'],
+        'upgrade-insecure-requests': true,
+      },
+      crossOriginOpenerPolicy: false,
+      crossOriginEmbedderPolicy: false,
+      xXSSProtection: '1; mode=block',
+    },
+  },
 
   prismic: {
     endpoint: repositoryName,
@@ -202,4 +232,11 @@ export default defineNuxtConfig({
     sitemap: '/sitemap.xml',
   },
 
+  // $development: {
+  //   security: {
+  //     corsHandler: {
+  //       origin: '*',
+  //     },
+  //   },
+  // },
 })
