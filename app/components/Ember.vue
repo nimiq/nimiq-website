@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { scale = 1 } = defineProps<{ scale?: number /* value from 0 to 1 */ }>()
 
-const delay = Math.floor(Math.random() * 6000)
+const delay = useState(`ember-${scale}`, () => Math.floor(Math.random() * 6000))
 
 const shouldJump = ref(false)
 

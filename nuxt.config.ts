@@ -21,8 +21,8 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxthub/core',
     '@nuxtjs/prismic',
-    '@nuxtjs/supabase',
     '@nuxtjs/device',
+    '@nuxt/fonts',
   ],
 
   devtools: { enabled: true },
@@ -69,8 +69,6 @@ export default defineNuxtConfig({
     storesDirs: ['./app/stores/**'],
   },
 
-  // css: ['~/assets/css/main.css'],
-
   prismic: {
     endpoint: repositoryName,
     clientConfig: {
@@ -111,6 +109,10 @@ export default defineNuxtConfig({
     },
     public: {
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
+      supabase: {
+        url: process.env.NUXT_PUBLIC_SUPABASE_URL,
+        key: process.env.NUXT_PUBLIC_SUPABASE_KEY,
+      },
     },
     zoho: {
       requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
@@ -118,11 +120,6 @@ export default defineNuxtConfig({
       clientSecret: process.env.NUXT_ZOHO_CLIENT_SECRET,
       scope: process.env.NUXT_ZOHO_SCOPE,
     },
-  },
-
-  supabase: {
-    redirect: false,
-    types: './app/types/database.types.ts',
   },
 
   hub: {

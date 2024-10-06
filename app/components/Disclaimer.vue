@@ -4,7 +4,7 @@ const colors = getColorClass(color)
 </script>
 
 <template>
-  <section :class="colors" group class="nq-no-mx children:max-w-none">
+  <section :class="colors" group mx-0 children:max-w-none>
     <div class="nq-prose" transition-colors children:text="sm neutral-800 group-hocus:neutral-900">
       <h2>
         Disclaimer

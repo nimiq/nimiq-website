@@ -10,7 +10,7 @@ const subline = computed(() => ([{ type: 'paragraph', text: 'Browse the project\
   <NuxtLayout footer-bg-color="grey" draft>
     <HeroDefault :primary="{ headline, subline, bgColor: 'grey' }" />
 
-    <section block class="nq-no-mx nq-no-color grey bg-neutral-100 px-0 children:max-w-none">
+    <section class="nq-no-color" mx-0 block bg-neutral-100 px-0 children:max-w-none>
       <Roadmap :milestones :layers :first-year :first-month />
     </section>
   </NuxtLayout>

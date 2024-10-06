@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.SimpleCarouselSlice>())
 </script>
 
 <template>
-  <section class="nq-no-mx white bg-neutral-0 text-lg children:max-w-none">
+  <section class="white mx-0 bg-neutral-0 text-lg children:max-w-none">
     <SimpleCarousel v-if="slice.variation === 'default'" :slides="slice.items" curtains>
       <template #default="{ slide }">
         <div flex="~ col gap-y-32" sm:text-center>

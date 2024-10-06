@@ -7,7 +7,7 @@ const items = computed(() => [...props.slice.items].sort(() => Math.random() - 0
 </script>
 
 <template>
-  <section class="grey bg-neutral-100">
+  <section bg-neutral-100>
     <ul columns="1 gap-x-2 sm:2 lg:3" style="column-rule: 2px solid rgb(var(--nq-neutral-400))">
       <li v-for="(member, i) in items" :key="i" break-inside-avoid-column nq-pb-32>
         <div v-if="hasImage(member.picture)" px-8 pt-8>
@@ -23,7 +23,7 @@ const items = computed(() => [...props.slice.items].sort(() => Math.random() - 0
               {{ role }}{{ member.role.split(',').length - 1 === j ? '' : ',' }}
             </span>
           </div>
-          <PrismicRichText nq-mt-24 :field="member.description" class="nq-prose-compact nq-prose" />
+          <PrismicRichText nq-mt-24 :field="member.description" class="nq-prose-compact" />
           <!-- <ul v-if="member..length > 0" nq-mt-16 flex="~ gap-x-16">
             <li v-for="(socialMedia, index) in member.socialMedia" :key="`${socialMedia.key}-${index}`">
               <SocialLink :social-media="socialMedia" />

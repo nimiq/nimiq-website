@@ -5,5 +5,5 @@ defineProps(getSliceComponentProps<Content.AlbatrossTechnicalDetailsSlice>())
 </script>
 
 <template>
-  <AlbatrossTechnicalDetails py-36 />
+  <AlbatrossTechnicalDetails />
 </template>

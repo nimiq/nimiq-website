@@ -11,7 +11,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 </script>
 
 <template>
-  <section class="dark darkblue bg-darkblue py-0 text-neutral">
+  <section class="dark" bg-darkblue py-0 text-neutral>
     <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary @close="activeIndex = 0">
       <template #trigger>
         <div i-custom:cli-docs mr-8 />
@@ -39,16 +39,16 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
       </template>
 
       <template #content>
-        <div relative mx--32 w-full px-16 w="![calc(100%+64px)]">
+        <div w="![calc(100%+64px)]" relative mx--32 w-full rounded-b-8 px-16>
           <ul ref="scroller" snap="x mandatory" flex="~ items-start gap-16" w-full of-x-auto class="nq-scrollbar-hide">
             <li v-for="({ richText }, i) in slides" :key="i" snap="center always" data-slide w-full shrink-0 px-8>
-              <PrismicRichText class="nq-prose-compact nq-prose" :field="richText" pb-32 />
+              <PrismicRichText class="nq-prose-compact" :field="richText" pb-32 />
             </li>
           </ul>
           <div bg-gradient="to-l from-neutral-0 to-transparent" pointer-events-none absolute inset-y-0 right-12 w-12 />
           <div bg-gradient="to-r from-neutral-0 to-transparent" pointer-events-none absolute inset-y-0 left-12 w-12 />
         </div>
-        <div flex="~" border="t neutral-500" w="[calc(100%+80px)]" sticky bottom-0 mx--40 mb--32 rounded-b-8>
+        <div flex="~" border="t neutral-500" w="[calc(100%+80px)]" sticky bottom-0 mx--40 mb--32 of-hidden rounded-b-8>
           <button :disabled="!canSlidePrev" bg="neutral-300 disabled:!neutral-200 :hocus:neutral-400" flex-1 shrink-0 py-24 transition disabled:op-70 text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900" border="r neutral-500" @click="slidePrev">
             <div i-nimiq:chevron-left mx-auto />
           </button>
@@ -62,7 +62,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 </template>
 
 <style>
-.modal-container .nq-prose {
+.modal-container .nq-prose-compact {
   h3 {
     /* --uno: 'text-2xl text-center'; */
     --nq-font-size-min: 20;

@@ -19,7 +19,7 @@ const {
   digitsCount?: number
 }>()
 
-const tweeningValue = ref(value)
+const tweeningValue = ref(value || 0)
 
 let abortController: AbortController | null = null
 

@@ -34,7 +34,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section :class="colors" group relative z-2 w-full of-x-hidden class="nq-no-mx px-0 children:max-w-none">
+  <section :class="colors" group relative z-2 mx-0 w-full of-x-hidden px-0 children:max-w-none>
     <div
       aria-hidden="true"
       class="grid-parent"

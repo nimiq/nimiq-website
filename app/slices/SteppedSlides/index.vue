@@ -35,7 +35,7 @@ function goToStep(step: number) {
 </script>
 
 <template>
-  <section class="nq-no-mx white bg-neutral-0 px-0 children:max-w-none">
+  <section class="white mx-0 bg-neutral-0 px-0 children:max-w-none">
     <Headline :headline="slice.primary.headline" :subline="slice.primary.description" />
 
     <ul flex="~ gap-6" mx-auto nq-mt-48>
@@ -61,7 +61,7 @@ function goToStep(step: number) {
         <p text="neutral-800 xs" px="8 md:32 xl:48" nq-mt-48 nq-label>
           {{ item.label }}
         </p>
-        <PrismicRichText px="8 md:32 xl:48" :field="item.description" class="nq-prose-compact nq-prose" nq-mt-12 text="neutral-800 xl" />
+        <PrismicRichText px="8 md:32 xl:48" :field="item.description" class="nq-prose-compact" nq-mt-12 text="neutral-800 xl" />
       </li>
     </ul>
   </section>

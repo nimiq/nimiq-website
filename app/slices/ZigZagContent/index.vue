@@ -59,7 +59,7 @@ useIntersectionObserver(sectionRef, () => {
           <div text-12 nq-mt-12 nq-label>
             {{ item.label }}
           </div>
-          <PrismicRichText nq-mt-48 class="nq-prose-compact nq-prose" :field="item.description" />
+          <PrismicRichText nq-mt-48 class="nq-prose-compact" :field="item.description" />
           <div flex="~ gap-24 md:col lg:row" max-w-lg nq-mt-24>
             <PrismicLink v-if="hasLink(item.buttonHref)" internal-component="a" :field="item.buttonHref" font-semibold nq-arrow nq-pill-lg nq-pill-blue>
               {{ item.buttonLabel }}

@@ -14,7 +14,7 @@ const [DefineStats, ReuseStat] = createReusableTemplate<{ label: KeyTextField, v
     </div>
   </DefineStats>
 
-  <section class="nq-no-mx white bg-neutral-0 children:max-w-none">
+  <section class="white mx-0 bg-neutral-0 children:max-w-none">
     <div
       class="grid grid-flow-row gap-8 lg:grid-rows-[auto,1fr,auto] lg:gap-24 children:rounded-6 children:shadow"
       :class="slice.variation === 'default' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4 one-image' : 'multiple-images grid-cols-1 md:grid-cols-2'"

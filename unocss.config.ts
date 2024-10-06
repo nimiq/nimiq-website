@@ -19,6 +19,7 @@ export default defineConfig({
       attributifyUtilities: true,
       typography: true,
       staticContent: true,
+      fonts: false,
     }),
     presetRemToPx({ baseFontSize: 4 }),
     presetAttributify(),

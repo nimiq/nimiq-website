@@ -7,7 +7,7 @@ type Item = Exclude<PillLinkSliceDefaultPrimary['item'], null>
 const { slice, slices } = defineProps(getSliceComponentProps<Content.PillLinkSlice>())
 
 const items = slices
-  .filter(slice => slice.slice_type === 'pill-link')
+  .filter(slice => slice.slice_type === 'pill_link')
   .map(slice => (slice as unknown as { primary: PillLinkSliceDefaultPrimary }).primary)
   .map(primary => ({
     item: primary.item!,
@@ -37,7 +37,7 @@ const strToUrl = (str: string) => str?.toLowerCase().replace(/ /g, '-')
 </script>
 
 <template>
-  <section :class="colors" :data-slice="slice" relative max-md:items-start class="nq-no-mx nq-section-gap children:max-w-none" data-slice-type="pill-link">
+  <section :class="colors" :data-slice="slice" class="nq-section-gap" relative mx-0 children:max-w-none max-md:items-start data-slice-type="pill-link">
     <!-- This element is just to avoid the user clicking on the menu and seeing the tab hidden behind the header -->
     <div :id="strToUrl(activeItem!)" sr-only bottom="md:140" scroll-mt-60 />
     <ul flex="~ items-center md:gap-12 md:justify-center" my-1.5>
@@ -55,9 +55,12 @@ const strToUrl = (str: string) => str?.toLowerCase().replace(/ /g, '-')
 </template>
 
 <style>
-section.darkblue + :is(section[data-slice-type='pill-link']).darkblue,
-section.grey + :is(section[data-slice-type='pill-link']).grey,
-section.white + :is(section[data-slice-type='pill-link']).white {
+section:where(.bg-darkblue, [bg-darkblue])
+  + :is(section[data-slice-type='pill-link']):where(.bg-darkblue, [bg-darkblue]),
+section:where(.bg-neutral-100, [bg-neutral-100])
+  + :is(section[data-slice-type='pill-link']):where(.bg-neutral-100, [bg-neutral-100]),
+section:where(.bg-neutral-0, [bg-neutral-0])
+  + :is(section[data-slice-type='pill-link']):where(.bg-neutral-0, [bg-neutral-0]) {
   /* Add a border if the pill links are following another section with the same color */
   --uno: 'border-t border-neutral-500';
 }

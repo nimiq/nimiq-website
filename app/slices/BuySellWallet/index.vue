@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.BuySellWalletSlice>())
 </script>
 
 <template>
-  <section class="white bg-neutral-0">
+  <section bg-neutral-0>
     <div flex="~ col lg:row">
       <Headline children:text-left :headline="slice.primary.headline" :subline="slice.primary.text" :cta-href="slice.primary.linkHref" :cta-label="slice.primary.linkLabel" />
 

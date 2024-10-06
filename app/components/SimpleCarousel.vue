@@ -17,7 +17,7 @@ const { activeIndex, calculateStep, scroller, slideNext, slidePrev, slideTo } = 
 
       <div class="arrow" :class="activeIndex > 0 ? 'visible' : 'invisible'">
         <button tabindex="-1" aria-label="Prev slide" role="button" class="prev" @click="slidePrev">
-          <div class="i-nimiq:chevron-left" />
+          <div i-nimiq:chevron-left />
         </button>
       </div>
       <div z-10 mx-0 h-full rounded="$r">
@@ -33,7 +33,7 @@ const { activeIndex, calculateStep, scroller, slideNext, slidePrev, slideTo } = 
       </div>
       <div class="arrow" right-0 top-0 :class="activeIndex < slides.length - 1 ? 'visible' : 'invisible'">
         <button tabindex="-1" aria-label="Next slide" role="button" class="prev" @click="slideNext">
-          <div class="i-nimiq:chevron-right" />
+          <div i-nimiq:chevron-right />
         </button>
       </div>
     </div>

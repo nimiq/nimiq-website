@@ -47,8 +47,8 @@ async function submitForm() {
 </script>
 
 <template>
-  <section class="grey bg-neutral-100" pt="148 md:153 lg:160" mx-auto max-w-65ch data-slice-type="newsletter-form">
-    <div px="32 md:36 lg:40" rounded-6 bg-white py-60 shadow>
+  <section pt="148 md:153 lg:160" data-slice-type="newsletter-form">
+    <div px="32 md:36 lg:40" mx-auto max-w-65ch rounded-6 bg-neutral-100 bg-white py-60 shadow>
       <h1 style="--nq-font-size-min:24;--nq-font-size-max:28" text-left>
         Nimiq newsletter signup
       </h1>
@@ -115,6 +115,7 @@ async function submitForm() {
 </style>
 
 <style>
+/* FIX ME: In the static view we are duplicating slices in the pages/[uid].vue */
 section[data-slice-type='newsletter-form'] + section {
   display: none;
 }

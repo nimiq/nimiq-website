@@ -12,7 +12,7 @@ const url = computed(() => {
 </script>
 
 <template>
-  <section :class="colors" class="nq-no-mx px-0 children:max-w-none">
+  <section :class="colors" class="mx-0 px-0 children:max-w-none">
     <TiltedMedia v-if="slice.variation === 'default'">
       <NuxtImg :src="url" />
     </TiltedMedia>
