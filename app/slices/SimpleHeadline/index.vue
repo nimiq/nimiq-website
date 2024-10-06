@@ -6,7 +6,7 @@ const colors = getColorClass(props.slice.primary.bgColor)
 </script>
 
 <template>
-  <section v-if="slice.variation === 'default'" ref="sectionRef" relative>
+  <section v-if="slice.variation === 'default'" :class="colors" relative>
     <Headline
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"

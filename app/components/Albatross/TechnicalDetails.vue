@@ -11,7 +11,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 </script>
 
 <template>
-  <section class="darkblue dark bg-darkblue py-0 text-neutral">
+  <section class="dark darkblue bg-darkblue py-0 text-neutral">
     <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary @close="activeIndex = 0">
       <template #trigger>
         <div i-custom:cli-docs mr-8 />
