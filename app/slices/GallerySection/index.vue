@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-// TODO Replace CtaSectionSlice with your slice
-defineProps(getSliceComponentProps<Content.CtaSectionSlice>())
+defineProps(getSliceComponentProps<Content.GallerySectionSlice>())
 </script>
 
 <template>
