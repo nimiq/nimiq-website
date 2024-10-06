@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
 </script>
 
 <template>
-  <section mx-0 bg-darkblue class="dark" px-0 children:max-w-none>
+  <section mx-0 bg-darkblue class="dark" px-0 nq-pt-72 children:max-w-none>
     <Albatross
       :allow-send-tx="slice.primary.allowSendTx"
       :average-rewards-label="slice.primary.averageRewardsLabel!"

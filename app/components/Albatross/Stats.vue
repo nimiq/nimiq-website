@@ -34,7 +34,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
       <ReuseStat icon="i-nimiq:sand-clock size-14" icon-bg-color="bg-gradient-orange" :value="stats.txPerSecond || 0" :label="txSecLabel" />
     </li>
     <li>
-      <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="stats.blockTime" :label="txSpeedLabel" :decimals="0" suffix="&nbsp;sec" />
+      <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="stats.blockTime" :label="txSpeedLabel" :decimals="1" suffix="&nbsp;sec" />
     </li>
     <li>
       <ReuseStat icon="i-nimiq:leaf-2 size-12 ml-1" icon-bg-color="bg-gradient-green" :value="averageRewardsValue" :label="averageRewardsLabel" suffix="% p.a" />

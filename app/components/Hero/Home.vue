@@ -56,9 +56,9 @@ watch(subheadlineStr, () => {
     </div>
     <NuxtImg pointer-events-none absolute inset-0 m-0 size-full src="/assets/images/gods-light.webp" />
     <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
-    <Ember left-100 top-200 :scale="1.05" />
+    <Ember left-100 top="77 sm:112 md:200" :scale="1.05" />
     <Ember right-80 top-170 :scale="0.7" />
-    <Ember bottom-430 left-30vw :scale="0.92" />
+    <Ember bottom="302 md:430" left="56vw md:30vw" :scale="0.92" />
     <Ember bottom-460 right-32 />
     <div class="world-container" pointer-events-none absolute bottom-0 flex="~ justify-center" mx-0 of-y-hidden>
       <div class="ellipse blue-ring" min-w-900 of-hidden />
