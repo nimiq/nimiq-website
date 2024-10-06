@@ -33,8 +33,8 @@ const { copyrightNotice } = useGlobalContent()
             {{ navigation.getStartedLinks[1]?.label }}
           </PrismicLink>
         </div>
-
-        <div of-x-hidden of-y-auto class="nq-scrollbar-hide">
+        <!-- class="nq-scrollbar-hide" -->
+        <div of-x-hidden of-y-auto>
           <div class="my-16">
             <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" internal-component="a" :field="navigation.getStartedLinks.at(2)!.href">
               <p text="sm neutral-700" font-bold nq-arrow>
