@@ -24,8 +24,8 @@ const colors = getColorClass(color)
   </section>
 </template>
 
-<style>
+<!-- <style>
 section:not(.children:max-w-none, [children:max-w-none]) > * {
   max-width: var(--nq-max-width);
 }
-</style>
+</style> -->
