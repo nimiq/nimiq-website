@@ -3,10 +3,12 @@ import { Policy } from '@nimiq/core'
 
 const props = defineProps<{ batchNumber: number, blockNumber: number }>()
 
+const GENESIS_BLOCK_NUMBER = 3032010
+
 const { microblocks } = storeToRefs(useLiveviewBlocks())
 
 function getBlockColor(n: number) {
-  const blockNumber = Policy.GENESIS_BLOCK_NUMBER + (props.batchNumber - 1) * Policy.BLOCKS_PER_BATCH + n
+  const blockNumber = GENESIS_BLOCK_NUMBER + (props.batchNumber - 1) * Policy.BLOCKS_PER_BATCH + n
   const block = microblocks.value.find(b => b.number === blockNumber)
   return block?.producer.publicKey
     ? getLiveviewColorValue({ publicKey: block.producer.publicKey })
@@ -19,13 +21,13 @@ const toggleColors = useToggle(showColors)
 const remainingBlockCount = computed(() => {
   if (props.batchNumber <= 0)
     return Math.max(0, Policy.BLOCKS_PER_BATCH - 1)
-  const remaining = Policy.GENESIS_BLOCK_NUMBER + (props.batchNumber * Policy.BLOCKS_PER_BATCH) - props.blockNumber - 1
+  const remaining = GENESIS_BLOCK_NUMBER + (props.batchNumber * Policy.BLOCKS_PER_BATCH) - props.blockNumber - 1
   return Math.min(Math.max(remaining, 0), Policy.BLOCKS_PER_BATCH - 1)
 })
 
 const createdBlockCount = computed(() => Math.max(Policy.BLOCKS_PER_BATCH - remainingBlockCount.value - 1, 0))
-const pastMacro = computed(() => props.blockNumber > (props.batchNumber * Policy.BLOCKS_PER_BATCH) + Policy.GENESIS_BLOCK_NUMBER)
-const isWaitingForMacro = computed(() => props.blockNumber === (props.batchNumber * Policy.BLOCKS_PER_BATCH) + Policy.GENESIS_BLOCK_NUMBER - 1)
+const pastMacro = computed(() => props.blockNumber > (props.batchNumber * Policy.BLOCKS_PER_BATCH) + GENESIS_BLOCK_NUMBER)
+const isWaitingForMacro = computed(() => props.blockNumber === (props.batchNumber * Policy.BLOCKS_PER_BATCH) + GENESIS_BLOCK_NUMBER - 1)
 
 // @unocss-include
 
