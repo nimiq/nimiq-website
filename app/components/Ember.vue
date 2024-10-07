@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { scale = 1 } = defineProps<{ scale?: number /* value from 0 to 1 */ }>()
+const { scale = 1, opacity = 0.8 } = defineProps<{ scale?: number /* value from 0 to 1 */, opacity?: number }>()
 
 const delay = useState(`ember-${scale}`, () => Math.floor(Math.random() * 6000))
 
@@ -18,12 +18,12 @@ function onHover() {
 <template>
   <div
     :class="{ 'jump-and-flip': shouldJump }"
-    :style="`--delay: ${delay}ms; --scale: ${scale}`"
+    :style="`--delay: ${delay}ms; --scale: ${scale}; opacity: ${opacity}`"
     i-nimiq:logos-shiny-nim
     absolute
     z-1 size-28 before="content-empty absolute size-[150%] top--7 left--7 blur-64 mix-blend-screen rounded-full op-70"
     after="content-empty absolute size-[250%] top--21 left--21 blur-12 mix-blend-overlay rounded-full op-70"
-    op-80
+    v-bind="$attrs"
     @mouseover="onHover"
   />
 </template>

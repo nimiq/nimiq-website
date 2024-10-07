@@ -14,8 +14,10 @@ defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
         <div aria-hidden absolute inset-0 rounded-6 class="glass" ring="1.5 neutral-0/15" backdrop-blur-20 />
       </li>
     </ul>
-    <Ember bottom-96 left-32 :scale=".65" />
-    <Ember bottom-156 right-170 :scale=".85" />
+    <Ember bottom-96 left-96 :scale=".65" />
+    <Ember bottom-156 right="40 md:170" :scale=".85" />
+    <Ember bottom-532 left-160 hidden md:block :scale=".75" :opacity=".25" />
+    <Ember bottom-682 left-490 hidden md:block :scale=".65" :opacity=".25" />
     <PrismicLink internal-component="a" :field="slice.primary.cta" z-10 mt-32 nq-arrow nq-pill-lg nq-pill-blue>
       {{ slice.primary.cta_label }}
     </PrismicLink>
