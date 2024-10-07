@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Policy } from '@nimiq/core'
+import { Policy } from '@nimiq/core/web'
 
 const props = defineProps<{ block: LiveviewMacroBlock }>()
 const requiredVotes = computed(() => Math.ceil(Policy.SLOTS * 2 / 3))

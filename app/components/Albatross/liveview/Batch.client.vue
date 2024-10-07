@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Policy } from '@nimiq/core'
+import { Policy } from '@nimiq/core/web'
 
 const props = defineProps<{ batchNumber: number, blockNumber: number }>()
 
