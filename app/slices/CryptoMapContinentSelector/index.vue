@@ -93,7 +93,7 @@ const allowMapInteraction = ref(false)
     </div>
     <div grid="~ *:col-span-full *:row-span-full" mx-auto flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-32>
       <transition leave-active-class="transition duration-500 [&_:is(button,p)]:duration-300 ease-nq [&_:is(button,p)]:ease-out [&_:is(button,p)]:transition" leave-to-class="op-0 [&_button]:translate-y-96 [&_p]:translate-y--96 [&_:is(button,p)]:op-0" leave-from-class="op-100 [&_p]:translate-y-0 [&_button]:translate-y-0 [&_:is(button,p)]:op-100">
-        <div v-if="!allowMapInteraction" flex="~ col gap-8 items-center justify-center" z-1 rounded-8 bg-neutral bg-op-80>
+        <div v-if="!allowMapInteraction" flex="~ col gap-8 items-center justify-center" z-1 rounded-8 bg-darkblue bg-op-80>
           <p text="white min-18 max-24" font-bold>
             Explore in {{ activeContinent }}
           </p>
