@@ -16,9 +16,3 @@ const { navigation } = storeToRefs(useGlobalContent())
   <HexagonsBackground z-1 class="hexagon-bg" :bg-color="footerBgColor" />
   <NavigationFooter :bg-color="footerBgColor" />
 </template>
-
-<style scoped>
-.hexagon-bg {
-  --uno: 'nq-pt-32';
-}
-</style>

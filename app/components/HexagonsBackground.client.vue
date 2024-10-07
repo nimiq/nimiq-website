@@ -34,10 +34,10 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section :class="colors" group relative z-2 mx-0 w-full of-x-hidden px-0 children:max-w-none>
+  <section :class="colors" group relative z-2 mx-0 w-full of-x-hidden px-0 nq-pt-96>
     <div
       aria-hidden="true"
-      class="grid-parent"
+      class="grid-parent" max-w-none
       :style="`--rows:${rows}; --cols:${columns}`"
     >
       <div
