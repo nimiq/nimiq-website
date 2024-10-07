@@ -135,7 +135,6 @@ export default defineNuxtConfig({
   routeRules: {
     // Check ./modules/prerender-routes.ts to see more about this
 
-    '/api/liveview/policy': { swr: 3600, cors: true }, // cache 1 hour
     '/api/newsletter-signup': { cors: true },
 
     '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },

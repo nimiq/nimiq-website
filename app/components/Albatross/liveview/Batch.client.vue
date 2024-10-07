@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { useNimiqAlbatross } from '~/stores/albatross/client'
+
 const props = defineProps<{ batchNumber: number, blockNumber: number }>()
 
-const { blocksPerBatch, genesisBlockNumber } = storeToRefs(useAlbatrossPolicy())
+const { genesisBlockNumber, blocksPerBatch } = storeToRefs(useNimiqAlbatross())
+
 const { microblocks } = storeToRefs(useLiveviewBlocks())
 
 function getBlockColor(n: number) {
