@@ -31,7 +31,7 @@ function getBackgroundItems(background: BannerSliceSliceDefaultItem['backgroundP
       ]
     }
     case 'Nimiq Apps': {
-      return getRandomApps(6).value.map(({ color, logo, linkHref, name }, i) => ({ color, icon: logo, link: linkHref, classes: `text-52 ${classesPositions[i]}`, name: name! }))
+      return getRandomApps(6).value.map(({ color, logo, linkHref, name }, i) => ({ color, icon: logo, link: linkHref, classes: classesPositions[i], name: name! }))
     }
     default : return []
   }
@@ -54,7 +54,7 @@ const items = computed(() => {
     <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative w-full of-hidden rounded-8 px-32 shadow>
       <PrismicLink v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
         <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />
-        <PrismicImage v-else :field="icon" pointer-events-none />
+        <PrismicImage v-else :field="icon" pointer-events-none scale-125 />
         <div :style="{ borderColor: color }" top="50%" left="50%" border="2 solid" translate-x="-50%" translate-y="-50%" pointer-events-none absolute size-full scale-100 rounded-full op-0 />
       </PrismicLink>
       <div v-if="bgColor === 'white'" class="curtain" pointer-events-none absolute inset-0 />
