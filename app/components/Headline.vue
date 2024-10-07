@@ -14,7 +14,7 @@ const headlineTag = computed(() => props.headline.filter(i => i.type.startsWith(
 </script>
 
 <template>
-  <div>
+  <div flex="~ col items-center">
     <div v-if="iconName" :class="iconName" text-54 op-15 nq-mb-24 />
     <p v-if="label" text="14/16.8" mb-16 block w-max nq-label md:mx-auto>
       {{ label }}
