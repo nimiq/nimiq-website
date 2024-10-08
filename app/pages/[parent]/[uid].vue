@@ -4,7 +4,7 @@ import { components } from '~/slices'
 const params = useRoute().params
 
 const { client } = usePrismic()
-const { data: page } = useAsyncData('page', () =>
+const { data: page } = await useAsyncData('page', () =>
   // @ts-expect-error This is valid
   client.getByUID('child_page', params.value!.uid))
 

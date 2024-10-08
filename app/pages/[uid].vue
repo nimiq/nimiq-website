@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import type { Content } from '@prismicio/client'
 import { components } from '~/slices'
 
 const params = useRoute().params
-const { client } = usePrismic()
-const { data: page } = useAsyncData('page', () =>
-  // @ts-expect-error This is valid
-  client.getByUID('page', params.value!.uid))
+// const { client } = usePrismic()
+// const { data: page } = await useAsyncData('page', () =>
+//   client.getByUID('page', params.value!.uid))
+// @ts-expect-error This is valid
+const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('page', params.uid as string)
 
 useHead({
   title: page.value?.data.meta_title,
