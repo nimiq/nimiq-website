@@ -113,10 +113,3 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
   }
 }
 </style>
-
-<style>
-/* FIX ME: In the static view we are duplicating slices in the pages/[uid].vue */
-/* section[data-slice-type='newsletter-form'] + section {
-  display: none;
-} */
-</style>

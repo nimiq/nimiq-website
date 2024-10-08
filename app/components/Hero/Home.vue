@@ -54,7 +54,7 @@ watch(subheadlineStr, () => {
         {{ ctaLabel }}
       </PrismicLink>
     </div>
-    <NuxtImg pointer-events-none absolute inset-0 m-0 size-full src="/assets/images/gods-light.webp" />
+    <NuxtImg pointer-events-none absolute inset-0 m-0 size-full src="/assets/images/gods-light.webp" alt="Nimiq Gods Rays Background" />
     <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
     <Ember left-100 top="77 sm:112 md:200" :scale="1.05" />
     <Ember right-80 top-170 :scale="0.7" />
