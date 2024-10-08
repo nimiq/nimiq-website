@@ -1,53 +1,37 @@
 <script setup lang="ts">
+import type { ConsensusMapSliceDefaultSlicePrimary } from '~~/prismicio-types'
 import type { NodeHexagon, SelfHexagon } from './NetworkMap'
 import { createPopper } from '@popperjs/core'
 import { computed, onMounted, ref, watch } from 'vue'
-import ConsensusIcon from './ConsensusIcon.vue'
 import NetworkMap, { HEIGHT, SCALING_FACTOR, WIDTH } from './NetworkMap'
 
-const props = defineProps({
-  texts: {
-    type: Object,
-    required: true,
-    validator: (value: Record<string, string>) => {
-      const requiredTextsKeys = [
-        'thisIsYou',
-        'connect',
-        'connected',
-        'connecting',
-        'notConnected',
-        'notApplicableAcronym',
-        'blockHeight',
-        'connectedTo',
-        'consensus',
-      ]
-      const missingKeys = requiredTextsKeys.filter(key => !(key in value))
-      if (missingKeys.length) {
-        console.error(`ConsensusMap: missing texts for keys: ${missingKeys.join(', ')}`)
-        return false
-      }
-      return true
-    },
-  },
-  backgroundColor: {
-    type: String as () => 'grey' | 'blue-dark',
-    default: 'blue-dark',
-    validator: (value: string) => ['grey', 'blue-dark'].includes(value),
-  },
-})
+const { bgColor = 'grey', ..._texts } = defineProps<Partial<ConsensusMapSliceDefaultSlicePrimary>>()
+const defaultTexts: Omit<ConsensusMapSliceDefaultSlicePrimary, 'bgColor' | 'backgroundColor'> = {
+  thisIsYou: 'This is you',
+  connect: 'Connect',
+  connected: 'Connected',
+  connecting: 'Connecting',
+  notConnected: 'Not connected',
+  notApplicableAcronym: 'N/A',
+  blockHeight: 'Block height',
+  connectedTo: 'Connected to',
+  consensus: 'Consensus',
+  established: 'Established',
+}
+const texts = { ...defaultTexts, ..._texts }
 
-const container$ = ref<HTMLDivElement | null>(null)
-const network$ = ref<HTMLCanvasElement | null>(null)
+const container$ = ref<HTMLDivElement>()
+const network$ = ref<HTMLCanvasElement>()
 const nodes = ref<NodeHexagon[]>([])
-const overlay$ = ref<HTMLCanvasElement | null>(null)
-const userNode$ = ref<HTMLDivElement | null>(null)
-const trigger$ = ref<HTMLDivElement | null>(null)
+const overlay$ = ref<HTMLCanvasElement>()
+const userNode$ = ref<HTMLDivElement>()
+const trigger$ = ref<HTMLDivElement>()
 const scale = ref(SCALING_FACTOR)
 const width = ref(2 * WIDTH)
 const height = ref(2 * HEIGHT)
 const x = ref(0)
 const y = ref(0)
-const networkMap = ref<NetworkMap | null>(null)
+const networkMap = ref<NetworkMap>()
 const tooltipPosition = ref<'top' | 'bottom'>('top')
 const initialized = ref(false)
 // const disconnected = ref(false)
@@ -56,23 +40,19 @@ const initialized = ref(false)
 let popperInstance: ReturnType<typeof createPopper> | null = null
 const { client, addListeners, launchNetwork, consensus: networkStatus, peerAddress, numberOfPeers: networkPeerCount, height: networkHeight } = useNimiq()
 
-onMounted(() => init())
-
-function init() {
-  if (!networkMap.value) {
-    networkMap.value = new NetworkMap(
-      network$.value!,
-      overlay$.value!,
-      (n) => {
-        nodes.value = n
-      },
-      setTooltip,
-      selfNodeScrollIntoView,
-      props.backgroundColor === 'blue-dark' ? [255, 255, 255] : [31, 35, 72],
-    )
-  }
+onMounted(() => {
+  networkMap.value = new NetworkMap(
+    network$.value!,
+    overlay$.value!,
+    (n) => {
+      nodes.value = n
+    },
+    setTooltip,
+    selfNodeScrollIntoView,
+    bgColor === 'darkblue' ? [255, 255, 255] : [31, 35, 72],
+  )
   requestAnimationFrame(() => setDimensions())
-}
+})
 
 watch(networkStatus, () => {
   setTimeout(() => popperInstance && popperInstance.forceUpdate())
@@ -87,12 +67,12 @@ function setDimensions() {
   if (containerHeight * (WIDTH / HEIGHT) > containerWidth) {
     width.value = Math.round(containerWidth / 2) * 2
     height.value = Math.round(containerWidth / (WIDTH / HEIGHT) / 2) * 2
-    scale.value = (SCALING_FACTOR * width.value) / (2 * WIDTH)
+    // scale.value = (SCALING_FACTOR * width.value) / (2 * WIDTH)
   }
   else {
     width.value = Math.round((containerHeight * (WIDTH / HEIGHT)) / 2) * 2
     height.value = Math.round(containerHeight / 2) * 2
-    scale.value = (SCALING_FACTOR * height.value) / (2 * HEIGHT)
+    // scale.value = (SCALING_FACTOR * height.value) / (2 * HEIGHT)
   }
   container$.value!.style.height = `${height.value}px`
 }
@@ -175,8 +155,8 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
 </script>
 
 <template>
-  <div id="network" class="relative h-full w-full">
-    <div class="w-[calc(100vw-calc(100vw-100%))] overflow-y-auto pb-112 lg:pb-182 sm:pb-174">
+  <div id="network" relative size-full>
+    <div class="w-[calc(100vw-calc(100vw-100%))]" of-y-auto pb="112 lg:182 sm:174">
       <div
         ref="container$"
         class="relative mx-auto h-[95vh] w-[calc(95vh*(1082/502))] overflow-hidden lg:max-w-[100vw] sm:w-full"
@@ -287,8 +267,8 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
       <div
         class="mask pointer-events-auto sticky bottom-16 max-w-max w-screen flex self-end gap-x-32 overflow-x-auto whitespace-nowrap rounded-6 bg-white/10 p-16 backdrop-blur-xl lg:bottom-48 sm:bottom-40 sm:w-max sm:justify-center sm:gap-x-40 sm:p-32"
         :class="{
-          'theme_grey': backgroundColor === 'grey',
-          'theme_blue-dark': backgroundColor === 'blue-dark',
+          'theme_grey': bgColor === 'grey',
+          'theme_blue-dark': bgColor === 'darkblue',
         }"
       >
         <div class="stat">
@@ -296,7 +276,10 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
             {{ texts.consensus }}
           </h4>
           <div class="ml-2 flex items-center gap-8" :class="{ 'opacity-40': !isConnected }">
-            <ConsensusIcon :consensus="networkStatus" :class="{ 'text-green': isConnected }" class="consensus text-20" />
+            <div mt--2px text-20>
+              <div v-if="networkStatus === 'established'" i-nimiq:world-check />
+              <div v-else-if="networkStatus === 'connecting' || consensus === 'syncing'" i-nimiq:world />
+            </div>
             <span v-if="isConnected">{{ texts.established }}</span>
             <span v-else-if="networkStatus === 'syncing'">{{ texts.connecting || 'Connecting' }}</span>
             <span v-else>{{ texts.notConnected }}</span>

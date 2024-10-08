@@ -1,5 +1,4 @@
-import type { ConsensusState, PlainBlock } from '@nimiq/core/web'
-import init, { Client, ClientConfiguration } from '@nimiq/core/web'
+import type { Client, ConsensusState, PlainBlock } from '@nimiq/core'
 
 export interface Peer {
   peerId: string
@@ -9,25 +8,27 @@ export interface Peer {
 }
 
 export function useNimiq() {
-  const client = ref<Client | null>(null)
+  const client = ref<Client>()
   const isLaunched = ref(false)
-  const consensus = ref<ConsensusState | null>(null)
-  const head = ref<PlainBlock | null>(null)
+  const consensus = ref<ConsensusState>()
+  const head = ref<PlainBlock>()
   const height = ref(0)
   const numberOfPeers = ref(0)
   const peerAddress = ref<Peer[]>([])
 
   async function launchNetwork() {
-    if (isLaunched.value)
+    if (isLaunched.value || import.meta.server)
       return
     isLaunched.value = true
     consensus.value = 'connecting'
-    await init()
+    if (import.meta.client) {
+      const { default: init, Client, ClientConfiguration } = await import('@nimiq/core/web')
 
-    const config = new ClientConfiguration()
-    // clientConfig.network(config.environment === ENV_MAIN ? 'albatross' : 'testalbatross')
-    config.network('testalbatross')
-    client.value = await Client.create(config.build())
+      await init()
+      const config = new ClientConfiguration()
+      config.network('testalbatross')
+      client.value = await Client.create(config.build())
+    }
   }
 
   async function addListeners() {

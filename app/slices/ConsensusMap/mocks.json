@@ -1,0 +1,74 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default-slice",
+    "primary": {
+      "thisIsYou": {
+        "__TYPE__": "FieldContent",
+        "value": "pound",
+        "type": "Text"
+      },
+      "consensus": {
+        "__TYPE__": "FieldContent",
+        "value": "also",
+        "type": "Text"
+      },
+      "established": {
+        "__TYPE__": "FieldContent",
+        "value": "finest",
+        "type": "Text"
+      },
+      "notConnected": {
+        "__TYPE__": "FieldContent",
+        "value": "cake",
+        "type": "Text"
+      },
+      "connected": {
+        "__TYPE__": "FieldContent",
+        "value": "bad",
+        "type": "Text"
+      },
+      "connect": {
+        "__TYPE__": "FieldContent",
+        "value": "third",
+        "type": "Text"
+      },
+      "connecting": {
+        "__TYPE__": "FieldContent",
+        "value": "full",
+        "type": "Text"
+      },
+      "connectedTo": {
+        "__TYPE__": "FieldContent",
+        "value": "dug",
+        "type": "Text"
+      },
+      "blockHeight": {
+        "__TYPE__": "FieldContent",
+        "value": "drop",
+        "type": "Text"
+      },
+      "notApplicableAcronym": {
+        "__TYPE__": "FieldContent",
+        "value": "human",
+        "type": "Text"
+      },
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "blue-dark",
+        "type": "Select"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

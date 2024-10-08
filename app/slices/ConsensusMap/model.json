@@ -85,13 +85,30 @@
           "config": {
             "label": "Background Color",
             "placeholder": "",
-            "options": ["blue-dark", "grey"],
+            "options": [
+              "blue-dark",
+              "grey"
+            ],
             "default_value": "blue-dark"
           },
           "type": "Select"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ],
+            "default_value": "grey"
+          }
         }
       },
-      "items": {}
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
 }

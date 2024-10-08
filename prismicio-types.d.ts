@@ -3314,6 +3314,17 @@ export interface ConsensusMapSliceDefaultSlicePrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   backgroundColor: prismic.SelectField<'blue-dark' | 'grey', 'filled'>
+
+  /**
+   * Background Color field in *ConsensusMap → Default slice → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: grey
+   * - **API ID Path**: consensus_map.default-slice.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 }
 
 /**

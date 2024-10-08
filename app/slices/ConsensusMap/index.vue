@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
-import ConsensusMap from '~/components/ConsensusMap/index.vue'
+import ConsensusMap from '~/components/Albatross/Consensus/index.vue'
 
 defineProps(getSliceComponentProps<Content.ConsensusMapSlice>())
 </script>
@@ -8,7 +8,7 @@ defineProps(getSliceComponentProps<Content.ConsensusMapSlice>())
 <template>
   <section bg-neutral-100>
     <ClientOnly fallback-tag="span" fallback="Loading map...">
-      <ConsensusMap :texts="{ ...slice.primary }" :background-color="slice.primary.backgroundColor" />
+      <ConsensusMap v-bind="slice.primary" />
     </ClientOnly>
   </section>
 </template>
