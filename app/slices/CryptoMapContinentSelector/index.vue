@@ -105,6 +105,7 @@ const allowMapInteraction = ref(false)
       </transition>
 
       <iframe
+        loading="lazy"
         w-full aspect="9/16 lg:initial" rounded-8 lg:h-full max-lg:max-h-80dvh ring="1.5 neutral-200" title="Crypto Map"
         :src="iframeUrl"
         sandbox="allow-scripts allow-same-origin allow-popups"
