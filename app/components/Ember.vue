@@ -9,8 +9,7 @@ const shouldJump = ref(false)
 function onHover() {
   if (shouldJump.value)
     return
-
-  shouldJump.value = Math.random() < 0.07
+  shouldJump.value = true
   setTimeout(() => shouldJump.value = false, 500)
 }
 </script>
