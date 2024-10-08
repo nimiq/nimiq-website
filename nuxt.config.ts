@@ -119,6 +119,9 @@ export default defineNuxtConfig({
       clientId: process.env.NUXT_ZOHO_CLIENT_ID,
       clientSecret: process.env.NUXT_ZOHO_CLIENT_SECRET,
       scope: process.env.NUXT_ZOHO_SCOPE,
+      code: process.env.NUXT_ZOHO_CODE,
+      refreshToken: process.env.NUXT_ZOHO_REFRESH_TOKEN,
+      listkey: process.env.NUXT_ZOHO_LISTKEY,
     },
   },
 

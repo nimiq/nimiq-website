@@ -663,7 +663,7 @@ interface Home2024DocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type Home2024Document<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<Home2024DocumentData>,
     'home_2024',
     Lang
@@ -6800,7 +6800,7 @@ type PillLinkSliceVariation = PillLinkSliceDefault
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type PillLinkSlice = prismic.SharedSlice<
-  'pill-link',
+  'pill_link',
   PillLinkSliceVariation
 >
 
