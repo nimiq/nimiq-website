@@ -28,7 +28,7 @@ const tooltipParagraphs = computed(() => {
       <button v-if="canSendTx" :disabled="animationActive || status !== 'idle'" select-none :class="pillClass" @click="sendTx">
         Send Test Transaction
       </button>
-      <Tooltip v-if="statsTooltipContent" dark absolute right-12 top-12>
+      <Tooltip v-if="statsTooltipContent" dark absolute right-12 top-12 aria-label="Notice about these stats">
         <p v-for="(p, i) in tooltipParagraphs" :key="i" style="font-size: var(--nq-font-size)" text-sm>
           {{ p }}
         </p>
