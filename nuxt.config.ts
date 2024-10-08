@@ -158,7 +158,7 @@ export default defineNuxtConfig({
     },
     prerender: {
       routes: ['/sitemap.xml'],
-      ignore: ['/blog'], // Temporary until we can deploy more than 100 files in Cloudflare
+      ignore: ['/blog', '/nimiq-pay'], // Temporary until we can deploy more than 100 files in Cloudflare
     },
   },
 
