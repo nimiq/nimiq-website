@@ -74,7 +74,7 @@ watch(subheadlineStr, () => {
     </div> -->
 
     <ClientOnly>
-      <div w="[calc(100%+var(--px)*2+2px)]" left="[calc(-1*var(--px))] md:0" relative bottom--1 z-1 max-w-none>
+      <div w="[calc(100%+var(--px)*2+2px)]" left="[calc(-1*var(--px))] md:0" relative bottom--1 z-1 max-w-none mt="-32 md:-64 lg:-80">
         <NuxtImg v-if="!md && !xl" src="/assets/images/home-hero/sm.webp" size-full loading="eager" width="768" height="588" />
         <NuxtImg v-else-if="!xl" src="/assets/images/home-hero/md.webp" size-full loading="eager" width="1152" height="759" />
         <NuxtImg v-else src="/assets/images/home-hero/xl.webp" size-full loading="eager" width="2396" height="1435" mb="-15%" />
