@@ -50,7 +50,9 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
               In order to receive the Nimiq newsletter, you must give us permission to contact you.
             </p>
             <Checkbox v-model="communicationPermission" :required="true" mt="12 lg:16">
-              Yes, I would like to subscribe to the Nimiq.com newsletter free of charge and receive information tailored to me at the e-mail address I have provided on the basis of my registration data and newsletter preference.
+              Yes, I would like to subscribe to the free Nimiq.com newsletter and receive information tailored to my needs at the email address I have provided based on my registration data and newsletter preferences. I hereby accept the <NuxtLink to="/privacy-policy" text-blue target="_blank">
+                Privacy Policy.
+              </NuxtLink>
             </Checkbox>
           </fieldset>
 
