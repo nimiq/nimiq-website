@@ -107,6 +107,9 @@ export default defineNuxtConfig({
         txFee: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_FEE,
       },
     },
+    cors: {
+      allowedOrigins: ['https://www.nimiq.com', 'https://prestaking.nimiq.network', process.env.NIMIQ_STATIC_PREVIEW ].filter((origin): origin is string => !!origin),
+    },
     public: {
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
       supabase: {
