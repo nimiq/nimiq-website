@@ -48,24 +48,24 @@
     "@unocss/transformer-directives": "^0.63.4",
     "@vueuse/core": "^11.1.0",
     "@vueuse/nuxt": "^11.1.0",
-    "cookie": "^0.7.2",
+    "cookie": "^1.0.0",
     "eslint": "^9.12.0",
     "eslint-plugin-format": "^0.1.2",
     "lint-staged": "^15.2.10",
-    "nimiq-css": "^0.2.24",
+    "nimiq-css": "^0.2.25",
     "nimiq-rpc-client-ts": "https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575",
     "nuxt": "^3.13.2",
     "pinia": "^2.2.4",
     "simple-git-hooks": "^2.11.1",
     "slice-machine-ui": "^2.8.1",
-    "typescript": "^5.6.2",
+    "typescript": "^5.6.3",
     "unocss": "0.63.4",
     "valibot": "^0.42.1",
     "vite-plugin-top-level-await": "^1.4.4",
     "vite-plugin-wasm": "^3.3.0",
     "vue": "latest",
     "vue-router": "^4.4.5",
-    "wrangler": "^3.80.1"
+    "wrangler": "^3.80.2"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
