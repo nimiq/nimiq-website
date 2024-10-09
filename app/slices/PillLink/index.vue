@@ -27,7 +27,7 @@ const item = slice.primary.item as Item
 
 <template>
   <section :class="colors" class="nq-section-gap" data-slice-type="pill-link" relative mx-0 pb-2 children:max-w-none max-md:items-start>
-    <div flex="~ items-center gap-10" mr-8 rounded-full py-6 pl-8 pr-20 ring="1.5 neutral-500">
+    <div flex="~ items-center gap-10" mr-8 rounded-full py-6 pl-8 pr-20>
       <div :class="itemsColor[item]" aria-hidden size-28 rounded-full grid="~ place-content-center">
         <div :class="icons[item]" h-18 w-16 />
       </div>
