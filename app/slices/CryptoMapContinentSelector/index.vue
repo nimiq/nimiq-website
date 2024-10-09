@@ -56,7 +56,7 @@ const allowMapInteraction = ref(false)
 </script>
 
 <template>
-  <section flex="col lg:row gap-x-24 gap-y-64 lg:gap-y-32" bg-neutral-100 px="0 lg:32 xl:0" max-w="$nq-max-width">
+  <section flex="col lg:row gap-x-24 gap-y-64 lg:gap-y-32" bg-neutral-100 px="0 md:32 lg:64 xl:0" max-w="$nq-max-width">
     <div max-lg:w-full>
       <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
         <li
@@ -91,7 +91,7 @@ const allowMapInteraction = ref(false)
         <!-- Sorry if you're from Antarctica, we don't have any locations there **yet**. -->
       </ul>
     </div>
-    <div grid="~ *:col-span-full *:row-span-full" mx-auto flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-32>
+    <div grid="~ *:col-span-full *:row-span-full" mx-auto flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-64 max-md:px-32>
       <transition leave-active-class="transition duration-500 [&_:is(button,p)]:duration-300 ease-nq [&_:is(button,p)]:ease-out [&_:is(button,p)]:transition" leave-to-class="op-0 [&_button]:translate-y-96 [&_p]:translate-y--96 [&_:is(button,p)]:op-0" leave-from-class="op-100 [&_p]:translate-y-0 [&_button]:translate-y-0 [&_:is(button,p)]:op-100">
         <div v-if="!allowMapInteraction" flex="~ col gap-8 items-center justify-center" z-1 rounded-8 bg-darkblue bg-op-80>
           <p text="white min-18 max-24" font-bold>
