@@ -32,7 +32,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
   <ul flex="~ items-center justify-between gap-32 lg:gap-48 sm:row col">
     <li>
       <!-- <ReuseStat icon="i-nimiq:sand-clock size-14" icon-bg-color="bg-gradient-orange" :value="stats.txPerSecond || 0" :label="txSecLabel" /> -->
-      <ReuseStat icon="i-nimiq:sand-clock size-14" icon-bg-color="bg-gradient-orange" :value="1000" :label="txSecLabel" />
+      <ReuseStat icon="i-nimiq:sand-clock size-14" icon-bg-color="bg-gradient-orange" :value="1000" :label="txSecLabel" :decimals="0" />
     </li>
     <li>
       <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="stats.blockTime" :label="txSpeedLabel" :decimals="1" suffix="&nbsp;sec" />
