@@ -45,7 +45,7 @@ const transition = computed(() => {
       <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" text-24 />
     </NuxtLink>
     <NuxtLink v-if="hotCtaLink" :to="hotCtaLink" bg="neutral/15 hocus:neutral/20" :class="{ 'children:delay-200': direction === 'bottom' }" external mr-auto gap-x-9 truncate text-neutral nq-pill children:transition-colors>
-      <div i-nimiq:flame />
+      <div i-nimiq:flame shrink-0 />
       <span truncate text-neutral>{{ navigation.hottext }}</span>
     </NuxtLink>
 

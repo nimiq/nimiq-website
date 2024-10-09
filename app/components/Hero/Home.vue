@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
 import { NuxtLink, TweenedNumber } from '#components'
+import { breakpointsTailwind } from '@vueuse/core'
 
 const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
 
 const { cryptoMapLocationsCount: locationsCount } = storeToRefs(useGlobalContent())
+
+const { md, xl } = useBreakpoints(breakpointsTailwind)
 
 // @unocss-include
 
@@ -60,15 +63,23 @@ watch(subheadlineStr, () => {
     <Ember right-80 top-170 :scale="0.7" />
     <Ember bottom="302 md:430" left="56vw md:30vw" :scale="0.92" />
     <Ember bottom-460 right-32 />
-    <div class="world-container" pointer-events-none absolute bottom-0 flex="~ justify-center" mx-0 of-y-hidden>
+    <!-- <div class="world-container" pointer-events-none absolute bottom-0 flex="~ justify-center" mx-0 of-y-hidden>
       <div class="ellipse blue-ring" min-w-900 of-hidden />
     </div>
-    <div bg="darkblue/10" pointer-events-none absolute inset-0 backdrop-blur-40 />
-    <div class="world-container" flex="~ justify-center" pointer-events-none mx-0 mb--16 of-y-hidden>
+    <div bg="darkblue/10" pointer-events-none absolute inset-0 backdrop-blur-40 /> -->
+    <!-- <div class="world-container" flex="~ justify-center" pointer-events-none mx-0 mb--16 of-y-hidden>
       <div class="ellipse" flex="~ justify-center" bg="neutral global-dark:neutral-0" min-w-900 of-hidden pt="16 lg:0">
         <div h="220 lg:330 xl:550" i-continents:world-dots min-w-900 text-neutral-800 lg:w-1100 mt="lg:-36" />
       </div>
-    </div>
+    </div> -->
+
+    <ClientOnly>
+      <div w="[calc(100%+var(--px)*2+2px)]" left="[calc(-1*var(--px))] md:0" relative bottom--1 z-1 max-w-none>
+        <NuxtImg v-if="!md && !xl" src="/assets/images/home-hero/sm.webp" size-full loading="eager" width="768" height="588" />
+        <NuxtImg v-else-if="!xl" src="/assets/images/home-hero/md.webp" size-full loading="eager" width="1152" height="759" />
+        <NuxtImg v-else src="/assets/images/home-hero/xl.webp" size-full loading="eager" width="2396" height="1435" mb="-15%" />
+      </div>
+    </ClientOnly>
   </section>
 </template>
 
