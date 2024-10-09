@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
 import { NuxtLink, TweenedNumber } from '#components'
-import { breakpointsTailwind } from '@vueuse/core'
+// import { breakpointsTailwind } from '@vueuse/core'
 
 const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
 
 const { cryptoMapLocationsCount: locationsCount } = storeToRefs(useGlobalContent())
 
-const { md, xl } = useBreakpoints(breakpointsTailwind)
+// const { md, xl } = useBreakpoints(breakpointsTailwind)
 
 // @unocss-include
 
@@ -74,9 +74,9 @@ watch(subheadlineStr, () => {
     </div> -->
 
     <div w="[calc(100%+var(--px)*2+2px)]" left="[calc(-1*var(--px))] md:0" relative bottom--1 z-1 max-w-none mt="-64 md:-96 lg:-156">
-      <NuxtImg v-if="!md && !xl" src="/assets/images/home-hero/sm.webp" size-full loading="eager" width="768" height="588" />
-      <NuxtImg v-else-if="!xl" src="/assets/images/home-hero/md.webp" size-full loading="eager" width="1152" height="759" />
-      <NuxtImg v-else src="/assets/images/home-hero/xl.webp" size-full loading="eager" width="2396" height="1435" mb="-15%" />
+      <NuxtImg src="/assets/images/home-hero/sm.webp" size-full sm:hidden width="768" height="588" />
+      <NuxtImg src="/assets/images/home-hero/md.webp" hidden size-full sm:block lg:hidden width="1152" height="759" />
+      <NuxtImg src="/assets/images/home-hero/xl.webp" hidden size-full lg:block width="2396" height="1435" mb="-15%" />
     </div>
   </section>
 </template>
