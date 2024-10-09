@@ -56,13 +56,13 @@ const allowMapInteraction = ref(false)
 </script>
 
 <template>
-  <section flex="col lg:row gap-x-24 gap-y-64 lg:gap-y-32" bg-neutral-100 px="0 md:32 lg:64 xl:0" max-w="$nq-max-width">
+  <section flex="col lg:row gap-x-24 gap-y-64 lg:gap-y-32" bg-neutral-100 px="0 lg:64 xl:0" max-w="$nq-max-width">
     <div max-lg:w-full>
-      <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
+      <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 md:scroll-pl-64 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
         <li
           v-for="({ label, hasCryptoCities, hasLocations, cryptoCitiesCount, locationsCount, svg, selected }) in continents"
           :key="label!"
-          max-lg="snap-start shrink-0 first:pl-32 last:pr-32"
+          max-lg="snap-start shrink-0 first:pl-32 md:first:pl-64 last:pr-32 md:last:pr-64"
           rounded-8
           :data-selected="selected ? '' : undefined"
         >
