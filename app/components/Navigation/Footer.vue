@@ -8,7 +8,7 @@ const colors = getColorClass(bgColor)
 </script>
 
 <template>
-  <footer :class="colors" grid="~ gap-40 md:gap-48 items-start xl:gap-104" px="32 md:64 xl:0" max-w="$nq-max-width" nq-wide data-section z-10 mx-0 nq-pb-72 xl:mx-auto children:max-w-none>
+  <footer :class="colors" grid="~ gap-40 md:gap-48 items-start xl:gap-104" max-w="$nq-max-width" nq-wide data-section z-10 nq-pb-72 children:max-w-none>
     <div flex="~ col" text-sm area-contact>
       <p v-if="navigation?.newsletterCta">
         {{ navigation.newsletterCta }}
@@ -27,7 +27,7 @@ const colors = getColorClass(bgColor)
       <p v-if="navigation?.nimiqShortDescription" nq-mt-16>
         {{ navigation.nimiqShortDescription }}
       </p>
-      <div text="neutral-800 hocus:neutral-900" transition-colors nq-mt-32 flex="~ gap-16 items-center">
+      <div text="neutral-800 hocus:neutral-900" transition-colors nq-mt-32 flex="~ gap-16 items-center wrap">
         <NuxtLink to="/privacy-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
           Privacy Policy
         </NuxtLink>

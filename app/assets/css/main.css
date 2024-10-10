@@ -1,0 +1,8 @@
+[nq-wide] {
+  --nq-max-width: min(90rem, calc(100vw - 4rem));
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  align-items: center;
+}

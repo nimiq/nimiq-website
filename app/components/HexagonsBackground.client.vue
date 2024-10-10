@@ -81,7 +81,7 @@ const items = computed(() => {
   grid-template-columns: repeat(var(--cols), var(--gap) calc(var(--hexagon-w) - (2 * var(--gap)))) var(--gap);
   grid-template-rows: repeat(var(--rows), var(--hexagon-h-half));
   height: calc(var(--rows) * (var(--hexagon-h-half) * 1px) + var(--rows) * var(--gap));
-  left: calc(-1 * var(--hexagon-w) / 2);
+  margin-left: calc(-1 * var(--hexagon-w) / 2);
   position: relative;
   content-visibility: auto;
 
