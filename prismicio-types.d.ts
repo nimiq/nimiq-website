@@ -3527,14 +3527,14 @@ export interface CryptoMapContinentSelectorSliceDefaultPrimaryContinentsItem {
   label: prismic.KeyTextField
 
   /**
-   * Crypto Map Link field in *CryptoMapContinentSelector → Default → Primary → Continents*
+   * Coordinates field in *CryptoMapContinentSelector → Default → Primary → Continents*
    *
-   * - **Field Type**: Embed
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: crypto_map_continent_selector.default.primary.continents[].crypto_map_link
-   * - **Documentation**: https://prismic.io/docs/field#embed
+   * - **API ID Path**: crypto_map_continent_selector.default.primary.continents[].coordinates
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  crypto_map_link: prismic.EmbedField
+  coordinates: prismic.KeyTextField
 }
 
 /**

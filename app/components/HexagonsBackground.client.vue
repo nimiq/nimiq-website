@@ -83,6 +83,7 @@ const items = computed(() => {
   height: calc(var(--rows) * (var(--hexagon-h-half) * 1px) + var(--rows) * var(--gap));
   left: calc(-1 * var(--hexagon-w) / 2);
   position: relative;
+  content-visibility: auto;
 
   > div {
     width: var(--hexagon-w);
