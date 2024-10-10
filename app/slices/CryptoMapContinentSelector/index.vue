@@ -64,10 +64,24 @@ watch([activeItemIndex, iframe], () => {
 }, { immediate: true })
 
 const allowMapInteraction = ref(false)
+
+const iframeBlocked = ref(false)
+const { stop } = useTimeoutFn(() => iframeBlocked.value = true, 5000)
+useEventListener('load', () => {
+  stop()
+  iframeBlocked.value = false
+})
+
+const iframeParent = ref<HTMLDivElement>()
+useMutationObserver(iframeParent, () => {
+  if (!iframe.value) {
+    iframeBlocked.value = true
+  }
+}, { childList: true, subtree: true })
 </script>
 
 <template>
-  <section flex="col lg:row gap-x-24 gap-y-64 lg:gap-y-32" px="0 lg:64 xl:0" max-w="$nq-max-width" nq-wide bg-neutral-100>
+  <section v-if="!iframeBlocked" flex="col lg:row gap-x-24 gap-y-64 lg:gap-y-32" px="0 lg:64 xl:0" max-w="$nq-max-width" nq-wide bg-neutral-100>
     <div max-lg:w-full>
       <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 md:scroll-pl-64 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
         <li
@@ -102,7 +116,7 @@ const allowMapInteraction = ref(false)
         <!-- Sorry if you're from Antarctica, we don't have any locations there **yet**. -->
       </ul>
     </div>
-    <div grid="~ *:col-span-full *:row-span-full" mx-auto flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-64 max-md:px-32>
+    <div ref="iframeParent" grid="~ *:col-span-full *:row-span-full" mx-auto flex-1 self-stretch justify-self-stretch max-lg:w-full lg:self-stretch max-lg:px-64 max-md:px-32>
       <transition leave-active-class="transition duration-500 [&_:is(button,p)]:duration-300 ease-nq [&_:is(button,p)]:ease-out [&_:is(button,p)]:transition" leave-to-class="op-0 [&_button]:translate-y-96 [&_p]:translate-y--96 [&_:is(button,p)]:op-0" leave-from-class="op-100 [&_p]:translate-y-0 [&_button]:translate-y-0 [&_:is(button,p)]:op-100">
         <div v-if="!allowMapInteraction" flex="~ col gap-8 items-center justify-center" z-1 rounded-8 bg-darkblue bg-op-80>
           <p text="white min-18 max-24" font-bold>
@@ -118,11 +132,16 @@ const allowMapInteraction = ref(false)
       <iframe
         ref="iframe"
         loading="lazy"
-        w-full aspect="9/16 lg:initial" rounded-8 lg:h-full max-lg:max-h-80dvh ring="1.5 neutral-200" title="Crypto Map"
-        :src="cryptoMapUrl"
+        w-full
+        aspect="9/16 lg:initial" rounded-8 lg:h-full max-lg:max-h-80dvh ring="1.5 neutral-200" title="Crypto Map" :src="cryptoMapUrl"
         sandbox="allow-scripts allow-same-origin allow-popups"
         frameborder="0"
       />
     </div>
+  </section>
+  <section v-else bg-neutral-100 pt-0>
+    <NuxtLink to="https://map.nimiq.com" target="_blank" w-max nq-arrow nq-pill-lg nq-pill-blue md:mx-auto>
+      Explore the Crypto Map
+    </NuxtLink>
   </section>
 </template>
