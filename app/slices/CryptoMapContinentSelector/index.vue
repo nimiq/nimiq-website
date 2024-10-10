@@ -3,7 +3,8 @@ import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.CryptoMapContinentSelectorSlice>())
 
-const activeItem = ref(props.slice.primary.continents.at(0)!)
+const activeItemIndex = ref(0)
+const activeItem = computed(() => props.slice.primary.continents[activeItemIndex.value])
 
 const { cryptoMapContinentsStats: stats } = storeToRefs(useGlobalContent())
 const { language } = useNavigatorLanguage()
@@ -24,7 +25,7 @@ const continents = computed(() => {
   if (!stats.value)
     return []
 
-  return props.slice.primary.continents.map((continent) => {
+  return props.slice.primary.continents.map((continent, i) => {
     const statContinent = stats.value?.find(item => item.continent_name.toLowerCase() === continent.label?.toLowerCase())
     if (!statContinent)
       throw createError(`Continent ${continent.label} not found in stats`)
@@ -42,7 +43,7 @@ const continents = computed(() => {
       hasCryptoCities,
       hasLocations,
       svg: continentsSvg[continent.label as keyof typeof continentsSvg],
-      selected: activeItem.value?.label === continent.label,
+      selected: activeItemIndex.value === i,
     }
   })
 })
@@ -51,14 +52,15 @@ const iframe = ref<HTMLIFrameElement>()
 // const cryptoMapUrl = `http://localhost:5173/${activeItem.value?.coordinates}?layout=compact`
 const cryptoMapUrl = `https://map.nimiq.com/${activeItem.value?.coordinates}?layout=compact`
 
-watch(() => activeItem, () => {
+watch([activeItemIndex, iframe], () => {
   if (!iframe.value)
     return
-  const coords = continents.value.find(continent => continent.selected)?.coordinates
+  const coords = props.slice.primary.continents[activeItemIndex.value]?.coordinates
   if (!coords || !coords.includes(','))
     throw createError('Invalid coordinates')
-  const [lat, lng, zoom] = coords.split(',')
-  iframe.value.contentWindow?.postMessage(JSON.stringify({ kind: 'map:position', data: { center: { lat, lng } }, zoom }), '*')
+  const [lat, lng, zoom] = coords.slice(1).split(',')
+
+  iframe.value.contentWindow?.postMessage(JSON.stringify({ kind: 'map:position', data: { center: { lat, lng }, zoom: zoom?.replace('z', '') } }), '*')
 }, { immediate: true })
 
 const allowMapInteraction = ref(false)
@@ -69,13 +71,13 @@ const allowMapInteraction = ref(false)
     <div max-lg:w-full>
       <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 md:scroll-pl-64 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
         <li
-          v-for="({ label, hasCryptoCities, hasLocations, cryptoCitiesCount, locationsCount, svg, selected }) in continents"
+          v-for="({ label, hasCryptoCities, hasLocations, cryptoCitiesCount, locationsCount, svg, selected }, i) in continents"
           :key="label!"
           max-lg="snap-start shrink-0 first:pl-32 md:first:pl-64 last:pr-32 md:last:pr-64"
           rounded-8
           :data-selected="selected ? '' : undefined"
         >
-          <button p="x-24 y-20" relative w-full of-hidden nq-hoverable lg:max-w-410 md:min-w-385 max-md:selected:bg-white @click="activeItem!.label = label">
+          <button p="x-24 y-20" relative w-full of-hidden nq-hoverable lg:max-w-410 md:min-w-385 max-md:selected:bg-white @click="activeItemIndex = i">
             <p text="20/26 lg:22/28.6" whitespace-nowrap text-left font-semibold>
               {{ label }}
             </p>
