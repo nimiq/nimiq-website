@@ -50,8 +50,8 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section nq-wide relative z-10 bg-neutral-100 max-lg:px-64 max-md:px-32>
-    <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative w-full of-hidden rounded-8 px-32 shadow>
+  <section nq-wide relative z-10 bg-neutral-100>
+    <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative mx-auto w-full of-hidden rounded-8 px-32 shadow>
       <PrismicLink v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
         <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />
         <PrismicImage v-else :field="icon" pointer-events-none scale-125 />
@@ -65,7 +65,7 @@ const items = computed(() => {
         </div>
       </div>
 
-      <div relative z-10 max-w-full :class="{ 'lg:max-w-60ch md:items-center flex-col mx-auto w-max': hasBgItems, 'items-end w-full': !hasBgItems }" flex="~ wrap justify-between">
+      <div relative z-10 max-w-full :class="{ 'lg:max-w-60ch md:items-center flex-col md:mx-auto w-max': hasBgItems, 'items-end w-full': !hasBgItems }" flex="~ wrap justify-between">
         <div max-w-60ch>
           <p v-if="label" text-12 nq-mb-32 nq-label>
             {{ label }}
