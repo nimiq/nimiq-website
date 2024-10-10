@@ -25,10 +25,10 @@
                   "placeholder": ""
                 }
               },
-              "crypto_map_link": {
-                "type": "Embed",
+              "coordinates": {
+                "type": "Text",
                 "config": {
-                  "label": "Crypto Map Link",
+                  "label": "Coordinates",
                   "placeholder": ""
                 }
               }
