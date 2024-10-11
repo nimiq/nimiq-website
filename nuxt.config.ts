@@ -126,6 +126,7 @@ export default defineNuxtConfig({
       refreshToken: process.env.NUXT_ZOHO_REFRESH_TOKEN,
       listkey: process.env.NUXT_ZOHO_LISTKEY,
     },
+    siteEnv: process.env.NUXT_SITE_ENV,
   },
 
   hub: {
