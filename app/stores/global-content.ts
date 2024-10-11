@@ -135,7 +135,7 @@ export const useGlobalContent = defineStore('global-content', () => {
 
   const getSupabaseEndpoint = (fn: string) => `${supabase.url}/rest/v1/rpc/${fn}?apikey=${supabase.key}`
   const { data: cryptoMapStats } = useAsyncData('get_stats', () => $fetch<{ locations: number }>(getSupabaseEndpoint('get_stats')))
-  const cryptoMapLocationsCount = computed(() => cryptoMapStats.value?.locations)
+  const cryptoMapLocationsCount = computed(() => cryptoMapStats.value?.locations || 29_379)
   const { data: cryptoMapContinentsStats } = useAsyncData('get_stats_for_all_continents', () => $fetch<{ locations: number }>(getSupabaseEndpoint('get_stats_for_all_continents')))
 
   return {

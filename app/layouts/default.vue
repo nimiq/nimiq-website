@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ darkHeader: boolean, footerBgColor?: 'white' | 'grey' | 'darkblue', draft?: boolean }>()
+const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ darkHeader?: boolean, footerBgColor?: 'white' | 'grey' | 'darkblue', draft?: boolean }>()
 
 const { navigation } = storeToRefs(useGlobalContent())
 </script>
