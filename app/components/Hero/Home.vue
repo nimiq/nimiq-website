@@ -44,6 +44,35 @@ watch(subheadlineStr, () => {
     ],
   })
 })
+
+// Add these lines to handle responsive sizing
+const { width: windowWidth } = useWindowSize()
+
+const ellipseSize = computed(() => {
+  const minWidth = 375
+  const maxWidth = 1440
+  const minEllipseWidth = 1048.481
+  const maxEllipseWidth = 2885
+  const aspectRatio = 2444 / 2885 // Aspect ratio of the largest ellipse
+
+  // Calculate the scaling factor based on window width
+  const scale = (windowWidth.value - minWidth) / (maxWidth - minWidth)
+  const clampedScale = Math.max(0, Math.min(1, scale)) // Ensure scale is between 0 and 1
+
+  // Calculate the ellipse width using a quadratic easing function
+  const easedScale = clampedScale < 0.5
+    ? 2 * clampedScale * clampedScale
+    : 1 - (-2 * clampedScale + 2) ** 2 / 2
+  const ellipseWidth = minEllipseWidth + (maxEllipseWidth - minEllipseWidth) * easedScale
+
+  // Calculate the ellipse height maintaining the aspect ratio
+  const ellipseHeight = ellipseWidth * aspectRatio
+
+  return {
+    width: `${ellipseWidth}px`,
+    height: `${ellipseHeight}px`,
+  }
+})
 </script>
 
 <template>
@@ -75,7 +104,7 @@ watch(subheadlineStr, () => {
     </div> -->
 
     <div class="map-container relative z-1 mx-auto max-w-none w-full -bottom-1">
-      <div class="ellipse" />
+      <div class="ellipse" :style="ellipseSize" />
       <Map class="mx-auto h-auto max-w-[976px] w-full" />
     </div>
   </section>
