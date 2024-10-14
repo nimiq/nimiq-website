@@ -4,7 +4,7 @@
 
 <template>
   <svg viewBox="0 0 977 362" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity=".2" fill-rule="evenodd" clip-rule="evenodd" fill="currentColor">
+    <g opacity=".2" fill-rule="evenodd" clip-rule="evenodd" fill="#1F2348">
       <path
         d="M449.988 127.077c0 .847-1.101 1.609-2.457 1.694-1.44.085-2.626-.508-2.711-1.44-.084-.847 1.102-1.61 2.457-1.695 1.44-.084 2.711.509 2.711 1.441Z"
       />
