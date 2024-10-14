@@ -69,8 +69,8 @@ const ellipseSize = computed(() => {
   const ellipseHeight = ellipseWidth * aspectRatio
 
   return {
-    width: `${ellipseWidth}px`,
-    height: `${ellipseHeight}px`,
+    '--width': `${ellipseWidth}px`,
+    '--height': `${ellipseHeight}px`,
   }
 })
 </script>
@@ -103,8 +103,10 @@ const ellipseSize = computed(() => {
       </div>
     </div> -->
 
-    <div class="map-container relative z-1 mx-auto max-w-none w-full -bottom-1">
-      <div class="ellipse" :style="ellipseSize" />
+    <div class="map-container relative z-1 mx-auto max-w-none w-full -bottom-1" :style="ellipseSize">
+      <div class="counter-blue-ring" />
+      <div class="blue-ring" />
+      <div class="ellipse" />
       <Map class="mx-auto h-auto max-w-[976px] w-full" />
     </div>
   </section>
@@ -154,6 +156,8 @@ const ellipseSize = computed(() => {
 .map-container {
   margin-top: auto; /* Pushes the map to the bottom */
   padding-top: 23px;
+  --width: 2885px;
+  --height: 2444px;
 
   .ellipse {
     position: absolute;
@@ -161,12 +165,39 @@ const ellipseSize = computed(() => {
     left: 50%;
     transform: translateX(-50%);
 
-    width: 2885px;
-    height: 2444px;
+    width: var(--width);
+    height: var(--height);
     flex-shrink: 0;
     background: white;
     clip-path: ellipse(50% 50% at 50% 50%);
     z-index: -1;
+  }
+
+  .blue-ring,
+  .counter-blue-ring {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: var(--width);
+    width: var(--width);
+    height: var(--height);
+    flex-shrink: 0;
+  }
+
+  .blue-ring {
+    z-index: -2;
+    background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%);
+    filter: blur(120px);
+  }
+
+  .counter-blue-ring {
+    z-index: -1;
+    opacity: 0.3;
+    background: #1f2348;
+    mix-blend-mode: multiply;
+    filter: blur(20px);
   }
 }
 
