@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
 import { NuxtLink, TweenedNumber } from '#components'
+import Map from './Map.vue'
 // import { breakpointsTailwind } from '@vueuse/core'
 
 const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
@@ -46,8 +47,11 @@ watch(subheadlineStr, () => {
 </script>
 
 <template>
-  <section pt="148 md:153 lg:160" class="dark" dark relative mx-0 of-hidden bg-darkblue py-0 text-neutral children:max-w-none>
-    <div z-10 children:md:mx-auto>
+  <section
+    class="dark hero-section relative mx-0 of-hidden bg-darkblue py-0 text-neutral children:max-w-none"
+    pt="148 md:153 lg:160"
+  >
+    <div class="content-wrapper z-10 children:md:mx-auto">
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text-neutral-800 />
       <PrismicLink internal-component="a" mt-40 :field="cta" nq-arrow nq-pill-lg nq-pill-blue>
@@ -70,16 +74,14 @@ watch(subheadlineStr, () => {
       </div>
     </div> -->
 
-    <div w="[calc(100%+var(--px)*2+2px)]" left="[calc(-1*var(--px))] md:0" relative bottom--1 z-1 max-w-none mt="-64 md:-96 lg:-156">
-      <NuxtImg src="/assets/images/home-hero/sm.webp" size-full sm:hidden width="768" height="588" />
-      <NuxtImg src="/assets/images/home-hero/md.webp" hidden size-full sm:block lg:hidden width="1152" height="759" />
-      <NuxtImg src="/assets/images/home-hero/xl.webp" hidden size-full lg:block width="2396" height="1435" mb="-15%" />
+    <div class="map-container relative z-1 mx-auto max-w-none w-full overflow-x-hidden -bottom-1">
+      <Map class="mx-auto h-auto max-w-[976px] w-full" />
     </div>
   </section>
 </template>
 
 <style scoped>
-section {
+/* section {
   --mt-ellipsis: 128px;
   --aspect-ratio: 1.6;
   --uno: '[--ellipsis-width:200vw] md:[--ellipsis-width:340vh]';
@@ -102,6 +104,34 @@ section {
     .blue-ring {
       background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%);
     }
+  }
+} */
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 80px; /* Ensures minimum space between content and map */
+}
+
+.map-container {
+  margin-top: auto; /* Pushes the map to the bottom */
+}
+
+@media (max-height: 800px) {
+  .hero-section {
+    min-height: auto;
+  }
+
+  .content-wrapper {
+    padding-bottom: 40px; /* Reduced padding for smaller screens */
   }
 }
 </style>
