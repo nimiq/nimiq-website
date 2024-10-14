@@ -74,7 +74,8 @@ watch(subheadlineStr, () => {
       </div>
     </div> -->
 
-    <div class="map-container relative z-1 mx-auto max-w-none w-full overflow-x-hidden -bottom-1">
+    <div class="map-container relative z-1 mx-auto max-w-none w-full -bottom-1">
+      <div class="ellipse" />
       <Map class="mx-auto h-auto max-w-[976px] w-full" />
     </div>
   </section>
@@ -123,6 +124,21 @@ watch(subheadlineStr, () => {
 
 .map-container {
   margin-top: auto; /* Pushes the map to the bottom */
+  padding-top: 23px;
+
+  .ellipse {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 2885px;
+    height: 2444px;
+    flex-shrink: 0;
+    background: white;
+    clip-path: ellipse(50% 50% at 50% 50%);
+    z-index: -1;
+  }
 }
 
 @media (max-height: 800px) {
