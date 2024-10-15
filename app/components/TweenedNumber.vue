@@ -5,7 +5,6 @@ const {
   decimals = 0,
   value = 0,
   animationDuration = 1000,
-  locale = 'en-US',
   digitsCount,
   min,
   max,
@@ -15,13 +14,14 @@ const {
   animationDuration?: number
   min?: number
   max?: number
-  locale?: string
   digitsCount?: number
 }>()
 
+const locale = useLocale()
+
 const tweeningValue = ref(value)
 
-let abortController: AbortController | null = null
+let abortController: AbortController
 
 const formatter = new Intl.NumberFormat(locale, {
   style: 'decimal',
@@ -31,12 +31,16 @@ const formatter = new Intl.NumberFormat(locale, {
 
 const formattedValue = computed(() => {
   const formatted = formatter.format(tweeningValue.value)
-  if (digitsCount) {
-    const parts = formatted.split('.')
+
+  // Only add padding if digitsCount is defined and valid
+  if (digitsCount && digitsCount > 0) {
+    const decimalSeparator = (0.1).toLocaleString(locale).replace(/\d/g, '')
+    const parts = formatted.split(decimalSeparator)
     const integerPart = parts[0]!.replace(/\D/g, '')
     const padding = '0'.repeat(Math.max(0, digitsCount - integerPart.length))
     return padding + formatted
   }
+
   return formatted
 })
 

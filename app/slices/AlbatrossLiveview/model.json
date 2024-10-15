@@ -59,7 +59,7 @@
         "estimatedAverageRewardsValue": {
           "type": "Text",
           "config": {
-            "label": "Estimated Average Rewards",
+            "label": "Estimated Average Rewards Value",
             "placeholder": ""
           }
         }

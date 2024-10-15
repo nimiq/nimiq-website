@@ -7,9 +7,9 @@ const activeItemIndex = ref(0)
 const activeItem = computed(() => props.slice.primary.continents[activeItemIndex.value])
 
 const { cryptoMapContinentsStats: stats } = storeToRefs(useGlobalContent())
-const { language } = useNavigatorLanguage()
+const locale = useLocale()
 
-const formatter = computed(() => new Intl.NumberFormat(language.value, { notation: 'compact', maximumFractionDigits: 1 }))
+const formatter = computed(() => new Intl.NumberFormat(locale.value, { notation: 'compact', maximumFractionDigits: 1 }))
 
 // @unocss-include
 const continentsSvg = {
