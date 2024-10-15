@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { date } = defineProps<{ date: Date, authors: string }>()
 
-const { language } = useNavigatorLanguage()
+const locale = useLocale()
 
 const formattedDate = computed(() => {
-  return new Date(date).toLocaleDateString(language.value, {
+  return new Date(date).toLocaleDateString(locale.value, {
     day: 'numeric',
     month: 'short',
     year: new Date(date).getFullYear() === new Date().getFullYear() ? undefined : 'numeric',

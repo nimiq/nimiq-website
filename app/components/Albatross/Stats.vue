@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { txSecLabel = 'TX/sec', averageRewardsLabel = 'Est. Avg. rewards', txSpeedLabel = 'TX Speed', averageRewardsValue = '14.9' } = defineProps<{
+const { txSecLabel = 'TX/sec', averageRewardsLabel = 'Est. Avg. rewards', txSpeedLabel = 'TX Speed', averageRewardsValue = '14.9% p.a' } = defineProps<{
   txSecLabel?: string
   txSpeedLabel?: string
   averageRewardsLabel?: string
@@ -38,7 +38,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
       <ReuseStat icon="i-nimiq:bolt size-14" icon-bg-color="bg-gradient-gold" :value="stats.blockTime" :label="txSpeedLabel" :decimals="1" suffix="&nbsp;sec" />
     </li>
     <li>
-      <ReuseStat icon="i-nimiq:leaf-2 size-12 ml-1" icon-bg-color="bg-gradient-green" :value="averageRewardsValue" :label="averageRewardsLabel" suffix="% p.a" />
+      <ReuseStat icon="i-nimiq:leaf-2 size-12 ml-1" icon-bg-color="bg-gradient-green" :value="averageRewardsValue" :label="averageRewardsLabel" />
     </li>
   </ul>
 </template>

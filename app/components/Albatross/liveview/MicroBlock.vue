@@ -3,8 +3,8 @@ const props = defineProps<{ block: LiveviewMicroBlock }>()
 
 const MAX_TXS = 1102
 
-const { language } = useNavigatorLanguage()
-const durationFormatter = new Intl.NumberFormat(language.value, {
+const locale = useLocale()
+const durationFormatter = new Intl.NumberFormat(locale.value, {
   style: 'unit',
   unit: 'second',
   unitDisplay: 'short',

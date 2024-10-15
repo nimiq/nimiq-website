@@ -17,11 +17,6 @@
         "value": "distant",
         "type": "Text"
       },
-      "averageRewardsLabel": {
-        "__TYPE__": "FieldContent",
-        "value": "recall",
-        "type": "Text"
-      },
       "networkNotice": {
         "__TYPE__": "FieldContent",
         "value": "rock",
@@ -32,9 +27,14 @@
         "value": "powder",
         "type": "Text"
       },
+      "averageRewardsLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "office",
+        "type": "Text"
+      },
       "estimatedAverageRewardsValue": {
         "__TYPE__": "FieldContent",
-        "value": "system",
+        "value": "studying",
         "type": "Text"
       }
     },

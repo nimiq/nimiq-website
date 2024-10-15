@@ -11,15 +11,12 @@ const { cryptoMapLocationsCount: locationsCount } = storeToRefs(useGlobalContent
 
 // @unocss-include
 
-const { language } = useNavigatorLanguage()
-
 const locationsSpan = h(NuxtLink, { class: 'text-blue', to: 'https://map.nimiq.com', target: '_blank' }, () => [
   h(TweenedNumber, {
     value: locationsCount.value || 0,
     min: 0,
     max: locationsCount.value || 20_000,
     animationDuration: 1300,
-    locale: language.value,
     digitsCount: 5,
     allowAnimation: true,
   }),

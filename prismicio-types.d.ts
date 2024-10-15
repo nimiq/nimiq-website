@@ -2440,7 +2440,7 @@ export interface AlbatrossLiveviewSliceDefaultPrimary {
   averageRewardsLabel: prismic.KeyTextField
 
   /**
-   * Estimated Average Rewards field in *AlbatrossLiveview → Default → Primary*
+   * Estimated Average Rewards Value field in *AlbatrossLiveview → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
