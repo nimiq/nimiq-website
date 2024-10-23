@@ -87,7 +87,16 @@ const ellipseSize = computed(() => {
         {{ ctaLabel }}
       </PrismicLink>
     </div>
-    <NuxtImg pointer-events-none absolute inset-0 m-0 size-full src="/assets/images/gods-light.webp" alt="Nimiq Gods Rays Background" />
+    <NuxtImg
+      pointer-events-none
+      absolute
+      inset-0
+      m-0
+      size-full
+      src="/assets/images/gods-light.webp"
+      alt="Nimiq Gods Rays Background"
+      class="darken blur-sm"
+    />
     <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
     <Ember left-100 top="77 sm:112 md:200" :scale="1.05" />
     <Ember right-80 top-170 :scale="0.7" />
@@ -180,7 +189,7 @@ const ellipseSize = computed(() => {
     left: 50%;
     transform: translateX(-50%);
 
-    border-radius: var(--width);
+    border-radius: 50%;
     width: var(--width);
     height: var(--height);
     flex-shrink: 0;
@@ -194,7 +203,7 @@ const ellipseSize = computed(() => {
 
   .counter-blue-ring {
     z-index: -1;
-    opacity: 0.3;
+    opacity: 0.4;
     background: #1f2348;
     mix-blend-mode: multiply;
     filter: blur(20px);
@@ -209,5 +218,13 @@ const ellipseSize = computed(() => {
   .content-wrapper {
     padding-bottom: 40px; /* Reduced padding for smaller screens */
   }
+}
+
+.blur-sm {
+  filter: blur(60px);
+}
+
+.blur-sm.darken {
+  filter: blur(60px) brightness(0.8);
 }
 </style>
