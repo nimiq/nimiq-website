@@ -9728,4 +9728,20 @@ svg {
 .green-group path {
   filter: drop-shadow(0px 0px 2px rgba(var(--nq-green-on-light) / 0.5));
 }
+
+.marker-group use {
+  --duration: 0.3s;
+  --timing-function: ease-in-out;
+
+  transition:
+    transform var(--duration) var(--nq-ease),
+    filter var(--duration) var(--nq-ease);
+
+  filter: drop-shadow(0px 0px 4px rgba(var(--nq-green-on-light) / 0.25));
+}
+
+.marker-group use:hover {
+  transform: translateY(-5px);
+  filter: drop-shadow(0px 0px 8px rgba(var(--nq-green-on-light) / 0.5));
+}
 </style>
