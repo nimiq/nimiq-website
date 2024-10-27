@@ -9612,6 +9612,7 @@
         d="M200.253 328.355c.085.932-1.186 2.033-2.711 2.541-1.525.509-2.711.17-2.711-.762-.084-.932 1.186-2.033 2.711-2.541 1.525-.509 2.796-.17 2.711.762Z"
       />
     </g>
+
     <g class="green-group europe" opacity="1" fill-rule="evenodd" clip-rule="evenodd" fill="#1F2348">
       <path
         d="M432.199 67.438c.084.847-1.017 1.61-2.372 1.694-1.356.085-2.542-.508-2.627-1.355-.084-.847 1.017-1.61 2.372-1.694 1.61-.085 2.627.508 2.627 1.355Z"
@@ -9629,6 +9630,7 @@
         d="M432.114 62.949c.085.847-1.017 1.61-2.457 1.694-1.355.085-2.372-.508-2.457-1.356-.084-.847 1.017-1.61 2.457-1.694 1.186-.085 2.372.508 2.457 1.356Z"
       />
     </g>
+
     <g class="green-group australia" opacity="1" fill-rule="evenodd" clip-rule="evenodd" fill="#1F2348">
       <path
         d="M882.026 318.444c.085 1.016-.932 1.271-2.372.678-1.44-.593-2.795-1.864-2.88-2.796-.085-1.016.932-1.271 2.372-.678 1.44.593 2.711 1.779 2.88 2.796Z"
@@ -9646,9 +9648,19 @@
         d="M881.094 313.361c.085 1.017-.932 1.271-2.287.762-1.355-.508-2.796-1.863-2.88-2.795-.085-1.017.932-1.271 2.287-.763 1.44.678 2.796 1.864 2.88 2.796Z"
       />
     </g>
+
     <g class="marker-group">
       <use href="#marker" class="marker-europe" width="160" x="350" y="-175" />
       <use href="#marker" class="marker-australia" width="160" x="800" y="70" />
+    </g>
+
+    <g class="small-marker-group">
+      <use href="#small-marker" class="small-marker-1" width="80" x="15" y="7" />
+      <use href="#small-marker" class="small-marker-2" width="80" x="135" y="-90" />
+      <use href="#small-marker" class="small-marker-3" width="80" x="182" y="45" />
+      <use href="#small-marker" class="small-marker-4" width="80" x="326" y="-39" />
+
+      <use href="#small-marker" class="small-marker-5" width="80" x="614" y="-61" />
     </g>
 
     <symbol id="marker" viewBox="0 0 158 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -9711,6 +9723,39 @@
         </filter>
       </defs>
     </symbol>
+
+    <symbol id="small-marker" viewBox="0 0 118 139" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#a)">
+        <path
+          d="M79.507 65.79a4.109 4.109 0 0 1-1.641 3.285L61.785 81.148a4.109 4.109 0 0 1-4.934 0l-16.08-12.073a4.108 4.108 0 0 1-1.642-3.286V24.343a4.109 4.109 0 0 1 4.109-4.108h32.161c2.27 0 4.109 1.84 4.109 4.108V65.79Z"
+          fill="#21BCA5"
+        />
+      </g>
+      <defs>
+        <filter
+          id="a" x=".717" y=".018" width="117.203" height="138.561" filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="2.022" />
+          <feGaussianBlur stdDeviation="1.264" />
+          <feColorMatrix values="0 0 0 0 0.122709 0 0 0 0 0.138823 0 0 0 0 0.283843 0 0 0 0.02 0" />
+          <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_257_31717" />
+          <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="7.076" />
+          <feGaussianBlur stdDeviation="4.296" />
+          <feColorMatrix values="0 0 0 0 0.122709 0 0 0 0 0.138823 0 0 0 0 0.283843 0 0 0 0.04 0" />
+          <feBlend in2="effect1_dropShadow_257_31717" result="effect2_dropShadow_257_31717" />
+          <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="18.195" />
+          <feGaussianBlur stdDeviation="19.206" />
+          <feColorMatrix values="0 0 0 0 0.122709 0 0 0 0 0.138823 0 0 0 0 0.283843 0 0 0 0.07 0" />
+          <feBlend in2="effect2_dropShadow_257_31717" result="effect3_dropShadow_257_31717" />
+          <feBlend in="SourceGraphic" in2="effect3_dropShadow_257_31717" result="shape" />
+        </filter>
+      </defs>
+    </symbol>
   </svg>
 </template>
 
@@ -9729,7 +9774,8 @@ svg {
   filter: drop-shadow(0px 0px 2px rgba(var(--nq-green-on-light) / 0.5));
 }
 
-.marker-group use {
+.marker-group use,
+.small-marker-group use {
   --duration: 0.3s;
   --timing-function: ease-in-out;
 
@@ -9740,8 +9786,9 @@ svg {
   filter: drop-shadow(0px 0px 4px rgba(var(--nq-green-on-light) / 0.25));
 }
 
-.marker-group use:hover {
-  transform: translateY(-5px);
+.marker-group use:hover,
+.small-marker-group use:hover {
+  transform: translateY(-8px);
   filter: drop-shadow(0px 0px 8px rgba(var(--nq-green-on-light) / 0.5));
 }
 </style>
