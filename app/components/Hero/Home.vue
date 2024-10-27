@@ -159,11 +159,10 @@ const ellipseSize = computed(() => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 80px; /* Ensures minimum space between content and map */
 }
 
 .map-container {
-  margin-top: auto; /* Pushes the map to the bottom */
+  margin-top: 80px;
   padding-top: 23px;
   --width: 2885px;
   --height: 2444px;
