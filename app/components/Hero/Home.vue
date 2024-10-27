@@ -69,8 +69,8 @@ const ellipseSize = computed(() => {
   const ellipseHeight = ellipseWidth * aspectRatio
 
   return {
-    '--width': `${ellipseWidth}px`,
-    '--height': `${ellipseHeight}px`,
+    '--width': `${ellipseWidth < 1535 ? 1535 : ellipseWidth}px`, // min 1535
+    '--height': `${ellipseHeight < 1300 ? 1300 : ellipseHeight}px`, // min 1300
   }
 })
 </script>
@@ -103,11 +103,13 @@ const ellipseSize = computed(() => {
     <Ember bottom="302 md:430" left="56vw md:30vw" :scale="0.92" />
     <Ember bottom-460 right-32 />
 
-    <div class="map-container relative z-1 mx-auto max-w-none w-full -bottom-1" :style="ellipseSize">
-      <div class="counter-blue-ring" />
-      <div class="blue-ring" />
-      <div class="ellipse" />
-      <Map class="mx-auto h-auto max-w-[976px] w-full" />
+    <div class="map-wrapper">
+      <div class="map-container" :style="ellipseSize">
+        <div class="counter-blue-ring" />
+        <div class="blue-ring" />
+        <div class="ellipse" />
+        <Map />
+      </div>
     </div>
   </section>
 </template>
@@ -126,11 +128,21 @@ const ellipseSize = computed(() => {
   justify-content: center;
 }
 
-.map-container {
+.map-wrapper {
+  width: 100%;
+  max-width: none;
   margin-top: 80px;
-  padding-top: 23px;
+  display: flex;
+  justify-content: center;
+}
+
+.map-container {
+  position: relative;
+  z-index: 1;
   --width: 2885px;
   --height: 2444px;
+  min-width: 750px;
+  padding-top: 23px;
 
   .ellipse {
     position: absolute;
