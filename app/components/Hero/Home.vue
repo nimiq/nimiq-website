@@ -102,15 +102,6 @@ const ellipseSize = computed(() => {
     <Ember right-80 top-170 :scale="0.7" />
     <Ember bottom="302 md:430" left="56vw md:30vw" :scale="0.92" />
     <Ember bottom-460 right-32 />
-    <!-- <div class="world-container" pointer-events-none absolute bottom-0 flex="~ justify-center" mx-0 of-y-hidden>
-      <div class="ellipse blue-ring" min-w-900 of-hidden />
-    </div>
-    <div bg="darkblue/10" pointer-events-none absolute inset-0 backdrop-blur-40 /> -->
-    <!-- <div class="world-container" flex="~ justify-center" pointer-events-none mx-0 mb--16 of-y-hidden>
-      <div class="ellipse" flex="~ justify-center" bg="neutral global-dark:neutral-0" min-w-900 of-hidden pt="16 lg:0">
-        <div h="220 lg:330 xl:550" i-continents:world-dots min-w-900 text-neutral-800 lg:w-1100 mt="lg:-36" />
-      </div>
-    </div> -->
 
     <div class="map-container relative z-1 mx-auto max-w-none w-full -bottom-1" :style="ellipseSize">
       <div class="counter-blue-ring" />
@@ -122,32 +113,6 @@ const ellipseSize = computed(() => {
 </template>
 
 <style scoped>
-/* section {
-  --mt-ellipsis: 128px;
-  --aspect-ratio: 1.6;
-  --uno: '[--ellipsis-width:200vw] md:[--ellipsis-width:340vh]';
-  --ellipsis-height: calc(var(--ellipsis-width) / var(--aspect-ratio));
-
-  .world-container {
-    margin-top: var(--mt-ellipsis);
-    --uno: 'h-190 sm:h-225 md:h-300 lg:h-413 mx--32';
-
-    .ellipse {
-      height: var(--ellipsis-height);
-      clip-path: ellipse(50% 50% at 50% 50%);
-      aspect-ratio: var(--aspect-ratio);
-    }
-
-    &:has(.blue-ring) {
-      --uno: 'h-190 sm:h-225 md:h-300 lg:h-413';
-    }
-
-    .blue-ring {
-      background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%);
-    }
-  }
-} */
-
 .hero-section {
   min-height: 100vh;
   display: flex;
