@@ -44,35 +44,6 @@ watch(subheadlineStr, () => {
     ],
   })
 })
-
-// Add these lines to handle responsive sizing
-const { width: windowWidth } = useWindowSize()
-
-const ellipseSize = computed(() => {
-  const minWidth = 375
-  const maxWidth = 1440
-  const minEllipseWidth = 1048.481
-  const maxEllipseWidth = 2885
-  const aspectRatio = 2444 / 2885 // Aspect ratio of the largest ellipse
-
-  // Calculate the scaling factor based on window width
-  const scale = (windowWidth.value - minWidth) / (maxWidth - minWidth)
-  const clampedScale = Math.max(0, Math.min(1, scale)) // Ensure scale is between 0 and 1
-
-  // Calculate the ellipse width using a quadratic easing function
-  const easedScale = clampedScale < 0.5
-    ? 2 * clampedScale * clampedScale
-    : 1 - (-2 * clampedScale + 2) ** 2 / 2
-  const ellipseWidth = minEllipseWidth + (maxEllipseWidth - minEllipseWidth) * easedScale
-
-  // Calculate the ellipse height maintaining the aspect ratio
-  const ellipseHeight = ellipseWidth * aspectRatio
-
-  return {
-    '--width': `${ellipseWidth < 1535 ? 1535 : ellipseWidth}px`, // min 1535
-    '--height': `${ellipseHeight < 1300 ? 1300 : ellipseHeight}px`, // min 1300
-  }
-})
 </script>
 
 <template>
@@ -104,7 +75,7 @@ const ellipseSize = computed(() => {
     <Ember bottom-460 right-32 />
 
     <div class="map-wrapper">
-      <div class="map-container" :style="ellipseSize">
+      <div class="map-container">
         <div class="counter-blue-ring" />
         <div class="blue-ring" />
         <div class="ellipse" />
@@ -116,9 +87,14 @@ const ellipseSize = computed(() => {
 
 <style scoped>
 .hero-section {
-  min-height: 100vh;
+  min-height: 110vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 1024px) {
+    min-height: 100vh;
+  }
 }
 
 .content-wrapper {
@@ -126,22 +102,60 @@ const ellipseSize = computed(() => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* padding-bottom: 20px; */
 }
 
 .map-wrapper {
   width: 100%;
   max-width: none;
-  margin-top: 80px;
+  margin-top: 120px;
   display: flex;
   justify-content: center;
 }
 
 .map-container {
+  /**
+  * Design values/breakpoints:
+  *
+  * screen:
+  *   width: 1440px;
+  *   height: 914px;
+  * ellipse:
+  *   width: 2018px;
+  *   height: 1098px;
+  *
+  * screen:
+  *   width: 1152px;
+  *   height: 914px;
+  * ellipse:
+  *   width: 2411px;
+  *   height: 2183px;
+  *
+  * screen:
+  *   width: 768px;
+  *   height: 842px;
+  * ellipse:
+  *   width: 1048px;
+  *   height: 605px;
+  */
+
+  --width: calc(2018 * (100vw / 1440));
+  --height: calc(1098 * (100vw / 1440));
+
+  @media (max-width: 1152px) {
+    --width: calc(2411 * (100vw / 1152));
+    --height: calc(2183 * (100vw / 1152));
+  }
+
+  @media (max-width: 768px) {
+    --width: 1048px;
+    --height: 605px;
+  }
+
   position: relative;
   z-index: 1;
-  --width: 2885px;
-  --height: 2444px;
-  min-width: 750px;
+  width: 80%;
+  min-width: 680px;
   padding-top: 23px;
 
   .ellipse {
@@ -152,9 +166,10 @@ const ellipseSize = computed(() => {
 
     width: var(--width);
     height: var(--height);
+    border-radius: 50%;
+    /* clip-path: ellipse(50% 50% at 50% 50%); */
     flex-shrink: 0;
     background: white;
-    clip-path: ellipse(50% 50% at 50% 50%);
     z-index: -1;
   }
 
@@ -189,10 +204,6 @@ const ellipseSize = computed(() => {
 @media (max-height: 800px) {
   .hero-section {
     min-height: auto;
-  }
-
-  .content-wrapper {
-    padding-bottom: 40px; /* Reduced padding for smaller screens */
   }
 }
 
