@@ -60,6 +60,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "albatross_technical_details": {
+              "type": "SharedSlice"
+            },
             "newsletter_form": {
               "type": "SharedSlice"
             },

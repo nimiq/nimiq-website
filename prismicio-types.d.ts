@@ -1739,6 +1739,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | AlbatrossTechnicalDetailsSlice
   | NewsletterFormSlice
   | CryptoMapContinentSelectorSlice
   | PrestakingGridSlice
