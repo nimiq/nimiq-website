@@ -21,7 +21,7 @@ defineOgImageComponent('DefaultImage')
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color :dark-header :draft>
+  <NuxtLayout :footer-bg-color :dark-header :draft :show-socials-hexagon-bg="uid === 'home'">
     <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
   </NuxtLayout>
 </template>

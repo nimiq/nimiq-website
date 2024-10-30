@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ darkHeader?: boolean, footerBgColor?: 'white' | 'grey' | 'darkblue', draft?: boolean }>()
+const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ darkHeader?: boolean, footerBgColor?: 'white' | 'grey' | 'darkblue', draft?: boolean, showSocialsHexagonBg?: boolean }>()
 
 const { navigation } = storeToRefs(useGlobalContent())
 </script>
@@ -13,6 +13,6 @@ const { navigation } = storeToRefs(useGlobalContent())
   <div fixed bottom-32 right-32 z-102>
     <LockBadge v-if="draft" />
   </div>
-  <HexagonsBackground z-1 class="hexagon-bg" :bg-color="footerBgColor" />
+  <HexagonsBackground z-1 class="hexagon-bg" :bg-color="footerBgColor" :with-socials="showSocialsHexagonBg" />
   <NavigationFooter :bg-color="footerBgColor" />
 </template>

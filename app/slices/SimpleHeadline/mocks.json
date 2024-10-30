@@ -9,7 +9,6 @@
         "type": "Select"
       },
       "icon": {
-        "__TYPE__": "ImageContent",
         "origin": {
           "id": "main",
           "url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
@@ -27,6 +26,9 @@
           },
           "background": "transparent"
         },
+        "credits": null,
+        "alt": null,
+        "__TYPE__": "ImageContent",
         "thumbnails": {}
       },
       "label": {
@@ -76,6 +78,77 @@
       "iconName": {
         "__TYPE__": "FieldContent",
         "value": "shinning",
+        "type": "Text"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "stakeHeadline",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "blue-dark",
+        "type": "Select"
+      },
+      "label": {
+        "__TYPE__": "FieldContent",
+        "value": "front",
+        "type": "Text"
+      },
+      "headline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading2",
+            "content": {
+              "text": "Library"
+            }
+          }
+        ]
+      },
+      "subline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "In aliqua tempor commodo et fugiat dolore irure minim quis mollit qui. Elit mollit consectetur ullamco exercitation mollit adipisicing voluptate sunt aliquip voluptate amet. Non minim adipisicing sint nulla aliquip ex dolor et quis amet ut."
+            }
+          }
+        ]
+      },
+      "linkHref": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com"
+        }
+      },
+      "linkLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "furniture",
+        "type": "Text"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      },
+      "note": {
+        "__TYPE__": "FieldContent",
+        "value": "nest",
+        "type": "Text"
+      },
+      "interestPerYear": {
+        "__TYPE__": "FieldContent",
+        "value": "dug",
         "type": "Text"
       }
     },

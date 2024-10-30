@@ -69,6 +69,9 @@ export default defineConfig({
   ],
 
   theme: {
+    colors: {
+      green: { staking: '#23BBA4' },
+    },
     animation: {
       timingFns: {
         'scale-in': 'ease',

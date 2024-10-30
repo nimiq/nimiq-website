@@ -8371,9 +8371,130 @@ export type SimpleHeadlineSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *SimpleHeadline → Stake Headline → Primary*
+ */
+export interface SimpleHeadlineSliceStakeHeadlinePrimary {
+  /**
+   * Background color (DEPRECATED) field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.backgroundColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  backgroundColor: prismic.SelectField<
+    | 'white'
+    | 'grey'
+    | 'blue'
+    | 'blue-dark'
+    | 'green'
+    | 'blue-s3'
+    | 'blue-dark-dimmed',
+    'filled'
+  >
+
+  /**
+   * Label field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField
+
+  /**
+   * Headline* field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: This is where it all begins...
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField
+
+  /**
+   * Subline* field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: A nice description of your product
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField
+
+  /**
+   * Link href field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.linkHref
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  linkHref: prismic.LinkField
+
+  /**
+   * Link label field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Mandatory if the Link href is set
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.linkLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  linkLabel: prismic.KeyTextField
+
+  /**
+   * Background Color field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: grey
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
+
+  /**
+   * Note field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.note
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  note: prismic.KeyTextField
+
+  /**
+   * Interest per year field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.interestPerYear
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  interestPerYear: prismic.KeyTextField
+}
+
+/**
+ * Stake Headline variation for SimpleHeadline Slice
+ *
+ * - **API ID**: `stakeHeadline`
+ * - **Description**: SimpleHeadline
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SimpleHeadlineSliceStakeHeadline = prismic.SharedSliceVariation<
+  'stakeHeadline',
+  Simplify<SimpleHeadlineSliceStakeHeadlinePrimary>,
+  never
+>
+
+/**
  * Slice variation for *SimpleHeadline*
  */
-type SimpleHeadlineSliceVariation = SimpleHeadlineSliceDefault
+type SimpleHeadlineSliceVariation =
+  | SimpleHeadlineSliceDefault
+  | SimpleHeadlineSliceStakeHeadline
 
 /**
  * SimpleHeadline Shared Slice
@@ -10138,6 +10259,8 @@ declare module '@prismicio/client' {
       SimpleHeadlineSlice,
       SimpleHeadlineSliceDefault,
       SimpleHeadlineSliceDefaultPrimary,
+      SimpleHeadlineSliceStakeHeadline,
+      SimpleHeadlineSliceStakeHeadlinePrimary,
       SimpleHeadlineSliceVariation,
       SocialMediaDocument,
       SocialMediaDocumentData,

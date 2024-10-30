@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { NuxtLink } from '#components'
 import { computed } from 'vue'
 
-const { bgColor } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue' }>()
+const { bgColor, withSocials = false } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue', withSocials?: boolean }>()
+
+const { socialMedias } = storeToRefs(useGlobalContent())
+
 const colors = getColorClass(bgColor)
 
 const rows = computed(() => 5)
@@ -19,6 +23,13 @@ function calculateOpacity(rowIndex: number, colIndex: number) {
     return 1 - (distance / threshold)
 }
 
+const socialCoords = {
+  youtube: [2, 6],
+  x: [3, 7],
+  facebook: [1, 9],
+}
+const socials = Object.keys(socialCoords) as (keyof typeof socialCoords)[]
+
 const items = computed(() => {
   const result = []
   for (let rowIndex = 0; rowIndex < rows.value; rowIndex++) {
@@ -26,7 +37,10 @@ const items = computed(() => {
     const startCol = isEvenRow ? 0 : 1
     for (let colIndex = startCol; colIndex < columns.value; colIndex += 2) {
       const opacity = calculateOpacity(rowIndex, colIndex)
-      result.push({ rowIndex, colIndex, opacity })
+      let social
+      if (withSocials)
+        social = socials.find(s => socialCoords[s][0] === rowIndex && socialCoords[s][1] === colIndex)
+      result.push({ rowIndex, colIndex, opacity, social })
     }
   }
   return result
@@ -46,16 +60,32 @@ const items = computed(() => {
         :style="{
           '--row': item.rowIndex,
           '--col': item.colIndex,
-          'opacity': item.opacity,
+          'opacity': item.opacity && !item.social ? item.opacity : 1,
           'animation-delay': `${item.rowIndex * 0.1 + item.colIndex * 0.15}s`,
           'animation-duration': `${(rows - item.rowIndex) * 2 + 4}s`,
         }"
-        class="grid-item"
         i-nimiq:logos-nimiq-mono
-        text="neutral-300 dark:neutral-500 hocus:dark:neutral-700 hocus:neutral-500"
         motion-safe:transition="colors duration-800 hocus:duration-100"
         motion-safe:animate="pulse group-hocus:none"
-      />
+        :class="{
+          'text-[red]': item.social === 'youtube',
+          'text-black': item.social === 'x',
+          'text-[#1877f2]': item.social === 'facebook',
+          'text-neutral-300 dark:text-neutral-500 hocus:dark:text-neutral-700 hocus:text-neutral-500': !item.social,
+        }"
+        :data-social="item.social"
+      >
+        <NuxtLink
+          v-if="item.social" external
+          flex="~ justify-center items-center"
+          target="_blank" size-full
+          :to="getLink(socialMedias[item.social]!.link)"
+        >
+          <div v-if="item.social === 'youtube'" i-nimiq:logos-youtube-mono text="53 white" />
+          <div v-if="item.social === 'x'" i-nimiq:logos-twitter-mono text="64 white" />
+          <div v-if="item.social === 'facebook'" i-nimiq:logos-facebook-mono text="62 white" />
+        </NuxtLink>
+      </div>
     </div>
   </section>
 </template>
@@ -85,15 +115,18 @@ const items = computed(() => {
   position: relative;
   content-visibility: auto;
 
-  > div {
+  > *:not([data-social]) {
+    animation: pulse 2s infinite;
+  }
+
+  > * {
     width: var(--hexagon-w);
     height: var(--hexagon-h);
     grid-row: span 2;
     grid-column: span 2;
-    animation: pulse 2s infinite;
   }
 
-  > div:nth-child(even) {
+  > *:nth-child(even) {
     margin-top: var(--hexagon-h-half);
     grid-row-end: span 3;
   }

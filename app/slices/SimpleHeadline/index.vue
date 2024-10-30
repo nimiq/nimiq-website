@@ -6,13 +6,24 @@ const colors = getColorClass(props.slice.primary.bgColor)
 </script>
 
 <template>
-  <section v-if="slice.variation === 'default'" :class="colors" relative data-slice-type="simple-headline">
+  <section relative :data-slice-type="slice.variation" :class="colors">
     <Headline
+      v-if="slice.variation === 'default'"
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
       :cta-href="slice.primary.linkHref"
       :cta-label="slice.primary.linkLabel"
-      :label="slice.primary.label" :icon-name="slice.primary.iconName"
+      :label="slice.primary.label"
+      :icon-name="slice.primary.iconName"
+    />
+    <HeadlineStaking
+      v-else-if="slice.variation === 'stakeHeadline'"
+      :headline="slice.primary.headline"
+      :subline="slice.primary.subline"
+      :cta-href="slice.primary.linkHref"
+      :cta-label="slice.primary.linkLabel"
+      :interes-per-year="slice.primary.interestPerYear"
+      :note="slice.primary.note"
     />
   </section>
 </template>

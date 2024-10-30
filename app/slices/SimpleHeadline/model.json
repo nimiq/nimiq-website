@@ -100,6 +100,102 @@
       },
       "items": {},
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "stakeHeadline",
+      "name": "Stake Headline",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "SimpleHeadline",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background color (DEPRECATED)",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3",
+              "blue-dark-dimmed"
+            ],
+            "default_value": "white"
+          },
+          "type": "Select"
+        },
+        "label": {
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline*",
+            "placeholder": "This is where it all begins...",
+            "allowTargetBlank": true,
+            "single": "heading2,heading4"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subline*",
+            "placeholder": "A nice description of your product",
+            "allowTargetBlank": true,
+            "single": "paragraph,em,hyperlink,strong"
+          }
+        },
+        "linkHref": {
+          "config": {
+            "label": "Link href",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "select": null
+          },
+          "type": "Link"
+        },
+        "linkLabel": {
+          "config": {
+            "label": "Link label",
+            "placeholder": "Mandatory if the Link href is set"
+          },
+          "type": "Text"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ],
+            "default_value": "grey"
+          }
+        },
+        "note": {
+          "type": "Text",
+          "config": {
+            "label": "Note",
+            "placeholder": ""
+          }
+        },
+        "interestPerYear": {
+          "type": "Text",
+          "config": {
+            "label": "Interest per year",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
 }
