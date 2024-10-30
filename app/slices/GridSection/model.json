@@ -49,11 +49,10 @@
             "label": "Background Color",
             "placeholder": "",
             "options": [
-              "grey",
               "white",
+              "grey",
               "darkblue"
-            ],
-            "default_value": "grey"
+            ]
           }
         }
       },
@@ -233,6 +232,66 @@
               "darkblue"
             ],
             "default_value": "grey"
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    },
+    {
+      "id": "threeColumnsIconsText",
+      "name": "Three columns Icons Text",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "GridSection",
+      "primary": {
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "darkblue",
+              "grey"
+            ]
+          }
+        }
+      },
+      "items": {
+        "headline": {
+          "config": {
+            "label": "Headline*",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading3,strong,em"
+          },
+          "type": "StructuredText"
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": 416,
+              "height": 229
+            },
+            "thumbnails": [
+              {
+                "name": "Lg",
+                "width": 320,
+                "height": 229
+              },
+              {
+                "name": "Md",
+                "width": 624,
+                "height": 229
+              },
+              {
+                "name": "Sm",
+                "width": 311,
+                "height": 229
+              }
+            ]
           }
         }
       },

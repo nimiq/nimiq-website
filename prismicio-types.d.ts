@@ -4294,11 +4294,10 @@ export interface GridSectionSliceDefaultPrimary {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **Default Value**: grey
    * - **API ID Path**: grid_section.default.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue'>
 }
 
 /**
@@ -4511,12 +4510,67 @@ export type GridSectionSliceThreeColumnsImageText =
   >
 
 /**
+ * Primary content in *GridSection → Three columns Icons Text → Primary*
+ */
+export interface GridSectionSliceThreeColumnsIconsTextPrimary {
+  /**
+   * Background Color field in *GridSection → Three columns Icons Text → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.threeColumnsIconsText.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'darkblue' | 'grey'>
+}
+
+/**
+ * Primary content in *GridSection → Items*
+ */
+export interface GridSectionSliceThreeColumnsIconsTextItem {
+  /**
+   * Headline* field in *GridSection → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.items[].headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.RichTextField
+
+  /**
+   * Image field in *GridSection → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<'Lg' | 'Md' | 'Sm'>
+}
+
+/**
+ * Three columns Icons Text variation for GridSection Slice
+ *
+ * - **API ID**: `threeColumnsIconsText`
+ * - **Description**: GridSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GridSectionSliceThreeColumnsIconsText =
+  prismic.SharedSliceVariation<
+    'threeColumnsIconsText',
+    Simplify<GridSectionSliceThreeColumnsIconsTextPrimary>,
+    Simplify<GridSectionSliceThreeColumnsIconsTextItem>
+  >
+
+/**
  * Slice variation for *GridSection*
  */
 type GridSectionSliceVariation =
   | GridSectionSliceDefault
   | GridSectionSliceWithBackground
   | GridSectionSliceThreeColumnsImageText
+  | GridSectionSliceThreeColumnsIconsText
 
 /**
  * GridSection Shared Slice
@@ -9904,6 +9958,9 @@ declare module '@prismicio/client' {
       GridSectionSliceDefault,
       GridSectionSliceDefaultItem,
       GridSectionSliceDefaultPrimary,
+      GridSectionSliceThreeColumnsIconsText,
+      GridSectionSliceThreeColumnsIconsTextItem,
+      GridSectionSliceThreeColumnsIconsTextPrimary,
       GridSectionSliceThreeColumnsImageText,
       GridSectionSliceThreeColumnsImageTextItem,
       GridSectionSliceThreeColumnsImageTextPrimary,

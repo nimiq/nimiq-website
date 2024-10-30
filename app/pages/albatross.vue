@@ -12,6 +12,9 @@ useHead({
 
 const headline = computed(() => ([{ type: 'heading1', text: 'Nimiq Proof-of-Stake Testnet', spans: [] }] as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Nimiq\'s Albatross consensus algorithm running live in the Proof-of-Stake Testnet.', spans: [], direction: 'ltr' }] as RichTextField))
+
+const { canSendTx } = storeToRefs(useLiveviewTx())
+canSendTx.value = true
 </script>
 
 <template>
@@ -19,7 +22,10 @@ const subline = computed(() => ([{ type: 'paragraph', text: 'Nimiq\'s Albatross 
     <HeroDefault :primary="{ headline, subline, bgColor: 'darkblue' }" />
 
     <section class="dark" mx-0 bg-darkblue px-0 text-neutral children:max-w-none>
-      <Albatross allow-send-tx />
+      <div flex="~ col items-center" w-full of-x-hidden>
+        <AlbatrossLiveviewBlockchain w-screen />
+        <AlbatrossInfo mt="32 lg:48 xl:72" />
+      </div>
     </section>
 
     <section class="dark" bg-darkblue text-neutral>

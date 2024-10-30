@@ -11,7 +11,10 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 </script>
 
 <template>
-  <section class="dark" bg-darkblue py-0 text-neutral>
+  <section class="dark" bg-darkblue pt-0 text-neutral>
+    <p text-neutral-800 nq-mb-16>
+      This is the a preview of the live blockhain
+    </p>
     <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary @close="activeIndex = 0">
       <template #trigger>
         <div i-custom:cli-docs mr-8 />
