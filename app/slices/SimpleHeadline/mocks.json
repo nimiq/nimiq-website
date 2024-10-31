@@ -92,11 +92,6 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "stakeHeadline",
     "primary": {
-      "backgroundColor": {
-        "__TYPE__": "FieldContent",
-        "value": "blue-dark",
-        "type": "Select"
-      },
       "label": {
         "__TYPE__": "FieldContent",
         "value": "front",
@@ -150,6 +145,11 @@
         "__TYPE__": "FieldContent",
         "value": "dug",
         "type": "Text"
+      },
+      "gradient": {
+        "__TYPE__": "FieldContent",
+        "value": "white-green-white",
+        "type": "Select"
       }
     },
     "items": [

@@ -3,10 +3,17 @@ import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SimpleHeadlineSlice>())
 const colors = getColorClass(props.slice.primary.bgColor)
+
+const gradientClass = computed(() => {
+  if (props.slice.variation === 'stakeHeadline') {
+    return props.slice.primary.gradient
+  }
+  return ''
+})
 </script>
 
 <template>
-  <section relative :data-slice-type="slice.variation" :class="colors">
+  <section relative :data-slice-type="slice.variation" :class="[colors, gradientClass]">
     <Headline
       v-if="slice.variation === 'default'"
       :headline="slice.primary.headline"
@@ -22,8 +29,8 @@ const colors = getColorClass(props.slice.primary.bgColor)
       :subline="slice.primary.subline"
       :cta-href="slice.primary.linkHref"
       :cta-label="slice.primary.linkLabel"
-      :interes-per-year="slice.primary.interestPerYear"
-      :note="slice.primary.note"
+      :interes-per-year="slice.primary.interestPerYear || ''"
+      :note="slice.primary.note || ''"
     />
   </section>
 </template>

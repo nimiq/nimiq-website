@@ -42,5 +42,5 @@ height: 538px;
 left: calc(50% - 1008px/2);
 bottom: 0px;
 
-background: linear-gradient(180deg, rgba(31, 35, 72, 0) 0%, #1F2348 100%);
+background: linear-gradient(180deg, rgb(var(--nq-neutral-0) / 0) 0%, #1F2348 100%);
 opacity: 0.05; -->

@@ -8529,26 +8529,6 @@ export type SimpleHeadlineSliceDefault = prismic.SharedSliceVariation<
  */
 export interface SimpleHeadlineSliceStakeHeadlinePrimary {
   /**
-   * Background color (DEPRECATED) field in *SimpleHeadline → Stake Headline → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: white
-   * - **API ID Path**: simple_headline.stakeHeadline.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  backgroundColor: prismic.SelectField<
-    | 'white'
-    | 'grey'
-    | 'blue'
-    | 'blue-dark'
-    | 'green'
-    | 'blue-s3'
-    | 'blue-dark-dimmed',
-    'filled'
-  >
-
-  /**
    * Label field in *SimpleHeadline → Stake Headline → Primary*
    *
    * - **Field Type**: Text
@@ -8628,6 +8608,16 @@ export interface SimpleHeadlineSliceStakeHeadlinePrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   interestPerYear: prismic.KeyTextField
+
+  /**
+   * Gradient field in *SimpleHeadline → Stake Headline → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_headline.stakeHeadline.primary.gradient
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  gradient: prismic.SelectField<'darkblue-green' | 'white-green-white'>
 }
 
 /**
