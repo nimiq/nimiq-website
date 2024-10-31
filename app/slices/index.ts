@@ -108,6 +108,7 @@ export const components = defineSliceZoneComponents({
   tweets_marquee: defineAsyncComponent(
     () => import('./TweetsMarquee/index.vue'),
   ),
+  wallet_words: defineAsyncComponent(() => import('./WalletWords/index.vue')),
   whitepaper_slice: defineAsyncComponent(
     () => import('./WhitepaperSlice/index.vue'),
   ),

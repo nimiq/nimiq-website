@@ -3,7 +3,7 @@ import type { Content } from '@prismicio/client'
 import { components } from '~/slices'
 
 const params = useRoute().params as { uid: string }
-const uid = params.uid === '' ? 'home' : params.uid
+const uid = params.uid === '' ? 'home' : params.uid[0]
 const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('page', uid)
 
 useHead({

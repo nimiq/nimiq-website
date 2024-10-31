@@ -1739,6 +1739,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | WalletWordsSlice
   | AlbatrossTechnicalDetailsSlice
   | NewsletterFormSlice
   | CryptoMapContinentSelectorSlice
@@ -9554,6 +9555,91 @@ export type TweetsMarqueeSlice = prismic.SharedSlice<
 >
 
 /**
+ * Primary content in *WalletWords → Default → Primary*
+ */
+export interface WalletWordsSliceDefaultPrimary {
+  /**
+   * headline field in *WalletWords → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: wallet_words.default.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  headline: prismic.KeyTextField
+
+  /**
+   * subheadline field in *WalletWords → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: wallet_words.default.primary.subheadline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheadline: prismic.KeyTextField
+
+  /**
+   * Guess the remaining words label field in *WalletWords → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: wallet_words.default.primary.guessTheRemainingWordsLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  guessTheRemainingWordsLabel: prismic.KeyTextField
+
+  /**
+   * You don’t stand a chance to take field in *WalletWords → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: wallet_words.default.primary.youDoNotStandAChanceToTake
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  youDoNotStandAChanceToTake: prismic.KeyTextField
+
+  /**
+   * rewardAmount field in *WalletWords → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: wallet_words.default.primary.rewardamount
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  rewardamount: prismic.KeyTextField
+}
+
+/**
+ * Default variation for WalletWords Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WalletWordsSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<WalletWordsSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *WalletWords*
+ */
+type WalletWordsSliceVariation = WalletWordsSliceDefault
+
+/**
+ * WalletWords Shared Slice
+ *
+ * - **API ID**: `wallet_words`
+ * - **Description**: WalletWords
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WalletWordsSlice = prismic.SharedSlice<
+  'wallet_words',
+  WalletWordsSliceVariation
+>
+
+/**
  * Primary content in *WhitepaperSlice → Default → Primary*
  */
 export interface WhitepaperSliceSliceDefaultPrimary {
@@ -10313,6 +10399,10 @@ declare module '@prismicio/client' {
       TweetsMarqueeSliceDefault,
       TweetsMarqueeSliceDefaultPrimary,
       TweetsMarqueeSliceVariation,
+      WalletWordsSlice,
+      WalletWordsSliceDefault,
+      WalletWordsSliceDefaultPrimary,
+      WalletWordsSliceVariation,
       WhitepaperSliceSlice,
       WhitepaperSliceSliceDefault,
       WhitepaperSliceSliceDefaultItem,

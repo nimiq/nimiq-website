@@ -60,6 +60,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "wallet_words": {
+              "type": "SharedSlice"
+            },
             "albatross_technical_details": {
               "type": "SharedSlice"
             },
