@@ -1739,6 +1739,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | CurrencyComparisonSlice
   | WalletWordsSlice
   | AlbatrossTechnicalDetailsSlice
   | NewsletterFormSlice
@@ -3835,6 +3836,158 @@ type CtaSectionSliceVariation = CtaSectionSliceDefault
 export type CtaSectionSlice = prismic.SharedSlice<
   'cta_section',
   CtaSectionSliceVariation
+>
+
+/**
+ * Item in *CurrencyComparison → Default → Primary → Currencies*
+ */
+export interface CurrencyComparisonSliceDefaultPrimaryCurrenciesItem {
+  /**
+   * Name field in *CurrencyComparison → Default → Primary → Currencies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.currencies[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField
+
+  /**
+   * Crypto field in *CurrencyComparison → Default → Primary → Currencies*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.currencies[].crypto
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  crypto: prismic.SelectField<'NIM' | 'BTC' | 'USDC/USDT'>
+
+  /**
+   * Main feature field in *CurrencyComparison → Default → Primary → Currencies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.currencies[].mainFeature
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  mainFeature: prismic.KeyTextField
+
+  /**
+   * Second Feature field in *CurrencyComparison → Default → Primary → Currencies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.currencies[].secondFeature
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  secondFeature: prismic.KeyTextField
+
+  /**
+   * Third Feature field in *CurrencyComparison → Default → Primary → Currencies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.currencies[].thirdFeature
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  thirdFeature: prismic.KeyTextField
+
+  /**
+   * fee field in *CurrencyComparison → Default → Primary → Currencies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.currencies[].fee
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  fee: prismic.KeyTextField
+
+  /**
+   * time field in *CurrencyComparison → Default → Primary → Currencies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.currencies[].time
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  time: prismic.KeyTextField
+
+  /**
+   * adjetive field in *CurrencyComparison → Default → Primary → Currencies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.currencies[].adjetive
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  adjetive: prismic.KeyTextField
+}
+
+/**
+ * Primary content in *CurrencyComparison → Default → Primary*
+ */
+export interface CurrencyComparisonSliceDefaultPrimary {
+  /**
+   * Currencies field in *CurrencyComparison → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.currencies[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  currencies: prismic.GroupField<
+    Simplify<CurrencyComparisonSliceDefaultPrimaryCurrenciesItem>
+  >
+
+  /**
+   * feeLabel field in *CurrencyComparison → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.feeLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  feeLabel: prismic.KeyTextField
+
+  /**
+   * Time Label field in *CurrencyComparison → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: currency_comparison.default.primary.timeLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  timeLabel: prismic.KeyTextField
+}
+
+/**
+ * Default variation for CurrencyComparison Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CurrencyComparisonSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<CurrencyComparisonSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *CurrencyComparison*
+ */
+type CurrencyComparisonSliceVariation = CurrencyComparisonSliceDefault
+
+/**
+ * CurrencyComparison Shared Slice
+ *
+ * - **API ID**: `currency_comparison`
+ * - **Description**: CurrencyComparison
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CurrencyComparisonSlice = prismic.SharedSlice<
+  'currency_comparison',
+  CurrencyComparisonSliceVariation
 >
 
 /**
@@ -10140,6 +10293,11 @@ declare module '@prismicio/client' {
       CtaSectionSliceDefault,
       CtaSectionSliceDefaultPrimary,
       CtaSectionSliceVariation,
+      CurrencyComparisonSlice,
+      CurrencyComparisonSliceDefault,
+      CurrencyComparisonSliceDefaultPrimary,
+      CurrencyComparisonSliceDefaultPrimaryCurrenciesItem,
+      CurrencyComparisonSliceVariation,
       ExchangesShowcaseSlice,
       ExchangesShowcaseSliceDefault,
       ExchangesShowcaseSliceDefaultItem,

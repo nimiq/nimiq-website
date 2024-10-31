@@ -30,6 +30,9 @@ export const components = defineSliceZoneComponents({
     () => import('./CryptoMapContinentSelector/index.vue'),
   ),
   cta_section: defineAsyncComponent(() => import('./CtaSection/index.vue')),
+  currency_comparison: defineAsyncComponent(
+    () => import('./CurrencyComparison/index.vue'),
+  ),
   exchanges_showcase: defineAsyncComponent(
     () => import('./ExchangesShowcase/index.vue'),
   ),

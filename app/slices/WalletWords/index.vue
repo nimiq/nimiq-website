@@ -6,14 +6,13 @@ defineProps(getSliceComponentProps<Content.WalletWordsSlice>())
 const colors = getColorClass('white')
 
 const { getRandomWords } = useWords()
-const randomDuration = () => `${Math.floor(Math.random() * 25) + 25}s`
-const isReverse = () => Math.random() > 0.5
-const wordsList = Array.from({ length: 6 }, () => ({ words: getRandomWords(14), duration: randomDuration(), reverse: isReverse() }))
+const randomDuration = () => `${Math.floor(Math.random() * 60) + 40}s` // 60s to 100s
+const wordsList = Array.from({ length: 6 }, () => ({ words: getRandomWords(14), duration: randomDuration() }))
 
 const firstRealWords = Array.from({ length: 12 }, (_, i) => ({ word: 'TODO', i: i + 1 }))
 
 const userInputs = reactive([ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref('')])
-// TODO Remove this `true` condition
+// TODO Remove this `true` condition for production
 if (import.meta.env.DEV || true) {
   // Dummy values for development
   userInputs.forEach((input, i) => {
@@ -55,15 +54,19 @@ function reset() {
 <template>
   <section :class="colors" relative>
     <div flex="~ col gap-24" absolute w-full style="--nq-max-width:none" of-x-hidden>
-      <ul v-for="({ duration, words, reverse }, key) in wordsList" :key flex="~ gap-24" w-full class="animate-marquee" :style="`--duration: ${duration}; --direction: ${reverse ? 'reverse' : 'normal'}`">
-        <li v-for="({ i, word: w }) in words" :key="w" flex="~ shrink-0 gap-24">
-          <div flex="~ gap-12 items-baseline" rounded-4 bg-neutral-100 p-16>
-            <span text-neutral-400 font-semibold lh-none text-lg>{{ i }}</span>
-            <span text-neutral-800 font-semibold lh-none text-xl>{{ w }}</span>
-          </div>
-        </li>
-      </ul>
-      <div class="marquee-overlay" pointer-events-none absolute inset-0 />
+      <AnimatedMarquee v-for="({ duration, words, reverse }, key) in wordsList" :key :duration :reverse>
+        <ul flex="~ gap-24">
+          <li v-for="({ i, word: w }) in words" :key="w" flex="~ shrink-0 gap-24">
+            <div flex="~ gap-12 items-baseline" rounded-4 bg-neutral-100 p-16>
+              <span text-neutral-400 font-semibold lh-none text-lg>{{ i }}</span>
+              <span text-neutral-800 font-semibold lh-none text-xl>
+                <AnimatedHyperText :text="w" />
+              </span>
+            </div>
+          </li>
+        </ul>
+      </AnimatedMarquee>
+      <div class="marquee-overlay" pointer-events-none absolute inset-0 z-1 />
     </div>
     <div flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" relative z-1 mx-auto h-937 max-w-492 of-hidden rounded-8 px-64 pb-48 pt-32 shadow>
       <div :class="{ 'slide-up': isGameOver }">
@@ -115,46 +118,21 @@ function reset() {
           Even using a computer, it would take you <span text-white font-retro>10,000,000,000,000,000,000,000,000,000 years</span> to crack this wallet... <br><br> Good luck!
         </p>
       </div>
-      <SyntheticWave :style="`--grid-color: var(--nq-${isGameOver ? 'purple' : 'blue'})`" absolute inset-x-0 bottom-0 h-200 />
+      <AnimatedSyntheticWave :style="`--grid-color: var(--nq-${isGameOver ? 'purple' : 'blue'})`" absolute inset-x-0 bottom-0 h-200 />
     </div>
   </section>
 </template>
 
 <style scoped>
-.animate-marquee {
-  animation: marquee var(--duration) linear infinite;
-  animation-direction: var(--direction);
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(calc(50% - 24px));
-  }
-}
-
 .marquee-overlay {
-  --gradient-height: 200px;
-  background: linear-gradient(
-    180deg,
-    oklch(27.37% 0.068 276.29) 0px,
-    oklch(27.37% 0.068 276.29 / 0.991615) calc(0.1179 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.967585) calc(0.2138 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.9296) calc(0.2912 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.879348) calc(0.3534 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.818519) calc(0.4037 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.7488) calc(0.4456 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.671881) calc(0.4824 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.589452) calc(0.5176 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.5032) calc(0.5544 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.414815) calc(0.5963 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.325985) calc(0.6466 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.2384) calc(0.7088 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.153748) calc(0.7862 * var(--gradient-height)),
-    oklch(27.37% 0.068 276.29 / 0.0737185) calc(0.8821 * var(--gradient-height)),
-    rgba(31, 35, 72, 0) var(--gradient-height)
+  background-image: linear-gradient(
+    90deg,
+    rgba(var(--nq-white) / 1) 0%,
+    rgba(var(--nq-white) / 1) 64px,
+    rgba(var(--nq-white) / 0.6) 256px,
+    rgba(var(--nq-white) / 0.6) calc(100% - 256px),
+    rgba(var(--nq-white) / 1) calc(100% - 64px),
+    rgba(var(--nq-white) / 1) 100%
   );
 }
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
-import { NuxtLink, TweenedNumber } from '#components'
+import { AnimatedTweenedNumber, NuxtLink } from '#components'
 // import { breakpointsTailwind } from '@vueuse/core'
 
 const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
@@ -12,7 +12,7 @@ const { cryptoMapLocationsCount: locationsCount } = storeToRefs(useGlobalContent
 // @unocss-include
 
 const locationsSpan = h(NuxtLink, { class: 'text-blue', to: 'https://map.nimiq.com', target: '_blank' }, () => [
-  h(TweenedNumber, {
+  h(AnimatedTweenedNumber, {
     value: locationsCount.value || 0,
     min: 0,
     max: locationsCount.value || 20_000,

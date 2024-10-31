@@ -1,0 +1,93 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "currencies": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "name",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "likely",
+                  "type": "Text"
+                }
+              ],
+              [
+                "crypto",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "USDC/USDT",
+                  "type": "Select"
+                }
+              ],
+              [
+                "mainFeature",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "species",
+                  "type": "Text"
+                }
+              ],
+              [
+                "secondFeature",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "stairs",
+                  "type": "Text"
+                }
+              ],
+              [
+                "thirdFeature",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "shoe",
+                  "type": "Text"
+                }
+              ],
+              [
+                "fee",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "someone",
+                  "type": "Text"
+                }
+              ],
+              [
+                "time",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "previous",
+                  "type": "Text"
+                }
+              ],
+              [
+                "adjetive",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "station",
+                  "type": "Text"
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "feeLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "lower",
+        "type": "Text"
+      },
+      "timeLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "troops",
+        "type": "Text"
+      }
+    },
+    "items": []
+  }
+]
