@@ -186,6 +186,37 @@ const smallMarkers: MarkerData[] = [
         </filter>
       </defs>
     </symbol>
+
+    <!-- This is the small marker version with a "hole" at the bottom -->
+    <!-- <symbol id="small-marker" viewBox="0 0 118 139" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#a)">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M77.866 69.075a4.108 4.108 0 0 0 1.641-3.286V24.343a4.108 4.108 0 0 0-4.108-4.108H43.238a4.109 4.109 0 0 0-4.109 4.108V65.79c0 1.293.608 2.51 1.642 3.286l16.08 12.073a4.109 4.109 0 0 0 4.934 0l16.08-12.073Zm-18.43 4.71a3.4 3.4 0 1 1 0-6.8 3.4 3.4 0 0 1 0 6.8Z"
+          fill="#21BCA5" />
+      </g>
+      <defs>
+        <filter id="a" x=".717" y=".018" width="117.203" height="138.561" filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="2.022" />
+          <feGaussianBlur stdDeviation="1.264" />
+          <feColorMatrix values="0 0 0 0 0.122709 0 0 0 0 0.138823 0 0 0 0 0.283843 0 0 0 0.02 0" />
+          <feBlend in2="BackgroundImageFix" result="effect1_dropShadow_1292_45987" />
+          <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="7.076" />
+          <feGaussianBlur stdDeviation="4.296" />
+          <feColorMatrix values="0 0 0 0 0.122709 0 0 0 0 0.138823 0 0 0 0 0.283843 0 0 0 0.04 0" />
+          <feBlend in2="effect1_dropShadow_1292_45987" result="effect2_dropShadow_1292_45987" />
+          <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="18.195" />
+          <feGaussianBlur stdDeviation="19.206" />
+          <feColorMatrix values="0 0 0 0 0.122709 0 0 0 0 0.138823 0 0 0 0 0.283843 0 0 0 0.07 0" />
+          <feBlend in2="effect2_dropShadow_1292_45987" result="effect3_dropShadow_1292_45987" />
+          <feBlend in="SourceGraphic" in2="effect3_dropShadow_1292_45987" result="shape" />
+        </filter>
+      </defs>
+    </symbol> -->
   </svg>
 </template>
 
