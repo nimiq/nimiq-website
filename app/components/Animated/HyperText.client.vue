@@ -48,7 +48,6 @@ useIntervalFn(() => {
       <span
         v-for="(letter, i) in displayText"
         :key="i"
-        v-motion
         inline-block w-12 font-mono
         :initial="{ opacity: 0, y: -10 }"
         :enter="{ opacity: 1, y: 0 }"

@@ -3,8 +3,6 @@ import type { Content } from '@prismicio/client'
 
 defineProps(getSliceComponentProps<Content.WalletWordsSlice>())
 
-const colors = getColorClass('white')
-
 const { getRandomWords } = useWords()
 const randomDuration = () => `${Math.floor(Math.random() * 60) + 40}s` // 60s to 100s
 const wordsList = Array.from({ length: 6 }, () => ({ words: getRandomWords(14), duration: randomDuration() }))
@@ -52,9 +50,9 @@ function reset() {
 </script>
 
 <template>
-  <section :class="colors" relative>
+  <section relative bg-neutral-0>
     <div flex="~ col gap-24" absolute w-full style="--nq-max-width:none" of-x-hidden>
-      <AnimatedMarquee v-for="({ duration, words, reverse }, key) in wordsList" :key :duration :reverse>
+      <AnimatedMarquee v-for="({ duration, words }, key) in wordsList" :key :duration>
         <ul flex="~ gap-24">
           <li v-for="({ i, word: w }) in words" :key="w" flex="~ shrink-0 gap-24">
             <div flex="~ gap-12 items-baseline" rounded-4 bg-neutral-100 p-16>

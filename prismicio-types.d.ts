@@ -3333,9 +3333,89 @@ export type ConsensusMapSliceDefaultSlice = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *ConsensusMap → TwoColumn → Primary*
+ */
+export interface ConsensusMapSliceTwoColumnPrimary {
+  /**
+   * label field in *ConsensusMap → TwoColumn → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: consensus_map.twoColumn.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField
+
+  /**
+   * Headline field in *ConsensusMap → TwoColumn → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: consensus_map.twoColumn.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.RichTextField
+
+  /**
+   * Subline field in *ConsensusMap → TwoColumn → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: consensus_map.twoColumn.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField
+
+  /**
+   * thisIsYou field in *ConsensusMap → TwoColumn → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: consensus_map.twoColumn.primary.thisIsYou
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  thisIsYou: prismic.KeyTextField
+
+  /**
+   * connect field in *ConsensusMap → TwoColumn → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: consensus_map.twoColumn.primary.connect
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  connect: prismic.KeyTextField
+
+  /**
+   * connecting field in *ConsensusMap → TwoColumn → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: consensus_map.twoColumn.primary.connecting
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  connecting: prismic.KeyTextField
+}
+
+/**
+ * TwoColumn variation for ConsensusMap Slice
+ *
+ * - **API ID**: `twoColumn`
+ * - **Description**: ConsensusMap
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ConsensusMapSliceTwoColumn = prismic.SharedSliceVariation<
+  'twoColumn',
+  Simplify<ConsensusMapSliceTwoColumnPrimary>,
+  never
+>
+
+/**
  * Slice variation for *ConsensusMap*
  */
-type ConsensusMapSliceVariation = ConsensusMapSliceDefaultSlice
+type ConsensusMapSliceVariation =
+  | ConsensusMapSliceDefaultSlice
+  | ConsensusMapSliceTwoColumn
 
 /**
  * ConsensusMap Shared Slice
@@ -10269,6 +10349,8 @@ declare module '@prismicio/client' {
       ConsensusMapSlice,
       ConsensusMapSliceDefaultSlice,
       ConsensusMapSliceDefaultSlicePrimary,
+      ConsensusMapSliceTwoColumn,
+      ConsensusMapSliceTwoColumnPrimary,
       ConsensusMapSliceVariation,
       ContactFormSlice,
       ContactFormSliceDefault,

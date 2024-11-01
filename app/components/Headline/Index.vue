@@ -8,20 +8,21 @@ const props = defineProps<{
   subline?: RichTextField
   ctaHref?: LinkField
   ctaLabel?: KeyTextField
+  leftAlign?: boolean
 }>()
 
 const headlineTag = computed(() => props.headline.filter(i => i.type.startsWith('heading')).at(0)?.type.replace('heading', 'h') || 'h2')
 </script>
 
 <template>
-  <div flex="~ col items-center">
+  <div flex="~ col" :class="{ 'items-center': !leftAlign }">
     <div v-if="iconName" :class="iconName" text-54 op-15 nq-mb-24 />
-    <p v-if="label" text="14/16.8" mb-16 block w-max nq-label md:mx-auto>
+    <p v-if="label" text="14/16.8" mb-16 block w-max nq-label :class="{ 'md:mx-auto': !leftAlign }">
       {{ label }}
     </p>
-    <PrismicText :wrapper="headlineTag" :field="headline" />
-    <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" />
-    <PrismicLink v-if="ctaHref && ctaLabel" internal-component="a" :field="ctaHref" nq-mt-48 nq-arrow nq-pill-lg nq-pill-blue md:mx-auto>
+    <PrismicText :wrapper="headlineTag" :field="headline" :class="{ 'text-left': leftAlign }" />
+    <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" :class="{ 'text-left': leftAlign }" />
+    <PrismicLink v-if="ctaHref && ctaLabel" internal-component="a" :field="ctaHref" nq-mt-48 nq-arrow nq-pill-lg nq-pill-blue :class="{ 'md:mx-auto': !leftAlign }">
       {{ ctaLabel }}
     </PrismicLink>
   </div>

@@ -13,6 +13,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@vueuse/nuxt',
+    '@vueuse/motion/nuxt',
     '@pinia/nuxt',
     '@unocss/nuxt',
     '@nuxt/eslint',
@@ -111,6 +112,7 @@ export default defineNuxtConfig({
       allowedOrigins: ['https://www.nimiq.com', 'https://prestaking.nimiq.network', process.env.NIMIQ_STATIC_PREVIEW].filter((origin): origin is string => !!origin),
     },
     public: {
+      clientNetwork: 'testalbatross', // TODO Change to 'albatross' for mainnet
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
       supabase: {
         url: process.env.NUXT_PUBLIC_SUPABASE_URL,
