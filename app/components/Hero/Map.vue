@@ -34,17 +34,20 @@ const smallMarkers: MarkerData[] = [
 ]
 
 const isVisible = ref(false)
-
+const isDelayed = ref(true)
 onMounted(() => {
   // Trigger the animation after a small delay
   setTimeout(() => {
     isVisible.value = true
+    setTimeout(() => {
+      isDelayed.value = false
+    }, 1000)
   }, 100)
 })
 </script>
 
 <template>
-  <div :class="{ visible: isVisible }">
+  <div :class="{ visible: isVisible, delayed: isDelayed }" class="map">
     <NuxtImg class="base-map" src="/assets/images/home-hero/map.svg" alt="World map" />
     <svg viewBox="0 0 977 362" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g class="green-group europe" opacity="1" fill-rule="evenodd" clip-rule="evenodd" fill="#1F2348">
@@ -257,45 +260,70 @@ svg {
   pointer-events: none;
 }
 
+/* Map animation variables */
+.map {
+  --duration: 0.3s;
+  --timing-function: ease-in-out;
+  --delay: 0.1s;
+}
+
+/* Green groups */
+.green-group {
+  opacity: 0;
+
+  transition: opacity var(--duration) var(--nq-ease);
+}
+
+/* Markers */
 .marker-group use,
 .marker-group use + text,
 .small-marker-group use {
-  --duration: 0.3s;
-  --timing-function: ease-in-out;
   opacity: 0;
   transform: translateY(16px);
+
   transition:
     transform var(--duration) var(--nq-ease),
     filter var(--duration) var(--nq-ease),
     opacity var(--duration) var(--nq-ease);
 }
 
-/* Animation for large markers */
-.marker-group .marker-europe use,
-.marker-group .marker-europe text {
-  transition-delay: 0.2s;
+/* Animation for large markers & green groups */
+.delayed .marker-group .marker-europe use,
+.delayed .marker-group .marker-europe text {
+  transition-delay: calc(var(--delay) * 2);
+}
+.delayed .green-group.europe {
+  transition-delay: calc(var(--delay) * 2);
 }
 
-.marker-group .marker-australia use,
-.marker-group .marker-australia text {
-  transition-delay: 0.3s;
+.delayed .marker-group .marker-australia use,
+.delayed .marker-group .marker-australia text {
+  transition-delay: calc(var(--delay) * 3);
+}
+.delayed .green-group.australia {
+  transition-delay: calc(var(--delay) * 3);
 }
 
 /* Animation for small markers */
-.small-marker-group .small-marker-1 {
-  transition-delay: 0.4s;
+.delayed .small-marker-group .small-marker-1 {
+  transition-delay: calc(var(--delay) * 4);
 }
-.small-marker-group .small-marker-2 {
-  transition-delay: 0.5s;
+.delayed .small-marker-group .small-marker-2 {
+  transition-delay: calc(var(--delay) * 5);
 }
-.small-marker-group .small-marker-3 {
-  transition-delay: 0.6s;
+.delayed .small-marker-group .small-marker-3 {
+  transition-delay: calc(var(--delay) * 6);
 }
-.small-marker-group .small-marker-4 {
-  transition-delay: 0.7s;
+.delayed .small-marker-group .small-marker-4 {
+  transition-delay: calc(var(--delay) * 7);
 }
-.small-marker-group .small-marker-5 {
-  transition-delay: 0.8s;
+.delayed .small-marker-group .small-marker-5 {
+  transition-delay: calc(var(--delay) * 8);
+}
+
+/* Show green groups when visible */
+.visible .green-group {
+  opacity: 1;
 }
 
 /* Show markers when visible */
@@ -306,7 +334,7 @@ svg {
   transform: translateY(0);
 }
 
-/* Keep existing hover states */
+/* Hover states */
 .marker-group use:hover,
 .marker-group use:hover + text,
 .small-marker-group use:hover {
@@ -316,16 +344,5 @@ svg {
 .marker-group use,
 .small-marker-group use {
   filter: drop-shadow(0px 0px 4px rgba(var(--nq-green-on-light) / 0.25));
-}
-
-.marker-group use:hover,
-.marker-group use:hover + text,
-.small-marker-group use:hover {
-  transform: translateY(-8px);
-}
-
-.marker-group use:hover,
-.small-marker-group use:hover {
-  filter: drop-shadow(0px 0px 8px rgba(var(--nq-green-on-light) / 0.5));
 }
 </style>
