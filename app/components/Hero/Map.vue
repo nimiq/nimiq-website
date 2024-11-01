@@ -92,6 +92,13 @@ onMounted(() => {
             :width="marker.width"
             :x="marker.x"
             :y="marker.y"
+            :style="{ opacity: 0 }"
+          />
+          <use
+            href="#marker"
+            :width="marker.width"
+            :x="marker.x"
+            :y="marker.y"
           />
           <text
             :x="marker.x + (marker.width / 2) - 7"
@@ -106,15 +113,25 @@ onMounted(() => {
       </g>
 
       <g class="small-marker-group">
-        <use
+        <g
           v-for="marker in smallMarkers"
           :key="marker.id"
-          href="#small-marker"
           :class="`small-marker-${marker.id}`"
-          :width="marker.width"
-          :x="marker.x"
-          :y="marker.y"
-        />
+        >
+          <use
+            href="#small-marker"
+            :width="marker.width"
+            :x="marker.x"
+            :y="marker.y"
+            :style="{ opacity: 0 }"
+          />
+          <use
+            href="#small-marker"
+            :width="marker.width"
+            :x="marker.x"
+            :y="marker.y"
+          />
+        </g>
       </g>
 
       <symbol id="marker" viewBox="0 0 158 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -280,11 +297,12 @@ svg {
 }
 
 /* Markers */
-.marker-group use,
-.marker-group use + text,
-.small-marker-group use {
+.marker-group use + use,
+.marker-group use + use + text,
+.small-marker-group use + use {
   opacity: 0;
   transform: translateY(16px);
+  pointer-events: none;
 
   transition:
     transform var(--duration) var(--nq-ease),
@@ -310,19 +328,19 @@ svg {
 }
 
 /* Animation for small markers */
-.delayed .small-marker-group .small-marker-1 {
+.delayed .small-marker-group .small-marker-1 use {
   transition-delay: calc(var(--delay) * 4);
 }
-.delayed .small-marker-group .small-marker-2 {
+.delayed .small-marker-group .small-marker-2 use {
   transition-delay: calc(var(--delay) * 5);
 }
-.delayed .small-marker-group .small-marker-3 {
+.delayed .small-marker-group .small-marker-3 use {
   transition-delay: calc(var(--delay) * 6);
 }
-.delayed .small-marker-group .small-marker-4 {
+.delayed .small-marker-group .small-marker-4 use {
   transition-delay: calc(var(--delay) * 7);
 }
-.delayed .small-marker-group .small-marker-5 {
+.delayed .small-marker-group .small-marker-5 use {
   transition-delay: calc(var(--delay) * 8);
 }
 
@@ -332,22 +350,22 @@ svg {
 }
 
 /* Show markers when visible */
-.visible .marker-group use,
-.visible .marker-group use + text,
-.visible .small-marker-group use {
+.visible .marker-group use + use,
+.visible .marker-group use + use + text,
+.visible .small-marker-group use + use {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Hover states */
-.marker-group use:hover,
-.marker-group use:hover + text,
-.small-marker-group use:hover {
+.marker-group use:hover + use,
+.marker-group use:hover + use + text,
+.small-marker-group use:hover + use {
   transform: translateY(-8px);
 }
 
-.marker-group use,
-.small-marker-group use {
+.marker-group use + use,
+.small-marker-group use + use {
   filter: drop-shadow(0px 0px 4px rgba(var(--nq-green-on-light) / 0.25));
 }
 </style>
