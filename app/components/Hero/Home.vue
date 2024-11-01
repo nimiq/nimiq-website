@@ -102,7 +102,6 @@ watch(subheadlineStr, () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* padding-bottom: 20px; */
 }
 
 .map-wrapper {
@@ -167,7 +166,6 @@ watch(subheadlineStr, () => {
     width: var(--width);
     height: var(--height);
     border-radius: 50%;
-    /* clip-path: ellipse(50% 50% at 50% 50%); */
     flex-shrink: 0;
     background: white;
     z-index: -1;
