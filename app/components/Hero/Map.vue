@@ -1,5 +1,34 @@
 <script setup lang="ts">
-// No props or logic needed for now
+interface MarkerData {
+  id: string
+  x: number
+  y: number
+  width: number
+}
+
+const markerWidth = 160
+const smallMarkerWidth = 120
+
+// Calculate heights based on viewBox aspect ratios
+// Marker viewBox: "0 0 158 200" -> 200/158 = 1.2658...
+const markerHeight = markerWidth * (200 / 158) // 202.53
+// Small marker viewBox: "0 0 118 139" -> 139/118 = 1.1779...
+const smallMarkerHeight = smallMarkerWidth * (139 / 118) // 141.36
+
+// Define the markers with their positions and text
+const markers: MarkerData[] = [
+  { id: 'europe', x: 430, y: 27, width: markerWidth },
+  { id: 'australia', x: 880, y: 272, width: markerWidth },
+]
+
+// Small markers data
+const smallMarkers: MarkerData[] = [
+  { id: '1', x: 55, y: 144, width: smallMarkerWidth },
+  { id: '2', x: 175, y: 47, width: smallMarkerWidth },
+  { id: '3', x: 222, y: 182, width: smallMarkerWidth },
+  { id: '4', x: 366, y: 98, width: smallMarkerWidth },
+  { id: '5', x: 654, y: 76, width: smallMarkerWidth },
+]
 </script>
 
 <template>
@@ -42,16 +71,27 @@
     </g>
 
     <g class="marker-group">
-      <use href="#marker" class="marker-europe" width="160" x="350" y="-175" />
-      <use href="#marker" class="marker-australia" width="160" x="800" y="70" />
+      <use
+        v-for="marker in markers"
+        :key="marker.id"
+        href="#marker"
+        :class="`marker-${marker.id}`"
+        :width="marker.width"
+        :x="marker.x - (marker.width / 2)"
+        :y="marker.y - markerHeight"
+      />
     </g>
 
     <g class="small-marker-group">
-      <use href="#small-marker" class="small-marker-1" width="80" x="15" y="7" />
-      <use href="#small-marker" class="small-marker-2" width="80" x="135" y="-90" />
-      <use href="#small-marker" class="small-marker-3" width="80" x="182" y="45" />
-      <use href="#small-marker" class="small-marker-4" width="80" x="326" y="-39" />
-      <use href="#small-marker" class="small-marker-5" width="80" x="614" y="-61" />
+      <use
+        v-for="marker in smallMarkers"
+        :key="marker.id"
+        href="#small-marker"
+        :class="`small-marker-${marker.id}`"
+        :width="marker.width"
+        :x="marker.x - (marker.width / 2)"
+        :y="marker.y - smallMarkerHeight"
+      />
     </g>
 
     <symbol id="marker" viewBox="0 0 158 200" fill="none" xmlns="http://www.w3.org/2000/svg">
