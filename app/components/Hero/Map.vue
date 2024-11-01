@@ -9,28 +9,22 @@ interface MarkerData {
   text?: string
 }
 
-const markerWidth = 160
-const smallMarkerWidth = 120
-
-// Calculate heights based on viewBox aspect ratios
-// Marker viewBox: "0 0 158 200" -> 200/158 = 1.2658...
-const markerHeight = markerWidth * (200 / 158) // 202.53
-// Small marker viewBox: "0 0 118 139" -> 139/118 = 1.1779...
-const smallMarkerHeight = smallMarkerWidth * (139 / 118) // 141.36
+const markerWidth = 160 // height is 202
+const smallMarkerWidth = 120 // height is 141
 
 // Define the markers with their positions and text
 const markers: MarkerData[] = [
-  { id: 'europe', x: 430, y: 27, width: markerWidth, text: '2000' },
-  { id: 'australia', x: 880, y: 272, width: markerWidth, text: '250' },
+  { id: 'europe', x: 350, y: -175, width: markerWidth, text: '2000' },
+  { id: 'australia', x: 800, y: 70, width: markerWidth, text: '250' },
 ]
 
 // Small markers data
 const smallMarkers: MarkerData[] = [
-  { id: '1', x: 55, y: 144, width: smallMarkerWidth },
-  { id: '2', x: 175, y: 47, width: smallMarkerWidth },
-  { id: '3', x: 222, y: 182, width: smallMarkerWidth },
-  { id: '4', x: 366, y: 98, width: smallMarkerWidth },
-  { id: '5', x: 654, y: 76, width: smallMarkerWidth },
+  { id: '1', x: -5, y: 3, width: smallMarkerWidth },
+  { id: '2', x: 115, y: -94, width: smallMarkerWidth },
+  { id: '3', x: 162, y: 41, width: smallMarkerWidth },
+  { id: '4', x: 306, y: -43, width: smallMarkerWidth },
+  { id: '5', x: 594, y: -65, width: smallMarkerWidth },
 ]
 
 const isVisible = ref(false)
@@ -93,8 +87,19 @@ onMounted(() => {
           :class="`marker-${marker.id}`"
           :width="marker.width"
         >
-          <use href="#marker" :width="marker.width" :x="marker.x - (marker.width / 2)" :y="marker.y - markerHeight" />
-          <text :x="marker.x - 7" :y="marker.y - 18" fill="#fff" font-weight="600" font-size="14px">
+          <use
+            href="#marker"
+            :width="marker.width"
+            :x="marker.x"
+            :y="marker.y"
+          />
+          <text
+            :x="marker.x + (marker.width / 2) - 7"
+            :y="marker.y + 202 - 18"
+            fill="#fff"
+            font-weight="600"
+            font-size="14px"
+          >
             {{ marker.text }}
           </text>
         </g>
@@ -107,8 +112,8 @@ onMounted(() => {
           href="#small-marker"
           :class="`small-marker-${marker.id}`"
           :width="marker.width"
-          :x="marker.x - (marker.width / 2)"
-          :y="marker.y - smallMarkerHeight"
+          :x="marker.x"
+          :y="marker.y"
         />
       </g>
 
