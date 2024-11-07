@@ -60,6 +60,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "wallet_playground": {
+              "type": "SharedSlice"
+            },
             "currency_comparison": {
               "type": "SharedSlice"
             },

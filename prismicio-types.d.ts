@@ -1739,6 +1739,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | WalletPlaygroundSlice
   | CurrencyComparisonSlice
   | WalletWordsSlice
   | AlbatrossTechnicalDetailsSlice
@@ -9778,6 +9779,36 @@ export type TweetsMarqueeSlice = prismic.SharedSlice<
 >
 
 /**
+ * Default variation for WalletPlayground Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WalletPlaygroundSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  never
+>
+
+/**
+ * Slice variation for *WalletPlayground*
+ */
+type WalletPlaygroundSliceVariation = WalletPlaygroundSliceDefault
+
+/**
+ * WalletPlayground Shared Slice
+ *
+ * - **API ID**: `wallet_playground`
+ * - **Description**: WalletPlayground
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WalletPlaygroundSlice = prismic.SharedSlice<
+  'wallet_playground',
+  WalletPlaygroundSliceVariation
+>
+
+/**
  * Primary content in *WalletWords → Default → Primary*
  */
 export interface WalletWordsSliceDefaultPrimary {
@@ -10629,6 +10660,9 @@ declare module '@prismicio/client' {
       TweetsMarqueeSliceDefault,
       TweetsMarqueeSliceDefaultPrimary,
       TweetsMarqueeSliceVariation,
+      WalletPlaygroundSlice,
+      WalletPlaygroundSliceDefault,
+      WalletPlaygroundSliceVariation,
       WalletWordsSlice,
       WalletWordsSliceDefault,
       WalletWordsSliceDefaultPrimary,

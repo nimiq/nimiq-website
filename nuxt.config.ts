@@ -13,7 +13,6 @@ export default defineNuxtConfig({
 
   modules: [
     '@vueuse/nuxt',
-    '@vueuse/motion/nuxt',
     '@pinia/nuxt',
     '@unocss/nuxt',
     '@nuxt/eslint',
@@ -24,6 +23,7 @@ export default defineNuxtConfig({
     '@nuxtjs/prismic',
     '@nuxtjs/device',
     '@nuxt/fonts',
+    'hero-motion/nuxt',
   ],
 
   devtools: { enabled: true },

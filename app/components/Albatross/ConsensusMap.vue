@@ -2,10 +2,15 @@
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
 
 const canvas = templateRef('canvas')
-const { peers, userPeer } = useNimiqPeers()
+const { launchNetwork, consensus } = useNimiq()
+const { peers, userPeer, setUserPeer } = useNimiqPeers()
 useHexagonsWorldMap(canvas, { peers, userPeer })
 
 const { width, height } = useElementSize(canvas)
+
+onMounted(async () => {
+  await setUserPeer()
+})
 
 const tooltipPosition = computed(() => {
   if (!userPeer.value || !canvas.value)
@@ -16,8 +21,7 @@ const tooltipPosition = computed(() => {
   return { transform: `translate(${newX}px, ${newY}px)` }
 })
 
-const canvasIsShown = useElementVisibility(canvas)
-const showTooltip = computed(() => canvasIsShown.value && tooltipPosition.value)
+const showTooltip = computed(() => tooltipPosition.value)
 
 const didYouKwnowThatFacts = [
   'Nimiq is a browser-first blockchain',
@@ -36,16 +40,20 @@ useIntervalFn(() => {
   currentFact.value = didYouKwnowThatFacts[Math.floor(Math.random() * didYouKwnowThatFacts.length)]!
 }, 6000)
 
-const states = [
-  'idle',
-  'connecting',
-  'Connected',
-]
-const state = ref(states[0])
-function connect() {
+async function connect() {
   currentFact.value = didYouKwnowThatFacts[Math.floor(Math.random() * didYouKwnowThatFacts.length)]!
-  state.value = 'connecting'
+  await launchNetwork()
 }
+
+// Depending where the userPeer.value.lat/lng is, we change the transform-origin
+// const transformOrigin = computed<`${'top' | 'center' | 'bottom'} ${'left' | 'center' | 'bottom'}`>(() => {
+//   if (!userPeer.value)
+//     return 'center center'
+//   const { lat, lng } = userPeer.value
+//   const x: 'left' | 'center' | 'right' = lng < -90 ? 'left' : lng > 90 ? 'right' : 'center'
+//   const y: 'top' | 'center' | 'bottom' = lat < -45 ? 'top' : lat > 45 ? 'bottom' : 'center'
+//   return `${y} ${x}`
+// })
 
 // loop over the three state
 // useIntervalFn(() => {
@@ -55,39 +63,46 @@ function connect() {
 </script>
 
 <template>
-  <div relative size-full>
-    <canvas ref="canvas" />
-    <!-- <transition enter-active-class="transition duration-500 ease-out" enter-from-class="transform mb--30 op-0" enter-to-class="mb-0 op-100"> -->
-    <div v-if="showTooltip" absolute left-0 top-0 :style="tooltipPosition" animate="delay-500 fade-in">
-      <div relative left="[calc(-50%+2px)]" mt-16 flex="~ col items-center">
-        <div i-nimiq:tooltip-triangle text-12 :class="{ 'text-blue': state === 'idle', 'text-orange': state === 'connecting' }" />
-        <Motion v-if="state === 'idle'" top--1 rounded-full transition-colors ring="0.2 blue" bg-gradient-blue>
-          <span px-16 py-8 text-white font-bold>
-            {{ thisIsYou }}
-          </span>
-          <button m-6 rounded-full bg-white px-12 py-5 text-blue font-bold @click="connect">
-            {{ connectLabel }}
-          </button>
-        </Motion>
-        <div v-else-if="state === 'connecting'" ring="0.2 blue" top--1 rounded-full px-22 py-12 transition-colors bg-gradient-orange>
-          Conneting
+  {{ peers.length }}
+  <div of-hidden>
+    <div relative xl:w-65vw :style="`aspect-ratio: ${HEXAGONS_WORLD_MAP_ASPECT_RATIO}`">
+      <div absolute size-full>
+        <canvas ref="canvas" />
+        <div v-if="showTooltip" absolute left-0 top-0 z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
+          <div relative left="[calc(-50%+2px)]" mt-16 flex="~ col items-center">
+            <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting' }" i-nimiq:tooltip-triangle text-12 />
+            <Hero v-if="consensus === 'idle'" layout-id="connect" top--1 rounded-full transition-colors ring="0.2 blue" bg-gradient-blue>
+              <span px-16 py-8 text-white font-bold>
+                {{ thisIsYou }}
+              </span>
+              <Hero layout-id="connect-label" as="button" m-6 rounded-full bg-white px-12 py-5 text-blue font-bold @click="connect">
+                {{ connectLabel }}
+              </Hero>
+            </Hero>
+            <Hero v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors bg-gradient-orange>
+              <Hero layout-id="connect-label" as="span">
+                Connecting
+              </Hero>
+              <div i-nimiq:spinner animate="ease-out scale-in delay-2s" shrink-0 />
+            </Hero>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- </transition> -->
+      <!-- </transition> -->
 
-    <div bg="white/6" absolute inset-x-0 bottom-0 mx-auto h-auto max-w-400 rounded-6 p-24 font-semibold backdrop-blur-24 transition-height>
-      <p text="neutral-800 11 center" w="[calc(100%-48px)]" absolute top--1.4lh nq-label>
-        Did you know that
-      </p>
-      <transition
-        mode="out-in" enter-active-class="transition duration-300 ease-out" enter-from-class="transform translate-y-1lh op-0" enter-to-class="translate-y-0 op-100"
-        leave-active-class="transition duration-300 ease-out" leave-from-class="transform translate-y-0 op-100" leave-to-class="translate-y--1lh op-0"
-      >
-        <p :key="currentFact" text="white/60 center lg" h-2lh>
-          {{ currentFact }}
+      <div v-if="consensus !== 'idle'" bg="white/6" absolute inset-x-0 bottom-0 mx-auto h-auto max-w-400 rounded-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up  both delay-1250ms">
+        <p text="neutral-800 11 center" w="[calc(100%-48px)]" absolute top--1.4lh nq-label>
+          Did you know that
         </p>
-      </transition>
+        <transition
+          mode="out-in" enter-active-class="transition duration-200 ease-out origin-center-bottom" enter-from-class="transform translate-y-1lh op-0 blur-4 scale-95" enter-to-class="translate-y-0 op-100 blur-0 scale-100"
+          leave-active-class="transition duration-200 ease-out origin-center-top" leave-from-class="transform translate-y-0 op-100 blur-0 scale-100" leave-to-class="translate-y--1lh op-0 blur-4 scale-95"
+        >
+          <p :key="currentFact" text="white/60 center lg" h-2lh>
+            {{ currentFact }}
+          </p>
+        </transition>
+      </div>
     </div>
   </div>
 </template>

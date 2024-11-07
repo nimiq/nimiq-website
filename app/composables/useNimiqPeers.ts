@@ -18,10 +18,11 @@ export function useNimiqPeers() {
 
   const userPeer = ref<Peer>()
 
-  onMounted(async () => {
+  async function setUserPeer() {
     const { lat, lng } = await locate()
-    userPeer.value = getPeer('user', { lat, lng })
-  })
+    const { x, y } = getHexagonCoords({ lat, lng })
+    userPeer.value = { peerId: 'user', lat, lng, x, y }
+  }
 
   const peers = ref<Peer[]>([])
 
@@ -40,18 +41,17 @@ export function useNimiqPeers() {
       if (!locator || locator === '0.0.0.0')
         return
 
-      peers.value.push(getPeer(peerId, await locate(locator)))
+      const { lat, lng } = await locate(locator)
+      const { x, y } = getHexagonCoords({ lat, lng })
+      const peer = { peerId, x, y, lat, lng }
+      peers.value.push(peer)
     })
-  }
-
-  function getPeer(peerId: string, { lat, lng }: LatLng) {
-    const { x, y } = getHexagonCoords({ lat, lng })
-    return { peerId, lat, lng, x, y }
   }
 
   return {
     peers,
     processPeersInfo,
+    setUserPeer,
     userPeer,
   }
 }

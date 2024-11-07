@@ -3,6 +3,7 @@ import { presetRemToPx } from '@unocss/preset-rem-to-px'
 import transformerDirectives from '@unocss/transformer-directives'
 import { presetNimiq } from 'nimiq-css'
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
+import { presetEasingGradient } from 'unocss-preset-easing-gradient'
 
 export default defineConfig({
   rules: [
@@ -11,6 +12,9 @@ export default defineConfig({
   // TODO Add bg-transparent to buttons
   // TODO In the nq-scrollbar-hide, we should include the pseudo-elements
   shortcuts: [
+    ['bg-darkerblue-to-purple', 'bg-gradient-fn-to-b bg-gradient-fn-from-#17182a bg-gradient-fn-to-#3d4383 bg-gradient-fn-ease'],
+    ['bg-purple-to-blue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#3d4383 bg-gradient-fn-to-#0ca6fe bg-gradient-fn-ease'],
+    ['bg-blue-to-darkerblue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#0ca6fe bg-gradient-fn-to-#17182a bg-gradient-fn-ease'],
   ],
   presets: [
     presetUno({ attributifyPseudo: true }),
@@ -23,6 +27,7 @@ export default defineConfig({
     }),
     presetRemToPx({ baseFontSize: 4 }),
     presetAttributify(),
+    presetEasingGradient(),
     presetIcons({
       collections: {
         continents: {

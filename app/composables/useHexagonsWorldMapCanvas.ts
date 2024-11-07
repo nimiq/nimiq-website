@@ -5,10 +5,10 @@ export const HEXAGONS_WORLD_MAP_WIDTH = 129
 /** Map height in hexagons */
 export const HEXAGONS_WORLD_MAP_HEIGHT = 52
 
-export const HEXAGONS_WORLD_MAP_WIDTH_PIXELS = 1082
-export const HEXAGONS_WORLD_MAP_HEIGHT_PIXELS = 502
+export const HEXAGONS_WORLD_MAP_WIDTH_PIXELS = 1037
+export const HEXAGONS_WORLD_MAP_HEIGHT_PIXELS = 531
 
-const ratio = HEXAGONS_WORLD_MAP_WIDTH_PIXELS / HEXAGONS_WORLD_MAP_HEIGHT_PIXELS
+export const HEXAGONS_WORLD_MAP_ASPECT_RATIO = HEXAGONS_WORLD_MAP_WIDTH_PIXELS / HEXAGONS_WORLD_MAP_HEIGHT_PIXELS
 
 /** distance between 2 hexagons vertically in relation to its height */
 export const HEXAGONS_WORLD_MAP_VERTICAL_HEXAGON_DISTANCE = 1.142
@@ -125,7 +125,7 @@ export interface UseHexagonsWorldMapOptions {
    * Whether the container is scrollable in the x-axis. Relevant for mobile.
    * @default true
    */
-  scrollable?: boolean
+  // scrollable?: boolean
 
   /* */
   userPeer: Ref<Peer | undefined>
@@ -134,8 +134,8 @@ export interface UseHexagonsWorldMapOptions {
 
 export function useHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasElement, HTMLCanvasElement>>, options: UseHexagonsWorldMapOptions) {
   const container = computed(() => canvas.value?.parentElement as HTMLElement)
-  const { scrollable = true, userPeer, peers } = options
-  const { height: containerHeight, width: containerWidth } = useElementSize(container)
+  const { userPeer, peers } = options
+  const { height: containerHeight } = useElementSize(container)
 
   const context = computed(() => canvas.value?.getContext('2d'))
 
@@ -151,19 +151,11 @@ export function useHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasEl
   const isUserHexagon = (hexagon: WorldMapHexagon) => hexagon.position.x === userPeer.value?.x && hexagon.position.y === userPeer.value?.y
 
   function _draw() {
-    if (scrollable && containerHeight.value * (ratio) > containerWidth.value) {
-      // Mobile
-      canvas.value.width = Math.round(containerWidth.value / 2) * 2
-      canvas.value.height = Math.round(containerWidth.value / (ratio) / 2) * 2
-    }
-    else {
-      // Desktop
-      canvas.value.width = Math.round((containerHeight.value * (ratio)))
-      canvas.value.height = Math.round(containerHeight.value)
-      const scale = (canvas.value.height) / (2 * HEXAGONS_WORLD_MAP_HEIGHT_PIXELS)
-      context.value!.scale(scale, scale)
-    }
-    toValue(container)!.style.height = `${canvas.value.height}px`
+    canvas.value.width = Math.round((containerHeight.value * (HEXAGONS_WORLD_MAP_ASPECT_RATIO)))
+    canvas.value.height = Math.round(containerHeight.value)
+    const scale = (canvas.value.height) / (2 * HEXAGONS_WORLD_MAP_HEIGHT_PIXELS)
+    context.value!.scale(scale, scale)
+    // toValue(container)!.style.height = `${canvas.value.height}px`
 
     // Clear the canvas
     context.value!.clearRect(0, 0, context.value!.canvas.width, context.value!.canvas.height)
@@ -175,16 +167,14 @@ export function useHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasEl
   onMounted(draw)
   useResizeObserver(canvas, draw)
   watch(peers, draw, { deep: true })
-  watch(userPeer, () => {
-    if (!userPeer.value)
-      return
+  onMounted(async () => {
+    await until(userPeer).toBeTruthy()
     const userHexagon = hexagons.value.find(isUserHexagon)
     if (!userHexagon) // User is in the "water". Let's create an island for him
-      hexagons.value.push(new WorldMapHexagon(userPeer.value.x, userPeer.value.y, 'user-disconnected'))
+      hexagons.value.push(new WorldMapHexagon(userPeer.value!.x, userPeer.value!.y, 'user-disconnected'))
     else
       userHexagon.kind = 'user-disconnected'
-    _draw()
-  }, { immediate: true })
+  })
 
   return {
     container,
