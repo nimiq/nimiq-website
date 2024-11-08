@@ -43,8 +43,8 @@ importers:
         specifier: ^3.7.3
         version: 3.7.3(@typescript-eslint/utils@8.8.1(eslint@9.12.0(jiti@2.3.3))(typescript@5.6.3))(@unocss/eslint-plugin@0.63.4(eslint@9.12.0(jiti@2.3.3))(typescript@5.6.3))(@vue/compiler-sfc@3.5.11)(eslint-plugin-format@0.1.2(eslint@9.12.0(jiti@2.3.3)))(eslint@9.12.0(jiti@2.3.3))(typescript@5.6.3)(vitest@2.1.2(@types/node@22.7.5)(jsdom@24.1.3(bufferutil@4.0.8)(utf-8-validate@5.0.10))(terser@5.34.1))
       '@iconify-json/nimiq':
-        specifier: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@814b6a1
-        version: nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@814b6a1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+        specifier: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@286d977
+        version: nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@286d977(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@iconify/vue':
         specifier: ^4.1.2
         version: 4.1.2(vue@3.5.11(typescript@5.6.3))
@@ -4939,8 +4939,8 @@ packages:
     resolution: {integrity: sha512-8xIynSzHskPj69xPC3sI0oe6rQHfY/J5WP+dUSFIBUxuoSLPdKvDCPlOvPGIiLJcprQDxfsgpXJiiiscYuXvxQ==}
     engines: {node: '>=14'}
 
-  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@814b6a1:
-    resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@814b6a1}
+  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@286d977:
+    resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@286d977}
     version: 1.0.0
 
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575:
@@ -12639,7 +12639,7 @@ snapshots:
       - supports-color
       - vite
 
-  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@814b6a1(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@286d977(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@iconify/tools': 4.0.7
       '@iconify/utils': 2.1.33
