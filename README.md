@@ -39,3 +39,43 @@ yarn dev
 # bun
 bun run dev
 ```
+
+## Page migration
+
+- [ ] Wallet - WIP
+- [ ] roadmap - WIP
+- [ ] team - WIP
+
+---
+
+- [ ] nimiq-pay
+- [ ] about
+- [ ] community
+- [ ] oasis
+- [ ] buy-and-sell
+- [ ] cryptopaymentlink
+- [ ] bug-bounty-pos
+- [ ] bug-bounty
+- [ ] apps
+- [ ] whitepaper-2
+- [ ] litepaper
+- [ ] oasis/integrate
+- [ ] supersimpleswap
+- [ ] community/funding
+- [ ] contact
+- [ ] privacy
+- [ ] siliconparadise
+
+---
+
+- [ ] Check custom pages from the old repo
+- [ ] Configure redirects
+
+### Done but not deployed
+
+- [x] Onepager
+
+### Done
+
+- [x] Home
+- [x] newsletter
