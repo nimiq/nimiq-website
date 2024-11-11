@@ -63,7 +63,6 @@ async function connect() {
 </script>
 
 <template>
-  {{ peers.length }}
   <div of-hidden>
     <div relative xl:w-65vw :style="`aspect-ratio: ${HEXAGONS_WORLD_MAP_ASPECT_RATIO}`">
       <div absolute size-full>
