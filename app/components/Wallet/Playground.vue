@@ -29,10 +29,12 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div nq-wide>
-    <div grid="~ cols-1 rows-1 *:row-span-full *:col-span-full *:self-center *:justify-self-center" size-full>
+  <div relative>
+    <div grid="~ cols-1 rows-1 *:row-span-full *:col-span-full *:self-center *:justify-self-center" nq-wide size-full max-w="$nq-max-width">
       <!-- Ribbon fold -->
       <div aria-hidden self-start="!" justify-self-end="!" mr--18 mt-48 w-44 origin-bottom-right rotate--45 border="22 x-transparent t-0 #EC991C" />
+
+      <div i-custom:cloud relative bottom-18 right-0 h-96 w-180 />
       <svg z-1 width="1096" height="658" viewBox="0 0 1096 658" fill="none" xmlns="http://www.w3.org/2000/svg" size-full>
         <g filter="url(#filter0_bi_1395_10769)">
           <mask id="white-border" fill="white">
