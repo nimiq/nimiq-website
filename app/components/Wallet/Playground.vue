@@ -34,7 +34,12 @@ watchEffect(() => {
       <!-- Ribbon fold -->
       <div aria-hidden self-start="!" justify-self-end="!" mr--18 mt-48 w-44 origin-bottom-right rotate--45 border="22 x-transparent t-0 #EC991C" />
 
-      <div i-custom:cloud relative bottom-18 right-0 h-96 w-180 />
+      <div aria-hidden pointer-events-none absolute inset-0 size-full of-hidden w="[calc(100%+(var(--px)*2))]" left="[calc(-1*var(--px))]">
+        <div class="float-cloud" i-custom:cloud relative top-110 h-180 w-337 />
+        <div class="float-cloud" i-custom:cloud relative top-128 h-288 w-540 />
+        <div class="float-cloud" i-custom:cloud relative bottom-110 h-96 w-180 />
+        <div class="float-cloud" i-custom:cloud relative bottom-18 h-90 w-168 />
+      </div>
       <svg z-1 width="1096" height="658" viewBox="0 0 1096 658" fill="none" xmlns="http://www.w3.org/2000/svg" size-full>
         <g filter="url(#filter0_bi_1395_10769)">
           <mask id="white-border" fill="white">
@@ -131,5 +136,22 @@ watchEffect(() => {
 
 .slide {
   animation: slide var(--d) ease-out forwards;
+}
+
+@keyframes float-cloud {
+  0% {
+    transform: translateX(-200%);
+  }
+  50% {
+    transform: translateX(calc(100vw + 100%));
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+.float-cloud {
+  animation: float-cloud 400s linear infinite;
+  will-change: transform;
 }
 </style>
