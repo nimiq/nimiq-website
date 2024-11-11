@@ -45,6 +45,7 @@ bun run dev
 - [ ] Wallet - WIP
 - [ ] roadmap - WIP
 - [ ] team - WIP
+- [ ] litepaper - WIP
 
 ---
 
@@ -58,7 +59,6 @@ bun run dev
 - [ ] bug-bounty
 - [ ] apps
 - [ ] whitepaper-2
-- [ ] litepaper
 - [ ] oasis/integrate
 - [ ] supersimpleswap
 - [ ] community/funding

@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import type { RichTextField, TitleField } from '@prismicio/client'
+import type { BackgroundColor } from '~/composables/useSectionColor'
 
-defineProps<{ headline: TitleField, subline: RichTextField }>()
+const { color = 'bg-neutral-100' } = defineProps<{ headline: TitleField, subline: RichTextField, color?: BackgroundColor }>()
 </script>
 
 <template>
-  <section class="bg-neutral-100">
-    <Headline :headline :subline left-align max-w-780px px-32 />
+  <section :class="color">
+    <Headline :headline :subline left-align max-w-780px w-full px-32 />
+    <div flex="~ justify-start" max-w-780px w-full px-32 nq-mt-16>
+      <slot name="bottom" />
+    </div>
   </section>
 </template>

@@ -10,3 +10,5 @@ export function getColorClass(color: 'white' | 'grey' | 'darkblue' = 'grey') {
       return 'bg-neutral-0'
   }
 }
+
+export type BackgroundColor = ReturnType<typeof getColorClass>
