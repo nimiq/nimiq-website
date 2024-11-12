@@ -60,6 +60,18 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "staking_faq": {
+              "type": "SharedSlice"
+            },
+            "staking_distribution": {
+              "type": "SharedSlice"
+            },
+            "staking_calculator": {
+              "type": "SharedSlice"
+            },
+            "quote": {
+              "type": "SharedSlice"
+            },
             "wallet_playground": {
               "type": "SharedSlice"
             },

@@ -1,0 +1,64 @@
+{
+  "id": "staking_faq",
+  "type": "SharedSlice",
+  "name": "StakingFaq",
+  "description": "StakingFaq",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
+        },
+        "questions": {
+          "type": "Group",
+          "config": {
+            "label": "questions",
+            "repeat": true,
+            "fields": {
+              "type": {
+                "type": "Select",
+                "config": {
+                  "label": "type",
+                  "placeholder": "",
+                  "options": [
+                    "Prestaking",
+                    "Validators and Network",
+                    "Migration",
+                    "General questions about staking"
+                  ]
+                }
+              },
+              "question": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "question",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "answer": {
+                "type": "Text",
+                "config": {
+                  "label": "answer",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

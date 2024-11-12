@@ -2,20 +2,28 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SimpleHeadlineSlice>())
-const colors = getColorClass(props.slice.primary.bgColor)
+const bgColor = getColorClass(props.slice.primary.bgColor)
 
-const gradientClass = computed(() => {
-  if (props.slice.variation === 'stakeHeadline') {
-    return props.slice.primary.gradient
-  }
-  return ''
+const { stakingValues } = useGlobalContent()
+
+const isStakingSlice = computed(() => stakingValues?.template && getText(props.slice.primary.headline).includes(stakingValues.template))
+const gradientClass = computed<'gradient-transparent-green' | 'gradient-transparent-green-transparent' | undefined>(() => {
+  if (!isStakingSlice.value)
+    return
+  const currentIndex = props.slices.indexOf(props.slice)
+  // @ts-expect-error the types are meh
+  const nextSliceBgColor = props.slices.at(currentIndex + 1)?.primary.bgColor
+  // @ts-expect-error the types are meh
+  const prevSliceBgColor = props.slices.at(currentIndex - 1)?.primary.bgColor
+
+  return (nextSliceBgColor === prevSliceBgColor) ? 'gradient-transparent-green-transparent' : 'gradient-transparent-green'
 })
 </script>
 
 <template>
-  <section relative :data-slice-type="slice.variation" :class="[colors, gradientClass]">
+  <section relative :class="[bgColor, gradientClass]">
     <Headline
-      v-if="slice.variation === 'default'"
+      v-if="!isStakingSlice"
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
       :cta-href="slice.primary.linkHref"
@@ -24,13 +32,10 @@ const gradientClass = computed(() => {
       :icon-name="slice.primary.iconName"
     />
     <HeadlineStaking
-      v-else-if="slice.variation === 'stakeHeadline'"
+      v-else
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
-      :cta-href="slice.primary.linkHref"
-      :cta-label="slice.primary.linkLabel"
-      :interes-per-year="slice.primary.interestPerYear || ''"
-      :note="slice.primary.note || ''"
+      :link="slice.primary.link"
     />
   </section>
 </template>

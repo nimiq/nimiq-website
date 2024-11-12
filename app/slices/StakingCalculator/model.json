@@ -1,0 +1,95 @@
+{
+  "id": "staking_calculator",
+  "type": "SharedSlice",
+  "name": "StakingCalculator",
+  "description": "StakingCalculator",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
+        },
+        "stakingAmountLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Staking Amount Label",
+            "placeholder": ""
+          }
+        },
+        "initialStakingAmount": {
+          "type": "Number",
+          "config": {
+            "label": "Initial Staking Amount",
+            "placeholder": ""
+          }
+        },
+        "stakedSupplyLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Staked supply Label",
+            "placeholder": ""
+          }
+        },
+        "stakedSupplyInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Staked supply info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "stakingPeriodLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Staking period label",
+            "placeholder": ""
+          }
+        },
+        "stakingPeriodInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Staking period info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "autoRestakeLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Auto restake Label",
+            "placeholder": ""
+          }
+        },
+        "stakingRewardsLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Staking rewards label",
+            "placeholder": ""
+          }
+        },
+        "autoRestakeInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Auto restake Info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

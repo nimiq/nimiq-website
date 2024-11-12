@@ -49,17 +49,14 @@ function reset() {
 
 <template>
   <div flex="~ col gap-24" absolute w-full style="--nq-max-width:none" of-x-hidden>
-    <AnimatedMarquee v-for="({ duration, words }, key) in wordsList" :key :duration>
-      <ul flex="~ gap-24">
-        <li v-for="({ i, word: w }) in words" :key="w" flex="~ shrink-0 gap-24">
-          <div flex="~ gap-12 items-baseline" rounded-4 bg-neutral-100 p-16>
-            <span text-neutral-400 font-semibold lh-none text-lg>{{ i }}</span>
-            <span text-neutral-800 font-semibold lh-none text-xl>
-              <AnimatedHyperText :text="w" />
-            </span>
-          </div>
-        </li>
-      </ul>
+    <AnimatedMarquee v-for="({ duration, words }, key) in wordsList" :key :duration :items="words" flex="~ gap-2">
+      <template #default="{ item: { word } }">
+        <div flex="~ gap-12 items-center" rounded-4 bg-neutral-100 p-16>
+          <span text-neutral-800 font-semibold lh-none text-xl>
+            <AnimatedHyperText :text="word" />
+          </span>
+        </div>
+      </template>
     </AnimatedMarquee>
     <div class="marquee-overlay" pointer-events-none absolute inset-0 z-1 />
   </div>

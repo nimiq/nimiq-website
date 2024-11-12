@@ -95,6 +95,19 @@
             "label": "Time Label",
             "placeholder": ""
           }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "darkblue"
+            ],
+            "default_value": "white"
+          }
         }
       },
       "items": {}

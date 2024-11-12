@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-defineProps(getSliceComponentProps<Content.CurrencyComparisonSlice>())
+const props = defineProps(getSliceComponentProps<Content.CurrencyComparisonSlice>())
+const bgColor = getColorClass(props.slice.primary.bgColor)
 </script>
 
 <template>
-  <section bg-neutral-0>
+  <section :class="bgColor">
     <ul flex="~ col lg:row">
       <li v-for="({ adjetive, crypto, fee, mainFeature, name, secondFeature, thirdFeature, time }) in slice.primary.currencies" :key="crypto" border="b-1 lg:b-0 lg:r-1 neutral-400 last:none" p="max-lg:y-32 last:b-0 first:t-0 lg:x-32">
         <div flex="~ items-center gap-12" text-48>

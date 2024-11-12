@@ -17,7 +17,17 @@ export const HEXAGONS_WORLD_MAP_HEIGHT_HORIZONTAL_HEXAGON_OVERLAP = 0.98
 
 export const HEXAGONS_WORLD_MAP_SCALE = (2 * HEXAGONS_WORLD_MAP_WIDTH_PIXELS) / (HEXAGONS_WORLD_MAP_WIDTH * HEXAGONS_WORLD_MAP_HEIGHT_HORIZONTAL_HEXAGON_OVERLAP)
 
-type PeerKind = 'normal' | 'user-disconnected' | 'user-connected' | 'peer'
+/**
+ * start and end point offset on a circle
+ * TODO calculated properly and only once depending on `CURVINESS_FACTOR`.
+ */
+const CURVINESS_ANGLE = Math.PI / 6
+// how long the tangent to the control point is in relation to the distance between the two points
+const CURVINESS_FACTOR = 0.2
+const SPLINE_ANIMATION_DURATION = 1000
+const easeOut = (t: number) => 1 - (1 - t) ** 3
+
+type PeerKind = 'normal' | 'user' | 'peer'
 export class WorldMapHexagon {
   public position: { x: number, y: number } = { x: 0, y: 0 }
   public kind: PeerKind
@@ -102,7 +112,7 @@ export class WorldMapHexagon {
     dc.closePath()
 
     switch (this.kind) {
-      case 'user-disconnected': {
+      case 'user': {
         const scale = HEXAGONS_WORLD_MAP_SCALE
         const halfScale = scale / 2
         const radialGradient = dc.createRadialGradient(this.x + halfScale, this.y + halfScale, scale, this.x + halfScale, this.y + halfScale, 2 * scale)
@@ -113,7 +123,7 @@ export class WorldMapHexagon {
       }
       case 'peer': {
         // dc.fillStyle = 'rgba(255, 255, 255, 0.3)'
-        dc.fillStyle = 'rgba(0, 255, 255, 0.3)'
+        dc.fillStyle = 'rgba(255, 255, 255, 0.3)'
         break
       }
       case 'normal': {
@@ -123,6 +133,80 @@ export class WorldMapHexagon {
     dc.fill()
 
     return false
+  }
+}
+
+class WorldMapArc {
+  public x1: number
+  public y1: number
+  public x2: number
+  public y2: number
+
+  private animation = 1
+
+  constructor(from: { x: number, y: number }, to: { x: number, y: number }) {
+    this.x1 = from.x
+    this.y1 = from.y
+    this.x2 = to.x
+    this.y2 = to.y
+  }
+
+  draw(dc: CanvasRenderingContext2D, t: number) {
+    this.animation = Math.min(this.animation + t / SPLINE_ANIMATION_DURATION, 1)
+
+    // Calculate middle points of hexagons
+    const x1mid = this.x1 + 0.5 * HEXAGONS_WORLD_MAP_SCALE
+    const y1mid = this.y1 + 0.445 * HEXAGONS_WORLD_MAP_SCALE
+    const x2mid = this.x2 + 0.5 * HEXAGONS_WORLD_MAP_SCALE
+    const y2mid = this.y2 + 0.445 * HEXAGONS_WORLD_MAP_SCALE
+
+    let angle = Math.atan2(y2mid - y1mid, x2mid - x1mid)
+    const distance = Math.hypot(x2mid - x1mid, y2mid - y1mid)
+
+    dc.lineWidth = 3.5
+
+    if (this.animation < 1) {
+      dc.strokeStyle = 'rgba(117, 121, 157, 1)'
+      dc.setLineDash([distance, distance])
+      dc.lineDashOffset = -(distance + easeOut(this.animation) * distance)
+    }
+    else {
+      dc.strokeStyle = 'rgba(117, 121, 157, 1)'
+      dc.setLineDash([])
+      dc.lineDashOffset = 0
+    }
+
+    dc.lineCap = 'round'
+
+    dc.beginPath()
+    if (distance >= 3.5 * HEXAGONS_WORLD_MAP_SCALE) {
+      let counterAngle = 0
+      let tangent = 0
+      if (Math.abs(angle) > Math.PI / 2) {
+        counterAngle = angle + Math.PI - CURVINESS_ANGLE
+        tangent = angle + Math.PI / 2
+        angle += CURVINESS_ANGLE
+      }
+      else {
+        counterAngle = angle + Math.PI + CURVINESS_ANGLE
+        tangent = angle - Math.PI / 2
+        angle -= CURVINESS_ANGLE
+      }
+
+      dc.moveTo(x1mid + Math.cos(angle) * HEXAGONS_WORLD_MAP_SCALE, y1mid + Math.sin(angle) * HEXAGONS_WORLD_MAP_SCALE * 0.89)
+      dc.quadraticCurveTo(
+        (x1mid + x2mid) / 2 + Math.cos(tangent) * distance * CURVINESS_FACTOR,
+        (y1mid + y2mid) / 2 + Math.sin(tangent) * distance * CURVINESS_FACTOR,
+        x2mid + Math.cos(counterAngle) * HEXAGONS_WORLD_MAP_SCALE,
+        y2mid + Math.sin(counterAngle) * HEXAGONS_WORLD_MAP_SCALE * 0.89,
+      )
+    }
+    else if (distance > 1.5 * HEXAGONS_WORLD_MAP_SCALE) {
+      dc.moveTo(x1mid + Math.cos(angle) * HEXAGONS_WORLD_MAP_SCALE, y1mid + Math.sin(angle) * HEXAGONS_WORLD_MAP_SCALE * 0.89)
+      dc.lineTo(x2mid + Math.cos(angle + Math.PI) * HEXAGONS_WORLD_MAP_SCALE, y2mid + Math.sin(angle + Math.PI) * HEXAGONS_WORLD_MAP_SCALE * 0.89)
+    }
+
+    dc.stroke()
   }
 }
 
@@ -146,6 +230,45 @@ export function useHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasEl
   const context = computed(() => canvas.value?.getContext('2d'))
 
   const hexagons = ref<WorldMapHexagon[]>([])
+  const userHexagon = ref<WorldMapHexagon>()
+  watch(userPeer, () => {
+    if (!userPeer.value)
+      return
+    userHexagon.value = hexagons.value.find(({ x, y }) => x === userPeer.value!.x && y === userPeer.value!.y)
+    if (!userHexagon.value) {
+      userHexagon.value = new WorldMapHexagon(userPeer.value!.x, userPeer.value!.y, 'user')
+      hexagons.value.push(userHexagon.value)
+    }
+    else {
+      userHexagon.value.kind = 'user'
+    }
+  }, { immediate: true })
+
+  const peerHexagons = ref<WorldMapHexagon[]>([])
+  watch(peers, () => {
+    peerHexagons.value = []
+    for (const peer of peers.value) {
+      const hexagon = hexagons.value.find(({ x, y }) => x === peer.x && y === peer.y)
+      if (!hexagon) {
+        const peerHexagon = new WorldMapHexagon(peer.x, peer.y, 'peer')
+        peerHexagons.value.push(peerHexagon)
+        hexagons.value.push(peerHexagon)
+      }
+      else {
+        peerHexagons.value.push(hexagon)
+        hexagon.kind = 'peer'
+      }
+    }
+  }, { immediate: true })
+
+  const arcs = ref<WorldMapArc[]>([])
+  watch(peerHexagons, () => {
+    if (!userHexagon.value)
+      return
+    const untrackedPeerHexagons = peerHexagons.value.filter(peerHexagon => !arcs.value.find(arc => arc.x2 === peerHexagon.x && arc.y2 === peerHexagon.y))
+
+    arcs.value.push(...untrackedPeerHexagons.map(peerHexagon => new WorldMapArc(userHexagon.value!, peerHexagon)))
+  }, { deep: true, immediate: true })
 
   const { pixelRatio } = useDevicePixelRatio()
 
@@ -166,34 +289,12 @@ export function useHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasEl
     // Clear and redraw
     context.value!.clearRect(0, 0, context.value!.canvas.width, context.value!.canvas.height)
     hexagons.value.forEach(hexagon => hexagon.draw(context.value!))
+    arcs.value.forEach(arc => arc.draw(context.value!, 1))
   }
 
   const draw = useDebounceFn(_draw, 300, { maxWait: 100 })
 
-  watch([() => containerHeight.value, peers], draw, { deep: true })
-
-  watch(userPeer, () => {
-    if (!userPeer.value)
-      return
-    const userHexagon = hexagons.value.find(({ x, y }) => x === userPeer.value!.x && y === userPeer.value!.y)
-    if (!userHexagon)
-      hexagons.value.push(new WorldMapHexagon(userPeer.value!.x, userPeer.value!.y, 'user-disconnected'))
-    else
-      userHexagon.kind = 'user-disconnected'
-    draw()
-  }, { immediate: true })
-
-  watch(peers, () => {
-    for (const peer of peers.value) {
-      const hexagon = hexagons.value.find(({ x, y }) => x === peer.x && y === peer.y)
-      if (!hexagon)
-        hexagons.value.push(new WorldMapHexagon(peer.x, peer.y, 'peer'))
-      else
-        hexagon.kind = 'peer'
-    }
-    draw()
-  }, { immediate: true })
-
+  watch([containerHeight, peerHexagons, userHexagon], draw, { deep: true })
   _draw()
 
   return {

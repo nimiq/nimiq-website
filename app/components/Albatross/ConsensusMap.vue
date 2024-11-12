@@ -33,9 +33,18 @@ const didYouKwnowThatFacts = [
 ]
 const currentFact = ref('')
 
-useIntervalFn(() => {
+const { pause: pauseFactsLoop, resume: resumeFactsLoop } = useIntervalFn(() => {
   currentFact.value = didYouKwnowThatFacts[Math.floor(Math.random() * didYouKwnowThatFacts.length)]!
-}, 6000)
+}, 6000, { immediate: false })
+
+watch(consensus, () => {
+  if (consensus.value === 'connecting') {
+    resumeFactsLoop()
+  }
+  else {
+    pauseFactsLoop()
+  }
+}, { immediate: true })
 
 async function connect() {
   currentFact.value = didYouKwnowThatFacts[Math.floor(Math.random() * didYouKwnowThatFacts.length)]!
@@ -61,13 +70,14 @@ async function connect() {
 
 <template>
   <div of-hidden>
+    {{ peers.length }}
     <div relative xl:w-65vw :style="`aspect-ratio: ${HEXAGONS_WORLD_MAP_ASPECT_RATIO}`">
       <div absolute size-full>
         <canvas ref="canvas" />
         <div v-if="showTooltip" absolute left-0 top-0 z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
           <div relative left="[calc(-50%+2px)]" mt-16 flex="~ col items-center">
             <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" i-nimiq:tooltip-triangle text-12 />
-            <Hero v-if="consensus === 'idle'" layout-id="connect" top--1 rounded-full transition-colors ring="0.2 blue" class="bg-gradient-blue">
+            <Hero v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" class="bg-gradient-blue" top--1 rounded-full shadow transition-colors>
               <span px-16 py-8 text-white font-bold>
                 {{ thisIsYou }}
               </span>
@@ -75,13 +85,13 @@ async function connect() {
                 {{ connectLabel }}
               </Hero>
             </Hero>
-            <Hero v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors class="bg-gradient-orange">
+            <Hero v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" top--3 w-max rounded-full px-16 py-8 text-white font-semibold shadow outline-none transition-colors>
               <Hero layout-id="connect-label" as="span">
                 Connecting
               </Hero>
               <div i-nimiq:spinner animate="ease-out scale-in delay-2s" shrink-0 />
             </Hero>
-            <Hero v-else-if="consensus === 'established'" layout-id="connect" ring="0.2 green" flex="~ items-center gap-8" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors class="bg-gradient-green">
+            <Hero v-else-if="consensus === 'established'" layout-id="connect" ring="0.2 green" flex="~ items-center gap-8" class="bg-gradient-green" top--3 w-max rounded-full px-16 py-8 text-white font-semibold shadow outline-none transition-colors>
               <Hero layout-id="connect-label" as="span">
                 You are connected
               </Hero>
@@ -91,16 +101,21 @@ async function connect() {
       </div>
       <!-- </transition> -->
 
-      <div v-if="consensus === 'connecting'" bg="white/6" absolute inset-x-0 bottom-0 mx-auto h-auto max-w-400 rounded-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up  both delay-1250ms">
-        <p text="neutral-800 11 center" w="[calc(100%-48px)]" absolute top--1.4lh nq-label>
-          Did you know that
-        </p>
+      <div v-if="consensus !== 'idle'" bg="white/6" absolute inset-x-0 bottom-0 mx-auto h-auto max-w-400 rounded-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up  both delay-1250ms">
+        <transition enter-active-class="transition duration-200 ease-out" enter-from-class="translate-y--1lh" enter-to-class="translate-y-0" leave-active-class="transition duration-200 ease-out" leave-from-class="translate-y-0" leave-to-class="translate-y--1lh">
+          <p v-if="consensus === 'connecting'" text="neutral-800 11 center" w="[calc(100%-48px)]" absolute top--1.4lh nq-label>
+            Did you know that
+          </p>
+        </transition>
         <transition
           mode="out-in" enter-active-class="transition duration-200 ease-out origin-center-bottom" enter-from-class="transform translate-y-1lh op-0 blur-4 scale-95" enter-to-class="translate-y-0 op-100 blur-0 scale-100"
-          leave-active-class="transition duration-200 ease-out origin-center-top" leave-from-class="transform translate-y-0 op-100 blur-0 scale-100" leave-to-class="translate-y--1lh op-0 blur-4 scale-95"
+          leave-active-class="transition duration-200 ease-out origin-center-top" leave-from-class="transform translate-y-0 op-100 scale-100" leave-to-class="translate-y--1lh op-0 scale-95"
         >
-          <p :key="currentFact" text="white/60 center lg" h-2lh>
+          <p v-if="consensus === 'connecting'" :key="currentFact" text="white/60 center lg" h-2lh>
             {{ currentFact }}
+          </p>
+          <p v-else key="connected" text="white/60 center lg" h-2lh>
+            Your browser is now directly connected to {{ peers.length }} peers on the network.
           </p>
         </transition>
       </div>

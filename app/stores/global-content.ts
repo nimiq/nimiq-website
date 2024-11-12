@@ -138,6 +138,8 @@ export const useGlobalContent = defineStore('global-content', () => {
   const cryptoMapLocationsCount = computed(() => errorGettingStats.value ? 29_379 : cryptoMapStats.value?.locations)
   const { data: cryptoMapContinentsStats } = useAsyncData('get_stats_for_all_continents', () => $fetch<{ locations: number }>(getSupabaseEndpoint('get_stats_for_all_continents')))
 
+  const { data: stakingValues } = useAsyncData('stakingValues', () => client.getByType('stakingValues'), { transform: data => data.results.at(0)?.data })
+
   return {
     navigation,
     navigationBlocks,
@@ -149,6 +151,7 @@ export const useGlobalContent = defineStore('global-content', () => {
     cryptoMapLocationsCount,
     cryptoMapContinentsStats,
     getRandomApps,
+    stakingValues,
   }
 })
 

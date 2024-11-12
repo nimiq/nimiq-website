@@ -54,7 +54,7 @@
         },
         "linkHref": {
           "config": {
-            "label": "Link href",
+            "label": "Link href (DEPRECATED)",
             "placeholder": "",
             "allowTargetBlank": false,
             "select": null
@@ -63,24 +63,45 @@
         },
         "linkLabel": {
           "config": {
-            "label": "Link label",
+            "label": "Link label (DEPRECATED)",
             "placeholder": "Mandatory if the Link href is set"
           },
           "type": "Text"
         },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null,
+            "allowText": true
+          }
+        },
         "secondaryLinkHref": {
           "type": "Link",
           "config": {
-            "label": "Secondary Link Href",
+            "label": "Secondary Link Href (DEPRECATED)",
             "placeholder": "",
+            "allowTargetBlank": true,
             "select": null
           }
         },
         "secondaryLinkLabel": {
           "type": "Text",
           "config": {
-            "label": "Secondary Link Label",
+            "label": "Secondary Link Label (DEPRECATED)",
             "placeholder": ""
+          }
+        },
+        "secondaryLink": {
+          "type": "Link",
+          "config": {
+            "label": "Secondary Link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null,
+            "allowText": true
           }
         },
         "videoHref": {

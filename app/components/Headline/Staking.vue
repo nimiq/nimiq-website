@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import type { KeyTextField, LinkField, RichTextField } from '@prismicio/client'
+import type { LinkField, RichTextField } from '@prismicio/client'
 
 const props = defineProps<{
   headline: RichTextField
   subline?: RichTextField
-  ctaHref?: LinkField
-  ctaLabel?: KeyTextField
-  interesPerYear?: string
-  note?: string
+  cta?: LinkField
 }>()
 
-const headlineParts = computed(() => getText(props.headline!).split('{{ interesPerYear }}'))
+const { stakingValues } = useGlobalContent()
+
+const headlineParts = computed(() => getText(props.headline!).split('{{ interestPerAnnum }}'))
 </script>
 
 <template>
@@ -19,25 +18,22 @@ const headlineParts = computed(() => getText(props.headline!).split('{{ interesP
       <div v-for="i in 3" :key="i" ring="1.5 white/60" absolute size-full origin-center rounded-full :style="`animation: ringPulse 10s ease-out infinite;animation-delay: calc(3.3s * ${i})`" />
       <div i-nimiq:leaf-2 text="36 green-staking" />
     </div>
-    <h2 nq-mt-32>
+    <h2 text-white nq-mt-32>
       {{ headlineParts[0] }}
-      <span bg="white/30" rounded-4 px-10 py-3>
-        {{ interesPerYear }}
-      </span>
+      <span bg="white/30" rounded-4 px-10 py-3 text-white inline-flex="~">
+        ~{{ stakingValues?.interestPerYear }}%<sup relative top-18 text="white 20">*</sup></span>
       {{ headlineParts[1] }}
     </h2>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" text="white/80" />
-    <PrismicLink v-if="ctaHref && ctaLabel" internal-component="a" :field="ctaHref" bg="white hocus:white/95" nq-shadow un-text-darkblue nq-mt-48 nq-arrow nq-pill-lg md:mx-auto>
-      {{ ctaLabel }}
-    </PrismicLink>
+    <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" bg="white hocus:white/95" nq-shadow un-text-darkblue nq-mt-48 nq-arrow nq-pill-lg md:mx-auto />
     <small text="white/80" nq-mt-32>
-      {{ note }}
+      * {{ stakingValues?.stakingNote }}
     </small>
   </div>
 </template>
 
 <style>
-section[data-slice-type='stakeHeadline'].darkblue-green {
+section.gradient-transparent-green {
   --gradient-height: 252px;
   background: linear-gradient(
     180deg,
@@ -61,7 +57,7 @@ section[data-slice-type='stakeHeadline'].darkblue-green {
   --uno: 'bg-green-staking';
 }
 
-section[data-slice-type='stakeHeadline'].white-green-white {
+section.gradient-transparent-green-transparent {
   --pt: 160px;
   --pb: 160px;
   --gradient-height: 252px;
