@@ -49,8 +49,8 @@ importers:
         specifier: ^4.1.2
         version: 4.1.2(vue@3.5.11(typescript@5.6.3))
       '@nimiq/core':
-        specifier: next
-        version: 2.0.0-next.24.4
+        specifier: 2.0.0-next.rc.0
+        version: 2.0.0-next.rc.0
       '@nimiq/utils':
         specifier: ^0.11.3
         version: 0.11.3
@@ -1346,8 +1346,8 @@ packages:
     resolution: {integrity: sha512-q3L9i3HoNfz0SGpTIS4zTcKBbRkxzCRpd169eyiTuk3IwcPC3/85mzLHranlKo2b+HYT0gu37YxGB45aD8A3Tw==}
     engines: {node: '>=18.0.0'}
 
-  '@nimiq/core@2.0.0-next.24.4':
-    resolution: {integrity: sha512-O4n3nM6d7cvxo9UddIBzPnf3JbVXBExt80yV+wY0IPS1JA4aIIQA+4L4m+QwWiW3uGuNiGigpidFY0zLDC1i0Q==}
+  '@nimiq/core@2.0.0-next.rc.0':
+    resolution: {integrity: sha512-mExuJIO9VIuH/MO/Od0o357hcUQ5hxdRzReTieGP1XO7tD/X+saHDsCWfCM+SowWyrbqzOBtEDzWmRpAktQzzg==}
 
   '@nimiq/utils@0.11.3':
     resolution: {integrity: sha512-yklNKsj7MLL3sHaqIpfpWVtml09quJLU+yGI7olf0ay21+2g42yJrELeUVu8VYKeMp5ArIEG3cJqUjdUrfatxA==}
@@ -7876,7 +7876,7 @@ snapshots:
       '@netlify/node-cookies': 0.1.0
       urlpattern-polyfill: 8.0.2
 
-  '@nimiq/core@2.0.0-next.24.4':
+  '@nimiq/core@2.0.0-next.rc.0':
     dependencies:
       comlink: 4.4.1
       websocket: 1.0.35

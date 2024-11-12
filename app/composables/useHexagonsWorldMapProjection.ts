@@ -72,12 +72,12 @@ class RobinsonProjection {
   }
 }
 
-export function getHexagonCoords(lngLat: MaybeRef<LatLng>): { x: number, y: number } {
+export function getHexagonCoords(lngLat: LatLng): { x: number, y: number } {
   // the map that we have is cropped out from the full robinson projected map. We have to make
   // the computation on the full/original map, so we calculate the full size.
   const fullMapWidth = 1.0946808510638297 * 2 * HEXAGONS_WORLD_MAP_WIDTH_PIXELS
   const fullMapHeight = fullMapWidth / 1.97165551906973 // RobinsonProjection maps have a fixed aspect ratio
-  const point = RobinsonProjection.project(fullMapWidth, toValue(lngLat))
+  const point = RobinsonProjection.project(fullMapWidth, lngLat)
   // the origin is centered in the middle of the map, so we translate it
   // to the top left corner
   point.x = fullMapWidth / 2 + point.x

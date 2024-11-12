@@ -1,27 +1,24 @@
 <script setup lang="ts">
+import type { CSSProperties } from 'vue'
+
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
 
 const canvas = templateRef('canvas')
 const { launchNetwork, consensus } = useNimiq()
 const { peers, userPeer, setUserPeer } = useNimiqPeers()
-useHexagonsWorldMap(canvas, { peers, userPeer })
 
-const { width, height } = useElementSize(canvas)
-
+const tooltipPosition = ref<CSSProperties>({ transform: 'translate(0, 0)' })
 onMounted(async () => {
   await setUserPeer()
+  useHexagonsWorldMap(canvas, { peers, userPeer })
+  await nextTick()
+  const { x, y } = userPeer.value!
+  const newX = (x * canvas.value.width) / HEXAGONS_WORLD_MAP_WIDTH
+  const newY = (y * canvas.value.height) / HEXAGONS_WORLD_MAP_HEIGHT
+  tooltipPosition.value = { transform: `translate(${newX}px, ${newY}px)` }
 })
 
-const tooltipPosition = computed(() => {
-  if (!userPeer.value || !canvas.value)
-    return
-  const { x, y } = userPeer.value
-  const newX = (x * width.value) / HEXAGONS_WORLD_MAP_WIDTH
-  const newY = (y * height.value) / HEXAGONS_WORLD_MAP_HEIGHT
-  return { transform: `translate(${newX}px, ${newY}px)` }
-})
-
-const showTooltip = computed(() => tooltipPosition.value)
+const showTooltip = computed(() => userPeer.value && tooltipPosition.value)
 
 const didYouKwnowThatFacts = [
   'Nimiq is a browser-first blockchain',
@@ -69,8 +66,8 @@ async function connect() {
         <canvas ref="canvas" />
         <div v-if="showTooltip" absolute left-0 top-0 z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
           <div relative left="[calc(-50%+2px)]" mt-16 flex="~ col items-center">
-            <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting' }" i-nimiq:tooltip-triangle text-12 />
-            <Hero v-if="consensus === 'idle'" layout-id="connect" top--1 rounded-full transition-colors ring="0.2 blue" bg-gradient-blue>
+            <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" i-nimiq:tooltip-triangle text-12 />
+            <Hero v-if="consensus === 'idle'" layout-id="connect" top--1 rounded-full transition-colors ring="0.2 blue" class="bg-gradient-blue">
               <span px-16 py-8 text-white font-bold>
                 {{ thisIsYou }}
               </span>
@@ -78,18 +75,23 @@ async function connect() {
                 {{ connectLabel }}
               </Hero>
             </Hero>
-            <Hero v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors bg-gradient-orange>
+            <Hero v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors class="bg-gradient-orange">
               <Hero layout-id="connect-label" as="span">
                 Connecting
               </Hero>
               <div i-nimiq:spinner animate="ease-out scale-in delay-2s" shrink-0 />
+            </Hero>
+            <Hero v-else-if="consensus === 'established'" layout-id="connect" ring="0.2 green" flex="~ items-center gap-8" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors class="bg-gradient-green">
+              <Hero layout-id="connect-label" as="span">
+                You are connected
+              </Hero>
             </Hero>
           </div>
         </div>
       </div>
       <!-- </transition> -->
 
-      <div v-if="consensus !== 'idle'" bg="white/6" absolute inset-x-0 bottom-0 mx-auto h-auto max-w-400 rounded-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up  both delay-1250ms">
+      <div v-if="consensus === 'connecting'" bg="white/6" absolute inset-x-0 bottom-0 mx-auto h-auto max-w-400 rounded-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up  both delay-1250ms">
         <p text="neutral-800 11 center" w="[calc(100%-48px)]" absolute top--1.4lh nq-label>
           Did you know that
         </p>

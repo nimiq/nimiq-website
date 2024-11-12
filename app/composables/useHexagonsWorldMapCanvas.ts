@@ -17,11 +17,12 @@ export const HEXAGONS_WORLD_MAP_HEIGHT_HORIZONTAL_HEXAGON_OVERLAP = 0.98
 
 export const HEXAGONS_WORLD_MAP_SCALE = (2 * HEXAGONS_WORLD_MAP_WIDTH_PIXELS) / (HEXAGONS_WORLD_MAP_WIDTH * HEXAGONS_WORLD_MAP_HEIGHT_HORIZONTAL_HEXAGON_OVERLAP)
 
+type PeerKind = 'normal' | 'user-disconnected' | 'user-connected' | 'peer'
 export class WorldMapHexagon {
   public position: { x: number, y: number } = { x: 0, y: 0 }
-  public kind: 'normal' | 'user-disconnected'
+  public kind: PeerKind
 
-  public constructor(x: number, y: number, kind: 'normal' | 'user-disconnected' = 'normal') {
+  public constructor(x: number, y: number, kind: PeerKind = 'normal') {
     this.position.x = x
     this.position.y = y
     this.kind = kind
@@ -110,6 +111,11 @@ export class WorldMapHexagon {
         dc.fillStyle = radialGradient
         break
       }
+      case 'peer': {
+        // dc.fillStyle = 'rgba(255, 255, 255, 0.3)'
+        dc.fillStyle = 'rgba(0, 255, 255, 0.3)'
+        break
+      }
       case 'normal': {
         dc.fillStyle = 'rgba(255, 255, 255, 0.1)'
       }
@@ -141,6 +147,8 @@ export function useHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasEl
 
   const hexagons = ref<WorldMapHexagon[]>([])
 
+  const { pixelRatio } = useDevicePixelRatio()
+
   for (let x = 0; x < HEXAGONS_WORLD_MAP_WIDTH; x++) {
     for (let y = 0; y < HEXAGONS_WORLD_MAP_HEIGHT; y++) {
       if (ConsensusBitMap[x]?.[y] === 1)
@@ -148,33 +156,45 @@ export function useHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasEl
     }
   }
 
-  const isUserHexagon = (hexagon: WorldMapHexagon) => hexagon.position.x === userPeer.value?.x && hexagon.position.y === userPeer.value?.y
-
   function _draw() {
-    canvas.value.width = Math.round((containerHeight.value * (HEXAGONS_WORLD_MAP_ASPECT_RATIO)))
-    canvas.value.height = Math.round(containerHeight.value)
+    canvas.value.width = Math.round((containerHeight.value * (HEXAGONS_WORLD_MAP_ASPECT_RATIO))) * pixelRatio.value
+    canvas.value.height = Math.round(containerHeight.value) * pixelRatio.value
+
     const scale = (canvas.value.height) / (2 * HEXAGONS_WORLD_MAP_HEIGHT_PIXELS)
     context.value!.scale(scale, scale)
-    // toValue(container)!.style.height = `${canvas.value.height}px`
 
-    // Clear the canvas
+    // Clear and redraw
     context.value!.clearRect(0, 0, context.value!.canvas.width, context.value!.canvas.height)
     hexagons.value.forEach(hexagon => hexagon.draw(context.value!))
   }
 
   const draw = useDebounceFn(_draw, 300, { maxWait: 100 })
 
-  onMounted(draw)
-  useResizeObserver(canvas, draw)
-  watch(peers, draw, { deep: true })
-  onMounted(async () => {
-    await until(userPeer).toBeTruthy()
-    const userHexagon = hexagons.value.find(isUserHexagon)
-    if (!userHexagon) // User is in the "water". Let's create an island for him
+  watch([() => containerHeight.value, peers], draw, { deep: true })
+
+  watch(userPeer, () => {
+    if (!userPeer.value)
+      return
+    const userHexagon = hexagons.value.find(({ x, y }) => x === userPeer.value!.x && y === userPeer.value!.y)
+    if (!userHexagon)
       hexagons.value.push(new WorldMapHexagon(userPeer.value!.x, userPeer.value!.y, 'user-disconnected'))
     else
       userHexagon.kind = 'user-disconnected'
-  })
+    draw()
+  }, { immediate: true })
+
+  watch(peers, () => {
+    for (const peer of peers.value) {
+      const hexagon = hexagons.value.find(({ x, y }) => x === peer.x && y === peer.y)
+      if (!hexagon)
+        hexagons.value.push(new WorldMapHexagon(peer.x, peer.y, 'peer'))
+      else
+        hexagon.kind = 'peer'
+    }
+    draw()
+  }, { immediate: true })
+
+  _draw()
 
   return {
     container,

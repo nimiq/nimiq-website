@@ -40,6 +40,10 @@ yarn dev
 bun run dev
 ```
 
+## TODO
+
+- [ ] Change nuxt.config.ts > albatross network name
+
 ## Page migration
 
 - [ ] Wallet - WIP
