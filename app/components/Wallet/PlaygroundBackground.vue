@@ -68,7 +68,7 @@
 }
 
 .playground-background {
-  --border-width: 6;
+  --border-width: 4;
   --blur-width: calc(1px * (var(--border-width) / 2));
   --contrast: 30;
   --opacity: 0.3;
@@ -165,7 +165,7 @@
   transform: translateX(-50%);
 
   border: calc(1px * var(--border-width)) solid var(--meta-border-color);
-  background-color: var(--meta-bg-color);
+  background-color: var(--meta-border-color);
   filter: blur(var(--blur-width));
 }
 
@@ -208,9 +208,6 @@
 
   width: 100%;
   height: 100%;
-
-  transform: scale(1.002);
-  transform-origin: center;
 }
 
 .rect {
