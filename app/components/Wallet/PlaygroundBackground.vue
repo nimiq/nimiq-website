@@ -1,9 +1,55 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
 
+function getScrollbarWidth(): number {
+  // Create a temporary div with scrollbar
+  const outer = document.createElement('div')
+  outer.style.visibility = 'hidden'
+  outer.style.overflow = 'scroll'
+  document.body.appendChild(outer)
+
+  // Create inner div
+  const inner = document.createElement('div')
+  outer.appendChild(inner)
+
+  // Calculate scrollbar width
+  const scrollbarWidth = outer.offsetWidth - inner.offsetWidth
+
+  // Clean up
+  outer.parentNode?.removeChild(outer)
+
+  return scrollbarWidth
+}
+
+const scrollbarWidth = ref(0)
+
+function updateScrollbarWidth(): void {
+  scrollbarWidth.value = getScrollbarWidth()
+}
+
+// Debounce function to prevent too many updates
+function debounce<T extends (...args: any[]) => any>(fn: T, ms = 300) {
+  let timeoutId: ReturnType<typeof setTimeout>
+  return function (this: any, ...args: Parameters<T>): void {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => fn.apply(this, args), ms)
+  }
+}
+
+const debouncedUpdate = debounce(updateScrollbarWidth)
+
+onMounted(() => {
+  updateScrollbarWidth() // Initial update
+  window.addEventListener('resize', debouncedUpdate)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', debouncedUpdate)
+})
 </script>
 
 <template>
-  <div class="playground-background">
+  <div class="playground-background" :style="{ '--scrollbar-width': `${scrollbarWidth}px` }">
     <div class="metawrapper">
       <div class="metacontainer">
         <svg class="metacloud" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +122,8 @@
   --meta-border-color: #e2e2e8;
   --meta-bg-color: #000;
 
-  --total-width: 100vw;
+  --scrollbar-width: 0px;
+  --total-width: calc(100vw - var(--scrollbar-width));
   --total-height: calc(100% + (var(--nq-pt) * 2) + (var(--nq-pb) * 2) - (var(--border-width) * 2px));
 
   /* TODO: replace it with unocss gradient (update plugin?) */
@@ -161,7 +208,7 @@
 
   position: absolute;
   top: var(--nq-pt);
-  left: 50vw;
+  left: calc(50vw - (var(--scrollbar-width) / 2));
   transform: translateX(-50%);
 
   border: calc(1px * var(--border-width)) solid var(--meta-border-color);
