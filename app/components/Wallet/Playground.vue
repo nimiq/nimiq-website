@@ -37,7 +37,7 @@ watchEffect(() => {
       <WalletPlaygroundBackground />
 
       <div p="t-48 x-10 b-10" z-1 size-full>
-        <!-- iframe -->
+        <!-- iframe / you can remove bg-slate-200 once the iframe is implemented -->
         <div size-full rounded-4 bg-slate-200 />
       </div>
 
