@@ -52,13 +52,31 @@ onUnmounted(() => {
   <div class="playground-background" :style="{ '--scrollbar-width': `${scrollbarWidth}px` }">
     <div class="metawrapper">
       <div class="metacontainer">
-        <svg class="metacloud" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="one metacloud" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z"
           />
         </svg>
 
-        <svg class="metarect" viewBox="0 0 1096 658" fill="none" xmlns="http://www.w3.org/2000/svg" max-w="$nq-max-width">
+        <svg class="metacloud two" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z"
+          />
+        </svg>
+
+        <svg class="metacloud three" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z"
+          />
+        </svg>
+
+        <svg class="metacloud four" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z"
+          />
+        </svg>
+
+        <svg class="metarect" viewBox="0 0 1096 658" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M0 7.99999C0 3.58171 3.58172 0 8 0H1088C1092.42 0 1096 3.58172 1096 8V650C1096 654.418 1092.42 658 1088 658H7.99997C3.58169 658 0 654.418 0 650V7.99999Z"
           />
@@ -107,27 +125,32 @@ onUnmounted(() => {
   inherits: false;
 }
 
-@keyframes move {
-  50% {
-    --translate-x: 15;
-  }
-}
-
 .playground-background {
+  /* Props - Can be edited to customize the look */
   --border-width: 4;
-  --blur-width: calc(1px * (var(--border-width) / 2));
+
+  --blur-rect: 2px;
+  --blur-cloud: 4px;
+
   --contrast: 30;
   --opacity: 0.3;
 
   --meta-border-color: #e2e2e8;
   --meta-bg-color: #000;
 
+  /* Updated in JS */
   --scrollbar-width: 0px;
+
+  /* Helpers - Calculated */
   --total-width: calc(100vw - var(--scrollbar-width));
   --total-height: calc(100% + (var(--nq-pt) * 2) + (var(--nq-pb) * 2) - (var(--border-width) * 2px));
 
-  /* TODO: replace it with unocss gradient (update plugin?) */
+  --rect-width: min(calc(100% - (var(--px) * 2)), var(--nq-max-width));
+  --rect-height: calc(var(--rect-width) * (658 / 1096)); /* from viewbox 0 0 1096 658 */
+
+  /* Gradients - TODO: replace it with unocss gradient (update plugin?) */
   --gradient-shape: to bottom in oklch;
+  --gradient-1-size: calc(100% * (1 / 1.8) + 1px); /* from original grid="~ rows-[1fr_0.8fr]" */
   --gradient-1: linear-gradient(
     var(--gradient-shape),
     oklch(0.41150469274331075 0.10583049548165781 276.66014489473963 / 1) 0%,
@@ -140,7 +163,7 @@ onUnmounted(() => {
     oklch(0.5442374082610533 0.13488199865537068 251.878879290159 / 1) 87.5%,
     oklch(0.5848698721950562 0.14377531595344603 244.29277757447107 / 1) 100%
   );
-
+  --gradient-2-size: calc(100% * (0.8 / 1.8)); /* from original grid="~ rows-[1fr_0.8fr]" */
   --gradient-2: linear-gradient(
     var(--gradient-shape),
     oklch(0.5848698721950562 0.14377531595344603 244.29277757447107 / 1) 0%,
@@ -154,9 +177,7 @@ onUnmounted(() => {
     oklch(0.21758903555056358 0.03517860370993592 280.60877999659135 / 1) 100%
   );
 
-  --gradient-1-size: calc(100% * (1 / 1.8) + 1px);
-  --gradient-2-size: calc(100% * (0.8 / 1.8));
-
+  /* Element Styles */
   justify-self: unset;
 }
 
@@ -185,6 +206,8 @@ onUnmounted(() => {
 
   margin-top: calc(-1 * var(--nq-pt));
   left: calc(-1 * var(--px));
+
+  overflow: hidden;
 }
 
 .metacontainer {
@@ -203,7 +226,7 @@ onUnmounted(() => {
   box-sizing: content-box;
   border-radius: 10px;
 
-  width: calc(100% - (var(--px) * 2));
+  width: var(--rect-width);
   height: auto;
 
   position: absolute;
@@ -213,37 +236,78 @@ onUnmounted(() => {
 
   border: calc(1px * var(--border-width)) solid var(--meta-border-color);
   background-color: var(--meta-border-color);
-  filter: blur(var(--blur-width));
+
+  filter: blur(var(--blur-rect));
 }
 
 .metacloud {
-  --top: 15vh;
-  --left: 1vw;
+  /* defaults */
+  --top: 0px;
+  --left: 0px;
   --width: 120px;
   --height: 64px;
+  --rotate: 0deg;
 
+  /* helpers */
+  --left-side: calc((-1 * var(--rect-width) / 2) - var(--width) / 2);
+  --right-side: calc(var(--rect-width) / 2 + var(--width) / 2);
+  --top-side: calc((-1 * var(--rect-height) / 2) - var(--height) / 2);
+  --bottom-side: calc(var(--rect-height) / 2 + var(--height) / 2);
+  --auto-width: calc(var(--height) * (120 / 64)); /* from viewbox 0 0 120 64 */
+  --auto-height: calc(var(--width) * (64 / 120)); /* from viewbox 0 0 120 64 */
+
+  overflow: visible;
+
+  z-index: -1;
   position: absolute;
-  top: var(--top);
-  left: var(--left);
+  top: calc(50% + var(--top));
+  left: calc(50% + var(--left));
   width: var(--width);
   height: var(--height);
 
-  animation: move 15s ease-in-out infinite;
+  fill: var(--meta-border-color);
+  /* stroke: var(--meta-border-color); */
+  /* stroke-width: calc(var(--border-width) * 2); */
+
+  filter: blur(var(--blur-cloud));
+
+  transform: translate(-50%, -50%) translateX(calc(var(--translate-x) * 1vw)) rotateY(var(--rotate));
 }
 
-.metacloud {
-  z-index: -1;
-  overflow: visible;
+.metacloud.one {
+  --rotate: 180deg;
 
-  fill: var(--meta-border-color);
-  /* fill-opacity: 0.2; */
+  --height: 180px;
+  --width: var(--auto-width);
 
-  stroke: var(--meta-border-color);
-  stroke-width: calc(var(--border-width) * 2);
+  --left: calc(var(--left-side) + 115px);
+  --top: calc(var(--top-side) + 120px);
+}
 
-  filter: blur(var(--blur-width));
+.metacloud.two {
+  --rotate: 180deg;
 
-  transform: translateX(calc(var(--translate-x) * 1vw));
+  --height: 90px;
+  --width: var(--auto-width);
+
+  --left: calc(var(--left-side) + 60px);
+  --top: calc(var(--bottom-side) - 180px);
+}
+
+.metacloud.three {
+  --height: 288px;
+  --width: var(--auto-width);
+
+  --left: calc(var(--right-side) - 340px);
+  --top: calc(var(--top-side) + 120px);
+}
+
+.metacloud.four {
+  --height: 96px;
+  --width: var(--auto-width);
+
+  --left: calc(var(--right-side) - 65px);
+  --top: calc(var(--bottom-side) - 140px);
 }
 
 .pb-container {
