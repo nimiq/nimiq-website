@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { useWindowScroll } from '@vueuse/core'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 function getScrollbarWidth(): number {
   // Create a temporary div with scrollbar
@@ -38,39 +39,119 @@ function debounce<T extends (...args: any[]) => any>(fn: T, ms = 300) {
 
 const debouncedUpdate = debounce(updateScrollbarWidth)
 
+// Add refs and composables for scroll animation
+const containerRef = ref<HTMLElement | null>(null)
+const { y: scrollY } = useWindowScroll()
+
+// Compute cloud translations based on scroll position
+const currentCloudTranslations = computed(() => {
+  const rect = containerRef.value?.getBoundingClientRect()
+  if (!rect)
+    return { one: 0, two: 0, three: 0, four: 0 }
+
+  // Calculate the relative scroll position
+  const scrollProgress = Math.trunc(((scrollY.value - rect.top) / window.innerHeight) * 50)
+
+  // Different speeds for each cloud (higher number = faster movement)
+  const speeds = {
+    one: 2,
+    two: 1,
+    three: 3,
+    four: 1,
+  }
+
+  return {
+    one: -scrollProgress * speeds.one,
+    two: -scrollProgress * speeds.two,
+    three: scrollProgress * speeds.three,
+    four: scrollProgress * speeds.four,
+  }
+})
+
+const cloudTranslations = reactive({
+  one: 0,
+  two: 0,
+  three: 0,
+  four: 0,
+})
+
+let animationFrameId: number
+function renderCloudsTranslations() {
+  requestAnimationFrame(renderCloudsTranslations)
+
+  if (cloudTranslations.one !== currentCloudTranslations.value.one)
+    cloudTranslations.one = currentCloudTranslations.value.one
+  if (cloudTranslations.two !== currentCloudTranslations.value.two)
+    cloudTranslations.two = currentCloudTranslations.value.two
+  if (cloudTranslations.three !== currentCloudTranslations.value.three)
+    cloudTranslations.three = currentCloudTranslations.value.three
+  if (cloudTranslations.four !== currentCloudTranslations.value.four)
+    cloudTranslations.four = currentCloudTranslations.value.four
+}
+
 onMounted(() => {
   updateScrollbarWidth() // Initial update
   window.addEventListener('resize', debouncedUpdate)
+  animationFrameId = requestAnimationFrame(renderCloudsTranslations)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', debouncedUpdate)
+  cancelAnimationFrame(animationFrameId)
 })
 </script>
 
 <template>
-  <div class="playground-background" :style="{ '--scrollbar-width': `${scrollbarWidth}px` }">
+  <div
+    ref="containerRef"
+    class="playground-background"
+    :style="{ '--scrollbar-width': `${scrollbarWidth}px` }"
+  >
     <div class="metawrapper">
       <div class="metacontainer">
-        <svg class="one metacloud" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          class="one metacloud"
+          :style="{ '--translate-x': cloudTranslations.one }"
+          viewBox="0 0 120 64"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z"
           />
         </svg>
 
-        <svg class="metacloud two" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          class="metacloud two"
+          :style="{ '--translate-x': cloudTranslations.two }"
+          viewBox="0 0 120 64"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z"
           />
         </svg>
 
-        <svg class="metacloud three" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          class="metacloud three"
+          :style="{ '--translate-x': cloudTranslations.three }"
+          viewBox="0 0 120 64"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z"
           />
         </svg>
 
-        <svg class="metacloud four" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          class="metacloud four"
+          :style="{ '--translate-x': cloudTranslations.four }"
+          viewBox="0 0 120 64"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z"
           />
@@ -271,7 +352,8 @@ onUnmounted(() => {
 
   filter: blur(var(--blur-cloud));
 
-  transform: translate(-50%, -50%) translateX(calc(var(--translate-x) * 1vw)) rotateY(var(--rotate));
+  transform: translate(-50%, -50%) translateX(calc(var(--translate-x) * 1px)) rotateY(var(--rotate));
+  will-change: --translate-x, transform;
 }
 
 .metacloud.one {
