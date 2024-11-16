@@ -1,33 +1,33 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"quote": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Sint consequat cupidatat nostrud. Excepteur adipisicing qui occaecat deserunt. Laborum elit non magna sint minim sint id commodo nisi irure consectetur magna tempor veniam ipsum."
-						}
-					}
-				]
-			},
-			"ctaLabel": {
-				"__TYPE__": "FieldContent",
-				"value": "unit",
-				"type": "Text"
-			},
-			"ctaLink": {
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "https://slicemachine.dev",
-					"text": "telephone"
-				}
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "quote": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Sint consequat cupidatat nostrud. Excepteur adipisicing qui occaecat deserunt. Laborum elit non magna sint minim sint id commodo nisi irure consectetur magna tempor veniam ipsum."
+            }
+          }
+        ]
+      },
+      "ctaLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "unit",
+        "type": "Text"
+      },
+      "ctaLink": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev",
+          "text": "telephone"
+        }
+      }
+    },
+    "items": []
+  }
 ]
