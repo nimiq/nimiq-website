@@ -1,24 +1,23 @@
 <script setup lang="ts">
-import { type Content } from "@prismicio/client";
+import type { Content } from '@prismicio/client'
 
-// The array passed to `getSliceComponentProps` is purely optional.
-// Consider it as a visual hint for you when templating your slice.
-defineProps(
-  getSliceComponentProps<Content.StakingCalculatorSlice>([
-    "slice",
-    "index",
-    "slices",
-    "context",
-  ]),
-);
+defineProps(getSliceComponentProps<Content.StakingCalculatorSlice>())
 </script>
 
 <template>
-  <section
-    :data-slice-type="slice.slice_type"
-    :data-slice-variation="slice.variation"
-  >
-    Placeholder component for staking_calculator (variation:
-    {{ slice.variation }}) Slices
+  <section bg-neutral-0>
+    <StakingCalculator
+      :title="slice.primary.title!"
+      :auto-restake-info="slice.primary.autoRestakeInfo"
+      :auto-restake-label="slice.primary.autoRestakeLabel!"
+      :initial-staking-amount="slice.primary.initialStakingAmount!"
+      :staking-amount-label="slice.primary.stakingAmountLabel!"
+      :staking-period-info="slice.primary.stakingPeriodInfo"
+      :staking-period-label="slice.primary.stakingPeriodLabel!"
+      :staking-rewards-label="slice.primary.stakingRewardsLabel!"
+      :staked-supply-info="slice.primary.stakedSupplyInfo"
+      :staked-supply-label="slice.primary.stakedSupplyLabel!"
+      :note="slice.primary.note!"
+    />
   </section>
 </template>

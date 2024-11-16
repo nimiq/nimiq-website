@@ -18,7 +18,7 @@ const locationsSpan = h(NuxtLink, { class: 'text-blue', to: 'https://map.nimiq.c
     value: locationsCount.value || 0,
     min: 0,
     max: locationsCount.value || 20_000,
-    animationDuration: 1300,
+    duration: 1300,
     digitsCount: 5,
     allowAnimation: true,
   }),

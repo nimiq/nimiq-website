@@ -48,10 +48,12 @@
                 }
               },
               "answer": {
-                "type": "Text",
+                "type": "StructuredText",
                 "config": {
-                  "label": "answer",
-                  "placeholder": ""
+                  "label": "Answer",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
                 }
               }
             }

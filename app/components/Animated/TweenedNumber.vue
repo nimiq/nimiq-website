@@ -4,14 +4,14 @@ import { Tweenable } from '@nimiq/utils'
 const {
   decimals = 0,
   value = 0,
-  animationDuration = 1000,
+  duration = 1000,
   digitsCount,
   min,
   max,
 } = defineProps<{
   value?: number
   decimals?: number
-  animationDuration?: number
+  duration?: number
   min?: number
   max?: number
   digitsCount?: number
@@ -21,9 +21,9 @@ const locale = useLocale()
 
 const tweeningValue = ref(value)
 
-let abortController: AbortController
+let abortController: AbortController | undefined
 
-const formatter = new Intl.NumberFormat(locale, {
+const formatter = new Intl.NumberFormat(locale.value, {
   style: 'decimal',
   minimumFractionDigits: decimals,
   maximumFractionDigits: decimals,
@@ -34,7 +34,7 @@ const formattedValue = computed(() => {
 
   // Only add padding if digitsCount is defined and valid
   if (digitsCount && digitsCount > 0) {
-    const decimalSeparator = (0.1).toLocaleString(locale).replace(/\d/g, '')
+    const decimalSeparator = (0.1).toLocaleString(locale.value).replace(/\d/g, '')
     const parts = formatted.split(decimalSeparator)
     const integerPart = parts[0]!.replace(/\D/g, '')
     const padding = '0'.repeat(Math.max(0, digitsCount - integerPart.length))
@@ -56,7 +56,7 @@ onMounted(() => {
 watch(() => value, (newValue) => {
   if (abortController) {
     abortController.abort()
-    abortController = null
+    abortController = undefined
   }
   tween(tweeningValue.value, newValue)
 })
@@ -65,7 +65,7 @@ function tween(startValue: number, endValue: number) {
   if (import.meta.server)
     return
 
-  const transition = new Tweenable(endValue, startValue, animationDuration)
+  const transition = new Tweenable(endValue, startValue, duration)
 
   function animate() {
     const progress = transition.progress

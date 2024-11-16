@@ -1,54 +1,60 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"title": {
-				"__TYPE__": "FieldContent",
-				"value": "jump",
-				"type": "Text"
-			},
-			"questions": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"type",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "General questions about staking",
-									"type": "Select"
-								}
-							],
-							[
-								"question",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Labore pariatur nostrud do amet ea deserunt ipsum aliquip laborum voluptate non. Anim velit adipisicing dolore et aute sunt sunt laborum cupidatat dolore excepteur sit."
-											}
-										}
-									]
-								}
-							],
-							[
-								"answer",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "worth",
-									"type": "Text"
-								}
-							]
-						]
-					}
-				]
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "FieldContent",
+        "value": "jump",
+        "type": "Text"
+      },
+      "questions": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "type",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "General questions about staking",
+                  "type": "Select"
+                }
+              ],
+              [
+                "question",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Labore pariatur nostrud do amet ea deserunt ipsum aliquip laborum voluptate non. Anim velit adipisicing dolore et aute sunt sunt laborum cupidatat dolore excepteur sit."
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "answer",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Esse ex exercitation consequat. Laboris aliqua adipisicing sit consectetur aliquip esse est nulla adipisicing incididunt magna cupidatat occaecat laboris."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  }
 ]

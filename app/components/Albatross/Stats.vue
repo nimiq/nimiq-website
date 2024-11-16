@@ -15,7 +15,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
   <DefineStat v-slot="{ icon, iconBgColor, label, value, decimals = 1, suffix }">
     <div flex="~ col max-sm:items-center gap-12">
       <span text="3xl neutral" font-semibold lh-none flex="~">
-        <AnimatedTweenedNumber v-if="typeof value === 'number'" :value :decimals :animation-duration="500" />
+        <AnimatedTweenedNumber v-if="typeof value === 'number'" :value :decimals :duration="500" />
         <span v-else>{{ value }}</span>
         {{ suffix }}
       </span>

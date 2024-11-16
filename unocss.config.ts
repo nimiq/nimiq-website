@@ -17,6 +17,16 @@ export default defineConfig({
     ['bg-blue-to-darkerblue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#0582CA bg-gradient-fn-to-#17182a bg-gradient-fn-ease'],
     // ['bg-white-green-white', 'bg-gradient-fn-to-b bg-gradient-fn-from-#0582CA  bg-gradient-fn-to-#17182a bg-gradient-fn-ease'],
   ],
+  variants: [
+    (matcher) => {
+      if (!matcher.startsWith('group-has-focus-visible:'))
+        return matcher
+      return {
+        matcher: matcher.slice('group-has-focus-visible:'.length),
+        selector: s => `:where(.group,[group]):has(:focus-visible) ${s}`,
+      }
+    },
+  ],
   presets: [
     presetUno({ attributifyPseudo: true }),
     presetNimiq({
