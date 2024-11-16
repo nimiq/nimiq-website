@@ -5968,6 +5968,44 @@ export type HeroSectionSliceHome2024 = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *HeroSection → Staking → Primary*
+ */
+export interface HeroSectionSliceStakingPrimary {
+  /**
+   * headline field in *HeroSection → Staking → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.staking.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.RichTextField
+
+  /**
+   * cta field in *HeroSection → Staking → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.staking.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField
+}
+
+/**
+ * Staking variation for HeroSection Slice
+ *
+ * - **API ID**: `staking`
+ * - **Description**: HeroSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSectionSliceStaking = prismic.SharedSliceVariation<
+  'staking',
+  Simplify<HeroSectionSliceStakingPrimary>,
+  never
+>
+
+/**
  * Slice variation for *HeroSection*
  */
 type HeroSectionSliceVariation =
@@ -5980,6 +6018,7 @@ type HeroSectionSliceVariation =
   | HeroSectionSliceTokenomicsHero
   | HeroSectionSliceHeroSectionWithImage
   | HeroSectionSliceHome2024
+  | HeroSectionSliceStaking
 
 /**
  * HeroSection Shared Slice
@@ -10801,6 +10840,8 @@ declare module '@prismicio/client' {
       HeroSectionSliceLeftAlignedPrimary,
       HeroSectionSliceOasis,
       HeroSectionSliceOasisPrimary,
+      HeroSectionSliceStaking,
+      HeroSectionSliceStakingPrimary,
       HeroSectionSliceTokenomicsHero,
       HeroSectionSliceTokenomicsHeroPrimary,
       HeroSectionSliceTwoColumn,

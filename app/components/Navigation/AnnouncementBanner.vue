@@ -9,7 +9,7 @@ const {
 </script>
 
 <template>
-  <div role="banner" p="x-32 t-20 b-24 md:y-20" aria-label="Announcement" relative w-full of-hidden bg-darkblue flex="~ col md:items-center lg:row lg:justify-center gap-y-12 gap-x-16">
+  <div role="banner" p="x-32 t-20 b-24 md:y-20" aria-label="Announcement" relative z-2 w-full of-hidden bg-darkblue flex="~ col md:items-center lg:row lg:justify-center gap-y-12 gap-x-16">
     <p text="md white" z-1 font-semibold>
       {{ headline }}
     </p>

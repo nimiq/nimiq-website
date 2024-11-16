@@ -893,5 +893,36 @@
         "value": []
       }
     ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "staking",
+    "primary": {
+      "cta": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com",
+          "text": "contain"
+        }
+      },
+      "headline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Duis exercitation et consectetur anim quis officia mollit ea. Eiusmod anim Lorem proident esse mollit aliquip mollit. Officia ullamco quis amet ut reprehenderit proident mollit excepteur labore minim cupidatat incididunt cupidatat qui excepteur."
+            }
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
   }
 ]

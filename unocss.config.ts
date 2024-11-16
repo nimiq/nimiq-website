@@ -15,7 +15,7 @@ export default defineConfig({
     ['bg-darkerblue-to-purple', 'bg-gradient-fn-to-b bg-gradient-fn-from-#17182a bg-gradient-fn-to-#3d4383 bg-gradient-fn-ease'],
     ['bg-purple-to-blue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#3d4383 bg-gradient-fn-to-#0582CA bg-gradient-fn-ease'],
     ['bg-blue-to-darkerblue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#0582CA bg-gradient-fn-to-#17182a bg-gradient-fn-ease'],
-    // ['bg-white-green-white', 'bg-gradient-fn-to-b bg-gradient-fn-from-#0582CA  bg-gradient-fn-to-#17182a bg-gradient-fn-ease'],
+    ['stack', 'grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
   ],
   variants: [
     (matcher) => {

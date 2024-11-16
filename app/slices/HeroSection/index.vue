@@ -9,4 +9,5 @@ defineProps(getSliceComponentProps<Content.HeroSectionSlice>())
   <HeroTwoColumn v-if="slice.variation === 'twoColumn'" v-bind="slice" :data-slice-type="slice.slice_type" />
   <HeroHome v-if="slice.variation === 'home2024'" :headline="slice.primary.headline" :sub-headline-template="slice.primary.subheadline" :cta="slice.primary.cta" :cta-label="slice.primary.cta_label" :data-slice-type="slice.slice_type" />
   <HeroLeftAligned v-if="slice.variation === 'leftAligned'" :headline="slice.primary.headline" :subline="slice.primary.subline" />
+  <HeroStaking v-if="slice.variation === 'staking'" :headline="slice.primary.headline" :cta="slice.primary.cta" />
 </template>

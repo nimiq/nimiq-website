@@ -1,32 +1,40 @@
 <script setup lang="ts">
 import type { LinkField, RichTextField } from '@prismicio/client'
 
-const props = defineProps<{
+const { headline, showStakingIcon = false } = defineProps<{
   headline: RichTextField
   subline?: RichTextField
   cta?: LinkField
+  showStakingIcon?: boolean
 }>()
 
 const { stakingValues } = useGlobalContent()
 
-const headlineParts = computed(() => getText(props.headline!).split('{{ interestPerAnnum }}'))
+const headlineTag = computed(() => {
+  const type = headline?.at(0)?.type
+  if (!type?.startsWith('heading'))
+    return 'h2'
+  return `h${type.slice(-1)}`
+})
+
+const headlineParts = computed(() => getText(headline!).split('{{ interestPerAnnum }}'))
 </script>
 
 <template>
   <div flex="~ col items-center">
-    <div flex="~ items-center justify-center" class="leaf" relative size-76 rounded-full bg-white>
-      <div v-for="i in 3" :key="i" ring="1.5 white/60" absolute size-full origin-center rounded-full :style="`animation: ringPulse 10s ease-out infinite;animation-delay: calc(3.3s * ${i})`" />
-      <div i-nimiq:leaf-2 text="36 green-staking" />
+    <div v-if="showStakingIcon" flex="~ items-center justify-center" class="leaf" relative size-76 rounded-full bg="green inverted:white">
+      <div v-for="i in 3" :key="i" ring="2.75 green inverted:white/60" absolute size-full origin-center rounded-full :style="`animation: ringPulse 10s ease-out infinite;animation-delay: calc(3.3s * ${i})`" />
+      <div i-nimiq:leaf-2 text="36 white inverted:green-staking" />
     </div>
-    <h2 text-white nq-mt-32>
+    <component :is="headlineTag" nq-mt-32 inverted:text-white>
       {{ headlineParts[0] }}
-      <span bg="white/30" rounded-4 px-10 py-3 text-white inline-flex="~">
-        ~{{ stakingValues?.interestPerYear }}%<sup relative top-18 text="white 20">*</sup></span>
+      <span bg="green/15 inverted:white/30" rounded-4 px-10 py-3 text="green inverted:white" inline-flex="~">
+        ~{{ stakingValues?.interestPerYear }}%<sup relative top-18 text="green inverted:white 20">*</sup></span>
       {{ headlineParts[1] }}
-    </h2>
+    </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" text="white/80" />
-    <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" bg="white hocus:white/95" nq-shadow un-text-darkblue nq-mt-48 nq-arrow nq-pill-lg md:mx-auto />
-    <small text="white/80" nq-mt-32>
+    <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" nq-shadow nq-mt-48 nq-arrow nq-pill-lg nq-pill-blue md:mx-auto />
+    <small text="green-1100 inverted:white/80" nq-mt-32>
       * {{ stakingValues?.stakingNote }}
     </small>
   </div>
