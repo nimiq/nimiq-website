@@ -29,7 +29,7 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
       :cta-href="slice.primary.linkHref"
       :cta-label="slice.primary.linkLabel"
       :label="slice.primary.label"
-      :icon-name="slice.primary.iconName"
+      :icon-name="slice.primary.iconName" z-1
     />
     <HeadlineStaking
       v-else
