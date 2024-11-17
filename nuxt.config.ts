@@ -35,7 +35,7 @@ export default defineNuxtConfig({
       topLevelAwait(),
     ],
     optimizeDeps: {
-      exclude: ['@nimiq/core', '*.wasm'],
+      exclude: ['@nimiq/core', '*.wasm', 'hero-motion'],
     },
   },
 
@@ -119,6 +119,7 @@ export default defineNuxtConfig({
     public: {
       clientNetwork: 'test-albatross', // TODO Change to 'albatross' for mainnet
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
+      validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || '',
       supabase: {
         url: process.env.NUXT_PUBLIC_SUPABASE_URL,
         key: process.env.NUXT_PUBLIC_SUPABASE_KEY,

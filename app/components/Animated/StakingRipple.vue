@@ -1,7 +1,7 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" text-0 style="--d: var(--duration, 1s)">
-    <path d="M70 22h0a48 48 0 0148 48v0a48 48 0 01-48 48h0a48 48 0 01-48-48v0a48 48 0 0148-48z" fill="none" stroke-width="3" stroke-opacity="0.8" style="--delay:200ms" stroke-green-staking op-0 class="ripple" />
-    <path d="M70 12h0a58 58 0 0158 58h0a58 58 0 01-58 58h0a58 58 0 01-58-58h0a58 58 0 0158-58z" fill="none" stroke-width="3" stroke-opacity="0.6" style="--delay:400ms" stroke-green-staking op-0 class="ripple" />
+    <path d="M70 22h0a48 48 0 0148 48v0a48 48 0 01-48 48h0a48 48 0 01-48-48v0a48 48 0 0148-48z" fill="none" stroke-width="3" stroke-opacity="0.8" style="--delay:200ms" stroke-green op-0 class="ripple" />
+    <path d="M70 12h0a58 58 0 0158 58h0a58 58 0 01-58 58h0a58 58 0 01-58-58h0a58 58 0 0158-58z" fill="none" stroke-width="3" stroke-opacity="0.6" style="--delay:400ms" stroke-green op-0 class="ripple" />
     <radialGradient id="a" cx="70" cy="70" r="69.26" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#41a38e" />
       <stop offset="1" stop-color="#21bca5" />

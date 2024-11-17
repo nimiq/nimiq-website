@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
-import { AnimatedTweenedNumber, NuxtLink, TweenedNumber } from '#components'
+import { AnimatedTweenedNumber, NuxtLink } from '#components'
 import Map from './Map.vue'
 
 // import { breakpointsTailwind } from '@vueuse/core'

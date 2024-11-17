@@ -91,7 +91,6 @@ export default defineConfig({
 
   theme: {
     colors: {
-      green: { staking: '#23BBA4' },
       red: { neon: '#ff0055' },
     },
     fontFamily: {

@@ -119,6 +119,9 @@ export const components = defineSliceZoneComponents({
   tweets_marquee: defineAsyncComponent(
     () => import('./TweetsMarquee/index.vue'),
   ),
+  validator_list: defineAsyncComponent(
+    () => import('./ValidatorList/index.vue'),
+  ),
   wallet_playground: defineAsyncComponent(
     () => import('./WalletPlayground/index.vue'),
   ),

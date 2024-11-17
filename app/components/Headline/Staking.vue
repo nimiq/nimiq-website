@@ -24,7 +24,7 @@ const headlineParts = computed(() => getText(headline!).split('{{ interestPerAnn
   <div flex="~ col items-center">
     <!-- <div v-if="showStakingIcon" flex="~ items-center justify-center" class="leaf" relative size-76 rounded-full bg="green inverted:white">
       <div v-for="i in 3" :key="i" ring="2.75 green inverted:white/60" absolute size-full origin-center rounded-full :style="`animation: ringPulse 10s ease-out infinite;animation-delay: calc(3.3s * ${i})`" />
-      <div i-nimiq:leaf-2 text="36 white inverted:green-staking" />
+      <div i-nimiq:leaf-2 text="36 white inverted:green" />
     </div> -->
     <AnimatedStakingRipple v-if="showStakingIcon" size-120 />
     <component :is="headlineTag" nq-mt-32 inverted:text-white>
@@ -63,7 +63,7 @@ section.gradient-transparent-green {
     rgb(var(--nq-neutral-0) / 0.0737185) calc(0.8821 * var(--gradient-height)),
     rgb(var(--nq-neutral-0) / 0) var(--gradient-height)
   );
-  --uno: 'bg-green-staking';
+  --uno: 'bg-green';
 }
 
 section.gradient-transparent-green-transparent {
@@ -105,7 +105,7 @@ section.gradient-transparent-green-transparent {
     rgb(var(--nq-neutral-0)) calc(100% - 0.1179 * var(--gradient-height)),
     rgb(var(--nq-neutral-0)) 100%
   );
-  --uno: 'bg-green-staking';
+  --uno: 'bg-green';
 }
 
 @keyframes ringPulse {

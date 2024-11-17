@@ -82,9 +82,9 @@ const items = computed(() => {
     </template>
     <div v-else nq-wide>
       <div absolute inset-0 h-full w-full of-hidden>
-        <AnimatedRipple absolute bottom--300 left--5vw size-110vw max-w-none />
+        <AnimatedCircleRipple absolute bottom--300 left--5vw size-110vw max-w-none />
         <div absolute inset-x-0 top-0 h-200 bg-gradient="to-b from-neutral-0 to-transparent" />
-        <div absolute inset-x-0 bottom-0 h-200 bg-gradient="to-b from-transparent to-green-staking" />
+        <div absolute inset-x-0 bottom-0 h-200 bg-gradient="to-b from-transparent to-green" />
       </div>
       <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" nq-wide relative bottom--32 gap-x-24 rounded-8 bg-neutral-0 shadow>
         <PrismicRichText :field="slice.primary.headline" text="44 neutral" nq-raw max-w-24ch font-bold />

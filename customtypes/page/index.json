@@ -60,6 +60,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "validator_list": {
+              "type": "SharedSlice"
+            },
             "staking_faq": {
               "type": "SharedSlice"
             },

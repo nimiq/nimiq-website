@@ -1739,6 +1739,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | ValidatorListSlice
   | StakingFaqSlice
   | StakingDistributionSlice
   | StakingCalculatorSlice
@@ -10243,6 +10244,36 @@ export type TweetsMarqueeSlice = prismic.SharedSlice<
 >
 
 /**
+ * Default variation for ValidatorList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ValidatorListSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  never
+>
+
+/**
+ * Slice variation for *ValidatorList*
+ */
+type ValidatorListSliceVariation = ValidatorListSliceDefault
+
+/**
+ * ValidatorList Shared Slice
+ *
+ * - **API ID**: `validator_list`
+ * - **Description**: ValidatorList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ValidatorListSlice = prismic.SharedSlice<
+  'validator_list',
+  ValidatorListSliceVariation
+>
+
+/**
  * Default variation for WalletPlayground Slice
  *
  * - **API ID**: `default`
@@ -11146,6 +11177,9 @@ declare module '@prismicio/client' {
       TweetsMarqueeSliceDefault,
       TweetsMarqueeSliceDefaultPrimary,
       TweetsMarqueeSliceVariation,
+      ValidatorListSlice,
+      ValidatorListSliceDefault,
+      ValidatorListSliceVariation,
       WalletPlaygroundSlice,
       WalletPlaygroundSliceDefault,
       WalletPlaygroundSliceVariation,
