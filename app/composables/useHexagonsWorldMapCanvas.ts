@@ -122,12 +122,12 @@ export class WorldMapHexagon {
         break
       }
       case 'peer': {
-        // dc.fillStyle = 'rgba(255, 255, 255, 0.3)'
-        dc.fillStyle = 'rgba(255, 255, 255, 0.3)'
+        // dc.fillStyle = 'rgb(var(--nq-neutral-0) / 0.3))'
+        dc.fillStyle = 'rgb(var(--nq-neutral-0) / 0.3))'
         break
       }
       case 'normal': {
-        dc.fillStyle = 'rgba(255, 255, 255, 0.1)'
+        dc.fillStyle = 'rgb(var(--nq-neutral-0) / 0.1))'
       }
     }
     dc.fill()

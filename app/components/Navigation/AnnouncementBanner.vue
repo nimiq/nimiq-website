@@ -24,7 +24,7 @@ const {
     </div>
 
     <!-- Layers on top -->
-    <div absolute inset-0 op-10 style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #FFFFFF 0%, rgba(255, 255, 255, 0.62) 100%)" />
+    <div absolute inset-0 op-10 style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #FFFFFF 0%, rgb(var(--nq-neutral-0) / 0.62)) 100%)" />
     <div absolute inset-0 op-10 style="background: linear-gradient(180deg, rgba(4, 6, 40, 0.5) 0%, rgba(4, 6, 40, 0.25) 50%, rgba(4, 6, 40, 0.5) 100%);" />
     <div absolute inset-auto max-w="[calc(100%-64px)]" top-49 aspect-3.811 w-606 rounded-8 op-80 blur-120 style="background: radial-gradient(141.42% 141.42% at 100% 100%, #693bc4 0%, #8f3fd5 100%);" />
 

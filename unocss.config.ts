@@ -84,6 +84,9 @@ export default defineConfig({
     'i-nimiq:icons-lg-three-hands-hexagon',
     'i-nimiq:logos-super-simple-swap-text',
     'i-nimiq:logos-nimiq-horizontal',
+    'i-nimiq:document-filled',
+    'i-nimiq:globe-filled',
+    'i-nimiq:code',
   ],
 
   theme: {

@@ -42,44 +42,44 @@ defineProps<{ headline: RichTextField, cta?: LinkField }>()
 .bg-linear-white-1 {
   background: linear-gradient(
     180deg,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.991615) 11.79%,
-    rgba(255, 255, 255, 0.967585) 21.38%,
-    rgba(255, 255, 255, 0.9296) 29.12%,
-    rgba(255, 255, 255, 0.879348) 35.34%,
-    rgba(255, 255, 255, 0.818519) 40.37%,
-    rgba(255, 255, 255, 0.7488) 44.56%,
-    rgba(255, 255, 255, 0.671881) 48.24%,
-    rgba(255, 255, 255, 0.589452) 51.76%,
-    rgba(255, 255, 255, 0.5032) 55.44%,
-    rgba(255, 255, 255, 0.414815) 59.63%,
-    rgba(255, 255, 255, 0.325985) 64.66%,
-    rgba(255, 255, 255, 0.2384) 70.88%,
-    rgba(255, 255, 255, 0.153748) 78.62%,
-    rgba(255, 255, 255, 0.0737185) 88.21%,
-    rgba(255, 255, 255, 0) 100%
+    rgb(var(--nq-neutral-0) / 1) 0,
+    rgb(var(--nq-neutral-0) / 0.991615) 11.79%,
+    rgb(var(--nq-neutral-0) / 0.967585) 21.38%,
+    rgb(var(--nq-neutral-0) / 0.9296) 29.12%,
+    rgb(var(--nq-neutral-0) / 0.879348) 35.34%,
+    rgb(var(--nq-neutral-0) / 0.818519) 40.37%,
+    rgb(var(--nq-neutral-0) / 0.7488) 44.56%,
+    rgb(var(--nq-neutral-0) / 0.671881) 48.24%,
+    rgb(var(--nq-neutral-0) / 0.589452) 51.76%,
+    rgb(var(--nq-neutral-0) / 0.5032) 55.44%,
+    rgb(var(--nq-neutral-0) / 0.414815) 59.63%,
+    rgb(var(--nq-neutral-0) / 0.325985) 64.66%,
+    rgb(var(--nq-neutral-0) / 0.2384) 70.88%,
+    rgb(var(--nq-neutral-0) / 0.153748) 78.62%,
+    rgb(var(--nq-neutral-0) / 0.0737185) 88.21%,
+    rgb(var(--nq-neutral-0) / 0) 100%
   );
 }
 
 .bg-linear-white-2 {
   background: linear-gradient(
     180deg,
-    #ffffff 0%,
-    rgba(255, 255, 255, 0.991615) 11.79%,
-    rgba(255, 255, 255, 0.967585) 21.38%,
-    rgba(255, 255, 255, 0.9296) 29.12%,
-    rgba(255, 255, 255, 0.879348) 35.34%,
-    rgba(255, 255, 255, 0.818519) 40.37%,
-    rgba(255, 255, 255, 0.7488) 44.56%,
-    rgba(255, 255, 255, 0.671881) 48.24%,
-    rgba(255, 255, 255, 0.589452) 51.76%,
-    rgba(255, 255, 255, 0.5032) 55.44%,
-    rgba(255, 255, 255, 0.414815) 59.63%,
-    rgba(255, 255, 255, 0.325985) 64.66%,
-    rgba(255, 255, 255, 0.2384) 70.88%,
-    rgba(255, 255, 255, 0.153748) 78.62%,
-    rgba(255, 255, 255, 0.0737185) 88.21%,
-    rgba(255, 255, 255, 0) 100%
+    rgb(var(--nq-neutral-0) / 1) 0,
+    rgb(var(--nq-neutral-0) / 0.991615) 11.79%,
+    rgb(var(--nq-neutral-0) / 0.967585) 21.38%,
+    rgb(var(--nq-neutral-0) / 0.9296) 29.12%,
+    rgb(var(--nq-neutral-0) / 0.879348) 35.34%,
+    rgb(var(--nq-neutral-0) / 0.818519) 40.37%,
+    rgb(var(--nq-neutral-0) / 0.7488) 44.56%,
+    rgb(var(--nq-neutral-0) / 0.671881) 48.24%,
+    rgb(var(--nq-neutral-0) / 0.589452) 51.76%,
+    rgb(var(--nq-neutral-0) / 0.5032) 55.44%,
+    rgb(var(--nq-neutral-0) / 0.414815) 59.63%,
+    rgb(var(--nq-neutral-0) / 0.325985) 64.66%,
+    rgb(var(--nq-neutral-0) / 0.2384) 70.88%,
+    rgb(var(--nq-neutral-0) / 0.153748) 78.62%,
+    rgb(var(--nq-neutral-0) / 0.0737185) 88.21%,
+    rgb(var(--nq-neutral-0) / 0) 100%
   );
 }
 </style>

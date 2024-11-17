@@ -98,5 +98,62 @@
         ]
       }
     ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "staking",
+    "primary": {
+      "headline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Occaecat fugiat fugiat id nulla sit irure dolor occaecat aute cupidatat."
+            }
+          }
+        ]
+      },
+      "cta": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev",
+          "text": "born"
+        }
+      },
+      "requirements": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "icon",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "opportunity",
+                  "type": "Text"
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "person",
+                  "type": "Text"
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
   }
 ]

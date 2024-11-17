@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@nuxt/fonts',
     'hero-motion/nuxt',
+    '@nuxt/icon',
   ],
 
   devtools: { enabled: true },
@@ -64,6 +65,10 @@ export default defineNuxtConfig({
   // TODO Remove this option
   unocss: {
     nuxtLayers: true,
+  },
+
+  icon: {
+    serverBundle: 'local',
   },
 
   pinia: {

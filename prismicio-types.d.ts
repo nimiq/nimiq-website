@@ -2775,6 +2775,31 @@ export type AppsShowcaseSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *BannerSlice → Staking → Primary → Requirements*
+ */
+export interface BannerSliceSliceStakingPrimaryRequirementsItem {
+  /**
+   * icon field in *BannerSlice → Staking → Primary → Requirements*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.staking.primary.requirements[].icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  icon: prismic.KeyTextField
+
+  /**
+   * description field in *BannerSlice → Staking → Primary → Requirements*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.staking.primary.requirements[].description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField
+}
+
+/**
  * Primary content in *BannerSlice → Default → Primary*
  */
 export interface BannerSliceSliceDefaultPrimary {
@@ -2903,9 +2928,61 @@ export type BannerSliceSliceDefault = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *BannerSlice → Staking → Primary*
+ */
+export interface BannerSliceSliceStakingPrimary {
+  /**
+   * headline field in *BannerSlice → Staking → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.staking.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.RichTextField
+
+  /**
+   * cta field in *BannerSlice → Staking → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.staking.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField
+
+  /**
+   * Requirements field in *BannerSlice → Staking → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.staking.primary.requirements[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  requirements: prismic.GroupField<
+    Simplify<BannerSliceSliceStakingPrimaryRequirementsItem>
+  >
+}
+
+/**
+ * Staking variation for BannerSlice Slice
+ *
+ * - **API ID**: `staking`
+ * - **Description**: BannerSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BannerSliceSliceStaking = prismic.SharedSliceVariation<
+  'staking',
+  Simplify<BannerSliceSliceStakingPrimary>,
+  never
+>
+
+/**
  * Slice variation for *BannerSlice*
  */
-type BannerSliceSliceVariation = BannerSliceSliceDefault
+type BannerSliceSliceVariation =
+  | BannerSliceSliceDefault
+  | BannerSliceSliceStaking
 
 /**
  * BannerSlice Shared Slice
@@ -10739,6 +10816,9 @@ declare module '@prismicio/client' {
       BannerSliceSliceDefault,
       BannerSliceSliceDefaultItem,
       BannerSliceSliceDefaultPrimary,
+      BannerSliceSliceStaking,
+      BannerSliceSliceStakingPrimary,
+      BannerSliceSliceStakingPrimaryRequirementsItem,
       BannerSliceSliceVariation,
       BlogPageDocument,
       BlogPageDocumentData,
