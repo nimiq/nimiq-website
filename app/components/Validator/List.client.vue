@@ -1,10 +1,10 @@
 <script setup lang="ts">
 // Check https://github.com/tmg0/hero-motion/pull/223 and remove .client from the file name
-const validatorsApi = new URL('/api/v1/validators', useRuntimeConfig().public.validatorsApi)
-validatorsApi.searchParams.set('with-scores', 'true')
-validatorsApi.searchParams.set('with-identicons', 'true')
+const url = new URL('/api/v1/validators', useRuntimeConfig().public.validatorsApi)
+url.searchParams.set('with-scores', 'true')
+url.searchParams.set('with-identicons', 'true')
 
-const { data: validators } = useFetch<Validator[]>(validatorsApi.href)
+const { data: validators } = useFetch<Validator[]>(url.href)
 
 function getScoreColor(score: number) {
   if (score >= 0.75)

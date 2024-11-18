@@ -27,7 +27,7 @@ const questionTypeColor: Record<Exclude<StakingFaqSliceDefaultPrimaryQuestionsIt
 </template>
 
 <style scoped>
-:global(h3) {
+:deep(h3) {
   --uno: 'text-16 font-bold';
 }
 </style>

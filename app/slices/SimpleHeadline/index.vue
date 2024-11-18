@@ -21,7 +21,7 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
 </script>
 
 <template>
-  <section relative :class="[bgColor, gradientClass]">
+  <section relative :class="[bgColor, gradientClass]" data-slice-type="simple-headline">
     <Headline
       v-if="!isStakingSlice"
       :headline="slice.primary.headline"
@@ -47,8 +47,13 @@ section[data-slice-type='pill-link'] + section[data-slice-type='simple-headline'
 }
 
 /* If the headline is after a slice that is the same theme (dark or light) we increase space */
-section.dark:not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline'].dark,
-section:not(.dark):not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline']:not(.dark) {
-  --uno: 'pt-160 lg:pt-200';
+/* section.dark:not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline'].dark,
+section:not(.dark):not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline']:not(.dark), */
+section:where([bg-neutral-0]) + section[data-slice-type='simple-headline'].bg-neutral-0 {
+  --uno: 'nq-pt-200 border-t border-neutral-300';
+}
+
+section[bg-neutral-0]:has(+ section[data-slice-type='simple-headline'].bg-neutral-0) {
+  --uno: 'nq-pb-200';
 }
 </style>

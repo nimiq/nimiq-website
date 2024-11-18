@@ -1,24 +1,14 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-// The array passed to `getSliceComponentProps` is purely optional.
-// Consider it as a visual hint for you when templating your slice.
-defineProps(
-  getSliceComponentProps<Content.StakingDistributionSlice>([
-    'slice',
-    'index',
-    'slices',
-    'context',
-  ]),
-)
+defineProps(getSliceComponentProps<Content.StakingDistributionSlice>())
 </script>
 
 <template>
-  <section
-    :data-slice-type="slice.slice_type"
-    :data-slice-variation="slice.variation"
-  >
-    Placeholder component for staking_distribution (variation:
-    {{ slice.variation }}) Slices
+  <section bg-neutral-0>
+    <div flex="~ wrap md:gap-100 lg:gap-x-200 justify-center" nq-wide>
+      <StakingDistribution :info="slice.primary.marketCapDistributionInfo" />
+      <ValidatorDistribution :info="slice.primary.stakedDistributionInfo" />
+    </div>
   </section>
 </template>

@@ -122,6 +122,9 @@ export const components = defineSliceZoneComponents({
   validator_list: defineAsyncComponent(
     () => import('./ValidatorList/index.vue'),
   ),
+  vertical_video: defineAsyncComponent(
+    () => import('./VerticalVideo/index.vue'),
+  ),
   wallet_playground: defineAsyncComponent(
     () => import('./WalletPlayground/index.vue'),
   ),

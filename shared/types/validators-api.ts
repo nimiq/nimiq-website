@@ -12,7 +12,7 @@ export interface Validator {
   website: null
   score: Score
   icon?: string
-  stakingRatio: number
+  sizeRatio: number
 }
 
 export interface Score {

@@ -60,6 +60,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "vertical_video": {
+              "type": "SharedSlice"
+            },
             "validator_list": {
               "type": "SharedSlice"
             },

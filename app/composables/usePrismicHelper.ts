@@ -6,3 +6,9 @@ export const hasText = (text?: RichTextField) => usePrismic().isFilled.richText(
 export const getText = (text?: RichTextField) => usePrismic().asText(text) || ''
 export const getLink = (text?: LinkField) => usePrismic().asLink(text) || ''
 export const getDate = (text?: DateField) => usePrismic().asDate(text) || ''
+
+export function getAspectRatio({ dimensions }: ImageField) {
+  if (!dimensions)
+    return 0
+  return (dimensions.width) / dimensions.height
+}

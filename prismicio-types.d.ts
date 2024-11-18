@@ -1739,6 +1739,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | VerticalVideoSlice
   | ValidatorListSlice
   | StakingFaqSlice
   | StakingDistributionSlice
@@ -10274,6 +10275,91 @@ export type ValidatorListSlice = prismic.SharedSlice<
 >
 
 /**
+ * Primary content in *VerticalVideo → Default → Primary*
+ */
+export interface VerticalVideoSliceDefaultPrimary {
+  /**
+   * Title field in *VerticalVideo → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: vertical_video.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField
+
+  /**
+   * Subline field in *VerticalVideo → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: vertical_video.default.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subline: prismic.KeyTextField
+
+  /**
+   * Background Image field in *VerticalVideo → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: vertical_video.default.primary.backgroundImage
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  backgroundImage: prismic.ImageField<never>
+
+  /**
+   * Poster field in *VerticalVideo → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: vertical_video.default.primary.poster
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  poster: prismic.ImageField<never>
+
+  /**
+   * video field in *VerticalVideo → Default → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: vertical_video.default.primary.video
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  video: prismic.EmbedField
+}
+
+/**
+ * Default variation for VerticalVideo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VerticalVideoSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<VerticalVideoSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *VerticalVideo*
+ */
+type VerticalVideoSliceVariation = VerticalVideoSliceDefault
+
+/**
+ * VerticalVideo Shared Slice
+ *
+ * - **API ID**: `vertical_video`
+ * - **Description**: VerticalVideo
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VerticalVideoSlice = prismic.SharedSlice<
+  'vertical_video',
+  VerticalVideoSliceVariation
+>
+
+/**
  * Default variation for WalletPlayground Slice
  *
  * - **API ID**: `default`
@@ -11180,6 +11266,10 @@ declare module '@prismicio/client' {
       ValidatorListSlice,
       ValidatorListSliceDefault,
       ValidatorListSliceVariation,
+      VerticalVideoSlice,
+      VerticalVideoSliceDefault,
+      VerticalVideoSliceDefaultPrimary,
+      VerticalVideoSliceVariation,
       WalletPlaygroundSlice,
       WalletPlaygroundSliceDefault,
       WalletPlaygroundSliceVariation,
