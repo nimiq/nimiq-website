@@ -1,26 +1,41 @@
 <script setup lang="ts">
+import { KeyPair, MnemonicUtils } from '@nimiq/core'
+
 defineProps<{ headline: string, subheadline: string, guessTheRemainingWordsLabel: string, youDoNotStandAChanceToTake: string, rewardAmount: string }>()
 
 const { getRandomWords } = useWords()
 const randomDuration = () => `${Math.floor(Math.random() * 60) + 40}s` // 60s to 100s
 const wordsList = Array.from({ length: 6 }, () => ({ words: getRandomWords(14), duration: randomDuration() }))
 
-const firstRealWords = Array.from({ length: 12 }, (_, i) => ({ word: 'TODO', i: i + 1 }))
+// coyote flush rug snack cash artwork question sword cinnamon civil lens warfare
+const firstRealWords = ['coyote', 'flush', 'rug', 'snack', 'cash', 'artwork', 'question', 'sword', 'cinnamon', 'civil', 'lens', 'warfare'].map(word => ({ word }))
+const prizeAddress = 'NQ78 H0BC MUGB TG2Q E2SC 0GAB UGD5 NJ0B Y335'
 
 const userInputs = reactive([ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref('')])
 // TODO Remove this `true` condition for production
-if (import.meta.env.DEV || true) {
-  // Dummy values for development
-  userInputs.forEach((input, i) => {
-    if (i < 11)
-      input.value = 'dummy'
-  })
-}
+// if (import.meta.env.DEV || true) {
+//   // Dummy values for development
+//   userInputs.forEach((input, i) => {
+//     input.value = dummy[i]
+//   })
+// }
 const isGameOver = ref(false)
 
-function unlockWallet(_words: string[]) {
-  // TODO: Implement wallet unlocking logic
-  return Math.random() > 0.5
+function unlockWallet(words: string[]) {
+  try {
+    const wallet = KeyPair.derive(MnemonicUtils.mnemonicToEntropy(words).toExtendedPrivateKey().derivePath(`m/44'/242'/0'/0'`).privateKey)
+    const address = wallet.toAddress().toUserFriendlyAddress()
+    if (address === prizeAddress) {
+      isGameOver.value = false
+      window.open('https://wallet.nimiq.com', '_blank').focus()
+    }
+    else {
+      isGameOver.value = true
+    }
+  }
+  catch {
+    isGameOver.value = true
+  }
 }
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
@@ -28,8 +43,8 @@ async function submitWords() {
   const userHasEnteredAllWords = userInputs.every(input => input.value)
   if (!userHasEnteredAllWords)
     return
-  await sleep(600)
-  isGameOver.value = !unlockWallet([...firstRealWords.map(({ word }) => word), ...userInputs.map(input => input.value)])
+  sleep(300)
+  unlockWallet([...firstRealWords.map(({ word }) => word), ...userInputs.map(input => input.value)])
 }
 
 watch(isGameOver, (value) => {
