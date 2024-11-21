@@ -13,6 +13,7 @@ export interface Validator {
   score: Score
   icon?: string
   sizeRatio: number
+  balance: number
 }
 
 export interface Score {
