@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-defineProps(getSliceComponentProps<Content.WalletWordsSlice>())
+defineProps(getSliceComponentProps<Content.WalletWordsChallengeSlice>())
 </script>
 
 <template>
@@ -12,3 +12,5 @@ defineProps(getSliceComponentProps<Content.WalletWordsSlice>())
     </ClientOnly>
   </section>
 </template>
+
+r

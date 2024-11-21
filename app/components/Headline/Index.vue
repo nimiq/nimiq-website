@@ -6,8 +6,7 @@ const props = defineProps<{
   label?: KeyTextField
   headline: RichTextField
   subline?: RichTextField
-  ctaHref?: LinkField
-  ctaLabel?: KeyTextField
+  cta?: LinkField
   leftAlign?: boolean
 }>()
 
@@ -22,9 +21,7 @@ const headlineTag = computed(() => props.headline.filter(i => i.type.startsWith(
     </p>
     <PrismicText :wrapper="headlineTag" :field="headline" :class="{ 'text-left': leftAlign }" />
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" :class="{ 'text-left': leftAlign }" />
-    <PrismicLink v-if="ctaHref && ctaLabel" internal-component="a" :field="ctaHref" nq-mt-48 nq-arrow nq-pill-lg nq-pill-blue :class="{ 'md:mx-auto': !leftAlign }">
-      {{ ctaLabel }}
-    </PrismicLink>
+    <PrismicLink v-if=" hasLink(cta)" internal-component="a" :field="cta" nq-mt-48 nq-arrow nq-pill-lg nq-pill-blue :class="{ 'md:mx-auto': !leftAlign }" />
   </div>
 </template>
 

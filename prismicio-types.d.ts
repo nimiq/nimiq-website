@@ -1747,7 +1747,7 @@ type PageDocumentDataSlicesSlice =
   | QuoteSlice
   | WalletPlaygroundSlice
   | CurrencyComparisonSlice
-  | WalletWordsSlice
+  | WalletWordsChallengeSlice
   | AlbatrossTechnicalDetailsSlice
   | NewsletterFormSlice
   | CryptoMapContinentSelectorSlice
@@ -8761,34 +8761,15 @@ export type SimpleCarouselSlice = prismic.SharedSlice<
  */
 export interface SimpleHeadlineSliceDefaultPrimary {
   /**
-   * Background color (DEPRECATED) field in *SimpleHeadline → Default → Primary*
+   * Background Color field in *SimpleHeadline → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **Default Value**: white
-   * - **API ID Path**: simple_headline.default.primary.backgroundColor
+   * - **Default Value**: grey
+   * - **API ID Path**: simple_headline.default.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  backgroundColor: prismic.SelectField<
-    | 'white'
-    | 'grey'
-    | 'blue'
-    | 'blue-dark'
-    | 'green'
-    | 'blue-s3'
-    | 'blue-dark-dimmed',
-    'filled'
-  >
-
-  /**
-   * Icon [DEPRECATED] field in *SimpleHeadline → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: simple_headline.default.primary.icon
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  icon: prismic.ImageField<never>
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
 
   /**
    * Label field in *SimpleHeadline → Default → Primary*
@@ -8821,14 +8802,14 @@ export interface SimpleHeadlineSliceDefaultPrimary {
   subline: prismic.RichTextField
 
   /**
-   * Link field in *SimpleHeadline → Default → Primary*
+   * CTA field in *SimpleHeadline → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: simple_headline.default.primary.link
+   * - **API ID Path**: simple_headline.default.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  cta: prismic.LinkField
 
   /**
    * Link href (DEPRECATED) field in *SimpleHeadline → Default → Primary*
@@ -8851,15 +8832,14 @@ export interface SimpleHeadlineSliceDefaultPrimary {
   linkLabel: prismic.KeyTextField
 
   /**
-   * Background Color field in *SimpleHeadline → Default → Primary*
+   * Icon [DEPRECATED] field in *SimpleHeadline → Default → Primary*
    *
-   * - **Field Type**: Select
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **Default Value**: grey
-   * - **API ID Path**: simple_headline.default.primary.bgColor
-   * - **Documentation**: https://prismic.io/docs/field#select
+   * - **API ID Path**: simple_headline.default.primary.icon
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
+  icon: prismic.ImageField<never>
 
   /**
    * Icon Name field in *SimpleHeadline → Default → Primary*
@@ -8870,6 +8850,26 @@ export interface SimpleHeadlineSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   iconName: prismic.KeyTextField
+
+  /**
+   * Background color (DEPRECATED) field in *SimpleHeadline → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: simple_headline.default.primary.backgroundColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  backgroundColor: prismic.SelectField<
+    | 'white'
+    | 'grey'
+    | 'blue'
+    | 'blue-dark'
+    | 'green'
+    | 'blue-s3'
+    | 'blue-dark-dimmed',
+    'filled'
+  >
 }
 
 /**
@@ -10390,88 +10390,88 @@ export type WalletPlaygroundSlice = prismic.SharedSlice<
 >
 
 /**
- * Primary content in *WalletWords → Default → Primary*
+ * Primary content in *WalletWordsChallenge → Default → Primary*
  */
-export interface WalletWordsSliceDefaultPrimary {
+export interface WalletWordsChallengeSliceDefaultPrimary {
   /**
-   * headline field in *WalletWords → Default → Primary*
+   * headline field in *WalletWordsChallenge → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: wallet_words.default.primary.headline
+   * - **API ID Path**: wallet_words_challenge.default.primary.headline
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   headline: prismic.KeyTextField
 
   /**
-   * subheadline field in *WalletWords → Default → Primary*
+   * subheadline field in *WalletWordsChallenge → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: wallet_words.default.primary.subheadline
+   * - **API ID Path**: wallet_words_challenge.default.primary.subheadline
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   subheadline: prismic.KeyTextField
 
   /**
-   * Guess the remaining words label field in *WalletWords → Default → Primary*
+   * Guess the remaining words label field in *WalletWordsChallenge → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: wallet_words.default.primary.guessTheRemainingWordsLabel
+   * - **API ID Path**: wallet_words_challenge.default.primary.guessTheRemainingWordsLabel
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   guessTheRemainingWordsLabel: prismic.KeyTextField
 
   /**
-   * You don’t stand a chance to take field in *WalletWords → Default → Primary*
+   * You don’t stand a chance to take field in *WalletWordsChallenge → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: wallet_words.default.primary.youDoNotStandAChanceToTake
+   * - **API ID Path**: wallet_words_challenge.default.primary.youDoNotStandAChanceToTake
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   youDoNotStandAChanceToTake: prismic.KeyTextField
 
   /**
-   * rewardAmount field in *WalletWords → Default → Primary*
+   * rewardAmount field in *WalletWordsChallenge → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: wallet_words.default.primary.rewardamount
+   * - **API ID Path**: wallet_words_challenge.default.primary.rewardamount
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   rewardamount: prismic.KeyTextField
 }
 
 /**
- * Default variation for WalletWords Slice
+ * Default variation for WalletWordsChallenge Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type WalletWordsSliceDefault = prismic.SharedSliceVariation<
+export type WalletWordsChallengeSliceDefault = prismic.SharedSliceVariation<
   'default',
-  Simplify<WalletWordsSliceDefaultPrimary>,
+  Simplify<WalletWordsChallengeSliceDefaultPrimary>,
   never
 >
 
 /**
- * Slice variation for *WalletWords*
+ * Slice variation for *WalletWordsChallenge*
  */
-type WalletWordsSliceVariation = WalletWordsSliceDefault
+type WalletWordsChallengeSliceVariation = WalletWordsChallengeSliceDefault
 
 /**
- * WalletWords Shared Slice
+ * WalletWordsChallenge Shared Slice
  *
- * - **API ID**: `wallet_words`
- * - **Description**: WalletWords
+ * - **API ID**: `wallet_words_challenge`
+ * - **Description**: WalletWordsChallenge
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type WalletWordsSlice = prismic.SharedSlice<
-  'wallet_words',
-  WalletWordsSliceVariation
+export type WalletWordsChallengeSlice = prismic.SharedSlice<
+  'wallet_words_challenge',
+  WalletWordsChallengeSliceVariation
 >
 
 /**
@@ -11273,10 +11273,10 @@ declare module '@prismicio/client' {
       WalletPlaygroundSlice,
       WalletPlaygroundSliceDefault,
       WalletPlaygroundSliceVariation,
-      WalletWordsSlice,
-      WalletWordsSliceDefault,
-      WalletWordsSliceDefaultPrimary,
-      WalletWordsSliceVariation,
+      WalletWordsChallengeSlice,
+      WalletWordsChallengeSliceDefault,
+      WalletWordsChallengeSliceDefaultPrimary,
+      WalletWordsChallengeSliceVariation,
       WhitepaperSliceSlice,
       WhitepaperSliceSliceDefault,
       WhitepaperSliceSliceDefaultItem,

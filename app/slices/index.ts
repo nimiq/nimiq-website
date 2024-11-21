@@ -128,7 +128,7 @@ export const components = defineSliceZoneComponents({
   wallet_playground: defineAsyncComponent(
     () => import('./WalletPlayground/index.vue'),
   ),
-  wallet_words: defineAsyncComponent(() => import('./WalletWords/index.vue')),
+  wallet_words_challenge: defineAsyncComponent(() => import('./WalletWordsChallenge/index.vue')),
   whitepaper_slice: defineAsyncComponent(
     () => import('./WhitepaperSlice/index.vue'),
   ),

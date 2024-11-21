@@ -80,12 +80,12 @@
         "value": "shinning",
         "type": "Text"
       },
-      "link": {
+      "cta": {
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
-          "url": "https://slicemachine.dev",
-          "text": "jack"
+          "url": "http://twitter.com",
+          "text": "swept"
         }
       }
     },

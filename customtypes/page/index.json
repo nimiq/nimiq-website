@@ -84,7 +84,7 @@
             "currency_comparison": {
               "type": "SharedSlice"
             },
-            "wallet_words": {
+            "wallet_words_challenge": {
               "type": "SharedSlice"
             },
             "albatross_technical_details": {

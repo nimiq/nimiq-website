@@ -26,16 +26,18 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
       v-if="!isStakingSlice"
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
-      :cta-href="slice.primary.linkHref"
-      :cta-label="slice.primary.linkLabel"
+      :cta="slice.primary.cta"
       :label="slice.primary.label"
       :icon-name="slice.primary.iconName" z-1
     />
+    <!-- :cta-href="slice.primary.linkHref"
+      :cta-label="slice.primary.linkLabel" -->
     <HeadlineStaking
       v-else
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
-      :link="slice.primary.link"
+      :cta="slice.primary.cta"
+      data-inverted
     />
   </section>
 </template>

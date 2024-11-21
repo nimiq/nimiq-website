@@ -1,8 +1,8 @@
 {
-  "id": "wallet_words",
+  "id": "wallet_words_challenge",
   "type": "SharedSlice",
-  "name": "WalletWords",
-  "description": "WalletWords",
+  "name": "WalletWordsChallenge",
+  "description": "WalletWordsChallenge",
   "variations": [
     {
       "id": "default",

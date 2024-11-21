@@ -11,29 +11,17 @@
       "version": "sktwi1xtmkfgx8626",
       "description": "SimpleHeadline",
       "primary": {
-        "backgroundColor": {
+        "bgColor": {
+          "type": "Select",
           "config": {
-            "label": "Background color (DEPRECATED)",
+            "label": "Background Color",
             "placeholder": "",
             "options": [
-              "white",
               "grey",
-              "blue",
-              "blue-dark",
-              "green",
-              "blue-s3",
-              "blue-dark-dimmed"
+              "white",
+              "darkblue"
             ],
-            "default_value": "white"
-          },
-          "type": "Select"
-        },
-        "icon": {
-          "type": "Image",
-          "config": {
-            "label": "Icon [DEPRECATED]",
-            "constraint": {},
-            "thumbnails": []
+            "default_value": "grey"
           }
         },
         "label": {
@@ -61,10 +49,10 @@
             "single": "paragraph,em,hyperlink,strong"
           }
         },
-        "link": {
+        "cta": {
           "type": "Link",
           "config": {
-            "label": "Link",
+            "label": "CTA",
             "placeholder": "",
             "allowTargetBlank": true,
             "select": null,
@@ -88,17 +76,12 @@
           },
           "type": "Text"
         },
-        "bgColor": {
-          "type": "Select",
+        "icon": {
+          "type": "Image",
           "config": {
-            "label": "Background Color",
-            "placeholder": "",
-            "options": [
-              "grey",
-              "white",
-              "darkblue"
-            ],
-            "default_value": "grey"
+            "label": "Icon [DEPRECATED]",
+            "constraint": {},
+            "thumbnails": []
           }
         },
         "iconName": {
@@ -107,6 +90,23 @@
             "label": "Icon Name",
             "placeholder": ""
           }
+        },
+        "backgroundColor": {
+          "config": {
+            "label": "Background color (DEPRECATED)",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3",
+              "blue-dark-dimmed"
+            ],
+            "default_value": "white"
+          },
+          "type": "Select"
         }
       },
       "items": {},
