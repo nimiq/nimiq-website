@@ -1,11 +1,14 @@
 <script setup lang="ts" generic="T">
-defineProps<{ duration: string, items: T[] }>()
+defineProps<{ items: T[] }>()
 </script>
 
 <template>
-  <div w-full flex of-hidden whitespace-nowrap>
-    <ul class="marquee" inline-flex="~" v-bind="$attrs" :style="`--duration: ${duration}; --count: ${items.length};--inset: 3`">
-      <li v-for="(item, i) in items" :key="i" :style="`--index: ${i}`">
+  <div relative w-full of-hidden>
+    <ul relative flex inline-flex="~" v-bind="$attrs" class="marquee">
+      <li v-for="(item, i) in items" :key="i" :style="`--index: ${i}`" w-fit whitespace-nowrap>
+        <slot :item="item" :index="i" />
+      </li>
+      <li v-for="(item, i) in items" :key="i" :style="`--index: ${i}`" w-fit whitespace-nowrap>
         <slot :item="item" :index="i" />
       </li>
     </ul>
@@ -14,15 +17,20 @@ defineProps<{ duration: string, items: T[] }>()
 
 <style scoped>
 .marquee {
-  li {
-    --delay: calc((var(--duration) / var(--count)) * (var(--a, 0) - 8));
-    animation: slide var(--duration) var(--delay) infinite linear;
-    translate: calc(((var(--count) - var(--index)) + var(--inset, 0)) * 100%) 0%;
-  }
+  gap: 2rem;
+  display: flex;
+  /* --initial-x: calc(max(var(--direction, 0), 0) * (-10% + 100vw)); */
+  --initial-x: calc(max(var(--direction, 0), 0) * (-100% + 100vw));
+  --final-x: calc(max(var(--direction, 0), 0) * (-50% + 100vw) + 50% * min(var(--direction, 0), 0));
+  animation: scroll var(--duration, 50s) linear infinite;
 }
-@keyframes slide {
-  100% {
-    translate: calc(calc((var(--index) + var(--outset, 0)) * -100%)) 0%;
+
+@keyframes scroll {
+  from {
+    transform: translateX(var(--initial-x));
+  }
+  to {
+    transform: translateX(var(--final-x));
   }
 }
 </style>

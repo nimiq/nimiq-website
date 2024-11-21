@@ -1,37 +1,26 @@
 <script setup lang="ts">
-import { KeyPair, MnemonicUtils } from '@nimiq/core'
-
 defineProps<{ headline: string, subheadline: string, guessTheRemainingWordsLabel: string, youDoNotStandAChanceToTake: string, rewardAmount: string }>()
 
 const { getRandomWords } = useWords()
-const randomDuration = () => `${Math.floor(Math.random() * 60) + 40}s` // 60s to 100s
-const wordsList = Array.from({ length: 6 }, () => ({ words: getRandomWords(14), duration: randomDuration() }))
+const wordsList = Array.from({ length: 6 }, () => ({ words: getRandomWords(14) }))
 
 // coyote flush rug snack cash artwork question sword cinnamon civil lens warfare
-const firstRealWords = ['coyote', 'flush', 'rug', 'snack', 'cash', 'artwork', 'question', 'sword', 'cinnamon', 'civil', 'lens', 'warfare'].map(word => ({ word }))
+const firstRealWords = ['coyote', 'flush', 'rug', 'snack', 'cash', 'artwork', 'question', 'sword', 'cinnamon', 'civil', 'lens', 'warfare']
 const prizeAddress = 'NQ78 H0BC MUGB TG2Q E2SC 0GAB UGD5 NJ0B Y335'
 
 const userInputs = reactive([ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref('')])
-// TODO Remove this `true` condition for production
-// if (import.meta.env.DEV || true) {
-//   // Dummy values for development
-//   userInputs.forEach((input, i) => {
-//     input.value = dummy[i]
-//   })
-// }
+if (import.meta.env.DEV)
+  userInputs.forEach(input => input.value = 'dummy')
 const isGameOver = ref(false)
 
-function unlockWallet(words: string[]) {
+async function unlockWallet(words: string[]) {
   try {
+    const { KeyPair, MnemonicUtils } = await import('@nimiq/core')
     const wallet = KeyPair.derive(MnemonicUtils.mnemonicToEntropy(words).toExtendedPrivateKey().derivePath(`m/44'/242'/0'/0'`).privateKey)
     const address = wallet.toAddress().toUserFriendlyAddress()
-    if (address === prizeAddress) {
-      isGameOver.value = false
-      window.open('https://wallet.nimiq.com', '_blank').focus()
-    }
-    else {
-      isGameOver.value = true
-    }
+    isGameOver.value = address !== prizeAddress
+    if (!isGameOver.value)
+      window?.open('https://wallet.nimiq.com', '_blank')!.focus()
   }
   catch {
     isGameOver.value = true
@@ -44,7 +33,7 @@ async function submitWords() {
   if (!userHasEnteredAllWords)
     return
   sleep(300)
-  unlockWallet([...firstRealWords.map(({ word }) => word), ...userInputs.map(input => input.value)])
+  await unlockWallet([...firstRealWords, ...userInputs.map(input => input.value)])
 }
 
 watch(isGameOver, (value) => {
@@ -63,17 +52,21 @@ function reset() {
 </script>
 
 <template>
-  <div flex="~ col gap-24" absolute w-full style="--nq-max-width:none" of-x-hidden>
-    <AnimatedMarquee v-for="({ duration, words }, key) in wordsList" :key :duration :items="words" flex="~ gap-2">
-      <template #default="{ item: { word } }">
-        <div flex="~ gap-12 items-center" rounded-4 bg-neutral-100 p-16>
-          <span text-neutral-800 font-semibold lh-none text-xl>
-            <AnimatedHyperText :text="word" />
-          </span>
-        </div>
-      </template>
-    </AnimatedMarquee>
-    <div class="marquee-overlay" pointer-events-none absolute inset-0 z-1 />
+  <div absolute max-w-none w-full of-x-hidden :style="`--c: ${wordsList.length};`">
+    <div relative flex="~ col gap-24" h-full>
+      <AnimatedMarquee v-for="({ words }, key) in wordsList" :key :items="words" flex="~ gap-2" :style="`--direction: ${key % 2 === 0 ? -1 : 1}`">
+        <template #default="{ item: { word } }">
+          <div flex="~ gap-12 items-center" rounded-4 bg-neutral-100 p-16>
+            <span text-neutral-800 font-semibold lh-none text-xl>
+              <AnimatedHyperText :text="word" />
+            </span>
+          </div>
+        </template>
+      </AnimatedMarquee>
+      <div absolute inset-0 flex="~ col gap-24 justify-between">
+        <div v-for="i in wordsList.length" :key="i" class="marquee-overlay" pointer-events-none z-1 size-full />
+      </div>
+    </div>
   </div>
   <div flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" relative z-1 mx-auto h-937 max-w-492 of-hidden rounded-8 px-64 pb-48 pt-32 shadow>
     <div :class="{ 'slide-up': isGameOver }">
@@ -98,14 +91,13 @@ function reset() {
       </div>
 
       <ul grid="~ cols-3 gap-8" mt-16>
-        <li v-for="({ word }) in firstRealWords" :key="word" rounded-4 py-9 bg="white/10" text="white center">
+        <li v-for="word in firstRealWords" :key="word" rounded-4 py-9 bg="white/10" text="white center">
           {{ word }}
         </li>
         <li v-for="(input, i) in userInputs" :key="i" shrink-0>
           <input v-model="input.value" type="text" border="2 white/30 hocus:blue" :placeholder="`${i + 12}`" text="center blue" h-36 w-full rounded-4 bg-transparent px-2 font-semibold caret-blue outline-none transition un-placeholder="font-semibold text-white/30" @blur="submitWords">
         </li>
       </ul>
-      <hr bg="white/15" relative w="[calc(100%+128px)]" left--64 my-48 h-1>
     </div>
 
     <div :class="{ fall: isGameOver }" z-1 mt-auto>
@@ -131,15 +123,22 @@ function reset() {
 
 <style scoped>
 .marquee-overlay {
+  --x1: 5vw;
+  --x2: 17vw;
   background-image: linear-gradient(
     90deg,
-    rgba(var(--nq-white) / 1) 0%,
-    rgba(var(--nq-white) / 1) 64px,
-    rgba(var(--nq-white) / 0.6) 256px,
-    rgba(var(--nq-white) / 0.6) calc(100% - 256px),
-    rgba(var(--nq-white) / 1) calc(100% - 64px),
-    rgba(var(--nq-white) / 1) 100%
+    rgba(var(--nq-neutral-0) / 1) 0%,
+    rgba(var(--nq-neutral-0) / 1) var(--x1),
+    rgba(var(--nq-neutral-0) / 0.6) var(--x2),
+    rgba(var(--nq-neutral-0) / 0.6) calc(100% - var(--x2)),
+    rgba(var(--nq-neutral-0) / 1) calc(100% - var(--x1)),
+    rgba(var(--nq-neutral-0) / 1) 100%
   );
+
+  &:nth-child(2n) {
+    --x1: 8vw;
+    --x2: 30vw;
+  }
 }
 
 .slide-up {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { text, duration = 3000 } = defineProps<{ text: string, duration?: number }>()
+const { text, duration = 100 } = defineProps<{ text: string, duration?: number }>()
 
 const alphabets = '!#$%&()_+{}|:<>?-=[]\;/'
 const displayText = ref(text.split(''))
@@ -23,7 +23,7 @@ const { pause, resume, isActive } = useIntervalFn(
     )
     iterations.value += 0.1
   },
-  computed(() => duration / (text.length * 7)),
+  computed(() => duration / (text.length * 3)),
   {
     immediate: false,
   },
@@ -37,7 +37,7 @@ function startAnimation() {
 useIntervalFn(() => {
   if (isActive.value)
     return
-  if (Math.random() < 0.025)
+  if (Math.random() < 0.035)
     triggerAnimation()
 }, 100)
 </script>
@@ -48,7 +48,7 @@ useIntervalFn(() => {
       <span
         v-for="(letter, i) in displayText"
         :key="i"
-        inline-block w-12 font-mono
+        inline-block w-12 lh="[1.1]" font-mono
         :initial="{ opacity: 0, y: -10 }"
         :enter="{ opacity: 1, y: 0 }"
         :delay="i * (duration / (text.length * 10))"
