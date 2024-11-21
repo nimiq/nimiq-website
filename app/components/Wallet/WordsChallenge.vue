@@ -11,19 +11,19 @@ const prizeAddress = 'NQ78 H0BC MUGB TG2Q E2SC 0GAB UGD5 NJ0B Y335'
 const userInputs = reactive([ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref('')])
 if (import.meta.env.DEV)
   userInputs.forEach(input => input.value = 'dummy')
-const isGameOver = ref(false)
+const isChallengeFinished = ref(true)
 
 async function unlockWallet(words: string[]) {
   try {
     const { KeyPair, MnemonicUtils } = await import('@nimiq/core')
     const wallet = KeyPair.derive(MnemonicUtils.mnemonicToEntropy(words).toExtendedPrivateKey().derivePath(`m/44'/242'/0'/0'`).privateKey)
     const address = wallet.toAddress().toUserFriendlyAddress()
-    isGameOver.value = address !== prizeAddress
-    if (!isGameOver.value)
+    isChallengeFinished.value = address !== prizeAddress
+    if (!isChallengeFinished.value)
       window?.open('https://wallet.nimiq.com', '_blank')!.focus()
   }
   catch {
-    isGameOver.value = true
+    isChallengeFinished.value = true
   }
 }
 
@@ -35,25 +35,15 @@ async function submitWords() {
   sleep(300)
   await unlockWallet([...firstRealWords, ...userInputs.map(input => input.value)])
 }
-
-watch(isGameOver, (value) => {
-  if (!value)
-    return
-  setTimeout(() => {
-    const audio = new Audio('/sounds/game-over.wav')
-    audio.play()
-  }, 200)
-})
-
 function reset() {
-  isGameOver.value = false
+  isChallengeFinished.value = false
   userInputs.forEach(input => input.value = '')
 }
 </script>
 
 <template>
   <div absolute max-w-none w-full of-x-hidden :style="`--c: ${wordsList.length};`">
-    <div relative flex="~ col gap-24" h-full>
+    <div v-if="false" relative flex="~ col gap-24" h-full>
       <AnimatedMarquee v-for="({ words }, key) in wordsList" :key :items="words" flex="~ gap-2" :style="`--direction: ${key % 2 === 0 ? -1 : 1}`">
         <template #default="{ item: { word } }">
           <div flex="~ gap-12 items-center" rounded-4 bg-neutral-100 p-16>
@@ -68,16 +58,19 @@ function reset() {
       </div>
     </div>
   </div>
-  <div flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" relative z-1 mx-auto h-937 max-w-492 of-hidden rounded-8 px-64 pb-48 pt-32 shadow>
-    <div :class="{ 'slide-up': isGameOver }">
+  <div flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" relative z-1 mx-auto max-w-492 of-hidden rounded-8 px-64 pb-48 pt-32 shadow>
+    <div :class="{ 'slide-up': isChallengeFinished }">
       <h3 text-center>
         {{ headline }}
       </h3>
-      <p mt-16 text="center neutral-800">
+      <p mt-16 text="center neutral-800 sm">
         {{ subheadline }}
       </p>
 
       <div relative mt-32>
+        <transition enter-active-class="transition-opacity duration-300ms ease-out" enter-from-class="op-0" enter-to-class="op-100" leave-active-class="transition-opacity duration-300ms ease-out" leave-from-class="op-100" leave-to-class="op-0">
+          <div v-if="isChallengeFinished" pointer-events-none absolute inset-x--64 inset-y--16 z-2 bg-neutral-0 bg-op-20 backdrop-blur-8 />
+        </transition>
         <p text="center blue" font-bold>
           {{ guessTheRemainingWordsLabel }}
         </p>
@@ -88,36 +81,38 @@ function reset() {
             <path d="M23.8 198c3.9 8.6 12.3 14.6 14 20.6m-14-20.7c3 3.9 6.2 8.3 14 20.7m2.5-24.9c-2.6 10.3-.6 18-2.4 24.9m2.4-25c-.7 5-1.2 10.3-2.4 25" />
           </g>
         </svg>
-      </div>
 
-      <ul grid="~ cols-3 gap-8" mt-16>
-        <li v-for="word in firstRealWords" :key="word" rounded-4 py-9 bg="white/10" text="white center">
-          {{ word }}
-        </li>
-        <li v-for="(input, i) in userInputs" :key="i" shrink-0>
-          <input v-model="input.value" type="text" border="2 white/30 hocus:blue" :placeholder="`${i + 12}`" text="center blue" h-36 w-full rounded-4 bg-transparent px-2 font-semibold caret-blue outline-none transition un-placeholder="font-semibold text-white/30" @blur="submitWords">
-        </li>
-      </ul>
+        <ul grid="~ cols-3 gap-8" relative z-0 mt-16>
+          <li v-for="word in firstRealWords" :key="word" rounded-4 py-9 bg="white/10" text="white center">
+            {{ word }}
+          </li>
+          <li v-for="(input, i) in userInputs" :key="i" shrink-0>
+            <input v-model="input.value" type="text" border="2 white/30 hocus:blue" :placeholder="`${i + 12}`" text="center blue" h-36 w-full rounded-4 bg-transparent px-2 font-semibold caret-blue outline-none transition un-placeholder="font-semibold text-white/30" @blur="submitWords">
+          </li>
+        </ul>
+        <template v-if="isChallengeFinished">
+          <div flex="~ justify-center items-center col" absolute inset-x--64 inset-y-0 z-2 w-492>
+            <p text="center 40 red-neon" font-retro class="challenge-over">
+              Try again
+            </p>
+            <p text="center neutral-900 lg" class="delayed" max-w-40ch px-40 nq-mt-32>
+              Even using a computer, it would take you <b text-neutral>10 lifetimes</b> to crack this wallet...
+            </p>
+            <button nq-mt-16 nq-pill nq-pill-tertiary class="delayed" @click="reset">
+              Restart
+            </button>
+          </div>
+        </template>
+      </div>
     </div>
 
-    <div :class="{ fall: isGameOver }" z-1 mt-auto>
-      <p text="xl white/80 center" font-semibold>
+    <div relative mt-32>
+      <AnimatedSyntheticWave :style="`--grid-color: var(--nq-${isChallengeFinished ? 'purple' : 'blue'})`" absolute inset--64 top-0 z-0 />
+      <p text="xl white/80 center" relative z-1 font-semibold>
         {{ youDoNotStandAChanceToTake }}
       </p>
-      <div i-custom:10-million-nim mt-32 h-66 w-full />
+      <div i-custom:10-million-nim relative z-1 mt-32 h-66 w-full />
     </div>
-    <div v-if="isGameOver" class="dark game-over" absolute inset-0 flex="~ justify-center items-center col" w-492>
-      <p text="center 64/70 red-neon" font-retro class="game-over">
-        Game over
-      </p>
-      <button text="white/90 18" group left--20 mt-64 bg-transparent font-retro class="delayed" @click="reset">
-        <span op="0 group-hocus:80" font-retro>></span> Restart
-      </button>
-      <p text="left 10/24" mt-128 px-40 font-retro class="delayed">
-        Even using a computer, it would take you <span text-white font-retro>10,000,000,000,000,000,000,000,000,000 years</span> to crack this wallet... <br><br> Good luck!
-      </p>
-    </div>
-    <AnimatedSyntheticWave :style="`--grid-color: var(--nq-${isGameOver ? 'purple' : 'blue'})`" absolute inset-x-0 bottom-0 h-200 />
   </div>
 </template>
 
@@ -141,34 +136,21 @@ function reset() {
   }
 }
 
-.slide-up {
-  transition:
-    transform 0.6s ease-in-out,
-    opacity 0.6s ease-in-out;
-  will-change: transform, opacity;
-  transform: translateY(-100%);
-  opacity: 0;
-}
-
-.game-over {
-  .game-over {
-    text-shadow:
-      0 0 10px rgba(255, 0, 85, 0.8),
-      0 0 20px rgba(255, 0, 85, 0.5);
-    will-change: transform;
-    @media (prefers-reduced-motion: no-preference) {
-      animation:
-        stamp 180ms both 800ms,
-        shake 140ms infinite alternate 950ms;
-      animation-timing-function: ease-out;
-    }
-  }
-
-  .delayed {
-    opacity: 0;
-    animation: fadeIn 150ms forwards 3.6s;
+.challenge-over {
+  text-shadow:
+    0 0 10px rgba(255, 0, 85, 0.8),
+    0 0 20px rgba(255, 0, 85, 0.5);
+  will-change: transform;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: stamp 180ms both 800ms;
     animation-timing-function: ease-out;
   }
+}
+
+.delayed {
+  opacity: 0;
+  animation: fadeIn 150ms forwards 3.6s;
+  animation-timing-function: ease-out;
 }
 
 @keyframes fadeIn {
@@ -188,48 +170,6 @@ function reset() {
   100% {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-.fall {
-  transform-origin: top left;
-  will-change: transform;
-  animation: hinge 2s ease-in-out forwards;
-}
-@keyframes shake {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(-1px, 1px);
-  }
-  50% {
-    transform: translate(1px, -1px);
-  }
-  75% {
-    transform: translate(-1px, -1px);
-  }
-}
-
-@keyframes hinge {
-  20%,
-  60% {
-    animation-timing-function: ease-in-out;
-  }
-  20%,
-  60% {
-    transform: rotate(80deg);
-  }
-  40%,
-  80% {
-    animation-timing-function: ease-in-out;
-    opacity: 1;
-    transform: rotate(60deg);
-  }
-  to {
-    opacity: 0;
-    transform: translate3d(0, 700px, 0);
   }
 }
 </style>

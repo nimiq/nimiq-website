@@ -1,5 +1,5 @@
 <template>
-  <div flex="~ col" pointer-events-none size-full>
+  <div flex="~ col" pointer-events-none>
     <div class="grid-container" flex="~ basis-200" relative perspective-1200 bg-inherit before="absolute inset-0" />
     <div absolute inset-0 class="retro-overlay" />
   </div>
@@ -33,20 +33,20 @@
   background: linear-gradient(
     180deg,
     oklch(var(--bg-color)) 0px,
-    oklch(var(--bg-color) / 0.991615) calc(0.1179 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.967585) calc(0.2138 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.9296) calc(0.2912 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.879348) calc(0.3534 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.818519) calc(0.4037 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.7488) calc(0.4456 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.671881) calc(0.4824 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.589452) calc(0.5176 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.5032) calc(0.5544 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.414815) calc(0.5963 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.325985) calc(0.6466 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.2384) calc(0.7088 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.153748) calc(0.7862 * var(--gradient-height)),
-    oklch(var(--bg-color) / 0.0737185) calc(0.8821 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.991) calc(0.117 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.967) calc(0.213 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.929) calc(0.291 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.879) calc(0.353 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.818) calc(0.403 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.748) calc(0.445 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.671) calc(0.482 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.589) calc(0.517 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.503) calc(0.554 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.414) calc(0.596 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.325) calc(0.646 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.238) calc(0.708 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.153) calc(0.786 * var(--gradient-height)),
+    oklch(var(--bg-color) / 0.073) calc(0.882 * var(--gradient-height)),
     transparent var(--gradient-height)
   );
 }

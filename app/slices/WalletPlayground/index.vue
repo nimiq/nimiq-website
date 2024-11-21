@@ -11,7 +11,7 @@ defineProps(getSliceComponentProps<Content.WalletPlaygroundSlice>())
       <div bg-blue-to-darkerblue />
     </div> -->
     <AnimatedCloudyBg pointer-events-none h="[calc(100%+400px)]" top--400 max-w-screen />
-    <WalletPlayground id="wallet-playground" z-1 w-full />
+    <WalletPlayground v-if="false" id="wallet-playground" z-1 w-full />
   </section>
 </template>
 

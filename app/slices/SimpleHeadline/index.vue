@@ -37,8 +37,8 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
       :cta="slice.primary.cta"
-      data-inverted
-      show-staking-icon
+
+      show-staking-icon data-inverted
     />
   </section>
 </template>
