@@ -1,24 +1,12 @@
 <script setup lang="ts">
 // Check https://github.com/tmg0/hero-motion/pull/223 and remove .client from the file name
-const url = new URL('/api/v1/validators', useRuntimeConfig().public.validatorsApi)
-url.searchParams.set('with-scores', 'true')
-url.searchParams.set('with-identicons', 'true')
-
-const { data: validators } = useFetch<Validator[]>(url.href)
-
-function getScoreColor(score: number) {
-  if (score >= 0.75)
-    return 'green'
-  if (score >= 0.6)
-    return 'gold'
-  return 'red'
-}
+const { validators } = storeToRefs(useGlobalContent())
 
 const formatter = new Intl.NumberFormat('en-US', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 2 })
 
 const activeValidator = ref<string>()
 
-const [DefineScore, ReuseScore] = createReusableTemplate<{ score: number }>()
+// const [DefineScore, ReuseScore] = createReusableTemplate<{ score: number }>()
 
 const showAllValidators = ref(false)
 function toggleShowAllValidators() {
@@ -29,23 +17,23 @@ function toggleShowAllValidators() {
 </script>
 
 <template>
-  <DefineScore v-slot="{ score }">
+  <!-- <DefineScore v-slot="{ score }">
     <div ring="1.5 $c" nq-raw flex="~ items-center gap-4" col-start-4 h-max w-max rounded-full px-10 py-4 text="$c" :style="`--c: rgb(var(--nq-${getScoreColor(score)}))`">
       <div i-nimiq:star text-16 />
       <span text-24 font-semibold lh-none>{{ formatter.format(score * 5) }}</span>
     </div>
-  </DefineScore>
-  <div :data-expanded="showAllValidators ? '' : undefined" relative max-w-560 w-full pb-80 :style="`--count: ${validators?.length}`">
+  </DefineScore> -->
+  <div :data-expanded="showAllValidators ? '' : undefined" relative max-w-560 w-full pb-80 :style="`--count: ${validators!.length}`">
     <div bg-gradient="to-b from-transparent via-neutral-0 to-neutral-0" :class="showAllValidators ? 'op-0' : 'op-100'" aria-hidden pointer-events-none absolute bottom-0 z-10 h-180 w-full transition-opacity />
     <button bottom="8 data-open:42" absolute inset-x-0 z-10 mx-auto transition-bottom nq-pill-lg nq-pill-tertiary aria-label="Expand list" @click="toggleShowAllValidators">
       <span v-if="showAllValidators">Show less</span>
       <span v-else>Show more</span>
     </button>
     <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" flex="~ col gap-16" as="ul" w-full of-y-clip :style="`height: ${showAllValidators ? 'calc(var(--count)*88+(var(--count)-1)*16)' : '400px'}`" transition-height>
-      <AccordionItem v-for="({ name, address, icon, description, payoutSchedule, score, fee, website = 'https://nimiq.com' }) in validators" :key="name" as="li" :value="address" bg="neutral-200 data-open:neutral-0" rounded="8 data-open:b-0" style="--radix-accordion-content-height: 130px" relative transition data-open:shadow>
+      <AccordionItem v-for="({ name, address, logo, description, payoutSchedule, score, fee, website }) in validators" :key="name" as="li" :value="address" bg="neutral-200 data-open:neutral-0" rounded="8 data-open:b-0" style="--radix-accordion-content-height: 130px" relative transition data-open:shadow>
         <AccordionHeader rounded="8 data-open:b-0" size-full data-open:ring="1.5 neutral-300">
           <AccordionTrigger size-full rounded-8 bg-transparent p="20 lg:24" grid="~ cols-[40px_max-content_1fr_max-content] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`">
-            <img row-span-2 :src="icon" :alt="`${name} logo`" size-40>
+            <img row-span-2 :src="logo" :alt="`${name} logo`" size-40>
             <h3 font-semibold text-lg>
               {{ name }}
             </h3>
@@ -54,7 +42,9 @@ function toggleShowAllValidators() {
             </div>
             <Hero v-if="address !== activeValidator" :transition="{ duration: 400, type: 'spring' }" :layout-id="`${address}-score`" ml-auto>
               <!-- <ReuseScore :score="score.total" top="20 data-open:[calc(var(--radix-accordion-content-height)+20px)]" absolute right-20 transition="top ease-out duration-300" data-open:z-4 /> -->
-              <ReuseScore :score="score.total" data-open:z-4 />
+              <!-- <ReuseScore :score="score.total" /> -->
+              <ValidatorTrustscore :score="score.total || score.dominance" col-start-4 data-open:z-4 />
+              <!-- <ReuseScore :score="score.total" data-open:z-4 /> -->
             </Hero>
             <NuxtLink v-if="address === activeValidator && website" :to="website" external un-text-white ml-auto size-32 rounded-full px-4 py-10 duration-400 delay-800 bg-gradient-blue nq-arrow stack />
 
@@ -89,7 +79,7 @@ function toggleShowAllValidators() {
           </div>
           <ClientOnly>
             <Hero :layout-id="`${address}-score`" absolute bottom="20 lg:24" right="20 lg:24" data-open:z-5 class="nq-raw">
-              <ReuseScore :score="score.total" />
+              <ValidatorTrustscore :score="score.total" col-start-4 />
             </Hero>
           </ClientOnly>
         </AccordionContent>

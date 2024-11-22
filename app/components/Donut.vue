@@ -3,11 +3,11 @@ import { Donut } from '@unovis/ts'
 import { VisDonut, VisSingleContainer, VisTooltip } from '@unovis/vue'
 import { render } from 'vue'
 
-const { startAngle: _startAngle = 15, data = [] } = defineProps<{ data?: T[], startAngle?: number }>()
+const { startAngle: _startAngle = 15, data } = defineProps<{ data?: T[], startAngle?: number }>()
 const slots = defineSlots<{ default?: (props: T) => any }>()
 const angleToRadians = (angle: number) => angle * Math.PI / 180
 const startAngle = angleToRadians(_startAngle)
-const angleRange: [number, number] = [startAngle, angleToRadians(0) + startAngle]
+const angleRange: [number, number] = [startAngle, 360 - startAngle]
 
 const value = (d: DonutDatum) => d.value
 const color = (d: DonutDatum) => d.color
@@ -26,7 +26,7 @@ export interface DonutDatum { color: string, value: number }
 <template>
   <div flex="~ col items-center">
     <VisSingleContainer :height="280" :width="280" relative size-280 max-w-280>
-      <VisDonut :data :color :value :angle-range :corner-radius="8" :arc-width="64" :pad-angle="0.03" :show-background="false" />
+      <VisDonut :data :color :value :angle-range :corner-radius="8" :arc-width="64" :pad-angle="0.045" :show-background="false" />
       <VisTooltip v-if="slots.default" :triggers="{ [Donut.selectors.segment]: template }" />
     </VisSingleContainer>
   </div>

@@ -143,6 +143,26 @@ export const useGlobalContent = defineStore('global-content', () => {
   interface DistributionResponse { staked: number, circulating: number, ratio: number }
   const { data: distribution } = useAsyncData('network_distribution', () => $fetch<DistributionResponse>(`${useRuntimeConfig().public.validatorsApi}/api/v1/distribution`))
 
+  interface Validator {
+    id: number
+    name: string
+    address: string
+    fee: number
+    payoutType: string
+    payoutSchedule: string
+    description: null | string
+    accentColor: string
+    isMaintainedByNimiq: boolean
+    hasDefaultLogo: boolean
+    website: null
+    score: { total: number, dominance: number }
+    logo?: string
+    balanceRatio: number
+    balance: number
+  }
+
+  const { data: validators } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators`, { query: { 'with-scores': true, 'width-identicons': false } }))
+
   return {
     navigation,
     navigationBlocks,
@@ -156,6 +176,7 @@ export const useGlobalContent = defineStore('global-content', () => {
     getRandomApps,
     stakingValues,
     distribution: distribution!,
+    validators: validators!,
   }
 })
 
