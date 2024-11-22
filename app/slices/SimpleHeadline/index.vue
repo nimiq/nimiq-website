@@ -5,10 +5,11 @@ const props = defineProps(getSliceComponentProps<Content.SimpleHeadlineSlice>())
 const bgColor = getColorClass(props.slice.primary.bgColor)
 
 const { stakingValues } = useGlobalContent()
+const isLastSlice = computed(() => props.slices.indexOf(props.slice) === props.slices.length - 1)
 
 const isStakingSlice = computed(() => stakingValues?.template && getText(props.slice.primary.headline).includes(stakingValues.template))
 const gradientClass = computed<'gradient-transparent-green' | 'gradient-transparent-green-transparent' | undefined>(() => {
-  if (!isStakingSlice.value)
+  if (!isStakingSlice.value || isLastSlice.value)
     return
   const currentIndex = props.slices.indexOf(props.slice)
   // @ts-expect-error the types are meh
@@ -37,8 +38,7 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
       :cta="slice.primary.cta"
-
-      show-staking-icon data-inverted
+      :show-staking-icon="!isLastSlice" :data-inverted="!isLastSlice"
     />
   </section>
 </template>
