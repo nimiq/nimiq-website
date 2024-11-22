@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ConsensusState } from '@nimiq/core'
+import type { ConsensusState } from '@nimiq/core/web'
 
 defineProps<{
   consensus: ConsensusState | null

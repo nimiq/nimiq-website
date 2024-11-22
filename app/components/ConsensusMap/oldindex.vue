@@ -2,7 +2,7 @@
 import type { NodeHexagon, SelfHexagon } from './NetworkMap'
 import { createPopper } from '@popperjs/core'
 import { computed, onMounted, ref, watch } from 'vue'
-import ConsensusIcon from './ConsensusIcon.vue'
+import ConsensusIcon from './ConsensusIcon.client.vue'
 import NetworkMap, { HEIGHT, SCALING_FACTOR, WIDTH } from './NetworkMap'
 
 const props = defineProps({

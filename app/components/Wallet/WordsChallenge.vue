@@ -15,7 +15,7 @@ const isChallengeFinished = ref(true)
 
 async function unlockWallet(words: string[]) {
   try {
-    const { KeyPair, MnemonicUtils } = await import('@nimiq/core')
+    const { KeyPair, MnemonicUtils } = await import('@nimiq/core/web')
     const wallet = KeyPair.derive(MnemonicUtils.mnemonicToEntropy(words).toExtendedPrivateKey().derivePath(`m/44'/242'/0'/0'`).privateKey)
     const address = wallet.toAddress().toUserFriendlyAddress()
     isChallengeFinished.value = address !== prizeAddress
