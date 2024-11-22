@@ -157,8 +157,9 @@ export const useGlobalContent = defineStore('global-content', () => {
     website: null
     score: { total: number, dominance: number }
     logo?: string
-    balanceRatio: number
-    balance: number
+    dominanceRatioViaBalance: number
+    dominanceRatioViaSlots: number
+    dominance?: number
   }
 
   const { data: validators } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators`, { query: { 'with-scores': true, 'width-identicons': false } }))

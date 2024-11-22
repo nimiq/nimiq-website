@@ -12,9 +12,9 @@ const angleRange: [number, number] = [startAngle, 360 - startAngle]
 const value = (d: DonutDatum) => d.value
 const color = (d: DonutDatum) => d.color
 
-function template(v: T) {
+function template(v: { data: T }) {
   const div = document.createElement('div')
-  render(h(slots.default!, { ...v }), div)
+  render(h(slots.default!, v.data), div)
   return div.innerHTML
 }
 </script>
@@ -25,8 +25,8 @@ export interface DonutDatum { color: string, value: number }
 
 <template>
   <div flex="~ col items-center">
-    <VisSingleContainer :height="280" :width="280" relative size-280 max-w-280>
-      <VisDonut :data :color :value :angle-range :corner-radius="8" :arc-width="64" :pad-angle="0.045" :show-background="false" />
+    <VisSingleContainer :data :height="280" :width="280" relative size-280 max-w-280>
+      <VisDonut :color :value :angle-range :corner-radius="8" :arc-width="64" :pad-angle="0.045" :show-background="false" />
       <VisTooltip v-if="slots.default" :triggers="{ [Donut.selectors.segment]: template }" />
     </VisSingleContainer>
   </div>
