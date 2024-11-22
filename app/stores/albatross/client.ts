@@ -1,8 +1,9 @@
-import initNimiqClient, { Policy } from '@nimiq/core/web'
+// import initNimiqClient, { Policy } from '@nimiq/core/web'
+import { Policy } from '@nimiq/core/web'
 
 export const useNimiqAlbatross = defineStore('nimiq-albatross', () => {
   const { data: policy } = useAsyncData('policy', async () => {
-    await initNimiqClient()
+    // await initNimiqClient()
     return Policy
   })
   const slots = computed(() => policy.value?.SLOTS || 512)
