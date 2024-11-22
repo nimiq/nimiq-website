@@ -1,15 +1,13 @@
 <script setup lang="ts" generic="T">
-const {
-  options,
-  getLabel = item => item,
-  isSelected: _isSelected,
-} = defineProps<{ options: T[], isSelected?: (item: T) => boolean, getLabel?: (item: T) => string }>()
+import type { CSSProperties } from 'vue'
+
+const { options, getLabel = item => item, isSelected: _isSelected } = defineProps<{ options: T[], isSelected?: (item: T) => boolean, getLabel?: (item: T) => string }>()
 
 const model = defineModel<T>()
 const isSelected = _isSelected || ((item: T) => item === model.value)
 
 const pill = useTemplateRef('pill')
-const pillStyles = ref()
+const pillStyles = ref<CSSProperties>()
 
 const id = useId()
 

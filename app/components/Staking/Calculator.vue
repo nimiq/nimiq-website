@@ -19,61 +19,17 @@ const { initialStakingAmount = 1_000_000 } = defineProps<{
 const decimals = ref(0)
 
 const storageKey = 'staking-calculator'
-const amount = ref(initialStakingAmount)
-const liveValue = useLocalStorage(`${storageKey}_live-value`, '')
-const lastEmittedValue = ref(0)
-
-// Code from https://github.com/nimiq/vue3-components/blob/8d54857370cffc6c5fdb7b75b12b0e2eacbc8f04/src/components/AmountInput/AmountInput.vue#L96
-const formattedValue = computed({
-  get() {
-    return liveValue.value
-  },
-  set(value: string) {
-    liveValue.value = value
-
-    if (!value) {
-      liveValue.value = ''
-      lastEmittedValue.value = 0
-      amount.value = 0
-      // context.emit(AmountInputEvent.MODELVALUE_UPDATE, valueInLuna.value)
-      return
-    }
-
-    value = value.replace(/,/, '.')
-    const regExp = new RegExp(`(\\d*)(\\.(\\d{0,${decimals.value}}))?`, 'g') // Backslashes are escaped
-    const regExpResult = regExp.exec(value)!
-    if (regExpResult[1] || regExpResult[2]) {
-      liveValue.value = `${regExpResult[1] ? regExpResult[1] : '0'}${regExpResult[2] ? regExpResult[2] : ''}`
-      amount.value = Number(`${regExpResult[1]}${(regExpResult[2] ? regExpResult[3]! : '').padEnd(decimals.value, '0')}`)
-    }
-    else {
-      liveValue.value = ''
-      amount.value = 0
-    }
-
-    if (lastEmittedValue.value !== amount.value) {
-      lastEmittedValue.value = amount.value
-    }
-  },
-})
-
-function updateValue(newValue: number) {
-  if (newValue === amount.value)
-    return
-  lastEmittedValue.value = newValue || 0
-  formattedValue.value = newValue ? (newValue / 10 ** decimals.value).toString() : ''
-}
-
-watch(amount, newValue => updateValue(newValue), { immediate: true })
+const amount = useLocalStorage(`${storageKey}_amount`, initialStakingAmount)
 
 enum StakeSupply {
   Low = 'Low',
   Middle = 'Middle',
   High = 'High',
+  Live = 'Live',
 }
 
 const stakedSupplyOptions = Object.values(StakeSupply) as StakeSupply[]
-const selectedStakedSupply = useLocalStorage<StakeSupply>(`${storageKey}_staked-supply`, StakeSupply.Middle)
+const selectedStakedSupply = useLocalStorage<StakeSupply>(`${storageKey}_staked-supply`, StakeSupply.Live)
 
 const stakingPeriodOptions = [
   { label: '1m', days: 30 },
@@ -85,16 +41,19 @@ const stakingPeriodOptions = [
 const selectedStakingPeriod = useLocalStorage(`${storageKey}_staking-period`, stakingPeriodOptions.at(-2))
 const autoRestake = useLocalStorage(`${storageKey}_auto-restake}`, false)
 
-const stakeSupplyRatios: Record<StakeSupply, number> = {
+const { distribution } = storeToRefs(useGlobalContent())
+
+const stakeSupplyRatios = computed(() => ({
   [StakeSupply.Low]: 0.25,
   [StakeSupply.Middle]: 0.5,
   [StakeSupply.High]: 0.75,
-}
+  [StakeSupply.Live]: distribution?.value?.ratio,
+}))
 
 const params = computed(() => ({
   amount: amount.value,
   daysStaked: selectedStakingPeriod.value!.days,
-  stakedSupplyRatio: stakeSupplyRatios[selectedStakedSupply.value]!,
+  stakedSupplyRatio: stakeSupplyRatios.value[selectedStakedSupply.value]!,
   autoRestake: autoRestake.value,
 } satisfies CalculateStakingRewardsParams))
 
@@ -110,7 +69,8 @@ const rewards = computed(() => calculateStakingRewards(params.value))
       <div grid="~ rows-[auto_1fr] gap-x-32 gap-y-12 flow-col" of-auto p-32>
         <span text-neutral-800 font-semibold>{{ stakingAmountLabel }}</span>
         <label flex="~ items-baseline gap-8" h-max self-end text-blue>
-          <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal">
+          <!-- <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal"> -->
+          <AmountInput v-model="amount" :decimals />
           <span font-bold lh-none text-lg>NIM</span>
         </label>
 
@@ -122,8 +82,10 @@ const rewards = computed(() => calculateStakingRewards(params.value))
         </div>
         <RadioInput v-model="selectedStakedSupply" h-max :options="stakedSupplyOptions" self-end>
           <template #label="{ option }">
-            <span>{{ option }}</span>
-            <!-- <div v-if="option === selectedStakedSupply && selectedStakedSupply === StakeSupply.Live" class="blink" absolute right-2 top-2 size-4 rounded-full bg-green /> -->
+            <template v-if="stakeSupplyRatios[option]! >= 0">
+              <span>{{ option }}</span>
+              <div v-if="option === selectedStakedSupply && selectedStakedSupply === StakeSupply.Live" class="blink" absolute right-2 top-2 size-4 rounded-full bg-green />
+            </template>
           </template>
         </RadioInput>
 
@@ -144,11 +106,11 @@ const rewards = computed(() => calculateStakingRewards(params.value))
             <PrismicRichText :field="autoRestakeInfo" />
           </Tooltip>
           <p ml-auto text="green/60" font-bold>
-            +<AnimatedTweenedNumber :value="rewards.gainRatio * 100" :duration="200" :decimals="2" />%
+            +<AnimatedTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
           </p>
         </div>
         <span text="28 green" mt-12 font-semibold lh-none>
-          +<AnimatedTweenedNumber :value="rewards.gain" :duration="200" /> NIM
+          +<AnimatedTweenedNumber :value="rewards.gain" :duration="1000" /> NIM
         </span>
       </div>
     </div>

@@ -11,7 +11,7 @@ defineProps<{ headline: RichTextField, cta?: LinkField }>()
     <div class="bg-radial-green" pointer-events-none absolute inset-0 top-200 z-1 max-w-none />
     <div class="bg-linear-white-1" pointer-events-none absolute inset-0 top-200 z-1 max-w-none />
     <div class="bg-linear-white-2" pointer-events-none absolute inset-0 top-200 z-1 max-w-none />
-    <HeadlineStaking :headline :cta show-staking-icon relative z-2 />
+    <HeadlineStaking :headline :cta show-staking-icon primary-pill relative z-2 />
     <AnimatedBreathArrow z-2 nq-mt-200 />
   </section>
 </template>
@@ -20,22 +20,22 @@ defineProps<{ headline: RichTextField, cta?: LinkField }>()
 .bg-radial-green {
   background: radial-gradient(
     101.57% 50% at 50% 50%,
-    rgba(19, 181, 157, 0) 0%,
-    rgba(19, 181, 157, 0.0737185) 11.79%,
-    rgba(19, 181, 157, 0.153748) 21.38%,
-    rgba(19, 181, 157, 0.2384) 29.12%,
-    rgba(19, 181, 157, 0.325985) 35.34%,
-    rgba(19, 181, 157, 0.414815) 40.37%,
-    rgba(19, 181, 157, 0.5032) 44.56%,
-    rgba(19, 181, 157, 0.589452) 48.24%,
-    rgba(19, 181, 157, 0.671881) 51.76%,
-    rgba(19, 181, 157, 0.7488) 55.44%,
-    rgba(19, 181, 157, 0.818519) 59.63%,
-    rgba(19, 181, 157, 0.879348) 64.66%,
-    rgba(19, 181, 157, 0.9296) 70.88%,
-    rgba(19, 181, 157, 0.967585) 78.62%,
-    rgba(19, 181, 157, 0.991615) 88.21%,
-    #21bca5 100%
+    rgba(var(--nq-green) / 0) 0%,
+    rgba(var(--nq-green) / 0.0737185) 11.79%,
+    rgba(var(--nq-green) / 0.153748) 21.38%,
+    rgba(var(--nq-green) / 0.2384) 29.12%,
+    rgba(var(--nq-green) / 0.325985) 35.34%,
+    rgba(var(--nq-green) / 0.414815) 40.37%,
+    rgba(var(--nq-green) / 0.5032) 44.56%,
+    rgba(var(--nq-green) / 0.589452) 48.24%,
+    rgba(var(--nq-green) / 0.671881) 51.76%,
+    rgba(var(--nq-green) / 0.7488) 55.44%,
+    rgba(var(--nq-green) / 0.818519) 59.63%,
+    rgba(var(--nq-green) / 0.879348) 64.66%,
+    rgba(var(--nq-green) / 0.9296) 70.88%,
+    rgba(var(--nq-green) / 0.967585) 78.62%,
+    rgba(var(--nq-green) / 0.991615) 88.21%,
+    rgb(var(--nq-green)) 100%
   );
 }
 

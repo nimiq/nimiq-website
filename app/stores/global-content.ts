@@ -140,6 +140,9 @@ export const useGlobalContent = defineStore('global-content', () => {
 
   const { data: stakingValues } = useAsyncData('stakingValues', () => client.getByType('stakingValues'), { transform: data => data.results.at(0)?.data })
 
+  interface DistributionResponse { staked: number, circulating: number, ratio: number }
+  const { data: distribution } = useAsyncData('network_distribution', () => $fetch<DistributionResponse>(`${useRuntimeConfig().public.validatorsApi}/api/v1/distribution`))
+
   return {
     navigation,
     navigationBlocks,
@@ -152,6 +155,7 @@ export const useGlobalContent = defineStore('global-content', () => {
     cryptoMapContinentsStats,
     getRandomApps,
     stakingValues,
+    distribution: distribution!,
   }
 })
 
