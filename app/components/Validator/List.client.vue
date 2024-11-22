@@ -23,17 +23,17 @@ function toggleShowAllValidators() {
       <span text-24 font-semibold lh-none>{{ formatter.format(score * 5) }}</span>
     </div>
   </DefineScore> -->
-  <div :data-expanded="showAllValidators ? '' : undefined" relative max-w-560 w-full pb-80 :style="`--count: ${validators!.length}`">
+  <div :data-expanded="showAllValidators ? '' : undefined" :style="`--count: ${validators!.length}`" nq-wide relative w-full pb-80>
     <div bg-gradient="to-b from-transparent via-neutral-0 to-neutral-0" :class="showAllValidators ? 'op-0' : 'op-100'" aria-hidden pointer-events-none absolute bottom-0 z-10 h-180 w-full transition-opacity />
     <button bottom="8 data-open:42" absolute inset-x-0 z-10 mx-auto transition-bottom nq-pill-lg nq-pill-tertiary aria-label="Expand list" @click="toggleShowAllValidators">
       <span v-if="showAllValidators">Show less</span>
       <span v-else>Show more</span>
     </button>
-    <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" flex="~ col gap-16" as="ul" w-full of-y-clip :style="`height: ${showAllValidators ? 'calc(var(--count)*88+(var(--count)-1)*16)' : '400px'}`" transition-height>
+    <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full of-clip :style="`height: ${showAllValidators ? 'calc(var(--count)*88+(var(--count)-1)*16)' : '400px'}`" transition-height>
       <AccordionItem v-for="({ name, address, logo, description, payoutSchedule, score, fee, website }) in validators" :key="name" as="li" :value="address" bg="neutral-200 data-open:neutral-0" rounded="8 data-open:b-0" style="--radix-accordion-content-height: 130px" relative transition data-open:shadow>
         <AccordionHeader rounded="8 data-open:b-0" size-full data-open:ring="1.5 neutral-300">
           <AccordionTrigger size-full rounded-8 bg-transparent p="20 lg:24" grid="~ cols-[40px_max-content_1fr_max-content] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`">
-            <img row-span-2 :src="logo" :alt="`${name} logo`" size-40>
+            <img :src="logo" :alt="`${name} logo`" row-span-2 h-full w-40 object-contain flex="~ items-center">
             <h3 font-semibold text-lg>
               {{ name }}
             </h3>
