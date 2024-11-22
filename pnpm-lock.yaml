@@ -32,6 +32,9 @@ importers:
       medium-zoom:
         specifier: ^1.1.0
         version: 1.1.0
+      nimiq-rewards-calculator:
+        specifier: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@3ce4ba4
+        version: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@3ce4ba4
       nuxt:
         specifier: ^3.14.159
         version: 3.14.159(@parcel/watcher@2.5.0)(@types/node@22.9.0)(bufferutil@4.0.8)(eslint@9.15.0(jiti@2.4.0))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.27.2)(terser@5.36.0)(typescript@5.6.3)(utf-8-validate@5.0.10)(vite@5.4.11(@types/node@22.9.0)(terser@5.36.0))
@@ -5379,9 +5382,17 @@ packages:
     resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8c0981d}
     version: 1.0.0
 
+  nimiq-rewards-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@3ce4ba4:
+    resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@3ce4ba4}
+    version: 0.0.1
+
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575:
     resolution: {tarball: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575}
     version: 0.4.1
+
+  nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@3ce4ba4:
+    resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@3ce4ba4}
+    version: 0.0.1
 
   nitro-cloudflare-dev@0.2.1:
     resolution: {integrity: sha512-zHAN21dp+As0ldkAr5tWTop/I721j7MssZG6qb7a7EMorFwdRIhyTUwltr2L6v4qT4209S4eb2S9rszP1fxS7A==}
@@ -13873,12 +13884,18 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  nimiq-rewards-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@3ce4ba4:
+    dependencies:
+      nimiq-supply-calculator: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@3ce4ba4
+
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+
+  nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@3ce4ba4: {}
 
   nitro-cloudflare-dev@0.2.1:
     dependencies:

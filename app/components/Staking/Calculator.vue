@@ -70,7 +70,7 @@ const rewards = computed(() => calculateStakingRewards(params.value))
         <span text-neutral-800 font-semibold>{{ stakingAmountLabel }}</span>
         <label flex="~ items-baseline gap-8" h-max self-end text-blue>
           <!-- <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal"> -->
-          <AmountInput v-model="amount" :decimals />
+          <AmountInput v-model="amount" :decimals :min="1" />
           <span font-bold lh-none text-lg>NIM</span>
         </label>
 

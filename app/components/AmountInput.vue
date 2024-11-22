@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { decimals = 0 } = defineProps<{ decimals?: number }>()
+const { decimals = 0, min = 0 } = defineProps<{ decimals?: number, min?: number }>()
 
 const amount = defineModel<number>()
 const liveValue = ref('')
@@ -30,7 +30,7 @@ const formattedValue = computed({
     }
     else {
       liveValue.value = ''
-      amount.value = 0
+      amount.value = min
     }
 
     if (lastEmittedValue.value !== amount.value) {
@@ -41,10 +41,10 @@ const formattedValue = computed({
 
 function updateValue(newValue?: number) {
   if (!newValue)
-    return
+    return min
   if (newValue === amount.value)
     return
-  lastEmittedValue.value = newValue || 0
+  lastEmittedValue.value = newValue || min
   formattedValue.value = newValue ? (newValue / 10 ** decimals).toString() : ''
 }
 

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 // Check https://github.com/tmg0/hero-motion/pull/223 and remove .client from the file name
-const { validators } = storeToRefs(useGlobalContent())
+const { validators } = storeToRefs(useValidatorStore())
 
 const formatter = new Intl.NumberFormat('en-US', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 2 })
+const percentageFormatter = new Intl.NumberFormat('en-US', { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
 const activeValidator = ref<string>()
 
@@ -29,8 +30,8 @@ function toggleShowAllValidators() {
       <span v-if="showAllValidators">Show less</span>
       <span v-else>Show more</span>
     </button>
-    <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full of-clip :style="`height: ${showAllValidators ? 'calc(var(--count)*88+(var(--count)-1)*16)' : '400px'}`" transition-height>
-      <AccordionItem v-for="({ name, address, logo, description, payoutSchedule, score, fee, website }) in validators" :key="name" as="li" :value="address" bg="neutral-200 data-open:neutral-0" rounded="8 data-open:b-0" style="--radix-accordion-content-height: 130px" relative transition data-open:shadow>
+    <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full :style="`height: ${showAllValidators ? 'calc(var(--count)*88+(var(--count)-1)*16)' : '400px'}`" transition-height>
+      <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website }) in validators" :key="name" as="li" :value="address" bg="neutral-200 data-open:neutral-0" rounded="8 data-open:b-0" style="--radix-accordion-content-height: 130px" relative transition data-open:shadow>
         <AccordionHeader rounded="8 data-open:b-0" size-full data-open:ring="1.5 neutral-300">
           <AccordionTrigger size-full rounded-8 bg-transparent p="20 lg:24" grid="~ cols-[40px_max-content_1fr_max-content] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`">
             <img :src="logo" :alt="`${name} logo`" row-span-2 h-full w-40 object-contain flex="~ items-center">
@@ -48,24 +49,24 @@ function toggleShowAllValidators() {
             </Hero>
             <NuxtLink v-if="address === activeValidator && website" :to="website" external un-text-white ml-auto size-32 rounded-full px-4 py-10 duration-400 delay-800 bg-gradient-blue nq-arrow stack />
 
-            <p v-if="payoutSchedule" col-span-2 text="sm neutral-800 left" font-normal>
-              Payout: {{ payoutSchedule }}
+            <p v-if="rewardPerAnnum" col-span-2 text="sm neutral-800 left" font-normal>
+              {{ percentageFormatter.format(rewardPerAnnum) }} p.a. ||{{ fee }}||
             </p>
           </AccordionTrigger>
           <div absolute inset-x-0 bottom-0 h-1.5 bg-neutral-0 data-open:z-3 />
         </AccordionHeader>
-        <AccordionContent class="animate-content" ring="1.5 neutral-300" p="x-24 t-0 data-open:b-24" absolute inset-x-0 top-full z-1 of-clip rounded-b-8 bg-neutral-0 transition-padding data-open:shadow>
+        <AccordionContent class="animate-content" ring="1.5 neutral-300" p="x-24 t-0 data-open:b-24" absolute inset-x-0 top-full z-10 of-clip rounded-b-8 bg-neutral-0 transition-padding data-open:shadow>
           <p v-if="description" text-lg nq-mb-16>
             {{ description }}
           </p>
           <div flex="~ gap-8 wrap items-center" font-semibold style="--delay: 100ms">
-            <template v-if="fee >= 0">
-              <p>Fees: {{ formatter.format(fee * 100) }}%</p>
-            </template>
-            <div v-if="fee >= 0 && payoutSchedule" size-2 rounded-full bg-neutral-400 />
-            <template v-if="payoutSchedule">
-              <p>Payout: {{ payoutSchedule }}%</p>
-            </template>
+            <p v-if="fee >= 0">
+              Fees: {{ formatter.format(fee * 100) }}%
+            </p>
+            <div size-2 rounded-full bg-neutral-400 />
+            <p v-if="rewardPerAnnum">
+              {{ percentageFormatter.format(rewardPerAnnum) }} p.a.
+            </p>
           </div>
           <hr h-1 w-full bg-neutral-300 nq-my-24 style="--delay: 150ms">
 
@@ -74,7 +75,7 @@ function toggleShowAllValidators() {
               <div i-nimiq:leaf-2-filled text="14 white" />
             </div>
             <p text-xl>
-              <span text-green font-bold>{{ formatter.format(score.size * 100) }}%</span> staked
+              <span text-green font-bold>{{ formatter.format(1 * 100) }}%</span> staked
             </p>
           </div>
           <ClientOnly>

@@ -15,7 +15,7 @@ function getScoreColor(score: number) {
 </script>
 
 <template>
-  <div ring="1.5 $c" nq-raw flex="~ items-center gap-4" h-max w-max rounded-full px-10 py-6 :style="`color: rgb(var(--nq-${getScoreColor(score)}))`">
+  <div ring="1.5 $c" flex="~ items-center gap-4" nq-raw mx-1.5 h-max w-max rounded-full px-10 py-6 text="$c" :style="`--c: rgb(var(--nq-${getScoreColor(score)}))`">
     <div i-nimiq:starburst text-16 />
     <span text-24 font-semibold lh-none>{{ formatter.format(score * 5) }}</span>
   </div>

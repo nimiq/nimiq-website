@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
+import type { DonutDatum } from '../Donut.vue'
+import { useValidatorStore } from '~/stores/validators'
 
 defineProps<{ info: RichTextField }>()
 
@@ -7,29 +9,30 @@ const locale = useLocale()
 const percentageFormatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const amountFormatter = new Intl.NumberFormat(locale.value, { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0 })
 
-const { validators: sourceValidators } = useGlobalContent()
+const { validators } = storeToRefs(useValidatorStore())
+
 const data = computed(() => {
-  if (!sourceValidators)
+  if (!validators.value)
     return []
-  const validators = []
-  const smallValidators = { color: 'rgb(var(--nq-neutral-400))', value: 0, name: 'Others', src: '' }
-  for (const v of sourceValidators) {
+  const validatorsList: (DonutDatum & Validator)[] = []
+  const smallValidators = { color: 'rgb(var(--nq-neutral-400))', value: 0, name: 'Others', logo: '' }
+  for (const v of validators.value) {
     const dominance = v.dominance || v.dominanceRatioViaBalance || v.dominanceRatioViaSlots
     if (dominance < 0.02)
       smallValidators.value += dominance
     else
-      validators.push({ src: v.logo, color: v.accentColor, value: dominance, ...v })
+      validatorsList.push({ color: v.accentColor, value: dominance, ...v })
   }
-  return smallValidators.value > 0 ? [...validators, smallValidators] : validators
+  return smallValidators.value > 0 ? [...validatorsList, smallValidators] : validatorsList
 })
 </script>
 
 <template>
   <div flex="~ col items-center">
     <Donut :data="data!">
-      <template #default="{ color, value, name, src }">
+      <template #default="{ color, value, name, logo }">
         <div :key="name" :style="{ '--c': color }" ring="1.5 $c" data-tooltip-container w-max rounded-8 bg-neutral-0 p-16 text-neutral font-semibold flex="~ items-center gap-16" shadow>
-          <img v-if="src" :src size-40 loading="lazy">
+          <img v-if="logo" :src="logo" size-40 loading="lazy">
           <div flex="~ gap-2 col" font-semibold lh-none text-sm>
             <h3 text-lg>
               {{ name }}

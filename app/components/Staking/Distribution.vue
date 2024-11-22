@@ -5,15 +5,15 @@ import type { DonutDatum } from '../Donut.vue'
 
 defineProps<{ info: RichTextField }>()
 
-const { distribution } = useGlobalContent()
+const { distribution } = storeToRefs(useValidatorStore())
 const locale = useLocale()
 const formatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const datum = computed(() => {
   if (!distribution)
     return []
   return [
-    { color: `rgb(var(--nq-green))`, value: distribution.ratio, label: `${formatter.format(distribution.ratio * 100)} staked`, anotation: { bottom: '40px', right: '-72px' } },
-    { color: `rgb(var(--nq-neutral-200))`, value: 1 - distribution.ratio, label: 'Circulating', anotation: { top: '40px', left: '-42px' } },
+    { color: `rgb(var(--nq-green))`, value: distribution.value!.ratio, label: `${formatter.format(distribution.value!.ratio * 100)} staked`, anotation: { bottom: '40px', right: '-72px' } },
+    { color: `rgb(var(--nq-neutral-200))`, value: 1 - distribution.value!.ratio, label: 'Circulating', anotation: { top: '40px', left: '-42px' } },
   ] satisfies (DonutDatum & { label: string, anotation: StyleValue })[]
 })
 

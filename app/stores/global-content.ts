@@ -140,30 +140,6 @@ export const useGlobalContent = defineStore('global-content', () => {
 
   const { data: stakingValues } = useAsyncData('stakingValues', () => client.getByType('stakingValues'), { transform: data => data.results.at(0)?.data })
 
-  interface DistributionResponse { staked: number, circulating: number, ratio: number }
-  const { data: distribution } = useAsyncData('network_distribution', () => $fetch<DistributionResponse>(`${useRuntimeConfig().public.validatorsApi}/api/v1/distribution`))
-
-  interface Validator {
-    id: number
-    name: string
-    address: string
-    fee: number
-    payoutType: string
-    payoutSchedule: string
-    description: null | string
-    accentColor: string
-    isMaintainedByNimiq: boolean
-    hasDefaultLogo: boolean
-    website: null
-    score: { total: number, dominance: number }
-    logo?: string
-    dominanceRatioViaBalance: number
-    dominanceRatioViaSlots: number
-    dominance?: number
-  }
-
-  const { data: validators } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators`, { query: { 'with-scores': true, 'width-identicons': false } }))
-
   return {
     navigation,
     navigationBlocks,
@@ -176,8 +152,6 @@ export const useGlobalContent = defineStore('global-content', () => {
     cryptoMapContinentsStats,
     getRandomApps,
     stakingValues,
-    distribution: distribution!,
-    validators: validators!,
   }
 })
 
