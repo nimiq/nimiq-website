@@ -49,8 +49,15 @@ function updateValue(newValue?: number) {
 }
 
 watch(amount, newValue => updateValue(newValue), { immediate: true })
+
+function onBlur() {
+  if (!amount.value && min) {
+    updateValue(min)
+  }
+}
+onMounted(onBlur)
 </script>
 
 <template>
-  <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal">
+  <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal" @blur="onBlur">
 </template>

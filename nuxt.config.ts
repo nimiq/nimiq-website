@@ -117,7 +117,7 @@ export default defineNuxtConfig({
       allowedOrigins: ['https://www.nimiq.com', 'https://prestaking.nimiq.network', process.env.NIMIQ_STATIC_PREVIEW].filter((origin): origin is string => !!origin),
     },
     public: {
-      clientNetwork: 'test-albatross', // TODO Change to 'albatross' for mainnet
+      clientNetwork: 'main-albatross',
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
       validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || '',
       supabase: {

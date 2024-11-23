@@ -5,15 +5,16 @@ import type { DonutDatum } from '../Donut.vue'
 
 defineProps<{ info: RichTextField }>()
 
-const { distribution } = storeToRefs(useValidatorStore())
+const { stakedSupplyRatio } = storeToRefs(useValidatorStore())
 const locale = useLocale()
 const formatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const datum = computed(() => {
-  if (!distribution)
+  if (!stakedSupplyRatio.value
+  )
     return []
   return [
-    { color: `rgb(var(--nq-green))`, value: distribution.value!.ratio, label: `${formatter.format(distribution.value!.ratio * 100)} staked`, anotation: { bottom: '40px', right: '-72px' } },
-    { color: `rgb(var(--nq-neutral-200))`, value: 1 - distribution.value!.ratio, label: 'Circulating', anotation: { top: '40px', left: '-42px' } },
+    { color: `rgb(var(--nq-green))`, value: stakedSupplyRatio.value || 0, label: `${formatter.format(stakedSupplyRatio.value * 100)} staked`, anotation: { bottom: '40px', right: '-72px' } },
+    { color: `rgb(var(--nq-neutral-200))`, value: 1 - stakedSupplyRatio.value || 1, label: 'Circulating', anotation: { top: '40px', left: '-42px' } },
   ] satisfies (DonutDatum & { label: string, anotation: StyleValue })[]
 })
 
@@ -25,7 +26,7 @@ const startAngle = computed(() => (90 - 180 * datum.value[0]!.value))
   <div relative flex="~ col items-center">
     <Donut :data="datum" :start-angle />
     <div absolute right-8 top-196 rounded-full bg-neutral-0 px-12 py-6 font-semibold ring="1.5 green">
-      {{ formatter.format(datum[0]!.value) }} staked
+      {{ formatter.format(stakedSupplyRatio) }} staked
     </div>
     <PrismicRichText :field="info" max-w-42ch text-center nq-mt-48 />
   </div>

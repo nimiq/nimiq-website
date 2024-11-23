@@ -11,14 +11,17 @@ const pillStyles = ref<CSSProperties>()
 
 const id = useId()
 
-watch(model, async () => {
+async function updateValues() {
   await nextTick()
-  if (!pill.value)
+  if (!pill?.value)
     return
   const parent = pill.value.parentElement!.getBoundingClientRect()
   const { width, left } = document.querySelector(`#${id} [data-state="active"]`)?.getBoundingClientRect() || { width: 0, left: 0 }
   pillStyles.value = { width: `${width}px`, left: `${left - parent.left}px` }
-}, { immediate: true })
+}
+
+watch(model, updateValues)
+onMounted(updateValues)
 </script>
 
 <template>

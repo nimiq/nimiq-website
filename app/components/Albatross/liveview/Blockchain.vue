@@ -45,6 +45,8 @@ watchEffect(() => shouldAnimate.value ? resume() : pause())
 
 const { canSendTx } = storeToRefs(useLiveviewTx())
 const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPending.vue'))
+
+const { clientNetwork } = useRuntimeConfig().public
 </script>
 
 <template>
@@ -67,7 +69,7 @@ const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPendin
         Loading...
       </div>
       <div v-else-if="status === 'CLOSED'" text="18 white" rounded-4 bg-red px-32 py-24 shadow ring="1.5 red/3">
-        We couldn't connect to the Testnet
+        We couldn't connect to the {{ clientNetwork }}
       </div>
     </div>
 

@@ -34,7 +34,7 @@ const headlineParts = computed(() => getText(headline!).split('{{ interestPerAnn
         ~{{ stakingValues?.interestPerYear }}%<sup relative top-18 text="green 20">*</sup></span>
       {{ headlineParts[1] }}
     </component>
-    <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" text="white/80" />
+    <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" inverted:text="white/80" />
     <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" nq-shadow nq-mt-48 nq-arrow nq-pill-lg :class="primaryPill ? 'nq-pill-blue' : 'nq-pill-secondary'" md:mx-auto />
     <small text="green-1100 inverted:neutral-800 center" max-w-32ch nq-mt-32>
       * {{ stakingValues?.stakingNote }}

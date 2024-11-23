@@ -7,7 +7,7 @@ defineProps(getSliceComponentProps<Content.QuoteSlice>())
 <template>
   <section relative z-1 nq-pt-200>
     <div absolute inset-0 h-200 max-w-none bg-green />
-    <div h="[calc(100%+140px)]" class="bg" absolute inset-0 top-200 max-w-none />
+    <div h="[calc(100%+140px)]" class="bg" pointer-events-none absolute inset-0 top-200 max-w-none />
     <PrismicRichText :field="slice.primary.quote" text="white 2xl center" relative z-1 max-w-36ch />
   </section>
 </template>
@@ -33,5 +33,6 @@ defineProps(getSliceComponentProps<Content.QuoteSlice>())
     rgba(var(--nq-green) / 0.0737185) 88.21%,
     rgba(var(--nq-green) / 0) 100%
   );
+  --uno: 'bg-neutral-0';
 }
 </style>

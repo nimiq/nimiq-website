@@ -24,15 +24,12 @@ interface DistributionResponse { staked: number, circulating: number, ratio: num
 
 export const useValidatorStore = defineStore('validators', () => {
   const { data: distribution } = useAsyncData('network_distribution', () => $fetch<DistributionResponse>(`${useRuntimeConfig().public.validatorsApi}/api/v1/distribution`))
+  const stakedSupplyRatio = computed(() => distribution?.value?.ratio || 0)
 
-  const { data: validators } = useAsyncData('validators', () => $fetch<Validator[]>(
-    `${useRuntimeConfig().public.validatorsApi}/api/v1/validators`,
-    {
-      query: { 'with-scores': true, 'width-identicons': false },
-    },
-  ).then((validators) => {
+  const { data: validators } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators`).then((validators) => {
     return validators.map((v) => {
-      const rewardPerAnnum = calculateStakingRewards({ amount: 1000, days: 365, fee: v.fee || 0, stakedSupplyRatio: distribution.value?.ratio || 0, autoRestake: true }).gainRatio
+      const fee = v.fee || 0
+      const { gainRatio: rewardPerAnnum } = calculateStakingRewards({ fee, stakedSupplyRatio: stakedSupplyRatio.value })
       const dominance = v.dominance || v.dominanceRatioViaBalance || v.dominanceRatioViaSlots
       return { ...v, rewardPerAnnum, dominance } satisfies Validator
     })
@@ -42,6 +39,7 @@ export const useValidatorStore = defineStore('validators', () => {
   return {
     distribution,
     validators,
+    stakedSupplyRatio,
   }
 })
 

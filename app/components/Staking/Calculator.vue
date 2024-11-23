@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
-import { calculateStakingRewards, type CalculateStakingRewardsParams } from 'nimiq-rewards-calculator'
+import { calculateStakingRewards } from 'nimiq-rewards-calculator'
 
 const { initialStakingAmount = 1_000_000 } = defineProps<{
   title: string
@@ -28,8 +28,19 @@ enum StakeSupply {
   Live = 'Live',
 }
 
-const stakedSupplyOptions = Object.values(StakeSupply) as StakeSupply[]
+const { stakedSupplyRatio } = storeToRefs(useValidatorStore())
+const stakedSupplyOptions = computed(() => {
+  return stakedSupplyRatio.value
+    ? [StakeSupply.Low, StakeSupply.Middle, StakeSupply.High]
+    : [StakeSupply.Low, StakeSupply.Middle, StakeSupply.High, StakeSupply.Live]
+})
 const selectedStakedSupply = useLocalStorage<StakeSupply>(`${storageKey}_staked-supply`, StakeSupply.Live)
+const stakeSupplyRatios = computed(() => ({
+  [StakeSupply.Low]: 0.25,
+  [StakeSupply.Middle]: 0.5,
+  [StakeSupply.High]: 0.75,
+  [StakeSupply.Live]: stakedSupplyRatio?.value,
+}))
 
 const stakingPeriodOptions = [
   { label: '1m', days: 30 },
@@ -39,25 +50,14 @@ const stakingPeriodOptions = [
   { label: '5y', days: 5 * 12 * 30 },
 ]
 const selectedStakingPeriod = useLocalStorage(`${storageKey}_staking-period`, stakingPeriodOptions.at(-2))
-const autoRestake = useLocalStorage(`${storageKey}_auto-restake}`, false)
+const autoRestake = useLocalStorage(`${storageKey}_auto-restake}`, true)
 
-const { distribution } = storeToRefs(useValidatorStore())
-
-const stakeSupplyRatios = computed(() => ({
-  [StakeSupply.Low]: 0.25,
-  [StakeSupply.Middle]: 0.5,
-  [StakeSupply.High]: 0.75,
-  [StakeSupply.Live]: distribution?.value?.ratio,
-}))
-
-const params = computed(() => ({
+const rewards = computed(() => calculateStakingRewards({
   amount: amount.value,
   days: selectedStakingPeriod.value!.days,
   stakedSupplyRatio: stakeSupplyRatios.value[selectedStakedSupply.value]!,
   autoRestake: autoRestake.value,
-} satisfies CalculateStakingRewardsParams))
-
-const rewards = computed(() => calculateStakingRewards(params.value))
+}))
 </script>
 
 <template>
@@ -82,7 +82,7 @@ const rewards = computed(() => calculateStakingRewards(params.value))
         </div>
         <RadioInput v-model="selectedStakedSupply" h-max :options="stakedSupplyOptions" self-end>
           <template #label="{ option }">
-            <template v-if="stakeSupplyRatios[option]! >= 0">
+            <template v-if="stakeSupplyRatios[option] >= 0">
               <span>{{ option }}</span>
               <div v-if="option === selectedStakedSupply && selectedStakedSupply === StakeSupply.Live" class="blink" absolute right-2 top-2 size-4 rounded-full bg-green />
             </template>

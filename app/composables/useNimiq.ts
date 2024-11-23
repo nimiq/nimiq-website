@@ -19,8 +19,6 @@ export function useNimiq() {
     await init()
     const config = new ClientConfiguration()
     config.network(clientNetwork)
-    const nimiqSeeds: string[] = ['/dns4/seed1.pos.nimiq-testnet.com/tcp/8443/wss', '/dns4/faucet.pos.nimiq-testnet.com/tcp/8443/wss']
-    config.seedNodes(nimiqSeeds)
     config.logLevel('debug')
 
     client.value = await Client.create(config.build())

@@ -38,7 +38,7 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
       :cta="slice.primary.cta"
-      :show-staking-icon="!isLastSlice" :data-inverted="!isLastSlice"
+      :show-staking-icon="!isLastSlice" :data-inverted="isLastSlice ? undefined : ''"
     />
   </section>
 </template>
@@ -58,5 +58,13 @@ section:is([bg-neutral-0], .bg-neutral-0) + section[data-slice-type='simple-head
 
 section[bg-neutral-0]:has(+ section[data-slice-type='simple-headline'].bg-neutral-0) {
   --uno: 'nq-pb-200';
+}
+
+section[data-slice-type='staking-faq'] + section[data-slice-type='simple-headline'] {
+  --uno: 'nq-pt-200';
+
+  small {
+    --uno: 'text-neutral-700';
+  }
 }
 </style>
