@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import type { NodeHexagon, SelfHexagon } from './NetworkMap'
 import { createPopper } from '@popperjs/core'
 import { computed, onMounted, ref, watch } from 'vue'
@@ -400,4 +400,4 @@ watch([isConnected, networkPeerCount], updateKnownAddresses)
     );
   }
 }
-</style>
+</style> -->
