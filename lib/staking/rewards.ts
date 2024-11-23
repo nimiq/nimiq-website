@@ -11,6 +11,12 @@ export interface CalculateStakingRewardsParams {
   amount: number
 
   /**
+   * The fee percentage that the pool charges for staking.
+   *  @default 0
+   */
+  fee: number
+
+  /**
    * The number of days the cryptocurrency is staked.
    */
   daysStaked: number
@@ -54,7 +60,7 @@ export interface CalculateStakingRewardsResult {
  * @returns {CalculateStakingRewardsResult} The result of the calculation.
  */
 export function calculateStakingRewards(params: CalculateStakingRewardsParams): CalculateStakingRewardsResult {
-  const { amount, daysStaked, autoRestake = true, stakedSupplyRatio } = params
+  const { amount, fee = 0, daysStaked, autoRestake = true, stakedSupplyRatio } = params
   const genesisSupply = SUPPLY_AT_PROOF_OF_STAKE_FORK_DATE
 
   const initialRewardsPerDay = posSupplyAt(24 * 60 * 60 * 1000) - genesisSupply
@@ -76,6 +82,7 @@ export function calculateStakingRewards(params: CalculateStakingRewardsParams): 
       - Math.log(DECAY_PER_DAY * genesisSupply)
     )
   }
+  gainRatio = gainRatio * (1 - fee) / 1e3 / 100
   const totalAmount = amount * (1 + gainRatio)
   return { totalAmount, gain: totalAmount - amount, gainRatio }
 }

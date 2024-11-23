@@ -33,7 +33,7 @@ export const useValidatorStore = defineStore('validators', () => {
   ).then((validators) => {
     return validators.map(v => ({
       ...v,
-      rewardPerAnnum: v.fee !== null ? calculateStakingRewards({ amount: 1e5 - v.fee, daysStaked: 365, stakedSupplyRatio: distribution.value?.ratio || 0, autoRestake: true }).gainRatio : undefined,
+      rewardPerAnnum: v.fee !== null ? calculateStakingRewards({ amount: 1000, daysStaked: 365, fee: v.fee, stakedSupplyRatio: distribution.value?.ratio || 0, autoRestake: true }).gainRatio : undefined,
       dominance: v.dominance || v.dominanceRatioViaBalance || v.dominanceRatioViaSlots,
     } satisfies Validator))
   },

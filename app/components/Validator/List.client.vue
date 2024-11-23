@@ -44,7 +44,7 @@ function toggleShowAllValidators() {
             <Hero v-if="address !== activeValidator" :transition="{ duration: 400, type: 'spring' }" :layout-id="`${address}-score`" ml-auto>
               <!-- <ReuseScore :score="score.total" top="20 data-open:[calc(var(--radix-accordion-content-height)+20px)]" absolute right-20 transition="top ease-out duration-300" data-open:z-4 /> -->
               <!-- <ReuseScore :score="score.total" /> -->
-              <ValidatorTrustscore :score="score.total || score.dominance" col-start-4 data-open:z-4 />
+              <!-- <ValidatorTrustscore :score="score.total || score.dominance" col-start-4 data-open:z-4 /> -->
               <!-- <ReuseScore :score="score.total" data-open:z-4 /> -->
             </Hero>
             <NuxtLink v-if="address === activeValidator && website" :to="website" external un-text-white ml-auto size-32 rounded-full px-4 py-10 duration-400 delay-800 bg-gradient-blue nq-arrow stack />
