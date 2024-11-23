@@ -1,4 +1,4 @@
-import { calculateStakingRewards } from '~~/lib/staking/rewards'
+import { calculateStakingRewards } from 'nimiq-rewards-calculator'
 
 export interface Validator {
   id: number
@@ -31,11 +31,11 @@ export const useValidatorStore = defineStore('validators', () => {
       query: { 'with-scores': true, 'width-identicons': false },
     },
   ).then((validators) => {
-    return validators.map(v => ({
-      ...v,
-      rewardPerAnnum: v.fee !== null ? calculateStakingRewards({ amount: 1000, daysStaked: 365, fee: v.fee, stakedSupplyRatio: distribution.value?.ratio || 0, autoRestake: true }).gainRatio : undefined,
-      dominance: v.dominance || v.dominanceRatioViaBalance || v.dominanceRatioViaSlots,
-    } satisfies Validator))
+    return validators.map((v) => {
+      const rewardPerAnnum = calculateStakingRewards({ amount: 1000, days: 365, fee: v.fee || 0, stakedSupplyRatio: distribution.value?.ratio || 0, autoRestake: true }).gainRatio
+      const dominance = v.dominance || v.dominanceRatioViaBalance || v.dominanceRatioViaSlots
+      return { ...v, rewardPerAnnum, dominance } satisfies Validator
+    })
   },
   ))
 

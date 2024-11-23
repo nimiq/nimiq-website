@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
-import { calculateStakingRewards, type CalculateStakingRewardsParams } from '~~/lib/staking/rewards'
+import { calculateStakingRewards, type CalculateStakingRewardsParams } from 'nimiq-rewards-calculator'
 
 const { initialStakingAmount = 1_000_000 } = defineProps<{
   title: string
@@ -41,7 +41,7 @@ const stakingPeriodOptions = [
 const selectedStakingPeriod = useLocalStorage(`${storageKey}_staking-period`, stakingPeriodOptions.at(-2))
 const autoRestake = useLocalStorage(`${storageKey}_auto-restake}`, false)
 
-const { distribution } = storeToRefs(useGlobalContent())
+const { distribution } = storeToRefs(useValidatorStore())
 
 const stakeSupplyRatios = computed(() => ({
   [StakeSupply.Low]: 0.25,
@@ -52,7 +52,7 @@ const stakeSupplyRatios = computed(() => ({
 
 const params = computed(() => ({
   amount: amount.value,
-  daysStaked: selectedStakingPeriod.value!.days,
+  days: selectedStakingPeriod.value!.days,
   stakedSupplyRatio: stakeSupplyRatios.value[selectedStakedSupply.value]!,
   autoRestake: autoRestake.value,
 } satisfies CalculateStakingRewardsParams))
