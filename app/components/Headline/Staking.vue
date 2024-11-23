@@ -23,20 +23,16 @@ const headlineParts = computed(() => getText(headline!).split('{{ interestPerAnn
 
 <template>
   <div flex="~ col items-center">
-    <!-- <div v-if="showStakingIcon" flex="~ items-center justify-center" class="leaf" relative size-76 rounded-full bg="green inverted:white">
-      <div v-for="i in 3" :key="i" ring="2.75 green inverted:white/60" absolute size-full origin-center rounded-full :style="`animation: ringPulse 10s ease-out infinite;animation-delay: calc(3.3s * ${i})`" />
-      <div i-nimiq:leaf-2 text="36 white inverted:green" />
-    </div> -->
     <AnimatedStakingRipple v-if="showStakingIcon" size-120 />
     <component :is="headlineTag" nq-mt-32 inverted:text-white>
       {{ headlineParts[0] }}
-      <span bg="green/15" rounded-4 px-10 py-3 text="green" inline-flex="~">
+      <span bg="green/15 inverted:white/30" rounded-4 px-10 py-3 text="green inverted:white" inline-flex="~">
         ~{{ stakingValues?.interestPerYear }}%<sup relative top-18 text="green 20">*</sup></span>
       {{ headlineParts[1] }}
     </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" inverted:text="white/80" />
     <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" nq-shadow nq-mt-48 nq-arrow nq-pill-lg :class="primaryPill ? 'nq-pill-blue' : 'nq-pill-secondary'" md:mx-auto />
-    <small text="green-1100 inverted:neutral-800 center" max-w-32ch nq-mt-32>
+    <small text="green-1100 inverted:white/80 center" max-w-32ch nq-mt-32>
       * {{ stakingValues?.stakingNote }}
     </small>
   </div>

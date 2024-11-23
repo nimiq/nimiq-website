@@ -4,14 +4,13 @@ defineProps<{ headline: string, subheadline: string, guessTheRemainingWordsLabel
 const { getRandomWords } = useWords()
 const wordsList = Array.from({ length: 6 }, () => ({ words: getRandomWords(14) }))
 
-// coyote flush rug snack cash artwork question sword cinnamon civil lens warfare
 const firstRealWords = ['coyote', 'flush', 'rug', 'snack', 'cash', 'artwork', 'question', 'sword', 'cinnamon', 'civil', 'lens', 'warfare']
 const prizeAddress = 'NQ78 H0BC MUGB TG2Q E2SC 0GAB UGD5 NJ0B Y335'
 
 const userInputs = reactive([ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref('')])
 if (import.meta.env.DEV)
   userInputs.forEach(input => input.value = 'dummy')
-const isChallengeFinished = ref(true)
+const isChallengeFinished = ref(false)
 
 async function unlockWallet(words: string[]) {
   try {

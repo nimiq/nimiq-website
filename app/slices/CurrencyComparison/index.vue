@@ -20,6 +20,10 @@ const bgColor = getColorClass(props.slice.primary.bgColor)
           <span font-semibold text="xl neutral">
             {{ name }}
           </span>
+          <div v-if="crypto === 'NIM'" flex="~ items-center gap-6" rounded-full bg-green-400 px-6 py-4 text-green>
+            <div i-nimiq:eco text-14 />
+            <span text-green text-xs nq-label>Eco</span>
+          </div>
         </div>
 
         <p text="neutral-900 xs" w-max rounded-4 bg-neutral-400 px-8 py-4 nq-mt-32 nq-label>
@@ -30,8 +34,8 @@ const bgColor = getColorClass(props.slice.primary.bgColor)
         </p>
 
         <div flex="~ gap-8 items-start" nq-mt-24>
-          <div size-28 rounded-full bg-gradient-blue flex="~ items-center justify-center shrink-0">
-            <div i-nimiq:bolt text="16 white" />
+          <div size-28 shrink-0 rounded-full bg-gradient-blue stack>
+            <div text="14 white" :class="{ 'i-nimiq:bolt': crypto === 'NIM', 'i-nimiq:arrows-to-sides': crypto === 'BTC', 'i-nimiq:balance': crypto === 'USDC/USDT' }" />
           </div>
           <p>
             {{ secondFeature }}
@@ -39,8 +43,8 @@ const bgColor = getColorClass(props.slice.primary.bgColor)
         </div>
 
         <div flex="~ gap-8 items-center" nq-mt-12>
-          <div size-28 rounded-full bg-gradient-blue flex="~ items-center justify-center shrink-0">
-            <div i-nimiq:bolt text="16 white" />
+          <div size-28 shrink-0 rounded-full bg-gradient-blue stack>
+            <div text="16 white" :class="{ 'i-nimiq:leaft-2-filled': crypto === 'NIM', 'i-nimiq:digital-gold': crypto === 'BTC', 'i-nimiq:arrows-to-center-triangle': crypto === 'USDC/USDT' }" />
           </div>
           <p>
             {{ thirdFeature }}
