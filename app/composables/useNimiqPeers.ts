@@ -1,4 +1,4 @@
-import type { LatLng } from './useHexagonsWorldMapProjection'
+import { getHexagonCoords, type LatLng } from '~/utils/consensus-map/drawHexagonsWorldMapProjection'
 
 export interface Peer {
   peerId: string
@@ -25,18 +25,24 @@ export function useNimiqPeers() {
   }
 
   const peers = ref<Peer[]>([
-    // { peerId: 'user', lat: 40, lng: -3, ...getHexagonCoords({ lat: 40, lng: -3 }) },
-    // // random point in south america
-    // { peerId: '1', lat: -15, lng: -60, ...getHexagonCoords({ lat: -15, lng: -60 }) },
-    // // in south africa
-    // { peerId: '2', lat: -30, lng: 25, ...getHexagonCoords({ lat: -30, lng: 25 }) },
-    // // in australia
-    // { peerId: '3', lat: -30, lng: 135, ...getHexagonCoords({ lat: -30, lng: 135 }) },
-    // // italy
-    // { peerId: '4', lat: 42, lng: 12, ...getHexagonCoords({ lat: 42, lng: 12 }) },
-    // // india
-    // { peerId: '5', lat: 20, lng: 77, ...getHexagonCoords({ lat: 20, lng: 77 }) },
   ])
+  if (import.meta.client) {
+    setTimeout(() => {
+      peers.value = [
+        // { peerId: 'user', lat: 40, lng: -3, ...getHexagonCoords({ lat: 40, lng: -3 }) },
+        // // random point in south america
+        // { peerId: '1', lat: -15, lng: -60, ...getHexagonCoords({ lat: -15, lng: -60 }) },
+        // // in south africa
+        // { peerId: '2', lat: -30, lng: 25, ...getHexagonCoords({ lat: -30, lng: 25 }) },
+        // // in australia
+        // { peerId: '3', lat: -30, lng: 135, ...getHexagonCoords({ lat: -30, lng: 135 }) },
+        // // italy
+        // { peerId: '4', lat: 42, lng: 12, ...getHexagonCoords({ lat: 42, lng: 12 }) },
+        // // india
+        // { peerId: '5', lat: 20, lng: 77, ...getHexagonCoords({ lat: 20, lng: 77 }) },
+      ]
+    }, 1000)
+  }
 
   whenever(client, () => {
     let i = 0

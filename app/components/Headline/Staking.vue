@@ -27,7 +27,7 @@ const headlineParts = computed(() => getText(headline!).split('{{ interestPerAnn
     <component :is="headlineTag" nq-mt-32 inverted:text-white>
       {{ headlineParts[0] }}
       <span bg="green/15 inverted:white/30" rounded-4 px-10 py-3 text="green inverted:white" inline-flex="~">
-        ~{{ stakingValues?.interestPerYear }}%<sup relative top-18 text="green 20">*</sup></span>
+        ~{{ stakingValues?.interestPerYear }}%<sup relative top-18 text="current 20">*</sup></span>
       {{ headlineParts[1] }}
     </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" inverted:text="white/80" />

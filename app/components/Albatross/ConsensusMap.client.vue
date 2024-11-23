@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
+import { drawHexagonsWorldMap, HEXAGONS_WORLD_MAP_ASPECT_RATIO, HEXAGONS_WORLD_MAP_HEIGHT, HEXAGONS_WORLD_MAP_WIDTH } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
 
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
 
@@ -10,13 +11,20 @@ const { peers, userPeer, setUserPeer } = useNimiqPeers()
 const tooltipPosition = ref<CSSProperties>({ transform: 'translate(0, 0)' })
 onMounted(async () => {
   await setUserPeer()
-  useHexagonsWorldMap(canvas, { peers, userPeer })
+  drawHexagonsWorldMap(canvas, { peers, userPeer })
   await nextTick()
+  setPositionTooltip()
+})
+
+function setPositionTooltip() {
   const { x, y } = userPeer.value!
   const newX = (x * canvas.value.width) / HEXAGONS_WORLD_MAP_WIDTH
   const newY = (y * canvas.value.height) / HEXAGONS_WORLD_MAP_HEIGHT
   tooltipPosition.value = { transform: `translate(${newX}px, ${newY}px)` }
-})
+}
+
+if (import.meta.client)
+  useEventListener(window, 'resize', setPositionTooltip)
 
 const showTooltip = computed(() => userPeer.value && tooltipPosition.value)
 
