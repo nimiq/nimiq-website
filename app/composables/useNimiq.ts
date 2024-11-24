@@ -36,11 +36,17 @@ export function useNimiq() {
     })
   }
 
+  function disconnect() {
+    client.value.free()
+    consensus.value = ConsensusState.Idle
+  }
+
   return {
     client,
     launchNetwork,
     consensus,
     height,
     head,
+    disconnect,
   }
 }

@@ -261,6 +261,17 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
     hexagon.paintHexagon = paintPeerHexagon
     return hexagon
   })
+  watch(peers, (newValue, oldValue) => {
+    if (oldValue.length <= newValue.length)
+      return
+    const removedPeers = oldValue.filter(peer => !newValue.find(newPeer => newPeer.peerId === peer.peerId))
+    removedPeers.forEach((removedPeer) => {
+      const hexagon = hexagons.value.find(({ x, y }) => x === removedPeer.x && y === removedPeer.y)
+      if (hexagon) {
+        hexagons.value.splice(hexagons.value.indexOf(hexagon), 1)
+      }
+    })
+  }, { deep: true })
 
   const arcs = ref<WorldMapArc[]>([])
 

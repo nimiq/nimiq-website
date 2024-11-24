@@ -13,7 +13,7 @@ export interface UseNimiqPeersOptions {
 }
 
 export function useNimiqPeers() {
-  const { client } = useNimiq()
+  const { client, consensus } = useNimiq()
   const { locate } = useGeoIp()
 
   const userPeer = useState<Peer>()
@@ -65,6 +65,12 @@ export function useNimiqPeers() {
       const peer = { peerId, x, y, lat, lng }
       peers.value.push(peer)
     })
+  })
+
+  watch(consensus, async (newState, oldState) => {
+    if (newState !== ConsensusState.Idle || oldState !== newState)
+      return
+    peers.value = []
   })
 
   return {
