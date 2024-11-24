@@ -5,8 +5,8 @@ import { drawHexagonsWorldMap, HEXAGONS_WORLD_MAP_ASPECT_RATIO, HEXAGONS_WORLD_M
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
 
 const canvas = templateRef('canvas')
-const { launchNetwork, consensus, disconnect } = useNimiq()
-const { peers, userPeer, setUserPeer } = useNimiqPeers()
+const { launchNetwork, disconnect, setUserPeer } = useNimiq()
+const { consensus, peers, userPeer } = storeToRefs(useNimiq())
 
 const tooltipPosition = ref<CSSProperties>({ transform: 'translate(0, 0)' })
 onMounted(async () => {
@@ -16,10 +16,11 @@ onMounted(async () => {
   setPositionTooltip()
 })
 
-function setPositionTooltip() {
+async function setPositionTooltip() {
+  await nextTick()
   const { x, y } = userPeer.value!
-  const newX = (x * canvas.value.width) / HEXAGONS_WORLD_MAP_WIDTH
-  const newY = (y * canvas.value.height) / HEXAGONS_WORLD_MAP_HEIGHT
+  const newX = ((x * canvas.value.width) / HEXAGONS_WORLD_MAP_WIDTH) + 4
+  const newY = ((y * canvas.value.height) / HEXAGONS_WORLD_MAP_HEIGHT) - 36
   tooltipPosition.value = { transform: `translate(${newX}px, ${newY}px)` }
 }
 
@@ -84,7 +85,7 @@ async function connect() {
         <div v-if="showTooltip" absolute left-0 top-0 z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
           <div relative left="[calc(-50%+2px)]" mt-16 flex="~ col items-center">
             <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" i-nimiq:tooltip-triangle text-12 />
-            <Hero v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" class="bg-gradient-blue" top--1 rounded-full shadow transition-colors>
+            <Hero v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" class="bg-gradient-blue" top--1 rounded-full transition-colors>
               <span px-16 py-8 text-white font-bold>
                 {{ thisIsYou }}
               </span>
@@ -92,13 +93,13 @@ async function connect() {
                 {{ connectLabel }}
               </Hero>
             </Hero>
-            <Hero v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" top--3 w-max rounded-full px-16 py-8 text-white font-semibold shadow outline-none transition-colors>
+            <Hero v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors>
               <Hero layout-id="connect-label" as="span">
                 Connecting
               </Hero>
               <div i-nimiq:spinner animate="ease-out scale-in delay-2s" shrink-0 />
             </Hero>
-            <Hero v-else-if="consensus === 'established'" layout-id="connect" ring="0.2 green" flex="~ items-center gap-8" class="bg-gradient-green" top--3 w-max rounded-full px-16 py-8 text-white font-semibold shadow outline-none transition-colors>
+            <Hero v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" top--3 z-3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none ring-3 ring-green transition-colors>
               <Hero layout-id="connect-label" as="span">
                 <div flex="~ items-center justify-between gap-8">
                   <span>
@@ -115,7 +116,7 @@ async function connect() {
       </div>
       <!-- </transition> -->
 
-      <div v-if="consensus !== 'idle'" absolute inset-x-0 bottom-0 z-2 mx-auto h-auto max-w-400 rounded-6 bg-white bg-op-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up both delay-1250ms">
+      <div v-if="false && consensus !== 'idle'" absolute inset-x-0 bottom-0 z-2 mx-auto h-auto max-w-400 rounded-6 bg-white bg-op-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up both delay-1250ms">
         <transition enter-active-class="transition duration-200 ease-out" enter-from-class="translate-y--1lh" enter-to-class="translate-y-0" leave-active-class="transition duration-200 ease-out" leave-from-class="translate-y-0" leave-to-class="translate-y--1lh">
           <p v-if="consensus === 'connecting'" text="neutral-800 11 center" w="[calc(100%-48px)]" absolute top--1.4lh nq-label>
             Did you know that
