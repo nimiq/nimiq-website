@@ -16,12 +16,11 @@ const data = computed(() => {
     return []
   const validatorsList: (DonutDatum & Validator)[] = []
   const smallValidators = { color: 'rgb(var(--nq-neutral-400))', value: 0, name: 'Others', logo: '' }
-  for (const v of validators.value) {
-    const dominance = v.dominance || v.dominanceRatioViaBalance || v.dominanceRatioViaSlots
-    if (dominance < 0.02)
-      smallValidators.value += dominance
+  for (const { dominanceRatio, accentColor, ...v } of validators.value) {
+    if (dominanceRatio < 0.02)
+      smallValidators.value += dominanceRatio
     else
-      validatorsList.push({ color: v.accentColor, value: dominance, ...v })
+      validatorsList.push({ color: accentColor, value: dominanceRatio, dominanceRatio, accentColor, ...v })
   }
   return smallValidators.value > 0 ? [...validatorsList, smallValidators] : validatorsList
 })

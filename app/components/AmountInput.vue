@@ -2,7 +2,7 @@
 const { decimals = 0, min = 0 } = defineProps<{ decimals?: number, min?: number }>()
 
 const amount = defineModel<number>()
-const liveValue = ref('')
+const liveValue = ref(`${amount.value}`)
 const lastEmittedValue = ref(0)
 
 // Code from https://github.com/nimiq/vue3-components/blob/8d54857370cffc6c5fdb7b75b12b0e2eacbc8f04/src/components/AmountInput/AmountInput.vue#L96
@@ -59,5 +59,5 @@ onMounted(onBlur)
 </script>
 
 <template>
-  <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal" @blur="onBlur">
+  <input v-model="formattedValue" type="text" style="field-sizing: content" focus-visible:outline="1 solid blue" rounded-2 bg-transparent px-2 font-semibold lh-none inputmode="decimal" @blur="onBlur">
 </template>

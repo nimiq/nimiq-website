@@ -70,7 +70,7 @@ const rewards = computed(() => calculateStakingRewards({
         <span text-neutral-800 font-semibold>{{ stakingAmountLabel }}</span>
         <label flex="~ items-baseline gap-8" h-max self-end text-blue>
           <!-- <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal"> -->
-          <AmountInput v-model="amount" :decimals :min="1" />
+          <AmountInput v-model="amount" :decimals :min="1" text-2xl />
           <span font-bold lh-none text-lg>NIM</span>
         </label>
 
@@ -97,7 +97,7 @@ const rewards = computed(() => calculateStakingRewards({
         </div>
         <RadioInput v-model="selectedStakingPeriod" h-max self-end :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
       </div>
-      <div flex="~ col" bg="green/10" flex-1 p-32>
+      <div flex="~ col justify-center" bg="green/10" flex-1 self-stretch rounded-r-4 px-32>
         <div flex="~ items-center" text-neutral-800>
           <p mr-8>
             Return in NIM*
