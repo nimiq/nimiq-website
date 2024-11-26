@@ -78,10 +78,7 @@ export const useNimiq = defineStore('nimiq', () => {
   }
 
   async function disconnect() {
-    // await unwatch.value?.()
-    // client.value?.free()
-    // client.value = undefined
-    consensus.value = ConsensusState.Idle
+    client.value?.disconnectNetwork()
     peers.value = []
   }
 

@@ -133,8 +133,8 @@ importers:
         specifier: ^15.2.10
         version: 15.2.10
       nimiq-css:
-        specifier: ^0.2.53
-        version: 0.2.53(@unocss/webpack@0.64.1(rollup@4.27.4)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.27.4)(vite@5.4.11(@types/node@22.9.3)(terser@5.36.0))(vue@3.5.13(typescript@5.7.2))
+        specifier: ^0.2.55
+        version: 0.2.55(@unocss/webpack@0.64.1(rollup@4.27.4)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.27.4)(vite@5.4.11(@types/node@22.9.3)(terser@5.36.0))(vue@3.5.13(typescript@5.7.2))
       nimiq-rpc-client-ts:
         specifier: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
         version: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -5289,8 +5289,8 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  nimiq-css@0.2.53:
-    resolution: {integrity: sha512-husPhmpZy+IVkFDLKKZqAo/wlT6MRSVY/0DEn201eQC1Hpa5gu+VAt8K0SswgLl4R0xymsAKpA5TkG3LwZa2VA==}
+  nimiq-css@0.2.55:
+    resolution: {integrity: sha512-zxEFqOOYVYuv2b+L9a+/pf2QZeiS74FvgJulhJkSaM3KadMxfRozjK99SESpvDOiLGKLIvNnOn3zY0uB/GKYyQ==}
     engines: {node: '>=14'}
 
   nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8d9925e:
@@ -13591,7 +13591,7 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  nimiq-css@0.2.53(@unocss/webpack@0.64.1(rollup@4.27.4)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.27.4)(vite@5.4.11(@types/node@22.9.3)(terser@5.36.0))(vue@3.5.13(typescript@5.7.2)):
+  nimiq-css@0.2.55(@unocss/webpack@0.64.1(rollup@4.27.4)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.27.4)(vite@5.4.11(@types/node@22.9.3)(terser@5.36.0))(vue@3.5.13(typescript@5.7.2)):
     dependencies:
       '@unocss/reset': 0.64.1
       ts-cssjson: 3.0.1

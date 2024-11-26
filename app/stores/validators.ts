@@ -11,8 +11,8 @@ export interface Validator {
   accentColor: string
   isMaintainedByNimiq: boolean
   hasDefaultLogo: boolean
-  website: null
-  score: { total: number, dominance: number }
+  website: string | null
+  score: { total: number, dominance: number, reliability: number, availability: number }
   logo?: string
   dominanceRatioViaBalance: number
   dominanceRatioViaSlots: number
