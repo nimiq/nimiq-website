@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, RichTextField } from '@prismicio/client'
 
-const props = defineProps<{
+const { headline } = defineProps<{
   iconName?: KeyTextField
   label?: KeyTextField
   headline: RichTextField
@@ -10,11 +10,11 @@ const props = defineProps<{
   leftAlign?: boolean
 }>()
 
-const headlineTag = computed(() => props.headline.filter(i => i.type.startsWith('heading')).at(0)?.type.replace('heading', 'h') || 'h2')
+const headlineTag = computed(() => headline.filter(i => i.type.startsWith('heading')).at(0)?.type.replace('heading', 'h') || 'h2')
 </script>
 
 <template>
-  <div flex="~ col" :class="{ 'items-center': !leftAlign }">
+  <div flex="~ col" :class="{ 'md:items-center': !leftAlign }">
     <div v-if="iconName" :class="iconName" text-54 op-15 nq-mb-24 />
     <p v-if="label" text="14/16.8" mb-16 block w-max nq-label :class="{ 'md:mx-auto': !leftAlign }">
       {{ label }}
