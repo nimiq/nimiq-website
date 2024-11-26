@@ -26,6 +26,16 @@ export default defineConfig({
         selector: s => `:where(.group,[group]):has(:focus-visible) ${s}`,
       }
     },
+    (matcher) => {
+      const nthMatch = matcher.match(/^nth-(\d+)-(.+)/)
+      if (nthMatch) {
+        const [, nth, rule] = nthMatch
+        return {
+          matcher: rule,
+          selector: input => `${input}:nth-child(${nth})`,
+        }
+      }
+    },
   ],
   presets: [
     presetUno({ attributifyPseudo: true }),
