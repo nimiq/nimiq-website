@@ -9,8 +9,7 @@ const { stakedSupplyRatio } = storeToRefs(useValidatorStore())
 const locale = useLocale()
 const formatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const datum = computed(() => {
-  if (!stakedSupplyRatio.value
-  )
+  if (!stakedSupplyRatio.value)
     return []
   return [
     { color: `rgb(var(--nq-green))`, value: stakedSupplyRatio.value || 0, label: `${formatter.format(stakedSupplyRatio.value * 100)} staked`, anotation: { bottom: '40px', right: '-72px' } },
@@ -19,7 +18,7 @@ const datum = computed(() => {
 })
 
 // Center the donut chart so the staked amount center points to the right
-const startAngle = computed(() => (90 - 180 * datum.value[0]!.value))
+const startAngle = computed(() => (90 - 180 * (datum.value.at(0)?.value || 0)))
 </script>
 
 <template>
