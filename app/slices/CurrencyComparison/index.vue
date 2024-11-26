@@ -10,7 +10,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
 <template>
   <DefineCrypto>
     <template #default="{ adjetive, crypto, fee, mainFeature, name, secondFeature, thirdFeature, time, twoColumns = false }">
-      <li :class="{ 'md:grid md:rows-[max-content,auto,auto,auto] md:cols-2 xl:block': twoColumns }">
+      <li :class="{ 'md:grid md:rows-[max-content,auto,auto,auto] md:cols-2 xl:block gap-x-32': twoColumns }">
         <div flex="~ items-center gap-12" col-span-full text-48>
           <div v-if="crypto === 'NIM'" i-nimiq:logos-nimiq />
           <div v-else-if="crypto === 'BTC'" i-nimiq:logos-bitcoin />
