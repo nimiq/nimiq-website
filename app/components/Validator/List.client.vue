@@ -24,9 +24,9 @@ function toggleShowAllValidators() {
       <span text-24 font-semibold lh-none>{{ formatter.format(score * 5) }}</span>
     </div>
   </DefineScore> -->
-  <div :data-expanded="showAllValidators ? '' : undefined" :style="`--count: ${validators!.length}`" nq-wide relative w-full pb-80>
+  <div :data-expanded="showAllValidators ? '' : undefined" :style="`--count: ${validators!.length}`" nq-wide relative w-full of-y-clip pb-80>
     <div bg-gradient="to-b from-transparent via-neutral-0 to-neutral-0" :class="showAllValidators ? 'op-0' : 'op-100'" aria-hidden pointer-events-none absolute bottom-0 z-10 h-180 w-full transition-opacity />
-    <button bottom="8 data-open:42" absolute inset-x-0 z-10 mx-auto transition-bottom nq-pill-lg nq-pill-tertiary aria-label="Expand list" @click="toggleShowAllValidators">
+    <button bottom="8 data-open:42" absolute inset-x-0 z-10 mx-auto transition-bottom nq-pill-secondary aria-label="Expand list" @click="toggleShowAllValidators">
       <span v-if="showAllValidators">Show less</span>
       <span v-else>Show more</span>
     </button>

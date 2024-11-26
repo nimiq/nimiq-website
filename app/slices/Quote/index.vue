@@ -6,9 +6,11 @@ defineProps(getSliceComponentProps<Content.QuoteSlice>())
 
 <template>
   <section relative z-1 nq-pt-200>
-    <div absolute inset-0 h-200 max-w-none bg-green />
-    <div h="[calc(100%+140px)]" class="bg" pointer-events-none absolute inset-0 top-200 max-w-none />
-    <PrismicRichText :field="slice.primary.quote" text="white 2xl center" relative z-1 max-w-36ch />
+    <div pointer-events-none absolute inset-x-0 top-0 h-200 max-w-none bg-green />
+    <div class="bg" pointer-events-none absolute inset-x-0 top-200 h-600 max-w-none />
+    <div i-nimiq:icons-lg-safe-lock text="left md:center 96 md:112 white" />
+    <PrismicRichText :field="slice.primary.quote" text="white 2xl center" relative z-1 max-w-36ch nq-mt-32 />
+    <PrismicLink v-if="hasLink(slice.primary.cta)" :field="slice.primary.cta" shadow-none nq-mt-24 nq-arrow nq-pill-lg nq-pill-tertiary />
   </section>
 </template>
 
@@ -33,6 +35,7 @@ defineProps(getSliceComponentProps<Content.QuoteSlice>())
     rgba(var(--nq-green) / 0.0737185) 88.21%,
     rgba(var(--nq-green) / 0) 100%
   );
+
   --uno: 'bg-neutral-0';
 }
 </style>

@@ -7714,24 +7714,14 @@ export interface QuoteSliceDefaultPrimary {
   quote: prismic.RichTextField
 
   /**
-   * CTA Label field in *Quote → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: quote.default.primary.ctaLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  ctaLabel: prismic.KeyTextField
-
-  /**
-   * CTA Link field in *Quote → Default → Primary*
+   * CTA field in *Quote → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: quote.default.primary.ctaLink
+   * - **API ID Path**: quote.default.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  ctaLink: prismic.LinkField
+  cta: prismic.LinkField
 }
 
 /**
@@ -9228,21 +9218,6 @@ export type StakingDistributionSlice = prismic.SharedSlice<
  */
 export interface StakingFaqSliceDefaultPrimaryQuestionsItem {
   /**
-   * type field in *StakingFaq → Default → Primary → questions*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: staking_faq.default.primary.questions[].type
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  type: prismic.SelectField<
-    | 'Prestaking'
-    | 'Validators and Network'
-    | 'Migration'
-    | 'General questions about staking'
-  >
-
-  /**
    * question field in *StakingFaq → Default → Primary → questions*
    *
    * - **Field Type**: Rich Text
@@ -9288,6 +9263,26 @@ export interface StakingFaqSliceDefaultPrimary {
   questions: prismic.GroupField<
     Simplify<StakingFaqSliceDefaultPrimaryQuestionsItem>
   >
+
+  /**
+   * cta field in *StakingFaq → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: staking_faq.default.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField
+
+  /**
+   * More Insightful Label field in *StakingFaq → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: staking_faq.default.primary.moreInsightfulLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  moreInsightfulLabel: prismic.KeyTextField
 }
 
 /**

@@ -14,17 +14,12 @@
           }
         ]
       },
-      "ctaLabel": {
-        "__TYPE__": "FieldContent",
-        "value": "unit",
-        "type": "Text"
-      },
-      "ctaLink": {
+      "cta": {
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
-          "url": "https://slicemachine.dev",
-          "text": "telephone"
+          "url": "https://prismic.io",
+          "text": "which"
         }
       }
     },

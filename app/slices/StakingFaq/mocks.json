@@ -15,14 +15,6 @@
             "__TYPE__": "GroupItemContent",
             "value": [
               [
-                "type",
-                {
-                  "__TYPE__": "FieldContent",
-                  "value": "General questions about staking",
-                  "type": "Select"
-                }
-              ],
-              [
                 "question",
                 {
                   "__TYPE__": "StructuredTextContent",
@@ -53,6 +45,19 @@
             ]
           }
         ]
+      },
+      "cta": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://prismic.io",
+          "text": "cow"
+        }
+      },
+      "moreInsightfulLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "trick",
+        "type": "Text"
       }
     },
     "items": []

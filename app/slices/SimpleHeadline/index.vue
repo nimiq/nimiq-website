@@ -39,6 +39,7 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
       :subline="slice.primary.subline"
       :cta="slice.primary.cta"
       :show-staking-icon="!isLastSlice" :data-inverted="isLastSlice ? undefined : ''"
+      :primary-pill="isLastSlice"
     />
   </section>
 </template>

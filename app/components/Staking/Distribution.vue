@@ -24,7 +24,7 @@ const startAngle = computed(() => (90 - 180 * (datum.value.at(0)?.value || 0)))
 <template>
   <div relative flex="~ col items-center">
     <Donut :data="datum" :start-angle />
-    <div absolute right-8 top-196 rounded-full bg-neutral-0 px-12 py-6 font-semibold ring="1.5 green">
+    <div ring="1.5 green" absolute right-8 top-196 rounded-full bg-neutral-0 px-12 py-6 text-neutral font-semibold>
       {{ formatter.format(stakedSupplyRatio) }} staked
     </div>
     <PrismicRichText :field="info" max-w-42ch text-center nq-mt-48 />

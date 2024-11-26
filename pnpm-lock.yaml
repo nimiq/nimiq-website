@@ -55,8 +55,8 @@ importers:
         specifier: ^3.9.2
         version: 3.9.2(@typescript-eslint/utils@8.15.0(eslint@9.15.0(jiti@2.4.0))(typescript@5.7.2))(@unocss/eslint-plugin@0.64.1(eslint@9.15.0(jiti@2.4.0))(typescript@5.7.2))(@vue/compiler-sfc@3.5.13)(eslint-plugin-format@0.1.2(eslint@9.15.0(jiti@2.4.0)))(eslint@9.15.0(jiti@2.4.0))(typescript@5.7.2)(vitest@2.1.2(@types/node@22.9.3)(jsdom@24.1.3(bufferutil@4.0.8)(utf-8-validate@5.0.10))(terser@5.36.0))
       '@iconify-json/nimiq':
-        specifier: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8c0981d
-        version: nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8c0981d(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+        specifier: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8d9925e
+        version: nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8d9925e(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@iconify/vue':
         specifier: ^4.1.2
         version: 4.1.2(vue@3.5.13(typescript@5.7.2))
@@ -133,8 +133,8 @@ importers:
         specifier: ^15.2.10
         version: 15.2.10
       nimiq-css:
-        specifier: ^0.2.52
-        version: 0.2.52(@unocss/webpack@0.64.1(rollup@4.27.4)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.27.4)(vite@5.4.11(@types/node@22.9.3)(terser@5.36.0))(vue@3.5.13(typescript@5.7.2))
+        specifier: ^0.2.53
+        version: 0.2.53(@unocss/webpack@0.64.1(rollup@4.27.4)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.27.4)(vite@5.4.11(@types/node@22.9.3)(terser@5.36.0))(vue@3.5.13(typescript@5.7.2))
       nimiq-rpc-client-ts:
         specifier: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
         version: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -5289,12 +5289,12 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  nimiq-css@0.2.52:
-    resolution: {integrity: sha512-TwTb01zGFS4zDH5t5SygeqvwMTuUrzPKgXtAHQBDH/+0FxGAWh5s+zdiuVuyCgbFDdMm8qQ3yilhRfhMv0QkaQ==}
+  nimiq-css@0.2.53:
+    resolution: {integrity: sha512-husPhmpZy+IVkFDLKKZqAo/wlT6MRSVY/0DEn201eQC1Hpa5gu+VAt8K0SswgLl4R0xymsAKpA5TkG3LwZa2VA==}
     engines: {node: '>=14'}
 
-  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8c0981d:
-    resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8c0981d}
+  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8d9925e:
+    resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8d9925e}
     version: 1.0.0
 
   nimiq-rewards-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@4099fd6:
@@ -13591,7 +13591,7 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  nimiq-css@0.2.52(@unocss/webpack@0.64.1(rollup@4.27.4)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.27.4)(vite@5.4.11(@types/node@22.9.3)(terser@5.36.0))(vue@3.5.13(typescript@5.7.2)):
+  nimiq-css@0.2.53(@unocss/webpack@0.64.1(rollup@4.27.4)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.27.4)(vite@5.4.11(@types/node@22.9.3)(terser@5.36.0))(vue@3.5.13(typescript@5.7.2)):
     dependencies:
       '@unocss/reset': 0.64.1
       ts-cssjson: 3.0.1
@@ -13604,7 +13604,7 @@ snapshots:
       - vite
       - vue
 
-  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8c0981d(bufferutil@4.0.8)(utf-8-validate@5.0.10):
+  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8d9925e(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@iconify/tools': 4.0.7
       '@iconify/utils': 2.1.33

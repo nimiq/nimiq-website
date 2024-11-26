@@ -25,19 +25,6 @@
             "label": "questions",
             "repeat": true,
             "fields": {
-              "type": {
-                "type": "Select",
-                "config": {
-                  "label": "type",
-                  "placeholder": "",
-                  "options": [
-                    "Prestaking",
-                    "Validators and Network",
-                    "Migration",
-                    "General questions about staking"
-                  ]
-                }
-              },
               "question": {
                 "type": "StructuredText",
                 "config": {
@@ -57,6 +44,23 @@
                 }
               }
             }
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "cta",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null,
+            "allowText": true
+          }
+        },
+        "moreInsightfulLabel": {
+          "type": "Text",
+          "config": {
+            "label": "More Insightful Label",
+            "placeholder": ""
           }
         }
       },

@@ -1,14 +1,8 @@
 <script setup lang="ts">
+import type { LinkField } from '@prismicio/client'
 import type { StakingFaqSliceDefaultPrimaryQuestionsItem } from '~~/prismicio-types'
 
-defineProps<{ questions: StakingFaqSliceDefaultPrimaryQuestionsItem[], title: string }>()
-
-const questionTypeColor: Record<Exclude<StakingFaqSliceDefaultPrimaryQuestionsItem['type'], null>, string> = {
-  'General questions about staking': 'purple',
-  'Migration': 'blue',
-  'Validators and Network': 'gold',
-  'Prestaking': 'orange',
-}
+defineProps<{ questions: StakingFaqSliceDefaultPrimaryQuestionsItem[], title: string, moreInsightfulLabel: string, cta: LinkField }>()
 </script>
 
 <template>
@@ -18,11 +12,14 @@ const questionTypeColor: Record<Exclude<StakingFaqSliceDefaultPrimaryQuestionsIt
     </h2>
     <ul grid="~ cols-1 md:cols-2 lg:cols-3 gap-24" nq-mt-32>
       <li v-for="(q, i) in questions" :key="i" rounded-6 bg-neutral-300 p-16>
-        <span :style="`color: rgb(var(--nq-${questionTypeColor[q.type!]})`" text-12 nq-label>{{ q.type }}</span>
         <PrismicRichText :field="q.question" nq-mt-12 />
         <PrismicRichText :field="q.answer!" nq-mt-16 nq-prose-compact />
       </li>
     </ul>
+    <p v-if="moreInsightfulLabel" text="center md:left neutral-800 lg" nq-mt-72>
+      {{ moreInsightfulLabel }}
+    </p>
+    <PrismicLink v-if="hasLink(cta)" :field="cta" nq-mt-24 nq-arrow nq-pill-lg nq-pill-secondary />
   </div>
 </template>
 

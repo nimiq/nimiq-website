@@ -6,6 +6,6 @@ defineProps(getSliceComponentProps<Content.StakingFaqSlice>())
 
 <template>
   <section bg-neutral-100 data-slice-type="staking-faq">
-    <StakingFaq :questions="slice.primary.questions" :title="slice.primary.title!" />
+    <StakingFaq :questions="slice.primary.questions" :title="slice.primary.title!" :cta="slice.primary.cta" :more-insightful-label="slice.primary.moreInsightfulLabel!" />
   </section>
 </template>

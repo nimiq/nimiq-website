@@ -20,11 +20,11 @@ export interface Validator {
   rewardPerAnnum?: number
 }
 
-interface DistributionResponse { staked: number, circulating: number, ratio: number }
+interface DistributionResponse { staked: number, circulating: number, stakedRatio: number }
 
 export const useValidatorStore = defineStore('validators', () => {
   const { data: distribution } = useAsyncData('network_distribution', () => $fetch<DistributionResponse>(`${useRuntimeConfig().public.validatorsApi}/api/v1/distribution`))
-  const stakedSupplyRatio = computed(() => distribution?.value?.ratio || 0)
+  const stakedSupplyRatio = computed(() => distribution?.value?.stakedRatio || 0)
 
   const { data: validators } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators`).then((validators) => {
     return validators.map((v) => {

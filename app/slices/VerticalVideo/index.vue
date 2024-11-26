@@ -21,7 +21,7 @@ const playVideo = ref(false)
     <PrismicEmbed v-else :field="slice.primary.video" :style="`aspect-ratio: ${getAspectRatio(slice.primary.poster)}`" z-1 max-w-420 w-full rounded-8 bg-neutral-0 shadow />
     <div nq-mt-72 flex="~ items-center gap-12">
       <div style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)" size-32 shrink-0 rounded-full stack>
-        <div i-nimiq:bolt text="16 white" />
+        <div i-nimiq:shield text="16 white" />
       </div>
       <h3 font-semibold text-xl>
         {{ slice.primary.title }}
