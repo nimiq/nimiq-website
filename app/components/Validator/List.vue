@@ -20,7 +20,7 @@ function toggleShowAllValidators() {
       <span v-if="showAllValidators">Show less</span>
       <span v-else>Show more</span>
     </button>
-    <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full :style="`height: ${showAllValidators ? 'calc(var(--count)*88+(var(--count)-1)*16)' : '400px'}`" transition-height>
+    <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full transition-height>
       <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatioViaBalance }) in validators" :key="name" as="li" :value="address" style="--radix-accordion-content-height: 130px" relative rounded-8 transition>
         <AccordionTrigger rounded="8 data-open:b-0" data-open:border="1 neutral-400 b-transparent" p="x-20 lg:x-24 16" grid="~ cols-[max-content_max-content_1fr_max-content] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`" border="1 transparent" transition="[background-color,border-radius,border]" relative size-full rounded-8 delay-100 data-open:z-11 bg="neutral-200 data-open:neutral-0">
           <img :src="logo" :alt="`${name} logo`" row-span-full h-full w-40 object-contain flex="~ items-center">
@@ -68,14 +68,14 @@ function toggleShowAllValidators() {
             </p>
           </div>
           <hr w="[calc(100%+48px)]" mx--24 h-1 bg-neutral-300 nq-my-24>
-          <p text="neutral" font-semibold>
+          <p v-if="description" text="neutral" font-500>
             &ldquo;{{ description }}&rdquo;
           </p>
           <NuxtLink v-if="website" external :to="website" nq-mt-8 un-text="blue" font-semibold nq-arrow>
             {{ website }}
           </NuxtLink>
-          <p text="neutral-700 2xs" font-semibold nq-mt-12>
-            The validator is solely responsible for the information provided above
+          <p text="neutral-600 2xs" font-semibold nq-mt-12>
+            The validator is solely responsible for the information provided above. It is not to be viewed as an endorsement or recommendation by Nimiq.
           </p>
         </AccordionContent>
       </AccordionItem>

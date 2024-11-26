@@ -1,22 +1,28 @@
 <script setup lang="ts">
 defineProps<{ score: number, showBorder?: boolean }>()
 
+const ScoreThresholds = {
+  EXCELLENT: 0.9,
+  GOOD: 0.75,
+  FAIR: 0.5,
+}
+
 const formatter = new Intl.NumberFormat('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
 function getScoreColor(score: number) {
-  if (score >= 0.75)
+  if (score > ScoreThresholds.EXCELLENT)
     return 'green'
-  if (score >= 0.6)
-    return 'gold'
-  if (score >= 0.5)
+  if (score > ScoreThresholds.GOOD)
     return 'neutral-700'
+  if (score > ScoreThresholds.FAIR)
+    return 'orange'
   return 'red'
 }
 
 // @unocss-include
 
 function getIcon(score: number) {
-  if (score >= 0.75)
+  if (score > ScoreThresholds.EXCELLENT)
     return 'i-nimiq:starburst'
   return 'i-nimiq:star'
 }
