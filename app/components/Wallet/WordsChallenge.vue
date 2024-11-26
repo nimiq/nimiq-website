@@ -41,7 +41,7 @@ function reset() {
 </script>
 
 <template>
-  <div absolute max-w-none w-full of-x-hidden :style="`--c: ${wordsList.length};`">
+  <div :style="`--c: ${wordsList.length};`" nq-wide absolute max-w-none w-full of-x-hidden>
     <div v-if="false" relative flex="~ col gap-24" h-full>
       <AnimatedMarquee v-for="({ words }, key) in wordsList" :key :items="words" flex="~ gap-2" :style="`--direction: ${key % 2 === 0 ? -1 : 1}`">
         <template #default="{ item: { word } }">
@@ -57,7 +57,7 @@ function reset() {
       </div>
     </div>
   </div>
-  <div flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" relative z-1 mx-auto max-w-492 of-hidden rounded-8 px-64 pb-48 pt-32 shadow>
+  <div flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" relative z-1 mx-auto max-w-492 of-hidden rounded-8 px="16 sm:64" pb-48 pt-32 shadow>
     <div :class="{ 'slide-up': isChallengeFinished }">
       <h3 text-center>
         {{ headline }}
