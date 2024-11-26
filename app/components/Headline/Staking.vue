@@ -22,7 +22,7 @@ const headlineParts = computed(() => getText(headline!).split('{{ interestPerAnn
 </script>
 
 <template>
-  <div flex="~ col items-center">
+  <div flex="~ col md:items-center">
     <AnimatedStakingRipple v-if="showStakingIcon" size-120 />
     <component :is="headlineTag" nq-mt-32 inverted:text-white>
       {{ headlineParts[0] }}
