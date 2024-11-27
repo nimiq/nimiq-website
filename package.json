@@ -16,10 +16,10 @@
     "cryptomap:types": "npx supabase gen types --lang=typescript --project-id mycbdmurjytbdahjljoh > app/types/database.types.ts"
   },
   "dependencies": {
-    "@nimiq/core": "^2.0.3",
+    "@nimiq/core": "^2.0.5",
     "@popperjs/core": "^2.11.8",
-    "@unovis/ts": "1.5.0-beta.3",
-    "@unovis/vue": "1.5.0-beta.3",
+    "@unovis/ts": "1.5.0-nikita.9",
+    "@unovis/vue": "1.5.0-nikita.9",
     "@vueuse/motion": "^2.2.6",
     "@vueuse/router": "^11.3.0",
     "hero-motion": "^0.5.1",
@@ -32,7 +32,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.9.2",
+    "@antfu/eslint-config": "^3.10.0",
     "@iconify-json/nimiq": "https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@8d9925e",
     "@iconify/vue": "^4.1.2",
     "@nimiq/utils": "^0.11.7",
@@ -43,11 +43,11 @@
     "@nuxthub/core": "^0.8.7",
     "@nuxtjs/device": "^3.2.4",
     "@nuxtjs/prismic": "^3.4.3",
-    "@nuxtjs/seo": "2.0.0-rc.23",
+    "@nuxtjs/seo": "2.0.2",
     "@pinia/nuxt": "^0.7.0",
     "@prismicio/client": "^7.12.0",
     "@slicemachine/adapter-nuxt": "^0.3.58",
-    "@types/node": "^22.9.3",
+    "@types/node": "^22.10.0",
     "@unocss/eslint-plugin": "^0.64.1",
     "@unocss/nuxt": "^0.64.1",
     "@unocss/preset-rem-to-px": "^0.64.1",
@@ -72,8 +72,8 @@
     "vite-plugin-top-level-await": "^1.4.4",
     "vite-plugin-wasm": "^3.3.0",
     "vue": "latest",
-    "vue-router": "^4.4.5",
-    "wrangler": "^3.90.0"
+    "vue-router": "^4.5.0",
+    "wrangler": "^3.91.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
