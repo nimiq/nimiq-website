@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
 import type { StyleValue } from 'vue'
-import type { DonutDatum } from '../Donut.vue'
+import type { DonutDatum } from '../Donut.client.vue'
 
 defineProps<{ info: RichTextField }>()
 

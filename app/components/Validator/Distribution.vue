@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
-import type { DonutDatum } from '../Donut.vue'
+import type { DonutDatum } from '../Donut.client.vue'
 import { useValidatorStore } from '~/stores/validators'
 
 defineProps<{ info: RichTextField }>()
