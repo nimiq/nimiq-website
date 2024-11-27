@@ -26,10 +26,8 @@ export const useValidatorStore = defineStore('validators', () => {
 
   const { data: validators } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators`).then((validators) => {
     return validators.map((v) => {
-      const fee = v.fee || 0
-      const { gainRatio: rewardPerAnnum } = calculateStakingRewards({ fee, stakedSupplyRatio: stakedSupplyRatio.value })
-      const dominance = v.dominance || v.dominanceRatioViaBalance || v.dominanceRatioViaSlots
-      return { ...v, rewardPerAnnum, dominance } satisfies Validator
+      v.rewardPerAnnum = calculateStakingRewards({ fee: v.fee, stakedSupplyRatio: stakedSupplyRatio.value }).gainRatio
+      return v
     })
   },
   ))

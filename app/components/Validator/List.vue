@@ -21,7 +21,7 @@ function toggleShowAllValidators() {
       <span v-else>Show more</span>
     </button>
     <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full transition-height>
-      <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatioViaBalance }) in validators" :key="name" as="li" :value="address" style="--radix-accordion-content-height: 130px" relative rounded-8 transition>
+      <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatio }) in validators" :key="name" as="li" :value="address" style="--radix-accordion-content-height: 130px" relative rounded-8 transition>
         <AccordionTrigger rounded="8 data-open:b-0" data-open:border="1 neutral-400 b-transparent" p="x-20 lg:x-24 16" grid="~ cols-[max-content_max-content_1fr_max-content] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`" border="1 transparent" transition="[background-color,border-radius,border]" relative size-full rounded-8 delay-100 data-open:z-11 bg="neutral-200 data-open:neutral-0">
           <img :src="logo" :alt="`${name} logo`" row-span-full h-full w-40 object-contain flex="~ items-center">
           <h3 font-semibold text-lg>
@@ -43,13 +43,13 @@ function toggleShowAllValidators() {
               Estimated yearly rewards
             </h4>
             <p font-semibold text="sm neutral right">
-              {{ percentageFormatter.format(rewardPerAnnum * 100) }}
+              {{ percentageFormatter.format(rewardPerAnnum) }}
             </p>
             <h5 font-semibold text-xs>
               incl. pool fee
             </h5>
             <p text="sm neutral-800 right">
-              {{ percentageFormatter.format(fee * 100) }}
+              {{ percentageFormatter.format(fee) }}
             </p>
             <p text="2xs neutral-700" mt-8>
               Your rewards are influenced by how many NIM are staked globally and your validator pool's fee.
@@ -59,8 +59,8 @@ function toggleShowAllValidators() {
               Staked amount
             </h4>
             <p text="right neutral">
-              <template v-if="dominanceRatioViaBalance">
-                {{ percentageFormatter.format(dominanceRatioViaBalance * 100) }}
+              <template v-if="dominanceRatio">
+                {{ percentageFormatter.format(dominanceRatio) }}
               </template>
               <span v-else text="orange-1100">
                 Data not available
@@ -71,10 +71,10 @@ function toggleShowAllValidators() {
           <p v-if="description" text="neutral" font-500>
             &ldquo;{{ description }}&rdquo;
           </p>
-          <NuxtLink v-if="website" external :to="website" nq-mt-8 un-text="blue" font-semibold nq-arrow>
+          <NuxtLink v-if="website" external :to="website" mt-8 un-text="blue" font-semibold nq-arrow>
             {{ website }}
           </NuxtLink>
-          <p text="neutral-600 2xs" font-semibold nq-mt-12>
+          <p v-if="description || website" text="neutral-600 2xs" font-semibold nq-mt-12>
             The validator is solely responsible for the information provided above. It is not to be viewed as an endorsement or recommendation by Nimiq.
           </p>
         </AccordionContent>
