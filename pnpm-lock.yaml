@@ -32,6 +32,9 @@ importers:
       medium-zoom:
         specifier: ^1.1.0
         version: 1.1.0
+      nimiq-albatross-policy:
+        specifier: https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50
+        version: https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50
       nimiq-rewards-calculator:
         specifier: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d
         version: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d
@@ -45,10 +48,10 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(radix-vue@1.9.10(vue@3.5.13(typescript@5.7.2)))(vue@3.5.13(typescript@5.7.2))
       vue:
-        specifier: latest
+        specifier: ^3.5.13
         version: 3.5.13(typescript@5.7.2)
       vue-router:
-        specifier: latest
+        specifier: ^4.5.0
         version: 4.5.0(vue@3.5.13(typescript@5.7.2))
     devDependencies:
       '@antfu/eslint-config':
@@ -5278,6 +5281,10 @@ packages:
 
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
+
+  nimiq-albatross-policy@https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50:
+    resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50}
+    version: 0.0.1
 
   nimiq-css@0.2.55:
     resolution: {integrity: sha512-zxEFqOOYVYuv2b+L9a+/pf2QZeiS74FvgJulhJkSaM3KadMxfRozjK99SESpvDOiLGKLIvNnOn3zY0uB/GKYyQ==}
@@ -13569,6 +13576,8 @@ snapshots:
       monocle-ts: 2.3.13(fp-ts@2.16.9)
 
   next-tick@1.1.0: {}
+
+  nimiq-albatross-policy@https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50: {}
 
   nimiq-css@0.2.55(@unocss/webpack@0.64.1(rollup@4.27.4)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.27.4)(vite@5.4.11(@types/node@22.10.0)(terser@5.36.0))(vue@3.5.13(typescript@5.7.2)):
     dependencies:

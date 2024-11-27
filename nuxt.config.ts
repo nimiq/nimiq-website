@@ -149,7 +149,7 @@ export default defineNuxtConfig({
   routeRules: {
     // Check ./modules/prerender-routes.ts to see more about this
 
-    '/api/newsletter/subscribe': { cors: true },
+    '/api/**': { cors: true },
 
     '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
     '/cookie-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710/cookie-policy' },

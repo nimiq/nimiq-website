@@ -34,7 +34,7 @@ const [DefineBlock, ReuseBlock] = createReusableTemplate()
       <p text="xs neutral-800" max-w-320>
         {{ tooltip.label }}
       </p>
-      <NuxtLink v-if="tooltip.cta" :to="tooltip.cta.link" target="_blank" un-text-blue w-max font-semibold nq-mt-16 nq-arrow>
+      <NuxtLink v-if="tooltip.cta" :to="tooltip.cta?.link" target="_blank" un-text-blue w-max font-semibold nq-mt-16 nq-arrow>
         {{ tooltip.cta.label }}
       </NuxtLink>
     </Tooltip>

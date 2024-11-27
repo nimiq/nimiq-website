@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { useNimiqAlbatross } from '~/stores/albatross/client'
+import { PROOF_OF_STAKE_FORK_BLOCK } from 'nimiq-albatross-policy'
 
 const props = defineProps<{ batchNumber: number, blockNumber: number }>()
-
-const { genesisBlockNumber, blocksPerBatch } = storeToRefs(useNimiqAlbatross())
+const blocksPerBatch = 60 // TODO Add to policy
+const genesisBlockNumber = PROOF_OF_STAKE_FORK_BLOCK
 
 const { microblocks } = storeToRefs(useLiveviewBlocks())
 
 function getBlockColor(n: number) {
-  const blockNumber = genesisBlockNumber.value + (props.batchNumber - 1) * blocksPerBatch.value + n
+  const blockNumber = genesisBlockNumber + (props.batchNumber - 1) * blocksPerBatch + n
   const block = microblocks.value.find(b => b.number === blockNumber)
   return block?.producer.publicKey
     ? getLiveviewColorValue({ publicKey: block.producer.publicKey })
@@ -20,14 +20,14 @@ const toggleColors = useToggle(showColors)
 
 const remainingBlockCount = computed(() => {
   if (props.batchNumber <= 0)
-    return Math.max(0, blocksPerBatch.value - 1)
-  const remaining = genesisBlockNumber.value + (props.batchNumber * blocksPerBatch.value) - props.blockNumber - 1
-  return Math.min(Math.max(remaining, 0), blocksPerBatch.value - 1)
+    return Math.max(0, blocksPerBatch - 1)
+  const remaining = genesisBlockNumber + (props.batchNumber * blocksPerBatch) - props.blockNumber - 1
+  return Math.min(Math.max(remaining, 0), blocksPerBatch - 1)
 })
 
-const createdBlockCount = computed(() => Math.max(blocksPerBatch.value - remainingBlockCount.value - 1, 0))
-const pastMacro = computed(() => props.blockNumber > (props.batchNumber * blocksPerBatch.value) + genesisBlockNumber.value)
-const isWaitingForMacro = computed(() => props.blockNumber === (props.batchNumber * blocksPerBatch.value) + genesisBlockNumber.value - 1)
+const createdBlockCount = computed(() => Math.max(blocksPerBatch - remainingBlockCount.value - 1, 0))
+const pastMacro = computed(() => props.blockNumber > (props.batchNumber * blocksPerBatch) + genesisBlockNumber)
+const isWaitingForMacro = computed(() => props.blockNumber === (props.batchNumber * blocksPerBatch) + genesisBlockNumber - 1)
 
 // @unocss-include
 

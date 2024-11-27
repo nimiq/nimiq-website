@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { useNimiqAlbatross } from '~/stores/albatross/client'
+import { SLOTS } from 'nimiq-albatross-policy'
 
 const props = defineProps<{ block: LiveviewMacroBlock }>()
-const { slots } = storeToRefs(useNimiqAlbatross())
 
-const requiredVotes = computed(() => Math.ceil(slots.value * 2 / 3))
+const requiredVotes = computed(() => Math.ceil(SLOTS * 2 / 3))
 const progress = computed(() => Math.min(props.block.votes / requiredVotes.value, 1))
 </script>
 
@@ -24,7 +23,7 @@ const progress = computed(() => Math.min(props.block.votes / requiredVotes.value
     />
 
     <div mb-16 text-24>
-      {{ block.votes }} / {{ slots }}
+      {{ block.votes }} / {{ SLOTS }}
       <div text-12 lh-none>
         Votes
       </div>
