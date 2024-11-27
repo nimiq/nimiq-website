@@ -15,8 +15,7 @@ defineOgImage({ url: '/assets/og-images/home.jpg' })
 </script>
 
 <template>
-  <NuxtLayout footer-bg-color="grey" dark-header show-socials-hexagon-bg>
-    <
+  <NuxtLayout footer-bg-color="grey" show-socials-hexagon-bg dark-header>
     <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
   </NuxtLayout>
 </template>
