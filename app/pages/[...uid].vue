@@ -3,8 +3,7 @@ import type { Content } from '@prismicio/client'
 import { components } from '~/slices'
 
 const params = useRoute().params as { uid: string }
-const uid = params.uid === '' ? 'home' : params.uid[0]
-const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('page', uid)
+const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('page', params.uid[0]!)
 
 useHead({
   title: page.value?.data.meta_title,
@@ -13,7 +12,6 @@ useHead({
   ],
 })
 
-const darkHeader = uid === 'home'
 const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
 
@@ -21,7 +19,7 @@ defineOgImageComponent('DefaultImage')
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color :dark-header :draft :show-socials-hexagon-bg="uid === 'home'">
+  <NuxtLayout :footer-bg-color :draft>
     <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
   </NuxtLayout>
 </template>
