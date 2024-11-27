@@ -6,7 +6,7 @@ defineProps<{ questions: StakingFaqSliceDefaultPrimaryQuestionsItem[], title: st
 </script>
 
 <template>
-  <div flex="~ col md:items-center">
+  <div flex="~ col sm:items-center">
     <h2 w-max text-lg nq-label>
       {{ title }}
     </h2>
@@ -16,7 +16,7 @@ defineProps<{ questions: StakingFaqSliceDefaultPrimaryQuestionsItem[], title: st
         <PrismicRichText :field="q.answer!" nq-mt-16 nq-prose-compact />
       </li>
     </ul>
-    <p v-if="moreInsightfulLabel" text="center md:left neutral-800 lg" nq-mt-72>
+    <p v-if="moreInsightfulLabel" text="left sm:center neutral-800 lg" nq-mt-72>
       {{ moreInsightfulLabel }}
     </p>
     <PrismicLink v-if="hasLink(cta)" :field="cta" nq-mt-24 nq-arrow nq-pill-lg nq-pill-secondary />

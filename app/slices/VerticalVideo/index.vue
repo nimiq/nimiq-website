@@ -7,7 +7,7 @@ const playVideo = ref(false)
 </script>
 
 <template>
-  <section relative bg-neutral-0>
+  <section relative of-hidden bg-neutral-0>
     <div absolute hidden max-w-none w-900 sm:stack="!" :style="`aspect-ratio: ${getAspectRatio(slice.primary.backgroundImage)}`">
       <PrismicImage loading="lazy" :field="slice.primary.backgroundImage" />
       <div bg-gradient="to-b from-transparent to-neutral-0" pointer-events-none h-200 w-full self-end="!" />

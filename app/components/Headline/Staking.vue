@@ -24,17 +24,17 @@ const id = `terms-note-${useId()}`
 </script>
 
 <template>
-  <div flex="~ col md:items-center">
+  <div flex="~ col md:items-center" group>
     <AnimatedStakingRipple v-if="showStakingIcon" size-120 />
     <component :is="headlineTag" nq-mt-32 inverted:text-white>
       {{ headlineParts[0] }}
-      <span bg="green/15 inverted:white/30" rounded-4 px-10 py-3 text="green inverted:white" inline-flex="~">
+      <span bg="green/15 inverted:white/30" text="green inverted:white" data-percentage rounded-4 px-10 py-3 inline-flex="~">
         ~{{ stakingValues?.interestPerYear }}%<div i-nimiq:asterix translate-y-8 text-14 :aria-labelledby="id" /></span>
       {{ headlineParts[1] }}
     </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" inverted:text="white/80" />
     <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" nq-shadow nq-mt-48 nq-arrow nq-pill-lg :class="primaryPill ? 'nq-pill-blue' : 'nq-pill-tertiary'" md:mx-auto />
-    <small :id text="green-1100 inverted:white/80 center" max-w-32ch nq-mt-32>
+    <small :id text="green-1100 inverted:white/80 center" data-note max-w-32ch transition-colors duration-400 nq-mt-32>
       <div i-nimiq:asterix aria-hidden translate-x-4 translate-y-8 text-9 /> {{ stakingValues?.stakingNote }}
     </small>
   </div>
@@ -115,6 +115,14 @@ section.gradient-transparent-green-transparent {
   100% {
     transform: scale(1.5);
     opacity: 0;
+  }
+}
+</style>
+
+<style scoped>
+[group]:has([data-percentage]:hover) {
+  & [data-note] {
+    --uno: 'text-neutral-800';
   }
 }
 </style>
