@@ -42,7 +42,7 @@ function toggleShowAllValidators() {
             <h4 text-16>
               Estimated yearly rewards
             </h4>
-            <p font-semibold text="sm neutral right">
+            <p v-if="rewardPerAnnum" font-semibold text="sm neutral right">
               {{ percentageFormatter.format(rewardPerAnnum) }}
             </p>
             <h5 font-semibold text-xs>
