@@ -24,7 +24,7 @@
     "@vueuse/router": "^11.3.0",
     "hero-motion": "^0.5.1",
     "medium-zoom": "^1.1.0",
-    "nimiq-rewards-calculator": "https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@4099fd6",
+    "nimiq-rewards-calculator": "https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d",
     "nuxt": "^3.14.1592",
     "radix-vue": "^1.9.10",
     "vaul-vue": "^0.2.0",

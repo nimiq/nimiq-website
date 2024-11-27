@@ -67,16 +67,18 @@ function toggleShowAllValidators() {
               </span>
             </p>
           </div>
-          <hr w="[calc(100%+48px)]" mx--24 h-1 bg-neutral-300 nq-my-24>
-          <p v-if="description" text="neutral" font-500>
-            &ldquo;{{ description }}&rdquo;
-          </p>
-          <NuxtLink v-if="website" external :to="website" mt-8 un-text="blue" font-semibold nq-arrow>
-            {{ website }}
-          </NuxtLink>
-          <p v-if="description || website" text="neutral-600 2xs" font-semibold nq-mt-12>
-            The validator is solely responsible for the information provided above. It is not to be viewed as an endorsement or recommendation by Nimiq.
-          </p>
+          <template v-if="description || website">
+            <hr w="[calc(100%+48px)]" mx--24 h-1 bg-neutral-300 nq-my-24>
+            <p v-if="description" text="neutral" font-500>
+              &ldquo;{{ description }}&rdquo;
+            </p>
+            <NuxtLink v-if="website" external :to="website" mt-8 un-text="blue" font-semibold nq-arrow>
+              {{ website }}
+            </NuxtLink>
+            <p text="neutral-600 2xs" font-semibold nq-mt-12>
+              The validator is solely responsible for the information provided above. It is not to be viewed as an endorsement or recommendation by Nimiq.
+            </p>
+          </template>
         </AccordionContent>
       </AccordionItem>
     </AccordionRoot>
