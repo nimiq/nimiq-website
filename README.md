@@ -1,6 +1,6 @@
 # Nimiq Website
 
-The code for the [`nimiq.com` website](https://nimiq.com)
+The code for the [nimiq.com website](https://nimiq.com)
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
