@@ -61,12 +61,12 @@ const rewards = computed(() => calculateStakingRewards({
 </script>
 
 <template>
-  <div flex="~ col gap-y-16 items-center">
+  <div flex="~ col gap-y-16 md:items-center">
     <h2 w-max text-12 nq-label>
       {{ title }}
     </h2>
     <div ring="1.5 neutral-400" mx-auto max-w-full w-max rounded-4 bg-neutral-0 shadow flex="~ items-center wrap">
-      <div grid="~ rows-[auto_1fr] gap-x-32 gap-y-12 flow-col" of-auto p-32>
+      <div grid="~ max-md:cols-1 md:rows-[auto_1fr] gap-x-32 gap-y-12 md:flow-col" of-auto p-32>
         <span text-neutral-800 font-semibold>{{ stakingAmountLabel }}</span>
         <label flex="~ items-baseline gap-8" h-max self-end text-blue>
           <!-- <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal"> -->
@@ -74,7 +74,7 @@ const rewards = computed(() => calculateStakingRewards({
           <span font-bold lh-none text-lg>NIM</span>
         </label>
 
-        <div flex="~ gap-8 items-center">
+        <div flex="~ gap-8 items-center" max-md:mt-8>
           <span>Total stake</span>
           <Tooltip>
             <PrismicRichText :field="stakedSupplyInfo" />
@@ -89,7 +89,7 @@ const rewards = computed(() => calculateStakingRewards({
           </template>
         </RadioInput>
 
-        <div flex="~ gap-8 items-center">
+        <div flex="~ gap-8 items-center" max-md:mt-8>
           <p>{{ stakingPeriodLabel }}</p>
           <Tooltip>
             <PrismicRichText :field="stakingPeriodInfo" />
@@ -97,7 +97,7 @@ const rewards = computed(() => calculateStakingRewards({
         </div>
         <RadioInput v-model="selectedStakingPeriod" h-max self-end :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
       </div>
-      <div flex="~ col justify-center" bg="green/10" flex-1 self-stretch rounded-r-4 px-32>
+      <div flex="~ col md:justify-center" bg="green/10" flex-1 self-stretch rounded="b-4 md:b-0 md:r-4" px-32 py-24>
         <div flex="~ items-center" text-neutral-800>
           <p mr-8>
             Return in NIM*
@@ -105,7 +105,7 @@ const rewards = computed(() => calculateStakingRewards({
           <Tooltip mr-16>
             <PrismicRichText :field="autoRestakeInfo" />
           </Tooltip>
-          <p ml-auto text="green/60" font-bold>
+          <p text="green/60" font-bold md:ml-auto>
             +<AnimatedTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
           </p>
         </div>

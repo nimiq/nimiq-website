@@ -21,16 +21,18 @@ function toggleShowAllValidators() {
       <span v-else>Show more</span>
     </button>
     <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full transition-height>
-      <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatio }) in validators" :key="name" as="li" :value="address" style="--radix-accordion-content-height: 130px" relative rounded-8 transition>
-        <AccordionTrigger rounded="8 data-open:b-0" data-open:border="1 neutral-400 b-transparent" p="x-20 lg:x-24 16" grid="~ cols-[max-content_max-content_1fr_max-content] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`" border="1 transparent" transition="[background-color,border-radius,border]" relative size-full rounded-8 delay-100 data-open:z-11 bg="neutral-200 data-open:neutral-0">
+      <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatio }) in validators" :key="name" as="li" :value="address" style="--radix-accordion-content-height: 130px" relative max-w-full rounded-8 transition>
+        <AccordionTrigger rounded="8 data-open:b-0" data-open:border="1 neutral-400 b-transparent" p="x-20 lg:x-24 16" grid="~ cols-[max-content_max-content_1fr] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`" border="1 transparent" transition="[background-color,border-radius,border]" relative size-full rounded-8 delay-100 data-open:z-11 bg="neutral-200 data-open:neutral-0">
           <img :src="logo" :alt="`${name} logo`" row-span-full h-full w-40 object-contain flex="~ items-center">
-          <h3 font-semibold text-lg>
+          <h3 truncate font-semibold text-lg>
             {{ name }}
           </h3>
-          <div v-if="address === activeValidator" :key="address" size-18 shrink-0 rounded-full animate="fade-in" bg="neutral-400 hover:neutral-500" transition-colors stack>
-            <div i-nimiq:chevron-up text="10 neutral-700" />
-          </div>
-          <ValidatorTrustscore v-if="score" :score="score.total" show-border col-start--1 ml-auto text-14 op="100 data-open:0" scale="100 data-open:80" transition="[opacity,transform]" />
+          <transition mode="out-in" enter-active-class="transition-[opacity,transform] duration-400" enter-from-class="op-0 scale-0" enter-to-class="op-100 scale-100" leave-active-class="transition-[opacity,transform] duration-150" leave-from-class="op-100 scale-100" leave-to-class="op-0 scale-0">
+            <div v-if="address === activeValidator" bg="neutral-400 hover:neutral-500" size-18 shrink-0 rounded-full transition-colors transition-opacity stack>
+              <div i-nimiq:chevron-up text="10 neutral-700" />
+            </div>
+            <ValidatorTrustscore v-else-if="score" :score="score.total" show-border row-span-full col-start-3 ml-auto text-14 />
+          </transition>
           <p v-if="rewardPerAnnum" text="sm neutral-800 left" col="start-2 span-2" row-start-2 mt-0 font-normal>
             {{ percentageFormatter.format(rewardPerAnnum) }} p.a.
           </p>

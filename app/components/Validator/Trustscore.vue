@@ -29,7 +29,7 @@ function getIcon(score: number) {
 </script>
 
 <template>
-  <div :class="{ 'ring-1.5 ring-$c px-10': showBorder }" flex="~ items-center gap-4" nq-raw h-max w-max rounded-full py-6 text="$c" :style="`--c: rgb(var(--nq-${getScoreColor(score)}))`">
+  <div :class="{ 'ring-1.5 ring-$ring-c px-10': showBorder }" flex="~ items-center gap-4" nq-raw h-max w-max rounded-full py-6 text="$c" :style="`--c: rgb(var(--nq-${getScoreColor(score)})); --ring-c: rgb(var(--nq-${getScoreColor(score)}) / 0.5)`">
     <div :class="getIcon(score)" text-1.125em />
     <span text-1.5em font-semibold lh-none>{{ formatter.format(score * 5) }}</span>
   </div>

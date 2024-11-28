@@ -25,7 +25,7 @@ onMounted(updateValues)
 </script>
 
 <template>
-  <div :id flex="~ gap-2 items-center" group relative rounded-4 bg-neutral-200>
+  <div :id flex="~ gap-2 items-center" group relative w-max rounded-4 bg-neutral-200>
     <div ref="pill" absolute inset-y-0 rounded-4 bg-neutral group-has-focus-visible:ring="1.5 blue offset-1 offset-white" :style="pillStyles" ease-out transition="[left,width,background-color]" />
     <label v-for="(option, i) in options" :key="i" z-1 :data-state="isSelected(option) ? 'active' : undefined">
       <input v-model="model" type="radio" :value="option" sr-only>
