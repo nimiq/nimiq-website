@@ -14,7 +14,7 @@ function toggleShowAllValidators() {
 </script>
 
 <template>
-  <div :data-state="showAllValidators ? 'open' : 'closed'" :style="`--count: ${validators?.length}`" nq-wide relative max-h="480 data-open:none" w-full of-y-clip pb-80>
+  <div :data-state="showAllValidators ? 'open' : 'closed'" :class="showAllValidators ? 'h-auto' : 'h-400'" :style="`--count: ${validators?.length}`" nq-wide relative w-full of-y-clip pb-80 transition="height discrete">
     <div bg-gradient="to-b from-transparent via-neutral-0 to-neutral-0" :class="showAllValidators ? 'op-0' : 'op-100'" aria-hidden pointer-events-none absolute bottom--48 z-10 h-228 w-full transition-opacity />
     <button bottom="8 data-open:42" absolute inset-x-0 z-10 mx-auto transition-bottom nq-pill-secondary aria-label="Expand list" @click="toggleShowAllValidators">
       <span v-if="showAllValidators">Show less</span>
