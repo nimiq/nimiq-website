@@ -135,6 +135,7 @@ onUnmounted(() => {
 
         <svg
           class="metacloud three"
+          max-sm:hidden
           :style="{ '--translate-x': cloudTranslations.three }"
           viewBox="0 0 120 64"
           fill="none"
@@ -157,7 +158,7 @@ onUnmounted(() => {
           />
         </svg>
 
-        <svg class="metarect" viewBox="0 0 1096 658" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="metarect max-sm:aspect-9/16" viewBox="0 0 1096 658" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M0 7.99999C0 3.58171 3.58172 0 8 0H1088C1092.42 0 1096 3.58172 1096 8V650C1096 654.418 1092.42 658 1088 658H7.99997C3.58169 658 0 654.418 0 650V7.99999Z"
           />
@@ -168,10 +169,10 @@ onUnmounted(() => {
     <div class="pb-container">
       <!-- <div class="cloud-bg" /> -->
 
-      <div class="rect">
+      <div class="rect" max-sm:hidden>
         <svg viewBox="0 0 1096 658" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Safari control buttons -->
-          <g opacity="0.5">
+          <g opacity="0.5" max-sm:hidden>
             <path
               fill-rule="evenodd" clip-rule="evenodd"
               d="M21 26C23.7614 26 26 23.7614 26 21C26 18.2386 23.7614 16 21 16C18.2386 16 16 18.2386 16 21C16 23.7614 18.2386 26 21 26Z"
@@ -260,6 +261,7 @@ onUnmounted(() => {
 
   /* Element Styles */
   justify-self: unset;
+  height: 100%;
 }
 
 .metacontainer,

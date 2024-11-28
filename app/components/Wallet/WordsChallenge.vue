@@ -42,7 +42,7 @@ function reset() {
 
 <template>
   <div :style="`--c: ${wordsList.length};`" nq-wide absolute max-w-none w-full of-x-hidden>
-    <div v-if="false" relative flex="~ col gap-24" h-full>
+    <div relative flex="~ col gap-24" h-full>
       <AnimatedMarquee v-for="({ words }, key) in wordsList" :key :items="words" flex="~ gap-2" :style="`--direction: ${key % 2 === 0 ? -1 : 1}`">
         <template #default="{ item: { word } }">
           <div flex="~ gap-12 items-center" rounded-4 bg-neutral-100 p-16>
