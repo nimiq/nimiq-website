@@ -26,7 +26,7 @@ const id = `terms-note-${useId()}`
 <template>
   <div flex="~ col md:items-center" group>
     <AnimatedStakingRipple v-if="showStakingIcon" size-120 />
-    <component :is="headlineTag" nq-mt-32 inverted:text-white>
+    <component :is="headlineTag" nq-mt-32 text="inverted:white" style="text-wrap: initial">
       {{ headlineParts[0] }}
       <span bg="green/15 inverted:white/30" text="green inverted:white" data-percentage rounded-4 px-10 py-3 inline-flex="~">
         ~{{ stakingValues?.interestPerYear }}%<div i-nimiq:asterix translate-y-8 text-14 :aria-labelledby="id" /></span>

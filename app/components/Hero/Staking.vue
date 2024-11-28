@@ -12,7 +12,7 @@ defineProps<{ headline: RichTextField, cta?: LinkField }>()
     <div class="bg-linear-white-1" pointer-events-none absolute inset-0 top-200 z-1 max-w-none />
     <div class="bg-linear-white-2" pointer-events-none absolute inset-0 top-200 z-1 max-w-none />
     <HeadlineStaking :headline :cta show-staking-icon primary-pill relative z-2 />
-    <AnimatedBreathArrow z-2 nq-mt-200 max-md:self-center />
+    <AnimatedBreathArrow z-2 hidden nq-mt-200 md:block max-md:self-center />
   </section>
 </template>
 
