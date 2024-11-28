@@ -1818,7 +1818,7 @@ interface PageDocumentData {
   draft: prismic.BooleanField
 
   /**
-   * Header background color field in *Page*
+   * Header background color(Depreacted) field in *Page*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -1873,6 +1873,18 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   show_disclaimer: prismic.BooleanField
+
+  /**
+   * dark header field in *Page*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: page.darkHeader
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  darkHeader: prismic.BooleanField
 
   /**
    * Slice Zone field in *Page*

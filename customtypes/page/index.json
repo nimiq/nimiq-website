@@ -25,9 +25,10 @@
       "headerBackgroundColor": {
         "type": "Select",
         "config": {
+          "label": "Header background color(Depreacted)",
+          "placeholder": "",
           "options": ["white", "grey", "blue-dark", "blue", "green", "blue-s3"],
-          "default_value": "white",
-          "label": "Header background color"
+          "default_value": "white"
         }
       },
       "footerBackgroundColor": {
@@ -53,6 +54,15 @@
           "placeholder_true": "Yes",
           "default_value": false,
           "label": "Show Disclaimer"
+        }
+      },
+      "darkHeader": {
+        "type": "Boolean",
+        "config": {
+          "label": "dark header",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
         }
       },
       "slices": {

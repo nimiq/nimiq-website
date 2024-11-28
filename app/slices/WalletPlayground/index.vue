@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
+import { breakpointsTailwind } from '@vueuse/core'
 
 defineProps(getSliceComponentProps<Content.WalletPlaygroundSlice>())
+
+const { isMobileOrTablet } = useDevice()
+const { smaller } = useBreakpoints(breakpointsTailwind)
+const isMobile = computed(() => isMobileOrTablet || smaller('md').value)
 </script>
 
 <template>
-  <section relative nq-pb-32 nq-pt-96 children:max-w-none>
-    <!-- <div grid="~ rows-[1fr_0.8fr]" pointer-events-none absolute inset-0>
-      <div bg-purple-to-blue />
-      <div bg-blue-to-darkerblue />
-    </div> -->
+  <section relative children:max-w-none md:nq-pb-32 md:nq-pt-96>
     <AnimatedCloudyBg pointer-events-none h="[calc(100%+400px)]" top--400 max-w-screen />
-    <WalletPlayground id="wallet-playground" z-1 w-full />
+    <WalletPlaygroundMobile v-if="isMobile" />
+    <WalletPlaygroundDesktop v-else z-1 w-full />
   </section>
 </template>
 
