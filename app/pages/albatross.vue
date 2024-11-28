@@ -99,7 +99,7 @@ canSendTx.value = true
             Validator
           </h3>
           <p>
-            Validators are responsible for creating blocks and validating blocks produced by others. They are chosen according to their stake — the higher the stake the more likely they are chosen. Validators are replaced in fixed intervals, called epochs. If a validator is found to be misbehaving, the validator will be punished. There are various severities of punishment, from taking away their block reward, slashing part of their stake, all the way to on-chain jail. Misbehavior includes producing invalid blocks or more than one block at a time (fork blocks). The potential loss of some of their stake and their block reward makes sure that validators don’t misbehave.
+            Validators are responsible for creating blocks and validating blocks produced by others. They are chosen according to their stake — the higher the stake, the more likely they are chosen. Validators are replaced in fixed intervals, called epochs. If a validator is found to be misbehaving, the validator will be punished. There are various severities of punishment, from taking away their block reward, deactivating the validator, all the way to on-chain jail. Misbehavior includes producing invalid blocks or more than one block at a time (fork blocks). The potential loss of some of their block reward and jail time ensures that validators don’t misbehave.
           </p>
         </li>
         <li class="nq-prose-compact" flex="~ col gap-24" nq-pb-96 children:m-0>
