@@ -1,7 +1,7 @@
 <template>
-  <div relative>
-    <div absolute inset-0 class="bg" left="[calc(var(--px)*-1)]" w="[calc(100%+var(--px)*2)]" top--160 />
-    <WalletActionSelector w-max />
+  <div relative pb-32>
+    <div absolute inset-0 class="bg" left="[calc(var(--px)*-1)]" w="[calc(100%+var(--px)*2)]" top--160 z--1 />
+    <WalletActionSelector mx-auto w-max />
 
     <div w="[calc(100%+48px)]" relative left--24 aspect-0.7 size-full rounded-14 bg-neutral-300 p-8 op-50 backdrop-blur-3.5 nq-mt-40 style="box-shadow: inset 0px 0px 40px #FFFFFF;">
       <div size-full rounded-8 bg-white />
