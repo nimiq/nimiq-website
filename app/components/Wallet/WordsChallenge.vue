@@ -38,16 +38,20 @@ function reset() {
   isChallengeFinished.value = false
   userInputs.forEach(input => input.value = '')
 }
+
+const container = useTemplateRef<HTMLDivElement>('container')
+const containerIsVisible = ref(false)
+useIntersectionObserver(container, ([entry]) => containerIsVisible.value = entry?.isIntersecting || false)
 </script>
 
 <template>
   <div :style="`--c: ${wordsList.length};`" nq-wide absolute max-w-none w-full of-x-hidden>
     <div relative flex="~ col gap-24" h-full>
-      <AnimatedMarquee v-for="({ words }, key) in wordsList" :key :items="words" flex="~ gap-2" :style="`--direction: ${key % 2 === 0 ? -1 : 1}`">
+      <AnimatedMarquee v-for="({ words }, key) in wordsList" :key :items="words" :should-play="containerIsVisible" flex="~ gap-2" :style="`--direction: ${key % 2 === 0 ? -1 : 1}`">
         <template #default="{ item: { word } }">
           <div flex="~ gap-12 items-center" rounded-4 bg-neutral-100 p-16>
             <span text-neutral-800 font-semibold lh-none text-xl>
-              <AnimatedHyperText :text="word" />
+              <AnimatedHyperText :text="word" :should-play="containerIsVisible" />
             </span>
           </div>
         </template>
@@ -57,7 +61,7 @@ function reset() {
       </div>
     </div>
   </div>
-  <div flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" relative z-1 mx-auto max-w-492 of-hidden rounded-8 px="16 sm:64" pb-48 pt-32 shadow>
+  <div ref="container" flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" relative z-1 mx-auto max-w-492 of-hidden rounded-8 px="16 sm:64" pb-48 pt-32 shadow>
     <div :class="{ 'slide-up': isChallengeFinished }">
       <h3 text-center>
         {{ headline }}

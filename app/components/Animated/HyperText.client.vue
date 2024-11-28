@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { text, duration = 100 } = defineProps<{ text: string, duration?: number }>()
+const { text, duration = 100, shouldPlay } = defineProps<{ text: string, duration?: number, shouldPlay?: boolean }>()
 
 const alphabets = '!#$%&()_+{}|:<>?-=[]\;/'
 const displayText = ref(text.split(''))
@@ -28,6 +28,12 @@ const { pause, resume, isActive } = useIntervalFn(
     immediate: false,
   },
 )
+
+watch(() => shouldPlay, (shouldPlay) => {
+  if (shouldPlay)
+    resume()
+  else pause()
+})
 
 function startAnimation() {
   pause()
