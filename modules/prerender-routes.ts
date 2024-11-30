@@ -25,11 +25,11 @@ export async function getDynamicPages() {
   const blogPosts = await getDynamicPagesByType('blog_page', options).then(uids => uids.map(uid => `/blog${uid}`))
 
   // TODO Remove this in the future
-  // const ignorePages: string[] = ['/contact', '/community']
-  // return [...staticPages, ...pages, ...blogPosts].filter(page => !ignorePages.includes(page))
+  const ignorePages: string[] = ['/contact', '/community']
+  return [...staticPages, ...pages, ...blogPosts].filter(page => !ignorePages.includes(page))
 
-  const onlyPages = ['/', '/newsletter', '/staking', '/new-wallet', '/wallet']
-  return [...staticPages, ...pages, ...blogPosts].filter(page => onlyPages.includes(page))
+  // const onlyPages = ['/', '/newsletter', '/staking', '/new-wallet', '/wallet']
+  // return [...staticPages, ...pages, ...blogPosts].filter(page => onlyPages.includes(page))
 }
 
 async function getDynamicPagesOptions() {
