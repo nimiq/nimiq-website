@@ -10,7 +10,7 @@ const colors = getColorClass(bgColor)
 
 const rows = computed(() => 5)
 const { width } = useWindowSize()
-const columns = computed(() => (Math.floor(width.value / 140) + 4) & ~1)
+const columns = ref(0)
 
 function calculateOpacity(rowIndex: number, colIndex: number) {
   const normalizedRow = rowIndex / (rows.value - 1)
@@ -30,8 +30,13 @@ const socialCoords = {
 }
 const socials = Object.keys(socialCoords) as (keyof typeof socialCoords)[]
 
-const items = computed(() => {
+const items = ref<{ rowIndex: number, colIndex: number, opacity: number, social: 'x' | 'youtube' | 'facebook' | undefined }[]>([])
+
+onMounted(() => {
+  if (import.meta.server)
+    return
   const result = []
+  columns.value = (Math.floor(width.value / 140) + 4) & ~1
   for (let rowIndex = 0; rowIndex < rows.value; rowIndex++) {
     const isEvenRow = rowIndex % 2 === 0
     const startCol = isEvenRow ? 0 : 1
@@ -43,7 +48,7 @@ const items = computed(() => {
       result.push({ rowIndex, colIndex, opacity, social })
     }
   }
-  return result
+  items.value = result
 })
 </script>
 
