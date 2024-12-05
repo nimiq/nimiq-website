@@ -168,7 +168,8 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
-      routes: ['/sitemap.xml'],
+      routes: ['/sitemap.xml', '/', '/newsletter', '/staking', '/new-wallet', '/wallet'],
+      crawlLinks: false,
       ignore: ['/blog', '/nimiq-pay'], // Temporary until we can deploy more than 100 files in Cloudflare
     },
   },

@@ -12,6 +12,7 @@ export default defineNuxtModule({
     name: 'nuxt-prerender-routes',
   },
   async setup(_options, nuxt) {
+    return
     const pages = await getDynamicPages()
     addPrerenderRoutes(pages)
     nuxt.options.sitemap.urls = pages

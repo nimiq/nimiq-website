@@ -14,7 +14,7 @@ useHead({
 
 const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
 
-defineOgImageComponent('DefaultImage')
+// defineOgImageComponent('DefaultImage')
 </script>
 
 <template>
