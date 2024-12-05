@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { NuxtLink } from '#components'
 import { computed } from 'vue'
 
 const { bgColor, withSocials = false } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue', withSocials?: boolean }>()
@@ -124,16 +123,16 @@ onMounted(() => {
     animation: pulse 2s infinite;
   }
 
-  > * {
+  > :where(div, a) {
     width: var(--hexagon-w);
     height: var(--hexagon-h);
     grid-row: span 2;
     grid-column: span 2;
-  }
 
-  > *:nth-child(even) {
-    margin-top: var(--hexagon-h-half);
-    grid-row-end: span 3;
+    &:nth-child(even) {
+      margin-top: var(--hexagon-h-half);
+      grid-row-end: span 3;
+    }
   }
 }
 </style>
