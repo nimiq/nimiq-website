@@ -35,7 +35,7 @@ const id = `terms-note-${useId()}`
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" inverted:text="white/80" />
     <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" :class="primaryPill ? 'nq-pill-blue' : 'nq-pill-tertiary'" nq-shadow nq-mt-48 nq-arrow nq-pill-lg md:mx-auto inverted:shadow-none />
     <small :id text="green-1100 inverted:white/80 sm:center" data-note transition-colors duration-400 nq-mt-32 sm:max-w-32ch>
-      <div i-nimiq:asterix aria-hidden text="7 sm:9" un-translate="x--8 sm:x-4 y-4 sm:y-8" /> {{ stakingValues?.stakingNote }}
+      <div aria-hidden i-nimiq:asterix text="7 sm:9" un-translate="x--8 sm:x-4 y-4 sm:y-8" /> {{ stakingValues?.stakingNote }}
     </small>
   </div>
 </template>

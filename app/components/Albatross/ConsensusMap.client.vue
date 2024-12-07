@@ -11,7 +11,7 @@ const { consensus, peers, userPeer } = storeToRefs(useNimiq())
 const tooltipPosition = ref<CSSProperties>({ transform: 'translate(0, 0)' })
 onMounted(async () => {
   await setUserPeer()
-  drawHexagonsWorldMap(canvas, { peers, userPeer })
+  drawHexagonsWorldMap(canvas, { peers, userPeer, centerOnUser: true })
   await nextTick()
   setPositionTooltip()
 })
@@ -58,22 +58,6 @@ async function connect() {
   currentFact.value = didYouKwnowThatFacts[Math.floor(Math.random() * didYouKwnowThatFacts.length)]!
   await launchNetwork()
 }
-
-// Depending where the userPeer.value.lat/lng is, we change the transform-origin
-// const transformOrigin = computed<`${'top' | 'center' | 'bottom'} ${'left' | 'center' | 'bottom'}`>(() => {
-//   if (!userPeer.value)
-//     return 'center center'
-//   const { lat, lng } = userPeer.value
-//   const x: 'left' | 'center' | 'right' = lng < -90 ? 'left' : lng > 90 ? 'right' : 'center'
-//   const y: 'top' | 'center' | 'bottom' = lat < -45 ? 'top' : lat > 45 ? 'bottom' : 'center'
-//   return `${y} ${x}`
-// })
-
-// loop over the three state
-// useIntervalFn(() => {
-//   const index = states.indexOf(state.value!)
-//   state.value = states[(index + 1) % states.length]
-// }, 2000)
 </script>
 
 <template>
@@ -141,14 +125,11 @@ async function connect() {
 <style scoped>
 .curtain {
   --curtain-size: 128px;
-  background-image: linear-gradient(
-    to right,
-    rgba(var(--nq-neutral-0) / 1) 0%,
-    rgba(var(--nq-neutral-0) / 1) calc(var(--curtain-size) / 2),
-    rgba(var(--nq-neutral-0) / 0) var(--curtain-size),
-    rgba(var(--nq-neutral-0) / 1) calc(100% - var(--curtain-size)),
-    rgba(var(--nq-neutral-0) / 0) calc(100% - (calc(var(--curtain-size) / 2))),
-    rgba(var(--nq-neutral-0) / 1) 100%
+  background-image: radial-gradient(
+    circle at center,
+    rgb(var(--nq-neutral-0) / 0) 0%,
+    rgb(var(--nq-neutral-0) / 0) calc(100% - var(--curtain-size)),
+    rgb(var(--nq-neutral-0) / 1) 100%
   );
 }
 </style>

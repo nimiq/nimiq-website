@@ -18,6 +18,9 @@
       <div self-start="!" justify-self-end="!" relative z-10 mr--18 mt-11 w-max>
         <AnimatedFloatingStars translate="-50%" absolute left="50%" top="50%" z-1 />
         <div bg="#E9B213" text="lg white" rounded="6 br-0" relative z-2 ml-auto w-max px-20 py-16 font-semibold>
+          <div i-nimiq:flags-vo-hexagon />
+          <div i-nimiq:flags-it-hexagon />
+          <div i-nimiq:bell />
           Try live preview
         </div>
       </div>

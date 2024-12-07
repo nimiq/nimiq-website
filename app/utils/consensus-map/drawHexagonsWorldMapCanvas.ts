@@ -242,11 +242,18 @@ export interface DrawHexagonsWorldMapOptions {
   /* */
   userPeer: Ref<Peer | undefined>
   peers: Ref<Peer[]>
+
+  /**
+   * Whether to center the map on the user's location
+   *
+   * @default false
+   */
+  centerOnUser?: boolean
 }
 
 export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasElement, HTMLCanvasElement>>, options: DrawHexagonsWorldMapOptions) {
   const container = computed(() => canvas.value?.parentElement as HTMLElement)
-  const { userPeer, peers } = options
+  const { userPeer, peers, centerOnUser = false } = options
   const { height: containerHeight } = useElementSize(container)
 
   const context = computed(() => canvas.value?.getContext('2d'))
@@ -289,14 +296,25 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
   function resetCanvas() {
     if (!canvas.value || !context.value)
       return
+
     canvas.value.width = Math.round((containerHeight.value * (HEXAGONS_WORLD_MAP_ASPECT_RATIO))) * pixelRatio.value
     canvas.value.height = Math.round(containerHeight.value) * pixelRatio.value
 
     const scale = (canvas.value.height) / (2 * HEXAGONS_WORLD_MAP_HEIGHT_PIXELS)
+    context.value!.resetTransform()
     context.value!.scale(scale, scale)
-
-    // Clear and redraw
     context.value!.clearRect(0, 0, context.value!.canvas.width, context.value!.canvas.height)
+
+    // If we have a user hexagon and the option to center on the user is enabled, center the map
+    if (centerOnUser && userHexagon.value) {
+      const userX = userHexagon.value.left + (HEXAGONS_WORLD_MAP_SCALE / 2)
+      const userY = userHexagon.value.top + (HEXAGONS_WORLD_MAP_SCALE / 2)
+      const centerX = (canvas.value.width / pixelRatio.value) / (2 * scale)
+      const centerY = (canvas.value.height / pixelRatio.value) / (2 * scale)
+
+      // Translate so that the user's hexagon is at the center
+      context.value!.translate(centerX - userX, centerY - userY)
+    }
   }
 
   resetCanvas()

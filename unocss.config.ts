@@ -51,6 +51,10 @@ export default defineConfig({
     presetEasingGradient(),
     presetIcons({
       collections: {
+        nimiq: async () => {
+          const content = await readFile('./node_modules/@iconify-json/nimiq/dist/icons.json', 'utf8')
+          return JSON.parse(content)
+        },
         continents: {
           'africa': () => readFile('./public/assets/continents/africa.svg', 'utf-8'),
           'south-america': () => readFile('./public/assets/continents/south-america.svg', 'utf-8'),
