@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CSSProperties } from 'vue'
-import { drawHexagonsWorldMap, HEXAGONS_WORLD_MAP_ASPECT_RATIO, HEXAGONS_WORLD_MAP_HEIGHT, HEXAGONS_WORLD_MAP_WIDTH } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
+import type { WorldMapHexagon } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
+import { drawHexagonsWorldMap, HEXAGONS_WORLD_MAP_ASPECT_RATIO, HEXAGONS_WORLD_MAP_HEIGHT_PIXELS, HEXAGONS_WORLD_MAP_SCALE } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
 
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
 
@@ -11,17 +12,32 @@ const { consensus, peers, userPeer } = storeToRefs(useNimiq())
 const tooltipPosition = ref<CSSProperties>({ transform: 'translate(0, 0)' })
 onMounted(async () => {
   await setUserPeer()
-  drawHexagonsWorldMap(canvas, { peers, userPeer, centerOnUser: true })
-  await nextTick()
-  setPositionTooltip()
+  const { userHexagon } = drawHexagonsWorldMap(canvas, { peers, userPeer, centerOnUser: true })
+  setPositionTooltip(userHexagon)
 })
 
-async function setPositionTooltip() {
+const { pixelRatio } = useDevicePixelRatio()
+
+async function setPositionTooltip(userHexagon: Ref<WorldMapHexagon | undefined>) {
   await nextTick()
-  const { x, y } = userPeer.value!
-  const newX = ((x * canvas.value.width) / HEXAGONS_WORLD_MAP_WIDTH) + 4
-  const newY = ((y * canvas.value.height) / HEXAGONS_WORLD_MAP_HEIGHT) - 36
-  tooltipPosition.value = { transform: `translate(${newX}px, ${newY}px)` }
+  if (!userPeer.value || !userHexagon.value)
+    return
+
+  // Compute original hex pixel position
+  const userX = userHexagon.value.left + (HEXAGONS_WORLD_MAP_SCALE / 2)
+  const userY = userHexagon.value.top + (HEXAGONS_WORLD_MAP_SCALE / 2)
+
+  // Use the same logic as in resetCanvas()
+  const scale = (canvas.value.height) / (2 * HEXAGONS_WORLD_MAP_HEIGHT_PIXELS)
+  const centerX = (canvas.value.width / pixelRatio.value) / (2 * scale)
+  const centerY = (canvas.value.height / pixelRatio.value) / (2 * scale)
+
+  // Apply transformations
+  const finalX = scale * (userX + (centerX - userX)) - 6
+  const finalY = scale * (userY + (centerY - userY)) + 32
+
+  // Add any tooltip offset as needed, for example +4 in X and -36 in Y:
+  tooltipPosition.value = { transform: `translate(${finalX + 4}px, ${finalY - 36}px)` }
 }
 
 useEventListener(window, 'resize', setPositionTooltip)
@@ -63,28 +79,28 @@ async function connect() {
 <template>
   <div of-hidden>
     <div relative xl:w-65vw :style="`aspect-ratio: ${HEXAGONS_WORLD_MAP_ASPECT_RATIO}`">
-      <div absolute z-1 size-full class="curtain" />
+      <div absolute z-1 size-full xl:max-w-50vw class="curtain" />
       <div absolute size-full>
         <canvas ref="canvas" />
         <div v-if="showTooltip" absolute left-0 top-0 z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
           <div relative left="[calc(-50%+2px)]" mt-16 flex="~ col items-center">
             <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" i-nimiq:tooltip-triangle text-12 />
-            <Hero v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" class="bg-gradient-blue" top--1 rounded-full transition-colors>
+            <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" top--1 rounded-full transition-colors flex="~ items-center" bg-gradient-blue>
               <span px-16 py-8 text-white font-bold>
                 {{ thisIsYou }}
               </span>
-              <Hero layout-id="connect-label" as="button" m-6 rounded-full bg-white px-12 py-5 text-blue font-bold @click="connect">
+              <div layout-id="connect-label" as="button" m-6 rounded-full bg-white px-12 py-5 text-blue font-bold @click="connect">
                 {{ connectLabel }}
-              </Hero>
-            </Hero>
-            <Hero v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors>
-              <Hero layout-id="connect-label" as="span">
+              </div>
+            </div>
+            <div v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors>
+              <div layout-id="connect-label" as="span">
                 Connecting
-              </Hero>
+              </div>
               <div i-nimiq:spinner animate="ease-out scale-in delay-2s" shrink-0 />
-            </Hero>
-            <Hero v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" top--3 z-3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none ring-3 ring-green transition-colors>
-              <Hero layout-id="connect-label" as="span">
+            </div>
+            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" top--3 z-3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none ring-3 ring-green transition-colors>
+              <div layout-id="connect-label" as="span">
                 <div flex="~ items-center justify-between gap-8">
                   <span>
                     Connected
@@ -93,8 +109,8 @@ async function connect() {
                     <div i-nimiq:cross />
                   </button>
                 </div>
-              </Hero>
-            </Hero>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -125,11 +141,19 @@ async function connect() {
 <style scoped>
 .curtain {
   --curtain-size: 128px;
-  background-image: radial-gradient(
-    circle at center,
-    rgb(var(--nq-neutral-0) / 0) 0%,
-    rgb(var(--nq-neutral-0) / 0) calc(100% - var(--curtain-size)),
-    rgb(var(--nq-neutral-0) / 1) 100%
-  );
+  background-image: linear-gradient(
+      to bottom,
+      rgb(var(--nq-neutral-0) / 1) 0%,
+      rgb(var(--nq-neutral-0) / 0) var(--curtain-size),
+      rgb(var(--nq-neutral-0) / 0) calc(100% - var(--curtain-size)),
+      rgb(var(--nq-neutral-0) / 1) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgb(var(--nq-neutral-0) / 1) 0%,
+      rgb(var(--nq-neutral-0) / 0) var(--curtain-size),
+      rgb(var(--nq-neutral-0) / 0) calc(100% - var(--curtain-size)),
+      rgb(var(--nq-neutral-0) / 1) 100%
+    );
 }
 </style>

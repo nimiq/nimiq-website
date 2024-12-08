@@ -37,7 +37,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
 
         <div flex="~ gap-8 items-start" :class="{ 'nq-mt-24': !twoColumns, 'row-start-2 col-start-2 nq-mt-32': twoColumns }">
           <div size-28 shrink-0 rounded-full bg-gradient-blue stack>
-            <div text="14 white" :class="{ 'i-nimiq:bolt': crypto === 'NIM', 'i-nimiq:arrows-to-sides': crypto === 'BTC', 'i-nimiq:balance': crypto === 'USDC/USDT' }" />
+            <div text="14 white" :class="{ 'i-nimiq:bolt': crypto === 'NIM', 'i-nimiq:arrows-to-sides scale-120': crypto === 'BTC', 'i-nimiq:balance': crypto === 'USDC/USDT' }" />
           </div>
           <p whitespace-nowrap>
             {{ secondFeature }}
@@ -46,7 +46,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
 
         <div flex="~ gap-8 items-center" nq-mt-12>
           <div size-28 shrink-0 rounded-full bg-gradient-blue stack>
-            <div text="16 white" :class="{ 'i-nimiq:leaft-2-filled': crypto === 'NIM', 'i-nimiq:digital-gold': crypto === 'BTC', 'i-nimiq:arrows-to-center-triangle': crypto === 'USDC/USDT' }" />
+            <div text="16 white" :class="{ 'i-nimiq:leaf-2-filled scale-80 bottom--1 relative': crypto === 'NIM', 'i-nimiq:digital-gold scale-120 right--1 relative': crypto === 'BTC', 'i-nimiq:arrows-to-center-triangle': crypto === 'USDC/USDT' }" />
           </div>
           <p whitespace-nowrap>
             {{ thirdFeature }}

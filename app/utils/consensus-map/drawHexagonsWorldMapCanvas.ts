@@ -45,7 +45,7 @@ function paintNormalHexagon(dc: CanvasRenderingContext2D, _self: WorldMapHexagon
   dc.fillStyle = 'rgba(255,255,255,0.1)'
 }
 
-class WorldMapHexagon {
+export class WorldMapHexagon {
   public position: { x: number, y: number } = { x: 0, y: 0 }
   public paintHexagon = paintNormalHexagon
 
@@ -365,6 +365,10 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
     draw()
     // return [...addedHexagons, ...waitingForRemoval]
   }, { deep: true })
+
+  return {
+    userHexagon,
+  }
 
   // watchArray(peers, (_newPeers, _oldPeers, _addedPeers, removedPeers) => {
   //   console.log({ removedPeers }, 'Removing')
