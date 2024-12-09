@@ -20,7 +20,9 @@ export interface Validator {
 
 interface DistributionResponse { staked: number, circulating: number, stakedRatio: number }
 
-export const useValidatorStore = defineStore('validators', () => {
+const formatter = new Intl.NumberFormat('en-US', { style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 1 })
+
+export const useStakingStore = defineStore('staking', () => {
   const { data: distribution } = useAsyncData('network_distribution', () => $fetch<DistributionResponse>(`${useRuntimeConfig().public.validatorsApi}/api/v1/distribution`))
   const stakedSupplyRatio = computed(() => distribution?.value?.stakedRatio || 0)
 
@@ -31,13 +33,20 @@ export const useValidatorStore = defineStore('validators', () => {
     return v
   }))
 
+  const { client } = usePrismic()
+  const { data: stakingValues } = useAsyncData('stakingValues', () => client.getByType('stakingValues'), { transform: data => data.results.at(0)?.data })
+  const stakingRewardPerAnnum = computed(() => calculateStakingRewards({ stakedSupplyRatio: stakedSupplyRatio.value }).gainRatio)
+  const rewardPerAnnumPercentage = computed(() => formatter.format(stakingRewardPerAnnum.value))
+
   return {
     distribution,
     validators,
     stakedSupplyRatio,
+    stakingValues,
+    rewardPerAnnumPercentage,
   }
 })
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useValidatorStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useStakingStore, import.meta.hot))
 }

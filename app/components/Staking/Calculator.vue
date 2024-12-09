@@ -28,7 +28,7 @@ enum StakeSupply {
   Live = 'Live',
 }
 
-const { stakedSupplyRatio } = storeToRefs(useValidatorStore())
+const { stakedSupplyRatio } = storeToRefs(useStakingStore())
 const stakedSupplyOptions = computed(() => {
   return stakedSupplyRatio.value
     ? [StakeSupply.Low, StakeSupply.Middle, StakeSupply.High]

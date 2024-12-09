@@ -116,7 +116,7 @@ async function connect() {
       </div>
       <!-- </transition> -->
 
-      <div v-if="consensus !== 'idle'" absolute inset-x-0 bottom-0 z-2 mx-auto h-auto max-w-400 rounded-6 bg-white bg-op-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up both delay-1250ms">
+      <div v-if="consensus !== 'idle'" absolute inset-x-0 bottom="0 xl:32" z-2 mx-auto h-auto max-w-400 rounded-6 bg-white bg-op-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up both delay-1250ms">
         <transition enter-active-class="transition duration-200 ease-out" enter-from-class="translate-y--1lh" enter-to-class="translate-y-0" leave-active-class="transition duration-200 ease-out" leave-from-class="translate-y-0" leave-to-class="translate-y--1lh">
           <p v-if="consensus === 'connecting'" text="neutral-800 11 center" w="[calc(100%-48px)]" absolute top--1.4lh nq-label>
             Did you know that

@@ -4,7 +4,7 @@ import type { Content } from '@prismicio/client'
 const props = defineProps(getSliceComponentProps<Content.SimpleHeadlineSlice>())
 const bgColor = getColorClass(props.slice.primary.bgColor)
 
-const { stakingValues } = useGlobalContent()
+const { stakingValues } = useStakingStore()
 const isLastSlice = computed(() => props.slices.indexOf(props.slice) === props.slices.length - 1)
 
 const isStakingSlice = computed(() => stakingValues?.template && getText(props.slice.primary.headline).includes(stakingValues.template))

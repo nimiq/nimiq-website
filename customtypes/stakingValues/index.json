@@ -13,13 +13,6 @@
           "placeholder": ""
         }
       },
-      "interestPerYear": {
-        "type": "Number",
-        "config": {
-          "label": "Interest per year",
-          "placeholder": ""
-        }
-      },
       "template": {
         "type": "Text",
         "config": {

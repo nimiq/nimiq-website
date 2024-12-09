@@ -5,7 +5,7 @@ import type { DonutDatum } from '../Donut.client.vue'
 
 defineProps<{ info: RichTextField }>()
 
-const { stakedSupplyRatio } = storeToRefs(useValidatorStore())
+const { stakedSupplyRatio } = storeToRefs(useStakingStore())
 const locale = useLocale()
 const formatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const datum = computed(() => {

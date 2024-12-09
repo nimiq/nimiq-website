@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { validators } = storeToRefs(useValidatorStore())
+const { validators } = storeToRefs(useStakingStore())
 
 const percentageFormatter = new Intl.NumberFormat('en-US', { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 

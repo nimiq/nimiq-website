@@ -2291,17 +2291,6 @@ interface StakingValuesDocumentData {
   stakingNote: prismic.KeyTextField
 
   /**
-   * Interest per year field in *Staking Values*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: stakingValues.interestPerYear
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#number
-   */
-  interestPerYear: prismic.NumberField
-
-  /**
    * Template field in *Staking Values*
    *
    * - **Field Type**: Text

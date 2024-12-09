@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
 import type { DonutDatum } from '../Donut.client.vue'
-import { useValidatorStore } from '~/stores/validators'
 
 defineProps<{ info: RichTextField }>()
 
@@ -9,7 +8,7 @@ const locale = useLocale()
 const percentageFormatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const amountFormatter = new Intl.NumberFormat(locale.value, { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0 })
 
-const { validators } = storeToRefs(useValidatorStore())
+const { validators } = storeToRefs(useStakingStore())
 
 const data = computed(() => {
   if (!validators.value)
