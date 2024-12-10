@@ -14,12 +14,15 @@ const data = computed(() => {
   if (!validators.value)
     return []
   const validatorsList: (DonutDatum & Validator)[] = []
-  const smallValidators = { color: 'rgb(var(--nq-neutral-400))', value: 0, name: 'Others', logo: '' }
+  const smallValidators = { color: 'rgb(var(--nq-neutral-400))', value: 0, name: 'Others', logo: '', balance: 0 }
   for (const { dominanceRatio, accentColor, ...v } of validators.value) {
-    if (dominanceRatio < 0.02)
+    if (dominanceRatio < 0.02) {
       smallValidators.value += dominanceRatio
-    else
+      smallValidators.balance += v.balance
+    }
+    else {
       validatorsList.push({ color: accentColor, value: dominanceRatio, dominanceRatio, accentColor, ...v })
+    }
   }
   return smallValidators.value > 0 ? [...validatorsList, smallValidators] : validatorsList
 })
@@ -28,7 +31,7 @@ const data = computed(() => {
 <template>
   <div flex="~ col items-center">
     <Donut :data="data!">
-      <template #default="{ color, value, name, logo }">
+      <template #default="{ color, value, name, logo, balance }">
         <div :key="name" :style="{ '--c': color }" ring="1.5 $c" data-tooltip-container w-max rounded-8 bg-neutral-0 p-16 text-neutral font-semibold flex="~ items-center gap-16" shadow>
           <img v-if="logo" :src="logo" size-40 loading="lazy">
           <div flex="~ gap-2 col" font-semibold lh-none text-sm>
@@ -40,7 +43,7 @@ const data = computed(() => {
                 {{ percentageFormatter.format(value) }}
               </span>
               <p text="green xs" font-bold lh-none>
-                {{ amountFormatter.format(120000) }} NIM
+                {{ amountFormatter.format(balance) }} NIM
               </p>
             </div>
           </div>
