@@ -16,6 +16,7 @@ export interface Validator {
   logo?: string
   dominanceRatio: number
   rewardPerAnnum?: number
+  balance: number
 }
 
 interface DistributionResponse { staked: number, circulating: number, stakedRatio: number }
