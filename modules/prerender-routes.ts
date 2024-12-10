@@ -20,18 +20,19 @@ export default defineNuxtModule({
 })
 
 export async function getDynamicPages() {
-  const options = await getDynamicPagesOptions()
-  const staticPages = ['/']
-  const pages = await getDynamicPagesByType('page', options)
+  // const options = await getDynamicPagesOptions()
+  // const staticPages = ['/']
+  // const pages = await getDynamicPagesByType('page', options)
 
-  const blogPosts = await getDynamicPagesByType('blog_page', options).then(uids => uids.map(uid => `/blog${uid}`))
+  // const blogPosts = await getDynamicPagesByType('blog_page', options).then(uids => uids.map(uid => `/blog${uid}`))
 
   // TODO Remove this in the future
   // const ignorePages: string[] = ['/contact', '/community']
   // return [...staticPages, ...pages, ...blogPosts].filter(page => !ignorePages.includes(page))
 
-  const onlyPages = ['/', '/newsletter', '/staking', '/new-wallet', '/wallet']
-  return [...staticPages, ...pages, ...blogPosts].filter(page => onlyPages.includes(page))
+  const onlyPages = ['/', '/newsletter', '/staking', '/new-wallet', '/wallet', '/home']
+  // return [...staticPages, ...pages, ...blogPosts].filter(page => onlyPages.includes(page))
+  return onlyPages
 }
 
 async function getDynamicPagesOptions() {
