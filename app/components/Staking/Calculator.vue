@@ -30,7 +30,7 @@ enum StakeSupply {
 
 const { stakedSupplyRatio } = storeToRefs(useStakingStore())
 const stakedSupplyOptions = computed(() => {
-  return stakedSupplyRatio.value
+  return !stakedSupplyRatio.value
     ? [StakeSupply.Low, StakeSupply.Middle, StakeSupply.High]
     : [StakeSupply.Low, StakeSupply.Middle, StakeSupply.High, StakeSupply.Live]
 })
