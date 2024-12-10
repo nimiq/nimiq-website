@@ -10,7 +10,8 @@ defineProps(getSliceComponentProps<Content.AppsShowcaseSlice>())
       <li
         v-for="({ description, highlight, item, preview, title, link }, i) in slice.primary.apps" :key="i" :class="{ 'lg:col-span-full': highlight }"
       >
-        <PrismicLink internal-component="a" p="32 md:40 lg:48 b-0" :field="link" of-hidden nq-hoverable bg="gradient-subtle-neutral hocus:neutral-0" style="--ring-color: transparent" grid="~ gap-x-48 lg:gap-x-80 md:rows-[auto_auto_1fr] md:cols-[221px_1fr]" :class="{ 'lg:rows-[repeat(4,auto)] lg:cols-1': !highlight }">
+        <!-- TODO Should be gradient-subtle-neutral -->
+        <PrismicLink internal-component="a" p="32 md:40 lg:48 b-0" :field="link" of-hidden nq-hoverable bg="neutral-300 hocus:neutral-0" style="--ring-color: transparent" grid="~ gap-x-48 lg:gap-x-80 md:rows-[auto_auto_1fr] md:cols-[221px_1fr]" :class="{ 'lg:rows-[repeat(4,auto)] lg:cols-1': !highlight }">
           <div v-if="item === 'Nimiq Pay'" size="48 lg:56" rounded-12 bg-gradient-gold grid="~ place-content-center" :class="{ 'lg:mx-auto': !highlight, 'max-xl:row-span-ful': highlight }">
             <div i-nimiq:logos-nimiq-pay-vertical-mono text="32 [#ededee]" />
           </div>
