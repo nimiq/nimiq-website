@@ -119,7 +119,7 @@ export default defineNuxtConfig({
     public: {
       clientNetwork: 'main-albatross',
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
-      validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || '',
+      validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || 'https://validators-api-mainnet.nuxt.dev',
       supabase: {
         url: process.env.NUXT_PUBLIC_SUPABASE_URL,
         key: process.env.NUXT_PUBLIC_SUPABASE_KEY,
