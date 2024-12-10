@@ -24,7 +24,7 @@ const formatter = new Intl.NumberFormat('en-US', { style: 'percent', minimumFrac
 
 export const useStakingStore = defineStore('staking', () => {
   const { data: distribution } = useAsyncData('network_distribution', () => $fetch<DistributionResponse>(`${useRuntimeConfig().public.validatorsApi}/api/v1/distribution`))
-  const stakedSupplyRatio = computed(() => distribution?.value?.stakedRatio || 0)
+  const stakedSupplyRatio = computed(() => distribution?.value?.stakedRatio || 0.51)
 
   const { data: validatorsApi } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators`))
 
