@@ -26,7 +26,7 @@ export const useStakingStore = defineStore('staking', () => {
   const { data: distribution } = useAsyncData('network_distribution', () => $fetch<DistributionResponse>(`${useRuntimeConfig().public.validatorsApi}/api/v1/distribution`))
   const stakedSupplyRatio = computed(() => distribution?.value?.stakedRatio || 0.51)
 
-  const { data: validatorsApi } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators`))
+  const { data: validatorsApi } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators?payout-type=restake`))
 
   const validators = computed(() => validatorsApi.value?.map((v) => {
     v.rewardPerAnnum = calculateStakingRewards({ fee: v.fee, stakedSupplyRatio: stakedSupplyRatio.value }).gainRatio

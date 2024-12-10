@@ -1,11 +1,19 @@
 <script setup lang="ts">
+import { breakpointsTailwind } from '@vueuse/core'
+
 const { validators } = storeToRefs(useStakingStore())
 
 const percentageFormatter = new Intl.NumberFormat('en-US', { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
 const activeValidator = ref<string>()
 
+const { smaller } = useBreakpoints(breakpointsTailwind)
+
 const showAllValidators = ref(false)
+function handleTriggerClick() {
+  if (smaller('xl'))
+    showAllValidators.value = true
+}
 function toggleShowAllValidators() {
   showAllValidators.value = !showAllValidators.value
   if (!showAllValidators.value)
@@ -14,7 +22,7 @@ function toggleShowAllValidators() {
 </script>
 
 <template>
-  <div :data-state="showAllValidators ? 'open' : 'closed'" :class="showAllValidators ? 'h-auto' : 'h-400'" :style="`--count: ${validators?.length}`" nq-wide relative w-full of-y-clip pb-80 transition="height discrete">
+  <div :data-state="showAllValidators ? 'open' : 'closed'" :class="showAllValidators ? 'h-auto' : 'h-400 of-y-clip'" :style="`--count: ${validators?.length}`" nq-wide relative w-full pb-80 transition="height discrete">
     <div bg-gradient="to-b from-transparent via-neutral-0 to-neutral-0" :class="showAllValidators ? 'op-0' : 'op-100'" aria-hidden pointer-events-none absolute bottom--48 z-10 h-228 w-full transition-opacity />
     <button bottom="8 data-open:42" absolute inset-x-0 z-10 mx-auto transition-bottom nq-pill-secondary aria-label="Expand list" @click="toggleShowAllValidators">
       <span v-if="showAllValidators">Show less</span>
@@ -22,7 +30,7 @@ function toggleShowAllValidators() {
     </button>
     <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full transition-height>
       <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatio }) in validators" :key="name" as="li" :value="address" style="--radix-accordion-content-height: 130px" relative max-w-full rounded-8 transition>
-        <AccordionTrigger rounded="8 data-open:b-0" data-open:border="1 neutral-400 b-transparent" p="x-20 lg:x-24 16" grid="~ cols-[max-content_max-content_1fr] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`" border="1 transparent" transition="[background-color,border-radius,border]" relative size-full rounded-8 delay-100 data-open:z-11 bg="neutral-200 data-open:neutral-0">
+        <AccordionTrigger rounded="8 data-open:b-0" data-open:border="1 neutral-400 b-transparent" p="x-20 lg:x-24 16" grid="~ cols-[max-content_max-content_1fr] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`" border="1 transparent" transition="[background-color,border-radius,border]" relative size-full rounded-8 delay-100 data-open:z-11 bg="neutral-200 data-open:neutral-0" @click="handleTriggerClick">
           <img :src="logo" :alt="`${name} logo`" row-span-full h-full w-40 object-contain flex="~ items-center">
           <h3 truncate font-semibold text-lg>
             {{ name }}
@@ -44,7 +52,7 @@ function toggleShowAllValidators() {
             <h4 text-16>
               Estimated yearly rewards
             </h4>
-            <p v-if="rewardPerAnnum" font-semibold text="sm neutral right">
+            <p v-if="rewardPerAnnum !== undefined" font-semibold text="sm neutral right">
               {{ percentageFormatter.format(rewardPerAnnum) }}
             </p>
             <h5 font-semibold text-xs>
