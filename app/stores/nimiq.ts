@@ -77,9 +77,9 @@ export const useNimiq = defineStore('nimiq', () => {
     unwatch.value = () => Promise.all([removeConsensusListener, removeHeadListener, removePeerChanged])
   }
 
-  async function disconnect() {
-    client.value?.disconnectNetwork()
-    peers.value = []
+  async function disconnect(timeout = 10000) {
+    await client.value?.disconnectNetwork()
+    await until(peers.value.length).toBe(0, { timeout })
   }
 
   async function setUserPeer() {
