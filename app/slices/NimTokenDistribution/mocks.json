@@ -1,0 +1,57 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "item": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "color",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "gold",
+                  "type": "Select"
+                }
+              ],
+              [
+                "title",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "class",
+                  "type": "Text"
+                }
+              ],
+              [
+                "percentage",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "59",
+                  "type": "Number"
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Fugiat commodo sunt veniam labore sunt labore eiusmod elit aliquip anim est exercitation nulla. Proident commodo dolore veniam elit deserunt nulla."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  }
+]

@@ -33,6 +33,9 @@ export const components = defineSliceZoneComponents({
   currency_comparison: defineAsyncComponent(
     () => import('./CurrencyComparison/index.vue'),
   ),
+  exchanges_grid: defineAsyncComponent(
+    () => import('./ExchangesGrid/index.vue'),
+  ),
   exchanges_showcase: defineAsyncComponent(
     () => import('./ExchangesShowcase/index.vue'),
   ),
@@ -63,6 +66,12 @@ export const components = defineSliceZoneComponents({
   ),
   newsletter_subscription: defineAsyncComponent(
     () => import('./NewsletterSubscription/index.vue'),
+  ),
+  nim_token_distribution: defineAsyncComponent(
+    () => import('./NimTokenDistribution/index.vue'),
+  ),
+  nimiq_wallet_hoverable: defineAsyncComponent(
+    () => import('./NimiqWalletHoverable/index.vue'),
   ),
   pill_link: defineAsyncComponent(() => import('./PillLink/index.vue')),
   podcast_platforms: defineAsyncComponent(
@@ -128,7 +137,9 @@ export const components = defineSliceZoneComponents({
   wallet_playground: defineAsyncComponent(
     () => import('./WalletPlayground/index.vue'),
   ),
-  wallet_words_challenge: defineAsyncComponent(() => import('./WalletWordsChallenge/index.vue')),
+  wallet_words_challenge: defineAsyncComponent(
+    () => import('./WalletWordsChallenge/index.vue'),
+  ),
   whitepaper_slice: defineAsyncComponent(
     () => import('./WhitepaperSlice/index.vue'),
   ),

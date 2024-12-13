@@ -155,5 +155,62 @@
         "value": []
       }
     ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "buyAndSell",
+    "primary": {
+      "headline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Ut reprehenderit commodo ullamco sint dolor deserunt culpa ea in."
+            }
+          }
+        ]
+      },
+      "cta": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://prismic.io",
+          "text": "meet"
+        }
+      },
+      "features": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "icon",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "root",
+                  "type": "Text"
+                }
+              ],
+              [
+                "description",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "arrive",
+                  "type": "Text"
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
   }
 ]

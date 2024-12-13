@@ -440,6 +440,49 @@ export type ChildPageDocument<Lang extends string = string> =
     Lang
   >
 
+/**
+ * Content for Exchange documents
+ */
+interface ExchangeDocumentData {
+  /**
+   * Logo field in *Exchange*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exchange.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>
+
+  /**
+   * Name field in *Exchange*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: exchange.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField
+}
+
+/**
+ * Exchange document from Prismic
+ *
+ * - **API ID**: `exchange`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ExchangeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ExchangeDocumentData>,
+    'exchange',
+    Lang
+  >
+
 type HomeDocumentDataBodySlice =
   | CryptoMapContinentSelectorSlice
   | ZigZagContentSlice
@@ -1739,6 +1782,9 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | NimiqWalletHoverableSlice
+  | NimTokenDistributionSlice
+  | ExchangesGridSlice
   | VerticalVideoSlice
   | ValidatorListSlice
   | StakingFaqSlice
@@ -2336,6 +2382,7 @@ export type AllDocumentTypes =
   | AlbatrossSingleTypeDocument
   | BlogPageDocument
   | ChildPageDocument
+  | ExchangeDocument
   | HomeDocument
   | Home2024Document
   | NavigationDocument
@@ -2803,6 +2850,31 @@ export interface BannerSliceSliceStakingPrimaryRequirementsItem {
 }
 
 /**
+ * Item in *BannerSlice → BuyAndSell → Primary → Features*
+ */
+export interface BannerSliceSliceBuyAndSellPrimaryFeaturesItem {
+  /**
+   * icon field in *BannerSlice → BuyAndSell → Primary → Features*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.buyAndSell.primary.features[].icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  icon: prismic.KeyTextField
+
+  /**
+   * description field in *BannerSlice → BuyAndSell → Primary → Features*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.buyAndSell.primary.features[].description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField
+}
+
+/**
  * Primary content in *BannerSlice → Default → Primary*
  */
 export interface BannerSliceSliceDefaultPrimary {
@@ -2981,11 +3053,62 @@ export type BannerSliceSliceStaking = prismic.SharedSliceVariation<
 >
 
 /**
+ * Primary content in *BannerSlice → BuyAndSell → Primary*
+ */
+export interface BannerSliceSliceBuyAndSellPrimary {
+  /**
+   * headline field in *BannerSlice → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.buyAndSell.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.RichTextField
+
+  /**
+   * cta field in *BannerSlice → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.buyAndSell.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField
+
+  /**
+   * Features field in *BannerSlice → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.buyAndSell.primary.features[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  features: prismic.GroupField<
+    Simplify<BannerSliceSliceBuyAndSellPrimaryFeaturesItem>
+  >
+}
+
+/**
+ * BuyAndSell variation for BannerSlice Slice
+ *
+ * - **API ID**: `buyAndSell`
+ * - **Description**: BannerSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BannerSliceSliceBuyAndSell = prismic.SharedSliceVariation<
+  'buyAndSell',
+  Simplify<BannerSliceSliceBuyAndSellPrimary>,
+  never
+>
+
+/**
  * Slice variation for *BannerSlice*
  */
 type BannerSliceSliceVariation =
   | BannerSliceSliceDefault
   | BannerSliceSliceStaking
+  | BannerSliceSliceBuyAndSell
 
 /**
  * BannerSlice Shared Slice
@@ -4219,6 +4342,36 @@ type CurrencyComparisonSliceVariation = CurrencyComparisonSliceDefault
 export type CurrencyComparisonSlice = prismic.SharedSlice<
   'currency_comparison',
   CurrencyComparisonSliceVariation
+>
+
+/**
+ * Default variation for ExchangesGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ExchangesGridSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Record<string, never>,
+  never
+>
+
+/**
+ * Slice variation for *ExchangesGrid*
+ */
+type ExchangesGridSliceVariation = ExchangesGridSliceDefault
+
+/**
+ * ExchangesGrid Shared Slice
+ *
+ * - **API ID**: `exchanges_grid`
+ * - **Description**: ExchangesGrid
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ExchangesGridSlice = prismic.SharedSlice<
+  'exchanges_grid',
+  ExchangesGridSliceVariation
 >
 
 /**
@@ -7235,6 +7388,200 @@ type NewsletterSubscriptionSliceVariation = NewsletterSubscriptionSliceDefault
 export type NewsletterSubscriptionSlice = prismic.SharedSlice<
   'newsletter_subscription',
   NewsletterSubscriptionSliceVariation
+>
+
+/**
+ * Item in *NimTokenDistribution → Default → Primary → Item*
+ */
+export interface NimTokenDistributionSliceDefaultPrimaryItemItem {
+  /**
+   * Color field in *NimTokenDistribution → Default → Primary → Item*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nim_token_distribution.default.primary.item[].color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  color: prismic.SelectField<'green' | 'blue' | 'orange' | 'red' | 'gold'>
+
+  /**
+   * Title field in *NimTokenDistribution → Default → Primary → Item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nim_token_distribution.default.primary.item[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField
+
+  /**
+   * Percentage field in *NimTokenDistribution → Default → Primary → Item*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nim_token_distribution.default.primary.item[].percentage
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  percentage: prismic.NumberField
+
+  /**
+   * description field in *NimTokenDistribution → Default → Primary → Item*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nim_token_distribution.default.primary.item[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+}
+
+/**
+ * Primary content in *NimTokenDistribution → Default → Primary*
+ */
+export interface NimTokenDistributionSliceDefaultPrimary {
+  /**
+   * Item field in *NimTokenDistribution → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nim_token_distribution.default.primary.item[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  item: prismic.GroupField<
+    Simplify<NimTokenDistributionSliceDefaultPrimaryItemItem>
+  >
+}
+
+/**
+ * Default variation for NimTokenDistribution Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NimTokenDistributionSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<NimTokenDistributionSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *NimTokenDistribution*
+ */
+type NimTokenDistributionSliceVariation = NimTokenDistributionSliceDefault
+
+/**
+ * NimTokenDistribution Shared Slice
+ *
+ * - **API ID**: `nim_token_distribution`
+ * - **Description**: NimTokenDistribution
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NimTokenDistributionSlice = prismic.SharedSlice<
+  'nim_token_distribution',
+  NimTokenDistributionSliceVariation
+>
+
+/**
+ * Item in *NimiqWalletHoverable → Default → Primary → Powered By Logos*
+ */
+export interface NimiqWalletHoverableSliceDefaultPrimaryPoweredByLogosItem {
+  /**
+   * Logo field in *NimiqWalletHoverable → Default → Primary → Powered By Logos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nimiq_wallet_hoverable.default.primary.poweredByLogos[].logo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>
+}
+
+/**
+ * Primary content in *NimiqWalletHoverable → Default → Primary*
+ */
+export interface NimiqWalletHoverableSliceDefaultPrimary {
+  /**
+   * Title field in *NimiqWalletHoverable → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nimiq_wallet_hoverable.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField
+
+  /**
+   * Description field in *NimiqWalletHoverable → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nimiq_wallet_hoverable.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField
+
+  /**
+   * Screenshot field in *NimiqWalletHoverable → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nimiq_wallet_hoverable.default.primary.screenshot
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  screenshot: prismic.ImageField<never>
+
+  /**
+   * Powered By Label field in *NimiqWalletHoverable → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nimiq_wallet_hoverable.default.primary.poweredByLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  poweredByLabel: prismic.KeyTextField
+
+  /**
+   * Powered By Logos field in *NimiqWalletHoverable → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nimiq_wallet_hoverable.default.primary.poweredByLogos[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  poweredByLogos: prismic.GroupField<
+    Simplify<NimiqWalletHoverableSliceDefaultPrimaryPoweredByLogosItem>
+  >
+}
+
+/**
+ * Default variation for NimiqWalletHoverable Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NimiqWalletHoverableSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<NimiqWalletHoverableSliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *NimiqWalletHoverable*
+ */
+type NimiqWalletHoverableSliceVariation = NimiqWalletHoverableSliceDefault
+
+/**
+ * NimiqWalletHoverable Shared Slice
+ *
+ * - **API ID**: `nimiq_wallet_hoverable`
+ * - **Description**: NimiqWalletHoverable
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NimiqWalletHoverableSlice = prismic.SharedSlice<
+  'nimiq_wallet_hoverable',
+  NimiqWalletHoverableSliceVariation
 >
 
 /**
@@ -10926,6 +11273,9 @@ declare module '@prismicio/client' {
       AppsShowcaseSliceNimiqsAppsPrimaryAppsItem,
       AppsShowcaseSliceVariation,
       BannerSliceSlice,
+      BannerSliceSliceBuyAndSell,
+      BannerSliceSliceBuyAndSellPrimary,
+      BannerSliceSliceBuyAndSellPrimaryFeaturesItem,
       BannerSliceSliceDefault,
       BannerSliceSliceDefaultItem,
       BannerSliceSliceDefaultPrimary,
@@ -10981,6 +11331,11 @@ declare module '@prismicio/client' {
       CurrencyComparisonSliceDefaultPrimary,
       CurrencyComparisonSliceDefaultPrimaryCurrenciesItem,
       CurrencyComparisonSliceVariation,
+      ExchangeDocument,
+      ExchangeDocumentData,
+      ExchangesGridSlice,
+      ExchangesGridSliceDefault,
+      ExchangesGridSliceVariation,
       ExchangesShowcaseSlice,
       ExchangesShowcaseSliceDefault,
       ExchangesShowcaseSliceDefaultItem,
@@ -11117,6 +11472,16 @@ declare module '@prismicio/client' {
       NimiqAppDocumentData,
       NimiqEventDocument,
       NimiqEventDocumentData,
+      NimiqWalletHoverableSlice,
+      NimiqWalletHoverableSliceDefault,
+      NimiqWalletHoverableSliceDefaultPrimary,
+      NimiqWalletHoverableSliceDefaultPrimaryPoweredByLogosItem,
+      NimiqWalletHoverableSliceVariation,
+      NimTokenDistributionSlice,
+      NimTokenDistributionSliceDefault,
+      NimTokenDistributionSliceDefaultPrimary,
+      NimTokenDistributionSliceDefaultPrimaryItemItem,
+      NimTokenDistributionSliceVariation,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,

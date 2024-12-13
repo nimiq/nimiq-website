@@ -1,0 +1,65 @@
+{
+  "id": "nim_token_distribution",
+  "type": "SharedSlice",
+  "name": "NimTokenDistribution",
+  "description": "NimTokenDistribution",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "item": {
+          "type": "Group",
+          "config": {
+            "label": "Item",
+            "repeat": true,
+            "fields": {
+              "color": {
+                "type": "Select",
+                "config": {
+                  "label": "Color",
+                  "placeholder": "",
+                  "options": [
+                    "green",
+                    "blue",
+                    "orange",
+                    "red",
+                    "gold"
+                  ]
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": ""
+                }
+              },
+              "percentage": {
+                "type": "Number",
+                "config": {
+                  "label": "Percentage",
+                  "placeholder": ""
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

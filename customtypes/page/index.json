@@ -3,7 +3,7 @@
   "label": "Page",
   "repeatable": true,
   "status": true,
-  "format": "custom",
+  "format": "page",
   "json": {
     "Main": {
       "uid": {
@@ -70,6 +70,15 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "nimiq_wallet_hoverable": {
+              "type": "SharedSlice"
+            },
+            "nim_token_distribution": {
+              "type": "SharedSlice"
+            },
+            "exchanges_grid": {
+              "type": "SharedSlice"
+            },
             "vertical_video": {
               "type": "SharedSlice"
             },
