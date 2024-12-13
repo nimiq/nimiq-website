@@ -28,7 +28,7 @@ export async function getDynamicPages() {
   // const ignorePages: string[] = ['/contact', '/community']
   // return [...staticPages, ...pages, ...blogPosts].filter(page => !ignorePages.includes(page))
 
-  const onlyPages = ['/', '/newsletter', '/staking', '/new-wallet', '/wallet', '/home']
+  const onlyPages = ['/', '/newsletter', '/staking', '/new-wallet', '/wallet']
   // return [...staticPages, ...pages, ...blogPosts].filter(page => onlyPages.includes(page))
   return onlyPages
 }
