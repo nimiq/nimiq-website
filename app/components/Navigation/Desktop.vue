@@ -21,6 +21,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
       <NavigationMenuItem>
         <NavigationMenuTrigger class="trigger">
           Apps
+          <div i-nimiq:chevron-down />
         </NavigationMenuTrigger>
         <NavigationMenuContent
           absolute left-0 top-0 w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left
@@ -66,6 +67,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
       <NavigationMenuItem v-if="navigation.techLinks.length > 0">
         <NavigationMenuTrigger class="trigger">
           {{ navigation.techGroupName }}
+          <div i-nimiq:chevron-down />
         </NavigationMenuTrigger>
         <NavigationMenuContent absolute left-0 top-0 min-w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
           <div>
@@ -93,6 +95,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
       <NavigationMenuItem v-if="navigation.communityGroupName && navigation.communityLinks.length > 0">
         <NavigationMenuTrigger class="trigger">
           {{ navigation.communityGroupName }}
+          <div i-nimiq:chevron-down />
         </NavigationMenuTrigger>
         <NavigationMenuContent absolute left-0 top-0 min-w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
           <div grid grid-cols-1 max-w-6xl p-16>
@@ -114,6 +117,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
       <NavigationMenuItem v-if="navigation.projectGroupName && internalProjectLinks.length > 0">
         <NavigationMenuTrigger class="trigger">
           {{ navigation.projectGroupName }}
+          <div i-nimiq:chevron-down />
         </NavigationMenuTrigger>
 
         <NavigationMenuContent absolute top-0 min-w-180 motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
@@ -173,7 +177,17 @@ nav.header-nav {
     --uno: 'z-1';
   }
   .trigger {
-    --uno: 'bg-transparent px-16 py-4 font-bold text-neutral-800 hocus:text-neutral-900 data-open:op-80';
+    --uno: 'bg-transparent px-16 py-4 font-bold text-neutral-800 hocus:text-neutral-900 data-open:op-80 flex items-center gap-x-8';
+
+    [i-nimiq\:chevron-down] {
+      --uno: 'text-12 transition-transform duration-300';
+    }
+
+    &[data-state='open'] {
+      [i-nimiq\:chevron-down] {
+        --uno: 'rotate-180';
+      }
+    }
   }
 
   li.link-item {
