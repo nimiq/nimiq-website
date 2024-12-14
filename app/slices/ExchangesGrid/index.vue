@@ -1,24 +1,23 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-// The array passed to `getSliceComponentProps` is purely optional.
-// Consider it as a visual hint for you when templating your slice.
-defineProps(
-  getSliceComponentProps<Content.ExchangesGridSlice>([
-    'slice',
-    'index',
-    'slices',
-    'context',
-  ]),
-)
+defineProps(getSliceComponentProps<Content.ExchangesGridSlice>())
+
+const { client } = usePrismic()
+const { data: exchanges } = await useAsyncData('exchange', () => client.getByType('exchange'))
 </script>
 
 <template>
-  <section
-    :data-slice-type="slice.slice_type"
-    :data-slice-variation="slice.variation"
-  >
-    Placeholder component for exchanges_grid (variation: {{ slice.variation }})
-    Slices
+  <section bg-neutral-0>
+    <ul grid="~ cols-[repeat(auto-fit,minmax(200px,368px))] gap-16 justify-center">
+      <li v-for="({ data: { link, logo, name } }, i) in exchanges?.results" :key="i">
+        <PrismicLink :field="link" flex="~ row items-center gap-x-16" nq-hoverable>
+          <PrismicImage :field="logo" h-full w-40 object-contain flex="~ items-center" />
+          <h3 text="lg" font-semibold>
+            {{ name }}
+          </h3>
+        </PrismicLink>
+      </li>
+    </ul>
   </section>
 </template>
