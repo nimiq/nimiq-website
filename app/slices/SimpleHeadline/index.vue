@@ -16,7 +16,6 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
   const nextSliceBgColor = props.slices.at(currentIndex + 1)?.primary.bgColor
   // @ts-expect-error the types are meh
   const prevSliceBgColor = props.slices.at(currentIndex - 1)?.primary.bgColor
-
   return (nextSliceBgColor === prevSliceBgColor) ? 'gradient-transparent-green-transparent' : 'gradient-transparent-green'
 })
 </script>
@@ -53,7 +52,8 @@ section[data-slice-type='pill-link'] + section[data-slice-type='simple-headline'
 /* If the headline is after a slice that is the same theme (dark or light) we increase space */
 /* section.dark:not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline'].dark,
 section:not(.dark):not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline']:not(.dark), */
-section:is([bg-neutral-0], .bg-neutral-0) + section[data-slice-type='simple-headline'].bg-neutral-0 {
+section:is([bg-neutral-0], .bg-neutral-0):not([data-slice-type='logos-grid'])
+  + section[data-slice-type='simple-headline'].bg-neutral-0 {
   --uno: 'nq-pt-200 border-t border-neutral-300';
 }
 

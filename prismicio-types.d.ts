@@ -3918,6 +3918,26 @@ export interface CryptoMapContinentSelectorSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   crypto_map_label: prismic.KeyTextField
+
+  /**
+   * Cryptocities Description field in *CryptoMapContinentSelector → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: crypto_map_continent_selector.default.primary.cryptocitiesDescription
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  cryptocitiesDescription: prismic.RichTextField
+
+  /**
+   * Cryptocities CTA field in *CryptoMapContinentSelector → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: crypto_map_continent_selector.default.primary.cryptocitiesCta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cryptocitiesCta: prismic.LinkField
 }
 
 /**
@@ -4832,10 +4852,11 @@ export interface GridSectionSliceDefaultPrimary {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: white
    * - **API ID Path**: grid_section.default.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue'>
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**

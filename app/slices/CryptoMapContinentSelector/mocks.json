@@ -38,6 +38,26 @@
         "__TYPE__": "FieldContent",
         "value": "east",
         "type": "Text"
+      },
+      "cryptocitiesDescription": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Cupidatat quis dolore velit quis Lorem. Deserunt aute tempor quis tempor."
+            }
+          }
+        ]
+      },
+      "cryptocitiesCta": {
+        "__TYPE__": "LinkContent",
+        "key": "c7bbacaa-0f84-4caf-9096-2dbe58912276",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com",
+          "text": "electric"
+        }
       }
     },
     "items": []

@@ -28,7 +28,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
           </div>
         </div>
 
-        <p text="neutral-900 xs" h-max w-max rounded-4 bg-neutral-400 px-8 py-4 nq-mt-32 nq-label>
+        <p text="neutral/70 xs" h-max w-max rounded-4 bg-neutral-400 px-8 py-4 nq-mt-32 nq-label>
           {{ adjetive }}
         </p>
         <p row-span-4 col-start-1 text-lg nq-mt-12>
@@ -36,7 +36,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
         </p>
 
         <div flex="~ gap-8 items-start" :class="{ 'nq-mt-24': !twoColumns, 'row-start-2 col-start-2 nq-mt-32': twoColumns }">
-          <div size-28 shrink-0 rounded-full bg-gradient-blue stack>
+          <div size-28 shrink-0 rounded-full class="gradient" stack>
             <div text="14 white" :class="{ 'i-nimiq:bolt': crypto === 'NIM', 'i-nimiq:arrows-to-sides scale-120': crypto === 'BTC', 'i-nimiq:balance': crypto === 'USDC/USDT' }" />
           </div>
           <p whitespace-nowrap>
@@ -45,7 +45,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
         </div>
 
         <div flex="~ gap-8 items-center" nq-mt-12>
-          <div size-28 shrink-0 rounded-full bg-gradient-blue stack>
+          <div size-28 shrink-0 rounded-full class="gradient" stack>
             <div text="16 white" :class="{ 'i-nimiq:leaf-2-filled scale-80 bottom--1 relative': crypto === 'NIM', 'i-nimiq:digital-gold scale-120 right--1 relative': crypto === 'BTC', 'i-nimiq:arrows-to-center-triangle': crypto === 'USDC/USDT' }" />
           </div>
           <p whitespace-nowrap>
@@ -71,3 +71,13 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
     </ul>
   </section>
 </template>
+
+<style scoped>
+.gradient {
+  background: radial-gradient(
+    78.95% 73.1% at 12.5% 14.72%,
+    rgb(var(--nq-neutral) / 0.4) 0%,
+    rgb(var(--nq-neutral) / 0.25) 100%
+  );
+}
+</style>

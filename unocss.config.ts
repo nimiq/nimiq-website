@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises'
+import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 import { presetRemToPx } from '@unocss/preset-rem-to-px'
 import transformerDirectives from '@unocss/transformer-directives'
 import { presetNimiq } from 'nimiq-css'
@@ -51,10 +52,7 @@ export default defineConfig({
     presetEasingGradient(),
     presetIcons({
       collections: {
-        nimiq: async () => {
-          const content = await readFile('./node_modules/@iconify-json/nimiq/dist/icons.json', 'utf8')
-          return JSON.parse(content)
-        },
+        ...createExternalPackageIconLoader('@iconify-json/nimiq'),
         continents: {
           'africa': () => readFile('./public/assets/continents/africa.svg', 'utf-8'),
           'south-america': () => readFile('./public/assets/continents/south-america.svg', 'utf-8'),

@@ -22,7 +22,7 @@
       },
       "bgColor": {
         "__TYPE__": "FieldContent",
-        "value": "grey",
+        "value": "white",
         "type": "Select"
       }
     },

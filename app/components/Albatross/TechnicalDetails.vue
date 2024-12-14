@@ -11,7 +11,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 </script>
 
 <template>
-  <section class="dark" bg-darkblue pt-0 text-neutral>
+  <section class="dark" bg-darkerblue pt-0 text-neutral>
     <p text-neutral-800 nq-mb-16>
       This is the a preview of the live blockhain
     </p>

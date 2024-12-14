@@ -49,7 +49,7 @@ useIntersectionObserver(container, ([entry]) => containerIsVisible.value = entry
     <div relative flex="~ col gap-24" h-full>
       <AnimatedMarquee v-for="({ words }, key) in wordsList" :key :items="words" :should-play="containerIsVisible" flex="~ gap-2" :style="`--direction: ${key % 2 === 0 ? -1 : 1}`">
         <template #default="{ item: { word } }">
-          <div flex="~ gap-12 items-center" rounded-4 bg-neutral-100 p-16>
+          <div flex="~ gap-12 items-center" rounded-4 bg-neutral-300 p-16>
             <span text-neutral-800 font-semibold lh-none text-xl>
               <AnimatedHyperText :text="word" :should-play="containerIsVisible" />
             </span>

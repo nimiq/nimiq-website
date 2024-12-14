@@ -41,7 +41,12 @@ const id = `terms-note-${useId()}`
 </template>
 
 <style>
+section:has(+ section.gradient-transparent-green-transparent) {
+  --uno: 'nq-pb-60-80';
+}
+
 section.gradient-transparent-green {
+  --uno: 'pt-140 lg:pt-152';
   --gradient-height: 252px;
   background: linear-gradient(
     180deg,
@@ -122,7 +127,7 @@ section.gradient-transparent-green-transparent {
 <style scoped>
 [group]:has([data-percentage]:hover) {
   & [data-note] {
-    --uno: 'text-neutral-800';
+    --uno: 'text-neutral-800 dark:text-white';
   }
 }
 </style>
