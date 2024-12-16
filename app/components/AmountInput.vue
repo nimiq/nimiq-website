@@ -59,5 +59,5 @@ onMounted(onBlur)
 </script>
 
 <template>
-  <input v-model="formattedValue" type="text" style="field-sizing: content" focus-visible:outline="1 solid blue" rounded-2 bg-transparent px-2 font-semibold lh-none inputmode="decimal" @blur="onBlur">
+  <input v-model="formattedValue" type="text" style="field-sizing: content" focus-visible:outline="1 solid blue" rounded-2 bg-transparent px-6 font-semibold lh-none nq-input-box inputmode="decimal" v-bind="$attrs" @blur="onBlur">
 </template>
