@@ -1,0 +1,122 @@
+{
+  "id": "price_chart",
+  "type": "SharedSlice",
+  "name": "PriceChart",
+  "description": "PriceChart",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "nimPriceChartLabel": {
+          "type": "Text",
+          "config": {
+            "label": "NIM Price Chart Label",
+            "placeholder": ""
+          }
+        },
+        "marketCapLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Market Cap Label",
+            "placeholder": ""
+          }
+        },
+        "marketCapInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Market Cap Info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl,heading4"
+          }
+        },
+        "volume24HLabel": {
+          "type": "Text",
+          "config": {
+            "label": "volume24hLabel",
+            "placeholder": ""
+          }
+        },
+        "volume24HInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Volume 24h Info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "totalSupplyLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Total supply Label",
+            "placeholder": ""
+          }
+        },
+        "TotalSupplyInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Total Supply Info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "maxSupplyLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Max supply Label",
+            "placeholder": ""
+          }
+        },
+        "maxSupplyInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Max supply Info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "poweredByLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Powered by Label",
+            "placeholder": ""
+          }
+        },
+        "poweredByLogo": {
+          "type": "Image",
+          "config": {
+            "label": "Powered by Logo",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "poweredByLink": {
+          "type": "Link",
+          "config": {
+            "label": "poweredByLink",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null,
+            "allowText": false
+          }
+        },
+        "lastUpdatedLabel": {
+          "type": "Text",
+          "config": {
+            "label": "lastUpdatedLabel",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

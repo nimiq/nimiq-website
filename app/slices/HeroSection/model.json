@@ -915,6 +915,35 @@
       },
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
       "items": {}
+    },
+    {
+      "id": "buyAndSell",
+      "name": "BuyAndSell",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "HeroSection",
+      "primary": {
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl,heading1"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl,paragraph"
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "items": {}
     }
   ]
 }

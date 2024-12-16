@@ -924,5 +924,132 @@
         "value": []
       }
     ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "buyAndSell",
+    "primary": {
+      "subline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Reprehenderit consequat enim et non ullamco est elit non nostrud consectetur adipisicing. Velit do veniam laborum."
+            }
+          }
+        ]
+      },
+      "linkHref": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com"
+        }
+      },
+      "linkLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "very",
+        "type": "Text"
+      },
+      "link": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com",
+          "text": "tall"
+        }
+      },
+      "secondaryLinkHref": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com"
+        }
+      },
+      "secondaryLinkLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "rock",
+        "type": "Text"
+      },
+      "secondaryLink": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com",
+          "text": "slide"
+        }
+      },
+      "videoHref": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com"
+        }
+      },
+      "videoLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "treated",
+        "type": "Text"
+      },
+      "note": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Cillum adipisicing duis dolore minim eu aute Lorem veniam ullamco aliquip sint reprehenderit non quis. Cillum ea ut consectetur sunt velit duis sint est."
+            }
+          }
+        ]
+      },
+      "lottieAnimation": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "FileLink",
+          "id": "mock_Media_link",
+          "kind": "file",
+          "name": "mock_name",
+          "url": "https://source.unsplash.com/daily",
+          "size": "0"
+        }
+      },
+      "playStore": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev"
+        }
+      },
+      "appStore": {
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev"
+        }
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "darkblue",
+        "type": "Select"
+      },
+      "headline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Ex officia ea anim et."
+            }
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
   }
 ]

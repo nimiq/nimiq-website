@@ -41,6 +41,16 @@
             "placeholder": ""
           }
         },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null,
+            "allowText": false
+          }
+        },
         "poweredByLogos": {
           "type": "Group",
           "config": {

@@ -70,6 +70,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "price_chart": {
+              "type": "SharedSlice"
+            },
             "nimiq_wallet_hoverable": {
               "type": "SharedSlice"
             },

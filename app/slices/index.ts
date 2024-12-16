@@ -80,6 +80,7 @@ export const components = defineSliceZoneComponents({
   prestaking_grid: defineAsyncComponent(
     () => import('./PrestakingGrid/index.vue'),
   ),
+  price_chart: defineAsyncComponent(() => import('./PriceChart/index.vue')),
   puzzle_grid: defineAsyncComponent(() => import('./PuzzleGrid/index.vue')),
   quote: defineAsyncComponent(() => import('./Quote/index.vue')),
   rib_cage_grid: defineAsyncComponent(() => import('./RibCageGrid/index.vue')),
