@@ -45,17 +45,6 @@
         "value": "breath",
         "type": "Text"
       },
-      "TotalSupplyInfo": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Eu duis eiusmod voluptate do esse nostrud minim non culpa non in veniam esse. Dolor culpa ad ea enim duis aute. Eiusmod cillum ex aute irure velit magna ad occaecat."
-            }
-          }
-        ]
-      },
       "maxSupplyLabel": {
         "__TYPE__": "FieldContent",
         "value": "son",
@@ -111,6 +100,17 @@
         "__TYPE__": "FieldContent",
         "value": "simple",
         "type": "Text"
+      },
+      "totalSupplyInfo": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Sit anim adipisicing dolore ipsum reprehenderit non pariatur. Ea adipisicing do cillum cillum nulla ullamco eiusmod occaecat voluptate in fugiat incididunt id reprehenderit consequat."
+            }
+          }
+        ]
       }
     },
     "items": []

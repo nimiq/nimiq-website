@@ -8018,10 +8018,10 @@ export interface PriceChartSliceDefaultPrimary {
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.TotalSupplyInfo
+   * - **API ID Path**: price_chart.default.primary.totalSupplyInfo
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  TotalSupplyInfo: prismic.RichTextField
+  totalSupplyInfo: prismic.RichTextField
 
   /**
    * Max supply Label field in *PriceChart → Default → Primary*

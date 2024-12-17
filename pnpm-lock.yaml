@@ -11,6 +11,9 @@ importers:
       '@nimiq/core':
         specifier: ^2.0.5
         version: 2.0.5
+      '@nimiq/vue3-components':
+        specifier: github:nimiq/vue3-components#build/full
+        version: https://codeload.github.com/nimiq/vue3-components/tar.gz/e63c554e934aa562926393c9689341c4ee3157bf(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -38,6 +41,9 @@ importers:
       nimiq-rewards-calculator:
         specifier: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d
         version: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d
+      nimiq-supply-calculator:
+        specifier: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d
+        version: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d
       nuxt:
         specifier: ^3.14.1592
         version: 3.14.1592(@parcel/watcher@2.5.0)(@types/node@22.10.1)(bufferutil@4.0.8)(eslint@9.16.0(jiti@2.4.1))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(terser@5.37.0)(typescript@5.7.2)(utf-8-validate@5.0.10)(vite@5.4.11(@types/node@22.10.1)(terser@5.37.0))
@@ -1293,8 +1299,21 @@ packages:
   '@nimiq/core@2.0.5':
     resolution: {integrity: sha512-fqTXjPqU3+uCa0W/3X//grMzu96eyyFdJR+aaZ5jlZrEah/Pb/ERjHuTgsC3y0TBBuYT8ohTDHktvs+p8MKPPA==}
 
+  '@nimiq/identicons@1.6.2':
+    resolution: {integrity: sha512-O8XaSRoOwDjnQjOaWIi4wnELoYSu48WXfApYtz2dzMlFpY+pzekTmQaqS2kYR9uj+6KUiUfBSIVPJUhpWkp88w==}
+
+  '@nimiq/style@0.8.5':
+    resolution: {integrity: sha512-il2+hrodQ7iL4ARPwfGmGvrEYgtMHAoQSbcyapxEQEG7vDYj5r+ssuhKB+oYmdRUxA1/HvyGDnWG3XenKvQyIA==}
+
   '@nimiq/utils@0.11.7':
     resolution: {integrity: sha512-FLeQ9kBFsOBfOjh0T+jI8kl9K77XOuyQA3yel1VIzOK4dLcnvMmgXjegJfuPAEht9oGe+gxcyzFsb0Yi9Js8Dg==}
+
+  '@nimiq/utils@0.9.3':
+    resolution: {integrity: sha512-g/9FpoNcJmU737TRQsNdU5/OGoXnc1UwunJBF/TGw4bx4cQ/pbYO7k0nsZ4RGUFn0jiy9xlxYH+yH1mvSY7+nQ==}
+
+  '@nimiq/vue3-components@https://codeload.github.com/nimiq/vue3-components/tar.gz/e63c554e934aa562926393c9689341c4ee3157bf':
+    resolution: {tarball: https://codeload.github.com/nimiq/vue3-components/tar.gz/e63c554e934aa562926393c9689341c4ee3157bf}
+    version: 0.0.0
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2187,6 +2206,9 @@ packages:
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
+
+  '@types/offscreencanvas@2019.7.3':
+    resolution: {integrity: sha512-ieXiYmgSRXUDeOntE1InxjWyvEelZGP63M+cGuquuRLuIKKT1osnkXjxev9B7d1nXSug5vpunx+gNlbVxMlC9A==}
 
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
@@ -3647,6 +3669,9 @@ packages:
     resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
     engines: {node: '>=6.0.0'}
 
+  dom-parser@0.1.6:
+    resolution: {integrity: sha512-3nVRKbLEwmGfghLoeT1dxlK/0votalnOfasP+8VCHYDfDuCETY4LeMblfOeqww6XZk2ymZ1Uewy/hVad6Dy3yw==}
+
   dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
 
@@ -4573,6 +4598,17 @@ packages:
     resolution: {integrity: sha512-QQnnxNyfvmHFIsj7gkPcYymR8Jdw/o7mp5ZFihxn6h8Ci6fh3Dx4E1gPjpQEpIuPo9XVNY/ZUwh4BPMjGyL01g==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
+  input-format@0.3.11:
+    resolution: {integrity: sha512-q24+iW10ZMb7KIRDlVUl3GvFcadf1ttE/QA2waINkDMdjsPXStQSOvdTyHwO8p+4Mq433ILQJZRL8YKtPjNk4g==}
+    peerDependencies:
+      react: ^18.1.0
+      react-dom: ^18.1.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   internmap@1.0.1:
     resolution: {integrity: sha512-lDB5YccMydFBtasVtxnZ3MRBHuaoE8GKsppq+EchKL2U4nK/DmEpPHNH8MZe5HkMtpSiTSOZwfN0tzYjO/lJEw==}
 
@@ -4774,6 +4810,9 @@ packages:
   js-levenshtein@1.1.6:
     resolution: {integrity: sha512-X2BB11YZtrRqY4EnQcLX5Rh373zbK4alC1FW7D7MBhL2gtcC17cTnr6DmfHZeS0s2rTHjUTMMHfG7gO8SSdw+g==}
     engines: {node: '>=0.10.0'}
+
+  js-sha3@0.8.0:
+    resolution: {integrity: sha512-gF1cRrHhIzNfToc802P800N8PpXS+evLLXfsVpowqmAFR9uwbi89WvXg2QspOmXL8QL86J4T1EpFu+yUkwJY3Q==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -5340,6 +5379,10 @@ packages:
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575:
     resolution: {tarball: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575}
     version: 0.4.1
+
+  nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d:
+    resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d}
+    version: 0.0.1
 
   nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d298b067739f6511cf96b75bb90534fdef:
     resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d298b067739f6511cf96b75bb90534fdef}
@@ -5961,6 +6004,9 @@ packages:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
     engines: {node: '>= 6'}
 
+  prop-types@15.8.1:
+    resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
+
   protocol-buffers-schema@3.6.0:
     resolution: {integrity: sha512-TdDRD+/QNdrCGCE7v8340QyuXd4kIWIgapsE2+n/SaGiSSbomYl4TjHlvIoCWRpE7wFt02EpB35VVA2ImcBVqw==}
 
@@ -5988,6 +6034,12 @@ packages:
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
+
+  qr-creator@1.0.0:
+    resolution: {integrity: sha512-C0cqfbS1P5hfqN4NhsYsUXePlk9BO+a45bAQ3xLYjBL3bOIFzoVEjs79Fado9u9BPBD3buHi3+vY+C8tHh4qMQ==}
+
+  qr-scanner@1.4.2:
+    resolution: {integrity: sha512-kV1yQUe2FENvn59tMZW6mOVfpq9mGxGf8l6+EGaXUOd4RBOLg7tRC83OrirM5AtDvZRpdjdlXURsHreAOSPOUw==}
 
   qs@6.13.0:
     resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
@@ -6046,6 +6098,9 @@ packages:
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
       react: ^18.3.1
+
+  react-is@16.13.1:
+    resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
   react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
@@ -8391,9 +8446,32 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@nimiq/identicons@1.6.2':
+    dependencies:
+      dom-parser: 0.1.6
+
+  '@nimiq/style@0.8.5': {}
+
   '@nimiq/utils@0.11.7':
     dependencies:
       big-integer: 1.6.52
+
+  '@nimiq/utils@0.9.3':
+    dependencies:
+      big-integer: 1.6.52
+
+  '@nimiq/vue3-components@https://codeload.github.com/nimiq/vue3-components/tar.gz/e63c554e934aa562926393c9689341c4ee3157bf(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@nimiq/identicons': 1.6.2
+      '@nimiq/style': 0.8.5
+      '@nimiq/utils': 0.9.3
+      input-format: 0.3.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      js-sha3: 0.8.0
+      qr-creator: 1.0.0
+      qr-scanner: 1.4.2
+    transitivePeerDependencies:
+      - react
+      - react-dom
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -9658,6 +9736,8 @@ snapshots:
       undici-types: 6.20.0
 
   '@types/normalize-package-data@2.4.4': {}
+
+  '@types/offscreencanvas@2019.7.3': {}
 
   '@types/parse-json@4.0.2': {}
 
@@ -11504,6 +11584,8 @@ snapshots:
     dependencies:
       esutils: 2.0.3
 
+  dom-parser@0.1.6: {}
+
   dom-serializer@2.0.0:
     dependencies:
       domelementtype: 2.3.0
@@ -12714,6 +12796,13 @@ snapshots:
 
   ini@4.1.1: {}
 
+  input-format@0.3.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      prop-types: 15.8.1
+    optionalDependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   internmap@1.0.1: {}
 
   internmap@2.0.3: {}
@@ -12917,6 +13006,8 @@ snapshots:
   jose@5.9.6: {}
 
   js-levenshtein@1.1.6: {}
+
+  js-sha3@0.8.0: {}
 
   js-tokens@4.0.0: {}
 
@@ -13694,6 +13785,8 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+
+  nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d: {}
 
   nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d298b067739f6511cf96b75bb90534fdef: {}
 
@@ -14595,6 +14688,12 @@ snapshots:
       kleur: 3.0.3
       sisteransi: 1.0.5
 
+  prop-types@15.8.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react-is: 16.13.1
+
   protocol-buffers-schema@3.6.0: {}
 
   protocols@2.0.1: {}
@@ -14620,6 +14719,12 @@ snapshots:
       once: 1.4.0
 
   punycode@2.3.1: {}
+
+  qr-creator@1.0.0: {}
+
+  qr-scanner@1.4.2:
+    dependencies:
+      '@types/offscreencanvas': 2019.7.3
 
   qs@6.13.0:
     dependencies:
@@ -14693,6 +14798,8 @@ snapshots:
       loose-envify: 1.4.0
       react: 18.3.1
       scheduler: 0.23.2
+
+  react-is@16.13.1: {}
 
   react@18.3.1:
     dependencies:

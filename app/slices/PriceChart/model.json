@@ -58,7 +58,7 @@
             "placeholder": ""
           }
         },
-        "TotalSupplyInfo": {
+        "totalSupplyInfo": {
           "type": "StructuredText",
           "config": {
             "label": "Total Supply Info",

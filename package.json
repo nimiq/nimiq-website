@@ -26,6 +26,7 @@
     "medium-zoom": "^1.1.0",
     "nimiq-albatross-policy": "https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50",
     "nimiq-rewards-calculator": "https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d",
+    "nimiq-supply-calculator": "https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d",
     "nuxt": "^3.14.1592",
     "radix-vue": "^1.9.11",
     "vaul-vue": "^0.2.0",

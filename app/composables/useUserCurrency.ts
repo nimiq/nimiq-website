@@ -85,7 +85,11 @@ function guessUserCurrency() {
 export function useUserCurrency() {
   const currency = useSyncedState<FiatCurrency>('user-currency', guessUserCurrency)
 
+  // The price of the currency in USD
+  const currencyUsdRatio = computed(() => 1.1)
+
   return {
     currency,
+    currencyUsdRatio,
   }
 }
