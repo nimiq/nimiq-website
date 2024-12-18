@@ -666,5 +666,54 @@
         ]
       }
     ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "threeColumnsIconsInline",
+    "primary": {
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "grey",
+        "type": "Select"
+      },
+      "items": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "content",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "In velit esse culpa ad exercitation nulla ut minim. Sint eiusmod tempor elit ad eiusmod exercitation adipisicing mollit amet id dolor anim deserunt. Nostrud culpa ad eu eiusmod mollit elit eiusmod laborum in ut."
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "icon",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "mostly",
+                  "type": "Text"
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
   }
 ]

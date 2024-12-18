@@ -36,6 +36,6 @@ defineProps(getSliceComponentProps<Content.QuoteSlice>())
     rgba(var(--nq-green) / 0) 100%
   );
 
-  --uno: 'bg-neutral-0';
+  --uno: 'bg-neutral-100';
 }
 </style>

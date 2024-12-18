@@ -99,6 +99,7 @@ export default defineConfig({
     'i-nimiq:document-filled',
     'i-nimiq:globe-filled',
     'i-nimiq:code',
+    'i-nimiq:shield',
   ],
 
   theme: {

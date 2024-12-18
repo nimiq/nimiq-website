@@ -4822,6 +4822,31 @@ export type GallerySectionSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *GridSection → Three columns Icons inline → Primary → items*
+ */
+export interface GridSectionSliceThreeColumnsIconsInlinePrimaryItemsItem {
+  /**
+   * content field in *GridSection → Three columns Icons inline → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.threeColumnsIconsInline.primary.items[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField
+
+  /**
+   * icon field in *GridSection → Three columns Icons inline → Primary → items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.threeColumnsIconsInline.primary.items[].icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  icon: prismic.KeyTextField
+}
+
+/**
  * Primary content in *GridSection → Default → Primary*
  */
 export interface GridSectionSliceDefaultPrimary {
@@ -5135,6 +5160,48 @@ export type GridSectionSliceThreeColumnsIconsText =
   >
 
 /**
+ * Primary content in *GridSection → Three columns Icons inline → Primary*
+ */
+export interface GridSectionSliceThreeColumnsIconsInlinePrimary {
+  /**
+   * Background Color field in *GridSection → Three columns Icons inline → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: grid_section.threeColumnsIconsInline.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'darkblue' | 'grey', 'filled'>
+
+  /**
+   * items field in *GridSection → Three columns Icons inline → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.threeColumnsIconsInline.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<
+    Simplify<GridSectionSliceThreeColumnsIconsInlinePrimaryItemsItem>
+  >
+}
+
+/**
+ * Three columns Icons inline variation for GridSection Slice
+ *
+ * - **API ID**: `threeColumnsIconsInline`
+ * - **Description**: GridSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GridSectionSliceThreeColumnsIconsInline =
+  prismic.SharedSliceVariation<
+    'threeColumnsIconsInline',
+    Simplify<GridSectionSliceThreeColumnsIconsInlinePrimary>,
+    never
+  >
+
+/**
  * Slice variation for *GridSection*
  */
 type GridSectionSliceVariation =
@@ -5142,6 +5209,7 @@ type GridSectionSliceVariation =
   | GridSectionSliceWithBackground
   | GridSectionSliceThreeColumnsImageText
   | GridSectionSliceThreeColumnsIconsText
+  | GridSectionSliceThreeColumnsIconsInline
 
 /**
  * GridSection Shared Slice
@@ -11608,6 +11676,9 @@ declare module '@prismicio/client' {
       GridSectionSliceDefault,
       GridSectionSliceDefaultItem,
       GridSectionSliceDefaultPrimary,
+      GridSectionSliceThreeColumnsIconsInline,
+      GridSectionSliceThreeColumnsIconsInlinePrimary,
+      GridSectionSliceThreeColumnsIconsInlinePrimaryItemsItem,
       GridSectionSliceThreeColumnsIconsText,
       GridSectionSliceThreeColumnsIconsTextItem,
       GridSectionSliceThreeColumnsIconsTextPrimary,

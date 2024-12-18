@@ -16,11 +16,7 @@ const { cryptoMapLocationsCount: locationsCount } = storeToRefs(useGlobalContent
 const locationsSpan = h(NuxtLink, { class: 'text-blue', to: 'https://map.nimiq.com', target: '_blank' }, () => [
   h(AnimatedTweenedNumber, {
     value: locationsCount.value || 0,
-    min: 0,
-    max: locationsCount.value || 20_000,
     duration: 1300,
-    digitsCount: 5,
-    allowAnimation: true,
   }),
   ' locations',
 ])
