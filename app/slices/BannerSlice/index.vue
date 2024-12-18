@@ -50,7 +50,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section nq-wide relative z-10 :class="{ 'bg-neutal-100': slice.variation === 'default', 'bg-neutral-0 pb-0': slice.variation !== 'default' }">
+  <section relative z-10 :class="{ 'bg-neutal-100': slice.variation === 'default', 'bg-neutral-0 pb-0': slice.variation !== 'default' }">
     <template v-if="slice.variation === 'default'">
       <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative mx-auto w-full of-hidden rounded-8 px-32 shadow>
         <PrismicLink v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
@@ -80,13 +80,13 @@ const items = computed(() => {
         </div>
       </div>
     </template>
-    <div v-else-if="slice.variation === 'staking'" nq-wide>
+    <div v-else-if="slice.variation === 'staking'">
       <div absolute inset-0 h-full w-full of-hidden>
         <AnimatedCircleRipple absolute bottom--300 left--5vw size-110vw max-w-none />
         <div absolute inset-x-0 top-0 h-200 bg-gradient="to-b from-neutral-0 to-transparent" />
         <div absolute inset-x-0 bottom-0 h-200 bg-gradient="to-b from-transparent to-green" />
       </div>
-      <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" nq-wide relative bottom--32 gap-x-24 rounded-8 bg-neutral-0 shadow>
+      <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative bottom--32 gap-x-24 rounded-8 bg-neutral-0 shadow>
         <PrismicRichText :field="slice.primary.headline" text="44 neutral" nq-raw max-w-24ch font-bold />
         <PrismicLink :field="slice.primary.cta" nq-mt-32 nq-arrow nq-pill-lg nq-pill-blue />
         <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
@@ -99,8 +99,8 @@ const items = computed(() => {
         </ul>
       </div>
     </div>
-    <div v-else-if="slice.variation === 'buyAndSell'" nq-wide>
-      <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" nq-wide relative bottom--32 gap-x-24 rounded-8 bg-neutral-0 shadow>
+    <div v-else-if="slice.variation === 'buyAndSell'">
+      <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative bottom--32 gap-x-24 rounded-8 bg-neutral-0 shadow>
         <PrismicRichText :field="slice.primary.headline" text="44 neutral" nq-raw max-w-24ch font-bold />
         <PrismicLink :field="slice.primary.cta" nq-mt-32 nq-arrow nq-pill-lg nq-pill-blue />
         <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>

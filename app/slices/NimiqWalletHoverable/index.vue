@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
 </script>
 
 <template>
-  <section nq-wide bg-neutral-0>
+  <section bg-neutral-0>
     <!-- TODO Should be gradient-subtle-neutral -->
     <PrismicLink internal-component="a" p="32 md:40 lg:48 b-0" :field="slice.primary.link" of-hidden nq-hoverable bg="neutral-300 hocus:neutral-0" style="--ring-color: transparent" grid="~ gap-x-48 lg:gap-x-96 md:rows-[auto_auto_1fr] md:cols-[221px_1fr]">
       <div i-nimiq:logos-nimiq text-56 lg:ml-24 />

@@ -45,7 +45,7 @@ useIntersectionObserver(container, ([entry]) => containerIsVisible.value = entry
 </script>
 
 <template>
-  <div :style="`--c: ${wordsList.length};`" nq-wide absolute max-w-none w-full of-x-hidden>
+  <div :style="`--c: ${wordsList.length};`" absolute max-w-none w-full of-x-hidden>
     <div relative flex="~ col gap-24" h-full>
       <AnimatedMarquee v-for="({ words }, key) in wordsList" :key :items="words" :should-play="containerIsVisible" flex="~ gap-2" :style="`--direction: ${key % 2 === 0 ? -1 : 1}`">
         <template #default="{ item: { word } }">

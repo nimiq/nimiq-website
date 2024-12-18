@@ -3,7 +3,7 @@
 
 <template>
   <div relative>
-    <div grid="~ cols-1 rows-1 *:row-span-full *:col-span-full *:self-center *:justify-self-center" nq-wide size-full max-w="$nq-max-width">
+    <div grid="~ cols-1 rows-1 *:row-span-full *:col-span-full *:self-center *:justify-self-center" size-full max-w="$nq-max-width">
       <!-- Ribbon fold -->
       <div self-start="!" justify-self-end="!" aria-hidden z-1 mr--18 mt-48 w-44 origin-bottom-right rotate--45 border="22 x-transparent t-0 #EC991C" />
 

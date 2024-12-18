@@ -6,7 +6,7 @@ defineProps(getSliceComponentProps<Content.StakingDistributionSlice>())
 
 <template>
   <section bg-neutral-0>
-    <div flex="~ wrap md:gap-100 gap-y-72 lg:gap-x-200 justify-center" nq-wide>
+    <div flex="~ wrap md:gap-100 gap-y-72 lg:gap-x-200 justify-center">
       <StakingDistribution :info="slice.primary.marketCapDistributionInfo" />
       <ValidatorDistribution :info="slice.primary.stakedDistributionInfo" />
     </div>

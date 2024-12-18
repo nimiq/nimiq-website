@@ -49,7 +49,7 @@ watch(subheadlineStr, () => {
 
 <template>
   <section
-    class="dark hero-section relative mx-0 of-hidden bg-darkblue py-0 text-neutral children:max-w-none"
+    class="dark hero-section" relative mx-0 of-hidden bg-darkblue py-0 text-neutral children:max-w-none
     pt="148 md:153 lg:160"
   >
     <div class="content-wrapper z-10 children:md:mx-auto">
