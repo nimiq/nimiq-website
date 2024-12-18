@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxthub/core',
     '@nuxtjs/prismic',
+    '@nuxtjs/critters',
     '@nuxtjs/device',
     '@nuxt/fonts',
     'hero-motion/nuxt',

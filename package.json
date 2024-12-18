@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@nimiq/core": "^2.0.5",
+    "@nuxtjs/critters": "^0.8.0",
     "@popperjs/core": "^2.11.8",
     "@unovis/ts": "1.5.0-svelte.0",
     "@unovis/vue": "1.5.0-nikita.9",

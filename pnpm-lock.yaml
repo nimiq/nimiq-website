@@ -11,6 +11,9 @@ importers:
       '@nimiq/core':
         specifier: ^2.0.5
         version: 2.0.5
+      '@nuxtjs/critters':
+        specifier: ^0.8.0
+        version: 0.8.0(magicast@0.3.5)(rollup@4.28.1)
       '@popperjs/core':
         specifier: ^2.11.8
         version: 2.11.8
@@ -1397,6 +1400,9 @@ packages:
 
   '@nuxthub/core@0.8.7':
     resolution: {integrity: sha512-XPP+H/pdr3ubWY/V+EkAdqnBeNAP97Q0TtOXFebksP9yZ1LfMCXX/vjxdh747SWxMQVzY8HyandllJ3+6BNrkg==}
+
+  '@nuxtjs/critters@0.8.0':
+    resolution: {integrity: sha512-yuz/aA39A1e1pwdINmuc8qoHalnoySol4M5NIQK+4xwjoGkcwoKB5tOaAdod1G/iW+YVp9uxx0TF90tV3HVGng==}
 
   '@nuxtjs/device@3.2.4':
     resolution: {integrity: sha512-jIvN6QeodBNrUrL/1FCHk4bebsiLsGHlJd8c/m2ksLrGY4IZ0npA8IYhDTdYV92epGxoe8+3iZOzCjav+6TshQ==}
@@ -2858,6 +2864,9 @@ packages:
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+
+  beasties@0.1.0:
+    resolution: {integrity: sha512-+Ssscd2gVG24qRNC+E2g88D+xsQW4xwakWtKAiGEQ3Pw54/FGdyo9RrfxhGhEv6ilFVbB7r3Lgx+QnAxnSpECw==}
 
   big-integer@1.6.52:
     resolution: {integrity: sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==}
@@ -5780,6 +5789,9 @@ packages:
     engines: {node: ^18.12.0 || ^20.9.0 || >=22.0}
     peerDependencies:
       postcss: ^8.4.31
+
+  postcss-media-query-parser@0.2.3:
+    resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==}
 
   postcss-merge-longhand@7.0.4:
     resolution: {integrity: sha512-zer1KoZA54Q8RVHKOY5vMke0cCdNxMP3KBfDerjH/BYHh4nCIh+1Yy0t1pAEQF18ac/4z3OFclO+ZVH8azjR4A==}
@@ -8832,6 +8844,17 @@ snapshots:
       - supports-color
       - vite
 
+  '@nuxtjs/critters@0.8.0(magicast@0.3.5)(rollup@4.28.1)':
+    dependencies:
+      '@nuxt/kit': 3.14.1592(magicast@0.3.5)(rollup@4.28.1)
+      beasties: 0.1.0
+      pathe: 1.1.2
+      ufo: 1.5.4
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
+
   '@nuxtjs/device@3.2.4':
     dependencies:
       defu: 6.1.4
@@ -10706,6 +10729,17 @@ snapshots:
   base64-js@0.0.8: {}
 
   base64-js@1.5.1: {}
+
+  beasties@0.1.0:
+    dependencies:
+      css-select: 5.1.0
+      css-what: 6.1.0
+      dom-serializer: 2.0.0
+      domhandler: 5.0.3
+      htmlparser2: 9.1.0
+      picocolors: 1.1.1
+      postcss: 8.4.49
+      postcss-media-query-parser: 0.2.3
 
   big-integer@1.6.52: {}
 
@@ -14421,6 +14455,8 @@ snapshots:
   postcss-discard-overridden@7.0.0(postcss@8.4.49):
     dependencies:
       postcss: 8.4.49
+
+  postcss-media-query-parser@0.2.3: {}
 
   postcss-merge-longhand@7.0.4(postcss@8.4.49):
     dependencies:
