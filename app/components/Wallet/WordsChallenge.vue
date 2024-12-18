@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { AnimatedHyperText } from '#components'
-
 defineProps<{ headline: string, subheadline: string, guessTheRemainingWordsLabel: string, youDoNotStandAChanceToTake: string, rewardAmount: string }>()
 
 const { getRandomWords } = useWords()
 const marqueeRows = 6
 const wordsPerRow = 14
 const wordsList = Array.from({ length: marqueeRows }, () => ({ words: getRandomWords(wordsPerRow) }))
+
+const container = useTemplateRef<HTMLDivElement>('container')
+const containerIsVisible = ref(false)
+useIntersectionObserver(container, ([entry]) => containerIsVisible.value = entry?.isIntersecting || false)
+const { items: animatedWords } = useRandomAnimatedTexts(wordsList.flatMap(row => row.words).map(word => word.word), { shouldPlay: containerIsVisible })
 
 const firstRealWords = ['coyote', 'flush', 'rug', 'snack', 'cash', 'artwork', 'question', 'sword', 'cinnamon', 'civil', 'lens', 'warfare']
 const prizeAddress = 'NQ78 H0BC MUGB TG2Q E2SC 0GAB UGD5 NJ0B Y335'
@@ -42,30 +45,23 @@ function reset() {
   isChallengeFinished.value = false
   userInputs.forEach(input => input.value = '')
 }
-
-const container = useTemplateRef<HTMLDivElement>('container')
-const containerIsVisible = ref(false)
-useIntersectionObserver(container, ([entry]) => containerIsVisible.value = entry?.isIntersecting || false)
-
-const hyperTexts = useTemplateRef('hyper-text')
-const hyperTextsAreVisible = ref<boolean[]>(Array.from({ length: marqueeRows * wordsPerRow }, () => false))
-useIntersectionObserver(hyperTexts as any, (entries) => {
-  entries.forEach((entry) => {
-    const index = Number((entry.target as HTMLElement).dataset.index)
-    hyperTextsAreVisible.value[index] = entry.isIntersecting
-  })
-})
 </script>
 
 <template>
   <div :style="`--c: ${wordsList.length};`" absolute max-w-none w-full of-x-hidden>
     <div relative flex="~ col gap-24" h-full>
-      <AnimatedMarquee v-for="({ words }, key) in wordsList" :key :items="words" :should-play="containerIsVisible" flex="~ gap-2" :style="`--direction: ${key % 2 === 0 ? -1 : 1}`">
-        <template #default="{ item: { word }, index: i }">
-          <div flex="~ gap-12 items-center" rounded-4 bg-neutral-300 p-16>
-            <span text-neutral-800 font-semibold lh-none text-xl>
-              <AnimatedHyperText ref="hyper-text" :data-index="key * marqueeRows + i" :text="word" :should-play="containerIsVisible && hyperTextsAreVisible[key]" />
-            </span>
+      <AnimatedMarquee v-for="({ words }, i) in wordsList" :key="i" :items="words" :should-play="containerIsVisible" flex="~ gap-2" :style="`--direction: ${i % 2 === 0 ? -1 : 1}`">
+        <template #default="{ index: j }">
+          <div relative rounded-4 bg-neutral-300 p-16>
+            <span font="semibold mono" text-xl>{{ animatedWords[i * marqueeRows + j]![1] }}</span>
+            <div absolute inset-16>
+              <span font="semibold mono" text="xl neutral-800">
+                {{ animatedWords[i * marqueeRows + j]![0] }}
+              </span>
+              <span text="xl blue" font="semibold mono">
+                {{ animatedWords[i * marqueeRows + j]![1].value.slice(animatedWords[i * marqueeRows + j]![0].value.length) }}
+              </span>
+            </div>
           </div>
         </template>
       </AnimatedMarquee>

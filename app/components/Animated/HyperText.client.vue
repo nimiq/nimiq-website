@@ -55,9 +55,6 @@ useIntervalFn(() => {
         v-for="(letter, i) in displayText"
         :key="i"
         inline-block w-12 lh="[1.1]" font-mono
-        :initial="{ opacity: 0, y: -10 }"
-        :enter="{ opacity: 1, y: 0 }"
-        :delay="i * (duration / (text.length * 10))"
         :class="{
           'text-blue': letter !== text[i],
         }"
