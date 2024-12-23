@@ -84,6 +84,7 @@ onMounted(() => {
           flex="~ justify-center items-center"
           target="_blank" size-full
           :to="getLink(socialMedias[item.social]!.link)"
+          :class="{ '!animate-none': item.social }"
         >
           <div v-if="item.social === 'youtube'" i-nimiq:logos-youtube-mono text="53 white" />
           <div v-if="item.social === 'x'" i-nimiq:logos-twitter-mono text="64 white" />
@@ -119,7 +120,7 @@ onMounted(() => {
   position: relative;
   content-visibility: auto;
 
-  &:not([data-social]) > * {
+  > *:not([data-social]) {
     animation: pulse 2s infinite;
   }
 
