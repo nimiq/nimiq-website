@@ -119,7 +119,7 @@ onMounted(() => {
   position: relative;
   content-visibility: auto;
 
-  > *:not([data-social]) {
+  &:not([data-social]) > * {
     animation: pulse 2s infinite;
   }
 
