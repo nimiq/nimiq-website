@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useRafFn } from '@vueuse/core'
-import { BLOCKS_WINDOW_SIZE } from '~~/server/utils/albatross.types'
-
 const BLOCK_WIDTH = 208
 const TARGET_OFFSET = -BLOCK_WIDTH / 4
 const CHAIN_SPEED_FACTOR = 0.55

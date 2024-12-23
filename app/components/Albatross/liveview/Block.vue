@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { LiveviewBlockType } from '~~/server/utils/liveview.types'
-
 defineProps<{ block: LiveviewBlock }>()
 </script>
 

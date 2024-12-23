@@ -6,6 +6,8 @@ export enum LiveviewBlockType {
   PlaceholderBlock = 'placeholder',
 }
 
+export const BLOCKS_WINDOW_SIZE = 20
+
 export type LiveviewMicroBlock = {
   kind: LiveviewBlockType.MicroBlock
   duration: number

@@ -1,6 +1,3 @@
-import { BLOCKS_WINDOW_SIZE } from '~~/server/utils/albatross.types'
-import { type LiveviewBlock, LiveviewBlockType } from '~~/server/utils/liveview.types'
-
 export const useLiveviewBlocks = defineStore('liveview-blocks', () => {
   const url = `${useRuntimeConfig().public.apiDomain}/api/albatross/liveview/blocks`
   const { status, data } = useWebSocket(url, {

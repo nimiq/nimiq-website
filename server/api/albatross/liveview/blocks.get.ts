@@ -1,6 +1,5 @@
 import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
 import { BlockType, NimiqRPCClient } from 'nimiq-rpc-client-ts'
-import { BLOCKS_WINDOW_SIZE } from '~~/server/utils/albatross.types'
 
 /**
  * This WebSocket handler provides real-time block updates for the Albatross Liveview blockchain.
