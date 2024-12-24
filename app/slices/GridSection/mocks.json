@@ -551,7 +551,7 @@
     "primary": {
       "bgColor": {
         "__TYPE__": "FieldContent",
-        "value": "white",
+        "value": "grey",
         "type": "Select"
       }
     },

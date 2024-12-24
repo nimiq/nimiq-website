@@ -5114,10 +5114,11 @@ export interface GridSectionSliceThreeColumnsIconsTextPrimary {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: white
    * - **API ID Path**: grid_section.threeColumnsIconsText.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'white' | 'darkblue' | 'grey'>
+  bgColor: prismic.SelectField<'white' | 'darkblue' | 'grey', 'filled'>
 }
 
 /**
@@ -6969,14 +6970,14 @@ export type LinkGridSlice = prismic.SharedSlice<
  */
 export interface LogosGridSliceDefaultPrimary {
   /**
-   * Title field in *LogosGrid → Default → Primary*
+   * label field in *LogosGrid → Default → Primary*
    *
-   * - **Field Type**: Title
-   * - **Placeholder**: This is where it all begins...
-   * - **API ID Path**: logos_grid.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logos_grid.default.primary.label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  title: prismic.TitleField
+  label: prismic.KeyTextField
 }
 
 /**
@@ -7055,6 +7056,16 @@ export interface LogosGridSliceCenteredItem {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   logo: prismic.ImageField<never>
+
+  /**
+   * link field in *LogosGrid → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logos_grid.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
 }
 
 /**
@@ -10745,6 +10756,16 @@ export interface TiltedMediaSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
+
+  /**
+   * description field in *TiltedMedia → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_media.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
 }
 
 /**
@@ -10819,6 +10840,16 @@ export interface TiltedMediaSliceWithVideoPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
+
+  /**
+   * poster field in *TiltedMedia → WithVideo → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tilted_media.withVideo.primary.poster
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  poster: prismic.ImageField<never>
 }
 
 /**

@@ -3,16 +3,10 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "title": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "heading6",
-            "content": {
-              "text": "Century"
-            }
-          }
-        ]
+      "label": {
+        "__TYPE__": "FieldContent",
+        "value": "meet",
+        "type": "Text"
       }
     },
     "items": [
@@ -22,7 +16,6 @@
           [
             "logo",
             {
-              "__TYPE__": "ImageContent",
               "origin": {
                 "id": "main",
                 "url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e",
@@ -40,6 +33,9 @@
                 },
                 "background": "transparent"
               },
+              "credits": null,
+              "alt": null,
+              "__TYPE__": "ImageContent",
               "thumbnails": {}
             }
           ],
@@ -79,7 +75,6 @@
           [
             "logo",
             {
-              "__TYPE__": "ImageContent",
               "origin": {
                 "id": "main",
                 "url": "https://images.unsplash.com/photo-1587840171670-8b850147754e",
@@ -97,7 +92,21 @@
                 },
                 "background": "transparent"
               },
+              "credits": null,
+              "alt": null,
+              "__TYPE__": "ImageContent",
               "thumbnails": {}
+            }
+          ],
+          [
+            "link",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "https://prismic.io",
+                "text": "sheet"
+              }
             }
           ]
         ]

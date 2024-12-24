@@ -16,9 +16,21 @@ const colors = getColorClass(props.slice.primary.bgColor)
           </div>
         </div>
         <div :class="iconName" text="blue group-hocus:white 96 md:120" max-w-128 />
-        <PrismicRichText :field="headline" duration z-1 transition-colors nq-mt-48 group-hocus:text-white />
+        <PrismicRichText :field="headline" duration z-1 transition-colors nq-mt-48 group-hocus:children:text-white />
         <PrismicRichText :field="subline" duration z-1 transition-colors nq-mt-16 text="neutral-900 group-hocus:neutral-400" />
       </PrismicLink>
     </div>
   </section>
 </template>
+
+<style scoped>
+section {
+  [nq-hoverable]:hover,
+  [nq-hoverable]:focus-visible {
+    &::before {
+      background-image: none;
+      background: var(--c);
+    }
+  }
+}
+</style>

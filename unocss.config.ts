@@ -16,7 +16,7 @@ export default defineConfig({
     ['bg-darkerblue-to-purple', 'bg-gradient-fn-to-b bg-gradient-fn-from-#17182a bg-gradient-fn-to-#3d4383 bg-gradient-fn-ease'],
     ['bg-purple-to-blue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#3d4383 bg-gradient-fn-to-#0582CA bg-gradient-fn-ease'],
     ['bg-blue-to-darkerblue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#0582CA bg-gradient-fn-to-#17182a bg-gradient-fn-ease'],
-    ['stack', 'grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
+    ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
   ],
   variants: [
     (matcher) => {
@@ -93,6 +93,7 @@ export default defineConfig({
     'i-nimiq:icons-lg-hands-hexagon',
     'i-nimiq:icons-lg-document',
     'i-nimiq:icons-lg-document-vertical-line',
+    'i-nimiq:icons-lg-document-text',
     'i-nimiq:icons-lg-three-hands-hexagon',
     'i-nimiq:logos-super-simple-swap-text',
     'i-nimiq:logos-nimiq-horizontal',

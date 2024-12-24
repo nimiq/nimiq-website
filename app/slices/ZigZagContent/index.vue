@@ -16,6 +16,7 @@ function mediaType(item: ZigZagContentSliceDefaultItem) {
   return 'none'
 }
 
+const sectionRef = useTemplateRef<HTMLDivElement>('section')
 useIntersectionObserver(sectionRef, () => {
   // TODO Check if the selector works
   mediumZoom(`[data-slice-type="zig-zag-content"] img`, { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
@@ -23,7 +24,7 @@ useIntersectionObserver(sectionRef, () => {
 </script>
 
 <template>
-  <section :class="colors" class="px-0" data-slice-type="zig-zag-content">
+  <section ref="section" :class="colors" class="px-0" data-slice-type="zig-zag-content">
     <ul>
       <!-- px-24 xl:pl-112 xl:pr-0  -->
       <li

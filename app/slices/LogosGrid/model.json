@@ -11,13 +11,11 @@
       "version": "sktwi1xtmkfgx8626",
       "description": "LogosGrid",
       "primary": {
-        "title": {
-          "type": "StructuredText",
+        "label": {
+          "type": "Text",
           "config": {
-            "label": "Title",
-            "placeholder": "This is where it all begins...",
-            "allowTargetBlank": true,
-            "single": "heading6"
+            "label": "label",
+            "placeholder": ""
           }
         }
       },
@@ -76,6 +74,16 @@
             "thumbnails": []
           },
           "type": "Image"
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null,
+            "allowText": true
+          }
         }
       },
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
