@@ -3,9 +3,10 @@ import type { Content } from '@prismicio/client'
 import { components } from '~/slices'
 
 const params = useRoute().params as { uid: string }
-const uid = params.uid === '' ? 'home' : params.uid[0]!
+const isGrandchildPage = params.uid.length === 2
+const uid = params.uid === '' ? 'home' : params.uid.at(-1)
 const isHome = uid === 'home'
-const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('page', uid)
+const { data: page } = usePrismicDocumentByUID<Content.PageDocument>(!isGrandchildPage ? 'page' : 'child_page', uid!)
 
 useHead({
   title: page.value?.data.meta_title,
@@ -16,6 +17,7 @@ useHead({
 
 const darkHeader = computed(() => page.value?.data.darkHeader || isHome)
 const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
+
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
 
 const showSocialsHexagonBg = isHome

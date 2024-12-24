@@ -1,0 +1,56 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "apps",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      },
+      "appsMadeBy": {
+        "__TYPE__": "FieldContent",
+        "value": "Anyone",
+        "type": "Select"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "events",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      },
+      "learnMore": {
+        "__TYPE__": "FieldContent",
+        "value": "bet",
+        "type": "Text"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

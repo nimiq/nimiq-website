@@ -3352,39 +3352,11 @@ export type BuySellWalletSlice = prismic.SharedSlice<
 >
 
 /**
- * Primary content in *CardsCarousel → Default → Primary*
- */
-export interface CardsCarouselSliceDefaultPrimary {
-  /**
-   * DONT USE ME, USE ANOTHER VARIATION field in *CardsCarousel → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cards_carousel.default.primary.dontUseMePlease
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  dontUseMePlease: prismic.KeyTextField
-}
-
-/**
- * Default variation for CardsCarousel Slice
- *
- * - **API ID**: `default`
- * - **Description**: CardsCarousel
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type CardsCarouselSliceDefault = prismic.SharedSliceVariation<
-  'default',
-  Simplify<CardsCarouselSliceDefaultPrimary>,
-  never
->
-
-/**
  * Primary content in *CardsCarousel → Apps → Primary*
  */
 export interface CardsCarouselSliceAppsPrimary {
   /**
-   * Background Color field in *CardsCarousel → Apps → Primary*
+   * Background color [DEPRECATED] field in *CardsCarousel → Apps → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -3404,6 +3376,17 @@ export interface CardsCarouselSliceAppsPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   appsMadeBy: prismic.SelectField<'Anyone' | 'Nimiq' | 'Community', 'filled'>
+
+  /**
+   * bgColor field in *CardsCarousel → Apps → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: cards_carousel.apps.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey', 'filled'>
 }
 
 /**
@@ -3424,7 +3407,7 @@ export type CardsCarouselSliceApps = prismic.SharedSliceVariation<
  */
 export interface CardsCarouselSliceEventsPrimary {
   /**
-   * Background Color field in *CardsCarousel → Events → Primary*
+   * Background color [DEPRECATED] field in *CardsCarousel → Events → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -3443,6 +3426,17 @@ export interface CardsCarouselSliceEventsPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   learnMore: prismic.KeyTextField
+
+  /**
+   * bgColor field in *CardsCarousel → Events → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: cards_carousel.events.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey', 'filled'>
 }
 
 /**
@@ -3462,7 +3456,6 @@ export type CardsCarouselSliceEvents = prismic.SharedSliceVariation<
  * Slice variation for *CardsCarousel*
  */
 type CardsCarouselSliceVariation =
-  | CardsCarouselSliceDefault
   | CardsCarouselSliceApps
   | CardsCarouselSliceEvents
 
@@ -7158,7 +7151,7 @@ export type LottieSliceSlice = prismic.SharedSlice<
  */
 export interface NewYorkGridSliceDefaultPrimary {
   /**
-   * Background Color field in *NewYorkGrid → Default → Primary*
+   * Background Color [Deprecated] field in *NewYorkGrid → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -7267,6 +7260,17 @@ export interface NewYorkGridSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   secondBlockSecondStat: prismic.KeyTextField
+
+  /**
+   * bgColor field in *NewYorkGrid → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: new_york_grid.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey', 'filled'>
 }
 
 /**
@@ -7396,6 +7400,17 @@ export interface NewYorkGridSliceWithMultipleImages1StatPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   secondBlockFirstStat: prismic.KeyTextField
+
+  /**
+   * bgColor field in *NewYorkGrid → With Multiple Images - 1 Stat → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: new_york_grid.withMultipleImages1Stat.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey', 'filled'>
 }
 
 /**
@@ -11645,8 +11660,6 @@ declare module '@prismicio/client' {
       CardsCarouselSlice,
       CardsCarouselSliceApps,
       CardsCarouselSliceAppsPrimary,
-      CardsCarouselSliceDefault,
-      CardsCarouselSliceDefaultPrimary,
       CardsCarouselSliceEvents,
       CardsCarouselSliceEventsPrimary,
       CardsCarouselSliceVariation,

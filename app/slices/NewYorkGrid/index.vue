@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { Content, KeyTextField } from '@prismicio/client'
 
-// TODO Replace CtaSectionSlice with your slice
-defineProps(getSliceComponentProps<Content.NewYorkGridSlice>())
+const { slice } = defineProps(getSliceComponentProps<Content.NewYorkGridSlice>())
 const [DefineStats, ReuseStat] = createReusableTemplate<{ label: KeyTextField, value: KeyTextField }>()
+
+const colors = getColorClass(slice.primary.bgColor)
 </script>
 
 <template>
@@ -14,12 +15,13 @@ const [DefineStats, ReuseStat] = createReusableTemplate<{ label: KeyTextField, v
     </div>
   </DefineStats>
 
-  <section class="white mx-0 bg-neutral-0 children:max-w-none">
+  <section mx-0 :class="colors">
     <div
-      class="grid grid-flow-row gap-8 lg:grid-rows-[auto,1fr,auto] lg:gap-24 children:rounded-6 children:shadow"
+      grid="~ flow-row gap-8 lg:rows-[auto,1fr,auto] lg:gap-24"
+      w-full children:rounded-6 children:shadow
       :class="slice.variation === 'default' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4 one-image' : 'multiple-images grid-cols-1 md:grid-cols-2'"
     >
-      <prismic-image v-if="slice.variation === 'default'" :field="slice.primary.firstBlockFirstImage" size-full max-h-278 object-cover lg:row-span-2 md:col-span-2 style="grid-area: block1-image" />
+      <PrismicImage v-if="slice.variation === 'default'" :field="slice.primary.firstBlockFirstImage" size-full max-h-278 object-cover lg:row-span-2 md:col-span-2 style="grid-area: block1-image" />
       <ul v-else style="grid-area: block1-image" ring="1.5 neutral-200" h="128 lg:192 md:240" children:h="[calc(100%+32px)]" children:w="[calc((2*(100%-24px*2))/5)]" flex="~ gap-12 md:gap-24" overflow-hidden bg-white children:shrink-0 pl="12 md:24" pt="12 md:24">
         <li><PrismicImage :field="slice.primary.firstBlockFirstImage" size-full object-cover /></li>
         <li><PrismicImage :field="slice.primary.firstBlockSecondImage" size-full object-cover /></li>

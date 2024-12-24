@@ -50,7 +50,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section relative z-10 :class="{ 'bg-neutal-100': slice.variation === 'default', 'bg-neutral-0 pb-0': slice.variation !== 'default' }">
+  <section relative z-10 bg-neutral-0 :class="{ 'pb-0': slice.variation !== 'default' }" data-slice-type="banner">
     <template v-if="slice.variation === 'default'">
       <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative mx-auto w-full of-hidden rounded-8 px-32 shadow>
         <PrismicLink v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
@@ -59,6 +59,7 @@ const items = computed(() => {
           <div :style="{ borderColor: color }" top="50%" left="50%" border="2 solid" translate-x="-50%" translate-y="-50%" pointer-events-none absolute size-full scale-100 rounded-full op-0 />
         </PrismicLink>
         <div v-if="bgColor === 'white'" class="curtain" pointer-events-none absolute inset-0 />
+        <div v-else-if="bgColor === 'green'" pointer-events-none absolute inset-0 bg-gradient-green />
 
         <div v-if="backgroundPattern === 'Nimiq Hexagon'" text="200 md:300 lg:400" pointer-events-none absolute bottom="-10 lg:-0.2775em" right="-0.2em lg:-0.25em">
           <div i-nimiq:logos-nimiq-mono text-transparent>
@@ -68,11 +69,11 @@ const items = computed(() => {
 
         <div relative z-10 max-w-full :class="{ 'lg:max-w-60ch md:items-center flex-col md:mx-auto w-max': hasBgItems, 'items-end w-full': !hasBgItems }" flex="~ wrap justify-between">
           <div max-w-60ch>
-            <p v-if="label" text-12 nq-mb-32 nq-label>
+            <p v-if="label" text-12 :class="{ 'nq-mb-32': bgColor !== 'green', 'nq-mb-16': bgColor === 'green' }" nq-label>
               {{ label }}
             </p>
-            <PrismicRichText :field="headline" :class="{ 'md:text-center': backgroundPattern === 'Nimiq Apps' || backgroundPattern === 'Social Media' }" />
-            <PrismicRichText :field="subline" :class="{ 'md:text-center nq-mt-16': hasBgItems, 'nq-mt-32': !hasBgItems }" />
+            <PrismicRichText :field="headline" :class="{ 'md:text-center': backgroundPattern === 'Nimiq Apps' || backgroundPattern === 'Social Media', 'children:!text-white': bgColor === 'green' }" />
+            <PrismicRichText :field="subline" :class="{ 'md:text-center nq-mt-16': hasBgItems, 'nq-mt-32': !hasBgItems && bgColor !== 'green', 'children:text-white/70 nq-mt-24': bgColor === 'green' }" />
           </div>
           <PrismicLink v-if="hasLink(linkHref) && linkLabel" internal-component="a" :field="linkHref" mt="32 md:24" nq-arrow nq-pill-lg :class="{ 'md:mx-auto nq-pill-blue': hasBgItems, 'lg:mr-128 nq-pill-tertiary text-blue': !hasBgItems }">
             {{ linkLabel }}

@@ -42,8 +42,6 @@ bun run dev
 
 ## TODO
 
-- [ ] Change nuxt.config.ts > albatross network name
-
 ## Page migration
 
 - [ ] Wallet - WIP
@@ -54,7 +52,6 @@ bun run dev
 ---
 
 - [ ] nimiq-pay
-- [ ] about
 - [ ] community
 - [ ] oasis
 - [ ] buy-and-sell
@@ -69,11 +66,17 @@ bun run dev
 - [ ] contact
 - [ ] privacy
 - [ ] siliconparadise
+- [ ] blog
+- [ ] blog post
 
 ---
 
 - [ ] Check custom pages from the old repo
 - [ ] Configure redirects
+
+### Needs something
+
+- [ ] about - Missing roadmap section
 
 ### Done but not deployed
 

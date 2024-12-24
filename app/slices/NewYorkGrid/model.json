@@ -13,9 +13,12 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background Color",
+            "label": "Background Color [Deprecated]",
             "placeholder": "",
-            "options": ["white", "grey"],
+            "options": [
+              "white",
+              "grey"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -91,6 +94,18 @@
             "placeholder": ""
           },
           "type": "Text"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "bgColor",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey"
+            ],
+            "default_value": "white"
+          }
         }
       },
       "items": {},
@@ -107,7 +122,10 @@
           "config": {
             "label": "Background Color",
             "placeholder": "",
-            "options": ["white", "grey"],
+            "options": [
+              "white",
+              "grey"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -187,6 +205,18 @@
             "placeholder": ""
           },
           "type": "Text"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "bgColor",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey"
+            ],
+            "default_value": "white"
+          }
         }
       },
       "items": {},

@@ -52,7 +52,9 @@ section[data-slice-type='pill-link'] + section[data-slice-type='simple-headline'
 /* If the headline is after a slice that is the same theme (dark or light) we increase space */
 /* section.dark:not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline'].dark,
 section:not(.dark):not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline']:not(.dark), */
-section:is([bg-neutral-0], .bg-neutral-0):not(:where([data-slice-type='logos-grid'], [data-slice-type='grid-section']))
+section:is([bg-neutral-0], .bg-neutral-0):not(
+    :where([data-slice-type='logos-grid'], [data-slice-type='grid-section'], [data-slice-type='banner'])
+  )
   + section[data-slice-type='simple-headline'].bg-neutral-0 {
   --uno: 'nq-pt-200 border-t border-neutral-300';
 }
@@ -67,5 +69,16 @@ section[data-slice-type='staking-faq'] + section[data-slice-type='simple-headlin
   small {
     --uno: 'text-neutral-700';
   }
+}
+
+[data-slice-type='newsletter-subscription'] + section[data-slice-type='simple-headline'] {
+  --nq-pt-min: 236;
+  --nq-pt-max: 272;
+  padding-top: var(--nq-pt);
+}
+
+section[data-slice-type='simple-headline'] + section[data-slice-type='simple-headline'] {
+  display: none;
+  visibility: hidden;
 }
 </style>

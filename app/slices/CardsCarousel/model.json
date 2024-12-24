@@ -5,24 +5,6 @@
   "description": "CardsCarousel",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "sktwi1xtmkfgx8626",
-      "description": "CardsCarousel",
-      "primary": {
-        "dontUseMePlease": {
-          "type": "Text",
-          "config": {
-            "label": "DONT USE ME, USE ANOTHER VARIATION",
-            "placeholder": ""
-          }
-        }
-      },
-      "items": {},
-      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
-    },
-    {
       "id": "apps",
       "name": "Apps",
       "docURL": "...",
@@ -32,9 +14,12 @@
         "backgroundColor": {
           "type": "Select",
           "config": {
-            "label": "Background Color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
-            "options": ["white", "grey"],
+            "options": [
+              "white",
+              "grey"
+            ],
             "default_value": "white"
           }
         },
@@ -43,8 +28,24 @@
           "config": {
             "label": "Apps Made By",
             "placeholder": "",
-            "options": ["Anyone", "Nimiq", "Community"],
+            "options": [
+              "Anyone",
+              "Nimiq",
+              "Community"
+            ],
             "default_value": "Anyone"
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "bgColor",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey"
+            ],
+            "default_value": "white"
           }
         }
       },
@@ -61,9 +62,12 @@
         "backgroundColor": {
           "type": "Select",
           "config": {
-            "label": "Background Color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
-            "options": ["white", "grey"],
+            "options": [
+              "white",
+              "grey"
+            ],
             "default_value": "white"
           }
         },
@@ -72,6 +76,18 @@
           "config": {
             "label": "Learn More",
             "placeholder": ""
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "bgColor",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey"
+            ],
+            "default_value": "white"
           }
         }
       },
