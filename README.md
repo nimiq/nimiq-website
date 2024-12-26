@@ -44,13 +44,6 @@ bun run dev
 
 ## Page migration
 
-- [ ] Wallet - WIP
-- [ ] roadmap - WIP
-- [ ] team - WIP
-- [ ] litepaper - WIP
-
----
-
 - [ ] nimiq-pay
 - [ ] community
 - [ ] oasis
@@ -58,11 +51,9 @@ bun run dev
 - [ ] cryptopaymentlink
 - [ ] bug-bounty-pos
 - [ ] bug-bounty
-- [ ] apps
 - [ ] whitepaper-2
 - [ ] oasis/integrate
 - [ ] supersimpleswap
-- [ ] community/funding
 - [ ] contact
 - [ ] privacy
 - [ ] siliconparadise
@@ -74,13 +65,20 @@ bun run dev
 - [ ] Check custom pages from the old repo
 - [ ] Configure redirects
 
-### Needs something
+### WIP
 
 - [ ] about - Missing roadmap section
+- [ ] Wallet - WIPNeeds something
+- [ ] roadmap - WIP
+- [ ] team - WIP
+- [ ] litepaper - WIP
 
 ### Done but not deployed
 
 - [x] Onepager
+- [x] apps
+- [x] community/funding
+- [x] staking
 
 ### Done
 

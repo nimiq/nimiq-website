@@ -11027,12 +11027,12 @@ export interface VerticalVideoSliceDefaultPrimary {
   /**
    * video field in *VerticalVideo → Default → Primary*
    *
-   * - **Field Type**: Embed
+   * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
    * - **API ID Path**: vertical_video.default.primary.video
-   * - **Documentation**: https://prismic.io/docs/field#embed
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  video: prismic.EmbedField
+  video: prismic.LinkToMediaField
 }
 
 /**

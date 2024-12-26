@@ -43,7 +43,7 @@ const data = computed(() => {
                 {{ percentageFormatter.format(value) }}
               </span>
               <p text="green xs" font-bold lh-none>
-                {{ amountFormatter.format(balance) }} NIM
+                {{ amountFormatter.format(balance / 1e5) }} NIM
               </p>
             </div>
           </div>
