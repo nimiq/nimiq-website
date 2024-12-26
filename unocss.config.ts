@@ -106,6 +106,8 @@ export default defineConfig({
   theme: {
     colors: {
       red: { neon: '#ff0055' },
+      brown: { DEFAULT: '#795548' },
+      pink: { DEFAULT: '#FA7268' },
     },
     fontFamily: {
       retro: '\'Press Start 2P\', \'system-ui\'',

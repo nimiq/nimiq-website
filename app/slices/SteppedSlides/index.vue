@@ -35,8 +35,8 @@ function goToStep(step: number) {
 </script>
 
 <template>
-  <section class="white mx-0 bg-neutral-0 px-0 children:max-w-none">
-    <Headline :headline="slice.primary.headline" :subline="slice.primary.description" />
+  <section mx-0 of-x-clip bg-neutral-0 px-0 children:max-w-none>
+    <Headline :headline="slice.primary.headline" :subline="slice.primary.description" px="$px" />
 
     <ul flex="~ gap-6" mx-auto nq-mt-48>
       <li v-for="i in slice.items.length" :key="i" :data-state="step - 1 === i ? 'active' : undefined" max-w-384 flex-1>
@@ -44,7 +44,7 @@ function goToStep(step: number) {
       </li>
     </ul>
 
-    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" of-x-auto nq-mt-96 nq-scrollbar-hide @scroll.passive="calculateStep">
+    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" of-x-auto of-y-hidden nq-mt-96 nq-scrollbar-hide @scroll.passive="calculateStep">
       <li
         v-for="(item, i) in slice.items" :key="i"
         :data-state="step - 1 === i ? 'active' : undefined" snap="center always" cursor="active:default pointer"

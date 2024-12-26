@@ -1620,6 +1620,7 @@ interface NimiqAppDocumentData {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: Insights
    * - **API ID Path**: nimiq_app.type
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#select
@@ -1633,7 +1634,8 @@ interface NimiqAppDocumentData {
     | 'Miner'
     | 'Wallets'
     | 'Infrastructure'
-    | 'Bots'
+    | 'Bots',
+    'filled'
   >
 
   /**

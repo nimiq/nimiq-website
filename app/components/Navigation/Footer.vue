@@ -8,7 +8,7 @@ const colors = getColorClass(bgColor)
 </script>
 
 <template>
-  <footer :class="colors" grid="~ gap-40 md:gap-48 items-start xl:gap-104" max-w="$nq-max-width children:none" data-section z-10 px-0 nq-pb-40-96>
+  <footer :class="colors" grid="~ gap-40 md:gap-48 items-start xl:gap-104" max-w="$nq-max-width children:none" data-section nq-pb-40-96 z-10 px-0>
     <div flex="~ col" text-sm area-contact>
       <p v-if="navigation?.newsletterCta">
         {{ navigation.newsletterCta }}

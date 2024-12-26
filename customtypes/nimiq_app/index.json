@@ -1,5 +1,9 @@
 {
   "id": "nimiq_app",
+  "label": "App",
+  "repeatable": true,
+  "status": true,
+  "format": "custom",
   "json": {
     "Main": {
       "isHighlighted": {
@@ -48,6 +52,8 @@
       "type": {
         "type": "Select",
         "config": {
+          "label": "Type",
+          "placeholder": "",
           "options": [
             "Insights",
             "E-commerce",
@@ -59,7 +65,7 @@
             "Infrastructure",
             "Bots"
           ],
-          "label": "Type"
+          "default_value": "Insights"
         }
       },
       "logo": {
@@ -98,9 +104,5 @@
         }
       }
     }
-  },
-  "label": "App",
-  "repeatable": true,
-  "status": true,
-  "format": "custom"
+  }
 }

@@ -1,25 +1,30 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
+import { filter } from '@prismicio/client'
 
 const { slice, slices } = defineProps(getSliceComponentProps<Content.CardsCarouselSlice>())
-// const colors = getColorClass(slice.primary.bgColor)
+const sectionColor = getColorClass(slice.primary.bgColor)
 
-// const { client } = usePrismic()
+const { client } = usePrismic()
 
 const variation = computed(() => slice.variation)
 
-const { data: _items } = useAsyncData(`cards_carousel_${variation.value}`, () => {
-  console.warn('Nimiq Events nor Nimiq Apps not implemented')
-
-  if (variation.value === 'events') {
-    // TODO
-    return [] as any
+const { data: items } = useAsyncData(`cards_carousel_${variation.value}`, async () => {
+  if (variation.value === 'apps' && (slice.primary as Content.CardsCarouselSliceAppsPrimary).appsMadeBy === 'Community') {
+    const communityApps = await client.getAllByType('nimiq_app', {
+      filters: [filter.at('my.nimiq_app.isOfficial', false)],
+    })
+    return communityApps.sort(() => Math.random() - 0.5).map(d => d.data)
   }
-  return [] as any
+  console.warn('Nimiq Events nor Nimiq Apps not implemented')
+  return []
 })
 
 onNuxtReady(async () => {
   await nextTick()
+
+  if (slice.variation === 'apps')
+    return
 
   // We want to show the list of apps and events in the carousel. But if there are no items to show we
   // remove the previous slice which is a simple_headline and we show a warning in the console
@@ -37,8 +42,14 @@ onNuxtReady(async () => {
 })
 </script>
 
-<!-- <template>
-  <section :class="colors">
-    TODO!
+<template>
+  <section v-if="items && items.length > 0" :class="sectionColor" px-0 pb-0>
+    <template v-if="slice.variation === 'apps'">
+      <Carousel :items>
+        <template #default="{ item }">
+          <CardApp v-bind="item" />
+        </template>
+      </Carousel>
+    </template>
   </section>
-</template> -->
+</template>

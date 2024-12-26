@@ -15,7 +15,7 @@ const image = computed(() => props.slice.primary.flags)
 </script>
 
 <template>
-  <section max-w-full of-x-hidden class="white mx-0 bg-neutral-0 px-0 children:max-w-none">
+  <section mx-0 max-w-full of-x-hidden bg-neutral-0 px-0 children:max-w-none>
     <div
       max-w-screen h="64 md:80" bg="repeat-x"
       :style="{
