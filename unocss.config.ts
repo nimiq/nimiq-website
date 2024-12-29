@@ -1,6 +1,5 @@
 import { readFile } from 'node:fs/promises'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
-import { presetRemToPx } from '@unocss/preset-rem-to-px'
 import transformerDirectives from '@unocss/transformer-directives'
 import { presetNimiq } from 'nimiq-css'
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
@@ -46,8 +45,8 @@ export default defineConfig({
       typography: true,
       staticContent: true,
       fonts: false,
+      baseFontSize: 4,
     }),
-    presetRemToPx({ baseFontSize: 4 }),
     presetAttributify(),
     presetEasingGradient(),
     presetIcons({
@@ -101,6 +100,8 @@ export default defineConfig({
     'i-nimiq:globe-filled',
     'i-nimiq:code',
     'i-nimiq:shield',
+    'i-nimiq:icons-lg-htlc-box',
+    'i-nimiq:icons-lg-envelope',
   ],
 
   theme: {

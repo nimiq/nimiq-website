@@ -59,6 +59,7 @@ bun run dev
 - [ ] siliconparadise
 - [ ] blog
 - [ ] blog post
+- [ ] cryptomap
 
 ---
 

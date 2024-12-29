@@ -1893,7 +1893,7 @@ interface PageDocumentData {
   >
 
   /**
-   * Footer background color field in *Page*
+   * Footer background color (deprecate) field in *Page*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -1945,6 +1945,17 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   darkHeader: prismic.BooleanField
+
+  /**
+   * parents field in *Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.parents
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  parents: prismic.Repeatable<prismic.LinkField>
 
   /**
    * Slice Zone field in *Page*
@@ -4860,7 +4871,7 @@ export interface GridSectionSliceDefaultPrimary {
   >
 
   /**
-   * Link field in *GridSection → Default → Primary*
+   * Link (DEPRECATED) field in *GridSection → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -4870,7 +4881,7 @@ export interface GridSectionSliceDefaultPrimary {
   link: prismic.LinkField
 
   /**
-   * Link Label field in *GridSection → Default → Primary*
+   * Link label (DEPRECATED) field in *GridSection → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -4888,7 +4899,20 @@ export interface GridSectionSliceDefaultPrimary {
    * - **API ID Path**: grid_section.default.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
+  bgColor: prismic.SelectField<
+    'white' | 'grey' | 'darkblue' | 'blue-s3',
+    'filled'
+  >
+
+  /**
+   * cta field in *GridSection → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: grid_section.default.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField
 }
 
 /**
@@ -5358,7 +5382,7 @@ export interface HeroSectionSliceDefaultSlicePrimary {
   note: prismic.RichTextField
 
   /**
-   * Lottie Animation field in *HeroSection → Default slice → Primary*
+   * Lottie Animation (deprecated) field in *HeroSection → Default slice → Primary*
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
@@ -5396,7 +5420,10 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    * - **API ID Path**: hero_section.default-slice.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
+  bgColor: prismic.SelectField<
+    'white' | 'grey' | 'darkblue' | 'blue-s3',
+    'filled'
+  >
 }
 
 /**
@@ -6820,7 +6847,7 @@ export type LatestBlogpostSlice = prismic.SharedSlice<
  */
 export interface LinkGridSliceDefaultPrimary {
   /**
-   * Background Color field in *LinkGrid → Default → Primary*
+   * Background color [DEPRECATED] field in *LinkGrid → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -6832,6 +6859,17 @@ export interface LinkGridSliceDefaultPrimary {
     'grey' | 'white' | 'blue' | 'blue-dark' | 'green' | 'blue-s3',
     'filled'
   >
+
+  /**
+   * bgColor field in *LinkGrid → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: link_grid.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -6859,7 +6897,7 @@ export interface LinkGridSliceDefaultItem {
   description: prismic.RichTextField
 
   /**
-   * Primary Link field in *LinkGrid → Items*
+   * Primary Link (deprecated) field in *LinkGrid → Items*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -6869,7 +6907,7 @@ export interface LinkGridSliceDefaultItem {
   primaryLink: prismic.LinkField
 
   /**
-   * Primary Link Label field in *LinkGrid → Items*
+   * Primary Link Label (deprecated) field in *LinkGrid → Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -6879,7 +6917,7 @@ export interface LinkGridSliceDefaultItem {
   primaryLinkLabel: prismic.KeyTextField
 
   /**
-   * Secondary Link field in *LinkGrid → Items*
+   * Secondary Link (deprecated) field in *LinkGrid → Items*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -6889,7 +6927,7 @@ export interface LinkGridSliceDefaultItem {
   secondaryLink: prismic.LinkField
 
   /**
-   * Secondary Link Label field in *LinkGrid → Items*
+   * Secondary Link Label (deprecated) field in *LinkGrid → Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -6920,14 +6958,24 @@ export interface LinkGridSliceDefaultItem {
   pillLabel: prismic.KeyTextField
 
   /**
-   * Icon field in *LinkGrid → Items*
+   * links field in *LinkGrid → Items*
    *
-   * - **Field Type**: Link to Media
+   * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: link_grid.items[].icon
+   * - **API ID Path**: link_grid.items[].links
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  icon: prismic.LinkToMediaField
+  links: prismic.Repeatable<prismic.LinkField>
+
+  /**
+   * icon field in *LinkGrid → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_grid.items[].icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  icon: prismic.KeyTextField
 }
 
 /**
@@ -7098,7 +7146,7 @@ export type LogosGridSlice = prismic.SharedSlice<
  */
 export interface LottieSliceSliceDefaultPrimary {
   /**
-   * Background Color field in *LottieSlice → Default → Primary*
+   * Background color [DEPRECATED] field in *LottieSlice → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -7116,6 +7164,17 @@ export interface LottieSliceSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   source: prismic.LinkToMediaField
+
+  /**
+   * bgColor field in *LottieSlice → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: lottie_slice.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
 }
 
 /**
@@ -8242,7 +8301,7 @@ export interface PuzzleGridSliceDefaultPrimary {
    * - **API ID Path**: puzzle_grid.default.primary.mainPieceBackgroundColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  mainPieceBackgroundColor: prismic.SelectField<'gold' | 'green'>
+  mainPieceBackgroundColor: prismic.SelectField<'gold' | 'green' | 'white'>
 
   /**
    * Label field in *PuzzleGrid → Default → Primary*
@@ -8293,6 +8352,20 @@ export interface PuzzleGridSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField
+
+  /**
+   * bgColor field in *PuzzleGrid → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: puzzle_grid.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<
+    'white' | 'grey' | 'darkblue' | 'blue-s3',
+    'filled'
+  >
 }
 
 /**
@@ -8641,7 +8714,7 @@ export type RichTextSliceDefault = prismic.SharedSliceVariation<
  */
 export interface RichTextSliceWithLottiePrimary {
   /**
-   * Background color field in *RichText → With Lottie → Primary*
+   * Background color [DEPRECATED] field in *RichText → With Lottie → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -9450,7 +9523,10 @@ export interface SimpleHeadlineSliceDefaultPrimary {
    * - **API ID Path**: simple_headline.default.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue', 'filled'>
+  bgColor: prismic.SelectField<
+    'grey' | 'white' | 'darkblue' | 'blue-s3',
+    'filled'
+  >
 
   /**
    * Label field in *SimpleHeadline → Default → Primary*
@@ -10156,7 +10232,7 @@ export type StartingGridSlice = prismic.SharedSlice<
  */
 export interface SteppedLottieSliceDefaultPrimary {
   /**
-   * Background Color field in *SteppedLottie → Default → Primary*
+   * Background Color [DEPRECATED] field in *SteppedLottie → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -10772,7 +10848,10 @@ export interface TiltedMediaSliceDefaultPrimary {
    * - **API ID Path**: tilted_media.default.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue', 'filled'>
+  bgColor: prismic.SelectField<
+    'white' | 'grey' | 'darkblue' | 'blue-s3',
+    'filled'
+  >
 
   /**
    * description field in *TiltedMedia → Default → Primary*
@@ -11316,7 +11395,7 @@ export type WhitepaperSliceSlice = prismic.SharedSlice<
  */
 export interface YoutubeVideoSliceDefaultPrimary {
   /**
-   * Background Color field in *YoutubeVideo → Default → Primary*
+   * Background color [DEPRECATED] field in *YoutubeVideo → Default → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -11368,6 +11447,20 @@ export interface YoutubeVideoSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   display: prismic.SelectField<'overflows' | 'block'>
+
+  /**
+   * Background Color field in *YoutubeVideo → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: youtube_video.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<
+    'white' | 'grey' | 'darkblue' | 'blue-s3',
+    'filled'
+  >
 }
 
 /**

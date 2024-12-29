@@ -9,21 +9,31 @@
         "type": "Select"
       },
       "link": {
+        "key": "2e6fed8b-e68d-4db4-9e6d-6af88c0099b5",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
-          "url": "https://slicemachine.dev"
+          "url": "https://prismic.io"
         }
       },
       "linkLabel": {
         "__TYPE__": "FieldContent",
-        "value": "lion",
+        "value": "afternoon",
         "type": "Text"
       },
       "bgColor": {
         "__TYPE__": "FieldContent",
         "value": "white",
         "type": "Select"
+      },
+      "cta": {
+        "__TYPE__": "LinkContent",
+        "key": "e865cce3-05fb-4793-88be-20596fdd6f5a",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com",
+          "text": "unknown"
+        }
       }
     },
     "items": [
@@ -150,6 +160,7 @@
           [
             "linkHref",
             {
+              "key": "d7bcf2a9-0fc5-4846-93a8-9b663c32c59a",
               "__TYPE__": "LinkContent",
               "value": {
                 "__TYPE__": "ExternalLink",

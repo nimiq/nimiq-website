@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const { bgColor, withSocials = false } = defineProps<{ bgColor?: 'white' | 'grey' | 'darkblue', withSocials?: boolean }>()
+const { bgColor, withSocials = false } = defineProps<{ bgColor: 'white' | 'grey' | 'darkblue', withSocials?: boolean }>()
 
 const { socialMedias } = storeToRefs(useGlobalContent())
 
-const colors = getColorClass(bgColor)
+const colors = getColorClass(() => bgColor)
 
 const rows = computed(() => 5)
 const { width } = useWindowSize()

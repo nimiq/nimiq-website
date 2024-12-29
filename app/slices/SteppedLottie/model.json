@@ -14,9 +14,13 @@
         "backgroundColor": {
           "type": "Select",
           "config": {
-            "label": "Background Color",
+            "label": "Background Color [DEPRECATED]",
             "placeholder": "",
-            "options": ["white", "grey", "blue-dark"]
+            "options": [
+              "white",
+              "grey",
+              "blue-dark"
+            ]
           }
         },
         "title": {

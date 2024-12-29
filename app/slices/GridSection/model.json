@@ -29,7 +29,7 @@
         },
         "link": {
           "config": {
-            "label": "Link",
+            "label": "Link (DEPRECATED)",
             "placeholder": "",
             "allowTargetBlank": false,
             "select": null
@@ -38,7 +38,7 @@
         },
         "linkLabel": {
           "config": {
-            "label": "Link Label",
+            "label": "Link label (DEPRECATED)",
             "placeholder": ""
           },
           "type": "Text"
@@ -51,9 +51,21 @@
             "options": [
               "white",
               "grey",
-              "darkblue"
+              "darkblue",
+              "blue-s3"
             ],
             "default_value": "white"
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "cta",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
       },

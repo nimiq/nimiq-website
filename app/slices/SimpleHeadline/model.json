@@ -19,7 +19,8 @@
             "options": [
               "grey",
               "white",
-              "darkblue"
+              "darkblue",
+              "blue-s3"
             ],
             "default_value": "grey"
           }

@@ -59,6 +59,7 @@
         ]
       },
       "linkHref": {
+        "key": "81f4d4ad-693e-42de-9353-561a8ea16633",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -72,7 +73,7 @@
       },
       "bgColor": {
         "__TYPE__": "FieldContent",
-        "value": "grey",
+        "value": "blue-s3",
         "type": "Select"
       },
       "iconName": {
@@ -81,6 +82,7 @@
         "type": "Text"
       },
       "cta": {
+        "key": "15f27c6d-78fa-4072-8c5d-845a5bfbdf99",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",

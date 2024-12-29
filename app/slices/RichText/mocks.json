@@ -50,14 +50,15 @@
         "value": false
       },
       "source": {
+        "key": "c55170e2-739a-4f54-b110-bc5ce507df82",
         "__TYPE__": "LinkContent",
         "value": {
+          "__TYPE__": "FileLink",
           "id": "mock_Media_link",
-          "kind": "image/jpeg",
+          "kind": "file",
           "name": "mock_name",
           "url": "https://source.unsplash.com/daily",
-          "size": "0",
-          "__TYPE__": "FileLink"
+          "size": "0"
         }
       },
       "richText": {

@@ -27,9 +27,9 @@ watch([top, y], () => {
 </script>
 
 <template>
-  <section mx-0 px-0 pb-0 children:max-w-none :class="[colors, { 'translate-y-156': slice.variation === 'default' }]">
+  <section mx-0 px-0 pb-0 children:max-w-none :class="[colors, { 'nq-overlaps': slice.variation === 'default' }]">
     <TiltedMedia v-if="slice.variation === 'default'">
-      <NuxtImg :src="url" absolute inset-0 />
+      <NuxtImg :src="url" />
     </TiltedMedia>
     <TiltedMedia v-else-if="slice.variation === 'withVideo'">
       <NuxtLink :to="url" external mx-auto w-max stack children:rounded-8 target="_blank">

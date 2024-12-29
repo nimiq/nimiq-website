@@ -13,6 +13,7 @@
         "value": true
       },
       "media": {
+        "key": "3f46cd8c-36dd-4481-8cc4-75cddd15c828",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "FileLink",
@@ -25,7 +26,7 @@
       },
       "bgColor": {
         "__TYPE__": "FieldContent",
-        "value": "white",
+        "value": "blue-s3",
         "type": "Select"
       },
       "description": {

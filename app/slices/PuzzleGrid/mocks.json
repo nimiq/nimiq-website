@@ -1,0 +1,159 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "grey",
+        "type": "Select"
+      },
+      "direction": {
+        "__TYPE__": "FieldContent",
+        "value": "row",
+        "type": "Select"
+      },
+      "mainPieceBackgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "gold",
+        "type": "Select"
+      },
+      "label": {
+        "__TYPE__": "FieldContent",
+        "value": "whenever",
+        "type": "Text"
+      },
+      "image": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1560457079-9a6532ccb118",
+          "width": 4160,
+          "height": 3120
+        },
+        "url": "https://images.unsplash.com/photo-1560457079-9a6532ccb118",
+        "width": 4160,
+        "height": 3120,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "credits": null,
+        "alt": null,
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "headline": {
+        "__TYPE__": "FieldContent",
+        "value": "wild",
+        "type": "Text"
+      },
+      "subline": {
+        "__TYPE__": "FieldContent",
+        "value": "roof",
+        "type": "Text"
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Officia esse laboris sunt ullamco esse deserunt deserunt dolor consequat. Nisi sunt irure dolor deserunt adipisicing eu adipisicing deserunt voluptate eu. Cupidatat consequat eiusmod fugiat Lorem eiusmod."
+            }
+          }
+        ]
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "darkblue",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "label",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "split",
+              "type": "Text"
+            }
+          ],
+          [
+            "logo",
+            {
+              "origin": {
+                "id": "main",
+                "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+                "width": 3882,
+                "height": 2584
+              },
+              "url": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+              "width": 3882,
+              "height": 2584,
+              "edit": {
+                "zoom": 1,
+                "crop": {
+                  "x": 0,
+                  "y": 0
+                },
+                "background": "transparent"
+              },
+              "credits": null,
+              "alt": null,
+              "__TYPE__": "ImageContent",
+              "thumbnails": {}
+            }
+          ],
+          [
+            "headline",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "frozen",
+              "type": "Text"
+            }
+          ],
+          [
+            "description",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Minim laborum reprehenderit culpa sit cillum et amet pariatur veniam esse dolor mollit."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "linkLabel",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "long",
+              "type": "Text"
+            }
+          ],
+          [
+            "linkHref",
+            {
+              "key": "2a3ffd37-651e-4306-9c92-a645191a471c",
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "http://google.com"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]

@@ -30,10 +30,8 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
         <span text="20 md:22 xl:24 green" font-semibold>{{ highlight }}</span>
       </li>
     </ul>
-    <div v-if="showLink" class="nq_r-mt-48 link-wrapper" flex="~ wrap gap-x-32 gap-y-16" nq-mt-48 style="--nq-font-size-min:18;--nq-font-size-max:22">
-      <PrismicLink v-if="hasPrimaryLink" internal-component="a" nq-arrow nq-pill nq-pill-lg nq-pill-blue :field="p.linkHref!">
-        {{ p.linkLabel }}
-      </PrismicLink>
+    <div v-if="showLink" flex="~ wrap gap-x-32 gap-y-16 items-center" nq-mt-48 style="--nq-font-size-min:18;--nq-font-size-max:22">
+      <PrismicLink v-if="hasPrimaryLink" internal-component="a" anq-pill-blue nq-arrow nq-pill nq-pill-lg dark:nq-pill-white :field="p.link!" />
 
       <PrismicLink v-if="hasVideoLink" internal-component="a" un-text="neutral-700 hocus:neutral-800" transition-colors :field="p.videoHref!" flex="~ gap-10 items-center">
         <div i-nimiq:triangle-right text-16 />
@@ -41,6 +39,8 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
           {{ p.videoLabel }}
         </span>
       </PrismicLink>
+
+      <PrismicLink v-if="hasSecondaryLink" internal-component="a" :field="p.secondaryLink!" un-text-white font-bold nq-arrow />
     </div>
 
     <ul v-if="hasAnApp" nq-mt-40 flex="~ wrap gap-32 lg:gap-40">

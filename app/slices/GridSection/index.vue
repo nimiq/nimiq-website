@@ -21,6 +21,7 @@ const colors = getColorClass(props.slice.primary.bgColor)
           <PrismicRichText v-if="item.subline.length" :field="item.subline" col-span-2 />
         </li>
       </ul>
+      <PrismicLink v-if="hasLink(slice.primary.cta)" :field="slice.primary.cta" nq-mt-72 nq-arrow nq-pill-white />
     </template>
     <template v-else-if="slice.variation === 'withBackground'">
       <div grid="~ cols-1 lg:cols-3 gap-8 md:gap-16" data-slice-variation="withBackground">

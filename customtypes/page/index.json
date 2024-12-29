@@ -34,9 +34,10 @@
       "footerBackgroundColor": {
         "type": "Select",
         "config": {
+          "label": "Footer background color (deprecate)",
+          "placeholder": "",
           "options": ["white", "grey", "blue-dark"],
-          "default_value": "white",
-          "label": "Footer background color"
+          "default_value": "white"
         }
       },
       "show_table_of_contents": {
@@ -63,6 +64,17 @@
           "placeholder_false": "false",
           "placeholder_true": "true",
           "default_value": false
+        }
+      },
+      "parents": {
+        "type": "Link",
+        "config": {
+          "label": "parents",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": false,
+          "allowText": false,
+          "repeat": true
         }
       },
       "slices": {

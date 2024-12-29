@@ -132,7 +132,7 @@
         "lottieAnimation": {
           "type": "Link",
           "config": {
-            "label": "Lottie Animation",
+            "label": "Lottie Animation (deprecated)",
             "placeholder": "",
             "select": "media"
           }
@@ -161,7 +161,8 @@
             "options": [
               "white",
               "grey",
-              "darkblue"
+              "darkblue",
+              "blue-s3"
             ],
             "default_value": "white"
           }

@@ -77,7 +77,7 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
             "options": [
               "white",

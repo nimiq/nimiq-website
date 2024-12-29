@@ -1,0 +1,36 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      },
+      "source": {
+        "key": "1caea4fd-0053-4224-8011-b146e1596e89",
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "FileLink",
+          "id": "mock_Media_link",
+          "kind": "file",
+          "name": "mock_name",
+          "url": "https://source.unsplash.com/daily",
+          "size": "0"
+        }
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

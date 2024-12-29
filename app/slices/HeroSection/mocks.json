@@ -36,6 +36,7 @@
         ]
       },
       "linkHref": {
+        "key": "45c544df-fcad-4958-a3f6-245df39ecc3b",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -48,6 +49,7 @@
         "type": "Text"
       },
       "secondaryLinkHref": {
+        "key": "9fb5bd7c-7c69-48f6-a90b-a7585d5090e4",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -60,6 +62,7 @@
         "type": "Text"
       },
       "videoHref": {
+        "key": "fe397704-9d21-4935-b5f7-a6cce15eadca",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -83,6 +86,7 @@
         ]
       },
       "lottieAnimation": {
+        "key": "c86e1186-5139-4d1c-bf15-59dd74b17c4f",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "FileLink",
@@ -94,6 +98,7 @@
         }
       },
       "playStore": {
+        "key": "952331c1-22b0-4a3d-b0c3-13ba35f4eed7",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -101,6 +106,7 @@
         }
       },
       "appStore": {
+        "key": "5395568c-b009-40d0-88a2-4adb06e1e5d9",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -113,6 +119,7 @@
         "type": "Select"
       },
       "link": {
+        "key": "7625e770-368f-43f8-9b09-3a1599553754",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -121,6 +128,7 @@
         }
       },
       "secondaryLink": {
+        "key": "f80990d2-6cce-485a-9346-973eded8c257",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -161,6 +169,7 @@
         ]
       },
       "linkHref": {
+        "key": "3649690b-71ee-400f-a96b-3c5d544e9ff9",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -184,6 +193,7 @@
         ]
       },
       "videoHigh": {
+        "key": "d1d7b56f-40fd-4e98-b4ab-27b68bbef354",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "FileLink",
@@ -195,6 +205,7 @@
         }
       },
       "videoMedium": {
+        "key": "58d32d18-6c40-4e91-ae6e-e855dc2e006b",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "FileLink",
@@ -206,6 +217,7 @@
         }
       },
       "videoLow": {
+        "key": "4cccce0c-1864-4507-b773-12a6eaa46194",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "FileLink",
@@ -283,6 +295,7 @@
         ]
       },
       "linkHref": {
+        "key": "bb1b0d22-a463-4a61-8fff-99827768786c",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -600,6 +613,7 @@
         "type": "Select"
       },
       "contactEmail": {
+        "key": "ea45beb5-e2a6-4200-8e55-41d7c73dcee2",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -607,6 +621,7 @@
         }
       },
       "contactTelegram": {
+        "key": "3012f88c-ca11-48fb-87f3-a047bb57175b",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -614,6 +629,7 @@
         }
       },
       "contactLinkedin": {
+        "key": "fedde029-9e60-4014-980b-d172b99fc26a",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -670,6 +686,7 @@
         "type": "Text"
       },
       "buttonHref": {
+        "key": "28e4f3cd-8775-4bb0-855e-e7d1509a5ab1",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -752,6 +769,7 @@
         ]
       },
       "linkHref": {
+        "key": "f42d0bec-ed94-4f7c-83d9-f85c0f3fe914",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -764,6 +782,7 @@
         "type": "Text"
       },
       "secondaryLinkHref": {
+        "key": "f9ca377a-35e2-450a-bb88-0b4110fcb4e5",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -776,6 +795,7 @@
         "type": "Text"
       },
       "videoHref": {
+        "key": "5ef2cea8-ece6-43d8-8d2a-7a1b42612781",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -799,6 +819,7 @@
         ]
       },
       "lottieAnimation": {
+        "key": "9b2a318c-6ea3-4367-ba92-2de28fe57ec9",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "FileLink",
@@ -865,6 +886,7 @@
         ]
       },
       "cta": {
+        "key": "de3afa79-1edc-4c83-9d91-ea42355e3017",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -899,6 +921,7 @@
     "variation": "staking",
     "primary": {
       "cta": {
+        "key": "f29c3837-bf19-45e4-92d0-2f3b120d7ae9",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -941,6 +964,7 @@
         ]
       },
       "linkHref": {
+        "key": "4b4a48c4-4796-42ff-894b-4346acea7178",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -953,6 +977,7 @@
         "type": "Text"
       },
       "link": {
+        "key": "2ba8071c-f6d3-4625-85b6-50d607eb12d6",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -961,6 +986,7 @@
         }
       },
       "secondaryLinkHref": {
+        "key": "861ac183-6ddf-4728-8428-cd5cc1760b25",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -973,6 +999,7 @@
         "type": "Text"
       },
       "secondaryLink": {
+        "key": "d4932795-3594-46d4-a8a4-606b60b421d6",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -981,6 +1008,7 @@
         }
       },
       "videoHref": {
+        "key": "c43351a9-d37a-44ec-a735-e9281a141322",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -1004,6 +1032,7 @@
         ]
       },
       "lottieAnimation": {
+        "key": "86d7b0b0-3f3a-4879-b7d6-ef62e7d44ef8",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "FileLink",
@@ -1015,6 +1044,7 @@
         }
       },
       "playStore": {
+        "key": "3870114f-36a8-4354-b8ea-e3668ce9271d",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -1022,6 +1052,7 @@
         }
       },
       "appStore": {
+        "key": "03cb59d6-23b7-4f9f-b6f0-766f12062b99",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",

@@ -13,12 +13,32 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background Color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
-            "options": ["grey", "white", "blue", "blue-dark", "green", "blue-s3"],
+            "options": [
+              "grey",
+              "white",
+              "blue",
+              "blue-dark",
+              "green",
+              "blue-s3"
+            ],
             "default_value": "grey"
           },
           "type": "Select"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "bgColor",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "darkblue"
+            ],
+            "default_value": "white"
+          }
         }
       },
       "items": {
@@ -42,7 +62,7 @@
         },
         "primaryLink": {
           "config": {
-            "label": "Primary Link",
+            "label": "Primary Link (deprecated)",
             "placeholder": "",
             "allowTargetBlank": false,
             "select": null
@@ -51,14 +71,14 @@
         },
         "primaryLinkLabel": {
           "config": {
-            "label": "Primary Link Label",
+            "label": "Primary Link Label (deprecated)",
             "placeholder": ""
           },
           "type": "Text"
         },
         "secondaryLink": {
           "config": {
-            "label": "Secondary Link",
+            "label": "Secondary Link (deprecated)",
             "placeholder": "",
             "allowTargetBlank": false,
             "select": null
@@ -67,7 +87,7 @@
         },
         "secondaryLinkLabel": {
           "config": {
-            "label": "Secondary Link Label",
+            "label": "Secondary Link Label (deprecated)",
             "placeholder": ""
           },
           "type": "Text"
@@ -88,12 +108,22 @@
             "placeholder": ""
           }
         },
-        "icon": {
+        "links": {
           "type": "Link",
           "config": {
-            "label": "Icon",
+            "label": "links",
             "placeholder": "",
-            "select": "media"
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true
+          }
+        },
+        "icon": {
+          "type": "Text",
+          "config": {
+            "label": "icon",
+            "placeholder": ""
           }
         }
       },

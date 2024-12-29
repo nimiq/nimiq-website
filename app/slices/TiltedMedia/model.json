@@ -53,7 +53,8 @@
             "options": [
               "white",
               "grey",
-              "darkblue"
+              "darkblue",
+              "blue-s3"
             ],
             "default_value": "white"
           }

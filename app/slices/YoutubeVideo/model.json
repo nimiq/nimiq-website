@@ -13,9 +13,16 @@
       "primary": {
         "backgroundColor": {
           "config": {
-            "label": "Background Color",
+            "label": "Background color [DEPRECATED]",
             "placeholder": "",
-            "options": ["white", "grey", "blue-dark", "blue", "green", "blue-s3"],
+            "options": [
+              "white",
+              "grey",
+              "blue-dark",
+              "blue",
+              "green",
+              "blue-s3"
+            ],
             "default_value": "white"
           },
           "type": "Select"
@@ -51,7 +58,24 @@
           "config": {
             "label": "Display",
             "placeholder": "",
-            "options": ["overflows", "block"]
+            "options": [
+              "overflows",
+              "block"
+            ]
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "darkblue",
+              "blue-s3"
+            ],
+            "default_value": "white"
           }
         }
       },

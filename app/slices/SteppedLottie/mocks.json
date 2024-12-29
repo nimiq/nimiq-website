@@ -1,0 +1,110 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "backgroundColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      },
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading3",
+            "content": {
+              "text": "Earth"
+            }
+          }
+        ]
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Eiusmod aliqua excepteur duis ipsum mollit occaecat eu consectetur exercitation tempor exercitation culpa."
+            }
+          }
+        ]
+      },
+      "buttonText": {
+        "__TYPE__": "FieldContent",
+        "value": "yes",
+        "type": "Text"
+      },
+      "overlapsNextSection": {
+        "__TYPE__": "BooleanContent",
+        "value": true
+      },
+      "translucent": {
+        "__TYPE__": "BooleanContent",
+        "value": false
+      },
+      "lottieSource": {
+        "__TYPE__": "LinkContent",
+        "key": "3110f7e6-b99f-4344-a06c-31eb25ef0f91",
+        "value": {
+          "__TYPE__": "FileLink",
+          "id": "mock_Media_link",
+          "kind": "file",
+          "name": "mock_name",
+          "url": "https://source.unsplash.com/daily",
+          "size": "0"
+        }
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "stepTitle",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "heading3",
+                  "content": {
+                    "text": "Place"
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "stepDescription",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Sint veniam do exercitation minim sunt mollit tempor reprehenderit commodo culpa."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "stepLottieSource",
+            {
+              "__TYPE__": "LinkContent",
+              "key": "33721487-ed4a-48c2-8e5f-25d47be10e74",
+              "value": {
+                "__TYPE__": "FileLink",
+                "id": "mock_Media_link",
+                "kind": "file",
+                "name": "mock_name",
+                "url": "https://source.unsplash.com/daily",
+                "size": "0"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]
