@@ -140,6 +140,7 @@ export default defineNuxtConfig({
   hub: {
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,
+    cache: true,
   },
 
   router: {
@@ -156,8 +157,6 @@ export default defineNuxtConfig({
     '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
     '/cookie-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710/cookie-policy' },
   },
-
-  watch: ['server/**/*'],
 
   nitro: {
     experimental: {
