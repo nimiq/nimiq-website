@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Content, RichTextField } from '@prismicio/client'
+import PillSelector from '~/components/PillSelector.vue'
 
 const { slice } = defineProps(getSliceComponentProps<Content.PriceChartSlice>())
 
@@ -7,19 +8,22 @@ const locale = useLocale()
 const dateFormatter = new Intl.DateTimeFormat(locale.value, { hour: 'numeric', minute: 'numeric', hour12: true, month: 'short', day: 'numeric', year: 'numeric' })
 const percentageFormatter = new Intl.NumberFormat(locale.value, { style: 'percent', maximumFractionDigits: 2 })
 
-const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000)
+const { marketCapChange, maxSupplyFormatted, totalSupplyFormatted, volumeChange, volumeUserCurrencyFormatted, marketCapUserCurrencyFormatted } = useNimMetrics()
+const { historicPrices, historicPriceRangeOptions, selectedHistoricPricePeriod } = useNimPrice()
+
 const lastUpdatedLabel = computed(() => {
-  const formattedDate = dateFormatter.format(tenMinutesAgo)
+  const mostRecentPriceDate = historicPrices.value?.at(-1)?.at(0)
+  if (!mostRecentPriceDate)
+    return ''
+  const formattedDate = dateFormatter.format(new Date(mostRecentPriceDate))
   return slice.primary.lastUpdatedLabel!.replace('{{ timestamp }}', formattedDate)
 })
-
-const { marketCapChange, maxSupplyFormatted, totalSupplyFormatted, volumeChange, volumeUserCurrencyFormatted, marketCapUserCurrencyFormatted } = useTokenMetrics()
 
 const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: string, metricChange?: number, label: string, tooltipInfo?: RichTextField }>()
 </script>
 
 <template>
-  <section bg-neutral-0 nq-pt-96 flex="~ col items-center">
+  <section flex="~ col items-center" of-x-clip bg-neutral-0 nq-pt-96>
     <DefineMetric v-slot="{ metricValue, metricChange, label, tooltipInfo }">
       <div flex="~ col-reverse gap-8">
         <div flex="~ gap-6 items-center">
@@ -42,23 +46,29 @@ const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: string
       </div>
     </DefineMetric>
 
-    <div ring="1.5 neutral/15" relative w-full rounded-8 bg-neutral-0 p-32 shadow stack>
+    <div ring="1.5 neutral/15" relative w-full rounded-8 bg-neutral-0 shadow nq-pt-32 stack style="--ribbong-r: -18px; --ribbong-t: calc(var(--nq-pt) * -1 - 11px)">
       <!-- Ribbon fold -->
-      <div self-start="!" justify-self-end="!" aria-hidden z-1 mr--18 mt-48 w-44 origin-bottom-right rotate--45 border="22 x-transparent t-0 #EC991C" />
+      <div aria-hidden relative z-1 w-44 origin-bottom-right rotate--45 self-start justify-self-end border="22 x-transparent t-0 #EC991C" style="right: var(--ribbong-r); top: var(--ribbong-t)" />
       <!-- Ribbon -->
-      <div self-start="!" justify-self-end="!" relative z-10 mr--18 mt-11 w-max>
+      <div relative z-10 w-max self-start justify-self-end style="right: var(--ribbong-r); top: var(--ribbong-t)">
         <AnimatedFloatingStars translate="-50%" absolute left="50%" top="50%" z-1 />
         <div bg="#E9B213" text="lg white" rounded="6 br-0" relative z-2 ml-auto w-max px-20 py-16 font-semibold>
           {{ slice.primary.nimPriceChartLabel }}
         </div>
       </div>
 
-      <div flex="~ col gap-20" w-max>
+      <div flex="~ gap-20" w-max self-start justify-self-start nq-px-32>
         <ReuseMetric :metric-value="marketCapUserCurrencyFormatted" :metric-change="marketCapChange" :label="slice.primary.marketCapLabel!" :tooltip-info="slice.primary.marketCapInfo" />
         <ReuseMetric :metric-value="volumeUserCurrencyFormatted" :metric-change="volumeChange" :label="slice.primary.volume24HLabel!" :tooltip-info="slice.primary.volume24HInfo" />
         <ReuseMetric :metric-value="totalSupplyFormatted" :label="slice.primary.totalSupplyLabel!" :tooltip-info="slice.primary.totalSupplyInfo" />
         <ReuseMetric :metric-value="maxSupplyFormatted" :label="slice.primary.maxSupplyLabel!" :tooltip-info="slice.primary.maxSupplyInfo" />
       </div>
+
+      <div w-full nq-pb-12 nq-pt-32>
+        <ChartLine :data="historicPrices" />
+      </div>
+
+      <PillSelector v-model="selectedHistoricPricePeriod" :options="historicPriceRangeOptions" self-end justify-self-end nq-m-32 />
     </div>
     <div flex="~ col items-center gap-8" nq-mt-32>
       <p flex="~ items-center gap-8" text="center sm">

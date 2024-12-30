@@ -10,7 +10,7 @@ const colors = getColorClass(props.slice.primary.bgColor)
 <template>
   <section :class="colors" data-slice-type="grid-section">
     <template v-if="slice.variation === 'default'">
-      <ul grid="~ cols-3 gap-48 lg:gap-72 2xl:gap-80">
+      <ul nq-grid-330>
         <li
           v-for="(item, i) in slice.items"
           :key="i"

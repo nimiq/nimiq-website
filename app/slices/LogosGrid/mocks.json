@@ -42,6 +42,7 @@
           [
             "link",
             {
+              "key": "7034fd49-3904-49ec-8011-b9b24f8c68c8",
               "__TYPE__": "LinkContent",
               "value": {
                 "__TYPE__": "ExternalLink",
@@ -65,6 +66,11 @@
       "backgroundColor": {
         "__TYPE__": "FieldContent",
         "value": "white",
+        "type": "Select"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "grey",
         "type": "Select"
       }
     },
@@ -101,6 +107,7 @@
           [
             "link",
             {
+              "key": "114777cb-072d-44f3-b87c-70ad0485c07b",
               "__TYPE__": "LinkContent",
               "value": {
                 "__TYPE__": "ExternalLink",

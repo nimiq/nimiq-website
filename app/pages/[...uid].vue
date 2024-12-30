@@ -40,7 +40,7 @@ useHead({
   ],
 })
 
-const darkHeader = computed(() => page.value?.data.darkHeader || isHome)
+const darkHeader = computed(() => page.value?.data.darkHeader || isHome || uid === 'supersimpleswap')
 const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
 
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)

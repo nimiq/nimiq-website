@@ -50,7 +50,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section relative z-10 bg-neutral-0 :class="{ 'pb-0': slice.variation !== 'default' }" data-slice-type="banner">
+  <section nq-overlaps relative z-10 bg-neutral-0 :class="{ 'pb-0': slice.variation !== 'default' }" data-slice-type="banner">
     <template v-if="slice.variation === 'default'">
       <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative mx-auto w-full of-hidden rounded-8 px-32 shadow>
         <PrismicLink v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
@@ -87,7 +87,7 @@ const items = computed(() => {
         <div absolute inset-x-0 top-0 h-200 bg-gradient="to-b from-neutral-0 to-transparent" />
         <div absolute inset-x-0 bottom-0 h-200 bg-gradient="to-b from-transparent to-green" />
       </div>
-      <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative bottom--32 gap-x-24 rounded-8 bg-neutral-0 shadow>
+      <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative gap-x-24 rounded-8 bg-neutral-0 shadow>
         <PrismicRichText :field="slice.primary.headline" text="4xl neutral" nq-raw max-w-24ch font-bold />
         <PrismicLink :field="slice.primary.cta" nq-mt-32 nq-arrow nq-pill-lg nq-pill-blue />
         <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
@@ -100,24 +100,22 @@ const items = computed(() => {
         </ul>
       </div>
     </div>
-    <div v-else-if="slice.variation === 'buyAndSell'">
-      <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative bottom--32 gap-x-24 rounded-8 bg-neutral-0 shadow>
-        <PrismicRichText :field="slice.primary.headline" text="44 neutral" nq-raw max-w-24ch font-bold />
-        <PrismicLink :field="slice.primary.cta" nq-mt-32 nq-arrow nq-pill-lg nq-pill-blue />
-        <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
-          <li v-for="({ description, icon }, i) in slice.primary.features" :key="i" flex="~ gap-12 items-center">
-            <div size-32 rounded-full bg-gold flex="~ items-center justify-center">
-              <div :class="[icon!, { 'bottom--2': icon === 'i-nimiq:document-filled' }]" text="18 white" relative shrink-0 />
-            </div>
-            <p>{{ description }}</p>
-          </li>
-        </ul>
-      </div>
+    <div v-else-if="slice.variation === 'buyAndSell'" grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative w-full gap-x-24 rounded-8 bg-neutral-0 shadow>
+      <PrismicRichText :field="slice.primary.headline" text="44 neutral" nq-raw max-w-24ch font-bold />
+      <PrismicLink :field="slice.primary.cta" nq-mt-32 nq-arrow nq-pill-lg nq-pill-blue />
+      <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
+        <li v-for="({ description, icon }, i) in slice.primary.features" :key="i" flex="~ gap-12 items-center">
+          <div size-32 rounded-full bg-gold flex="~ items-center justify-center">
+            <div :class="[icon!, { 'bottom--2': icon === 'i-nimiq:document-filled' }]" text="18 white" relative shrink-0 />
+          </div>
+          <p>{{ description }}</p>
+        </li>
+      </ul>
     </div>
   </section>
 </template>
 
-  <style scoped>
+<style scoped>
 .curtain {
   background: linear-gradient(180deg, rgb(var(--nq-neutral-0) / 0.1) 50%, rgb(var(--nq-neutral-0) / 0.5) 100%);
   box-shadow: inset 0px 0px 101.171px rgba(var(--nq-neutral-0) / 0.75);

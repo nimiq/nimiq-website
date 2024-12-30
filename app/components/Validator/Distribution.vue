@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
-import type { DonutDatum } from '../Donut.client.vue'
+import type { DonutDatum } from '../Chart/Donut.client.vue'
 
 defineProps<{ info: RichTextField }>()
 
@@ -30,7 +30,7 @@ const data = computed(() => {
 
 <template>
   <div flex="~ col items-center">
-    <Donut :data="data!">
+    <ChartDonut :data="data!">
       <template #default="{ color, value, name, logo, balance }">
         <div :key="name" :style="{ '--c': color }" ring="1.5 $c" data-tooltip-container w-max rounded-8 bg-neutral-0 p-16 text-neutral font-semibold flex="~ items-center gap-16" shadow>
           <img v-if="logo" :src="logo" size-40 loading="lazy">
@@ -49,7 +49,7 @@ const data = computed(() => {
           </div>
         </div>
       </template>
-    </Donut>
+    </ChartDonut>
     <PrismicRichText :field="info" max-w-42ch text-center nq-mt-48 />
   </div>
 </template>

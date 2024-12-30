@@ -8,6 +8,7 @@ import { presetEasingGradient } from 'unocss-preset-easing-gradient'
 export default defineConfig({
   rules: [
     [/^area-(.*)$/, ([, t]) => ({ 'grid-area': t })],
+
   ],
   // TODO Add bg-transparent to buttons
   // TODO In the nq-scrollbar-hide, we should include the pseudo-elements
@@ -16,6 +17,8 @@ export default defineConfig({
     ['bg-purple-to-blue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#3d4383 bg-gradient-fn-to-#0582CA bg-gradient-fn-ease'],
     ['bg-blue-to-darkerblue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#0582CA bg-gradient-fn-to-#17182a bg-gradient-fn-ease'],
     ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
+
+    [/^nq-grid-(\d+)$/, ([, d]) => `grid cols-[repeat(auto-fit,min(calc(100vw-64px),${d}px))] gap-32 md:gap-40 lg:gap-48 xl:gap-64`],
   ],
   variants: [
     (matcher) => {

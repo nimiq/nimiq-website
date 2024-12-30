@@ -4,26 +4,6 @@ import type { Content } from '@prismicio/client'
 const { slice } = defineProps(getSliceComponentProps<Content.PuzzleGridSlice>())
 
 const colors = getColorClass(slice.primary.bgColor)
-
-// const { smaller } = useBreakpoints(breakpointsTailwind)
-// const smallScreen = smaller('md')
-
-// const left = { left: '-6px', top: 'calc(50% - 10px)', transform: 'scaleY(2.2) scaleX(1.6) rotate(90deg)' }
-// const bottom = { bottom: '2px', left: 'calc(50% - 28px)', transform: 'scaleX(2.2) scaleY(1.6)' }
-// const top = { top: '2px', left: 'calc(50% - 28px)', transform: 'scaleX(2.2) scaleY(1.6) rotate(180deg)' }
-
-// const arrowPosition = computed(() => {
-//   if (slice.primary.direction === 'column')
-//     return 'bottom'
-//   return !smallScreen.value ? 'left' : 'top'
-// })
-// const svgStyles = computed(() => {
-//   if (arrowPosition.value === 'left')
-//     return left
-//   if (arrowPosition.value === 'bottom')
-//     return bottom
-//   return top
-// })
 </script>
 
 <template>
@@ -36,8 +16,8 @@ const colors = getColorClass(slice.primary.bgColor)
         </h3>
         <PrismicRichText :field="description" text="white/80 center" />
       </li>
-      <li :style="{ '--c': `rgb(var(--nq-${slice.primary.mainPieceBackgroundColor}))` }" bg="$c" flex="~ items-center justify-center col" px-0="!" relative>
-        <div text="$c" i-nimiq:tooltip-triangle absolute left--24 origin-right lg:rotate--90 bordera="b-1 $c" />
+      <li :style="{ '--c': `rgb(var(--nq-${slice.primary.mainPieceBackgroundColor}))` }" bg="$c" flex="~ items-center justify-center col" px-0="!" relative py-24>
+        <div text="$c" i-nimiq:tooltip-triangle absolute max-lg:top--15 lg:left="-39.6px" lg:origin-right-center lg:rotate--90 />
         <PrismicImage :field="slice.primary.image" h-114 />
         <PrismicRichText :field="slice.primary.description" text="darkblue center 2xl" nq-mt-24 />
       </li>

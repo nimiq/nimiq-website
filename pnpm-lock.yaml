@@ -148,11 +148,14 @@ importers:
         specifier: ^15.2.11
         version: 15.2.11
       nimiq-css:
-        specifier: ^0.2.85
-        version: 0.2.85(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
+        specifier: ^0.2.86
+        version: 0.2.86(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
       nimiq-rpc-client-ts:
         specifier: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
         version: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      pathe:
+        specifier: ^1.1.2
+        version: 1.1.2
       pinia:
         specifier: ^2.3.0
         version: 2.3.0(typescript@5.7.2)(vue@3.5.13(typescript@5.7.2))
@@ -5324,8 +5327,8 @@ packages:
     resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50}
     version: 0.0.1
 
-  nimiq-css@0.2.85:
-    resolution: {integrity: sha512-gtzQx8GeG9CHSOzOHtcGyAMsHmYEBnCbnjjIknaxMRSc4w9C34xA7aJK7QcdEVrDZWvz11yZLwFSyI5Igy6gww==}
+  nimiq-css@0.2.86:
+    resolution: {integrity: sha512-xkbhPWcgzAgOL7+jap8yXhqei8TX6UU1UcIA6lJ7qku1NLqV25K+N/PnRphP412eW4j3EZjyNiMsrxf3QrOVSA==}
     engines: {node: '>=14'}
 
   nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@82039a3:
@@ -13754,7 +13757,7 @@ snapshots:
 
   nimiq-albatross-policy@https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50: {}
 
-  nimiq-css@0.2.85(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2)):
+  nimiq-css@0.2.86(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2)):
     dependencies:
       '@unocss/reset': 0.65.1
       ts-cssjson: 3.0.1

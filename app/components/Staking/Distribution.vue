@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
 import type { StyleValue } from 'vue'
-import type { DonutDatum } from '../Donut.client.vue'
+import type { DonutDatum } from '../Chart/Donut.client.vue'
 
 defineProps<{ info: RichTextField }>()
 
@@ -23,7 +23,7 @@ const startAngle = computed(() => (90 - 180 * (datum.value.at(0)?.value || 0)))
 
 <template>
   <div relative flex="~ col items-center">
-    <Donut :data="datum" :start-angle />
+    <ChartDonut :data="datum" :start-angle />
     <div ring="1.5 green" absolute right-8 top-196 rounded-full bg-neutral-0 px-12 py-6 text-neutral font-semibold>
       {{ formatter.format(stakedSupplyRatio) }} staked
     </div>

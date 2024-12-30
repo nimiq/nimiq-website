@@ -1,6 +1,6 @@
 import { posSupplyAt } from 'nimiq-supply-calculator'
 
-export function useTokenMetrics() {
+export function useNimMetrics() {
   const { currencyUsdRatio } = useUserCurrency()
 
   const locale = useLocale()

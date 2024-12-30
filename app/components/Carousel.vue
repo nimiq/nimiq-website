@@ -35,13 +35,13 @@ const indicatorsStyles = computed(() => {
 </script>
 
 <template>
-  <div group max-w-none stack>
+  <div group h-full max-w-none stack>
     <button bg="neutral-400 disabled:neutral-200  not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:70" :disabled="!canSlidePrev" invisible z-5 ml-12 w-max justify-self-start rounded-full p-16 shadow transition md:visible stack hocus:cursor-pointer @click="slidePrev">
       <div i-nimiq:chevron-left translate-x--1 text-xl />
     </button>
 
-    <ul ref="scroller" w-full justify-self-start of-x-auto nq-scrollbar-hide flex="~ gap-16 md:gap-32 items-stretch" snap="x mandatory" scroll-px="$px" pb="$pb">
-      <li v-for="(item, i) in items" :key="i" data-slide snap="start always" p="first:l-$px last:r-$px" flex-1 shrink-0>
+    <ul ref="scroller" flex="~ gap-16 md:gap-32 items-stretch" snap="x mandatory" scroll-px="$px" pb="$pb" v-bind="$attrs" h-full w-full justify-self-start of-x-auto nq-scrollbar-hide>
+      <li v-for="(item, i) in items" :key="i" data-slide h-full snap="start always" p="first:l-$px last:r-$px" flex-1 shrink-0>
         <slot :item />
       </li>
     </ul>

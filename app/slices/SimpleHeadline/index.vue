@@ -21,7 +21,7 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
 </script>
 
 <template>
-  <section relative :class="[bgColor, gradientClass]" data-slice-type="simple-headline">
+  <section nq-section-gap relative :class="[bgColor, gradientClass]" data-slice-type="simple-headline">
     <Headline
       v-if="!isStakingSlice"
       :headline="slice.primary.headline"

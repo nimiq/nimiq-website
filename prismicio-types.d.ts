@@ -7076,7 +7076,7 @@ export interface LogosGridSliceCenteredPrimary {
   label: prismic.KeyTextField
 
   /**
-   * Background Color field in *LogosGrid → Centered → Primary*
+   * Background color [DEPRECATED] field in *LogosGrid → Centered → Primary*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
@@ -7084,6 +7084,16 @@ export interface LogosGridSliceCenteredPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   backgroundColor: prismic.SelectField<'white' | 'grey'>
+
+  /**
+   * Background Color field in *LogosGrid → Centered → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logos_grid.centered.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey'>
 }
 
 /**

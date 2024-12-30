@@ -1,3 +1,14 @@
+header.dark:has(+ main > section:first-child:where(.bg-blue-sss)) {
+  nav li .trigger {
+    color: rgb(var(--nq-white) / 0.8);
+
+    &:hover,
+    &:focus-visible {
+      color: rgb(var(--nq-white) / 1);
+    }
+  }
+}
+
 :where(section, [data-section]).bg-blue-sss {
   --nq-blue: var(--nq-blue-on-light);
 

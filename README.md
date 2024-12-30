@@ -44,24 +44,22 @@ bun run dev
 
 ## Page migration
 
-- [ ] nimiq-pay
-- [ ] community
 - [ ] oasis
 - [ ] buy-and-sell
-- [ ] cryptopaymentlink
-- [ ] bug-bounty-pos
-- [ ] bug-bounty
 - [ ] whitepaper-2
 - [ ] oasis/integrate
-- [ ] supersimpleswap
 - [ ] contact
-- [ ] privacy
-- [ ] siliconparadise
 - [ ] blog
 - [ ] blog post
-- [ ] cryptomap
 
 ---
+
+### Wont do
+
+- [ ] siliconparadise
+- [ ] cryptomap
+- [ ] bug-bounty --> Remove?
+- [ ] bug-bounty-pos --> remove?
 
 - [ ] Check custom pages from the old repo
 - [ ] Configure redirects
@@ -69,17 +67,22 @@ bun run dev
 ### WIP
 
 - [ ] about - Missing roadmap section
-- [ ] Wallet - WIPNeeds something
+- [ ] Wallet - WIP
 - [ ] roadmap - WIP
 - [ ] team - WIP
 - [ ] litepaper - WIP
 
-### Done but not deployed
+### To be reviewed
 
-- [x] Onepager
-- [x] apps
-- [x] community/funding
-- [x] staking
+- [ ] cryptopaymentlink
+- [ ] nimiq-pay
+- [ ] privacy
+- [ ] supersimpleswap
+- [ ] Onepager
+- [ ] apps
+- [ ] community/funding
+- [ ] staking
+- [ ] community
 
 ### Done
 
