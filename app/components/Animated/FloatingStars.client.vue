@@ -136,7 +136,5 @@ class Star {
 </script>
 
 <template>
-  <div>
-    <canvas ref="canvas" h-400 w-600 of-hidden />
-  </div>
+  <canvas ref="canvas" pointer-events-none h-400 w-600 of-hidden />
 </template>

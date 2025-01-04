@@ -1,4 +1,4 @@
-import { FiatCurrency } from '@nimiq/utils'
+import { CurrencyInfo, FiatCurrency } from '@nimiq/utils'
 
 export const fiatCurrencies = ([
   'AED',
@@ -87,9 +87,12 @@ export function useUserCurrency() {
 
   // The price of the currency in USD
   const currencyUsdRatio = computed(() => 1.1)
+  const locale = useLocale()
+  const currencyInfo = computed(() => new CurrencyInfo(currency.value, locale.value))
 
   return {
     currency,
     currencyUsdRatio,
+    currencyInfo,
   }
 }

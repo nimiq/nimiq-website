@@ -6,7 +6,6 @@ defineProps<{
 }>()
 
 const model = defineModel<T>()
-const randomName = Math.random().toString(36).replace(/[^a-z]+/g, '').substring(0, 10)
 
 const loaded = ref(false)
 
@@ -20,7 +19,9 @@ watch(model, setPill, { immediate: true })
 
 const pillStyles = ref({ left: '0px', width: '0px' })
 function setPill() {
-  const selectedLabel = globalThis.document?.querySelector(`#${randomName}-${model.value}`)?.parentElement as HTMLLabelElement
+  if (import.meta.server)
+    return
+  const selectedLabel = globalThis.document?.querySelector(`#${id}-${model.value}`)?.parentElement as HTMLLabelElement
   if (!selectedLabel)
     return
   globalThis.window?.requestAnimationFrame(() => {
@@ -32,14 +33,14 @@ function setPill() {
 <template>
   <div flex="~ align-center" relative h-32 w-max rounded-full bg-neutral-200 p-4>
     <label
-      v-for="(option, i) of options" :key="i"
-      :class="{ 'text-darkblue': model === i, 'text-neutral-800': model !== i }"
-      relative z-1 z-2 cursor-pointer select-none rounded-full px-12 text-12 transition-colors nq-label hover:text-neutral-900 flex="~ items-center"
+      v-for="(option, i) of options"
+      :key="i" :data-state="model === option ? 'active' : undefined"
+      relative z-1 z-2 cursor-pointer select-none rounded-full px-12 text="12 neutral-800 data-active:neutral-0 hocus:neutral-900" transition-colors nq-label flex="~ items-center"
     >
-      <input :id v-model="model" type="radio" :value="option" sr-only :name="randomName" @mousedown.prevent>
+      <input :id="`${id}-${option}`" v-model="model" type="radio" :value="option" sr-only @mousedown.prevent>
       {{ option }}
     </label>
-    <div absolute top-2 z-1 h-27 rounded-full bg-white :style="{ ...pillStyles, transition: loaded ? 'left 300ms, width 200ms' : '' }" />
+    <div absolute top-2 z-1 h-27 rounded-full bg-neutral :style="{ ...pillStyles, transition: loaded ? 'left 300ms, width 200ms' : '' }" />
   </div>
 </template>
 

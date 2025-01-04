@@ -6,9 +6,12 @@ const { slice } = defineProps(getSliceComponentProps<Content.PriceChartSlice>())
 
 const locale = useLocale()
 const dateFormatter = new Intl.DateTimeFormat(locale.value, { hour: 'numeric', minute: 'numeric', hour12: true, month: 'short', day: 'numeric', year: 'numeric' })
+const dateFormatterShort = new Intl.DateTimeFormat(locale.value, { month: 'short', day: 'numeric', year: '2-digit' })
 const percentageFormatter = new Intl.NumberFormat(locale.value, { style: 'percent', maximumFractionDigits: 2 })
 
-const { marketCapChange, maxSupplyFormatted, totalSupplyFormatted, volumeChange, volumeUserCurrencyFormatted, marketCapUserCurrencyFormatted } = useNimMetrics()
+const { currencyInfo } = useUserCurrency()
+
+const { marketCapChange, maxSupplyFormatted, currentSupplyFormatted, volumeChange, volumeUserCurrencyFormatted, marketCapUserCurrencyFormatted } = useNimMetrics()
 const { historicPrices, historicPriceRangeOptions, selectedHistoricPricePeriod } = useNimPrice()
 
 const lastUpdatedLabel = computed(() => {
@@ -19,21 +22,26 @@ const lastUpdatedLabel = computed(() => {
   return slice.primary.lastUpdatedLabel!.replace('{{ timestamp }}', formattedDate)
 })
 
-const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: string, metricChange?: number, label: string, tooltipInfo?: RichTextField }>()
+const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: MaybeRef<string>, metricChange?: number, label: string, tooltipInfo?: RichTextField }>()
+const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number, number] }>()
 </script>
 
 <template>
   <section flex="~ col items-center" of-x-clip bg-neutral-0 nq-pt-96>
+    <DefineCrosshair v-slot="{ data: [ts, price] }">
+      <div backdrop-blur-12 nq-py-12 nq-px-16 flex="~ col gap-8">
+        <p text="blue 3xl" font-semibold lh-none>
+          {{ formatFiat(price, currencyInfo, { maxDecimals: Number.POSITIVE_INFINITY }) }}
+        </p>
+
+        <time :datetime="(new Date(ts)).toISOString()" text="11/1 right" nq-label>
+          {{ dateFormatterShort.format(new Date(ts)) }}
+        </time>
+      </div>
+    </DefineCrosshair>
+
     <DefineMetric v-slot="{ metricValue, metricChange, label, tooltipInfo }">
-      <div flex="~ col-reverse gap-8">
-        <div flex="~ gap-6 items-center">
-          <h3 text="xs neutral-800" w-max font-normal lh-none>
-            {{ label }}
-          </h3>
-          <Tooltip v-if="tooltipInfo">
-            <PrismicRichText :field="tooltipInfo" />
-          </Tooltip>
-        </div>
+      <div flex="~ col-reverse gap-8" z-1>
         <div flex="~ gap-8 items-center">
           <span font-semibold text="lg neutral">
             {{ metricValue }}
@@ -42,6 +50,14 @@ const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: string
             <div :class="{ 'rotate-180': metricChange < 0 }" aria-hidden i-nimiq:triangle-up text-12 />
             <span font-semibold text-sm>{{ percentageFormatter.format(metricChange) }}</span>
           </div>
+        </div>
+        <div flex="~ gap-6 items-center">
+          <p text="xs neutral-800" w-max font-normal lh-none>
+            {{ label }}
+          </p>
+          <Tooltip v-if="tooltipInfo">
+            <PrismicRichText :field="tooltipInfo" />
+          </Tooltip>
         </div>
       </div>
     </DefineMetric>
@@ -60,13 +76,19 @@ const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: string
       <div flex="~ gap-20" w-max self-start justify-self-start nq-px-32>
         <ReuseMetric :metric-value="marketCapUserCurrencyFormatted" :metric-change="marketCapChange" :label="slice.primary.marketCapLabel!" :tooltip-info="slice.primary.marketCapInfo" />
         <ReuseMetric :metric-value="volumeUserCurrencyFormatted" :metric-change="volumeChange" :label="slice.primary.volume24HLabel!" :tooltip-info="slice.primary.volume24HInfo" />
-        <ReuseMetric :metric-value="totalSupplyFormatted" :label="slice.primary.totalSupplyLabel!" :tooltip-info="slice.primary.totalSupplyInfo" />
+        <ReuseMetric :metric-value="currentSupplyFormatted" :label="slice.primary.totalSupplyLabel!" :tooltip-info="slice.primary.totalSupplyInfo" />
         <ReuseMetric :metric-value="maxSupplyFormatted" :label="slice.primary.maxSupplyLabel!" :tooltip-info="slice.primary.maxSupplyInfo" />
       </div>
 
-      <div w-full nq-pb-12 nq-pt-32>
-        <ChartLine :data="historicPrices" />
+      <div leader w-full nq-pb-12 nq-pt-32>
+        <ChartLine :data="historicPrices || []">
+          <template #default="{ data: [ts, price] }">
+            <ReuseCrosshair :data="[ts, price]" />
+          </template>
+        </ChartLine>
       </div>
+
+      <ReuseCrosshair self-start justify-self-end op="100 leader-hocus:0" transition-opacity :data="historicPrices?.at(-1) || [0, 0]" />
 
       <PillSelector v-model="selectedHistoricPricePeriod" :options="historicPriceRangeOptions" self-end justify-self-end nq-m-32 />
     </div>

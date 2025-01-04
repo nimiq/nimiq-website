@@ -76,8 +76,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0(vue@3.5.13(typescript@5.7.2))
       '@nimiq/utils':
-        specifier: ^0.11.7
-        version: 0.11.7
+        specifier: ^0.12.0
+        version: 0.12.0
       '@nuxt/eslint':
         specifier: latest
         version: 0.7.4(@vue/compiler-sfc@3.5.13)(bufferutil@4.0.8)(eslint-plugin-format@0.1.3(eslint@9.17.0(jiti@2.4.2)))(eslint@9.17.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.29.1)(typescript@5.7.2)(utf-8-validate@5.0.10)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))
@@ -148,8 +148,8 @@ importers:
         specifier: ^15.2.11
         version: 15.2.11
       nimiq-css:
-        specifier: ^0.2.86
-        version: 0.2.86(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
+        specifier: ^0.2.89
+        version: 0.2.89(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
       nimiq-rpc-client-ts:
         specifier: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
         version: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -172,8 +172,8 @@ importers:
         specifier: 0.65.3
         version: 0.65.3(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))
       unocss-preset-easing-gradient:
-        specifier: ^1.0.4
-        version: 1.0.4(unocss@0.65.3(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2)))
+        specifier: ^1.0.6
+        version: 1.0.6(unocss@0.65.3(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2)))
       valibot:
         specifier: ^0.42.1
         version: 0.42.1(typescript@5.7.2)
@@ -1304,8 +1304,8 @@ packages:
   '@nimiq/core@2.0.5':
     resolution: {integrity: sha512-fqTXjPqU3+uCa0W/3X//grMzu96eyyFdJR+aaZ5jlZrEah/Pb/ERjHuTgsC3y0TBBuYT8ohTDHktvs+p8MKPPA==}
 
-  '@nimiq/utils@0.11.7':
-    resolution: {integrity: sha512-FLeQ9kBFsOBfOjh0T+jI8kl9K77XOuyQA3yel1VIzOK4dLcnvMmgXjegJfuPAEht9oGe+gxcyzFsb0Yi9Js8Dg==}
+  '@nimiq/utils@0.12.0':
+    resolution: {integrity: sha512-mTpVYzCepUMgH8ryr+93xQx91gl1P1z3Yn6BjGbduEgX75s1WdZETusXyi9CwRr2vNXkGpoy7c/Rt2A6Pn8sAw==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -5327,8 +5327,8 @@ packages:
     resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50}
     version: 0.0.1
 
-  nimiq-css@0.2.86:
-    resolution: {integrity: sha512-xkbhPWcgzAgOL7+jap8yXhqei8TX6UU1UcIA6lJ7qku1NLqV25K+N/PnRphP412eW4j3EZjyNiMsrxf3QrOVSA==}
+  nimiq-css@0.2.89:
+    resolution: {integrity: sha512-MEi0MZGaDoYt4115REdfJVkGGRN6GRNT+tbliIExe1cJR56HQD5BKLEhOBvUUJvm6kqFf+2ZFajJSI8tod7E6A==}
     engines: {node: '>=14'}
 
   nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@82039a3:
@@ -6847,8 +6847,8 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
 
-  unocss-preset-easing-gradient@1.0.4:
-    resolution: {integrity: sha512-OiXQclxhpvBgVjYvod0dD5YNQac6c/z/LFeRBgL1fAUBE1RJ/ou8pfsQb8NZdihtQzjlRD95OQRVeNCayAmPGw==}
+  unocss-preset-easing-gradient@1.0.6:
+    resolution: {integrity: sha512-VXPluz+9P3Rg7oHN0MzpvNpTtbXqU3Z9tEjHVIeAC4m1Y1aTVFopW/oWsSFBHSaxWk2tQpqD58BHFOZdwCFZHA==}
     engines: {node: '>=18'}
     peerDependencies:
       unocss: '>= 0.31.13 < 1'
@@ -8449,7 +8449,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nimiq/utils@0.11.7':
+  '@nimiq/utils@0.12.0':
     dependencies:
       big-integer: 1.6.52
 
@@ -13757,7 +13757,7 @@ snapshots:
 
   nimiq-albatross-policy@https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50: {}
 
-  nimiq-css@0.2.86(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2)):
+  nimiq-css@0.2.89(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2)):
     dependencies:
       '@unocss/reset': 0.65.1
       ts-cssjson: 3.0.1
@@ -15733,7 +15733,7 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  unocss-preset-easing-gradient@1.0.4(unocss@0.65.3(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))):
+  unocss-preset-easing-gradient@1.0.6(unocss@0.65.3(@unocss/webpack@0.65.3(rollup@4.29.1)(webpack@5.95.0(esbuild@0.17.19)))(postcss@8.4.49)(rollup@4.29.1)(vite@6.0.6(@types/node@22.10.2)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.7.2))):
     dependencies:
       '@unocss/preset-mini': 0.64.1
       '@unocss/rule-utils': 0.64.1

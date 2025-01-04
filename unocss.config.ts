@@ -5,6 +5,31 @@ import { presetNimiq } from 'nimiq-css'
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 import { presetEasingGradient } from 'unocss-preset-easing-gradient'
 
+function stakingGradient(t: number): number {
+  function easeInOutCubic(x: number) {
+    return x < 0.5
+      ? 4 * x * x * x
+      : 1 - (-2 * x + 2) ** 3 / 2
+  }
+  if (t <= 0 || t >= 1)
+    return 0
+
+  if (t < 0.25) {
+    // scale t from [0..0.25] to [0..1]
+    const scale = t / 0.25
+    return easeInOutCubic(scale)
+  }
+  else if (t < 0.75) {
+    return 1
+  }
+  else {
+    // scale t from [0.75..1] to [0..1]
+    const scale = (t - 0.75) / 0.25
+    // ease down from 1 to 0
+    return 1 - easeInOutCubic(scale)
+  }
+}
+
 export default defineConfig({
   rules: [
     [/^area-(.*)$/, ([, t]) => ({ 'grid-area': t })],
@@ -51,7 +76,11 @@ export default defineConfig({
       baseFontSize: 4,
     }),
     presetAttributify(),
-    presetEasingGradient(),
+    presetEasingGradient({
+      customFunctions: {
+        stakingGradient,
+      },
+    }),
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/nimiq'),
