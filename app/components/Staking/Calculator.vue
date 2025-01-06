@@ -66,21 +66,21 @@ const rewards = computed(() => calculateStakingRewards({
       {{ title }}
     </h2>
     <div ring="1.5 neutral-400" mx-auto max-w-full w-max rounded-4 bg-neutral-0 shadow flex="~ items-center wrap">
-      <div grid="~ max-md:cols-1 md:rows-[auto_1fr] gap-x-32 gap-y-12 md:flow-col" mx-auto of-auto p-32>
-        <span text-neutral-800 font-semibold>{{ stakingAmountLabel }}</span>
-        <label flex="~ items-baseline gap-8" h-max self-end text="neutral hocus:blue focus-within:blue" transition-colors>
+      <div grid="~ max-md:cols-1 md:rows-[auto_1fr] gap-x-32 gap-y-12 md:flow-col " mx-auto of-auto p-32>
+        <span text="max-md:center neutral-800" font-semibold>{{ stakingAmountLabel }}</span>
+        <label flex="~ items-baseline gap-8" text="neutral hocus:blue focus-within:blue" h-max w-max self-end transition-colors max-md:mx-auto>
           <!-- <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal"> -->
-          <AmountInput v-model="amount" :decimals :min="1" style="padding:0" min-w-0 w-max shadow-none outline-none text-2xl />
-          <span flex-1 font-bold lh-none text-lg>NIM</span>
+          <AmountInput v-model="amount" :decimals :min="1" style="padding:0" min-w-0 w-max shadow-none outline-none text="blue 2xl" />
+          <span flex-1 font-bold lh-none text="blue lg">NIM</span>
         </label>
 
-        <div flex="~ gap-8 items-center" max-md:mt-8>
-          <span>Total stake</span>
+        <div flex="~ gap-8 items-center max-md:justify-center" max-md:mt-8>
+          <span w-max>Total stake</span>
           <Tooltip>
             <PrismicRichText :field="stakedSupplyInfo" />
           </Tooltip>
         </div>
-        <RadioInput v-model="selectedStakedSupply" h-max :options="stakedSupplyOptions" self-end>
+        <RadioInput v-model="selectedStakedSupply" :options="stakedSupplyOptions" h-max self-end max-md:mx-auto>
           <template #label="{ option }">
             <template v-if="stakeSupplyRatios[option] >= 0">
               <span>{{ option }}</span>
@@ -89,15 +89,17 @@ const rewards = computed(() => calculateStakingRewards({
           </template>
         </RadioInput>
 
-        <div flex="~ gap-8 items-center" max-md:mt-8>
-          <p>{{ stakingPeriodLabel }}</p>
+        <div flex="~ gap-8 items-center max-md:justify-center" max-md:mt-8>
+          <p w-max>
+            {{ stakingPeriodLabel }}
+          </p>
           <Tooltip>
             <PrismicRichText :field="stakingPeriodInfo" />
           </Tooltip>
         </div>
-        <RadioInput v-model="selectedStakingPeriod" h-max self-end :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
+        <RadioInput v-model="selectedStakingPeriod" h-max self-end max-md:mx-auto :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
       </div>
-      <div flex="~ col md:justify-center items-center" bg="green/10" flex-1 self-stretch rounded="b-4 md:b-0 md:r-4" px-32 py-24>
+      <div flex="~ col md:justify-center items-center md:items-end" bg="green/10" flex-1 self-stretch rounded="b-4 md:b-0 md:r-4" px-32 py-24>
         <div flex="~ items-center" text-neutral-800>
           <p mr-8>
             Return in NIM*
@@ -114,10 +116,10 @@ const rewards = computed(() => calculateStakingRewards({
         </span>
       </div>
     </div>
-    <p text-green-1100 font-semibold>
+    <p text="max-md:center green-1100" font-semibold>
       {{ note }}
     </p>
-    <label flex="~ items-center">
+    <label flex="~ items-center max-md:justify-center">
       <input v-model="autoRestake" type="checkbox" nq-switch>
       <span ml-12 mr-6 cursor-pointer>{{ autoRestakeLabel }}</span>
       <Tooltip>
