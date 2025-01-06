@@ -19,6 +19,18 @@
           }
         }
       },
+      "bgColor": {
+        "type": "Select",
+        "config": {
+          "label": "Background Color",
+          "placeholder": "",
+          "options": [
+            "white",
+            "grey"
+          ],
+          "default_value": "white"
+        }
+      },
       "items": {
         "logo": {
           "config": {
@@ -73,7 +85,8 @@
             "options": [
               "white",
               "grey"
-            ]
+            ],
+            "default_value": "white"
           }
         }
       },

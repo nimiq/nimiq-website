@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Content, LinkField } from '@prismicio/client'
 
-const { bgColor } = defineProps(getSliceComponentProps<Content.LogosGridSlice>())
+const { bgColor = 'white' } = defineProps(getSliceComponentProps<Content.LogosGridSlice>())
 const colors = getColorClass(bgColor)
 
 // @unocss-include
