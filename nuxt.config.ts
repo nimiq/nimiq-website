@@ -38,6 +38,12 @@ export default defineNuxtConfig({
     optimizeDeps: {
       exclude: ['@nimiq/core', '*.wasm', 'hero-motion'],
     },
+    worker: {
+      plugins: () => [
+        wasm(),
+        topLevelAwait(),
+      ],
+    },
   },
 
   features: {
