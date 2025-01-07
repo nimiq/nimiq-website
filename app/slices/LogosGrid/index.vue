@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Content, LinkField } from '@prismicio/client'
 
-const { bgColor = 'white' } = defineProps(getSliceComponentProps<Content.LogosGridSlice>())
-const colors = getColorClass(bgColor)
+/* TODO const { bgColor } = */ defineProps(getSliceComponentProps<Content.LogosGridSlice>())
+const colors = getColorClass('white')
 
 // @unocss-include
 function getCssClasses(link: LinkField) {

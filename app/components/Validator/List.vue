@@ -24,6 +24,7 @@ function toggleShowAllValidators() {
 function truncate(text: string) {
   if (text.length > 28)
     return text.length > 28 ? `${text.slice(0, 16)}...${text.slice(-8)}` : text
+  return text
 }
 </script>
 

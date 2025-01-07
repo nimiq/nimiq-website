@@ -21,7 +21,7 @@ const gradientClass = computed<'gradient-transparent-green' | 'gradient-transpar
 </script>
 
 <template>
-  <section nq-section-gap relative :class="[bgColor, gradientClass]" data-slice-type="simple-headline">
+  <section :nq-section-gap="!isStakingSlice ? '' : undefined" :class="[bgColor, gradientClass]" relative data-slice-type="simple-headline">
     <Headline
       v-if="!isStakingSlice"
       :headline="slice.primary.headline"
@@ -69,6 +69,12 @@ section[data-slice-type='staking-faq'] + section[data-slice-type='simple-headlin
   small {
     --uno: 'text-neutral-700';
   }
+}
+
+section[data-slice-type='crypto-map-continent-selector']:has(+ section[data-slice-type='simple-headline']) {
+  /* --nq-pb-min: 108;
+  --nq-pb-max: 152;
+  padding-bottom: var(--nq-pb); */
 }
 
 [data-slice-type='newsletter-subscription'] + section[data-slice-type='simple-headline'] {

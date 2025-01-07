@@ -47,7 +47,7 @@
     "@nuxt/image": "^1.8.1",
     "@nuxthub/core": "^0.8.10",
     "@nuxtjs/device": "^3.2.4",
-    "@nuxtjs/prismic": "^3.4.7",
+    "@nuxtjs/prismic": "^3.4.8",
     "@nuxtjs/seo": "2.0.2",
     "@pinia/nuxt": "^0.9.0",
     "@prismicio/client": "^7.13.1",

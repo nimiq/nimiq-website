@@ -67,7 +67,7 @@ const allowMapInteraction = ref(false)
 </script>
 
 <template>
-  <section grid="~ cols-1 lg:cols-[min(calc(100vw-64px),411px)_1fr] gap-x-24" max-w="none lg:$nq-max-width" w-screen bg-neutral-100 px-0 max-lg:mx-0 max-lg:children:max-w-none>
+  <section grid="~ cols-1 lg:cols-[min(calc(100vw-64px),411px)_1fr] gap-x-24" max-w="none lg:$nq-max-width" w-screen bg-neutral-100 px-0 pb-0 max-lg:mx-0 max-lg:children:max-w-none data-slice-type="crypto-map-continent-selector">
     <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
       <li
         v-for="({ label, hasCryptoCities, hasLocations, cryptoCitiesCount, locationsCount, svg, selected }, i) in continents"
