@@ -300,7 +300,7 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
     canvas.value.width = Math.round((containerHeight.value * (HEXAGONS_WORLD_MAP_ASPECT_RATIO))) * pixelRatio.value
     canvas.value.height = Math.round(containerHeight.value) * pixelRatio.value
 
-    const scale = (canvas.value.height) / (2 * HEXAGONS_WORLD_MAP_HEIGHT_PIXELS)
+    const scale = (canvas.value.height) / (3 * HEXAGONS_WORLD_MAP_HEIGHT_PIXELS)
     context.value!.resetTransform()
     context.value!.scale(scale, scale)
     context.value!.clearRect(0, 0, context.value!.canvas.width, context.value!.canvas.height)

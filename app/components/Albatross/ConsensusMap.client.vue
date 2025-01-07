@@ -6,7 +6,7 @@ import { drawHexagonsWorldMap, HEXAGONS_WORLD_MAP_ASPECT_RATIO, HEXAGONS_WORLD_M
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
 
 const canvas = templateRef('canvas')
-const { launchNetwork, disconnect, setUserPeer } = useNimiq()
+const { launchNetwork, /* disconnect, */ setUserPeer } = useNimiq()
 const { consensus, peers, userPeer } = storeToRefs(useNimiq())
 
 const tooltipPosition = ref<CSSProperties>({ transform: 'translate(0, 0)' })
@@ -105,9 +105,10 @@ async function connect() {
                   <span>
                     Connected
                   </span>
-                  <button bg="transparent hocus:white/30" rounded-2 p-5 text-11 transition-colors stack @click="disconnect">
+                  <!-- TODO -->
+                  <!-- <button bg="transparent hocus:white/30" rounded-2 p-5 text-11 transition-colors stack @click="() => disconnect()">
                     <div i-nimiq:cross />
-                  </button>
+                  </button> -->
                 </div>
               </div>
             </div>
