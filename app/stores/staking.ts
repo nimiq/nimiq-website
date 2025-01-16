@@ -28,7 +28,7 @@ export const useStakingStore = defineStore('staking', () => {
   const stakedSupplyRatio = computed(() => {
     const value = distribution?.value?.staked || 0
     // check math is ok as we expect to have more than 5% of circulating supply staked
-    if (value > 0.05) {
+    if (value < 0.005) {
       console.warn('Staked supply ratio is greater than 5%. Defaulting to 0.55. Please check network distribution API.')
       return 0.55
     }

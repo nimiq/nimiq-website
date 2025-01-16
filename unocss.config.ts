@@ -73,7 +73,6 @@ export default defineConfig({
       typography: true,
       staticContent: true,
       fonts: false,
-      baseFontSize: 4,
     }),
     presetAttributify(),
     presetEasingGradient({

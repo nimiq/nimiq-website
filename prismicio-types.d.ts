@@ -7090,10 +7090,11 @@ export interface LogosGridSliceCenteredPrimary {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: white
    * - **API ID Path**: logos_grid.centered.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  bgColor: prismic.SelectField<'white' | 'grey'>
+  bgColor: prismic.SelectField<'white' | 'grey', 'filled'>
 }
 
 /**
@@ -9702,16 +9703,6 @@ export interface SocialMediaGridSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   cultureAndInsightsLabel: prismic.KeyTextField
-
-  /**
-   * Background Color field in *SocialMediaGrid → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: social_media_grid.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  backgroundColor: prismic.SelectField<'white' | 'grey' | 'blue-dark'>
 }
 
 /**
@@ -9750,7 +9741,7 @@ export interface SocialMediaGridSliceDefaultItem {
   >
 
   /**
-   * socialMedia field in *SocialMediaGrid → Items*
+   * Social Media field in *SocialMediaGrid → Items*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*

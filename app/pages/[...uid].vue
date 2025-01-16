@@ -28,7 +28,7 @@ watch(page, () => {
     return
   const notValid
     = (page.value?.data.parents.length !== params.uid.length - 1) // Check that the page has the same number of parents as the URL
-    || page.value?.data.parents.some((parent, i) => (parent as { uid: string }).uid !== params.uid[i]) // Check that the parents are the same as in the URL
+      || page.value?.data.parents.some((parent, i) => (parent as { uid: string }).uid !== params.uid[i]) // Check that the parents are the same as in the URL
   if (notValid)
     router.push('/404')
 })

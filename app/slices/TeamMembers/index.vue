@@ -32,7 +32,7 @@ const items = computed(() => [...props.slice.items].sort(() => Math.random() - 0
             </span>
           </div>
           <PrismicRichText nq-mt-24 :field="description" class="nq-prose-compact" />
-          <ul v-if="linkedin || github || twitter" flex="~ gap-x-4" text-neutral-100 nq-mt-16>
+          <ul v-if="linkedin || github || twitter" flex="~ gap-x-4" relative left--8 text-neutral-100 nq-mt-16>
             <li v-if="github">
               <NuxtLink external :to="`https://github.com/${github}`" title="Github" h-max flex rounded-4 p-8 bg="hocus:neutral/6" aria-label="Github link">
                 <div i-nimiq:logos-github />

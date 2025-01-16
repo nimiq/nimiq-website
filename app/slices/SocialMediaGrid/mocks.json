@@ -17,11 +17,6 @@
         "__TYPE__": "FieldContent",
         "value": "fewer",
         "type": "Text"
-      },
-      "backgroundColor": {
-        "__TYPE__": "FieldContent",
-        "value": "blue-dark",
-        "type": "Select"
       }
     },
     "items": [
@@ -40,13 +35,14 @@
             "socialMedia",
             {
               "__TYPE__": "FieldContent",
-              "value": "nimiq_forum",
+              "value": "telegram",
               "type": "Select"
             }
           ],
           [
             "socialMediaItem",
             {
+              "key": "2f067f76-8d3c-41a1-b124-c659c37d81b6",
               "__TYPE__": "LinkContent",
               "value": {
                 "__TYPE__": "DocumentLink",

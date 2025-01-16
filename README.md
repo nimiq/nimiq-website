@@ -48,7 +48,6 @@ bun run dev
 - [ ] buy-and-sell
 - [ ] whitepaper-2
 - [ ] oasis/integrate
-- [ ] contact
 - [ ] blog
 - [ ] blog post
 
@@ -69,13 +68,13 @@ bun run dev
 - [ ] about - Missing roadmap section
 - [ ] Wallet - WIP
 - [ ] roadmap - WIP
-- [ ] team - WIP
 - [ ] litepaper - WIP
 
 ### To be reviewed
 
 - [ ] cryptopaymentlink
 - [ ] nimiq-pay
+- [ ] contact
 - [ ] privacy
 - [ ] supersimpleswap
 - [ ] Onepager
@@ -83,6 +82,7 @@ bun run dev
 - [ ] community/funding
 - [ ] staking
 - [ ] community
+- [ ] team
 
 ### Done
 

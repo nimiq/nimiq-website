@@ -31,18 +31,6 @@
             "placeholder": ""
           },
           "type": "Text"
-        },
-        "backgroundColor": {
-          "config": {
-            "label": "Background Color",
-            "placeholder": "",
-            "options": [
-              "white",
-              "grey",
-              "blue-dark"
-            ]
-          },
-          "type": "Select"
         }
       },
       "items": {
@@ -78,7 +66,7 @@
         "socialMediaItem": {
           "type": "Link",
           "config": {
-            "label": "socialMedia",
+            "label": "Social Media",
             "select": "document",
             "customtypes": [
               "socialMedia"
