@@ -25,7 +25,15 @@ const formatter = new Intl.NumberFormat('en-US', { style: 'percent', minimumFrac
 
 export const useStakingStore = defineStore('staking', () => {
   const { data: distribution } = useAsyncData('network_distribution', () => $fetch<DistributionResponse>(`${useRuntimeConfig().public.validatorsApi}/api/v1/distribution`))
-  const stakedSupplyRatio = computed(() => distribution?.value?.stakedRatio || 0)
+  const stakedSupplyRatio = computed(() => {
+    const value = distribution?.value?.staked || 0
+    // check math is ok as we expect to have more than 5% of circulating supply staked
+    if (value > 0.05) {
+      console.warn('Staked supply ratio is greater than 5%. Defaulting to 0.55. Please check network distribution API.')
+      return 0.55
+    }
+    return value
+  })
 
   const { data: validatorsApi } = useAsyncData('validators', () => $fetch<Validator[]>(`${useRuntimeConfig().public.validatorsApi}/api/v1/validators?payout-type=restake`))
 
