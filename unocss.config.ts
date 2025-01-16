@@ -83,6 +83,7 @@ export default defineConfig({
     }),
     presetIcons({
       collections: {
+        ...createExternalPackageIconLoader('@iconify-json/logos'),
         ...createExternalPackageIconLoader('@iconify-json/nimiq'),
         continents: {
           'africa': () => readFile('./public/assets/continents/africa.svg', 'utf-8'),
