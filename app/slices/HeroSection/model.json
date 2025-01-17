@@ -415,14 +415,14 @@
       "primary": {
         "getUpdatedLabel": {
           "config": {
-            "label": "Label for \"Be the first to know\"",
+            "label": "Label for [DEPRECATED]",
             "placeholder": "Be the first to know"
           },
           "type": "Text"
         },
         "europeHeadline": {
           "config": {
-            "label": "Europe Headline",
+            "label": "Europe Headline[DEPRECATED]",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "heading3"
@@ -431,7 +431,7 @@
         },
         "europeSubline": {
           "config": {
-            "label": "Europe Subline",
+            "label": "Europe Subline[DEPRECATED]",
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
@@ -440,14 +440,14 @@
         },
         "europeLinkLabel": {
           "config": {
-            "label": "Europe Link Label",
+            "label": "Europe Link Label[DEPRECATED]",
             "placeholder": ""
           },
           "type": "Text"
         },
         "centralAmericaHeadline": {
           "config": {
-            "label": "Central America Headline",
+            "label": "America Headline[DEPRECATED]",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "heading3"
@@ -456,7 +456,7 @@
         },
         "centralAmericaSubline": {
           "config": {
-            "label": "Central America Subline",
+            "label": "Central America Subline[DEPRECATED]",
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
@@ -465,7 +465,7 @@
         },
         "worldHeadline": {
           "config": {
-            "label": "Rest of World Headline",
+            "label": "Rest of World Headline[DEPRECATED]",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "heading3"
@@ -474,7 +474,7 @@
         },
         "worldSubline": {
           "config": {
-            "label": "Rest of World Subline",
+            "label": "Rest of World Subline[DEPRECATED]",
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
@@ -483,10 +483,59 @@
         },
         "worldLinkLabel": {
           "config": {
-            "label": "Rest of World Link Label",
+            "label": "Rest World Link Label[DEPRECATED]",
             "placeholder": ""
           },
           "type": "Text"
+        },
+        "items": {
+          "type": "Group",
+          "config": {
+            "label": "items",
+            "repeat": true,
+            "fields": {
+              "kind": {
+                "type": "Select",
+                "config": {
+                  "label": "kind",
+                  "placeholder": "",
+                  "options": [
+                    "Europe",
+                    "Central America",
+                    "World"
+                  ],
+                  "default_value": "Europe"
+                }
+              },
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "content",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        },
+        "beTheFirstToKnowLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Be the first to know label",
+            "placeholder": ""
+          }
         }
       },
       "items": {},

@@ -36,7 +36,7 @@ const indicatorsStyles = computed(() => {
 
 <template>
   <div group h-full max-w-none stack>
-    <button bg="neutral-400 disabled:neutral-200  not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:70" :disabled="!canSlidePrev" invisible z-5 ml-12 w-max justify-self-start rounded-full p-16 shadow transition md:visible stack hocus:cursor-pointer @click="slidePrev">
+    <button bg="neutral-400 disabled:neutral-200  not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlidePrev" data-prev invisible z-5 ml-12 w-max justify-self-start rounded-full p-16 shadow transition md:visible stack hocus:cursor-pointer @click="slidePrev">
       <div i-nimiq:chevron-left translate-x--1 text-xl />
     </button>
 
@@ -46,7 +46,7 @@ const indicatorsStyles = computed(() => {
       </li>
     </ul>
 
-    <button bg="neutral-400 disabled:neutral-200 not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlideNext" invisible z-5 mr-12 w-max justify-self-end rounded-full p-16 shadow transition md:visible stack hocus:cursor-pointer @click="slideNext">
+    <button bg="neutral-400 disabled:neutral-200 not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlideNext" data-next invisible z-5 mr-12 w-max justify-self-end rounded-full p-16 shadow transition md:visible stack hocus:cursor-pointer @click="slideNext">
       <div i-nimiq:chevron-right translate-x-1 text-xl />
     </button>
 

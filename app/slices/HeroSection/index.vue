@@ -11,4 +11,5 @@ defineProps(getSliceComponentProps<Content.HeroSectionSlice>())
   <HeroLeftAligned v-if="slice.variation === 'leftAligned'" :headline="slice.primary.headline" :subline="slice.primary.subline" />
   <HeroStaking v-if="slice.variation === 'staking'" :headline="slice.primary.headline" :cta="slice.primary.cta" />
   <HeroBuyAndSell v-if="slice.variation === 'buyAndSell'" :headline="slice.primary.headline" :subline="slice.primary.subline" />
+  <HeroOasisWorld v-if="slice.variation === 'oasis'" :items="slice.primary.items" :label="slice.primary.beTheFirstToKnowLabel" />
 </template>

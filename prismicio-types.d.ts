@@ -5244,6 +5244,42 @@ export type GridSectionSlice = prismic.SharedSlice<
 >
 
 /**
+ * Item in *HeroSection → Oasis → Primary → items*
+ */
+export interface HeroSectionSliceOasisPrimaryItemsItem {
+  /**
+   * kind field in *HeroSection → Oasis → Primary → items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Europe
+   * - **API ID Path**: hero_section.oasis.primary.items[].kind
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  kind: prismic.SelectField<'Europe' | 'Central America' | 'World', 'filled'>
+
+  /**
+   * content field in *HeroSection → Oasis → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.oasis.primary.items[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField
+
+  /**
+   * link field in *HeroSection → Oasis → Primary → items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.oasis.primary.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField
+}
+
+/**
  * Primary content in *HeroSection → Default slice → Primary*
  */
 export interface HeroSectionSliceDefaultSlicePrimary {
@@ -5719,7 +5755,7 @@ export type HeroSectionSliceLeftAligned = prismic.SharedSliceVariation<
  */
 export interface HeroSectionSliceOasisPrimary {
   /**
-   * Label for "Be the first to know" field in *HeroSection → Oasis → Primary*
+   * Label for [DEPRECATED] field in *HeroSection → Oasis → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Be the first to know
@@ -5729,7 +5765,7 @@ export interface HeroSectionSliceOasisPrimary {
   getUpdatedLabel: prismic.KeyTextField
 
   /**
-   * Europe Headline field in *HeroSection → Oasis → Primary*
+   * Europe Headline[DEPRECATED] field in *HeroSection → Oasis → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
@@ -5739,7 +5775,7 @@ export interface HeroSectionSliceOasisPrimary {
   europeHeadline: prismic.TitleField
 
   /**
-   * Europe Subline field in *HeroSection → Oasis → Primary*
+   * Europe Subline[DEPRECATED] field in *HeroSection → Oasis → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -5749,7 +5785,7 @@ export interface HeroSectionSliceOasisPrimary {
   europeSubline: prismic.RichTextField
 
   /**
-   * Europe Link Label field in *HeroSection → Oasis → Primary*
+   * Europe Link Label[DEPRECATED] field in *HeroSection → Oasis → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -5759,7 +5795,7 @@ export interface HeroSectionSliceOasisPrimary {
   europeLinkLabel: prismic.KeyTextField
 
   /**
-   * Central America Headline field in *HeroSection → Oasis → Primary*
+   * America Headline[DEPRECATED] field in *HeroSection → Oasis → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
@@ -5769,7 +5805,7 @@ export interface HeroSectionSliceOasisPrimary {
   centralAmericaHeadline: prismic.TitleField
 
   /**
-   * Central America Subline field in *HeroSection → Oasis → Primary*
+   * Central America Subline[DEPRECATED] field in *HeroSection → Oasis → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -5779,7 +5815,7 @@ export interface HeroSectionSliceOasisPrimary {
   centralAmericaSubline: prismic.RichTextField
 
   /**
-   * Rest of World Headline field in *HeroSection → Oasis → Primary*
+   * Rest of World Headline[DEPRECATED] field in *HeroSection → Oasis → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
@@ -5789,7 +5825,7 @@ export interface HeroSectionSliceOasisPrimary {
   worldHeadline: prismic.TitleField
 
   /**
-   * Rest of World Subline field in *HeroSection → Oasis → Primary*
+   * Rest of World Subline[DEPRECATED] field in *HeroSection → Oasis → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -5799,7 +5835,7 @@ export interface HeroSectionSliceOasisPrimary {
   worldSubline: prismic.RichTextField
 
   /**
-   * Rest of World Link Label field in *HeroSection → Oasis → Primary*
+   * Rest World Link Label[DEPRECATED] field in *HeroSection → Oasis → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -5807,6 +5843,26 @@ export interface HeroSectionSliceOasisPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   worldLinkLabel: prismic.KeyTextField
+
+  /**
+   * items field in *HeroSection → Oasis → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.oasis.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  items: prismic.GroupField<Simplify<HeroSectionSliceOasisPrimaryItemsItem>>
+
+  /**
+   * Be the first to know label field in *HeroSection → Oasis → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.oasis.primary.beTheFirstToKnowLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  beTheFirstToKnowLabel: prismic.KeyTextField
 }
 
 /**
@@ -11848,6 +11904,7 @@ declare module '@prismicio/client' {
       HeroSectionSliceLeftAlignedPrimary,
       HeroSectionSliceOasis,
       HeroSectionSliceOasisPrimary,
+      HeroSectionSliceOasisPrimaryItemsItem,
       HeroSectionSliceStaking,
       HeroSectionSliceStakingPrimary,
       HeroSectionSliceTokenomicsHero,

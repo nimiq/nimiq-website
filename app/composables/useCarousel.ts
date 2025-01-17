@@ -4,7 +4,7 @@ interface UseCarouselOptions<Multiple extends boolean> {
 }
 
 interface UseCarouselResponse<Multiple extends boolean> {
-  activeIndex: globalThis.ComputedRef<Multiple extends true ? number[] : number>
+  activeIndex: ComputedRef<Multiple extends true ? number[] : number>
   scroller: Ref<HTMLDivElement | undefined>
   items: Ref<Element[]>
   visibleCount: Ref<number>

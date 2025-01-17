@@ -70,8 +70,8 @@ importers:
         specifier: ^1.2.4
         version: 1.2.4
       '@iconify-json/nimiq':
-        specifier: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@82039a3
-        version: nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@82039a3(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+        specifier: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@7cacb01
+        version: nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@7cacb01(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@iconify/utils':
         specifier: ^2.2.1
         version: 2.2.1
@@ -5442,8 +5442,8 @@ packages:
     resolution: {integrity: sha512-lcWam0izTXanUF+D0nVeBjtDRJKVL6J9jq3/NOdyxAAxrFDqysugdbTjeS4ke5wYsspxlZzRZZXEH9MLTH8lVQ==}
     engines: {node: '>=14'}
 
-  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@82039a3:
-    resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@82039a3}
+  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@7cacb01:
+    resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@7cacb01}
     version: 1.0.0
 
   nimiq-rewards-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d:
@@ -14070,7 +14070,7 @@ snapshots:
       - vite
       - vue
 
-  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@82039a3(bufferutil@4.0.9)(utf-8-validate@5.0.10):
+  nimiq-icons@https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@7cacb01(bufferutil@4.0.9)(utf-8-validate@5.0.10):
     dependencies:
       '@iconify/tools': 4.1.1
       '@iconify/utils': 2.2.1
