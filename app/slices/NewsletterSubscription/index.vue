@@ -8,6 +8,6 @@ const colors = getColorClass(props.slice.primary.bgColor)
 <template>
   <section :class="colors" data-slice-type="newsletter-subscription">
     <PrismicText :field="slice.primary.cta" wrapper="h3" text-center />
-    <NewsletterEmailInput nq-mt-40 text-24 />
+    <NewsletterEmailInput text-24 f-mt-40 />
   </section>
 </template>

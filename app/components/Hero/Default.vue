@@ -21,16 +21,16 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
 </script>
 
 <template>
-  <section :class="colors" nq-pb-72 nq-pt-200 relative>
+  <section :class="colors" relative f-pt-200 f-pb-72>
     <PrismicText :field="p.headline" wrapper="h1" />
     <PrismicText v-if="p.subline" :field="p.subline" wrapper="p" font-400 dark:text-neutral-900 />
-    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline?.[0]?.text}`" role="list" nq-mt-16 flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
+    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline?.[0]?.text}`" role="list" f-mt-16 flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
       <li v-for="(highlight, i) in highlightsItems" :key="i" contents>
         <div v-if="i > 0" size-6 rounded-full bg-neutral-500 />
         <span text="20 md:22 xl:24 green" font-semibold>{{ highlight }}</span>
       </li>
     </ul>
-    <div v-if="showLink" flex="~ wrap gap-x-32 gap-y-16 items-center" nq-mt-48 style="--nq-font-size-min:18;--nq-font-size-max:22">
+    <div v-if="showLink" flex="~ wrap gap-x-32 gap-y-16 items-center" f-mt-48 style="--nq-font-size-min:18;--nq-font-size-max:22">
       <PrismicLink v-if="hasPrimaryLink" internal-component="a" anq-pill-blue nq-arrow nq-pill nq-pill-lg dark:nq-pill-white :field="p.link!" />
 
       <PrismicLink v-if="hasVideoLink" internal-component="a" un-text="neutral-700 hocus:neutral-800" transition-colors :field="p.videoHref!" flex="~ gap-10 items-center">
@@ -43,7 +43,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
       <PrismicLink v-if="hasSecondaryLink" internal-component="a" :field="p.secondaryLink!" un-text-white font-bold nq-arrow />
     </div>
 
-    <ul v-if="hasAnApp" nq-mt-40 flex="~ wrap gap-32 lg:gap-40">
+    <ul v-if="hasAnApp" f-mt-40 flex="~ wrap gap-32 lg:gap-40">
       <li v-if="hasAppStore">
         <PrismicLink internal-component="a" :field="p.appStore!">
           <NuxtImg v-if="hasAppStore" src="/assets/images/apple-store-badge.png" h="32 lg:40" alt="Get it on Apple Store" />

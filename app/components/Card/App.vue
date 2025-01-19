@@ -42,7 +42,7 @@ const bgColor = computed(() => appColor[type])
     </div>
     <div flex-1 p-26 pt-0 nq-prose-compact flex="~ col gap-12">
       <h3>{{ name }}</h3>
-      <PrismicRichText nq-pt-12 nq-pb-24 text-neutral-900 :field="description" />
+      <PrismicRichText text-neutral-900 f-pt-12 f-pb-24 :field="description" />
       <p v-if="developer" mt-auto text-14 nq-label>
         By <span text-blue>{{ developer }}</span>
       </p>

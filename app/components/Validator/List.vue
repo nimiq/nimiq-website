@@ -54,7 +54,7 @@ function truncate(text: string) {
         </AccordionTrigger>
         <AccordionContent class="animate-content" p="x-24 t-0 b-24" border="1 neutral-400 t-0" absolute inset-x-0 top-full z-10 z-11 of-y-clip rounded-b-8 bg-neutral-0 pt-8 shadow transition-padding>
           <div absolute inset-x-0 top-0 z-111 h-4 bg-neutral-0 />
-          <ValidatorScoreAccordion v-if="score" :score nq-mb-32 />
+          <ValidatorScoreAccordion v-if="score" :score f-mb-32 />
           <div grid="~ cols-[1fr_auto] items-center" text="neutral-700 sm" text-neutral font-semibold>
             <h4 text-16>
               Estimated yearly rewards
@@ -85,14 +85,14 @@ function truncate(text: string) {
             </p>
           </div>
           <template v-if="description || website">
-            <hr w="[calc(100%+48px)]" nq-my-24 mx--24 h-1 bg-neutral-300>
+            <hr w="[calc(100%+48px)]" f-my-24x--24 h-1 bg-neutral-300>
             <p v-if="description" text="neutral" font-500>
               &ldquo;{{ description }}&rdquo;
             </p>
             <NuxtLink v-if="website" external :to="website" mt-8 un-text="blue" font-semibold nq-arrow>
               {{ website }}
             </NuxtLink>
-            <p text="neutral-600 2xs" nq-mt-12 font-semibold>
+            <p text="neutral-600 2xs" f-mt-12ont-semibold>
               The validator is solely responsible for the information provided above. It is not to be viewed as an endorsement or recommendation by Nimiq.
             </p>
           </template>

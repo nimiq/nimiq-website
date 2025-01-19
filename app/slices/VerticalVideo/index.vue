@@ -21,7 +21,7 @@ const playVideo = ref(false)
       </button>
       <video v-else :src="getUrl(slice.primary.video)" autoplay controls loop muted playsinline :style="`aspect-ratio: ${getAspectRatio(slice.primary.poster) * -1}`" z-1 max-w-900 w-full rounded-8 bg-neutral-0 shadow />
     </div>
-    <div nq-mt-72 flex="~ items-center gap-12">
+    <div f-mt-72 flex="~ items-center gap-12">
       <div style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)" size-32 shrink-0 rounded-full stack>
         <div i-nimiq:shield text="16 white" />
       </div>
@@ -29,7 +29,7 @@ const playVideo = ref(false)
         {{ slice.primary.title }}
       </h3>
     </div>
-    <p text="md:center lg" nq-mt-16 max-w-32ch>
+    <p text="md:center lg" f-mt-16ax-w-32ch>
       {{ slice.primary.subline }}
     </p>
   </section>

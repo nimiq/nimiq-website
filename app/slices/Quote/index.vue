@@ -5,12 +5,12 @@ defineProps(getSliceComponentProps<Content.QuoteSlice>())
 </script>
 
 <template>
-  <section nq-pt-200 relative z-1>
+  <section relative z-1 f-pt-200>
     <div pointer-events-none absolute inset-x-0 top-0 h-200 max-w-none bg-green />
     <div class="bg" pointer-events-none absolute inset-x-0 top-200 h-600 max-w-none />
     <div i-nimiq:icons-lg-safe-lock text="left md:center 96 md:112 white" />
-    <PrismicRichText :field="slice.primary.quote" text="white 2xl left md:center" nq-mt-32 relative z-1 max-w-36ch />
-    <PrismicLink v-if="hasLink(slice.primary.cta)" :field="slice.primary.cta" nq-mt-24 shadow-none nq-arrow nq-pill-lg nq-pill-tertiary />
+    <PrismicRichText :field="slice.primary.quote" text="white 2xl left md:center" f-mt-32elative z-1 max-w-36ch />
+    <PrismicLink v-if="hasLink(slice.primary.cta)" :field="slice.primary.cta" f-mt-24hadow-none nq-arrow nq-pill-lg nq-pill-tertiary />
   </section>
 </template>
 

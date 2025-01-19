@@ -13,7 +13,7 @@ const { scroller } = useCarousel()
 <template>
   <section :class="colors" nq-overlaps>
     <div
-      nq-p-40 relative size-full w-full rounded-6 bg-darkerblue
+      relative size-full w-full rounded-6 bg-darkerblue f-p-40
     >
       <div absolute inset-0 bg="white/10" rounded-8 />
       <ul ref="scroller" flex="~ items-center" snap="x mandatory" of-x-auto nq-scrollbar-hide>
@@ -24,7 +24,7 @@ const { scroller } = useCarousel()
                 ? [...slice.primary.title, ...slice.primary.description]
                 : [...slice.items[index - 1]!.stepTitle, ...slice.items[index - 1]!.stepDescription]
             "
-            nq-mt-40
+            f-mt-4
           />
           <div>Animation</div>
         </li> -->

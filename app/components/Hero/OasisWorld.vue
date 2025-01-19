@@ -53,7 +53,7 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
 <template>
   <section bg-darkerblue px-0 py-0>
     <div class="world-container" :style="`--progress: ${progress}`" :class="{ first: progress < 0.33, second: progress >= 0.33 && progress < 0.66, third: progress >= 0.66 }" relative max-w-none>
-      <div rounded="100%" absolute top-0 aspect-2 bg-pink w="200%" nq-h="min-200 max-400 " />
+      <div rounded="100%" absolute top-0 aspect-2 bg-pink w="200%" f-h="min-200 max-400 " />
       <!-- <div class="oval" bg-neutral-400 stack :style="`left: ${left}px`">
         <div relative bg-neutral-0>
           <div i-oasis-regions:europe pointer-events-none transition-colors />
@@ -66,9 +66,9 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
       <div ref="scroller" relative mx-auto max-w-480 w-full>
         <Carousel :items style="--px: 32px; --pb:64px">
           <template #default="{ item: { content, kind, link } }">
-            <div :class="bgColor[kind]" nq-p-48 max-w-480 w-full rounded-8 md:w-416>
+            <div :class="bgColor[kind]" max-w-480 w-full rounded-8 f-p-48 md:w-416>
               <PrismicRichText :field="content" class="dark" text-white nq-prose-compact />
-              <div v-if="kind !== 'World'" flex="~ gap-8 items-center" nq-mt-24 text-white>
+              <div v-if="kind !== 'World'" flex="~ gap-8 items-center" text-white f-mt-24>
                 <div v-for="(icon, i) in fiatIcons[kind]" :key="i" flex="~ gap-8">
                   <div size-40 rounded-full stack ring="1.5 white/40">
                     <div :class="icon" size-24 />
@@ -81,12 +81,12 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                   </div>
                 </div>
               </div>
-              <PrismicLink v-if="hasLink(link)" :field="link" internal-component="a" external nq-mt-32 nq-arrow nq-pill-lg nq-pill-white />
-              <div v-if="kind !== 'Europe'" nq-mt-24>
+              <PrismicLink v-if="hasLink(link)" :field="link" internal-component="a" external nq-arrow nq-pill-lg nq-pill-white f-mt-32 />
+              <div v-if="kind !== 'Europe'" f-mt-24>
                 <h4 text="xs white/50" nq-label>
                   {{ label }}
                 </h4>
-                <div flex="~ gap-8 items-center" nq-mt-12 text-white>
+                <div flex="~ gap-8 items-center" text-white f-mt-12>
                   <PrismicLink :field="socialMedias.x.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
                     <div text="white/80 xl hocus:white" i-nimiq:logos-twitter-mono transition-colors />
                   </PrismicLink>

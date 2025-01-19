@@ -10,16 +10,16 @@ defineProps<{ questions: StakingFaqSliceDefaultPrimaryQuestionsItem[], title: st
     <h2 w-max nq-label text-lg>
       {{ title }}
     </h2>
-    <ul grid="~ cols-1 md:cols-2 lg:cols-3 gap-24" nq-mt-32>
+    <ul grid="~ cols-1 md:cols-2 lg:cols-3 gap-24" f-mt-32>
       <li v-for="(q, i) in questions" :key="i" rounded-6 bg-neutral-300 p-16>
-        <PrismicRichText :field="q.question" nq-mt-12 />
-        <PrismicRichText :field="q.answer!" nq-mt-16 nq-prose-compact />
+        <PrismicRichText :field="q.question" f-mt-12 />
+        <PrismicRichText :field="q.answer!" nq-prose-compact f-mt-16 />
       </li>
     </ul>
-    <p v-if="moreInsightfulLabel" text="left md:center neutral-800 lg" nq-mt-72>
+    <p v-if="moreInsightfulLabel" text="left md:center neutral-800 lg" f-mt-72>
       {{ moreInsightfulLabel }}
     </p>
-    <PrismicLink v-if="hasLink(cta)" :field="cta" nq-mt-24 nq-arrow nq-pill-lg nq-pill-secondary />
+    <PrismicLink v-if="hasLink(cta)" :field="cta" nq-arrow nq-pill-lg nq-pill-secondary f-mt-24 />
   </div>
 </template>
 

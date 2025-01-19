@@ -56,31 +56,28 @@ section:is([bg-neutral-0], .bg-neutral-0):not(
     :where([data-slice-type='logos-grid'], [data-slice-type='grid-section'], [data-slice-type='banner'])
   )
   + section[data-slice-type='simple-headline'].bg-neutral-0 {
-  --uno: 'nq-pt-200 border-t border-neutral-300';
+  --uno: 'f-pt-200 border-t border-neutral-300';
 }
 
 section[bg-neutral-0]:has(+ section[data-slice-type='simple-headline'].bg-neutral-0) {
-  --uno: 'nq-pb-200';
+  --uno: 'f-pb-200
 }
 
-section[data-slice-type='staking-faq'] + section[data-slice-type='simple-headline'] {
-  --uno: 'nq-pt-200';
-
-  small {
-    --uno: 'text-neutral-700';
-  }
+section[data-slice-type=' staking-faq '] + section[data-slice-type=' simple-headline '] {
+  --uno: '
+    f-pt-200 small {--uno: 'text-neutral-700' ;};
 }
 
 section[data-slice-type='crypto-map-continent-selector']:has(+ section[data-slice-type='simple-headline']) {
-  /* --nq-pb-min: 108;
-  --nq-pb-max: 152;
-  padding-bottom: var(--nq-pb); */
+  /* --f-pb-min: 108;
+  --f-pb-max: 152;
+  padding-bottom: var(--f-pb); */
 }
 
 [data-slice-type='newsletter-subscription'] + section[data-slice-type='simple-headline'] {
-  --nq-pt-min: 236;
-  --nq-pt-max: 272;
-  padding-top: var(--nq-pt);
+  --f-pt-min: 236;
+  --f-pt-max: 272;
+  padding-top: var(--f-pt);
 }
 
 section[data-slice-type='simple-headline'] + section[data-slice-type='simple-headline'] {

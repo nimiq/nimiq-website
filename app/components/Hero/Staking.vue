@@ -5,14 +5,14 @@ defineProps<{ headline: RichTextField, cta?: LinkField }>()
 </script>
 
 <template>
-  <section nq-pt-200 relative of-x-clip bg-neutral-0 pb-0 max-md:pb-100>
+  <section relative of-x-clip bg-neutral-0 pb-0 f-pt-200 max-md:pb-100>
     <AnimatedCircleRipple left="-100vw lg:-5vw" size="300vw lg:110vw" absolute z-0 max-w-none bottom="10 lg:-300" />
     <div pointer-events-none absolute inset-0 z-1 h="400 lg:200" max-w-none bg-neutral-0 />
     <div class="bg-radial-green" bg-gradient-fn="to-b from-white to-" pointer-events-none absolute inset-0 top="50vh lg:200" z-1 max-w-none />
     <div class="bg-linear-white-1" pointer-events-none absolute inset-0 top="20vh lg:200" z-1 max-w-none />
     <div class="bg-linear-white-2" pointer-events-none absolute inset-0 top="20vh lg:200" z-1 max-w-none />
     <HeadlineStaking :headline :cta show-staking-icon primary-pill relative z-2 />
-    <AnimatedBreathArrow nq-mt-200 z-2 hidden md:block max-md:self-center />
+    <AnimatedBreathArrow f-mt-200-2 hidden md:block max-md:self-center />
   </section>
 </template>
 

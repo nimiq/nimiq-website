@@ -70,7 +70,7 @@ const { clientNetwork } = useRuntimeConfig().public
       </div>
     </div>
 
-    <div v-else flex="~ justify-center" nq-mt-48 w-full of-hidden px-32>
+    <div v-else flex="~ justify-center" w-full of-hidden px-32 f-mt-48>
       <!-- :class="{ unimate: isMacro || isFirstBatchAfterPageLoad }"> -->
       <div flex="~ justify-center">
         <AlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 2 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number class="animate-batch-unshift" />

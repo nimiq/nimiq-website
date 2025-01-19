@@ -107,10 +107,10 @@ function reset() {
             <p text="center 40 red-neon" font-retro class="challenge-over">
               Try again
             </p>
-            <p text="center neutral-900 lg" class="delayed" nq-mt-32 max-w-40ch px-40>
+            <p text="center neutral-900 lg" class="delayed" max-w-40ch px-40 f-mt-32>
               Even using a computer, it would take you <b text-neutral>10 lifetimes</b> to crack this wallet...
             </p>
-            <button nq-mt-16 nq-pill nq-pill-tertiary class="delayed" @click="reset">
+            <button f-mt-16q-pill nq-pill-tertiary class="delayed" @click="reset">
               Restart
             </button>
           </div>

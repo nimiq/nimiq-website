@@ -12,7 +12,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 
 <template>
   <section class="dark" bg-darkerblue pt-0 text-neutral>
-    <p nq-mb-16 text-neutral-800>
+    <p text-neutral-800 f-mb-16>
       This is the a preview of the live blockhain
     </p>
     <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary @close="activeIndex = 0">

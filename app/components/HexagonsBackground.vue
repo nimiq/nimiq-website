@@ -52,7 +52,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section :class="colors" group nq-pt-96 relative z-2 mx-0 w-full of-x-hidden px-0>
+  <section :class="colors" group relative z-2 mx-0 w-full of-x-hidden px-0 f-pt-96>
     <div
       aria-hidden="true"
       class="grid-parent" max-w-none

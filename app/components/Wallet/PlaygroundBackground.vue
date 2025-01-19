@@ -225,7 +225,7 @@ onUnmounted(() => {
 
   /* Helpers - Calculated */
   --total-width: calc(100vw - var(--scrollbar-width));
-  --total-height: calc(100% + (var(--nq-pt) * 2) + (var(--nq-pb) * 2) - (var(--border-width) * 2px));
+  --total-height: calc(100% + (var(--f-pt) * 2) + (var(--f-pb) * 2) - (var(--border-width) * 2px));
 
   --rect-width: min(calc(100% - (var(--px) * 2)), var(--nq-max-width));
   --rect-height: calc(var(--rect-width) * (658 / 1096)); /* from viewbox 0 0 1096 658 */
@@ -287,7 +287,7 @@ onUnmounted(() => {
   height: var(--total-height);
   width: var(--total-width);
 
-  margin-top: calc(-1 * var(--nq-pt));
+  margin-top: calc(-1 * var(--f-pt));
   left: calc(-1 * var(--px));
 
   overflow: hidden;
@@ -313,7 +313,7 @@ onUnmounted(() => {
   height: auto;
 
   position: absolute;
-  top: var(--nq-pt);
+  top: var(--f-pt);
   left: calc(50vw - (var(--scrollbar-width) / 2));
   transform: translateX(-50%);
 
@@ -422,7 +422,7 @@ onUnmounted(() => {
   height: var(--total-height);
   width: var(--total-width);
 
-  margin-top: calc(-1 * var(--nq-pt));
+  margin-top: calc(-1 * var(--f-pt));
   left: calc(-1 * var(--px));
 }
 

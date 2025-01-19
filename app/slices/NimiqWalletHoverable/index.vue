@@ -22,7 +22,7 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
         <h4 text-12 nq-label>
           {{ slice.primary.poweredByLabel }}
         </h4>
-        <ul flex="~ gap-16" nq-mt-16>
+        <ul flex="~ gap-16" f-mt-16>
           <li v-for="({ logo }, i) in slice.primary.poweredByLogos" :key="i">
             <PrismicImage :field="logo" w-full h="32 md:36" object-contain />
           </li>
