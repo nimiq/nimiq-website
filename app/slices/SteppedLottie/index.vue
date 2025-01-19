@@ -13,7 +13,7 @@ const { scroller } = useCarousel()
 <template>
   <section :class="colors" nq-overlaps>
     <div
-      relative size-full w-full rounded-6 bg-darkerblue nq-p-40
+      nq-p-40 relative size-full w-full rounded-6 bg-darkerblue
     >
       <div absolute inset-0 bg="white/10" rounded-8 />
       <ul ref="scroller" flex="~ items-center" snap="x mandatory" of-x-auto nq-scrollbar-hide>

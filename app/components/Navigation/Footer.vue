@@ -8,7 +8,7 @@ const colors = getColorClass(() => bgColor)
 </script>
 
 <template>
-  <footer :class="colors" data-section z-10 nq-pb-96>
+  <footer :class="colors" data-section nq-pb-96 z-10>
     <div grid="~ gap-40 md:gap-48 items-start xl:gap-104">
       <div flex="~ col" text-sm area-contact>
         <p v-if="navigation?.newsletterCta">
@@ -18,7 +18,7 @@ const colors = getColorClass(() => bgColor)
         <p v-if="navigation?.socialMediaCta" nq-mt-16>
           {{ navigation.socialMediaCta }}
         </p>
-        <SocialMediaLogosList nq-text-xl mx--8 op-60 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
+        <SocialMediaLogosList mx--8 op-60 text-xl :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
       </div>
 
       <div text="sm neutral-700" self-end area-meta>
@@ -28,7 +28,7 @@ const colors = getColorClass(() => bgColor)
         <p v-if="navigation?.nimiqShortDescription" nq-mt-16>
           {{ navigation.nimiqShortDescription }}
         </p>
-        <div text="neutral-800 hocus:neutral-900" transition-colors nq-mt-32 flex="~ gap-16 items-center wrap">
+        <div text="neutral-800 hocus:neutral-900" nq-mt-32 transition-colors flex="~ gap-16 items-center wrap">
           <NuxtLink to="/privacy-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
             Privacy Policy
           </NuxtLink>
@@ -38,7 +38,7 @@ const colors = getColorClass(() => bgColor)
           </NuxtLink>
         </div>
 
-        <p text-neutral-600 nq-mt-32>
+        <p nq-mt-32 text-neutral-600>
           {{ copyrightNotice }}
         </p>
       </div>

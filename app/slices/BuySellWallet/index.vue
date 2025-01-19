@@ -14,7 +14,7 @@ defineProps(getSliceComponentProps<Content.BuySellWalletSlice>())
           <div bg="inverted:blue neutral" p="24 xl:32" nq-no-color rounded-6 text-white>
             <PrismicImage max-h-24 op-60 :field="logo" />
             <PrismicRichText v-if="paymentMethod" nq-mt-12 children:text-left children:text="neutral-0 inverted:white" :field="paymentMethod" />
-            <PrismicRichText v-if="description" text="inverted:white/80 neutral-800" :field="description" min-h-3lh nq-mt-16 />
+            <PrismicRichText v-if="description" text="inverted:white/80 neutral-800" :field="description" nq-mt-16 min-h-3lh />
 
             <p v-if="label" text="12 neutral-800 inverted:neutral-300" nq-mt-32 nq-label>
               {{ label }}

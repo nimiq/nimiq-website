@@ -10,9 +10,15 @@ const colors = getColorClass(slice.primary.bgColor)
     <div ring="1 neutral-200" aspect-video w-full rounded-8 bg-neutral-0 shadow stack>
       <PrismicImage v-if="hasImage(slice.primary.poster)" :field="slice.primary.poster" size-full rounded-8 object-cover />
       <NuxtLink :to="getUrl(slice.primary.youtubeUrl)" external target="_blank">
-        <div text="96 gold" i-nimiq:triangle-right drop-shadow />
+        <div text="48 md:96 gold" i-nimiq:triangle-right drop-shadow />
       </NuxtLink>
-      <PrismicRichText :field="slice.primary.headline" self-end justify-self-start nq-m-32 nq-prose-compact />
+      <PrismicRichText :field="slice.primary.headline" style="--nq-font-size: 14px" nq-mb-16 nq-mx-32 z-1 self-end justify-self-start />
     </div>
   </section>
 </template>
+
+<style scoped>
+:deep(h2) {
+  --uno: 'text-2xl';
+}
+</style>

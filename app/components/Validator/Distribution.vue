@@ -50,6 +50,6 @@ const data = computed(() => {
         </div>
       </template>
     </ChartDonut>
-    <PrismicRichText :field="info" max-w-42ch text-center nq-mt-48 />
+    <PrismicRichText :field="info" nq-mt-48 max-w-42ch text-center />
   </div>
 </template>

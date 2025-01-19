@@ -29,7 +29,7 @@ const playVideo = ref(false)
         {{ slice.primary.title }}
       </h3>
     </div>
-    <p max-w-32ch text="md:center lg" nq-mt-16>
+    <p text="md:center lg" nq-mt-16 max-w-32ch>
       {{ slice.primary.subline }}
     </p>
   </section>

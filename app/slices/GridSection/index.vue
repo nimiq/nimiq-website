@@ -49,7 +49,7 @@ const colors = getColorClass(props.slice.primary.bgColor)
       <ul flex="~ col lg:row gap-y-24 lg:items-center" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1 py-24 border="b-1 lg:b-0 lg:r-1 last:0 white/15 solid">
           <PrismicImage :field="image" max-h-80 rounded-8 object-contain lg:mx-auto />
-          <PrismicText wrapper="h3" text="green md:center xl" max-w-20ch font-bold nq-mt-16 lg:mx-auto :field="headline" />
+          <PrismicText wrapper="h3" text="green md:center xl" nq-mt-16 max-w-20ch font-bold lg:mx-auto :field="headline" />
         </li>
       </ul>
     </template>

@@ -27,9 +27,9 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
 </script>
 
 <template>
-  <section flex="~ col items-center" of-x-clip bg-neutral-0 nq-pt-96>
+  <section flex="~ col items-center" nq-pt-96 of-x-clip bg-neutral-0>
     <DefineCrosshair v-slot="{ data: [ts, price] }">
-      <div backdrop-blur-12 nq-py-12 nq-px-16 flex="~ col gap-8">
+      <div nq-py-12 nq-px-16 backdrop-blur-12 flex="~ col gap-8">
         <p text="blue 3xl" font-semibold lh-none>
           {{ formatFiat(price, currencyInfo, { maxDecimals: Number.POSITIVE_INFINITY }) }}
         </p>
@@ -62,7 +62,7 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
       </div>
     </DefineMetric>
 
-    <div ring="1.5 neutral/15" relative w-full rounded-8 bg-neutral-0 shadow nq-pt-32 stack style="--ribbong-r: -18px; --ribbong-t: calc(var(--nq-pt) * -1 - 11px)">
+    <div ring="1.5 neutral/15" nq-pt-32 relative w-full rounded-8 bg-neutral-0 shadow stack style="--ribbong-r: -18px; --ribbong-t: calc(var(--nq-pt) * -1 - 11px)">
       <!-- Ribbon fold -->
       <div aria-hidden relative z-1 w-44 origin-bottom-right rotate--45 self-start justify-self-end border="22 x-transparent t-0 #EC991C" style="right: var(--ribbong-r); top: var(--ribbong-t)" />
       <!-- Ribbon -->
@@ -73,14 +73,14 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
         </div>
       </div>
 
-      <div flex="~ gap-20" w-max self-start justify-self-start nq-px-32>
+      <div flex="~ gap-20" nq-px-32 w-max self-start justify-self-start>
         <ReuseMetric :metric-value="marketCapUserCurrencyFormatted" :metric-change="marketCapChange" :label="slice.primary.marketCapLabel!" :tooltip-info="slice.primary.marketCapInfo" />
         <ReuseMetric :metric-value="volumeUserCurrencyFormatted" :metric-change="volumeChange" :label="slice.primary.volume24HLabel!" :tooltip-info="slice.primary.volume24HInfo" />
         <ReuseMetric :metric-value="currentSupplyFormatted" :label="slice.primary.totalSupplyLabel!" :tooltip-info="slice.primary.totalSupplyInfo" />
         <ReuseMetric :metric-value="maxSupplyFormatted" :label="slice.primary.maxSupplyLabel!" :tooltip-info="slice.primary.maxSupplyInfo" />
       </div>
 
-      <div leader w-full nq-pb-12 nq-pt-32>
+      <div nq-pt-32 leader nq-pb-12 w-full>
         <ChartLine :data="historicPrices || []">
           <template #default="{ data: [ts, price] }">
             <ReuseCrosshair :data="[ts, price]" />
@@ -90,7 +90,7 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
 
       <ReuseCrosshair self-start justify-self-end op="100 leader-hocus:0" transition-opacity :data="historicPrices?.at(-1) || [0, 0]" />
 
-      <PillSelector v-model="selectedHistoricPricePeriod" :options="historicPriceRangeOptions" self-end justify-self-end nq-m-32 />
+      <PillSelector v-model="selectedHistoricPricePeriod" :options="historicPriceRangeOptions" nq-m-32 self-end justify-self-end />
     </div>
     <div flex="~ col items-center gap-8" nq-mt-32>
       <p flex="~ items-center gap-8" text="center sm">

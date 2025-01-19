@@ -1,9 +1,8 @@
 import { readFile } from 'node:fs/promises'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
-import transformerDirectives from '@unocss/transformer-directives'
 import { presetNimiq } from 'nimiq-css'
-import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
-import { presetEasingGradient } from 'unocss-preset-easing-gradient'
+import { defineConfig, presetAttributify, presetIcons, presetUno, transformerDirectives } from 'unocss'
+import { presetGradientFn } from 'unocss-preset-gradient-fn'
 
 function stakingGradient(t: number): number {
   function easeInOutCubic(x: number) {
@@ -73,9 +72,10 @@ export default defineConfig({
       typography: true,
       staticContent: true,
       fonts: false,
+      scalePx: true,
     }),
     presetAttributify(),
-    presetEasingGradient({
+    presetGradientFn({
       customFunctions: {
         stakingGradient,
       },

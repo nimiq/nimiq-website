@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     'radix-vue/nuxt',
-    '@nuxtjs/seo',
+    // '@nuxtjs/seo',
     '@nuxthub/core',
     '@nuxtjs/prismic',
     // '@nuxtjs/critters',

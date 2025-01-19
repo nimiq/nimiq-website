@@ -32,42 +32,43 @@ const bgColor = { 'Europe': 'bg-green', 'Central America': 'bg-blue', 'World': '
 const fiatIcons = { 'Europe': ['i-nimiq:logos-euro-outline-mono translate-x--1.5'], 'Central America': ['i-nimiq:logos-usd-outline-mono', 'i-nimiq:logos-colones-outline-mono'], 'World': [] }
 const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-nimiq:logos-bitcoin-outline-mono translate-x--1.5'], 'Central America': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-nimiq:logos-bitcoin-outline-mono translate-x-0.5'], 'World': [] }
 
-const left = computed(() => {
-  const p = progress.value
+// const left = computed(() => {
+//   const p = progress.value
 
-  if (p <= 0.33) {
-    const factor = p / 0.33
-    return 35 + (25 - 35) * factor
-  }
-  else if (p <= 0.66) {
-    const factor = (p - 0.33) / (0.66 - 0.33)
-    return 25 + (38 - 25) * factor
-  }
-  else {
-    const factor = (p - 0.66) / (1 - 0.66)
-    return 38 + (50 - 38) * factor
-  }
-})
+//   if (p <= 0.33) {
+//     const factor = p / 0.33
+//     return 35 + (25 - 35) * factor
+//   }
+//   else if (p <= 0.66) {
+//     const factor = (p - 0.33) / (0.66 - 0.33)
+//     return 25 + (38 - 25) * factor
+//   }
+//   else {
+//     const factor = (p - 0.66) / (1 - 0.66)
+//     return 38 + (50 - 38) * factor
+//   }
+// })
 </script>
 
 <template>
-  <section px-0 py-0>
-    <div max-w-none w-full bg-darkerblue class="world-container" :style="`--progress: ${progress}`" :class="{ first: progress < 0.33, second: progress >= 0.33 && progress < 0.66, third: progress >= 0.66 }">
-      <div class="oval" bg-neutral-400 stack :style="`left: ${left}px`">
+  <section bg-darkerblue px-0 py-0>
+    <div class="world-container" :style="`--progress: ${progress}`" :class="{ first: progress < 0.33, second: progress >= 0.33 && progress < 0.66, third: progress >= 0.66 }" relative max-w-none>
+      <div rounded="100%" absolute top-0 aspect-2 bg-pink w="200%" nq-h="min-200 max-400 " />
+      <!-- <div class="oval" bg-neutral-400 stack :style="`left: ${left}px`">
         <div relative bg-neutral-0>
           <div i-oasis-regions:europe pointer-events-none transition-colors />
           <div i-oasis-regions:central-america pointer-events-none transition-colors />
           <div i-oasis-regions:rest-of-the-world pointer-events-none transition-colors />
         </div>
-      </div>
+      </div> -->
     </div>
     <div max-w-none bg-neutral-100>
       <div ref="scroller" relative mx-auto max-w-480 w-full>
         <Carousel :items style="--px: 32px; --pb:64px">
           <template #default="{ item: { content, kind, link } }">
-            <div :class="bgColor[kind]" max-w-480 w-full rounded-8 nq-p-48 md:w-416>
+            <div :class="bgColor[kind]" nq-p-48 max-w-480 w-full rounded-8 md:w-416>
               <PrismicRichText :field="content" class="dark" text-white nq-prose-compact />
-              <div v-if="kind !== 'World'" flex="~ gap-8 items-center" text-white nq-mt-24>
+              <div v-if="kind !== 'World'" flex="~ gap-8 items-center" nq-mt-24 text-white>
                 <div v-for="(icon, i) in fiatIcons[kind]" :key="i" flex="~ gap-8">
                   <div size-40 rounded-full stack ring="1.5 white/40">
                     <div :class="icon" size-24 />
@@ -85,7 +86,7 @@ const left = computed(() => {
                 <h4 text="xs white/50" nq-label>
                   {{ label }}
                 </h4>
-                <div flex="~ gap-8 items-center" text-white nq-mt-12>
+                <div flex="~ gap-8 items-center" nq-mt-12 text-white>
                   <PrismicLink :field="socialMedias.x.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
                     <div text="white/80 xl hocus:white" i-nimiq:logos-twitter-mono transition-colors />
                   </PrismicLink>
@@ -106,7 +107,7 @@ const left = computed(() => {
 section {
   overflow-x: clip;
 }
-.world-container {
+/* .world-container {
   --halo: 24px;
 
   --min-height: 300px;
@@ -188,7 +189,7 @@ section {
       --uno: 'text-neutral-600';
     }
   }
-}
+} */
 
 ::deep([data-prev]) {
   transform: translateX(calc(-100% - 32px));

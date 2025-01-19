@@ -8,7 +8,7 @@ const { color = 'bg-neutral-100' } = defineProps<{ headline: TitleField, subline
 <template>
   <section :class="color">
     <Headline :headline :subline left-align max-w-780px w-full px-32 />
-    <div flex="~ justify-start" max-w-780px w-full px-32 nq-mt-16>
+    <div flex="~ justify-start" nq-mt-16 max-w-780px w-full px-32>
       <slot name="bottom" />
     </div>
   </section>

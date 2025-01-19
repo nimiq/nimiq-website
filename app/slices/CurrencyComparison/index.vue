@@ -24,14 +24,14 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
           </span>
           <div v-if="crypto === 'NIM'" flex="~ items-center gap-6" rounded-full bg-green-400 px-6 py-4 text-green>
             <div i-nimiq:eco text-14 />
-            <span text-green text-xs nq-label>Eco</span>
+            <span text-green nq-label text-xs>Eco</span>
           </div>
         </div>
 
-        <p text="neutral/70 xs" h-max w-max rounded-4 bg-neutral-400 px-8 py-4 nq-mt-32 nq-label>
+        <p text="neutral/70 xs" nq-mt-32 h-max w-max rounded-4 bg-neutral-400 px-8 py-4 nq-label>
           {{ adjetive }}
         </p>
-        <p row-span-4 col-start-1 text-lg nq-mt-12>
+        <p nq-mt-12 row-span-4 col-start-1 text-lg>
           {{ mainFeature }}
         </p>
 

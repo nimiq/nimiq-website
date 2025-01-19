@@ -11,7 +11,7 @@ const colors = getColorClass(slice.primary.bgColor)
     <ul grid="~ cols-1 md:cols-2 lg:cols-3" bg="white/10" w-full of-clip rounded-6>
       <li v-for="({ logo, headline, description }, i) in slice.items" :key="i" flex="~ items-center col" nq-my-48 nq-px-48 nq-prose-compact first:border="r-1.5 white/20">
         <PrismicImage :field="logo" max-h-64 />
-        <h3 text-center nq-mt-12>
+        <h3 nq-mt-12 text-center>
           {{ headline }}
         </h3>
         <PrismicRichText :field="description" text="white/80 center" />

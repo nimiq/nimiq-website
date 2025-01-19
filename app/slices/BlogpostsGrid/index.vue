@@ -52,7 +52,7 @@ const isDev = import.meta.dev
               <p mt-8 max-w-40ch font-semibold op-80>
                 Something great is being redacted just right now and there is no image yet. 🤫
               </p>
-              <p italic op-70 text-2xs nq-mt-12>
+              <p nq-mt-12 italic op-70 text-2xs>
                 This is a development-only message.
               </p>
             </div>
