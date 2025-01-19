@@ -9,7 +9,7 @@ const colors = getColorClass(color)
       <h2>
         Disclaimer
       </h2>
-      <p lh="[1.75]" f-mt-16>
+      <p lh="[1.75]" f-m-xs>
         None of the statements must be viewed as an endorsement or recommendation for Nimiq, any cryptocurrency, or
         investment product. Neither the information, nor any opinion contained herein constitutes a solicitation or offer
         by the creators or participants to buy or sell any securities or other financial instruments or provide any

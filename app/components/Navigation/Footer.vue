@@ -8,27 +8,27 @@ const colors = getColorClass(() => bgColor)
 </script>
 
 <template>
-  <footer :class="colors" data-section z-10 f-pb-96>
+  <footer :class="colors" data-section z-10 f-p-2xl>
     <div grid="~ gap-40 md:gap-48 items-start xl:gap-104">
       <div flex="~ col" text-sm area-contact>
         <p v-if="navigation?.newsletterCta">
           {{ navigation.newsletterCta }}
         </p>
-        <NewsletterEmailInput f-mt-16 :placeholder="navigation?.newsletterPlaceholder" />
-        <p v-if="navigation?.socialMediaCta" f-mt-16>
+        <NewsletterEmailInput f-m-xs :placeholder="navigation?.newsletterPlaceholder" />
+        <p v-if="navigation?.socialMediaCta" f-m-xs>
           {{ navigation.socialMediaCta }}
         </p>
-        <SocialMediaLogosList mx--8 op-60 text-xl :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
+        <SocialMediaLogosList mx--8 text-xl op-60 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
       </div>
 
       <div text="sm neutral-700" self-end area-meta>
         <NuxtLink to="/" group w-max flex>
           <div text="20 md:22" i-nimiq:logos-nimiq-horizontal-mono op-80 group-hocus:i-nimiq:logos-nimiq-horizontal />
         </NuxtLink>
-        <p v-if="navigation?.nimiqShortDescription" f-mt-16>
+        <p v-if="navigation?.nimiqShortDescription" f-m-xs>
           {{ navigation.nimiqShortDescription }}
         </p>
-        <div text="neutral-800 hocus:neutral-900" transition-colors f-mt-32 flex="~ gap-16 items-center wrap">
+        <div text="neutral-800 hocus:neutral-900" transition-colors f-m-md flex="~ gap-16 items-center wrap">
           <NuxtLink to="/privacy-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
             Privacy Policy
           </NuxtLink>
@@ -38,7 +38,7 @@ const colors = getColorClass(() => bgColor)
           </NuxtLink>
         </div>
 
-        <p text-neutral-600 f-mt-32>
+        <p text-neutral-600 f-m-md>
           {{ copyrightNotice }}
         </p>
       </div>
@@ -47,8 +47,8 @@ const colors = getColorClass(() => bgColor)
         <p w-full text="xs neutral-700/80" nq-label>
           {{ label }}
         </p>
-        <ul f-mt-32 :aria-label="`${label} links`" role="list">
-          <li v-for="({ href, label: linkLabel }, j) in links" :key="j" f-mt-16>
+        <ul f-m-md :aria-label="`${label} links`" role="list">
+          <li v-for="({ href, label: linkLabel }, j) in links" :key="j" f-m-xs>
             <PrismicLink internal-component="a" :field="href" font-semibold un-text="sm neutral-800 hocus:neutral-900" transition-colors>
               {{ linkLabel }}
             </PrismicLink>

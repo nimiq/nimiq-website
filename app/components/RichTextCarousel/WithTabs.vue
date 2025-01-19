@@ -39,6 +39,6 @@ const selectedItem = computed(() => items.value.find(i => i.key === selectedKey.
         </button>
       </li>
     </ul>
-    <RichTextCarouselDefault v-if="selectedItem" f-mt-96 :images="selectedItem.images" :content="selectedItem.content" />
+    <RichTextCarouselDefault v-if="selectedItem" f-m-2xl :images="selectedItem.images" :content="selectedItem.content" />
   </div>
 </template>

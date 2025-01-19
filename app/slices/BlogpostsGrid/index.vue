@@ -45,14 +45,14 @@ const isDev = import.meta.dev
               <div flex="~ items-center gap-12">
                 <div i-nimiq:icons-lg-tools text-32 op-70 />
 
-                <p font-bold text-xl>
+                <p text-xl font-bold>
                   Image not found
                 </p>
               </div>
               <p mt-8 max-w-40ch font-semibold op-80>
                 Something great is being redacted just right now and there is no image yet. 🤫
               </p>
-              <p italic op-70 text-2xs f-mt-12>
+              <p text-2xs italic op-70 f-m-2xs>
                 This is a development-only message.
               </p>
             </div>

@@ -21,16 +21,16 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
 </script>
 
 <template>
-  <section :class="colors" relative f-pt-200 f-pb-72>
+  <section :class="colors" relative f-p-5xl f-p-xl>
     <PrismicText :field="p.headline" wrapper="h1" />
     <PrismicText v-if="p.subline" :field="p.subline" wrapper="p" font-400 dark:text-neutral-900 />
-    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline?.[0]?.text}`" role="list" f-mt-16 flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
+    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline?.[0]?.text}`" role="list" f-m-xs flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
       <li v-for="(highlight, i) in highlightsItems" :key="i" contents>
         <div v-if="i > 0" size-6 rounded-full bg-neutral-500 />
         <span text="20 md:22 xl:24 green" font-semibold>{{ highlight }}</span>
       </li>
     </ul>
-    <div v-if="showLink" flex="~ wrap gap-x-32 gap-y-16 items-center" f-mt-48 style="--nq-font-size-min:18;--nq-font-size-max:22">
+    <div v-if="showLink" flex="~ wrap gap-x-32 gap-y-16 items-center" f-m-lg style="--nq-font-size-min:18;--nq-font-size-max:22">
       <PrismicLink v-if="hasPrimaryLink" internal-component="a" anq-pill-blue nq-arrow nq-pill nq-pill-lg dark:nq-pill-white :field="p.link!" />
 
       <PrismicLink v-if="hasVideoLink" internal-component="a" un-text="neutral-700 hocus:neutral-800" transition-colors :field="p.videoHref!" flex="~ gap-10 items-center">

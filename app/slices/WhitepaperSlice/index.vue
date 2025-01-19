@@ -58,5 +58,5 @@ useIntersectionObserver(articleEl, () => {
   <section bg-neutral-0>
     <PrismicRichText ref="articleEl" wrapper="article" class="nq-prose" :field="litepaperProps.content" />
   </section>
-  <Disclaimer f-mt-72 />
+  <Disclaimer f-m-xl />
 </template>

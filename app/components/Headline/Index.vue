@@ -18,15 +18,15 @@ const ctaIsVideo = computed(() => hostingVideos.some(host => getLink(cta)?.inclu
 
 <template>
   <div flex="~ col" :class="{ 'md:items-center': !leftAlign }">
-    <div v-if="iconName" :class="iconName" text-54 op-15 f-mb-24 />
-    <p v-if="label" mb-16 block w-max nq-label text-sm f-mb-32 :class="{ 'md:mx-auto': !leftAlign }">
+    <div v-if="iconName" :class="iconName" text-54 op-15 f-m-sm />
+    <p v-if="label" mb-16 block w-max text-sm nq-label f-m-md :class="{ 'md:mx-auto': !leftAlign }">
       {{ label }}
     </p>
     <PrismicText :wrapper="headlineTag" :field="headline" :class="{ 'text-left': leftAlign }" />
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" :class="{ 'text-left': leftAlign }" />
     <template v-if="cta && hasLink(cta)">
-      <PrismicLink v-if="!ctaIsVideo" internal-component="a" :field="cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-48 :class="{ 'md:mx-auto': !leftAlign }" />
-      <PrismicLink v-else internal-component="a" :field="cta" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue rounded-4 p-8 transition-colors f-mt-24>
+      <PrismicLink v-if="!ctaIsVideo" internal-component="a" :field="cta" nq-arrow nq-pill-lg nq-pill-blue f-m-lg :class="{ 'md:mx-auto': !leftAlign }" />
+      <PrismicLink v-else internal-component="a" :field="cta" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue rounded-4 p-8 transition-colors f-m-sm>
         <div size-32 ring="1.5 blue" rounded-full text-16 stack>
           <div i-nimiq:triangle-right />
         </div>

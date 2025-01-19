@@ -93,7 +93,7 @@ const selectedApps = computed(() => {
 </script>
 
 <template>
-  <ul v-if="selectedApps && selectedApps.length > 0" f-mt-72 grid="~ gap-16 cols-[repeat(auto-fit,350px)] 2xl:gap-32 xl:gap-24">
+  <ul v-if="selectedApps && selectedApps.length > 0" f-m-xl grid="~ gap-16 cols-[repeat(auto-fit,350px)] 2xl:gap-32 xl:gap-24">
     <li v-for="(app, i) in selectedApps" :key="i" :style="getHighlightedAppPosition(app)" w-full>
       <CardApp v-if="!app.isHighlighted" v-bind="app" w-full />
       <CardHighlighted v-else v-bind="app" w-full />

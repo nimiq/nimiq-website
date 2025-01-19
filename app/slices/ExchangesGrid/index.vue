@@ -13,7 +13,7 @@ const { data: exchanges } = await useAsyncData('exchange', () => client.getByTyp
       <li v-for="({ data: { link, logo, name } }, i) in exchanges?.results" :key="i">
         <PrismicLink :field="link" flex="~ row items-center gap-x-16" nq-hoverable>
           <PrismicImage :field="logo" h-full w-40 object-contain flex="~ items-center" />
-          <h3 font-semibold text-xl>
+          <h3 text-xl font-semibold>
             {{ name }}
           </h3>
         </PrismicLink>

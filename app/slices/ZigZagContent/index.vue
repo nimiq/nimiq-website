@@ -55,13 +55,13 @@ useIntersectionObserver(sectionRef, () => {
             'xl:pr-112 xl:pl-0 md:col-start-2': i % 2 !== 0,
           }"
         >
-          <PrismicImage v-if="hasImage(item.logo)" :field="item.logo" mx="auto md:unset" />
-          <PrismicRichText f-mt-24 :field="item.headline" />
-          <div f-mt-12ext-12 nq-label>
+          <PrismicImage v-if="hasImage(item.logo)" :field="item.logo" max-md:mx-auto />
+          <PrismicRichText f-m-sm :field="item.headline" />
+          <div text-12 nq-label f-m-2xs>
             {{ item.label }}
           </div>
-          <PrismicRichText f-mt-48lass="nq-prose-compact" :field="item.description" />
-          <div flex="~ gap-24 md:col lg:row" f-mt-24ax-w-lg>
+          <PrismicRichText nq-prose-compact f-m-lg :field="item.description" />
+          <div flex="~ gap-24 md:col lg:row" max-w-lg f-m-sm>
             <PrismicLink v-if="hasLink(item.buttonHref)" internal-component="a" :field="item.buttonHref" font-semibold nq-arrow nq-pill-lg nq-pill-blue>
               {{ item.buttonLabel }}
             </PrismicLink>

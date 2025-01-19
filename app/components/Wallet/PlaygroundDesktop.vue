@@ -26,7 +26,7 @@
       <WalletActionSelector translate-y="[calc(50%-10px)]" />
     </div>
 
-    <WalletCurrencies f-mt-48 />
+    <WalletCurrencies f-m-lg />
   </div>
 </template>
 

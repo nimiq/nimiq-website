@@ -40,7 +40,7 @@ const { copyrightNotice } = useGlobalContent()
               <p text="sm neutral-700" font-bold nq-arrow>
                 {{ navigation.getStartedLinks[2]?.label }}
               </p>
-              <p text-14 f-mt-16>
+              <p text-14 f-m-xs>
                 {{ navigation.getStartedLinks[2]?.description }}
               </p>
             </PrismicLink>
@@ -76,7 +76,7 @@ const { copyrightNotice } = useGlobalContent()
 
           <SocialMediaLogosList text-18 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
 
-          <div text="neutral-800 hocus:neutral-900" f-mt-32ransition-colors flex="~ gap-16 items-center">
+          <div text="neutral-800 hocus:neutral-900" transition-colors f-m-md flex="~ gap-16 items-center">
             <NuxtLink to="/privacy-policy" class="font-semibold op-60 hocus:op-90">
               Privacy Policy
             </NuxtLink>
@@ -86,7 +86,7 @@ const { copyrightNotice } = useGlobalContent()
             </NuxtLink>
           </div>
 
-          <p f-mt-32ext-neutral-600>
+          <p text-neutral-600 f-m-md>
             {{ copyrightNotice }}
           </p>
         </div>

@@ -27,6 +27,6 @@ const startAngle = computed(() => (90 - 180 * (datum.value.at(0)?.value || 0)))
     <div ring="1.5 green" absolute right-8 top-196 rounded-full bg-neutral-0 px-12 py-6 text-neutral font-semibold>
       {{ formatter.format(stakedSupplyRatio) }} staked
     </div>
-    <PrismicRichText :field="info" max-w-42ch text-center f-mt-48 />
+    <PrismicRichText :field="info" max-w-42ch text-center f-m-lg />
   </div>
 </template>
