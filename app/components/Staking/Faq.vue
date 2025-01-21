@@ -7,7 +7,7 @@ defineProps<{ questions: StakingFaqSliceDefaultPrimaryQuestionsItem[], title: st
 
 <template>
   <div flex="~ col md:items-center">
-    <h2 w-max text-lg nq-label>
+    <h2 w-max nq-label text-lg>
       {{ title }}
     </h2>
     <ul grid="~ cols-1 md:cols-2 lg:cols-3 gap-24" f-m-md>

@@ -19,7 +19,7 @@ const ctaIsVideo = computed(() => hostingVideos.some(host => getLink(cta)?.inclu
 <template>
   <div flex="~ col" :class="{ 'md:items-center': !leftAlign }">
     <div v-if="iconName" :class="iconName" text-54 op-15 f-m-sm />
-    <p v-if="label" mb-16 block w-max text-sm nq-label f-m-md :class="{ 'md:mx-auto': !leftAlign }">
+    <p v-if="label" mb-16 block w-max nq-label text-sm f-m-md :class="{ 'md:mx-auto': !leftAlign }">
       {{ label }}
     </p>
     <PrismicText :wrapper="headlineTag" :field="headline" :class="{ 'text-left': leftAlign }" />
