@@ -58,10 +58,10 @@ function goToStep(step: number) {
           :preload="i <= step + 1"
           :loop="i === 0"
         /> -->
-        <p text="neutral-800 xs" px="8 md:32 xl:48" nq-label f-m-lg>
+        <p text="neutral-800 xs" px="8 md:32 xl:48" nq-label f-mt-lg>
           {{ item.label }}
         </p>
-        <PrismicRichText px="8 md:32 xl:48" :field="item.description" class="nq-prose-compact" f-m-2xs text="neutral-800 xl" />
+        <PrismicRichText px="8 md:32 xl:48" :field="item.description" class="nq-prose-compact" f-mt-2xs text="neutral-800 children:xl" />
       </li>
     </ul>
   </section>

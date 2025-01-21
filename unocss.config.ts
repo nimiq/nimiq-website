@@ -2,7 +2,9 @@ import { readFile } from 'node:fs/promises'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 import { presetNimiq } from 'nimiq-css'
 import { defineConfig, presetAttributify, presetIcons, presetUno, transformerDirectives } from 'unocss'
+import { presetFluidSizing } from 'unocss-preset-fluid-sizing'
 import { presetGradientFn } from 'unocss-preset-gradient-fn'
+import { presetScalePx } from 'unocss-preset-scale-px'
 
 function stakingGradient(t: number): number {
   function easeInOutCubic(x: number) {
@@ -72,9 +74,11 @@ export default defineConfig({
       typography: true,
       staticContent: true,
       fonts: false,
-      scalePx: true,
     }),
     presetAttributify(),
+    // @ts-expect-error Not sure why this type error...
+    presetScalePx(),
+    presetFluidSizing({ prefixFontSize: '' }),
     presetGradientFn({
       customFunctions: {
         stakingGradient,

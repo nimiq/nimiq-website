@@ -55,20 +55,23 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
     <div
       class="world-container" :style="`--progress: ${progress}`"
       :class="{ first: progress < 0.33, second: progress >= 0.33 && progress < 0.66, third: progress >= 0.66 }"
-      relative max-w-none f-h="~ min-200 max-400" w-full
+      relative aspect-2 max-w-none w-full
     >
-      <div absolute top-0>
-        <div rounded="100%" f-w="~ min-500@300 max-8000@5000" aspect-2 bg-neutral-100 />
+      <div absolute left-0 top-0>
+        <div rounded="100%" class="oval" bg-neutral-100 stack children="!self-start">
+          <div i-oasis-regions:europe />
+          <div i-oasis-regions:central-america />
+          <div i-oasis-regions:rest-of-the-world />
+        </div>
       </div>
       <!-- <div class="oval" bg-neutral-400 stack :style="`left: ${left}px`">
         <div relative bg-neutral-0>
-          <div i-oasis-regions:europe pointer-events-none transition-colors />
           <div i-oasis-regions:central-america pointer-events-none transition-colors />
           <div i-oasis-regions:rest-of-the-world pointer-events-none transition-colors />
         </div>
       </div> -->
     </div>
-    <div max-w-none bg-neutral-100>
+    <div z-1 max-w-none w-full bg-neutral-100>
       <div ref="scroller" relative mx-auto max-w-480 w-full>
         <Carousel :items style="--px: 32px; --pb:64px">
           <template #default="{ item: { content, kind, link } }">
@@ -80,7 +83,7 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                     <div :class="icon" size-24 />
                   </div>
                 </div>
-                <div i-nimiq:exchange mx-12 text-2xl op-50 />
+                <div i-nimiq:exchange mx-12 op-50 text-2xl />
                 <div v-for="(icon, i) in cryptoIcons[kind]" :key="i" flex="~ gap-8">
                   <div size-40 rounded-full stack ring="1.5 white/40">
                     <div :class="icon" size-24 />
@@ -112,6 +115,34 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
 <style scoped>
 section {
   overflow-x: clip;
+
+  .world-container {
+    --min-globe-pt: 20vw;
+    --max-globe-pt: 25vw;
+    height: calc((1 - var(--progress)) * var(--min-globe-pt) + var(--max-globe-pt) * var(--progress));
+
+    .oval {
+      /* --uno: 'f-$screen-1/100 f-$screen-base-percent'; */
+      /* // progress 0 -> 16
+      // progress 0.5 ->
+      // progress 1 -> 8 */
+      --uno: 'f-$ring-0/1';
+      --f-ring-unit: 1;
+      --un-ring-width: calc(var(--f-ring) * 8px + (1 - var(--f-ring)) * 150px);
+      --uno: 'ring ring-neutral-400';
+      --min-globe-width: 150vw;
+      --max-globe-width: 110vw;
+      width: calc((1 - var(--progress)) * var(--min-globe-width) + var(--max-globe-width) * var(--progress));
+      aspect-ratio: 984 / 368;
+      translate: calc(-50% + 50vw);
+
+      /* Icons */
+      > div {
+        --uno: '!self-start pointer-events-none mt-$f-ring transition-colors h-max';
+        width: calc(var(--progress) * var(--f-t) + (100vw - var(--px) * 2) - (var(--f-t-max) * 1px));
+      }
+    }
+  }
 }
 /* .world-container {
   --halo: 24px;
