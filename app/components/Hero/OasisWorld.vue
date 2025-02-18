@@ -76,14 +76,14 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
         <Carousel :items style="--px: 32px; --pb:64px">
           <template #default="{ item: { content, kind, link } }">
             <div :class="bgColor[kind]" max-w-480 w-full rounded-8 f-p-lg md:w-416>
-              <PrismicRichText :field="content" class="dark" text-white nq-prose-compact />
+              <PrismicRichText wrapper="div" :field="content" class="dark" text-white nq-prose-compact />
               <div v-if="kind !== 'World'" flex="~ gap-8 items-center" text-white f-m-sm>
                 <div v-for="(icon, i) in fiatIcons[kind]" :key="i" flex="~ gap-8">
                   <div size-40 rounded-full stack ring="1.5 white/40">
                     <div :class="icon" size-24 />
                   </div>
                 </div>
-                <div i-nimiq:exchange mx-12 op-50 text-2xl />
+                <div i-nimiq:exchange mx-12 text-2xl op-50 />
                 <div v-for="(icon, i) in cryptoIcons[kind]" :key="i" flex="~ gap-8">
                   <div size-40 rounded-full stack ring="1.5 white/40">
                     <div :class="icon" size-24 />

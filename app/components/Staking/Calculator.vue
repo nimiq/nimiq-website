@@ -77,7 +77,7 @@ const rewards = computed(() => calculateStakingRewards({
         <div flex="~ gap-8 items-center max-md:justify-center" max-md:mt-8>
           <span w-max>Total stake</span>
           <Tooltip>
-            <PrismicRichText :field="stakedSupplyInfo" />
+            <PrismicRichText wrapper="div" :field="stakedSupplyInfo" />
           </Tooltip>
         </div>
         <RadioInput v-model="selectedStakedSupply" :options="stakedSupplyOptions" h-max self-end max-md:mx-auto>
@@ -94,7 +94,7 @@ const rewards = computed(() => calculateStakingRewards({
             {{ stakingPeriodLabel }}
           </p>
           <Tooltip>
-            <PrismicRichText :field="stakingPeriodInfo" />
+            <PrismicRichText wrapper="div" :field="stakingPeriodInfo" />
           </Tooltip>
         </div>
         <RadioInput v-model="selectedStakingPeriod" h-max self-end max-md:mx-auto :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
@@ -105,7 +105,7 @@ const rewards = computed(() => calculateStakingRewards({
             Return in NIM*
           </p>
           <Tooltip mr-16>
-            <PrismicRichText :field="autoRestakeInfo" />
+            <PrismicRichText wrapper="div" :field="autoRestakeInfo" />
           </Tooltip>
           <p text="green/60" font-bold lg:ml-auto>
             +<AnimatedTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
@@ -123,7 +123,7 @@ const rewards = computed(() => calculateStakingRewards({
       <input v-model="autoRestake" type="checkbox" nq-switch>
       <span ml-12 mr-6 cursor-pointer>{{ autoRestakeLabel }}</span>
       <Tooltip>
-        <PrismicRichText :field="autoRestakeInfo" />
+        <PrismicRichText wrapper="div" :field="autoRestakeInfo" />
       </Tooltip>
     </label>
   </div>

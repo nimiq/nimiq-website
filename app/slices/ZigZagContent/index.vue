@@ -56,11 +56,11 @@ useIntersectionObserver(sectionRef, () => {
           }"
         >
           <PrismicImage v-if="hasImage(item.logo)" :field="item.logo" max-md:mx-auto />
-          <PrismicRichText f-m-sm :field="item.headline" />
+          <PrismicRichText wrapper="div" f-m-sm :field="item.headline" />
           <div text-12 nq-label f-m-2xs>
             {{ item.label }}
           </div>
-          <PrismicRichText nq-prose-compact f-m-lg :field="item.description" />
+          <PrismicRichText wrapper="div" nq-prose-compact f-m-lg :field="item.description" />
           <div flex="~ gap-24 md:col lg:row" max-w-lg f-m-sm>
             <PrismicLink v-if="hasLink(item.buttonHref)" internal-component="a" :field="item.buttonHref" font-semibold nq-arrow nq-pill-lg nq-pill-blue>
               {{ item.buttonLabel }}

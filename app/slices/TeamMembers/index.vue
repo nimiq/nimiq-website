@@ -11,7 +11,7 @@ const items = computed(() => [...props.slice.items].sort(() => Math.random() - 0
     <ul columns="1 sm:2 lg:3" gap-0 style="column-rule: 2px solid rgb(var(--nq-neutral-400))">
       <li v-for="({ picture, fullName, role, github, linkedin, twitter, description }, i) in items" :key="i" break-inside-avoid-column border="b-2 solid neutral-400">
         <div v-if="hasImage(picture)" px-32 pt-32>
-          <PrismicImage :field="picture" w-full rounded-6 object-cover />
+          <NuxtImg :src="$prismic.asImageSrc(picture)" w-full rounded-6 object-cover />
         </div>
         <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20" mx-auto w-156 f-m-xs>
           <mask id="a" fill="#fff">
@@ -31,7 +31,7 @@ const items = computed(() => [...props.slice.items].sort(() => Math.random() - 0
               {{ r }}{{ role.split(',').length - 1 === j ? '' : ',' }}
             </span>
           </div>
-          <PrismicRichText f-m-sm :field="description" class="nq-prose-compact" />
+          <PrismicRichText wrapper="div" f-m-sm :field="description" class="nq-prose-compact" />
           <ul v-if="linkedin || github || twitter" flex="~ gap-x-4" relative left--8 text-neutral-100 f-m-xs>
             <li v-if="github">
               <NuxtLink external :to="`https://github.com/${github}`" title="Github" h-max flex rounded-4 p-8 bg="hocus:neutral/6" aria-label="Github link">

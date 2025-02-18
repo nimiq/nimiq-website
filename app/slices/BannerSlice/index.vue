@@ -72,8 +72,8 @@ const items = computed(() => {
             <p v-if="label" text-12 :class="{ 'f-m-md': bgColor !== 'green', 'f-m-xs': bgColor === 'green' }" nq-label>
               {{ label }}
             </p>
-            <PrismicRichText :field="headline" :class="{ 'md:text-center': backgroundPattern === 'Nimiq Apps' || backgroundPattern === 'Social Media', 'children:!text-white': bgColor === 'green' }" />
-            <PrismicRichText :field="subline" :class="{ 'md:text-center f-m-xs': hasBgItems, 'f-m-md': !hasBgItems && bgColor !== 'green', 'children:text-white/70 f-m-sm': bgColor === 'green' }" />
+            <PrismicRichText wrapper="div" :field="headline" :class="{ 'md:text-center': backgroundPattern === 'Nimiq Apps' || backgroundPattern === 'Social Media', 'children:!text-white': bgColor === 'green' }" />
+            <PrismicRichText wrapper="div" :field="subline" :class="{ 'md:text-center f-m-xs': hasBgItems, 'f-m-md': !hasBgItems && bgColor !== 'green', 'children:text-white/70 f-m-sm': bgColor === 'green' }" />
           </div>
           <PrismicLink v-if="hasLink(linkHref) && linkLabel" internal-component="a" :field="linkHref" mt="32 md:24" nq-arrow nq-pill-lg :class="{ 'md:mx-auto nq-pill-blue': hasBgItems, 'lg:mr-128 nq-pill-tertiary text-blue': !hasBgItems }">
             {{ linkLabel }}
@@ -88,7 +88,7 @@ const items = computed(() => {
         <div absolute inset-x-0 bottom-0 h-200 bg-gradient="to-b from-transparent to-green" />
       </div>
       <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative gap-x-24 rounded-8 bg-neutral-0 shadow>
-        <PrismicRichText :field="slice.primary.headline" text="4xl neutral" nq-raw max-w-24ch font-bold />
+        <PrismicRichText wrapper="div" :field="slice.primary.headline" text="4xl neutral" nq-raw max-w-24ch font-bold />
         <PrismicLink :field="slice.primary.cta" nq-arrow nq-pill-lg nq-pill-blue f-m-md />
         <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
           <li v-for="({ description, icon }, i) in slice.primary.requirements" :key="i" flex="~ gap-12 items-center">
@@ -101,7 +101,7 @@ const items = computed(() => {
       </div>
     </div>
     <div v-else-if="slice.variation === 'buyAndSell'" grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative w-full gap-x-24 rounded-8 bg-neutral-0 shadow>
-      <PrismicRichText :field="slice.primary.headline" text="44 neutral" nq-raw max-w-24ch font-bold />
+      <PrismicRichText wrapper="div" :field="slice.primary.headline" text="44 neutral" nq-raw max-w-24ch font-bold />
       <PrismicLink :field="slice.primary.cta" nq-arrow nq-pill-lg nq-pill-blue f-m-md />
       <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
         <li v-for="({ description, icon }, i) in slice.primary.features" :key="i" flex="~ gap-12 items-center">

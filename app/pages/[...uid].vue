@@ -1,22 +1,26 @@
 <script setup lang="ts">
-import type { Content } from '@prismicio/client'
+import { useQuery } from '@pinia/colada'
 import { components } from '~/slices'
 
 const params = useRoute().params as { uid: string }
 const isGrandchildPage = params.uid.length === 2
 const uid = params.uid === '' ? 'home' : params.uid.at(-1)
 const isHome = uid === 'home'
-const { data: page } = usePrismicDocumentByUID<Content.PageDocument>('page', uid!)
+
+const prismic = usePrismic()
+
+const { data: page } = useQuery({
+  key: ['uid'],
+  query: () => prismic.client.getByUID('page', uid!),
+})
 
 const router = useRouter()
 
 definePageMeta({
   middleware: [
     async function (to) {
-      // console.log('to.path:', to.path)
       if (to.path !== '/supersimpleswap')
         return
-      // console.log('Loading bg-blue-sss.css')
       await import('~/assets/css/bg-blue-sss.css')
     },
   ],

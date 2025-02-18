@@ -19,6 +19,6 @@ const image = computed(() => {
 
 <template>
   <section mx-0 bg-neutral-100 px-0 children:max-w-none>
-    <PrismicImage :field="image" size-full />
+    <NuxtImg :src="$prismic.asImageSrc(image)" size-full />
   </section>
 </template>

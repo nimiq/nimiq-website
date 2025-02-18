@@ -9,7 +9,7 @@ defineProps(getSliceComponentProps<Content.QuoteSlice>())
     <div pointer-events-none absolute inset-x-0 top-0 h-200 max-w-none bg-green />
     <div class="bg" pointer-events-none absolute inset-x-0 top-200 h-600 max-w-none />
     <div i-nimiq:icons-lg-safe-lock text="left md:center 96 md:112 white" />
-    <PrismicRichText :field="slice.primary.quote" text="white 2xl left md:center" relative z-1 max-w-36ch f-m-md />
+    <PrismicRichText wrapper="div" :field="slice.primary.quote" text="white 2xl left md:center" relative z-1 max-w-36ch f-m-md />
     <PrismicLink v-if="hasLink(slice.primary.cta)" :field="slice.primary.cta" shadow-none nq-arrow nq-pill-lg nq-pill-tertiary f-m-sm />
   </section>
 </template>

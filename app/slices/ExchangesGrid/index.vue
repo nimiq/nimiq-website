@@ -12,8 +12,8 @@ const { data: exchanges } = await useAsyncData('exchange', () => client.getByTyp
     <ul grid="~ cols-[repeat(auto-fit,minmax(200px,368px))] gap-16 justify-center">
       <li v-for="({ data: { link, logo, name } }, i) in exchanges?.results" :key="i">
         <PrismicLink :field="link" flex="~ row items-center gap-x-16" nq-hoverable>
-          <PrismicImage :field="logo" h-full w-40 object-contain flex="~ items-center" />
-          <h3 font-semibold text-xl>
+          <NuxtImg :src="$prismic.asImageSrc(logo)" h-full w-40 object-contain flex="~ items-center" />
+          <h3 text-xl font-semibold>
             {{ name }}
           </h3>
         </PrismicLink>

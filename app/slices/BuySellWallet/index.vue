@@ -13,8 +13,8 @@ defineProps(getSliceComponentProps<Content.BuySellWalletSlice>())
         <li v-for="({ cost, description, extraFee, isOfficial, label, logo, paymentMethod }, i) in slice.items" :key="i" shrink-0 :data-inverted="isOfficial ? '' : undefined">
           <div bg="inverted:blue neutral" p="24 xl:32" nq-no-color rounded-6 text-white>
             <PrismicImage max-h-24 op-60 :field="logo" />
-            <PrismicRichText v-if="paymentMethod" f-m-2xs children:text-left children:text="neutral-0 inverted:white" :field="paymentMethod" />
-            <PrismicRichText v-if="description" text="inverted:white/80 neutral-800" :field="description" min-h-3lh f-m-xs />
+            <PrismicRichText v-if="paymentMethod" wrapper="div" f-m-2xs children:text-left children:text="neutral-0 inverted:white" :field="paymentMethod" />
+            <PrismicRichText v-if="description" wrapper="div" text="inverted:white/80 neutral-800" :field="description" min-h-3lh f-m-xs />
 
             <p v-if="label" text="12 neutral-800 inverted:neutral-300" nq-label f-m-md>
               {{ label }}
