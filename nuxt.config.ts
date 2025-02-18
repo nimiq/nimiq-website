@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'hero-motion/nuxt',
     '@nuxt/icon',
+    '@pinia/colada-nuxt',
   ],
 
   devtools: { enabled: true },

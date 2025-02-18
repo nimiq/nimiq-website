@@ -1,6 +1,7 @@
 import type { PlainBlock } from '@nimiq/core/web'
+import type { LatLng } from '~/utils/consensus-map/drawHexagonsWorldMapProjection'
 import init, { Client, ClientConfiguration } from '@nimiq/core/web'
-import { getHexagonCoords, type LatLng } from '~/utils/consensus-map/drawHexagonsWorldMapProjection'
+import { getHexagonCoords } from '~/utils/consensus-map/drawHexagonsWorldMapProjection'
 
 export interface Peer {
   peerId: string

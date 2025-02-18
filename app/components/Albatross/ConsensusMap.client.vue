@@ -142,7 +142,8 @@ async function connect() {
 <style scoped>
 .curtain {
   --curtain-size: 128px;
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       to bottom,
       rgb(var(--nq-neutral-0) / 1) 0%,
       rgb(var(--nq-neutral-0) / 0) var(--curtain-size),

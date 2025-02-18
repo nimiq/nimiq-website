@@ -9,7 +9,8 @@
 .grid-container:before {
   --uno: 'content-empty absolute inset-0';
   --uno: 'rotate-x-50 scale-173 translate-z--200';
-  background: linear-gradient(to right, rgb(var(--grid-color, var(--nq-blue)) / 1) 1px, transparent 1px),
+  background:
+    linear-gradient(to right, rgb(var(--grid-color, var(--nq-blue)) / 1) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(var(--grid-color, var(--nq-blue)) / 1) 1px, transparent 1px);
   background-size:
     2.5rem 10rem,

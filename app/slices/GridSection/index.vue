@@ -17,8 +17,8 @@ const colors = getColorClass(props.slice.primary.bgColor)
           grid="~ cols-[auto_1fr] rows-[auto_1fr] gap-x-20 gap-y12 lg:gap-y-16 items-center"
         >
           <PrismicImage :field="item.icon" size="48 lg:56 xl:64" />
-          <PrismicRichText :field="item.headline" children:text-left />
-          <PrismicRichText v-if="item.subline.length" :field="item.subline" col-span-2 />
+          <PrismicRichText wrapper="div" :field="item.headline" children:text-left />
+          <PrismicRichText v-if="item.subline.length" wrapper="div" :field="item.subline" col-span-2 />
         </li>
       </ul>
       <PrismicLink v-if="hasLink(slice.primary.cta)" :field="slice.primary.cta" nq-arrow nq-pill-white f-m-xl />
@@ -33,7 +33,7 @@ const colors = getColorClass(props.slice.primary.bgColor)
           :field="linkHref" group p-20 nq-hoverable
         >
           <div :class="iconName" text="32 md:48 $c group-hocus:!white" transition-colors />
-          <PrismicRichText :field="headline" whitespace-nowrap flex="~ items-center" class="raw" text="group-hocus:children:!white" />
+          <PrismicRichText wrapper="div" :field="headline" whitespace-nowrap flex="~ items-center" class="raw" text="group-hocus:children:!white" />
         </PrismicLink>
       </div>
     </template>
@@ -48,7 +48,7 @@ const colors = getColorClass(props.slice.primary.bgColor)
     <template v-else-if="slice.variation === 'threeColumnsIconsText'">
       <ul flex="~ col lg:row gap-y-24 lg:items-center" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1 py-24 border="b-1 lg:b-0 lg:r-1 last:0 white/15 solid">
-          <PrismicImage :field="image" max-h-80 rounded-8 object-contain lg:mx-auto />
+          <NuxtImg :src="$prismic.asImageSrc(image)" max-h-80 rounded-8 object-contain lg:mx-auto />
           <PrismicText wrapper="h3" text="green md:center xl" max-w-20ch font-bold f-m-xs lg:mx-auto :field="headline" />
         </li>
       </ul>
@@ -59,7 +59,7 @@ const colors = getColorClass(props.slice.primary.bgColor)
           <div style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)" size-32 shrink-0 rounded-full stack>
             <div :class="icon" text="16 white" />
           </div>
-          <PrismicRichText text="lg neutral-900" :field="content" />
+          <PrismicRichText wrapper="div" text="lg neutral-900" :field="content" />
         </li>
       </ul>
     </template>

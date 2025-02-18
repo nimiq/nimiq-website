@@ -26,7 +26,7 @@ function getCssClasses(link: LinkField) {
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
         <PrismicLink internal-component="a" :field="link" transition-opacity>
-          <PrismicImage :field="logo" :class="getCssClasses(link)" op="40 hocus:80" />
+          <NuxtImg :src="$prismic.asImageSrc(logo)" :class="getCssClasses(link)" op="40 hocus:80" />
         </PrismicLink>
       </li>
     </ul>
@@ -40,7 +40,7 @@ function getCssClasses(link: LinkField) {
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
         <PrismicLink internal-component="a" :field="link" transition-opacity>
-          <PrismicImage :field="logo" :class="getCssClasses(link)" op="40 hocus:80" />
+          <NuxtImg :src="$prismic.asImageSrc(logo)" :class="getCssClasses(link)" op="40 hocus:80" />
         </PrismicLink>
       </li>
     </ul>

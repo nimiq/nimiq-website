@@ -7,13 +7,13 @@ defineProps<{ questions: StakingFaqSliceDefaultPrimaryQuestionsItem[], title: st
 
 <template>
   <div flex="~ col md:items-center">
-    <h2 w-max nq-label text-lg>
+    <h2 w-max text-lg nq-label>
       {{ title }}
     </h2>
     <ul grid="~ cols-1 md:cols-2 lg:cols-3 gap-24" f-m-md>
       <li v-for="(q, i) in questions" :key="i" rounded-6 bg-neutral-300 p-16>
-        <PrismicRichText :field="q.question" f-m-2xs />
-        <PrismicRichText :field="q.answer!" nq-prose-compact f-m-xs />
+        <PrismicRichText wrapper="div" :field="q.question" f-m-2xs />
+        <PrismicRichText wrapper="div" :field="q.answer!" nq-prose-compact f-m-xs />
       </li>
     </ul>
     <p v-if="moreInsightfulLabel" text="left md:center neutral-800 lg" f-m-xl>

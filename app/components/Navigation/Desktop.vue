@@ -32,7 +32,7 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
                 <li v-for="({ label, href, logo }, index) in navigation.appsLinks" :key="label!" group class="link-item" @focus="selectedApp = index" @mouseover="selectedApp = index">
                   <NavigationMenuLink as-child>
                     <PrismicLink internal-component="a" :field="href" flex="~ gap-12 items-center">
-                      <PrismicImage :field="logo" h-22 max-w-21 op="20 group-hocus:100" transition-opacity />
+                      <NuxtImg :src="$prismic.asImageSrc(logo)" h-22 max-w-21 op="20 group-hocus:100" transition-opacity />
                       <span>
                         {{ label }}
                       </span>

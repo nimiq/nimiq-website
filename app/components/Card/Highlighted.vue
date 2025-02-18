@@ -23,7 +23,7 @@ defineProps<{
     </div>
     <div flex="~ col gap-12" flex-1 p-24 nq-prose-compact>
       <h3>{{ name }}</h3>
-      <PrismicRichText text-neutral-900 f-p-2xs :field="description" />
+      <PrismicRichText wrapper="div" text-neutral-900 f-p-2xs :field="description" />
       <PrismicLink :field="linkHref" f-mt-40 nq-arrow nq-pill-blue>
         Learn more
       </PrismicLink>

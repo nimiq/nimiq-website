@@ -5,7 +5,7 @@ const WIDTH = 320
 const HEIGHT = 240
 const CIRCUMFERENCE = 2 * Math.PI
 
-const canvas = ref < HTMLCanvasElement > ()
+const canvas = ref <HTMLCanvasElement> ()
 
 onMounted(() => {
   if (!canvas.value)

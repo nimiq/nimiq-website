@@ -9,10 +9,10 @@ defineProps(getSliceComponentProps<Content.SimpleCarouselSlice>())
     <SimpleCarousel v-if="slice.variation === 'default'" :slides="slice.items" curtains>
       <template #default="{ slide }">
         <div flex="~ col gap-y-32" sm:text-center>
-          <PrismicRichText w-full text-neutral font-bold italic :field="slide.quote" />
+          <PrismicRichText wrapper="div" w-full text-neutral font-bold italic :field="slide.quote" />
           <div flex="~ items-baseline gap-x-8 sm:justify-center" text-12 nq-label class="author">
             <span text-neutral>{{ slide.author }}</span>
-            <PrismicRichText :field="slide.authorDetail" />
+            <PrismicRichText wrapper="div" :field="slide.authorDetail" />
           </div>
         </div>
       </template>

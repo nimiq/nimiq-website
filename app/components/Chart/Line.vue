@@ -31,7 +31,8 @@ function tooltip(v: T) {
 
 <style scoped>
 [data-vis-xy-container] {
-  background: repeating-linear-gradient(
+  background:
+    repeating-linear-gradient(
       0deg,
       rgb(var(--nq-neutral-300) / 1) 0,
       rgb(var(--nq-neutral-300) / 1) 1.5px,

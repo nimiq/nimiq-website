@@ -25,7 +25,7 @@ const playVideo = ref(false)
       <div style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)" size-32 shrink-0 rounded-full stack>
         <div i-nimiq:shield text="16 white" />
       </div>
-      <h3 font-semibold text-xl>
+      <h3 text-xl font-semibold>
         {{ slice.primary.title }}
       </h3>
     </div>
