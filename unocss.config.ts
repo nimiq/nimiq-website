@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 import { presetNimiq } from 'nimiq-css'
-import { defineConfig, presetAttributify, presetIcons, presetUno, transformerDirectives } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetWind3, transformerDirectives } from 'unocss'
 import { presetFluidSizing } from 'unocss-preset-fluid-sizing'
 import { presetGradientFn } from 'unocss-preset-gradient-fn'
 import { presetScalePx } from 'unocss-preset-scale-px'
@@ -67,7 +67,7 @@ export default defineConfig({
     },
   ],
   presets: [
-    presetUno({ attributifyPseudo: true }),
+    presetWind3({ attributifyPseudo: true }),
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
@@ -78,7 +78,7 @@ export default defineConfig({
     presetAttributify(),
     // @ts-expect-error Not sure why this type error...
     presetScalePx(),
-    presetFluidSizing({ prefixFontSize: '' }),
+    presetFluidSizing({ attributify: true }),
     presetGradientFn({
       customFunctions: {
         stakingGradient,

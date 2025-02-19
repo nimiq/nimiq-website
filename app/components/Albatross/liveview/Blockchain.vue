@@ -47,7 +47,7 @@ const { clientNetwork } = useRuntimeConfig().public
 </script>
 
 <template>
-  <div ref="target" relative>
+  <div ref="target" relative of-x-clip>
     <div flex="~ justify-end items-center" min-h-208 of-hidden px-24 :class="{ 'pr-84': canSendTx }">
       <transition-group
         tag="div" flex="~ justify-end items-center" enter-from-class="op-0" enter-active-class="transition-opacity duration-400 ease-in"

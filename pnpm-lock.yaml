@@ -178,8 +178,8 @@ importers:
         specifier: 66.0.0
         version: 66.0.0(@unocss/webpack@66.0.0(webpack@5.97.1(esbuild@0.17.19)))(postcss@8.5.2)(vite@6.1.0(@types/node@22.13.4)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.7.3))
       unocss-preset-fluid-sizing:
-        specifier: ^0.0.14
-        version: 0.0.14
+        specifier: ^0.0.16
+        version: 0.0.16
       unocss-preset-gradient-fn:
         specifier: ^0.0.1-beta-1.0
         version: 0.0.1-beta-1.0(typescript@5.7.3)
@@ -7078,8 +7078,8 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
 
-  unocss-preset-fluid-sizing@0.0.14:
-    resolution: {integrity: sha512-MWJKh4FmDHO1yLW9MsK0UwHT2c4kRackiuYA3bl8SJ0FMBvmCFbeTzFtrDe+P0WB4ZlGD3o1uO4WCSYFnMfJ1g==}
+  unocss-preset-fluid-sizing@0.0.16:
+    resolution: {integrity: sha512-C4KEGp/9TVeJe/eZ4yzHcb1bLlMO8jL4lnlV3ERLdGLjbsP73w5smRi3XpePLlOKIPm45gMWLqH7BIrXqtcTRw==}
 
   unocss-preset-gradient-fn@0.0.1-beta-1.0:
     resolution: {integrity: sha512-Nt2YcuFK6YdqYBSGZU0MG4lG+zEC9IaWpxtmXPqPLupK5Ip07Xgk8w5Ks8c9Ld/opvsO+GuV6hIjD0S1hdy6BQ==}
@@ -16202,7 +16202,7 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  unocss-preset-fluid-sizing@0.0.14:
+  unocss-preset-fluid-sizing@0.0.16:
     dependencies:
       '@unocss/core': 65.5.0
 

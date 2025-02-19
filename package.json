@@ -75,7 +75,7 @@
     "slice-machine-ui": "^2.12.3",
     "typescript": "^5.7.3",
     "unocss": "66.0.0",
-    "unocss-preset-fluid-sizing": "^0.0.14",
+    "unocss-preset-fluid-sizing": "^0.0.16",
     "unocss-preset-gradient-fn": "^0.0.1-beta-1.0",
     "unocss-preset-scale-px": "^0.0.1",
     "unplugin-vue-router": "^0.11.2",
