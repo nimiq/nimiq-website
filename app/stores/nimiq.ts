@@ -1,6 +1,8 @@
-import type { PlainBlock } from '@nimiq/core/web'
+// import type { PlainBlock } from '@nimiq/core'
+import type { Client, PlainBlock } from '@nimiq/core'
 import type { LatLng } from '~/utils/consensus-map/drawHexagonsWorldMapProjection'
-import init, { Client, ClientConfiguration } from '@nimiq/core/web'
+// import init, { Client, ClientConfiguration } from '@nimiq/core/web'
+import * as Nimiq from '@nimiq/core'
 import { getHexagonCoords } from '~/utils/consensus-map/drawHexagonsWorldMapProjection'
 
 export interface Peer {
@@ -36,12 +38,14 @@ export const useNimiq = defineStore('nimiq', () => {
 
   async function launchNetwork() {
     consensus.value = ConsensusState.Connecting
-    await init()
-    const config = new ClientConfiguration()
+    // await init()
+    // const config = new ClientConfiguration()
+    const config = new Nimiq.ClientConfiguration()
     config.network(clientNetwork)
     config.logLevel('debug')
 
-    client.value = await Client.create(config.build())
+    // client.value = await Client.create(config.build())
+    client.value = await Nimiq.Client.create(config.build())
 
     const removeConsensusListener = client.value!.addConsensusChangedListener((state) => {
       // eslint-disable-next-line no-console

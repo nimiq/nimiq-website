@@ -22,9 +22,9 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
         <h4 text-12 nq-label>
           {{ slice.primary.poweredByLabel }}
         </h4>
-        <ul flex="~ gap-16" f-m-xs>
+        <ul flex="~ gap-16" f-mt-xs>
           <li v-for="({ logo }, i) in slice.primary.poweredByLogos" :key="i">
-            <NuxtImg :src="$prismic.asImageSrc(logo)" w-full h="32 md:36" object-contain />
+            <NuxtImg :src="$prismic.asImageSrc(logo)!" w-full h="32 md:36" object-contain />
           </li>
         </ul>
       </div>

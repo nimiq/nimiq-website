@@ -19,7 +19,7 @@ const activeIndexes = computed(() => slice.primary.item.filter(i => selected.val
           <AccordionItem col-span-full :value="title!">
             <AccordionHeader>
               <AccordionTrigger flex="~ items-center gap-x-8" w-full bg-transparent>
-                <span :style=" { color: selected.length === 0 || selected.includes(title!) ? `rgb(var(--nq-${color}))` : `rgb(var(--nq-neutral-700))` }" text-lg font-semibold transition-colors>
+                <span :style=" { color: selected.length === 0 || selected.includes(title!) ? `rgb(var(--nq-${color}))` : `rgb(var(--nq-neutral-700))` }" font-semibold transition-colors f-text-lg>
                   {{ title }}
                   <span ml-12 text-neutral-700>{{ percentage }}%</span>
                 </span>
@@ -29,7 +29,7 @@ const activeIndexes = computed(() => slice.primary.item.filter(i => selected.val
               </AccordionTrigger>
             </AccordionHeader>
             <AccordionContent of-hidden class="content">
-              <PrismicRichText wrapper="div" :field="description" max-w-52ch />
+              <RichText wrapper="div" :field="description" max-w-52ch />
             </AccordionContent>
           </AccordionItem>
         </AccordionRoot>

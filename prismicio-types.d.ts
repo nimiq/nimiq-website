@@ -475,7 +475,7 @@ interface ExchangeDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -765,7 +765,7 @@ export interface NavigationDocumentDataAppsLinksItem {
    * - **API ID Path**: navigation.appsLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -780,7 +780,7 @@ export interface NavigationDocumentDataHowToLinksItem {
    * - **API ID Path**: navigation.howToLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → How to links**
@@ -805,7 +805,7 @@ export interface NavigationDocumentDataAppsAdditionalFooterLinksItem {
    * - **API ID Path**: navigation.appsAdditionalFooterLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Apps additional footer links*
@@ -830,7 +830,7 @@ export interface NavigationDocumentDataTechLinksItem {
    * - **API ID Path**: navigation.techLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Tech links**
@@ -855,7 +855,7 @@ export interface NavigationDocumentDataTechAdditionalFooterLinksItem {
    * - **API ID Path**: navigation.techAdditionalFooterLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Tech additional footer links*
@@ -880,7 +880,7 @@ export interface NavigationDocumentDataCommunityLinksItem {
    * - **API ID Path**: navigation.communityLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Community links**
@@ -905,7 +905,7 @@ export interface NavigationDocumentDataCommunityAdditionalFooterLinksItem {
    * - **API ID Path**: navigation.communityAdditionalFooterLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Community additional footer links*
@@ -930,7 +930,7 @@ export interface NavigationDocumentDataProjectLinksItem {
    * - **API ID Path**: navigation.projectLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Project links**
@@ -955,7 +955,7 @@ export interface NavigationDocumentDataProjectAdditionalFooterLinksItem {
    * - **API ID Path**: navigation.projectAdditionalFooterLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Project additional footer links*
@@ -980,7 +980,7 @@ export interface NavigationDocumentDataGetStartedLinksItem {
    * - **API ID Path**: navigation.getStartedLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Get started links**
@@ -1015,7 +1015,7 @@ export interface NavigationDocumentDataNewToCryptoLinksItem {
    * - **API ID Path**: navigation.newToCryptoLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → New to crypto links**
@@ -1040,7 +1040,7 @@ export interface NavigationDocumentDataGetStartedAdditionalFooterLinksItem {
    * - **API ID Path**: navigation.getStartedAdditionalFooterLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Get started additional footer links*
@@ -1065,7 +1065,7 @@ export interface NavigationDocumentDataAndMoreLinksItem {
    * - **API ID Path**: navigation.andMoreLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → ...and more links**
@@ -1090,7 +1090,7 @@ export interface NavigationDocumentDataLegalPagesItem {
    * - **API ID Path**: navigation.legalPages[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Legal pages links*
@@ -1115,7 +1115,7 @@ export interface NavigationDocumentDataExtraHeaderLinksItem {
    * - **API ID Path**: navigation.extraHeaderLinks[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.LinkField
+  href: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label* field in *Navigation → Extra header links*
@@ -1459,7 +1459,13 @@ interface NavigationDocumentData {
                                                * - **Tab**: 🔥 HOT
                                                * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
                                                */
-  hothref: prismic.LinkField
+  hothref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * text* field in *Navigation*
@@ -1523,7 +1529,13 @@ interface NavigationDocumentData {
    * - **Tab**: AnnouncementBanner
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  announcementBannerCtaLink: prismic.LinkField
+  announcementBannerCtaLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Show field in *Navigation*
@@ -1613,7 +1625,13 @@ interface NimiqAppDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Type field in *App*
@@ -1775,7 +1793,13 @@ interface NimiqEventDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkhref: prismic.LinkField
+  linkhref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 }
 
 /**
@@ -1955,7 +1979,9 @@ interface PageDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  parents: prismic.Repeatable<prismic.LinkField>
+  parents: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >
 
   /**
    * Slice Zone field in *Page*
@@ -2306,7 +2332,7 @@ interface SocialMediaDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Platform field in *Social Media*
@@ -2709,7 +2735,7 @@ export interface AppsShowcaseSliceNimiqsAppsPrimaryAppsItem {
    * - **API ID Path**: apps_showcase.nimiqsApps.primary.apps[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -2979,7 +3005,13 @@ export interface BannerSliceSliceDefaultItem {
    * - **API ID Path**: banner_slice.items[].linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Link Label field in *BannerSlice → Items*
@@ -3049,7 +3081,7 @@ export interface BannerSliceSliceStakingPrimary {
    * - **API ID Path**: banner_slice.staking.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Requirements field in *BannerSlice → Staking → Primary*
@@ -3099,7 +3131,7 @@ export interface BannerSliceSliceBuyAndSellPrimary {
    * - **API ID Path**: banner_slice.buyAndSell.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Features field in *BannerSlice → BuyAndSell → Primary*
@@ -3245,7 +3277,13 @@ export interface BuySellWalletSliceDefaultPrimary {
    * - **API ID Path**: buy_sell_wallet.default.primary.linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Link label field in *BuySellWallet → Default → Primary*
@@ -3955,7 +3993,13 @@ export interface CryptoMapContinentSelectorSliceDefaultPrimary {
    * - **API ID Path**: crypto_map_continent_selector.default.primary.cryptocitiesCta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cryptocitiesCta: prismic.LinkField
+  cryptocitiesCta: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 }
 
 /**
@@ -4056,7 +4100,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Link label field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4076,7 +4126,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.twitterUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  twitterUrl: prismic.LinkField
+  twitterUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Telegram Url field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4086,7 +4142,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.telegramUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  telegramUrl: prismic.LinkField
+  telegramUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Reddit Url field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4096,7 +4158,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.redditUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  redditUrl: prismic.LinkField
+  redditUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Github Url field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4106,7 +4174,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.githubUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  githubUrl: prismic.LinkField
+  githubUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Youtube Url field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4116,7 +4190,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.youtubeUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  youtubeUrl: prismic.LinkField
+  youtubeUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Discord Url field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4126,7 +4206,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.discordUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  discordUrl: prismic.LinkField
+  discordUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Facebook Url field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4136,7 +4222,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.facebookUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  facebookUrl: prismic.LinkField
+  facebookUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Instagram Url field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4146,7 +4238,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.instagramUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  instagramUrl: prismic.LinkField
+  instagramUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Nimiq Forum Url field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4156,7 +4254,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.nimiqForumUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  nimiqForumUrl: prismic.LinkField
+  nimiqForumUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Play Store field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4166,7 +4270,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.playStore
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  playStore: prismic.LinkField
+  playStore: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * App Store field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4176,7 +4286,13 @@ export interface CtaSectionSliceDefaultPrimary {
    * - **API ID Path**: cta_section.default.primary.appStore
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  appStore: prismic.LinkField
+  appStore: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Icon Name field in *CtaSection → Default [DEPRECATED] → Primary*
@@ -4294,14 +4410,14 @@ export interface CurrencyComparisonSliceDefaultPrimaryCurrenciesItem {
   time: prismic.KeyTextField
 
   /**
-   * adjetive field in *CurrencyComparison → Default → Primary → Currencies*
+   * adjective field in *CurrencyComparison → Default → Primary → Currencies*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: currency_comparison.default.primary.currencies[].adjetive
+   * - **API ID Path**: currency_comparison.default.primary.currencies[].adjective
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  adjetive: prismic.KeyTextField
+  adjective: prismic.KeyTextField
 }
 
 /**
@@ -4464,7 +4580,13 @@ export interface ExchangesShowcaseSliceDefaultItem {
    * - **API ID Path**: exchanges_showcase.items[].linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Link label* field in *ExchangesShowcase → Items*
@@ -4615,7 +4737,7 @@ export interface FloatingVideoSliceDefaultSliceItem {
    * - **API ID Path**: floating_video.items[].videoHigh
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoHigh: prismic.LinkToMediaField
+  videoHigh: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Medium Quality Video field in *FloatingVideo → Items*
@@ -4625,7 +4747,7 @@ export interface FloatingVideoSliceDefaultSliceItem {
    * - **API ID Path**: floating_video.items[].videoMedium
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoMedium: prismic.LinkToMediaField
+  videoMedium: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Low Quality Video field in *FloatingVideo → Items*
@@ -4635,7 +4757,7 @@ export interface FloatingVideoSliceDefaultSliceItem {
    * - **API ID Path**: floating_video.items[].videoLow
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoLow: prismic.LinkToMediaField
+  videoLow: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * videoHeadline field in *FloatingVideo → Items*
@@ -4655,7 +4777,13 @@ export interface FloatingVideoSliceDefaultSliceItem {
    * - **API ID Path**: floating_video.items[].callToActionUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  callToActionUrl: prismic.LinkField
+  callToActionUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * callToActionText* field in *FloatingVideo → Items*
@@ -4779,7 +4907,13 @@ export interface GallerySectionSliceDefaultPrimary {
    * - **API ID Path**: gallery_section.default.primary.linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 }
 
 /**
@@ -4878,7 +5012,7 @@ export interface GridSectionSliceDefaultPrimary {
    * - **API ID Path**: grid_section.default.primary.link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link label (DEPRECATED) field in *GridSection → Default → Primary*
@@ -4912,7 +5046,7 @@ export interface GridSectionSliceDefaultPrimary {
    * - **API ID Path**: grid_section.default.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -5022,7 +5156,13 @@ export interface GridSectionSliceWithBackgroundItem {
    * - **API ID Path**: grid_section.items[].linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Color field in *GridSection → Items*
@@ -5276,7 +5416,7 @@ export interface HeroSectionSliceOasisPrimaryItemsItem {
    * - **API ID Path**: hero_section.oasis.primary.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -5335,7 +5475,13 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    * - **API ID Path**: hero_section.default-slice.primary.linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Link label (DEPRECATED) field in *HeroSection → Default slice → Primary*
@@ -5355,7 +5501,7 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    * - **API ID Path**: hero_section.default-slice.primary.link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Secondary Link Href (DEPRECATED) field in *HeroSection → Default slice → Primary*
@@ -5365,7 +5511,13 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    * - **API ID Path**: hero_section.default-slice.primary.secondaryLinkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  secondaryLinkHref: prismic.LinkField
+  secondaryLinkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Secondary Link Label (DEPRECATED) field in *HeroSection → Default slice → Primary*
@@ -5385,20 +5537,32 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    * - **API ID Path**: hero_section.default-slice.primary.secondaryLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  secondaryLink: prismic.LinkField
+  secondaryLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
-   * Video href field in *HeroSection → Default slice → Primary*
+   * Video href [DEPRECATED] field in *HeroSection → Default slice → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
    * - **API ID Path**: hero_section.default-slice.primary.videoHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoHref: prismic.LinkField
+  videoHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
-   * Video label field in *HeroSection → Default slice → Primary*
+   * Video label [DEPRECATED] field in *HeroSection → Default slice → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Mandatory if the Video href is set
@@ -5425,7 +5589,7 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    * - **API ID Path**: hero_section.default-slice.primary.lottieAnimation
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  lottieAnimation: prismic.LinkToMediaField
+  lottieAnimation: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Play Store field in *HeroSection → Default slice → Primary*
@@ -5435,7 +5599,13 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    * - **API ID Path**: hero_section.default-slice.primary.playStore
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  playStore: prismic.LinkField
+  playStore: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * App Store field in *HeroSection → Default slice → Primary*
@@ -5445,7 +5615,13 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    * - **API ID Path**: hero_section.default-slice.primary.appStore
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  appStore: prismic.LinkField
+  appStore: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Background Color field in *HeroSection → Default slice → Primary*
@@ -5460,6 +5636,16 @@ export interface HeroSectionSliceDefaultSlicePrimary {
     'white' | 'grey' | 'darkblue' | 'blue-s3',
     'filled'
   >
+
+  /**
+   * Video field in *HeroSection → Default slice → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Will display the link with a play button
+   * - **API ID Path**: hero_section.default-slice.primary.video
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  video: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -5522,7 +5708,13 @@ export interface HeroSectionSliceHomePrimary {
    * - **API ID Path**: hero_section.home.primary.linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Link label field in *HeroSection → Home → Primary*
@@ -5552,7 +5744,7 @@ export interface HeroSectionSliceHomePrimary {
    * - **API ID Path**: hero_section.home.primary.videoHigh
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoHigh: prismic.LinkToMediaField
+  videoHigh: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Medium Quality Video* field in *HeroSection → Home → Primary*
@@ -5562,7 +5754,7 @@ export interface HeroSectionSliceHomePrimary {
    * - **API ID Path**: hero_section.home.primary.videoMedium
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoMedium: prismic.LinkToMediaField
+  videoMedium: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Low Quality Video* field in *HeroSection → Home → Primary*
@@ -5572,7 +5764,7 @@ export interface HeroSectionSliceHomePrimary {
    * - **API ID Path**: hero_section.home.primary.videoLow
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoLow: prismic.LinkToMediaField
+  videoLow: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Background Color field in *HeroSection → Home → Primary*
@@ -5654,7 +5846,13 @@ export interface HeroSectionSliceTwoColumnPrimary {
    * - **API ID Path**: hero_section.twoColumn.primary.linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Link label* field in *HeroSection → Two column → Primary*
@@ -5980,7 +6178,13 @@ export interface HeroSectionSliceHalfImagePrimary {
    * - **API ID Path**: hero_section.halfImage.primary.contactEmail
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  contactEmail: prismic.LinkField
+  contactEmail: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Contact Telegram field in *HeroSection → Half Image → Primary*
@@ -5990,7 +6194,13 @@ export interface HeroSectionSliceHalfImagePrimary {
    * - **API ID Path**: hero_section.halfImage.primary.contactTelegram
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  contactTelegram: prismic.LinkField
+  contactTelegram: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Contact Linkedin field in *HeroSection → Half Image → Primary*
@@ -6000,7 +6210,13 @@ export interface HeroSectionSliceHalfImagePrimary {
    * - **API ID Path**: hero_section.halfImage.primary.contactLinkedin
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  contactLinkedin: prismic.LinkField
+  contactLinkedin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 }
 
 /**
@@ -6078,7 +6294,13 @@ export interface HeroSectionSliceTokenomicsHeroPrimary {
    * - **API ID Path**: hero_section.tokenomicsHero.primary.buttonHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  'buttonHref': prismic.LinkField
+  'buttonHref': prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Price Label field in *HeroSection → TokenomicsHero → Primary*
@@ -6200,7 +6422,13 @@ export interface HeroSectionSliceHeroSectionWithImagePrimary {
    * - **API ID Path**: hero_section.heroSectionWithImage.primary.linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Link label field in *HeroSection → Hero Section With Image → Primary*
@@ -6220,7 +6448,13 @@ export interface HeroSectionSliceHeroSectionWithImagePrimary {
    * - **API ID Path**: hero_section.heroSectionWithImage.primary.secondaryLinkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  secondaryLinkHref: prismic.LinkField
+  secondaryLinkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Secondary Link Label field in *HeroSection → Hero Section With Image → Primary*
@@ -6240,7 +6474,13 @@ export interface HeroSectionSliceHeroSectionWithImagePrimary {
    * - **API ID Path**: hero_section.heroSectionWithImage.primary.videoHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoHref: prismic.LinkField
+  videoHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Video label field in *HeroSection → Hero Section With Image → Primary*
@@ -6270,7 +6510,7 @@ export interface HeroSectionSliceHeroSectionWithImagePrimary {
    * - **API ID Path**: hero_section.heroSectionWithImage.primary.lottieAnimation
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  lottieAnimation: prismic.LinkToMediaField
+  lottieAnimation: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Image field in *HeroSection → Hero Section With Image → Primary*
@@ -6333,7 +6573,7 @@ export interface HeroSectionSliceHome2024Primary {
    * - **API ID Path**: hero_section.home2024.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * CTA Label field in *HeroSection → Home 2024 → Primary*
@@ -6402,7 +6642,7 @@ export interface HeroSectionSliceStakingPrimary {
    * - **API ID Path**: hero_section.staking.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -6790,7 +7030,13 @@ export interface LargeGridSliceDefaultItem {
    * - **API ID Path**: large_grid.items[].linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Color field in *LargeGrid → Items*
@@ -6960,7 +7206,13 @@ export interface LinkGridSliceDefaultItem {
    * - **API ID Path**: link_grid.items[].primaryLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  primaryLink: prismic.LinkField
+  primaryLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Primary Link Label (deprecated) field in *LinkGrid → Items*
@@ -6980,7 +7232,13 @@ export interface LinkGridSliceDefaultItem {
    * - **API ID Path**: link_grid.items[].secondaryLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  secondaryLink: prismic.LinkField
+  secondaryLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Secondary Link Label (deprecated) field in *LinkGrid → Items*
@@ -7021,7 +7279,9 @@ export interface LinkGridSliceDefaultItem {
    * - **API ID Path**: link_grid.items[].links
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  links: prismic.Repeatable<prismic.LinkField>
+  links: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >
 
   /**
    * icon field in *LinkGrid → Items*
@@ -7101,7 +7361,7 @@ export interface LogosGridSliceDefaultItem {
    * - **API ID Path**: logos_grid.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -7175,7 +7435,7 @@ export interface LogosGridSliceCenteredItem {
    * - **API ID Path**: logos_grid.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -7230,7 +7490,7 @@ export interface LottieSliceSliceDefaultPrimary {
    * - **API ID Path**: lottie_slice.default.primary.source
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  source: prismic.LinkToMediaField
+  source: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * bgColor field in *LottieSlice → Default → Primary*
@@ -7843,7 +8103,7 @@ export interface NimiqWalletHoverableSliceDefaultPrimary {
    * - **API ID Path**: nimiq_wallet_hoverable.default.primary.link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  link: prismic.LinkField
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Powered By Logos field in *NimiqWalletHoverable → Default → Primary*
@@ -7986,7 +8246,13 @@ export interface PodcastPlatformsSliceDefaultPrimary {
    * - **API ID Path**: podcast_platforms.default.primary.spotifyUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  spotifyUrl: prismic.LinkField
+  spotifyUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Apple Podcast Url field in *PodcastPlatforms → Default → Primary*
@@ -7996,7 +8262,13 @@ export interface PodcastPlatformsSliceDefaultPrimary {
    * - **API ID Path**: podcast_platforms.default.primary.applePodcastUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  applePodcastUrl: prismic.LinkField
+  applePodcastUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Google Podcasts Url field in *PodcastPlatforms → Default → Primary*
@@ -8006,7 +8278,13 @@ export interface PodcastPlatformsSliceDefaultPrimary {
    * - **API ID Path**: podcast_platforms.default.primary.googlePodcastsUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  googlePodcastsUrl: prismic.LinkField
+  googlePodcastsUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Castbox Url field in *PodcastPlatforms → Default → Primary*
@@ -8016,7 +8294,13 @@ export interface PodcastPlatformsSliceDefaultPrimary {
    * - **API ID Path**: podcast_platforms.default.primary.castboxUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  castboxUrl: prismic.LinkField
+  castboxUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Overcast Url field in *PodcastPlatforms → Default → Primary*
@@ -8026,7 +8310,13 @@ export interface PodcastPlatformsSliceDefaultPrimary {
    * - **API ID Path**: podcast_platforms.default.primary.overcastUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  overcastUrl: prismic.LinkField
+  overcastUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Pocketcasts Url field in *PodcastPlatforms → Default → Primary*
@@ -8036,7 +8326,13 @@ export interface PodcastPlatformsSliceDefaultPrimary {
    * - **API ID Path**: podcast_platforms.default.primary.pocketcastsUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  pocketcastsUrl: prismic.LinkField
+  pocketcastsUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Stitcher Url field in *PodcastPlatforms → Default → Primary*
@@ -8046,7 +8342,13 @@ export interface PodcastPlatformsSliceDefaultPrimary {
    * - **API ID Path**: podcast_platforms.default.primary.stitcherUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  stitcherUrl: prismic.LinkField
+  stitcherUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 }
 
 /**
@@ -8128,7 +8430,7 @@ export interface PrestakingGridSliceDefaultPrimary {
    * - **API ID Path**: prestaking_grid.default.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * CTA Label field in *PrestakingGrid → Default → Primary*
@@ -8293,7 +8595,13 @@ export interface PriceChartSliceDefaultPrimary {
    * - **API ID Path**: price_chart.default.primary.poweredByLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  poweredByLink: prismic.LinkField
+  poweredByLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * lastUpdatedLabel field in *PriceChart → Default → Primary*
@@ -8497,7 +8805,13 @@ export interface PuzzleGridSliceDefaultItem {
    * - **API ID Path**: puzzle_grid.items[].linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 }
 
 /**
@@ -8552,7 +8866,7 @@ export interface QuoteSliceDefaultPrimary {
    * - **API ID Path**: quote.default.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**
@@ -8669,7 +8983,13 @@ export interface RibCageGridSliceDefaultItem {
    * - **API ID Path**: rib_cage_grid.items[].linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Twitter Username field in *RibCageGrid → Items*
@@ -8813,7 +9133,7 @@ export interface RichTextSliceWithLottiePrimary {
    * - **API ID Path**: rich_text.withLottie.primary.source
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  source: prismic.LinkToMediaField
+  source: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Rich text field in *RichText → With Lottie → Primary*
@@ -9289,7 +9609,13 @@ export interface RoadmapSectionSliceDefaultPrimary {
    * - **API ID Path**: roadmap_section.default.primary.linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Hide past years field in *RoadmapSection → Default → Primary*
@@ -9542,7 +9868,7 @@ export interface SimpleCarouselSliceWithMediaItem {
    * - **API ID Path**: simple_carousel.items[].media
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  media: prismic.LinkToMediaField
+  media: prismic.LinkToMediaField<prismic.FieldState, never>
 }
 
 /**
@@ -9633,7 +9959,7 @@ export interface SimpleHeadlineSliceDefaultPrimary {
    * - **API ID Path**: simple_headline.default.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * Link href (DEPRECATED) field in *SimpleHeadline → Default → Primary*
@@ -9643,7 +9969,13 @@ export interface SimpleHeadlineSliceDefaultPrimary {
    * - **API ID Path**: simple_headline.default.primary.linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Link label (DEPRECATED) field in *SimpleHeadline → Default → Primary*
@@ -10096,7 +10428,7 @@ export interface StakingFaqSliceDefaultPrimary {
    * - **API ID Path**: staking_faq.default.primary.cta
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  cta: prismic.LinkField
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 
   /**
    * More Insightful Label field in *StakingFaq → Default → Primary*
@@ -10231,7 +10563,13 @@ export interface StartingGridSliceDefaultItem {
    * - **API ID Path**: starting_grid.items[].linkHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  linkHref: prismic.LinkField
+  linkHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Image field in *StartingGrid → Items*
@@ -10358,7 +10696,7 @@ export interface SteppedLottieSliceDefaultPrimary {
    * - **API ID Path**: stepped_lottie.default.primary.lottieSource
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  lottieSource: prismic.LinkToMediaField
+  lottieSource: prismic.LinkToMediaField<prismic.FieldState, never>
 }
 
 /**
@@ -10393,7 +10731,7 @@ export interface SteppedLottieSliceDefaultItem {
    * - **API ID Path**: stepped_lottie.items[].stepLottieSource
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  stepLottieSource: prismic.LinkToMediaField
+  stepLottieSource: prismic.LinkToMediaField<prismic.FieldState, never>
 }
 
 /**
@@ -10560,7 +10898,7 @@ export interface SteppedSlidesSliceWithAnimationsItem {
    * - **API ID Path**: stepped_slides.items[].source
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  source: prismic.LinkToMediaField
+  source: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Label field in *SteppedSlides → Items*
@@ -10894,7 +11232,7 @@ export interface TiltedMediaSliceDefaultPrimary {
    * - **API ID Path**: tilted_media.default.primary.media
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  media: prismic.LinkToMediaField
+  media: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Background Color field in *TiltedMedia → Default → Primary*
@@ -11168,7 +11506,7 @@ export interface VerticalVideoSliceDefaultPrimary {
    * - **API ID Path**: vertical_video.default.primary.video
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  video: prismic.LinkToMediaField
+  video: prismic.LinkToMediaField<prismic.FieldState, never>
 }
 
 /**
@@ -11473,7 +11811,13 @@ export interface YoutubeVideoSliceDefaultPrimary {
    * - **API ID Path**: youtube_video.default.primary.youtubeUrl
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  youtubeUrl: prismic.LinkField
+  youtubeUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Headline field in *YoutubeVideo → Default → Primary*
@@ -11638,7 +11982,13 @@ export interface ZigZagContentSliceDefaultItem {
    * - **API ID Path**: zig_zag_content.items[].buttonHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  buttonHref: prismic.LinkField
+  buttonHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Secondary Button Label field in *ZigZagContent → Items*
@@ -11668,7 +12018,13 @@ export interface ZigZagContentSliceDefaultItem {
    * - **API ID Path**: zig_zag_content.items[].secondaryButtonHref
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  secondaryButtonHref: prismic.LinkField
+  secondaryButtonHref: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
 
   /**
    * Video High field in *ZigZagContent → Items*
@@ -11678,7 +12034,7 @@ export interface ZigZagContentSliceDefaultItem {
    * - **API ID Path**: zig_zag_content.items[].videoHigh
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoHigh: prismic.LinkToMediaField
+  videoHigh: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Video Medium field in *ZigZagContent → Items*
@@ -11688,7 +12044,7 @@ export interface ZigZagContentSliceDefaultItem {
    * - **API ID Path**: zig_zag_content.items[].videoMedium
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoMedium: prismic.LinkToMediaField
+  videoMedium: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Video Low field in *ZigZagContent → Items*
@@ -11698,7 +12054,7 @@ export interface ZigZagContentSliceDefaultItem {
    * - **API ID Path**: zig_zag_content.items[].videoLow
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  videoLow: prismic.LinkToMediaField
+  videoLow: prismic.LinkToMediaField<prismic.FieldState, never>
 
   /**
    * Image or Video Poster field in *ZigZagContent → Items*

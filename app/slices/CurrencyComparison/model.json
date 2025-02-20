@@ -72,10 +72,10 @@
                   "placeholder": ""
                 }
               },
-              "adjetive": {
+              "adjective": {
                 "type": "Text",
                 "config": {
-                  "label": "adjetive",
+                  "label": "adjective",
                   "placeholder": ""
                 }
               }

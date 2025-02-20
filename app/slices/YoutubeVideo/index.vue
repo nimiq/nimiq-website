@@ -12,13 +12,13 @@ const colors = getColorClass(slice.primary.bgColor)
       <NuxtLink :to="getUrl(slice.primary.youtubeUrl)" external target="_blank">
         <div text="48 md:96 gold" i-nimiq:triangle-right drop-shadow />
       </NuxtLink>
-      <PrismicRichText wrapper="div" :field="slice.primary.headline" style="--nq-font-size: 14px" z-1 self-end justify-self-start f-m-md f-m-xs />
+      <RichText wrapper="div" :field="slice.primary.headline" style="--nq-font-size: 14px" z-1 self-end justify-self-start f-mt-md f-mt-xs />
     </div>
   </section>
 </template>
 
 <style scoped>
 :deep(h2) {
-  --uno: 'text-2xl';
+  --uno: 'f-text-2xl';
 }
 </style>

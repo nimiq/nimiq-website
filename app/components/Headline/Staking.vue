@@ -26,18 +26,16 @@ const id = `terms-note-${useId()}`
 <template>
   <div flex="~ col md:items-center" group>
     <AnimatedStakingRipple v-if="showStakingIcon" size-120 />
-    <component :is="headlineTag" f-m-md text="inverted:white wrap md:balance">
+    <component :is="headlineTag" f-mt-md text="inverted:white wrap md:balance">
       {{ headlineParts[0] }}
       <span bg="green/15 inverted:white/30" text="green inverted:white" data-percentage rounded-4 px-10 py-3 inline-flex="~">
-        <!-- TODO Remove asterix once it is in the icons lib -->
-        ~{{ rewardPerAnnumPercentage }}<div i-nimiq:asterisk i-nimiq:asterix translate-y-8 text-14 :aria-labelledby="id" /></span>
+        ~{{ rewardPerAnnumPercentage }}<div i-nimiq:asterisk translate-y-8 text-14 :aria-labelledby="id" /></span>
       {{ headlineParts[1] }}
     </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" inverted:text="white/80" />
-    <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" :class="primaryPill ? 'nq-pill-blue' : 'nq-pill-tertiary'" nq-shadow nq-arrow nq-pill-lg f-m-lg md:mx-auto inverted:shadow-none />
-    <small :id text="green-1100 inverted:white/80 sm:center" data-note transition-colors duration-400 f-m-md sm:max-w-32ch>
-      <!-- TODO Remove asterix once it is in the icons lib -->
-      <div i-nimiq:asterisk aria-hidden i-nimiq:asterix text="7 sm:9" un-translate="x--8 sm:x-4 y-4 sm:y-8" /> {{ stakingValues?.stakingNote }}
+    <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" :class="primaryPill ? 'nq-pill-blue' : 'nq-pill-tertiary'" nq-shadow nq-arrow nq-pill-lg f-mt-lg md:mx-auto inverted:shadow-none />
+    <small :id text="green-1100 inverted:white/80 sm:center" data-note transition-colors duration-400 f-mt-md sm:max-w-32ch>
+      <div aria-hidden i-nimiq:asterisk text="7 sm:9" un-translate="x--8 sm:x-4 y-4 sm:y-8" /> {{ stakingValues?.stakingNote }}
     </small>
   </div>
 </template>

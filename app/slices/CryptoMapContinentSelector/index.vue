@@ -125,7 +125,7 @@ const allowMapInteraction = ref(false)
     </div>
     <div flex="~ col gap-16 md:items-center" relative top--8 w="[calc(100%-64px)] lg:full" rounded-b-12 bg-neutral-400 px-24 py-32 lg:col-start-2 lg:row-start-2 max-lg:mx-32>
       <div i-nimiq:logos-cryptocity-horizontal h-32 w-155 />
-      <PrismicRichText wrapper="div" :field="slice.primary.cryptocitiesDescription" max-w-40ch md:text-center />
+      <RichText wrapper="div" :field="slice.primary.cryptocitiesDescription" max-w-40ch md:text-center />
       <PrismicLink :field="slice.primary.cryptocitiesCta" nq-arrow nq-pill-blue />
     </div>
   </section>

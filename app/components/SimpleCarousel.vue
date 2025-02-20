@@ -38,7 +38,7 @@ const { activeIndex, calculateStep, scroller, slideNext, slidePrev, slideTo } = 
       </div>
     </div>
 
-    <div relative mx-auto flex f-m-lg>
+    <div relative mx-auto flex f-mt-lg>
       <button
         v-for="(_, i) in slides" :key="i" relative size-8 rounded-full bg-neutral-400 transition-transform delay-75 first:ml-0 last:mr-4
         :class="activeIndex === i ? 'ml-8 mr-8 scale-0' : 'ml-4 mr-4 scale-100'" :title="`Go to slide ${i}`"

@@ -34,15 +34,15 @@ const data = computed(() => {
       <template #default="{ color, value, name, logo, balance }">
         <div :key="name" :style="{ '--c': color }" ring="1.5 $c" data-tooltip-container w-max rounded-8 bg-neutral-0 p-16 text-neutral font-semibold flex="~ items-center gap-16" shadow>
           <img v-if="logo" :src="logo" size-40 loading="lazy">
-          <div flex="~ gap-2 col" text-sm font-semibold lh-none>
-            <h3 text-lg>
+          <div flex="~ gap-2 col" font-semibold lh-none>
+            <h3 f-text-lg>
               {{ name }}
             </h3>
             <div flex="~ justify-between items-baseline gap-12" mt-4>
-              <span text-neutral-800 lh-none>
+              <span text="f-sm neutral-800" lh-none>
                 {{ percentageFormatter.format(value) }}
               </span>
-              <p text="green xs" font-bold lh-none>
+              <p text="green f-xs" font-bold lh-none>
                 {{ amountFormatter.format(balance / 1e5) }} NIM
               </p>
             </div>
@@ -50,6 +50,6 @@ const data = computed(() => {
         </div>
       </template>
     </ChartDonut>
-    <PrismicRichText wrapper="div" :field="info" max-w-42ch text-center f-m-lg />
+    <RichText wrapper="div" :field="info" max-w-42ch text-center f-m-lg />
   </div>
 </template>

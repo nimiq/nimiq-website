@@ -12,7 +12,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
 <template>
   <DefineStat v-slot="{ icon, iconBgColor, label, value, suffix }">
     <div flex="~ col max-sm:items-center gap-12">
-      <span text="3xl neutral" font-semibold lh-none flex="~">
+      <span text="f-3xl neutral" font-semibold lh-none flex="~">
         <span>{{ value }}</span>
         {{ suffix }}
       </span>

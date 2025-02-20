@@ -26,12 +26,12 @@ function getCssClasses(link: LinkField) {
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
         <PrismicLink internal-component="a" :field="link" transition-opacity>
-          <NuxtImg :src="$prismic.asImageSrc(logo)" :class="getCssClasses(link)" op="40 hocus:80" />
+          <NuxtImg :src="$prismic.asImageSrc(logo)!" :class="getCssClasses(link)" op="40 hocus:80" />
         </PrismicLink>
       </li>
     </ul>
   </section>
-  <section v-else-if="slice.variation === 'centered'" :class="colors" pt-0 f-p-xl data-slice-type="logos-grid">
+  <section v-else-if="slice.variation === 'centered'" :class="colors" pt-0 f-pt-xl data-slice-type="logos-grid">
     <ul flex="~ wrap gap-x-32 gap-y-16 justify-center items-center" m-0 mb-1.5>
       <li>
         <p text="14/16.8 neutral-700" mr-8 whitespace-nowrap nq-label>
@@ -40,7 +40,7 @@ function getCssClasses(link: LinkField) {
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
         <PrismicLink internal-component="a" :field="link" transition-opacity>
-          <NuxtImg :src="$prismic.asImageSrc(logo)" :class="getCssClasses(link)" op="40 hocus:80" />
+          <NuxtImg :src="$prismic.asImageSrc(logo)!" :class="getCssClasses(link)" op="40 hocus:80" />
         </PrismicLink>
       </li>
     </ul>

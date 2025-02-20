@@ -30,7 +30,7 @@ useIntersectionObserver(articleEl, () => {
       <div flex="~ gap-x-32 gap-y-20 wrap items-baseline">
         <SelectRoot v-model="selected">
           <SelectTrigger flex="~ items-center gap-12" rounded-full px-16 py-10 outline-none bg-gradient-green>
-            <SelectValue text="sm white" nq-label />
+            <SelectValue text="f-sm white" nq-label />
             <div i-nimiq:triangle-down text="10 white" />
           </SelectTrigger>
 
@@ -49,14 +49,14 @@ useIntersectionObserver(articleEl, () => {
             </SelectContent>
           </SelectPortal>
         </SelectRoot>
-        <date nq-label text="xs neutral-700">
+        <date nq-label text="f-xs neutral-700">
           Updated {{ formatter.format(getDate(litepaperProps.date) as Date) }}
         </date>
       </div>
     </template>
   </HeroLeftAligned>
   <section bg-neutral-0>
-    <PrismicRichText ref="articleEl" wrapper="article" class="nq-prose" :field="litepaperProps.content" />
+    <RichText ref="articleEl" wrapper="article" class="nq-prose" :field="litepaperProps.content" />
   </section>
-  <Disclaimer f-m-xl />
+  <Disclaimer f-mt-xl />
 </template>

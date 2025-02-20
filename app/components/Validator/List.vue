@@ -39,7 +39,7 @@ function truncate(text: string) {
       <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatio }) in validators" :key="name" as="li" :value="address" style="--radix-accordion-content-height: 130px" relative max-w-full rounded-8 transition>
         <AccordionTrigger rounded="8 data-open:b-0" data-open:border="1 neutral-400 b-transparent" p="x-20 lg:x-24 16" grid="~ cols-[max-content_1fr_max-content] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`" border="1 transparent" transition="[background-color,border-radius,border]" relative size-full rounded-8 delay-100 data-open:z-11 bg="neutral-200 data-open:neutral-0" @click="handleTriggerClick">
           <img :src="logo" :alt="`${name} logo`" row-span-full h-full w-40 object-contain flex="~ items-center">
-          <h3 truncate font-semibold text="lg left">
+          <h3 truncate font-semibold text="f-lg left">
             {{ truncate(name) }}
           </h3>
           <transition mode="out-in" enter-active-class="transition-[opacity,transform] duration-400" enter-from-class="op-0 scale-0" enter-to-class="op-100 scale-100" leave-active-class="transition-[opacity,transform] duration-150" leave-from-class="op-100 scale-100" leave-to-class="op-0 scale-0">
@@ -48,24 +48,24 @@ function truncate(text: string) {
             </div>
             <ValidatorTrustscore v-else-if="score" :score="score.total" show-border row-span-full col-start-3 ml-auto text-14 />
           </transition>
-          <p v-if="rewardPerAnnum" text="sm neutral-800 left" col="start-2 span-2" row-start-2 mt-0 font-normal>
+          <p v-if="rewardPerAnnum" text="f-sm neutral-800 left" col="start-2 span-2" row-start-2 mt-0 font-normal>
             {{ percentageFormatter.format(rewardPerAnnum) }} p.a.
           </p>
         </AccordionTrigger>
         <AccordionContent class="animate-content" p="x-24 t-0 b-24" border="1 neutral-400 t-0" absolute inset-x-0 top-full z-10 z-11 of-y-clip rounded-b-8 bg-neutral-0 pt-8 shadow transition-padding>
           <div absolute inset-x-0 top-0 z-111 h-4 bg-neutral-0 />
-          <ValidatorScoreAccordion v-if="score" :score f-m-md />
-          <div grid="~ cols-[1fr_auto] items-center" text="neutral-700 sm" text-neutral font-semibold>
+          <ValidatorScoreAccordion v-if="score" :score f-mt-md />
+          <div grid="~ cols-[1fr_auto] items-center" text="neutral-700 f-sm" text-neutral font-semibold>
             <h4 text-16>
               Estimated yearly rewards
             </h4>
-            <p v-if="rewardPerAnnum !== undefined" font-semibold text="sm neutral right">
+            <p v-if="rewardPerAnnum !== undefined" font-semibold text="f-sm neutral right">
               {{ percentageFormatter.format(rewardPerAnnum) }}
             </p>
-            <h5 text-xs font-semibold>
+            <h5 f-textf-xs font-semibold>
               incl. pool fee
             </h5>
-            <p text="sm neutral-800 right">
+            <p text="f-sm neutral-800 right">
               {{ percentageFormatter.format(fee) }}
             </p>
             <p text="2xs neutral-700" mt-8>
@@ -85,14 +85,14 @@ function truncate(text: string) {
             </p>
           </div>
           <template v-if="description || website">
-            <hr w="[calc(100%+48px)]" mx--24 h-1 bg-neutral-300 f-m-sm>
+            <hr w="[calc(100%+48px)]" mx--24 h-1 bg-neutral-300 f-mt-sm>
             <p v-if="description" text="neutral" font-500>
               &ldquo;{{ description }}&rdquo;
             </p>
             <NuxtLink v-if="website" external :to="website" mt-8 un-text="blue" font-semibold nq-arrow>
               {{ website }}
             </NuxtLink>
-            <p text="neutral-600 2xs" font-semibold f-m-2xs>
+            <p text="neutral-600 f-2xs" font-semibold f-mt-2xs>
               The validator is solely responsible for the information provided above. It is not to be viewed as an endorsement or recommendation by Nimiq.
             </p>
           </template>

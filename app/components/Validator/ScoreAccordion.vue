@@ -67,7 +67,7 @@ const dominanceStatus = computed(() => {
     <AccordionItem value="availability">
       <AccordionTrigger class="trigger">
         <div text="10 neutral-600" i-nimiq:chevron-right transition-transform data-open:rotate-90 />
-        <h4 text="neutral sm left" flex-1 font-semibold>
+        <h4 text="neutral f-sm left" flex-1 font-semibold>
           Availability
         </h4>
         <ValidatorTrustscore :score="availability" px-0 text-12 />
@@ -85,7 +85,7 @@ const dominanceStatus = computed(() => {
     <AccordionItem value="reliability">
       <AccordionTrigger class="trigger">
         <div text="10 neutral-600" i-nimiq:chevron-right transition-transform data-open:rotate-90 />
-        <h4 text="neutral sm left" flex-1 font-semibold>
+        <h4 text="neutral f-sm left" flex-1 font-semibold>
           Reliability
         </h4>
         <ValidatorTrustscore :score="reliability" px-0 text-12 />
@@ -103,7 +103,7 @@ const dominanceStatus = computed(() => {
     <AccordionItem value="dominance">
       <AccordionTrigger class="trigger">
         <div text="10 neutral-600" i-nimiq:chevron-right transition-transform data-open:rotate-90 />
-        <h4 text="neutral sm left" flex-1 font-semibold>
+        <h4 text="neutral f-sm left" flex-1 font-semibold>
           Dominance
         </h4>
         <ValidatorTrustscore :score="dominance" px-0 text-12 />
@@ -125,7 +125,7 @@ const dominanceStatus = computed(() => {
   --uno: 'flex items-center gap-8 w-full bg-transparent px-12 py-8';
 }
 .content {
-  --uno: 'p-12 pt-0 of-y-clip text-sm font-semibold';
+  --uno: 'p-12 pt-0 of-y-clip f-text-sm font-semibold';
   &[data-state='open'] {
     animation: slideDown 200ms ease-out both;
   }

@@ -106,7 +106,7 @@
         },
         "videoHref": {
           "config": {
-            "label": "Video href",
+            "label": "Video href [DEPRECATED]",
             "placeholder": "",
             "allowTargetBlank": false,
             "select": null
@@ -115,7 +115,7 @@
         },
         "videoLabel": {
           "config": {
-            "label": "Video label",
+            "label": "Video label [DEPRECATED]",
             "placeholder": "Mandatory if the Video href is set"
           },
           "type": "Text"
@@ -165,6 +165,17 @@
               "blue-s3"
             ],
             "default_value": "white"
+          }
+        },
+        "video": {
+          "type": "Link",
+          "config": {
+            "label": "Video",
+            "placeholder": "Will display the link with a play button",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
       },

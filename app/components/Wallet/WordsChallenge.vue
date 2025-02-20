@@ -53,12 +53,12 @@ function reset() {
       <AnimatedMarquee v-for="({ words }, i) in wordsList" :key="i" :items="words" :should-play="containerIsVisible" flex="~ gap-2" :style="`--direction: ${i % 2 === 0 ? -1 : 1}`">
         <template #default="{ index: j }">
           <div relative rounded-4 bg-neutral-300 p-16>
-            <span font="semibold mono" text-xl>{{ animatedWords[i * marqueeRows + j]![1] }}</span>
+            <span font="semibold mono" f-text-xl>{{ animatedWords[i * marqueeRows + j]![1] }}</span>
             <div absolute inset-16>
-              <span font="semibold mono" text="xl neutral-800">
+              <span font="semibold mono" text="f-xl neutral-800">
                 {{ animatedWords[i * marqueeRows + j]![0] }}
               </span>
-              <span text="xl blue" font="semibold mono">
+              <span text="f-xl blue" font="semibold mono">
                 {{ animatedWords[i * marqueeRows + j]![1].value.slice(animatedWords[i * marqueeRows + j]![0].value.length) }}
               </span>
             </div>
@@ -75,7 +75,7 @@ function reset() {
       <h3 text-center>
         {{ headline }}
       </h3>
-      <p mt-16 text="center neutral-800 sm">
+      <p mt-16 text="center neutral-800 f-sm">
         {{ subheadline }}
       </p>
 
@@ -107,10 +107,10 @@ function reset() {
             <p text="center 40 red-neon" font-retro class="challenge-over">
               Try again
             </p>
-            <p text="center neutral-900 lg" class="delayed" max-w-40ch px-40 f-m-md>
+            <p text="center neutral-900 f-lg" class="delayed" max-w-40ch px-40 f-mt-md>
               Even using a computer, it would take you <b text-neutral>10 lifetimes</b> to crack this wallet...
             </p>
-            <button nq-pill-tertiary f-m-xs class="delayed" @click="reset">
+            <button nq-pill-tertiary f-mt-xs class="delayed" @click="reset">
               Restart
             </button>
           </div>
@@ -120,7 +120,7 @@ function reset() {
 
     <div relative mt-32>
       <AnimatedSyntheticWave :style="`--grid-color: var(--nq-${isChallengeFinished ? 'purple' : 'blue'})`" absolute inset--64 top-0 z-0 />
-      <p text="xl white/80 center" relative z-1 font-semibold>
+      <p text="f-xl white/80 center" relative z-1 font-semibold>
         {{ youDoNotStandAChanceToTake }}
       </p>
       <div i-custom:10-million-nim relative z-1 mt-32 h-66 w-full />

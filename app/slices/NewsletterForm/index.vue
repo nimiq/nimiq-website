@@ -87,7 +87,7 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
         </form>
       </template>
       <div v-else-if="status === 'error'">
-        <div flex="~ items-center gap-8" text="lg red" font-semibold f-m-md>
+        <div flex="~ items-center gap-8" text="f-lg red" font-semibold f-mt-md>
           <div i-nimiq:cross scale-70 />
           Error
         </div>
@@ -95,12 +95,12 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
           There was an error while subscribing to the newsletter. Please try again later.
         </p>
 
-        <pre rounded-6 px-12 py-10 f-m-xs>
+        <pre rounded-6 px-12 py-10 f-mt-xs>
           {{ error }}
         </pre>
       </div>
 
-      <div v-else-if="status === 'success'" flex="~ items-start gap-8" text="lg green" font-semibold f-m-md>
+      <div v-else-if="status === 'success'" flex="~ items-start gap-8" text="f-lg green" font-semibold f-mt-md>
         <div i-nimiq:check mt-6 scale-70 />
         Please confirm your subscription sent to your {{ email }}.
       </div>
