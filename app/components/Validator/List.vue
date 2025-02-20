@@ -62,7 +62,7 @@ function truncate(text: string) {
             <p v-if="rewardPerAnnum !== undefined" font-semibold text="f-sm neutral right">
               {{ percentageFormatter.format(rewardPerAnnum) }}
             </p>
-            <h5 f-textf-xs font-semibold>
+            <h5 font-semibold f-text-xs>
               incl. pool fee
             </h5>
             <p text="f-sm neutral-800 right">

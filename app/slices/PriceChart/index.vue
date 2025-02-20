@@ -9,10 +9,10 @@ const dateFormatter = new Intl.DateTimeFormat(locale.value, { hour: 'numeric', m
 const dateFormatterShort = new Intl.DateTimeFormat(locale.value, { month: 'short', day: 'numeric', year: '2-digit' })
 const percentageFormatter = new Intl.NumberFormat(locale.value, { style: 'percent', maximumFractionDigits: 2 })
 
-const { currencyInfo } = useUserCurrency()
+const { currencyInfo, currency } = useUserCurrency()
 
 const { marketCapChange, maxSupplyFormatted, currentSupplyFormatted, volumeChange, volumeUserCurrencyFormatted, marketCapUserCurrencyFormatted } = useNimMetrics()
-const { historicPrices, historicPriceRangeOptions, selectedHistoricPricePeriod } = useNimPrice()
+const { data: historicPrices, period, periodOptions } = useNimPriceHistory(currency)
 
 const lastUpdatedLabel = computed(() => {
   const mostRecentPriceDate = historicPrices.value?.at(-1)?.at(0)
@@ -30,7 +30,7 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
   <section flex="~ col items-center" of-x-clip bg-neutral-0 f-pt-2xl>
     <DefineCrosshair v-slot="{ data: [ts, price] }">
       <div backdrop-blur-12 f-pt-2xs f-pt-xs flex="~ col gap-8">
-        <p text="blue 3xl" font-semibold lh-none>
+        <p text="blue f-3xl" font-semibold lh-none>
           {{ formatFiat(price, currencyInfo, { maxDecimals: Number.POSITIVE_INFINITY }) }}
         </p>
 
@@ -90,7 +90,7 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
 
       <ReuseCrosshair self-start justify-self-end op="100 leader-hocus:0" transition-opacity :data="historicPrices?.at(-1) || [0, 0]" />
 
-      <PillSelector v-model="selectedHistoricPricePeriod" :options="historicPriceRangeOptions" self-end justify-self-end f-mt-md />
+      <PillSelector v-model="period" :options="periodOptions" self-end justify-self-end f-mt-md />
     </div>
     <div flex="~ col items-center gap-8" f-mt-md>
       <p flex="~ items-center gap-8" text="center f-sm">
@@ -98,7 +98,7 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
           <PrismicImage op="80 hocus:100" :field="slice.primary.poweredByLogo" h-32 w-full transition-opacity />
         </PrismicLink>
       </p>
-      <p f-textf-xs>
+      <p f-text-xs>
         {{ lastUpdatedLabel }}
       </p>
     </div>
