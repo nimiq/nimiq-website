@@ -16,8 +16,8 @@ const colors = getColorClass(props.slice.primary.bgColor)
           </div>
         </div>
         <div :class="iconName" text="blue  96 md:120" max-w-128 nq-prose-compact />
-        <PrismicRichText wrapper="div" :field="headline" z-1 transition-colors />
-        <PrismicRichText wrapper="div" :field="subline" z-1 transition-colors f-m-2xs md:text-center />
+        <RichText wrapper="div" :field="headline" z-1 transition-colors />
+        <RichText wrapper="div" :field="subline" z-1 transition-colors f-mt-2xs md:text-center />
       </PrismicLink>
     </div>
   </section>

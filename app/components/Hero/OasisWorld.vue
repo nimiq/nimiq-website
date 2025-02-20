@@ -75,32 +75,32 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
       <div ref="scroller" relative mx-auto max-w-480 w-full>
         <Carousel :items style="--px: 32px; --pb:64px">
           <template #default="{ item: { content, kind, link } }">
-            <div :class="bgColor[kind]" max-w-480 w-full rounded-8 f-p-lg md:w-416>
-              <PrismicRichText wrapper="div" :field="content" class="dark" text-white nq-prose-compact />
-              <div v-if="kind !== 'World'" flex="~ gap-8 items-center" text-white f-m-sm>
+            <div :class="bgColor[kind]" max-w-480 w-full rounded-8 f-pt-lg md:w-416>
+              <RichText wrapper="div" :field="content" class="dark" text-white nq-prose-compact />
+              <div v-if="kind !== 'World'" flex="~ gap-8 items-center" text-white f-mt-sm>
                 <div v-for="(icon, i) in fiatIcons[kind]" :key="i" flex="~ gap-8">
                   <div size-40 rounded-full stack ring="1.5 white/40">
                     <div :class="icon" size-24 />
                   </div>
                 </div>
-                <div i-nimiq:exchange mx-12 text-2xl op-50 />
+                <div i-nimiq:exchange mx-12 op-50 f-text-2xl />
                 <div v-for="(icon, i) in cryptoIcons[kind]" :key="i" flex="~ gap-8">
                   <div size-40 rounded-full stack ring="1.5 white/40">
                     <div :class="icon" size-24 />
                   </div>
                 </div>
               </div>
-              <PrismicLink v-if="hasLink(link)" :field="link" internal-component="a" external nq-arrow nq-pill-lg nq-pill-white f-m-md />
-              <div v-if="kind !== 'Europe'" f-m-sm>
-                <h4 text="xs white/50" nq-label>
+              <PrismicLink v-if="hasLink(link)" :field="link" internal-component="a" external nq-arrow nq-pill-lg nq-pill-white f-mt-md />
+              <div v-if="kind !== 'Europe'" f-mt-sm>
+                <h4 text="f-xs white/50" nq-label>
                   {{ label }}
                 </h4>
-                <div flex="~ gap-8 items-center" text-white f-m-2xs>
+                <div flex="~ gap-8 items-center" text-white f-mt-2xs>
                   <PrismicLink :field="socialMedias.x.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
-                    <div text="white/80 xl hocus:white" i-nimiq:logos-twitter-mono transition-colors />
+                    <div text="white/80 f-xl" i-nimiq:logos-twitter-mono transition-colors />
                   </PrismicLink>
                   <PrismicLink :field="socialMedias.telegram.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
-                    <div text="white/80 lg hocus:white" i-nimiq:logos-telegram-mono translate-x--1 translate-y-1 transition-colors />
+                    <div text="white/80 f-lg hocus:white" i-nimiq:logos-telegram-mono translate-x--1 translate-y-1 transition-colors />
                   </PrismicLink>
                 </div>
               </div>

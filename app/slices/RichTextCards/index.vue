@@ -8,8 +8,8 @@ const colors = getColorClass(props.slice.primary.bgColor)
 <template>
   <section :class="colors">
     <ul grid="~ cols-1 gap-32 lg:cols-2">
-      <li v-for="({ bgColor, content }, i) in slice.items" :key="i" rounded-8 shadow f-p-lg :style="`background: rgb(var(--nq-${bgColor}))`">
-        <PrismicRichText wrapper="div" :field="content" class="nq-prose-no-pb nq-prose-no-px nq-prose" />
+      <li v-for="({ bgColor, content }, i) in slice.items" :key="i" rounded-8 shadow f-pt-lg :style="`background: rgb(var(--nq-${bgColor}))`">
+        <RichText wrapper="div" :field="content" class="nq-prose-no-pb nq-prose-no-px nq-prose" />
       </li>
     </ul>
   </section>

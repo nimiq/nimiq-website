@@ -88,7 +88,7 @@ const milestones = computed(() => {
       </div>
     </header>
 
-    <ul flex="~ col gap-16" ml="$ml" w-max f-m-xs f-p-lg>
+    <ul flex="~ col gap-16" ml="$ml" w-max f-pt-lg f-mt-xs>
       <li
         v-for="(layer, l) in layers" :key="layer.name" :class="layer.layerClasses" flex="~ col justify-end"
         relative w-max self-end rounded-l-6 p-24 pr-0 pl="$pl"

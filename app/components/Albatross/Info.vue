@@ -29,7 +29,7 @@ const tooltipParagraphs = computed(() => {
         Send Test Transaction
       </button>
       <Tooltip v-if="statsTooltipContent" dark absolute right-12 top-12 aria-label="Notice about these stats">
-        <p v-for="(p, i) in tooltipParagraphs" :key="i" style="font-size: var(--nq-font-size)" text-sm>
+        <p v-for="(p, i) in tooltipParagraphs" :key="i" style="font-size: var(--nq-font-size)" f-text-sm>
           {{ p }}
         </p>
       </Tooltip>

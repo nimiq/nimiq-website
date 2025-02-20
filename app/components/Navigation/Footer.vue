@@ -8,7 +8,7 @@ const colors = getColorClass(() => bgColor)
 </script>
 
 <template>
-  <footer :class="colors" data-section z-10 f-p-2xl>
+  <footer :class="colors" data-section z-10 f-pt-2xl>
     <div grid="~ gap-40 md:gap-48 items-start xl:gap-104">
       <div flex="~ col" f-text-sm area-contact>
         <p v-if="navigation?.newsletterCta">
@@ -38,7 +38,7 @@ const colors = getColorClass(() => bgColor)
           </NuxtLink>
         </div>
 
-        <p text-neutral-600 f-m-md>
+        <p text-neutral-600 f-mt-md>
           {{ copyrightNotice }}
         </p>
       </div>

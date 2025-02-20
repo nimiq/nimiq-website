@@ -127,10 +127,10 @@ async function connect() {
           mode="out-in" enter-active-class="transition duration-200 ease-out origin-center-bottom" enter-from-class="transform translate-y-1lh op-0 blur-4 scale-95" enter-to-class="translate-y-0 op-100 blur-0 scale-100"
           leave-active-class="transition duration-200 ease-out origin-center-top" leave-from-class="transform translate-y-0 op-100 scale-100" leave-to-class="translate-y--1lh op-0 scale-95"
         >
-          <p v-if="consensus === 'connecting'" :key="currentFact" text="white/60 center lg" h-2lh>
+          <p v-if="consensus === 'connecting'" :key="currentFact" text="white/60 center f-lg" h-2lh>
             {{ currentFact }}
           </p>
-          <p v-else key="connected" text="white/60 center lg" h-2lh>
+          <p v-else key="connected" text="white/60 center f-lg" h-2lh>
             Your browser is now directly connected to {{ peers.length }} peers on the network.
           </p>
         </transition>

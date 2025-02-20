@@ -56,16 +56,18 @@ section:is([bg-neutral-0], .bg-neutral-0):not(
     :where([data-slice-type='logos-grid'], [data-slice-type='grid-section'], [data-slice-type='banner'])
   )
   + section[data-slice-type='simple-headline'].bg-neutral-0 {
-  --uno: 'f-p-5xl border-t border-neutral-300';
+  --uno: 'f-pt-5xl border-t border-neutral-300';
 }
 
 section[bg-neutral-0]:has(+ section[data-slice-type='simple-headline'].bg-neutral-0) {
-  --uno: 'f-p-5xl
+  --uno: 'f-pt-5xl';
 }
 
-section[data-slice-type=' staking-faq '] + section[data-slice-type=' simple-headline '] {
-  --uno: '
-    f-p-5xl small {--uno: 'text-neutral-700' ;};
+section[data-slice-type='staking-faq'] + section[data-slice-type='simple-headline'] {
+  /* --uno: 'f-pt-5xl'; */
+  small {
+    --uno: 'text-neutral-700';
+  }
 }
 
 section[data-slice-type='crypto-map-continent-selector']:has(+ section[data-slice-type='simple-headline']) {

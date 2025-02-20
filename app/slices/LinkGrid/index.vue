@@ -10,14 +10,14 @@ const colors = getColorClass(slice.primary.bgColor)
   <section :class="colors">
     <ul grid="~ cols-1 gap-20 md:cols-2">
       <li v-for="({ description, icon, links, pillLabel, title }, i) in slice.items" :key="i" p="32 xl:40 2xl:48" rounded-6 ring="1.5 neutral-400">
-        <div v-if="icon" :class="icon" text="58|64" style="font-size: var(--nq-font-size)" op-60 f-m-xs />
-        <span v-if="pillLabel" nq-label f-m-sm text="xs neutral-600">{{ pillLabel }}</span>
-        <PrismicRichText wrapper="div" :field="title" />
-        <PrismicRichText wrapper="div" :field="description" f-m-sm>
-          <div f-m-md flex="~ gap-14 wrap">
+        <div v-if="icon" :class="icon" f-text="min-58 max-64" op-60 f-mt-xs />
+        <span v-if="pillLabel" nq-label f-mt-sm text="f-xs neutral-600">{{ pillLabel }}</span>
+        <RichText wrapper="div" :field="title" />
+        <RichText wrapper="div" :field="description" f-mt-sm>
+          <div f-mt-md flex="~ gap-14 wrap">
             <PrismicLink v-for="(link, j) in links" :key="j" internal-component="a" :field="link" :class="j === 0 ? 'nq-pill-blue' : 'nq-pill-secondary'" nq-arrow />
           </div>
-        </prismicrichtext>
+        </RichText>
       </li>
     </ul>
   </section>

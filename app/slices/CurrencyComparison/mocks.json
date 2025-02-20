@@ -66,10 +66,10 @@
                 }
               ],
               [
-                "adjetive",
+                "adjective",
                 {
                   "__TYPE__": "FieldContent",
-                  "value": "station",
+                  "value": "throat",
                   "type": "Text"
                 }
               ]

@@ -54,21 +54,21 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  site: {
-    url: 'https://nimiq.com',
+  // site: {
+  //   url: 'https://nimiq.com',
 
-    // These are just default values and they should be overwritten by the page
-    name: 'Nimiq',
-    description: 'The most accepted cryptocurrency in the world',
-  },
+  //   // These are just default values and they should be overwritten by the page
+  //   name: 'Nimiq',
+  //   description: 'The most accepted cryptocurrency in the world',
+  // },
 
-  sitemap: {
-    // Read more in ./modules/prerender-routes.ts
-  },
+  // sitemap: {
+  // Read more in ./modules/prerender-routes.ts
+  // },
 
-  ogImage: {
-    fonts: ['Mulish:700'],
-  },
+  // ogImage: {
+  //   fonts: ['Mulish:700'],
+  // },
 
   // TODO Remove this option
   unocss: {
@@ -217,10 +217,10 @@ export default defineNuxtConfig({
     },
   },
 
-  robots: {
-    // https://nuxtseo.com/robots/api/config
-    disallow: ['/iframes'],
-    sitemap: '/sitemap.xml',
-  },
+  // robots: {
+  //   // https://nuxtseo.com/robots/api/config
+  //   disallow: ['/iframes'],
+  //   sitemap: '/sitemap.xml',
+  // },
 
 })

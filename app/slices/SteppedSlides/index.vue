@@ -38,13 +38,13 @@ function goToStep(step: number) {
   <section mx-0 of-x-clip bg-neutral-0 px-0 children:max-w-none>
     <Headline :headline="slice.primary.headline" :subline="slice.primary.description" px="$px" />
 
-    <ul flex="~ gap-6" mx-auto f-m-lg>
+    <ul flex="~ gap-6" mx-auto f-mt-lg>
       <li v-for="i in slice.items.length" :key="i" :data-state="step - 1 === i ? 'active' : undefined" max-w-384 flex-1>
         <button bg="neutral-400 hocus:neutral-500 data-active:green" mx-auto h-4 w-full transition-colors />
       </li>
     </ul>
 
-    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" m-x-auto of-y-hidden nq-scrollbar-hide f-m-2xl @scroll.passive="calculateStep">
+    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" m-x-auto of-y-hidden nq-scrollbar-hide f-mt-2xl @scroll.passive="calculateStep">
       <li
         v-for="(item, i) in slice.items" :key="i"
         :data-state="step - 1 === i ? 'active' : undefined" snap="center always" cursor="active:default pointer"
@@ -58,10 +58,10 @@ function goToStep(step: number) {
           :preload="i <= step + 1"
           :loop="i === 0"
         /> -->
-        <p text="neutral-800 xs" px="8 md:32 xl:48" nq-label f-mt-lg>
+        <p text="neutral-800 f-xs" px="8 md:32 xl:48" nq-label f-mt-lg>
           {{ item.label }}
         </p>
-        <PrismicRichText wrapper="div" px="8 md:32 xl:48" :field="item.description" class="nq-prose-compact" f-mt-2xs text="neutral-800 children:xl" />
+        <RichText wrapper="div" px="8 md:32 xl:48" :field="item.description" class="nq-prose-compact" f-mt-2xs text="neutral-800 children:xl" />
       </li>
     </ul>
   </section>

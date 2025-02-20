@@ -2,9 +2,9 @@
 import { useQuery } from '@pinia/colada'
 import { components } from '~/slices'
 
-const params = useRoute().params as { uid: string }
+const params = useRoute().params as { uid: string[] }
 const isGrandchildPage = params.uid.length === 2
-const uid = params.uid === '' ? 'home' : params.uid.at(-1)
+const uid = params.uid.at(-1) || 'home'
 const isHome = uid === 'home'
 
 const prismic = usePrismic()

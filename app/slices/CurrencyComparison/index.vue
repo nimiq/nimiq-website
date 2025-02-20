@@ -9,7 +9,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
 
 <template>
   <DefineCrypto>
-    <template #default="{ adjetive, crypto, fee, mainFeature, name, secondFeature, thirdFeature, time, twoColumns = false }">
+    <template #default="{ adjective, crypto, fee, mainFeature, name, secondFeature, thirdFeature, time, twoColumns = false }">
       <li :class="{ 'md:grid md:rows-[max-content,auto,auto,auto] md:cols-2 xl:block gap-x-32': twoColumns }">
         <div flex="~ items-center gap-12" col-span-full text-48>
           <div v-if="crypto === 'NIM'" i-nimiq:logos-nimiq />
@@ -19,23 +19,23 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
             <div my-10 w-1 self-stretch bg-neutral-400 />
             <div i-nimiq:logos-usdt />
           </div>
-          <span font-semibold text="xl neutral">
+          <span font-semibold text="f-xl neutral">
             {{ name }}
           </span>
           <div v-if="crypto === 'NIM'" flex="~ items-center gap-6" rounded-full bg-green-400 px-6 py-4 text-green>
             <div i-nimiq:eco text-14 />
-            <span text-xs text-green nq-label>Eco</span>
+            <span text-green nq-label f-text-xs>Eco</span>
           </div>
         </div>
 
-        <p text="neutral/70 xs" h-max w-max rounded-4 bg-neutral-400 px-8 py-4 nq-label f-m-md>
-          {{ adjetive }}
+        <p text="neutral/70 f-xs" h-max w-max rounded-4 bg-neutral-400 px-8 py-4 nq-label f-mt-md>
+          {{ adjective }}
         </p>
-        <p row-span-4 col-start-1 text-lg f-m-2xs>
+        <p row-span-4 col-start-1 f-text-lg f-mt-2xs>
           {{ mainFeature }}
         </p>
 
-        <div flex="~ gap-8 items-start" :class="{ 'f-m-sm': !twoColumns, 'row-start-2 col-start-2 f-m-md': twoColumns }">
+        <div flex="~ gap-8 items-start" :class="{ 'f-mt-sm': !twoColumns, 'row-start-2 col-start-2 f-mt-md': twoColumns }">
           <div size-28 shrink-0 rounded-full class="gradient" stack>
             <div text="14 white" :class="{ 'i-nimiq:bolt': crypto === 'NIM', 'i-nimiq:arrows-to-sides scale-120': crypto === 'BTC', 'i-nimiq:balance': crypto === 'USDC/USDT' }" />
           </div>
@@ -44,7 +44,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
           </p>
         </div>
 
-        <div flex="~ gap-8 items-center" f-m-2xs>
+        <div flex="~ gap-8 items-center" f-mt-2xs>
           <div size-28 shrink-0 rounded-full class="gradient" stack>
             <div text="16 white" :class="{ 'i-nimiq:leaf-2-filled scale-80 bottom--1 relative': crypto === 'NIM', 'i-nimiq:digital-gold scale-120 right--1 relative': crypto === 'BTC', 'i-nimiq:arrows-to-center-triangle': crypto === 'USDC/USDT' }" />
           </div>
@@ -53,7 +53,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
           </p>
         </div>
 
-        <p f-m-sm>
+        <p f-mt-sm>
           {{ slice.primary.feeLabel }}: <span text-neutral font-semibold>{{ fee }}</span>
         </p>
 

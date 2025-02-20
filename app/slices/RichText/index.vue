@@ -8,6 +8,6 @@ const colors = getColorClass(props.slice.primary.bgColor)
 
 <template>
   <section :class="colors">
-    <PrismicRichText nq-prose text="18" wrapper="article" :field="slice.primary.richText" />
+    <RichText nq-prose text="18" wrapper="article" :field="slice.primary.richText" />
   </section>
 </template>

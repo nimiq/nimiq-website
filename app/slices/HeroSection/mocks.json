@@ -62,16 +62,16 @@
         "type": "Text"
       },
       "videoHref": {
-        "key": "fe397704-9d21-4935-b5f7-a6cce15eadca",
+        "key": "a3a1d14e-986f-4951-b79a-393126544e76",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
-          "url": "https://slicemachine.dev"
+          "url": "http://google.com"
         }
       },
       "videoLabel": {
         "__TYPE__": "FieldContent",
-        "value": "from",
+        "value": "can",
         "type": "Text"
       },
       "note": {
@@ -134,6 +134,15 @@
           "__TYPE__": "ExternalLink",
           "url": "http://google.com",
           "text": "fine"
+        }
+      },
+      "video": {
+        "__TYPE__": "LinkContent",
+        "key": "196e968d-2d51-46c7-a606-11a98b0e861f",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com",
+          "text": "pleasant"
         }
       }
     },

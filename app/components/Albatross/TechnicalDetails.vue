@@ -12,7 +12,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 
 <template>
   <section class="dark" bg-darkerblue pt-0 text-neutral>
-    <p text-neutral-800 f-m-xs>
+    <p text-neutral-800 f-mt-xs>
       This is a preview of the live blockhain
     </p>
     <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary @close="activeIndex = 0">
@@ -45,7 +45,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
         <div relative mx="-24 lg:-40" w="[calc(100%+48px)] lg:[calc(100%+80px)]" rounded-b-8>
           <ul ref="scroller" snap="x mandatory" flex="~ items-start gap-16" w-full of-x-auto class="nq-scrollbar-hide">
             <li v-for="({ richText }, i) in slides" :key="i" snap="center always" data-slide w-full shrink-0 px-24>
-              <PrismicRichText wrapper="div" class="nq-prose-compact" :field="richText" pb-32 />
+              <RichText wrapper="div" class="nq-prose-compact" :field="richText" pb-32 />
             </li>
           </ul>
         </div>
@@ -65,7 +65,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 <style>
 .modal-container .nq-prose-compact {
   h3 {
-    /* --uno: 'text-2xl text-center'; */
+    /* --uno: 'f-text-2xl text-center'; */
     --nq-font-size-min: 20;
     --nq-font-size-max: 24;
     text-align: center;

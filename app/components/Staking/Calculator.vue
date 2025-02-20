@@ -69,15 +69,15 @@ const rewards = computed(() => calculateStakingRewards({
       <div grid="~ max-md:cols-1 md:rows-[auto_1fr] gap-x-32 gap-y-12 md:flow-col " mx-auto of-auto p-32>
         <span text="max-md:center neutral-800" font-semibold>{{ stakingAmountLabel }}</span>
         <label flex="~ items-baseline gap-8" text="neutral hocus:blue focus-within:blue" h-max w-max self-end transition-colors max-md:mx-auto>
-          <!-- <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none text-xl inputmode="decimal"> -->
-          <AmountInput v-model="amount" :decimals :min="1" style="padding:0" min-w-0 w-max shadow-none outline-none text="blue 2xl" />
-          <span flex-1 font-bold lh-none text="blue lg">NIM</span>
+          <!-- <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none f-text-xl inputmode="decimal"> -->
+          <AmountInput v-model="amount" :decimals :min="1" style="padding:0" max-w-9ch min-w-0 w-max shadow-none outline-none text="blue f-2xl" />
+          <span flex-1 font-bold lh-none text="blue f-lg">NIM</span>
         </label>
 
         <div flex="~ gap-8 items-center max-md:justify-center" max-md:mt-8>
           <span w-max>Total stake</span>
           <Tooltip>
-            <PrismicRichText wrapper="div" :field="stakedSupplyInfo" />
+            <RichText wrapper="div" :field="stakedSupplyInfo" />
           </Tooltip>
         </div>
         <RadioInput v-model="selectedStakedSupply" :options="stakedSupplyOptions" h-max self-end max-md:mx-auto>
@@ -94,7 +94,7 @@ const rewards = computed(() => calculateStakingRewards({
             {{ stakingPeriodLabel }}
           </p>
           <Tooltip>
-            <PrismicRichText wrapper="div" :field="stakingPeriodInfo" />
+            <RichText wrapper="div" :field="stakingPeriodInfo" />
           </Tooltip>
         </div>
         <RadioInput v-model="selectedStakingPeriod" h-max self-end max-md:mx-auto :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
@@ -105,7 +105,7 @@ const rewards = computed(() => calculateStakingRewards({
             Return in NIM*
           </p>
           <Tooltip mr-16>
-            <PrismicRichText wrapper="div" :field="autoRestakeInfo" />
+            <RichText wrapper="div" :field="autoRestakeInfo" />
           </Tooltip>
           <p text="green/60" font-bold lg:ml-auto>
             +<AnimatedTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
@@ -123,7 +123,7 @@ const rewards = computed(() => calculateStakingRewards({
       <input v-model="autoRestake" type="checkbox" nq-switch>
       <span ml-12 mr-6 cursor-pointer>{{ autoRestakeLabel }}</span>
       <Tooltip>
-        <PrismicRichText wrapper="div" :field="autoRestakeInfo" />
+        <RichText wrapper="div" :field="autoRestakeInfo" />
       </Tooltip>
     </label>
   </div>
