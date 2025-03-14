@@ -5,7 +5,7 @@ import { calculateStakingRewards } from 'nimiq-rewards-calculator'
 const { initialStakingAmount = 1_000_000 } = defineProps<{
   title: string
   stakingAmountLabel: string
-  initialStakingAmount: number
+  initialStakingAmount?: number
   stakedSupplyLabel: string
   stakedSupplyInfo: RichTextField
   stakingPeriodLabel: string

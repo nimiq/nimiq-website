@@ -21,7 +21,7 @@ defineProps<{
     <div w-320 rounded-4 stack>
       <PrismicImage :field="screenshot!" h-auto max-h-full max-w-full rounded-4 object-cover />
     </div>
-    <div flex="~ col gap-12" flex-1 p-24 nq-prose-compact>
+    <div flex="~ col gap-12" nq-prose-compact flex-1 p-24>
       <h3>{{ name }}</h3>
       <RichText wrapper="div" text-neutral-900 f-pt-2xs :field="description" />
       <PrismicLink :field="linkHref" f-mt-40 nq-arrow nq-pill-blue>
