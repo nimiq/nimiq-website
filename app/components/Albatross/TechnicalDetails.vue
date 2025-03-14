@@ -2,10 +2,8 @@
 import Modal, { ModalName } from '../Modal.vue'
 
 const { client } = usePrismic()
-const { data } = useAsyncData('technical_details', () => client.getByType('albatrossSingleType'))
-
-const buttonLabel = computed(() => data.value?.results.at(0)?.data.buttonLabel)
-const slides = computed(() => data.value?.results.at(0)?.data.slides)
+const { data } = await useAsyncData('technical_details', () => client.getSingle('albatrossSingleType').then(doc => doc.data))
+const { buttonLabel, slides } = data.value!
 
 const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canSlidePrev } = useCarousel()
 </script>
@@ -13,7 +11,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 <template>
   <section class="dark" bg-darkerblue pt-0 text-neutral>
     <p text-neutral-800 f-mt-xs>
-      This is a preview of the live blockhain
+      This is a preview of the live blockchain
     </p>
     <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary @close="activeIndex = 0">
       <template #trigger>

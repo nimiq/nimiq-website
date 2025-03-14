@@ -84,6 +84,8 @@ export default defineNuxtConfig({
   },
 
   prismic: {
+    preview: false,
+    toolbar: false,
     endpoint: repositoryName,
     clientConfig: {
       accessToken: process.env.PRISMIC_ACCESS_TOKEN,
@@ -183,9 +185,7 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    // when using generate, payload js assets included in sw precache manifest
-    // but missing on offline, disabling extraction it until fixed
-    payloadExtraction: false,
+    payloadExtraction: true,
     renderJsonPayloads: true,
     viewTransition: true,
     typedPages: true,

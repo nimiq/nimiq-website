@@ -9,7 +9,7 @@ const { client } = usePrismic()
 
 const variation = computed(() => slice.variation)
 
-const { data: items } = useAsyncData(`cards_carousel_${variation.value}`, async () => {
+const { data: items } = await useAsyncData(`cards_carousel_${variation.value}`, async () => {
   if (variation.value === 'apps' && (slice.primary as Content.CardsCarouselSliceAppsPrimary).appsMadeBy === 'Community') {
     const communityApps = await client.getAllByType('nimiq_app', {
       filters: [filter.at('my.nimiq_app.isOfficial', false)],

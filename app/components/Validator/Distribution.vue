@@ -8,7 +8,7 @@ const locale = useLocale()
 const percentageFormatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const amountFormatter = new Intl.NumberFormat(locale.value, { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0 })
 
-const { validators } = storeToRefs(useStakingStore())
+const { validators } = useValidatorsInfo() // TODO Loading/Error states
 
 const data = computed(() => {
   if (!validators.value)

@@ -6,17 +6,22 @@ import { components } from '~/slices'
 const postSlug = useRouteParams<string>('post')
 
 const { client } = usePrismic()
-const { data: post } = useAsyncData('blog_page', () => client.getByUID('blog_page', postSlug.value))
-if (!import.meta.dev && post.value?.data.draft)
+const { data: post } = await useAsyncData('blog_page', () => client.getByUID('blog_page', postSlug.value))
+if (import.meta.env && (!post.value || post.value?.data.draft))
   throw new Error(`Post ${post.value?.href} is in draft but somehow we tried to generate it :/`)
 
-const { readingTime, title, description, image } = useProse(post)
+const { readingTime, meta, draft /* , image */ } = useProse(post.value!)
 
-useHead({ title: title.value })
-useSeoMeta({ description: description.value, twitterTitle: title.value, twitterDescription: description.value, twitterCard: 'summary_large_image' })
-defineOgImage(image.value)
+useHead(meta)
+useSeoMeta({ ...meta, twitterTitle: meta.title, twitterDescription: meta.description, twitterCard: 'summary_large_image' })
+// defineOgImage({
+//   alt: image.alt || '',
+//   url: image.url || '',
+//   width: image.dimensions!.width,
+//   height: image.dimensions!.height,
+// })
 
-const isDraft = computed(() => post.value?.data.draft === undefined ? true : post.value?.data.draft)
+// TODO This is always false
 
 const articleRef = ref<HTMLElement>()
 useIntersectionObserver(articleRef, () => {
@@ -29,7 +34,7 @@ useDark()
 <template>
   <NuxtLayout v-if="post">
     <div ref="articleRef">
-      <LockBadge v-if="isDraft" fixed bottom-32 right-32 z-102 />
+      <LockBadge v-if="draft" fixed bottom-32 right-32 z-102 />
 
       <header data-section max-w="$nq-prose-max-width" pt="148 md:153 lg:160" px="32 lg:64">
         <PrismicText wrapper="h1" :field="post.data.title" style="--nq-font-size-min: 32;--nq-font-size-max: 40" view-transition-post-title />

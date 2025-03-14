@@ -1,38 +1,43 @@
 import type { Slice } from '@prismicio/client'
 import type { BlogPageDocument, RichTextSlice } from '~~/prismicio-types'
 
-export function useProse(_post: MaybeRef<BlogPageDocument | null>) {
-  const post = toRef(_post)
-  const prose = computed(() => {
-    if (!post.value)
-      return ''
-    if ((post.value.data.body.length || 0) > 0) {
-      const richTextSlice: RichTextSlice[] | undefined = post.value.data.body.filter((slice: Slice) => slice.slice_type === 'rich_text') as RichTextSlice[]
-      const texts = richTextSlice?.map(rt => rt.primary.richText.map(rt => 'text' in rt ? rt.text : ''))
-      return texts?.join(' ') || ''
-    }
-    else {
-      return post.value.data.text.filter((node: any) => node.text).map(t => 'text' in t ? t.text as string : '').join(' ') || ''
-    }
-  })
+export function useProse({ data, uid }: BlogPageDocument) {
+  const { body, text, meta_description, meta_title, subline } = data
+  const richTextSlices = body.filter((slice: Slice) => slice.slice_type === 'rich_text') as RichTextSlice[]
+  const texts = richTextSlices
+    .flatMap(rt => rt.primary.richText.map(rt => 'text' in rt ? rt.text : ''))
+    .join(' ')
+
+  const prose = texts || text.filter((node: any) => node.text).map(t => 'text' in t ? t.text as string : '').join(' ') || ''
 
   const WPM = 225
-  const readingTime = computed(() => Math.ceil(prose.value.trim().split(/\s+/).length / WPM))
+  const readingTime = Math.ceil(prose.trim().split(/\s+/).length / WPM)
 
-  const title = computed(() => post.value?.data.meta_title)
-  const description = computed(() => post.value?.data.meta_description || prose.value.trim().split(/(?<=[.?!:;])\s/).slice(0, 2).join(' '))
-  const image = computed(() => ({
-    alt: post.value?.data.image.alt || '',
-    url: post.value?.data.image.url || '',
-    width: post.value?.data.image.dimensions!.width,
-    height: post.value?.data.image.dimensions!.height,
-  }))
+  const meta = {
+    title: meta_title || getText(data.title),
+    description: meta_description || prose.trim().split(/(?<=[.?!:;])\s/).slice(0, 2).join(' '),
+  }
+
+  const abstract = getText(subline).slice(0, 120)
+
+  if (!data.publish_date)
+    throw new Error(`Missing publish_date for ${uid}`)
+  if (!data.image)
+    throw new Error(`Missing image for ${uid}`)
 
   return {
     prose,
     readingTime,
-    title,
-    description,
-    image,
+    meta,
+    abstract,
+    uid,
+    hasImage: hasImage(data.image),
+    href: `/blog/${uid}`,
+    publishDate: data.publish_date!,
+    draft: data.draft,
+    image: data.image || data.meta_image,
+    title: data.title,
+    authors: data.authors,
+    // img,
   }
 }

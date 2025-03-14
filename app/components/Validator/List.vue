@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { breakpointsTailwind } from '@vueuse/core'
 
-const { validators } = storeToRefs(useStakingStore())
+const { validators } = useValidatorsInfo() // TODO Loading/Error states
 
 const percentageFormatter = new Intl.NumberFormat('en-US', { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
