@@ -40,7 +40,7 @@ const bgColor = computed(() => appColor[type])
         {{ type }}
       </p>
     </div>
-    <div flex-1 p-26 pt-0 nq-prose-compact flex="~ col gap-12">
+    <div nq-prose-compact flex-1 p-26 pt-0 flex="~ col gap-12">
       <h3>{{ name }}</h3>
       <RichText wrapper="div" text-neutral-900 f-pt-2xs f-pt-sm :field="description" />
       <p v-if="developer" mt-auto text-14 nq-label>

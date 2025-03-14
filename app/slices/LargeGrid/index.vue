@@ -15,7 +15,7 @@ const colors = getColorClass(props.slice.primary.bgColor)
             <div i-nimiq:logos-nimiq-mono absolute right--214 top--140 text-360 />
           </div>
         </div>
-        <div :class="iconName" text="blue  96 md:120" max-w-128 nq-prose-compact />
+        <div :class="iconName" text="blue  96 md:120" nq-prose-compact max-w-128 />
         <RichText wrapper="div" :field="headline" z-1 transition-colors />
         <RichText wrapper="div" :field="subline" z-1 transition-colors f-mt-2xs md:text-center />
       </PrismicLink>

@@ -76,7 +76,7 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
         <Carousel :items style="--px: 32px; --pb:64px">
           <template #default="{ item: { content, kind, link } }">
             <div :class="bgColor[kind]" max-w-480 w-full rounded-8 f-pt-lg md:w-416>
-              <RichText wrapper="div" :field="content" class="dark" text-white nq-prose-compact />
+              <RichText wrapper="div" :field="content" class="dark" nq-prose-compact text-white />
               <div v-if="kind !== 'World'" flex="~ gap-8 items-center" text-white f-mt-sm>
                 <div v-for="(icon, i) in fiatIcons[kind]" :key="i" flex="~ gap-8">
                   <div size-40 rounded-full stack ring="1.5 white/40">
