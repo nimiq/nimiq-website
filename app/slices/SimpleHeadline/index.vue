@@ -1,27 +1,32 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const props = defineProps(getSliceComponentProps<Content.SimpleHeadlineSlice>())
-const bgColor = getColorClass(props.slice.primary.bgColor)
+const { slice, slices } = defineProps(getSliceComponentProps<Content.SimpleHeadlineSlice>())
+const bgColor = getColorClass(slice.primary.bgColor)
 
-const { stakingValues } = useStakingStore()
-const isLastSlice = computed(() => props.slices.indexOf(props.slice) === props.slices.length - 1)
+const isLastSlice = slices.indexOf(slice) === slices.length - 1
 
-const isStakingSlice = computed(() => stakingValues?.template && getText(props.slice.primary.headline).includes(stakingValues.template))
-const gradientClass = computed<'gradient-transparent-green' | 'gradient-transparent-green-transparent' | undefined>(() => {
-  if (!isStakingSlice.value || isLastSlice.value)
+const { client } = usePrismic()
+const { data: stakingValues } = await useAsyncData('staking_values', () => client.getSingle('stakingValues').then(doc => doc.data!))
+if (!stakingValues.value)
+  throw new Error('No staking values found')
+
+const isStakingSlice = getText(slice.primary.headline).includes(stakingValues.value.template!)
+
+function getGradientClass() {
+  if (!isStakingSlice || isLastSlice)
     return
-  const currentIndex = props.slices.indexOf(props.slice)
+  const currentIndex = slices.indexOf(slice)
   // @ts-expect-error the types are meh
-  const nextSliceBgColor = props.slices.at(currentIndex + 1)?.primary.bgColor
+  const nextSliceBgColor = slices.at(currentIndex + 1)?.primary.bgColor
   // @ts-expect-error the types are meh
-  const prevSliceBgColor = props.slices.at(currentIndex - 1)?.primary.bgColor
+  const prevSliceBgColor = slices.at(currentIndex - 1)?.primary.bgColor
   return (nextSliceBgColor === prevSliceBgColor) ? 'gradient-transparent-green-transparent' : 'gradient-transparent-green'
-})
+}
 </script>
 
 <template>
-  <section :nq-section-gap="!isStakingSlice ? '' : undefined" :class="[bgColor, gradientClass]" relative data-slice-type="simple-headline">
+  <section :nq-section-gap="!isStakingSlice ? '' : undefined" :class="[bgColor, getGradientClass()]" relative data-slice-type="simple-headline">
     <Headline
       v-if="!isStakingSlice"
       :headline="slice.primary.headline"

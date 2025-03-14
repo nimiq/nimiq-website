@@ -1,11 +1,12 @@
 import type { DateField, FilledLinkToMediaField, ImageField, LinkField, LinkToMediaField, RichTextField } from '@prismicio/client'
+import { asDate, asLink, asText, isFilled } from '@prismicio/client'
 
-export const hasLink = (link?: LinkField) => usePrismic().isFilled.link(link)
-export const hasImage = (image?: ImageField) => usePrismic().isFilled.image(image)
-export const hasText = (text?: RichTextField) => usePrismic().isFilled.richText(text)
-export const getText = (text?: RichTextField) => usePrismic().asText(text) || ''
-export const getLink = (text?: LinkField) => usePrismic().asLink(text) || ''
-export const getDate = (text?: DateField) => usePrismic().asDate(text) || ''
+export const hasLink = (link?: LinkField) => isFilled.link(link)
+export const hasImage = (image?: ImageField) => isFilled.image(image)
+export const hasText = (text?: RichTextField) => isFilled.richText(text)
+export const getText = (text?: RichTextField) => asText(text) || ''
+export const getLink = (text?: LinkField) => asLink(text) || ''
+export const getDate = (text?: DateField) => asDate(text) || ''
 export function getUrl(obj?: LinkToMediaField) {
   if (!obj)
     return ''

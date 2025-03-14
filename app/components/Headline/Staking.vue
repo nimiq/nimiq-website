@@ -9,17 +9,15 @@ const { headline, showStakingIcon = false } = defineProps<{
   primaryPill?: boolean
 }>()
 
-const { stakingValues, rewardPerAnnumPercentage } = useStakingStore()
+const { annualRewardPercentage } = useStakingInfo()
 
-const headlineTag = computed(() => {
-  const type = headline?.at(0)?.type
-  if (!type?.startsWith('heading'))
-    return 'h2'
-  return `h${type.slice(-1)}`
-})
+const { client } = usePrismic()
+const { data: stakingValues } = await useAsyncData('staking_values', () => client.getSingle('stakingValues').then(doc => doc.data!))
+if (!stakingValues)
+  throw new Error('No staking values found')
 
-const headlineParts = computed(() => getText(headline!).split('{{ interestPerAnnum }}'))
-
+const headlineTag = headline?.at(0)?.type.replace('heading', 'h') || 'h2'
+const headlineParts = getText(headline!).split('{{ interestPerAnnum }}')
 const id = `terms-note-${useId()}`
 </script>
 
@@ -29,7 +27,7 @@ const id = `terms-note-${useId()}`
     <component :is="headlineTag" f-mt-md text="inverted:white wrap md:balance">
       {{ headlineParts[0] }}
       <span bg="green/15 inverted:white/30" text="green inverted:white" data-percentage rounded-4 px-10 py-3 inline-flex="~">
-        ~{{ rewardPerAnnumPercentage }}<div i-nimiq:asterisk translate-y-8 text-14 :aria-labelledby="id" /></span>
+        ~{{ annualRewardPercentage }}<div i-nimiq:asterisk translate-y-8 text-14 :aria-labelledby="id" /></span>
       {{ headlineParts[1] }}
     </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" inverted:text="white/80" />

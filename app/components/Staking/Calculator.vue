@@ -28,9 +28,9 @@ enum StakeSupply {
   Live = 'Live',
 }
 
-const { stakedSupplyRatio } = storeToRefs(useStakingStore())
+const { stakingRatio } = useStakingInfo() // TODO We are not handling error/loading state
 const stakedSupplyOptions = computed(() => {
-  return !stakedSupplyRatio.value
+  return !stakingRatio.value
     ? [StakeSupply.Low, StakeSupply.Middle, StakeSupply.High]
     : [StakeSupply.Low, StakeSupply.Middle, StakeSupply.High, StakeSupply.Live]
 })
@@ -39,7 +39,7 @@ const stakeSupplyRatios = computed(() => ({
   [StakeSupply.Low]: 0.25,
   [StakeSupply.Middle]: 0.5,
   [StakeSupply.High]: 0.75,
-  [StakeSupply.Live]: stakedSupplyRatio?.value,
+  [StakeSupply.Live]: stakingRatio.value,
 }))
 
 const stakingPeriodOptions = [

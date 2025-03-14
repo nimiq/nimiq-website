@@ -4,7 +4,7 @@ import type { Content } from '@prismicio/client'
 defineProps(getSliceComponentProps<Content.ExchangesGridSlice>())
 
 const { client } = usePrismic()
-const { data: exchanges } = await useAsyncData('exchange', () => client.getByType('exchange'))
+const { data: exchanges } = await useAsyncData('exchanges', () => client.getByType('exchange'))
 </script>
 
 <template>
