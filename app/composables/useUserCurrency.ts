@@ -1,4 +1,5 @@
-import { CurrencyInfo, FiatCurrency } from '@nimiq/utils'
+import { CurrencyInfo } from '@nimiq/utils/currency-info'
+import { FiatCurrency } from '@nimiq/utils/fiat-api'
 
 export const fiatCurrencies = ([
   'AED',

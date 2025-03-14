@@ -41,15 +41,6 @@ importers:
       medium-zoom:
         specifier: ^1.1.0
         version: 1.1.0
-      nimiq-albatross-policy:
-        specifier: https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50
-        version: https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50
-      nimiq-rewards-calculator:
-        specifier: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d
-        version: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d
-      nimiq-supply-calculator:
-        specifier: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d
-        version: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d
       nuxt:
         specifier: ^3.16.0
         version: 3.16.0(@parcel/watcher@2.5.1)(@types/node@22.13.10)(bufferutil@4.0.9)(db0@0.3.1)(eslint@9.22.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.35.0)(terser@5.39.0)(tsx@4.19.2)(typescript@5.8.2)(utf-8-validate@5.0.10)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(yaml@2.7.0)
@@ -5495,10 +5486,6 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  nimiq-albatross-policy@https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50:
-    resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50}
-    version: 0.0.1
-
   nimiq-css@1.0.0-beta.4:
     resolution: {integrity: sha512-1ciPdy+bLfuVR6gdWzDeuh6oGzLZkL+azOZHdJX8pxpayHwxT46FIWJDkx8mQyjmhVhIphPuhJ8qW4hl7hBduw==}
     engines: {node: '>=14'}
@@ -5507,21 +5494,9 @@ packages:
     resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-icons@adf2296}
     version: 1.0.0
 
-  nimiq-rewards-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d:
-    resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d}
-    version: 0.0.1
-
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575:
     resolution: {tarball: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575}
     version: 0.4.1
-
-  nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d:
-    resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d}
-    version: 0.0.1
-
-  nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d298b067739f6511cf96b75bb90534fdef:
-    resolution: {tarball: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d298b067739f6511cf96b75bb90534fdef}
-    version: 0.0.1
 
   nitro-cloudflare-dev@0.2.2:
     resolution: {integrity: sha512-aZfNTVdgXPQeAmXW0Tw8hm3usAHr4qVG4Bg3WhHBGeZYuXr9OyT04Ztb+STkMzhyaXvfMHViAaPUPg06iAYqag==}
@@ -13954,8 +13929,6 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  nimiq-albatross-policy@https://pkg.pr.new/nimiq/validators-api/nimiq-albatross-policy@01bea50: {}
-
   nimiq-css@1.0.0-beta.4(@unocss/webpack@66.0.0(webpack@5.97.1(esbuild@0.25.1)))(postcss@8.5.3)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2)):
     dependencies:
       '@unocss/preset-web-fonts': 66.1.0-beta.5
@@ -13981,20 +13954,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  nimiq-rewards-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-rewards-calculator@8ff200d:
-    dependencies:
-      nimiq-supply-calculator: https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d298b067739f6511cf96b75bb90534fdef
-
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.9)(utf-8-validate@5.0.10):
     dependencies:
       ws: 8.18.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
-
-  nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d: {}
-
-  nimiq-supply-calculator@https://pkg.pr.new/nimiq/validators-api/nimiq-supply-calculator@8ff200d298b067739f6511cf96b75bb90534fdef: {}
 
   nitro-cloudflare-dev@0.2.2:
     dependencies:

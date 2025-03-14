@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { PROOF_OF_STAKE_FORK_BLOCK } from 'nimiq-albatross-policy'
+import { PROOF_OF_STAKE_MIGRATION_BLOCK } from '@nimiq/utils/albatross-policy'
 
 const props = defineProps<{ batchNumber: number, blockNumber: number }>()
 const blocksPerBatch = 60 // TODO Add to policy
-const genesisBlockNumber = PROOF_OF_STAKE_FORK_BLOCK
+const genesisBlockNumber = PROOF_OF_STAKE_MIGRATION_BLOCK
 
 const { microblocks } = storeToRefs(useLiveviewBlocks())
 

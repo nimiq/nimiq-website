@@ -1,4 +1,4 @@
-import { posSupplyAt } from 'nimiq-supply-calculator'
+import { posSupplyAt } from '@nimiq/utils/supply-calculator'
 
 export function useNimMetrics() {
   const { currencyUsdRatio, currencyInfo } = useUserCurrency()
