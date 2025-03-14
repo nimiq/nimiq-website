@@ -1,4 +1,4 @@
-import { calculateStakingRewards } from 'nimiq-rewards-calculator'
+import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
 
 export interface Validator {
   id: number

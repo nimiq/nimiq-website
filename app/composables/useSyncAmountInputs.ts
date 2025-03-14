@@ -1,4 +1,4 @@
-import { FiatCurrency } from '@nimiq/utils'
+import { FiatCurrency } from '@nimiq/utils/fiat-api'
 
 export function useSyncAmountInputs() {
   const { price } = useNimPrice()

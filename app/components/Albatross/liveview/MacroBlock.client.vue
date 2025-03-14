@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SLOTS } from 'nimiq-albatross-policy'
+import { SLOTS } from '@nimiq/utils/albatross-policy'
 
 const props = defineProps<{ block: LiveviewMacroBlock }>()
 

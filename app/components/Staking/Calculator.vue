@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
-import { calculateStakingRewards } from 'nimiq-rewards-calculator'
+import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
 
 const { initialStakingAmount = 1_000_000 } = defineProps<{
   title: string

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Tweenable } from '@nimiq/utils'
+import Tweenable from '@nimiq/utils/tweenable'
 
 const {
   decimals = 0,

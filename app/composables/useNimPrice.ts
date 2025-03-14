@@ -1,4 +1,4 @@
-import { CryptoCurrency, FiatCurrency, getExchangeRates, getHistoricExchangeRates } from '@nimiq/utils'
+import { CryptoCurrency, FiatCurrency, getExchangeRates, getHistoricExchangeRates } from '@nimiq/utils/fiat-api'
 
 export function useNimPrice() {
   const { data: price } = useAsyncData<number>('price_now', async () => {

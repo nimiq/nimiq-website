@@ -1,5 +1,5 @@
-import type { FiatCurrency } from '@nimiq/utils'
-import { CryptoCurrency, getHistoricExchangeRatesByRange, Provider } from '@nimiq/utils'
+import type { FiatCurrency } from '@nimiq/utils/fiat-api'
+import { CryptoCurrency, getHistoricExchangeRatesByRange, Provider } from '@nimiq/utils/fiat-api'
 import { useQuery } from '@pinia/colada'
 import { useLocalStorage } from '@vueuse/core'
 

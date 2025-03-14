@@ -1,5 +1,5 @@
-import type { CurrencyInfo } from '@nimiq/utils'
-import { FormattableNumber } from '@nimiq/utils'
+import type { CurrencyInfo } from '@nimiq/utils/currency-info'
+import { FormattableNumber } from '@nimiq/utils/formattable-number'
 
 export interface FormatFiatOptions {
   /**
