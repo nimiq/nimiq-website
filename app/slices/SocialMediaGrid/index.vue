@@ -3,7 +3,9 @@ import type { Content, FilledContentRelationshipField } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SocialMediaGridSlice>())
 
-const { getSocialMediaById } = useGlobalContent()
+const { fetchSocialMedias } = useSocialMedias()
+const { data: socialMedias } = await useAsyncData(fetchSocialMedias)
+const getSocialMediaById = (id: string) => Object.values(socialMedias).find(socialMedia => socialMedia.id === id)
 
 const columns = [
   {

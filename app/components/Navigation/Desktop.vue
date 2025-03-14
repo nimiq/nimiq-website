@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { SocialMedia } from '~/stores/global-content'
-
-const { navigation } = storeToRefs(useGlobalContent())
+const { data: socialMedias } = await useAsyncData(
+  'social_medias ',
+  async () => await useSocialMedias().fetchSocialMedias(),
+)
+const { data: navigation } = await useAsyncData(
+  'navigation',
+  async () => await useNavigation().fetchNavigation(),
+)
+const internalProjectLinks = computed(() => {
+  return navigation.value!.projectLinks.filter(link => link.href.link_type === 'Document')
+})
 
 const selectedApp = ref(0)
-
-const { socialMedias } = storeToRefs(useGlobalContent())
-
-const internalProjectLinks = computed(() => navigation.value?.projectLinks.length
-  ? navigation.value.projectLinks.filter(link => link.href.link_type === 'Document')
-  : [])
-// const externalProjectLinks = computed(() => navigation.value.projectLinks.length
-//   ? navigation.value.projectLinks.filter(link => link.href.link_type === 'Web')
-//   : [])
 </script>
 
 <template>
@@ -82,8 +81,8 @@ const internalProjectLinks = computed(() => navigation.value?.projectLinks.lengt
             </ul>
             <hr h-1 w-full bg-darkblue op-10>
             <div flex="~ items-center justify-between gap-x-20" px-32 py-20>
-              <PrismicLink v-if="socialMedias.github" internal-component="a" :field="socialMedias.github.link" flex-1 flex="~ items-center gap-12" un-text="15 neutral-800" pr-4 nq-arrow after:ml--4 border="r-1.5 solid darkblue/10">
-                <div :class="socialMedias.github.icon" text-20 op-70 />
+              <PrismicLink v-if="socialMedias!.github" internal-component="a" :field="socialMedias!.github.link" flex-1 flex="~ items-center gap-12" un-text="15 neutral-800" pr-4 nq-arrow after:ml--4 border="r-1.5 solid darkblue/10">
+                <div :class="socialMedias!.github.icon" text-20 op-70 />
                 {{ navigation.githubLinkLabel }}
               </PrismicLink>
               <SocialMediaLogosList :items="[SocialMedia.reddit, SocialMedia.discord, SocialMedia.telegram]" flex-nowrap text-18 op-80 />

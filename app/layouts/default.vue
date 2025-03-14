@@ -1,13 +1,16 @@
 <script setup lang="ts">
 const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ darkHeader?: boolean, footerBgColor?: 'white' | 'grey' | 'darkblue', draft?: boolean, showSocialsHexagonBg?: boolean }>()
 
-const { navigation } = storeToRefs(useGlobalContent())
+const { data: navigation } = await useAsyncData(
+  'navigation',
+  async () => await useNavigation().fetchNavigation(),
+)
 </script>
 
 <template>
   <!-- eslint-disable vue/no-multiple-template-root -->
   <NuxtRouteAnnouncer />
-  <NavigationAnnouncementBanner v-if="navigation?.announcementBannerShow" v-bind="navigation" />
+  <NavigationAnnouncementBanner v-if="navigation!.announcementBannerShow" v-bind="navigation!" />
   <NavigationHeader :dark-header />
   <slot />
   <div fixed bottom-32 right-32 z-102>
