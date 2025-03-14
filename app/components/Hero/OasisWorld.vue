@@ -10,7 +10,10 @@ defineProps<{
   label: KeyTextField
 }>()
 
-const { socialMedias } = useGlobalContent()
+const { data: socialMedias } = await useAsyncData(
+  'social_medias ',
+  async () => await useSocialMedias().fetchSocialMedias(),
+)
 
 const scrollerContainer = useTemplateRef<HTMLDivElement>('scroller')
 const scroller = computed(() => scrollerContainer.value?.querySelector<HTMLDivElement>('ul'))
@@ -96,10 +99,10 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                   {{ label }}
                 </h4>
                 <div flex="~ gap-8 items-center" text-white f-mt-2xs>
-                  <PrismicLink :field="socialMedias.x.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
+                  <PrismicLink :field="socialMedias!.x.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
                     <div text="white/80 f-xl" i-nimiq:logos-twitter-mono transition-colors />
                   </PrismicLink>
-                  <PrismicLink :field="socialMedias.telegram.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
+                  <PrismicLink :field="socialMedias!.telegram.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
                     <div text="white/80 f-lg hocus:white" i-nimiq:logos-telegram-mono translate-x--1 translate-y-1 transition-colors />
                   </PrismicLink>
                 </div>

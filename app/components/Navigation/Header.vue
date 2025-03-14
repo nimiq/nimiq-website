@@ -3,7 +3,10 @@ import { breakpointsTailwind } from '@vueuse/core'
 
 defineProps<{ darkHeader?: boolean }>()
 
-const { navigation, hotCtaLink } = storeToRefs(useGlobalContent())
+const { data: navigation } = await useAsyncData(
+  'navigation',
+  async () => await useNavigation().fetchNavigation(),
+)
 
 // Both are needed, one relies on User Agent and the other on the window size
 const { isMobileOrTablet } = useDevice()
@@ -30,7 +33,6 @@ const transition = computed(() => {
 
 <template>
   <header
-    v-if="navigation"
     flex="~ items-center justify-between gap-x-20" fixed sticky inset-x-16 top-16 z-100 mx-16 mb-32 mt-16 rounded-8 p-16
     :class="{
       'bg-white shadow-xl': scrolled && direction === 'top',
@@ -44,9 +46,9 @@ const transition = computed(() => {
     <NuxtLink to="/">
       <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" text-24 />
     </NuxtLink>
-    <NuxtLink v-if="hotCtaLink" :to="hotCtaLink" bg="neutral/15 hocus:neutral/20" :class="{ 'children:delay-200': direction === 'bottom' }" external mr-auto gap-x-9 truncate text-neutral nq-pill children:transition-colors>
+    <NuxtLink v-if="navigation!.hotCtaLink" :to="navigation!.hotCtaLink" bg="neutral/15 hocus:neutral/20" :class="{ 'children:delay-200': direction === 'bottom' }" external mr-auto gap-x-9 truncate text-neutral nq-pill children:transition-colors>
       <div i-nimiq:flame shrink-0 />
-      <span truncate text-neutral>{{ navigation.hottext }}</span>
+      <span truncate text-neutral>{{ navigation!.hottext }}</span>
     </NuxtLink>
 
     <NavigationMobile v-if="showMobileMenu" />

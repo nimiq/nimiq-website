@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue'
-import { SocialMedia } from '~/stores/global-content'
 
-const { navigationBlocks, navigation } = storeToRefs(useGlobalContent())
-const { copyrightNotice } = useGlobalContent()
+const { data: navigation } = await useAsyncData(
+  'navigation',
+  async () => await useNavigation().fetchNavigation(),
+)
 </script>
 
 <template>
@@ -51,7 +52,7 @@ const { copyrightNotice } = useGlobalContent()
             type="single"
             :collapsible="true"
           >
-            <template v-for="({ links, label }) in navigationBlocks" :key="label">
+            <template v-for="({ links, label }) in navigation!.blocks" :key="label">
               <DropdownMenuSeparator v-if="links.length" h-1 bg-neutral-300 />
 
               <AccordionItem v-if="links.length" of-hidden py-8 :value="label as string">
@@ -87,7 +88,7 @@ const { copyrightNotice } = useGlobalContent()
           </div>
 
           <p text-neutral-600 f-mt-md>
-            {{ copyrightNotice }}
+            {{ navigation!.copyrightNotice }}
           </p>
         </div>
       </DrawerContent>

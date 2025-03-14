@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { SocialMedia } from '~/stores/global-content'
-
 const { bgColor } = defineProps<{ bgColor: 'white' | 'grey' | 'darkblue' }>()
-const { navigationBlocks, navigation, copyrightNotice } = storeToRefs(useGlobalContent())
+const { data: navigation } = await useAsyncData(
+  'navigation',
+  async () => await useNavigation().fetchNavigation(),
+)
 
-const colors = getColorClass(() => bgColor)
+const colors = getColorClass(bgColor)
 </script>
 
 <template>
@@ -39,11 +40,11 @@ const colors = getColorClass(() => bgColor)
         </div>
 
         <p text-neutral-600 f-mt-md>
-          {{ copyrightNotice }}
+          {{ navigation!.copyrightNotice }}
         </p>
       </div>
 
-      <div v-for="({ areaName, label, links }) in navigationBlocks" :key="areaName" :style="`grid-area ${areaName}`">
+      <div v-for="({ areaName, label, links }) in navigation!.blocks" :key="areaName" :style="`grid-area ${areaName}`">
         <p w-full text="f-xs neutral-700/80" nq-label>
           {{ label }}
         </p>
