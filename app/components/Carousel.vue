@@ -1,7 +1,21 @@
 <script setup lang="ts" generic="T">
 const { multiple = true, items } = defineProps<{ items: T[], multiple?: boolean }>()
 
-const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canSlidePrev } = useCarousel({ multiple })
+const carousel = multiple ? useCarouselMultipleItems() : useCarousel()
+
+const {
+  scroller,
+  slideTo,
+  slideNext,
+  slidePrev,
+  canSlideNext,
+  canSlidePrev,
+} = carousel
+
+// Get activeIndex or activeIndexes based on multiple mode
+const activeIndex = multiple
+  ? (carousel as ReturnType<typeof useCarouselMultipleItems>).activeIndexes
+  : (carousel as ReturnType<typeof useCarousel>).activeIndex
 
 const indicatorsStyles = computed(() => {
   if (!multiple) {
@@ -17,15 +31,12 @@ const indicatorsStyles = computed(() => {
     const arr = (activeIndex.value as number[]).sort((a, b) => a - b)
     if (!arr.length)
       return { width: '0px', transform: 'translateX(0px)' }
-
     const firstIndex = arr[0]
     const lastIndex = arr[arr.length - 1]
     const count = lastIndex! - firstIndex! + 1
-
     // each dot is 8px wide, with 6px gap between
     const width = (count * 8) + (count - 1) * 6
     const translateX = firstIndex! * 14 // 8 + 6 = 14 per dot
-
     return {
       width: `${width}px`,
       transform: `translateX(${translateX}px)`,
