@@ -10,7 +10,7 @@ const colors = getColorClass(slice.primary.bgColor)
   <section :class="colors">
     <ul grid="~ cols-1 gap-20 md:cols-2">
       <li v-for="({ description, icon, links, pillLabel, title }, i) in slice.items" :key="i" p="32 xl:40 2xl:48" rounded-6 ring="1.5 neutral-400">
-        <div v-if="icon" :class="icon" f-text="min-58 max-64" op-60 f-mt-xs />
+        <div v-if="icon" :class="icon" f-text="~ min-58 max-64" op-60 f-mt-xs />
         <span v-if="pillLabel" nq-label f-mt-sm text="f-xs neutral-600">{{ pillLabel }}</span>
         <RichText wrapper="div" :field="title" />
         <RichText wrapper="div" :field="description" f-mt-sm>

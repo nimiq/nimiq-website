@@ -67,7 +67,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
               role="tabpanel"
               :aria-hidden="activeIndex !== i"
             >
-              <RichText wrapper="div" class="nq-prose-compact" :field="richText" pb-32 />
+              <RichText wrapper="div" nq-prose-compact :field="richText" pb-32 />
             </li>
           </ul>
         </div>

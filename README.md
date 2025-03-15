@@ -42,9 +42,6 @@ bun run dev
 
 ## TODO
 
-- [ ] Reka UI
--
-
 ## Page migration
 
 - [ ] oasis

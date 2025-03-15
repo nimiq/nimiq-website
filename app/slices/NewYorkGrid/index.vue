@@ -11,7 +11,7 @@ const colors = getColorClass(slice.primary.bgColor)
   <DefineStats v-slot="{ label, value }">
     <div flex="~ col" p="16 sm:24" rounded-6 bg-neutral-0 shadow ring="1.5 neutral-200">
       <span nq-label text="neutral-700 12">{{ label }}</span>
-      <span mt="12 sm:16" font-bold text="green 21 sm:22">{{ value }}</span>
+      <span mt="12 sm:16" font-bold text="green f-xl">{{ value }}</span>
     </div>
   </DefineStats>
 

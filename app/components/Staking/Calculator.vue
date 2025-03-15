@@ -107,7 +107,7 @@ const rewards = computed(() => calculateStakingRewards({
           <Tooltip mr-16>
             <RichText wrapper="div" :field="autoRestakeInfo" />
           </Tooltip>
-          <p text="green/60" font-bold lg:ml-auto>
+          <p text="green/60 right" w-8ch font-bold lg:ml-auto>
             +<AnimatedTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
           </p>
         </div>

@@ -29,11 +29,11 @@ const selectedItem = computed(() => items.value.find(i => i.key === selectedKey.
           {{ comingSoonLabel }}
         </p>
         <button
-          :disabled="comingSoon" flex="~ items-center gap-6" p="x-18 xl:x-24 y-12 xl:y-16" h-full whitespace-nowrap rounded-8 bg-gradient-blue op="50 selected:100 hocus:not-disabled:100" @click="selectedKey = key"
+          :disabled="comingSoon" flex="~ items-center gap-6" h-full whitespace-nowrap rounded-8 bg-gradient-blue f-px-sm f-py-xs op="50 selected:100 hocus:not-disabled:100" @click="selectedKey = key"
         >
           <template v-if="key !== 'Naka'">
             <NuxtImg :src="$prismic.asImageSrc(buttonLogo)!" h-full w-24 />
-            <span text="white xl" font-semibold>{{ key }}</span>
+            <span text="white f-xl" font-semibold>{{ key }}</span>
           </template>
           <PrismicImage v-else :field="buttonLogo" h-18 />
         </button>

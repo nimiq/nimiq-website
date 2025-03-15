@@ -43,7 +43,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
       <PrismicLink v-if="hasSecondaryLink" internal-component="a" :field="p.secondaryLink!" un-text-white font-bold nq-arrow />
     </div>
 
-    <ul v-if="hasAnApp" f-mt-40 flex="~ wrap gap-32 lg:gap-40">
+    <ul v-if="hasAnApp" f-mt-xl flex="~ wrap gap-32 lg:gap-40">
       <li v-if="hasAppStore">
         <PrismicLink internal-component="a" :field="p.appStore!">
           <NuxtImg v-if="hasAppStore" src="/assets/images/apple-store-badge.png" h="32 lg:40" alt="Get it on Apple Store" />

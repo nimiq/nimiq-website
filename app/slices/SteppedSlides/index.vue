@@ -44,7 +44,7 @@ function goToStep(step: number) {
       </li>
     </ul>
 
-    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" m-x-auto of-y-hidden nq-scrollbar-hide f-mt-2xl @scroll.passive="calculateStep">
+    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" m-x-auto of-y-hidden nq-scrollbar-hide f-pb-md f-mt-2xl @scroll.passive="calculateStep">
       <li
         v-for="(item, i) in slice.items" :key="i"
         :data-state="step - 1 === i ? 'active' : undefined" snap="center always" cursor="active:default pointer"
@@ -61,7 +61,7 @@ function goToStep(step: number) {
         <p text="neutral-800 f-xs" px="8 md:32 xl:48" nq-label f-mt-lg>
           {{ item.label }}
         </p>
-        <RichText wrapper="div" px="8 md:32 xl:48" :field="item.description" class="nq-prose-compact" f-mt-2xs text="neutral-800 children:xl" />
+        <RichText wrapper="div" px="8 md:32 xl:48" :field="item.description" nq-prose-compact f-mt-2xs text="neutral-800 children:f-xl" />
       </li>
     </ul>
   </section>
