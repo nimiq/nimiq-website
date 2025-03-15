@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue'
 
-const { data: navigation } = await useAsyncData(
-  'navigation',
-  async () => await useNavigation().fetchNavigation(),
-)
+const { data: navigation } = await useNavigation()
 </script>
 
 <template>

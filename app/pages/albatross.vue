@@ -13,7 +13,7 @@ useHead({
 const headline = computed(() => ([{ type: 'heading1', text: 'Nimiq Proof-of-Stake Testnet', spans: [] }] as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Nimiq\'s Albatross consensus algorithm running live in the Proof-of-Stake Testnet.', spans: [], direction: 'ltr' }] as RichTextField))
 
-const { canSendTx } = storeToRefs(useLiveviewTx())
+const { canSendTx } = useAlbatrossDummyTx()
 canSendTx.value = true
 </script>
 

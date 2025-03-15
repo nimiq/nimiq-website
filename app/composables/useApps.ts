@@ -2,9 +2,8 @@ import type {
   NimiqAppDocument,
   NimiqAppDocumentData,
 } from '~~/prismicio-types.js'
-import { useRuntimeConfig, useState } from '#imports'
+import { useState } from '#imports'
 import { useQuery } from '@pinia/colada'
-import { defineStore } from 'pinia'
 
 export type AppsAttributes = NimiqAppDocument['data'] & {
   color: `#${string}`
@@ -22,7 +21,7 @@ const appColor: Record<Exclude<NimiqAppDocumentData['type'], null>, string> = {
   'Promotion': '#795548', // brown
 }
 
-export const useGlobalContent = defineStore('global-content', () => {
+export function useApps() {
   const { client } = usePrismic()
 
   // Load apps data with useQuery
@@ -33,6 +32,7 @@ export const useGlobalContent = defineStore('global-content', () => {
       return res.results
     },
   })
+
   const nimiqApps = computed(() => {
     if (!apps.value)
       return {} as Record<string, AppsAttributes>
@@ -58,28 +58,8 @@ export const useGlobalContent = defineStore('global-content', () => {
     return randomApps
   }
 
-  const { supabase } = useRuntimeConfig().public
-  const getSupabaseEndpoint = (fn: string) =>
-    `${supabase.url}/rest/v1/rpc/${fn}?apikey=${supabase.key}`
-
-  // Load cryptoMap stats with useQuery
-  const { data: cryptoMapStats } = useQuery({
-    key: () => ['get_stats'],
-    query: () => $fetch<{ locations: number }>(getSupabaseEndpoint('get_stats')),
-  })
-  const cryptoMapLocationsCount = computed(() => cryptoMapStats.value?.locations || 30335)
-  const { data: cryptoMapContinentsStats } = useQuery({
-    key: () => ['get_stats_for_all_continents'],
-    query: () => $fetch<{ locations: number }>(getSupabaseEndpoint('get_stats_for_all_continents')),
-  })
-
   return {
-    cryptoMapLocationsCount,
-    cryptoMapContinentsStats,
+    nimiqApps,
     getRandomApps,
   }
-})
-
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useGlobalContent, import.meta.hot))
 }

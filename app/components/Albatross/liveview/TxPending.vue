@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { useLiveviewTx } from '~/stores/albatross/liveview/dummy-tx'
-
-const { status, error, animationActive, nonce } = storeToRefs(useLiveviewTx())
+const { status, error, animationActive, nonce } = useAlbatrossDummyTx()
 </script>
 
 <template>

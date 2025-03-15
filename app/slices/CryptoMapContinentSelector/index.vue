@@ -6,7 +6,7 @@ const props = defineProps(getSliceComponentProps<Content.CryptoMapContinentSelec
 const activeItemIndex = ref(0)
 const activeItem = computed(() => props.slice.primary.continents[activeItemIndex.value])
 
-const { cryptoMapContinentsStats: stats } = storeToRefs(useGlobalContent())
+const { cryptoMapContinentsStats: stats } = useCryptoMapStats()
 const locale = useLocale()
 
 const formatter = computed(() => new Intl.NumberFormat(locale.value, { notation: 'compact', maximumFractionDigits: 1 }))

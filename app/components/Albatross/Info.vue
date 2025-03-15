@@ -10,8 +10,7 @@ const { statsTooltipContent } = defineProps<{
   averageRewardsValue?: string
 }>()
 
-const { status, animationActive, nonce, canSendTx } = storeToRefs(useLiveviewTx())
-const { sendTx } = useLiveviewTx()
+const { status, animationActive, nonce, canSendTx, sendTx } = useAlbatrossDummyTx()
 const pillClass = computed(() => getLiveviewPillColor({ nonce: nonce.value }))
 
 const tooltipParagraphs = computed(() => {
