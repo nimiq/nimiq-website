@@ -2,18 +2,19 @@
 import { components } from '~/slices'
 
 const params = useRoute().params as { uid: string[] }
-const isGrandchildPage = params.uid.length === 2
-const uid = params.uid.at(-1) || 'home'
+const pathParams = typeof params.uid === 'string' ? [] : params?.uid.filter(Boolean) || []
+const isGrandchildPage = pathParams.length === 2
+const uid = pathParams.at(-1) || 'home'
 const isHome = uid === 'home'
 
 const { client } = usePrismic()
-
-const { data: page } = await useAsyncData('prismic-page', () => client.getByUID('page', uid))
+const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID('page', uid))
 
 // We check that the page.links is not empty if isGrandchildPage and that the links defined are the same as in the URL
 if (isGrandchildPage) {
-  const parentsLengthMatches = page.value?.data.parents.length === params.uid.length - 1
-  const parentsSubpathMatches = page.value?.data.parents.every((parent, index) => (parent as { uid: string }).uid === params.uid[index])
+  const parentsLengthMatches = page.value?.data.parents.length === pathParams.length - 1
+  const parentsSubpathMatches = page.value?.data.parents.every((parent, index) => (parent as { uid: string }).uid === pathParams[index])
+
   const notValid = !parentsLengthMatches || !parentsSubpathMatches
   if (notValid)
     throw new Error(`The page with UID "${uid}" is not valid: Check that the parents.`)

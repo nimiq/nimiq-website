@@ -76,7 +76,6 @@ export default defineConfig({
       fonts: false,
     }),
     presetAttributify(),
-    // @ts-expect-error Not sure why this type error...
     presetScalePx(),
     presetFluidSizing({ attributify: true }),
     presetGradientFn({

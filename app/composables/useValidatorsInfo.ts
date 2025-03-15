@@ -28,7 +28,7 @@ export function useValidatorsInfo() {
   const { data: validators, state: validatorsRequestState } = useQuery({
     key: () => ['validators', stakingRatio.value],
     query: async () => {
-      const validators = await $fetch<Validator[]>(`${validatorsApiBaseUrl}/api/validators`)
+      const validators = await $fetch<Validator[]>(`${validatorsApiBaseUrl}/api/v1/validators`)
       // Add reward calculation based on current staked ratio
       return validators.map(validator => ({
         ...validator,

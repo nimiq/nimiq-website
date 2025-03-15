@@ -31,7 +31,7 @@ const items = computed(() => [...props.slice.items].sort(() => Math.random() - 0
               {{ r }}{{ role.split(',').length - 1 === j ? '' : ',' }}
             </span>
           </div>
-          <RichText wrapper="div" f-mt-sm :field="description" class="nq-prose-compact" />
+          <RichText wrapper="div" :field="description" nq-prose-compact f-mt-sm />
           <ul v-if="linkedin || github || twitter" flex="~ gap-x-4" relative left--8 text-neutral-100 f-mt-xs>
             <li v-if="github">
               <NuxtLink external :to="`https://github.com/${github}`" title="Github" h-max flex rounded-4 p-8 bg="hocus:neutral/6" aria-label="Github link">
