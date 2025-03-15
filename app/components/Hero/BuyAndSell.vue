@@ -12,16 +12,16 @@ const { fiatAmount, cryptoAmount, fiatCurrency } = useSyncAmountInputs()
     <form flex="~ items-center gap-x-24" mt-40 h-max @submit.prevent>
       <div group relative>
         <AmountInput v-model="fiatAmount" required f-text-2xl />
-        <div absolute right-0 top-6 text="neutral-600 group-hover:blue/50 group-focus-within:blue!">
+        <div right-0 top-6 absolute text="neutral-600 group-hover:blue/50 group-focus-within:blue!">
           <TriangleSelect v-model:selected="fiatCurrency" :options="fiatCurrencies" />
         </div>
       </div>
-      <p h-max text-32>
+      <p text-32 h-max>
         =
       </p>
       <div group relative>
         <AmountInput v-model="cryptoAmount" required f-text-2xl />
-        <div absolute inset-y-12 right-12 font-bold transition-colors text="neutral-600 group-hover:blue/50 group-focus-within:blue!">
+        <div font-bold transition-colors inset-y-12 right-12 absolute text="neutral-600 group-hover:blue/50 group-focus-within:blue!">
           NIM
         </div>
       </div>

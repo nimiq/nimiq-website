@@ -29,15 +29,15 @@ useIntersectionObserver(articleEl, () => {
     <template #bottom>
       <div flex="~ gap-x-32 gap-y-20 wrap items-baseline">
         <SelectRoot v-model="selected">
-          <SelectTrigger flex="~ items-center gap-12" rounded-full px-16 py-10 outline-none bg-gradient-green>
+          <SelectTrigger flex="~ items-center gap-12" outline-none bg-gradient-green px-16 py-10 rounded-full>
             <SelectValue text="f-sm white" nq-label />
             <div i-nimiq:triangle-down text="10 white" />
           </SelectTrigger>
 
           <SelectPortal>
-            <SelectContent :side-offset="5" z-10 min-w-120 w-full rounded-18 bg-white shadow motion-safe:animate="fade-in duration-100ms ease-out">
+            <SelectContent :side-offset="5" rounded-18 bg-white min-w-120 w-full shadow z-10 motion-safe:animate="fade-in duration-100ms ease-out">
               <SelectViewport p-4>
-                <SelectItem v-for="v in LitepaperVersion" :key="v" :value="v" flex="~ gap-8 items-center" cursor-pointer rounded-14 px-16 py-10 outline-none transition-colors hocus:bg-neutral-200>
+                <SelectItem v-for="v in LitepaperVersion" :key="v" :value="v" flex="~ gap-8 items-center" outline-none px-16 py-10 rounded-14 cursor-pointer transition-colors hocus:bg-neutral-200>
                   <SelectItemText text="14" nq-label>
                     Version {{ v }}
                   </SelectItemText>

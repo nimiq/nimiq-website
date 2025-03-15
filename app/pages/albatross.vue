@@ -21,7 +21,7 @@ canSendTx.value = true
   <NuxtLayout dark-header footer-bg-color="darkblue">
     <HeroDefault :primary="{ headline, subline, bgColor: 'darkblue' }" />
 
-    <section class="dark" mx-0 bg-darkblue px-0 text-neutral children:max-w-none>
+    <section class="dark" bg-darkblue text-neutral mx-0 px-0 children:max-w-none>
       <div flex="~ col items-center" w-full of-x-hidden>
         <AlbatrossLiveviewBlockchain w-screen />
         <AlbatrossInfo mt="32 lg:48 xl:72" />
@@ -48,7 +48,7 @@ canSendTx.value = true
         </p>
 
         <details f-mt-md>
-          <summary flex="~ items-center justify-start gap-8 " text="neutral-800 hocus:neutral" ml-0 w-max cursor-pointer select-none font-semibold>
+          <summary flex="~ items-center justify-start gap-8 " text="neutral-800 hocus:neutral" font-semibold ml-0 w-max cursor-pointer select-none>
             <div i-nimiq:info mx-0 />
             Technical details
           </summary>
@@ -78,14 +78,14 @@ canSendTx.value = true
     <section class="dark" bg-darkblue text-neutral>
       <ul columns="1 md:2" gap-64 style="--nq-max-width: 716px">
         <li nq-prose-compact flex="~ col gap-24" f-pt-2xl children:m-0>
-          <NuxtImg src="/assets/images/albatross/micro-block.png" alt="Albatross Microblock representation" max-w-160 rounded-6 />
+          <NuxtImg src="/assets/images/albatross/micro-block.png" alt="Albatross Microblock representation" rounded-6 max-w-160 />
           <h3>
             Micro Block
           </h3>
           <p>Micro Blocks contain transactions. Creating and sharing a block is faster than one second on average, thus transactions are confirmed almost instantly.</p>
         </li>
         <li nq-prose-compact flex="~ col gap-24" f-pt-2xl children:m-0>
-          <NuxtImg src="/assets/images/albatross/skip-block.png" alt="Albatross Skip block representation" max-w-160 rounded-6 />
+          <NuxtImg src="/assets/images/albatross/skip-block.png" alt="Albatross Skip block representation" rounded-6 max-w-160 />
           <h3>
             Skip Block
           </h3>
@@ -103,7 +103,7 @@ canSendTx.value = true
           </p>
         </li>
         <li nq-prose-compact flex="~ col gap-24" f-pt-2xl children:m-0>
-          <NuxtImg src="/assets/images/albatross/macro-block.png" alt="Albatross Macro block representation" max-w-160 rounded-6 />
+          <NuxtImg src="/assets/images/albatross/macro-block.png" alt="Albatross Macro block representation" rounded-6 max-w-160 />
           <h3>
             Macro Block
           </h3>

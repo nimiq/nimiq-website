@@ -9,10 +9,10 @@ const { activeIndex, calculateStep, scroller, slideNext, slidePrev, slideTo } = 
 
 <template>
   <div flex="~ col" cursor-default>
-    <div relative mx-auto h-full max-w-full rounded="$r" :class="{ shadow }">
+    <div mx-auto h-full max-w-full relative rounded="$r" :class="{ shadow }">
       <template v-if="curtains">
-        <div pointer-events-none absolute inset-y-0 left-0 z-1 w-16 bg-gradient="to-r from-$bg to-transparent" />
-        <div pointer-events-none absolute inset-y-0 right-0 z-1 w-16 bg-gradient="to-l from-$bg to-transparent" />
+        <div w-16 pointer-events-none inset-y-0 left-0 absolute z-1 bg-gradient="to-r from-$bg to-transparent" />
+        <div w-16 pointer-events-none inset-y-0 right-0 absolute z-1 bg-gradient="to-l from-$bg to-transparent" />
       </template>
 
       <div class="arrow" :class="activeIndex > 0 ? 'visible' : 'invisible'">
@@ -20,13 +20,13 @@ const { activeIndex, calculateStep, scroller, slideNext, slidePrev, slideTo } = 
           <div i-nimiq:chevron-left />
         </button>
       </div>
-      <div z-10 mx-0 h-full rounded="$r">
+      <div mx-0 h-full z-10 rounded="$r">
         <ul
-          ref="scroller" max-w="[min(100vw,512px)]" snap="x mandatory" h-full flex of-x-auto scroll-smooth nq-scrollbar-hide rounded="$r"
+          ref="scroller" max-w="[min(100vw,512px)]" snap="x mandatory" nq-scrollbar-hide scroll-smooth flex h-full of-x-auto rounded="$r"
           @scroll.passive="calculateStep"
         >
           <!-- Slides -->
-          <li v-for="(slide, i) in slides" :key="i" snap="center always" data-slide grid="~ place-items-center" mx-8 size-full shrink-0 rounded="$r">
+          <li v-for="(slide, i) in slides" :key="i" snap="center always" grid="~ place-items-center" data-slide mx-8 shrink-0 size-full rounded="$r">
             <slot :slide />
           </li>
         </ul>
@@ -38,14 +38,14 @@ const { activeIndex, calculateStep, scroller, slideNext, slidePrev, slideTo } = 
       </div>
     </div>
 
-    <div relative mx-auto flex f-mt-lg>
+    <div mx-auto flex relative f-mt-lg>
       <button
-        v-for="(_, i) in slides" :key="i" relative size-8 rounded-full bg-neutral-400 transition-transform delay-75 first:ml-0 last:mr-4
+        v-for="(_, i) in slides" :key="i" rounded-full bg-neutral-400 size-8 transition-transform delay-75 relative first:ml-0 last:mr-4
         :class="activeIndex === i ? 'ml-8 mr-8 scale-0' : 'ml-4 mr-4 scale-100'" :title="`Go to slide ${i}`"
         @click="() => slideTo(i)"
       />
-      <div pointer-events-none absolute h-8 w-full rounded>
-        <div h-full w-16 rounded-full bg-green transition-all duration-300 :style="`margin-left: ${16 * activeIndex - (activeIndex === 0 ? 4 : 0)}px`" />
+      <div rounded h-8 w-full pointer-events-none absolute>
+        <div rounded-full bg-green h-full w-16 transition-all duration-300 :style="`margin-left: ${16 * activeIndex - (activeIndex === 0 ? 4 : 0)}px`" />
       </div>
     </div>
   </div>

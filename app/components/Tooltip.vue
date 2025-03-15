@@ -4,14 +4,14 @@ defineProps<{ dark?: boolean }>()
 
 <template>
   <PopoverRoot>
-    <PopoverTrigger v-bind="$attrs" h-max bg-transparent>
+    <PopoverTrigger v-bind="$attrs" bg-transparent h-max>
       <slot name="trigger">
         <div i-nimiq:info text-12 text-neutral-700 />
       </slot>
     </PopoverTrigger>
     <PopoverPortal>
       <PopoverContent as-child class="tooltip-animation" :side-offset="8" :collision-padding="8" side="bottom" flex="~ col" max-w-360>
-        <div :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow dark'" z-300 rounded-8 p-16 text="neutral-900/80">
+        <div :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow dark'" p-16 rounded-8 z-300 text="neutral-900/80">
           <slot />
         </div>
         <PopoverArrow as-child>

@@ -45,27 +45,24 @@ watch(subheadlineStr, () => {
 
 <template>
   <section
-    class="dark hero-section" relative mx-0 of-hidden bg-darkblue py-0 text-neutral children:max-w-none
+    class="dark hero-section" bg-darkblue text-neutral mx-0 py-0 relative of-hidden children:max-w-none
     pt="148 md:153 lg:160"
   >
     <div class="content-wrapper z-10 children:md:mx-auto">
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text-neutral-800 />
-      <PrismicLink internal-component="a" mt-40 :field="cta" nq-arrow nq-pill-lg nq-pill-blue>
+      <PrismicLink internal-component="a" :field="cta" nq-arrow nq-pill-lg nq-pill-blue mt-40>
         {{ ctaLabel }}
       </PrismicLink>
     </div>
     <NuxtImg
-      pointer-events-none
-      absolute
-      inset-0
-      m-0
-      size-full
+
+      m-0 size-full pointer-events-none inset-0 absolute
       src="/assets/images/gods-light.webp"
       alt="Nimiq Gods Rays Background"
       class="darken blur-sm"
     />
-    <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
+    <div bg-gradient="to-b from-darkblue/0 to-darkblue" m-0 op-80 pointer-events-none inset-0 absolute />
     <Ember left-100 top="77 sm:112 md:200" :scale="1.05" />
     <Ember right-80 top-170 :scale="0.7" />
     <Ember bottom="302 md:430" left="56vw md:30vw" :scale="0.92" />

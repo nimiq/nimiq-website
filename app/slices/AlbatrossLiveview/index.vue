@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.AlbatrossLiveviewSlice>())
 </script>
 
 <template>
-  <section class="dark" mx-0 bg-darkerblue px-0 f-pt-xl children:max-w-none>
+  <section class="dark" bg-darkerblue mx-0 px-0 f-pt-xl children:max-w-none>
     <AlbatrossLiveviewBlockchain w-full />
   </section>
 </template>

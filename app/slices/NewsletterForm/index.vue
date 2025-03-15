@@ -25,7 +25,7 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
 
 <template>
   <section pt="148 md:153 lg:160" data-slice-type="newsletter-form">
-    <div px="32 md:36 lg:40" mx-auto max-w-65ch rounded-6 bg-neutral-0 py-60 shadow>
+    <div px="32 md:36 lg:40" mx-auto py-60 rounded-6 bg-neutral-0 max-w-65ch shadow>
       <h1 style="--nq-font-size-min:24;--nq-font-size-max:28" text-left>
         Nimiq newsletter signup
       </h1>
@@ -36,14 +36,14 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
 
         <form flex="~ col gap-y-36 lg:gap-y-40" mt="36 lg:40" @submit.prevent="() => submitForm()">
           <fieldset>
-            <legend text="14 neutral" ml--2 nq-label>
+            <legend text="14 neutral" nq-label ml--2>
               Your email*
             </legend>
-            <input v-model="email" type="email" placeholder="Email address" required rounded-full mt="12 lg:16" nq-input-box>
+            <input v-model="email" type="email" placeholder="Email address" mt="12 lg:16" required nq-input-box rounded-full>
           </fieldset>
 
           <fieldset>
-            <legend text="14 neutral" ml--2 nq-label>
+            <legend text="14 neutral" nq-label ml--2>
               Communication permission*
             </legend>
             <p mt="12 lg:16">
@@ -57,7 +57,7 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
           </fieldset>
 
           <fieldset flex="~ col gap-y-20 lg:gap-y-24">
-            <legend text="14 neutral" ml--2 nq-label>
+            <legend text="14 neutral" nq-label ml--2>
               Your interests
             </legend>
             <p mt-20 lg:mt-24>
@@ -78,7 +78,7 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
             </div>
           </fieldset>
 
-          <button self-end :class="{ 'nq-arrow': status === 'idle' }" nq-pill-lg nq-pill-blue>
+          <button :class="{ 'nq-arrow': status === 'idle' }" nq-pill-lg nq-pill-blue self-end>
             <span v-if="status === 'idle'">
               Subscribe
             </span>
@@ -95,7 +95,7 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
           There was an error while subscribing to the newsletter. Please try again later.
         </p>
 
-        <pre rounded-6 px-12 py-10 f-mt-xs>
+        <pre px-12 py-10 rounded-6 f-mt-xs>
           {{ error }}
         </pre>
       </div>

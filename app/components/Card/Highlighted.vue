@@ -17,11 +17,11 @@ defineProps<{
 </script>
 
 <template>
-  <div flex="~ wrap items-center gap-8" h-full rounded-6 bg-neutral-0 shadow f-pt-xs>
-    <div w-320 rounded-4 stack>
-      <PrismicImage :field="screenshot!" h-auto max-h-full max-w-full rounded-4 object-cover />
+  <div flex="~ wrap items-center gap-8" rounded-6 bg-neutral-0 h-full shadow f-pt-xs>
+    <div stack rounded-4 w-320>
+      <PrismicImage :field="screenshot!" rounded-4 h-auto max-h-full max-w-full object-cover />
     </div>
-    <div flex="~ col gap-12" nq-prose-compact flex-1 p-24>
+    <div flex="~ col gap-12" nq-prose-compact p-24 flex-1>
       <h3>{{ name }}</h3>
       <RichText wrapper="div" text-neutral-900 f-pt-2xs :field="description" />
       <PrismicLink :field="linkHref" nq-arrow nq-pill-blue f-mt-xl>
