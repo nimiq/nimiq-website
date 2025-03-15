@@ -13,7 +13,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
     <p text-neutral-800 f-mt-xs>
       This is a preview of the live blockchain
     </p>
-    <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary @close="activeIndex = 0">
+    <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary outline="~ 1.5 neutral-500" f-mt-sm @close="activeIndex = 0">
       <template #trigger>
         <div i-custom:cli-docs mr-8 />
         <span>{{ buttonLabel }}</span>
