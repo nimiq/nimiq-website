@@ -2,34 +2,7 @@ import { readFile } from 'node:fs/promises'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 import { presetNimiq } from 'nimiq-css'
 import { defineConfig, presetAttributify, presetIcons, presetWind3, transformerDirectives } from 'unocss'
-import { presetFluidSizing } from 'unocss-preset-fluid-sizing'
-import { presetGradientFn } from 'unocss-preset-gradient-fn'
-import { presetScalePx } from 'unocss-preset-scale-px'
-
-function stakingGradient(t: number): number {
-  function easeInOutCubic(x: number) {
-    return x < 0.5
-      ? 4 * x * x * x
-      : 1 - (-2 * x + 2) ** 3 / 2
-  }
-  if (t <= 0 || t >= 1)
-    return 0
-
-  if (t < 0.25) {
-    // scale t from [0..0.25] to [0..1]
-    const scale = t / 0.25
-    return easeInOutCubic(scale)
-  }
-  else if (t < 0.75) {
-    return 1
-  }
-  else {
-    // scale t from [0.75..1] to [0..1]
-    const scale = (t - 0.75) / 0.25
-    // ease down from 1 to 0
-    return 1 - easeInOutCubic(scale)
-  }
-}
+import { presetOnmax } from 'unocss-preset-onmax'
 
 export default defineConfig({
   rules: [
@@ -42,11 +15,10 @@ export default defineConfig({
     ['bg-darkerblue-to-purple', 'bg-gradient-fn-to-b bg-gradient-fn-from-#17182a bg-gradient-fn-to-#3d4383 bg-gradient-fn-ease'],
     ['bg-purple-to-blue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#3d4383 bg-gradient-fn-to-#0582CA bg-gradient-fn-ease'],
     ['bg-blue-to-darkerblue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#0582CA bg-gradient-fn-to-#17182a bg-gradient-fn-ease'],
-    ['stack', 'w-full grid grid-cols-1 grid-rows-1 children:row-span-full children:col-span-full children:self-center children:justify-self-center'],
-
     [/^nq-grid-(\d+)$/, ([, d]) => `grid cols-[repeat(auto-fit,min(calc(100vw-64px),${d}px))] gap-32 md:gap-40 lg:gap-48 xl:gap-64`],
   ],
   variants: [
+    // TODO Move variants to onmaxPreset?
     (matcher) => {
       if (!matcher.startsWith('group-has-focus-visible:'))
         return matcher
@@ -76,13 +48,7 @@ export default defineConfig({
       fonts: false,
     }),
     presetAttributify(),
-    presetScalePx(),
-    presetFluidSizing({ attributify: true }),
-    presetGradientFn({
-      customFunctions: {
-        stakingGradient,
-      },
-    }),
+    presetOnmax(),
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/logos'),
