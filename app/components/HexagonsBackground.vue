@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 const { bgColor, withSocials = false } = defineProps<{ bgColor: 'white' | 'grey' | 'darkblue', withSocials?: boolean }>()
 
-const { socialMedias } = await useSocialMedias()
+const { data: socialMedias } = await useSocialMedias()
 
 const colors = getColorClass(() => bgColor)
 

@@ -1,8 +1,5 @@
 <script setup lang="ts">
-const { data: socialMedias } = await useAsyncData(
-  'social_medias ',
-  async () => await useSocialMedias().fetchSocialMedias(),
-)
+const { data: socialMedias } = await useSocialMedias()
 const { data: navigation } = await useNavigation()
 const internalProjectLinks = computed(() => {
   return navigation.value!.projectLinks.filter(link => link.href.link_type === 'Document')

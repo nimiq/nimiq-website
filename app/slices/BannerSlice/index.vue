@@ -4,7 +4,7 @@ import type { BannerSliceSliceDefaultItem } from '~~/prismicio-types'
 
 const props = defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
 
-const { socialMedias } = await useSocialMedias()
+const { data: socialMedias } = await useSocialMedias()
 const { getRandomApps } = useApps()
 
 // @unocss-include

@@ -10,10 +10,7 @@ defineProps<{
   label: KeyTextField
 }>()
 
-const { data: socialMedias } = await useAsyncData(
-  'social_medias ',
-  async () => await useSocialMedias().fetchSocialMedias(),
-)
+const { data: socialMedias } = await useSocialMedias()
 
 const scrollerContainer = useTemplateRef<HTMLDivElement>('scroller')
 const scroller = computed(() => scrollerContainer.value?.querySelector<HTMLDivElement>('ul'))
