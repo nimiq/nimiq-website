@@ -56,13 +56,13 @@ const activeIndexes = computed(() => slice.primary.item.filter(i => selected.val
     height: 0;
   }
   to {
-    height: var(--radix-accordion-content-height);
+    height: var(--reka-accordion-content-height);
   }
 }
 
 @keyframes slideUp {
   from {
-    height: var(--radix-accordion-content-height);
+    height: var(--reka-accordion-content-height);
   }
   to {
     height: 0;

@@ -158,7 +158,7 @@ const selectedApp = ref(0)
 
     <div flex="~ justify-center" absolute right-0 top-full z-10 min-w-full perspective-2000>
       <NavigationMenuViewport
-        transition="[width,height]" h="$radix-navigation-menu-viewport-height" animate="scale-in data-closed:scale-out" min-w="$radix-navigation-menu-viewport-width" relative z-1 mt-20 origin-top-center animate-scale-in of-hidden rounded-12 bg-white shadow duration-300
+        transition="[width,height]" h="$reka-navigation-menu-viewport-height" animate="scale-in data-closed:scale-out" min-w="$reka-navigation-menu-viewport-width" relative z-1 mt-20 origin-top-center animate-scale-in of-hidden rounded-12 bg-white shadow duration-300
       />
     </div>
   </NavigationMenuRoot>

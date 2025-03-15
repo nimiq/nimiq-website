@@ -36,7 +36,7 @@ function truncate(text: string) {
       <span v-else>Show more</span>
     </button>
     <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full transition-height>
-      <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatio }) in validators" :key="name" as="li" :value="address" style="--radix-accordion-content-height: 130px" relative max-w-full rounded-8 transition>
+      <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatio }) in validators" :key="name" as="li" :value="address" style="--reka-accordion-content-height: 130px" relative max-w-full rounded-8 transition>
         <AccordionTrigger rounded="8 data-open:b-0" data-open:border="1 neutral-400 b-transparent" p="x-20 lg:x-24 16" grid="~ cols-[max-content_1fr_max-content] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`" border="1 transparent" transition="[background-color,border-radius,border]" relative size-full rounded-8 delay-100 data-open:z-11 bg="neutral-200 data-open:neutral-0" @click="handleTriggerClick">
           <img :src="logo" :alt="`${name} logo`" row-span-full h-full w-40 object-contain flex="~ items-center">
           <h3 truncate font-semibold text="f-lg left">
@@ -121,13 +121,13 @@ function truncate(text: string) {
     height: 0;
   }
   to {
-    height: var(--radix-accordion-content-height);
+    height: var(--reka-accordion-content-height);
   }
 }
 
 @keyframes slideUp {
   from {
-    height: var(--radix-accordion-content-height);
+    height: var(--reka-accordion-content-height);
   }
   to {
     height: 0;

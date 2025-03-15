@@ -26,7 +26,7 @@ defineProps<{ dark?: boolean }>()
 
 <style scoped>
 .tooltip-animation {
-  transform-origin: var(--radix-tooltip-content-transform-origin);
+  transform-origin: var(--reka-tooltip-content-transform-origin);
   animation: fadeInSlideUp 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
