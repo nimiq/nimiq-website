@@ -34,8 +34,9 @@ const socialMediaConfigs: Record<SocialMediaName, Pick<SocialMediaAttributes, 'c
 }
 
 export function useSocialMedias() {
-  async function fetchSocialMedias(): Promise<Record<SocialMediaName, SocialMediaAttributes>> {
-    const { client } = usePrismic()
+  const { client } = usePrismic()
+
+  return useAsyncData('$socialMedias', async () => {
     const socialMediasData = await client.getByType('socialMedia').then(doc => doc.results!)
 
     if (!socialMediasData?.length)
@@ -51,9 +52,9 @@ export function useSocialMedias() {
       }),
     ) as Record<SocialMediaName, SocialMediaAttributes>
     return socialMedias
-  }
-
-  return {
-    fetchSocialMedias,
-  }
+  }, {
+    default() {
+      return {} as Record<SocialMediaName, SocialMediaAttributes>
+    },
+  })
 }

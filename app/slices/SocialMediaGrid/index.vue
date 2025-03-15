@@ -3,9 +3,8 @@ import type { Content, FilledContentRelationshipField } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.SocialMediaGridSlice>())
 
-const { fetchSocialMedias } = useSocialMedias()
-const { data: socialMedias } = await useAsyncData(fetchSocialMedias)
-const getSocialMediaById = (id: string) => Object.values(socialMedias).find(socialMedia => socialMedia.id === id)
+const { data: socialMedias } = await useSocialMedias()
+const getSocialMediaById = (id: string) => Object.values(socialMedias.value).find(socialMedia => socialMedia.id === id)
 
 const columns = [
   {
@@ -13,21 +12,24 @@ const columns = [
     items: props.slice.items
       .filter(i => i.category === 'NEWS & ANNOUNCEMENTS')
       .map(i => (i.socialMediaItem as FilledContentRelationshipField<'socialMedia'>).id)
-      .map(getSocialMediaById),
+      .map(getSocialMediaById)
+      .filter(Boolean),
   },
   {
     label: props.slice.primary.discussionsAndSupportLabel || '',
     items: props.slice.items
       .filter(i => i.category === 'DISCUSSIONS & SUPPORT')
       .map(i => (i.socialMediaItem as FilledContentRelationshipField<'socialMedia'>).id)
-      .map(getSocialMediaById),
+      .map(getSocialMediaById)
+      .filter(Boolean),
   },
   {
     label: props.slice.primary.cultureAndInsightsLabel || '',
     items: props.slice.items
       .filter(i => i.category === 'CULTURE & INSIGHTS')
       .map(i => (i.socialMediaItem as FilledContentRelationshipField<'socialMedia'>).id)
-      .map(getSocialMediaById),
+      .map(getSocialMediaById)
+      .filter(Boolean),
   },
 ] as { label: string, items: SocialMediaAttributes[] }[]
 </script>

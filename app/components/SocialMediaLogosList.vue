@@ -1,10 +1,7 @@
 <script setup lang="ts">
 const { items } = defineProps<{ items: SocialMediaName[] }>()
 
-const { data: socialMedias } = useAsyncData(
-  'social_medias',
-  async () => await useSocialMedias().fetchSocialMedias(),
-)
+const { data: socialMedias } = await useSocialMedias()
 const socialMediasToShow = computed(() => items.map(p => socialMedias.value![p]).filter(Boolean))
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
