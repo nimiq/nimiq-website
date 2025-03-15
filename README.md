@@ -42,6 +42,9 @@ bun run dev
 
 ## TODO
 
+- [ ] Reka UI
+-
+
 ## Page migration
 
 - [ ] oasis
@@ -65,8 +68,8 @@ bun run dev
 
 ### WIP
 
-- [ ] about - Missing roadmap section
 - [ ] Wallet - WIP
+- [ ] about - Missing roadmap section
 - [ ] roadmap - WIP
 - [ ] litepaper - WIP
 

@@ -5,7 +5,8 @@ const { client } = usePrismic()
 const { data } = await useAsyncData('technical_details', () => client.getSingle('albatrossSingleType').then(doc => doc.data))
 const { buttonLabel, slides } = data.value!
 
-const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canSlidePrev } = useCarousel()
+const carousel = useCarousel({ initialIndex: 0 })
+const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canSlidePrev } = carousel
 </script>
 
 <template>
@@ -13,7 +14,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
     <p text-neutral-800 f-mt-xs>
       This is a preview of the live blockchain
     </p>
-    <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary outline="~ 1.5 neutral-500" f-mt-sm @close="activeIndex = 0">
+    <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary outline="~ 1.5 neutral-500" f-mt-sm>
       <template #trigger>
         <div i-custom:cli-docs mr-8 />
         <span>{{ buttonLabel }}</span>
@@ -23,7 +24,14 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
       <template #top>
         <ul flex="~ gap-8" mb-32 mt--8 h-12 w-full px-8 lh-none>
           <li v-for="i in slides?.length" :key="i" flex-1>
-            <button :class="activeIndex === i - 1 ? 'bg-green' : 'bg-neutral-500'" h-4 w-full rounded-full transition-colors @click="slideTo(i - 1)" />
+            <button
+              :class="activeIndex === i - 1 ? 'bg-green' : 'bg-neutral-500'"
+              h-4 w-full rounded-full transition-colors
+              role="tab"
+              :aria-selected="activeIndex === i - 1"
+              :tabindex="activeIndex === i - 1 ? 0 : -1"
+              @click="slideTo(i - 1)"
+            />
           </li>
         </ul>
       </template>
@@ -41,17 +49,52 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 
       <template #content>
         <div relative mx="-24 lg:-40" w="[calc(100%+48px)] lg:[calc(100%+80px)]" rounded-b-8>
-          <ul ref="scroller" snap="x mandatory" flex="~ items-start gap-16" w-full of-x-auto class="nq-scrollbar-hide">
-            <li v-for="({ richText }, i) in slides" :key="i" snap="center always" data-slide w-full shrink-0 px-24>
+          <ul
+            ref="scroller"
+            role="tablist"
+            snap="x mandatory"
+            flex="~ items-start gap-16"
+            w-full of-x-auto
+            class="nq-scrollbar-hide"
+            tabindex="0"
+          >
+            <li
+              v-for="({ richText }, i) in slides"
+              :key="i"
+              snap="center always"
+              data-slide
+              w-full shrink-0 px-24
+              role="tabpanel"
+              :aria-hidden="activeIndex !== i"
+            >
               <RichText wrapper="div" class="nq-prose-compact" :field="richText" pb-32 />
             </li>
           </ul>
         </div>
         <div flex="~" border="t neutral-500" w="[calc(100%+48px)] lg:[calc(100%+80px)]" sticky bottom-0 mx="-24 lg:-40" mb--32 of-hidden lg:rounded-b-8>
-          <button :disabled="!canSlidePrev" bg="neutral-300 disabled:!neutral-200 :hocus:neutral-400" flex-1 shrink-0 py-24 transition disabled:op-70 text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900" border="r neutral-500" @click="slidePrev">
+          <button
+            :disabled="!canSlidePrev"
+            bg="neutral-300 disabled:!neutral-200 hocus:neutral-400"
+            flex-1 shrink-0 py-24
+            transition disabled:op-70
+            text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900"
+            border="r neutral-500"
+            aria-label="Previous slide"
+            @click="slidePrev"
+          >
             <div i-nimiq:chevron-left mx-auto />
           </button>
-          <button bg="neutral-300 disabled:!neutral-200 hocus:neutral-400" flex-1 text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900" shrink-0 py-24 transition border="r neutral-500" :disabled="!canSlideNext" disabled:op-70 @click="slideNext">
+          <button
+            bg="neutral-300 disabled:!neutral-200 hocus:neutral-400"
+            flex-1
+            text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900"
+            shrink-0 py-24
+            transition border="r neutral-500"
+            :disabled="!canSlideNext"
+            disabled:op-70
+            aria-label="Next slide"
+            @click="slideNext"
+          >
             <div i-nimiq:chevron-right mx-auto />
           </button>
         </div>
