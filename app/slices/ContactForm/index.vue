@@ -8,7 +8,7 @@ const colors = getColorClass(slice.primary.bgColor)
 <template>
   <section :class="colors">
     <iframe
-      mx-auto h-651 max-w-392 w-full rounded-6
+      mx-auto rounded-6 h-651 max-w-392 w-full
       src="https://notionforms.io/forms/nim-prospect-contact-form"
       frameborder="0"
     />

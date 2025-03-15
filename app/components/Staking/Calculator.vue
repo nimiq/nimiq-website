@@ -62,16 +62,16 @@ const rewards = computed(() => calculateStakingRewards({
 
 <template>
   <div flex="~ col gap-y-16 md:items-center">
-    <h2 w-max text-12 nq-label>
+    <h2 nq-label text-12 w-max>
       {{ title }}
     </h2>
-    <div ring="1.5 neutral-400" mx-auto max-w-full w-max rounded-4 bg-neutral-0 shadow flex="~ items-center wrap">
-      <div grid="~ max-md:cols-1 md:rows-[auto_1fr] gap-x-32 gap-y-12 md:flow-col " mx-auto of-auto p-32>
+    <div ring="1.5 neutral-400" mx-auto rounded-4 bg-neutral-0 max-w-full w-max shadow flex="~ items-center wrap">
+      <div grid="~ max-md:cols-1 md:rows-[auto_1fr] gap-x-32 gap-y-12 md:flow-col " mx-auto p-32 of-auto>
         <span text="max-md:center neutral-800" font-semibold>{{ stakingAmountLabel }}</span>
-        <label flex="~ items-baseline gap-8" text="neutral hocus:blue focus-within:blue" h-max w-max self-end transition-colors max-md:mx-auto>
+        <label flex="~ items-baseline gap-8" text="neutral hocus:blue focus-within:blue" h-max w-max transition-colors self-end max-md:mx-auto>
           <!-- <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none f-text-xl inputmode="decimal"> -->
-          <AmountInput v-model="amount" :decimals :min="1" style="padding:0" max-w-9ch min-w-0 w-max shadow-none outline-none text="blue f-2xl" />
-          <span flex-1 font-bold lh-none text="blue f-lg">NIM</span>
+          <AmountInput v-model="amount" :decimals :min="1" style="padding:0" outline-none max-w-9ch min-w-0 w-max shadow-none text="blue f-2xl" />
+          <span lh-none font-bold flex-1 text="blue f-lg">NIM</span>
         </label>
 
         <div flex="~ gap-8 items-center max-md:justify-center" max-md:mt-8>
@@ -84,7 +84,7 @@ const rewards = computed(() => calculateStakingRewards({
           <template #label="{ option }">
             <template v-if="stakeSupplyRatios[option] >= 0">
               <span>{{ option }}</span>
-              <div v-if="option === selectedStakedSupply && selectedStakedSupply === StakeSupply.Live" class="blink" absolute right-2 top-2 size-4 rounded-full bg-green />
+              <div v-if="option === selectedStakedSupply && selectedStakedSupply === StakeSupply.Live" class="blink" rounded-full bg-green size-4 right-2 top-2 absolute />
             </template>
           </template>
         </RadioInput>
@@ -99,7 +99,7 @@ const rewards = computed(() => calculateStakingRewards({
         </div>
         <RadioInput v-model="selectedStakingPeriod" h-max self-end max-md:mx-auto :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
       </div>
-      <div flex="~ col md:justify-center items-center md:items-end" bg="green/10" flex-1 self-stretch rounded="b-4 md:b-0 md:r-4" px-32 py-24>
+      <div flex="~ col md:justify-center items-center md:items-end" bg="green/10" rounded="b-4 md:b-0 md:r-4" px-32 py-24 flex-1 self-stretch>
         <div flex="~ items-center" text-neutral-800>
           <p mr-8>
             Return in NIM*
@@ -107,11 +107,11 @@ const rewards = computed(() => calculateStakingRewards({
           <Tooltip mr-16>
             <RichText wrapper="div" :field="autoRestakeInfo" />
           </Tooltip>
-          <p text="green/60 right" w-8ch font-bold lg:ml-auto>
+          <p text="green/60 right" font-bold w-8ch lg:ml-auto>
             +<AnimatedTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
           </p>
         </div>
-        <span text="28 green" mt-12 font-semibold lh-none>
+        <span text="28 green" lh-none font-semibold mt-12>
           +<AnimatedTweenedNumber :value="rewards.gain" :duration="1000" /> NIM
         </span>
       </div>

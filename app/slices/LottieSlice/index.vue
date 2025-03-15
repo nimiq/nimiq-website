@@ -14,7 +14,7 @@ useIntersectionObserver(section, ([entry]) => pauseAnimation.value = !entry?.isI
 </script>
 
 <template>
-  <section ref="section" bg-neutral-0 pt-0 :class="colors">
+  <section ref="section" pt-0 bg-neutral-0 :class="colors">
     <ClientOnly>
       <Vue3Lottie :animation-data pause-animation :height="168" :width="712" />
     </ClientOnly>

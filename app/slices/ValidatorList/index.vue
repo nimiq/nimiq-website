@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.ValidatorListSlice>())
 </script>
 
 <template>
-  <section relative z-11 of-y-initial bg-neutral-0>
+  <section bg-neutral-0 relative z-11 of-y-initial>
     <ValidatorList />
   </section>
 </template>

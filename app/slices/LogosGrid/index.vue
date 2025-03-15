@@ -20,7 +20,7 @@ function getCssClasses(link: LinkField) {
   <section v-if="slice.variation === 'default'" :class="colors" py-0 data-slice-type="logos-grid">
     <ul flex="~ wrap gap-x-32 gap-y-16 justify-center items-center" m-0 mb-1.5>
       <li>
-        <p text="14/16.8 neutral-700" mr-8 whitespace-nowrap nq-label>
+        <p text="14/16.8 neutral-700" nq-label mr-8 whitespace-nowrap>
           {{ slice.primary.label }}
         </p>
       </li>
@@ -34,7 +34,7 @@ function getCssClasses(link: LinkField) {
   <section v-else-if="slice.variation === 'centered'" :class="colors" pt-0 f-pt-xl data-slice-type="logos-grid">
     <ul flex="~ wrap gap-x-32 gap-y-16 justify-center items-center" m-0 mb-1.5>
       <li>
-        <p text="14/16.8 neutral-700" mr-8 whitespace-nowrap nq-label>
+        <p text="14/16.8 neutral-700" nq-label mr-8 whitespace-nowrap>
           {{ slice.primary.label }}
         </p>
       </li>

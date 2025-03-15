@@ -23,13 +23,13 @@ const selectedItem = computed(() => items.value.find(i => i.key === selectedKey.
 
 <template>
   <div>
-    <ul w="[calc(100%+64px)]" flex="~ gap-24 xl:gap-32 xl:justify-center " snap="x normal" mx--32 of-x-auto pt-18 nq-scrollbar-hide lg:pr-0>
-      <li v-for="({ buttonLogo, comingSoon, comingSoonLabel, key }) in items" :key relative shrink-0 scroll-mx="32 xl:64" first:pl-32 last:pr-32 :data-selected="selectedKey === key ? '' : undefined">
-        <p v-if="comingSoon" ring="1 neutral-500" absolute left-8 top--14 z-1 whitespace-nowrap rounded-4 bg-neutral-400 px-8 py-4 text-10 font-bold nq-label>
+    <ul w="[calc(100%+64px)]" flex="~ gap-24 xl:gap-32 xl:justify-center " snap="x normal" nq-scrollbar-hide mx--32 pt-18 of-x-auto lg:pr-0>
+      <li v-for="({ buttonLogo, comingSoon, comingSoonLabel, key }) in items" :key scroll-mx="32 xl:64" shrink-0 relative first:pl-32 last:pr-32 :data-selected="selectedKey === key ? '' : undefined">
+        <p v-if="comingSoon" ring="1 neutral-500" nq-label text-10 font-bold px-8 py-4 rounded-4 bg-neutral-400 whitespace-nowrap left-8 top--14 absolute z-1>
           {{ comingSoonLabel }}
         </p>
         <button
-          :disabled="comingSoon" flex="~ items-center gap-6" h-full whitespace-nowrap rounded-8 bg-gradient-blue f-px-sm f-py-xs op="50 selected:100 hocus:not-disabled:100" @click="selectedKey = key"
+          :disabled="comingSoon" flex="~ items-center gap-6" bg-gradient-blue rounded-8 h-full whitespace-nowrap f-px-sm f-py-xs op="50 selected:100 hocus:not-disabled:100" @click="selectedKey = key"
         >
           <template v-if="key !== 'Naka'">
             <NuxtImg :src="$prismic.asImageSrc(buttonLogo)!" h-full w-24 />

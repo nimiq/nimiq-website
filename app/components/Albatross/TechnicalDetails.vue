@@ -10,23 +10,23 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 </script>
 
 <template>
-  <section class="dark" bg-darkerblue pt-0 text-neutral>
+  <section class="dark" bg-darkerblue text-neutral pt-0>
     <p text-neutral-800 f-mt-xs>
       This is a preview of the live blockchain
     </p>
-    <Modal :name="ModalName.TechnicalDetails" text-18 nq-pill-lg nq-pill-tertiary outline="~ 1.5 neutral-500" f-mt-sm>
+    <Modal :name="ModalName.TechnicalDetails" outline="~ 1.5 neutral-500" nq-pill-lg nq-pill-tertiary text-18 f-mt-sm>
       <template #trigger>
         <div i-custom:cli-docs mr-8 />
         <span>{{ buttonLabel }}</span>
-        <div i-nimiq:info ml-8 text-11 op-60 />
+        <div i-nimiq:info text-11 ml-8 op-60 />
       </template>
 
       <template #top>
-        <ul flex="~ gap-8" mb-32 mt--8 h-12 w-full px-8 lh-none>
+        <ul flex="~ gap-8" lh-none mb-32 mt--8 px-8 h-12 w-full>
           <li v-for="i in slides?.length" :key="i" flex-1>
             <button
               :class="activeIndex === i - 1 ? 'bg-green' : 'bg-neutral-500'"
-              h-4 w-full rounded-full transition-colors
+              rounded-full h-4 w-full transition-colors
               role="tab"
               :aria-selected="activeIndex === i - 1"
               :tabindex="activeIndex === i - 1 ? 0 : -1"
@@ -48,7 +48,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
       </template>
 
       <template #content>
-        <div relative mx="-24 lg:-40" w="[calc(100%+48px)] lg:[calc(100%+80px)]" rounded-b-8>
+        <div mx="-24 lg:-40" w="[calc(100%+48px)] lg:[calc(100%+80px)]" rounded-b-8 relative>
           <ul
             ref="scroller"
             role="tablist"
@@ -62,8 +62,8 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
               v-for="({ richText }, i) in slides"
               :key="i"
               snap="center always"
-              data-slide
-              w-full shrink-0 px-24
+
+              data-slide px-24 shrink-0 w-full
               role="tabpanel"
               :aria-hidden="activeIndex !== i"
             >
@@ -71,12 +71,12 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
             </li>
           </ul>
         </div>
-        <div flex="~" border="t neutral-500" w="[calc(100%+48px)] lg:[calc(100%+80px)]" sticky bottom-0 mx="-24 lg:-40" mb--32 of-hidden lg:rounded-b-8>
+        <div flex="~" border="t neutral-500" w="[calc(100%+48px)] lg:[calc(100%+80px)]" mx="-24 lg:-40" mb--32 bottom-0 sticky of-hidden lg:rounded-b-8>
           <button
             :disabled="!canSlidePrev"
             bg="neutral-300 disabled:!neutral-200 hocus:neutral-400"
-            flex-1 shrink-0 py-24
-            transition disabled:op-70
+
+            py-24 flex-1 shrink-0 transition disabled:op-70
             text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900"
             border="r neutral-500"
             aria-label="Previous slide"
@@ -86,12 +86,12 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
           </button>
           <button
             bg="neutral-300 disabled:!neutral-200 hocus:neutral-400"
-            flex-1
+
             text="24 neutral-700 disabled:!neutral-700 hocus:neutral-900"
-            shrink-0 py-24
-            transition border="r neutral-500"
+
+            border="r neutral-500"
             :disabled="!canSlideNext"
-            disabled:op-70
+            py-24 flex-1 shrink-0 transition disabled:op-70
             aria-label="Next slide"
             @click="slideNext"
           >

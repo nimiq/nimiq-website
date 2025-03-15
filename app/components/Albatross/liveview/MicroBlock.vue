@@ -36,29 +36,29 @@ const fontSizeClass = computed(() => {
 
 <template>
   <div title="Micro Block">
-    <header v-if="block.isSkip" text="12 white center" mt--22 w-160 rounded-t-8 py-4 bg-gradient-orange nq-label>
+    <header v-if="block.isSkip" text="12 white center" bg-gradient-orange nq-label mt--22 py-4 rounded-t-8 w-160>
       Skip Block
     </header>
 
-    <div flex="~ col shrink-0" relative size-160 bg-neutral text-neutral-0 :class="!block.isSkip ? 'rounded-8' : 'rounded-b-8'">
-      <div px-16 pb-10 pt-14 flex="~ items-center justify-between" text-15>
+    <div flex="~ col shrink-0" text-neutral-0 bg-neutral size-160 relative :class="!block.isSkip ? 'rounded-8' : 'rounded-b-8'">
+      <div flex="~ items-center justify-between" text-15 px-16 pb-10 pt-14>
         <p font-bold :class="fontSizeClass">
           #{{ block.number }}
         </p>
-        <p v-if="txCount > 0" text-13 font-semibold lh-none>
+        <p v-if="txCount > 0" lh-none text-13 font-semibold>
           {{ txCount }} TX
         </p>
       </div>
 
-      <div v-if="!txCount" text="neutral-700 13 center" mt-80 grow-1 font-semibold>
+      <div v-if="!txCount" text="neutral-700 13 center" font-semibold mt-80 grow-1>
         No Transactions
       </div>
       <div v-else grow-1>
-        <AlbatrossLiveviewTransactionCanvas absolute bottom-0 left-0 origin="[0_100%]" scale-50 :nonces :hashes />
+        <AlbatrossLiveviewTransactionCanvas origin="[0_100%]" scale-50 bottom-0 left-0 absolute :nonces :hashes />
       </div>
     </div>
 
-    <footer flex="~ items-center justify-between gap-6" w-full pt-2 text="neutral-800 12">
+    <footer flex="~ items-center justify-between gap-6" pt-2 w-full text="neutral-800 12">
       <p whitespace-nowrap>
         Slot {{ block.producer.slotNumber }}
       </p>

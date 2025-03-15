@@ -34,20 +34,20 @@ useDark()
 <template>
   <NuxtLayout v-if="post">
     <div ref="articleRef">
-      <LockBadge v-if="draft" fixed bottom-32 right-32 z-102 />
+      <LockBadge v-if="draft" bottom-32 right-32 fixed z-102 />
 
       <header data-section max-w="$nq-prose-max-width" pt="148 md:153 lg:160" px="32 lg:64">
         <PrismicText wrapper="h1" :field="post.data.title" style="--nq-font-size-min: 32;--nq-font-size-max: 40" view-transition-post-title />
         <PrismicText wrapper="p" text-neutral-800 :field="post.data.subline" style="--nq-font-size-min: 18;--nq-font-size-max: 20" />
         <ArticleMetadata mt="18 lg:24" :date="new Date(post.last_publication_date)" :authors="post.data.authors.map(a => a.name).join(', ')" md:justify-center>
           <template #after>
-            <div hidden size-4 rounded-full bg-neutral-500 sm:block />
+            <div rounded-full bg-neutral-500 size-4 hidden sm:block />
             <p text-neutral-800>
               {{ readingTime }} min
             </p>
           </template>
         </ArticleMetadata>
-        <PrismicImage :field="post.data.image" mx-auto mt-104 max-w-1440 w-full rounded-8 object-contain view-transition-post-img />
+        <PrismicImage :field="post.data.image" mx-auto mt-104 rounded-8 max-w-1440 w-full object-contain view-transition-post-img />
       </header>
     </div>
     <SliceZone pt="80 lg:96" :slices="post?.data.body ?? []" :components />

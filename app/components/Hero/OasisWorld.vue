@@ -51,14 +51,14 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
 </script>
 
 <template>
-  <section of-x-clip bg-darkerblue px-0 py-0>
+  <section bg-darkerblue px-0 py-0 of-x-clip>
     <div
       class="world-container" :style="`--progress: ${progress}`"
       :class="{ first: progress < 0.33, second: progress >= 0.33 && progress < 0.66, third: progress >= 0.66 }"
-      relative aspect-2 max-w-none w-full
+      max-w-none w-full aspect-2 relative
     >
-      <div absolute left-0 top-0>
-        <div rounded="100%" class="oval" bg-neutral-100 stack children="!self-start">
+      <div left-0 top-0 absolute>
+        <div rounded="100%" class="oval" stack bg-neutral-100 children="!self-start">
           <div i-oasis-regions:europe />
           <div i-oasis-regions:central-america />
           <div i-oasis-regions:rest-of-the-world />
@@ -71,21 +71,21 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
         </div>
       </div> -->
     </div>
-    <div z-1 max-w-none w-full bg-neutral-100>
-      <div ref="scroller" relative mx-auto max-w-480 w-full>
+    <div bg-neutral-100 max-w-none w-full z-1>
+      <div ref="scroller" mx-auto max-w-480 w-full relative>
         <Carousel :items style="--px: 32px; --pb:64px">
           <template #default="{ item: { content, kind, link } }">
-            <div :class="bgColor[kind]" max-w-480 w-full rounded-8 f-pt-lg md:w-416>
+            <div :class="bgColor[kind]" rounded-8 max-w-480 w-full f-pt-lg md:w-416>
               <RichText wrapper="div" :field="content" class="dark" nq-prose-compact text-white />
               <div v-if="kind !== 'World'" flex="~ gap-8 items-center" text-white f-mt-sm>
                 <div v-for="(icon, i) in fiatIcons[kind]" :key="i" flex="~ gap-8">
-                  <div size-40 rounded-full stack ring="1.5 white/40">
+                  <div stack rounded-full size-40 ring="1.5 white/40">
                     <div :class="icon" size-24 />
                   </div>
                 </div>
                 <div i-nimiq:exchange mx-12 op-50 f-text-2xl />
                 <div v-for="(icon, i) in cryptoIcons[kind]" :key="i" flex="~ gap-8">
-                  <div size-40 rounded-full stack ring="1.5 white/40">
+                  <div stack rounded-full size-40 ring="1.5 white/40">
                     <div :class="icon" size-24 />
                   </div>
                 </div>
@@ -96,10 +96,10 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                   {{ label }}
                 </h4>
                 <div flex="~ gap-8 items-center" text-white f-mt-2xs>
-                  <PrismicLink :field="socialMedias!.x.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
+                  <PrismicLink :field="socialMedias!.x.link" internal-component="a" bg="white/20 hocus:white/40" external stack rounded-full size-40 transition-colors>
                     <div text="white/80 f-xl" i-nimiq:logos-twitter-mono transition-colors />
                   </PrismicLink>
-                  <PrismicLink :field="socialMedias!.telegram.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
+                  <PrismicLink :field="socialMedias!.telegram.link" internal-component="a" bg="white/20 hocus:white/40" external stack rounded-full size-40 transition-colors>
                     <div text="white/80 f-lg hocus:white" i-nimiq:logos-telegram-mono translate-x--1 translate-y-1 transition-colors />
                   </PrismicLink>
                 </div>

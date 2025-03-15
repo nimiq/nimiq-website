@@ -18,11 +18,11 @@ const { data: navigation } = await useNavigation()
     </DrawerTrigger>
 
     <DrawerPortal>
-      <DrawerOverlay class="fixed inset-0 bg-neutral/40" />
+      <DrawerOverlay class="bg-neutral/40 inset-0 fixed" />
       <DrawerContent
-        class="fixed bottom-0 left-0 right-0 z-100 mt-24 h-full max-h-90dvh flex flex-col rounded-t-10 bg-white p-24"
+        class="mt-24 p-24 rounded-t-10 bg-white flex flex-col h-full max-h-90dvh bottom-0 left-0 right-0 fixed z-100"
       >
-        <div class="mx-auto mb-32 h-4 w-80 flex-shrink-0 rounded-full bg-gray-300" />
+        <div class="mx-auto mb-32 rounded-full bg-gray-300 flex-shrink-0 h-4 w-80" />
         <div class="mb-16 flex gap-20">
           <PrismicLink v-if="navigation?.getStartedLinks.at(0)?.href" internal-component="a" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
             {{ navigation.getStartedLinks[0]?.label }}
@@ -35,7 +35,7 @@ const { data: navigation } = await useNavigation()
         <div of-x-hidden of-y-auto>
           <div class="my-16">
             <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" internal-component="a" :field="navigation.getStartedLinks.at(2)!.href">
-              <p text="f-sm neutral-700" font-bold nq-arrow>
+              <p text="f-sm neutral-700" nq-arrow font-bold>
                 {{ navigation.getStartedLinks[2]?.label }}
               </p>
               <p text-14 f-mt-xs>
@@ -50,11 +50,11 @@ const { data: navigation } = await useNavigation()
             :collapsible="true"
           >
             <template v-for="({ links, label }) in navigation!.blocks" :key="label">
-              <DropdownMenuSeparator v-if="links.length" h-1 bg-neutral-300 />
+              <DropdownMenuSeparator v-if="links.length" bg-neutral-300 h-1 />
 
-              <AccordionItem v-if="links.length" of-hidden py-8 :value="label as string">
+              <AccordionItem v-if="links.length" py-8 of-hidden :value="label as string">
                 <AccordionHeader>
-                  <AccordionTrigger h-45 flex flex-1 cursor-default items-center gap-x-8 bg-white px-5 leading-none outline-none>
+                  <AccordionTrigger leading-none outline-none px-5 bg-white flex flex-1 gap-x-8 h-45 cursor-default items-center>
                     <span text-12 uppercase>{{ label }}</span>
                     <div
                       class="i-nimiq:chevron-down text-10 text-neutral transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180"
@@ -62,7 +62,7 @@ const { data: navigation } = await useNavigation()
                   </AccordionTrigger>
                 </AccordionHeader>
                 <AccordionContent class="content" of-hidden>
-                  <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" internal-component="a" :field="href" w-full flex="~ items-center gap-16" whitespace-nowrap rounded-4 bg-white px-16 pb-10 pt-14 font-semibold>
+                  <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" internal-component="a" :field="href" flex="~ items-center gap-16" font-semibold px-16 pb-10 pt-14 rounded-4 bg-white w-full whitespace-nowrap>
                     {{ linkLabel }}
                   </PrismicLink>
                 </AccordionContent>
@@ -70,7 +70,7 @@ const { data: navigation } = await useNavigation()
             </template>
           </AccordionRoot>
 
-          <hr mb-32 h-1 w-full bg-neutral-300>
+          <hr mb-32 bg-neutral-300 h-1 w-full>
 
           <SocialMediaLogosList text-18 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
 
@@ -78,7 +78,7 @@ const { data: navigation } = await useNavigation()
             <NuxtLink to="/privacy-policy" class="font-semibold op-60 hocus:op-90">
               Privacy Policy
             </NuxtLink>
-            <div aria-hidden size-4 rounded-full bg-current op-40 />
+            <div aria-hidden rounded-full bg-current op-40 size-4 />
             <NuxtLink to="/cookie-policy" class="font-semibold op-60 hocus:op-90">
               Cookie Policy
             </NuxtLink>

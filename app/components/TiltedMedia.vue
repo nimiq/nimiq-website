@@ -14,7 +14,7 @@ watch([top, y], () => {
 </script>
 
 <template>
-  <div w-full of-x-clip px-32 pt-32>
+  <div px-32 pt-32 w-full of-x-clip>
     <div ref="media" style="--rotate-x:30deg;--translate-y:-100px;transform: perspective(1800px) rotateX(var(--rotate-x)) translateY(var(--translate-y))" origin="[center_70%]" transition="transform duration-350 ease-[cubic-bezier(0,0,0.25,1)]" mx-auto h-full min-h-500 children:w-full>
       <slot />
     </div>

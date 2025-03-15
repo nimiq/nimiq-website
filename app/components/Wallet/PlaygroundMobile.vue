@@ -1,10 +1,10 @@
 <template>
-  <div relative pb-32>
-    <div absolute inset-0 class="bg" left="[calc(var(--px)*-1)]" w="[calc(100%+var(--px)*2)]" top--160 z--1 />
+  <div pb-32 relative>
+    <div class="bg" left="[calc(var(--px)*-1)]" w="[calc(100%+var(--px)*2)]" inset-0 top--160 absolute z--1 />
     <WalletActionSelector mx-auto w-max />
 
-    <div w="[calc(100%+48px)]" relative left--24 aspect-0.7 size-full rounded-14 bg-neutral-300 p-8 op-50 backdrop-blur-3.5 f-mt-xl style="box-shadow: inset 0px 0px 40px #FFFFFF;">
-      <div size-full rounded-8 bg-white />
+    <div w="[calc(100%+48px)]" p-8 rounded-14 bg-neutral-300 op-50 size-full aspect-0.7 left--24 relative backdrop-blur-3.5 f-mt-xl style="box-shadow: inset 0px 0px 40px #FFFFFF;">
+      <div rounded-8 bg-white size-full />
     </div>
 
     <WalletCurrencies mt-24 />
