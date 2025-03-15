@@ -1,9 +1,11 @@
-export const useLiveviewTx = defineStore('liveview-tx', () => {
-  const canSendTx = ref(false)
+const getNonce = () => Math.round(Math.random() * (2 ** 32 - 1))
 
-  const getNonce = () => Math.round(Math.random() * (2 ** 32 - 1))
-  const nonce = ref<number>(getNonce())
-  const { matchedTxs, blockNumber } = storeToRefs(useLiveviewBlocks())
+export function useAlbatrossDummyTx() {
+  const canSendTx = useState('albatross-can-send-tx', () => false)
+  const nonce = useState('albatross-nonce', getNonce)
+  const animationActive = useState('albatross-animation-active', () => false)
+
+  const { matchedTxs, blockNumber } = useAlbatrossBlocks()
 
   const url = `${useRuntimeConfig().public.apiDomain}/api/albatross/liveview/send-dummy-tx`
   const { status, refresh: sendTxApi, error, clear } = useFetch(url, {
@@ -21,7 +23,6 @@ export const useLiveviewTx = defineStore('liveview-tx', () => {
   const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
   const MIN_ANIMATION_TIME = 400
-  const animationActive = ref(false)
   const MAX_WAIT_TIME = 6_000
 
   async function sendTx() {
@@ -47,9 +48,8 @@ export const useLiveviewTx = defineStore('liveview-tx', () => {
     await sleep(Math.max(0, MIN_ANIMATION_TIME - (Date.now() - start)))
     const matched = await Promise.race([hasBeenMatched, timeout])
 
-    if (!matched) {
+    if (!matched)
       console.warn('Transaction matching timed out after', MAX_WAIT_TIME, 'ms')
-    }
 
     nonce.value = getNonce()
     clear()
@@ -64,8 +64,4 @@ export const useLiveviewTx = defineStore('liveview-tx', () => {
     nonce,
     animationActive,
   }
-})
-
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useLiveviewTx, import.meta.hot))
 }

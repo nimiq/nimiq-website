@@ -1,10 +1,7 @@
 <script setup lang="ts">
 const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ darkHeader?: boolean, footerBgColor?: 'white' | 'grey' | 'darkblue', draft?: boolean, showSocialsHexagonBg?: boolean }>()
 
-const { data: navigation } = await useAsyncData(
-  'navigation',
-  async () => await useNavigation().fetchNavigation(),
-)
+const { data: navigation } = await useNavigation()
 </script>
 
 <template>

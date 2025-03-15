@@ -7,7 +7,7 @@ import Map from './Map.vue'
 
 const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
 
-const { cryptoMapLocationsCount: locationsCount } = storeToRefs(useGlobalContent())
+const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
 
 // const { md, xl } = useBreakpoints(breakpointsTailwind)
 

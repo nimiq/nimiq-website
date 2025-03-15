@@ -3,10 +3,7 @@ import { breakpointsTailwind } from '@vueuse/core'
 
 defineProps<{ darkHeader?: boolean }>()
 
-const { data: navigation } = await useAsyncData(
-  'navigation',
-  async () => await useNavigation().fetchNavigation(),
-)
+const { data: navigation } = await useNavigation()
 
 // Both are needed, one relies on User Agent and the other on the window size
 const { isMobileOrTablet } = useDevice()

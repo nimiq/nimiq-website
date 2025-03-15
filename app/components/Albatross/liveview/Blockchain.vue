@@ -3,7 +3,7 @@ const BLOCK_WIDTH = 208
 const TARGET_OFFSET = -BLOCK_WIDTH / 4
 const CHAIN_SPEED_FACTOR = 0.55
 
-const { blocks, batchNumber, blockNumber, status } = storeToRefs(useLiveviewBlocks())
+const { blocks, batchNumber, blockNumber, status } = useAlbatrossBlocks()
 
 const velocity = ref(0)
 const offset = ref(blocks.value.length * BLOCK_WIDTH)
@@ -40,7 +40,7 @@ watch(blocks, () => {
 }, { deep: true })
 watchEffect(() => shouldAnimate.value ? resume() : pause())
 
-const { canSendTx } = storeToRefs(useLiveviewTx())
+const { canSendTx } = useAlbatrossDummyTx()
 const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPending.vue'))
 
 const { clientNetwork } = useRuntimeConfig().public

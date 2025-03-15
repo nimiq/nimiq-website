@@ -2,7 +2,7 @@
 const allowSendTxQuery = useRouteQuery('allow-send-tx')
 const allowSendTx = computed(() => allowSendTxQuery.value === 'true')
 
-const { canSendTx } = storeToRefs(useLiveviewTx())
+const { canSendTx } = useAlbatrossDummyTx()
 watch(() => allowSendTx.value, value => canSendTx.value = value || false, { immediate: true })
 
 const theme = useRouteQuery('theme')

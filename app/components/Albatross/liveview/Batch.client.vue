@@ -5,7 +5,7 @@ const props = defineProps<{ batchNumber: number, blockNumber: number }>()
 const blocksPerBatch = 60 // TODO Add to policy
 const genesisBlockNumber = PROOF_OF_STAKE_MIGRATION_BLOCK
 
-const { microblocks } = storeToRefs(useLiveviewBlocks())
+const { microblocks } = useAlbatrossBlocks()
 
 function getBlockColor(n: number) {
   const blockNumber = genesisBlockNumber + (props.batchNumber - 1) * blocksPerBatch + n

@@ -1,5 +1,24 @@
 import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
 
+interface Validator {
+  id: number
+  name: string
+  address: string
+  fee: number
+  payoutType: string
+  payoutSchedule: string
+  description: null | string
+  accentColor: string
+  isMaintainedByNimiq: boolean
+  hasDefaultLogo: boolean
+  website: string | null
+  score: { total: number, dominance: number, reliability: number, availability: number }
+  logo?: string
+  dominanceRatio: number
+  rewardPerAnnum?: number
+  balance: number
+}
+
 export function useValidatorsInfo() {
   const config = useRuntimeConfig()
   const validatorsApiBaseUrl = config.public.validatorsApi
