@@ -74,7 +74,7 @@ footer > div {
     'contact contact'
     'meta meta';
 
-  @screen md {
+  @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
       'contact project tech'
@@ -84,7 +84,7 @@ footer > div {
       'meta community and-more';
   }
 
-  @screen lg {
+  @media (min-width: 1024px) {
     grid-template-columns: 2fr 1fr 1fr 1fr;
     grid-template-areas:
       'contact project tech apps'

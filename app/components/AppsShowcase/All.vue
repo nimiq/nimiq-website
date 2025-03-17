@@ -4,44 +4,14 @@ import { breakpointsTailwind } from '@vueuse/core'
 
 const { labelTeamNimiq } = defineProps<AppsShowcaseSliceDefaultPrimary>()
 
-const { client } = usePrismic()
-
 const { smaller, between } = useBreakpoints(breakpointsTailwind)
 const isMediumScreen = between('md', 'xl')
 const isSmallScreen = smaller('md')
 
-const priorityLevels = {
-  high: 3,
-  medium: 2,
-  low: 1,
-  null: 1,
-}
-
-enum MadeBy {
-  Anyone = 'anyone',
-  Official = 'official',
-  Community = 'community',
-}
-
-const { data: apps } = await useAsyncData('apps_showcase_all', async () => {
-  const fetchedApps = await client.getAllByType('nimiq_app').then(apps => apps.map(doc => doc.data))
-
-  return fetchedApps
-    .map(app => ({ ...app, developer: app.developer || labelTeamNimiq }))
-    .sort(() => Math.random() - 0.5)
-    .sort((a, b) => priorityLevels[b.priority_level] - priorityLevels[a.priority_level])
-})
-
-const highlightedOrder = Object.freeze(['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map', 'SuperSimpleSwap'])
-
-function sortHighlightApps(selectedApps: NimiqAppDocumentData[]) {
-  return selectedApps.sort(({ name: nameA }, { name: nameB }) =>
-    highlightedOrder.indexOf(nameB!) - highlightedOrder.indexOf(nameA!),
-  )
-}
+const { selectedApps, highlightedOrder } = useApps({ labelTeamNimiq: labelTeamNimiq! })
 
 // Getting Highlighted App Position
-function getHighlightedAppPosition({ name, isHighlighted }: NimiqAppDocumentData) {
+function getHighlightedAppPosition({ name, isHighlighted }: NimiqApp) {
   if (!isHighlighted)
     return
 
@@ -57,21 +27,6 @@ function getHighlightedAppPosition({ name, isHighlighted }: NimiqAppDocumentData
     gridRow: `${appIndex * 2 - 1}`,
   }
 }
-
-// Filtering Apps
-const selectedFilter = ref<MadeBy>(MadeBy.Anyone)
-const selectedApps = computed(() => {
-  if (!apps.value)
-    return []
-  switch (selectedFilter.value) {
-    case MadeBy.Official:
-      return sortHighlightApps(apps.value.filter(item => item.isOfficial))
-    case MadeBy.Community:
-      return apps.value.filter(item => !item.isOfficial)
-    default:
-      return sortHighlightApps(apps.value)
-  }
-})
 </script>
 
 <template>

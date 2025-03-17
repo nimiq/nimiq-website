@@ -171,6 +171,9 @@ importers:
       unocss-preset-onmax:
         specifier: ^1.0.0-beta.13
         version: 1.0.0-beta.13(@unocss/preset-wind@66.1.0-beta.5)(@unocss/webpack@66.1.0-beta.5(webpack@5.97.1(esbuild@0.25.1)))(postcss@8.5.3)(unocss-preset-animations@1.1.1(@unocss/preset-wind@66.1.0-beta.5)(unocss@66.1.0-beta.5(@unocss/webpack@66.1.0-beta.5(webpack@5.97.1(esbuild@0.25.1)))(postcss@8.5.3)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))))(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))
+      unocss-preset-scale-px:
+        specifier: 1.0.0-beta.13
+        version: 1.0.0-beta.13(@unocss/webpack@66.1.0-beta.5(webpack@5.97.1(esbuild@0.25.1)))(postcss@8.5.3)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))
       unplugin-vue-router:
         specifier: ^0.12.0
         version: 0.12.0(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
@@ -6891,6 +6894,9 @@ packages:
 
   unocss-preset-reka-ui@1.0.0-beta.13:
     resolution: {integrity: sha512-OYfQu0uJSFJu5CBgOIM2JQ61Uxhr5W1dQN5Wnrj8Mtt07DFF2QzSL+bjQbMR/RFjp6M4HWuQZJxGHnUM2FtrnA==}
+
+  unocss-preset-scale-px@1.0.0-beta.13:
+    resolution: {integrity: sha512-7OUO0iV/61UbKLlgSaIkTl57zeb1Hp65Kdldl1uxREY6awTE+yk9qnnsGM2tX62wm0V2tmJmk7sQcHm2N+L7ow==}
 
   unocss-preset-shadcn@0.5.0:
     resolution: {integrity: sha512-e/bF/+b5adcolHio3kst3WVF+f09+BiDkyTshUVqcWXB0RabQ0T8lzqfM3KAegTTi1iJo1jjCZoE88cUzaVDmQ==}
@@ -15721,6 +15727,17 @@ snapshots:
       unocss-preset-animations: 1.1.1(@unocss/preset-wind@66.1.0-beta.5)(unocss@66.1.0-beta.5(@unocss/webpack@66.1.0-beta.5(webpack@5.97.1(esbuild@0.25.1)))(postcss@8.5.3)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2)))
     transitivePeerDependencies:
       - '@unocss/preset-wind'
+      - '@unocss/webpack'
+      - postcss
+      - supports-color
+      - vite
+      - vue
+
+  unocss-preset-scale-px@1.0.0-beta.13(@unocss/webpack@66.1.0-beta.5(webpack@5.97.1(esbuild@0.25.1)))(postcss@8.5.3)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2)):
+    dependencies:
+      '@unocss/core': 66.1.0-beta.5
+      unocss: 66.1.0-beta.5(@unocss/webpack@66.1.0-beta.5(webpack@5.97.1(esbuild@0.25.1)))(postcss@8.5.3)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))
+    transitivePeerDependencies:
       - '@unocss/webpack'
       - postcss
       - supports-color
