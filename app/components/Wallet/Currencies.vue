@@ -6,7 +6,7 @@
       <div i-nimiq:logos-usdc-mono title="USDC" />
       <div i-nimiq:logos-usdt-mono title="USDT" />
     </div>
-    <h2 text="white/60 f-xs center" nq-label font-bold>
+    <h2 text="white/60 f-xs center" font-bold nq-label>
       Supported currencies
     </h2>
   </div>

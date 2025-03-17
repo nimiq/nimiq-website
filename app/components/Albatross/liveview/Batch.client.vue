@@ -55,23 +55,23 @@ const batchNumberClass = computed(() => {
 
 <template>
   <div
-    max-w="[calc(100vw-12px)] md:full" flex="~ justify-between items-start" px-16 w-388
+    max-w="[calc(100vw-12px)] md:full" flex="~ justify-between items-start" w-388 px-16
     @click="() => toggleColors()"
   >
     <div flex="~ col wrap" h="56 md:44">
       <div
-        v-for="n in createdBlockCount" :key="`micro-block-${n}`" m-4 rounded-2 size-6 inline-block transition-colors
+        v-for="n in createdBlockCount" :key="`micro-block-${n}`" m-4 inline-block size-6 rounded-2 transition-colors
         :style="{ backgroundColor: showColors ? getBlockColor(n) : 'rgb(var(--nq-neutral-800) / 1)' }"
       />
       <div
         v-for="n in remainingBlockCount" :key="`micro-block-${createdBlockCount + n}`"
-        m-4 rounded-2 bg-neutral-500 size-6 inline-block
+        m-4 inline-block size-6 rounded-2 bg-neutral-500
       />
     </div>
 
     <div
       text="14 neutral-900 center" flex="~ justify-center col items-center"
-      font-bold ml-4 rounded-8 bg-neutral-600 op-60 shrink-0 size-44 transition-all relative :class="batchClass"
+      relative ml-4 size-44 shrink-0 rounded-8 bg-neutral-600 font-bold op-60 transition-all :class="batchClass"
     >
       <span>M</span>
       <span :class="batchNumberClass">{{ batchNumber }}</span>

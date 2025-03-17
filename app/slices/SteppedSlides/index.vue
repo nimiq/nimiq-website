@@ -35,22 +35,22 @@ function goToStep(step: number) {
 </script>
 
 <template>
-  <section mx-0 px-0 bg-neutral-0 of-x-clip children:max-w-none>
+  <section mx-0 of-x-clip bg-neutral-0 px-0 children:max-w-none>
     <Headline :headline="slice.primary.headline" :subline="slice.primary.description" px="$px" />
 
     <ul flex="~ gap-6" mx-auto f-mt-lg>
-      <li v-for="i in slice.items.length" :key="i" :data-state="step - 1 === i ? 'active' : undefined" flex-1 max-w-384>
+      <li v-for="i in slice.items.length" :key="i" :data-state="step - 1 === i ? 'active' : undefined" max-w-384 flex-1>
         <button bg="neutral-400 hocus:neutral-500 data-active:green" mx-auto h-4 w-full transition-colors />
       </li>
     </ul>
 
-    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" nq-scrollbar-hide m-x-auto of-y-hidden f-pb-md f-mt-2xl @scroll.passive="calculateStep">
+    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" m-x-auto of-y-hidden nq-scrollbar-hide f-pb-md f-mt-2xl @scroll.passive="calculateStep">
       <li
         v-for="(item, i) in slice.items" :key="i"
         :data-state="step - 1 === i ? 'active' : undefined" snap="center always" cursor="active:default pointer"
-        op="20 data-active:100" shrink-0 max-w-784 w-full transition-opacity duration-400 @click="() => goToStep(i + 1)"
+        op="20 data-active:100" max-w-784 w-full shrink-0 transition-opacity duration-400 @click="() => goToStep(i + 1)"
       >
-        <PrismicImage v-if="'image' in item" :field="item.image" rounded-6 shadow object-cover />
+        <PrismicImage v-if="'image' in item" :field="item.image" rounded-6 object-cover shadow />
         <!-- <VLottie
           v-else-if="slice.variation === 'withAnimations'"
           :src="item.source.url"

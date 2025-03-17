@@ -1,7 +1,7 @@
 <template>
   <div flex="~ col" pointer-events-none>
-    <div class="grid-container" flex="~ basis-200" bg-inherit perspective-1200 relative before="absolute inset-0" />
-    <div inset-0 absolute class="retro-overlay" />
+    <div class="grid-container" flex="~ basis-200" relative perspective-1200 bg-inherit before="absolute inset-0" />
+    <div absolute inset-0 class="retro-overlay" />
   </div>
 </template>
 

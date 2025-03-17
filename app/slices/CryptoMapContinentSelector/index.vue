@@ -67,7 +67,7 @@ const allowMapInteraction = ref(false)
 </script>
 
 <template>
-  <section grid="~ cols-1 lg:cols-[min(calc(100vw-64px),411px)_1fr] gap-x-24" max-w="none lg:$nq-max-width" px-0 pb-0 bg-neutral-100 w-screen max-lg:mx-0 max-lg:children:max-w-none data-slice-type="crypto-map-continent-selector">
+  <section grid="~ cols-1 lg:cols-[min(calc(100vw-64px),411px)_1fr] gap-x-24" max-w="none lg:$nq-max-width" w-screen bg-neutral-100 px-0 pb-0 max-lg:mx-0 max-lg:children:max-w-none data-slice-type="crypto-map-continent-selector">
     <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
       <li
         v-for="({ label, hasCryptoCities, hasLocations, cryptoCitiesCount, locationsCount, svg, selected }, i) in continents"
@@ -76,16 +76,16 @@ const allowMapInteraction = ref(false)
         rounded-8
         :data-selected="selected ? '' : undefined"
       >
-        <button p="x-24 y-20" nq-hoverable w-full relative of-hidden lg:max-w-410 md:min-w-385 max-md:selected:bg-white @click="activeItemIndex = i">
-          <p text="20/26 lg:22/28.6" font-semibold text-left whitespace-nowrap>
+        <button p="x-24 y-20" relative w-full of-hidden nq-hoverable lg:max-w-410 md:min-w-385 max-md:selected:bg-white @click="activeItemIndex = i">
+          <p text="20/26 lg:22/28.6" whitespace-nowrap text-left font-semibold>
             {{ label }}
           </p>
           <div flex="~ gap-12 items-center" mt="8 md:12" h-21>
             <div v-if="hasCryptoCities" flex="~ gap-6 items-center">
               <div i-nimiq:logos-cryptocity text-20 />
-              <span text="14 md:15 neutral-800" font-semibold whitespace-nowrap>{{ cryptoCitiesCount }}</span>
+              <span text="14 md:15 neutral-800" whitespace-nowrap font-semibold>{{ cryptoCitiesCount }}</span>
             </div>
-            <div v-if="hasCryptoCities && hasLocations" bg-neutral-500 w-1 self-stretch />
+            <div v-if="hasCryptoCities && hasLocations" w-1 self-stretch bg-neutral-500 />
             <p text="14 md:15 neutral-800" whitespace-nowrap>
               <span font-semibold>
                 {{ locationsCount }}
@@ -93,20 +93,20 @@ const allowMapInteraction = ref(false)
               locations
             </p>
           </div>
-          <div pointer invisible pointer-events-none inset-y-0 right-0 absolute of-hidden md:visible>
-            <div :class="svg" text-neutral-500 transition-colors relative />
+          <div pointer pointer-events-none invisible absolute inset-y-0 right-0 of-hidden md:visible>
+            <div :class="svg" relative text-neutral-500 transition-colors />
           </div>
         </button>
       </li>
       <!-- Sorry if you're from Antarctica, we don't have any locations there **yet**. -->
     </ul>
-    <div grid="~ *:col-span-full *:row-span-full" mx-auto w-full self-stretch justify-self-stretch max-lg:mt-24 max-lg:px-32 max-lg:w-full lg:self-stretch>
+    <div grid="~ *:col-span-full *:row-span-full" mx-auto w-full self-stretch justify-self-stretch max-lg:mt-24 max-lg:w-full lg:self-stretch max-lg:px-32>
       <transition leave-active-class="transition duration-500 [&_:is(button,p)]:duration-300 ease-nq [&_:is(button,p)]:ease-out [&_:is(button,p)]:transition" leave-to-class="op-0 [&_button]:translate-y-96 [&_p]:translate-y--96 [&_:is(button,p)]:op-0" leave-from-class="op-100 [&_p]:translate-y-0 [&_button]:translate-y-0 [&_:is(button,p)]:op-100">
-        <div v-if="!allowMapInteraction" flex="~ col gap-8 items-center justify-center" bg-darkblue rounded-8 bg-op-80 z-1>
+        <div v-if="!allowMapInteraction" flex="~ col gap-8 items-center justify-center" z-1 rounded-8 bg-darkblue bg-op-80>
           <p text="white min-18 max-24" font-bold>
             Explore in {{ activeItem?.label }}
           </p>
-          <button nq-pill-lg nq-pill-blue gap-12 @click="allowMapInteraction = true">
+          <button gap-12 nq-pill-lg nq-pill-blue @click="allowMapInteraction = true">
             <div i-nimiq:pin />
             <span text-white>Let's go!</span>
           </button>
@@ -117,13 +117,13 @@ const allowMapInteraction = ref(false)
         ref="iframe"
 
         loading="lazy"
-        aspect="9/16 lg:initial" rounded-8 w-full z-1 lg:h-full max-lg:max-h-80dvh ring="1.5 neutral-200" title="Crypto Map"
+        aspect="9/16 lg:initial" z-1 w-full rounded-8 lg:h-full max-lg:max-h-80dvh ring="1.5 neutral-200" title="Crypto Map"
         :src="cryptoMapUrl"
         sandbox="allow-scripts allow-same-origin allow-popups"
         frameborder="0"
       />
     </div>
-    <div flex="~ col gap-16 md:items-center" w="[calc(100%-64px)] lg:full" px-24 py-32 rounded-b-12 bg-neutral-400 top--8 relative max-lg:mx-32 lg:col-start-2 lg:row-start-2>
+    <div flex="~ col gap-16 md:items-center" w="[calc(100%-64px)] lg:full" relative top--8 rounded-b-12 bg-neutral-400 px-24 py-32 lg:col-start-2 lg:row-start-2 max-lg:mx-32>
       <div i-nimiq:logos-cryptocity-horizontal h-32 w-155 />
       <RichText wrapper="div" :field="slice.primary.cryptocitiesDescription" max-w-40ch md:text-center />
       <PrismicLink :field="slice.primary.cryptocitiesCta" nq-arrow nq-pill-blue />

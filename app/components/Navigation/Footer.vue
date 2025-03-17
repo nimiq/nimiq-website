@@ -20,7 +20,7 @@ const colors = getColorClass(bgColor)
       </div>
 
       <div text="f-sm neutral-700" self-end area-meta>
-        <NuxtLink to="/" group flex w-max>
+        <NuxtLink to="/" group w-max flex>
           <div i-nimiq:logos-nimiq-horizontal-mono op-80 f-text-xl group-hocus:i-nimiq:logos-nimiq-horizontal />
         </NuxtLink>
         <p v-if="navigation?.nimiqShortDescription" f-mt-xs>
@@ -30,7 +30,7 @@ const colors = getColorClass(bgColor)
           <NuxtLink to="/privacy-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
             Privacy Policy
           </NuxtLink>
-          <div aria-hidden rounded-full bg-current op-40 size-4 />
+          <div aria-hidden size-4 rounded-full bg-current op-40 />
           <NuxtLink to="/cookie-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
             Cookie Policy
           </NuxtLink>
@@ -42,7 +42,7 @@ const colors = getColorClass(bgColor)
       </div>
 
       <div v-for="({ areaName, label, links }) in navigation!.blocks" :key="areaName" :style="`grid-area ${areaName}`">
-        <p text="f-xs neutral-700/80" nq-label w-full>
+        <p text="f-xs neutral-700/80" w-full nq-label>
           {{ label }}
         </p>
         <ul f-mt-md :aria-label="`${label} links`" role="list">
@@ -54,9 +54,9 @@ const colors = getColorClass(bgColor)
         </ul>
       </div>
 
-      <hr bg-neutral-400 h-1 w-full relative sr-only area-hr-1>
-      <hr bg-neutral-400 h-1 w-full relative sr-only area-hr-2 lg:hidden>
-      <hr bg-neutral-400 h-1 w-full relative sr-only area-hr-3 md:hidden>
+      <hr sr-only relative h-1 w-full bg-neutral-400 area-hr-1>
+      <hr sr-only relative h-1 w-full bg-neutral-400 area-hr-2 lg:hidden>
+      <hr sr-only relative h-1 w-full bg-neutral-400 area-hr-3 md:hidden>
     </div>
   </footer>
 </template>

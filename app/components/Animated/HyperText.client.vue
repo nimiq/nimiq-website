@@ -49,12 +49,12 @@ useIntervalFn(() => {
 </script>
 
 <template>
-  <div flex cursor-default scale-100 of-hidden :style="`width: ${text.length}ch`">
+  <div flex scale-100 cursor-default of-hidden :style="`width: ${text.length}ch`">
     <div flex>
       <span
         v-for="(letter, i) in displayText"
         :key="i"
-        lh="[1.1]" font-mono w-12 inline-block
+        lh="[1.1]" inline-block w-12 font-mono
         :class="{
           'text-blue': letter !== text[i],
         }"

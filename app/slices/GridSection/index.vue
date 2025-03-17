@@ -30,7 +30,7 @@ const colors = getColorClass(props.slice.primary.bgColor)
           :key="i"
           internal-component="a"
           flex="~ row gap-20 items-center" :style="`--c: ${color}`"
-          :field="linkHref" group nq-hoverable p-20
+          :field="linkHref" group p-20 nq-hoverable
         >
           <div :class="iconName" text="32 md:48 $c group-hocus:!white" transition-colors />
           <RichText wrapper="div" :field="headline" whitespace-nowrap flex="~ items-center" class="raw" text="group-hocus:children:!white" />
@@ -40,23 +40,23 @@ const colors = getColorClass(props.slice.primary.bgColor)
     <template v-else-if="slice.variation === 'threeColumnsImageText'">
       <ul flex="~ col lg:row gap-x-24 gap-y-40 items-center" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1>
-          <ResponsiveImage :image w="initial md:w-max lg:initial" rounded flex max-h-229 object-contain lg:mx-auto dark:bg-neutral-200 />
+          <ResponsiveImage :image w="initial md:w-max lg:initial" max-h-229 flex rounded object-contain lg:mx-auto dark:bg-neutral-200 />
           <PrismicText wrapper="h3" text="20/26 md:center" mt-24 max-w-24ch lg:mx-auto :field="headline" />
         </li>
       </ul>
     </template>
     <template v-else-if="slice.variation === 'threeColumnsIconsText'">
       <ul flex="~ col lg:row gap-y-24 lg:items-center" w-full>
-        <li v-for="({ headline, image }, i) in slice.items" :key="i" py-24 flex-1 border="b-1 lg:b-0 lg:r-1 last:0 white/15 solid">
-          <NuxtImg :src="$prismic.asImageSrc(image)!" rounded-8 h-80 object-contain lg:mx-auto />
-          <PrismicText wrapper="h3" text="green md:center f-xl" font-bold max-w-20ch f-mt-xs lg:mx-auto :field="headline" />
+        <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1 py-24 border="b-1 lg:b-0 lg:r-1 last:0 white/15 solid">
+          <NuxtImg :src="$prismic.asImageSrc(image)!" h-80 rounded-8 object-contain lg:mx-auto />
+          <PrismicText wrapper="h3" text="green md:center f-xl" max-w-20ch font-bold f-mt-xs lg:mx-auto :field="headline" />
         </li>
       </ul>
     </template>
     <template v-else-if="slice.variation === 'threeColumnsIconsInline'">
       <ul flex="~ col lg:row gap-y-24 lg:items-center" w-full>
         <li v-for="({ content, icon }, i) in slice.primary.items" :key="i" flex-1 pb="24 last:0 lg:0" lg:p="x-32 first:l-0 last:r-0" border="b-1 lg:b-0 lg:r-1 last:0 neutral/15 solid" flex="~ gap-x-12 items-center">
-          <div style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)" stack rounded-full shrink-0 size-32>
+          <div style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)" size-32 shrink-0 rounded-full stack>
             <div :class="icon" text="16 white" />
           </div>
           <RichText wrapper="div" text="f-lg neutral-900" :field="content" />
