@@ -50,16 +50,16 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section nq-overlaps bg-neutral-0 relative z-10 :class="{ 'pb-0': slice.variation !== 'default' }" data-slice-type="banner">
+  <section nq-overlaps relative z-10 bg-neutral-0 :class="{ 'pb-0': slice.variation !== 'default' }" data-slice-type="banner">
     <template v-if="slice.variation === 'default'">
-      <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" mx-auto px-32 rounded-8 w-full shadow relative of-hidden>
-        <PrismicLink v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor text-white rounded-full size-104 absolute>
+      <div v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items" :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`" :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative mx-auto w-full of-hidden rounded-8 px-32 shadow>
+        <PrismicLink v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a" :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1" :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full text-white>
           <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />
           <PrismicImage v-else :field="icon" pointer-events-none scale-125 />
-          <div :style="{ borderColor: color }" top="50%" left="50%" border="2 solid" translate-x="-50%" translate-y="-50%" rounded-full op-0 size-full pointer-events-none scale-100 absolute />
+          <div :style="{ borderColor: color }" top="50%" left="50%" border="2 solid" translate-x="-50%" translate-y="-50%" pointer-events-none absolute size-full scale-100 rounded-full op-0 />
         </PrismicLink>
-        <div v-if="bgColor === 'white'" class="curtain" pointer-events-none inset-0 absolute />
-        <div v-else-if="bgColor === 'green'" bg-gradient-green pointer-events-none inset-0 absolute />
+        <div v-if="bgColor === 'white'" class="curtain" pointer-events-none absolute inset-0 />
+        <div v-else-if="bgColor === 'green'" pointer-events-none absolute inset-0 bg-gradient-green />
 
         <div v-if="backgroundPattern === 'Nimiq Hexagon'" text="200 md:300 lg:400" pointer-events-none absolute bottom="-10 lg:-0.2775em" right="-0.2em lg:-0.25em">
           <div i-nimiq:logos-nimiq-mono text-transparent>
@@ -67,9 +67,9 @@ const items = computed(() => {
           </div>
         </div>
 
-        <div max-w-full relative z-10 :class="{ 'lg:max-w-60ch md:items-center flex-col md:mx-auto w-max': hasBgItems, 'items-end w-full': !hasBgItems }" flex="~ wrap justify-between">
+        <div relative z-10 max-w-full :class="{ 'lg:max-w-60ch md:items-center flex-col md:mx-auto w-max': hasBgItems, 'items-end w-full': !hasBgItems }" flex="~ wrap justify-between">
           <div max-w-60ch>
-            <p v-if="label" :class="{ 'f-mt-md': bgColor !== 'green', 'f-mt-xs': bgColor === 'green' }" nq-label text-12>
+            <p v-if="label" :class="{ 'f-mt-md': bgColor !== 'green', 'f-mt-xs': bgColor === 'green' }" text-12 nq-label>
               {{ label }}
             </p>
             <RichText wrapper="div" :field="headline" :class="{ 'md:text-center': backgroundPattern === 'Nimiq Apps' || backgroundPattern === 'Social Media', 'children:!text-white': bgColor === 'green' }" />
@@ -82,31 +82,31 @@ const items = computed(() => {
       </div>
     </template>
     <div v-else-if="slice.variation === 'staking'" w-full>
-      <div size-full inset-0 absolute of-hidden>
-        <AnimatedCircleRipple size-110vw max-w-none bottom--300 left--5vw absolute />
-        <div h-200 inset-x-0 top-0 absolute bg-gradient="to-b from-neutral-0 to-transparent" />
-        <div h-200 inset-x-0 bottom-0 absolute bg-gradient="to-b from-transparent to-green" />
+      <div absolute inset-0 size-full of-hidden>
+        <AnimatedCircleRipple absolute bottom--300 left--5vw size-110vw max-w-none />
+        <div absolute inset-x-0 top-0 h-200 bg-gradient="to-b from-neutral-0 to-transparent" />
+        <div absolute inset-x-0 bottom-0 h-200 bg-gradient="to-b from-transparent to-green" />
       </div>
-      <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" rounded-8 bg-neutral-0 gap-x-24 shadow relative>
-        <RichText wrapper="div" :field="slice.primary.headline" text="f-4xl neutral" nq-raw font-bold max-w-24ch />
+      <div grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative gap-x-24 rounded-8 bg-neutral-0 shadow>
+        <RichText wrapper="div" :field="slice.primary.headline" text="f-4xl neutral" nq-raw max-w-24ch font-bold />
         <PrismicLink :field="slice.primary.cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-md />
-        <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:mt-0 lg:row-span-2>
+        <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
           <li v-for="({ description, icon }, i) in slice.primary.requirements" :key="i" flex="~ gap-12 items-center">
-            <div rounded-full bg-green size-32 flex="~ items-center justify-center">
-              <div :class="[icon!, { 'bottom--2': icon === 'i-nimiq:document-filled' }]" text="18 white" shrink-0 relative />
+            <div size-32 rounded-full bg-green flex="~ items-center justify-center">
+              <div :class="[icon!, { 'bottom--2': icon === 'i-nimiq:document-filled' }]" text="18 white" relative shrink-0 />
             </div>
             <p>{{ description }}</p>
           </li>
         </ul>
       </div>
     </div>
-    <div v-else-if="slice.variation === 'buyAndSell'" grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" rounded-8 bg-neutral-0 gap-x-24 w-full shadow relative>
-      <RichText wrapper="div" :field="slice.primary.headline" text="44 neutral" nq-raw font-bold max-w-24ch />
+    <div v-else-if="slice.variation === 'buyAndSell'" grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative w-full gap-x-24 rounded-8 bg-neutral-0 shadow>
+      <RichText wrapper="div" :field="slice.primary.headline" text="44 neutral" nq-raw max-w-24ch font-bold />
       <PrismicLink :field="slice.primary.cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-md />
-      <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:mt-0 lg:row-span-2>
+      <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
         <li v-for="({ description, icon }, i) in slice.primary.features" :key="i" flex="~ gap-12 items-center">
-          <div rounded-full bg-gold size-32 flex="~ items-center justify-center">
-            <div :class="[icon!, { 'bottom--2': icon === 'i-nimiq:document-filled' }]" text="18 white" shrink-0 relative />
+          <div size-32 rounded-full bg-gold flex="~ items-center justify-center">
+            <div :class="[icon!, { 'bottom--2': icon === 'i-nimiq:document-filled' }]" text="18 white" relative shrink-0 />
           </div>
           <p>{{ description }}</p>
         </li>

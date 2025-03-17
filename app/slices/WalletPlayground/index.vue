@@ -11,9 +11,9 @@ const isMobile = computed(() => isMobileOrTablet || smaller('md').value)
 
 <template>
   <section relative of-x-clip md:f-pt-md children:max-w-none>
-    <AnimatedCloudyBg h="[calc(100%+400px)]" max-w-screen pointer-events-none top--400 />
+    <AnimatedCloudyBg h="[calc(100%+400px)]" pointer-events-none top--400 max-w-screen />
     <WalletPlaygroundMobile v-if="isMobile" />
-    <WalletPlaygroundDesktop v-else w-full z-1 />
+    <WalletPlaygroundDesktop v-else z-1 w-full />
   </section>
 </template>
 

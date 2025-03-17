@@ -32,9 +32,9 @@ watch([top, y], () => {
       <NuxtImg :src="url" />
     </TiltedMedia>
     <TiltedMedia v-else-if="slice.variation === 'withVideo'">
-      <NuxtLink :to="url" external stack mx-auto w-max children:rounded-8 target="_blank">
+      <NuxtLink :to="url" external mx-auto w-max stack children:rounded-8 target="_blank">
         <PrismicImage :field="slice.primary.poster" />
-        <div bg-gradient="to-b from-neutral/30 to-neutral/60" h="[calc(100%-96px)]" size-full inset-0 absolute />
+        <div bg-gradient="to-b from-neutral/30 to-neutral/60" h="[calc(100%-96px)]" absolute inset-0 size-full />
         <div i-nimiq:triangle-right text="56 white" />
       </NuxtLink>
     </TiltedMedia>

@@ -27,10 +27,10 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
 </script>
 
 <template>
-  <section flex="~ col items-center" bg-neutral-0 of-x-clip f-pt-2xl>
+  <section flex="~ col items-center" of-x-clip bg-neutral-0 f-pt-2xl>
     <DefineCrosshair v-slot="{ data: [ts, price] }">
       <div backdrop-blur-12 f-pt-2xs f-pt-xs flex="~ col gap-8">
-        <p text="blue f-3xl" lh-none font-semibold>
+        <p text="blue f-3xl" font-semibold lh-none>
           {{ formatFiat(price, currencyInfo, { maxDecimals: Number.POSITIVE_INFINITY }) }}
         </p>
 
@@ -52,7 +52,7 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
           </div>
         </div>
         <div flex="~ gap-6 items-center">
-          <p text="f-xs neutral-800" lh-none font-normal w-max>
+          <p text="f-xs neutral-800" w-max font-normal lh-none>
             {{ label }}
           </p>
           <Tooltip v-if="tooltipInfo">
@@ -62,13 +62,13 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
       </div>
     </DefineMetric>
 
-    <div ring="1.5 neutral/15" stack rounded-8 bg-neutral-0 w-full shadow relative f-pt-md style="--ribbong-r: -18px; --ribbong-t: calc(var(--f-pt) * -1 - 11px)">
+    <div ring="1.5 neutral/15" relative w-full rounded-8 bg-neutral-0 shadow stack f-pt-md style="--ribbong-r: -18px; --ribbong-t: calc(var(--f-pt) * -1 - 11px)">
       <!-- Ribbon fold -->
-      <div aria-hidden w-44 origin-bottom-right rotate--45 self-start justify-self-end relative z-1 border="22 x-transparent t-0 #EC991C" style="right: var(--ribbong-r); top: var(--ribbong-t)" />
+      <div aria-hidden relative z-1 w-44 origin-bottom-right rotate--45 self-start justify-self-end border="22 x-transparent t-0 #EC991C" style="right: var(--ribbong-r); top: var(--ribbong-t)" />
       <!-- Ribbon -->
-      <div w-max self-start justify-self-end relative z-10 style="right: var(--ribbong-r); top: var(--ribbong-t)">
+      <div relative z-10 w-max self-start justify-self-end style="right: var(--ribbong-r); top: var(--ribbong-t)">
         <AnimatedFloatingStars translate="-50%" absolute left="50%" top="50%" z-1 />
-        <div bg="#E9B213" text="f-lg white" rounded="6 br-0" font-semibold ml-auto px-20 py-16 w-max relative z-2>
+        <div bg="#E9B213" text="f-lg white" rounded="6 br-0" relative z-2 ml-auto w-max px-20 py-16 font-semibold>
           {{ slice.primary.nimPriceChartLabel }}
         </div>
       </div>
@@ -88,7 +88,7 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
         </ChartLine>
       </div>
 
-      <ReuseCrosshair op="100 leader-hocus:0" transition-opacity self-start justify-self-end :data="historicPrices?.at(-1) || [0, 0]" />
+      <ReuseCrosshair op="100 leader-hocus:0" self-start justify-self-end transition-opacity :data="historicPrices?.at(-1) || [0, 0]" />
 
       <PillSelector v-model="period" :options="periodOptions" self-end justify-self-end f-mt-md />
     </div>

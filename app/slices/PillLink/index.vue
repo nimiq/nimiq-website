@@ -26,8 +26,8 @@ const item = slice.primary.item as Item
 </script>
 
 <template>
-  <section :class="colors" class="nq-section-gap" data-slice-type="pill-link" mx-0 pb-2 relative children:max-w-none max-md:items-start>
-    <div flex="~ items-center gap-10" mr-8 py-6 pl-8 pr-20 rounded-full>
+  <section :class="colors" class="nq-section-gap" data-slice-type="pill-link" relative mx-0 pb-2 children:max-w-none max-md:items-start>
+    <div flex="~ items-center gap-10" mr-8 rounded-full py-6 pl-8 pr-20>
       <div :style="`--c: var(--nq-${itemColors[item]})`" style="color: rgb(var(--c)); background-color: rgb(var(--c) / 0.2);" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
         <div :class="icons[item]" h="18 lg:30" w="16 lg:26" class="gradient" />
       </div>

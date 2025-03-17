@@ -46,26 +46,26 @@ const indicatorsStyles = computed(() => {
 </script>
 
 <template>
-  <div group stack h-full max-w-none>
-    <button bg="neutral-400 disabled:neutral-200  not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlidePrev" data-prev stack ml-12 p-16 rounded-full w-max invisible shadow transition justify-self-start z-5 md:visible hocus:cursor-pointer @click="slidePrev">
+  <div group h-full max-w-none stack>
+    <button bg="neutral-400 disabled:neutral-200  not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlidePrev" data-prev invisible z-5 ml-12 w-max justify-self-start rounded-full p-16 shadow transition stack md:visible hocus:cursor-pointer @click="slidePrev">
       <div i-nimiq:chevron-left translate-x--1 f-text-xl />
     </button>
 
-    <ul ref="scroller" flex="~ gap-16 md:gap-32 items-stretch" snap="x mandatory" scroll-px="$px" pb="$pb" v-bind="$attrs" nq-scrollbar-hide h-full w-full justify-self-start of-x-auto>
-      <li v-for="(item, i) in items" :key="i" snap="start always" p="first:l-$px last:r-$px" data-slide flex-1 shrink-0 h-full>
+    <ul ref="scroller" flex="~ gap-16 md:gap-32 items-stretch" snap="x mandatory" scroll-px="$px" pb="$pb" v-bind="$attrs" h-full w-full justify-self-start of-x-auto nq-scrollbar-hide>
+      <li v-for="(item, i) in items" :key="i" snap="start always" p="first:l-$px last:r-$px" data-slide h-full flex-1 shrink-0>
         <slot :item />
       </li>
     </ul>
 
-    <button bg="neutral-400 disabled:neutral-200 not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlideNext" data-next stack mr-12 p-16 rounded-full w-max invisible shadow transition justify-self-end z-5 md:visible hocus:cursor-pointer @click="slideNext">
+    <button bg="neutral-400 disabled:neutral-200 not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlideNext" data-next invisible z-5 mr-12 w-max justify-self-end rounded-full p-16 shadow transition stack md:visible hocus:cursor-pointer @click="slideNext">
       <div i-nimiq:chevron-right translate-x-1 f-text-xl />
     </button>
 
-    <ul flex="~ gap-6 justify-center" mb-20 self-end relative>
+    <ul flex="~ gap-6 justify-center" relative mb-20 self-end>
       <li v-for="i in items.length" :key="i" data-slide flex>
-        <button :title="`Slide to number ${i + 1}`" bg="neutral-300 data-active:green hocus:neutral-400" rounded-full size-8 transition-colors relative @click="slideTo(i - 1)" />
+        <button :title="`Slide to number ${i + 1}`" bg="neutral-300 data-active:green hocus:neutral-400" relative size-8 rounded-full transition-colors @click="slideTo(i - 1)" />
       </li>
-      <div :style="indicatorsStyles" aria-hidden rounded-full bg-green h-8 shadow left-0 top-0 absolute transition="[transform,width]" />
+      <div :style="indicatorsStyles" aria-hidden absolute left-0 top-0 h-8 rounded-full bg-green shadow transition="[transform,width]" />
     </ul>
   </div>
 </template>

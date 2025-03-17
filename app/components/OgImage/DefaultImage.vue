@@ -3,10 +3,10 @@ defineProps<{ title: string }>()
 </script>
 
 <template>
-  <div class="px-16 py-12 flex size-full items-start justify-start relative" style="font-family: 'Mulish'">
-    <svg xmlns="http://www.w3.org/2000/svg" class="op-6 h-90 w-100 bottom-32 right--45 absolute" width="20" height="18" fill="none"><path fill="#1F2348" d="M19.73 8.16 15.58.84c-.3-.52-.85-.84-1.45-.84H5.82c-.6 0-1.14.32-1.44.84L.22 8.16c-.3.52-.3 1.16 0 1.68l4.16 7.32c.3.52.85.84 1.44.84h8.31c.6 0 1.15-.32 1.44-.84l4.16-7.32c.3-.52.3-1.16 0-1.68Z" /></svg>
-    <svg xmlns="http://www.w3.org/2000/svg" class="op-4 h-135 w-150 bottom--90 left--40 absolute" width="20" height="18" fill="none"><path fill="#1F2348" d="M19.73 8.16 15.58.84c-.3-.52-.85-.84-1.45-.84H5.82c-.6 0-1.14.32-1.44.84L.22 8.16c-.3.52-.3 1.16 0 1.68l4.16 7.32c.3.52.85.84 1.44.84h8.31c.6 0 1.15-.32 1.44-.84l4.16-7.32c.3-.52.3-1.16 0-1.68Z" /></svg>
-    <div class="mt-10 flex flex-1 flex-col w-full items-center justify-center">
+  <div class="relative size-full flex items-start justify-start px-16 py-12" style="font-family: 'Mulish'">
+    <svg xmlns="http://www.w3.org/2000/svg" class="absolute bottom-32 right--45 h-90 w-100 op-6" width="20" height="18" fill="none"><path fill="#1F2348" d="M19.73 8.16 15.58.84c-.3-.52-.85-.84-1.45-.84H5.82c-.6 0-1.14.32-1.44.84L.22 8.16c-.3.52-.3 1.16 0 1.68l4.16 7.32c.3.52.85.84 1.44.84h8.31c.6 0 1.15-.32 1.44-.84l4.16-7.32c.3-.52.3-1.16 0-1.68Z" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="absolute bottom--90 left--40 h-135 w-150 op-4" width="20" height="18" fill="none"><path fill="#1F2348" d="M19.73 8.16 15.58.84c-.3-.52-.85-.84-1.45-.84H5.82c-.6 0-1.14.32-1.44.84L.22 8.16c-.3.52-.3 1.16 0 1.68l4.16 7.32c.3.52.85.84 1.44.84h8.31c.6 0 1.15-.32 1.44-.84l4.16-7.32c.3-.52.3-1.16 0-1.68Z" /></svg>
+    <div class="mt-10 w-full flex flex-1 flex-col items-center justify-center">
       <p class="text-20 text-[#1f2348] font-bold">
         {{ title }}
       </p>

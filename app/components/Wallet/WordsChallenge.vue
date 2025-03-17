@@ -48,13 +48,13 @@ function reset() {
 </script>
 
 <template>
-  <div :style="`--c: ${wordsList.length};`" max-w-none w-full absolute of-x-hidden>
-    <div flex="~ col gap-24" h-full relative>
+  <div :style="`--c: ${wordsList.length};`" absolute max-w-none w-full of-x-hidden>
+    <div flex="~ col gap-24" relative h-full>
       <AnimatedMarquee v-for="({ words }, i) in wordsList" :key="i" :items="words" :should-play="containerIsVisible" flex="~ gap-2" :style="`--direction: ${i % 2 === 0 ? -1 : 1}`">
         <template #default="{ index: j }">
-          <div p-16 rounded-4 bg-neutral-300 relative>
+          <div relative rounded-4 bg-neutral-300 p-16>
             <span font="semibold mono" f-text-xl>{{ animatedWords[i * marqueeRows + j]![1] }}</span>
-            <div inset-16 absolute>
+            <div absolute inset-16>
               <span font="semibold mono" text="f-xl neutral-800">
                 {{ animatedWords[i * marqueeRows + j]![0] }}
               </span>
@@ -65,12 +65,12 @@ function reset() {
           </div>
         </template>
       </AnimatedMarquee>
-      <div inset-0 absolute flex="~ col gap-24 justify-between">
-        <div v-for="i in wordsList.length" :key="i" class="marquee-overlay" size-full pointer-events-none z-1 />
+      <div absolute inset-0 flex="~ col gap-24 justify-between">
+        <div v-for="i in wordsList.length" :key="i" class="marquee-overlay" pointer-events-none z-1 size-full />
       </div>
     </div>
   </div>
-  <div ref="container" flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" px="16 sm:64" mx-auto pb-48 pt-32 rounded-8 max-w-492 shadow relative z-1 of-hidden>
+  <div ref="container" flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" px="16 sm:64" relative z-1 mx-auto max-w-492 of-hidden rounded-8 pb-48 pt-32 shadow>
     <div :class="{ 'slide-up': isChallengeFinished }">
       <h3 text-center>
         {{ headline }}
@@ -79,35 +79,35 @@ function reset() {
         {{ subheadline }}
       </p>
 
-      <div mt-32 relative>
+      <div relative mt-32>
         <transition enter-active-class="transition-opacity duration-300ms ease-out" enter-from-class="op-0" enter-to-class="op-100" leave-active-class="transition-opacity duration-300ms ease-out" leave-from-class="op-100" leave-to-class="op-0">
-          <div v-if="isChallengeFinished" bg-neutral-0 bg-op-20 pointer-events-none inset-x--64 inset-y--16 absolute z-2 backdrop-blur-8 />
+          <div v-if="isChallengeFinished" pointer-events-none absolute inset-x--64 inset-y--16 z-2 bg-neutral-0 bg-op-20 backdrop-blur-8 />
         </transition>
         <p text="center blue" font-bold>
           {{ guessTheRemainingWordsLabel }}
         </p>
 
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.7 228.6" w-90 left--20 top-8 absolute>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.7 228.6" absolute left--20 top-8 w-90>
           <g fill="none" stroke-blue stroke-linecap="round" stroke-width="2">
             <path d="M76.8 10c-11 11-58.3 32.3-65.1 67-7 34.5 19.6 117 23.8 140.7M75.3 12.1C64.1 22.7 17.1 40.8 11 75c-6.3 34.5 22.7 119.8 27 143.5" />
             <path d="M23.8 198c3.9 8.6 12.3 14.6 14 20.6m-14-20.7c3 3.9 6.2 8.3 14 20.7m2.5-24.9c-2.6 10.3-.6 18-2.4 24.9m2.4-25c-.7 5-1.2 10.3-2.4 25" />
           </g>
         </svg>
 
-        <ul grid="~ cols-3 gap-8" mt-16 relative z-0>
-          <li v-for="word in firstRealWords" :key="word" py-9 rounded-4 bg="white/10" text="white center">
+        <ul grid="~ cols-3 gap-8" relative z-0 mt-16>
+          <li v-for="word in firstRealWords" :key="word" rounded-4 py-9 bg="white/10" text="white center">
             {{ word }}
           </li>
           <li v-for="(input, i) in userInputs" :key="i" shrink-0>
-            <input v-model="input.value" type="text" border="2 white/30 hocus:blue" :placeholder="`${i + 12}`" text="center blue" outline-none font-semibold px-2 caret-blue rounded-4 bg-transparent h-36 w-full transition un-placeholder="font-semibold text-white/30" @blur="submitWords">
+            <input v-model="input.value" type="text" border="2 white/30 hocus:blue" :placeholder="`${i + 12}`" text="center blue" h-36 w-full rounded-4 bg-transparent px-2 font-semibold caret-blue outline-none transition un-placeholder="font-semibold text-white/30" @blur="submitWords">
           </li>
         </ul>
         <template v-if="isChallengeFinished">
-          <div flex="~ justify-center items-center col" w-492 inset-x--64 inset-y-0 absolute z-2>
+          <div flex="~ justify-center items-center col" absolute inset-x--64 inset-y-0 z-2 w-492>
             <p text="center 40 red-neon" font-retro class="challenge-over">
               Try again
             </p>
-            <p text="center neutral-900 f-lg" class="delayed" px-40 max-w-40ch f-mt-md>
+            <p text="center neutral-900 f-lg" class="delayed" max-w-40ch px-40 f-mt-md>
               Even using a computer, it would take you <b text-neutral>10 lifetimes</b> to crack this wallet...
             </p>
             <button nq-pill-tertiary f-mt-xs class="delayed" @click="reset">
@@ -118,12 +118,12 @@ function reset() {
       </div>
     </div>
 
-    <div mt-32 relative>
-      <AnimatedSyntheticWave :style="`--grid-color: var(--nq-${isChallengeFinished ? 'purple' : 'blue'})`" inset--64 top-0 absolute z-0 />
-      <p text="f-xl white/80 center" font-semibold relative z-1>
+    <div relative mt-32>
+      <AnimatedSyntheticWave :style="`--grid-color: var(--nq-${isChallengeFinished ? 'purple' : 'blue'})`" absolute inset--64 top-0 z-0 />
+      <p text="f-xl white/80 center" relative z-1 font-semibold>
         {{ youDoNotStandAChanceToTake }}
       </p>
-      <div i-custom:10-million-nim mt-32 h-66 w-full relative z-1 />
+      <div i-custom:10-million-nim relative z-1 mt-32 h-66 w-full />
     </div>
   </div>
 </template>

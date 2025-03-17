@@ -26,8 +26,8 @@ const id = `terms-note-${useId()}`
     <AnimatedStakingRipple v-if="showStakingIcon" size-120 />
     <component :is="headlineTag" f-mt-md text="inverted:white wrap md:balance">
       {{ headlineParts[0] }}
-      <span bg="green/15 inverted:white/30" text="green inverted:white" data-percentage px-10 py-3 rounded-4 inline-flex="~">
-        ~{{ annualRewardPercentage }}<div i-nimiq:asterisk text-14 translate-y-8 :aria-labelledby="id" /></span>
+      <span bg="green/15 inverted:white/30" text="green inverted:white" data-percentage rounded-4 px-10 py-3 inline-flex="~">
+        ~{{ annualRewardPercentage }}<div i-nimiq:asterisk translate-y-8 text-14 :aria-labelledby="id" /></span>
       {{ headlineParts[1] }}
     </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" inverted:text="white/80" />

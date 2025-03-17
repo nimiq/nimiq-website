@@ -26,7 +26,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
     <PrismicText v-if="p.subline" :field="p.subline" wrapper="p" font-400 dark:text-neutral-900 />
     <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline?.[0]?.text}`" role="list" f-mt-xs flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
       <li v-for="(highlight, i) in highlightsItems" :key="i" contents>
-        <div v-if="i > 0" rounded-full bg-neutral-500 size-6 />
+        <div v-if="i > 0" size-6 rounded-full bg-neutral-500 />
         <span text="20 md:22 xl:24 green" font-semibold>{{ highlight }}</span>
       </li>
     </ul>
@@ -40,7 +40,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
         </span>
       </PrismicLink>
 
-      <PrismicLink v-if="hasSecondaryLink" internal-component="a" :field="p.secondaryLink!" un-text-white nq-arrow font-bold />
+      <PrismicLink v-if="hasSecondaryLink" internal-component="a" :field="p.secondaryLink!" un-text-white font-bold nq-arrow />
     </div>
 
     <ul v-if="hasAnApp" f-mt-xl flex="~ wrap gap-32 lg:gap-40">
