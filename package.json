@@ -73,6 +73,7 @@
     "typescript": "^5.8.2",
     "unocss": "^66.1.0-beta.5",
     "unocss-preset-onmax": "^1.0.0-beta.13",
+    "unocss-preset-scale-px": "1.0.0-beta.13",
     "unplugin-vue-router": "^0.12.0",
     "valibot": "^0.42.1",
     "vite-plugin-top-level-await": "^1.5.0",
