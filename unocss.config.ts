@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 import { presetNimiq } from 'nimiq-css'
-import { defineConfig, presetAttributify, presetIcons, presetWind3, transformerDirectives } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetWind4, transformerDirectives } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
 
 export default defineConfig({
@@ -39,7 +39,6 @@ export default defineConfig({
     },
   ],
   presets: [
-    presetWind3({ attributifyPseudo: true }),
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
@@ -47,7 +46,6 @@ export default defineConfig({
       staticContent: true,
       fonts: false,
     }),
-    presetAttributify(),
     presetOnmax(),
     presetIcons({
       collections: {
@@ -89,9 +87,6 @@ export default defineConfig({
         },
       },
     }),
-  ],
-  transformers: [
-    transformerDirectives(),
   ],
 
   safelist: [
