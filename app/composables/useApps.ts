@@ -1,13 +1,11 @@
-import { useQuery } from '@pinia/colada'
-
 const appColor: Record<AppType, string> = {
-  'E-commerce': colors.blue,
-  'Games': colors.purple,
-  'Infrastructure': colors.red,
-  'Insights': colors.green,
+  'E-commerce': 'rgb(var(--nq-blue))',
+  'Games': 'rgb(var(--nq-purple))',
+  'Infrastructure': 'rgb(var(--nq-red))',
+  'Insights': 'rgb(var(--nq-green))',
   'Miner': 'rgb(var(--nq-neutral) / 1)',
-  'Wallets': colors.orange,
-  'Bots': colors.gold,
+  'Wallets': 'rgb(var(--nq-orange))',
+  'Bots': 'rgb(var(--nq-gold))',
   'Faucet': '#FA7268', // pink
   'Promotion': '#795548', // brown
 }
@@ -17,32 +15,17 @@ export interface UseAppsOption {
 }
 
 type PriorityLevel = 'high' | 'low' | 'medium'
-const priorityLevelValues: Record<PriorityLevel, number> = {
-  high: 3,
-  medium: 2,
-  low: 1,
-}
-
-const highlightedOrder = Object.freeze(['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map', 'SuperSimpleSwap'])
-
-export const MadeBy = {
-  Anyone: 'anyone',
-  Official: 'official',
-  Community: 'community',
-} as const
-type MadeByType = typeof MadeBy[keyof typeof MadeBy]
-
 type AppType = 'Insights' | 'E-commerce' | 'Games' | 'Faucet' | 'Promotion' | 'Miner' | 'Wallets' | 'Infrastructure' | 'Bots'
 
 interface AppApi {
   isOfficial: boolean
-  name: string // Using strict string type instead of KeyTextField
+  name: string
   description: string
   link: string
   type: AppType
   logo: string
   screenshot: string
-  developer: string | null
+  developer?: string
 }
 
 export interface NimiqApp extends AppApi {
@@ -51,75 +34,43 @@ export interface NimiqApp extends AppApi {
   color: string
 }
 
-const highPriorityApps: string[] = ['Cryptopayment.link', 'Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map', 'SuperSimpleSwap']
+const spotLightApps = ['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map', 'Cryptopayment.link']
 
-// Transform function to convert App to AppsAttributes
 function transformAppToAttributes(app: NimiqApp, labelTeamNimiq: string): NimiqApp {
   return {
     ...app,
-    isHighlighted: highPriorityApps.includes(app.name),
-    priorityLevel: highPriorityApps.includes(app.name) ? 'high' : 'low',
+    isHighlighted: spotLightApps.includes(app.name),
+    priorityLevel: spotLightApps.includes(app.name) ? 'high' : 'low',
     developer: app.developer || labelTeamNimiq,
     color: app.type ? appColor[app.type] : '#000',
   } satisfies NimiqApp
 }
 
 export function useApps({ labelTeamNimiq = 'Team Nimiq' }: UseAppsOption = {}) {
-  const { data: apps } = useQuery({
-    key: () => ['apps'],
-    query: async () => {
-      const apps = await $fetch<NimiqApp[]>('https://raw.githubusercontent.com/onmax/nimiq-awesome/refs/heads/main/src/data/dist/nimiq-apps.json')
-      const processedApps = apps
-        .sort((a, b) => {
-          const highlightA = highlightedOrder.indexOf(a.name)
-          const highlightB = highlightedOrder.indexOf(b.name)
+  return useAsyncData(async () => {
+    const apps = await $fetch('https://ungh.cc/repos/onmax/nimiq-awesome/files/main/src/data/dist/nimiq-apps.json')
+      .then(res => JSON.parse((res as any).file.contents) as NimiqApp[])
 
-          if (highlightA !== -1 || highlightB !== -1)
-            return (highlightB === -1 ? -1 : highlightB) - (highlightA === -1 ? -1 : highlightA)
+    if (!apps)
+      throw new Error('Failed to fetch apps')
 
-          const priorityA = highPriorityApps.includes(a.name) ? priorityLevelValues.high : priorityLevelValues.low
-          const priorityB = highPriorityApps.includes(b.name) ? priorityLevelValues.high : priorityLevelValues.low
-          return priorityB - priorityA
-        })
+    const spotlightedApps = apps.filter(app => spotLightApps.includes(app.name))
+    const nonSpotlightedApps = apps.filter(app => !spotLightApps.includes(app.name))
 
-      return Object.fromEntries(
-        processedApps.map(app => [app.name, transformAppToAttributes(app, labelTeamNimiq)]),
-      ) as Record<string, NimiqApp>
-    },
-    placeholderData: () => ({}) as Record<string, NimiqApp>,
+    spotlightedApps.sort((a, b) => spotLightApps.indexOf(a.name) - spotLightApps.indexOf(b.name))
+
+    for (let i = nonSpotlightedApps.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      const temp = nonSpotlightedApps[i]!
+      nonSpotlightedApps[i] = nonSpotlightedApps[j]!
+      nonSpotlightedApps[j] = temp
+    }
+
+    const processedApps = [...spotlightedApps, ...nonSpotlightedApps]
+
+    return {
+      apps: processedApps.map(app => transformAppToAttributes(app, labelTeamNimiq)),
+      spotLightApps,
+    }
   })
-
-  function getRandomApps(n: number) {
-    const randomApps = useState('random_apps', () => {
-      const selectedApps = Object.values(apps.value || []).filter(({ logo }) => !!logo)
-      return selectedApps.sort(() => Math.random() - 0.5).slice(0, Math.min(n, selectedApps.length))
-    })
-    return randomApps
-  }
-
-  // Filtering Apps
-  const selectedAppsFilter = ref<MadeByType>(MadeBy.Anyone)
-  const selectedApps = computed(() => {
-    if (!apps.value)
-      return []
-
-    return Object.values(apps.value).filter((item) => {
-      switch (selectedAppsFilter.value) {
-        case MadeBy.Official:
-          return item.isOfficial
-        case MadeBy.Community:
-          return !item.isOfficial
-        default:
-          return true
-      }
-    })
-  })
-
-  return {
-    apps,
-    getRandomApps,
-    highlightedOrder,
-    selectedAppsFilter,
-    selectedApps,
-  }
 }
