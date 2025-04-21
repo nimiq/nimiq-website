@@ -22,7 +22,7 @@ const ctaIsVideo = computed(() => hostingVideos.some(host => getLink(cta)?.inclu
     <p v-if="label" mb-16 block w-max nq-label f-text-sm :class="{ 'md:mx-auto': !leftAlign }">
       {{ label }}
     </p>
-    <PrismicText :wrapper="headlineTag" :field="headline" :class="{ 'text-left': leftAlign }" />
+    <PrismicText :wrapper="headlineTag" :field="headline" :class="{ 'text-left': leftAlign }" break-keep />
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" :class="{ 'text-left': leftAlign }" />
     <template v-if="cta && hasLink(cta)">
       <PrismicLink v-if="!ctaIsVideo" internal-component="a" :field="cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-lg :class="{ 'md:mx-auto': !leftAlign }" />
