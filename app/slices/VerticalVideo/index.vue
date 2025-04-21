@@ -16,7 +16,7 @@ const playVideo = ref(false)
       <button v-if="!playVideo" relative w-max bg-none stack @click="playVideo = true">
         <PrismicImage loading="lazy" :field="slice.primary.poster" max-w-420 w-full rounded-8 bg-neutral-0 shadow />
         <div bg="neutral/40" ring="1.5 neutral/10" size-64 rounded-full stack>
-          <div i-nimiq:triangle-right size-32 text-white />
+          <div size-32 text-white i-nimiq:triangle-right />
         </div>
       </button>
       <video v-else :src="getUrl(slice.primary.video)" :style="`aspect-ratio: ${getAspectRatio(slice.primary.poster) * -1}`" autoplay controls loop muted playsinline z-1 max-w-900 w-full rounded-8 bg-neutral-0 shadow />

@@ -23,7 +23,7 @@ const activeIndexes = computed(() => slice.primary.item.filter(i => selected.val
                   {{ title }}
                   <span ml-12 text-neutral-700>{{ percentage }}%</span>
                 </span>
-                <div i-nimiq:chevron-right text="10 neutral-600" transition-transform duration-300 data-open:rotate-90 />
+                <div text="10 neutral-600" transition-transform duration-300 i-nimiq:chevron-right data-open:rotate-90 />
                 <div v-if="i > 0" relative right--6 h-1.5 flex-1 transition-colors bg="neutral-500 data-open:neutral-700" @click.stop />
                 <div v-else border="b-1.5 r-1.5 neutral-500 data-open:neutral-700" ml-6 mr-12 h-40 flex-1 translate-y--20 rounded-br-6 transition-colors />
               </AccordionTrigger>

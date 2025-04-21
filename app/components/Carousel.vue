@@ -48,7 +48,7 @@ const indicatorsStyles = computed(() => {
 <template>
   <div group h-full max-w-none stack>
     <button bg="neutral-400 disabled:neutral-200  not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlidePrev" data-prev invisible z-5 ml-12 w-max justify-self-start rounded-full p-16 shadow transition stack md:visible hocus:cursor-pointer @click="slidePrev">
-      <div i-nimiq:chevron-left translate-x--1 f-text-xl />
+      <div translate-x--1 i-nimiq:chevron-left f-text-xl />
     </button>
 
     <ul ref="scroller" flex="~ gap-16 md:gap-32 items-stretch" snap="x mandatory" scroll-px="$px" pb="$pb" v-bind="$attrs" h-full w-full justify-self-start of-x-auto nq-scrollbar-hide>
@@ -58,7 +58,7 @@ const indicatorsStyles = computed(() => {
     </ul>
 
     <button bg="neutral-400 disabled:neutral-200 not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlideNext" data-next invisible z-5 mr-12 w-max justify-self-end rounded-full p-16 shadow transition stack md:visible hocus:cursor-pointer @click="slideNext">
-      <div i-nimiq:chevron-right translate-x-1 f-text-xl />
+      <div translate-x-1 i-nimiq:chevron-right f-text-xl />
     </button>
 
     <ul flex="~ gap-6 justify-center" relative mb-20 self-end>

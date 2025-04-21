@@ -12,7 +12,7 @@ const { data: navigation } = await useNavigation()
     >
       <div
         opacity-50 hocus:opacity-60
-        class="i-nimiq:hamburger-menu scale-x--100"
+        class="scale-x--100 i-nimiq:hamburger-menu"
         :class="{ 'text-white': false }"
       />
     </DrawerTrigger>
@@ -57,7 +57,7 @@ const { data: navigation } = await useNavigation()
                   <AccordionTrigger h-45 flex flex-1 cursor-default items-center gap-x-8 bg-white px-5 leading-none outline-none>
                     <span text-12 uppercase>{{ label }}</span>
                     <div
-                      class="i-nimiq:chevron-down text-10 text-neutral transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180"
+                      class="text-10 text-neutral transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] i-nimiq:chevron-down group-data-[state=open]:rotate-180"
                     />
                   </AccordionTrigger>
                 </AccordionHeader>

@@ -45,34 +45,34 @@ watch(subheadlineStr, () => {
 
 <template>
   <section
-    class="dark hero-section" relative mx-0 of-hidden bg-darkblue py-0 text-neutral children:max-w-none
-    pt="148 md:153 lg:160"
+    class="dark" relative mx-0 of-hidden bg-darkblue py-0 text-neutral children:max-w-none max-md:min-h-auto
+    pt="148 md:153 lg:160" min-h="auto md:100vh lg:110vh" flex="~ col justify-between"
   >
-    <div class="content-wrapper z-10 children:md:mx-auto">
+    <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
-      <component :is="subheadline" text-neutral-800 />
+      <component :is="subheadline" text="neutral-800 f-xl" />
       <PrismicLink internal-component="a" :field="cta" mt-40 nq-arrow nq-pill-lg nq-pill-blue>
         {{ ctaLabel }}
       </PrismicLink>
     </div>
     <NuxtImg
-
-      pointer-events-none absolute inset-0 m-0 size-full
+      width="1600"
+      height="900"
       src="/assets/images/gods-light.webp"
       alt="Nimiq Gods Rays Background"
-      class="darken blur-sm"
+      pointer-events-none absolute inset-0 m-0 size-full blur-60 brightness-80
     />
     <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
-    <Ember left-100 top="77 sm:112 md:200" :scale="1.05" />
-    <Ember right-80 top-170 :scale="0.7" />
-    <Ember bottom="302 md:430" left="56vw md:30vw" :scale="0.92" />
-    <Ember bottom-460 right-32 />
+    <Ember left-100 top="77 sm:112 md:200" style="--scale: 1.05" />
+    <Ember right-80 top-170 style="--scale: 0.7" />
+    <Ember bottom="302 md:430" left="56vw md:30vw" style="--scale: 0.92" />
+    <Ember bottom-460 right-32 style="--scale: 1" />
 
-    <div class="map-wrapper">
-      <div class="map-container">
-        <div class="counter-blue-ring" />
-        <div class="blue-ring" />
-        <div class="ellipse" />
+    <div mt-120 max-w-none w-full flex="~ justify-center">
+      <div class="map-container" relative z-1 w="80%" min-w-680 pt-23>
+        <div class="ellipse-shape" z--1 bg-neutral-300 mix-blend-multiply blur-20 />
+        <div class="ellipse-shape" z--2 blur-120 style="background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%)" />
+        <div class="ellipse-shape" z--1 bg-white />
         <Map />
       </div>
     </div>
@@ -80,32 +80,6 @@ watch(subheadlineStr, () => {
 </template>
 
 <style scoped>
-.hero-section {
-  min-height: 110vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  @media (max-width: 1024px) {
-    min-height: 100vh;
-  }
-}
-
-.content-wrapper {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.map-wrapper {
-  width: 100%;
-  max-width: none;
-  margin-top: 120px;
-  display: flex;
-  justify-content: center;
-}
-
 .map-container {
   /**
   * Design values/breakpoints:
@@ -145,65 +119,8 @@ watch(subheadlineStr, () => {
     --height: 605px;
   }
 
-  position: relative;
-  z-index: 1;
-  width: 80%;
-  min-width: 680px;
-  padding-top: 23px;
-
-  .ellipse {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    width: var(--width);
-    height: var(--height);
-    border-radius: 50%;
-    flex-shrink: 0;
-    background: white;
-    z-index: -1;
+  .ellipse-shape {
+    --uno: 'absolute left-50% translate-x--50% w-$width h-$height rounded-50% top-0 shrink-0';
   }
-
-  .blue-ring,
-  .counter-blue-ring {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    border-radius: 50%;
-    width: var(--width);
-    height: var(--height);
-    flex-shrink: 0;
-  }
-
-  .blue-ring {
-    z-index: -2;
-    background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%);
-    filter: blur(120px);
-  }
-
-  .counter-blue-ring {
-    z-index: -1;
-    opacity: 0.4;
-    background: #1f2348;
-    mix-blend-mode: multiply;
-    filter: blur(20px);
-  }
-}
-
-@media (max-height: 800px) {
-  .hero-section {
-    min-height: auto;
-  }
-}
-
-.blur-sm {
-  filter: blur(60px);
-}
-
-.blur-sm.darken {
-  filter: blur(60px) brightness(0.8);
 }
 </style>

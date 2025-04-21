@@ -11,8 +11,8 @@ const colors = getColorClass(props.slice.primary.bgColor)
       <PrismicLink v-for="({ color, headline, iconName, linkHref, shape, subline }, i) in slice.items" :key="i" internal-component="a" :style="`--c:${color}`" :field="linkHref" p="32 lg:40 2xl:48" group relative nq-hoverable>
         <div v-if="shape === 'Hexagons'" pointer-events-none absolute inset-0 of-hidden rounded-8>
           <div text="neutral-500/60 group-hocus:white/10" pointer-events-none relative size-full children:transition-colors>
-            <div bottom="-50%" i-nimiq:logos-nimiq-mono absolute left--164 text-360 />
-            <div i-nimiq:logos-nimiq-mono absolute right--214 top--140 text-360 />
+            <div bottom="-50%" absolute left--164 text-360 i-nimiq:logos-nimiq-mono />
+            <div absolute right--214 top--140 text-360 i-nimiq:logos-nimiq-mono />
           </div>
         </div>
         <div :class="iconName" text="blue  96 md:120" nq-prose-compact max-w-128 />

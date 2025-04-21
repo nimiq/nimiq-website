@@ -47,7 +47,7 @@ const [DefineCrosshair, ReuseCrosshair] = createReusableTemplate<{ data: [number
             {{ metricValue }}
           </span>
           <div v-if="metricChange" :class="metricChange < 0 ? 'text-red' : 'text-green'" flex="~ gap-2 items-center">
-            <div :class="{ 'rotate-180': metricChange < 0 }" aria-hidden i-nimiq:triangle-up text-12 />
+            <div :class="{ 'rotate-180': metricChange < 0 }" aria-hidden text-12 i-nimiq:triangle-up />
             <span font-semibold f-text-sm>{{ percentageFormatter.format(metricChange) }}</span>
           </div>
         </div>

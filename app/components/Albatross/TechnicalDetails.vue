@@ -18,7 +18,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
       <template #trigger>
         <div i-custom:cli-docs mr-8 />
         <span>{{ buttonLabel }}</span>
-        <div i-nimiq:info ml-8 text-11 op-60 />
+        <div ml-8 text-11 op-60 i-nimiq:info />
       </template>
 
       <template #top>
@@ -82,7 +82,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
             aria-label="Previous slide"
             @click="slidePrev"
           >
-            <div i-nimiq:chevron-left mx-auto />
+            <div mx-auto i-nimiq:chevron-left />
           </button>
           <button
             bg="neutral-300 disabled:!neutral-200 hocus:neutral-400"
@@ -95,7 +95,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
             aria-label="Next slide"
             @click="slideNext"
           >
-            <div i-nimiq:chevron-right mx-auto />
+            <div mx-auto i-nimiq:chevron-right />
           </button>
         </div>
       </template>

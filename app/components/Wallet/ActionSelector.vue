@@ -44,7 +44,7 @@ watchEffect(() => {
     </li>
     <li :class="state === 'idle' ? 'scale-0 w-0' : 'scale-100 w-36'" h-36 transition="[width,transform]" duration-300 ease-out max-sm:hidden>
       <button bg-transparent @click="state = 'idle'">
-        <div i-nimiq:redo text="neutral-800" m-8 />
+        <div text="neutral-800" m-8 i-nimiq:redo />
       </button>
     </li>
   </ul>

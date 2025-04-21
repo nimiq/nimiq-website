@@ -82,13 +82,13 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
             <span v-if="status === 'idle'">
               Subscribe
             </span>
-            <div v-else i-nimiq:spinner text-18 />
+            <div v-else text-18 i-nimiq:spinner />
           </button>
         </form>
       </template>
       <div v-else-if="status === 'error'">
         <div flex="~ items-center gap-8" text="f-lg red" font-semibold f-mt-md>
-          <div i-nimiq:cross scale-70 />
+          <div scale-70 i-nimiq:cross />
           Error
         </div>
         <p nt-mt-12>
@@ -101,7 +101,7 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
       </div>
 
       <div v-else-if="status === 'success'" flex="~ items-start gap-8" text="f-lg green" font-semibold f-mt-md>
-        <div i-nimiq:check mt-6 scale-70 />
+        <div mt-6 scale-70 i-nimiq:check />
         Please confirm your subscription sent to your {{ email }}.
       </div>
     </div>

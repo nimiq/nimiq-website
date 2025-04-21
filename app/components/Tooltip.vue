@@ -6,7 +6,7 @@ defineProps<{ dark?: boolean }>()
   <PopoverRoot>
     <PopoverTrigger v-bind="$attrs" h-max bg-transparent>
       <slot name="trigger">
-        <div i-nimiq:info text-12 text-neutral-700 />
+        <div text-12 text-neutral-700 i-nimiq:info />
       </slot>
     </PopoverTrigger>
     <PopoverPortal>
@@ -16,7 +16,7 @@ defineProps<{ dark?: boolean }>()
         </div>
         <PopoverArrow as-child>
           <div rotate-180 :class="{ dark }">
-            <div aria-hidden i-nimiq:tooltip-triangle mt--1 h-8 w-16 class="tooltip-animation" text="neutral dark:white" />
+            <div aria-hidden mt--1 h-8 w-16 i-nimiq:tooltip-triangle class="tooltip-animation" text="neutral dark:white" />
           </div>
         </PopoverArrow>
       </PopoverContent>

@@ -26,9 +26,9 @@ const options = computed(() => [selected.value!].concat(props.options.filter(opt
             >
               {{ option }}
               <div
-                aria-hidden i-nimiq:triangle-left
-                text="7 current" transition-colors
-                rotate="data-closed:-90" duration-1000
+
+                text="7 current"
+                rotate="data-closed:-90" aria-hidden transition-colors duration-1000 i-nimiq:triangle-left
               />
             </SelectItemText>
           </SelectItem>
