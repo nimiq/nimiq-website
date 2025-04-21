@@ -31,7 +31,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
       </li>
     </ul>
     <div v-if="showLink" flex="~ wrap gap-x-32 gap-y-16 items-center" f-mt-lg style="--nq-font-size-min:18;--nq-font-size-max:22">
-      <PrismicLink v-if="hasLink(primary.link)" :field="primary.link" nq-arrow nq-pill nq-pill-lg nq-pill-blue dark:nq-pill-white />
+      <PrismicLink v-if="hasLink(primary.link)" :field="primary.link" nq-arrow nq-pill-lg nq-pill-blue dark:nq-pill-white />
 
       <PrismicLink v-if="hasVideoLink" internal-component="a" un-text="neutral-700 hocus:neutral-800" transition-colors :field="p.videoHref!" flex="~ gap-10 items-center">
         <div text-16 i-nimiq:triangle-right />

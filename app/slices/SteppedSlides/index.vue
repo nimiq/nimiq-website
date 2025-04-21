@@ -38,9 +38,9 @@ function goToStep(step: number) {
   <section mx-0 of-x-clip bg-neutral-0 px-0 children:max-w-none>
     <Headline :headline="slice.primary.headline" :subline="slice.primary.description" px="$px" />
 
-    <ul flex="~ gap-6" mx-auto f-mt-lg>
-      <li v-for="i in slice.items.length" :key="i" :data-state="step - 1 === i ? 'active' : undefined" max-w-384 flex-1>
-        <button bg="neutral-400 hocus:neutral-500 data-active:green" mx-auto h-4 w-full transition-colors />
+    <ul flex="~ gap-6" mx-auto w-max f-mt-lg>
+      <li v-for="i in slice.items.length" :key="i" :data-state="step === i ? 'active' : undefined" max-w-96 w-full flex-1>
+        <button bg="neutral-400 hocus:neutral-500 data-active:green" before="absolute inset--16" relative mx-auto h-4 w-96 rounded-2 transition-colors @click="() => goToStep(i)" />
       </li>
     </ul>
 

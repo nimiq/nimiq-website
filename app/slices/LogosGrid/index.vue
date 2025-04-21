@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { Content, LinkField } from '@prismicio/client'
 
-/* TODO const { bgColor } = */ defineProps(getSliceComponentProps<Content.LogosGridSlice>())
-const colors = getColorClass('white')
+// @ts-expect-error - the types are meh
+const { bgColor = 'white' } = defineProps(getSliceComponentProps<Content.LogosGridSlice>())
+const colors = getColorClass(bgColor)
 
 // @unocss-include
 function getCssClasses(link: LinkField) {
@@ -31,7 +32,7 @@ function getCssClasses(link: LinkField) {
       </li>
     </ul>
   </section>
-  <section v-else-if="slice.variation === 'centered'" :class="colors" pt-0 f-pt-xl data-slice-type="logos-grid">
+  <section v-else-if="slice.variation === 'centered'" :class="colors" data-slice-type="logos-grid">
     <ul flex="~ wrap gap-x-32 gap-y-16 justify-center items-center" m-0 mb-1.5>
       <li>
         <p text="14/16.8 neutral-700" mr-8 whitespace-nowrap nq-label>
@@ -46,3 +47,9 @@ function getCssClasses(link: LinkField) {
     </ul>
   </section>
 </template>
+
+<style scoped>
+:global(:where(.nq-overlaps, [nq-overlaps]) + [data-slice-type='logos-grid']) {
+  --uno: 'f-pt-2xl';
+}
+</style>
