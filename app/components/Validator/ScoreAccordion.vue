@@ -66,7 +66,7 @@ const dominanceStatus = computed(() => {
   <AccordionRoot ring="1.5 neutral-400" children:border="b neutral-400 last:b-0" type="multiple" mt-1.5 rounded-8>
     <AccordionItem value="availability">
       <AccordionTrigger class="trigger">
-        <div text="10 neutral-600" i-nimiq:chevron-right transition-transform data-open:rotate-90 />
+        <div text="10 neutral-600" transition-transform i-nimiq:chevron-right data-open:rotate-90 />
         <h4 text="neutral f-sm left" flex-1 font-semibold>
           Availability
         </h4>
@@ -84,7 +84,7 @@ const dominanceStatus = computed(() => {
 
     <AccordionItem value="reliability">
       <AccordionTrigger class="trigger">
-        <div text="10 neutral-600" i-nimiq:chevron-right transition-transform data-open:rotate-90 />
+        <div text="10 neutral-600" transition-transform i-nimiq:chevron-right data-open:rotate-90 />
         <h4 text="neutral f-sm left" flex-1 font-semibold>
           Reliability
         </h4>
@@ -102,7 +102,7 @@ const dominanceStatus = computed(() => {
 
     <AccordionItem value="dominance">
       <AccordionTrigger class="trigger">
-        <div text="10 neutral-600" i-nimiq:chevron-right transition-transform data-open:rotate-90 />
+        <div text="10 neutral-600" transition-transform i-nimiq:chevron-right data-open:rotate-90 />
         <h4 text="neutral f-sm left" flex-1 font-semibold>
           Dominance
         </h4>

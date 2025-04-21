@@ -152,7 +152,7 @@ const selectedApp = ref(0)
         </NavigationMenuContent>
       </NavigationMenuItem>
       <NavigationMenuIndicator flex="~ items-end justify-center" top-full z-100 mt-5 h-16 of-hidden drop-shadow transition-transform data-hidden:animate-fade-out data-visible:animate-fade-in data-hidden:op-0>
-        <div i-nimiq:tooltip-triangle text-white />
+        <div text-white i-nimiq:tooltip-triangle />
       </NavigationMenuIndicator>
     </NavigationMenuList>
 

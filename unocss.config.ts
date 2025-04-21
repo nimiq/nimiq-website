@@ -53,7 +53,7 @@ export default defineConfig({
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/logos'),
-        ...createExternalPackageIconLoader('@iconify-json/nimiq'),
+        ...createExternalPackageIconLoader('nimiq-icons'),
         'continents': {
           'africa': () => readFile('./public/assets/continents/africa.svg', 'utf-8'),
           'south-america': () => readFile('./public/assets/continents/south-america.svg', 'utf-8'),
@@ -93,19 +93,19 @@ export default defineConfig({
   ],
 
   safelist: [
-    'i-nimiq:icons-lg-hands-hexagon',
-    'i-nimiq:icons-lg-document',
-    'i-nimiq:icons-lg-document-vertical-line',
-    'i-nimiq:icons-lg-document-text',
-    'i-nimiq:icons-lg-three-hands-hexagon',
+    'i-nimiq:duotone-three-hands-hexagon',
+    'i-nimiq:duotone-document',
+    'i-nimiq:duotone-document-vertical-line',
+    'i-nimiq:duotone-document-text',
+    'i-nimiq:duotone-three-hands-hexagon',
     'i-nimiq:logos-super-simple-swap-text',
     'i-nimiq:logos-nimiq-horizontal',
     'i-nimiq:document-filled',
     'i-nimiq:globe-filled',
     'i-nimiq:code',
     'i-nimiq:shield',
-    'i-nimiq:icons-lg-htlc-box',
-    'i-nimiq:icons-lg-envelope',
+    'i-nimiq:duotone-htlc-box',
+    'i-nimiq:duotone-envelope',
   ],
 
   theme: {

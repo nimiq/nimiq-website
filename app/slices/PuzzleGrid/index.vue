@@ -17,7 +17,7 @@ const colors = getColorClass(slice.primary.bgColor)
         <RichText wrapper="div" :field="description" text="white/80 center" />
       </li>
       <li :style="{ '--c': `rgb(var(--nq-${slice.primary.mainPieceBackgroundColor}))` }" bg="$c" flex="~ items-center justify-center col" px-0="!" relative py-24>
-        <div text="$c" lg:left="-39.6px" i-nimiq:tooltip-triangle absolute max-lg:top--15 lg:origin-right-center lg:rotate--90 />
+        <div text="$c" lg:left="-39.6px" absolute i-nimiq:tooltip-triangle max-lg:top--15 lg:origin-right-center lg:rotate--90 />
         <PrismicImage :field="slice.primary.image" h-114 />
         <RichText wrapper="div" :field="slice.primary.description" text="darkblue center f-2xl" f-mt-sm />
       </li>

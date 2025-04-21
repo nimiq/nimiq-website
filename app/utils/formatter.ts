@@ -133,7 +133,7 @@ export function formatFiat(_amount: MaybeRef<number>, currency: MaybeRef<Currenc
   })
 }
 
-const percentageFormatter = new Intl.NumberFormat('en', { style: 'percent', minimumFractionDigits: 0, maximumFractionDigits: 2 })
+const percentageFormatter = new Intl.NumberFormat('en', { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
 export function formatPercentage(input: number) {
   return percentageFormatter.format(input)

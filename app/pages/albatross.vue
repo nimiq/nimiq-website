@@ -49,7 +49,7 @@ canSendTx.value = true
 
         <details f-mt-md>
           <summary flex="~ items-center justify-start gap-8 " text="neutral-800 hocus:neutral" ml-0 w-max cursor-pointer select-none font-semibold>
-            <div i-nimiq:info mx-0 />
+            <div mx-0 i-nimiq:info />
             Technical details
           </summary>
 

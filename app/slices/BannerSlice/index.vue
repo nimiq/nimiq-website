@@ -62,7 +62,7 @@ const items = computed(() => {
         <div v-else-if="bgColor === 'green'" pointer-events-none absolute inset-0 bg-gradient-green />
 
         <div v-if="backgroundPattern === 'Nimiq Hexagon'" text="200 md:300 lg:400" pointer-events-none absolute bottom="-10 lg:-0.2775em" right="-0.2em lg:-0.25em">
-          <div i-nimiq:logos-nimiq-mono text-transparent>
+          <div text-transparent i-nimiq:logos-nimiq-mono>
             <div size-full bg-gradient="to-bl from-transparent via-transparent to-neutral/20" />
           </div>
         </div>

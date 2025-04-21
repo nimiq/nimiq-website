@@ -3,14 +3,17 @@
 ## General
 
 - [ ] In mobile: The first two sections are too narrow. eg /cryptopaymentlink
-- [ ] h1 colors e.g /nimiq-pay
-- [ ] h1+p font size and color e.g /nimiq-pay
+- [x] h1 colors e.g /nimiq-pay
+- [x] h1+p font size and color e.g /nimiq-pay
 - [ ] Remove pinia. The Nimiq Store can be a shared state from Nuxt built-in `useState`.
-- [ ] Migrate to preset onmax.
+- [x] Migrate to preset onmax.
+- [ ] Migrate to preset wind 4.
 - [ ] When you scroll down and try to open the navigation, the header disappears.
 - [ ] Make sure we only load specific amount of pages.
 - [ ] Add /staking to the navigation
 - [ ] Typography colors. see /onepager
+- [ ] https://github.com/basics/nuxt-booster
+- [ ] Remove pkg dependencies
 
 ## After Nuxt 2 is no longer necessary
 
@@ -154,7 +157,7 @@ TODO - Check if there are things to do
 
 ## /blog/XXX
 
-- [ ] bg color brken i think
+- [ ] bg color broken i think
 
 ## /podcast
 

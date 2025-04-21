@@ -83,7 +83,7 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                     <div :class="icon" size-24 />
                   </div>
                 </div>
-                <div i-nimiq:exchange mx-12 op-50 f-text-2xl />
+                <div mx-12 op-50 i-nimiq:exchange f-text-2xl />
                 <div v-for="(icon, i) in cryptoIcons[kind]" :key="i" flex="~ gap-8">
                   <div size-40 rounded-full stack ring="1.5 white/40">
                     <div :class="icon" size-24 />
@@ -97,10 +97,10 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                 </h4>
                 <div flex="~ gap-8 items-center" text-white f-mt-2xs>
                   <PrismicLink :field="socialMedias!.x.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
-                    <div text="white/80 f-xl" i-nimiq:logos-twitter-mono transition-colors />
+                    <div text="white/80 f-xl" transition-colors i-nimiq:logos-twitter-mono />
                   </PrismicLink>
                   <PrismicLink :field="socialMedias!.telegram.link" internal-component="a" bg="white/20 hocus:white/40" external size-40 rounded-full transition-colors stack>
-                    <div text="white/80 f-lg hocus:white" i-nimiq:logos-telegram-mono translate-x--1 translate-y-1 transition-colors />
+                    <div text="white/80 f-lg hocus:white" translate-x--1 translate-y-1 transition-colors i-nimiq:logos-telegram-mono />
                   </PrismicLink>
                 </div>
               </div>

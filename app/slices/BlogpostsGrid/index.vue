@@ -39,7 +39,7 @@ const isDev = import.meta.dev
             <PrismicImage v-if="hasImage" :field="image" h-max w-full rounded-6 object-cover :class="{ 'view-transition-post-img contain-layout': active === uid }" />
             <div v-else-if="isDev" size-full flex-1 rounded-4 py-64 text-green-400 bg-gradient-green grid="~ place-content-center">
               <div flex="~ items-center gap-12">
-                <div i-nimiq:icons-lg-tools text-32 op-70 />
+                <div text-32 op-70 i-nimiq:tools-wench-hammer />
 
                 <p font-bold f-text-xl>
                   Image not found
@@ -70,7 +70,7 @@ const isDev = import.meta.dev
       <PaginationRoot v-model:page="page" :total="totalPages * itemsPerPage" :items-per-page show-edges col-span-full mt-32>
         <PaginationList v-slot="{ items }" flex="~ gap-16 items-center justify-center">
           <PaginationPrev class="item">
-            <div i-nimiq:chevron-left text-9 op-70 />
+            <div text-9 op-70 i-nimiq:chevron-left />
           </PaginationPrev>
           <template v-for="(pageItem, index) in items">
             <PaginationListItem v-if="pageItem.type === 'page'" :key="index" class="item" :value="pageItem.value">
@@ -81,7 +81,7 @@ const isDev = import.meta.dev
             </PaginationEllipsis>
           </template>
           <PaginationNext class="item">
-            <div i-nimiq:chevron-right text-9 op-70 />
+            <div text-9 op-70 i-nimiq:chevron-right />
           </PaginationNext>
         </PaginationList>
       </PaginationRoot>

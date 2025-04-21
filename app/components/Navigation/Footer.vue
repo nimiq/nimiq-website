@@ -21,7 +21,7 @@ const colors = getColorClass(bgColor)
 
       <div text="f-sm neutral-700" self-end area-meta>
         <NuxtLink to="/" group w-max flex>
-          <div i-nimiq:logos-nimiq-horizontal-mono op-80 f-text-xl group-hocus:i-nimiq:logos-nimiq-horizontal />
+          <div h-20="!" w-84="!" op-80 i-nimiq:logos-nimiq-horizontal-mono group-hocus:i-nimiq:logos-nimiq-horizontal />
         </NuxtLink>
         <p v-if="navigation?.nimiqShortDescription" f-mt-xs>
           {{ navigation.nimiqShortDescription }}

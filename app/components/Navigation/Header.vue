@@ -41,10 +41,10 @@ const transition = computed(() => {
     :data-scrolled="!scrolled ? '' : undefined"
   >
     <NuxtLink to="/">
-      <div i-nimiq:logos-nimiq-horizontal class="dark:i-nimiq:logos-nimiq-white-horizontal" text-24 />
+      <div class="dark:i-nimiq:logos-nimiq-white-horizontal" text-24 i-nimiq:logos-nimiq-horizontal />
     </NuxtLink>
     <NuxtLink v-if="navigation!.hotCtaLink" :to="navigation!.hotCtaLink" bg="neutral/15 hocus:neutral/20" :class="{ 'children:delay-200': direction === 'bottom' }" external mr-auto gap-x-9 truncate text-neutral nq-pill children:transition-colors>
-      <div i-nimiq:flame shrink-0 />
+      <div shrink-0 i-nimiq:flame />
       <span truncate text-neutral>{{ navigation!.hottext }}</span>
     </NuxtLink>
 

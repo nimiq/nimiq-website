@@ -19,7 +19,7 @@ export const layers: Layer[] = [
     name: 'Network Layer',
     layerClasses: 'bg-blue/10',
     text: 'text-blue-1100',
-    icon: 'i-nimiq:icons-lg-network',
+    icon: 'i-nimiq:duotone-network',
     blocksClasses: 'bg-blue text-white',
     blocks: [
       {
@@ -81,7 +81,7 @@ export const layers: Layer[] = [
             month: 4,
           },
           {
-            icon: 'i-nimiq:tools',
+            icon: 'i-nimiq:tools-wench-hammer',
             name: 'Development PoW',
             year: 2018,
             month: 2,
@@ -113,7 +113,7 @@ export const layers: Layer[] = [
             row: 2,
           },
           {
-            icon: 'i-nimiq:tools',
+            icon: 'i-nimiq:tools-wench-hammer',
             name: 'Development PoS',
             year: 2020,
             month: 8,
@@ -163,7 +163,7 @@ export const layers: Layer[] = [
     name: 'App Layer',
     layerClasses: 'bg-gold/10 pl-120',
     text: 'text-gold-1100',
-    icon: 'i-nimiq:icons-lg-nim-phone',
+    icon: 'i-nimiq:duotone-nim-phone',
     blocksClasses: 'bg-gold text-white',
     blocks: [
       {
@@ -205,13 +205,13 @@ export const layers: Layer[] = [
             row: 2,
           },
           {
-            icon: 'i-nimiq:icons-lg-btc-nim-swap',
+            icon: 'i-nimiq:duotone-btc-nim-swap',
             name: 'Crypto swaps',
             year: 2022,
             month: 6,
           },
           {
-            icon: 'i-nimiq:icons-lg-usdc-nim-swap',
+            icon: 'i-nimiq:duotone-usdc-nim-swap',
             name: 'Crypto/fiat swaps',
             year: 2022,
             month: 12,
@@ -290,7 +290,7 @@ export const layers: Layer[] = [
   {
     layerClasses: 'bg-orange/10 pl-146',
     text: 'text-orange-1100',
-    icon: 'i-nimiq:icons-lg-group',
+    icon: 'i-nimiq:duotone-group',
     name: 'Adoption Layer',
     blocksClasses: 'bg-orange text-white',
     blocks: [

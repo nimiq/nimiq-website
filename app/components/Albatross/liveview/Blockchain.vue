@@ -62,7 +62,7 @@ const { clientNetwork } = useRuntimeConfig().public
     </div>
 
     <div v-if="status !== 'OPEN' || blocks.length === 0" flex="~ justify-center items-center" absolute inset-0 min-h-224 font-bold>
-      <div v-if="status === 'CONNECTING' || blocks.length === 0" text-18>
+      <div v-if="status === 'CONNECTING' || blocks.length === 0" text="f-lg white">
         Loading...
       </div>
       <div v-else-if="status === 'CLOSED'" text="18 white" rounded-4 bg-red px-32 py-24 shadow ring="1.5 red/3">

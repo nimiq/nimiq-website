@@ -84,7 +84,7 @@ async function connect() {
         <canvas ref="canvas" />
         <div v-if="showTooltip" absolute left-0 top-0 z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
           <div left="[calc(-50%+2px)]" relative mt-16 flex="~ col items-center">
-            <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" i-nimiq:tooltip-triangle text-12 />
+            <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" text-12 i-nimiq:tooltip-triangle />
             <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" flex="~ items-center" top--1 rounded-full transition-colors bg-gradient-blue>
               <span px-16 py-8 text-white font-bold>
                 {{ thisIsYou }}
@@ -97,7 +97,7 @@ async function connect() {
               <div layout-id="connect-label" as="span">
                 Connecting
               </div>
-              <div i-nimiq:spinner animate="ease-out scale-in delay-2s" shrink-0 />
+              <div animate="ease-out scale-in delay-2s" shrink-0 i-nimiq:spinner />
             </div>
             <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" top--3 z-3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none ring-3 ring-green transition-colors>
               <div layout-id="connect-label" as="span">
