@@ -6,6 +6,10 @@ const internalProjectLinks = computed(() => {
 })
 
 const selectedApp = ref(0)
+
+// if we are in / then is home
+const route = useRoute()
+const isHome = route.fullPath === '/'
 </script>
 
 <template>
@@ -113,7 +117,7 @@ const selectedApp = ref(0)
           <div i-nimiq:chevron-down />
         </NavigationMenuTrigger>
 
-        <NavigationMenuContent absolute top-0 min-w-180 motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
+        <NavigationMenuContent absolute top-0 min-w-240 motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
           <div grid grid-cols-1 p-16>
             <ul :aria-label="`${navigation.projectGroupName} links`" role="link" flex="~ col">
               <li v-for="({ label, href }) in navigation.projectLinks" :key="label!" w-full flex class="link-item">
@@ -129,7 +133,7 @@ const selectedApp = ref(0)
       </NavigationMenuItem>
 
       <NavigationMenuItem v-if="navigation.getStartedGroupName && navigation.getStartedLinks.length > 0">
-        <NavigationMenuTrigger class="get-started-btn" ml-16 nq-pill-lg nq-pill-secondary>
+        <NavigationMenuTrigger ml-16 nq-pill-lg :class="isHome ? ' home nq-pill-secondary' : 'nq-pill-blue'">
           {{ navigation.getStartedGroupName }}
         </NavigationMenuTrigger>
         <NavigationMenuContent absolute left-0 top-0 min-w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
@@ -151,21 +155,23 @@ const selectedApp = ref(0)
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>
-      <NavigationMenuIndicator flex="~ items-end justify-center" top-full z-100 mt-5 h-16 of-hidden drop-shadow transition-transform data-hidden:animate-fade-out data-visible:animate-fade-in data-hidden:op-0>
-        <div text-white i-nimiq:tooltip-triangle />
+      <NavigationMenuIndicator flex="~ items-end justify-center" top-full z-100 of-hidden drop-shadow transition-transform data-hidden:animate-fade-out data-visible:animate-fade-in data-hidden:op-0 />
+
+      <NavigationMenuIndicator animate="data-visible:fade-in data-hidden:fade-out" transition="all transform ease duration-200" w="$reka-navigation-menu-indicator-size" flex="~ items-end justify-center" translate-x="$reka-navigation-menu-indicator-position" absolute top-full z-100 z-12 of-hidden duration-200 data-hidden:op-0>
+        <div relative h-12 w-24 i-nimiq:tooltip-triangle />
       </NavigationMenuIndicator>
     </NavigationMenuList>
 
     <div flex="~ justify-center" absolute right-0 top-full z-10 min-w-full perspective-2000>
       <NavigationMenuViewport
-        transition="[width,height]" h="$reka-navigation-menu-viewport-height" animate="scale-in data-closed:scale-out" min-w="$reka-navigation-menu-viewport-width" relative z-1 mt-20 origin-top-center animate-scale-in of-hidden rounded-12 bg-white shadow duration-300
+        transition="[width,height]" h="$reka-navigation-menu-viewport-height" animate="scale-in data-closed:scale-out" min-w="$reka-navigation-menu-viewport-width" relative z-1 mt-12 origin-top-center animate-scale-in of-hidden rounded-12 bg-white shadow duration-300 outline="1.5 offset--1.5 ~ neutral-200"
       />
     </div>
   </NavigationMenuRoot>
 </template>
 
 <style>
-nav.header-nav {
+.header-nav {
   > div {
     --uno: 'z-1';
   }
@@ -173,7 +179,7 @@ nav.header-nav {
     --uno: 'bg-transparent px-16 py-4 font-bold text-neutral-800 hocus:text-neutral-900 data-open:op-80 flex items-center gap-x-8';
 
     [i-nimiq\:chevron-down] {
-      --uno: 'text-12 transition-transform duration-300';
+      --uno: 'scale-50 transition-transform duration-300 op-70';
     }
 
     &[data-state='open'] {
@@ -189,10 +195,22 @@ nav.header-nav {
     }
   }
 
-  .get-started-btn {
+  .get-started-btn.home {
     header[data-scrolled] & {
       --uno: 'bg-none bg-white/10 transition-colors hocus:bg-white/15';
     }
+  }
+}
+
+header[data-scrolled] {
+  [i-nimiq\:tooltip-triangle] {
+    --uno: 'text-neutral-200';
+  }
+}
+
+header:not([data-scrolled]) {
+  [i-nimiq\:tooltip-triangle] {
+    --uno: 'text-white';
   }
 }
 </style>
