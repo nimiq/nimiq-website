@@ -37,7 +37,7 @@ catalog:
   hero-motion: ^0.5.3
   lint-staged: ^15.5.1
   medium-zoom: ^1.1.0
-  nimiq-css: https://pkg.pr.new/onmax/nimiq-ui/nimiq-css@57294e1
+  nimiq-css: https://pkg.pr.new/onmax/nimiq-ui/nimiq-css@f96085a
   nimiq-icons: ^1.0.0-beta.17
   nimiq-rpc-client-ts: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
   nuxt: ^3.16.2
@@ -49,8 +49,8 @@ catalog:
   slice-machine-ui: ^2.15.1
   typescript: ^5.8.3
   unocss: ^66.1.0-beta.12
-  unocss-preset-onmax: ^1.0.0-beta.15
-  unocss-preset-scale-px: 1.0.0-beta.15
+  unocss-preset-onmax: ^1.0.0-beta.16
+  unocss-preset-scale-px: 1.0.0-beta.16
   unplugin-vue-router: ^0.12.0
   valibot: ^1.0.0
   vaul-vue: ^0.4.1

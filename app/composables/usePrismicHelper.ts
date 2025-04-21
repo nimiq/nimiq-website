@@ -7,7 +7,7 @@ export const hasText = (text?: RichTextField) => isFilled.richText(text)
 export const getText = (text?: RichTextField) => asText(text) || ''
 export const getLink = (text?: LinkField) => asLink(text) || ''
 export const getDate = (text?: DateField) => asDate(text) || ''
-export function getUrl(obj?: LinkToMediaField) {
+export function getUrl(obj?: LinkToMediaField | LinkToMediaField) {
   if (!obj)
     return ''
   return (obj as FilledLinkToMediaField).url

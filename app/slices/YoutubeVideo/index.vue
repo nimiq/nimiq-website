@@ -9,10 +9,10 @@ const colors = getColorClass(slice.primary.bgColor)
   <section :class="colors.replace('dark', '')" nq-overlaps>
     <div ring="1 neutral-200" aspect-video w-full rounded-8 bg-neutral-0 shadow stack>
       <PrismicImage v-if="hasImage(slice.primary.poster)" :field="slice.primary.poster" size-full rounded-8 object-cover />
-      <NuxtLink :to="getUrl(slice.primary.youtubeUrl)" external target="_blank">
+      <NuxtLink v-if="slice.primary.youtubeUrl" :to="getUrl(slice.primary.youtubeUrl)" external target="_blank">
         <div text="48 md:96 gold" drop-shadow i-nimiq:triangle-right />
       </NuxtLink>
-      <RichText wrapper="div" :field="slice.primary.headline" style="--nq-font-size: 14px" z-1 self-end justify-self-start f-mt-md f-mt-xs />
+      <RichText wrapper="div" :field="slice.primary.headline" style="--nq-font-size: 14px" z-1 w-max self-end justify-self-start f-text-2xl f-p-sm />
     </div>
   </section>
 </template>

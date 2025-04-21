@@ -24,13 +24,12 @@ useIntersectionObserver(sectionRef, () => {
 </script>
 
 <template>
-  <section ref="section" :class="colors" class="px-0" data-slice-type="zig-zag-content">
+  <section ref="section" :class="colors" data-slice-type="zig-zag-content">
     <ul>
-      <!-- px-24 xl:pl-112 xl:pr-0  -->
       <li
         v-for="(item, i) in slice.items" :key="i"
         grid="~ cols-1 gap-x-96 md:cols-2 md:items-center" border="b neutral-300 last:none"
-        p="first:pb-64 first:md:pb-96 py-64 md:py-96 last:pt-64 last:md:pt-96 odd:r-32 even:l-32" children:even:first:col-start-1 children:even:first:col-start-2
+        p="first:pb-64 first:md:pb-96 py-64 md:py-96 last:pt-64 last:md:pt-96 md:odd:r-32 md:even:l-32" children:even:first:col-start-1 children:even:first:col-start-2
       >
         <!-- <PrismicVideo
           v-if="mediaType(item) === 'video'"
@@ -51,8 +50,8 @@ useIntersectionObserver(sectionRef, () => {
         <div
           col-start-1 row-start-2 py-32 md:row-start-1 md:flex-1 md:items-center lg:py-96 md:py-80 xl:py-144
           :class="{
-            'xl:pl-112 xl:pr-0 ': i % 2 === 0,
-            'xl:pr-112 xl:pl-0 md:col-start-2': i % 2 !== 0,
+            'xl:pl-32 xl:pr-0 ': i % 2 === 0,
+            'xl:pr-32 xl:pl-0 md:col-start-2': i % 2 !== 0,
           }"
         >
           <PrismicImage v-if="hasImage(item.logo)" :field="item.logo" max-md:mx-auto />

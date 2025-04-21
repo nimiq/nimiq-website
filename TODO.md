@@ -1,3 +1,9 @@
+# Done
+
+- /
+- /nimiq-pay
+- /cryptopaymentlink
+
 # Fixes
 
 ## General
@@ -21,9 +27,7 @@
 - [ ] Remove all `a` links and replace it with `nuxt-link`
 - [ ] Remove all `internal-component="a"`
 
-## /
-
-- [ ] Ripple Staking animation.
+# /
 
 ### Tablet
 
@@ -48,28 +52,10 @@
 - [ ] Setup a wallet
 - [ ] Set the iframe to the wallet
 
-### Mobile
-
-## /cryptopaymentlink
-
-No issues found!
-
-### Mobile
-
-## /nimiq-pay
-
-- [ ] Partners background color
-- [ ] Remove "\* BTC Lightning: This feature is currently in testing and being released soon."
-- [ ] Footer bg colors
-
-### Mobile
-
-- [ ] Zig zag does not have padding
-
 ## /supersimpleswap
 
-- [ ] Puzzle items do not have bottom padding
-- [ ] Video headline does not have padding in the bottom and left
+- [x] Puzzle items do not have bottom padding
+- [x] Video headline does not have padding in the bottom and left
 - [ ] Missing links to "Integrate the Widget" and "Implement the API"
 
 ## /apps
@@ -85,11 +71,12 @@ No issues found!
 
 ## /onepager
 
+- [ ] The text is not centered
 - [ ] Incorrect background color
 
 ## /albatross
 
-- [ ] Incorrct Navigation colors
+- [ ] Incorrect Navigation colors
 - [ ] Incorrect background color
 - [ ] Technical details should be a pill
 - [ ] wrong link in the navigation
@@ -170,3 +157,7 @@ TODO - Check if there are things to do
 # Buy and Sell
 
 TODO
+
+# Error page
+
+- [ ] Add 404 page with redirect to the homepage
