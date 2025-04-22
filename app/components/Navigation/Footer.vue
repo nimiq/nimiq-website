@@ -2,11 +2,11 @@
 const { bgColor } = defineProps<{ bgColor: 'white' | 'grey' | 'darkblue' }>()
 const { data: navigation } = await useNavigation()
 
-const colors = getColorClass(bgColor)
+const bgClass = getColorClass(bgColor)
 </script>
 
 <template>
-  <footer :class="colors" data-section z-10 f-pt-2xl>
+  <footer :class="bgClass" data-section z-10 f-pt-2xl>
     <div grid="~ gap-40 md:gap-48 items-start xl:gap-104">
       <div flex="~ col" f-text-sm area-contact>
         <p v-if="navigation?.newsletterCta">

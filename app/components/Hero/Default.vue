@@ -16,12 +16,12 @@ const hasAppStore = computed(() => hasLink(p.appStore))
 const hasPlayStore = computed(() => hasLink(p.playStore))
 const hasAnApp = computed(() => hasAppStore.value || hasPlayStore.value)
 
-const colors = getColorClass(p.bgColor)
+const bgClass = getColorClass(p.bgColor)
 const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filter(Boolean) || [])
 </script>
 
 <template>
-  <section :class="colors" relative>
+  <section :class="bgClass" relative>
     <PrismicText :field="p.headline" wrapper="h1" />
     <PrismicText v-if="p.subline" :field="p.subline" wrapper="p" font-400 dark:text-neutral-900 />
     <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline?.[0]?.text}`" role="list" f-mt-xs flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">

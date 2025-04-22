@@ -4,7 +4,7 @@ import type { ZigZagContentSliceDefaultItem } from '~~/prismicio-types'
 import mediumZoom from 'medium-zoom'
 
 const props = defineProps(getSliceComponentProps<Content.ZigZagContentSlice>())
-const colors = getColorClass(props.slice.primary.bgColor)
+const bgClass = getColorClass(props.slice.primary.bgColor)
 
 function mediaType(item: ZigZagContentSliceDefaultItem) {
   if ('url' in item.videoHigh && 'url' in item.videoMedium && 'url' in item.videoLow) {
@@ -24,7 +24,7 @@ useIntersectionObserver(sectionRef, () => {
 </script>
 
 <template>
-  <section ref="section" :class="colors" data-slice-type="zig-zag-content">
+  <section ref="section" :class="bgClass" data-slice-type="zig-zag-content">
     <ul>
       <li
         v-for="(item, i) in slice.items" :key="i"

@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.CurrencyComparisonSlice>())
-const bgColor = getColorClass(props.slice.primary.bgColor)
+const bgClass = getColorClass(props.slice.primary.bgColor)
 
 const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.CurrencyComparisonSlice['primary']['currencies'][number]> & { twoColumns?: boolean }>()
 </script>
@@ -63,7 +63,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Partial<Content.Curre
       </li>
     </template>
   </DefineCrypto>
-  <section :class="bgColor">
+  <section :class="bgClass">
     <ul grid="~ cols-1 md:cols-2 xl:cols-3">
       <ReuseCrypto v-bind="slice.primary.currencies[0]" border="b-1 neutral-300 xl:b-0 md:r-1" p="b-32 xl:b-0 md:r-32" />
       <ReuseCrypto v-bind="slice.primary.currencies[1]" border="b-1 neutral-300 xl:b-0 xl:r-1" p="y-32 md:t-0 xl:y-0 md:l-32" />

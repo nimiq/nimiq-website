@@ -3,7 +3,7 @@ import type { Content, LinkField } from '@prismicio/client'
 
 // @ts-expect-error - the types are meh
 const { bgColor = 'white' } = defineProps(getSliceComponentProps<Content.LogosGridSlice>())
-const colors = getColorClass(bgColor)
+const bgClass = getColorClass(bgColor)
 
 // @unocss-include
 function getCssClasses(link: LinkField) {
@@ -18,7 +18,7 @@ function getCssClasses(link: LinkField) {
 </script>
 
 <template>
-  <section v-if="slice.variation === 'default'" :class="colors" py-0 data-slice-type="logos-grid">
+  <section v-if="slice.variation === 'default'" :class="bgClass" py-0 data-slice-type="logos-grid">
     <ul flex="~ wrap gap-x-32 gap-y-16 justify-center items-center" m-0 mb-1.5>
       <li>
         <p text="14/16.8 neutral-700" mr-8 whitespace-nowrap nq-label>
@@ -32,7 +32,7 @@ function getCssClasses(link: LinkField) {
       </li>
     </ul>
   </section>
-  <section v-else-if="slice.variation === 'centered'" :class="colors" data-slice-type="logos-grid">
+  <section v-else-if="slice.variation === 'centered'" :class="bgClass" data-slice-type="logos-grid">
     <ul flex="~ wrap gap-x-32 gap-y-16 justify-center items-center" m-0 mb-1.5>
       <li>
         <p text="14/16.8 neutral-700" mr-8 whitespace-nowrap nq-label>

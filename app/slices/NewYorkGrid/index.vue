@@ -4,7 +4,7 @@ import type { Content, KeyTextField } from '@prismicio/client'
 const { slice } = defineProps(getSliceComponentProps<Content.NewYorkGridSlice>())
 const [DefineStats, ReuseStat] = createReusableTemplate<{ label: KeyTextField, value: KeyTextField }>()
 
-const colors = getColorClass(slice.primary.bgColor)
+const bgClass = getColorClass(slice.primary.bgColor)
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const colors = getColorClass(slice.primary.bgColor)
     </div>
   </DefineStats>
 
-  <section mx-0 :class="colors">
+  <section mx-0 :class="bgClass">
     <div
       grid="~ flow-row gap-8 lg:rows-[auto,1fr,auto] lg:gap-24"
       w-full children:rounded-6 children:shadow

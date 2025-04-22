@@ -3,7 +3,7 @@ import type { Content } from '@prismicio/client'
 
 defineProps(getSliceComponentProps<Content.SteppedLottieSlice>())
 
-const colors = getColorClass('darkblue')
+const bgClass = getColorClass('darkblue')
 
 // const index = ref(0)
 
@@ -11,7 +11,7 @@ const { scroller } = useCarousel()
 </script>
 
 <template>
-  <section :class="colors" nq-overlaps>
+  <section :class="bgClass" nq-overlaps>
     <div relative size-full w-full rounded-6 bg-darkerblue f-p-xl>
       <div bg="white/10" absolute inset-0 rounded-8 />
       <ul ref="scroller" flex="~ items-center" snap="x mandatory" of-x-auto nq-scrollbar-hide>
