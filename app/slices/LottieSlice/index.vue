@@ -3,7 +3,7 @@ import type { Content } from '@prismicio/client'
 import { Vue3Lottie } from 'vue3-lottie'
 
 const { slice } = defineProps(getSliceComponentProps<Content.LottieSliceSlice>())
-const colors = getColorClass(slice.primary.bgColor)
+const bgClass = getColorClass(slice.primary.bgColor)
 const pauseAnimation = ref(false)
 
 const section = useTemplateRef<HTMLDivElement>('section')
@@ -14,7 +14,7 @@ useIntersectionObserver(section, ([entry]) => pauseAnimation.value = !entry?.isI
 </script>
 
 <template>
-  <section ref="section" bg-neutral-0 pt-0 :class="colors">
+  <section ref="section" bg-neutral-0 pt-0 :class="bgClass">
     <ClientOnly>
       <Vue3Lottie :animation-data pause-animation :height="168" :width="712" />
     </ClientOnly>

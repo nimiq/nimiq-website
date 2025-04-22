@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { color } = defineProps<{ color?: 'grey' | 'white' | 'darkblue' }>()
-const colors = getColorClass(color)
+const bgClass = getColorClass(color)
 </script>
 
 <template>
-  <section :class="colors" group mx-0 children:max-w-none>
+  <section :class="bgClass" group mx-0 children:max-w-none>
     <div class="nq-prose" transition-colors children:text="f-sm neutral-800 group-hocus:neutral-900">
       <h2>
         Disclaimer

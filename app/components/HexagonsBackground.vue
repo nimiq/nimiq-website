@@ -5,7 +5,7 @@ const { bgColor, withSocials = false } = defineProps<{ bgColor: 'white' | 'grey'
 
 const { data: socialMedias } = await useSocialMedias()
 
-const colors = getColorClass(() => bgColor)
+const bgClass = getColorClass(() => bgColor)
 
 const rows = computed(() => 5)
 const { width } = useWindowSize()
@@ -52,7 +52,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section :class="colors" group relative z-2 mx-0 w-full of-x-hidden px-0 f-pt-2xl>
+  <section :class="bgClass" group relative z-2 mx-0 w-full of-x-hidden px-0 f-pt-2xl>
     <div
       aria-hidden="true"
       class="grid-parent" max-w-none

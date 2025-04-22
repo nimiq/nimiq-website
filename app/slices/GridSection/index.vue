@@ -4,11 +4,11 @@ import type { Content } from '@prismicio/client'
 // TODO GridSectionSlice has a link and link label. Is that being used?
 
 const props = defineProps(getSliceComponentProps<Content.GridSectionSlice>())
-const colors = getColorClass(props.slice.primary.bgColor)
+const bgClass = getColorClass(props.slice.primary.bgColor)
 </script>
 
 <template>
-  <section :class="colors" data-slice-type="grid-section">
+  <section :class="bgClass" data-slice-type="grid-section">
     <template v-if="slice.variation === 'default'">
       <ul nq-grid-330>
         <li

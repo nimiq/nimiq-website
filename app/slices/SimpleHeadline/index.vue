@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const { slice, slices } = defineProps(getSliceComponentProps<Content.SimpleHeadlineSlice>())
-const bgColor = getColorClass(slice.primary.bgColor)
+const bgClass = getColorClass(slice.primary.bgColor)
 
 const isLastSlice = slices.indexOf(slice) === slices.length - 1
 
@@ -26,7 +26,7 @@ function getGradientClass() {
 </script>
 
 <template>
-  <section :nq-section-gap="!isStakingSlice ? '' : undefined" :class="[bgColor, getGradientClass()]" relative data-slice-type="simple-headline">
+  <section :nq-section-gap="!isStakingSlice ? '' : undefined" :class="[bgClass, getGradientClass()]" relative data-slice-type="simple-headline">
     <Headline
       v-if="!isStakingSlice"
       :headline="slice.primary.headline"
