@@ -8,7 +8,18 @@ const uid = pathParams.at(-1) || 'home'
 const isHome = uid === 'home'
 
 const { client } = usePrismic()
-const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID('page', uid))
+const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID('page', uid)
+  .catch((error) => {
+    console.error(`Page with UID "${uid}" not found:`, error)
+    throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+  }))
+
+if (!page.value || (!import.meta.dev && page.value?.data.draft)) {
+  console.error(`Page with UID "${uid}" not found`)
+  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+}
+
+// No need to check if page.value exists after this point because createError will stop execution
 
 // We check that the page.links is not empty if isGrandchildPage and that the links defined are the same as in the URL
 if (isGrandchildPage) {
@@ -16,8 +27,9 @@ if (isGrandchildPage) {
   const parentsSubpathMatches = page.value?.data.parents.every((parent, index) => (parent as { uid: string }).uid === pathParams[index])
 
   const notValid = !parentsLengthMatches || !parentsSubpathMatches
-  if (notValid)
-    throw new Error(`The page with UID "${uid}" is not valid: Check that the parents.`)
+  if (notValid) {
+    throw createError({ statusCode: 404, statusMessage: `The page with UID "${uid}" has incorrect parent structure`, fatal: true })
+  }
 }
 
 definePageMeta({

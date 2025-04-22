@@ -6,14 +6,22 @@ import { components } from '~/slices'
 const postSlug = useRouteParams<string>('post')
 
 const { client } = usePrismic()
-const { data: post } = await useAsyncData('blog_page', () => client.getByUID('blog_page', postSlug.value))
-if (import.meta.env && (!post.value || post.value?.data.draft))
-  throw new Error(`Post ${post.value?.href} is in draft but somehow we tried to generate it :/`)
+const { data: post } = await useAsyncData('blog_page', () => client.getByUID('blog_page', postSlug.value)
+  .catch((error) => {
+    console.error(`Blog post with slug "${postSlug.value}" not found:`, error)
+    throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
+  }))
+
+if (!post.value || (!import.meta.dev && post.value?.data.draft)) {
+  console.error(`Blog post with slug "${postSlug.value}" not found`)
+  throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
+}
 
 const { readingTime, meta, draft /* , image */ } = useProse(post.value!)
 
 useHead(meta)
 useSeoMeta({ ...meta, twitterTitle: meta.title, twitterDescription: meta.description, twitterCard: 'summary_large_image' })
+
 // defineOgImage({
 //   alt: image.alt || '',
 //   url: image.url || '',
