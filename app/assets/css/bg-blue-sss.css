@@ -18,7 +18,7 @@ header.dark:has(+ main > section:first-child:where(.bg-blue-sss)) {
     color: rgb(var(--nq-white) / 0.7);
   }
 
-  &:not([nq-overlaps]) {
+  &:not(:where(.nq-overlaps, [nq-overlaps])) {
     :is(
       &:where(.bg-darkblue, [bg-darkblue]):has(
           + :where(section, [data-section]):not(:where(.nq-section-gap, [nq-section-gap])):where(
