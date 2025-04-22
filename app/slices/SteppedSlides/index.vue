@@ -48,9 +48,9 @@ function goToStep(step: number) {
       <li
         v-for="(item, i) in slice.items" :key="i"
         :data-state="step - 1 === i ? 'active' : undefined" snap="center always" cursor="active:default pointer"
-        op="20 data-active:100" max-w-784 w-full shrink-0 transition-opacity duration-400 @click="() => goToStep(i + 1)"
+        op="20 data-active:100" max-w-784 w-full shrink-0 transition-opacity flex="~ col" duration-400 @click="() => goToStep(i + 1)"
       >
-        <PrismicImage v-if="'image' in item" :field="item.image" rounded-6 object-cover shadow />
+        <PrismicImage v-if="'image' in item" :field="item.image" rounded-6 object-cover shadow f-mb-lg />
         <!-- <VLottie
           v-else-if="slice.variation === 'withAnimations'"
           :src="item.source.url"
@@ -58,7 +58,8 @@ function goToStep(step: number) {
           :preload="i <= step + 1"
           :loop="i === 0"
         /> -->
-        <p text="neutral-800 f-xs" px="8 md:32 xl:48" nq-label f-mt-lg>
+
+        <p text="neutral-800 f-xs" px="8 md:32 xl:48" mt-auto nq-label>
           {{ item.label }}
         </p>
         <RichText wrapper="div" px="8 md:32 xl:48" :field="item.description" nq-prose-compact f-mt-2xs text="neutral-800 children:f-xl" />

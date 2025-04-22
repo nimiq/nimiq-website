@@ -23,13 +23,15 @@ function useAppsGrid({ apps, spotLightApps }: { apps: NimiqApp[], spotLightApps:
     }
   }
 
-  const filteredApps = computed(() =>
-    apps?.filter(item =>
-      madeBy.value === 'anyone'
-      || (madeBy.value === 'official' && item.developer === '@nimiq')
-      || (madeBy.value === 'community' && item.developer !== '@nimiq'),
-    ),
-  )
+  const filteredApps = computed(() => {
+    if (madeBy.value === 'anyone')
+      return apps
+    else if (madeBy.value === 'official')
+      return apps.filter(app => app.developer === '@nimiq')
+    else if (madeBy.value === 'community')
+      return apps.filter(app => app.developer !== '@nimiq')
+    return []
+  })
 
   return {
     filteredApps,
@@ -61,7 +63,10 @@ function useAppsGrid({ apps, spotLightApps }: { apps: NimiqApp[], spotLightApps:
   </form>
 
   <ul v-if="filteredApps.length" f-mt-xl grid="~ gap-16 cols-[repeat(auto-fit,min(100%,350px))] 2xl:gap-32 xl:gap-24">
-    <li v-for="(app, i) in filteredApps" :key="i" :style="getSpotlightAppsPosition(app)" :class="getSpotlightAppsPosition(app)?.class" w-full>
+    <li
+      v-for="(app, i) in filteredApps" :key="i" :style="getSpotlightAppsPosition(app)"
+      :class="getSpotlightAppsPosition(app)?.class" w-full
+    >
       <CardApp v-if="!app.isHighlighted" v-bind="app" w-full />
       <CardHighlighted v-else v-bind="app" w-full />
     </li>
@@ -73,6 +78,7 @@ fieldset label {
   input {
     --uno: 'sr-only';
   }
+
   span {
     --uno: 'text-neutral-700 transition-colors f-px-xs text-16 font-semibold';
   }

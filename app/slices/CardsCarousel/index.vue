@@ -1,22 +1,16 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
-import { filter } from '@prismicio/client'
 
 const { slice, slices } = defineProps(getSliceComponentProps<Content.CardsCarouselSlice>())
-const sectionColor = getColorClass(slice.primary.bgColor)
-
-const { client } = usePrismic()
+const bgClass = getColorClass(slice.primary.bgColor)
 
 const variation = computed(() => slice.variation)
 
-const { data: items } = await useAsyncData(`cards_carousel_${variation.value}`, async () => {
-  if (variation.value === 'apps' && (slice.primary as Content.CardsCarouselSliceAppsPrimary).appsMadeBy === 'Community') {
-    const communityApps = await client.getAllByType('nimiq_app', {
-      filters: [filter.at('my.nimiq_app.isOfficial', false)],
-    })
-    return communityApps.sort(() => Math.random() - 0.5).map(d => d.data)
+const { data } = await useApps()
+const items = computed(() => {
+  if (variation.value === 'apps') {
+    return data.value?.communityApps.toSorted(() => Math.random() - 0.5)
   }
-  console.warn('Nimiq Events nor Nimiq Apps not implemented')
   return []
 })
 
@@ -43,9 +37,9 @@ onNuxtReady(async () => {
 </script>
 
 <template>
-  <section v-if="items && items.length > 0" :class="sectionColor" px-0 pb-0>
+  <section v-if="items && items.length > 0" :class="bgClass" px-0 pb-0>
     <template v-if="slice.variation === 'apps'">
-      <Carousel :items>
+      <Carousel :items="items">
         <template #default="{ item }">
           <CardApp v-bind="item" />
         </template>

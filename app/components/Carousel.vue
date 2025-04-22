@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T">
+<script setup lang="ts" generic="T extends {name:string}">
 const { multiple = true, items } = defineProps<{ items: T[], multiple?: boolean }>()
 
 const carousel = multiple ? useCarouselMultipleItems() : useCarousel()
@@ -52,7 +52,7 @@ const indicatorsStyles = computed(() => {
     </button>
 
     <ul ref="scroller" flex="~ gap-16 md:gap-32 items-stretch" snap="x mandatory" scroll-px="$px" pb="$pb" v-bind="$attrs" h-full w-full justify-self-start of-x-auto nq-scrollbar-hide>
-      <li v-for="(item, i) in items" :key="i" snap="start always" p="first:l-$px last:r-$px" data-slide h-full flex-1 shrink-0>
+      <li v-for="(item, i) in items" :key="item.name || i" snap="start always" p="first:l-$px last:r-$px" data-slide h-full flex-1 shrink-0>
         <slot :item />
       </li>
     </ul>

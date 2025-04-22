@@ -19,8 +19,6 @@ if (!page.value || (!import.meta.dev && page.value?.data.draft)) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
-// No need to check if page.value exists after this point because createError will stop execution
-
 // We check that the page.links is not empty if isGrandchildPage and that the links defined are the same as in the URL
 if (isGrandchildPage) {
   const parentsLengthMatches = page.value?.data.parents.length === pathParams.length - 1
