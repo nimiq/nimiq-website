@@ -38,7 +38,6 @@ const homeLinkText = computed(() => isBlogPage.value ? 'Browse all articles' : '
 
 const handleError = () => clearError({ redirect: homeRoute.value })
 
-definePageMeta({ layout: 'default' })
 useHead({
   title: isBlogPostError.value ? 'Article not found | Nimiq Blog' : `${statusCode.value} - ${statusMessage.value} | Nimiq`,
   meta: [{ name: 'robots', content: 'noindex, nofollow' }],
