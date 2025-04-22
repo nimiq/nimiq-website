@@ -20,7 +20,7 @@ catalog:
   '@popperjs/core': ^2.11.8
   '@prismicio/client': ^7.17.2
   '@prismicio/richtext': ^2.1.5
-  '@slicemachine/adapter-nuxt': ^0.3.74
+  '@slicemachine/adapter-nuxt': ^0.3.75
   '@types/node': ^22.14.1
   '@unocss/eslint-plugin': ^66.1.0-beta.12
   '@unocss/nuxt': ^66.1.0-beta.12
@@ -32,7 +32,7 @@ catalog:
   '@vueuse/nuxt': ^13.1.0
   '@vueuse/router': ^13.1.0
   cookie: ^1.0.2
-  eslint: ^9.25.0
+  eslint: ^9.25.1
   eslint-plugin-format: ^1.0.1
   hero-motion: ^0.5.3
   lint-staged: ^15.5.1
@@ -46,7 +46,7 @@ catalog:
   reka-ui: ^2.2.0
   sharp: ^0.34.1
   simple-git-hooks: ^2.12.1
-  slice-machine-ui: ^2.15.1
+  slice-machine-ui: ^2.15.2
   typescript: ^5.8.3
   unocss: ^66.1.0-beta.12
   unocss-preset-onmax: ^1.0.0-beta.16
