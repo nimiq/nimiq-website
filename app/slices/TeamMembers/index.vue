@@ -1,15 +1,33 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
+import { computed, onMounted, ref } from 'vue'
 
 const props = defineProps(getSliceComponentProps<Content.TeamMembersSlice>())
 
-const items = computed(() => [...props.slice.items].sort(() => Math.random() - 0.5))
+const items = [...props.slice.items]
+
+// 1. SSR‑friendly sorted list (alphabetical by fullName)
+const sortedItems = computed(() => [...items].sort((a, b) => (a.fullName || '').localeCompare(b.fullName || '')))
+
+// 2️. Client‑only randomized list
+const randomizedItems = ref<typeof items>([])
+const hasShuffled = ref(false)
+
+onMounted(() => {
+  randomizedItems.value = [...items].sort(() => Math.random() - 0.5)
+  hasShuffled.value = true
+})
+
+// 3️. Which list to render
+const displayItems = computed(() =>
+  hasShuffled.value ? randomizedItems.value : sortedItems.value,
+)
 </script>
 
 <template>
   <section bg-neutral-0>
     <ul columns="1 sm:2 lg:3" gap-0 style="column-rule: 2px solid rgb(var(--nq-neutral-400))">
-      <li v-for="({ picture, fullName, role, github, linkedin, twitter, description }, i) in items" :key="i" break-inside-avoid-column border="b-2 solid neutral-400">
+      <li v-for="({ picture, fullName, role, github, linkedin, twitter, description }) in displayItems" :key="fullName!" break-inside-avoid-column border="b-2 solid neutral-400">
         <div v-if="hasImage(picture)" px-32 pt-32>
           <NuxtImg :src="$prismic.asImageSrc(picture)!" w-full rounded-6 object-cover />
         </div>
@@ -40,7 +58,7 @@ const items = computed(() => [...props.slice.items].sort(() => Math.random() - 0
             </li>
             <li v-if="twitter">
               <NuxtLink :to="`https://twitter.com/${twitter}`" title="Twitter" external h-max flex rounded-4 p-8 bg="hocus:neutral/6" aria-label="Twitter link">
-                <div i-nimiq:logos-twitter />
+                <div i-nimiq:logos-x />
               </NuxtLink>
             </li>
             <li v-if="linkedin">
