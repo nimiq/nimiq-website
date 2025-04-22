@@ -2,7 +2,7 @@
 import type { Content } from '@prismicio/client'
 
 const props = defineProps(getSliceComponentProps<Content.TiltedMediaSlice>())
-const colors = getColorClass(props.slice.primary.bgColor)
+const bgClass = getColorClass(props.slice.primary.bgColor)
 const url = computed(() => {
   if (props.slice.variation === 'default')
     // @ts-expect-error The URL is always present in this case
@@ -24,10 +24,19 @@ watch([top, y], () => {
   rotateVar.value = y.value < top.value ? `${(1 - y.value / top.value) * 30}deg` : '0deg'
   translateY.value = y.value < top.value ? `${y.value / top.value * 100 - 100}px` : '0'
 }, { immediate: true })
+
+// @unocss-include
+
+const hexagonColor = computed(() => {
+  if (bgClass.value.includes('bg-blue-sss'))
+    return 'text-white'
+  return 'text-neutral-700'
+})
 </script>
 
 <template>
-  <section mx-0 px-0 :class="[colors, { 'nq-overlaps': slice.variation === 'default' }]">
+  <section mx-0 px-0 :class="[bgClass, { 'nq-overlaps': slice.variation === 'default' }]">
+    <div w="420vw md:140vw" i-custom:bg-hexagons absolute inset-0 h-full max-w-none top="120 md:300" :class="hexagonColor" />
     <div w-full of-x-clip px-32 max-md:max-w-none style="--f-mb-min: 96; --f-mb-max: 128;">
       <div ref="media" style="--rotate-x:30deg;--translate-y:-100px;transform: perspective(1800px) rotateX(var(--rotate-x)) translateY(var(--translate-y))" origin="[center_70%]" transition="transform duration-350 ease-[cubic-bezier(0,0,0.25,1)]" mx-auto h-full min-h-500 children:w-full>
         <NuxtImg v-if="slice.variation === 'default'" :src="url" />
