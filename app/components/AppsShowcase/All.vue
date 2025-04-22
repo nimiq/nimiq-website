@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import type { AppsShowcaseSliceDefaultPrimary } from '~~/prismicio-types'
-import { breakpointsTailwind } from '@vueuse/core'
 
 const { labelTeamNimiq } = defineProps<AppsShowcaseSliceDefaultPrimary>()
-
-const { smaller, between } = useBreakpoints(breakpointsTailwind)
-const isMediumScreen = between('md', 'xl')
-const isSmallScreen = smaller('md')
 
 const { data } = await useApps({ labelTeamNimiq: labelTeamNimiq! })
 const { filteredApps, getSpotlightAppsPosition, madeBy } = useAppsGrid(data.value!)
@@ -22,18 +17,9 @@ function useAppsGrid({ apps, spotLightApps }: { apps: NimiqApp[], spotLightApps:
 
     const appIndex = spotLightApps.indexOf(name!)
 
-    if (isSmallScreen.value || isMediumScreen.value) {
-      return {
-        gridColumn: `1 / span ${isSmallScreen.value ? 1 : 2}`,
-        gridRow: `${(appIndex + 1) * 3 - 2}`,
-      }
-    }
-
-    // For larger screens, place each app in its own row with increasing numbers
-    // This ensures Nimiq Pay App (index 1) goes to row 3
     return {
-      gridColumn: `${(appIndex % 2 === 0) ? '1' : '2'} / span 2`,
-      gridRow: `${(appIndex * 2) + 1}`,
+      gridRow: `${(appIndex + 1) * 3 - 2}`,
+      class: 'spotlight-app spotlight-span-2',
     }
   }
 
@@ -74,8 +60,8 @@ function useAppsGrid({ apps, spotLightApps }: { apps: NimiqApp[], spotLightApps:
     </fieldset>
   </form>
 
-  <ul v-if="filteredApps.length" f-mt-xl grid="~ gap-16 cols-[repeat(auto-fit,350px)] 2xl:gap-32 xl:gap-24">
-    <li v-for="(app, i) in filteredApps" :key="i" :style="getSpotlightAppsPosition(app)" w-full>
+  <ul v-if="filteredApps.length" f-mt-xl grid="~ gap-16 cols-[repeat(auto-fit,min(100%,350px))] 2xl:gap-32 xl:gap-24">
+    <li v-for="(app, i) in filteredApps" :key="i" :style="getSpotlightAppsPosition(app)" :class="getSpotlightAppsPosition(app)?.class" w-full>
       <CardApp v-if="!app.isHighlighted" v-bind="app" w-full />
       <CardHighlighted v-else v-bind="app" w-full />
     </li>
@@ -97,6 +83,12 @@ fieldset label {
 
   input:where(:focus-visible, :hover) + span {
     --uno: 'text-neutral-900';
+  }
+}
+
+@media (min-width: 768px) {
+  .spotlight-span-2 {
+    grid-column-end: span 2;
   }
 }
 </style>
