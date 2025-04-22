@@ -13,11 +13,10 @@ const colors = getColorClass(slice.primary.bgColor)
         <div v-if="icon" :class="icon" f-text="~ min-58 max-64" op-60 f-mt-xs />
         <span v-if="pillLabel" nq-label f-mt-sm text="f-xs neutral-600">{{ pillLabel }}</span>
         <RichText wrapper="div" :field="title" />
-        <RichText wrapper="div" :field="description" f-mt-sm>
-          <div f-mt-md flex="~ gap-14 wrap">
-            <PrismicLink v-for="(link, j) in links" :key="j" internal-component="a" :field="link" :class="j === 0 ? 'nq-pill-blue' : 'nq-pill-secondary'" nq-arrow />
-          </div>
-        </RichText>
+        <RichText wrapper="div" :field="description" f-mt-sm />
+        <div f-mt-md flex="~ gap-14 wrap">
+          <PrismicLink v-for="(link, j) in links.filter(hasLink)" :key="j" internal-component="a" :field="link" :class="j === 0 ? 'nq-pill-blue' : 'nq-pill-secondary'" nq-arrow />
+        </div>
       </li>
     </ul>
   </section>
