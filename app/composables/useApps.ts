@@ -67,9 +67,15 @@ export function useApps({ labelTeamNimiq = 'Team Nimiq' }: UseAppsOption = {}) {
 
     const processedApps = [...spotlightedApps, ...nonSpotlightedApps]
 
+    const transformedApps = processedApps.map(app => transformAppToAttributes(app, labelTeamNimiq))
+    const communityApps = transformedApps.filter(app => app.developer !== '@nimiq')
+    const officialApps = transformedApps.filter(app => app.developer === '@nimiq')
+
     return {
-      apps: processedApps.map(app => transformAppToAttributes(app, labelTeamNimiq)),
+      apps: transformedApps,
       spotLightApps,
+      communityApps,
+      officialApps,
     }
   })
 }
