@@ -8,7 +8,7 @@ const uid = pathParams.at(-1) || 'home'
 const isHome = uid === 'home'
 
 const { client } = usePrismic()
-const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID('page', uid))
+const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID('page', uid), { lazy: true })
 
 // We check that the page.links is not empty if isGrandchildPage and that the links defined are the same as in the URL
 if (isGrandchildPage) {
