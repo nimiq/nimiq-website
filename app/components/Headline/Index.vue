@@ -31,7 +31,7 @@ if (hasLink(cta)) {
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" :class="{ 'text-left': leftAlign }" />
 
     <!-- TODO Deprecate this -->
-    <template v-if="cta && hasLink(cta)">
+    <template v-if="links.length === 0 && cta && hasLink(cta)">
       <PrismicLink v-if="!ctaIsVideo" internal-component="a" :field="cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-lg :class="{ 'md:mx-auto': !leftAlign }" />
       <PrismicLink v-else internal-component="a" :field="cta" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue rounded-4 p-8 transition-colors f-mt-sm>
         <div ring="1.5 blue" size-32 rounded-full text-16 stack>

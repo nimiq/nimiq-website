@@ -1,7 +1,7 @@
 import type { SocialMediaDocument } from '~~/prismicio-types'
 
 export type SocialMediaAttributes = SocialMediaDocument['data'] & {
-  color: `#${string}`
+  color: string
   icon: string
   id: string
 }
@@ -22,15 +22,15 @@ export const SocialMedia: Record<SocialMediaName, SocialMediaName> = {
 
 // @unocss-include
 const socialMediaConfigs: Record<SocialMediaName, Pick<SocialMediaAttributes, 'color' | 'icon'>> = {
-  x: { color: '#000', icon: 'i-nimiq:logos-twitter-mono' },
-  telegram: { color: '#0088cc', icon: 'i-nimiq:logos-telegram-mono scale-97' },
-  reddit: { color: '#ff4500', icon: 'i-nimiq:logos-reddit-mono scale-105' },
-  github: { color: '#333333', icon: 'i-nimiq:logos-github-mono' },
-  youtube: { color: '#ff0000', icon: 'i-nimiq:logos-youtube-mono scale-85' },
-  discord: { color: '#5865F2', icon: 'i-nimiq:logos-discord-mono scale-86' },
-  nimiqForum: { color: '#E9B213', icon: 'i-nimiq:logos-nimiq-forum-mono' },
-  facebook: { color: '#4267B2', icon: 'i-nimiq:logos-facebook-mono' },
-  instagram: { color: '#c13584', icon: 'i-nimiq:logos-instagram-mono' },
+  x: { color: 'oklch(0 0 0)', icon: 'i-nimiq:logos-twitter-mono' },
+  telegram: { color: 'oklch(0.6 0.14119 241.5546)', icon: 'i-nimiq:logos-telegram-mono scale-97' },
+  reddit: { color: 'oklch(0.66 0.229356 35.4025)', icon: 'i-nimiq:logos-reddit-mono scale-105' },
+  github: { color: 'oklch(0.32 0 0)', icon: 'i-nimiq:logos-github-mono' },
+  youtube: { color: 'oklch(0.63 0.2577 29.23)', icon: 'i-nimiq:logos-youtube-mono scale-85' },
+  discord: { color: 'oklch(0.58 0.2091 273.85)', icon: 'i-nimiq:logos-discord-mono scale-86' },
+  nimiqForum: { color: 'oklch(0.79 0.1593 85.61)', icon: 'i-nimiq:logos-nimiq-forum-mono' },
+  facebook: { color: 'oklch(0.52 0.1259 262.97)', icon: 'i-nimiq:logos-facebook-mono' },
+  instagram: { color: 'oklch(0.56 0.1907 350.4)', icon: 'i-nimiq:logos-instagram-mono' },
 }
 
 export function useSocialMedias() {
