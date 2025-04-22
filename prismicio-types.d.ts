@@ -9952,7 +9952,7 @@ export interface SimpleHeadlineSliceDefaultPrimary {
   subline: prismic.RichTextField
 
   /**
-   * CTA field in *SimpleHeadline → Default → Primary*
+   * CTA [Deprecated] - Use links field in *SimpleHeadline → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -10025,6 +10025,24 @@ export interface SimpleHeadlineSliceDefaultPrimary {
     | 'blue-s3'
     | 'blue-dark-dimmed',
     'filled'
+  >
+
+  /**
+   * links field in *SimpleHeadline → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_headline.default.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      'nq-pill-blue' | 'nq-pill-secondary'
+    >
   >
 }
 
