@@ -1,0 +1,76 @@
+table {
+  margin-top: 56px;
+  display: block;
+  overflow: auto;
+  border-radius: 8px;
+  background-color: rgb(var(--nq-neutral-0));
+  max-width: 1200px;
+
+  &.large {
+    max-width: 1200px;
+    margin-left: -24px;
+    margin-right: -24px;
+    width: calc(100% + 48px);
+
+    @media (min-width: 1024px) {
+      margin-left: -175px;
+      margin-right: -172px;
+      width: calc(100% + 350px);
+    }
+  }
+
+  tr {
+    th {
+      font-weight: bold;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 12px;
+      white-space: nowrap;
+      padding: 18px 8px;
+      text-align: left;
+
+      @media (min-width: 1280px) {
+        font-size: 13px;
+      }
+
+      @media (min-width: 1536px) {
+        font-size: 14px;
+      }
+
+      /* TODO This seems to be broken between columns :/ */
+      &.spacer {
+        &:not(:first-child) {
+          border-top-right-radius: 8px;
+        }
+
+        &:first-child {
+          border-top-left-radius: 8px;
+          border: none;
+        }
+      }
+    }
+
+    td {
+      line-height: 1.4;
+      font-size: 18px;
+      padding: 18px 8px;
+    }
+
+    td {
+      min-width: 1rem;
+      vertical-align: top;
+      border-bottom-width: 1px;
+    }
+  }
+
+  .gap {
+    width: 16px;
+    padding: 0;
+    border: none;
+  }
+
+  .bg-grey {
+    background-color: rgb(var(--nq-neutral-100));
+  }
+}

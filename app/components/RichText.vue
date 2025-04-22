@@ -17,6 +17,12 @@ const components = {
       <div v-html="text" />
       <!-- Missing labels: nq-large-text, blocquote, center, text-gold nq_small_text -->
     </template>
+    <template v-else-if="data?.label === 'text-gold nq_large-text'">
+      <p text-gold font-semibold f-text-3xl>
+        {{ text }}
+      </p>
+    </template>
+    <!-- text-gold nq_large-text -->
   </DefineLabel>
   <PrismicRichText v-bind="{ ...props, ...$attrs }" :components />
 </template>
