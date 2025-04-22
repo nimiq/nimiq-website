@@ -18,7 +18,6 @@ type PriorityLevel = 'high' | 'low' | 'medium'
 type AppType = 'Insights' | 'E-commerce' | 'Games' | 'Faucet' | 'Promotion' | 'Miner' | 'Wallets' | 'Infrastructure' | 'Bots'
 
 interface AppApi {
-  isOfficial: boolean
   name: string
   description: string
   link: string
@@ -34,7 +33,7 @@ export interface NimiqApp extends AppApi {
   color: string
 }
 
-const spotLightApps = ['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map', 'Cryptopayment.link']
+const spotLightApps = ['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map']
 
 function transformAppToAttributes(app: NimiqApp, labelTeamNimiq: string): NimiqApp {
   return {

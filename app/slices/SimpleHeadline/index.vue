@@ -32,6 +32,7 @@ function getGradientClass() {
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
       :cta="slice.primary.cta"
+      :links="slice.primary.links"
       :label="slice.primary.label"
       :icon-name="slice.primary.iconName" z-1
     />

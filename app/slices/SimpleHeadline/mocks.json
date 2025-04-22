@@ -82,13 +82,29 @@
         "type": "Text"
       },
       "cta": {
-        "key": "15f27c6d-78fa-4072-8c5d-845a5bfbdf99",
+        "key": "50fded1a-3e71-4077-9929-d54ea5b39a58",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
-          "url": "http://twitter.com",
-          "text": "swept"
+          "url": "http://google.com",
+          "text": "picture"
         }
+      },
+      "links": {
+        "__TYPE__": "RepeatableContent",
+        "type": "Link",
+        "value": [
+          {
+            "__TYPE__": "LinkContent",
+            "key": "02021df0-6531-42c1-b352-e457ff1aa492",
+            "value": {
+              "__TYPE__": "ExternalLink",
+              "url": "http://google.com",
+              "text": "railroad",
+              "variant": "nq-pill-blue"
+            }
+          }
+        ]
       }
     },
     "items": [

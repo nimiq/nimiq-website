@@ -40,8 +40,8 @@ function useAppsGrid({ apps, spotLightApps }: { apps: NimiqApp[], spotLightApps:
   const filteredApps = computed(() =>
     apps?.filter(item =>
       madeBy.value === 'anyone'
-      || (madeBy.value === 'official' && item.isOfficial)
-      || (madeBy.value === 'community' && !item.isOfficial),
+      || (madeBy.value === 'official' && item.developer === '@nimiq')
+      || (madeBy.value === 'community' && item.developer !== '@nimiq'),
     ),
   )
 
