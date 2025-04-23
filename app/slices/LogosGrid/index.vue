@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type { Content, LinkField } from '@prismicio/client'
 
-// @ts-expect-error - the types are meh
-const { bgColor = 'white' } = defineProps(getSliceComponentProps<Content.LogosGridSlice>())
-const bgClass = getColorClass(bgColor)
+const { slice } = defineProps(getSliceComponentProps<Content.LogosGridSlice>())
+const bgClass = getColorClass(slice.primary.bgColor)
 
 // @unocss-include
 function getCssClasses(link: LinkField) {
-  // @ts-expect-error - we know that link.url is a string
-  switch (link.url) {
+  switch (getUrl(link)) {
     case 'https://naka.com/':
       return 'max-h-24'
     default:

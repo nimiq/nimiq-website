@@ -18,4 +18,4 @@ export function getColorClass(color: MaybeRef<Color> | (() => MaybeRef<Color>) =
   })
 }
 
-export type BackgroundColor = ReturnType<typeof getColorClass>
+export type BackgroundColor = MaybeRefOrGetter<ReturnType<typeof getColorClass>>

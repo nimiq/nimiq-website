@@ -121,8 +121,8 @@ catalogs:
       specifier: ^1.1.0
       version: 1.1.0
     nimiq-css:
-      specifier: https://pkg.pr.new/onmax/nimiq-ui/nimiq-css@f96085a
-      version: 1.0.0-beta.17
+      specifier: ^1.0.0-beta.20
+      version: 1.0.0-beta.20
     nimiq-icons:
       specifier: ^1.0.0-beta.17
       version: 1.0.0-beta.17
@@ -132,6 +132,9 @@ catalogs:
     nuxt:
       specifier: ^3.16.2
       version: 3.16.2
+    nuxt-time:
+      specifier: ^1.0.3
+      version: 1.0.3
     pathe:
       specifier: ^2.0.3
       version: 2.0.3
@@ -230,6 +233,9 @@ importers:
       nuxt:
         specifier: 'catalog:'
         version: 3.16.2(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.14.1)(bufferutil@4.0.9)(db0@0.3.2)(eslint@9.25.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.40.0)(terser@5.39.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
+      nuxt-time:
+        specifier: 'catalog:'
+        version: 1.0.3(magicast@0.3.5)(nuxt@3.16.2(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.14.1)(bufferutil@4.0.9)(db0@0.3.2)(eslint@9.25.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.40.0)(terser@5.39.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1))
       reka-ui:
         specifier: 'catalog:'
         version: 2.2.0(typescript@5.8.3)(vue@3.5.13(typescript@5.8.3))
@@ -329,7 +335,7 @@ importers:
         version: 15.5.1
       nimiq-css:
         specifier: 'catalog:'
-        version: https://pkg.pr.new/onmax/nimiq-ui/nimiq-css@f96085a(@unocss/webpack@66.1.0-beta.12(webpack@5.99.6(esbuild@0.25.3)))(postcss@8.5.3)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
+        version: 1.0.0-beta.20(@unocss/webpack@66.1.0-beta.12(webpack@5.99.6(esbuild@0.25.3)))(postcss@8.5.3)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
       nimiq-icons:
         specifier: 'catalog:'
         version: 1.0.0-beta.17
@@ -6032,13 +6038,15 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  nimiq-css@https://pkg.pr.new/onmax/nimiq-ui/nimiq-css@f96085a:
-    resolution: {tarball: https://pkg.pr.new/onmax/nimiq-ui/nimiq-css@f96085a}
-    version: 1.0.0-beta.17
+  nimiq-css@1.0.0-beta.20:
+    resolution: {integrity: sha512-yukd7qSiD11kRw6pfwFPLY1+nNnkmha1eJ1Uedd5fSDVfJxP8EuZeCTeQOgeH5HS0MxvwtGSK2iQKBnwcTB2Yw==}
     engines: {node: '>=14'}
 
   nimiq-icons@1.0.0-beta.17:
     resolution: {integrity: sha512-74/jdPz9MZ3OQyVsMW7FI7jUkUULAaEZsrdKl4W5kWn7WFw41QLIkVFcsLcDqmpscenwZRxemIG8eYwo3+7c8Q==}
+
+  nimiq-icons@1.0.0-beta.20:
+    resolution: {integrity: sha512-IuirvdIYEHquOPqwU25D5yd3HjLN6w9/oQ7cvNc/qSD/u0Uz+RN7gLDUfdjVKEmCd09D5BdYrWToyXtoku6dVA==}
 
   nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575:
     resolution: {tarball: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575}
@@ -6184,6 +6192,11 @@ packages:
 
   nuxt-site-config@3.1.9:
     resolution: {integrity: sha512-YB69GX0st8drv1d5xypweseiEWeR22tfGdyVH3U4R+mpUSz8paBx48ArKC6MgV22DKItoQm51LVoapF5pl5bEQ==}
+
+  nuxt-time@1.0.3:
+    resolution: {integrity: sha512-aD5Yv18IIKX08ED9B+Hd2rSDewcV40qNxUursdtJFaKFhLLZWPQF8TR2d/P523erPlqht2OvxSN3iyGhUJJy/g==}
+    peerDependencies:
+      nuxt: '>=3.12.0'
 
   nuxt@3.16.2:
     resolution: {integrity: sha512-yjIC/C4HW8Pd+m0ACGliEF0HnimXYGYvUzjOsTiLQKkDDt2T+djyZ+pCl9BfhQBA8rYmnsym2jUI+ubjv1iClw==}
@@ -14790,12 +14803,12 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  nimiq-css@https://pkg.pr.new/onmax/nimiq-ui/nimiq-css@f96085a(@unocss/webpack@66.1.0-beta.12(webpack@5.99.6(esbuild@0.25.3)))(postcss@8.5.3)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3)):
+  nimiq-css@1.0.0-beta.20(@unocss/webpack@66.1.0-beta.12(webpack@5.99.6(esbuild@0.25.3)))(postcss@8.5.3)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3)):
     dependencies:
       '@iconify/utils': 2.3.0
       '@unocss/preset-web-fonts': 66.1.0-beta.12
       '@unocss/reset': 66.1.0-beta.12
-      nimiq-icons: 1.0.0-beta.17
+      nimiq-icons: 1.0.0-beta.20
       ts-cssjson: 3.0.1
       unocss: 66.1.0-beta.12(@unocss/webpack@66.1.0-beta.12(webpack@5.99.6(esbuild@0.25.3)))(postcss@8.5.3)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
     transitivePeerDependencies:
@@ -14806,6 +14819,10 @@ snapshots:
       - vue
 
   nimiq-icons@1.0.0-beta.17:
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  nimiq-icons@1.0.0-beta.20:
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -15140,6 +15157,13 @@ snapshots:
     transitivePeerDependencies:
       - magicast
       - vue
+
+  nuxt-time@1.0.3(magicast@0.3.5)(nuxt@3.16.2(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.14.1)(bufferutil@4.0.9)(db0@0.3.2)(eslint@9.25.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.40.0)(terser@5.39.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)):
+    dependencies:
+      '@nuxt/kit': 3.16.2(magicast@0.3.5)
+      nuxt: 3.16.2(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.14.1)(bufferutil@4.0.9)(db0@0.3.2)(eslint@9.25.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.40.0)(terser@5.39.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
+    transitivePeerDependencies:
+      - magicast
 
   nuxt@3.16.2(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.14.1)(bufferutil@4.0.9)(db0@0.3.2)(eslint@9.25.1(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.40.0)(terser@5.39.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(vite@6.3.2(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1):
     dependencies:

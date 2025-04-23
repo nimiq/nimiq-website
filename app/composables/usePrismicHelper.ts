@@ -1,4 +1,4 @@
-import type { DateField, FilledLinkToMediaField, ImageField, LinkField, LinkToMediaField, RichTextField } from '@prismicio/client'
+import type { DateField, ImageField, LinkField, LinkToMediaField, RichTextField } from '@prismicio/client'
 import { asDate, asLink, asText, isFilled } from '@prismicio/client'
 
 export const hasLink = (link?: LinkField) => isFilled.link(link)
@@ -7,10 +7,10 @@ export const hasText = (text?: RichTextField) => isFilled.richText(text)
 export const getText = (text?: RichTextField) => asText(text) || ''
 export const getLink = (text?: LinkField) => asLink(text) || ''
 export const getDate = (text?: DateField) => asDate(text) || ''
-export function getUrl(obj?: LinkToMediaField | LinkToMediaField) {
-  if (!obj)
+export function getUrl(obj?: LinkToMediaField | LinkField | LinkToMediaField) {
+  if (!obj || !hasLink(obj))
     return ''
-  return (obj as FilledLinkToMediaField).url
+  return obj.url
 }
 
 export function getAspectRatio({ dimensions }: ImageField) {

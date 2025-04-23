@@ -7,6 +7,11 @@
         "__TYPE__": "FieldContent",
         "value": "meet",
         "type": "Text"
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "grey",
+        "type": "Select"
       }
     },
     "items": [
