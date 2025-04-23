@@ -15,8 +15,8 @@ const bgClass = getColorClass(props.slice.primary.bgColor)
             <div absolute right--214 top--140 text-360 i-nimiq:logos-nimiq-mono />
           </div>
         </div>
-        <div :class="iconName" text="blue  96 md:120" nq-prose-compact max-w-128 />
-        <RichText wrapper="div" :field="headline" z-1 transition-colors />
+        <div text="blue  96 md:120" nq-prose-compact max-w-128 f-mb-sm :class="[iconName, { 'mx-auto': hasText(subline) }]" />
+        <RichText wrapper="div" :field="headline" z-1 transition-colors :class="{ 'text-center': hasText(subline) }" />
         <RichText wrapper="div" :field="subline" z-1 transition-colors f-mt-2xs md:text-center />
       </PrismicLink>
     </div>

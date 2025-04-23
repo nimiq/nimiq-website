@@ -112,8 +112,13 @@ section {
   overflow-x: clip;
 
   .world-container {
-    --min-globe-pt: 20vw;
-    --max-globe-pt: 25vw;
+    --f-w-min-container: 100;
+    --f-w-max-container: 100;
+    --uno: 'f-$globemin-base-vw f-$globemin-min-20 f-$globemin-max-20 f-$globemin';
+    --uno: 'f-$globemax-base-vw f-$globemax-min-9 f-$globemax-max-25 f-$globemax';
+
+    --min-globe-pt: var(--f-globemin);
+    --max-globe-pt: var(--f-globemax);
     height: calc((1 - var(--progress)) * var(--min-globe-pt) + var(--max-globe-pt) * var(--progress));
 
     .oval {
@@ -128,7 +133,10 @@ section {
 
       /* Icons */
       > div {
-        --uno: 'pointer-events-none mt-16 transition-colors w-50vw h-max !self-start';
+        --uno: 'pointer-events-none mt-16 transition-colors h-max !self-start';
+
+        --uno: 'f-$w-base-vw f-$w-min-70 f-$w-max-50 f-$w w-$f-w';
+
         aspect-ratio: 984 / 368;
         /* scale from 1 to 1.35 with progress from top center */
         transform: scale(calc(1 + 0.35 * var(--progress)));
