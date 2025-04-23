@@ -22,7 +22,6 @@ const components = {
         {{ text }}
       </p>
     </template>
-    <!-- text-gold nq_large-text -->
   </DefineLabel>
   <PrismicRichText v-bind="{ ...props, ...$attrs }" :components text-20 />
 </template>
