@@ -13,8 +13,14 @@ export function useStakingInfo() {
     query: async () => {
       const { stakedRatio } = await $fetch<DistributionResponse>(`${validatorsApiBaseUrl}/api/v1/distribution`)
       if (stakedRatio == null || stakedRatio > 1 || stakedRatio < 0) {
-        console.warn(`Staked ratio from API suspicious (${stakedRatio}). Defaulting to 0.55.`)
+        console.warn(`Staked ratio from API suspicious (${stakedRatio}).`)
         return undefined
+      }
+      // There is a bug in the API that returns stakedRatio as a decimal
+      // if stakedRatio is 0.005757, we need to change to multiply by 100
+      if (stakedRatio < 0.01) {
+        console.warn(`Staked ratio from API suspicious (${stakedRatio}). Defaulting to 0.55.`)
+        return stakedRatio * 100
       }
       return stakedRatio
     },

@@ -58,7 +58,7 @@ const displayItems = computed(() =>
             </li>
             <li v-if="twitter">
               <NuxtLink :to="`https://twitter.com/${twitter}`" title="Twitter" external h-max flex rounded-4 p-8 bg="hocus:neutral/6" aria-label="Twitter link">
-                <div i-nimiq:logos-x />
+                <div i-nimiq:logos-twitter />
               </NuxtLink>
             </li>
             <li v-if="linkedin">

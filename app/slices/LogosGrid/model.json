@@ -17,18 +17,18 @@
             "label": "label",
             "placeholder": ""
           }
-        }
-      },
-      "bgColor": {
-        "type": "Select",
-        "config": {
-          "label": "Background Color",
-          "placeholder": "",
-          "options": [
-            "white",
-            "grey"
-          ],
-          "default_value": "white"
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey"
+            ],
+            "default_value": "white"
+          }
         }
       },
       "items": {

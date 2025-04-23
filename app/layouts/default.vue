@@ -13,6 +13,6 @@ const { data: navigation } = await useNavigation()
   <div fixed bottom-32 right-32 z-102>
     <LockBadge v-if="draft" />
   </div>
-  <HexagonsBackground z-1 class="hexagon-bg" :bg-color="footerBgColor" :with-socials="showSocialsHexagonBg" />
+  <HexagonsBackground z-1 :bg-color="footerBgColor" :with-socials="showSocialsHexagonBg" />
   <NavigationFooter :bg-color="footerBgColor" />
 </template>
