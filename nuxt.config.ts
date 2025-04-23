@@ -151,6 +151,8 @@ export default defineNuxtConfig({
   },
 
   hub: {
+    workers: true,
+
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,
     cache: true,
