@@ -165,15 +165,10 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    // Check ./modules/prerender-routes.ts to see more about this
-
     '/api/**': { cors: true },
 
-    '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
-    '/cookie-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710/cookie-policy' },
-
-    // TODO Remove podcast from CMS
-    '/podcast': { redirect: 'https://www.youtube.com/watch?v=Z-ypFLS7csU&list=PLuhSf5DE3FFQFSM-Hhb4gXrbcIo3ohVE9&ab_channel=Nimiq' },
+    // Check ./modules/prerender-routes.ts to see more about this
+    // More redirects in nginx/default.conf
   },
 
   nitro: {
