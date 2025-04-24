@@ -19,8 +19,8 @@ export function useStakingInfo() {
       // There is a bug in the API that returns stakedRatio as a decimal
       // if stakedRatio is 0.005757, we need to change to multiply by 100
       if (stakedRatio < 0.01) {
-        console.warn(`Staked ratio from API suspicious (${stakedRatio}). Defaulting to 0.55.`)
-        return stakedRatio * 100
+        console.warn(`Staked ratio from API suspicious (${stakedRatio}). Defaulting to 0.52.`)
+        return 0.52
       }
       return stakedRatio
     },
