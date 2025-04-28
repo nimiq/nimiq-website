@@ -62,6 +62,7 @@ jobs:
       - name: Disable SSR via .nuxtrc
         run: |
           echo "ssr=false" > .nuxtrc
+          echo "app.baseURL=/nimiq-website/" >> .nuxtrc
 
       - name: Static HTML export with Nuxt
         run: pnpm run generate
