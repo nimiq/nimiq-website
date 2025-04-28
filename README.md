@@ -1,90 +1,109 @@
-# Nimiq Website
+<p align="center">
+  <a href="https://nimiq.com" target="_blank">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-light.svg">
+      <img alt="Nimiq" src="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-light.svg" width="350" height="70" style="max-width: 100%;">
+    </picture>
+  </a>
+</p>
 
-The code for the [nimiq.com website](https://nimiq.com)
+<p align="center">
+  The source code for the <a href="https://nimiq.com" target="_blank">Nimiq website</a>.
+</p>
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<p align="center">
+    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/deploy-preview.yaml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/deploy-preview.yaml/badge.svg" alt="Deploy Status"></a>
+  <!-- TODO Api deployment -->
+</p>
 
-## Setup
+---
+
+## Project Overview
+
+### Tech Stack
+
+Our website is built with the following technologies:
+
+- [Nuxt 4](https://nuxt.com): The core framework powering our application
+- [UnoCSS](https://unocss.dev): Utility-first CSS engine with enhanced flexibility
+- [Prismic](https://prismic.io): Headless CMS for content management
+- [Reka UI](https://reka-ui.com): Component library (similar to Radix UI)
+
+### Development Setup
 
 Make sure to install the dependencies:
 
 ```bash
-# npm
-npm install
-
-# pnpm
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+pnpm dev
 ```
 
-## Development Server
+### Environment Variables
 
-Start the development server on `http://localhost:3000`:
+The project uses environment variables for configuration. You can find an example in `.env.example` file. Copy it to create your own `.env` file:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+cp .env.example .env
 ```
 
-## TODO
+### CSS System: UnoCSS
 
-## Page migration
+We use UnoCSS instead of TailwindCSS for more flexibility. Key features include:
 
-- [ ] oasis
-- [ ] buy-and-sell
-- [ ] whitepaper-2
-- [ ] oasis/integrate
-- [ ] blog
-- [ ] blog post
+- [Nimiq UnoCSS](https://onmax.github.io/nimiq-ui/): Custom utilities, reset, typography and base styles
+- [Nimiq icons](https://nimiq.com/icons): Custom icon set
+- [Attributify mode](https://unocss.dev/features/attributify): Supports both traditional class strings and attribute syntax
+- Custom presets (via [`unocss-preset-onmax`](https://github.com/onmax/unocss-preset-onmax)):
+  - [Reka preset](https://reka-ui.com): Provides variants like data-open:bg-pink → data-[state:open]:bg-pink
+  - [Fluid sizing](https://github.com/onmax/unocss-preset-fluid-sizing): Use `f-pt-md` for responsive padding that scales between breakpoints
+  - Scale px: Different from Tailwind, p-4 equals 4px not 16px
 
----
+### Deployment
 
-### Wont do
+- Frontend: Static site generation with nuxi generate, deployed to our servers via internal action
+- Backend: Small Node.js server hosted at api.nimiq.dev
 
-- [ ] siliconparadise
-- [ ] cryptomap
-- [ ] bug-bounty --> Remove?
-- [ ] bug-bounty-pos --> remove?
+### Directory Structure
 
-- [ ] Check custom pages from the old repo
-- [ ] Configure redirects
+- `app`: Nuxt application code
+- `server`: Backend server code
+- `customtypes`: Prismic custom type definitions. Automatically generated from Prismic slicemachine.
+- `shared`: Shared utilities and components
+- `public`: Static assets
 
-### WIP
+## Prismic + Slicemachine
 
-- [ ] Wallet - WIP
-- [ ] about - Missing roadmap section
-- [ ] roadmap - WIP
-- [ ] litepaper - WIP
+We use Prismic as our headless CMS. The content is managed through the Prismic dashboard, and the custom types are defined in the `slicemachine`.
 
-### To be reviewed
+In order to modify the slices, you need to run locally the Prismic CLI:
 
-- [ ] cryptopaymentlink
-- [ ] nimiq-pay
-- [ ] contact
-- [ ] privacy
-- [ ] supersimpleswap
-- [ ] Onepager
-- [ ] apps
-- [ ] community/funding
-- [ ] staking
-- [ ] community
-- [ ] team
+```bash
+pnpm slicemachine
+```
 
-### Done
+Then, go to the `http://localhost:9999` URL to see the Prismic Slicemachine interface and edit the slices.
 
-- [x] Home
-- [x] newsletter
+Once you are done making changes you should see the changes in the `./app/slices`:
+
+- If you modified an existing slice, the types will be updated and therefore the linter will complain. You can use `pnpm run lint` to see the errors.
+- If you added a new slice, a new folder will be created in `./app/slices`. I recommend you to use this template:
+
+```vue
+<script setup lang="ts">
+import type { Content } from '@prismicio/client'
+
+const { slice } = defineProps(getSliceComponentProps<Content.YourNewSlice>()) // Safely typed
+
+const bgClass = getColorClass(slice.primary.bgColor)
+</script>
+
+<template>
+  <section :class="bgClass">
+    Your new slice content goes here!
+  </section>
+</template>
+```
+
+> [!NOTE]
+> It is important that all slices are wrapped in a section tag, so that the css can apply the [correct styles](https://github.com/onmax/nimiq-ui/blob/main/packages/nimiq-css/src/css/static-content.css). The section should have the background color: `bg-neutral-0`, `bg-neutral-100` or `bg-darkblue`.

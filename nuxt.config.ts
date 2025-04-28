@@ -20,7 +20,6 @@ export default defineNuxtConfig({
     'reka-ui/nuxt',
     // '@nuxtjs/seo',
     '@nuxthub/core',
-    'nuxt-time',
     '@nuxtjs/prismic',
     // '@nuxtjs/critters',
     '@nuxtjs/device',
