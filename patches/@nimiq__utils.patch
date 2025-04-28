@@ -1,0 +1,525 @@
+diff --git a/LICENSE.md b/LICENSE.md
+deleted file mode 100644
+index 377a9396421a39a3bfc85e43b961169afd06d2a0..0000000000000000000000000000000000000000
+diff --git a/README.md b/README.md
+deleted file mode 100644
+index ec2e5dbe3b5a57004b886e4b4cdc0ce19cd47760..0000000000000000000000000000000000000000
+diff --git a/dist/browser-detection/BrowserDetection.cjs b/dist/browser-detection/BrowserDetection.cjs
+index ec136d3cb7e7fe524efd6244ecc1a2d6e6f3e91d..b0b32ca23d93b9e11eda5a00f6b580f63beb23c2 100644
+--- a/dist/browser-detection/BrowserDetection.cjs
++++ b/dist/browser-detection/BrowserDetection.cjs
+@@ -8,6 +8,9 @@ class BrowserDetection {
+       isMobile: BrowserDetection.isMobile()
+     };
+   }
++  static isBrowser() {
++    return typeof globalThis.window !== "undefined" && typeof globalThis.document !== "undefined";
++  }
+   /* eslint-disable max-len */
+   // Also includes tablets.
+   // Inspired by:
+@@ -16,6 +19,7 @@ class BrowserDetection {
+   // - http://detectmobilebrowsers.com/about (tablets)
+   /* eslint-enable max-len */
+   static isMobile() {
++    if (!this.isBrowser()) return false;
+     return /i?Phone|iP(ad|od)|Android|BlackBerry|Opera Mini|WPDesktop|Mobi(le)?|Silk/i.test(navigator.userAgent);
+   }
+   /* eslint-disable max-len */
+@@ -37,6 +41,7 @@ class BrowserDetection {
+   // - Brave: is indistinguishable from Chrome user agents
+   /* eslint-enable max-len */
+   static detectBrowser() {
++    if (!this.isBrowser()) return BrowserDetection.Browser.UNKNOWN;
+     if (BrowserDetection._detectedBrowser) {
+       return BrowserDetection._detectedBrowser;
+     }
+@@ -57,6 +62,7 @@ class BrowserDetection {
+     return BrowserDetection._detectedBrowser;
+   }
+   static detectVersion() {
++    if (!this.isBrowser()) return null;
+     if (typeof BrowserDetection._detectedVersion !== "undefined") {
+       return BrowserDetection._detectedVersion;
+     }
+@@ -99,27 +105,35 @@ class BrowserDetection {
+     return BrowserDetection._detectedVersion;
+   }
+   static isChrome() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.CHROME;
+   }
+   static isFirefox() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.FIREFOX;
+   }
+   static isOpera() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.OPERA;
+   }
+   static isEdge() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.EDGE;
+   }
+   static isSafari() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.SAFARI;
+   }
+   static isBrave() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.BRAVE;
+   }
+   static isIOS() {
++    if (!this.isBrowser()) return false;
+     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+   }
+   static isBadIOS() {
++    if (!this.isBrowser()) return false;
+     const browserInfo = BrowserDetection.getBrowserInfo();
+     return browserInfo.browser === BrowserDetection.Browser.SAFARI && browserInfo.isMobile && browserInfo.version && (browserInfo.version.major < 11 || browserInfo.version.major === 11 && browserInfo.version.minor === 2);
+   }
+@@ -129,6 +143,7 @@ class BrowserDetection {
+    * @returns {Promise}
+    */
+   static isPrivateMode() {
++    if (!this.isBrowser()) return Promise.resolve(false);
+     return new Promise((resolve) => {
+       const on = () => resolve(true);
+       const off = () => resolve(false);
+diff --git a/dist/browser-detection/BrowserDetection.d.cts b/dist/browser-detection/BrowserDetection.d.cts
+index 241536362525656bc617446849df6496c7255c86..197915ded41877876f8ea898bd7c6e0c4a6624f3 100644
+--- a/dist/browser-detection/BrowserDetection.d.cts
++++ b/dist/browser-detection/BrowserDetection.d.cts
+@@ -4,6 +4,7 @@ declare class BrowserDetection {
+         version: BrowserDetection.BrowserVersion | null;
+         isMobile: boolean;
+     };
++    private static isBrowser;
+     static isMobile(): boolean;
+     static detectBrowser(): BrowserDetection.Browser;
+     static detectVersion(): BrowserDetection.BrowserVersion | null;
+diff --git a/dist/browser-detection/BrowserDetection.d.mts b/dist/browser-detection/BrowserDetection.d.mts
+index 71afd7568e34bc2052514034e29f985641cbaaa2..fdabedc7069eb7ad1dd82e060c05465f19e18ee0 100644
+--- a/dist/browser-detection/BrowserDetection.d.mts
++++ b/dist/browser-detection/BrowserDetection.d.mts
+@@ -4,6 +4,7 @@ declare class BrowserDetection {
+         version: BrowserDetection.BrowserVersion | null;
+         isMobile: boolean;
+     };
++    private static isBrowser;
+     static isMobile(): boolean;
+     static detectBrowser(): BrowserDetection.Browser;
+     static detectVersion(): BrowserDetection.BrowserVersion | null;
+diff --git a/dist/browser-detection/BrowserDetection.d.ts b/dist/browser-detection/BrowserDetection.d.ts
+index 71afd7568e34bc2052514034e29f985641cbaaa2..fdabedc7069eb7ad1dd82e060c05465f19e18ee0 100644
+--- a/dist/browser-detection/BrowserDetection.d.ts
++++ b/dist/browser-detection/BrowserDetection.d.ts
+@@ -4,6 +4,7 @@ declare class BrowserDetection {
+         version: BrowserDetection.BrowserVersion | null;
+         isMobile: boolean;
+     };
++    private static isBrowser;
+     static isMobile(): boolean;
+     static detectBrowser(): BrowserDetection.Browser;
+     static detectVersion(): BrowserDetection.BrowserVersion | null;
+diff --git a/dist/browser-detection/BrowserDetection.mjs b/dist/browser-detection/BrowserDetection.mjs
+index 1e8588885615c95f778e0fc08bfc062380fb84c0..15fe0f251980a738b7ac15c33ab16b70aafe6323 100644
+--- a/dist/browser-detection/BrowserDetection.mjs
++++ b/dist/browser-detection/BrowserDetection.mjs
+@@ -6,6 +6,9 @@ class BrowserDetection {
+       isMobile: BrowserDetection.isMobile()
+     };
+   }
++  static isBrowser() {
++    return typeof globalThis.window !== "undefined" && typeof globalThis.document !== "undefined";
++  }
+   /* eslint-disable max-len */
+   // Also includes tablets.
+   // Inspired by:
+@@ -14,6 +17,7 @@ class BrowserDetection {
+   // - http://detectmobilebrowsers.com/about (tablets)
+   /* eslint-enable max-len */
+   static isMobile() {
++    if (!this.isBrowser()) return false;
+     return /i?Phone|iP(ad|od)|Android|BlackBerry|Opera Mini|WPDesktop|Mobi(le)?|Silk/i.test(navigator.userAgent);
+   }
+   /* eslint-disable max-len */
+@@ -35,6 +39,7 @@ class BrowserDetection {
+   // - Brave: is indistinguishable from Chrome user agents
+   /* eslint-enable max-len */
+   static detectBrowser() {
++    if (!this.isBrowser()) return BrowserDetection.Browser.UNKNOWN;
+     if (BrowserDetection._detectedBrowser) {
+       return BrowserDetection._detectedBrowser;
+     }
+@@ -55,6 +60,7 @@ class BrowserDetection {
+     return BrowserDetection._detectedBrowser;
+   }
+   static detectVersion() {
++    if (!this.isBrowser()) return null;
+     if (typeof BrowserDetection._detectedVersion !== "undefined") {
+       return BrowserDetection._detectedVersion;
+     }
+@@ -97,27 +103,35 @@ class BrowserDetection {
+     return BrowserDetection._detectedVersion;
+   }
+   static isChrome() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.CHROME;
+   }
+   static isFirefox() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.FIREFOX;
+   }
+   static isOpera() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.OPERA;
+   }
+   static isEdge() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.EDGE;
+   }
+   static isSafari() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.SAFARI;
+   }
+   static isBrave() {
++    if (!this.isBrowser()) return false;
+     return BrowserDetection.detectBrowser() === BrowserDetection.Browser.BRAVE;
+   }
+   static isIOS() {
++    if (!this.isBrowser()) return false;
+     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+   }
+   static isBadIOS() {
++    if (!this.isBrowser()) return false;
+     const browserInfo = BrowserDetection.getBrowserInfo();
+     return browserInfo.browser === BrowserDetection.Browser.SAFARI && browserInfo.isMobile && browserInfo.version && (browserInfo.version.major < 11 || browserInfo.version.major === 11 && browserInfo.version.minor === 2);
+   }
+@@ -127,6 +141,7 @@ class BrowserDetection {
+    * @returns {Promise}
+    */
+   static isPrivateMode() {
++    if (!this.isBrowser()) return Promise.resolve(false);
+     return new Promise((resolve) => {
+       const on = () => resolve(true);
+       const off = () => resolve(false);
+diff --git a/dist/clipboard/Clipboard.cjs b/dist/clipboard/Clipboard.cjs
+index bc1ed93e27c344dc41fa921757c1a9fc09d6d32d..f1e7cd5b9b7ebc68cd500f40c55ef3b9e745eae0 100644
+--- a/dist/clipboard/Clipboard.cjs
++++ b/dist/clipboard/Clipboard.cjs
+@@ -2,6 +2,7 @@
+ 
+ class Clipboard {
+   static copy(text) {
++    if (typeof globalThis.document === "undefined") return false;
+     const element = document.createElement("textarea");
+     element.value = text;
+     element.setAttribute("readonly", "");
+diff --git a/dist/clipboard/Clipboard.mjs b/dist/clipboard/Clipboard.mjs
+index c7c76a9e4b3795dbe2d2ca3992d7210f7d09b05c..1d3504d7b6b4ea715a42e70401ae2a3583da5af4 100644
+--- a/dist/clipboard/Clipboard.mjs
++++ b/dist/clipboard/Clipboard.mjs
+@@ -1,5 +1,6 @@
+ class Clipboard {
+   static copy(text) {
++    if (typeof globalThis.document === "undefined") return false;
+     const element = document.createElement("textarea");
+     element.value = text;
+     element.setAttribute("readonly", "");
+diff --git a/dist/cookie/Cookie.cjs b/dist/cookie/Cookie.cjs
+index c1d02518a23d4b5dac90367247794dd1fddf7500..5f0b0d8be40a84d2522f6670999cfcf42eeda5b7 100644
+--- a/dist/cookie/Cookie.cjs
++++ b/dist/cookie/Cookie.cjs
+@@ -1,6 +1,6 @@
+ 'use strict';
+ 
+-const cookie_Cookie = require('../shared/utils.w-Q7dHYP.cjs');
++const cookie_Cookie = require('../shared/utils.B1TbYVdQ.cjs');
+ 
+ 
+ 
+diff --git a/dist/cookie/Cookie.d.cts b/dist/cookie/Cookie.d.cts
+index 752eea4af746ded1f34318102f9fbfb13cd9826c..ccba35fef41021d2caa98ad8c7dfefa6b9990751 100644
+--- a/dist/cookie/Cookie.d.cts
++++ b/dist/cookie/Cookie.d.cts
+@@ -1 +1 @@
+-export { g as getCookie, s as setCookie, u as unsetCookie } from '../shared/utils.Nhn9qZUp.cjs';
++export { g as getCookie, s as setCookie, u as unsetCookie } from '../shared/utils.Ba9aDCIL.cjs';
+diff --git a/dist/cookie/Cookie.d.mts b/dist/cookie/Cookie.d.mts
+index 9abcada986f79a499f158f0b9b8c0000fed0fcb8..cb5e6583b180dc2c38baef75e6e152acdedadfc3 100644
+--- a/dist/cookie/Cookie.d.mts
++++ b/dist/cookie/Cookie.d.mts
+@@ -1 +1 @@
+-export { g as getCookie, s as setCookie, u as unsetCookie } from '../shared/utils.Nhn9qZUp.mjs';
++export { g as getCookie, s as setCookie, u as unsetCookie } from '../shared/utils.Ba9aDCIL.mjs';
+diff --git a/dist/cookie/Cookie.d.ts b/dist/cookie/Cookie.d.ts
+index a85a76b2ec957031d5ee2b61f05530613ceb58ab..cbcc79b4ba1fd45ec7b77ebe2582f64fd2c1ca03 100644
+--- a/dist/cookie/Cookie.d.ts
++++ b/dist/cookie/Cookie.d.ts
+@@ -1 +1 @@
+-export { g as getCookie, s as setCookie, u as unsetCookie } from '../shared/utils.Nhn9qZUp.js';
++export { g as getCookie, s as setCookie, u as unsetCookie } from '../shared/utils.Ba9aDCIL.js';
+diff --git a/dist/cookie/Cookie.mjs b/dist/cookie/Cookie.mjs
+index f6137f524fa29bbf77cd308be37e2c7239a043c0..6bcb5d24108f93f346aed2513bcfd1974f0b80b1 100644
+--- a/dist/cookie/Cookie.mjs
++++ b/dist/cookie/Cookie.mjs
+@@ -1 +1 @@
+-export { g as getCookie, s as setCookie, u as unsetCookie } from '../shared/utils.C7aGadF1.mjs';
++export { g as getCookie, s as setCookie, u as unsetCookie } from '../shared/utils.C0Y0yj8E.mjs';
+diff --git a/dist/currency-info/CurrencyInfo.cjs b/dist/currency-info/CurrencyInfo.cjs
+index 42079bb82d3c5769d3a33a39764d819be1f41a33..a49b5e898a00d89e78295acf3440cb25867c8846 100644
+--- a/dist/currency-info/CurrencyInfo.cjs
++++ b/dist/currency-info/CurrencyInfo.cjs
+@@ -330,12 +330,14 @@ class CurrencyInfo {
+     }
+     this.code = currencyCode.toUpperCase();
+     const currencyCountry = this.code.substring(0, 2);
++    const isBrowserEnv = typeof globalThis.navigator !== "undefined";
++    const navigatorLanguage = isBrowserEnv ? globalThis.navigator.language : "en-US";
+     const nameLocalesToTry = [
+       ...locale ? [locale] : [],
+       // try requested locale
+-      `${navigator.language.substring(0, 2)}-${currencyCountry}`,
++      ...isBrowserEnv ? [`${navigatorLanguage.substring(0, 2)}-${currencyCountry}`] : [],
+       // user language as spoken in currency country
+-      navigator.language,
++      ...isBrowserEnv ? [navigatorLanguage] : [],
+       // fallback
+       "en-US"
+       // en-US as last resort
+diff --git a/dist/currency-info/CurrencyInfo.mjs b/dist/currency-info/CurrencyInfo.mjs
+index b71e932e5936a2d9d9b6f1f4d8c8e4977d23f80e..83e0572bd744d2b90cfcf1744f8a50d475a8a9ec 100644
+--- a/dist/currency-info/CurrencyInfo.mjs
++++ b/dist/currency-info/CurrencyInfo.mjs
+@@ -328,12 +328,14 @@ class CurrencyInfo {
+     }
+     this.code = currencyCode.toUpperCase();
+     const currencyCountry = this.code.substring(0, 2);
++    const isBrowserEnv = typeof globalThis.navigator !== "undefined";
++    const navigatorLanguage = isBrowserEnv ? globalThis.navigator.language : "en-US";
+     const nameLocalesToTry = [
+       ...locale ? [locale] : [],
+       // try requested locale
+-      `${navigator.language.substring(0, 2)}-${currencyCountry}`,
++      ...isBrowserEnv ? [`${navigatorLanguage.substring(0, 2)}-${currencyCountry}`] : [],
+       // user language as spoken in currency country
+-      navigator.language,
++      ...isBrowserEnv ? [navigatorLanguage] : [],
+       // fallback
+       "en-US"
+       // en-US as last resort
+diff --git a/dist/main.cjs b/dist/main.cjs
+index 877868af07eb94690ddb00bdc85f30002ec3953b..8194f391919bc21ce2b98e36ab7a9d118db3fa90 100644
+--- a/dist/main.cjs
++++ b/dist/main.cjs
+@@ -3,7 +3,7 @@
+ const addressBook_AddressBook = require('./address-book/AddressBook.cjs');
+ const browserDetection_BrowserDetection = require('./browser-detection/BrowserDetection.cjs');
+ const clipboard_Clipboard = require('./clipboard/Clipboard.cjs');
+-const cookie_Cookie = require('./shared/utils.w-Q7dHYP.cjs');
++const cookie_Cookie = require('./shared/utils.B1TbYVdQ.cjs');
+ const currencyInfo_CurrencyInfo = require('./currency-info/CurrencyInfo.cjs');
+ const fiatApi_FiatApi = require('./fiat-api/FiatApi.cjs');
+ const formattableNumber_FormattableNumber = require('./formattable-number/FormattableNumber.cjs');
+diff --git a/dist/main.d.cts b/dist/main.d.cts
+index 8d5552f1e5b711f46361e3a3777c9fce50077963..99ba7b2e1e6fde0a974b75050a4a0e0b8d245d4b 100644
+--- a/dist/main.d.cts
++++ b/dist/main.d.cts
+@@ -1,7 +1,7 @@
+ export { AddressBook } from './address-book/AddressBook.cjs';
+ export { default as BrowserDetection } from './browser-detection/BrowserDetection.cjs';
+ export { Clipboard } from './clipboard/Clipboard.cjs';
+-export { C as Cookie } from './shared/utils.Nhn9qZUp.cjs';
++export { C as Cookie } from './shared/utils.Ba9aDCIL.cjs';
+ export { CurrencyInfo } from './currency-info/CurrencyInfo.cjs';
+ export { BridgeableFiatCurrency, CoinGeckoFiatCurrency, CplBridgeableFiatCurrency, CryptoCompareFiatCurrency, CryptoCompareHistoryOptions, CryptoCompareLegacyFiatCurrency, CryptoCurrency, FiatCurrency, HistoryBridgeableFiatCurrency, Provider, ProviderFiatCurrency, RateType, fetchFiatApi, getExchangeRates, getHistoricExchangeRates, getHistoricExchangeRatesByRange, isBridgeableFiatCurrency, isBridgedFiatCurrency, isHistorySupportedFiatCurrency, isProviderSupportedFiatCurrency, setCoinGeckoApiExtraHeader, setCoinGeckoApiUrl } from './fiat-api/FiatApi.cjs';
+ export { FormattableNumber, toNonScientificNumberString } from './formattable-number/FormattableNumber.cjs';
+diff --git a/dist/main.d.mts b/dist/main.d.mts
+index 7854b8d5604d7c9aa67e209bd71401dc5f8b3f0b..42bbb89144bc22cf861049075906954d5b0900a0 100644
+--- a/dist/main.d.mts
++++ b/dist/main.d.mts
+@@ -1,7 +1,7 @@
+ export { AddressBook } from './address-book/AddressBook.mjs';
+ export { default as BrowserDetection } from './browser-detection/BrowserDetection.mjs';
+ export { Clipboard } from './clipboard/Clipboard.mjs';
+-export { C as Cookie } from './shared/utils.Nhn9qZUp.mjs';
++export { C as Cookie } from './shared/utils.Ba9aDCIL.mjs';
+ export { CurrencyInfo } from './currency-info/CurrencyInfo.mjs';
+ export { BridgeableFiatCurrency, CoinGeckoFiatCurrency, CplBridgeableFiatCurrency, CryptoCompareFiatCurrency, CryptoCompareHistoryOptions, CryptoCompareLegacyFiatCurrency, CryptoCurrency, FiatCurrency, HistoryBridgeableFiatCurrency, Provider, ProviderFiatCurrency, RateType, fetchFiatApi, getExchangeRates, getHistoricExchangeRates, getHistoricExchangeRatesByRange, isBridgeableFiatCurrency, isBridgedFiatCurrency, isHistorySupportedFiatCurrency, isProviderSupportedFiatCurrency, setCoinGeckoApiExtraHeader, setCoinGeckoApiUrl } from './fiat-api/FiatApi.mjs';
+ export { FormattableNumber, toNonScientificNumberString } from './formattable-number/FormattableNumber.mjs';
+diff --git a/dist/main.d.ts b/dist/main.d.ts
+index 7142e54d51394fc51122abf219d93b2dfa37d63d..cfa27e2e26a911b296a7834fc134bf6f48c516dc 100644
+--- a/dist/main.d.ts
++++ b/dist/main.d.ts
+@@ -1,7 +1,7 @@
+ export { AddressBook } from './address-book/AddressBook.js';
+ export { default as BrowserDetection } from './browser-detection/BrowserDetection.js';
+ export { Clipboard } from './clipboard/Clipboard.js';
+-export { C as Cookie } from './shared/utils.Nhn9qZUp.js';
++export { C as Cookie } from './shared/utils.Ba9aDCIL.js';
+ export { CurrencyInfo } from './currency-info/CurrencyInfo.js';
+ export { BridgeableFiatCurrency, CoinGeckoFiatCurrency, CplBridgeableFiatCurrency, CryptoCompareFiatCurrency, CryptoCompareHistoryOptions, CryptoCompareLegacyFiatCurrency, CryptoCurrency, FiatCurrency, HistoryBridgeableFiatCurrency, Provider, ProviderFiatCurrency, RateType, fetchFiatApi, getExchangeRates, getHistoricExchangeRates, getHistoricExchangeRatesByRange, isBridgeableFiatCurrency, isBridgedFiatCurrency, isHistorySupportedFiatCurrency, isProviderSupportedFiatCurrency, setCoinGeckoApiExtraHeader, setCoinGeckoApiUrl } from './fiat-api/FiatApi.js';
+ export { FormattableNumber, toNonScientificNumberString } from './formattable-number/FormattableNumber.js';
+diff --git a/dist/main.mjs b/dist/main.mjs
+index 6f341ee5e9537f0e65720b1cd1b5433a128c6f06..677d3a198a9685cc4168d74a2a68b5a17339e1ac 100644
+--- a/dist/main.mjs
++++ b/dist/main.mjs
+@@ -1,7 +1,7 @@
+ export { AddressBook } from './address-book/AddressBook.mjs';
+ export { default as BrowserDetection } from './browser-detection/BrowserDetection.mjs';
+ export { Clipboard } from './clipboard/Clipboard.mjs';
+-export { C as Cookie } from './shared/utils.C7aGadF1.mjs';
++export { C as Cookie } from './shared/utils.C0Y0yj8E.mjs';
+ export { CurrencyInfo } from './currency-info/CurrencyInfo.mjs';
+ export { CryptoCurrency, FiatCurrency, Provider, RateType, fetchFiatApi, getExchangeRates, getHistoricExchangeRates, getHistoricExchangeRatesByRange, isBridgeableFiatCurrency, isBridgedFiatCurrency, isHistorySupportedFiatCurrency, isProviderSupportedFiatCurrency, setCoinGeckoApiExtraHeader, setCoinGeckoApiUrl } from './fiat-api/FiatApi.mjs';
+ export { FormattableNumber, toNonScientificNumberString } from './formattable-number/FormattableNumber.mjs';
+diff --git a/dist/request-link-encoding/RequestLinkEncoding.cjs b/dist/request-link-encoding/RequestLinkEncoding.cjs
+index 67d81cbf61ad7cde3bcfac8e8f5618a3f21ee73b..8d2f4716aaf10c47a467d817d479d95b0a9f7cdc 100644
+--- a/dist/request-link-encoding/RequestLinkEncoding.cjs
++++ b/dist/request-link-encoding/RequestLinkEncoding.cjs
+@@ -68,7 +68,7 @@ var NimiqRequestLinkType = /* @__PURE__ */ ((NimiqRequestLinkType2) => {
+   NimiqRequestLinkType2["WEBURI"] = "web+nim";
+   return NimiqRequestLinkType2;
+ })(NimiqRequestLinkType || {});
+-function createRequestLink(recipient, amountOrOptions, message, basePath = window.location.host) {
++function createRequestLink(recipient, amountOrOptions, message, basePath = typeof globalThis.window !== "undefined" ? globalThis.window.location.host : "") {
+   if (typeof amountOrOptions === "object") {
+     switch (amountOrOptions.currency) {
+       case "nim" /* NIM */:
+@@ -119,7 +119,7 @@ function parseRequestLink(requestLink, options = {}) {
+   }
+   return null;
+ }
+-function createNimiqRequestLink(recipient, options = { basePath: window.location.host }) {
++function createNimiqRequestLink(recipient, options = { basePath: typeof globalThis.window !== "undefined" ? globalThis.window.location.host : "" }) {
+   const { amount, message, label, basePath, type = "safe" /* SAFE */ } = options;
+   if (!validationUtils_ValidationUtils.ValidationUtils.isValidAddress(recipient)) throw new Error(`Not a valid address: ${recipient}`);
+   if (amount && !isUnsignedSafeInteger(amount)) throw new Error(`Not a valid amount: ${amount}`);
+diff --git a/dist/request-link-encoding/RequestLinkEncoding.mjs b/dist/request-link-encoding/RequestLinkEncoding.mjs
+index 100c047c7a74e0935a1deaafdb8552d53183d47b..68fd74f1a13807b0da6e9eb2b541876ffd1101ef 100644
+--- a/dist/request-link-encoding/RequestLinkEncoding.mjs
++++ b/dist/request-link-encoding/RequestLinkEncoding.mjs
+@@ -66,7 +66,7 @@ var NimiqRequestLinkType = /* @__PURE__ */ ((NimiqRequestLinkType2) => {
+   NimiqRequestLinkType2["WEBURI"] = "web+nim";
+   return NimiqRequestLinkType2;
+ })(NimiqRequestLinkType || {});
+-function createRequestLink(recipient, amountOrOptions, message, basePath = window.location.host) {
++function createRequestLink(recipient, amountOrOptions, message, basePath = typeof globalThis.window !== "undefined" ? globalThis.window.location.host : "") {
+   if (typeof amountOrOptions === "object") {
+     switch (amountOrOptions.currency) {
+       case "nim" /* NIM */:
+@@ -117,7 +117,7 @@ function parseRequestLink(requestLink, options = {}) {
+   }
+   return null;
+ }
+-function createNimiqRequestLink(recipient, options = { basePath: window.location.host }) {
++function createNimiqRequestLink(recipient, options = { basePath: typeof globalThis.window !== "undefined" ? globalThis.window.location.host : "" }) {
+   const { amount, message, label, basePath, type = "safe" /* SAFE */ } = options;
+   if (!ValidationUtils.isValidAddress(recipient)) throw new Error(`Not a valid address: ${recipient}`);
+   if (amount && !isUnsignedSafeInteger(amount)) throw new Error(`Not a valid amount: ${amount}`);
+diff --git a/dist/shared/utils.w-Q7dHYP.cjs b/dist/shared/utils.B1TbYVdQ.cjs
+similarity index 92%
+rename from dist/shared/utils.w-Q7dHYP.cjs
+rename to dist/shared/utils.B1TbYVdQ.cjs
+index ce2f5b90d1f6d44a37f782f7384869dd617e465a..a3388d981a6d360076d7030b426de078614fb5da 100644
+--- a/dist/shared/utils.w-Q7dHYP.cjs
++++ b/dist/shared/utils.B1TbYVdQ.cjs
+@@ -1,10 +1,12 @@
+ 'use strict';
+ 
+ function getCookie(cookieName) {
++  if (typeof globalThis.document === "undefined") return null;
+   const match = document.cookie.match(new RegExp(`(^| )${encodeURIComponent(cookieName)}=([^;]+)`));
+   return match && decodeURIComponent(match[2]);
+ }
+ function setCookie(cookieName, cookieValue, options) {
++  if (typeof globalThis.document === "undefined") return;
+   if (typeof cookieName !== "string") throw new Error("cookieName must be a string");
+   if (typeof cookieValue !== "string") throw new Error("cookieValue must be a string");
+   const cookie = [`${encodeURIComponent(cookieName)}=${encodeURIComponent(cookieValue)}`];
+@@ -37,6 +39,7 @@ function setCookie(cookieName, cookieValue, options) {
+   return cookieString;
+ }
+ function unsetCookie(cookieName) {
++  if (typeof globalThis.document === "undefined") return;
+   document.cookie = `${encodeURIComponent(cookieName)}=;max-age=0`;
+ }
+ 
+diff --git a/dist/shared/utils.Nhn9qZUp.d.mts b/dist/shared/utils.Ba9aDCIL.d.cts
+similarity index 98%
+rename from dist/shared/utils.Nhn9qZUp.d.mts
+rename to dist/shared/utils.Ba9aDCIL.d.cts
+index 8ddfeabc52394a90b6d7dfa9d7a3c6d369ba0123..c245313892bb08a0b79094548a9603fc3b0b458a 100644
+--- a/dist/shared/utils.Nhn9qZUp.d.mts
++++ b/dist/shared/utils.Ba9aDCIL.d.cts
+@@ -28,7 +28,7 @@ declare function setCookie(cookieName: string, cookieValue: string, options?: {
+     secure?: boolean;
+     expires?: string;
+     samesite?: 'lax' | 'strict' | 'none';
+-}): string;
++}): string | undefined;
+ /**
+  * Unset a Cookie (remove it)
+  * @param {string} cookieName - the Name / Key of the Cookie to be unset / removed
+diff --git a/dist/shared/utils.Nhn9qZUp.d.ts b/dist/shared/utils.Ba9aDCIL.d.mts
+similarity index 98%
+rename from dist/shared/utils.Nhn9qZUp.d.ts
+rename to dist/shared/utils.Ba9aDCIL.d.mts
+index 8ddfeabc52394a90b6d7dfa9d7a3c6d369ba0123..c245313892bb08a0b79094548a9603fc3b0b458a 100644
+--- a/dist/shared/utils.Nhn9qZUp.d.ts
++++ b/dist/shared/utils.Ba9aDCIL.d.mts
+@@ -28,7 +28,7 @@ declare function setCookie(cookieName: string, cookieValue: string, options?: {
+     secure?: boolean;
+     expires?: string;
+     samesite?: 'lax' | 'strict' | 'none';
+-}): string;
++}): string | undefined;
+ /**
+  * Unset a Cookie (remove it)
+  * @param {string} cookieName - the Name / Key of the Cookie to be unset / removed
+diff --git a/dist/shared/utils.Nhn9qZUp.d.cts b/dist/shared/utils.Ba9aDCIL.d.ts
+similarity index 98%
+rename from dist/shared/utils.Nhn9qZUp.d.cts
+rename to dist/shared/utils.Ba9aDCIL.d.ts
+index 8ddfeabc52394a90b6d7dfa9d7a3c6d369ba0123..c245313892bb08a0b79094548a9603fc3b0b458a 100644
+--- a/dist/shared/utils.Nhn9qZUp.d.cts
++++ b/dist/shared/utils.Ba9aDCIL.d.ts
+@@ -28,7 +28,7 @@ declare function setCookie(cookieName: string, cookieValue: string, options?: {
+     secure?: boolean;
+     expires?: string;
+     samesite?: 'lax' | 'strict' | 'none';
+-}): string;
++}): string | undefined;
+ /**
+  * Unset a Cookie (remove it)
+  * @param {string} cookieName - the Name / Key of the Cookie to be unset / removed
+diff --git a/dist/shared/utils.C7aGadF1.mjs b/dist/shared/utils.C0Y0yj8E.mjs
+similarity index 92%
+rename from dist/shared/utils.C7aGadF1.mjs
+rename to dist/shared/utils.C0Y0yj8E.mjs
+index d740db66fa75d6898d61f57352f456aec0ae3516..7a712cf80a04ba009305ea60f9a99c28541bc1b0 100644
+--- a/dist/shared/utils.C7aGadF1.mjs
++++ b/dist/shared/utils.C0Y0yj8E.mjs
+@@ -1,8 +1,10 @@
+ function getCookie(cookieName) {
++  if (typeof globalThis.document === "undefined") return null;
+   const match = document.cookie.match(new RegExp(`(^| )${encodeURIComponent(cookieName)}=([^;]+)`));
+   return match && decodeURIComponent(match[2]);
+ }
+ function setCookie(cookieName, cookieValue, options) {
++  if (typeof globalThis.document === "undefined") return;
+   if (typeof cookieName !== "string") throw new Error("cookieName must be a string");
+   if (typeof cookieValue !== "string") throw new Error("cookieValue must be a string");
+   const cookie = [`${encodeURIComponent(cookieName)}=${encodeURIComponent(cookieValue)}`];
+@@ -35,6 +37,7 @@ function setCookie(cookieName, cookieValue, options) {
+   return cookieString;
+ }
+ function unsetCookie(cookieName) {
++  if (typeof globalThis.document === "undefined") return;
+   document.cookie = `${encodeURIComponent(cookieName)}=;max-age=0`;
+ }
+ 
+diff --git a/types/index.d.ts b/types/index.d.ts
+deleted file mode 100644
+index ca7794dc9d867904b20bac308804dd7d6bdff6af..0000000000000000000000000000000000000000

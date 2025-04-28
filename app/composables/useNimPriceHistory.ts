@@ -71,7 +71,13 @@ export function useNimPriceHistory(currency: MaybeRef<FiatCurrency>) {
 
   const periodOptions = Object.keys(PRICE_TIME_FRAMES) as HistoricNimPricePeriod[]
 
-  return { data, error, state, refetch, period, periodOptions }
+  const lastUpdated = computed(() => {
+    if (!data.value || !data.value.length || !data.value.at(-1)?.length)
+      return null
+    return data.value.at(-1)?.[0] || 0
+  })
+
+  return { data, error, state, refetch, period, periodOptions, lastUpdated }
 }
 
 /**

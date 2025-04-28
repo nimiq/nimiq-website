@@ -30,5 +30,11 @@ export function useNimPrice() {
     price1DayAgoState: price1DayAgoQuery.state,
     price1DayAgoLoading: price1DayAgoQuery.isLoading,
     price1DayAgoError: price1DayAgoQuery.error,
+
+    deltaPrice: computed(() => {
+      if (!priceQuery.data.value || !price1DayAgoQuery.data.value)
+        return 0
+      return priceQuery.data.value - price1DayAgoQuery.data.value
+    }),
   }
 }

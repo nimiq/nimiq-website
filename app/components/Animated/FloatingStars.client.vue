@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
+const { color = '#e9b213' } = defineProps<{ color?: string }>()
+
 const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
 const ctx = computed(() => canvas.value?.getContext('2d'))
 const { pixelRatio } = useDevicePixelRatio()
@@ -44,7 +46,7 @@ whenever(ctx, () => {
 })
 
 const starSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 11 11">
-  <path stroke="#fff" stroke-linecap="round" stroke-width="2" d="M1.9 5h8M6 9V1"/>
+  <path stroke="${color}" stroke-linecap="round" stroke-width="2" d="M1.9 5h8M6 9V1"/>
 </svg>`
 
 const starImage = new Image()

@@ -20,7 +20,7 @@ function tooltip(v: T) {
 </script>
 
 <template>
-  <VisXYContainer :data>
+  <VisXYContainer :data :padding="{ top: 128 }">
     <VisArea color="url('assets/vertical-stripes.svg#vertical-stripes')" :x :y />
     <VisLine :x :y color="rgb(var(--nq-green))" />
     <VisTooltip />

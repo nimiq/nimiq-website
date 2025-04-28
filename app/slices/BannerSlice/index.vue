@@ -4,11 +4,6 @@ import type { BannerSliceSliceDefaultItem } from '~~/prismicio-types'
 
 const props = defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
 
-const { data: socialMedias } = await useSocialMedias()
-
-const { data: apps } = useApps()
-const randomApps = apps.value!.communityApps.sort(() => Math.random() - 0.5).slice(0, 6)
-
 // @unocss-include
 
 const classesPositions = [
@@ -20,9 +15,10 @@ const classesPositions = [
   'invisible xl:visible xl:bottom--40 xl:right--30',
 ]
 
-function getBackgroundItems(background: BannerSliceSliceDefaultItem['backgroundPattern']) {
+async function getBackgroundItems(background: BannerSliceSliceDefaultItem['backgroundPattern']) {
   switch (background) {
     case 'Social Media': {
+      const { data: socialMedias } = await useSocialMedias()
       return [
         { ...socialMedias.value.youtube, name: 'Nimiq\'s YouTube', classes: `text-48 ${classesPositions[0]}` },
         { ...socialMedias.value.github, name: 'Nimiq \'s GitHub', classes: `text-60 ${classesPositions[1]}` },
@@ -33,6 +29,8 @@ function getBackgroundItems(background: BannerSliceSliceDefaultItem['backgroundP
       ]
     }
     case 'Nimiq Apps': {
+      const { data: apps } = useApps()
+      const randomApps = apps.value!.communityApps.sort(() => Math.random() - 0.5).slice(0, 6)
       return randomApps.map(({ color, logo, link: linkStr, name }, i) => {
         const link: FilledLinkToWebField = { link_type: 'Web', url: linkStr, target: '_blank' }
         return { color, icon: logo, classes: classesPositions[i], name: name!, link }
@@ -42,12 +40,10 @@ function getBackgroundItems(background: BannerSliceSliceDefaultItem['backgroundP
   }
 }
 
-const items = computed(() => {
-  return props.slice.items.map((item) => {
-    const bgItems = getBackgroundItems(item.backgroundPattern).filter(i => i.link)
-    return { bgItems, hasBgItems: bgItems.length > 0, ...item }
-  })
-})
+const items = await Promise.all(props.slice.items.map(async (item) => {
+  const bgItems = (await getBackgroundItems(item.backgroundPattern)).filter(i => i.link)
+  return { bgItems, hasBgItems: bgItems.length > 0, ...item }
+}))
 </script>
 
 <template>

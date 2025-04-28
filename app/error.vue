@@ -73,6 +73,16 @@ const paragraph = computed(() => {
           {{ homeLinkText }}
         </NuxtLink>
       </div>
+
+      <div nq-prose-compact w-full f-mt-lg>
+        <details>
+          <summary w-full cursor-pointer text="center neutral-800">
+            <span>Details</span>
+          </summary>
+
+          <pre bg="red/10" text-red-1100 outline-red-600>{{ error }}</pre>
+        </details>
+      </div>
     </section>
   </NuxtLayout>
 </template>
