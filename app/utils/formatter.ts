@@ -133,8 +133,14 @@ export function formatFiat(_amount: MaybeRef<number>, currency: MaybeRef<Currenc
   })
 }
 
-const percentageFormatter = new Intl.NumberFormat('en', { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
-
 export function formatPercentage(input: number) {
+  const locale = useLocale()
+  const percentageFormatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
   return percentageFormatter.format(input)
+}
+
+export function formatNim(input: number) {
+  const locale = useLocale()
+  const nimFormatter = new Intl.NumberFormat(locale.value, { notation: 'compact', compactDisplay: 'short', minimumFractionDigits: 0, maximumFractionDigits: 2 })
+  return nimFormatter.format(input)
 }

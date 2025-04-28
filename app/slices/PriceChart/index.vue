@@ -10,19 +10,19 @@ const { data: historicPrices, lastUpdated, period, periodOptions } = useNimPrice
 const { deltaPrice } = useNimPrice()
 
 const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: MaybeRef<string>, metricChange?: number, label: string, tooltipInfo?: RichTextField }>()
-const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], deltaPrice?: number }>()
+const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], deltaPriceOneDay?: number }>()
 </script>
 
 <template>
   <section flex="~ col items-center" of-x-clip bg-neutral-0 f-pt-2xl>
     <DefineMetric v-slot="{ metricValue, metricChange, label, tooltipInfo }">
-      <div flex="~ col-reverse gap-8" z-1>
+      <div flex="~ col gap-8" z-1>
         <div flex="~ gap-8 items-center">
-          <span font-semibold text="f-lg neutral">
+          <span font-semibold text="f-lg neutral" lh-none>
             {{ metricValue }}
           </span>
           <div v-if="metricChange" :class="metricChange < 0 ? 'text-red' : 'text-green'" flex="~ gap-2 items-center">
-            <div :class="{ 'rotate-180': metricChange < 0 }" aria-hidden text-12 i-nimiq:triangle-up />
+            <div :class="{ 'rotate-180': metricChange < 0 }" aria-hidden size-7 i-nimiq:triangle-up />
             <span font-semibold f-text-sm>{{ formatPercentage(metricChange) }}</span>
           </div>
         </div>
@@ -37,23 +37,22 @@ const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], de
       </div>
     </DefineMetric>
 
-    <DefinePrice v-slot="{ data: [ts, price], deltaPrice }">
-      <div bg-neutral-0 f-pt-2xs f-pt-xs flex="~ col gap-8">
+    <DefinePrice v-slot="{ data: [ts, price], deltaPriceOneDay }">
+      <div bg-neutral-0 flex="~ col gap-8">
         <p text="blue f-3xl" font-semibold lh-none>
           {{ formatFiat(price, currencyInfo, { maxDecimals: Number.POSITIVE_INFINITY }) }}
         </p>
-
-        <NuxtTime v-if="!deltaPrice" :datetime="ts" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" nq-label text="11/1 right" />
+        <NuxtTime v-if="!deltaPriceOneDay" :datetime="ts" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" nq-label text="11/1 right" />
         <div v-else flex="~ items-center" text="f-sm neutral-700" font-semibold>
-          <div mr-4 size-8 i-nimiq:triangle-up :class="{ 'rotate-180': deltaPrice - price < 0 }" />
-          <span>{{ Math.abs(deltaPrice - price) }} ({{ formatPercentage(Math.abs(deltaPrice - price) / price) }})</span>
+          <div mr-4 size-8 i-nimiq:triangle-up :class="{ 'rotate-180': deltaPriceOneDay < 0 }" />
+          <span>{{ Math.abs(deltaPriceOneDay) }} ({{ formatPercentage(deltaPriceOneDay / price) }})</span>
         </div>
       </div>
     </DefinePrice>
 
-    <RibbonContainer :label="slice.primary.nimPriceChartLabel!">
+    <RibbonContainer :label="slice.primary.nimPriceChartLabel!" min-h-45vh>
       <div grid="~ cols-1 md:cols-[max-content_1fr]" size-full>
-        <aside border="r-1 solid neutral-400" f-p-md flex="~ col f-gap-sm">
+        <aside border="r-1 solid neutral-400" f-p-md flex="~ col gap-row-24">
           <ReuseMetric :metric-value="marketCapUserCurrencyFormatted" :metric-change="marketCapChange" :label="slice.primary.marketCapLabel!" :tooltip-info="slice.primary.marketCapInfo" />
           <ReuseMetric :metric-value="volumeUserCurrencyFormatted" :metric-change="volumeChange" :label="slice.primary.volume24HLabel!" :tooltip-info="slice.primary.volume24HInfo" />
           <ReuseMetric :metric-value="currentSupplyFormatted" :label="slice.primary.totalSupplyLabel!" :tooltip-info="slice.primary.totalSupplyInfo" />
@@ -63,18 +62,18 @@ const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], de
             <NuxtTime :datetime="lastUpdated" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" />
           </div>
         </aside>
-        <div group relative>
+        <div group relative f-pb-xs>
           <ChartLine :data="historicPrices || []">
             <template #default="{ data: [ts, price] }">
               <Price :data="[ts, price]" />
             </template>
           </ChartLine>
 
-          <div absolute left-32 top-32 f-p-md>
+          <div absolute left-32 top-32>
             <Price op="100 leader-hocus:0" transition-opacity :data="historicPrices?.at(-1) || [0, 0]" :delta-price />
           </div>
 
-          <div absolute bottom-32 right-32>
+          <div absolute bottom-64 f-right-md>
             <PillSelector v-model="period" :options="periodOptions" self-end justify-self-end f-mt-md />
           </div>
         </div>
