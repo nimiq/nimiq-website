@@ -59,10 +59,11 @@ jobs:
           echo "NUXT_PUBLIC_SUPABASE_URL=${{ secrets.NUXT_PUBLIC_SUPABASE_URL }}" >> .env
           echo "NUXT_PUBLIC_SUPABASE_KEY=${{ secrets.NUXT_PUBLIC_SUPABASE_KEY }}" >> .env
 
-      - name: Disable SSR via .nuxtrc
+      - name: Modify config via .nuxtrc
         run: |
-          echo "ssr=false" > .nuxtrc
           echo "app.baseURL=/nimiq-website/" >> .nuxtrc
+          # search for `    '@nuxthub/core',` and comment it out in nuxt.config.ts
+          sed -i 's/    '"'"'@nuxthub\/core'"'"',/    \/\//g' nuxt.config.ts
 
       - name: Static HTML export with Nuxt
         run: pnpm run generate
