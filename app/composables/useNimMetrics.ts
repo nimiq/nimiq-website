@@ -1,6 +1,13 @@
 import { fetchFiatApi, Provider } from '@nimiq/utils/fiat-api'
 import { posSupplyAt } from '@nimiq/utils/supply-calculator'
 
+// Type definition for CoinDesk API response
+// Official docs: https://developers.coindesk.com/documentation/data-api/index_cc_v1_historical_days
+interface CoinDeskApiResponse {
+  Data: { 'NIM-USD': Array<{ TIMESTAMP: number, VALUE: number }> }
+  Err: Record<string, unknown>
+}
+
 export function useNimMetrics() {
   const { currencyUsdRatio, currencyInfo } = useUserCurrency()
   const { price, price1DayAgo } = useNimPrice()
@@ -21,26 +28,49 @@ export function useNimMetrics() {
   const { data: volumeData, state: volumeState } = useQuery({
     key: computed(() => ['trading_volume', currencyInfo.value.code]),
     query: async () => {
-      type CoingeckoResponse = [{ total_volume: number, price_change_percentage_24h: number }]
-      const params = new URLSearchParams({
-        vs_currency: currencyInfo.value.code,
-        ids: 'nimiq-2',
-        price_change_percentage: '24h',
-      })
-      const url = new URL('https://api.coingecko.com/api/v3/coins/markets')
-      url.search = params.toString()
-      const res = await fetchFiatApi<CoingeckoResponse>(url.toString(), Provider.CoinGecko)
-      if (!res || !res[0])
-        throw new Error('Failed to fetch trading volume')
-      return {
-        volume: res[0].total_volume,
-        volumeChange: res[0].price_change_percentage_24h,
+      try {
+        // Using CoinDesk Data API to fetch volume data
+        const url = new URL('https://data-api.cryptocompare.com/index/cc/v1/historical/days')
+        const params = new URLSearchParams({
+          instrument: 'NIM-USD',
+          limit: '1',
+          response_format: 'JSON',
+        })
+
+        url.search = params.toString()
+        const res = await fetchFiatApi<CoinDeskApiResponse>(url.toString(), Provider.CryptoCompare)
+
+        if (!res || !res.Data || !res.Data['NIM-USD'].length)
+          throw new Error('Failed to fetch trading volume')
+        const nimUsd = res.Data['NIM-USD']!
+
+        const { VALUE: volumeUsd } = nimUsd.at(0)!
+        const volumeUserCurrency = volumeUsd * currencyUsdRatio.value
+
+        let volumeChange = 0
+        if (nimUsd.length > 1) {
+          const { VALUE: yesterdayVolume } = nimUsd.at(1)!
+          volumeChange = (volumeUsd - yesterdayVolume) / yesterdayVolume
+        }
+        const volumeTimestamps = nimUsd.map(data => data.TIMESTAMP)
+        const volumeFormatted = formatFiat(volumeUserCurrency, currencyInfo)
+        return { volumeUsd, volumeFormatted, volumeChange, volumeTimestamps }
+      }
+      catch (error) {
+        console.error('Error fetching volume data:', error)
+        return {
+          volume: 0,
+          volumeFormatted: '0',
+          volumeChange: 0,
+          volumeTimestamps: [],
+        }
       }
     },
-    staleTime: 60 * 5 * 1e3,
+    staleTime: 60 * 5 * 1e3, // 5 minutes
   })
+
   const volume = computed(() => volumeData.value?.volume || 0)
-  const volumeFormatted = formatFiat(volume.value, currencyInfo)
+  const volumeFormatted = formatFiat(volume, currencyInfo)
   const volumeChange = computed(() => volumeData.value?.volumeChange || 0)
 
   const currentSupplyFormatted = computed(() => `${formatNim(currentSupply)} NIM`)
