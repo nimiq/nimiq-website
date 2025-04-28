@@ -30,11 +30,6 @@ jobs:
           node-version: '22'
           cache: pnpm
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: nuxt
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -60,7 +55,7 @@ jobs:
           echo "NUXT_PUBLIC_SUPABASE_KEY=${{ secrets.NUXT_PUBLIC_SUPABASE_KEY }}" >> .env
           echo "NUXT_APP_BASE_URL=/nimiq-website/" >> .env
 
-      - name: Modify config via .nuxtrc
+      - name: Modify config
         run: |
           sed -i 's/    '"'"'@nuxthub\/core'"'"',/    \/\//g' nuxt.config.ts
 
@@ -70,12 +65,15 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./.output/public
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
     needs: build
     runs-on: ubuntu-latest
     steps:
