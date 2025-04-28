@@ -43,7 +43,7 @@ const id = `terms-note-${useId()}`
       </li>
     </ul>
     <small :id text="green-1100 data-inverted:white/80 sm:center" data-note transition-colors duration-400 f-mt-md sm:max-w-32ch>
-      <div aria-hidden i-nimiq:asterisk text="7 sm:9" un-translate="x--8 sm:x-4 y-4 sm:y-8" /> {{ stakingValues?.stakingNote }}
+      <div aria-hidden size-0.4em i-nimiq:asterisk un-translate="x--8 sm:x-4 y-4 sm:y-8" /> {{ stakingValues?.stakingNote }}
     </small>
   </div>
 </template>
