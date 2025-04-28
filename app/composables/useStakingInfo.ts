@@ -1,27 +1,26 @@
 import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
 
-interface DistributionResponse {
-  stakedRatio: number
+interface SupplyResponse {
+  total: number
+  vested: number
+  burned: number
+  max: number
+  initial: number
+  staking: number
+  minted: number
+  circulating: number
+  mined: number
 }
 
 export function useStakingInfo() {
-  const config = useRuntimeConfig()
-  const validatorsApiBaseUrl = config.public.validatorsApi
+  // const validatorsApiBaseUrl = useRuntimeConfig().public.validatorsApi
+  const validatorsApiBaseUrl = 'https://dev.validators-api-mainnet.pages.dev'
 
   const { data: stakingRatio, state: stakingRatioState } = useQuery({
     key: ['staking_distribution'],
     query: async () => {
-      const { stakedRatio } = await $fetch<DistributionResponse>(`${validatorsApiBaseUrl}/api/v1/distribution`)
-      if (stakedRatio == null || stakedRatio > 1 || stakedRatio < 0) {
-        console.warn(`Staked ratio from API suspicious (${stakedRatio}).`)
-        return undefined
-      }
-      // There is a bug in the API that returns stakedRatio as a decimal
-      // if stakedRatio is 0.005757, we need to change to multiply by 100
-      if (stakedRatio < 0.01) {
-        console.warn(`Staked ratio from API suspicious (${stakedRatio}). Defaulting to 0.52.`)
-        return 0.52
-      }
+      const { circulating, staking } = await $fetch<SupplyResponse>(`${validatorsApiBaseUrl}/api/v1/supply`)
+      const stakedRatio = staking / circulating
       return stakedRatio
     },
     staleTime: 60 * 5 * 1e3, // 5 min freshness
