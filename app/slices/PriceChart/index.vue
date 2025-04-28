@@ -5,7 +5,7 @@ const { slice } = defineProps(getSliceComponentProps<Content.PriceChartSlice>())
 
 const { currency, currencyInfo } = useUserCurrency()
 
-const { marketCapChange, maxSupplyFormatted, currentSupplyFormatted, volumeChange, volumeUserCurrencyFormatted, marketCapUserCurrencyFormatted } = useNimMetrics()
+const { marketCapChange, maxSupplyFormatted, currentSupplyFormatted, volumeChange, volumeFormatted, marketCapUserCurrencyFormatted } = useNimMetrics()
 const { data: historicPrices, lastUpdated, period, periodOptions } = useNimPriceHistory(currency)
 const { deltaPrice } = useNimPrice()
 
@@ -54,7 +54,7 @@ const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], de
       <div grid="~ cols-1 md:cols-[max-content_1fr]" size-full>
         <aside border="r-1 solid neutral-400" f-p-md flex="~ col gap-row-24">
           <ReuseMetric :metric-value="marketCapUserCurrencyFormatted" :metric-change="marketCapChange" :label="slice.primary.marketCapLabel!" :tooltip-info="slice.primary.marketCapInfo" />
-          <ReuseMetric :metric-value="volumeUserCurrencyFormatted" :metric-change="volumeChange" :label="slice.primary.volume24HLabel!" :tooltip-info="slice.primary.volume24HInfo" />
+          <ReuseMetric :metric-value="volumeFormatted" :metric-change="volumeChange" :label="slice.primary.volume24HLabel!" :tooltip-info="slice.primary.volume24HInfo" />
           <ReuseMetric :metric-value="currentSupplyFormatted" :label="slice.primary.totalSupplyLabel!" :tooltip-info="slice.primary.totalSupplyInfo" />
           <ReuseMetric :metric-value="maxSupplyFormatted" :label="slice.primary.maxSupplyLabel!" :tooltip-info="slice.primary.maxSupplyInfo" />
           <div v-if="lastUpdated" mt-auto flex="~ col gap-8" text="f-2xs neutral-800" lh-none>

@@ -1,3 +1,4 @@
+import { fetchFiatApi, Provider } from '@nimiq/utils/fiat-api'
 import { posSupplyAt } from '@nimiq/utils/supply-calculator'
 
 export function useNimMetrics() {
@@ -17,10 +18,30 @@ export function useNimMetrics() {
     return (marketCapUsd.value - marketCapYesterdayUsd) / marketCapYesterdayUsd
   })
 
-  const volumeUsd = ref(1_000_000_000) // TODO
-  const volumeUserCurrency = computed(() => volumeUsd.value * currencyUsdRatio.value)
-  const volumeUserCurrencyFormatted = formatFiat(volumeUserCurrency, currencyInfo)
-  const volumeChange = ref(0.074) // TODO
+  const { data: volumeData, state: volumeState } = useQuery({
+    key: computed(() => ['trading_volume', currencyInfo.value.code]),
+    query: async () => {
+      type CoingeckoResponse = [{ total_volume: number, price_change_percentage_24h: number }]
+      const params = new URLSearchParams({
+        vs_currency: currencyInfo.value.code,
+        ids: 'nimiq-2',
+        price_change_percentage: '24h',
+      })
+      const url = new URL('https://api.coingecko.com/api/v3/coins/markets')
+      url.search = params.toString()
+      const res = await fetchFiatApi<CoingeckoResponse>(url.toString(), Provider.CoinGecko)
+      if (!res || !res[0])
+        throw new Error('Failed to fetch trading volume')
+      return {
+        volume: res[0].total_volume,
+        volumeChange: res[0].price_change_percentage_24h,
+      }
+    },
+    staleTime: 60 * 5 * 1e3,
+  })
+  const volume = computed(() => volumeData.value?.volume || 0)
+  const volumeFormatted = formatFiat(volume.value, currencyInfo)
+  const volumeChange = computed(() => volumeData.value?.volumeChange || 0)
 
   const currentSupplyFormatted = computed(() => `${formatNim(currentSupply)} NIM`)
 
@@ -32,9 +53,9 @@ export function useNimMetrics() {
     marketCapUserCurrency,
     marketCapUserCurrencyFormatted,
     marketCapChange,
-    volumeUsd,
-    volumeUserCurrency,
-    volumeUserCurrencyFormatted,
+    volume,
+    volumeState,
+    volumeFormatted,
     volumeChange,
     currentSupply,
     currentSupplyFormatted,
