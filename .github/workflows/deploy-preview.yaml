@@ -58,15 +58,14 @@ jobs:
           echo "NUXT_SITE_ENV=${{ secrets.NUXT_SITE_ENV }}" >> .env
           echo "NUXT_PUBLIC_SUPABASE_URL=${{ secrets.NUXT_PUBLIC_SUPABASE_URL }}" >> .env
           echo "NUXT_PUBLIC_SUPABASE_KEY=${{ secrets.NUXT_PUBLIC_SUPABASE_KEY }}" >> .env
+          echo "NUXT_APP_BASE_URL=/nimiq-website/" >> .env
 
       - name: Modify config via .nuxtrc
         run: |
-          echo "app.baseURL=/nimiq-website/" >> .nuxtrc
-          # search for `    '@nuxthub/core',` and comment it out in nuxt.config.ts
           sed -i 's/    '"'"'@nuxthub\/core'"'"',/    \/\//g' nuxt.config.ts
 
       - name: Static HTML export with Nuxt
-        run: pnpm run generate
+        run: pnpm run build --preset github_pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
