@@ -7,7 +7,7 @@ const { headline, cta, links = [] } = defineProps<{
   headline: RichTextField
   subline?: RichTextField
   cta?: LinkField
-  links?: LinkField<string, string, unknown, 'filled', 'nq-pill-blue' | 'nq-pill-secondary'>[]
+  links?: LinkField<string, string, unknown, 'filled', 'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary'>[]
   leftAlign?: boolean
 }>()
 
@@ -51,6 +51,7 @@ if (hasLink(cta)) {
               'md:mx-auto': !leftAlign,
               'nq-pill-blue': link.variant === 'nq-pill-blue',
               'nq-pill-secondary': link.variant === 'nq-pill-secondary',
+              'nq-pill-tertiary': link.variant === 'nq-pill-tertiary',
             }"
           />
 

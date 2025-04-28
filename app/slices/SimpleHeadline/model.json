@@ -120,7 +120,8 @@
             "repeat": true,
             "variants": [
               "nq-pill-blue",
-              "nq-pill-secondary"
+              "nq-pill-secondary",
+              "nq-pill-tertiary"
             ]
           }
         }

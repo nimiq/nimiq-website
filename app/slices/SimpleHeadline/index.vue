@@ -42,8 +42,8 @@ function getGradientClass() {
       v-else
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
-      :cta="slice.primary.cta"
       :show-staking-icon="!isLastSlice" :data-inverted="isLastSlice ? undefined : ''"
+      :links="slice.primary.links"
       :primary-pill="isLastSlice"
     />
   </section>

@@ -96,11 +96,11 @@
         "value": [
           {
             "__TYPE__": "LinkContent",
-            "key": "02021df0-6531-42c1-b352-e457ff1aa492",
+            "key": "5f7086d2-85ff-48f8-9b6d-b8f91886c0d3",
             "value": {
               "__TYPE__": "ExternalLink",
-              "url": "http://google.com",
-              "text": "railroad",
+              "url": "https://slicemachine.dev",
+              "text": "forth",
               "variant": "nq-pill-blue"
             }
           }

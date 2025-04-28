@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { LinkField, RichTextField } from '@prismicio/client'
 
-const { headline, showStakingIcon = false } = defineProps<{
+const { headline, showStakingIcon = false, links = [] } = defineProps<{
   headline: RichTextField
   subline?: RichTextField
-  cta?: LinkField
+  links?: LinkField<string, string, unknown, 'filled', 'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary'>[]
   showStakingIcon?: boolean
   primaryPill?: boolean
 }>()
@@ -31,7 +31,17 @@ const id = `terms-note-${useId()}`
       {{ headlineParts[1] }}
     </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" data-inverted:text="white/80" />
-    <PrismicLink v-if="hasLink(cta)" internal-component="a" :field="cta" :class="primaryPill ? 'nq-pill-blue' : 'nq-pill-tertiary'" nq-shadow nq-arrow nq-pill-lg f-mt-lg md:mx-auto data-inverted:shadow-none />
+    <ul v-if="links.length > 0" flex="~ gap-16 lg:gap-20 wrap">
+      <li v-for="(link, i) in links" :key="i">
+        <PrismicLink
+          internal-component="a" :field="link" nq-arrow nq-pill-lg f-mt-lg md:mx-auto :class="{
+            'nq-pill-blue': link.variant === 'nq-pill-blue',
+            'nq-pill-secondary': link.variant === 'nq-pill-secondary',
+            'nq-pill-tertiary': link.variant === 'nq-pill-tertiary',
+          }"
+        />
+      </li>
+    </ul>
     <small :id text="green-1100 data-inverted:white/80 sm:center" data-note transition-colors duration-400 f-mt-md sm:max-w-32ch>
       <div aria-hidden i-nimiq:asterisk text="7 sm:9" un-translate="x--8 sm:x-4 y-4 sm:y-8" /> {{ stakingValues?.stakingNote }}
     </small>
