@@ -10052,7 +10052,7 @@ export interface SimpleHeadlineSliceDefaultPrimary {
       string,
       unknown,
       prismic.FieldState,
-      'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary'
+      'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary' | 'video'
     >
   >
 }

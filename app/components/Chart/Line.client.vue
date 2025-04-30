@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="T extends [number, number]">
 import { VisArea, VisAxis, VisCrosshair, VisLine, VisTooltip, VisXYContainer } from '@unovis/vue'
-import { render } from 'vue'
+import { createApp } from 'vue'
 
 const { data: _data } = defineProps<{ data?: T[] }>()
 const slots = defineSlots<{ default?: (props: { data: T }) => any }>()
@@ -13,8 +13,11 @@ const y = (d: T) => d[1]
 const tickFormat = (d: number) => dateFormatter.format(new Date(d))
 
 function tooltip(v: T) {
+  if (!slots.default)
+    return ''
+  const TooltipContent = { setup: () => () => slots.default?.({ data: v }) }
   const div = document.createElement('div')
-  render(h(slots.default!, { data: v }), div)
+  createApp(TooltipContent).mount(div)
   return div.innerHTML
 }
 </script>
@@ -23,7 +26,7 @@ function tooltip(v: T) {
   <VisXYContainer :data :padding="{ top: 128 }">
     <VisArea color="url('assets/vertical-stripes.svg#vertical-stripes')" :x :y />
     <VisLine :x :y color="rgb(var(--nq-green))" />
-    <VisTooltip />
+    <VisTooltip :vertical-shift="1000" />
     <VisAxis type="x" :tick-text-width="50" :grid-line="false" :tick-format />
     <VisCrosshair data-crosshair color="rgb(var(--nq-blue))" :template="tooltip" />
   </VisXYContainer>
@@ -43,9 +46,11 @@ function tooltip(v: T) {
   background-size:
     100% 64px,
     100% 100%;
+
   --vis-crosshair-line-stroke-color: rgb(var(--nq-blue) / 1);
   --vis-crosshair-line-stroke-width: 1.5px;
   --vis-crosshair-circle-stroke-color: rgb(var(--nq-blue) / 1);
+
   --vis-tooltip-padding: 0;
   --vis-tooltip-background-color: transparent;
   --vis-tooltip-border-color: transparent;
@@ -58,7 +63,6 @@ function tooltip(v: T) {
   --vis-axis-tick-label-font-size: 11px;
   --vis-axis-tick-label-text-decoration: uppercase;
 
-  /* medium scre */
   @screen md {
     --vis-axis-tick-label-font-size: 12px;
   }

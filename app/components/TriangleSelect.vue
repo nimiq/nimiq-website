@@ -7,8 +7,9 @@ const options = computed(() => [selected.value!].concat(props.options.filter(opt
 
 <template>
   <SelectRoot v-model="selected">
-    <SelectTrigger select w-max rounded-4 bg-transparent px-12 py-6 outline="none focus-visible:blue">
+    <SelectTrigger select w-max rounded-4 bg-transparent px-12 py-6 outline="none focus-visible:blue" flex="~ items-center gap-4">
       <SelectValue flex="~ items-center gap-4" text-current font-bold uppercase transition-colors as="div" />
+      <div size-10 op-80 i-nimiq:triangle-down />
     </SelectTrigger>
     <SelectPortal>
       <SelectContent

@@ -1,49 +1,9 @@
 import { CurrencyInfo } from '@nimiq/utils/currency-info'
 import { FiatCurrency } from '@nimiq/utils/fiat-api'
 
-export const fiatCurrencies = ([
-  'AED',
-  'ARS',
-  'AUD',
-  'BRL',
-  'CAD',
-  'CHF',
-  'CLP',
-  'CNY',
-  'CRC',
-  'CZK',
-  'DKK',
-  'EUR',
-  'GBP',
-  'GMD',
-  'GTQ',
-  'HKD',
-  'HUF',
-  'IDR',
-  'ILS',
-  'INR',
-  'JPY',
-  'KRW',
-  'MXN',
-  'MYR',
-  'NGN',
-  'NOK',
-  'NZD',
-  'PHP',
-  'PKR',
-  'PLN',
-  'RUB',
-  'SEK',
-  'SGD',
-  'THB',
-  'TRY',
-  'TWD',
-  'UAH',
-  'USD',
-  'VND',
-  'XOF',
-  'ZAR',
-] as const).map(ticker => FiatCurrency[ticker])
+export const supportedFiatCurrencies = ['AED', 'ARS', 'AUD', 'BRL', 'CAD', 'CHF', 'CLP', 'CNY', 'CRC', 'CZK', 'DKK', 'EUR', 'GBP', 'GMD', 'GTQ', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'JPY', 'KRW', 'MXN', 'MYR', 'NGN', 'NOK', 'NZD', 'PHP', 'PKR', 'PLN', 'RUB', 'SEK', 'SGD', 'THB', 'TRY', 'TWD', 'UAH', 'USD', 'VND', 'XOF', 'ZAR'] as const
+
+export const fiatCurrencies = supportedFiatCurrencies.map(ticker => FiatCurrency[ticker])
 
 // Code from https://github.com/nimiq/wallet/blob/54aae531ba3ae75c4986fe7621ba524a7c31d248/src/lib/Constants.ts#L15
 function guessUserCurrency() {

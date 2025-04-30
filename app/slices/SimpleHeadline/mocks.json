@@ -96,12 +96,12 @@
         "value": [
           {
             "__TYPE__": "LinkContent",
-            "key": "5f7086d2-85ff-48f8-9b6d-b8f91886c0d3",
+            "key": "0b38cad2-37cd-4919-9999-ac80a8ce7dbe",
             "value": {
               "__TYPE__": "ExternalLink",
-              "url": "https://slicemachine.dev",
-              "text": "forth",
-              "variant": "nq-pill-blue"
+              "url": "http://twitter.com",
+              "text": "beginning",
+              "variant": "nq-pill-tertiary"
             }
           }
         ]

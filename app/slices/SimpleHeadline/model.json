@@ -121,7 +121,8 @@
             "variants": [
               "nq-pill-blue",
               "nq-pill-secondary",
-              "nq-pill-tertiary"
+              "nq-pill-tertiary",
+              "video"
             ]
           }
         }

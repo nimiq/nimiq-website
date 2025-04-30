@@ -25,7 +25,6 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@nuxt/fonts',
     'hero-motion/nuxt',
-    '@nuxt/icon',
     '@pinia/colada-nuxt',
   ],
 
@@ -34,6 +33,11 @@ export default defineNuxtConfig({
   image: {
     prismic: {},
   },
+
+  components: [
+    { path: '~/components/[UI]', pathPrefix: false },
+    '~/components',
+  ],
 
   vite: {
     plugins: [
@@ -52,7 +56,7 @@ export default defineNuxtConfig({
   },
 
   features: {
-    // For UnoCSS
+  // For UnoCSS
     inlineStyles: false,
   },
 
@@ -77,10 +81,6 @@ export default defineNuxtConfig({
   // TODO Remove this option
   unocss: {
     nuxtLayers: true,
-  },
-
-  icon: {
-    serverBundle: 'local',
   },
 
   pinia: {
@@ -167,8 +167,8 @@ export default defineNuxtConfig({
   routeRules: {
     '/api/**': { cors: true },
 
-    // Check ./modules/prerender-routes.ts to see more about this
-    // More redirects in nginx/default.conf
+  // Check ./modules/prerender-routes.ts to see more about this
+  // More redirects in nginx/default.conf
   },
 
   nitro: {

@@ -9,9 +9,8 @@ catalog:
   '@nimiq/utils': ^0.12.3
   '@nuxt/eslint': latest
   '@nuxt/fonts': ^0.11.2
-  '@nuxt/icon': ^1.12.0
   '@nuxt/image': ^1.10.0
-  '@nuxt/kit': ^3.17.0
+  '@nuxt/kit': ^3.17.1
   '@nuxthub/core': ^0.8.25
   '@nuxtjs/critters': ^0.9.0
   '@nuxtjs/device': ^3.2.4
@@ -24,7 +23,7 @@ catalog:
   '@prismicio/client': ^7.17.2
   '@prismicio/richtext': ^2.1.5
   '@slicemachine/adapter-nuxt': ^0.3.75
-  '@types/node': ^22.15.2
+  '@types/node': ^22.15.3
   '@unocss/eslint-plugin': ^66.1.0-beta.12
   '@unocss/nuxt': ^66.1.0-beta.12
   '@unocss/reset': ^66.1.0-beta.12
@@ -40,10 +39,11 @@ catalog:
   hero-motion: ^0.5.3
   lint-staged: ^15.5.1
   medium-zoom: ^1.1.0
-  nimiq-css: ^1.0.0-beta.20
-  nimiq-icons: ^1.0.0-beta.20
+  nimiq-css: ^1.0.0-beta.22
+  nimiq-flags: ^1.0.0-beta.22
+  nimiq-icons: ^1.0.0-beta.22
   nimiq-rpc-client-ts: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
-  nuxt: ^3.17.0
+  nuxt: ^3.17.1
   pathe: ^2.0.3
   pinia: ^3.0.2
   reka-ui: ^2.2.0

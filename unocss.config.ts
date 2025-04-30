@@ -54,6 +54,7 @@ export default defineConfig({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/logos'),
         ...createExternalPackageIconLoader('nimiq-icons'),
+        ...createExternalPackageIconLoader('nimiq-flags'),
         'continents': {
           'africa': () => readFile('./public/assets/continents/africa.svg', 'utf-8'),
           'south-america': () => readFile('./public/assets/continents/south-america.svg', 'utf-8'),

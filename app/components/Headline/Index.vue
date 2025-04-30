@@ -7,7 +7,7 @@ const { headline, cta, links = [] } = defineProps<{
   headline: RichTextField
   subline?: RichTextField
   cta?: LinkField
-  links?: LinkField<string, string, unknown, 'filled', 'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary'>[]
+  links?: LinkField<string, string, unknown, 'filled', 'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary' | 'video'>[]
   leftAlign?: boolean
 }>()
 
@@ -44,10 +44,10 @@ if (hasLink(cta)) {
     </template>
 
     <template v-else-if="links.length > 0">
-      <ul flex="~ gap-16 lg:gap-20 wrap">
+      <ul flex="~ gap-16 lg:gap-20 wrap" f-mt-md>
         <li v-for="(link, i) in links" :key="i">
           <PrismicLink
-            internal-component="a" :field="link" nq-arrow nq-pill-lg f-mt-lg :class="{
+            v-if="link.variant?.startsWith('nq-pill')" internal-component="a" :field="link" nq-arrow nq-pill-lg :class="{
               'md:mx-auto': !leftAlign,
               'nq-pill-blue': link.variant === 'nq-pill-blue',
               'nq-pill-secondary': link.variant === 'nq-pill-secondary',
@@ -55,12 +55,8 @@ if (hasLink(cta)) {
             }"
           />
 
-          <!-- TODO If we do really use this, then use a variant -->
-          <!-- <PrismicLink
-            internal-component="a" :field="link" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue rounded-4 p-8 transition-colors f-mt-sm :class="{
-              'nq-pill-blue': link.variant === 'nq-pill-blue',
-              'nq-pill-secondary': link.variant === 'nq-pill-secondary',
-            }"
+          <PrismicLink
+            v-else-if="link.variant === 'video'" internal-component="a" :field="link" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue rounded-4 p-8 transition-colors
           >
             <div ring="1.5 blue" size-32 rounded-full text-16 stack>
               <div i-nimiq:triangle-right />
@@ -68,7 +64,7 @@ if (hasLink(cta)) {
             <p font-bold>
               {{ link.text }}
             </p>
-          </PrismicLink> -->
+          </PrismicLink>
         </li>
       </ul>
     </template>

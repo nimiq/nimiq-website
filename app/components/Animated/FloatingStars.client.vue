@@ -7,30 +7,43 @@ const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
 const ctx = computed(() => canvas.value?.getContext('2d'))
 const { pixelRatio } = useDevicePixelRatio()
 
-const stars = ref<Star[]>([])
+const starsCount = 12
 
-const starsCount = 8
+// Adjusting angle range to be between 9 and 6 o'clock (270° to 180° in radians)
+const minAngle = Math.PI / 2 // 90 degrees (6 o'clock)
+const maxAngle = Math.PI * 1.5 // 270 degrees (9 o'clock)
+
+const angles = Array.from({ length: starsCount * 2 }, () => {
+  return minAngle + Math.random() * (maxAngle - minAngle)
+})
+
+const stars = ref<Star[]>([])
 
 function animate() {
   ctx.value!.clearRect(0, 0, canvas.value!.width, canvas.value!.height)
-  stars.value.forEach((star) => {
+
+  // Check if we need to spawn a new star based on randomness (increased probability)
+  if (stars.value.length < starsCount && Math.random() < 0.03) {
+    const randomAngleIndex = Math.floor(Math.random() * angles.length)
+    stars.value.push(new Star(angles[randomAngleIndex]!))
+  }
+
+  // Update and draw existing stars
+  for (let i = stars.value.length - 1; i >= 0; i--) {
+    const star = stars.value[i]!
     star.update()
-    star.draw(ctx.value!)
-  })
+
+    // Remove stars that have completed their lifecycle
+    if (star.completed) {
+      stars.value.splice(i, 1)
+    }
+    else {
+      star.draw(ctx.value!)
+    }
+  }
 }
 
 const { resume } = useRafFn(animate, { immediate: false })
-
-const minAngle = Math.PI
-const maxAngle = (420 * Math.PI) / 180
-
-const step = (maxAngle - minAngle) / starsCount
-
-const angles = Array.from({ length: starsCount }, (_, i) => {
-  const minAngleStep = minAngle + i * step
-  const maxAngleStep = minAngle + (i + 1) * step
-  return Math.random() * (maxAngleStep - minAngleStep) + minAngleStep
-})
 
 whenever(ctx, () => {
   canvas.value!.width = canvas.value!.offsetWidth * pixelRatio.value
@@ -38,8 +51,22 @@ whenever(ctx, () => {
   ctx.value!.scale(pixelRatio.value, pixelRatio.value)
   stars.value = []
 
-  for (let i = 0; i < starsCount; i++) {
-    stars.value.push(new Star(angles[i]!))
+  // Initialize with more stars at random states for initial load
+  const initialStarCount = Math.floor(starsCount * 0.75)
+  for (let i = 0; i < initialStarCount; i++) {
+    const star = new Star(angles[Math.floor(Math.random() * angles.length)]!)
+
+    // Set each star to a random point in its lifecycle (between 0-80%)
+    const randomProgress = Math.random() * 0.8
+    const progressTime = star.duration * randomProgress
+    star.startTime = performance.now() - progressTime
+
+    // Update position based on this progress
+    const t = progressTime / 1000
+    star.x = star.originalX + star.dx * t
+    star.y = star.originalY + star.dy * t
+
+    stars.value.push(star)
   }
 
   resume()
@@ -66,40 +93,50 @@ class Star {
   speed: number = 0
   initialOpacity: number = 0
   duration: number = 0
+  completed: boolean = false
 
   constructor(angle: number) {
     this.angle = angle
-
-    // Randomize the initial progress so the first frame we already have populated stars. Value between 5 and 40 seconds
-    const initialProgress = Math.random() * 50 + 5
-    this.reset(performance.now() - initialProgress * 1000)
+    this.reset()
   }
 
-  reset(startTime = performance.now()) {
+  reset() {
     if (!canvas.value)
       return
 
-    const centerX = canvas.value.width / 2
-    const centerY = canvas.value.height / 2
+    const canvasWidth = canvas.value.width / pixelRatio.value
+    const canvasHeight = canvas.value.height / pixelRatio.value
 
-    this.x = centerX
-    this.y = centerY
-    this.originalX = this.x
-    this.originalY = this.y
+    // Position stars closer to the ribbon in the top-right
+    // Smaller distribution area to ensure stars are visible
+    const originX = canvasWidth * 0.85
+    const originY = canvasHeight * 0.15
 
-    const minSpeed = 1.5
-    const maxSpeed = 3
+    // Add some noise to the origin point (smaller range)
+    this.originalX = originX + (Math.random() * 30 - 15)
+    this.originalY = originY + (Math.random() * 30 - 15)
+
+    this.x = this.originalX
+    this.y = this.originalY
+
+    // Adjust speed for better visibility
+    const minSpeed = 1.2
+    const maxSpeed = 2.5
     this.speed = Math.random() * (maxSpeed - minSpeed) + minSpeed
 
+    // Movement direction is outward along the angle
     this.dx = Math.cos(this.angle) * this.speed
     this.dy = Math.sin(this.angle) * this.speed
 
-    this.size = Math.random() * 2.25 + 1
-    // Opacity between 0.4 and 1.0
-    this.initialOpacity = Math.random() * 0.6 + 0.4
+    // Slightly larger stars to be more visible
+    this.size = Math.random() * 2.5 + 1.5
+    // Higher opacity for better visibility
+    this.initialOpacity = Math.random() * 0.4 + 0.6
 
-    this.duration = Math.random() * 50000 + 80000 // 30-70 seconds
-    this.startTime = startTime
+    // Shorter duration for more active animation
+    this.duration = Math.random() * 10000 + 15000 // 15-25 seconds
+    this.startTime = performance.now()
+    this.completed = false
   }
 
   update() {
@@ -108,7 +145,7 @@ class Star {
     this.progress = elapsed / this.duration
 
     if (this.progress >= 1) {
-      this.reset()
+      this.completed = true
       return
     }
 
@@ -122,8 +159,14 @@ class Star {
     const remainingTime = this.duration - elapsed
     let opacity = this.initialOpacity
 
-    if (remainingTime <= 5000) { // Last 5 seconds
-      const fadeProgress = remainingTime / 5000
+    // Fade-in first 10% of lifetime
+    if (elapsed <= this.duration * 0.1) {
+      const fadeInProgress = elapsed / (this.duration * 0.1)
+      opacity = this.initialOpacity * fadeInProgress
+    }
+    // Fade-out last 10% of lifetime
+    else if (remainingTime <= this.duration * 0.1) {
+      const fadeProgress = remainingTime / (this.duration * 0.1)
       opacity = this.initialOpacity * fadeProgress
     }
 

@@ -31,16 +31,16 @@ function setPill() {
 </script>
 
 <template>
-  <div flex="~ align-center" relative h-32 w-max rounded-full bg-neutral-200 p-4>
+  <div flex="~ align-center" relative w-max rounded-full bg-neutral-200 p-2>
     <label
       v-for="(option, i) of options"
       :key="i" :data-state="model === option ? 'active' : undefined"
-      text="12 neutral-800 data-active:neutral-0 hocus:neutral-900" relative z-1 z-2 cursor-pointer select-none rounded-full px-12 transition-colors nq-label flex="~ items-center"
+      text="12 neutral-800 data-active:neutral hocus:neutral-900" flex="~ items-center" relative z-2 h-max cursor-pointer select-none rounded-full px-8 py-4 lh-none transition-colors nq-label
     >
       <input :id="`${id}-${option}`" v-model="model" type="radio" :value="option" sr-only @mousedown.prevent>
       {{ option }}
     </label>
-    <div absolute top-2 z-1 h-27 rounded-full bg-neutral :style="{ ...pillStyles, transition: loaded ? 'left 300ms, width 200ms' : '' }" />
+    <div absolute top-2 z-1 h-20 rounded-full bg-neutral-0 :style="{ ...pillStyles, transition: loaded ? 'left 300ms, width 200ms' : '' }" />
   </div>
 </template>
 
