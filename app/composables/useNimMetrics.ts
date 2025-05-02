@@ -1,95 +1,96 @@
 import { fetchFiatApi, Provider } from '@nimiq/utils/fiat-api'
-import { posSupplyAt } from '@nimiq/utils/supply-calculator'
 
-// Type definition for CoinDesk API response
-// Official docs: https://developers.coindesk.com/documentation/data-api/index_cc_v1_historical_days
-interface CoinDeskApiResponse {
-  Data: { 'NIM-USD': Array<{ TIMESTAMP: number, VALUE: number }> }
-  Err: Record<string, unknown>
+interface HistohourResponse {
+  Data: {
+    Data: Array<{
+      time: number // UNIX timestamp (seconds)
+      volumefrom: number // base‐currency volume
+      volumeto: number // quote‐currency volume (USD)
+    }>
+    TimeFrom: number
+    TimeTo: number
+  }
+  Err: any
 }
 
-export function useNimMetrics() {
+const volumeApi = new URL('https://min-api.cryptocompare.com/data/v2/histohour')
+volumeApi.search = new URLSearchParams({
+  fsym: 'NIM',
+  tsym: 'USD',
+  limit: '48', // 48 data points = 48 hours - we need two complete 24h periods for proper day-over-day comparison
+  aggregate: '1', // 1-hour buckets
+  e: 'CCCAGG', // aggregate across exchanges
+  // to_ts: added dynamically in the query
+}).toString()
+
+export function useNimVolume() {
   const { currencyUsdRatio, currencyInfo } = useUserCurrency()
-  const { price, price1DayAgo } = useNimPrice()
-
-  const currentSupply = posSupplyAt(Date.now())
-  const supplyYesterday = posSupplyAt(Date.now() - 24 * 60 * 60 * 1000)
-
-  const marketCapUsd = computed(() => currentSupply * (price.value || 0))
-  const marketCapUserCurrency = computed(() => marketCapUsd.value * currencyUsdRatio.value)
-  const marketCapUserCurrencyFormatted = formatFiat(marketCapUserCurrency, currencyInfo)
-  const marketCapChange = computed(() => {
-    if (!price.value || !price1DayAgo.value)
-      return
-    const marketCapYesterdayUsd = supplyYesterday * price1DayAgo.value
-    return (marketCapUsd.value - marketCapYesterdayUsd) / marketCapYesterdayUsd
-  })
 
   const { data: volumeData, state: volumeState } = useQuery({
     key: computed(() => ['trading_volume', currencyInfo.value.code]),
     query: async () => {
       try {
-        // Using CoinDesk Data API to fetch volume data
-        const url = new URL('https://data-api.cryptocompare.com/index/cc/v1/historical/days')
-        const params = new URLSearchParams({
-          instrument: 'NIM-USD',
-          limit: '1',
-          response_format: 'JSON',
-        })
+        // Build the histohour request: last 48 *full* hours
+        const nowTs = Math.floor(Date.now() / 1000)
 
-        url.search = params.toString()
-        const res = await fetchFiatApi<CoinDeskApiResponse>(url.toString(), Provider.CryptoCompare)
+        // Align to the previous full hour boundary
+        const lastFullHourTs = nowTs - (nowTs % 3600)
+        volumeApi.searchParams.append('toTs', String(lastFullHourTs))
 
-        if (!res || !res.Data || !res.Data['NIM-USD'].length)
-          throw new Error('Failed to fetch trading volume')
-        const nimUsd = res.Data['NIM-USD']!
+        const res = await fetchFiatApi<HistohourResponse>(volumeApi.toString(), Provider.CryptoCompare)
 
-        const { VALUE: volumeUsd } = nimUsd.at(0)!
-        const volumeUserCurrency = volumeUsd * currencyUsdRatio.value
+        if (!res || !res.Data?.Data?.length)
+          throw new Error('Failed to fetch hourly volume data')
 
-        let volumeChange = 0
-        if (nimUsd.length > 1) {
-          const { VALUE: yesterdayVolume } = nimUsd.at(1)!
-          volumeChange = (volumeUsd - yesterdayVolume) / yesterdayVolume
-        }
-        const volumeTimestamps = nimUsd.map(data => data.TIMESTAMP)
-        const volumeFormatted = formatFiat(volumeUserCurrency, currencyInfo)
-        return { volumeUsd, volumeFormatted, volumeChange, volumeTimestamps }
+        const points = res.Data.Data
+        // CryptoCompare returns oldest first; reverse so index 0 is most recent full hour
+        const recentFirst = [...points].reverse()
+
+        // Split into two 24-hour windows
+        // Why 48 hours instead of just yesterday vs now:
+        // - Using full hours eliminates partial-hour skew at current time
+        // - Complete 24-hour windows provide fair comparison (same time span)
+        // - Reduces impact of time-of-day volatility in trading patterns
+        // - Protects against temporary spikes/drops at single point measurements
+        const currentDayPoints = recentFirst.slice(0, 24)
+        const previousDayPoints = recentFirst.slice(24, 48)
+
+        // Sum the USD volumes (volumeto = QUOTE_VOLUME)
+        // We aggregate to provide a meaningful daily volume rather than hourly spikes
+        const volumeUsd = currentDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
+        const prevVolumeUsd = previousDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
+
+        // Convert to user's currency for more personalized and relevant UX
+        const volumeUserCurr = volumeUsd * currencyUsdRatio.value
+        const volumeFormatted = formatFiat(volumeUserCurr, currencyInfo)
+
+        // Daily change percentage helps users track momentum and market activity
+        const volumeChange = prevVolumeUsd > 0 ? (volumeUsd - prevVolumeUsd) / prevVolumeUsd : 0
+
+        return { volumeUsd, volumeFormatted, volumeChange }
       }
       catch (error) {
         console.error('Error fetching volume data:', error)
+        // Return safe default values to prevent UI errors and maintain usability
+        // even when external API fails
         return {
           volume: 0,
           volumeFormatted: '0',
           volumeChange: 0,
-          volumeTimestamps: [],
         }
       }
     },
-    staleTime: 60 * 5 * 1e3, // 5 minutes
+    staleTime: 1 * 60 * 1e3, // 1 minute - balance between fresh data and API load
   })
 
-  const volume = computed(() => volumeData.value?.volume || 0)
-  const volumeFormatted = formatFiat(volume, currencyInfo)
+  const volumeUsd = computed(() => volumeData.value?.volumeUsd || 0)
+  const volumeFormatted = computed(() => volumeData.value?.volumeFormatted || '0')
   const volumeChange = computed(() => volumeData.value?.volumeChange || 0)
 
-  const currentSupplyFormatted = computed(() => `${formatNim(currentSupply)} NIM`)
-
-  const maxSupply = 21_000_000_000
-  const maxSupplyFormatted = computed(() => `${formatNim(maxSupply)} NIM`)
-
   return {
-    marketCapUsd,
-    marketCapUserCurrency,
-    marketCapUserCurrencyFormatted,
-    marketCapChange,
-    volume,
-    volumeState,
+    volumeUsd,
     volumeFormatted,
     volumeChange,
-    currentSupply,
-    currentSupplyFormatted,
-    maxSupply,
-    maxSupplyFormatted,
+    volumeState,
   }
 }

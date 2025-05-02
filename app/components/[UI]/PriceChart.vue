@@ -9,7 +9,9 @@ if (slice.variation !== 'buyAndSell')
 
 const { currency, currencyInfo } = useUserCurrency()
 
-const { marketCapChange, maxSupplyFormatted, currentSupplyFormatted, volumeChange, volumeFormatted, marketCapUserCurrencyFormatted } = useNimMetrics()
+const { marketCapChange, marketCapUserCurrencyFormatted } = useNimMarketCap()
+const { currentSupplyFormatted, maxSupplyFormatted } = useNimSupply()
+const { volumeChange, volumeFormatted } = useNimVolume()
 const { data: historicPrices, lastUpdated, period, periodOptions } = useNimPriceHistory(currency)
 const { deltaPrice } = useNimPrice()
 
@@ -59,7 +61,7 @@ const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], de
       </div>
     </DefinePrice>
 
-    <RibbonContainer :label="slice.primary.nimPriceChartLabel!" z-3 md:min-h-45vh>
+    <RibbonContainer :label="slice.primary.nimPriceChartLabel!" z-3 shadow md:min-h-45vh outline-color="white/20">
       <div grid="~ cols-1 md:cols-[max-content_1fr]" size-full of-hidden>
         <aside relative md:border="r-1 solid neutral-400" w-full grid="~ cols-[repeat(4,1fr)] md:cols-1 gap-col-20 gap-row-24" of-x-auto f-p-md max-md:row-start-2>
           <ReuseMetric :metric-value="marketCapUserCurrencyFormatted" :metric-change="marketCapChange" :label="slice.primary.marketCapLabel!" :tooltip-info="slice.primary.marketCapInfo" />
