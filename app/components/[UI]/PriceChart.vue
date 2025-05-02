@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { Content, RichTextField } from '@prismicio/client'
 
-const { slice } = defineProps(getSliceComponentProps<Content.PriceChartSlice>())
+const { slice } = defineProps(getSliceComponentProps<Content.HeroSectionSlice>())
+
+// Just to make ts happy
+if (slice.variation !== 'buyAndSell')
+  throw new Error('Invalid slice variation. Expected "buyAndSell".')
 
 const { currency, currencyInfo } = useUserCurrency()
 
@@ -17,7 +21,7 @@ const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], de
 </script>
 
 <template>
-  <section flex="~ col items-center" of-x-clip bg-neutral-0 max-md="px-16 children:mx-0 children:max-w-none" f-pt-2xl>
+  <div>
     <DefineMetric v-slot="{ metricValue, metricChange, label, tooltipInfo }">
       <div flex="~ col gap-8" z-1>
         <div flex="~ gap-8 items-center">
@@ -26,7 +30,7 @@ const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], de
           </span>
           <div v-if="metricChange" :class="metricChange < 0 ? 'text-red' : 'text-green'" flex="~ gap-2 items-center">
             <div :class="{ 'rotate-180': metricChange < 0 }" aria-hidden size-7 i-nimiq:triangle-up />
-            <span font-semibold lh-none f-text-sm>{{ formatPercentage(metricChange) }}</span>
+            <span w-6ch font-semibold lh-none f-text-sm>{{ formatPercentage(metricChange) }}</span>
           </div>
         </div>
         <div flex="~ gap-6 items-center">
@@ -55,7 +59,7 @@ const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], de
       </div>
     </DefinePrice>
 
-    <RibbonContainer :label="slice.primary.nimPriceChartLabel!" md:min-h-45vh>
+    <RibbonContainer :label="slice.primary.nimPriceChartLabel!" z-3 md:min-h-45vh>
       <div grid="~ cols-1 md:cols-[max-content_1fr]" size-full of-hidden>
         <aside relative md:border="r-1 solid neutral-400" w-full grid="~ cols-[repeat(4,1fr)] md:cols-1 gap-col-20 gap-row-24" of-x-auto f-p-md max-md:row-start-2>
           <ReuseMetric :metric-value="marketCapUserCurrencyFormatted" :metric-change="marketCapChange" :label="slice.primary.marketCapLabel!" :tooltip-info="slice.primary.marketCapInfo" />
@@ -96,10 +100,10 @@ const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], de
       </div>
     </RibbonContainer>
 
-    <p flex="~ items-center gap-8" f-mt-md text="center f-sm">
+    <p flex="~ items-center justify-center gap-8" f-mt-md text="center f-sm">
       {{ slice.primary.poweredByLabel }} <PrismicLink :field="slice.primary.poweredByLink">
         <PrismicImage op="80 hocus:100" :field="slice.primary.poweredByLogo" w-full transition-opacity f-h-sm />
       </PrismicLink>
     </p>
-  </section>
+  </div>
 </template>

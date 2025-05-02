@@ -1001,6 +1001,103 @@
             "allowTargetBlank": true,
             "multi": "preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl,paragraph"
           }
+        },
+        "nimPriceChartLabel": {
+          "type": "Text",
+          "config": {
+            "label": "NIM Price Chart Label",
+            "placeholder": ""
+          }
+        },
+        "marketCapLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Market Cap Label",
+            "placeholder": ""
+          }
+        },
+        "marketCapInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Market Cap Info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "volume24HLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Volume 24h Label",
+            "placeholder": ""
+          }
+        },
+        "volume24HInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Volume 24h Info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "totalSupplyLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Total supply Label",
+            "placeholder": ""
+          }
+        },
+        "totalSupplyInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Total Supply Info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "maxSupplyLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Max supply Label",
+            "placeholder": ""
+          }
+        },
+        "maxSupplyInfo": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Max supply Info",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "poweredByLogo": {
+          "type": "Image",
+          "config": {
+            "label": "Powered by Logo",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "poweredByLink": {
+          "type": "Link",
+          "config": {
+            "label": "Powered By Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "poweredByLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Powered by Label",
+            "placeholder": ""
+          }
         }
       },
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",

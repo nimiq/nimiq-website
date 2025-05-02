@@ -36,6 +36,7 @@ export default defineNuxtConfig({
 
   components: [
     { path: '~/components/[UI]', pathPrefix: false },
+    { path: '~/components/[Backgrounds]', pathPrefix: false },
     '~/components',
   ],
 

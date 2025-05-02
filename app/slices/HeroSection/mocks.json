@@ -137,8 +137,8 @@
         }
       },
       "video": {
-        "__TYPE__": "LinkContent",
         "key": "196e968d-2d51-46c7-a606-11a98b0e861f",
+        "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
           "url": "http://twitter.com",
@@ -1132,6 +1132,112 @@
             }
           }
         ]
+      },
+      "nimPriceChartLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "fence",
+        "type": "Text"
+      },
+      "marketCapLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "pupil",
+        "type": "Text"
+      },
+      "volume24HLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "courage",
+        "type": "Text"
+      },
+      "poweredByLogo": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
+          "width": 5243,
+          "height": 3495
+        },
+        "url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
+        "width": 5243,
+        "height": 3495,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "alt": "rising",
+        "credits": null,
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "poweredByLink": {
+        "__TYPE__": "LinkContent",
+        "key": "d55599d7-c36e-4054-aabc-d774aa489641",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev",
+          "text": "voice"
+        }
+      },
+      "marketCapInfo": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Laboris incididunt laborum commodo esse commodo. Ex pariatur commodo nulla id mollit."
+            }
+          }
+        ]
+      },
+      "volume24HInfo": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Exercitation aute sint exercitation laborum sunt excepteur aliqua."
+            }
+          }
+        ]
+      },
+      "totalSupplyLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "vapor",
+        "type": "Text"
+      },
+      "totalSupplyInfo": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Minim elit officia qui."
+            }
+          }
+        ]
+      },
+      "maxSupplyLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "brother",
+        "type": "Text"
+      },
+      "maxSupplyInfo": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Qui officia sint ea culpa id. Pariatur do dolor occaecat ullamco aliqua tempor enim. Culpa reprehenderit consectetur dolore ullamco magna id ad mollit amet."
+            }
+          }
+        ]
+      },
+      "poweredByLabel": {
+        "__TYPE__": "FieldContent",
+        "value": "dry",
+        "type": "Text"
       }
     },
     "items": [
