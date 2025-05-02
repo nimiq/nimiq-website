@@ -1819,7 +1819,6 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
-  | PriceChartSlice
   | NimiqWalletHoverableSlice
   | NimTokenDistributionSlice
   | ExchangesGridSlice
@@ -6681,6 +6680,132 @@ export interface HeroSectionSliceBuyAndSellPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   subline: prismic.RichTextField
+
+  /**
+   * NIM Price Chart Label field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.nimPriceChartLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  nimPriceChartLabel: prismic.KeyTextField
+
+  /**
+   * Market Cap Label field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.marketCapLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  marketCapLabel: prismic.KeyTextField
+
+  /**
+   * Market Cap Info field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.marketCapInfo
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  marketCapInfo: prismic.RichTextField
+
+  /**
+   * Volume 24h Label field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.volume24HLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  volume24HLabel: prismic.KeyTextField
+
+  /**
+   * Volume 24h Info field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.volume24HInfo
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  volume24HInfo: prismic.RichTextField
+
+  /**
+   * Total supply Label field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.totalSupplyLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  totalSupplyLabel: prismic.KeyTextField
+
+  /**
+   * Total Supply Info field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.totalSupplyInfo
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  totalSupplyInfo: prismic.RichTextField
+
+  /**
+   * Max supply Label field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.maxSupplyLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  maxSupplyLabel: prismic.KeyTextField
+
+  /**
+   * Max supply Info field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.maxSupplyInfo
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  maxSupplyInfo: prismic.RichTextField
+
+  /**
+   * Powered by Logo field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.poweredByLogo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  poweredByLogo: prismic.ImageField<never>
+
+  /**
+   * Powered By Link field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.poweredByLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  poweredByLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
+
+  /**
+   * Powered by Label field in *HeroSection → BuyAndSell → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.buyAndSell.primary.poweredByLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  poweredByLabel: prismic.KeyTextField
 }
 
 /**
@@ -8482,177 +8607,6 @@ type PrestakingGridSliceVariation = PrestakingGridSliceDefault
 export type PrestakingGridSlice = prismic.SharedSlice<
   'prestaking_grid',
   PrestakingGridSliceVariation
->
-
-/**
- * Primary content in *PriceChart → Default → Primary*
- */
-export interface PriceChartSliceDefaultPrimary {
-  /**
-   * NIM Price Chart Label field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.nimPriceChartLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  nimPriceChartLabel: prismic.KeyTextField
-
-  /**
-   * Market Cap Label field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.marketCapLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  marketCapLabel: prismic.KeyTextField
-
-  /**
-   * Market Cap Info field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.marketCapInfo
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  marketCapInfo: prismic.RichTextField
-
-  /**
-   * volume24hLabel field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.volume24HLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  volume24HLabel: prismic.KeyTextField
-
-  /**
-   * Volume 24h Info field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.volume24HInfo
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  volume24HInfo: prismic.RichTextField
-
-  /**
-   * Total supply Label field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.totalSupplyLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  totalSupplyLabel: prismic.KeyTextField
-
-  /**
-   * Total Supply Info field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.totalSupplyInfo
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  totalSupplyInfo: prismic.RichTextField
-
-  /**
-   * Max supply Label field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.maxSupplyLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  maxSupplyLabel: prismic.KeyTextField
-
-  /**
-   * Max supply Info field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.maxSupplyInfo
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  maxSupplyInfo: prismic.RichTextField
-
-  /**
-   * Powered by Label field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.poweredByLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  poweredByLabel: prismic.KeyTextField
-
-  /**
-   * Powered by Logo field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.poweredByLogo
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  poweredByLogo: prismic.ImageField<never>
-
-  /**
-   * poweredByLink field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.poweredByLink
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  poweredByLink: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >
-
-  /**
-   * lastUpdatedLabel field in *PriceChart → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: price_chart.default.primary.lastUpdatedLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  lastUpdatedLabel: prismic.KeyTextField
-}
-
-/**
- * Default variation for PriceChart Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type PriceChartSliceDefault = prismic.SharedSliceVariation<
-  'default',
-  Simplify<PriceChartSliceDefaultPrimary>,
-  never
->
-
-/**
- * Slice variation for *PriceChart*
- */
-type PriceChartSliceVariation = PriceChartSliceDefault
-
-/**
- * PriceChart Shared Slice
- *
- * - **API ID**: `price_chart`
- * - **Description**: PriceChart
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type PriceChartSlice = prismic.SharedSlice<
-  'price_chart',
-  PriceChartSliceVariation
 >
 
 /**
@@ -12404,10 +12358,6 @@ declare module '@prismicio/client' {
       PrestakingGridSliceDefaultPrimary,
       PrestakingGridSliceDefaultPrimaryItemsItem,
       PrestakingGridSliceVariation,
-      PriceChartSlice,
-      PriceChartSliceDefault,
-      PriceChartSliceDefaultPrimary,
-      PriceChartSliceVariation,
       PuzzleGridSlice,
       PuzzleGridSliceDefault,
       PuzzleGridSliceDefaultItem,
