@@ -7,7 +7,20 @@ const { slice } = defineProps(getSliceComponentProps<Content.HeroSectionSlice>()
 if (slice.variation !== 'buyAndSell')
   throw new Error('Invalid slice variation. Expected "buyAndSell".')
 
-const { fiatAmount, cryptoAmount, fiatCurrency } = useSyncAmountInputs()
+const { fiatAmount, cryptoAmount } = useSyncAmountInputs()
+const { currency } = useUserCurrency()
+
+function useSyncAmountInputs() {
+  const { price } = useNimPrice()
+
+  const cryptoAmount = ref(1)
+  const fiatAmount = computed<number>({
+    get: () => cryptoAmount.value * (price.value || 0),
+    set: fiat => cryptoAmount.value = price.value ? fiat / price.value : 0,
+  })
+
+  return { cryptoAmount, fiatAmount }
+}
 </script>
 
 <template>
@@ -18,7 +31,7 @@ const { fiatAmount, cryptoAmount, fiatCurrency } = useSyncAmountInputs()
         <div group relative w-full flex="~ items-center gap-12">
           <AmountInput v-model="fiatAmount" required pr-64 f-text-2xl :decimals="8" />
           <div absolute right-4 top-10 text="neutral-600 group-hover:blue/50 group-focus-within:blue!">
-            <CurrencySelector v-model="fiatCurrency" />
+            <CurrencySelector v-model="currency" />
           </div>
         </div>
         <p h-max text-32 max-md:hidden>

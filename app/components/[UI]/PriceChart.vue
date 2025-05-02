@@ -105,7 +105,7 @@ function useChartControlsPosition(
         <div absolute inset-y-0 left="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-transparent to-neutral-0 to-r" />
         <div absolute inset-y-0 right="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-neutral-0 to-transparent to-r" f-w-md />
         <p text="blue f-3xl" font-semibold lh-none>
-          {{ formatFiat(price, currencyInfo, { maxDecimals: Number.POSITIVE_INFINITY }) }}
+          {{ formatFiat(price, currencyInfo) }}
         </p>
         <NuxtTime v-if="!deltaPriceOneDay" :datetime="ts" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" text="f-2xs right neutral-700" lh-none nq-label />
         <div v-else flex="~ items-center" text="f-2xs neutral-700" font-semibold lh-none>

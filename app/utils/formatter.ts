@@ -1,50 +1,56 @@
 import type { CurrencyInfo } from '@nimiq/utils/currency-info'
+import { FormattableNumber } from '@nimiq/utils/formattable-number'
 
-export interface FormatFiatOptions {
-  /**
-   * Whether to hide the decimals.
-   *
-   * @default false
-   */
-  hideDecimals?: boolean
+export function formatFiat(
+  amount: number,
+  currency: CurrencyInfo,
+  options: {
+    maxDecimals?: number // absolute cap on decimals, default 8
+    minDecimals?: number // absolute floor, default = currency’s “normal” decimals
+    hideDecimals?: boolean // force integer
+  } = {},
+): string {
+  const { maxDecimals = 8, minDecimals: explicitMin, hideDecimals = false } = options
 
-  /**
-   * The maximum relative deviation between the formatted amount and the original amount.
-   *
-   * @default 0.1
-   */
-  maxRelativeDeviation?: number
+  const baseDecimals = currency.decimals
 
-  /**
-   * The locale to use for formatting.
-   *
-   * @default 'en'
-   */
-  locale?: string
+  const minDecimals = hideDecimals ? 0 : Math.min(baseDecimals, explicitMin ?? baseDecimals)
 
-  /**
-   * The maximum number of decimals to show.
-   */
-  maxDecimals?: number
+  // if it’s a tiny number (<1), allow a few extra digits up to maxDecimals
+  const dynamicMax = hideDecimals
+    ? 0
+    : Math.min(maxDecimals, Math.max(
+        explicitMin ?? baseDecimals,
+        amount < 1 ? Math.ceil(-Math.log10(amount)) + 1 : baseDecimals,
+      ))
+
+  // 3) format the numeric part
+  const num = new FormattableNumber(amount)
+  const formattedNumber = num.toString({ minDecimals, maxDecimals: dynamicMax, useGrouping: true })
+
+  // 4) combine with symbol (adjust spacing as you like)
+  return surroundWithCurrencySymbol(formattedNumber, currency, minDecimals, dynamicMax)
 }
 
-export function formatFiat(_amount: MaybeRef<number>, currency: MaybeRef<CurrencyInfo>, options: FormatFiatOptions = {}) {
-  return computed(() => {
-    const amount = toValue(_amount)
-    const currencyInfo = toValue(currency)
-    const { hideDecimals = false, locale = 'en', maxDecimals = 8 } = options
+function surroundWithCurrencySymbol(formattedNumber: string, currency: CurrencyInfo, minDecimals: number, maxDecimals: number): string {
+  const locale = useLocale()
+  // Ask Intl for its parts for a dummy value
+  const parts = new Intl.NumberFormat(locale.value, {
+    style: 'currency',
+    currency: currency.code,
+    minimumFractionDigits: minDecimals,
+    maximumFractionDigits: maxDecimals,
+    currencyDisplay: 'symbol',
+  }).formatToParts(1.23)
 
-    const formatterOptions: Intl.NumberFormatOptions = {
-      style: 'currency',
-      currency: currencyInfo.code,
-      currencyDisplay: 'symbol',
-      useGrouping: true,
-      minimumFractionDigits: hideDecimals ? 0 : (maxDecimals !== undefined ? Math.min(maxDecimals, currencyInfo.decimals) : currencyInfo.decimals),
-      maximumFractionDigits: hideDecimals ? 0 : (maxDecimals !== undefined ? Math.min(maxDecimals, currencyInfo.decimals) : currencyInfo.decimals),
-    }
+  // Everything *before* the integer part is your "prefix"
+  const intIndex = parts.findIndex(p => p.type === 'integer')
+  const prefix = parts.slice(0, intIndex).map(p => p.value).join('')
+  // Everything *after* the fractional part is your "suffix"
+  const fracIndex = parts.findIndex(p => p.type === 'fraction')
+  const suffix = parts.slice(fracIndex >= 0 ? fracIndex + 1 : intIndex + 1).map(p => p.value).join('')
 
-    return amount.toLocaleString([locale, currencyInfo.locale, 'en'], formatterOptions)
-  })
+  return `${prefix}${formattedNumber}${suffix}`
 }
 
 export function formatPercentage(input: number) {

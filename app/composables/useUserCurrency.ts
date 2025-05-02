@@ -1,5 +1,6 @@
 import { CurrencyInfo } from '@nimiq/utils/currency-info'
 import { FiatCurrency } from '@nimiq/utils/fiat-api'
+import { useStorage } from '@vueuse/core'
 
 export const supportedFiatCurrencies = ['AED', 'ARS', 'AUD', 'BRL', 'CAD', 'CHF', 'CLP', 'CNY', 'CRC', 'CZK', 'DKK', 'EUR', 'GBP', 'GMD', 'GTQ', 'HKD', 'HUF', 'IDR', 'ILS', 'INR', 'JPY', 'KRW', 'MXN', 'MYR', 'NGN', 'NOK', 'NZD', 'PHP', 'PKR', 'PLN', 'RUB', 'SEK', 'SGD', 'THB', 'TRY', 'TWD', 'UAH', 'USD', 'VND', 'XOF', 'ZAR'] as const
 
@@ -39,21 +40,19 @@ function guessUserCurrency() {
   if (language && euroLanguageRegex.test(language))
     return FiatCurrency.EUR
 
-  // Use USD by default
   return FiatCurrency.USD
 }
 
 export function useUserCurrency() {
-  const currency = useSyncedState<FiatCurrency>('user-currency', guessUserCurrency)
+  const currency = useStorage<FiatCurrency>(
+    'user-currency',
+    guessUserCurrency(),
+    undefined,
+    { mergeDefaults: false },
+  )
 
-  // The price of the currency in USD
-  const currencyUsdRatio = computed(() => 1.1)
   const locale = useLocale()
   const currencyInfo = computed(() => new CurrencyInfo(currency.value, locale.value))
 
-  return {
-    currency,
-    currencyUsdRatio,
-    currencyInfo,
-  }
+  return { currency, currencyInfo }
 }

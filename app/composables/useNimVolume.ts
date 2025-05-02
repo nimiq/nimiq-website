@@ -16,7 +16,7 @@ interface HistohourResponse {
 const volumeApi = new URL('https://min-api.cryptocompare.com/data/v2/histohour')
 volumeApi.search = new URLSearchParams({
   fsym: 'NIM',
-  tsym: 'USD',
+  // tsym: '', to be set dynamically
   limit: '48', // 48 data points = 48 hours - we need two complete 24h periods for proper day-over-day comparison
   aggregate: '1', // 1-hour buckets
   e: 'CCCAGG', // aggregate across exchanges
@@ -24,7 +24,8 @@ volumeApi.search = new URLSearchParams({
 }).toString()
 
 export function useNimVolume() {
-  const { currencyUsdRatio, currencyInfo } = useUserCurrency()
+  const { currencyInfo } = useUserCurrency()
+  const { price } = useNimPrice()
 
   const { data: volumeData, state: volumeState } = useQuery({
     key: computed(() => ['trading_volume', currencyInfo.value.code]),
@@ -36,6 +37,7 @@ export function useNimVolume() {
         // Align to the previous full hour boundary
         const lastFullHourTs = nowTs - (nowTs % 3600)
         volumeApi.searchParams.append('toTs', String(lastFullHourTs))
+        volumeApi.searchParams.append('tsym', currencyInfo.value.code)
 
         const res = await fetchFiatApi<HistohourResponse>(volumeApi.toString(), Provider.CryptoCompare)
 
@@ -57,17 +59,17 @@ export function useNimVolume() {
 
         // Sum the USD volumes (volumeto = QUOTE_VOLUME)
         // We aggregate to provide a meaningful daily volume rather than hourly spikes
-        const volumeUsd = currentDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
+        const volume = currentDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
         const prevVolumeUsd = previousDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
 
         // Convert to user's currency for more personalized and relevant UX
-        const volumeUserCurr = volumeUsd * currencyUsdRatio.value
-        const volumeFormatted = formatFiat(volumeUserCurr, currencyInfo)
+        const volumeUserCurr = volume * (price.value || 0)
+        const volumeFormatted = formatFiat(volumeUserCurr, currencyInfo.value)
 
         // Daily change percentage helps users track momentum and market activity
-        const volumeChange = prevVolumeUsd > 0 ? (volumeUsd - prevVolumeUsd) / prevVolumeUsd : 0
+        const volumeChange = prevVolumeUsd > 0 ? (volume - prevVolumeUsd) / prevVolumeUsd : 0
 
-        return { volumeUsd, volumeFormatted, volumeChange }
+        return { volumeUsd: volume, volumeFormatted, volumeChange }
       }
       catch (error) {
         console.error('Error fetching volume data:', error)
