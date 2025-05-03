@@ -63,7 +63,6 @@ const draft = computed(() => page.value?.data && 'draft' in page.value.data && p
 
 const showSocialsHexagonBg = isHome
 
-console.log(isBlog);
 
 defineOgImageComponent('OgMultilayout', {
   title: pageMeta.value.title,
