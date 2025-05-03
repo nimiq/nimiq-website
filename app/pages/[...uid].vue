@@ -6,6 +6,7 @@ const pathParams = typeof params.uid === 'string' ? [] : params?.uid.filter(Bool
 const isGrandchildPage = pathParams.length === 2
 const uid = pathParams.at(-1) || 'home'
 const isHome = uid === 'home'
+const isBlog = uid === 'blog'
 
 const { showDrafts } = useRuntimeConfig().public
 
@@ -56,7 +57,14 @@ const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
 
 const showSocialsHexagonBg = isHome
-// defineOgImageComponent('DefaultImage')
+
+// Replace 'blog.png' and 'page.png' with the final images when available
+defineOgImageComponent('OgMultilayout', {
+  title: page.value?.data.meta_title || 'Nimiq Website',
+  description: page.value?.data.meta_description || 'The most accepted crypto in the World',
+  image: (isHome && '/assets/og-images/home.jpg') || (isBlog && '/assets/og-images/blog.png') || '/assets/og-images/page.png',
+  layout: (isHome && 'image') || 'overlay',
+})
 </script>
 
 <template>

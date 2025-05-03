@@ -58,6 +58,7 @@ export default defineNuxtConfig({
     useNuxtHub as true ? '@nuxthub/core' : null,
     '@nuxtjs/prismic',
     // '@nuxtjs/critters',
+    'nuxt-og-image',
     '@nuxtjs/device',
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
