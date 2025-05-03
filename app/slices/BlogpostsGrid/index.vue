@@ -4,21 +4,38 @@ import { filter } from '@prismicio/client'
 import ArticleMetadata from '~/components/ArticleMetadata.vue'
 
 defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
-
 const showDrafts = import.meta.dev // TODO Change this depending on the NODE_ENV
-
 const itemsPerPage = 25
-const page = useRouteQuery<number>('page', 1, { transform: Number })
+const route = useRoute()
+const router = useRouter()
+const page = ref(Number(route.query.page) || 1)
+
+watch(() => route.query.page, (val) => {
+  page.value = Number(val) || 1
+})
+
+watch(page, (val) => {
+  router.replace({ query: { ...route.query, page: val !== 1 ? val : undefined } })
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+})
 
 const { client } = usePrismic()
 
-const { data: result } = await useAsyncData('blog_posts', async () => {
-  return await client.getByType('blog_page', {
+const result = ref<Awaited<ReturnType<typeof client.getByType>> | null>(null)
+
+watchEffect(async () => {
+  const data = await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
     filters: showDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
     pageSize: itemsPerPage,
     page: page.value,
   })
+  result.value = data
+})
+
+const results = computed(() => result.value?.results ?? [])
+const totalPages = computed(() => result.value?.total_pages ?? 1)
+const posts = computed(() => results.value.map(useProse))
 }, { watch: [page] })
 if (!result.value || result.value.results.length === 0)
   throw new Error('No blog posts found')
