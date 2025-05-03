@@ -28,7 +28,7 @@
     "hero-motion": "catalog:",
     "medium-zoom": "catalog:",
     "nuxt": "catalog:",
-    "nuxt-og-image": "catalog:",
+    "nuxt-og-image": "^5.1.3",
     "reka-ui": "catalog:",
     "vaul-vue": "catalog:",
     "vue": "catalog:",
