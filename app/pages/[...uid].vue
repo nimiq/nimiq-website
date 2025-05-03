@@ -42,10 +42,17 @@ definePageMeta({
   ],
 })
 
+const pageMeta = computed(() => ({
+  title: page.value?.data.meta_title || (isHome && 'Nimiq Website') || (page?.value?.slugs[0]?.replace("-", " ").replace(/\b\w/g, char => char.toUpperCase()))|| (uid.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())) || (isBlog && 'Blog - Nimiq Website')||'Nimiq Website',
+  description: page.value?.data.meta_description || (isBlog && 'Stay updated with the latest news and articles from Nimiq') || 'The most accepted crypto in the World',
+  image: (isHome && '/assets/og-images/home.jpg') || (isBlog && '/assets/og-images/blog.jpg') || '/assets/og-images/page.jpg',
+  layout: (isHome && 'image') || 'overlay',
+}))
+
 useHead({
-  title: page.value?.data.meta_title || 'Nimiq Website',
+  title: pageMeta.value.title,
   meta: [
-    { name: 'description', content: page.value?.data.meta_description || 'The most accepted crypto in the World' },
+    { name: 'description', content: pageMeta.value.description },
   ],
 })
 
@@ -56,13 +63,15 @@ const draft = computed(() => page.value?.data && 'draft' in page.value.data && p
 
 const showSocialsHexagonBg = isHome
 
-// Replace 'blog.png' and 'page.png' with the final images when available
+console.log(isBlog);
+
 defineOgImageComponent('OgMultilayout', {
-  title: page.value?.data.meta_title || 'Nimiq Website',
-  description: page.value?.data.meta_description || 'The most accepted crypto in the World',
-  image: (isHome && '/assets/og-images/home.jpg') || (isBlog && '/assets/og-images/blog.png') || '/assets/og-images/page.png',
-  layout: (isHome && 'image') || 'overlay',
+  title: pageMeta.value.title,
+  description: pageMeta.value.description,
+  image: pageMeta.value.image,
+  layout: pageMeta.value.layout,
 })
+
 </script>
 
 <template>
