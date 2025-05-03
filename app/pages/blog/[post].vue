@@ -25,8 +25,8 @@ useHead(meta)
 useSeoMeta({ ...meta, twitterTitle: meta.title, twitterDescription: meta.description, twitterCard: 'summary_large_image' })
 
 defineOgImageComponent('OgMultilayout', {
-  title: post.value.data.title.text,
-  description: post.value.data.subline[0].text,
+  title: post?.value?.data?.title?.text,
+  description: post?.value?.data?.subline[0]?.text,
   image: post.value.data.image.url,
   layout: 'image', // 'image' | 'text' | 'overlay'
 })
