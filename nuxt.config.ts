@@ -11,22 +11,9 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  modules: [
-    '@vueuse/nuxt',
-    '@pinia/nuxt',
-    '@unocss/nuxt',
-    '@nuxt/eslint',
-    '@nuxt/image',
-    'reka-ui/nuxt',
-    // '@nuxtjs/seo',
-    '@nuxthub/core',
-    '@nuxtjs/prismic',
-    // '@nuxtjs/critters',
-    '@nuxtjs/device',
-    '@nuxt/fonts',
-    'hero-motion/nuxt',
-    '@pinia/colada-nuxt',
-  ],
+  modules: ['@vueuse/nuxt', '@pinia/nuxt', '@unocss/nuxt', '@nuxt/eslint', '@nuxt/image', 'reka-ui/nuxt', // '@nuxtjs/seo',
+    '@nuxthub/core', '@nuxtjs/prismic', // '@nuxtjs/critters',
+    '@nuxtjs/device', '@nuxt/fonts', 'hero-motion/nuxt', '@pinia/colada-nuxt', 'nuxt-og-image'],
 
   devtools: { enabled: true },
 
