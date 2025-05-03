@@ -36,7 +36,7 @@ const isDev = import.meta.dev
         <NuxtLink :to="href" relative h-full p-0 nq-hoverable @click="active = uid">
           <PageInfo :draft absolute right-12 top-12 />
           <div p-4>
-            <PrismicImage v-if="hasImage" :field="image" h-max w-full rounded-6 object-cover :class="{ 'view-transition-post-img contain-layout': active === uid }" />
+            <PrismicImage v-if="hasImage" :field="image" h-max w-full rounded-6 object-cover :class="{ '!lg:h-[280px]': i === 1, 'view-transition-post-img contain-layout': active === uid }" />
             <div v-else-if="isDev" size-full flex-1 rounded-4 py-64 text-green-400 bg-gradient-green grid="~ place-content-center">
               <div flex="~ items-center gap-12">
                 <div text-32 op-70 i-nimiq:tools-wench-hammer />
@@ -55,8 +55,8 @@ const isDev = import.meta.dev
           </div>
           <div flex="~ col" h-full p-24>
             <PrismicText
-              wrapper="h2" text-left :field="title" :style=" i === 0 ? '--nq-font-size-min:30; --nq-font-size-max:26' : '--nq-font-size-min:20;--nq-font-size-max:22'"
-              :class="{ 'view-transition-post-title contain-layout': active === uid }"
+              wrapper="h2" text-left :field="title"
+              :class="{ 'view-transition-post-title contain-layout': active === uid, 'f-text-3xl': i === 0, 'f-text-2xl': i === 1, 'f-text-xl': i > 1 }"
             />
 
             <p line-clamp-2 mt-8 text="16 neutral-900 left">
