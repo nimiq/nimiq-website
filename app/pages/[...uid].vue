@@ -6,6 +6,7 @@ const pathParams = typeof params.uid === 'string' ? [] : params?.uid.filter(Bool
 const isGrandchildPage = pathParams.length === 2
 const uid = pathParams.at(-1) || 'home'
 const isHome = uid === 'home'
+const isBlog = uid === 'blog'
 
 const { client } = usePrismic()
 const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID('page', uid)
@@ -41,10 +42,17 @@ definePageMeta({
   ],
 })
 
+const pageMeta = computed(() => ({
+  title: page.value?.data.meta_title || (isHome && 'Nimiq Website') || (page?.value?.slugs[0]?.replace("-", " ").replace(/\b\w/g, char => char.toUpperCase()))|| (uid.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())) || (isBlog && 'Blog - Nimiq Website')||'Nimiq Website',
+  description: page.value?.data.meta_description || (isBlog && 'Stay updated with the latest news and articles from Nimiq') || 'The most accepted crypto in the World',
+  image: (isHome && '/assets/og-images/home.jpg') || (isBlog && '/assets/og-images/blog.jpg') || '/assets/og-images/page.jpg',
+  layout: (isHome && 'image') || 'overlay',
+}))
+
 useHead({
-  title: page.value?.data.meta_title || 'Nimiq Website',
+  title: pageMeta.value.title,
   meta: [
-    { name: 'description', content: page.value?.data.meta_description || 'The most accepted crypto in the World' },
+    { name: 'description', content: pageMeta.value.description },
   ],
 })
 
@@ -54,7 +62,15 @@ const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
 
 const showSocialsHexagonBg = isHome
-// defineOgImageComponent('DefaultImage')
+
+
+defineOgImageComponent('OgMultilayout', {
+  title: pageMeta.value.title,
+  description: pageMeta.value.description,
+  image: pageMeta.value.image,
+  layout: pageMeta.value.layout,
+})
+
 </script>
 
 <template>
