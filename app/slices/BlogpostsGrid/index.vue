@@ -4,7 +4,7 @@ import { filter } from '@prismicio/client'
 import ArticleMetadata from '~/components/ArticleMetadata.vue'
 
 defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
-const showDrafts = import.meta.dev // TODO Change this depending on the NODE_ENV
+const isDev = import.meta.dev
 const itemsPerPage = 25
 const route = useRoute()
 const router = useRouter()
@@ -26,7 +26,7 @@ const result = ref<Awaited<ReturnType<typeof client.getByType>> | null>(null)
 watchEffect(async () => {
   const data = await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
-    filters: showDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
+    filters: isDev ? undefined : [filter.not('my.blog_page.draft', true)],
     pageSize: itemsPerPage,
     page: page.value,
   })
@@ -37,7 +37,6 @@ const results = computed(() => result.value?.results ?? [])
 const totalPages = computed(() => result.value?.total_pages ?? 1)
 const posts = computed(() => results.value.map(useProse))
 const active = useState()
-const isDev = import.meta.dev
 </script>
 
 <template>
