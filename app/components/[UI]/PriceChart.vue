@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { FiatCurrency } from '@nimiq/utils/fiat-api'
 import type { Content, RichTextField } from '@prismicio/client'
 
 const { slice } = defineProps(getSliceComponentProps<Content.HeroSectionSlice>())
@@ -18,81 +17,29 @@ const { deltaPrice, price1DayAgoLoading, priceLoading } = useNimPrice()
 
 const isLoading = computed(() => priceIsLoading.value || priceLoading.value || price1DayAgoLoading.value || volumeIsLoading.value)
 
-// Create a reactive dependency on both period and currency to ensure positions are recalculated
-// when either changes - this is important for ensuring the control position updates correctly
-const positionDependencies = computed(() => ({
-  period: period.value,
-  currency: currency.value,
-  data: historicPrices.value,
-}))
-
-// Determine optimal control position based on price trend, with explicit reactivity to period and currency
-const controlsPosition = useChartControlsPosition(positionDependencies)
-
 const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: MaybeRef<string>, metricChange?: number, label: string, tooltipInfo?: RichTextField }>()
 const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], deltaPriceOneDay?: number }>()
 
-type ControlPosition = 'top' | 'bottom'
+  type ControlPosition = 'top' | 'bottom'
 
-/**
- * Determines the optimal position for chart controls based on price data trend
- * to avoid overlapping important chart areas.
- *
- * The function is now reactive to both period and currency changes through the dependencies object.
- *
- * @param dependencies Object containing price data and other dependencies to trigger reactivity
- * @param defaultPosition Default position if analysis is inconclusive
- * @returns Computed ref with the recommended position ('top' or 'bottom')
- */
-function useChartControlsPosition(
-  dependencies: MaybeRef<{
-    period: HistoricNimPricePeriod
-    currency: FiatCurrency
-    data: NimPrice[] | undefined | null
-  }>,
-  defaultPosition: ControlPosition = 'bottom',
-) {
-  const position = computed<ControlPosition>(() => {
-    // Extract data from dependencies to ensure reactivity
-    const deps = toValue(dependencies)
-    const data = deps.data
+// Determine optimal control position based on price trend, with explicit reactivity to period and currency
+const controlsPosition = ref<ControlPosition>('bottom')
 
-    // If no data, return default position
-    if (!data || data.length < 2)
-      return defaultPosition
+watchEffect(() => {
+  if (!historicPrices.value || historicPrices.value.length < 2) {
+    controlsPosition.value = 'bottom'
+    return
+  }
 
-    // Find min and max prices in the entire dataset
-    let minPrice = Infinity
-    let maxPrice = -Infinity
-
-    for (const [, price] of data) {
-      if (price < minPrice)
-        minPrice = price
-      if (price > maxPrice)
-        maxPrice = price
-    }
-
-    // Get a sample of the most recent data points (last 25%)
-    const recentDataCount = Math.max(5, Math.floor(data.length / 4))
-    const recentData = data.slice(-recentDataCount)
-
-    // Calculate average price of recent data
-    let totalRecentPrice = 0
-    for (const [, price] of recentData) {
-      totalRecentPrice += price
-    }
-    const avgRecentPrice = totalRecentPrice / recentData.length
-
-    // Calculate midpoint of price range
-    const priceMidpoint = minPrice + (maxPrice - minPrice) / 2
-
-    // If recent prices are closer to max, put controls at bottom
-    // If recent prices are closer to min, put controls at top
-    return avgRecentPrice >= priceMidpoint ? 'bottom' : 'top'
-  })
-
-  return position
-}
+  const recentDataCount = Math.max(5, Math.floor(historicPrices.value.length / 4))
+  const recentData = historicPrices.value.slice(-recentDataCount).map(([, price]) => price)
+  const [minPrice, maxPrice] = [Math.min(...recentData), Math.max(...recentData) * 1.5]
+  const totalRecentPrice = recentData.reduce((acc, price) => acc + price, 0)
+  const avgRecentPrice = totalRecentPrice / recentData.length || 0
+  const priceMidpoint = minPrice + (maxPrice - minPrice) / 2
+  // If recent prices are closer to max, put controls at bottom, otherwise at top
+  controlsPosition.value = avgRecentPrice >= priceMidpoint ? 'bottom' : 'top'
+})
 </script>
 
 <template>
@@ -106,7 +53,7 @@ function useChartControlsPosition(
           </span>
           <div v-if="metricChange" :class="metricChange < 0 ? 'text-red' : 'text-green'" flex="~ gap-2 items-center">
             <div :class="{ 'rotate-180': metricChange < 0 }" aria-hidden size-7 i-nimiq:triangle-up />
-            <span w-6ch font-semibold lh-none f-text-sm>{{ formatPercentage(metricChange) }}</span>
+            <span font-semibold lh-none f-text-sm>{{ formatPercentage(metricChange) }}</span>
           </div>
         </div>
         <div flex="~ gap-6 items-center">
