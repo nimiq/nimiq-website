@@ -24,10 +24,10 @@ function useSyncAmountInputs() {
 </script>
 
 <template>
-  <section relative of-x-clip bg-neutral-0>
+  <section relative of-x-clip bg-neutral-0 px-0>
     <BgBuyAndSell w-full>
-      <Headline :headline="slice.primary.headline" :subline="slice.primary.subline" />
-      <form flex="~ md:row col items-center  gap-x-24" mx-auto mt-40 h-max w-max @submit.prevent>
+      <Headline :headline="slice.primary.headline" :subline="slice.primary.subline" px="$px" />
+      <form flex="~ md:row col items-center  gap-x-24" mx-auto mt-40 h-max w-max px="$px" @submit.prevent>
         <div group relative w-full flex="~ items-center gap-12">
           <AmountInput v-model="fiatAmount" required pr-64 f-text-2xl :decimals="8" />
           <div absolute right-4 top-10 text="neutral-600 group-hover:blue/50 group-focus-within:blue!">
@@ -44,7 +44,7 @@ function useSyncAmountInputs() {
           </div>
         </div>
       </form>
-      <PriceChart mt-96 v-bind="$props" />
+      <PriceChart v-bind="$props" px="16 md:$px" nq-wide mt-96 max-md:w="[calc(100%+64px)]" />
     </BgBuyAndSell>
   </section>
 </template>

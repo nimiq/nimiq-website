@@ -1,4 +1,4 @@
-import { CryptoCurrency, FiatCurrency, getExchangeRates, getHistoricExchangeRates } from '@nimiq/utils/fiat-api'
+import { CryptoCurrency, getExchangeRates, getHistoricExchangeRates } from '@nimiq/utils/fiat-api'
 
 export function useNimPrice() {
   const { currency } = useUserCurrency()
@@ -6,16 +6,16 @@ export function useNimPrice() {
     key: computed(() => ['nim-price', 'now', currency.value]),
     query: async () => {
       const rates = await getExchangeRates([CryptoCurrency.NIM], [currency.value])
-      return rates.nim.usd || 0
+      return rates.nim[currency.value] || 0
     },
     staleTime: 60 * 1000,
   })
 
   const price1DayAgoQuery = useQuery({
-    key: ['nim-price', '1d-ago'],
+    key: computed(() => ['nim-price', '1d-ago', currency.value]),
     query: async () => {
       const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000
-      const res = await getHistoricExchangeRates(CryptoCurrency.NIM, FiatCurrency.USD, [oneDayAgo])
+      const res = await getHistoricExchangeRates(CryptoCurrency.NIM, currency.value, [oneDayAgo])
       return res.get(oneDayAgo) || 0
     },
     staleTime: 24 * 60 * 60 * 1000, // stale for a day

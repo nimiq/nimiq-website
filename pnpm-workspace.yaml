@@ -52,8 +52,8 @@ catalog:
   slice-machine-ui: ^2.15.2
   typescript: ^5.8.3
   unocss: ^66.1.0-beta.12
-  unocss-preset-onmax: ^1.0.0-beta.16
-  unocss-preset-scale-px: 1.0.0-beta.16
+  unocss-preset-onmax: ^1.0.0-beta.19
+  unocss-preset-scale-px: 1.0.0-beta.19
   unplugin-vue-router: ^0.12.0
   valibot: ^1.0.0
   vaul-vue: ^0.4.1
