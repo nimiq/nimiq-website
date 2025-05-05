@@ -27,7 +27,7 @@ const result = ref<Query<Content.BlogPageDocument<string>>>()
 watchEffect(async () => {
   const data = await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
-    filters: showDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
+    filters: isDev ? undefined : [filter.not('my.blog_page.draft', true)],
     pageSize: itemsPerPage,
     page: page.value,
   })
