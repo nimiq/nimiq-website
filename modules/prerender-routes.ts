@@ -12,9 +12,9 @@ export default defineNuxtModule({
   hooks: {
     'nitro:build:before': async (nitro) => {
       const runtimeConfig = nitro.options.runtimeConfig || {}
-      const { PRISMIC_ACCESS_TOKEN: prismicAccessToken } = runtimeConfig
-
-      const { showDrafts = false, environment: { isNuxthubPreview, isNuxthubProduction } } = runtimeConfig.public || {}
+      const { prismicAccessToken } = runtimeConfig
+      const { showDrafts = false } = runtimeConfig.public
+      const { isNuxthubPreview, isNuxthubProduction } = runtimeConfig.public.environment
       const isNuxthub = isNuxthubPreview || isNuxthubProduction
 
       // Get all pages
