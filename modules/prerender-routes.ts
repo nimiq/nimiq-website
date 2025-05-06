@@ -14,13 +14,13 @@ export default defineNuxtModule({
       const runtimeConfig = nitro.options.runtimeConfig || {}
       const { prismicAccessToken } = runtimeConfig
       const { showDrafts = false } = runtimeConfig.public
-      const { isNuxthubPreview, isNuxthubProduction } = runtimeConfig.public.environment
-      const isNuxthub = isNuxthubPreview || isNuxthubProduction
 
       // Get all pages
       let pages = await getDynamicPages(prismicAccessToken as string, showDrafts)
 
-      // for nuthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
+      // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
+      const { isNuxthubPreview, isNuxthubProduction } = runtimeConfig.public.environment
+      const isNuxthub = isNuxthubPreview || isNuxthubProduction
       if (isNuxthub)
         pages = pages.slice(0, 95)
 
@@ -29,7 +29,7 @@ export default defineNuxtModule({
   },
 })
 
-export async function getDynamicPages(prismicAccessToken: string, showDrafts: boolean) {
+export async function getDynamicPages(prismicAccessToken: string, showDrafts: boolean = false) {
   const options = await getDynamicPagesOptions(prismicAccessToken)
   const pages = await getDynamicPagesByType('page', options, showDrafts).then(uids => uids.map(uid => `/${uid}`))
   const blogArticles = await getDynamicPagesByType('blog_page', options, showDrafts).then(uids => uids.map(uid => `/blog/${uid}`))

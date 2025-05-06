@@ -1,6 +1,7 @@
 import process from 'node:process'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
+import { getDynamicPages } from './modules/prerender-routes'
 import { repositoryName } from './slicemachine.config.json'
 
 // Define allowed environment types
@@ -46,12 +47,13 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'reka-ui/nuxt',
     // '@nuxtjs/seo',
-    useNuxtHub ? '@nuxthub/core' : null,
+    useNuxtHub as true ? '@nuxthub/core' : null,
     '@nuxtjs/prismic',
     // '@nuxtjs/critters',
     '@nuxtjs/device',
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
+    '@nuxtjs/sitemap',
   ],
 
   devtools: { enabled: true },
@@ -97,13 +99,13 @@ export default defineNuxtConfig({
   //   description: 'The most accepted cryptocurrency in the world',
   // },
 
-  // sitemap: {
-  // Read more in ./modules/prerender-routes.ts
-  // },
-
-  // ogImage: {
-  //   fonts: ['Mulish:700'],
-  // },
+  sitemap: {
+    urls: async () => {
+      const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
+      const pages = await getDynamicPages(prismicAccessToken as string)
+      return pages
+    },
+  },
 
   // TODO Remove this option
   unocss: {
@@ -189,7 +191,7 @@ export default defineNuxtConfig({
     },
   },
 
-  // @ts-expect-error The module nuxthub is dynamic
+  // @ts-expect-error Hub is dynamic
   hub: {
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,

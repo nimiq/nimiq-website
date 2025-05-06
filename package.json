@@ -23,6 +23,7 @@
   "dependencies": {
     "@nimiq/core": "catalog:",
     "@nuxtjs/critters": "catalog:",
+    "@nuxtjs/sitemap": "catalog:",
     "@pinia/colada": "catalog:",
     "@pinia/colada-nuxt": "catalog:",
     "@popperjs/core": "catalog:",

@@ -16,6 +16,7 @@ catalog:
   '@nuxtjs/device': ^3.2.4
   '@nuxtjs/prismic': ^4.1.0
   '@nuxtjs/seo': 3.0.3
+  '@nuxtjs/sitemap': ^7.2.10
   '@pinia/colada': ^0.15.1
   '@pinia/colada-nuxt': ^0.1.3
   '@pinia/nuxt': ^0.11.0
