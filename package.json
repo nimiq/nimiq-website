@@ -33,7 +33,7 @@
     "@vueuse/router": "catalog:",
     "medium-zoom": "catalog:",
     "nuxt": "catalog:",
-    "nuxt-og-image": "^5.1.3",
+    "nuxt-og-image": "catalog:",
     "reka-ui": "catalog:",
     "vaul-vue": "catalog:",
     "vue": "catalog:",
