@@ -3,7 +3,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-light.svg">
-      <img alt="Nimiq" src="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-light.svg" width="350" height="70" style="max-width: 100%;">
+      <img alt="Nimiq" src="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-light.svg" width="1151" height="155" style="max-width: 100%;">
     </picture>
   </a>
 </p>
@@ -13,12 +13,12 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/deploy-preview.yaml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/deploy-preview.yaml/badge.svg" alt="Deploy Status"></a>
-  <!-- TODO Api deployment -->
+    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/github-pages.yaml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/github-pages.yaml/badge.svg" alt="GitHub pages Status"></a>
+    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yaml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yaml/badge.svg" alt="API Status"></a>
 </p>
 
 <p align="center">
-    <a href="https://nimiq.github.io/nimiq-website/">Preview</a>
+    <a href="https://nimiq.github.io/nimiq-website/">GitHub Pages</a>
     <a href="https://nimiq.com">Production</a>
 </p>
 
