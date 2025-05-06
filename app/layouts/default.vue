@@ -11,7 +11,7 @@ const { data: navigation } = await useNavigation()
   <NavigationHeader :dark-header />
   <slot />
   <div fixed bottom-32 right-32 z-102>
-    <LockBadge v-if="draft" />
+    <LockBadge v-if="draft" with-env />
   </div>
   <HexagonsBackground z-1 :bg-color="footerBgColor" :with-socials="showSocialsHexagonBg" />
   <NavigationFooter :bg-color="footerBgColor" />
