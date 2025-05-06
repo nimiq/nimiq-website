@@ -14,7 +14,7 @@
 
 <p align="center">
     <a href="https://github.com/nimiq/nimiq-website/actions/workflows/github-pages.yaml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/github-pages.yaml/badge.svg" alt="GitHub pages Status"></a>
-    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yaml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yaml/badge.svg" alt="API Status"></a>
+    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yml/badge.svg" alt="API Status"></a>
 </p>
 
 <p align="center">
