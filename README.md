@@ -109,7 +109,7 @@ We use UnoCSS instead of TailwindCSS for more flexibility. Key features include:
 - [Nimiq icons](https://nimiq.com/icons): Custom icon set
 - [Attributify mode](https://unocss.dev/features/attributify): Supports both traditional class strings and attribute syntax
 - Custom presets (via [`unocss-preset-onmax`](https://github.com/onmax/unocss-preset-onmax)):
-  - [Reka preset](https://reka-ui.com): Provides variants like data-open:bg-pink → data-[state:open]:bg-pink
+  - [Reka preset](https://reka-ui.com): Provides variants like reka-open:bg-pink → data-[state:open]:bg-pink
   - [Fluid sizing](https://github.com/onmax/unocss-preset-fluid-sizing): Use `f-pt-md` for responsive padding that scales between breakpoints
   - Scale px: Different from Tailwind, p-4 equals 4px not 16px
 
