@@ -61,14 +61,6 @@ jobs:
           echo "NUXT_ZOHO_REQUEST_URL=${{ vars.NUXT_ZOHO_REQUEST_URL }}" >> .env
           echo "NUXT_ZOHO_SCOPE=${{ vars.NUXT_ZOHO_SCOPE }}" >> .env
 
-          # Additional static variables
-          echo "NUXT_PUBLIC_API_ENDPOINT=http://api.nimiq.dev/" >> .env
-          echo "NUXT_APP_BASE_URL=/nimiq-website/" >> .env
-
-      - name: Modify config
-        run: |
-          sed -i 's/    '"'"'@nuxthub\/core'"'"',/    \/\//g' nuxt.config.ts
-
       - name: Static HTML export with Nuxt
         run: |
           # Ensure we generate a static site with no server-side logic

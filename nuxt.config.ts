@@ -11,6 +11,23 @@ const env: EnvironmentName = rawEnv ?? (process.env.NODE_ENV === 'development' ?
 if (!env)
   process.env.NUXT_ENVIRONMENT = 'production'
 
+const isLocal = env === 'local'
+const isNuxthubPreview = env === 'nuxthub-preview'
+const isNuxthubProduction = env === 'nuxthub-production'
+const isGitHubPages = env === 'github-pages'
+const isInternalStatic = env === 'internal-static' || env === 'internal-static-drafts'
+const isInternalDrafts = env === 'internal-static-drafts'
+const isProduction = env === 'production'
+
+//  echo "NUXT_PUBLIC_API_ENDPOINT=https://api.nimiq.dev" >> .env
+// echo "NUXT_APP_BASE_URL=/nimiq-website/" >> .env
+if (isGitHubPages) {
+  process.env.NUXT_PUBLIC_API_ENDPOINT = 'https://api.nimiq.dev'
+  process.env.NUXT_APP_BASE_URL = '/nimiq-website/'
+}
+
+const useNuxtHub = isLocal || isNuxthubPreview || isNuxthubProduction
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-05',
@@ -18,6 +35,8 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+
+  ssr: useNuxtHub,
 
   modules: [
     '@vueuse/nuxt',
@@ -27,7 +46,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'reka-ui/nuxt',
     // '@nuxtjs/seo',
-    '@nuxthub/core',
+    useNuxtHub ? '@nuxthub/core' : null,
     '@nuxtjs/prismic',
     // '@nuxtjs/critters',
     '@nuxtjs/device',
@@ -149,12 +168,13 @@ export default defineNuxtConfig({
       },
       environment: {
         name: env,
-        isLocal: env === 'local',
-        isNuxthubPreview: env === 'nuxthub-preview',
-        isNuxthubProduction: env === 'nuxthub-production',
-        isGitHubPages: env === 'github-pages',
-        isInternalStatic: env === 'internal-static' || env === 'internal-static-drafts',
-        isProduction: env === 'production',
+        isLocal,
+        isGitHubPages,
+        isNuxthubPreview,
+        isNuxthubProduction,
+        isInternalStatic,
+        isInternalDrafts,
+        isProduction,
       },
       showDrafts: env === 'local' || env === 'internal-static-drafts',
     },
@@ -169,6 +189,7 @@ export default defineNuxtConfig({
     },
   },
 
+  // @ts-expect-error The module nuxthub is dynamic
   hub: {
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,
