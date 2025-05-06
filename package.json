@@ -35,8 +35,7 @@
     "reka-ui": "catalog:",
     "vaul-vue": "catalog:",
     "vue": "catalog:",
-    "vue-router": "catalog:",
-    "vue3-lottie": "catalog:"
+    "vue-router": "catalog:"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
