@@ -7,11 +7,9 @@ import { repositoryName } from './slicemachine.config.json'
 type EnvironmentName = 'local' | 'production' | 'github-pages' | 'nuxthub-production' | 'nuxthub-preview' | 'internal-static' | 'internal-static-drafts'
 
 const rawEnv = process.env.NUXT_ENVIRONMENT
-const env: EnvironmentName = rawEnv
-  ?? (process.env.NODE_ENV === 'development' ? 'local' : undefined as any) // default to local in dev
-if (!env) {
-  throw new Error('NUXT_ENVIRONMENT must be set when running build or generate commands')
-}
+const env: EnvironmentName = rawEnv ?? (process.env.NODE_ENV === 'development' ? 'local' : undefined as any) // default to local in dev
+if (!env)
+  process.env.NUXT_ENVIRONMENT = 'production'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
