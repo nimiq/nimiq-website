@@ -1,37 +1,34 @@
-name: Deploy to NuxtHub
-on: push
+name: CI
+
+on:
+  push:
+    branches:
+      - '*'
 
 jobs:
-  deploy:
-    name: Deploy to NuxtHub
+  ci:
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
-      url: ${{ steps.deploy.outputs.deployment-url }}
-    permissions:
-      contents: read
-      id-token: write
-
+    environment: preview-testnet
     steps:
       - uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Install Node.js
+      - name: Set node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
 
-      - name: Install dependencies
-        run: pnpm install
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
-      - name: Ensure NuxtHub module is installed
-        run: pnpx nuxthub@latest ensure
+      - name: Lint
+        run: pnpm run lint
 
-      - name: Build application
-        run: pnpm build
+      - name: Typecheck
+        run: pnpm run typecheck
         env:
           # Secret variables
           NUXT_ALBATROSS_NODE_RPC_URL: ${{ secrets.NUXT_ALBATROSS_NODE_RPC_URL }}
@@ -54,9 +51,3 @@ jobs:
           NUXT_SITE_ENV: ${{ vars.NUXT_SITE_ENV }}
           NUXT_ZOHO_REQUEST_URL: ${{ vars.NUXT_ZOHO_REQUEST_URL }}
           NUXT_ZOHO_SCOPE: ${{ vars.NUXT_ZOHO_SCOPE }}
-
-      - name: Deploy to NuxtHub
-        uses: nuxt-hub/action@v1
-        id: deploy
-        with:
-          project-key: nimiq-website-iem5

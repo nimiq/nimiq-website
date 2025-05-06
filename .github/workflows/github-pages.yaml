@@ -1,4 +1,4 @@
-name: Deploy Nuxt site to Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -16,7 +16,11 @@ concurrency:
 
 jobs:
   build:
+    name: Build and Deploy
     runs-on: ubuntu-latest
+    environment:
+      name: preview
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,26 +37,32 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Create .env from Secrets
+      - name: Create .env from Secrets and Variables
         run: |
+          # Secret variables
           echo "NUXT_ALBATROSS_NODE_RPC_URL=${{ secrets.NUXT_ALBATROSS_NODE_RPC_URL }}" >> .env
-          echo "NUXT_PUBLIC_VALIDATORS_API=${{ secrets.NUXT_PUBLIC_VALIDATORS_API }}" >> .env
-          echo "NUXT_ALBATROSS_LIVEVIEW_PRIVATE_KEY=${{ secrets.NUXT_ALBATROSS_LIVEVIEW_PRIVATE_KEY }}" >> .env
-          echo "NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT=${{ secrets.NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT }}" >> .env
-          echo "NUXT_ALBATROSS_LIVEVIEW_TX_FEE=${{ secrets.NUXT_ALBATROSS_LIVEVIEW_TX_FEE }}" >> .env
-          echo "NUXT_ALBATROSS_LIVEVIEW_TX_VALUE=${{ secrets.NUXT_ALBATROSS_LIVEVIEW_TX_VALUE }}" >> .env
-          echo "NUXT_ZOHO_REQUEST_URL=${{ secrets.NUXT_ZOHO_REQUEST_URL }}" >> .env
+          echo "NUXT_PUBLIC_SUPABASE_KEY=${{ secrets.NUXT_PUBLIC_SUPABASE_KEY }}" >> .env
           echo "NUXT_ZOHO_CLIENT_ID=${{ secrets.NUXT_ZOHO_CLIENT_ID }}" >> .env
           echo "NUXT_ZOHO_CLIENT_SECRET=${{ secrets.NUXT_ZOHO_CLIENT_SECRET }}" >> .env
-          echo "NUXT_ZOHO_SCOPE=${{ secrets.NUXT_ZOHO_SCOPE }}" >> .env
           echo "NUXT_ZOHO_CODE=${{ secrets.NUXT_ZOHO_CODE }}" >> .env
-          echo "NUXT_ZOHO_REFRESH_TOKEN=${{ secrets.NUXT_ZOHO_REFRESH_TOKEN }}" >> .env
           echo "NUXT_ZOHO_LISTKEY=${{ secrets.NUXT_ZOHO_LISTKEY }}" >> .env
-          echo "NUXT_PUBLIC_API_ENDPOINT=${{ secrets.NUXT_PUBLIC_API_ENDPOINT }}" >> .env
+          echo "NUXT_ZOHO_REFRESH_TOKEN=${{ secrets.NUXT_ZOHO_REFRESH_TOKEN }}" >> .env
           echo "PRISMIC_ACCESS_TOKEN=${{ secrets.PRISMIC_ACCESS_TOKEN }}" >> .env
-          echo "NUXT_SITE_ENV=${{ secrets.NUXT_SITE_ENV }}" >> .env
-          echo "NUXT_PUBLIC_SUPABASE_URL=${{ secrets.NUXT_PUBLIC_SUPABASE_URL }}" >> .env
-          echo "NUXT_PUBLIC_SUPABASE_KEY=${{ secrets.NUXT_PUBLIC_SUPABASE_KEY }}" >> .env
+
+          # Variables
+          echo "NUXT_ALBATROSS_LIVEVIEW_TX_FEE=${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_FEE }}" >> .env
+          echo "NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT=${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT }}" >> .env
+          echo "NUXT_ALBATROSS_LIVEVIEW_TX_VALUE=${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_VALUE }}" >> .env
+          echo "NUXT_HUB_ENV=${{ vars.NUXT_HUB_ENV }}" >> .env
+          echo "NUXT_HUB_PROJECT_KEY=${{ vars.NUXT_HUB_PROJECT_KEY }}" >> .env
+          echo "NUXT_PUBLIC_SUPABASE_URL=${{ vars.NUXT_PUBLIC_SUPABASE_URL }}" >> .env
+          echo "NUXT_PUBLIC_VALIDATORS_API=${{ vars.NUXT_PUBLIC_VALIDATORS_API }}" >> .env
+          echo "NUXT_SITE_ENV=${{ vars.NUXT_SITE_ENV }}" >> .env
+          echo "NUXT_ZOHO_REQUEST_URL=${{ vars.NUXT_ZOHO_REQUEST_URL }}" >> .env
+          echo "NUXT_ZOHO_SCOPE=${{ vars.NUXT_ZOHO_SCOPE }}" >> .env
+
+          # Additional static variables
+          echo "NUXT_PUBLIC_API_ENDPOINT=http://api.nimiq.dev/" >> .env
           echo "NUXT_APP_BASE_URL=/nimiq-website/" >> .env
 
       - name: Modify config
@@ -60,7 +70,9 @@ jobs:
           sed -i 's/    '"'"'@nuxthub\/core'"'"',/    \/\//g' nuxt.config.ts
 
       - name: Static HTML export with Nuxt
-        run: pnpm run build --preset github_pages
+        run: |
+          # Ensure we generate a static site with no server-side logic
+          pnpm run build --preset github_pages --prerender
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
