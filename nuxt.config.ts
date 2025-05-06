@@ -24,7 +24,6 @@ export default defineNuxtConfig({
     // '@nuxtjs/critters',
     '@nuxtjs/device',
     '@nuxt/fonts',
-    'hero-motion/nuxt',
     '@pinia/colada-nuxt',
   ],
 
@@ -46,7 +45,7 @@ export default defineNuxtConfig({
       topLevelAwait(),
     ],
     optimizeDeps: {
-      exclude: ['@nimiq/core', '*.wasm', 'hero-motion'],
+      exclude: ['@nimiq/core', '*.wasm'],
     },
     worker: {
       plugins: () => [

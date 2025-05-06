@@ -1,6 +1,12 @@
 import { useRuntimeConfig } from '#imports'
 import { useQuery } from '@pinia/colada'
 
+export interface ContinentStat {
+  continent_name: string
+  locations_count: number
+  cryptocities_count: number
+}
+
 export function useCryptoMapStats() {
   const { supabase } = useRuntimeConfig().public
 
@@ -17,7 +23,7 @@ export function useCryptoMapStats() {
 
   const { data: cryptoMapContinentsStats } = useQuery({
     key: () => ['get_stats_for_all_continents'],
-    query: () => $fetch<{ locations: number }>(getSupabaseEndpoint('get_stats_for_all_continents')),
+    query: () => $fetch<ContinentStat[]>(getSupabaseEndpoint('get_stats_for_all_continents')),
   })
 
   return {

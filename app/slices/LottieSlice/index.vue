@@ -8,7 +8,12 @@ const pauseAnimation = ref(false)
 
 const section = useTemplateRef<HTMLDivElement>('section')
 
-const { data: animationData } = useFetch(getUrl(slice.primary.source))
+const sourceUrl = computed(() => {
+  const url = getUrl(slice.primary.source)
+  return url || null
+})
+
+const { data: animationData } = sourceUrl.value ? useFetch(sourceUrl.value) : { data: ref(null) }
 
 useIntersectionObserver(section, ([entry]) => pauseAnimation.value = !entry?.isIntersecting || true)
 </script>

@@ -144,6 +144,22 @@
           "url": "http://twitter.com",
           "text": "pleasant"
         }
+      },
+      "links": {
+        "__TYPE__": "RepeatableContent",
+        "type": "Link",
+        "value": [
+          {
+            "key": "b5587399-8d60-4d70-98a3-ae2b63ad71de",
+            "__TYPE__": "LinkContent",
+            "value": {
+              "__TYPE__": "ExternalLink",
+              "url": "http://twitter.com",
+              "text": "son",
+              "variant": "nq-pill-blue"
+            }
+          }
+        ]
       }
     },
     "items": [
@@ -252,6 +268,22 @@
         "__TYPE__": "FieldContent",
         "value": "white",
         "type": "Select"
+      },
+      "links": {
+        "__TYPE__": "RepeatableContent",
+        "type": "Link",
+        "value": [
+          {
+            "key": "73dd43d4-d5b0-4956-97fb-6c214dbe84f0",
+            "__TYPE__": "LinkContent",
+            "value": {
+              "__TYPE__": "ExternalLink",
+              "url": "https://prismic.io",
+              "text": "first",
+              "variant": "nq-pill-secondary"
+            }
+          }
+        ]
       }
     },
     "items": [
@@ -383,6 +415,16 @@
         "alt": null,
         "__TYPE__": "ImageContent",
         "thumbnails": {}
+      },
+      "links": {
+        "key": "c0b7a39b-1653-42d5-9d63-a224f500d7d9",
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com",
+          "text": "how",
+          "variant": "video"
+        }
       }
     },
     "items": [
@@ -704,94 +746,6 @@
   },
   {
     "__TYPE__": "SharedSliceContent",
-    "variation": "tokenomicsHero",
-    "primary": {
-      "backgroundColor": {
-        "__TYPE__": "FieldContent",
-        "value": "white",
-        "type": "Select"
-      },
-      "label": {
-        "__TYPE__": "FieldContent",
-        "value": "broke",
-        "type": "Text"
-      },
-      "headline": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "heading1",
-            "content": {
-              "text": "Queen"
-            }
-          }
-        ]
-      },
-      "description": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Quis irure occaecat et ipsum. Commodo ea mollit eiusmod et est aliquip sit."
-            }
-          }
-        ]
-      },
-      "buttonLabel": {
-        "__TYPE__": "FieldContent",
-        "value": "asleep",
-        "type": "Text"
-      },
-      "buttonHref": {
-        "key": "28e4f3cd-8775-4bb0-855e-e7d1509a5ab1",
-        "__TYPE__": "LinkContent",
-        "value": {
-          "__TYPE__": "ExternalLink",
-          "url": "http://google.com"
-        }
-      },
-      "priceLabel": {
-        "__TYPE__": "FieldContent",
-        "value": "safe",
-        "type": "Text"
-      },
-      "circulatingSupplyLabel": {
-        "__TYPE__": "FieldContent",
-        "value": "begun",
-        "type": "Text"
-      },
-      "marketCapLabel": {
-        "__TYPE__": "FieldContent",
-        "value": "basic",
-        "type": "Text"
-      },
-      "24hTradingVolumeLabel": {
-        "__TYPE__": "FieldContent",
-        "value": "tobacco",
-        "type": "Text"
-      },
-      "disclaimer": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Anim est aute officia culpa non ad dolor eiusmod sint ullamco ipsum anim dolore sit pariatur. Cupidatat eu mollit voluptate."
-            }
-          }
-        ]
-      }
-    },
-    "items": [
-      {
-        "__TYPE__": "GroupItemContent",
-        "value": []
-      }
-    ]
-  },
-  {
-    "__TYPE__": "SharedSliceContent",
     "variation": "heroSectionWithImage",
     "primary": {
       "backgroundColor": {
@@ -997,6 +951,22 @@
             }
           }
         ]
+      },
+      "links": {
+        "__TYPE__": "RepeatableContent",
+        "type": "Link",
+        "value": [
+          {
+            "__TYPE__": "LinkContent",
+            "key": "bd50be21-2322-4fe0-a688-ab9e8d622cdd",
+            "value": {
+              "__TYPE__": "ExternalLink",
+              "url": "http://twitter.com",
+              "text": "business",
+              "variant": "nq-pill-secondary"
+            }
+          }
+        ]
       }
     },
     "items": [
@@ -1172,8 +1142,8 @@
         "thumbnails": {}
       },
       "poweredByLink": {
-        "__TYPE__": "LinkContent",
         "key": "d55599d7-c36e-4054-aabc-d774aa489641",
+        "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
           "url": "https://slicemachine.dev",

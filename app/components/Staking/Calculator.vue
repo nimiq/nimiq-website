@@ -82,7 +82,7 @@ const rewards = computed(() => calculateStakingRewards({
         </div>
         <RadioInput v-model="selectedStakedSupply" :options="stakedSupplyOptions" h-max self-end max-md:mx-auto>
           <template #label="{ option }">
-            <template v-if="stakeSupplyRatios[option] >= 0">
+            <template v-if="stakeSupplyRatios[option] !== undefined && stakeSupplyRatios[option] >= 0">
               <span>{{ option }}</span>
               <div v-if="option === selectedStakedSupply && selectedStakedSupply === StakeSupply.Live" class="blink" absolute right-2 top-2 size-4 rounded-full bg-green />
             </template>

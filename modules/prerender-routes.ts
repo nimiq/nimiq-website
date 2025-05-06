@@ -1,5 +1,5 @@
 // import type { BlogPageDocument } from '~~/prismicio-types'
-import { addPrerenderRoutes, defineNuxtModule } from '@nuxt/kit'
+import { defineNuxtModule } from '@nuxt/kit'
 // import { filter, type Query } from '@prismicio/client'
 // import { $fetch } from 'ofetch'
 
@@ -9,11 +9,15 @@ export default defineNuxtModule({
   meta: {
     name: 'nuxt-prerender-routes',
   },
-  async setup(_options, nuxt) {
-    return
-    const pages = await getDynamicPages()
-    addPrerenderRoutes(pages)
-    nuxt.options.sitemap.urls = pages
+  async setup(_options, _nuxt) {
+
+    // TODO
+    // const pages = await getDynamicPages()
+    // addPrerenderRoutes(pages)
+    // // Use type assertion to access sitemap property
+    // (nuxt.options as NuxtOptionsWithSitemap).sitemap = {
+    //   urls: pages,
+    // }
   },
 })
 
