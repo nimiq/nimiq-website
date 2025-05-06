@@ -48,6 +48,7 @@
     "@nuxtjs/device": "catalog:",
     "@nuxtjs/prismic": "catalog:",
     "@nuxtjs/seo": "catalog:",
+    "@pinia/colada-plugin-delay": "catalog:",
     "@pinia/nuxt": "catalog:",
     "@prismicio/client": "catalog:",
     "@prismicio/richtext": "catalog:",
