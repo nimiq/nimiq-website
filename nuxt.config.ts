@@ -126,6 +126,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    prismicAccessToken: process.env.PRISMIC_ACCESS_TOKEN,
     albatross: {
       nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
       liveview: {
