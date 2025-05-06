@@ -52,6 +52,55 @@ The project uses environment variables for configuration. You can find an exampl
 cp .env.example .env
 ```
 
+### Runtime Environments
+
+The website can be built for different runtime environments, each with its own configuration. The environment is set using the `NUXT_ENVIRONMENT` variable:
+
+- `local`: Development environment (default when running `pnpm dev`)
+- `production`: Production environment (nimiq.com)
+- `github-pages`: GitHub Pages preview environment
+- `nuxthub-production`: NuxtHub production environment
+- `nuxthub-preview`: NuxtHub preview environment
+- `internal-static`: Internal static site that mirrors production (no drafts shown)
+- `internal-static-drafts`: Internal static site with draft content visible
+
+The build commands in `package.json` are set up to use these environments:
+
+```bash
+# Production build
+pnpm build
+
+# GitHub Pages build
+pnpm build:github-pages
+
+# NuxtHub builds (uses NUXTHUB_ENV to determine production/preview)
+pnpm build:nuxthub
+
+# Internal static builds
+pnpm build:internal-static
+pnpm build:internal-static-drafts
+```
+
+#### Environment-specific Configuration
+
+The runtime configuration includes environment-specific flags that can be accessed in your components:
+
+```typescript
+const {
+  name, // Typed as EnvironmentName
+  isLocal,
+  isProduction,
+  isGitHubPages,
+  isNuxthubProduction,
+  isNuxthubPreview,
+  isInternalStatic,
+  isInternalStaticDrafts,
+} = useRuntimeConfig().public.environment
+
+// Draft content visibility: True in local and internal-static-drafts environments
+const { showDrafts } = useRuntimeConfig().public
+```
+
 ### CSS System: UnoCSS
 
 We use UnoCSS instead of TailwindCSS for more flexibility. Key features include:

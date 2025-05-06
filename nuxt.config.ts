@@ -3,6 +3,16 @@ import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
 import { repositoryName } from './slicemachine.config.json'
 
+// Define allowed environment types
+type EnvironmentName = 'local' | 'production' | 'github-pages' | 'nuxthub-production' | 'nuxthub-preview' | 'internal-static' | 'internal-static-drafts'
+
+const rawEnv = process.env.NUXT_ENVIRONMENT
+const env: EnvironmentName = rawEnv
+  ?? (process.env.NODE_ENV === 'development' ? 'local' : undefined as any) // default to local in dev
+if (!env) {
+  throw new Error('NUXT_ENVIRONMENT must be set when running build or generate commands')
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-05',
@@ -138,6 +148,16 @@ export default defineNuxtConfig({
         url: process.env.NUXT_PUBLIC_SUPABASE_URL,
         key: process.env.NUXT_PUBLIC_SUPABASE_KEY,
       },
+      environment: {
+        name: env,
+        isLocal: env === 'local',
+        isNuxthubPreview: env === 'nuxthub-preview',
+        isNuxthubProduction: env === 'nuxthub-production',
+        isGitHubPages: env === 'github-pages',
+        isInternalStatic: env === 'internal-static' || env === 'internal-static-drafts',
+        isProduction: env === 'production',
+      },
+      showDrafts: env === 'local' || env === 'internal-static-drafts',
     },
     zoho: {
       requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,

@@ -30,8 +30,11 @@ jobs:
       - name: Ensure NuxtHub module is installed
         run: pnpx nuxthub@latest ensure
 
+      - name: Set environment type
+        run: echo "NUXTHUB_ENV=${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}" >> $GITHUB_ENV
+
       - name: Build application
-        run: pnpm build
+        run: pnpm build:nuxthub
         env:
           # Secret variables
           NUXT_ALBATROSS_NODE_RPC_URL: ${{ secrets.NUXT_ALBATROSS_NODE_RPC_URL }}

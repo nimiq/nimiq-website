@@ -72,7 +72,7 @@ jobs:
       - name: Static HTML export with Nuxt
         run: |
           # Ensure we generate a static site with no server-side logic
-          pnpm run build --preset github_pages --prerender
+          pnpm run build:github-pages --preset github_pages --prerender
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

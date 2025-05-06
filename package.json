@@ -4,7 +4,11 @@
   "private": true,
   "packageManager": "pnpm@10.10.0",
   "scripts": {
-    "build": "nuxt build",
+    "build": "NUXT_ENVIRONMENT=production nuxt build",
+    "build:github-pages": "NUXT_ENVIRONMENT=github-pages nuxt build",
+    "build:nuxthub": "NUXT_ENVIRONMENT=nuxthub-$NUXTHUB_ENV nuxt build",
+    "build:internal-static": "NUXT_ENVIRONMENT=internal-static nuxt build",
+    "build:internal-static-drafts": "NUXT_ENVIRONMENT=internal-static-drafts nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -12,6 +16,7 @@
     "slicemachine": "start-slicemachine",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "prepare": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "cryptomap:types": "npx supabase gen types --lang=typescript --project-id mycbdmurjytbdahjljoh > app/types/database.types.ts"
   },
