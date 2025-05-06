@@ -8,7 +8,7 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    environment: preview-testnet
+    environment: preview
     steps:
       - uses: actions/checkout@v4
 
