@@ -53,7 +53,9 @@ function useSyncAmountInputs() {
     }
   })
 
-  cryptoAmount.value = 1 // Trigger formatting in fiat
+  setTimeout(() => {
+    cryptoAmount.value = 1 // Trigger formatting in fiat
+  })
 
   return { cryptoAmount, fiatAmount, lastEdited }
 }
@@ -64,18 +66,18 @@ function useSyncAmountInputs() {
     <BgBuyAndSell w-full>
       <Headline :headline="slice.primary.headline" :subline="slice.primary.subline" px="$px" />
       <form grid="~ cols-1 md:cols-[1fr_max-content_1fr] items-center  gap-x-24" max-md:px="$px" mx-auto mt-40 h-max max-w-560 w-full @submit.prevent>
-        <div group relative w-full flex="~ items-center gap-12">
-          <AmountInput :key="lastEdited === 'crypto' ? cryptoAmount : 'fiat'" v-model="fiatAmount" required pr-64 f-text-2xl />
-          <div absolute right-4 top-10 text="neutral-600 group-hover:blue/50 group-focus-within:blue!">
+        <div class="group" relative w-full flex="~ items-center gap-12">
+          <AmountInput :key="lastEdited === 'crypto' ? cryptoAmount : 'fiat'" v-model="fiatAmount" rounded="b-0 md:2" required pr-64 f-text-2xl group-focus-within:z-10 max-md:translate-y--1.5 />
+          <div absolute right-4 top-auto text="neutral-600 group-hover:blue/50 hocus:!neutral-800 group-focus-within:blue!" z-40>
             <CurrencySelector v-model="currency" />
           </div>
         </div>
         <p h-max text-32 max-md:hidden>
           =
         </p>
-        <div group relative w-full>
-          <AmountInput :key="lastEdited === 'fiat' ? fiatAmount : 'crypto'" v-model="cryptoAmount" required f-text-2xl />
-          <div absolute inset-y-12 right-12 font-bold transition-colors text="neutral-600 group-hover:blue/50 group-focus-within:blue!">
+        <div class="group" relative w-full>
+          <AmountInput :key="lastEdited === 'fiat' ? fiatAmount : 'crypto'" v-model="cryptoAmount" required f-text-2xl rounded="t-0 md:2" group-focus-within:z-10 />
+          <div text="neutral-600 group-hover:blue/50 group-focus-within:blue!" absolute right-12 top-17 transition-colors nq-label f-text="12/16">
             NIM
           </div>
         </div>

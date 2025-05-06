@@ -70,7 +70,7 @@ function displayValue(value: FiatCurrency) {
     <ComboboxAnchor w-max inline-flex="~ items-center justify-between gap-5">
       <ComboboxTrigger flex="~ gap-3 items-center" rounded-4 bg-transparent px-6 py-3 transition-colors>
         <slot name="trigger" v-bind="{ selectedCurrency }">
-          <span f-text="12/16" nq-label>
+          <span f-text="12/16" text-current nq-label>
             {{ selectedCurrency.toLocaleUpperCase() }}
           </span>
           <div size-7 op-60 i-nimiq:triangle-down />
@@ -95,8 +95,8 @@ function displayValue(value: FiatCurrency) {
               </span>
             </ComboboxItem>
           </ScrollAreaViewport>
-          <ScrollAreaScrollbar flex="~" bg="neutral-300" inset-y-0 z-20 w-10 touch-none select-none p-2 orientation="vertical">
-            <ScrollAreaThumb relative flex-1 rounded-5 bg-neutral-500 content-empty before="absolute top--50% left--50% -translate-x--50% -translate-y--50% size-full min-h-40 min-w-40" />
+          <ScrollAreaScrollbar flex="~" bg="neutral-900" inset-y-0 z-20 w-10 touch-none select-none p-2 orientation="vertical">
+            <ScrollAreaThumb relative flex-1 rounded-5 bg-neutral-700 content-empty before="absolute top--50% left--50% -translate-x--50% -translate-y--50% size-full min-h-40 min-w-40" />
           </ScrollAreaScrollbar>
           <div absolute bottom-0 z-2 h-16 w-full bg-gradient="to-b from-transparent to-neutral" />
         </ScrollAreaRoot>

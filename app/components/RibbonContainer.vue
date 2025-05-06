@@ -3,7 +3,7 @@ const { floatingStarts = true } = defineProps<{ label: string, floatingStarts?: 
 </script>
 
 <template>
-  <div max-w="none md:$nq-max-width" outline="~ 1.5 neutral-400" mx-auto size-full min-h-128 rounded-8 bg-neutral-0 stack>
+  <div max-w="none md:$nq-max-width" outline="~ 1.5 neutral-400" relative mx-auto size-full min-h-128 rounded-8 bg-neutral-0 stack>
     <slot name="default" />
 
     <div self-start="!" justify-self-end="!" relative top--25 z-20 mr--32 w-max>

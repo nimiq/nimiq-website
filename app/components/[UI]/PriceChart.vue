@@ -13,7 +13,7 @@ const { marketCapChange, marketCapFormatted } = useNimMarketCap()
 const { currentSupplyFormatted, maxSupplyFormatted } = useNimSupply()
 const { volumeChange, volumeFormatted, error: volumeError, volumeIsLoading } = useNimVolume()
 const { data: historicPrices, lastUpdated, period, periodOptions, isLoading: priceIsLoading } = useNimPriceHistory(currency)
-const { deltaPrice, price1DayAgoLoading, priceLoading } = useNimPrice()
+const { deltaPrice, price1DayAgoLoading, priceLoading, price } = useNimPrice()
 
 const isLoading = computed(() => priceIsLoading.value || priceLoading.value || price1DayAgoLoading.value || volumeIsLoading.value)
 
@@ -39,6 +39,14 @@ watchEffect(() => {
   const priceMidpoint = minPrice + (maxPrice - minPrice) / 2
   // If recent prices are closer to max, put controls at bottom, otherwise at top
   controlsPosition.value = avgRecentPrice >= priceMidpoint ? 'bottom' : 'top'
+})
+
+const error = computed(() => {
+  if (!priceIsLoading.value && !price.value)
+    return 'Unable to load price data'
+  if (volumeError.value)
+    return volumeError.value
+  return null
 })
 </script>
 
@@ -83,8 +91,8 @@ watchEffect(() => {
     </DefinePrice>
 
     <RibbonContainer :label="slice.primary.nimPriceChartLabel!" z-3 shadow md:min-h-480 outline-color="white/20">
-      <div v-if="volumeError" absolute bottom--1lh h-1lh text-red text-f-xs>
-        {{ volumeError }}
+      <div v-if="error" border="1 red-400" bg="neutral-0/20" absolute bottom="-96 md:-120" h-max of-y-auto rounded-8 px-4 py-4 text-red font-semibold font-mono shadow text-f-2xs>
+        {{ error }}
       </div>
       <div grid="~ cols-1 md:cols-[max-content_1fr]" relative size-full of-hidden>
         <aside md:border="r-1 solid neutral-400" grid="~ cols-[repeat(4,1fr)] md:cols-1 gap-col-20 gap-row-24" relative w-full f-p-md max-md:row-start-2 max-md:of-x-auto>

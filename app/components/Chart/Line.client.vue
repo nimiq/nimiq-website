@@ -59,7 +59,6 @@ function tooltip(v: T) {
   --vis-axis-tick-color: rgb(var(--nq-neutral-500) / 1);
   --vis-axis-domain-color: rgb(var(--nq-neutral-500) / 1);
   --vis-axis-tick-label-color: rgb(var(--nq-neutral-700) / 1);
-  --vis-axis-label-color: #6c778c;
   --vis-axis-tick-label-font-size: 11px;
 
   @screen md {
