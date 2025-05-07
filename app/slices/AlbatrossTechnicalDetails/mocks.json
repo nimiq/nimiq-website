@@ -2,7 +2,28 @@
   {
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
-    "primary": {},
+    "primary": {
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "grey",
+        "type": "Select"
+      },
+      "asModal": {
+        "__TYPE__": "BooleanContent",
+        "value": true
+      },
+      "subline": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Voluptate mollit aliqua aliquip tempor deserunt aliquip voluptate minim esse. Irure id esse consectetur quis sunt velit."
+            }
+          }
+        ]
+      }
+    },
     "items": []
   }
 ]
