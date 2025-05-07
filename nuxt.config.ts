@@ -39,8 +39,6 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  ssr: useNuxtHub,
-
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
@@ -56,6 +54,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
     '@nuxtjs/sitemap',
+    'nuxt-og-image',
   ],
 
   devtools: { enabled: true },
@@ -262,6 +261,11 @@ export default defineNuxtConfig({
     config: {
       standalone: false,
     },
+  },
+
+  ogImage: {
+    // will fetch the fonts from google at build time
+    fonts: ['Mulish:400', 'Mulish:600'],
   },
 
   // robots: {

@@ -43,20 +43,31 @@ definePageMeta({
   ],
 })
 
-useHead({
-  title: page.value?.data.meta_title || 'Nimiq Website',
-  meta: [
-    { name: 'description', content: page.value?.data.meta_description || 'The most accepted crypto in the World' },
-  ],
-})
-
 const darkHeader = computed(() => page.value?.data.darkHeader || isHome || uid === 'supersimpleswap')
 const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
 
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
 
 const showSocialsHexagonBg = isHome
-// defineOgImageComponent('DefaultImage')
+
+// SEO Stuff - We load title and description from the `meta` field of the page otherwise we use the first slice title and description
+const slice = page.value.data.slices.at(0)
+const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage } = page.value.data
+
+// @ts-expect-error this is dangerous, but we control the data
+const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.headline) : undefined
+// @ts-expect-error this is dangerous, but we control the data
+const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
+
+const title = cmsTitle || firstSliceTitle || 'Nimiq'
+const description = cmsDescription || firstSliceDescription || ''
+
+useHead({ title, meta: description ? [{ name: 'description', content: description }] : [] })
+
+if (hasImage(cmsImage))
+  setOgImage({ title, subline: description, image: cmsImage })
+else
+  defineOgImageComponent('OgImagePage', { title, subline: description })
 </script>
 
 <template>
