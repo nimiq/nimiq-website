@@ -5645,6 +5645,24 @@ export interface HeroSectionSliceDefaultSlicePrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   video: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+
+  /**
+   * links field in *HeroSection → Default slice → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.default-slice.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary' | 'video'
+    >
+  >
 }
 
 /**
@@ -5774,6 +5792,24 @@ export interface HeroSectionSliceHomePrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   backgroundColor: prismic.SelectField<'white' | 'grey' | 'blue-dark'>
+
+  /**
+   * links field in *HeroSection → Home → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary' | 'video'
+    >
+  >
 }
 
 /**
@@ -5882,6 +5918,22 @@ export interface HeroSectionSliceTwoColumnPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   backgroundImage: prismic.ImageField<never>
+
+  /**
+   * links field in *HeroSection → Two column → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.twoColumn.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary' | 'video'
+  >
 }
 
 /**
@@ -6232,140 +6284,6 @@ export type HeroSectionSliceHalfImage = prismic.SharedSliceVariation<
 >
 
 /**
- * Primary content in *HeroSection → TokenomicsHero → Primary*
- */
-export interface HeroSectionSliceTokenomicsHeroPrimary {
-  /**
-   * Background Color field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  'backgroundColor': prismic.SelectField<'grey' | 'white'>
-
-  /**
-   * Label field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.label
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  'label': prismic.KeyTextField
-
-  /**
-   * Headline field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.headline
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  'headline': prismic.RichTextField
-
-  /**
-   * Description field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  'description': prismic.RichTextField
-
-  /**
-   * Button Label field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.buttonLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  'buttonLabel': prismic.KeyTextField
-
-  /**
-   * Button Href field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.buttonHref
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  'buttonHref': prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >
-
-  /**
-   * Price Label field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.priceLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  'priceLabel': prismic.KeyTextField
-
-  /**
-   * Circulating Supply Label field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.circulatingSupplyLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  'circulatingSupplyLabel': prismic.KeyTextField
-
-  /**
-   * Market Cap Label field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.marketCapLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  'marketCapLabel': prismic.KeyTextField
-
-  /**
-   * 24h Trading Volume Label field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.24hTradingVolumeLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  '24hTradingVolumeLabel': prismic.KeyTextField
-
-  /**
-   * Disclaimer field in *HeroSection → TokenomicsHero → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_section.tokenomicsHero.primary.disclaimer
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  'disclaimer': prismic.RichTextField
-}
-
-/**
- * TokenomicsHero variation for HeroSection Slice
- *
- * - **API ID**: `tokenomicsHero`
- * - **Description**: HeroSection
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type HeroSectionSliceTokenomicsHero = prismic.SharedSliceVariation<
-  'tokenomicsHero',
-  Simplify<HeroSectionSliceTokenomicsHeroPrimary>,
-  never
->
-
-/**
  * Primary content in *HeroSection → Hero Section With Image → Primary*
  */
 export interface HeroSectionSliceHeroSectionWithImagePrimary {
@@ -6642,6 +6560,24 @@ export interface HeroSectionSliceStakingPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+
+  /**
+   * links field in *HeroSection → Staking → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.staking.primary.links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  links: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      'nq-pill-blue' | 'nq-pill-secondary' | 'nq-pill-tertiary' | 'video'
+    >
+  >
 }
 
 /**
@@ -6831,7 +6767,6 @@ type HeroSectionSliceVariation =
   | HeroSectionSliceLeftAligned
   | HeroSectionSliceOasis
   | HeroSectionSliceHalfImage
-  | HeroSectionSliceTokenomicsHero
   | HeroSectionSliceHeroSectionWithImage
   | HeroSectionSliceHome2024
   | HeroSectionSliceStaking
@@ -12246,8 +12181,6 @@ declare module '@prismicio/client' {
       HeroSectionSliceOasisPrimaryItemsItem,
       HeroSectionSliceStaking,
       HeroSectionSliceStakingPrimary,
-      HeroSectionSliceTokenomicsHero,
-      HeroSectionSliceTokenomicsHeroPrimary,
       HeroSectionSliceTwoColumn,
       HeroSectionSliceTwoColumnPrimary,
       HeroSectionSliceVariation,

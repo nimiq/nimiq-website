@@ -8,6 +8,8 @@ const uid = pathParams.at(-1) || 'home'
 const isHome = uid === 'home'
 const isBlog = uid === 'blog'
 
+const { showDrafts } = useRuntimeConfig().public
+
 const { client } = usePrismic()
 const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID('page', uid)
   .catch((error) => {
@@ -15,7 +17,7 @@ const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID
     throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
   }))
 
-if (!page.value || (!import.meta.dev && page.value?.data.draft)) {
+if (!page.value || (!showDrafts && page.value?.data.draft)) {
   console.error(`Page with UID "${uid}" not found`)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }

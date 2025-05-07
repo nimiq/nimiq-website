@@ -4,7 +4,7 @@ export function useSyncAmountInputs() {
   const { price } = useNimPrice()
 
   const _cryptoAmount = ref(1)
-  const _fiatAmount = ref(_cryptoAmount.value * price.value)
+  const _fiatAmount = ref(_cryptoAmount.value * (price.value ?? 0))
 
   const fiatCurrency = ref(FiatCurrency.USD)
   const cryptoCurrency = ref('NIM')
@@ -15,7 +15,7 @@ export function useSyncAmountInputs() {
     },
     set(value) {
       _fiatAmount.value = value
-      _cryptoAmount.value = value / price.value
+      _cryptoAmount.value = value / (price.value ?? 1)
     },
   })
 
@@ -25,7 +25,7 @@ export function useSyncAmountInputs() {
     },
     set(value) {
       _cryptoAmount.value = value
-      _fiatAmount.value = value * price.value
+      _fiatAmount.value = value * (price.value ?? 0)
     },
   })
 

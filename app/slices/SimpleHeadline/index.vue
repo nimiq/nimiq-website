@@ -32,18 +32,16 @@ function getGradientClass() {
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
       :cta="slice.primary.cta"
-      :links="slice.primary.links"
+      :links="slice.primary.links as any"
       :label="slice.primary.label"
       :icon-name="slice.primary.iconName" z-1
     />
-    <!-- :cta-href="slice.primary.linkHref"
-      :cta-label="slice.primary.linkLabel" -->
     <HeadlineStaking
       v-else
       :headline="slice.primary.headline"
       :subline="slice.primary.subline"
       :show-staking-icon="!isLastSlice" :data-inverted="isLastSlice ? undefined : ''"
-      :links="slice.primary.links"
+      :links="slice.primary.links as any"
       :primary-pill="isLastSlice"
     />
   </section>

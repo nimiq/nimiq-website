@@ -1,19 +1,61 @@
 import process from 'node:process'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
+import { getDynamicPages } from './modules/prerender-routes'
 import { repositoryName } from './slicemachine.config.json'
+
+// Define allowed environment types
+type EnvironmentName = 'local' | 'production' | 'github-pages' | 'nuxthub-production' | 'nuxthub-preview' | 'internal-static' | 'internal-static-drafts'
+
+const rawEnv = process.env.NUXT_ENVIRONMENT
+const env: EnvironmentName = rawEnv ?? (process.env.NODE_ENV === 'development' ? 'local' : undefined as any) // default to local in dev
+if (!env)
+  process.env.NUXT_ENVIRONMENT = 'production'
+
+const isLocal = env === 'local'
+const isNuxthubPreview = env === 'nuxthub-preview'
+const isNuxthubProduction = env === 'nuxthub-production'
+const isGitHubPages = env === 'github-pages'
+const isInternalStatic = env === 'internal-static' || env === 'internal-static-drafts'
+const isInternalDrafts = env === 'internal-static-drafts'
+const isProduction = env === 'production'
+
+//  echo "NUXT_PUBLIC_API_ENDPOINT=https://api.nimiq.dev" >> .env
+// echo "NUXT_APP_BASE_URL=/nimiq-website/" >> .env
+if (isGitHubPages) {
+  process.env.NUXT_PUBLIC_API_ENDPOINT = 'https://api.nimiq.dev'
+  process.env.NUXT_APP_BASE_URL = '/nimiq-website/'
+}
+
+const useNuxtHub = isLocal || isNuxthubPreview || isNuxthubProduction
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-08-31',
+  compatibilityDate: '2025-05-05',
 
   future: {
     compatibilityVersion: 4,
   },
 
-  modules: ['@vueuse/nuxt', '@pinia/nuxt', '@unocss/nuxt', '@nuxt/eslint', '@nuxt/image', 'reka-ui/nuxt', // '@nuxtjs/seo',
-    '@nuxthub/core', '@nuxtjs/prismic', // '@nuxtjs/critters',
-    '@nuxtjs/device', '@nuxt/fonts', 'hero-motion/nuxt', '@pinia/colada-nuxt', 'nuxt-og-image'],
+  ssr: useNuxtHub,
+
+  modules: [
+    '@vueuse/nuxt',
+    '@pinia/nuxt',
+    '@unocss/nuxt',
+    '@nuxt/eslint',
+    '@nuxt/image',
+    'reka-ui/nuxt',
+    // '@nuxtjs/seo',
+    useNuxtHub as true ? '@nuxthub/core' : null,
+    '@nuxtjs/prismic',
+    // '@nuxtjs/critters',
+    '@nuxtjs/device',
+    '@nuxt/fonts',
+    '@pinia/colada-nuxt',
+    '@nuxtjs/sitemap',
+    'nuxt-og-image',
+  ],
 
   devtools: { enabled: true },
 
@@ -33,7 +75,7 @@ export default defineNuxtConfig({
       topLevelAwait(),
     ],
     optimizeDeps: {
-      exclude: ['@nimiq/core', '*.wasm', 'hero-motion'],
+      exclude: ['@nimiq/core', '*.wasm'],
     },
     worker: {
       plugins: () => [
@@ -58,13 +100,13 @@ export default defineNuxtConfig({
   //   description: 'The most accepted cryptocurrency in the world',
   // },
 
-  // sitemap: {
-  // Read more in ./modules/prerender-routes.ts
-  // },
-
-  // ogImage: {
-  //   fonts: ['Mulish:700'],
-  // },
+  sitemap: {
+    urls: async () => {
+      const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
+      const pages = await getDynamicPages(prismicAccessToken as string)
+      return pages
+    },
+  },
 
   // TODO Remove this option
   unocss: {
@@ -106,6 +148,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    prismicAccessToken: process.env.PRISMIC_ACCESS_TOKEN,
     albatross: {
       nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
       liveview: {
@@ -126,6 +169,17 @@ export default defineNuxtConfig({
         url: process.env.NUXT_PUBLIC_SUPABASE_URL,
         key: process.env.NUXT_PUBLIC_SUPABASE_KEY,
       },
+      environment: {
+        name: env,
+        isLocal,
+        isGitHubPages,
+        isNuxthubPreview,
+        isNuxthubProduction,
+        isInternalStatic,
+        isInternalDrafts,
+        isProduction,
+      },
+      showDrafts: env === 'local' || env === 'internal-static-drafts',
     },
     zoho: {
       requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
@@ -138,9 +192,8 @@ export default defineNuxtConfig({
     },
   },
 
+  // @ts-expect-error Hub is dynamic
   hub: {
-    workers: true,
-
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,
     cache: true,

@@ -1,6 +1,6 @@
 import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
 
-interface Validator {
+export interface Validator {
   id: number
   name: string
   address: string
@@ -22,22 +22,22 @@ interface Validator {
 export function useValidatorsInfo() {
   const config = useRuntimeConfig()
   const validatorsApiBaseUrl = config.public.validatorsApi
-
   const { stakingRatio } = useStakingInfo()
-
   const { data: validators, state: validatorsRequestState } = useQuery({
-    key: () => ['validators', stakingRatio.value],
+    key: ['validators', stakingRatio.value ?? 0] as const,
     query: async () => {
       const validators = await $fetch<Validator[]>(`${validatorsApiBaseUrl}/api/v1/validators`)
       // Add reward calculation based on current staked ratio
       return validators.map(validator => ({
         ...validator,
-        rewardGainRatio: calculateStakingRewards({ stakedSupplyRatio: stakingRatio.value, fee: validator.fee }).gainRatio,
+        rewardGainRatio: calculateStakingRewards({
+          stakedSupplyRatio: stakingRatio.value ?? 0,
+          fee: validator.fee,
+        }).gainRatio,
       }))
     },
     staleTime: 60 * 5 * 1e3, // 5 min freshness
   })
-
   return {
     validators,
     validatorsRequestState,
