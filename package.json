@@ -72,6 +72,7 @@
     "nimiq-icons": "catalog:",
     "nimiq-rpc-client-ts": "catalog:",
     "nuxt": "catalog:",
+    "nuxt-module-feed": "catalog:",
     "pathe": "catalog:",
     "pinia": "catalog:",
     "sharp": "catalog:",

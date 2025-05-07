@@ -17,7 +17,7 @@ if (!post.value || (!import.meta.dev && post.value?.data.draft)) {
   throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
 }
 
-const { readingTime, meta, draft, image } = useProse(post.value!)
+const { readingTime, meta, draft, image } = getBlogMetadata(post.value!)
 
 useHead(meta)
 useSeoMeta({ ...meta, twitterTitle: meta.title, twitterDescription: meta.description, twitterCard: 'summary_large_image' })
