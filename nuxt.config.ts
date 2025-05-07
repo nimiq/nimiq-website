@@ -191,7 +191,8 @@ export default defineNuxtConfig({
     },
   },
 
-  // @ts-expect-error Hub is dynamic
+  // eslint-disable-next-line ts/ban-ts-comment
+  // @ts-ignore Hub is dynamic
   hub: {
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,

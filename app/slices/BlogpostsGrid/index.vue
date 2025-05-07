@@ -34,7 +34,7 @@ const isDev = import.meta.dev
     <div grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
       <article v-for="({ uid, href, draft, image, hasImage, title, abstract, publishDate, authors }, i) in posts" :key="uid" :class="page === 1 ? { 'md:self-end': i === 1, 'md:self-stretch': i > 1, 'md:first:col-span-2': true } : 'self-stretch'">
         <NuxtLink :to="href" relative h-full p-0 nq-hoverable @click="active = uid">
-          <LockBadge v-if="draft" absolute right-12 top-12 />
+          <PageInfo :draft absolute right-12 top-12 />
           <div p-4>
             <PrismicImage v-if="hasImage" :field="image" h-max w-full rounded-6 object-cover :class="{ 'view-transition-post-img contain-layout': active === uid }" />
             <div v-else-if="isDev" size-full flex-1 rounded-4 py-64 text-green-400 bg-gradient-green grid="~ place-content-center">
