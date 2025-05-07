@@ -1,11 +1,16 @@
 import process from 'node:process'
+import { defineNuxtModule } from '@nuxt/kit'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
-import { getDynamicPages } from './modules/prerender-routes'
+import { getDynamicPages } from './shared/utils/crawler'
 import { repositoryName } from './slicemachine.config.json'
 
 // Define allowed environment types
 type EnvironmentName = 'local' | 'production' | 'github-pages' | 'nuxthub-production' | 'nuxthub-preview' | 'internal-static' | 'internal-static-drafts'
+
+const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
+if (!prismicAccessToken)
+  throw new Error('PRISMIC_ACCESS_TOKEN is not defined')
 
 const rawEnv = process.env.NUXT_ENVIRONMENT
 const env: EnvironmentName = rawEnv ?? (process.env.NODE_ENV === 'development' ? 'local' : undefined as any) // default to local in dev
@@ -19,6 +24,7 @@ const isGitHubPages = env === 'github-pages'
 const isInternalStatic = env === 'internal-static'
 const isInternalDrafts = env === 'internal-static-drafts'
 const isProduction = env === 'production'
+const showDrafts = isLocal || isInternalDrafts
 
 if (isGitHubPages) {
   process.env.NUXT_PUBLIC_API_ENDPOINT = 'https://api.nimiq.dev'
@@ -56,6 +62,20 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
     '@nuxtjs/sitemap',
+    'nuxt-module-feed',
+
+    defineNuxtModule({
+      meta: { name: 'nuxt-prerender-routes' },
+      hooks: {
+        'nitro:build:before': async (nitro) => {
+          let pages = await getDynamicPages({ prismicAccessToken: prismicAccessToken as string, showDrafts })
+          // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
+          if (isNuxthubPreview || isNuxthubProduction)
+            pages = pages.slice(0, 95)
+          nitro.options.prerender.routes = pages
+        },
+      },
+    }),
   ],
 
   devtools: { enabled: true },
@@ -102,11 +122,7 @@ export default defineNuxtConfig({
   // },
 
   sitemap: {
-    urls: async () => {
-      const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
-      const pages = await getDynamicPages(prismicAccessToken as string)
-      return pages
-    },
+    urls: async () => getDynamicPages({ prismicAccessToken }),
   },
 
   // TODO Remove this option
@@ -180,7 +196,7 @@ export default defineNuxtConfig({
         isInternalDrafts,
         isProduction,
       },
-      showDrafts: env === 'local' || env === 'internal-static-drafts',
+      showDrafts,
     },
     zoho: {
       requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
@@ -267,7 +283,14 @@ export default defineNuxtConfig({
   // robots: {
   //   // https://nuxtseo.com/robots/api/config
   //   disallow: ['/iframes'],
-  //   sitemap: '/sitemap.xml',
   // },
+
+  feed: {
+    sources: [
+      { path: '/feed.xml', type: 'rss2', cacheTime: 0 },
+      { path: '/atom.xml', type: 'atom1', cacheTime: 0 },
+      { path: '/feed.json', type: 'json1', cacheTime: 0 },
+    ],
+  },
 
 })

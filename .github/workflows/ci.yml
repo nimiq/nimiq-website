@@ -23,9 +23,13 @@ jobs:
 
       - name: Install
         run: pnpm install --frozen-lockfile
+        env:
+          PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
 
       - name: Lint
         run: pnpm run lint
+        env:
+          PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
 
       - name: Typecheck
         run: pnpm run typecheck
