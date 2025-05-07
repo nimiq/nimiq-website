@@ -37,8 +37,6 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
-  ssr: useNuxtHub,
-
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
