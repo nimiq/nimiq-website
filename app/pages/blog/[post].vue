@@ -42,7 +42,7 @@ useDark()
 <template>
   <NuxtLayout v-if="post">
     <div ref="articleRef">
-      <LockBadge v-if="draft" fixed bottom-32 right-32 z-102 />
+      <PageInfo :draft fixed bottom-32 right-32 z-102 />
 
       <header data-section max-w="$nq-prose-max-width" pt="148 md:153 lg:160" px="32 lg:64">
         <PrismicText wrapper="h1" :field="post.data.title" style="--nq-font-size-min: 32;--nq-font-size-max: 40" view-transition-post-title />
