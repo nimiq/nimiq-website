@@ -260,6 +260,11 @@ export default defineNuxtConfig({
     },
   },
 
+  ogImage: {
+    // will fetch the fonts from google at build time
+    fonts: ['Mulish:400', 'Mulish:600'],
+  },
+
   // robots: {
   //   // https://nuxtseo.com/robots/api/config
   //   disallow: ['/iframes'],

@@ -6,7 +6,6 @@ const pathParams = typeof params.uid === 'string' ? [] : params?.uid.filter(Bool
 const isGrandchildPage = pathParams.length === 2
 const uid = pathParams.at(-1) || 'home'
 const isHome = uid === 'home'
-const isBlog = uid === 'blog'
 
 const { showDrafts } = useRuntimeConfig().public
 
@@ -44,19 +43,6 @@ definePageMeta({
   ],
 })
 
-const pageMeta = computed(() => ({
-  title: page.value?.data.meta_title || (isHome && 'Nimiq Website') || (page?.value?.slugs[0]?.replace('-', ' ').replace(/\b\w/g, char => char.toUpperCase())) || (uid.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase())) || (isBlog && 'Blog - Nimiq Website') || 'Nimiq Website',
-  description: page.value?.data.meta_description || (isBlog && 'Stay updated with the latest news and articles from Nimiq') || 'The most accepted crypto in the World',
-  image: (isHome && '/assets/og-images/home.jpg') || (isBlog && '/assets/og-images/blog.jpg') || '/assets/og-images/page.png',
-}))
-
-useHead({
-  title: pageMeta.value.title,
-  meta: [
-    { name: 'description', content: pageMeta.value.description },
-  ],
-})
-
 const darkHeader = computed(() => page.value?.data.darkHeader || isHome || uid === 'supersimpleswap')
 const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
 
@@ -64,10 +50,24 @@ const draft = computed(() => page.value?.data && 'draft' in page.value.data && p
 
 const showSocialsHexagonBg = isHome
 
-defineOgImageComponent('OgImagePage', {
-  title: pageMeta.value.title,
-  subline: pageMeta.value.description,
-})
+// SEO Stuff - We load title and description from the `meta` field of the page otherwise we use the first slice title and description
+const slice = page.value.data.slices.at(0)
+const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage } = page.value.data
+
+// @ts-expect-error this is dangerous, but we control the data
+const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.headline) : undefined
+// @ts-expect-error this is dangerous, but we control the data
+const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
+
+const title = cmsTitle || firstSliceTitle || 'Nimiq'
+const description = cmsDescription || firstSliceDescription || ''
+
+useHead({ title, meta: description ? [{ name: 'description', content: description }] : [] })
+
+if (hasImage(cmsImage))
+  setOgImage({ title, subline: description, image: cmsImage })
+else
+  defineOgImageComponent('OgImagePage', { title, subline: description })
 </script>
 
 <template>
