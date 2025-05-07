@@ -1,7 +1,8 @@
 import type { Slice } from '@prismicio/client'
 import type { BlogPageDocument, RichTextSlice } from '~~/prismicio-types'
+import { getImage, getText, hasImage } from './prismic'
 
-export function useProse({ data, uid }: BlogPageDocument) {
+export function getBlogMetadata({ data, uid }: BlogPageDocument) {
   const { body, text, meta_description, meta_title, subline } = data
   const richTextSlices = body.filter((slice: Slice) => slice.slice_type === 'rich_text') as RichTextSlice[]
   const texts = richTextSlices
@@ -25,6 +26,12 @@ export function useProse({ data, uid }: BlogPageDocument) {
   if (!data.image)
     throw new Error(`Missing image for ${uid}`)
 
+  const url = `/blog/${uid}`
+
+  const date = new Date(data.publish_date)
+  const image = data.image || data.meta_image
+  const imageURL = getImage(image)
+
   return {
     prose,
     readingTime,
@@ -33,11 +40,13 @@ export function useProse({ data, uid }: BlogPageDocument) {
     uid,
     hasImage: hasImage(data.image),
     href: `/blog/${uid}`,
-    publishDate: data.publish_date!,
     draft: data.draft,
-    image: data.image || data.meta_image,
+    image,
+    imageURL,
     title: data.title,
-    authors: data.authors,
-    // img,
+    date,
+    authors: data.authors.map(author => author.name as string),
+    url,
+    titleText: getText(data.title),
   }
 }
