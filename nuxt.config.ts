@@ -75,6 +75,20 @@ export default defineNuxtConfig({
         },
       },
     }),
+    'nuxt-module-feed',
+
+    defineNuxtModule({
+      meta: { name: 'nuxt-prerender-routes' },
+      hooks: {
+        'nitro:build:before': async (nitro) => {
+          let pages = await getDynamicPages({ prismicAccessToken: prismicAccessToken as string, showDrafts })
+          // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
+          if (isNuxthubPreview || isNuxthubProduction)
+            pages = pages.slice(0, 95)
+          nitro.options.prerender.routes = pages
+        },
+      },
+    }),
   ],
 
   devtools: { enabled: true },
@@ -287,7 +301,7 @@ export default defineNuxtConfig({
   // robots: {
   //   // https://nuxtseo.com/robots/api/config
   //   disallow: ['/iframes'],
-  // }
+  // },
 
   feed: {
     sources: [
