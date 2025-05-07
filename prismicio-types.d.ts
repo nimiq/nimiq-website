@@ -2644,6 +2644,43 @@ export type AlbatrossLiveviewSlice = prismic.SharedSlice<
 >
 
 /**
+ * Primary content in *AlbatrossTechnicalDetails → Default → Primary*
+ */
+export interface AlbatrossTechnicalDetailsSliceDefaultPrimary {
+  /**
+   * bgColor field in *AlbatrossTechnicalDetails → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: darkblue
+   * - **API ID Path**: albatross_technical_details.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'darkblue' | 'white' | 'grey', 'filled'>
+
+  /**
+   * Display content as a modal field in *AlbatrossTechnicalDetails → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: albatross_technical_details.default.primary.asModal
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  asModal: prismic.BooleanField
+
+  /**
+   * The subline to display field in *AlbatrossTechnicalDetails → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: albatross_technical_details.default.primary.subline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subline: prismic.RichTextField
+}
+
+/**
  * Default variation for AlbatrossTechnicalDetails Slice
  *
  * - **API ID**: `default`
@@ -2651,7 +2688,11 @@ export type AlbatrossLiveviewSlice = prismic.SharedSlice<
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type AlbatrossTechnicalDetailsSliceDefault =
-  prismic.SharedSliceVariation<'default', Record<string, never>, never>
+  prismic.SharedSliceVariation<
+    'default',
+    Simplify<AlbatrossTechnicalDetailsSliceDefaultPrimary>,
+    never
+  >
 
 /**
  * Slice variation for *AlbatrossTechnicalDetails*
@@ -12050,6 +12091,7 @@ declare module '@prismicio/client' {
       AlbatrossSingleTypeDocumentDataSlidesItem,
       AlbatrossTechnicalDetailsSlice,
       AlbatrossTechnicalDetailsSliceDefault,
+      AlbatrossTechnicalDetailsSliceDefaultPrimary,
       AlbatrossTechnicalDetailsSliceVariation,
       AllDocumentTypes,
       AppsShowcaseSlice,
