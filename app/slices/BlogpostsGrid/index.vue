@@ -46,7 +46,7 @@ const active = useState()
 <template>
   <section bg-neutral-100>
     <div grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
-      <article v-for="({ uid, href, draft, image, hasImage, title, abstract, publishDate, authors }, i) in posts" :key="uid" :class="page === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
+      <article v-for="({ uid, href, draft, image, hasImage, title, abstract, date, authors }, i) in posts" :key="uid" :class="page === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
         <NuxtLink :to="href" relative h-full p-0 nq-hoverable @click="active = uid">
           <PageInfo :draft absolute right-12 top-12 />
           <div p-4>
@@ -76,7 +76,7 @@ const active = useState()
             <p line-clamp-2 mt-8 text="16 neutral-900 left">
               {{ abstract }}
             </p>
-            <ArticleMetadata :style="`--content: '${slice.primary.labelLearnMore}'`" :class=" i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16" :date="new Date(publishDate)" :authors="authors.map(a => a.name).join(', ')" h-max gap-x-8 pt-16 nq-hoverable-cta />
+            <ArticleMetadata :style="`--content: '${slice.primary.labelLearnMore}'`" :class=" i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16" :date :authors="authors.join(', ')" h-max gap-x-8 pt-16 nq-hoverable-cta />
             <span sr-only>{{ slice.primary.labelLearnMore }}</span>
           </div>
         </NuxtLink>
