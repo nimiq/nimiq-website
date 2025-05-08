@@ -30,19 +30,21 @@ watch([top, y], () => {
 const hexagonColor = computed(() => {
   if (bgClass.value.includes('bg-blue-sss'))
     return 'text-white'
-  return 'text-neutral-700'
+  return 'text-neutral-800'
 })
 </script>
 
 <template>
   <section mx-0 px-0 :class="[bgClass, { 'nq-overlaps': slice.variation === 'default' }]">
-    <div w="420vw md:140vw" i-custom:bg-hexagons absolute inset-0 h-full max-w-none top="120 md:300" :class="hexagonColor" />
+    <div relative max-w-screen w-full of-x-clip>
+      <div w="320vw md:140vw" i-custom:bg-hexagons absolute inset-0 h-full h-screen max-w-none :class="hexagonColor" />
+    </div>
     <div w-full of-x-clip px-32 max-md:max-w-none style="--f-mb-min: 96; --f-mb-max: 128;">
       <div ref="media" style="--rotate-x:30deg;--translate-y:-100px;transform: perspective(1800px) rotateX(var(--rotate-x)) translateY(var(--translate-y))" origin="[center_70%]" transition="transform duration-350 ease-[cubic-bezier(0,0,0.25,1)]" mx-auto h-full min-h-500 children:w-full>
         <NuxtImg v-if="slice.variation === 'default'" :src="url" />
-        <NuxtLink v-else-if="slice.variation === 'withVideo'" :to="url" external mx-auto w-max stack children:rounded-8 target="_blank">
+        <NuxtLink v-else-if="slice.variation === 'withVideo'" :to="url" external mx-auto stack children:rounded-8 target="_blank">
           <PrismicImage :field="slice.primary.poster" />
-          <div bg-gradient="to-b from-neutral/30 to-neutral/60" h="[calc(100%-96px)]" absolute inset-0 size-full />
+          <div bg-gradient="to-b from-neutral/30 to-neutral/60" size-full />
           <div i-nimiq:triangle-right text="56 white" />
         </NuxtLink>
       </div>
