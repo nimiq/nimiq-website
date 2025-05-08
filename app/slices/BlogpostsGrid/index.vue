@@ -27,15 +27,12 @@ const result = ref<Query<Content.BlogPageDocument<string>>>()
 watchEffect(async () => {
   const data = await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
-    filters: showDrafts ? [] : [filter.not('my.blog_page.draft', true)],
+    filters: showDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
     pageSize: itemsPerPage,
     page: page.value,
   })
   result.value = data
 })
-
-if (!result.value || result.value.results.length === 0)
-  throw new Error('No blog posts found')
 
 const results = computed(() => result.value?.results ?? [])
 const totalPages = computed(() => result.value?.total_pages ?? 1)
