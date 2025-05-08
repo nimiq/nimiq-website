@@ -61,6 +61,9 @@ const paragraph = computed(() => {
     default: return 'We encountered a problem while trying to load this page. Please try again later.'
   }
 })
+const stack = props.error.stack
+// eslint-disable-next-line vue/no-mutating-props
+delete props.error.stack
 </script>
 
 <template>
@@ -81,6 +84,9 @@ const paragraph = computed(() => {
           </summary>
 
           <pre bg="red/10" text-red-1100 outline-red-600>{{ error }}</pre>
+
+          <span text-red-1100 nq-label f-px-sm f-mt-md>Stack</span>
+          <pre bg="red/10" mt-4 text-red-1100 outline-red-600>{{ stack }}</pre>
         </details>
       </div>
     </section>
