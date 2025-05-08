@@ -36,6 +36,8 @@ jobs:
         run: pnpm install --frozen-lockfile
         env:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
+        env:
+          PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
 
       - name: Static HTML export with Nuxt
         run: pnpm run build:github-pages --preset github_pages --prerender
