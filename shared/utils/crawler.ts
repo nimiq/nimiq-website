@@ -12,7 +12,7 @@ interface PrerenderPagesOptions {
 
 export async function getDynamicPages(options: PrerenderPagesOptions) {
   const pagesUrl = await buildPrismicUrl('page', options)
-  const pages = await getPages(pagesUrl).then(uids => uids.map(uid => `/${uid}`))
+  const pages = await getPages(pagesUrl)
 
   const blogPostsUrl = await buildPrismicUrl('blog_page', options)
   const blogArticles = await getBlogPosts(blogPostsUrl).then(posts => posts.map(post => `/blog/${post.slug}`))

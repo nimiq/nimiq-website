@@ -112,13 +112,13 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  // site: {
-  //   url: 'https://nimiq.com',
+  site: {
+    url: 'https://nimiq.com',
 
-  //   // These are just default values and they should be overwritten by the page
-  //   name: 'Nimiq',
-  //   description: 'The most accepted cryptocurrency in the world',
-  // },
+    // These are just default values and they should be overwritten by the page
+    name: 'Nimiq',
+    description: 'The most accepted cryptocurrency in the world',
+  },
 
   sitemap: {
     urls: async () => getDynamicPages({ prismicAccessToken }),
@@ -287,7 +287,7 @@ export default defineNuxtConfig({
   // robots: {
   //   // https://nuxtseo.com/robots/api/config
   //   disallow: ['/iframes'],
-  // },
+  // }
 
   feed: {
     sources: [
