@@ -1,17 +1,17 @@
 import type { Feed } from 'nuxt-module-feed'
-import { buildPrismicUrl, getBlogPosts } from '~~/shared/utils/crawler'
+import { buildPrismicUrl, getBlogPosts } from '../../shared/utils/crawler'
 
 export default defineNitroPlugin(async (nitroApp) => {
   nitroApp.hooks.hook('feed:generate', async ({ feed, options }) => {
     switch (options.path) {
       case '/feed.xml': {
-        createTestFeed(feed)
+        await createFeed(feed)
         break
       }
     }
   })
 
-  async function createTestFeed(feed: Feed) {
+  async function createFeed(feed: Feed) {
     feed.options = {
       id: 'Nimiq Blog',
       title: 'Nimiq Blog',
