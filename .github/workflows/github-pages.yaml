@@ -6,29 +6,27 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write # allow pushing to gh-pages
+  id-token: write # if you ever need OIDC
 
 concurrency:
-  group: pages
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  build:
-    name: Build and Deploy
+  deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: preview
-      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Setup Node 22 & pnpm
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -38,11 +36,11 @@ jobs:
         run: pnpm install --frozen-lockfile
         env:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
+        env:
+          PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
 
       - name: Static HTML export with Nuxt
-        run: |
-          # Ensure we generate a static site with no server-side logic
-          pnpm run build:github-pages --preset github_pages --prerender
+        run: pnpm run build:github-pages --preset github_pages --prerender
         env:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
           NUXT_ALBATROSS_NODE_RPC_URL: ${{ secrets.NUXT_ALBATROSS_NODE_RPC_URL }}
@@ -52,7 +50,6 @@ jobs:
           NUXT_ZOHO_CODE: ${{ secrets.NUXT_ZOHO_CODE }}
           NUXT_ZOHO_LISTKEY: ${{ secrets.NUXT_ZOHO_LISTKEY }}
           NUXT_ZOHO_REFRESH_TOKEN: ${{ secrets.NUXT_ZOHO_REFRESH_TOKEN }}
-
           NUXT_ALBATROSS_LIVEVIEW_TX_FEE: ${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_FEE }}
           NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT: ${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT }}
           NUXT_ALBATROSS_LIVEVIEW_TX_VALUE: ${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_VALUE }}
@@ -64,21 +61,15 @@ jobs:
           NUXT_ZOHO_REQUEST_URL: ${{ vars.NUXT_ZOHO_REQUEST_URL }}
           NUXT_ZOHO_SCOPE: ${{ vars.NUXT_ZOHO_SCOPE }}
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./.output/public
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      pages: write # to deploy to Pages
-      id-token: write # to verify the deployment originates from an appropriate source
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.output/public
+          publish_branch: gh-pages # default is “gh-pages” anyway
+          force_orphan: true # orphan the branch so it only contains your latest build
+          allow_empty_commit: true # in case nothing changed
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: ${{ github.event.head_commit.message }}
