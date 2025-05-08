@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import type { Content } from '@prismicio/client'
+import type { Content, Query } from '@prismicio/client'
 import { filter } from '@prismicio/client'
 import ArticleMetadata from '~/components/ArticleMetadata.vue'
 
 defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
+
 const { showDrafts } = useRuntimeConfig().public
 const itemsPerPage = 25
 const route = useRoute()
@@ -21,36 +22,33 @@ watch(page, (val) => {
 
 const { client } = usePrismic()
 
-const result = ref<Awaited<ReturnType<typeof client.getByType>> | null>(null)
+const result = ref<Query<Content.BlogPageDocument<string>>>()
 
 watchEffect(async () => {
   const data = await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
-    filters: showDrafts ? [] : [filter.not('my.blog_page.draft', true)],
+    filters: showDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
     pageSize: itemsPerPage,
     page: page.value,
   })
   result.value = data
 })
 
-if (!result.value || result.value.results.length === 0)
-  throw new Error('No blog posts found')
-
 const results = computed(() => result.value?.results ?? [])
 const totalPages = computed(() => result.value?.total_pages ?? 1)
-const posts = results.value.map(r => getBlogMetadata(r as Content.BlogPageDocument))
+const posts = computed(() => results.value.map(r => getBlogMetadata(r as Content.BlogPageDocument)))
 
 const active = useState()
 </script>
 
 <template>
   <section bg-neutral-100>
-    <div grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
+    <div v-if="posts.length > 0" grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
       <article v-for="({ uid, href, draft, image, hasImage, title, abstract, date, authors }, i) in posts" :key="uid" :class="page === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
         <NuxtLink :to="href" relative h-full p-0 nq-hoverable @click="active = uid">
-          <PageInfo :draft absolute right-12 top-12 />
+          <PageInfo :draft absolute right-12 top-12 z-10 />
           <div p-4>
-            <PrismicImage v-if="hasImage" :field="image" h-max w-full rounded-6 object-cover :class="[i === 1 ? 'h-max lg:h-280' : 'h-max', { 'view-transition-post-img contain-layout': active === uid }]" />
+            <PrismicImage v-if="hasImage" :field="image" h-max w-full rounded-6 object-cover :class="[i === 1 ? 'h-max lg:h-280' : 'h-max', { 'view-transition-post-img contain-layout': active === uid }]" loading="lazy" />
             <div v-else-if="showDrafts" size-full flex-1 rounded-4 py-64 text-green-400 bg-gradient-green grid="~ place-content-center">
               <div flex="~ items-center gap-12">
                 <div text-32 op-70 i-nimiq:tools-wench-hammer />
