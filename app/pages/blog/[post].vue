@@ -12,7 +12,9 @@ const { data: post } = await useAsyncData('blog_page', () => client.getByUID('bl
     throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
   }))
 
-if (!post.value || (!import.meta.dev && post.value?.data.draft)) {
+const { showDrafts } = useRuntimeConfig().public
+
+if (!post.value || (!showDrafts && post.value?.data.draft)) {
   console.error(`Blog post with slug "${postSlug.value}" not found`)
   throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
 }

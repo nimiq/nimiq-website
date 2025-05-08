@@ -4,7 +4,7 @@ import { filter } from '@prismicio/client'
 import ArticleMetadata from '~/components/ArticleMetadata.vue'
 
 defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
-const isDev = import.meta.dev
+const { showDrafts } = useRuntimeConfig().public
 const itemsPerPage = 25
 const route = useRoute()
 const router = useRouter()
@@ -26,7 +26,7 @@ const result = ref<Awaited<ReturnType<typeof client.getByType>> | null>(null)
 watchEffect(async () => {
   const data = await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
-    filters: isDev ? undefined : [filter.not('my.blog_page.draft', true)],
+    filters: showDrafts ? [] : [filter.not('my.blog_page.draft', true)],
     pageSize: itemsPerPage,
     page: page.value,
   })
@@ -51,7 +51,7 @@ const active = useState()
           <PageInfo :draft absolute right-12 top-12 />
           <div p-4>
             <PrismicImage v-if="hasImage" :field="image" h-max w-full rounded-6 object-cover :class="[i === 1 ? 'h-max lg:h-280' : 'h-max', { 'view-transition-post-img contain-layout': active === uid }]" />
-            <div v-else-if="isDev" size-full flex-1 rounded-4 py-64 text-green-400 bg-gradient-green grid="~ place-content-center">
+            <div v-else-if="showDrafts" size-full flex-1 rounded-4 py-64 text-green-400 bg-gradient-green grid="~ place-content-center">
               <div flex="~ items-center gap-12">
                 <div text-32 op-70 i-nimiq:tools-wench-hammer />
 
