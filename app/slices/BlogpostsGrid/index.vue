@@ -33,14 +33,12 @@ watchEffect(async () => {
   result.value = data
 })
 
-const results = computed(() => result.value?.results ?? [])
-const totalPages = computed(() => result.value?.total_pages ?? 1)
-const posts = computed(() => results.value.map(useProse))
-}, { watch: [page] })
 if (!result.value || result.value.results.length === 0)
   throw new Error('No blog posts found')
-const { results, total_pages: totalPages } = result.value
-const posts = results.map(getBlogMetadata)
+
+const results = computed(() => result.value?.results ?? [])
+const totalPages = computed(() => result.value?.total_pages ?? 1)
+const posts = results.value.map(r => getBlogMetadata(r as Content.BlogPageDocument))
 
 const active = useState()
 </script>
