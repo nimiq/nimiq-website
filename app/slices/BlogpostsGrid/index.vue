@@ -34,6 +34,9 @@ watchEffect(async () => {
   result.value = data
 })
 
+if (!result.value || result.value.results.length === 0)
+  throw new Error('No blog posts found')
+
 const results = computed(() => result.value?.results ?? [])
 const totalPages = computed(() => result.value?.total_pages ?? 1)
 const posts = computed(() => results.value.map(r => getBlogMetadata(r as Content.BlogPageDocument)))
