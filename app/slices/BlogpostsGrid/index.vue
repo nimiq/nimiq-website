@@ -40,10 +40,6 @@ const results = computed(() => result.value?.results ?? [])
 const totalPages = computed(() => result.value?.total_pages ?? 1)
 const posts = results.value.map(r => getBlogMetadata(r as Content.BlogPageDocument))
 
-
-const results = computed(() => result.value?.results ?? [])
-const totalPages = computed(() => result.value?.total_pages ?? 1)
-const posts = computed(() => results.value.map(useProse))
 const active = useState()
 </script>
 
