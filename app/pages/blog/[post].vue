@@ -36,6 +36,10 @@ useIntersectionObserver(articleRef, () => {
 })
 
 useDark()
+
+if (post.value.data.body.at(0)?.primary)
+  // @ts-expect-error The background color is always present in this case
+  post.value.data.body[0]!.primary.bgColor = 'grey'
 </script>
 
 <template>
@@ -54,10 +58,10 @@ useDark()
             </p>
           </template>
         </ArticleMetadata>
-        <PrismicImage :field="post.data.image" mx-auto mt-104 max-w-1440 w-full rounded-8 object-contain view-transition-post-img />
+        <PrismicImage :field="post.data.image" mx-auto mt-104 w-full rounded-8 object-contain view-transition-post-img />
       </header>
     </div>
-    <SliceZone pt="80 lg:96" :slices="post?.data.body ?? []" :components />
+    <SliceZone :slices="post?.data.body ?? []" :components />
     <Disclaimer />
   </NuxtLayout>
 </template>
