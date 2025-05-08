@@ -15,8 +15,8 @@ export interface Validator {
   score: { total: number, dominance: number, reliability: number, availability: number }
   logo?: string
   dominanceRatio: number
-  rewardPerAnnum?: number
   balance: number
+  rewardGainRatio: number
 }
 
 export function useValidatorsInfo() {
@@ -34,7 +34,15 @@ export function useValidatorsInfo() {
           stakedSupplyRatio: stakingRatio.value ?? 0,
           fee: validator.fee,
         }).gainRatio,
-      }))
+      })).sort((a, b) => {
+        // no score goes to the end of the list
+        if (!a.score?.total)
+          return 1
+        if (!b.score?.total)
+          return -1
+        // sort by score
+        return b.score.total - a.score.total
+      })
     },
     staleTime: 60 * 5 * 1e3, // 5 min freshness
   })
