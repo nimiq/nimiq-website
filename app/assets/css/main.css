@@ -1,0 +1,7 @@
+[nq-prose] h3 a {
+  /* TODO Move this to nimiq-ui */
+  /* Fix for /blog/introducing-nimiq-pay */
+  --font-size-min-em: 1;
+  --font-size-max-em: 1;
+  font-weight: inherit;
+}
