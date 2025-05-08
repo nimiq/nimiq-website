@@ -301,7 +301,7 @@ export default defineNuxtConfig({
   // robots: {
   //   // https://nuxtseo.com/robots/api/config
   //   disallow: ['/iframes'],
-  // },
+  // }
 
   feed: {
     sources: [
