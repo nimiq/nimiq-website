@@ -30,7 +30,7 @@ const bgClass = getColorClass(props.slice.primary.bgColor)
           :key="i"
           internal-component="a"
           flex="~ row gap-20 items-center" :style="`--c: ${color}`"
-          :field="linkHref" group p-20 nq-hoverable
+          :field="linkHref" group p-20 nq-hoverable class="hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c"
         >
           <div :class="iconName" text="32 md:48 $c group-hocus:!white" transition-colors />
           <RichText wrapper="div" :field="headline" whitespace-nowrap flex="~ items-center" class="raw" text="group-hocus:children:!white" />
