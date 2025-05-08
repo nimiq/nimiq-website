@@ -128,11 +128,8 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
         <PrismicLink :field="slice.primary.cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-md />
         <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
           <li v-for="({ description, icon }, i) in slice.primary.requirements" :key="i" flex="~ gap-12 items-center">
-            <div size-32 rounded-full bg-green flex="~ items-center justify-center">
-              <div
-                :class="[icon!, { 'bottom--2': icon === 'i-nimiq:document-filled' }]" text="18 white" relative
-                shrink-0
-              />
+            <div size-32 rounded-full bg-green stack>
+              <div :class="[icon!, { 'bottom--2 right-1 translate-x-1': icon === 'i-nimiq:document-filled' }]" text="18 white" relative />
             </div>
             <p>{{ description }}</p>
           </li>
@@ -147,11 +144,8 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
       <PrismicLink :field="slice.primary.cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-md />
       <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
         <li v-for="({ description, icon }, i) in slice.primary.features" :key="i" flex="~ gap-12 items-center">
-          <div size-32 rounded-full bg-gold flex="~ items-center justify-center">
-            <div
-              :class="[icon!, { 'bottom--2': icon === 'i-nimiq:document-filled' }]" text="18 white" relative
-              shrink-0
-            />
+          <div size-32 rounded-full bg-gold stack>
+            <div :class="[icon!, { 'bottom--2 right-1 translate-x-1': icon === 'i-nimiq:document-filled' }]" text="18 white" relative />
           </div>
           <p>{{ description }}</p>
         </li>
