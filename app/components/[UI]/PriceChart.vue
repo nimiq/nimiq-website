@@ -82,7 +82,7 @@ const error = computed(() => {
         <p text="blue f-3xl" font-semibold lh-none>
           {{ formatFiat(historicPrice, currencyInfo) }}
         </p>
-        <NuxtTime v-if="!deltaPriceOneDay" :datetime="ts" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" text="f-2xs right neutral-700" lh-none nq-label />
+        <NuxtTime v-if="!deltaPriceOneDay" :datetime="ts" year="numeric" month="long" day="numeric" text="f-2xs right neutral-700" lh-none nq-label />
         <div v-else flex="~ items-center" text="f-2xs neutral-700" font-semibold lh-none>
           <div mr-4 size-8 i-nimiq:triangle-up :class="{ 'rotate-180': deltaPriceOneDay < 0 }" />
           <span>{{ formatDecimal(Math.abs(deltaPriceOneDay)) }} ({{ formatPercentage(deltaPriceOneDay / historicPrice) }})</span>
@@ -109,9 +109,12 @@ const error = computed(() => {
           <ReuseMetric :metric-value="volumeFormatted" :metric-change="volumeChange" :label="slice.primary.volume24HLabel!" :tooltip-info="slice.primary.volume24HInfo" />
           <ReuseMetric :metric-value="currentSupplyFormatted" :label="slice.primary.totalSupplyLabel!" :tooltip-info="slice.primary.totalSupplyInfo" />
           <ReuseMetric :metric-value="maxSupplyFormatted" :label="slice.primary.maxSupplyLabel!" :tooltip-info="slice.primary.maxSupplyInfo" />
-          <div v-if="lastUpdated" max-md="col-span-full sticky left-0 w-[calc(100vw-80px)] w-max" flex="~ md:col gap-col-4 gap-row-8 max-md:justify-center" text="f-2xs neutral-800" lh-none md:mt-auto>
+
+          <!-- We use `v-show` to avoid CLS -->
+          <div v-show="lastUpdated" max-md="col-span-full sticky left-0 w-[calc(100vw-80px)] w-max" flex="~ md:col gap-col-4 gap-row-8 max-md:justify-center" text="f-2xs neutral-800" lh-none md:mt-auto>
             <span>Last updated:</span>
-            <NuxtTime :datetime="lastUpdated" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" />
+            <NuxtTime v-if="lastUpdated" :datetime="lastUpdated" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" />
+            <span v-else>Loading...</span>
           </div>
         </aside>
         <div group relative f-pb-xs>

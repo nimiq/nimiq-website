@@ -1,4 +1,4 @@
-import { fetchFiatApi, Provider } from '@nimiq/utils/fiat-api'
+import { fetchFiatApi, FiatCurrency, Provider } from '@nimiq/utils/fiat-api'
 
 interface HistohourResponse {
   Message: string
@@ -12,6 +12,22 @@ interface HistohourResponse {
     TimeTo: number
   }
   Err: any
+}
+
+// Supported currencies by CryptoCompare histohour endpoint
+// Currencies not supported by the API will be converted to USD
+export const histohourSupportedCurrencies = [
+  FiatCurrency.USD,
+  FiatCurrency.EUR,
+  FiatCurrency.GBP,
+] as const
+
+// Type for the supported currencies
+export type HistohourSupportedCurrency = typeof histohourSupportedCurrencies[number]
+
+// Check if a currency is supported by the histohour endpoint
+function isHistohourSupportedCurrency(currency: FiatCurrency): currency is HistohourSupportedCurrency {
+  return histohourSupportedCurrencies.includes(currency as HistohourSupportedCurrency)
 }
 
 const volumeApi = new URL('https://min-api.cryptocompare.com/data/v2/histohour')
@@ -28,8 +44,20 @@ export function useNimVolume() {
   const { currencyInfo } = useUserCurrency()
   const { price } = useNimPrice()
 
+  // Resolve the request currency outside the query function
+  const requestCurrency = computed(() => {
+    const userCurrency = currencyInfo.value.code as FiatCurrency
+    return isHistohourSupportedCurrency(userCurrency) ? userCurrency : FiatCurrency.USD
+  })
+
+  // Track if we need to convert the result (when user currency differs from request currency)
+  const needsCurrencyConversion = computed(() =>
+    requestCurrency.value !== currencyInfo.value.code,
+  )
+
   const { data: volumeData, state: volumeState, error, isLoading } = useQuery({
-    key: computed(() => ['trading_volume', currencyInfo.value.code]),
+    // Use the resolved request currency in the query key for proper caching
+    key: computed(() => ['trading_volume', requestCurrency.value]),
     query: async () => {
       if (import.meta.server)
         return { volumeUsd: 0, volumeFormatted: '0', volumeChange: 0 }
@@ -40,11 +68,13 @@ export function useNimVolume() {
       // Align to the previous full hour boundary
       const lastFullHourTs = nowTs - (nowTs % 3600)
       volumeApi.searchParams.append('to_ts', String(lastFullHourTs))
-      volumeApi.searchParams.append('tsym', currencyInfo.value.code)
+
+      // Use the resolved currency for the API request
+      volumeApi.searchParams.append('tsym', requestCurrency.value)
 
       const res = await fetchFiatApi<HistohourResponse>(volumeApi.toString(), Provider.CryptoCompare)
       if (res.Message.includes('CCCAGG market does not exist'))
-        throw new Error(`CCCAGG market does not exist for this coin pair (${currencyInfo.value.code}-NIM). Url: ${volumeApi.toString()}`)
+        throw new Error(`CCCAGG market does not exist for this coin pair (${requestCurrency.value}-NIM). Url: ${volumeApi.toString()}`)
 
       if (!res || !res.Data?.Data?.length)
         throw new Error('Failed to fetch hourly volume data')
@@ -67,8 +97,14 @@ export function useNimVolume() {
       const volume = currentDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
       const prevVolumeUsd = previousDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
 
-      // Convert to user's currency for more personalized and relevant UX
-      const volumeUserCurr = volume * (price.value || 0)
+      // Volume is in the requested currency at this point
+      const volumeInRequestCurrency = volume
+
+      // Convert to user's currency if necessary (when request currency differs from user currency)
+      const volumeUserCurr = needsCurrencyConversion.value
+        ? volumeInRequestCurrency * (price.value || 0) // Convert USD to user currency
+        : volumeInRequestCurrency // Already in user currency
+
       const volumeFormatted = formatFiat(volumeUserCurr, currencyInfo.value)
 
       // Daily change percentage helps users track momentum and market activity

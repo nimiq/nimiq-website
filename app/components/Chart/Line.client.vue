@@ -46,6 +46,8 @@ function tooltip(v: T) {
   background-size:
     100% 64px,
     100% 100%;
+  /* avoid 20 px in the bottom for background */
+  background-position: 0 -20px;
 
   --vis-crosshair-line-stroke-color: rgb(var(--nq-blue) / 1);
   --vis-crosshair-line-stroke-width: 1.5px;
