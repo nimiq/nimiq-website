@@ -30,10 +30,10 @@ const { title = 'The World’s Most Accepted Crypto' } = defineProps<{ title: st
 
     <div class="h-full flex items-start justify-start">
       <div class="h-full w-full flex flex-col px-24 py-16">
-        <h1 class="text-left text-[64px] lh-none font-[#1F2348]">
+        <h1 class="text-left text-[64px] text-[#1F2348] lh-none">
           {{ title }}
         </h1>
-        <p v-if="subline" class="mt-6 text-left text-[40px] lh-none font-[#1F2348] opacity-60">
+        <p v-if="subline" class="mt-4 text-left text-[40px] text-[#1F2348] lh-none opacity-60">
           {{ subline }}
         </p>
       </div>
