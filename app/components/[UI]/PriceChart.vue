@@ -116,8 +116,8 @@ const error = computed(() => {
         </aside>
         <div group relative f-pb-xs>
           <ChartLine :data="historicPrices || []" leader h-full rounded-8>
-            <template #default="{ data: [ts, price] }">
-              <Price :data="[ts, price]" />
+            <template #default="{ data: [ts, historicPrice] }">
+              <Price :data="[ts, historicPrice]" />
             </template>
           </ChartLine>
 
