@@ -15,20 +15,13 @@ const data = computed(() => {
     return []
   const validatorsList: (DonutDatum & Validator)[] = []
   const smallValidators = { color: 'rgb(var(--nq-neutral-400))', value: 0, name: 'Others', logo: '', balance: 0 }
-  // TODO: remove `score` and leave it in `...v` object
-  for (const { score, dominanceRatio, accentColor, ...v } of validators.value) {
-    // TODO: Remove this check
-    if (!score)
-      continue
-    // TODO: Atm this is just a workaround for the fact that the API returns null for the dominanceRatio
-    // once we merge https://github.com/nimiq/validators-api/pull/95, we can remove this and just use the dominanceRatio
-    const value = dominanceRatio || score?.total
-    if (score.total < 0.02) {
-      smallValidators.value += value
+  for (const { dominanceRatio, accentColor, ...v } of validators.value) {
+    if (dominanceRatio < 0.02) {
+      smallValidators.value += dominanceRatio
       smallValidators.balance += v.balance
     }
     else {
-      validatorsList.push({ color: accentColor, value, score, dominanceRatio, accentColor, ...v })
+      validatorsList.push({ color: accentColor, value: dominanceRatio, dominanceRatio, accentColor, ...v })
     }
   }
   return smallValidators.value > 0 ? [...validatorsList, smallValidators] : validatorsList
