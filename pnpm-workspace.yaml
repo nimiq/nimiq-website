@@ -1,69 +1,95 @@
 patchedDependencies:
   '@nimiq/utils': patches/@nimiq__utils.patch
-catalog:
-  '@antfu/eslint-config': ^4.13.0
-  '@iconify-json/logos': ^1.2.4
-  '@iconify/utils': ^2.3.0
-  '@iconify/vue': ^5.0.0
-  '@nimiq/core': ^2.1.0
-  '@nimiq/utils': ^0.12.3
-  '@nuxt/eslint': latest
-  '@nuxt/fonts': ^0.11.3
-  '@nuxt/image': ^1.10.0
-  '@nuxt/kit': ^3.17.2
-  '@nuxthub/core': ^0.8.27
-  '@nuxtjs/critters': ^0.9.0
-  '@nuxtjs/device': ^3.2.4
-  '@nuxtjs/prismic': ^4.1.0
-  '@nuxtjs/seo': 3.0.3
-  '@nuxtjs/sitemap': ^7.2.10
-  '@pinia/colada': ^0.15.3
-  '@pinia/colada-nuxt': ^0.1.3
-  '@pinia/nuxt': ^0.11.0
-  '@popperjs/core': ^2.11.8
-  '@prismicio/client': ^7.17.2
-  '@prismicio/richtext': ^2.1.5
-  '@slicemachine/adapter-nuxt': ^0.3.76
-  '@types/node': ^22.15.17
-  '@unocss/eslint-plugin': ^66.1.1
-  '@unocss/nuxt': ^66.1.1
-  '@unocss/reset': ^66.1.1
-  '@unovis/ts': 1.5.1
-  '@unovis/vue': 1.5.1
-  '@vueuse/core': ^13.1.0
-  '@vueuse/motion': ^3.0.3
-  '@vueuse/nuxt': ^13.1.0
-  '@vueuse/router': ^13.1.0
-  cookie: ^1.0.2
-  eslint: ^9.26.0
-  eslint-plugin-format: ^1.0.1
-  lint-staged: ^16.0.0
-  medium-zoom: ^1.1.0
-  nimiq-css: ^1.0.0-beta.22
-  nimiq-flags: ^1.0.0-beta.22
-  nimiq-icons: ^1.0.0-beta.22
-  nimiq-rpc-client-ts: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
-  nuxt: ^3.17.2
-  nuxt-module-feed: ^1.1.4
-  nuxt-og-image: ^5.1.3
-  pathe: ^2.0.3
-  pinia: ^3.0.2
-  reka-ui: ^2.2.1
-  sharp: ^0.34.1
-  simple-git-hooks: ^2.13.0
-  slice-machine-ui: ^2.15.3
-  typescript: ^5.8.3
-  unocss: ^66.1.1
-  unocss-preset-onmax: ^1.0.0-beta.19
-  unocss-preset-scale-px: 1.0.0-beta.19
-  unplugin-vue-router: ^0.12.0
-  valibot: ^1.1.0
-  vaul-vue: ^0.4.1
-  vite-plugin-top-level-await: ^1.5.0
-  vite-plugin-wasm: ^3.4.1
-  vue: latest
-  vue-router: ^4.5.1
-  wrangler: ^4.14.4
+
+catalogs:
+  backend:
+    cookie: ^1.0.2
+    pathe: ^2.0.3
+
+  build:
+    '@nuxt/kit': ^3.17.2
+    sharp: ^0.34.1
+    vite-plugin-top-level-await: ^1.5.0
+    vite-plugin-wasm: ^3.4.1
+    wrangler: ^4.14.4
+  docs:
+    '@slicemachine/adapter-nuxt': ^0.3.76
+    nuxt-og-image: ^5.1.3
+
+    slice-machine-ui: ^2.15.3
+
+  frontend:
+    '@popperjs/core': ^2.11.8
+    '@unovis/ts': 1.5.1
+    '@unovis/vue': 1.5.1
+    '@vueuse/motion': ^3.0.3
+    '@vueuse/router': ^13.1.0
+    medium-zoom: ^1.1.0
+    reka-ui: ^2.2.1
+
+    vaul-vue: ^0.4.1
+
+  integrations:
+    '@prismicio/client': ^7.17.2
+
+  lint:
+    '@antfu/eslint-config': ^4.13.0
+    '@nuxt/eslint': latest
+    '@unocss/eslint-plugin': ^66.1.1
+    eslint: ^9.26.0
+    eslint-plugin-format: ^1.0.1
+    lint-staged: ^16.0.0
+    simple-git-hooks: ^2.13.0
+
+  nuxt:
+    '@nuxt/fonts': ^0.11.3
+    '@nuxt/image': ^1.10.0
+    '@nuxthub/core': ^0.8.27
+    '@nuxtjs/critters': ^0.9.0
+    '@nuxtjs/device': ^3.2.4
+    '@nuxtjs/prismic': ^4.1.0
+    '@nuxtjs/seo': 3.0.3
+    '@nuxtjs/sitemap': ^7.2.10
+    nuxt: ^3.17.2
+    nuxt-module-feed: ^1.1.4
+    unplugin-vue-router: ^0.12.0
+
+  prod:
+    '@nimiq/core': ^2.1.0
+    '@nimiq/utils': ^0.12.3
+    nimiq-rpc-client-ts: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
+    valibot: ^1.1.0
+
+  script:
+    '@iconify/utils': ^2.3.0
+
+  types:
+    '@prismicio/richtext': ^2.1.5
+    '@types/node': ^22.15.17
+
+    typescript: ^5.8.3
+
+  unocss:
+    '@unocss/nuxt': ^66.1.1
+    '@unocss/reset': ^66.1.1
+    nimiq-css: ^1.0.0-beta.22
+    nimiq-flags: ^1.0.0-beta.22
+    nimiq-icons: ^1.0.0-beta.22
+    unocss: ^66.1.1
+    unocss-preset-onmax: ^1.0.0-beta.19
+    unocss-preset-scale-px: 1.0.0-beta.19
+
+  vue:
+    '@iconify-json/logos': ^1.2.4
+    '@iconify/vue': ^5.0.0
+    '@pinia/colada': ^0.15.3
+    '@pinia/colada-nuxt': ^0.1.3
+    '@pinia/nuxt': ^0.11.0
+    '@vueuse/core': ^13.1.0
+    '@vueuse/nuxt': ^13.1.0
+    pinia: ^3.0.2
+    vue: latest
+    vue-router: ^4.5.1
 
 onlyBuiltDependencies:
   - '@parcel/watcher'
