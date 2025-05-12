@@ -91,16 +91,13 @@ const error = computed(() => {
     </DefinePrice>
 
     <RibbonContainer :label="slice.primary.nimPriceChartLabel!" z-3 shadow md:min-h-480 outline-color="white/20">
-      <div v-if="error" border="1 red-400" bg="neutral-0/20" absolute bottom="-96 md:-120" h-max of-y-auto rounded-8 px-4 py-4 text-red font-semibold font-mono shadow text-f-2xs>
-        {{ error }}
-      </div>
       <div grid="~ cols-1 md:cols-[max-content_1fr]" relative size-full of-hidden>
         <aside md:border="r-1 solid neutral-400" grid="~ cols-[repeat(4,1fr)] md:cols-1 gap-col-20 gap-row-24" relative w-full f-p-md max-md:row-start-2 max-md:of-x-auto>
           <transition enter-active-class="transition duration-200 ease-out" enter-from-class="op-0" enter-to-class="op-100" leave-active-class="transition duration-200 ease-out" leave-from-class="op-100" leave-to-class="op-0">
-            <div v-if="isLoading" flex="~ items-center gap-8" text=" gold f-sm" translate-x="100%" absolute right--1 top--1 z-30 rounded-br-6 bg-white py-4 f-px-xs border="b r neutral-400">
-              <div scale-90 i-nimiq:spinner />
+            <div v-if="isLoading || error" flex="~ items-center gap-8" text=" gold f-sm" translate-x="100%" absolute right--1 top--1 z-30 rounded-br-6 bg-white py-4 f-px-xs border="b r neutral-400">
+              <div scale-90 :class="isLoading ? 'i-nimiq:spinner' : 'i-nimiq:alert'" />
               <p>
-                Loading...
+                {{ isLoading ? 'Loading...' : error }}
               </p>
             </div>
           </transition>
