@@ -60,12 +60,19 @@ const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.h
 const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
 
 const title = cmsTitle || firstSliceTitle || 'Nimiq'
-const description = cmsDescription || firstSliceDescription || ''
+let description = cmsDescription || firstSliceDescription || ''
+
+if (isHome) {
+  const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
+  description = description.replace(/\{\{\s*locations\s*\}\}/, locationsCount.value.toString())
+}
 
 useHead({ title, meta: description ? [{ name: 'description', content: description }] : [] })
 
 if (hasImage(cmsImage))
   setOgImage({ title, subline: description, image: cmsImage })
+else if (isHome)
+  defineOgImageComponent('OgImageHome', { title, subline: description })
 else
   defineOgImageComponent('OgImagePage', { title, subline: description })
 </script>
