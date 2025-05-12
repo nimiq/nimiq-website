@@ -4,6 +4,7 @@
     <div absolute inset-0 w-screen bg-neutral-0 h="$f-mt" />
     <div bg-gradient-fn="from-neutral-0 ease-in to-$orange to-b" top="$f-mt" h="$f-top" absolute w-screen />
     <div absolute bottom-0 h="[calc(100%-var(--f-mt)-var(--f-top))]" w-screen bg-gradient-fn="from-$orange ease-out to-neutral-0 to-b" />
+    <div i-custom:buy-and-sell-bg absolute bottom--256 left-0 aspect-1.2620087336 h-auto w-110vw />
   </div>
   <div z-3 v-bind="$attrs">
     <slot />

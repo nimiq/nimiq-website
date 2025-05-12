@@ -86,11 +86,14 @@ export function useNimPriceHistory(currency: MaybeRef<FiatCurrency>) {
     Date.now(),
   ])
 
+  const lastUpdated = ref()
+
   // Store and return the latest data fetched from the API
   const { data, refetch, error, state, isLoading } = useQuery({
     key: queryKey,
     query: async () => {
       try {
+        lastUpdated.value = Date.now()
         // Only fetch if we need new data
         if (needsFetch.value) {
           const result = await getHistoricExchangeRatesByRange(
@@ -154,13 +157,6 @@ export function useNimPriceHistory(currency: MaybeRef<FiatCurrency>) {
 
   // List of available period options
   const periodOptions = Object.keys(PRICE_TIME_FRAMES) as HistoricNimPricePeriod[]
-
-  const lastUpdated = computed(() => {
-    const currentData = data.value || []
-    if (!currentData || !currentData.length)
-      return null
-    return currentData.at(-1)?.[0] || 0
-  })
 
   return { data, error, state, refetch, period, periodOptions, lastUpdated, isLoading }
 }

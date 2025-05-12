@@ -82,7 +82,7 @@ const error = computed(() => {
         <p text="blue f-3xl" font-semibold lh-none>
           {{ formatFiat(historicPrice, currencyInfo) }}
         </p>
-        <NuxtTime v-if="!deltaPriceOneDay" :datetime="ts" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" text="f-2xs right neutral-700" lh-none nq-label />
+        <NuxtTime v-if="!deltaPriceOneDay" :datetime="ts" year="numeric" month="long" day="numeric" text="f-2xs right neutral-700" lh-none nq-label />
         <div v-else flex="~ items-center" text="f-2xs neutral-700" font-semibold lh-none>
           <div mr-4 size-8 i-nimiq:triangle-up :class="{ 'rotate-180': deltaPriceOneDay < 0 }" />
           <span>{{ formatDecimal(Math.abs(deltaPriceOneDay)) }} ({{ formatPercentage(deltaPriceOneDay / historicPrice) }})</span>
@@ -91,16 +91,13 @@ const error = computed(() => {
     </DefinePrice>
 
     <RibbonContainer :label="slice.primary.nimPriceChartLabel!" z-3 shadow md:min-h-480 outline-color="white/20">
-      <div v-if="error" border="1 red-400" bg="neutral-0/20" absolute bottom="-96 md:-120" h-max of-y-auto rounded-8 px-4 py-4 text-red font-semibold font-mono shadow text-f-2xs>
-        {{ error }}
-      </div>
       <div grid="~ cols-1 md:cols-[max-content_1fr]" relative size-full of-hidden>
         <aside md:border="r-1 solid neutral-400" grid="~ cols-[repeat(4,1fr)] md:cols-1 gap-col-20 gap-row-24" relative w-full f-p-md max-md:row-start-2 max-md:of-x-auto>
           <transition enter-active-class="transition duration-200 ease-out" enter-from-class="op-0" enter-to-class="op-100" leave-active-class="transition duration-200 ease-out" leave-from-class="op-100" leave-to-class="op-0">
-            <div v-if="isLoading" flex="~ items-center gap-8" text=" gold f-sm" translate-x="100%" absolute right--1 top--1 z-30 rounded-br-6 bg-white py-4 f-px-xs border="b r neutral-400">
-              <div scale-90 i-nimiq:spinner />
+            <div v-if="isLoading || error" flex="~ items-center gap-8" text=" gold f-sm" translate-x="100%" absolute right--1 top--1 z-30 rounded-br-6 bg-white py-4 f-px-xs border="b r neutral-400">
+              <div scale-90 :class="isLoading ? 'i-nimiq:spinner' : 'i-nimiq:alert'" />
               <p>
-                Loading...
+                {{ isLoading ? 'Loading...' : error }}
               </p>
             </div>
           </transition>
@@ -109,9 +106,12 @@ const error = computed(() => {
           <ReuseMetric :metric-value="volumeFormatted" :metric-change="volumeChange" :label="slice.primary.volume24HLabel!" :tooltip-info="slice.primary.volume24HInfo" />
           <ReuseMetric :metric-value="currentSupplyFormatted" :label="slice.primary.totalSupplyLabel!" :tooltip-info="slice.primary.totalSupplyInfo" />
           <ReuseMetric :metric-value="maxSupplyFormatted" :label="slice.primary.maxSupplyLabel!" :tooltip-info="slice.primary.maxSupplyInfo" />
-          <div v-if="lastUpdated" max-md="col-span-full sticky left-0 w-[calc(100vw-80px)] w-max" flex="~ md:col gap-col-4 gap-row-8 max-md:justify-center" text="f-2xs neutral-800" lh-none md:mt-auto>
+
+          <!-- We use `v-show` to avoid CLS -->
+          <div v-show="lastUpdated" max-md="col-span-full sticky left-0 w-[calc(100vw-80px)] w-max" flex="~ md:col gap-col-4 gap-row-8 max-md:justify-center" text="f-2xs neutral-800" lh-none md:mt-auto>
             <span>Last updated:</span>
-            <NuxtTime :datetime="lastUpdated" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" />
+            <NuxtTime v-if="lastUpdated" :datetime="lastUpdated" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" />
+            <span v-else>Loading...</span>
           </div>
         </aside>
         <div group relative f-pb-xs>
