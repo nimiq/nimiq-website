@@ -75,17 +75,17 @@ const error = computed(() => {
       </div>
     </DefineMetric>
 
-    <DefinePrice v-slot="{ data: [ts, price], deltaPriceOneDay }">
+    <DefinePrice v-slot="{ data: [ts, historicPrice], deltaPriceOneDay }">
       <div flex="~ col gap-8" relative bg-neutral-0 f="$side $side-min-20 $side-max-24" f-py-xs :class="{ 'top-21 mx-20': !deltaPriceOneDay }">
         <div absolute inset-y-0 left="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-transparent to-neutral-0 to-r" />
         <div absolute inset-y-0 right="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-neutral-0 to-transparent to-r" f-w-md />
         <p text="blue f-3xl" font-semibold lh-none>
-          {{ formatFiat(price, currencyInfo) }}
+          {{ formatFiat(historicPrice, currencyInfo) }}
         </p>
         <NuxtTime v-if="!deltaPriceOneDay" :datetime="ts" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" text="f-2xs right neutral-700" lh-none nq-label />
         <div v-else flex="~ items-center" text="f-2xs neutral-700" font-semibold lh-none>
           <div mr-4 size-8 i-nimiq:triangle-up :class="{ 'rotate-180': deltaPriceOneDay < 0 }" />
-          <span>{{ formatDecimal(Math.abs(deltaPriceOneDay)) }} ({{ formatPercentage(deltaPriceOneDay / price) }})</span>
+          <span>{{ formatDecimal(Math.abs(deltaPriceOneDay)) }} ({{ formatPercentage(deltaPriceOneDay / historicPrice) }})</span>
         </div>
       </div>
     </DefinePrice>
