@@ -36,7 +36,7 @@ function truncate(text: string) {
       <span v-else>Show more</span>
     </button>
     <AccordionRoot v-model="activeValidator" type="single" :collapsible="true" grid="~ cols-[repeat(auto-fit,minmax(200px,469px))] gap-16 justify-center" as="ul" w-full transition-height>
-      <AccordionItem v-for="({ name, address, logo, description, rewardPerAnnum, score, fee, website, dominanceRatio }) in validators" :key="name" as="li" :value="address" style="--reka-accordion-content-height: 130px" relative max-w-full rounded-8 transition>
+      <AccordionItem v-for="({ name, address, logo, description, rewardGainRatio, score, fee, website, dominanceRatio }) in validators" :key="name" as="li" :value="address" style="--reka-accordion-content-height: 130px" relative max-w-full rounded-8 transition>
         <AccordionTrigger rounded="8 data-open:b-0" data-open:border="1 neutral-400 b-transparent" p="x-20 lg:x-24 16" grid="~ cols-[max-content_1fr_max-content] rows-[1fr_max-content] gap-x-16 items-center" :aria-label="`See more details about ${name}`" border="1 transparent" transition="[background-color,border-radius,border]" relative size-full rounded-8 delay-100 data-open:z-11 bg="neutral-200 data-open:neutral-0" @click="handleTriggerClick">
           <img :src="logo" :alt="`${name} logo`" row-span-full h-full w-40 object-contain flex="~ items-center">
           <h3 truncate font-semibold text="f-lg left">
@@ -48,27 +48,29 @@ function truncate(text: string) {
             </div>
             <ValidatorTrustscore v-else-if="score" :score="score.total" show-border row-span-full col-start-3 ml-auto text-14 />
           </transition>
-          <p v-if="rewardPerAnnum" text="f-sm neutral-800 left" col="start-2 span-2" row-start-2 mt-0 font-normal>
-            {{ percentageFormatter.format(rewardPerAnnum) }} p.a.
+          <p v-if="rewardGainRatio" text="f-sm neutral-800 left" col="start-2 span-2" row-start-2 mt-0 font-normal>
+            {{ percentageFormatter.format(rewardGainRatio) }} p.a.
           </p>
         </AccordionTrigger>
         <AccordionContent class="animate-content" p="x-24 t-0 b-24" border="1 neutral-400 t-0" absolute inset-x-0 top-full z-10 z-11 of-y-clip rounded-b-8 bg-neutral-0 pt-8 shadow transition-padding>
           <div absolute inset-x-0 top-0 z-111 h-4 bg-neutral-0 />
           <ValidatorScoreAccordion v-if="score" :score f-mt-md />
-          <div grid="~ cols-[1fr_auto] items-center" text="neutral-700 f-sm" text-neutral font-semibold>
-            <h4 text-16>
-              Estimated yearly rewards
-            </h4>
-            <p v-if="rewardPerAnnum !== undefined" font-semibold text="f-sm neutral right">
-              {{ percentageFormatter.format(rewardPerAnnum) }}
-            </p>
+          <div grid="~ cols-[1fr_auto] items-center" text="neutral-700 f-sm" text-neutral font-semibold f-mt-xs>
+            <template v-if="rewardGainRatio !== undefined">
+              <h4 text-16>
+                Estimated yearly rewards
+              </h4>
+              <p font-semibold text="f-sm neutral right">
+                {{ percentageFormatter.format(rewardGainRatio) }}
+              </p>
+            </template>
             <h5 font-semibold f-text-xs>
               incl. pool fee
             </h5>
             <p text="f-sm neutral-800 right">
               {{ percentageFormatter.format(fee) }}
             </p>
-            <p text="2xs neutral-700" mt-8>
+            <p text="f-2xs neutral-700" mt-8>
               Your rewards are influenced by how many NIM are staked globally and your validator pool's fee.
             </p>
             <div col-span-full h-24 />
@@ -85,7 +87,7 @@ function truncate(text: string) {
             </p>
           </div>
           <template v-if="description || website">
-            <hr w="[calc(100%+48px)]" mx--24 h-1 bg-neutral-300 f-mt-sm>
+            <hr w="[calc(100%+48px)]" mx--24 h-1 bg-neutral-300 f-my-sm>
             <p v-if="description" text="neutral" font-500>
               &ldquo;{{ description }}&rdquo;
             </p>

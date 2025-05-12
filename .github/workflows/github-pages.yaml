@@ -1,46 +1,46 @@
-name: Deploy to NuxtHub
-on: push
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write # allow pushing to gh-pages
+  id-token: write # if you ever need OIDC
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   deploy:
-    name: Deploy to NuxtHub
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
-      url: ${{ steps.deploy.outputs.deployment-url }}
-    permissions:
-      contents: read
-      id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
-      - name: Install Node.js
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22'
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
         env:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
 
-      - name: Ensure NuxtHub module is installed
-        run: pnpx nuxthub@latest ensure
+      - name: Static HTML export with Nuxt
+        run: pnpm run build:github-pages --preset github_pages --prerender
         env:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
-
-      - name: Set environment type
-        run: echo "NUXTHUB_ENV=${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}" >> $GITHUB_ENV
-
-      - name: Build application
-        run: pnpm build:nuxthub
-        env:
-          # Secret variables
           NUXT_ALBATROSS_NODE_RPC_URL: ${{ secrets.NUXT_ALBATROSS_NODE_RPC_URL }}
           NUXT_PUBLIC_SUPABASE_KEY: ${{ secrets.NUXT_PUBLIC_SUPABASE_KEY }}
           NUXT_ZOHO_CLIENT_ID: ${{ secrets.NUXT_ZOHO_CLIENT_ID }}
@@ -48,9 +48,6 @@ jobs:
           NUXT_ZOHO_CODE: ${{ secrets.NUXT_ZOHO_CODE }}
           NUXT_ZOHO_LISTKEY: ${{ secrets.NUXT_ZOHO_LISTKEY }}
           NUXT_ZOHO_REFRESH_TOKEN: ${{ secrets.NUXT_ZOHO_REFRESH_TOKEN }}
-          PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
-
-          # Variables
           NUXT_ALBATROSS_LIVEVIEW_TX_FEE: ${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_FEE }}
           NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT: ${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT }}
           NUXT_ALBATROSS_LIVEVIEW_TX_VALUE: ${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_VALUE }}
@@ -62,8 +59,15 @@ jobs:
           NUXT_ZOHO_REQUEST_URL: ${{ vars.NUXT_ZOHO_REQUEST_URL }}
           NUXT_ZOHO_SCOPE: ${{ vars.NUXT_ZOHO_SCOPE }}
 
-      - name: Deploy to NuxtHub
-        uses: nuxt-hub/action@v1
-        id: deploy
+      - name: Deploy to gh-pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          project-key: nimiq-website-iem5
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.output/public
+          publish_branch: gh-pages # default is “gh-pages” anyway
+          force_orphan: true # orphan the branch so it only contains your latest build
+          allow_empty_commit: true # in case nothing changed
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: ${{ github.event.head_commit.message }}

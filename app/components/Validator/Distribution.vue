@@ -42,7 +42,7 @@ const data = computed(() => {
               <span text="f-sm neutral-800" lh-none>
                 {{ percentageFormatter.format(value) }}
               </span>
-              <p text="green f-xs" font-bold lh-none>
+              <p v-if="balance > 0" text="green f-xs" font-bold lh-none>
                 {{ amountFormatter.format(balance / 1e5) }} NIM
               </p>
             </div>

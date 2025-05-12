@@ -12,24 +12,23 @@ const { data: post } = await useAsyncData('blog_page', () => client.getByUID('bl
     throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
   }))
 
-if (!post.value || (!import.meta.dev && post.value?.data.draft)) {
+const { showDrafts } = useRuntimeConfig().public
+
+if (!post.value || (!showDrafts && post.value?.data.draft)) {
   console.error(`Blog post with slug "${postSlug.value}" not found`)
   throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
 }
 
-const { readingTime, meta, draft /* , image */ } = useProse(post.value!)
+const { readingTime, meta, draft, image } = getBlogMetadata(post.value!)
 
 useHead(meta)
 useSeoMeta({ ...meta, twitterTitle: meta.title, twitterDescription: meta.description, twitterCard: 'summary_large_image' })
 
-// defineOgImage({
-//   alt: image.alt || '',
-//   url: image.url || '',
-//   width: image.dimensions!.width,
-//   height: image.dimensions!.height,
-// })
-
-// TODO This is always false
+setOgImage({
+  title: meta.title,
+  subline: meta.description,
+  image,
+})
 
 const articleRef = ref<HTMLElement>()
 useIntersectionObserver(articleRef, () => {
@@ -37,12 +36,16 @@ useIntersectionObserver(articleRef, () => {
 })
 
 useDark()
+
+if (post.value.data.body.at(0)?.primary)
+  // @ts-expect-error The background color is always present in this case
+  post.value.data.body[0]!.primary.bgColor = 'grey'
 </script>
 
 <template>
   <NuxtLayout v-if="post">
     <div ref="articleRef">
-      <LockBadge v-if="draft" fixed bottom-32 right-32 z-102 />
+      <PageInfo :draft fixed bottom-32 right-32 z-102 />
 
       <header data-section max-w="$nq-prose-max-width" pt="148 md:153 lg:160" px="32 lg:64">
         <PrismicText wrapper="h1" :field="post.data.title" style="--nq-font-size-min: 32;--nq-font-size-max: 40" view-transition-post-title />
@@ -55,10 +58,10 @@ useDark()
             </p>
           </template>
         </ArticleMetadata>
-        <PrismicImage :field="post.data.image" mx-auto mt-104 max-w-1440 w-full rounded-8 object-contain view-transition-post-img />
+        <PrismicImage :field="post.data.image" mx-auto mt-104 w-full rounded-8 object-contain view-transition-post-img />
       </header>
     </div>
-    <SliceZone pt="80 lg:96" :slices="post?.data.body ?? []" :components />
+    <SliceZone :slices="post?.data.body ?? []" :components />
     <Disclaimer />
   </NuxtLayout>
 </template>

@@ -3,7 +3,7 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-light.svg">
-      <img alt="Nimiq" src="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-light.svg" width="350" height="70" style="max-width: 100%;">
+      <img alt="Nimiq" src="https://raw.githubusercontent.com/nimiq/nimiq-website/HEAD/.github/logo-light.svg" width="401" height="54" style="max-width: 100%;">
     </picture>
   </a>
 </p>
@@ -13,12 +13,12 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/deploy-preview.yaml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/deploy-preview.yaml/badge.svg" alt="Deploy Status"></a>
-  <!-- TODO Api deployment -->
+    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/github-pages.yaml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/github-pages.yaml/badge.svg" alt="GitHub pages Status"></a>
+    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yml/badge.svg" alt="API Status"></a>
 </p>
 
 <p align="center">
-    <a href="https://nimiq.github.io/nimiq-website/">Preview</a>
+    <a href="https://nimiq.github.io/nimiq-website/">GitHub Pages</a>
     <a href="https://nimiq.com">Production</a>
 </p>
 
@@ -52,6 +52,55 @@ The project uses environment variables for configuration. You can find an exampl
 cp .env.example .env
 ```
 
+### Runtime Environments
+
+The website can be built for different runtime environments, each with its own configuration. The environment is set using the `NUXT_ENVIRONMENT` variable:
+
+- `local`: Development environment (default when running `pnpm dev`)
+- `production`: Production environment (nimiq.com)
+- `github-pages`: GitHub Pages preview environment
+- `nuxthub-production`: NuxtHub production environment
+- `nuxthub-preview`: NuxtHub preview environment
+- `internal-static`: Internal static site that mirrors production (no drafts shown)
+- `internal-static-drafts`: Internal static site with draft content visible
+
+The build commands in `package.json` are set up to use these environments:
+
+```bash
+# Production build
+pnpm build
+
+# GitHub Pages build
+pnpm build:github-pages
+
+# NuxtHub builds (uses NUXTHUB_ENV to determine production/preview)
+pnpm build:nuxthub
+
+# Internal static builds
+pnpm build:internal-static
+pnpm build:internal-static-drafts
+```
+
+#### Environment-specific Configuration
+
+The runtime configuration includes environment-specific flags that can be accessed in your components:
+
+```typescript
+const {
+  name, // Typed as EnvironmentName
+  isLocal,
+  isProduction,
+  isGitHubPages,
+  isNuxthubProduction,
+  isNuxthubPreview,
+  isInternalStatic,
+  isInternalStaticDrafts,
+} = useRuntimeConfig().public.environment
+
+// Draft content visibility: True in local and internal-static-drafts environments
+const { showDrafts } = useRuntimeConfig().public
+```
+
 ### CSS System: UnoCSS
 
 We use UnoCSS instead of TailwindCSS for more flexibility. Key features include:
@@ -60,7 +109,7 @@ We use UnoCSS instead of TailwindCSS for more flexibility. Key features include:
 - [Nimiq icons](https://nimiq.com/icons): Custom icon set
 - [Attributify mode](https://unocss.dev/features/attributify): Supports both traditional class strings and attribute syntax
 - Custom presets (via [`unocss-preset-onmax`](https://github.com/onmax/unocss-preset-onmax)):
-  - [Reka preset](https://reka-ui.com): Provides variants like data-open:bg-pink → data-[state:open]:bg-pink
+  - [Reka preset](https://reka-ui.com): Provides variants like reka-open:bg-pink → data-[state:open]:bg-pink
   - [Fluid sizing](https://github.com/onmax/unocss-preset-fluid-sizing): Use `f-pt-md` for responsive padding that scales between breakpoints
   - Scale px: Different from Tailwind, p-4 equals 4px not 16px
 

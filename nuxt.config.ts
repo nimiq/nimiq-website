@@ -1,11 +1,45 @@
 import process from 'node:process'
+import { defineNuxtModule } from '@nuxt/kit'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
+import { getDynamicPages } from './shared/utils/crawler'
 import { repositoryName } from './slicemachine.config.json'
+
+// Define allowed environment types
+type EnvironmentName = 'local' | 'production' | 'github-pages' | 'nuxthub-production' | 'nuxthub-preview' | 'internal-static' | 'internal-static-drafts'
+
+const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
+if (!prismicAccessToken)
+  throw new Error('PRISMIC_ACCESS_TOKEN is not defined')
+
+const rawEnv = process.env.NUXT_ENVIRONMENT
+const env: EnvironmentName = rawEnv ?? (process.env.NODE_ENV === 'development' ? 'local' : undefined as any) // default to local in dev
+if (!env)
+  process.env.NUXT_ENVIRONMENT = 'production'
+
+const isLocal = env === 'local'
+const isNuxthubPreview = env === 'nuxthub-preview'
+const isNuxthubProduction = env === 'nuxthub-production'
+const isGitHubPages = env === 'github-pages'
+const isInternalStatic = env === 'internal-static'
+const isInternalDrafts = env === 'internal-static-drafts'
+const isProduction = env === 'production'
+const showDrafts = isLocal || isInternalDrafts
+
+if (isGitHubPages) {
+  process.env.NUXT_PUBLIC_API_ENDPOINT = 'https://api.nimiq.dev'
+  process.env.NUXT_APP_BASE_URL = '/nimiq-website/'
+}
+
+if (isLocal && !process.env.NUXT_PUBLIC_API_ENDPOINT) {
+  process.env.NUXT_PUBLIC_API_ENDPOINT = '' // default to local API
+}
+
+const useNuxtHub = isLocal || isNuxthubPreview || isNuxthubProduction
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-08-31',
+  compatibilityDate: '2025-05-05',
 
   future: {
     compatibilityVersion: 4,
@@ -19,13 +53,42 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'reka-ui/nuxt',
     // '@nuxtjs/seo',
-    '@nuxthub/core',
+    useNuxtHub as true ? '@nuxthub/core' : null,
     '@nuxtjs/prismic',
     // '@nuxtjs/critters',
+    'nuxt-og-image',
     '@nuxtjs/device',
     '@nuxt/fonts',
-    'hero-motion/nuxt',
     '@pinia/colada-nuxt',
+    '@nuxtjs/sitemap',
+    'nuxt-module-feed',
+
+    defineNuxtModule({
+      meta: { name: 'nuxt-prerender-routes' },
+      hooks: {
+        'nitro:build:before': async (nitro) => {
+          let pages = await getDynamicPages({ prismicAccessToken: prismicAccessToken as string, showDrafts })
+          // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
+          if (isNuxthubPreview || isNuxthubProduction)
+            pages = pages.slice(0, 95)
+          nitro.options.prerender.routes = pages
+        },
+      },
+    }),
+    'nuxt-module-feed',
+
+    defineNuxtModule({
+      meta: { name: 'nuxt-prerender-routes' },
+      hooks: {
+        'nitro:build:before': async (nitro) => {
+          let pages = await getDynamicPages({ prismicAccessToken: prismicAccessToken as string, showDrafts })
+          // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
+          if (isNuxthubPreview || isNuxthubProduction)
+            pages = pages.slice(0, 95)
+          nitro.options.prerender.routes = pages
+        },
+      },
+    }),
   ],
 
   devtools: { enabled: true },
@@ -46,7 +109,7 @@ export default defineNuxtConfig({
       topLevelAwait(),
     ],
     optimizeDeps: {
-      exclude: ['@nimiq/core', '*.wasm', 'hero-motion'],
+      exclude: ['@nimiq/core', '*.wasm'],
     },
     worker: {
       plugins: () => [
@@ -63,21 +126,17 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  // site: {
-  //   url: 'https://nimiq.com',
+  site: {
+    url: 'https://nimiq.com',
 
-  //   // These are just default values and they should be overwritten by the page
-  //   name: 'Nimiq',
-  //   description: 'The most accepted cryptocurrency in the world',
-  // },
+    // These are just default values and they should be overwritten by the page
+    name: 'Nimiq',
+    description: 'The most accepted cryptocurrency in the world',
+  },
 
-  // sitemap: {
-  // Read more in ./modules/prerender-routes.ts
-  // },
-
-  // ogImage: {
-  //   fonts: ['Mulish:700'],
-  // },
+  sitemap: {
+    urls: async () => getDynamicPages({ prismicAccessToken }),
+  },
 
   // TODO Remove this option
   unocss: {
@@ -119,6 +178,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    prismicAccessToken: process.env.PRISMIC_ACCESS_TOKEN,
     albatross: {
       nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
       liveview: {
@@ -139,6 +199,17 @@ export default defineNuxtConfig({
         url: process.env.NUXT_PUBLIC_SUPABASE_URL,
         key: process.env.NUXT_PUBLIC_SUPABASE_KEY,
       },
+      environment: {
+        name: env,
+        isLocal,
+        isGitHubPages,
+        isNuxthubPreview,
+        isNuxthubProduction,
+        isInternalStatic,
+        isInternalDrafts,
+        isProduction,
+      },
+      showDrafts,
     },
     zoho: {
       requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
@@ -151,9 +222,9 @@ export default defineNuxtConfig({
     },
   },
 
+  // eslint-disable-next-line ts/ban-ts-comment
+  // @ts-ignore Hub is dynamic
   hub: {
-    workers: true,
-
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,
     cache: true,
@@ -222,10 +293,22 @@ export default defineNuxtConfig({
     },
   },
 
+  ogImage: {
+    // will fetch the fonts from google at build time
+    fonts: ['Mulish:400', 'Mulish:700'],
+  },
+
   // robots: {
   //   // https://nuxtseo.com/robots/api/config
   //   disallow: ['/iframes'],
-  //   sitemap: '/sitemap.xml',
-  // },
+  // }
+
+  feed: {
+    sources: [
+      { path: '/feed.xml', type: 'rss2', cacheTime: 0 },
+      { path: '/atom.xml', type: 'atom1', cacheTime: 0 },
+      { path: '/feed.json', type: 'json1', cacheTime: 0 },
+    ],
+  },
 
 })

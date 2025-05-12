@@ -177,6 +177,23 @@
             "allowText": true,
             "repeat": false
           }
+        },
+        "links": {
+          "type": "Link",
+          "config": {
+            "label": "links",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true,
+            "variants": [
+              "nq-pill-blue",
+              "nq-pill-secondary",
+              "nq-pill-tertiary",
+              "video"
+            ]
+          }
         }
       },
       "items": {
@@ -275,6 +292,23 @@
               "blue-dark"
             ]
           }
+        },
+        "links": {
+          "type": "Link",
+          "config": {
+            "variants": [
+              "nq-pill-blue",
+              "nq-pill-secondary",
+              "nq-pill-tertiary",
+              "video"
+            ],
+            "repeat": true,
+            "allowText": true,
+            "allowTargetBlank": true,
+            "select": null,
+            "placeholder": "",
+            "label": "links"
+          }
         }
       },
       "items": {},
@@ -368,6 +402,23 @@
             "thumbnails": []
           },
           "type": "Image"
+        },
+        "links": {
+          "type": "Link",
+          "config": {
+            "label": "links",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false,
+            "variants": [
+              "nq-pill-blue",
+              "nq-pill-secondary",
+              "nq-pill-tertiary",
+              "video"
+            ]
+          }
         }
       },
       "items": {},
@@ -661,105 +712,6 @@
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     },
     {
-      "id": "tokenomicsHero",
-      "name": "TokenomicsHero",
-      "docURL": "...",
-      "version": "sktwi1xtmkfgx8626",
-      "description": "HeroSection",
-      "primary": {
-        "backgroundColor": {
-          "type": "Select",
-          "config": {
-            "label": "Background Color",
-            "placeholder": "",
-            "options": [
-              "grey",
-              "white"
-            ]
-          }
-        },
-        "label": {
-          "type": "Text",
-          "config": {
-            "label": "Label",
-            "placeholder": ""
-          }
-        },
-        "headline": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Headline",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "heading1,heading2,heading3,heading4,strong,heading6,heading5,em,hyperlink"
-          }
-        },
-        "description": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Description",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,strong,em,hyperlink,embed,list-item,o-list-item,rtl"
-          }
-        },
-        "buttonLabel": {
-          "type": "Text",
-          "config": {
-            "label": "Button Label",
-            "placeholder": ""
-          }
-        },
-        "buttonHref": {
-          "type": "Link",
-          "config": {
-            "label": "Button Href",
-            "placeholder": "",
-            "select": null
-          }
-        },
-        "priceLabel": {
-          "type": "Text",
-          "config": {
-            "label": "Price Label",
-            "placeholder": ""
-          }
-        },
-        "circulatingSupplyLabel": {
-          "type": "Text",
-          "config": {
-            "label": "Circulating Supply Label",
-            "placeholder": ""
-          }
-        },
-        "marketCapLabel": {
-          "type": "Text",
-          "config": {
-            "label": "Market Cap Label",
-            "placeholder": ""
-          }
-        },
-        "24hTradingVolumeLabel": {
-          "type": "Text",
-          "config": {
-            "label": "24h Trading Volume Label",
-            "placeholder": ""
-          }
-        },
-        "disclaimer": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Disclaimer",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-          }
-        }
-      },
-      "items": {},
-      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
-    },
-    {
       "id": "heroSectionWithImage",
       "name": "Hero Section With Image",
       "docURL": "...",
@@ -971,6 +923,23 @@
             "allowTargetBlank": true,
             "select": null,
             "allowText": true
+          }
+        },
+        "links": {
+          "type": "Link",
+          "config": {
+            "label": "links",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true,
+            "variants": [
+              "nq-pill-blue",
+              "nq-pill-secondary",
+              "nq-pill-tertiary",
+              "video"
+            ]
           }
         }
       },
