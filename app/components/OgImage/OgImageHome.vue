@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { title = 'The World’s Most Accepted Crypto' } = defineProps<{ title: string, subline?: string }>()
+const { title = 'The World’s Most Accepted Crypto' } = defineProps<{ title?: string, subline?: string }>()
 </script>
 
 <template>
