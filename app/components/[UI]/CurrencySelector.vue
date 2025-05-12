@@ -70,7 +70,7 @@ function displayValue(value: FiatCurrency) {
     <ComboboxAnchor w-max inline-flex="~ items-center justify-between gap-5">
       <ComboboxTrigger flex="~ gap-3 items-center" rounded-4 bg-transparent px-6 py-3 transition-colors>
         <slot name="trigger" v-bind="{ selectedCurrency }">
-          <span f-text="12/16" nq-label>
+          <span f-text="12/16" text-current nq-label>
             {{ selectedCurrency.toLocaleUpperCase() }}
           </span>
           <div size-7 op-60 i-nimiq:triangle-down />
@@ -79,18 +79,27 @@ function displayValue(value: FiatCurrency) {
     </ComboboxAnchor>
 
     <ComboboxContent will-change="[opacity,transform]" reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade absolute top-0 z-10 max-h-256 w-168 of-hidden overscroll-none font-normal>
-      <ComboboxViewport outline="1.5 ~ offset--1.5 white/10" of-y-auto rounded-4 px-4 pb-4 bg-gradient-neutral flex="~ col">
-        <label flex="~ items-center gap-12" w-full px-8 py-13>
+      <ComboboxViewport outline="1.5 ~ offset--1.5 white/10" rounded-4 bg-neutral px-4 pb-4 flex="~ col">
+        <label flex="~ items-center gap-12" w-full px-8 pb-6 pt-13>
           <div text-neutral-800 i-nimiq:magnifying-glass />
           <ComboboxInput placeholder="Search" text="16 white" w-full flex-1 bg-transparent lh-none outline-none :display-value />
         </label>
-        <hr mb-6 h-1.5 w-full rounded-2 border="white/6">
-        <ComboboxItem v-for="option in options" :key="option.value" :value="option.value" flex="~ items-center gap-8" bg="hocus:white/10 reka-active:white/10" rounded-2 p-8 transition-colors>
-          <div :class="option.icon" size-20 shrink-0 />
-          <span text="f-sm white/95" lh-none>
-            {{ option.value.toLocaleUpperCase() }}
-          </span>
-        </ComboboxItem>
+        <!-- <hr mb-6 h-1.5 w-full rounded-2 border="white/6"> -->
+        <ScrollAreaRoot relative h-full flex-1 of-hidden bg-neutral var:scrollbar-size:10px>
+          <div absolute top-0 z-2 h-16 w-full bg-gradient="to-t from-transparent to-neutral" />
+          <ScrollAreaViewport h-218 w-full py-16>
+            <ComboboxItem v-for="option in options" :key="option.value" :value="option.value" flex="~ items-center gap-8" bg="hocus:white/10 reka-active:white/10" rounded-2 p-8 transition-colors>
+              <div :class="option.icon" size-20 shrink-0 />
+              <span text="f-sm white/95" lh-none>
+                {{ option.value.toLocaleUpperCase() }}
+              </span>
+            </ComboboxItem>
+          </ScrollAreaViewport>
+          <ScrollAreaScrollbar flex="~" bg="neutral-900" inset-y-0 z-20 w-10 touch-none select-none p-2 orientation="vertical">
+            <ScrollAreaThumb relative flex-1 rounded-5 bg-neutral-700 content-empty before="absolute top--50% left--50% -translate-x--50% -translate-y--50% size-full min-h-40 min-w-40" />
+          </ScrollAreaScrollbar>
+          <div absolute bottom-0 z-2 h-16 w-full bg-gradient="to-b from-transparent to-neutral" />
+        </ScrollAreaRoot>
       </ComboboxViewport>
       <ComboboxArrow />
     </ComboboxContent>

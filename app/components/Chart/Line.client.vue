@@ -27,7 +27,7 @@ function tooltip(v: T) {
     <VisArea color="url('assets/vertical-stripes.svg#vertical-stripes')" :x :y />
     <VisLine :x :y color="rgb(var(--nq-green))" />
     <VisTooltip :vertical-shift="1000" />
-    <VisAxis type="x" :tick-text-width="50" :grid-line="false" :tick-format />
+    <VisAxis type="x" :grid-line="false" :tick-format />
     <VisCrosshair data-crosshair color="rgb(var(--nq-blue))" :template="tooltip" />
   </VisXYContainer>
 </template>
@@ -59,9 +59,7 @@ function tooltip(v: T) {
   --vis-axis-tick-color: rgb(var(--nq-neutral-500) / 1);
   --vis-axis-domain-color: rgb(var(--nq-neutral-500) / 1);
   --vis-axis-tick-label-color: rgb(var(--nq-neutral-700) / 1);
-  --vis-axis-label-color: #6c778c;
   --vis-axis-tick-label-font-size: 11px;
-  --vis-axis-tick-label-text-decoration: uppercase;
 
   @screen md {
     --vis-axis-tick-label-font-size: 12px;

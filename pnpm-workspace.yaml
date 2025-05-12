@@ -12,11 +12,6 @@ catalogs:
     vite-plugin-top-level-await: ^1.5.0
     vite-plugin-wasm: ^3.4.1
     wrangler: ^4.14.4
-  docs:
-    '@slicemachine/adapter-nuxt': ^0.3.76
-    nuxt-og-image: ^5.1.3
-
-    slice-machine-ui: ^2.15.3
 
   frontend:
     '@popperjs/core': ^2.11.8
@@ -26,11 +21,7 @@ catalogs:
     '@vueuse/router': ^13.1.0
     medium-zoom: ^1.1.0
     reka-ui: ^2.2.1
-
     vaul-vue: ^0.4.1
-
-  integrations:
-    '@prismicio/client': ^7.17.2
 
   lint:
     '@antfu/eslint-config': ^4.13.0
@@ -52,8 +43,14 @@ catalogs:
     '@nuxtjs/sitemap': ^7.2.10
     nuxt: ^3.17.2
     nuxt-module-feed: ^1.1.4
+    nuxt-og-image: ^5.1.3
     unplugin-vue-router: ^0.12.0
 
+  prismic:
+    '@prismicio/client': ^7.17.2
+
+    '@slicemachine/adapter-nuxt': ^0.3.76
+    slice-machine-ui: ^2.15.3
   prod:
     '@nimiq/core': ^2.1.0
     '@nimiq/utils': ^0.12.3
@@ -84,6 +81,7 @@ catalogs:
     '@iconify/vue': ^5.0.0
     '@pinia/colada': ^0.15.3
     '@pinia/colada-nuxt': ^0.1.3
+    '@pinia/colada-plugin-delay': ^0.0.6
     '@pinia/nuxt': ^0.11.0
     '@vueuse/core': ^13.1.0
     '@vueuse/nuxt': ^13.1.0
