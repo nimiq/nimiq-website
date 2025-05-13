@@ -1,5 +1,8 @@
-import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
-import { BlockType, NimiqRPCClient } from 'nimiq-rpc-client-ts'
+import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts/types'
+import { initRpcClient } from 'nimiq-rpc-client-ts/config'
+import { getBlockByNumber, getBlockNumber } from 'nimiq-rpc-client-ts/http'
+import { BlockType } from 'nimiq-rpc-client-ts/types'
+import { subscribeForHeadBlock } from 'nimiq-rpc-client-ts/ws'
 
 /**
  * This WebSocket handler provides real-time block updates for the Albatross Liveview blockchain.
@@ -27,14 +30,12 @@ export default defineWebSocketHandler({
       closeFn()
 
     const nodeRpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
-    const client = new NimiqRPCClient(nodeRpcUrl)
+    initRpcClient({ url: nodeRpcUrl })
 
     // Subscribe to new blocks
-    const { next: nextBlock, close } = await client.blockchainStreams.subscribeForBlocks()
-    closeFn = close
-
-    // Handler for incoming blocks
-    nextBlock(async ({ data: block }) => {
+    const eventEmitter = await subscribeForHeadBlock(false)
+    eventEmitter.addEventListener('data', async (event: CustomEvent) => {
+      const { data: block } = event.detail
       if (block) {
         const processedBlock = await (block.type === BlockType.Micro ? getMicroblock(block) : getMacroblock(block as MacroBlock))
         if (shouldEnqueue)
@@ -43,18 +44,19 @@ export default defineWebSocketHandler({
           peer.send(JSON.stringify(processedBlock))
       }
     })
+    eventEmitter.addEventListener('close', () => close())
 
     // Fetch initial blocks
-    const { data: head } = await client.blockchain.getBlockNumber()
-    if (!head)
-      throw createError({ status: 500, message: 'Failed to get block number' })
+    const [isOk, error, head] = await getBlockNumber()
+    if (!isOk)
+      throw createError({ status: 500, message: `Failed to get block number: ${error}` })
     const promises = []
     for (let i = 0; i < BLOCKS_WINDOW_SIZE; i++) {
       const blockNumber = head - i
       promises.unshift(
-        client.blockchain.getBlockByNumber(blockNumber, { includeTransactions: true }).then(async ({ data: block, error }) => {
-          if (!block || error)
-            throw createError({ status: 500, message: `Failed to get block ${blockNumber}` })
+        getBlockByNumber({ blockNumber, includeBody: true }).then(async ([isOk, error, block]) => {
+          if (!isOk)
+            throw createError({ status: 500, message: `Failed to get block ${blockNumber}: ${error}` })
           return await (block.type === BlockType.Macro ? getMacroblock(block as MacroBlock) : getMicroblock(block))
         }),
       )
@@ -100,7 +102,7 @@ async function getMicroblock(block: MicroBlock): Promise<LiveviewMicroBlock> {
 async function getMacroblock(block: MacroBlock): Promise<LiveviewMacroBlock> {
   const { transactions, justification, batch, number, timestamp } = block
   const unmatchedTxs = transactions.map(tx => tx.hash.substring(0, 8))
-  const votes = justification.sig.signers.length
+  const votes = justification?.sig.signers.length || 0
   const kind = LiveviewBlockType.MacroBlock
   lastBlockTimestamp = timestamp
   return { unmatchedTxs, votes, batch, kind, number }

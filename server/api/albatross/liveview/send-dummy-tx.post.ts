@@ -1,5 +1,6 @@
 import { Address, KeyPair, PrivateKey, TransactionBuilder } from '@nimiq/core'
-import { NimiqRPCClient } from 'nimiq-rpc-client-ts'
+import { initRpcClient } from 'nimiq-rpc-client-ts/config'
+import { sendRawTransaction } from 'nimiq-rpc-client-ts/http'
 import * as v from 'valibot'
 
 const bodySchema = v.object({
@@ -13,7 +14,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: JSON.stringify(issues) })
 
   const { liveview: { privateKey, txRecipient, txValue = 500, txFee = 500 }, nodeRpcUrl } = useRuntimeConfig().albatross
-  const client = new NimiqRPCClient(nodeRpcUrl)
+  initRpcClient({ url: nodeRpcUrl })
 
   const keyPair = KeyPair.derive(PrivateKey.fromHex(privateKey))
   const fee = BigInt(txFee)
@@ -26,8 +27,8 @@ export default defineEventHandler(async (event) => {
   tx.sign(keyPair)
   const txHash = tx.hash()
 
-  const { error } = await client.consensus.sendRawTransaction({ rawTransaction: tx.toHex() })
-  if (error)
+  const [isOk, error] = await sendRawTransaction({ rawTransaction: tx.toHex() })
+  if (!isOk)
     throw createError({ statusCode: 400, statusMessage: JSON.stringify(error) })
 
   // eslint-disable-next-line no-console

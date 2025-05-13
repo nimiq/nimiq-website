@@ -130,8 +130,8 @@ catalogs:
       specifier: ^0.12.3
       version: 0.12.3
     nimiq-rpc-client-ts:
-      specifier: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575
-      version: 0.4.1
+      specifier: ^1.0.0-beta.22
+      version: 1.0.0-beta.22
     valibot:
       specifier: ^1.1.0
       version: 1.1.0
@@ -365,7 +365,7 @@ importers:
         version: 1.0.0-beta.22
       nimiq-rpc-client-ts:
         specifier: catalog:prod
-        version: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+        version: 1.0.0-beta.22(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
       nuxt-module-feed:
         specifier: catalog:nuxt
         version: 1.1.4(magicast@0.3.5)(rollup@4.40.2)
@@ -5179,6 +5179,11 @@ packages:
     resolution: {integrity: sha512-LpB/54B+/2J5hqQ7imZHfdU31OlgQqx7ZicVlkm9kzg9/w8GKLEcFfJl/t7DCEDueOyBAD6zCCwTO6Fzs0NoEQ==}
     engines: {node: '>=16'}
 
+  isomorphic-ws@5.0.0:
+    resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
+    peerDependencies:
+      ws: '*'
+
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
@@ -5864,9 +5869,8 @@ packages:
   nimiq-icons@1.0.0-beta.22:
     resolution: {integrity: sha512-Tdf47rtQ8RbD39ZsWIt+/LGg0CUxHbBPaWK/RHVNw+g/Uze/xErJOj3WLkgWGvOtecHBPy6xFzQSEeGC+eYHhw==}
 
-  nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575:
-    resolution: {tarball: https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575}
-    version: 0.4.1
+  nimiq-rpc-client-ts@1.0.0-beta.22:
+    resolution: {integrity: sha512-Ag0z19jFQC3KRNZ0nY6EyRnjTUFPNqeaKq26JUUXsEol1Ryp13PI3J0yjwA/zpjXA98Aalt9fUuclEMXTCxX9Q==}
 
   nitro-cloudflare-dev@0.2.2:
     resolution: {integrity: sha512-aZfNTVdgXPQeAmXW0Tw8hm3usAHr4qVG4Bg3WhHBGeZYuXr9OyT04Ztb+STkMzhyaXvfMHViAaPUPg06iAYqag==}
@@ -13760,6 +13764,10 @@ snapshots:
 
   isexe@3.1.1: {}
 
+  isomorphic-ws@5.0.0(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)):
+    dependencies:
+      ws: 8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+
   jackspeak@3.4.3:
     dependencies:
       '@isaacs/cliui': 8.0.2
@@ -14636,12 +14644,11 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  nimiq-rpc-client-ts@https://pkg.pr.new/onmax/albatross-rpc-client-ts/nimiq-rpc-client-ts@7618575(bufferutil@4.0.9)(utf-8-validate@5.0.10):
+  nimiq-rpc-client-ts@1.0.0-beta.22(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)):
     dependencies:
-      ws: 8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      isomorphic-ws: 5.0.0(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
     transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
+      - ws
 
   nitro-cloudflare-dev@0.2.2:
     dependencies:
