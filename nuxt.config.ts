@@ -293,8 +293,6 @@ export default defineNuxtConfig({
   feed: {
     sources: [
       { path: '/feed.xml', type: 'rss2', cacheTime: 0 },
-      { path: '/atom.xml', type: 'atom1', cacheTime: 0 },
-      { path: '/feed.json', type: 'json1', cacheTime: 0 },
     ],
   },
 
