@@ -1,5 +1,5 @@
 import type { Query } from '@prismicio/client'
-import type { BlogPageDocument } from '~~/prismicio-types'
+import type { BlogPageDocument, PageDocument } from '~~/prismicio-types'
 import { filter } from '@prismicio/client'
 import { $fetch } from 'ofetch'
 import { repositoryName } from '../../slicemachine.config.json'
@@ -25,8 +25,15 @@ async function getPages(url: URL) {
   let page: number = 1
   while (true) {
     url.searchParams.set('page', page.toString())
-    const { next_page, results } = await $fetch<Query<BlogPageDocument>>(url.href)
-    prerenderPaths.push(...results.map(({ uid }) => `/${uid}`))
+    const { next_page, results } = await $fetch<Query<PageDocument>>(url.href)
+    prerenderPaths.push(...results.map(({ uid, data }) => {
+      const hasParents = data.parents.length > 0
+      if (hasParents) {
+        const parent = data.parents.map(parent => (parent as { uid: string }).uid)
+        return `/${parent.join('/')}/${uid}`
+      }
+      return `/${uid}`
+    }))
     if (next_page === null)
       break
     page++

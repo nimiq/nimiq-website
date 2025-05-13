@@ -52,10 +52,8 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     'reka-ui/nuxt',
-    // '@nuxtjs/seo',
     useNuxtHub as true ? '@nuxthub/core' : null,
     '@nuxtjs/prismic',
-    // '@nuxtjs/critters',
     'nuxt-og-image',
     '@nuxtjs/device',
     '@nuxt/fonts',
@@ -68,6 +66,7 @@ export default defineNuxtConfig({
       hooks: {
         'nitro:build:before': async (nitro) => {
           let pages = await getDynamicPages({ prismicAccessToken: prismicAccessToken as string, showDrafts })
+
           // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
           if (isNuxthubPreview || isNuxthubProduction)
             pages = pages.slice(0, 95)
@@ -292,8 +291,6 @@ export default defineNuxtConfig({
   feed: {
     sources: [
       { path: '/feed.xml', type: 'rss2', cacheTime: 0 },
-      { path: '/atom.xml', type: 'atom1', cacheTime: 0 },
-      { path: '/feed.json', type: 'json1', cacheTime: 0 },
     ],
   },
 

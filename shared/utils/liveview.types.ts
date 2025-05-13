@@ -1,4 +1,4 @@
-import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts'
+import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts/types'
 
 export enum LiveviewBlockType {
   MicroBlock = 'micro',

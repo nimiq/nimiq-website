@@ -82,6 +82,7 @@ export default defineWebSocketHandler({
   },
 
   error(_peer, _event) {
+    console.error('Albatross Blocks WebSocket error', _event)
     if (closeFn)
       closeFn()
   },
