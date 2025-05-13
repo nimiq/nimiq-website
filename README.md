@@ -113,11 +113,6 @@ We use UnoCSS instead of TailwindCSS for more flexibility. Key features include:
   - [Fluid sizing](https://github.com/onmax/unocss-preset-fluid-sizing): Use `f-pt-md` for responsive padding that scales between breakpoints
   - Scale px: Different from Tailwind, p-4 equals 4px not 16px
 
-### Deployment
-
-- Frontend: Static site generation with nuxi generate, deployed to our servers via internal action
-- Backend: Small Node.js server hosted at api.nimiq.dev
-
 ### Directory Structure
 
 - `app`: Nuxt application code
@@ -161,3 +156,180 @@ const bgClass = getColorClass(slice.primary.bgColor)
 
 > [!NOTE]
 > It is important that all slices are wrapped in a section tag, so that the css can apply the [correct styles](https://github.com/onmax/nimiq-ui/blob/main/packages/nimiq-css/src/css/static-content.css). The section should have the background color: `bg-neutral-0`, `bg-neutral-100` or `bg-darkblue`.
+
+## Prismic Documents
+
+When you work with Prismic, you will create "documents" in your Prismic repository. We have multiple types of documents, each with its own purpose. Here are the main ones:
+
+- "Pages": These are the main pages of our website. The `uid` field is used to create the URL for the page. For example, if you create a page with the `uid` "about", it will be accessible at `https://nimiq.com/about`.
+- "Posts": These are blog posts. They are created in the same way as pages, but they are displayed in a different section of the website. The `uid` field is also used to create the URL for the post.
+- "Exchanges": These are the exchanges where Nimiq is listed. They are created in the same way as pages, but they are fetched from the Prismic API and displayed in a grid on the website inside the `Exchanges` component.
+- "Apps": In the past "Apps" were the same as "Exchanges", but now they have been migrated to the [nimiq-awesome repo](https://github.com/onmax/nimiq-awesome) for easier management.
+
+### `draft` field
+
+The `draft` field is a boolean field that indicates whether the document is a draft or not. If the `draft` field is set to `true`, the document will be visible only in the local and internal-static-drafts environments. In all other environments, the document will be hidden.
+
+### Special Page Styling
+
+Some pages require special CSS that is only loaded when those specific routes are accessed. This is handled through route middleware in the `[...uid].vue` page component:
+
+```typescript
+// Example from [...uid].vue
+definePageMeta({
+  middleware: [
+    async function (to) {
+      // Special styling for specific pages
+      if (to.path === '/onepager')
+        await import('~/assets/css/onepager.css')
+      // Other conditionally loaded stylesheets can be added here
+    },
+  ],
+})
+```
+
+Additionally, certain pages may have special header styling (dark vs light) based on page data or specific route conditions:
+
+```typescript
+// Logic for dark header styling
+const darkHeader = computed(() => page.value?.data.darkHeader || isHome || uid === 'supersimpleswap')
+```
+
+When creating new pages that need special styling:
+
+1. Add the CSS file in `assets/css/`
+2. Import it conditionally in the middleware function
+3. Consider if it needs special header/footer treatment
+4. Document any unique styling requirements
+
+## Dynamic Page Generation
+
+The website uses a dynamic page generation system powered by our crawler utility to pre-render routes for better performance.
+
+### Crawler Utility
+
+The `crawler.ts` utility located in `shared/utils/` is responsible for:
+
+- Fetching all page and blog documents from Prismic
+- Generating URL paths for static site generation
+- Filtering draft content based on environment settings
+- Supporting pagination for large content sets
+
+This utility is integrated with Nuxt's prerendering system and is called during the build process to ensure all dynamic routes are generated properly.
+
+## API Structure
+
+The project includes both frontend and backend components:
+
+### Frontend API Consumption
+
+- API endpoints can be configured per environment via environment variables
+- The `useRuntimeConfig()` composable provides access to API configuration in components
+- Prismic API is used for content retrieval with authentication
+
+### Backend API (Server)
+
+- Server routes are defined in the `server/` directory
+- API endpoints follow RESTful conventions
+- Server middleware handles CORS and authentication
+- NuxtHub integration provides serverless functions when enabled
+
+## Component Guidelines
+
+### Component Organization
+
+Components are organized in the following structure:
+
+- General components in `components/` root
+- UI components in `components/[UI]/`
+- Background components in `components/[Backgrounds]/`
+- Feature-specific components in dedicated folders (e.g., `components/Wallet/`)
+
+### Best Practices
+
+- Use typed props with Vue's `defineProps`
+- Prefer composables for shared logic
+- Follow the single responsibility principle
+- Document complex components with inline comments
+- Use Prismic slice components for CMS-driven content
+
+## State Management
+
+The project uses Pinia for state management with additional features:
+
+- Stores are located in `app/stores/`
+- The Pinia Colada plugin provides persistence capabilities
+- Use the `useSyncedState` composable for reactive state that syncs across components
+- Environment-specific configuration is available via `useRuntimeConfig()`
+
+### Static Generation vs Client-side Data
+
+We build the website statically. We don't have SSR in production. This influences how we should fetch and manage data:
+
+- **`await useFetch`/`useAsyncData`**: Use for data that's only needed at build time and will be included in the static build
+- **Pinia Colada (`useQuery`)**: Use when we need to fetch new data on every client visit
+- **Pinia stores**: Used primarily for legacy reasons; prefer the approaches above for new code
+
+### Composable-First Approach
+
+> [!IMPORTANT]
+> Before proceeding with a new composable, make sure to check if it already exists in `VueUse`.
+
+It is preferable that all logic is wrapped in a composable, even if that composable is not shared. You can create inline composables within components:
+
+```vue
+<script setup>
+// Inline composable example
+function useMyFeature() {
+  const data = ref<string>()
+  const loading = ref(false)
+
+  const fetchData = async () => {
+    loading.value = true
+    try {
+      data.value = await $fetch('/api/some-endpoint')
+    }
+    finally {
+      loading.value = false
+    }
+  }
+
+  return { data, loading, fetchData }
+}
+
+// Use the composable within the component
+const { data, loading, fetchData } = useMyFeature()
+</script>
+```
+
+This approach helps maintain cleaner, more testable code by:
+
+- Separating concerns
+- Making logic reusable
+- Improving testability
+- Creating clearer component structure
+
+## CI/CD Workflow
+
+The project is deployed through GitHub Actions workflows:
+
+1. PRs trigger preview deployments to GitHub Pages
+2. Merged changes to main deploy to staging
+3. Manual deployment to production.
+
+## Contributing Guidelines
+
+### Pull Request Process
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linters (automatic on PR)
+5. Submit a PR with a clear description. Link to any relevant issues.
+
+### Code Style
+
+- Follow the ESLint configuration
+- Use TypeScript for all new code
+- Document complex functions and components
+- Follow the existing project structure
