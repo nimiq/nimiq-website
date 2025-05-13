@@ -1,14 +1,31 @@
+import type { WebSocketStatus } from '@vueuse/core'
+
 export function useAlbatrossBlocks() {
   // Create state with useState to share between components
   const blocks = useState<LiveviewBlock[]>('albatross-blocks', () => [])
-  const status = useState<string>('albatross-status', () => 'CONNECTING')
+  const status = useState<WebSocketStatus>('albatross-status', () => 'CONNECTING')
 
   // Setup the websocket connection only once
   const wsInitialized = useState<boolean>('albatross-ws-initialized', () => false)
 
   if (!wsInitialized.value) {
-    const url = `${useRuntimeConfig().public.apiDomain}/api/albatross/liveview/blocks`
-    const { status: wsStatus, data } = useWebSocket(url, {
+    const url = `${useRuntimeConfig().public.apiDomain}/albatross/liveview/blocks`
+    const { status, data } = useWebSocket(url, {
+      onError() {
+        console.error('Error connecting to Albatross Blocks WebSocket')
+        status.value = 'CLOSED'
+      },
+      onConnected() {
+        // eslint-disable-next-line no-console
+        console.log('Connected to Albatross Blocks WebSocket')
+        status.value = 'OPEN'
+      },
+      onDisconnected() {
+        // eslint-disable-next-line no-console
+        console.log('Disconnected from Albatross Blocks WebSocket')
+        status.value = 'CLOSED'
+      },
+      immediate: true,
       autoReconnect: {
         retries: 3,
         delay: 1000,
@@ -16,11 +33,6 @@ export function useAlbatrossBlocks() {
           console.error('Failed to connect Blocks EventSource after 3 retries')
         },
       },
-    })
-
-    // Update shared status value from websocket status
-    watch(wsStatus, (newStatus) => {
-      status.value = newStatus
     })
 
     function pushBlock(newBlock: LiveviewBlock) {

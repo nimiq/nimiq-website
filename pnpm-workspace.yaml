@@ -2,22 +2,15 @@ patchedDependencies:
   '@nimiq/utils': patches/@nimiq__utils.patch
 
 catalogs:
-  backend:
-    cookie: ^1.0.2
-    pathe: ^2.0.3
-
   build:
     '@nuxt/kit': ^3.17.2
-    sharp: ^0.34.1
     vite-plugin-top-level-await: ^1.5.0
     vite-plugin-wasm: ^3.4.1
     wrangler: ^4.14.4
 
   frontend:
-    '@popperjs/core': ^2.11.8
     '@unovis/ts': 1.5.1
     '@unovis/vue': 1.5.1
-    '@vueuse/motion': ^3.0.3
     '@vueuse/router': ^13.1.0
     medium-zoom: ^1.1.0
     reka-ui: ^2.2.1
@@ -32,14 +25,17 @@ catalogs:
     lint-staged: ^16.0.0
     simple-git-hooks: ^2.13.0
 
+  nimiq:
+    '@nimiq/core': ^2.1.0
+    '@nimiq/utils': ^0.12.3
+    nimiq-rpc-client-ts: ^1.0.0-beta.23
+
   nuxt:
     '@nuxt/fonts': ^0.11.3
     '@nuxt/image': ^1.10.0
     '@nuxthub/core': ^0.8.27
-    '@nuxtjs/critters': ^0.9.0
     '@nuxtjs/device': ^3.2.4
     '@nuxtjs/prismic': ^4.1.0
-    '@nuxtjs/seo': 3.0.3
     '@nuxtjs/sitemap': ^7.2.10
     nuxt: ^3.17.2
     nuxt-module-feed: ^1.1.4
@@ -48,25 +44,19 @@ catalogs:
 
   prismic:
     '@prismicio/client': ^7.17.2
-
+    '@prismicio/richtext': ^2.1.5
     '@slicemachine/adapter-nuxt': ^0.3.76
     slice-machine-ui: ^2.15.3
-  prod:
-    '@nimiq/core': ^2.1.0
-    '@nimiq/utils': ^0.12.3
-    nimiq-rpc-client-ts: ^1.0.0-beta.22
+
+  server:
     valibot: ^1.1.0
 
-  script:
-    '@iconify/utils': ^2.3.0
-
   types:
-    '@prismicio/richtext': ^2.1.5
     '@types/node': ^22.15.17
-
     typescript: ^5.8.3
 
   unocss:
+    '@iconify/utils': ^2.3.0
     '@unocss/nuxt': ^66.1.1
     '@unocss/reset': ^66.1.1
     nimiq-css: ^1.0.0-beta.22
@@ -78,7 +68,6 @@ catalogs:
 
   vue:
     '@iconify-json/logos': ^1.2.4
-    '@iconify/vue': ^5.0.0
     '@pinia/colada': ^0.15.3
     '@pinia/colada-nuxt': ^0.1.3
     '@pinia/colada-plugin-delay': ^0.0.6
@@ -97,7 +86,6 @@ onlyBuiltDependencies:
   - es5-ext
   - esbuild
   - maplibre-gl
-  - sharp
   - simple-git-hooks
   - unrs-resolver
   - utf-8-validate

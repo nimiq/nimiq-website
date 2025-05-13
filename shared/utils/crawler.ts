@@ -1,9 +1,8 @@
 import type { Query } from '@prismicio/client'
-import type { BlogPageDocument, PageDocument, PageDocumentData } from '~~/prismicio-types'
+import type { BlogPageDocument, PageDocument } from '~~/prismicio-types'
 import { filter } from '@prismicio/client'
 import { $fetch } from 'ofetch'
 import { repositoryName } from '../../slicemachine.config.json'
-import { getUrl } from '../utils/prismic'
 import { getBlogMetadata } from './blog-post'
 
 interface PrerenderPagesOptions {
