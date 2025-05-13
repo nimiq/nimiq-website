@@ -43,7 +43,7 @@ const subline = computed(() => ([{ type: 'paragraph', text: 'Browse the project\
   <NuxtLayout footer-bg-color="grey" draft>
     <HeroDefault :primary="{ headline, subline, bgColor: 'grey' }" />
 
-    <label v-if="isDev" flex="items-center ~ gap-8" ring="1.5 blue/40" fixed bottom-80 right-32 z-100 rounded-full bg-neutral-300 px-12 py-4 text-xs>
+    <label v-if="isDev" flex="items-center ~ gap-8" ring="1.5 blue/40" fixed bottom-80 right-32 z-100 rounded-full bg-neutral-300 px-12 py-4 f-text-xs>
       <input v-model="showEditor" type="checkbox" nq-switch>
       <span text="neutral-800" select-none nq-label>
         Hide editor
@@ -53,24 +53,24 @@ const subline = computed(() => ([{ type: 'paragraph', text: 'Browse the project\
     <section v-if="showEditor" nq-wide>
       <TabsRoot w-full :default-value="layers[0]!.name">
         <TabsList rounded-full bg-neutral-300 p-2 ring="1.5 neutral/5" flex="~ items-center gap-16">
-          <TabsTrigger value="milestones" bg="neutral-300 data-active:neutral" rounded-full px-12 py-8 text="neutral-900 data-active:neutral-0 xs" nq-label>
+          <TabsTrigger value="milestones" bg="neutral-300 data-active:neutral" rounded-full px-12 py-8 text="neutral-900 data-active:neutral-0 f-xs" nq-label>
             Milestones
           </TabsTrigger>
-          <TabsTrigger v-for="item in layers" :key="item.name" :value="item.name" bg="neutral-300 data-active:neutral" rounded-full px-12 py-8 text="neutral-900 data-active:neutral-0 xs" nq-label>
+          <TabsTrigger v-for="item in layers" :key="item.name" :value="item.name" bg="neutral-300 data-active:neutral" rounded-full px-12 py-8 text="neutral-900 data-active:neutral-0 f-xs" nq-label>
             {{ item.name }}
           </TabsTrigger>
         </TabsList>
         <TabsContent nq-mt-12 value="milestones">
           <textarea
             :value="JSON.stringify(milestones, null, 2)"
-            min-h-90vh w-full bg-neutral-100 text-sm font-mono nq-input-box
+            min-h-90vh w-full bg-neutral-100 font-mono nq-input-box f-text-sm
             @input="(e) => milestones = JSON.parse((e.target as HTMLTextAreaElement).value)"
           />
         </TabsContent>
         <TabsContent v-for="(item, i) in layers" :key="item.name" nq-mt-12 :value="item.name">
           <textarea
             :value="JSON.stringify(item, null, 2)"
-            min-h-90vh w-full bg-neutral-100 text-sm font-mono nq-input-box
+            min-h-90vh w-full bg-neutral-100 font-mono nq-input-box f-text-sm
             @input="(e) => layers[i] = JSON.parse((e.target as HTMLTextAreaElement).value)"
           />
         </TabsContent>
