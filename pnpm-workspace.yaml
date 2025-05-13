@@ -78,6 +78,7 @@ catalogs:
     vue: latest
     vue-router: ^4.5.1
 
+    vue-tsc: ^2.2.10
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - '@scarf/scarf'

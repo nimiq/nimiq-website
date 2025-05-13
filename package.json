@@ -81,6 +81,7 @@
     "vite-plugin-wasm": "catalog:build",
     "vue": "catalog:vue",
     "vue-router": "catalog:vue",
+    "vue-tsc": "catalog:vue",
     "wrangler": "catalog:build"
   },
   "simple-git-hooks": {
