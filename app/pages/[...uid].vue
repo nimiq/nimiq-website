@@ -35,8 +35,8 @@ if (isGrandchildPage) {
 definePageMeta({
   middleware: [
     async function (to) {
-      if (to.path === '/supersimpleswap')
-        await import('~/assets/css/bg-blue-sss.css')
+      // if (to.path === '/supersimpleswap')
+      //   await import('~/assets/css/bg-blue-sss.css')
       if (to.path === '/onepager')
         await import('~/assets/css/onepager.css')
     },
