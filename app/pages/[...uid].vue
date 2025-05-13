@@ -12,12 +12,17 @@ const { showDrafts } = useRuntimeConfig().public
 const { client } = usePrismic()
 const { data: page } = await useAsyncData(`prismic-page-${pathParams.join('-')}`, () => client.getByUID('page', uid)
   .catch((error) => {
-    console.error(`Page with UID "${uid}" not found:`, error)
+    console.error(`Page with UID "${uid}" not found in Prismic:`, error)
     throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
   }))
 
-if (!page.value || (!showDrafts && page.value?.data.draft)) {
+if (!page.value) {
   console.error(`Page with UID "${uid}" not found`)
+  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+}
+
+if (!showDrafts && page.value?.data.draft) {
+  console.error(`Page with UID "${uid}" is a draft and showDraft is set to \`${showDrafts}\``)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 

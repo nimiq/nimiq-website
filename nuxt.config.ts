@@ -26,6 +26,10 @@ const isInternalDrafts = env === 'internal-static-drafts'
 const isProduction = env === 'production'
 const showDrafts = isLocal || isInternalDrafts || isNuxthubPreview || isNuxthubProduction || isGitHubPages
 
+console.log('Environment:', env)
+
+console.log('Show drafts:', showDrafts)
+
 if (isGitHubPages) {
   process.env.NUXT_PUBLIC_API_ENDPOINT = 'https://api.nimiq.dev'
   process.env.NUXT_APP_BASE_URL = '/nimiq-website/'
