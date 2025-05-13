@@ -47,8 +47,8 @@ function transformAppToAttributes(app: NimiqApp, labelTeamNimiq: string): NimiqA
 
 export function useApps({ labelTeamNimiq = 'Team Nimiq' }: UseAppsOption = {}) {
   return useAsyncData(async () => {
-    const apps = await $fetch('https://ungh.cc/repos/onmax/nimiq-awesome/files/main/src/data/dist/nimiq-apps.json')
-      .then(res => JSON.parse((res as any).file.contents) as NimiqApp[])
+    const apps = await $fetch('https://raw.githubusercontent.com/onmax/nimiq-awesome/main/src/data/dist/nimiq-apps.json')
+      .then(res => JSON.parse(res as any) as NimiqApp[])
 
     if (!apps)
       throw new Error('Failed to fetch apps')

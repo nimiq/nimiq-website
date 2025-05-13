@@ -67,8 +67,6 @@ export default defineNuxtConfig({
         'nitro:build:before': async (nitro) => {
           let pages = await getDynamicPages({ prismicAccessToken: prismicAccessToken as string, showDrafts })
 
-          console.log(`Prerendering ${pages.length} pages`)
-
           // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
           if (isNuxthubPreview || isNuxthubProduction)
             pages = pages.slice(0, 95)

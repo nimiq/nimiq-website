@@ -3,14 +3,14 @@ import { components } from '~/slices'
 
 const params = useRoute().params as { uid: string[] }
 const pathParams = typeof params.uid === 'string' ? [] : params?.uid.filter(Boolean) || []
-const isGrandchildPage = pathParams.length === 2
+const isGrandchildPage = pathParams.length >= 2
 const uid = pathParams.at(-1) || 'home'
 const isHome = uid === 'home'
 
 const { showDrafts } = useRuntimeConfig().public
 
 const { client } = usePrismic()
-const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID('page', uid)
+const { data: page } = await useAsyncData(`prismic-page-${pathParams.join('-')}`, () => client.getByUID('page', uid)
   .catch((error) => {
     console.error(`Page with UID "${uid}" not found:`, error)
     throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
@@ -18,6 +18,11 @@ const { data: page } = await useAsyncData('$prismic-page', () => client.getByUID
 
 if (!page.value || (!showDrafts && page.value?.data.draft)) {
   console.error(`Page with UID "${uid}" not found`)
+  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+}
+
+if (page.value.uid !== uid) {
+  console.error(`Page with UID "${uid}" not found: ${JSON.stringify(page.value)}`)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 

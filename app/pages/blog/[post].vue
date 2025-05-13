@@ -6,7 +6,7 @@ import { components } from '~/slices'
 const postSlug = useRouteParams<string>('post')
 
 const { client } = usePrismic()
-const { data: post } = await useAsyncData('blog_page', () => client.getByUID('blog_page', postSlug.value)
+const { data: post } = await useAsyncData(`prismic-post-${postSlug.value}`, () => client.getByUID('blog_page', postSlug.value)
   .catch((error) => {
     console.error(`Blog post with slug "${postSlug.value}" not found:`, error)
     throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
