@@ -1,5 +1,6 @@
 import type { Query } from '@prismicio/client'
 import type { BlogPageDocument } from '~~/prismicio-types'
+import process from 'node:process'
 import { filter } from '@prismicio/client'
 import { $fetch } from 'ofetch'
 import { repositoryName } from '../../slicemachine.config.json'
@@ -9,6 +10,8 @@ interface PrerenderPagesOptions {
   prismicAccessToken: string
   showDrafts?: boolean
 }
+
+const env = process.env.NUXT_ENVIRONMENT
 
 const pages = [
   '/',
@@ -30,8 +33,11 @@ const pages = [
   '/apps',
   '/about',
   '/onepager',
-  '/litepaper',
 ]
+
+if (env !== 'github-pages') {
+  pages.push('/litepaper') // TODO Figure out why it shows 500
+}
 
 export async function getDynamicPages(options: PrerenderPagesOptions) {
   const blogPostsUrl = await buildPrismicUrl('blog_page', options)
