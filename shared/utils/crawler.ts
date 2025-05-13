@@ -15,7 +15,6 @@ const env = process.env.NUXT_ENVIRONMENT
 
 const pages = [
   '/',
-  '/staking',
   '/new-wallet',
   '/cryptopaymentlink',
   '/nimiq-pay',
@@ -32,11 +31,12 @@ const pages = [
   '/community/funding',
   '/apps',
   '/about',
-  '/onepager',
 ]
 
 if (env !== 'github-pages') {
   pages.push('/litepaper') // TODO Figure out why it shows 500
+  pages.push('/onepager') // TODO Figure out why it shows 500
+  pages.push('/staking') // TODO Figure out why it shows 500
 }
 
 export async function getDynamicPages(options: PrerenderPagesOptions) {
