@@ -35,7 +35,7 @@ if (isLocal && !process.env.NUXT_PUBLIC_API_ENDPOINT) {
   process.env.NUXT_PUBLIC_API_ENDPOINT = '' // default to local API
 }
 
-const useNuxtHub = isLocal || isNuxthubPreview || isNuxthubProduction
+const useNuxtHub = isLocal || isNuxthubPreview || isNuxthubProduction || isGitHubPages
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
