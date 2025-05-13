@@ -24,7 +24,7 @@ const isGitHubPages = env === 'github-pages'
 const isInternalStatic = env === 'internal-static'
 const isInternalDrafts = env === 'internal-static-drafts'
 const isProduction = env === 'production'
-const showDrafts = isLocal || isInternalDrafts
+const showDrafts = isLocal || isInternalDrafts || isNuxthubPreview || isNuxthubProduction || isGitHubPages
 
 if (isGitHubPages) {
   process.env.NUXT_PUBLIC_API_ENDPOINT = 'https://api.nimiq.dev'
@@ -35,7 +35,7 @@ if (isLocal && !process.env.NUXT_PUBLIC_API_ENDPOINT) {
   process.env.NUXT_PUBLIC_API_ENDPOINT = '' // default to local API
 }
 
-const useNuxtHub = isLocal || isNuxthubPreview || isNuxthubProduction || isGitHubPages
+const useNuxtHub = isLocal || isNuxthubPreview || isNuxthubProduction
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
