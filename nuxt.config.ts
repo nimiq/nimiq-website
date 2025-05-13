@@ -66,6 +66,7 @@ export default defineNuxtConfig({
       hooks: {
         'nitro:build:before': async (nitro) => {
           let pages = await getDynamicPages({ prismicAccessToken: prismicAccessToken as string, showDrafts })
+          console.log(pages.filter(f => !f.startsWith('/blog')))
 
           // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
           if (isNuxthubPreview || isNuxthubProduction)

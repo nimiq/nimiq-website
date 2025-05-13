@@ -27,6 +27,8 @@ async function getPages(url: URL) {
     url.searchParams.set('page', page.toString())
     const { next_page, results } = await $fetch<Query<PageDocument>>(url.href)
     prerenderPaths.push(...results.map(({ uid, data }) => {
+      if (uid === 'home')
+        return '/'
       const hasParents = data.parents.length > 0
       if (hasParents) {
         const parent = data.parents.map(parent => (parent as { uid: string }).uid)
