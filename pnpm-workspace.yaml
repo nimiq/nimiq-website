@@ -2,8 +2,6 @@ patchedDependencies:
   '@nimiq/utils': patches/@nimiq__utils.patch
 
 catalog:
-  consola: ^3.4.2
-  sharp: ^0.34.1
 catalogs:
   build:
     '@nuxt/kit': ^3.17.2
@@ -52,6 +50,8 @@ catalogs:
     slice-machine-ui: ^2.15.3
 
   server:
+    consola: ^3.4.2
+    sharp: ^0.34.1
     valibot: ^1.1.0
 
   types:
@@ -80,8 +80,8 @@ catalogs:
     pinia: ^3.0.2
     vue: latest
     vue-router: ^4.5.1
-
     vue-tsc: ^2.2.10
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - '@scarf/scarf'

@@ -18,10 +18,6 @@ catalogs:
     wrangler:
       specifier: ^4.14.4
       version: 4.14.4
-  default:
-    sharp:
-      specifier: ^0.34.1
-      version: 0.34.1
   frontend:
     '@unovis/ts':
       specifier: 1.5.1
@@ -118,6 +114,12 @@ catalogs:
       specifier: ^2.15.3
       version: 2.15.3
   server:
+    consola:
+      specifier: ^3.4.2
+      version: 3.4.2
+    sharp:
+      specifier: ^0.34.1
+      version: 0.34.1
     valibot:
       specifier: ^1.1.0
       version: 1.1.0
@@ -316,7 +318,7 @@ importers:
         specifier: catalog:vue
         version: 13.1.0(magicast@0.3.5)(nuxt@3.17.2(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.15.17)(bufferutil@4.0.9)(db0@0.3.2)(eslint@9.26.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.40.2)(terser@5.39.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(terser@5.39.0)(yaml@2.7.1))(vue-tsc@2.2.10(typescript@5.8.3))(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
       consola:
-        specifier: ^3.4.2
+        specifier: catalog:server
         version: 3.4.2
       eslint:
         specifier: catalog:lint
@@ -343,7 +345,7 @@ importers:
         specifier: catalog:vue
         version: 3.0.2(typescript@5.8.3)(vue@3.5.13(typescript@5.8.3))
       sharp:
-        specifier: 'catalog:'
+        specifier: catalog:server
         version: 0.34.1
       simple-git-hooks:
         specifier: catalog:lint
