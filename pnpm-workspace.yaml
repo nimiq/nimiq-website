@@ -89,6 +89,7 @@ onlyBuiltDependencies:
   - esbuild
   - maplibre-gl
   - simple-git-hooks
+  - sharp
   - unrs-resolver
   - utf-8-validate
   - vue-demi

@@ -42,6 +42,8 @@ Make sure to install the dependencies:
 ```bash
 pnpm install
 pnpm dev
+
+npx simple-git-hooks # Optionally install git hooks to run linters on commit
 ```
 
 ### Environment Variables

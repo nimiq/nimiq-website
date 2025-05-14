@@ -180,6 +180,12 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: false,
+      ignore: [
+        '/nimiq-website/_ipx/s_1600x900/assets/images/gods-light.webp',
+        '/nimiq-website/_ipx/s_3200x1800/assets/images/gods-light.webp',
+        '/nimiq-website/_ipx/_/assets/images/apple-store-badge.png',
+        '/nimiq-website/_ipx/_/assets/images/google-play-badge.png',
+      ],
     },
   },
 
