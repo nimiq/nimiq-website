@@ -46,12 +46,12 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
     <ul v-if="hasAnApp" f-mt-xl flex="~ wrap gap-32 lg:gap-40">
       <li v-if="hasAppStore">
         <PrismicLink internal-component="a" :field="p.appStore!">
-          <NuxtImg v-if="hasAppStore" src="/assets/images/apple-store-badge.png" h="32 lg:40" alt="Get it on Apple Store" />
+          <NuxtImg v-if="hasAppStore" provider="ipxStatic" src="/assets/images/apple-store-badge.png" h="32 lg:40" alt="Get it on Apple Store" />
         </PrismicLink>
       </li>
       <li v-if="hasPlayStore">
         <PrismicLink internal-component="a" :field="p.playStore!">
-          <NuxtImg src="/assets/images/google-play-badge.png" h="32 lg:40" alt="Get it on Google Play" />
+          <NuxtImg provider="ipxStatic" src="/assets/images/google-play-badge.png" h="32 lg:40" alt="Get it on Google Play" />
         </PrismicLink>
       </li>
     </ul>

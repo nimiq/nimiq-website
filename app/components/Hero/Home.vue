@@ -59,6 +59,7 @@ watch(subheadlineStr, () => {
       width="1600"
       height="900"
       src="/assets/images/gods-light.webp"
+      provider="ipxStatic"
       alt="Nimiq Gods Rays Background"
       pointer-events-none absolute inset-0 m-0 size-full blur-60 brightness-80
     />

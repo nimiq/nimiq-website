@@ -223,10 +223,6 @@ export default defineNuxtConfig({
     fonts: ['Mulish:400', 'Mulish:700'],
   },
 
-  image: {
-    prsimic: {},
-  },
-
   // robots: {
   //   // https://nuxtseo.com/robots/api/config
   //   disallow: ['/iframes'],
