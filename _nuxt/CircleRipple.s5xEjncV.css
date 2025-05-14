@@ -1,0 +1,1 @@
+@keyframes ripple-67584e1b{0%{transform:scale(1)}50%{transform:scale(1.05)}to{transform:scale(1)}}.ripple[data-v-67584e1b]{animation:ripple-67584e1b 10s ease-in-out infinite;--delay:calc(var(--i)*.25s);animation-delay:var(--delay);transform-origin:center}

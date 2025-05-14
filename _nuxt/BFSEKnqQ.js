@@ -1,0 +1,9 @@
+import { g as s } from "./C3sJ3Yu7.js";
+import { d as a, c as r, o as i, n as c, u as m, e } from "./7tyaNgEA.js";
+const l = a({ __name: "Disclaimer", props: { color: {} }, setup(n) {
+  const o = s(n.color);
+  return (p, t) => (i(), r("section", { class: c(m(o)), group: "", "mx-0": "", "children:max-w-none": "" }, t[0] || (t[0] = [e("div", { class: "nq-prose", "transition-colors": "", "children:text": "f-sm neutral-800 group-hocus:neutral-900" }, [e("h2", null, " Disclaimer "), e("p", { lh: "[1.75]", "f-mt-xs": "" }, " None of the statements must be viewed as an endorsement or recommendation for Nimiq, any cryptocurrency, or investment product. Neither the information, nor any opinion contained herein constitutes a solicitation or offer by the creators or participants to buy or sell any securities or other financial instruments or provide any investment advice or service. All statements contained in statements made in Nimiq\u2019s web pages, blogs, social media, press releases, or in any place accessible by the public, and oral statements that may be made by Nimiq or project associates that are not statements of historical fact, constitute \u201Cforward-looking statements\u201D. These forward-looking statements involve known and unknown risks, uncertainties, and other factors that may cause the actual future results, performance, or achievements to be materially different from any future results, performance, or achievements expected, expressed, or implied by such forward-looking statements. The final decision of implementing any changes to the Nimiq protocol, including its parameters, always remains with the decentralized node operators who agree what version and parameters to deploy and support. ")], -1)]), 2));
+} }), f = Object.assign(l, { __name: "Disclaimer" });
+export {
+  f as _
+};
