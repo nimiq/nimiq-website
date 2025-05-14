@@ -252,7 +252,7 @@ export default defineNuxtConfig({
 
   experimental: {
     payloadExtraction: true,
-    renderJsonPayloads: true,
+    renderJsonPayloads: false,
     viewTransition: true,
     typedPages: true,
   },
