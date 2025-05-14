@@ -1,5 +1,5 @@
 import type { Feed } from 'nuxt-module-feed'
-import { buildPrismicUrl, getBlogPosts } from '../../shared/utils/crawler'
+import { buildPrismicUrl, getBlogPosts } from '../../lib/crawler'
 
 export default defineNitroPlugin(async (nitroApp) => {
   nitroApp.hooks.hook('feed:generate', async ({ feed, options }) => {

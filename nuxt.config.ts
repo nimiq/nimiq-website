@@ -2,44 +2,9 @@ import process from 'node:process'
 import { defineNuxtModule } from '@nuxt/kit'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
-import { getDynamicPages } from './shared/utils/crawler'
+import { getDynamicPages } from './lib/crawler'
+import environment from './lib/env'
 import { repositoryName } from './slicemachine.config.json'
-
-// Define allowed environment types
-type EnvironmentName = 'local' | 'production' | 'github-pages' | 'nuxthub-production' | 'nuxthub-preview' | 'internal-static' | 'internal-static-drafts'
-
-const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
-if (!prismicAccessToken)
-  throw new Error('PRISMIC_ACCESS_TOKEN is not defined')
-
-const rawEnv = process.env.NUXT_ENVIRONMENT
-const env: EnvironmentName = rawEnv ?? (process.env.NODE_ENV === 'development' ? 'local' : undefined as any) // default to local in dev
-if (!env)
-  process.env.NUXT_ENVIRONMENT = 'production'
-
-const isLocal = env === 'local'
-const isNuxthubPreview = env === 'nuxthub-preview'
-const isNuxthubProduction = env === 'nuxthub-production'
-const isGitHubPages = env === 'github-pages'
-const isInternalStatic = env === 'internal-static'
-const isInternalDrafts = env === 'internal-static-drafts'
-const isProduction = env === 'production'
-const showDrafts = isLocal || isInternalDrafts || isNuxthubPreview || isNuxthubProduction || isGitHubPages
-
-console.log('Environment:', env)
-
-console.log('Show drafts:', showDrafts)
-
-if (isGitHubPages) {
-  process.env.NUXT_PUBLIC_API_ENDPOINT = 'https://api.nimiq.dev'
-  process.env.NUXT_APP_BASE_URL = '/nimiq-website/'
-}
-
-if (isLocal && !process.env.NUXT_PUBLIC_API_ENDPOINT) {
-  process.env.NUXT_PUBLIC_API_ENDPOINT = '' // default to local API
-}
-
-const useNuxtHub = isLocal || isNuxthubPreview || isNuxthubProduction
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -56,7 +21,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     'reka-ui/nuxt',
-    useNuxtHub as true ? '@nuxthub/core' : null,
+    environment.useNuxtHub as true ? '@nuxthub/core' : null,
     '@nuxtjs/prismic',
     'nuxt-og-image',
     '@nuxtjs/device',
@@ -69,11 +34,11 @@ export default defineNuxtConfig({
       meta: { name: 'nuxt-prerender-routes' },
       hooks: {
         'nitro:build:before': async (nitro) => {
-          let pages = await getDynamicPages({ prismicAccessToken: prismicAccessToken as string, showDrafts })
+          let pages = await getDynamicPages({ prismicAccessToken: environment.prismicAccessToken, showDrafts: environment.showDrafts })
           console.log(pages.filter(f => !f.startsWith('/blog')))
 
           // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
-          if (isNuxthubPreview || isNuxthubProduction)
+          if (environment.environment.isNuxthubPreview || environment.environment.isNuxthubProduction)
             pages = pages.slice(0, 95)
           nitro.options.prerender.routes = pages
         },
@@ -125,7 +90,7 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    urls: async () => getDynamicPages({ prismicAccessToken }),
+    urls: async () => getDynamicPages({ prismicAccessToken: environment.prismicAccessToken, showDrafts: false }),
   },
 
   // TODO Remove this option
@@ -142,7 +107,7 @@ export default defineNuxtConfig({
     toolbar: false,
     endpoint: repositoryName,
     clientConfig: {
-      accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+      accessToken: environment.prismicAccessToken,
       routes: [
         {
           type: 'page',
@@ -168,7 +133,7 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    prismicAccessToken: process.env.PRISMIC_ACCESS_TOKEN,
+    prismicAccessToken: environment.prismicAccessToken,
     albatross: {
       nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
       liveview: {
@@ -189,17 +154,8 @@ export default defineNuxtConfig({
         url: process.env.NUXT_PUBLIC_SUPABASE_URL,
         key: process.env.NUXT_PUBLIC_SUPABASE_KEY,
       },
-      environment: {
-        name: env,
-        isLocal,
-        isGitHubPages,
-        isNuxthubPreview,
-        isNuxthubProduction,
-        isInternalStatic,
-        isInternalDrafts,
-        isProduction,
-      },
-      showDrafts,
+      environment: environment.environment,
+      showDrafts: environment.showDrafts,
     },
     zoho: {
       requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
@@ -298,5 +254,4 @@ export default defineNuxtConfig({
       { path: '/feed.xml', type: 'rss2', cacheTime: 0 },
     ],
   },
-
 })

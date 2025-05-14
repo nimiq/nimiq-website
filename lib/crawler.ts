@@ -1,38 +1,38 @@
 import type { Query } from '@prismicio/client'
-import type { BlogPageDocument } from '~~/prismicio-types'
+import type { BlogPageDocument, PageDocument } from '~~/prismicio-types'
 import { filter } from '@prismicio/client'
 import { $fetch } from 'ofetch'
-import { repositoryName } from '../../slicemachine.config.json'
-import { getBlogMetadata } from './blog-post'
+import { getBlogMetadata } from '../shared/utils/blog-post'
+import { repositoryName } from '../slicemachine.config.json'
 
 interface PrerenderPagesOptions {
   prismicAccessToken: string
   showDrafts?: boolean
 }
 
-const pages = [
-  '/',
-  '/new-wallet',
-  '/cryptopaymentlink',
-  '/nimiq-pay',
-  '/new-buy-and-sell',
-  '/contact',
-  '/newsletter',
-  '/privacy',
-  '/blog',
-  '/team',
-  '/roadmap',
-  '/bug-bounty',
-  '/albatross',
-  '/community',
-  '/community/funding',
-  '/apps',
-  '/about',
+// const pages = [
+//   '/',
+//   '/new-wallet',
+//   '/cryptopaymentlink',
+//   '/nimiq-pay',
+//   '/new-buy-and-sell',
+//   '/contact',
+//   '/newsletter',
+//   '/privacy',
+//   '/blog',
+//   '/team',
+//   '/roadmap',
+//   '/bug-bounty',
+//   '/albatross',
+//   '/community',
+//   '/community/funding',
+//   '/apps',
+//   '/about',
 
-  '/litepaper',
-  '/onepager',
-  '/staking',
-]
+//   '/litepaper',
+//   '/onepager',
+//   '/staking',
+// ]
 
 // if (env !== 'github-pages') {
 // const env = process.env.NUXT_ENVIRONMENT
@@ -42,35 +42,38 @@ const pages = [
 // }
 
 export async function getDynamicPages(options: PrerenderPagesOptions) {
+  const pagesUrl = await buildPrismicUrl('page', options)
+  const pages = await getPages(pagesUrl)
+
   const blogPostsUrl = await buildPrismicUrl('blog_page', options)
   const blogArticles = await getBlogPosts(blogPostsUrl).then(posts => posts.map(post => `/blog/${post.slug}`))
 
   return [...pages, ...blogArticles]
 }
 
-// async function getPages(url: URL) {
-//   const prerenderPaths: string[] = []
-//   let page: number = 1
-//   while (true) {
-//     url.searchParams.set('page', page.toString())
-//     const { next_page, results } = await $fetch<Query<PageDocument>>(url.href)
-//     prerenderPaths.push(...results.map(({ uid, data }) => {
-//       if (uid === 'home')
-//         return '/'
-//       const hasParents = data.parents.length > 0
-//       if (hasParents) {
-//         const parent = data.parents.map(parent => (parent as { uid: string }).uid)
-//         return `/${parent.join('/')}/${uid}`
-//       }
-//       return `/${uid}`
-//     }))
-//     if (next_page === null)
-//       break
-//     page++
-//   }
+async function getPages(url: URL) {
+  const prerenderPaths: string[] = []
+  let page: number = 1
+  while (true) {
+    url.searchParams.set('page', page.toString())
+    const { next_page, results } = await $fetch<Query<PageDocument>>(url.href)
+    prerenderPaths.push(...results.map(({ uid, data }) => {
+      if (uid === 'home')
+        return '/'
+      const hasParents = data.parents.length > 0
+      if (hasParents) {
+        const parent = data.parents.map(parent => (parent as { uid: string }).uid)
+        return `/${parent.join('/')}/${uid}`
+      }
+      return `/${uid}`
+    }))
+    if (next_page === null)
+      break
+    page++
+  }
 
-//   return prerenderPaths
-// }
+  return prerenderPaths
+}
 
 interface Post {
   title: string

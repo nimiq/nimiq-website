@@ -39,7 +39,7 @@ jobs:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
 
       - name: Static HTML export with Nuxt
-        run: pnpm run build:github-pages --preset github_pages --prerender
+        run: pnpm run build:github-pages
         env:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
           NUXT_ALBATROSS_NODE_RPC_URL: ${{ secrets.NUXT_ALBATROSS_NODE_RPC_URL }}
