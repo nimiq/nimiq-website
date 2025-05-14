@@ -108,27 +108,6 @@ export default defineNuxtConfig({
     endpoint: repositoryName,
     clientConfig: {
       accessToken: environment.prismicAccessToken,
-      routes: [
-        {
-          type: 'page',
-          path: '/:uid/',
-        },
-        {
-          type: 'blog_page',
-          path: '/blog/:uid/',
-        },
-        {
-          type: 'podcast_episode',
-          path: '/podcast/:uid/',
-        },
-        {
-          type: 'child_page',
-          path: '/:parent/:uid/',
-          resolvers: {
-            parent: 'parent',
-          },
-        },
-      ],
     },
   },
 
@@ -242,6 +221,10 @@ export default defineNuxtConfig({
   ogImage: {
     // will fetch the fonts from google at build time
     fonts: ['Mulish:400', 'Mulish:700'],
+  },
+
+  image: {
+    prsimic: {},
   },
 
   // robots: {
