@@ -208,7 +208,7 @@ The website uses a dynamic page generation system powered by our crawler utility
 
 ### Crawler Utility
 
-The `crawler.ts` utility located in `shared/utils/` is responsible for:
+The `crawler.ts` utility is responsible for:
 
 - Fetching all page and blog documents from Prismic
 - Generating URL paths for static site generation
