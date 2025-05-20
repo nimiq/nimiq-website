@@ -7,18 +7,18 @@ const options = computed(() => [selected.value!].concat(props.options.filter(opt
 
 <template>
   <SelectRoot v-model="selected">
-    <SelectTrigger select w-max rounded-4 bg-transparent px-12 py-6 outline="none focus-visible:blue" flex="~ items-center gap-4">
+    <SelectTrigger select px-12 py-6 rounded-4 bg-transparent w-max outline="none focus-visible:blue" flex="~ items-center gap-4">
       <SelectValue flex="~ items-center gap-4" text-current font-bold uppercase transition-colors as="div" />
-      <div size-10 op-80 i-nimiq:triangle-down />
+      <div op-80 size-10 i-nimiq:triangle-down />
     </SelectTrigger>
     <SelectPortal>
       <SelectContent
         side="top" position="item-aligned"
-        select relative bottom-0 z-200 animate-fade-in animate-duration-100 rounded-6 py-6 text-neutral-0 shadow drop-shadow bg-gradient-neutral
+        select text-neutral-0 py-6 rounded-6 shadow bottom-0 relative z-200 animate-fade-in animate-duration-100 drop-shadow bg-gradient-neutral
       >
         <SelectViewport>
           <SelectItem
-            v-for="option in options" :key="option" :value="option" cursor-pointer px-12 py-4
+            v-for="option in options" :key="option" :value="option" px-12 py-4 cursor-pointer
             outline="none hocus:none"
           >
             <SelectItemText

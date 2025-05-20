@@ -25,17 +25,17 @@ watch(() => model.value, async () => {
 </script>
 
 <template>
-  <div flex="~ align-center" relative w-max rounded-full bg-neutral-200 p-2>
+  <div flex="~ align-center" p-2 rounded-full bg-neutral-200 w-max relative>
     <!-- {{ pillStyles }} -->
     <label
       v-for="(option, i) of options"
       :id="String(option)" ref="labels" :key="i"
-      text="12 neutral-800 data-active:neutral hocus:neutral-900" flex="~ items-center" relative z-2 h-max cursor-pointer select-none rounded-full px-8 py-4 lh-none transition-colors nq-label
+      text="12 neutral-800 data-active:neutral hocus:neutral-900" flex="~ items-center" lh-none px-8 py-4 rounded-full h-max cursor-pointer select-none transition-colors relative z-2 nq-label
     >
       <input v-model="model" type="radio" :value="option" sr-only @mousedown.prevent>
       {{ option }}
     </label>
-    <div absolute top-2 z-1 h-20 rounded-full bg-neutral-0 :style="pillStyles" />
+    <div rounded-full bg-neutral-0 h-20 top-2 absolute z-1 :style="pillStyles" />
   </div>
 </template>
 

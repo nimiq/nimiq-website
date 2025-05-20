@@ -1,47 +1,33 @@
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
-
 import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
+import { theme } from '@unocss/preset-wind4/theme'
 import { presetNimiq } from 'nimiq-css'
-import { defineConfig, presetIcons, presetWind3 } from 'unocss'
+import { defineConfig, presetIcons } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
-import { presetScalePx } from 'unocss-preset-scale-px'
 
 export default defineConfig({
   rules: [
     [/^area-(.*)$/, ([, t]) => ({ 'grid-area': t })],
 
   ],
-  // TODO Add bg-transparent to buttons
   // TODO In the nq-scrollbar-hide, we should include the pseudo-elements
   shortcuts: [
-    ['bg-darkerblue-to-purple', 'bg-gradient-fn-to-b bg-gradient-fn-from-#17182a bg-gradient-fn-to-#3d4383 bg-gradient-fn-ease'],
-    ['bg-purple-to-blue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#3d4383 bg-gradient-fn-to-#0582CA bg-gradient-fn-ease'],
-    ['bg-blue-to-darkerblue', 'bg-gradient-fn-to-b bg-gradient-fn-from-#0582CA bg-gradient-fn-to-#17182a bg-gradient-fn-ease'],
     [/^nq-grid-(\d+)$/, ([, d]) => `grid cols-[repeat(auto-fit,min(calc(100vw-64px),${d}px))] gap-32 md:gap-40 lg:gap-48 xl:gap-64`],
   ],
   variants: [
+    // Pending testing
     // TODO Move variants to onmaxPreset?
-    (matcher) => {
-      if (!matcher.startsWith('group-has-focus-visible:'))
-        return matcher
-      return {
-        matcher: matcher.slice('group-has-focus-visible:'.length),
-        selector: s => `:where(.group,[group]):has(:focus-visible) ${s}`,
-      }
-    },
-    (matcher) => {
-      const nthMatch = matcher.match(/^nth-(\d+)-(.+)/)
-      if (nthMatch) {
-        const [, nth, rule] = nthMatch
-        return {
-          matcher: rule,
-          selector: input => `${input}:nth-child(${nth})`,
-        }
-      }
-    },
+    // (matcher) => {
+    //   if (!matcher.startsWith('group-has-focus-visible:'))
+    //     return matcher
+    //   return {
+    //     matcher: matcher.slice('group-has-focus-visible:'.length),
+    //     selector: s => `:where(.group,[group]):has(:focus-visible) ${s}`,
+    //   }
+    // },
   ],
   presets: [
-    presetWind3(),
+    presetOnmax(),
     presetNimiq({
       utilities: true,
       attributifyUtilities: true,
@@ -49,8 +35,6 @@ export default defineConfig({
       staticContent: true,
       fonts: false,
     }),
-    presetOnmax({ presets: { wind4: false } }),
-    presetScalePx(),
     presetIcons({
       collections: {
         ...createExternalPackageIconLoader('@iconify-json/logos'),
@@ -92,7 +76,8 @@ export default defineConfig({
       brown: { DEFAULT: '#795548' },
       pink: { DEFAULT: '#FA7268' },
     },
-    fontFamily: {
+    breakpoints: theme.breakpoint,
+    font: {
       retro: '\'Press Start 2P\', \'system-ui\'',
     },
     animation: {

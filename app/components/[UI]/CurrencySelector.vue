@@ -68,38 +68,38 @@ function displayValue(value: FiatCurrency) {
 <template>
   <ComboboxRoot v-model="selectedCurrency" relative bg="transparent hocus:neutral-200">
     <ComboboxAnchor w-max inline-flex="~ items-center justify-between gap-5">
-      <ComboboxTrigger flex="~ gap-3 items-center" rounded-4 bg-transparent px-6 py-3 transition-colors>
+      <ComboboxTrigger flex="~ gap-3 items-center" px-6 py-3 rounded-4 bg-transparent transition-colors>
         <slot name="trigger" v-bind="{ selectedCurrency }">
           <span f-text="12/16" text-current nq-label>
             {{ selectedCurrency.toLocaleUpperCase() }}
           </span>
-          <div size-7 op-60 i-nimiq:triangle-down />
+          <div op-60 size-7 i-nimiq:triangle-down />
         </slot>
       </ComboboxTrigger>
     </ComboboxAnchor>
 
     <ComboboxPortal>
-      <ComboboxContent position="popper" will-change="[opacity,transform]" reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade absolute top-0 z-10 max-h-256 w-168 of-hidden overscroll-none font-normal>
-        <ComboboxViewport outline="1.5 ~ offset--1.5 white/10" rounded-4 bg-neutral px-4 pb-4 flex="~ col">
-          <label flex="~ items-center gap-12" w-full px-8 pb-6 pt-13>
+      <ComboboxContent position="popper" will-change="[opacity,transform]" reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade font-normal overscroll-none max-h-256 w-168 top-0 absolute z-10 of-hidden>
+        <ComboboxViewport outline="1.5 ~ offset--1.5 white/10" px-4 pb-4 rounded-4 bg-neutral flex="~ col">
+          <label flex="~ items-center gap-12" px-8 pb-6 pt-13 w-full>
             <div text-neutral-800 i-nimiq:magnifying-glass />
-            <ComboboxInput placeholder="Search" text="16 white" w-full flex-1 bg-transparent lh-none outline-none :display-value />
+            <ComboboxInput placeholder="Search" text="16 white" outline-none lh-none bg-transparent flex-1 w-full :display-value />
           </label>
           <!-- <hr mb-6 h-1.5 w-full rounded-2 border="white/6"> -->
-          <ScrollAreaRoot relative h-full flex-1 of-hidden bg-neutral var:scrollbar-size:10px>
-            <div absolute top-0 z-2 h-16 w-full bg-gradient="to-t from-transparent to-neutral" />
-            <ScrollAreaViewport h-218 w-full py-16>
-              <ComboboxItem v-for="option in options" :key="option.value" :value="option.value" flex="~ items-center gap-8" bg="hocus:white/10 reka-active:white/10" rounded-2 p-8 transition-colors>
-                <div :class="option.icon" size-20 shrink-0 />
+          <ScrollAreaRoot bg-neutral flex-1 h-full relative of-hidden var:scrollbar-size:10px>
+            <div h-16 w-full top-0 absolute z-2 bg-gradient="to-t from-transparent to-neutral" />
+            <ScrollAreaViewport py-16 h-218 w-full>
+              <ComboboxItem v-for="option in options" :key="option.value" :value="option.value" flex="~ items-center gap-8" bg="hocus:white/10 reka-active:white/10" p-8 rounded-2 transition-colors>
+                <div :class="option.icon" shrink-0 size-20 />
                 <span text="f-sm white/95" lh-none>
                   {{ option.value.toLocaleUpperCase() }}
                 </span>
               </ComboboxItem>
             </ScrollAreaViewport>
-            <ScrollAreaScrollbar flex="~" bg="neutral-900" inset-y-0 z-20 w-10 touch-none select-none p-2 orientation="vertical">
-              <ScrollAreaThumb relative flex-1 rounded-5 bg-neutral-700 content-empty before="absolute top--50% left--50% -translate-x--50% -translate-y--50% size-full min-h-40 min-w-40" />
+            <ScrollAreaScrollbar flex="~" bg="neutral-900" p-2 w-10 select-none inset-y-0 z-20 touch-none orientation="vertical">
+              <ScrollAreaThumb rounded-5 bg-neutral-700 flex-1 content-empty relative before="absolute top--50% left--50% -translate-x--50% -translate-y--50% size-full min-h-40 min-w-40" />
             </ScrollAreaScrollbar>
-            <div absolute bottom-0 z-2 h-16 w-full bg-gradient="to-b from-transparent to-neutral" />
+            <div h-16 w-full bottom-0 absolute z-2 bg-gradient="to-b from-transparent to-neutral" />
           </ScrollAreaRoot>
         </ComboboxViewport>
         <ComboboxArrow />

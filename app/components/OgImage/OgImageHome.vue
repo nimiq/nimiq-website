@@ -3,14 +3,14 @@ const { title = 'The World’s Most Accepted Crypto' } = defineProps<{ title?: s
 </script>
 
 <template>
-  <div class="h-full w-full flex flex-col justify-center bg-[#EEEEEF]" style="font-family: 'Mulish'">
-    <img src="/assets/og-images/og-background-home.jpg" alt="Background" class="absolute left-0 top-0 h-full w-full">
-    <div class="h-full flex items-start justify-start">
-      <div class="mt-12 h-full w-full flex flex-col items-center px-8 pt-16">
-        <h1 class="text-center text-left text-[64px] text-[#fff] font-bold lh-[1]">
+  <div class="bg-[#EEEEEF] flex flex-col h-full w-full justify-center" style="font-family: 'Mulish'">
+    <img src="/assets/og-images/og-background-home.jpg" alt="Background" class="h-full w-full left-0 top-0 absolute">
+    <div class="flex h-full items-start justify-start">
+      <div class="mt-12 px-8 pt-16 flex flex-col h-full w-full items-center">
+        <h1 class="text-[64px] text-[#fff] font-bold lh-[1] text-center text-left">
           {{ title }}
         </h1>
-        <p v-if="subline" class="text-center text-left text-[40px] text-[#fff] lh-none opacity-80">
+        <p v-if="subline" class="text-[40px] text-[#fff] lh-none text-center text-left opacity-80">
           {{ subline }}
         </p>
       </div>

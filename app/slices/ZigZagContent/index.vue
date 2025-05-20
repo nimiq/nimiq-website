@@ -45,10 +45,10 @@ useIntersectionObserver(sectionRef, () => {
         /> -->
         <PrismicImage
           v-if="mediaType(item) === 'image'" :field="item.image"
-          ring="1.5 neutral-400" aspect="1.39 md:1.48 lg:initial" rounded-6 object-cover shadow
+          ring="1.5 neutral-400" aspect="1.39 md:1.48 lg:initial" rounded-6 shadow object-cover
         />
         <div
-          col-start-1 row-start-2 py-32 md:row-start-1 md:flex-1 md:items-center lg:py-96 md:py-80 xl:py-144
+          py-32 col-start-1 row-start-2 lg:py-96 md:py-80 xl:py-144 md:flex-1 md:row-start-1 md:items-center
           :class="{
             'xl:pl-32 xl:pr-0 ': i % 2 === 0,
             'xl:pr-32 xl:pl-0 md:col-start-2': i % 2 !== 0,
@@ -56,7 +56,7 @@ useIntersectionObserver(sectionRef, () => {
         >
           <PrismicImage v-if="hasImage(item.logo)" :field="item.logo" max-md:mx-auto />
           <RichText wrapper="div" f-mt-sm :field="item.headline" />
-          <div text-12 nq-label f-mt-2xs>
+          <div text-12 f-mt-2xs nq-label>
             {{ item.label }}
           </div>
           <RichText wrapper="div" nq-prose-compact f-mt-lg :field="item.description" />

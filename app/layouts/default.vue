@@ -10,7 +10,7 @@ const { data: navigation } = await useNavigation()
   <NavigationAnnouncementBanner v-if="navigation!.announcementBannerShow" v-bind="navigation!" />
   <NavigationHeader :dark-header />
   <slot />
-  <div fixed bottom-20 right-20 z-102>
+  <div bottom-20 right-20 fixed z-102>
     <PageInfo :draft with-env />
   </div>
   <HexagonsBackground z-1 :bg-color="footerBgColor" :with-socials="showSocialsHexagonBg" />

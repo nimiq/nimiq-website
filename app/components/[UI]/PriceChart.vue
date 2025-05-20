@@ -54,9 +54,9 @@ const error = computed(() => {
   <div data-allow-mismatch>
     <DefineMetric v-slot="{ metricValue, metricChange, label, tooltipInfo }">
       <div flex="~ col gap-8" relative :data-state="metricValue === '0' ? 'inactive' : 'active'" z-1 reka-inactive:animate-pulse>
-        <div absolute inset--12 z--1 outline="~ 1.5 neutral-200 offset--1.5" h-full w-full rounded-6 bg-neutral-100 reka-active:hidden w="[calc(100%+24px)]" />
+        <div outline="~ 1.5 neutral-200 offset--1.5" rounded-6 bg-neutral-100 h-full w-full inset--12 absolute z--1 reka-active:hidden w="[calc(100%+24px)]" />
         <div flex="~ gap-8 items-center">
-          <span text="f-lg neutral" whitespace-nowrap font-semibold lh-none>
+          <span text="f-lg neutral" font-semibold lh-none whitespace-nowrap>
             {{ metricValue }}
           </span>
           <div v-if="metricChange" :class="metricChange < 0 ? 'text-red' : 'text-green'" flex="~ gap-2 items-center">
@@ -65,7 +65,7 @@ const error = computed(() => {
           </div>
         </div>
         <div flex="~ gap-6 items-center">
-          <p text="f-xs neutral-800" w-max font-normal lh-none>
+          <p text="f-xs neutral-800" font-normal lh-none w-max>
             {{ label }}
           </p>
           <Tooltip v-if="tooltipInfo">
@@ -76,9 +76,9 @@ const error = computed(() => {
     </DefineMetric>
 
     <DefinePrice v-slot="{ data: [ts, historicPrice], deltaPriceOneDay }">
-      <div flex="~ col gap-8" relative bg-neutral-0 f="$side $side-min-20 $side-max-24" f-py-xs :class="{ 'top-21 mx-20': !deltaPriceOneDay }">
-        <div absolute inset-y-0 left="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-transparent to-neutral-0 to-r" />
-        <div absolute inset-y-0 right="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-neutral-0 to-transparent to-r" f-w-md />
+      <div flex="~ col gap-8" f="$side $side-min-20 $side-max-24" bg-neutral-0 relative f-py-xs :class="{ 'top-21 mx-20': !deltaPriceOneDay }">
+        <div inset-y-0 absolute left="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-transparent to-neutral-0 to-r" />
+        <div right="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-neutral-0 to-transparent to-r" inset-y-0 absolute f-w-md />
         <p text="blue f-3xl" font-semibold lh-none>
           {{ formatFiat(historicPrice, currencyInfo) }}
         </p>
@@ -90,11 +90,11 @@ const error = computed(() => {
       </div>
     </DefinePrice>
 
-    <RibbonContainer :label="slice.primary.nimPriceChartLabel!" z-3 shadow md:min-h-480 outline-color="white/20">
-      <div grid="~ cols-1 md:cols-[max-content_1fr]" relative size-full of-hidden>
-        <aside md:border="r-1 solid neutral-400" grid="~ cols-[repeat(4,1fr)] md:cols-1 gap-col-20 gap-row-24" relative w-full f-p-md max-md:row-start-2 max-md:of-x-auto>
+    <RibbonContainer :label="slice.primary.nimPriceChartLabel!" shadow z-3 md:min-h-480 outline-color="white/20">
+      <div grid="~ cols-1 md:cols-[max-content_1fr]" size-full relative of-hidden>
+        <aside md:border="r-1 solid neutral-400" grid="~ cols-[repeat(4,1fr)] md:cols-1 gap-col-20 gap-row-24" w-full relative f-p-md max-md:row-start-2 max-md:of-x-auto>
           <transition enter-active-class="transition duration-200 ease-out" enter-from-class="op-0" enter-to-class="op-100" leave-active-class="transition duration-200 ease-out" leave-from-class="op-100" leave-to-class="op-0">
-            <div v-if="isLoading || error" flex="~ items-center gap-8" text=" gold f-sm" translate-x="100%" absolute right--1 top--1 z-30 rounded-br-6 bg-white py-4 f-px-xs border="b r neutral-400">
+            <div v-if="isLoading || error" flex="~ items-center gap-8" text=" gold f-sm" translate-x="100%" py-4 rounded-br-6 bg-white right--1 top--1 absolute z-30 f-px-xs border="b r neutral-400">
               <div scale-90 :class="isLoading ? 'i-nimiq:spinner' : 'i-nimiq:alert'" />
               <p>
                 {{ isLoading ? 'Loading...' : error }}
@@ -115,20 +115,20 @@ const error = computed(() => {
           </div>
         </aside>
         <div group relative f-pb-xs>
-          <ChartLine :data="historicPrices || []" leader h-full rounded-8>
+          <ChartLine :data="historicPrices || []" leader rounded-8 h-full>
             <template #default="{ data: [ts, historicPrice] }">
               <Price :data="[ts, historicPrice]" />
             </template>
           </ChartLine>
 
-          <div absolute right-32 top-32 z-20>
+          <div right-32 top-32 absolute z-20>
             <Price transition-opacity leader-hocus:invisible :data="historicPrices?.at(-1) || [0, 0]" :delta-price-one-day="deltaPrice" />
           </div>
 
           <!-- Position controls based on the chart trend -->
           <div data-allow-mismatch :class="controlsPosition === 'top' ? 'top-128' : 'bottom-64'" flex="~ items-center gap-8" absolute z-20 f-right-md>
             <PillSelector v-model="period" :options="periodOptions" self-end justify-self-end ring="white 3" />
-            <CurrencySelector v-model="currency" bg="darkblue hocus:neutral-200" transition="[background-color]" h-full rounded-full px-2 text-14 font-normal nq-label text="white hocus:neutral" ring="white 3" border="~ 1.5 neutral-200">
+            <CurrencySelector v-model="currency" bg="darkblue hocus:neutral-200" transition="[background-color]" text-14 font-normal px-2 rounded-full h-full nq-label text="white hocus:neutral" ring="white 3" border="~ 1.5 neutral-200">
               <template #trigger="{ selectedCurrency }">
                 {{ selectedCurrency.toLocaleUpperCase() }}
               </template>

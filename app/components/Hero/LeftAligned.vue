@@ -6,8 +6,8 @@ defineProps<{ headline: TitleField, subline: RichTextField }>()
 
 <template>
   <section>
-    <Headline :headline :subline left-align max-w-780px w-full px-32 />
-    <div flex="~ justify-start" max-w-780px w-full px-32 f-mt-xs>
+    <Headline :headline :subline left-align px-32 max-w-780px w-full />
+    <div flex="~ justify-start" px-32 max-w-780px w-full f-mt-xs>
       <slot name="bottom" />
     </div>
   </section>

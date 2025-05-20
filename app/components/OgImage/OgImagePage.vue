@@ -3,8 +3,8 @@ const { title = 'The World’s Most Accepted Crypto' } = defineProps<{ title?: s
 </script>
 
 <template>
-  <div class="h-full w-full flex flex-col justify-center bg-[#EEEEEF]" style="font-family: 'Mulish'">
-    <svg class="absolute right-0 top-0" width="1200" height="628" viewBox="0 0 1200 628" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="bg-[#EEEEEF] flex flex-col h-full w-full justify-center" style="font-family: 'Mulish'">
+    <svg class="right-0 top-0 absolute" width="1200" height="628" viewBox="0 0 1200 628" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#a)">
         <rect width="1200" height="628" rx="4" fill="#F5F5F5" />
         <path d="M385.411 612.465L262.067 398.669C253.187 383.374 236.905 374 219.308 374H-27.38C-44.9771 374 -61.2585 383.374 -70.0571 398.669L-193.401 612.465C-202.2 627.76 -202.2 646.508 -193.401 661.803L-70.0571 875.599C-61.2585 890.894 -44.9771 900.268 -27.38 900.268H219.308C236.905 900.268 253.187 890.894 261.985 875.599L385.329 661.803C394.21 646.508 394.21 627.76 385.411 612.465Z" fill="#EEEEEF" />
@@ -28,12 +28,12 @@ const { title = 'The World’s Most Accepted Crypto' } = defineProps<{ title?: s
       </defs>
     </svg>
 
-    <div class="h-full flex items-start justify-start">
-      <div class="h-full w-full flex flex-col px-24 py-16">
-        <h1 class="text-left text-[64px] text-[#1F2348] lh-none">
+    <div class="flex h-full items-start justify-start">
+      <div class="px-24 py-16 flex flex-col h-full w-full">
+        <h1 class="text-[64px] text-[#1F2348] lh-none text-left">
           {{ title }}
         </h1>
-        <p v-if="subline" class="mt-4 text-left text-[40px] text-[#1F2348] lh-none opacity-60">
+        <p v-if="subline" class="text-[40px] text-[#1F2348] lh-none mt-4 text-left opacity-60">
           {{ subline }}
         </p>
       </div>

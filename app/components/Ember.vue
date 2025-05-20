@@ -17,7 +17,7 @@ function onHover() {
   <div
     :class="{ 'jump-and-flip': shouldJump }"
     :style="`--delay: ${delay}ms;`"
-    absolute z-1 size-28 op-80 before="content-empty absolute size-[150%] top--7 left--7 blur-64 mix-blend-screen rounded-full op-70"
+    op-80 size-28 absolute z-1 before="content-empty absolute size-[150%] top--7 left--7 blur-64 mix-blend-screen rounded-full op-70"
     after="content-empty absolute size-[250%] top--21 left--21 blur-12 mix-blend-overlay rounded-full op-70"
     v-bind="$attrs"
     @mouseover="onHover"

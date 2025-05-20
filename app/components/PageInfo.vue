@@ -8,7 +8,7 @@ const { isProduction, name } = useRuntimeConfig().public.environment
   <div v-if="!isProduction && (draft || withEnv)" flex="~ items-center gap-16">
     <Tooltip v-if="withEnv">
       <template #trigger>
-        <div ring="1.5 white" outline="1.5 ~ neutral-400" capitalize nq-pill-lg nq-pill-tertiary f-text-2xs>
+        <div ring="1.5 white" outline="1.5 ~ neutral-400" capitalize f-text-2xs nq-pill-lg nq-pill-tertiary>
           {{ name }}
         </div>
       </template>
@@ -21,7 +21,7 @@ const { isProduction, name } = useRuntimeConfig().public.environment
         </p>
       </template>
     </Tooltip>
-    <div v-if="draft" title="This item is a draft in the CMS. This will be hidden in production" ring="1.5 white" nq-pill-lg nq-pill-orange f-text-2xs>
+    <div v-if="draft" title="This item is a draft in the CMS. This will be hidden in production" ring="1.5 white" f-text-2xs nq-pill-lg nq-pill-orange>
       <div i-nimiq:locked-lock />
       Draft
     </div>

@@ -2,12 +2,13 @@ patchedDependencies:
   '@nimiq/utils': patches/@nimiq__utils.patch
 
 catalog:
+  '@unocss/preset-wind4': ^66.1.2
 catalogs:
   build:
     '@nuxt/kit': ^3.17.3
     vite-plugin-top-level-await: ^1.5.0
     vite-plugin-wasm: ^3.4.1
-    wrangler: ^4.14.4
+    wrangler: ^4.15.2
 
   frontend:
     '@pinia/colada': ^0.15.3
@@ -28,29 +29,29 @@ catalogs:
     vue-tsc: ^2.2.10
 
   lint:
-    '@antfu/eslint-config': ^4.13.0
+    '@antfu/eslint-config': ^4.13.1
     '@nuxt/eslint': latest
-    '@unocss/eslint-plugin': ^66.1.1
-    eslint: ^9.26.0
+    '@unocss/eslint-plugin': ^66.1.2
+    eslint: ^9.27.0
     eslint-plugin-format: ^1.0.1
     lint-staged: ^16.0.0
     simple-git-hooks: ^2.13.0
 
   nimiq:
     '@nimiq/core': ^2.1.0
-    '@nimiq/utils': ^0.12.3
-    nimiq-rpc-client-ts: ^1.0.0-beta.23
+    '@nimiq/utils': ^0.12.4
+    nimiq-rpc-client-ts: ^1.0.0-beta.28
 
   nuxt:
-    '@nuxt/fonts': ^0.11.3
+    '@nuxt/fonts': ^0.11.4
     '@nuxt/image': ^1.10.0
     '@nuxthub/core': ^0.8.27
     '@nuxtjs/device': ^3.2.4
     '@nuxtjs/prismic': ^4.1.0
-    '@nuxtjs/sitemap': ^7.2.10
+    '@nuxtjs/sitemap': ^7.3.0
     nuxt: ^3.17.3
     nuxt-module-feed: ^1.1.4
-    nuxt-og-image: ^5.1.3
+    nuxt-og-image: ^5.1.4
     unplugin-vue-router: ^0.12.0
 
   prismic:
@@ -65,20 +66,19 @@ catalogs:
     valibot: ^1.1.0
 
   types:
-    '@types/node': ^22.15.18
+    '@types/node': ^22.15.19
     typescript: ^5.8.3
 
   unocss:
     '@iconify-json/logos': ^1.2.4
     '@iconify/utils': ^2.3.0
-    '@unocss/nuxt': ^66.1.1
-    '@unocss/reset': ^66.1.1
-    nimiq-css: ^1.0.0-beta.22
-    nimiq-flags: ^1.0.0-beta.22
-    nimiq-icons: ^1.0.0-beta.22
-    unocss: ^66.1.1
-    unocss-preset-onmax: ^1.0.0-beta.19
-    unocss-preset-scale-px: 1.0.0-beta.19
+    '@unocss/nuxt': ^66.1.2
+    '@unocss/reset': ^66.1.2
+    nimiq-css: ^1.0.0-beta.30
+    nimiq-flags: ^1.0.0-beta.30
+    nimiq-icons: ^1.0.0-beta.30
+    unocss: ^66.1.2
+    unocss-preset-onmax: ^1.0.0-beta.25
 
 onlyBuiltDependencies:
   - '@parcel/watcher'

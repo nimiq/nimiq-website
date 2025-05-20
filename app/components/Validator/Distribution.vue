@@ -32,7 +32,7 @@ const data = computed(() => {
   <div flex="~ col items-center">
     <ChartDonut :data="data!">
       <template #default="{ color, value, name, logo, balance }">
-        <div :key="name" :style="{ '--c': color }" ring="1.5 $c" flex="~ items-center gap-16" data-tooltip-container w-max rounded-8 bg-neutral-0 p-16 text-neutral font-semibold shadow>
+        <div :key="name" :style="{ '--c': color }" ring="1.5 $c" flex="~ items-center gap-16" data-tooltip-container text-neutral font-semibold p-16 rounded-8 bg-neutral-0 w-max shadow>
           <img v-if="logo" :src="logo" size-40 loading="lazy">
           <div flex="~ gap-2 col" font-semibold lh-none>
             <h3 f-text-lg>
@@ -50,6 +50,6 @@ const data = computed(() => {
         </div>
       </template>
     </ChartDonut>
-    <RichText wrapper="div" :field="info" max-w-42ch text-center f-m-lg />
+    <RichText wrapper="div" :field="info" text-center max-w-42ch f-m-lg />
   </div>
 </template>

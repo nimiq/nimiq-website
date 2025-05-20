@@ -35,22 +35,22 @@ function goToStep(step: number) {
 </script>
 
 <template>
-  <section mx-0 of-x-clip bg-neutral-0 px-0 children:max-w-none>
+  <section mx-0 px-0 bg-neutral-0 of-x-clip children:max-w-none>
     <Headline :headline="slice.primary.headline" :subline="slice.primary.description" px="$px" />
 
     <ul flex="~ gap-6" mx-auto w-max f-mt-lg>
-      <li v-for="i in slice.items.length" :key="i" :data-state="step === i ? 'active' : undefined" max-w-96 w-full flex-1>
-        <button bg="neutral-400 hocus:neutral-500 data-active:green" before="absolute inset--16" relative mx-auto h-4 w-96 rounded-2 transition-colors @click="() => goToStep(i)" />
+      <li v-for="i in slice.items.length" :key="i" :data-state="step === i ? 'active' : undefined" flex-1 max-w-96 w-full>
+        <button bg="neutral-400 hocus:neutral-500 data-active:green" before="absolute inset--16" mx-auto rounded-2 h-4 w-96 transition-colors relative @click="() => goToStep(i)" />
       </li>
     </ul>
 
-    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" m-x-auto of-y-hidden nq-scrollbar-hide f-pb-md f-mt-2xl @scroll.passive="calculateStep">
+    <ul ref="scroller" flex="~ gap-16 md:gap-32 xl:gap-48" px="[calc((100%-min(87.2%,684px))/2)]" snap="x mandatory" m-x-auto of-y-hidden f-pb-md f-mt-2xl nq-scrollbar-hide @scroll.passive="calculateStep">
       <li
         v-for="(item, i) in slice.items" :key="i"
         :data-state="step - 1 === i ? 'active' : undefined" snap="center always" cursor="active:default pointer"
-        op="20 data-active:100" max-w-784 w-full shrink-0 transition-opacity flex="~ col" duration-400 @click="() => goToStep(i + 1)"
+        op="20 data-active:100" flex="~ col" shrink-0 max-w-784 w-full transition-opacity duration-400 @click="() => goToStep(i + 1)"
       >
-        <PrismicImage v-if="'image' in item" :field="item.image" rounded-6 object-cover shadow f-mb-lg />
+        <PrismicImage v-if="'image' in item" :field="item.image" rounded-6 shadow object-cover f-mb-lg />
         <!-- <VLottie
           v-else-if="slice.variation === 'withAnimations'"
           :src="item.source.url"

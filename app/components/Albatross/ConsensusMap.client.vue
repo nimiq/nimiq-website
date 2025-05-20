@@ -79,27 +79,27 @@ async function connect() {
 <template>
   <div of-hidden>
     <div relative xl:w-65vw :style="`aspect-ratio: ${HEXAGONS_WORLD_MAP_ASPECT_RATIO}`">
-      <div absolute z-1 size-full xl:max-w-50vw class="curtain" />
-      <div absolute size-full>
+      <div size-full absolute z-1 xl:max-w-50vw class="curtain" />
+      <div size-full absolute>
         <canvas ref="canvas" />
-        <div v-if="showTooltip" absolute left-0 top-0 z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
-          <div left="[calc(-50%+2px)]" relative mt-16 flex="~ col items-center">
+        <div v-if="showTooltip" left-0 top-0 absolute z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
+          <div left="[calc(-50%+2px)]" mt-16 relative flex="~ col items-center">
             <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" text-12 i-nimiq:tooltip-triangle />
-            <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" flex="~ items-center" top--1 rounded-full transition-colors bg-gradient-blue>
-              <span px-16 py-8 text-white font-bold>
+            <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" flex="~ items-center" rounded-full transition-colors top--1 bg-gradient-blue>
+              <span text-white font-bold px-16 py-8>
                 {{ thisIsYou }}
               </span>
-              <div layout-id="connect-label" as="button" m-6 rounded-full bg-white px-12 py-5 text-blue font-bold @click="connect">
+              <div layout-id="connect-label" as="button" text-blue font-bold m-6 px-12 py-5 rounded-full bg-white @click="connect">
                 {{ connectLabel }}
               </div>
             </div>
-            <div v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" top--3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none transition-colors>
+            <div v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" outline-none text-white font-semibold px-16 py-8 rounded-full w-max transition-colors top--3>
               <div layout-id="connect-label" as="span">
                 Connecting
               </div>
               <div animate="ease-out scale-in delay-2s" shrink-0 i-nimiq:spinner />
             </div>
-            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" top--3 z-3 w-max rounded-full px-16 py-8 text-white font-semibold outline-none ring-3 ring-green transition-colors>
+            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" outline-none text-white font-semibold px-16 py-8 rounded-full w-max ring-3 ring-green transition-colors top--3 z-3>
               <div layout-id="connect-label" as="span">
                 <div flex="~ items-center justify-between gap-8">
                   <span>
@@ -117,9 +117,9 @@ async function connect() {
       </div>
       <!-- </transition> -->
 
-      <div v-if="consensus !== 'idle'" bottom="0 xl:32" absolute inset-x-0 z-2 mx-auto h-auto max-w-400 rounded-6 bg-white bg-op-6 p-24 font-semibold backdrop-blur-24 transition-height animate="fade-in-up both delay-1250ms">
+      <div v-if="consensus !== 'idle'" bottom="0 xl:32" font-semibold mx-auto p-24 rounded-6 bg-white bg-op-6 h-auto max-w-400 transition-height inset-x-0 absolute z-2 backdrop-blur-24 animate="fade-in-up both delay-1250ms">
         <transition enter-active-class="transition duration-200 ease-out" enter-from-class="translate-y--1lh" enter-to-class="translate-y-0" leave-active-class="transition duration-200 ease-out" leave-from-class="translate-y-0" leave-to-class="translate-y--1lh">
-          <p v-if="consensus === 'connecting'" text="neutral-800 11 center" w="[calc(100%-48px)]" absolute top--1.4lh nq-label>
+          <p v-if="consensus === 'connecting'" text="neutral-800 11 center" w="[calc(100%-48px)]" top--1.4lh absolute nq-label>
             Did you know that
           </p>
         </transition>

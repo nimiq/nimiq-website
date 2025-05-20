@@ -18,7 +18,7 @@ const [DefineStat, ReuseStat] = createReusableTemplate<{ icon: string, iconBgCol
       </span>
       <div flex="~ items-center gap-8">
         <div size="20 lg:24" rounded-full :class="iconBgColor" flex="~ items-center justify-center">
-          <div :class="icon" mr--0.5 text-neutral-0 />
+          <div :class="icon" text-neutral-0 mr--0.5 />
         </div>
         <p text="15/27 lg:16/27 neutral-800" font-semibold>
           {{ label }}

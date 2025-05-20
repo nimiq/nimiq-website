@@ -29,7 +29,7 @@ const displayItems = computed(() =>
     <ul columns="1 sm:2 lg:3" gap-0 style="column-rule: 2px solid rgb(var(--nq-neutral-400))">
       <li v-for="({ picture, fullName, role, github, linkedin, twitter, description }) in displayItems" :key="fullName!" break-inside-avoid-column border="b-2 solid neutral-400">
         <div v-if="hasImage(picture)" px-32 pt-32>
-          <NuxtImg :src="$prismic.asImageSrc(picture)!" w-full rounded-6 object-cover />
+          <NuxtImg :src="$prismic.asImageSrc(picture)!" rounded-6 w-full object-cover />
         </div>
         <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20" mx-auto w-156 f-mt-xs>
           <mask id="a" fill="#fff">
@@ -50,19 +50,19 @@ const displayItems = computed(() =>
             </span>
           </div>
           <RichText wrapper="div" :field="description" nq-prose-compact f-mt-sm />
-          <ul v-if="linkedin || github || twitter" flex="~ gap-x-4" relative left--8 text-neutral-100 f-mt-xs>
+          <ul v-if="linkedin || github || twitter" flex="~ gap-x-4" text-neutral-100 left--8 relative f-mt-xs>
             <li v-if="github">
-              <NuxtLink :to="`https://github.com/${github}`" title="Github" external h-max flex rounded-4 p-8 bg="hocus:neutral/6" aria-label="Github link">
+              <NuxtLink :to="`https://github.com/${github}`" title="Github" external p-8 rounded-4 flex h-max bg="hocus:neutral/6" aria-label="Github link">
                 <div i-nimiq:logos-github />
               </NuxtLink>
             </li>
             <li v-if="twitter">
-              <NuxtLink :to="`https://twitter.com/${twitter}`" title="Twitter" external h-max flex rounded-4 p-8 bg="hocus:neutral/6" aria-label="Twitter link">
+              <NuxtLink :to="`https://twitter.com/${twitter}`" title="Twitter" external p-8 rounded-4 flex h-max bg="hocus:neutral/6" aria-label="Twitter link">
                 <div i-nimiq:logos-twitter />
               </NuxtLink>
             </li>
             <li v-if="linkedin">
-              <NuxtLink :to="`https://www.linkedin.com/in/${linkedin}`" title="Linkedin" external h-max flex rounded-4 p-8 bg="hocus:neutral/6" aria-label="Linkedin link">
+              <NuxtLink :to="`https://www.linkedin.com/in/${linkedin}`" title="Linkedin" external p-8 rounded-4 flex h-max bg="hocus:neutral/6" aria-label="Linkedin link">
                 <div i-logos:linkedin-icon />
               </NuxtLink>
             </li>

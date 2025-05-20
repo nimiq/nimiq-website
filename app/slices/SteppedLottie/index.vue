@@ -12,8 +12,8 @@ const { scroller } = useCarousel()
 
 <template>
   <section :class="bgClass" nq-overlaps>
-    <div relative size-full w-full rounded-6 bg-darkerblue f-p-xl>
-      <div bg="white/10" absolute inset-0 rounded-8 />
+    <div rounded-6 bg-darkerblue size-full w-full relative f-p-xl>
+      <div bg="white/10" rounded-8 inset-0 absolute />
       <ul ref="scroller" flex="~ items-center" snap="x mandatory" of-x-auto nq-scrollbar-hide>
         <!-- <li v-for="({}, i) in slice.items" :key="i" snap="center always" data-slide w-full shrink-0 grid="~ cols-1 lg:cols-[minmax(auto,440px),1fr] lg:rows-[1fr,auto]" gap="y-16 lg:x-32 lg:y-24 xl:x-48 xl:y-40">
           <RichText wrapper="div"

@@ -26,15 +26,15 @@ const id = `terms-note-${useId()}`
     <AnimatedStakingRipple v-if="showStakingIcon" size-120 />
     <component :is="headlineTag" f-mt-md text="data-inverted:white wrap md:balance">
       {{ headlineParts[0] }}
-      <span bg="green/15 data-inverted:white/30" text="green data-inverted:white" data-percentage rounded-4 px-10 py-3 inline-flex="~">
-        ~{{ annualRewardPercentage }}<div translate-y-8 text-14 i-nimiq:asterisk :aria-labelledby="id" /></span>
+      <span bg="green/15 data-inverted:white/30" text="green data-inverted:white" data-percentage px-10 py-3 rounded-4 inline-flex="~">
+        ~{{ annualRewardPercentage }}<div text-14 translate-y-8 i-nimiq:asterisk :aria-labelledby="id" /></span>
       {{ headlineParts[1] }}
     </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" data-inverted:text="white/80" />
     <ul v-if="links.length > 0" flex="~ gap-16 lg:gap-20 wrap">
       <li v-for="(link, i) in links" :key="i">
         <PrismicLink
-          internal-component="a" :field="link" nq-arrow nq-pill-lg f-mt-lg md:mx-auto :class="{
+          internal-component="a" :field="link" f-mt-lg nq-arrow nq-pill-lg md:mx-auto :class="{
             'nq-pill-blue': link.variant === 'nq-pill-blue',
             'nq-pill-secondary': link.variant === 'nq-pill-secondary',
             'nq-pill-tertiary bg-white text-neutral-200': link.variant === 'nq-pill-tertiary',

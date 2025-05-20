@@ -46,37 +46,37 @@ const milestones = computed(() => {
 </script>
 
 <template>
-  <div class="roadmap" relative w-full of-x-auto flex="~ col" :style="`--first-month: ${firstMonth}; --first-year: ${firstYear}; --current-year: ${currentYear}; --current-month: ${currentMonth}`">
-    <div class="layer milestone-lines" absolute inset-y-0 w-max of-hidden>
+  <div class="roadmap" w-full relative of-x-auto flex="~ col" :style="`--first-month: ${firstMonth}; --first-year: ${firstYear}; --current-year: ${currentYear}; --current-month: ${currentMonth}`">
+    <div class="layer milestone-lines" w-max inset-y-0 absolute of-hidden>
       <div v-for="({ month, year }, i) in milestones.slice(1)" :key="i" :style="`--year: ${year}; --month: ${month};`" text="neutral/5" relative flex="~ col">
         <div h="[calc(var(--pt)/2)]" w="$vertical-lines-w" bg-gradient="to-b from-$bg to-current" />
         <div h="[calc(var(--pt)/2-4px)]" w="$vertical-lines-w" bg-current />
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="58" fill="none"><path stroke="currentColor" stroke-linecap="square" stroke-width="2" d="M1 57v-.88a6 6 0 0 1 .82-3.02l12.42-21.33a6 6 0 0 0 0-6.04L1.82 4.4A6 6 0 0 1 1 1.38V1" /></svg>
-        <div w="$vertical-lines-w" flex-1 bg-current />
+        <div w="$vertical-lines-w" bg-current flex-1 />
         <div h="[calc(var(--pt)/2)]" w="$vertical-lines-w" bg-gradient="to-t from-$bg to-current" />
       </div>
 
-      <div style="--year: var(--current-year); --month: var(--current-month);" relative h-full text-red flex="~ col">
+      <div style="--year: var(--current-year); --month: var(--current-month);" text-red h-full relative flex="~ col">
         <div h="$pt" w="$vertical-lines-w" bg-gradient="to-b from-$bg to-current" />
-        <div w="$vertical-lines-w" flex-1 bg-current />
+        <div w="$vertical-lines-w" bg-current flex-1 />
         <div h="$pt" w="$vertical-lines-w" bg-gradient="to-t from-$bg to-current" />
       </div>
     </div>
 
-    <header flex="~ items-center" relative w-max of-visible ml="$ml" pt="$pt">
-      <div absolute left-0 z-1 pl-0 w="$pl" flex="~ items-center justify-center">
-        <p text="center 10" z-1 whitespace-nowrap bg-neutral-100 px-6 nq-label>
+    <header flex="~ items-center" w-max relative of-visible ml="$ml" pt="$pt">
+      <div pl-0 left-0 absolute z-1 w="$pl" flex="~ items-center justify-center">
+        <p text="center 10" px-6 bg-neutral-100 whitespace-nowrap z-1 nq-label>
           {{ firstYear }}
         </p>
-        <div flex="~ items-center gap-6" absolute right--2>
-          <div v-for="i in 4" :key="i" h-1 w-5 bg-neutral-500 ring="y-0.5 neutral-500" />
+        <div flex="~ items-center gap-6" right--2 absolute>
+          <div v-for="i in 4" :key="i" bg-neutral-500 h-1 w-5 ring="y-0.5 neutral-500" />
         </div>
       </div>
-      <div class="layer" pl="$pl" z-1 grid-rows-1 items-center of-visible style="grid-template-columns: repeat(calc(1 + var(--columns)), var(--columns-w))">
+      <div class="layer" pl="$pl" grid-rows-1 items-center z-1 of-visible style="grid-template-columns: repeat(calc(1 + var(--columns)), var(--columns-w))">
         <div
           v-for="({ label, month, year, untilMonth, untilYear }, i) in milestones" :key="i" :style="`--year: ${year}; --month: ${month + (i > 0 ? 1 : 0)}; --until-year: ${untilYear}; --until-month:${untilMonth}`" drop-shadow first=""
         >
-          <div text="10/12 neutral center" flex="~ justify-center items-center" bg="neutral-0 dark:neutral-400" h-full min-h-52 rounded-6 px-16 nq-label>
+          <div text="10/12 neutral center" flex="~ justify-center items-center" bg="neutral-0 dark:neutral-400" px-16 rounded-6 h-full min-h-52 nq-label>
             {{ label }}
           </div>
         </div>
@@ -91,11 +91,11 @@ const milestones = computed(() => {
     <ul flex="~ col gap-16" ml="$ml" w-max f-pt-lg f-mt-xs>
       <li
         v-for="(layer, l) in layers" :key="layer.name" :class="layer.layerClasses" flex="~ col justify-end"
-        relative w-max self-end rounded-l-6 p-24 pr-0 pl="$pl"
+        p-24 pr-0 rounded-l-6 w-max self-end relative pl="$pl"
       >
         <div v-for="block in layer.blocks" :key="block.name" mt-24 first:mt-0 flex="~ justify-end">
-          <div relative pt-12>
-            <span absolute left-0 top-0 grid-row-span-full block text-10 nq-label :class="layer.text">
+          <div pt-12 relative>
+            <span text-10 grid-row-span-full block left-0 top-0 absolute nq-label :class="layer.text">
               {{ block.name }}
             </span>
 
@@ -110,13 +110,13 @@ const milestones = computed(() => {
             <div
               v-else
               class="layer force-row-height" :style="getStartOfBlock(block.items)"
-              :class="[layer.blocksClasses, block.nestedBlocksClasses]" rounded-l-6 p-16 pr-0 shadow
+              :class="[layer.blocksClasses, block.nestedBlocksClasses]" p-16 pr-0 rounded-l-6 shadow
             >
               <RoadmapBlock v-for="(item, i) in block.items" :key="i" v-bind="item" />
             </div>
           </div>
         </div>
-        <div :class="layer.text" absolute bottom-24 left-24 text-18 flex="~ items-center gap-12">
+        <div :class="layer.text" text-18 bottom-24 left-24 absolute flex="~ items-center gap-12">
           <div :class="layer.icon" text-32 />
           <span font-bold>
             {{ layer.name }}

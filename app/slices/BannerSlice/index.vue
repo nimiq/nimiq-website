@@ -48,31 +48,31 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
 
 <template>
   <section
-    nq-overlaps relative z-10 bg-neutral-0 :class="{ 'pb-0': slice.variation !== 'default' }"
+    nq-overlaps bg-neutral-0 relative z-10 :class="{ 'pb-0': slice.variation !== 'default' }"
     data-slice-type="banner"
   >
     <template v-if="slice.variation === 'default'">
       <div
         v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items"
         :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`"
-        :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72" relative mx-auto w-full of-hidden rounded-8
-        px-32 shadow
+        :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72"
+        mx-auto px-32 rounded-8 w-full shadow relative of-hidden
       >
         <PrismicLink
           v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a"
           :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1"
-          :style="{ backgroundColor: color }" :class="[classes]" pointer-cursor absolute size-104 rounded-full
-          text-white
+          :style="{ backgroundColor: color }" :class="[classes]"
+          pointer-cursor text-white rounded-full size-104 absolute
         >
           <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />
           <PrismicImage v-else :field="icon" pointer-events-none scale-125 />
           <div
             :style="{ borderColor: color }" top="50%" left="50%" border="2 solid" translate-x="-50%"
-            translate-y="-50%" pointer-events-none absolute size-full scale-100 rounded-full op-0
+            translate-y="-50%" rounded-full op-0 size-full pointer-events-none scale-100 absolute
           />
         </PrismicLink>
-        <div v-if="bgColor === 'white'" class="curtain" pointer-events-none absolute inset-0 />
-        <div v-else-if="bgColor === 'green'" pointer-events-none absolute inset-0 bg-gradient-green />
+        <div v-if="bgColor === 'white'" class="curtain" pointer-events-none inset-0 absolute />
+        <div v-else-if="bgColor === 'green'" pointer-events-none inset-0 absolute bg-gradient-green />
 
         <div
           v-if="backgroundPattern === 'Nimiq Hexagon'" text="200 md:300 lg:400" pointer-events-none absolute
@@ -84,7 +84,7 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
         </div>
 
         <div
-          relative z-10 max-w-full
+          max-w-full relative z-10
           :class="{ 'lg:max-w-60ch md:items-center flex-col md:mx-auto w-max': hasBgItems, 'items-end w-full': !hasBgItems }"
           flex="~ wrap justify-between"
         >
@@ -115,20 +115,20 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
       </div>
     </template>
     <div v-else-if="slice.variation === 'staking'" w-full>
-      <div absolute inset-0 size-full of-hidden>
-        <AnimatedCircleRipple absolute bottom--300 left--5vw size-110vw max-w-none />
-        <div absolute inset-x-0 top-0 h-200 bg-gradient="to-b from-neutral-0 to-transparent" />
-        <div absolute inset-x-0 bottom-0 h-200 bg-gradient="to-b from-transparent to-green" />
+      <div size-full inset-0 absolute of-hidden>
+        <AnimatedCircleRipple size-110vw max-w-none bottom--300 left--5vw absolute />
+        <div h-200 inset-x-0 top-0 absolute bg-gradient="to-b from-neutral-0 to-transparent" />
+        <div h-200 inset-x-0 bottom-0 absolute bg-gradient="to-b from-transparent to-green" />
       </div>
       <div
         grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col" ring="1.5 neutral-300"
-        p="y-64 x-32 md:x-64 lg:72" relative gap-x-24 rounded-8 bg-neutral-0 shadow
+        p="y-64 x-32 md:x-64 lg:72" rounded-8 bg-neutral-0 gap-x-24 shadow relative
       >
-        <RichText wrapper="div" :field="slice.primary.headline" text="f-4xl neutral" nq-raw max-w-24ch font-bold />
-        <PrismicLink :field="slice.primary.cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-md />
-        <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
+        <RichText wrapper="div" :field="slice.primary.headline" text="f-4xl neutral" nq-raw font-bold max-w-24ch />
+        <PrismicLink :field="slice.primary.cta" f-mt-md nq-arrow nq-pill-lg nq-pill-blue />
+        <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:mt-0 lg:row-span-2>
           <li v-for="({ description, icon }, i) in slice.primary.requirements" :key="i" flex="~ gap-12 items-center">
-            <div size-32 rounded-full bg-green stack>
+            <div stack rounded-full bg-green size-32>
               <div :class="[icon!, { 'bottom--2 right-1 translate-x-1': icon === 'i-nimiq:document-filled' }]" text="18 white" relative />
             </div>
             <p>{{ description }}</p>
@@ -138,13 +138,13 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
     </div>
     <div
       v-else-if="slice.variation === 'buyAndSell'" grid="~ cols-1 lg:cols-[1fr_max-content] gap-x-32 lg:flow-col"
-      ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" relative w-full gap-x-24 rounded-8 bg-neutral-0 shadow
+      ring="1.5 neutral-300" p="y-64 x-32 md:x-64 lg:72" rounded-8 bg-neutral-0 gap-x-24 w-full shadow relative
     >
-      <RichText wrapper="div" :field="slice.primary.headline" text="44 neutral" nq-raw max-w-24ch font-bold />
-      <PrismicLink :field="slice.primary.cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-md />
-      <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:row-span-2 lg:mt-0>
+      <RichText wrapper="div" :field="slice.primary.headline" text="44 neutral" nq-raw font-bold max-w-24ch />
+      <PrismicLink :field="slice.primary.cta" f-mt-md nq-arrow nq-pill-lg nq-pill-blue />
+      <ul flex="~ col gap-12 md:gap-16 lg:gap-24" mt-40 lg:mt-0 lg:row-span-2>
         <li v-for="({ description, icon }, i) in slice.primary.features" :key="i" flex="~ gap-12 items-center">
-          <div size-32 rounded-full bg-gold stack>
+          <div stack rounded-full bg-gold size-32>
             <div :class="[icon!, { 'bottom--2 right-1 translate-x-1': icon === 'i-nimiq:document-filled' }]" text="18 white" relative />
           </div>
           <p>{{ description }}</p>

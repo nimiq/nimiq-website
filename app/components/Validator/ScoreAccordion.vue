@@ -67,10 +67,10 @@ const dominanceStatus = computed(() => {
     <AccordionItem value="availability">
       <AccordionTrigger class="trigger">
         <div text="10 neutral-600" transition-transform i-nimiq:chevron-right data-open:rotate-90 />
-        <h4 text="neutral f-sm left" flex-1 font-semibold>
+        <h4 text="neutral f-sm left" font-semibold flex-1>
           Availability
         </h4>
-        <ValidatorTrustscore :score="availability" px-0 text-12 />
+        <ValidatorTrustscore :score="availability" text-12 px-0 />
       </AccordionTrigger>
       <AccordionContent class="content">
         <p>
@@ -85,10 +85,10 @@ const dominanceStatus = computed(() => {
     <AccordionItem value="reliability">
       <AccordionTrigger class="trigger">
         <div text="10 neutral-600" transition-transform i-nimiq:chevron-right data-open:rotate-90 />
-        <h4 text="neutral f-sm left" flex-1 font-semibold>
+        <h4 text="neutral f-sm left" font-semibold flex-1>
           Reliability
         </h4>
-        <ValidatorTrustscore :score="reliability" px-0 text-12 />
+        <ValidatorTrustscore :score="reliability" text-12 px-0 />
       </AccordionTrigger>
       <AccordionContent class="content">
         <p>
@@ -103,10 +103,10 @@ const dominanceStatus = computed(() => {
     <AccordionItem value="dominance">
       <AccordionTrigger class="trigger">
         <div text="10 neutral-600" transition-transform i-nimiq:chevron-right data-open:rotate-90 />
-        <h4 text="neutral f-sm left" flex-1 font-semibold>
+        <h4 text="neutral f-sm left" font-semibold flex-1>
           Dominance
         </h4>
-        <ValidatorTrustscore :score="dominance" px-0 text-12 />
+        <ValidatorTrustscore :score="dominance" text-12 px-0 />
       </AccordionTrigger>
       <AccordionContent class="content">
         <p>

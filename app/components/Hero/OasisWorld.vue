@@ -34,14 +34,14 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
 </script>
 
 <template>
-  <section of-x-clip bg-darkerblue px-0 pb-0 f-pt-3xl>
+  <section px-0 pb-0 bg-darkerblue of-x-clip f-pt-3xl>
     <div
       class="world-container" :style="`--progress: ${progress}`"
-      :class="{ first: progress < 0.33, second: progress >= 0.33 && progress < 0.66, third: progress >= 0.66 }" relative
-      aspect-2 max-w-none w-full
+      :class="{ first: progress < 0.33, second: progress >= 0.33 && progress < 0.66, third: progress >= 0.66 }"
+      max-w-none w-full aspect-2 relative
     >
-      <div absolute left-0 top-0>
-        <div rounded="100%" class="oval" bg-neutral-100 stack>
+      <div left-0 top-0 absolute>
+        <div rounded="100%" class="oval" stack bg-neutral-100>
           <div i-oasis-regions:europe />
           <div i-oasis-regions:central-america />
           <div i-oasis-regions:rest-of-the-world />
@@ -54,28 +54,28 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
         </div>
       </div> -->
     </div>
-    <div z-1 max-w-none w-full bg-neutral-100>
-      <div ref="scroller" relative mx-auto max-w-480 w-full>
+    <div bg-neutral-100 max-w-none w-full z-1>
+      <div ref="scroller" mx-auto max-w-480 w-full relative>
         <Carousel :items style="--px: 32px; --pb:64px">
           <template #default="{ item: { content, kind, link } }">
-            <div :class="bgColor[kind]" max-w-480 w-full rounded-8 f-p-lg md:w-416>
+            <div :class="bgColor[kind]" rounded-8 max-w-480 w-full f-p-lg md:w-416>
               <RichText wrapper="div" :field="content" class="dark" nq-prose-compact text-white />
               <div v-if="kind !== 'World'" flex="~ gap-8 items-center" text-white f-mt-sm>
                 <div v-for="(icon, i) in fiatIcons[kind]" :key="i" flex="~ gap-8">
-                  <div size-40 rounded-full stack ring="1.5 white/40">
+                  <div stack rounded-full size-40 ring="1.5 white/40">
                     <div :class="icon" size-24 />
                   </div>
                 </div>
-                <div mx-12 op-50 i-nimiq:exchange f-text-2xl />
+                <div mx-12 op-50 f-text-2xl i-nimiq:exchange />
                 <div v-for="(icon, i) in cryptoIcons[kind]" :key="i" flex="~ gap-8">
-                  <div size-40 rounded-full stack ring="1.5 white/40">
+                  <div stack rounded-full size-40 ring="1.5 white/40">
                     <div :class="icon" size-24 />
                   </div>
                 </div>
               </div>
               <PrismicLink
-                v-if="hasLink(link)" :field="link" internal-component="a" external nq-arrow nq-pill-lg
-                nq-pill-white f-mt-md
+                v-if="hasLink(link)" :field="link" internal-component="a"
+                external f-mt-md nq-arrow nq-pill-lg nq-pill-white
               />
               <div v-if="kind !== 'Europe'" f-mt-sm>
                 <h4 text="f-xs white/50" nq-label>
@@ -84,13 +84,13 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                 <div flex="~ gap-8 items-center" text-white f-mt-2xs>
                   <PrismicLink
                     :field="socialMedias!.x.link" internal-component="a" bg="white/20 hocus:white/40"
-                    external size-40 rounded-full transition-colors stack
+                    external stack rounded-full size-40 transition-colors
                   >
                     <div text="white/80 f-xl" transition-colors i-nimiq:logos-twitter-mono />
                   </PrismicLink>
                   <PrismicLink
                     :field="socialMedias!.telegram.link" internal-component="a" bg="white/20 hocus:white/40"
-                    external size-40 rounded-full transition-colors stack
+                    external stack rounded-full size-40 transition-colors
                   >
                     <div
                       text="white/80 f-lg hocus:white" translate-x--1 translate-y-1 transition-colors

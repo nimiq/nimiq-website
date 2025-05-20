@@ -31,31 +31,31 @@ onUnmounted(() => router.replace({ query: { ...route.query, [queryName]: undefin
     </DialogTrigger>
     <DialogPortal>
       <Transition name="backdrop">
-        <DialogOverlay fixed inset-0 z-200 bg-darkblue op-60 />
+        <DialogOverlay bg-darkblue op-60 inset-0 fixed z-200 />
       </Transition>
       <Transition name="modal">
         <DialogContent
           :key="name" lg="top-1/2 left-1/2 translate--1/2" rounded="t-8 lg:8"
-          data-modal fixed bottom-0 z-200 h-max max-h-85dvh w-full transform of-y-auto shadow-lg outline-none lg:max-w-500
+          outline-none data-modal h-max max-h-85dvh w-full shadow-lg transform bottom-0 fixed z-200 of-y-auto lg:max-w-500
           @open-auto-focus.prevent
         >
-          <div relative bg-neutral-0 py-32 ring="1.5 neutral/3" class="modal-container">
+          <div py-32 bg-neutral-0 relative ring="1.5 neutral/3" class="modal-container">
             <div v-if="slots.top" mt--32>
               <slot name="top" />
             </div>
 
-            <DialogTitle text="24 center neutral lh-24" mb-12 px-24 font-bold lh-none lg:px-40 as="h2">
+            <DialogTitle text="24 center neutral lh-24" font-bold lh-none mb-12 px-24 lg:px-40 as="h2">
               <slot name="title" />
             </DialogTitle>
-            <DialogDescription text="center neutral" block px-24 lg:px-40>
+            <DialogDescription text="center neutral" px-24 block lg:px-40>
               <slot name="description" />
             </DialogDescription>
 
-            <div mt-12 rounded-b-8 px-24 lg:px-40>
+            <div mt-12 px-24 rounded-b-8 lg:px-40>
               <slot name="content" />
             </div>
 
-            <DialogClose aria-label="Close" close-btn absolute right-16 top-16 text-28 />
+            <DialogClose aria-label="Close" close-btn text-28 right-16 top-16 absolute />
           </div>
         </DialogContent>
       </Transition>

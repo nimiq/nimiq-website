@@ -42,7 +42,7 @@ onMounted(() => {
 
 <template>
   <div :class="{ visible: isVisible, delayed: isDelayed }" class="map">
-    <NuxtImg class="base-map" provider="ipxStatic" src="/assets/images/home-hero/map.svg" alt="World map" />
+    <NuxtImg class="base-map" provider="ipx" src="/assets/images/home-hero/map.svg" alt="World map" />
     <svg viewBox="0 0 977 362" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g class="green-group europe" opacity="1" fill-rule="evenodd" clip-rule="evenodd" fill="#1F2348">
         <path

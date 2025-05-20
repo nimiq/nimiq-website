@@ -25,7 +25,7 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
 
 <template>
   <section pt="148 md:153 lg:160" data-slice-type="newsletter-form">
-    <div px="32 md:36 lg:40" mx-auto max-w-65ch rounded-6 bg-neutral-0 py-60 shadow>
+    <div px="32 md:36 lg:40" mx-auto py-60 rounded-6 bg-neutral-0 max-w-65ch shadow>
       <h1 style="--nq-font-size-min:24;--nq-font-size-max:28" text-left>
         Nimiq newsletter signup
       </h1>
@@ -95,7 +95,7 @@ const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', b
           There was an error while subscribing to the newsletter. Please try again later.
         </p>
 
-        <pre rounded-6 px-12 py-10 f-mt-xs>
+        <pre px-12 py-10 rounded-6 f-mt-xs>
           {{ error }}
         </pre>
       </div>

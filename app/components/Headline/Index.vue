@@ -24,7 +24,7 @@ if (hasLink(cta)) {
 <template>
   <div flex="~ col" :class="{ 'md:items-center': !leftAlign }">
     <div v-if="iconName" :class="iconName" text-54 op-15 f-mt-sm />
-    <p v-if="label" mb-16 block w-max nq-label f-text-sm :class="{ 'md:mx-auto': !leftAlign }">
+    <p v-if="label" mb-16 w-max block f-text-sm nq-label :class="{ 'md:mx-auto': !leftAlign }">
       {{ label }}
     </p>
     <PrismicText :wrapper="headlineTag" :field="headline" :class="{ 'text-left': leftAlign }" break-keep />
@@ -32,9 +32,9 @@ if (hasLink(cta)) {
 
     <!-- TODO Deprecate this -->
     <template v-if="links.length === 0 && cta && hasLink(cta)">
-      <PrismicLink v-if="!ctaIsVideo" internal-component="a" :field="cta" nq-arrow nq-pill-lg nq-pill-blue f-mt-lg :class="{ 'md:mx-auto': !leftAlign }" />
-      <PrismicLink v-else internal-component="a" :field="cta" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue rounded-4 p-8 transition-colors f-mt-sm>
-        <div ring="1.5 blue" size-32 rounded-full text-16 stack>
+      <PrismicLink v-if="!ctaIsVideo" internal-component="a" :field="cta" f-mt-lg nq-arrow nq-pill-lg nq-pill-blue :class="{ 'md:mx-auto': !leftAlign }" />
+      <PrismicLink v-else internal-component="a" :field="cta" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue p-8 rounded-4 transition-colors f-mt-sm>
+        <div ring="1.5 blue" stack text-16 rounded-full size-32>
           <div i-nimiq:triangle-right />
         </div>
         <p font-bold>
@@ -56,9 +56,9 @@ if (hasLink(cta)) {
           />
 
           <PrismicLink
-            v-else-if="link.variant === 'video'" internal-component="a" :field="link" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue rounded-4 p-8 transition-colors
+            v-else-if="link.variant === 'video'" internal-component="a" :field="link" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue p-8 rounded-4 transition-colors
           >
-            <div ring="1.5 blue" size-32 rounded-full text-16 stack>
+            <div ring="1.5 blue" stack text-16 rounded-full size-32>
               <div i-nimiq:triangle-right />
             </div>
             <p font-bold>

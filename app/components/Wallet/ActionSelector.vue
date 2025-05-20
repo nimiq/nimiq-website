@@ -32,10 +32,10 @@ watchEffect(() => {
 </script>
 
 <template>
-  <ul flex="~ gap-4" self-end="!" ring="1 blue/80" relative z-10 h-max rounded-full bg-white p-4 style="--un-shadow: 0 0 32px #0682CA;">
-    <div ref="pill" absolute inset-y-3 rounded-full bg-darkblue transition-all duration-400 ease-in-out />
+  <ul flex="~ gap-4" self-end="!" ring="1 blue/80" p-4 rounded-full bg-white h-max relative z-10 style="--un-shadow: 0 0 32px #0682CA;">
+    <div ref="pill" rounded-full bg-darkblue transition-all duration-400 ease-in-out inset-y-3 absolute />
     <li v-for="({ icon, label, value, color }) in states" :key="value" :style="{ '--c': `rgb(var(--nq-${color}) / 1)` }">
-      <button flex="~ gap-2 items-center" rounded-full bg-transparent p-2 pr-12 :data-state="value === state ? 'active' : undefined" @click="state = value">
+      <button flex="~ gap-2 items-center" p-2 pr-12 rounded-full bg-transparent :data-state="value === state ? 'active' : undefined" @click="state = value">
         <div :class="icon" text="neutral-800 data-active:$c" m-8 transition-color />
         <span font="semibold data-active:bold" text="data-active:white" transition-color>
           {{ label }}

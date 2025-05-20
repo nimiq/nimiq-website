@@ -28,7 +28,7 @@ const ringStyle = computed(() => `stroke-dashoffset: ${circumference.value - pro
       />
     </svg>
 
-    <div absolute left-0 top-0 size-full flex items-center justify-center text-16 font-bold>
+    <div text-16 font-bold flex size-full items-center left-0 top-0 justify-center absolute>
       <span v-if="progress < 1">
         {{ Math.round(100 * progress) }}%
       </span>

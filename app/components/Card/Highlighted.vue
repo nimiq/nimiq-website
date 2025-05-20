@@ -7,14 +7,14 @@ const resolvedUrl = url.host === useRequestURL().host ? url.pathname : link
 </script>
 
 <template>
-  <div flex="~ wrap items-center gap-8" h-full rounded-6 bg-neutral-0 shadow f-p-xs>
-    <NuxtImg v-if="screenshot" :src="screenshot!" h-auto max-h-full max-w-full w-320 rounded-4 rounded-8 object-cover />
-    <div flex="~ col gap-12" flex-1 p-24>
+  <div flex="~ wrap items-center gap-8" rounded-6 bg-neutral-0 h-full shadow f-p-xs>
+    <NuxtImg v-if="screenshot" :src="screenshot!" rounded-4 rounded-8 h-auto max-h-full max-w-full w-320 object-cover />
+    <div flex="~ col gap-12" p-24 flex-1>
       <h3>{{ name }}</h3>
-      <p class="nq-raw" mt-0 text-neutral-800 f-pt-2xs>
+      <p class="nq-raw" text-neutral-800 mt-0 f-pt-2xs>
         {{ description }}
       </p>
-      <NuxtLink :to="resolvedUrl" mx-0 nq-arrow nq-pill-lg nq-pill-blue f-mt-md>
+      <NuxtLink :to="resolvedUrl" mx-0 f-mt-md nq-arrow nq-pill-lg nq-pill-blue>
         Learn more
       </NuxtLink>
     </div>

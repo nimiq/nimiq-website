@@ -85,8 +85,8 @@ delete props.error.stack
 
           <pre bg="red/10" text-red-1100 outline-red-600>{{ error }}</pre>
 
-          <span text-red-1100 nq-label f-px-sm f-mt-md>Stack</span>
-          <pre bg="red/10" mt-4 text-red-1100 outline-red-600>{{ stack }}</pre>
+          <span text-red-1100 f-px-sm f-mt-md nq-label>Stack</span>
+          <pre bg="red/10" text-red-1100 mt-4 outline-red-600>{{ stack }}</pre>
         </details>
       </div>
     </section>

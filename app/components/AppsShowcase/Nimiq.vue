@@ -15,13 +15,13 @@ defineProps<{ items: AppsShowcaseSliceNimiqsAppsPrimaryAppsItem[] }>()
         </div>
         <div v-else-if="item === 'CPL'" size="48 lg:56" i-nimiq:logos-cpl-tag :class="{ 'lg:mx-auto': !highlight, 'lg:ml-24': highlight }" />
         <div v-else-if="item === 'Nimiq Wallet'" text-56 i-nimiq:logos-nimiq :class="{ 'lg:mx-auto': !highlight, 'lg:ml-24': highlight }" />
-        <h3 text="22/28.6 lg:28/36.4" mt-16 font-semibold :class="!highlight ? 'lg:text-center' : 'text-left lg:ml-24'">
+        <h3 text="22/28.6 lg:28/36.4" font-semibold mt-16 :class="!highlight ? 'lg:text-center' : 'text-left lg:ml-24'">
           {{ title }}
         </h3>
         <p mt-12 max-w-28ch lg:mx-auto text="16/24 md:17/25.5 lg:18/28 neutral-800" :class="{ 'lg:text-center': !highlight, 'lg:ml-24': highlight }">
           {{ description }}
         </p>
-        <div grid="~ place-content-center" mb-32 size-32 rounded-full bg-gradient-blue max-md:mt-12 md:hidden>
+        <div grid="~ place-content-center" mb-32 rounded-full size-32 bg-gradient-blue max-md:mt-12 md:hidden>
           <div i-nimiq:chevron-right text="9 white" />
         </div>
         <div h-196 :class="{ 'max-md:mr--128 md:ml-16': item === 'CPL', 'max-md:mr--128': item === 'Nimiq Wallet', 'md:max-w-245': item === 'Nimiq Pay', 'lg:mt-40 md:row-span-full md:col-start-2 lg:row-span-1 lg:col-start-1': !highlight, 'md:row-span-full md:col-start-2 lg:h-490 lg:mb--68': highlight }" md:mx-auto>

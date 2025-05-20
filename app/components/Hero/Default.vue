@@ -26,7 +26,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
     <PrismicText v-if="p.subline" :field="p.subline" wrapper="p" font-400 dark:text-neutral-900 />
     <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline?.[0]?.text}`" role="list" f-mt-xs flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
       <li v-for="(highlight, i) in highlightsItems" :key="i" contents>
-        <div v-if="i > 0" size-6 rounded-full bg-neutral-500 />
+        <div v-if="i > 0" rounded-full bg-neutral-500 size-6 />
         <span text="f-xl green" font-semibold>{{ highlight }}</span>
       </li>
     </ul>
@@ -46,12 +46,12 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
     <ul v-if="hasAnApp" f-mt-xl flex="~ wrap gap-32 lg:gap-40">
       <li v-if="hasAppStore">
         <PrismicLink internal-component="a" :field="p.appStore!">
-          <NuxtImg v-if="hasAppStore" provider="ipxStatic" src="/assets/images/apple-store-badge.png" h="32 lg:40" alt="Get it on Apple Store" />
+          <NuxtImg v-if="hasAppStore" provider="ipx" src="/assets/images/apple-store-badge.png" h="32 lg:40" alt="Get it on Apple Store" />
         </PrismicLink>
       </li>
       <li v-if="hasPlayStore">
         <PrismicLink internal-component="a" :field="p.playStore!">
-          <NuxtImg provider="ipxStatic" src="/assets/images/google-play-badge.png" h="32 lg:40" alt="Get it on Google Play" />
+          <NuxtImg provider="ipx" src="/assets/images/google-play-badge.png" h="32 lg:40" alt="Get it on Google Play" />
         </PrismicLink>
       </li>
     </ul>

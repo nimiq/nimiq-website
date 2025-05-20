@@ -1,5 +1,5 @@
 import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts/types'
-import { initRpcClient } from 'nimiq-rpc-client-ts/config'
+import { initRpcClient } from 'nimiq-rpc-client-ts/client'
 import { getBlockByNumber, getBlockNumber } from 'nimiq-rpc-client-ts/http'
 import { BlockType } from 'nimiq-rpc-client-ts/types'
 import { subscribeForHeadBlock } from 'nimiq-rpc-client-ts/ws'

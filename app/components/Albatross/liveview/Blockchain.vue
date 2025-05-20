@@ -48,7 +48,7 @@ const { clientNetwork } = useRuntimeConfig().public
 
 <template>
   <div ref="target" relative of-x-clip>
-    <div flex="~ justify-end items-center" min-h-208 of-hidden px-24 :class="{ 'pr-84': canSendTx }">
+    <div flex="~ justify-end items-center" px-24 min-h-208 of-hidden :class="{ 'pr-84': canSendTx }">
       <transition-group
         tag="div" flex="~ justify-end items-center" enter-from-class="op-0" enter-active-class="transition-opacity duration-400 ease-in"
         :style="{ transform: `translate3d(${offset}px, 0, 0)` }"
@@ -56,21 +56,21 @@ const { clientNetwork } = useRuntimeConfig().public
         <AlbatrossLiveviewBlock v-for="block in blocks" :key="`block-${block.number}`" :block :style="{ width: BLOCK_WIDTH }" />
       </transition-group>
 
-      <div v-if="canSendTx" absolute right-32>
+      <div v-if="canSendTx" right-32 absolute>
         <AlbatrossLiveviewTxPending />
       </div>
     </div>
 
-    <div v-if="status !== 'OPEN' || blocks.length === 0" flex="~ justify-center items-center" absolute inset-0 min-h-224 font-bold>
+    <div v-if="status !== 'OPEN' || blocks.length === 0" flex="~ justify-center items-center" font-bold min-h-224 inset-0 absolute>
       <div v-if="status === 'CONNECTING' || blocks.length === 0" text="f-lg white">
         Loading...
       </div>
-      <div v-else-if="status === 'CLOSED'" text="18 white" rounded-4 bg-red px-32 py-24 shadow ring="1.5 red/3">
+      <div v-else-if="status === 'CLOSED'" text="18 white" px-32 py-24 rounded-4 bg-red shadow ring="1.5 red/3">
         We couldn't connect to the {{ clientNetwork }}
       </div>
     </div>
 
-    <div v-else flex="~ justify-center" w-full of-hidden px-32 f-mt-lg>
+    <div v-else flex="~ justify-center" px-32 w-full of-hidden f-mt-lg>
       <!-- :class="{ unimate: isMacro || isFirstBatchAfterPageLoad }"> -->
       <div flex="~ justify-center">
         <AlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 2 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number class="animate-batch-unshift" />

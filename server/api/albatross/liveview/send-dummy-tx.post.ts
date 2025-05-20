@@ -1,5 +1,5 @@
 // import { Address, KeyPair, PrivateKey, TransactionBuilder } from '@nimiq/core'
-// import { initRpcClient } from 'nimiq-rpc-client-ts/config'
+// import { initRpcClient } from 'nimiq-rpc-client-ts/client'
 // import { sendRawTransaction } from 'nimiq-rpc-client-ts/http'
 // import * as v from 'valibot'
 

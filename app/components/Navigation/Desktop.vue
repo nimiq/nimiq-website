@@ -21,7 +21,7 @@ const isHome = route.fullPath === '/'
           <div i-nimiq:chevron-down />
         </NavigationMenuTrigger>
         <NavigationMenuContent
-          absolute left-0 top-0 w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left
+          w-max left-0 top-0 absolute motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left
         >
           <div>
             <div flex="~ gap-20" px-20 py-32>
@@ -39,11 +39,11 @@ const isHome = route.fullPath === '/'
               </ul>
 
               <transition mode="out-in" enter-active-class="transition-[opacity,filter] duration-400" enter-from-class="op-0 blur-2" enter-to-class="op-100 blur-0" leave-active-class="transition-[opacity,filter] duration-150 blur-0" leave-from-class="op-100" leave-to-class="op-0 blur-2">
-                <PrismicImage v-if="navigation.appsLinks[selectedApp]?.visual" :key="selectedApp" :field="navigation.appsLinks[selectedApp]!.visual" relative h-full w-300 rounded-4 object-contain object-left-top shadow />
+                <PrismicImage v-if="navigation.appsLinks[selectedApp]?.visual" :key="selectedApp" :field="navigation.appsLinks[selectedApp]!.visual" rounded-4 h-full w-300 shadow relative object-contain object-left-top />
               </transition>
             </div>
-            <div v-if="navigation.howToTitle && navigation.howToLinks.length > 0" bg-darkblue bg-op-6 px-40 py-32>
-              <p whitespace-nowrap text-12 font-bold lh-none uppercase op-60>
+            <div v-if="navigation.howToTitle && navigation.howToLinks.length > 0" px-40 py-32 bg-darkblue bg-op-6>
+              <p text-12 font-bold lh-none op-60 whitespace-nowrap uppercase>
                 {{ navigation.howToTitle }}
               </p>
 
@@ -66,10 +66,10 @@ const isHome = route.fullPath === '/'
           {{ navigation.techGroupName }}
           <div i-nimiq:chevron-down />
         </NavigationMenuTrigger>
-        <NavigationMenuContent absolute left-0 top-0 min-w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
+        <NavigationMenuContent min-w-max left-0 top-0 absolute motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
           <div>
             <ul :aria-label="`${navigation.techGroupName} links`" role="link" grid="~ cols-2 gap-x-8" p-24>
-              <li v-for="({ label, href }) in navigation.techLinks" :key="label!" w-full flex class="link-item">
+              <li v-for="({ label, href }) in navigation.techLinks" :key="label!" flex w-full class="link-item">
                 <NavigationMenuLink as-child>
                   <PrismicLink internal-component="a" :field="href">
                     {{ label }}
@@ -77,13 +77,13 @@ const isHome = route.fullPath === '/'
                 </NavigationMenuLink>
               </li>
             </ul>
-            <hr h-1 w-full bg-darkblue op-10>
+            <hr bg-darkblue op-10 h-1 w-full>
             <div flex="~ items-center justify-between gap-x-20" px-32 py-20>
-              <PrismicLink v-if="socialMedias!.github" internal-component="a" :field="socialMedias!.github.link" flex="~ items-center gap-12" un-text="15 neutral-800" flex-1 pr-4 nq-arrow after:ml--4 border="r-1.5 solid darkblue/10">
+              <PrismicLink v-if="socialMedias!.github" internal-component="a" :field="socialMedias!.github.link" flex="~ items-center gap-12" un-text="15 neutral-800" pr-4 flex-1 nq-arrow after:ml--4 border="r-1.5 solid darkblue/10">
                 <div :class="socialMedias!.github.icon" text-20 op-70 />
                 {{ navigation.githubLinkLabel }}
               </PrismicLink>
-              <SocialMediaLogosList :items="[SocialMedia.reddit, SocialMedia.discord, SocialMedia.telegram]" flex-nowrap text-18 op-80 />
+              <SocialMediaLogosList :items="[SocialMedia.reddit, SocialMedia.discord, SocialMedia.telegram]" text-18 op-80 flex-nowrap />
             </div>
           </div>
         </NavigationMenuContent>
@@ -94,10 +94,10 @@ const isHome = route.fullPath === '/'
           {{ navigation.communityGroupName }}
           <div i-nimiq:chevron-down />
         </NavigationMenuTrigger>
-        <NavigationMenuContent absolute left-0 top-0 min-w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
-          <div grid grid-cols-1 max-w-6xl p-16>
+        <NavigationMenuContent min-w-max left-0 top-0 absolute motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
+          <div p-16 grid grid-cols-1 max-w-6xl>
             <ul :aria-label="`${navigation.communityGroupName} links`" role="link" flex="~ col" pb-24>
-              <li v-for="({ label, href }) in navigation.communityLinks" :key="label!" w-full flex class="link-item">
+              <li v-for="({ label, href }) in navigation.communityLinks" :key="label!" flex w-full class="link-item">
                 <NavigationMenuLink as-child>
                   <PrismicLink internal-component="a" :field="href">
                     {{ label }}
@@ -105,8 +105,8 @@ const isHome = route.fullPath === '/'
                 </NavigationMenuLink>
               </li>
             </ul>
-            <hr h-1 w-full bg-darkblue op-10>
-            <SocialMediaLogosList :items="[SocialMedia.x, SocialMedia.reddit, SocialMedia.facebook, SocialMedia.youtube, SocialMedia.instagram, SocialMedia.discord, SocialMedia.telegram, SocialMedia.nimiqForum, SocialMedia.github]" mt-16 text-18 op-80 />
+            <hr bg-darkblue op-10 h-1 w-full>
+            <SocialMediaLogosList :items="[SocialMedia.x, SocialMedia.reddit, SocialMedia.facebook, SocialMedia.youtube, SocialMedia.instagram, SocialMedia.discord, SocialMedia.telegram, SocialMedia.nimiqForum, SocialMedia.github]" text-18 mt-16 op-80 />
           </div>
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -117,10 +117,10 @@ const isHome = route.fullPath === '/'
           <div i-nimiq:chevron-down />
         </NavigationMenuTrigger>
 
-        <NavigationMenuContent absolute top-0 min-w-240 motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
-          <div grid grid-cols-1 p-16>
+        <NavigationMenuContent min-w-240 top-0 absolute motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
+          <div p-16 grid grid-cols-1>
             <ul :aria-label="`${navigation.projectGroupName} links`" role="link" flex="~ col">
-              <li v-for="({ label, href }) in navigation.projectLinks" :key="label!" w-full flex class="link-item">
+              <li v-for="({ label, href }) in navigation.projectLinks" :key="label!" flex w-full class="link-item">
                 <NavigationMenuLink as-child>
                   <PrismicLink internal-component="a" :field="href">
                     {{ label }}
@@ -136,13 +136,13 @@ const isHome = route.fullPath === '/'
         <NavigationMenuTrigger ml-16 nq-pill-lg :class="isHome ? ' home nq-pill-secondary' : 'nq-pill-blue'">
           {{ navigation.getStartedGroupName }}
         </NavigationMenuTrigger>
-        <NavigationMenuContent absolute left-0 top-0 min-w-max motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
-          <ul :aria-label="`${navigation.getStartedGroupName} links`" role="link" flex p-16 divide="x-1 solid darkblue/10 hover:transparent">
+        <NavigationMenuContent min-w-max left-0 top-0 absolute motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
+          <ul :aria-label="`${navigation.getStartedGroupName} links`" role="link" p-16 flex divide="x-1 solid darkblue/10 hover:transparent">
             <li
-              v-for="({ label, href, description }) in navigation.getStartedLinks" :key="label!" max-w-240 w-full flex transition-border
+              v-for="({ label, href, description }) in navigation.getStartedLinks" :key="label!" flex max-w-240 w-full transition-border
             >
               <NavigationMenuLink as-child>
-                <PrismicLink internal-component="a" :field="href" flex="~ col gap-12" bg="hocus:darkblue/6" un-text="darkblue/90 hocus:darkblue" w-full rounded-4 p-24 transition-colors>
+                <PrismicLink internal-component="a" :field="href" flex="~ col gap-12" bg="hocus:darkblue/6" un-text="darkblue/90 hocus:darkblue" p-24 rounded-4 w-full transition-colors>
                   <p font-semibold lh-none>
                     {{ label }}
                   </p>
@@ -155,16 +155,16 @@ const isHome = route.fullPath === '/'
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>
-      <NavigationMenuIndicator flex="~ items-end justify-center" top-full z-100 of-hidden drop-shadow transition-transform data-hidden:animate-fade-out data-visible:animate-fade-in data-hidden:op-0 />
+      <NavigationMenuIndicator flex="~ items-end justify-center" transition-transform top-full z-100 of-hidden drop-shadow data-hidden:op-0 data-hidden:animate-fade-out data-visible:animate-fade-in />
 
-      <NavigationMenuIndicator animate="data-visible:fade-in data-hidden:fade-out" transition="all transform ease duration-200" w="$reka-navigation-menu-indicator-size" flex="~ items-end justify-center" translate-x="$reka-navigation-menu-indicator-position" absolute top-full z-100 z-12 of-hidden duration-200 data-hidden:op-0>
-        <div relative h-12 w-24 i-nimiq:tooltip-triangle />
+      <NavigationMenuIndicator animate="data-visible:fade-in data-hidden:fade-out" transition="all transform ease duration-200" w="$reka-navigation-menu-indicator-size" flex="~ items-end justify-center" translate-x="$reka-navigation-menu-indicator-position" duration-200 top-full absolute z-100 z-12 of-hidden data-hidden:op-0>
+        <div h-12 w-24 relative i-nimiq:tooltip-triangle />
       </NavigationMenuIndicator>
     </NavigationMenuList>
 
-    <div flex="~ justify-center" absolute right-0 top-full z-10 min-w-full perspective-2000>
+    <div flex="~ justify-center" min-w-full perspective-2000 right-0 top-full absolute z-10>
       <NavigationMenuViewport
-        transition="[width,height]" h="$reka-navigation-menu-viewport-height" animate="scale-in data-closed:scale-out" min-w="$reka-navigation-menu-viewport-width" relative z-1 mt-12 origin-top-center animate-scale-in of-hidden rounded-12 bg-white shadow duration-300 outline="1.5 offset--1.5 ~ neutral-200"
+        transition="[width,height]" h="$reka-navigation-menu-viewport-height" animate="scale-in data-closed:scale-out" min-w="$reka-navigation-menu-viewport-width" mt-12 rounded-12 bg-white shadow origin-top-center duration-300 relative z-1 of-hidden animate-scale-in outline="1.5 offset--1.5 ~ neutral-200"
       />
     </div>
   </NavigationMenuRoot>

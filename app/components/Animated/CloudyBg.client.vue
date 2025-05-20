@@ -1,9 +1,9 @@
 <template>
-  <div relative z-2 size-full>
+  <div size-full relative z-2>
     <div size-full of-x-hidden of-y-visible>
-      <div class="cloud-parallax" i-custom:cloud absolute left--32 top--100 hidden h-64 w-120 scale-x--100 md:block style="--to:300px;" />
-      <div class="cloud-parallax" i-custom:cloud absolute right--33 top--180 h-46 w-90 scale-x--100 of-hidden style="--to: 220px" />
-      <div i-custom:cloud absolute right-25vw top-200 h-32 w-60 class="cloud-parallax" style="--to: 100px" />
+      <div class="cloud-parallax" i-custom:cloud h-64 w-120 hidden scale-x--100 left--32 top--100 absolute md:block style="--to:300px;" />
+      <div class="cloud-parallax" i-custom:cloud h-46 w-90 scale-x--100 right--33 top--180 absolute of-hidden style="--to: 220px" />
+      <div i-custom:cloud h-32 w-60 right-25vw top-200 absolute class="cloud-parallax" style="--to: 100px" />
     </div>
   </div>
 </template>

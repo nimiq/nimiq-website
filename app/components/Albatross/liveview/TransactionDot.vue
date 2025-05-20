@@ -3,5 +3,5 @@ defineProps<{ nonce: number }>()
 </script>
 
 <template>
-  <div size-8 rounded-full :class="getLiveviewBgColor({ nonce })" />
+  <div rounded-full size-8 :class="getLiveviewBgColor({ nonce })" />
 </template>

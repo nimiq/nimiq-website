@@ -45,7 +45,7 @@ watch(subheadlineStr, () => {
 
 <template>
   <section
-    class="dark" relative mx-0 of-hidden bg-darkblue py-0 text-neutral children:max-w-none max-md:min-h-auto
+    class="dark" text-neutral mx-0 py-0 bg-darkblue relative of-hidden children:max-w-none max-md:min-h-auto
     pt="148 md:153 lg:160" min-h="auto md:100vh lg:110vh" flex="~ col justify-between"
   >
     <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
@@ -59,21 +59,21 @@ watch(subheadlineStr, () => {
       width="1600"
       height="900"
       src="/assets/images/gods-light.webp"
-      provider="ipxStatic"
+      provider="ipx"
       alt="Nimiq Gods Rays Background"
-      pointer-events-none absolute inset-0 m-0 size-full blur-60 brightness-80
+      m-0 size-full pointer-events-none inset-0 absolute blur-60 brightness-80
     />
-    <div bg-gradient="to-b from-darkblue/0 to-darkblue" pointer-events-none absolute inset-0 m-0 op-80 />
+    <div bg-gradient="to-b from-darkblue/0 to-darkblue" m-0 op-80 pointer-events-none inset-0 absolute />
     <Ember left-100 top="77 sm:112 md:200" style="--scale: 1.05" />
     <Ember right-80 top-170 style="--scale: 0.7" />
     <Ember bottom="302 md:430" left="56vw md:30vw" style="--scale: 0.92" />
     <Ember bottom-460 right-32 style="--scale: 1" />
 
     <div mt-120 max-w-none w-full flex="~ justify-center">
-      <div class="map-container" relative z-1 w="80%" min-w-680 pt-23>
-        <div class="ellipse-shape" z--1 bg-neutral-300 mix-blend-multiply blur-20 />
+      <div class="map-container" w="80%" pt-23 min-w-680 relative z-1>
+        <div class="ellipse-shape" bg-neutral-300 z--1 mix-blend-multiply blur-20 />
         <div class="ellipse-shape" z--2 blur-120 style="background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%)" />
-        <div class="ellipse-shape" z--1 bg-white />
+        <div class="ellipse-shape" bg-white z--1 />
         <Map />
       </div>
     </div>
