@@ -23,10 +23,18 @@ function getGradientClass() {
   const prevSliceBgColor = slices.at(currentIndex - 1)?.primary.bgColor
   return (nextSliceBgColor === prevSliceBgColor) ? 'gradient-transparent-green-transparent' : 'gradient-transparent-green'
 }
+
+function getDividerClass() {
+  const currentIndex = slices.indexOf(slice)
+  const currentSliceBgColor = slice.primary.bgColor
+  const prevSliceBgColor = slices.at(currentIndex - 1)?.primary?.bgColor
+  const borderColor = currentSliceBgColor === 'white' ? 'border-t border-neutral-300' : 'border-t border-neutral-400'
+  return (currentSliceBgColor === prevSliceBgColor) ? borderColor : ''
+}
 </script>
 
 <template>
-  <section :nq-section-gap="!isStakingSlice ? '' : undefined" :class="[bgClass, getGradientClass()]" relative data-slice-type="simple-headline">
+  <section :nq-section-gap="!isStakingSlice ? '' : undefined" :class="[bgClass, getGradientClass(), getDividerClass()]" relative data-slice-type="simple-headline">
     <Headline
       v-if="!isStakingSlice"
       :headline="slice.primary.headline"
