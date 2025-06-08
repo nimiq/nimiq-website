@@ -37,4 +37,9 @@
   );
   transform: rotate(-180deg);
 }
+
+.var\:f-mt\:40vh,
+[var\:f-mt\:40vh=''] {
+  --f-mt: 20vh;
+}
 </style>
