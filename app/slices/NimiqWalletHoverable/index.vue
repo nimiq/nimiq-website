@@ -17,7 +17,7 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
       <div grid="~ place-content-center" mb-32 rounded-full size-32 bg-gradient-blue max-md:mt-12 md:hidden>
         <div i-nimiq:chevron-right text="9 white" />
       </div>
-      <div mt-auto>
+      <div mt-auto lg:ml-24>
         <h4 text-12 nq-label>
           {{ slice.primary.poweredByLabel }}
         </h4>
