@@ -13,7 +13,7 @@ const [DefineBlock, ReuseBlock] = createReusableTemplate()
   >
     <DefineBlock>
       <div flex="~ gap-8 items-center">
-        <div v-if="icon" :class="icon" text-14 op-90 shrink-0 />
+        <div v-if="icon" :class="icon" op-90 shrink-0 />
         <span v-if="name" text-16 whitespace-nowrap :class="{ 'lh-none': !withBg }" v-html="name" />
         <div v-if="milestone" bottom-0 top-12 absolute class="milestone" flex="~ col">
           <div bg-white bg-op-25 flex-1 w-full />
@@ -46,5 +46,22 @@ const [DefineBlock, ReuseBlock] = createReusableTemplate()
 .milestone {
   width: var(--vertical-lines-w);
   margin-left: calc(-1 * var(--columns-w) + var(--vertical-lines-w) * 2 - var(--block-index, 0) * 6px);
+}
+
+.i-nimiq\:logos-nimiq-wallet-horizontal-mono {
+  width: 68px;
+}
+
+.i-nimiq\:logos-cpl-horizontal-mono {
+  min-width: 68px;
+}
+.i-nimiq\:logos-nimiq-pay-horizontal-mono {
+  min-width: 42px;
+}
+.i-nimiq\:logos-crypto-map-horizontal-mono {
+  min-width: 68px;
+}
+.i-nimiq\:logos-cryptocity-horizontal-mono {
+  min-width: 48px;
 }
 </style>
