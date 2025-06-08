@@ -8,8 +8,8 @@ const { data: exchanges } = await useFetch('/api/exchanges')
 
 <template>
   <section bg-neutral-0>
-    <ul grid="~ cols-[repeat(auto-fit,minmax(200px,368px))] gap-16 justify-center">
-      <li v-for="({ link, logo, name }, i) in exchanges" :key="i">
+    <ul grid="~  md:cols-[repeat(auto-fit,minmax(200px,368px))] gap-16 md:justify-center">
+      <li v-for="({ link, logo, name }, i) in exchanges" :key="i" w-full>
         <NuxtLink external :to="link" flex="~ row items-center gap-x-16" nq-hoverable target="_blank">
           <PrismicImage :field="logo!" h-full w-40 object-contain flex="~ items-center" />
           <h3 font-semibold f-text-xl>
