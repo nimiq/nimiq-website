@@ -28,7 +28,7 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
         </ul>
       </div>
       <div h-196 md:mx-auto lg:mb--68 max-md:mr--128 md:row-span-full md:col-start-2 lg:h-490>
-        <PrismicImage :field="slice.primary.screenshot" max-xl:transform-origin-top-left max-xl:scale-155 />
+        <PrismicImage :field="slice.primary.screenshot" transform-origin-top-left max-2xl:scale-120 max-xl:scale-155 />
       </div>
     </PrismicLink>
   </section>
