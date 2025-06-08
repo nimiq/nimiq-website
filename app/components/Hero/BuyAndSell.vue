@@ -62,7 +62,7 @@ function useSyncAmountInputs() {
 </script>
 
 <template>
-  <section px-0 bg-neutral-0 relative of-x-clip>
+  <section px-0 bg-neutral-0 relative of-x-clip data-slice-type="hero-section-buyandsell">
     <BgBuyAndSell w-full>
       <Headline :headline="slice.primary.headline" :subline="slice.primary.subline" px="$px" />
       <form grid="~ cols-1 md:cols-[1fr_max-content_1fr] items-center  gap-x-24" max-md:px="$px" mx-auto mt-40 h-max max-w-560 w-full @submit.prevent>

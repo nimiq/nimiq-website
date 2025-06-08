@@ -65,7 +65,12 @@ section[data-slice-type='pill-link'] + section[data-slice-type='simple-headline'
 /* section.dark:not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline'].dark,
 section:not(.dark):not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline']:not(.dark), */
 section:is([bg-neutral-0], .bg-neutral-0):not(
-    :where([data-slice-type='logos-grid'], [data-slice-type='grid-section'], [data-slice-type='banner'])
+    :where(
+      [data-slice-type='logos-grid'],
+      [data-slice-type='grid-section'],
+      [data-slice-type='banner'],
+      [data-slice-type='hero-section-buyandsell']
+    )
   )
   + section[data-slice-type='simple-headline'].bg-neutral-0 {
   --uno: 'pt-144 md:pt-160 border-t border-neutral-300';
