@@ -5,9 +5,14 @@ const { slice } = defineProps(getSliceComponentProps<Content.NimTokenDistributio
 
 const gridTemplateColumns = computed(() => slice.primary.item.map(i => `${i.percentage}fr`).join(' '))
 
-const selected = ref<string[]>([])
+const selected = ref<string>('')
 
-const activeIndexes = computed(() => slice.primary.item.filter(i => selected.value.includes(i.title!)).map(i => slice.primary.item.map(i => i.title!).indexOf(i.title!)))
+const activeIndexes = computed(() => {
+  if (!selected.value)
+    return []
+  const index = slice.primary.item.findIndex(i => i.title === selected.value)
+  return index >= 0 ? [index] : []
+})
 </script>
 
 <template>
@@ -24,7 +29,7 @@ const activeIndexes = computed(() => slice.primary.item.filter(i => selected.val
                   <span text-neutral-700 ml-12>{{ percentage }}%</span>
                 </span>
                 <div text="10 neutral-600" transition-transform duration-300 i-nimiq:chevron-right data-open:rotate-90 />
-                <div v-if="i > 0" flex-1 h-1.5 transition-colors bottom--2.7 right--6 relative bg="neutral-600 data-open:neutral-700" @click.stop />
+                <div v-if="i > 0" flex-1 h-1.5 transition-colors bottom--2.6 right--6 relative bg="neutral-600 data-open:neutral-700" @click.stop />
                 <div v-else border="b-1.5 r-1.5 neutral-500 data-open:neutral-700" ml-6 mr-12 rounded-br-6 flex-1 h-40 translate-y--20 transition-colors />
               </AccordionTrigger>
             </AccordionHeader>
@@ -49,6 +54,13 @@ const activeIndexes = computed(() => slice.primary.item.filter(i => selected.val
 }
 .content[data-state='closed'] {
   animation: slideUp 300ms ease-out;
+}
+
+[data-state='closed'] * {
+  opacity: 0.9;
+}
+[data-state='closed']:hover * {
+  opacity: 1;
 }
 
 @keyframes slideDown {
