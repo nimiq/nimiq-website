@@ -114,12 +114,14 @@ const error = computed(() => {
             <span v-else>Loading...</span>
           </div>
         </aside>
-        <div group relative f-pb-xs>
-          <ChartLine :data="historicPrices || []" leader rounded-8 h-full>
-            <template #default="{ data: [ts, historicPrice] }">
-              <Price :data="[ts, historicPrice]" />
-            </template>
-          </ChartLine>
+        <div group w-full relative f-pb-xs>
+          <div class="chart-container" h-full>
+            <ChartLine :data="historicPrices || []" leader rounded-8 h-full>
+              <template #default="{ data: [ts, historicPrice] }">
+                <Price :data="[ts, historicPrice]" />
+              </template>
+            </ChartLine>
+          </div>
 
           <div right-32 top-32 absolute z-20>
             <Price transition-opacity leader-hocus:invisible :data="historicPrices?.at(-1) || [0, 0]" :delta-price-one-day="deltaPrice" />
@@ -145,3 +147,10 @@ const error = computed(() => {
     </p>
   </div>
 </template>
+
+<style scoped>
+:deep(.chart-container svg) {
+  width: 100% !important;
+  height: 100% !important;
+}
+</style>
