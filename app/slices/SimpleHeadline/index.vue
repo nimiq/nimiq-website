@@ -68,11 +68,11 @@ section:is([bg-neutral-0], .bg-neutral-0):not(
     :where([data-slice-type='logos-grid'], [data-slice-type='grid-section'], [data-slice-type='banner'])
   )
   + section[data-slice-type='simple-headline'].bg-neutral-0 {
-  --uno: 'f-pt-5xl border-t border-neutral-300';
+  --uno: 'pt-144 md:pt-160 border-t border-neutral-300';
 }
 
 section[bg-neutral-0]:has(+ section[data-slice-type='simple-headline'].bg-neutral-0) {
-  --uno: 'f-pt-5xl';
+  --uno: 'pb-144 md:pb-160';
 }
 
 section[data-slice-type='staking-faq'] + section[data-slice-type='simple-headline'] {
