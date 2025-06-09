@@ -24,7 +24,7 @@ const activeIndexes = computed(() => {
           <AccordionItem col-span-full :value="title!">
             <AccordionHeader>
               <AccordionTrigger flex="~ items-center gap-x-8" bg-transparent w-full>
-                <span :style=" { color: selected.length === 0 || selected.includes(title!) ? `rgb(var(--nq-${color}))` : `rgb(var(--nq-neutral-700))` }" font-semibold transition-colors f-text-lg>
+                <span :style=" { color: selected === title ? `rgb(var(--nq-${color}))` : `rgb(var(--nq-neutral-700))` }" font-semibold transition-colors f-text-lg>
                   {{ title }}
                   <span text-neutral-700 ml-12>{{ percentage }}%</span>
                 </span>
