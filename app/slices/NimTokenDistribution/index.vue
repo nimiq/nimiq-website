@@ -29,7 +29,7 @@ const activeIndexes = computed(() => {
                   <span text-neutral-700 ml-12>{{ percentage }}%</span>
                 </span>
                 <div text="10 neutral-600" transition-transform duration-300 i-nimiq:chevron-right data-open:rotate-90 />
-                <div v-if="i > 0" flex-1 h-1.5 transition-colors bottom--2.6 right--6 relative bg="neutral-600 data-open:neutral-700" @click.stop />
+                <div v-if="i > 0" flex-1 h-1.5 transition-colors bottom--2.9 right--6 relative md:bottom--2.6 bg="neutral-600 data-open:neutral-700" @click.stop />
                 <div v-else border="b-1.5 r-1.5 neutral-500 data-open:neutral-700" ml-6 mr-12 rounded-br-6 flex-1 h-40 translate-y--20 transition-colors />
               </AccordionTrigger>
             </AccordionHeader>
