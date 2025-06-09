@@ -47,21 +47,4 @@ const [DefineBlock, ReuseBlock] = createReusableTemplate()
   width: var(--vertical-lines-w);
   margin-left: calc(-1 * var(--columns-w) + var(--vertical-lines-w) * 2 - var(--block-index, 0) * 6px);
 }
-
-.i-nimiq\:logos-nimiq-wallet-horizontal-mono {
-  width: 68px;
-}
-
-.i-nimiq\:logos-cpl-horizontal-mono {
-  min-width: 68px;
-}
-.i-nimiq\:logos-nimiq-pay-horizontal-mono {
-  min-width: 42px;
-}
-.i-nimiq\:logos-crypto-map-horizontal-mono {
-  min-width: 68px;
-}
-.i-nimiq\:logos-cryptocity-horizontal-mono {
-  min-width: 48px;
-}
 </style>
