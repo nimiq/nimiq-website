@@ -13,7 +13,7 @@ const [DefineBlock, ReuseBlock] = createReusableTemplate()
   >
     <DefineBlock>
       <div flex="~ gap-8 items-center">
-        <div v-if="icon" :class="icon" op-90 shrink-0 />
+        <div v-if="icon" :class="icon" text-14 op-90 shrink-0 />
         <span v-if="name" text-16 whitespace-nowrap :class="{ 'lh-none': !withBg }" v-html="name" />
         <div v-if="milestone" bottom-0 top-12 absolute class="milestone" flex="~ col">
           <div bg-white bg-op-25 flex-1 w-full />
