@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 import type { ZigZagContentSliceDefaultItem } from '~~/prismicio-types'
-import mediumZoom from 'medium-zoom'
 
 const props = defineProps(getSliceComponentProps<Content.ZigZagContentSlice>())
 const bgClass = getColorClass(props.slice.primary.bgColor)
