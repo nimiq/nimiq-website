@@ -42,7 +42,7 @@ const active = useState()
 </script>
 
 <template>
-  <section bg-neutral-100>
+  <section bg-neutral-100 f-pt-3xl>
     <div v-if="posts.length > 0" grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
       <article v-for="({ uid, href, draft, image, hasImage, title, abstract, date, authors }, i) in posts" :key="uid" :class="page === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
         <NuxtLink :to="href" p-0 h-full relative nq-hoverable @click="active = uid">
