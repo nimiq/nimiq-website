@@ -72,8 +72,8 @@ export const layers: Layer[] = [
       {
         name: 'Wallet',
         items: [
-          { icon: 'i-nimiq:logos-nimiq-wallet-horizontal-mono', name: '1.0', withBg: true, year: 2019, month: 2 },
-          { icon: 'i-nimiq:logos-nimiq-wallet-horizontal-mono', name: '2.0', withBg: true, year: 2020, month: 1, milestone: 'Initial Launch' },
+          { icon: 'i-nimiq:logos-nimiq-wallet-horizontal-mono w-68', name: '1.0', withBg: true, year: 2019, month: 2 },
+          { icon: 'i-nimiq:logos-nimiq-wallet-horizontal-mono w-68', name: '2.0', withBg: true, year: 2020, month: 1, milestone: 'Initial Launch' },
           { icon: 'i-nimiq:ledger-2', name: 'Ledger integration', year: 2020, month: 9, row: 3 },
           { icon: 'i-nimiq:logos-btc-mono', name: 'BTC Integration', year: 2021, month: 4 },
           { icon: 'i-nimiq:logos-usdc-mono', name: 'USDC Integration', year: 2021, month: 4, row: 2 },
@@ -90,8 +90,8 @@ export const layers: Layer[] = [
             { icon: 'i-nimiq:logos-nimiq-horizontal-mono w-68 h-16', name: 'Checkout', year: 2020, month: 2 },
           ],
           [
-            { icon: 'i-nimiq:logos-cpl-horizontal-mono', name: '1.0', year: 2020, month: 12 },
-            { icon: 'i-nimiq:logos-cpl-horizontal-mono', name: '2.0', year: 2022, month: 1, milestone: 'Accessibility for Merchants' },
+            { icon: 'i-nimiq:logos-cpl-horizontal-mono w-82', name: '1.0', year: 2020, month: 12 },
+            { icon: 'i-nimiq:logos-cpl-horizontal-mono  w-82', name: '2.0', year: 2022, month: 1, milestone: 'Accessibility for Merchants' },
           ],
         ],
       },
@@ -110,7 +110,7 @@ export const layers: Layer[] = [
       {
         name: 'Payment App',
         items: [
-          { icon: 'i-nimiq:logos-nimiq-pay-horizontal-mono text-18', year: 2024, month: 4 },
+          { icon: 'i-nimiq:logos-nimiq-pay-horizontal-mono w-42 text-18', year: 2024, month: 4 },
           { name: 'BTC-Lightning Support', year: 2024, month: 7 },
         ],
       },
@@ -127,10 +127,10 @@ export const layers: Layer[] = [
       {
         name: 'Adoption campaigns',
         items: [
-          { icon: 'i-nimiq:logos-cryptocity-horizontal-mono text-23', withBg: true, year: 2022, month: 6,
+          { icon: 'i-nimiq:logos-cryptocity-horizontal-mono w-68 text-23', withBg: true, year: 2022, month: 6,
           },
           { icon: 'i-nimiq:landmark', name: 'Criptociudad San Jose (Costa Rica)', year: 2023, month: 2 },
-          { icon: 'i-nimiq:landmark', name: 'Kryptostadt Mannheim (Germany)', year: 2023, month: 6 },
+          { icon: 'i-nimiq:landmark', name: 'Kryptostadt Mannheim (Germany)', year: 2023, month: 6, row: 2 },
           { icon: 'i-nimiq:landmark', name: 'Criptocity Toronto (Canada)', year: 2024, month: 10 },
           { icon: 'i-nimiq:landmark', row: 2, name: 'Criptocity Gambia (Africa)', year: 2024, month: 11 },
           { icon: 'i-nimiq:tag-cash', row: 3, name: 'Cryptocity Loyalty Points', year: 2024, month: 1 },
