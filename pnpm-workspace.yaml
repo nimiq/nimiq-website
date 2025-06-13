@@ -1,6 +1,5 @@
-patchedDependencies:
-  '@nimiq/utils': patches/@nimiq__utils.patch
-
+packages:
+  - ./
 catalog:
   '@unocss/preset-wind4': ^66.1.2
   nuxt-safe-runtime-config: ^0.0.3
@@ -45,7 +44,7 @@ catalogs:
 
   nuxt:
     '@nuxt/fonts': ^0.11.4
-    '@nuxt/image': ^1.10.0
+    '@nuxt/image': 2.0.0-alpha.1
     '@nuxthub/core': ^0.8.27
     '@nuxtjs/device': ^3.2.4
     '@nuxtjs/prismic': ^4.1.0
