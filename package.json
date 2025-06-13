@@ -71,6 +71,7 @@
     "nimiq-icons": "catalog:unocss",
     "nuxt": "catalog:nuxt",
     "nuxt-module-feed": "catalog:nuxt",
+    "nuxt-safe-runtime-config": "catalog:",
     "pinia": "catalog:frontend",
     "sharp": "catalog:server",
     "simple-git-hooks": "catalog:lint",

@@ -1,10 +1,13 @@
 import process from 'node:process'
 import { defineNuxtModule } from '@nuxt/kit'
+import { array, boolean, object, optional, string } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
 import { getDynamicPages } from './lib/crawler'
 import environment from './lib/env'
 import { repositoryName } from './slicemachine.config.json'
+
+const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -29,12 +32,13 @@ export default defineNuxtConfig({
     '@pinia/colada-nuxt',
     '@nuxtjs/sitemap',
     'nuxt-module-feed',
+    'nuxt-safe-runtime-config',
 
     defineNuxtModule({
       meta: { name: 'nuxt-prerender-routes' },
       hooks: {
         'nitro:build:before': async (nitro) => {
-          let pages = await getDynamicPages({ prismicAccessToken: environment.prismicAccessToken, showDrafts: environment.showDrafts })
+          let pages = await getDynamicPages({ prismicAccessToken, showDrafts: environment.showDrafts })
           console.log(pages.filter(f => !f.startsWith('/blog')))
 
           // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
@@ -75,7 +79,7 @@ export default defineNuxtConfig({
   },
 
   features: {
-  // For UnoCSS
+    // For UnoCSS
     inlineStyles: false,
   },
 
@@ -90,7 +94,7 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    urls: async () => getDynamicPages({ prismicAccessToken: environment.prismicAccessToken, showDrafts: false }),
+    urls: async () => getDynamicPages({ prismicAccessToken, showDrafts: false }),
   },
 
   // TODO Remove this option
@@ -106,13 +110,11 @@ export default defineNuxtConfig({
     preview: false,
     toolbar: false,
     endpoint: repositoryName,
-    clientConfig: {
-      accessToken: environment.prismicAccessToken,
-    },
+    clientConfig: { accessToken: prismicAccessToken },
   },
 
   runtimeConfig: {
-    prismicAccessToken: environment.prismicAccessToken,
+    prismicAccessToken,
     albatross: {
       nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
       liveview: {
@@ -147,6 +149,44 @@ export default defineNuxtConfig({
     },
   },
 
+  safeRuntimeConfig: {
+    $schema: object({
+      prismicAccessToken: string(),
+      albatross: object({
+        nodeRpcUrl: string(),
+        liveview: optional(object({
+          privateKey: string(),
+          txRecipient: string(),
+          txValue: string(),
+          txFee: string(),
+        })),
+      }),
+      cors: object({
+        allowedOrigins: array(string()),
+      }),
+      public: object({
+        clientNetwork: optional(string()),
+        apiDomain: string(),
+        validatorsApi: optional(string()),
+        supabase: object({
+          url: string(),
+          key: string(),
+        }),
+        environment: object({}),
+        showDrafts: optional(boolean()),
+      }),
+      zoho: optional(object({
+        requestUrl: string(),
+        clientId: string(),
+        clientSecret: string(),
+        scope: string(),
+        code: string(),
+        refreshToken: string(),
+        listkey: string(),
+      })),
+    }),
+  },
+
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore Hub is dynamic
   hub: {
@@ -164,8 +204,8 @@ export default defineNuxtConfig({
   routeRules: {
     '/api/**': { cors: true },
 
-  // Check ./modules/prerender-routes.ts to see more about this
-  // More redirects in nginx/default.conf
+    // Check ./modules/prerender-routes.ts to see more about this
+    // More redirects in nginx/default.conf
   },
 
   nitro: {
@@ -237,4 +277,5 @@ export default defineNuxtConfig({
       { path: '/feed.xml', type: 'rss2', cacheTime: 0 },
     ],
   },
+
 })

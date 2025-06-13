@@ -3,6 +3,7 @@ patchedDependencies:
 
 catalog:
   '@unocss/preset-wind4': ^66.1.2
+  nuxt-safe-runtime-config: ^0.0.3
 catalogs:
   build:
     '@nuxt/kit': ^3.17.3
