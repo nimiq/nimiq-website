@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 import type { ZigZagContentSliceDefaultItem } from '~~/prismicio-types'
-import mediumZoom from 'medium-zoom'
 
 const props = defineProps(getSliceComponentProps<Content.ZigZagContentSlice>())
 const bgClass = getColorClass(props.slice.primary.bgColor)
@@ -45,7 +44,7 @@ useIntersectionObserver(sectionRef, () => {
         /> -->
         <PrismicImage
           v-if="mediaType(item) === 'image'" :field="item.image"
-          ring="1.5 neutral-400" aspect="1.39 md:1.48 lg:initial" rounded-6 shadow object-cover
+          ring="1.5 neutral-400" aspect="1.39 md:1.48 lg:initial" rounded-6 pointer-events-none shadow object-cover
         />
         <div
           py-32 col-start-1 row-start-2 lg:py-96 md:py-80 xl:py-144 md:flex-1 md:row-start-1 md:items-center
