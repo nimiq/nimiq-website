@@ -7,7 +7,13 @@ const { slice } = defineProps(getSliceComponentProps<Content.HeroSectionSlice>()
 if (slice.variation !== 'buyAndSell')
   throw new Error('Invalid slice variation. Expected "buyAndSell".')
 
-const { fiatAmount, cryptoAmount, lastEdited } = useSyncAmountInputs()
+const { 
+  fiatAmount, 
+  cryptoAmount, 
+  lastEdited, 
+  formattedFiatAmount, 
+  formattedCryptoAmount 
+} = useSyncAmountInputs()
 const { currency } = useUserCurrency()
 
 function useSyncAmountInputs() {
@@ -35,8 +41,16 @@ function useSyncAmountInputs() {
     set: (value) => {
       fiatValue.value = value
       lastEdited.value = 'fiat'
-      cryptoValue.value = Number.parseFloat(formatNim(price.value ? value / price.value : 0))
+      cryptoValue.value = price.value ? value / price.value : 0
     },
+  })
+
+  const formattedFiatAmount = computed(() => {
+    return formatFiat(fiatValue.value, currencyInfo.value, { returnJustNumber: true })
+  })
+
+  const formattedCryptoAmount = computed(() => {
+    return formatNim(cryptoValue.value)
   })
 
   // When price changes, update based on what the user last edited
@@ -57,7 +71,7 @@ function useSyncAmountInputs() {
     cryptoAmount.value = 1 // Trigger formatting in fiat
   })
 
-  return { cryptoAmount, fiatAmount, lastEdited }
+  return { cryptoAmount, fiatAmount, lastEdited, formattedFiatAmount, formattedCryptoAmount }
 }
 </script>
 
@@ -67,7 +81,14 @@ function useSyncAmountInputs() {
       <Headline :headline="slice.primary.headline" :subline="slice.primary.subline" px="$px" />
       <form grid="~ cols-1 md:cols-[1fr_max-content_1fr] items-center  gap-x-24" max-md:px="$px" mx-auto mt-40 h-max max-w-560 w-full @submit.prevent>
         <div class="group" w-full relative flex="~ items-center gap-12">
-          <AmountInput :key="lastEdited === 'crypto' ? cryptoAmount : 'fiat'" v-model="fiatAmount" rounded="b-0 md:2" required pr-64 f-text-2xl max-md:translate-y--1.5 group-focus-within:z-10 @blur="lastEdited = undefined" @focus="lastEdited = 'fiat'" />
+          <AmountInput 
+            :key="lastEdited === 'crypto' ? cryptoAmount : 'fiat'" 
+            v-model="fiatAmount" 
+            :display-value="formattedFiatAmount"
+            rounded="b-0 md:2" 
+            required pr-64 f-text-2xl max-md:translate-y--1.5 group-focus-within:z-10 
+            @blur="lastEdited = undefined" 
+            @focus="lastEdited = 'fiat'" />
           <div text="neutral-600 group-hover:blue/50 hocus:!neutral-800 group-focus-within:blue!" right-4 top-auto absolute z-40>
             <CurrencySelector v-model="currency" />
           </div>
@@ -76,7 +97,15 @@ function useSyncAmountInputs() {
           =
         </p>
         <div class="group" w-full relative>
-          <AmountInput :key="lastEdited === 'fiat' ? fiatAmount : 'crypto'" v-model="cryptoAmount" required f-text-2xl rounded="t-0 md:2" group-focus-within:z-10 @focus="lastEdited = 'crypto'" @blur="lastEdited = undefined" />
+          <AmountInput 
+            :key="lastEdited === 'fiat' ? fiatAmount : 'crypto'" 
+            v-model="cryptoAmount" 
+            :display-value="formattedCryptoAmount"
+            required f-text-2xl 
+            rounded="t-0 md:2" 
+            group-focus-within:z-10 
+            @focus="lastEdited = 'crypto'" 
+            @blur="lastEdited = undefined" />
           <div text="neutral-600 group-hover:blue/50 group-focus-within:blue!" transition-colors right-12 top-17 absolute nq-label f-text="12/16">
             NIM
           </div>

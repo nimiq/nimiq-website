@@ -8,7 +8,6 @@ defineProps(getSliceComponentProps<Content.BuySellWalletSlice>())
   <section bg-neutral-0>
     <div flex="~ col lg:row">
       <Headline children:text-left :headline="slice.primary.headline" :subline="slice.primary.text" :cta-href="slice.primary.linkHref" :cta-label="slice.primary.linkLabel" />
-
       <ul v-if="slice.items.length > 0" f-mt-2xl grid="~ cols-1 sm:cols-2 lg:cols-1 xl:cols-2 gap-x-16 gap-y-24" mt="80 lg:0" pl="lg:16 2xl:64">
         <li v-for="({ cost, description, extraFee, isOfficial, label, logo, paymentMethod }, i) in slice.items" :key="i" shrink-0 :data-inverted="isOfficial ? '' : undefined">
           <div bg="data-inverted:blue neutral" p="24 xl:32" nq-no-color text-white rounded-6>
