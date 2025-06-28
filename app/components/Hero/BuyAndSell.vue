@@ -10,9 +10,7 @@ if (slice.variation !== 'buyAndSell')
 const { 
   fiatAmount, 
   cryptoAmount, 
-  lastEdited, 
-  formattedFiatAmount, 
-  formattedCryptoAmount 
+  lastEdited
 } = useSyncAmountInputs()
 const { currency } = useUserCurrency()
 
@@ -28,16 +26,21 @@ function useSyncAmountInputs() {
   const lastEdited = ref<'crypto' | 'fiat'>()
 
   const cryptoAmount = computed<number>({
-    get: () => cryptoValue.value,
+    get: () => ['fiat', undefined].includes(cryptoValue.value) 
+      ? cryptoValue.value 
+      : formatNim(cryptoValue.value),
     set: (value) => {
-      cryptoValue.value = value
+      cryptoValue.value = value,
       lastEdited.value = 'crypto'
-      fiatValue.value = formatFiat(value * (price.value || 0), currencyInfo.value, { returnJustNumber: true }) as number
+      // fiatValue.value = formatFiat(value * (price.value || 0), currencyInfo.value, { returnJustNumber: true }) as number
+      fiatValue.value = value * (price.value || 0)
     },
   })
 
   const fiatAmount = computed<number>({
-    get: () => fiatValue.value,
+    get: () => ['crypto', undefined].includes(fiatValue.value) 
+      ? fiatValue.value
+      : formatFiat(fiatValue.value, currencyInfo.value, { returnJustNumber: true }) as number,
     set: (value) => {
       fiatValue.value = value
       lastEdited.value = 'fiat'
@@ -45,16 +48,9 @@ function useSyncAmountInputs() {
     },
   })
 
-  const formattedFiatAmount = computed(() => {
-    return formatFiat(fiatValue.value, currencyInfo.value, { returnJustNumber: true })
-  })
-
-  const formattedCryptoAmount = computed(() => {
-    return formatNim(cryptoValue.value)
-  })
-
   // When price changes, update based on what the user last edited
-  watch(price, (newPrice) => {
+  watch([price, currencyInfo], ([newPrice]) => {
+    console.log('Price changed:', newPrice)
     if (newPrice) {
       if (lastEdited.value === 'crypto') {
         // Update fiat based on the current crypto value
@@ -71,7 +67,7 @@ function useSyncAmountInputs() {
     cryptoAmount.value = 1 // Trigger formatting in fiat
   })
 
-  return { cryptoAmount, fiatAmount, lastEdited, formattedFiatAmount, formattedCryptoAmount }
+  return { cryptoAmount, fiatAmount, lastEdited }
 }
 </script>
 
@@ -84,7 +80,6 @@ function useSyncAmountInputs() {
           <AmountInput 
             :key="lastEdited === 'crypto' ? cryptoAmount : 'fiat'" 
             v-model="fiatAmount" 
-            :display-value="formattedFiatAmount"
             rounded="b-0 md:2" 
             required pr-64 f-text-2xl max-md:translate-y--1.5 group-focus-within:z-10 
             @blur="lastEdited = undefined" 
@@ -100,7 +95,6 @@ function useSyncAmountInputs() {
           <AmountInput 
             :key="lastEdited === 'fiat' ? fiatAmount : 'crypto'" 
             v-model="cryptoAmount" 
-            :display-value="formattedCryptoAmount"
             required f-text-2xl 
             rounded="t-0 md:2" 
             group-focus-within:z-10 
