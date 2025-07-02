@@ -1,0 +1,130 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# pnpm Package Manager Guide
+
+This project uses **pnpm** as the package manager. Always use pnpm commands instead of npm or yarn.
+
+## Package Manager Configuration
+
+The project is configured to use pnpm with specific settings:
+
+- **Package Manager**: `pnpm@10.11.0` (specified in [package.json](mdc:package.json))
+- **Configuration**: See [.npmrc](mdc:.npmrc) for pnpm-specific settings
+- **Workspace**: Uses pnpm workspaces with catalogs defined in [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml)
+
+## Common pnpm Commands
+
+### Installation
+```bash
+# Install all dependencies
+pnpm install
+
+# Install a specific package
+pnpm add <package-name>
+
+# Install a dev dependency
+pnpm add -D <package-name>
+
+# Install a package globally
+pnpm add -g <package-name>
+```
+
+### Development
+```bash
+# Start development server
+pnpm dev
+
+# Build the project
+pnpm build
+
+# Run linting
+pnpm lint
+
+# Fix linting issues
+pnpm lint:fix
+
+# Type checking
+pnpm typecheck
+
+# Preview production build
+pnpm preview
+```
+
+### Specialized Build Commands
+```bash
+# Build for GitHub Pages
+pnpm build:github-pages
+
+# Build for NuxtHub
+pnpm build:nuxthub
+
+# Build for internal static
+pnpm build:internal-static
+
+# Build for internal static with drafts
+pnpm build:internal-static-drafts
+```
+
+## Workspace Structure
+
+This project uses pnpm workspaces with **catalogs** for dependency management:
+
+### Catalogs
+Dependencies are organized into catalogs in [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml):
+
+- **`build`**: Build tools and utilities
+- **`frontend`**: Frontend dependencies (Vue, Pinia, VueUse, etc.)
+- **`lint`**: Linting and code quality tools
+- **`nimiq`**: Nimiq-specific packages
+- **`nuxt`**: Nuxt.js related packages
+- **`prismic`**: Prismic CMS packages
+- **`server`**: Server-side dependencies
+- **`types`**: TypeScript type definitions
+- **`unocss`**: UnoCSS and styling packages
+
+### Adding Dependencies with Catalogs
+
+When adding dependencies, reference the appropriate catalog:
+
+```bash
+# Add a frontend dependency
+pnpm add @vueuse/core@catalog:frontend
+
+# Add a dev dependency from unocss catalog
+pnpm add -D @unocss/preset-attributify@catalog:unocss
+```
+
+## Important Notes
+
+1. **Always use pnpm**: Never use `npm` or `yarn` commands in this project
+2. **Respect catalogs**: When adding dependencies, use the appropriate catalog reference
+3. **Lock file**: The [pnpm-lock.yaml](mdc:pnpm-lock.yaml) file should be committed
+4. **Shameful hoisting**: Enabled in [.npmrc](mdc:.npmrc) for compatibility
+5. **Git hooks**: Pre-commit hooks are configured to run `pnpm lint-staged`
+
+## Troubleshooting
+
+### Common Issues
+- If you see peer dependency warnings, check the `strict-peer-dependencies=false` setting in [.npmrc](mdc:.npmrc)
+- For installation issues, try `pnpm install --shamefully-hoist`
+- If modules are missing, run `pnpm install` to ensure all dependencies are installed
+
+### Cache Management
+```bash
+# Clear pnpm cache
+pnpm store prune
+
+# Verify pnpm store
+pnpm store status
+```
+
+## Best Practices
+
+1. **Use exact versions**: When updating catalogs, specify exact versions for stability
+2. **Group dependencies**: Keep related dependencies in the same catalog
+3. **Update catalogs**: Update catalog versions rather than individual package versions
+4. **Check lock file**: Always commit changes to [pnpm-lock.yaml](mdc:pnpm-lock.yaml)
+5. **Use workspace commands**: Leverage pnpm workspace features for monorepo management
