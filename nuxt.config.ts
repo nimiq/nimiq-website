@@ -7,7 +7,7 @@ import { getDynamicPages } from './lib/crawler'
 import environment from './lib/env'
 import { repositoryName } from './slicemachine.config.json'
 
-const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
+const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
