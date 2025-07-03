@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Host: https://www.nimiq.com
-Sitemap: https://www.nimiq.com/sitemap.xml

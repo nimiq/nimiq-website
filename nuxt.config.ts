@@ -7,7 +7,7 @@ import { getDynamicPages } from './lib/crawler'
 import environment from './lib/env'
 import { repositoryName } from './slicemachine.config.json'
 
-const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
+const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -45,6 +45,63 @@ export default defineNuxtConfig({
           if (environment.environment.isNuxthubPreview || environment.environment.isNuxthubProduction)
             pages = pages.slice(0, 95)
           nitro.options.prerender.routes = pages
+        },
+      },
+    }),
+
+    defineNuxtModule({
+      meta: { name: 'nuxt-robots-generator' },
+      hooks: {
+        'nitro:build:public-assets': async (nitro) => {
+          const fs = await import('node:fs/promises')
+          const path = await import('node:path')
+
+          let robotsContent = ''
+
+          if (environment.environment.isProduction) {
+            // Production: Allow indexing with restrictions
+            robotsContent = `# Nimiq Website - Production Environment
+User-agent: *
+Allow: /
+
+# Disallow sensitive/technical paths
+Disallow: /api/
+Disallow: /_nuxt/
+Disallow: /_ipx/
+Disallow: /iframes/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://nimiq.com/sitemap.xml
+
+# Search engine specific rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1`
+          }
+          else {
+            // All deployments: Block everything
+            robotsContent = `# Nimiq Website - Deployment/Preview Environment
+# This is a deployment or preview environment - blocking all crawlers
+# Environment: ${environment.environment.name}
+
+User-agent: *
+Disallow: /
+
+# No sitemap for non-production environments`
+          }
+
+          // Write robots.txt to the public assets directory
+          const publicDir = path.resolve(nitro.options.output.publicDir)
+          const robotsPath = path.join(publicDir, 'robots.txt')
+
+          await fs.writeFile(robotsPath, robotsContent, 'utf8')
+          console.log(`Generated robots.txt for environment: ${environment.environment.name}`)
         },
       },
     }),
@@ -266,11 +323,6 @@ export default defineNuxtConfig({
     // will fetch the fonts from google at build time
     fonts: ['Mulish:400', 'Mulish:700'],
   },
-
-  // robots: {
-  //   // https://nuxtseo.com/robots/api/config
-  //   disallow: ['/iframes'],
-  // }
 
   feed: {
     sources: [
