@@ -47,7 +47,7 @@ if (post.value.data.body.at(0)?.primary)
     <div ref="articleRef">
       <PageInfo :draft bottom-32 right-32 fixed z-102 />
 
-      <header data-section max-w="$nq-prose-max-width" pt="148 md:153 lg:160" px="32 lg:64">
+      <header data-section max-w="$nq-prose-max-width" f-pt="96/136" px="32 lg:64">
         <PrismicText wrapper="h1" :field="post.data.title" style="--nq-font-size-min: 32;--nq-font-size-max: 40" view-transition-post-title />
         <PrismicText wrapper="p" text-neutral-800 :field="post.data.subline" style="--nq-font-size-min: 18;--nq-font-size-max: 20" />
         <ArticleMetadata mt="18 lg:24" :date="new Date(post.last_publication_date)" :authors="post.data.authors.map(a => a.name).join(', ')" md:justify-center>
