@@ -10,6 +10,8 @@ const bgClass = getColorClass(() => bgColor)
 const rows = computed(() => 5)
 const { width } = useWindowSize()
 const columns = ref(0)
+const gap = ref(12)
+const hexagonWidth = computed(() => gap.value * 8.75)
 
 function calculateOpacity(rowIndex: number, colIndex: number) {
   const normalizedRow = rowIndex / (rows.value - 1)
@@ -35,7 +37,7 @@ onMounted(() => {
   if (import.meta.server)
     return
   const result = []
-  columns.value = (Math.floor(width.value / 140) + 4) & ~1
+  columns.value = (Math.floor(width.value / hexagonWidth.value) + 4) & ~1
   for (let rowIndex = 0; rowIndex < rows.value; rowIndex++) {
     const isEvenRow = rowIndex % 2 === 0
     const startCol = isEvenRow ? 0 : 1
@@ -56,7 +58,7 @@ onMounted(() => {
     <div
       aria-hidden="true"
       class="grid-parent" max-w-none
-      :style="`--rows:${rows}; --cols:${columns}`"
+      :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`"
     >
       <div
         v-for="item in items"
@@ -107,8 +109,6 @@ onMounted(() => {
 }
 
 .grid-parent {
-  --gap: 16px;
-  --hexagon-w: 140px;
   --hexagon-h: calc(var(--hexagon-w) / 1.1111);
   --hexagon-h-half: calc(var(--hexagon-h) / 2);
   display: grid;
