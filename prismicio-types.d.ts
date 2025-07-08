@@ -1819,6 +1819,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | AppGallerySlice
   | NimiqWalletHoverableSlice
   | NimTokenDistributionSlice
   | ExchangesGridSlice
@@ -2710,6 +2711,101 @@ type AlbatrossTechnicalDetailsSliceVariation =
 export type AlbatrossTechnicalDetailsSlice = prismic.SharedSlice<
   'albatross_technical_details',
   AlbatrossTechnicalDetailsSliceVariation
+>
+
+/**
+ * Primary content in *AppGalleryCta → Default → Primary*
+ */
+export interface AppGallerySliceDefaultPrimary {
+  /**
+   * Title field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField
+
+  /**
+   * Description field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * Categories Label field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.categoriesLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  categoriesLabel: prismic.KeyTextField
+
+  /**
+   * Background Color field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue'>
+
+  /**
+   * cta field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+
+  /**
+   * Categories Description field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.categoriesDescription
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  categoriesDescription: prismic.KeyTextField
+}
+
+/**
+ * Default variation for AppGalleryCta Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Main variation that includes a title, description, category list, and grid of visual app cards.
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AppGallerySliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<AppGallerySliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *AppGalleryCta*
+ */
+type AppGallerySliceVariation = AppGallerySliceDefault
+
+/**
+ * AppGalleryCta Shared Slice
+ *
+ * - **API ID**: `app_gallery`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AppGallerySlice = prismic.SharedSlice<
+  'app_gallery',
+  AppGallerySliceVariation
 >
 
 /**
@@ -12094,6 +12190,10 @@ declare module '@prismicio/client' {
       AlbatrossTechnicalDetailsSliceDefaultPrimary,
       AlbatrossTechnicalDetailsSliceVariation,
       AllDocumentTypes,
+      AppGallerySlice,
+      AppGallerySliceDefault,
+      AppGallerySliceDefaultPrimary,
+      AppGallerySliceVariation,
       AppsShowcaseSlice,
       AppsShowcaseSliceDefault,
       AppsShowcaseSliceDefaultPrimary,

@@ -35,7 +35,7 @@ const columns = [
 </script>
 
 <template>
-  <section bg-neutral-0>
+  <section bg-neutral-100>
     <ul grid="~ cols-1 md:cols-3 gap-x-8 lg:gap-x-16 gap-y-24" w-full>
       <li v-for="(column, i) in columns.filter(c => c.items)" :key="i" flex="~ col md:items-center">
         <span text="12 md:14 neutral-700" nq-label>{{ column.label }}</span>

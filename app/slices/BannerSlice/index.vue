@@ -54,7 +54,7 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
     <template v-if="slice.variation === 'default'">
       <div
         v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items"
-        :key="i" border="1 solid neutral-400" :style="`background: var(--nq-${bgColor || 'neutral'})`"
+        :key="i" outline="1.5 offset--1.5 white/20" :style="`background: var(--nq-${bgColor || 'neutral'})`"
         :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72"
         mx-auto px-32 rounded-8 w-full shadow relative of-hidden
       >
@@ -72,7 +72,7 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
           />
         </PrismicLink>
         <div v-if="bgColor === 'white'" class="curtain" pointer-events-none inset-0 absolute />
-        <div v-else-if="bgColor === 'green'" pointer-events-none inset-0 absolute bg-gradient-green />
+        <div v-else-if="bgColor === 'green'" rounded-6 pointer-events-none inset-1.5 absolute bg-gradient-green />
 
         <div
           v-if="backgroundPattern === 'Nimiq Hexagon'" text="200 md:300 lg:400" pointer-events-none absolute
