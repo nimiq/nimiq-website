@@ -62,7 +62,7 @@ function useAppsGrid({ apps, spotLightApps }: { apps: NimiqApp[], spotLightApps:
     </fieldset>
   </form>
 
-  <ul v-if="filteredApps.length" f-mt-xl grid="~ gap-16 cols-[repeat(auto-fit,min(100%,350px))] 2xl:gap-32 xl:gap-24">
+  <ul v-if="filteredApps.length" f-mt-xl grid="~ gap-16 cols-1 md:cols-[repeat(auto-fit,min(100%,350px))] 2xl:gap-32 xl:gap-24">
     <li
       v-for="(app, i) in filteredApps" :key="i" :style="getSpotlightAppsPosition(app)"
       :class="getSpotlightAppsPosition(app)?.class" w-full
