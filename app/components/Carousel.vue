@@ -46,7 +46,7 @@ const indicatorsStyles = computed(() => {
 </script>
 
 <template>
-  <div group stack h-full max-w-none>
+  <div group stack h-full max-w-none relative>
     <button bg="neutral-400 disabled:neutral-200  not-disabled:hocus:neutral-500" op="0 group-hover:100 disabled:0" :disabled="!canSlidePrev" data-prev stack ml-12 p-16 rounded-full w-max invisible shadow transition justify-self-start z-5 md:visible hocus:cursor-pointer @click="slidePrev">
       <div translate-x--1 f-text-xl i-nimiq:chevron-left />
     </button>
@@ -61,7 +61,7 @@ const indicatorsStyles = computed(() => {
       <div translate-x-1 f-text-xl i-nimiq:chevron-right />
     </button>
 
-    <ul flex="~ gap-6 justify-center" mb-20 self-end relative>
+    <ul flex="~ gap-6 justify-center" self-end bottom-64 absolute>
       <li v-for="i in items.length" :key="i" data-slide flex>
         <button :title="`Slide to number ${i + 1}`" bg="neutral-300 data-active:green hocus:neutral-400" rounded-full size-8 transition-colors relative @click="slideTo(i - 1)" />
       </li>
