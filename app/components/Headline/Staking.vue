@@ -54,6 +54,7 @@ section:has(+ section.gradient-transparent-green-transparent) {
 }
 
 section.gradient-transparent-green {
+  --un-gradient-fn-from: transparent !important;
   --uno: 'pt-140 lg:pt-152 bg-gradient-fn-from-transparent bg-gradient-fn-to-green bg-gradient-fn-ease-out-cubic bg-gradient-fn-to-b bg-gradient-fn-length-252';
 }
 

@@ -9,7 +9,6 @@ const isHome = uid === 'home'
 
 const { showDrafts } = useRuntimeConfig().public
 const route = useRoute()
-const { site } = useRuntimeConfig().public
 
 const { client } = usePrismic()
 const { data: page } = await useAsyncData(`prismic-page-${pathParams.join('-')}`, () => client.getByUID('page', uid)
@@ -33,7 +32,7 @@ if (page.value.uid !== uid) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
-// We check that the page.links is not empty if isGrandchildPage and that the links defined are the same as in the URL
+// Validate parent-child relationships to prevent URL manipulation attacks
 if (isGrandchildPage) {
   const parentsLengthMatches = page.value?.data.parents.length === pathParams.length - 1
   const parentsSubpathMatches = page.value?.data.parents.every((parent, index) => (parent as { uid: string }).uid === pathParams[index])
@@ -62,7 +61,7 @@ const draft = computed(() => page.value?.data && 'draft' in page.value.data && p
 
 const showSocialsHexagonBg = isHome
 
-// SEO Stuff - We load title and description from the `meta` field of the page otherwise we use the first slice title and description
+// CMS takes precedence over slice data for better content management control
 const slice = page.value.data.slices.at(0)
 const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage, meta_keywords: cmsKeywords } = page.value.data
 
@@ -79,19 +78,23 @@ if (isHome) {
   description = description.replace(/\{\{\s*locations\s*\}\}/, locationsCount.value.toString())
 }
 
-// Build the canonical URL
-const canonicalUrl = `${site?.url || 'https://nimiq.com'}${route.path}`
+// Hardcoded because site.url config type is unknown and URL is fixed anyway
+const canonicalUrl = `https://nimiq.com${route.path}`
 
-// Extract keywords from CMS or use defaults
 const keywords = cmsKeywords || 'Nimiq, cryptocurrency, blockchain, digital money, payments'
 
-// Comprehensive SEO meta tags
+// Canonical URL handled separately via useHead because useSeoMeta doesn't support it
+useHead({
+  link: [
+    { rel: 'canonical', href: canonicalUrl },
+  ],
+})
+
 useSeoMeta({
   title,
   description,
   keywords,
 
-  // Open Graph tags
   ogTitle: title,
   ogDescription: description,
   ogUrl: canonicalUrl,
@@ -99,23 +102,18 @@ useSeoMeta({
   ogSiteName: 'Nimiq',
   ogLocale: 'en_US',
 
-  // Twitter tags
   twitterCard: 'summary_large_image',
   twitterTitle: title,
   twitterDescription: description,
   twitterSite: '@nimiq',
   twitterCreator: '@nimiq',
 
-  // Additional meta tags
-  robots: draft.value ? 'noindex, nofollow' : 'index, follow',
+  // Robots handled globally in nuxt.config.ts for environment-specific control
   author: 'Nimiq Team',
   publisher: 'Nimiq',
-
-  // Canonical URL
-  canonical: canonicalUrl,
 })
 
-// Handle Open Graph images
+// Custom images take precedence over generated ones for better brand control
 if (hasImage(cmsImage)) {
   useSeoMeta({
     ogImage: cmsImage.url,

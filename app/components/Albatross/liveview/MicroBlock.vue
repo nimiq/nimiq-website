@@ -40,7 +40,7 @@ const fontSizeClass = computed(() => {
       Skip Block
     </header>
 
-    <div flex="~ col shrink-0" text-neutral-0 bg-neutral size-160 relative :class="!block.isSkip ? 'rounded-8' : 'rounded-b-8'">
+    <div flex="~ col shrink-0" data-inverted text-neutral bg-neutral-0 size-160 relative :class="!block.isSkip ? 'rounded-8' : 'rounded-b-8'">
       <div flex="~ items-center justify-between" text-15 px-16 pb-10 pt-14>
         <p font-bold :class="fontSizeClass">
           #{{ block.number }}
@@ -62,7 +62,7 @@ const fontSizeClass = computed(() => {
       <p whitespace-nowrap>
         Slot {{ block.producer.slotNumber }}
       </p>
-      <p whitespace-nowrap>
+      <p v-if="duration !== '?' && Number(duration.replace('s', '')) > 0" whitespace-nowrap>
         {{ duration }} block time
       </p>
     </footer>
