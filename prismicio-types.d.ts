@@ -10146,6 +10146,27 @@ export interface SocialMediaGridSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   cultureAndInsightsLabel: prismic.KeyTextField
+
+  /**
+   * Show Labels field in *SocialMediaGrid → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: social_media_grid.default.primary.showLabels
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  showLabels: prismic.BooleanField
+
+  /**
+   * Background Color field in *SocialMediaGrid → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_media_grid.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue'>
 }
 
 /**
