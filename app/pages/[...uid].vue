@@ -8,6 +8,8 @@ const uid = pathParams.at(-1) || 'home'
 const isHome = uid === 'home'
 
 const { showDrafts } = useRuntimeConfig().public
+const route = useRoute()
+const { site } = useRuntimeConfig().public
 
 const { client } = usePrismic()
 const { data: page } = await useAsyncData(`prismic-page-${pathParams.join('-')}`, () => client.getByUID('page', uid)
@@ -62,7 +64,7 @@ const showSocialsHexagonBg = isHome
 
 // SEO Stuff - We load title and description from the `meta` field of the page otherwise we use the first slice title and description
 const slice = page.value.data.slices.at(0)
-const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage } = page.value.data
+const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage, meta_keywords: cmsKeywords } = page.value.data
 
 // @ts-expect-error this is dangerous, but we control the data
 const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.headline) : undefined
@@ -77,14 +79,60 @@ if (isHome) {
   description = description.replace(/\{\{\s*locations\s*\}\}/, locationsCount.value.toString())
 }
 
-useHead({ title, meta: description ? [{ name: 'description', content: description }] : [] })
+// Build the canonical URL
+const canonicalUrl = `${site?.url || 'https://nimiq.com'}${route.path}`
 
-if (hasImage(cmsImage))
+// Extract keywords from CMS or use defaults
+const keywords = cmsKeywords || 'Nimiq, cryptocurrency, blockchain, digital money, payments'
+
+// Comprehensive SEO meta tags
+useSeoMeta({
+  title,
+  description,
+  keywords,
+
+  // Open Graph tags
+  ogTitle: title,
+  ogDescription: description,
+  ogUrl: canonicalUrl,
+  ogType: 'website',
+  ogSiteName: 'Nimiq',
+  ogLocale: 'en_US',
+
+  // Twitter tags
+  twitterCard: 'summary_large_image',
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterSite: '@nimiq',
+  twitterCreator: '@nimiq',
+
+  // Additional meta tags
+  robots: draft.value ? 'noindex, nofollow' : 'index, follow',
+  author: 'Nimiq Team',
+  publisher: 'Nimiq',
+
+  // Canonical URL
+  canonical: canonicalUrl,
+})
+
+// Handle Open Graph images
+if (hasImage(cmsImage)) {
+  useSeoMeta({
+    ogImage: cmsImage.url,
+    ogImageAlt: title,
+    ogImageWidth: cmsImage.dimensions?.width,
+    ogImageHeight: cmsImage.dimensions?.height,
+    twitterImage: cmsImage.url,
+    twitterImageAlt: title,
+  })
   setOgImage({ title, subline: description, image: cmsImage })
-else if (isHome)
+}
+else if (isHome) {
   defineOgImageComponent('OgImageHome', { title, subline: description })
-else
+}
+else {
   defineOgImageComponent('OgImagePage', { title, subline: description })
+}
 </script>
 
 <template>
