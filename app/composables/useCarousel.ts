@@ -160,7 +160,8 @@ export function useCarousel(options: CarouselOptions = {}): CarouselResponse {
     calculateStep(event)
   }
 
-  useScroll(scroller, { onScroll: handleScroll })
+  // Use event listener for scroll handling instead of useScroll options
+  useEventListener(scroller, 'scroll', handleScroll)
 
   return {
     activeIndex,

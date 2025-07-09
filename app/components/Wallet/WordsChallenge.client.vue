@@ -11,8 +11,8 @@ const containerIsVisible = ref(false)
 useIntersectionObserver(container, ([entry]) => containerIsVisible.value = entry?.isIntersecting || false)
 const { items: animatedWords } = useRandomAnimatedTexts(wordsList.flatMap(row => row.words).map(word => word.word), { shouldPlay: containerIsVisible })
 
-const firstRealWords = ['coyote', 'flush', 'rug', 'snack', 'cash', 'artwork', 'question', 'sword', 'cinnamon', 'civil', 'lens', 'warfare']
-const prizeAddress = 'NQ78 H0BC MUGB TG2Q E2SC 0GAB UGD5 NJ0B Y335'
+const { publicAddress: prizeAddress, firstRealWords: firstRealWordsStr } = useRuntimeConfig().public.wordsChallenge
+const firstRealWords = firstRealWordsStr.split(',')
 
 const userInputs = reactive([ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref('')])
 if (import.meta.env.DEV)
@@ -70,7 +70,7 @@ function reset() {
       </div>
     </div>
   </div>
-  <div ref="container" flex="~ col" bg-gradient="to-b from-[#260133] to-darkblue" class="dark" px="16 sm:64" mx-auto pb-48 pt-32 rounded-8 max-w-492 shadow relative z-1 of-hidden>
+  <div ref="container" flex="~ col" class="dark" px="16 sm:64" mx-auto pb-48 pt-32 rounded-8 max-w-492 shadow relative z-1 of-hidden style="background-image: linear-gradient(to bottom, #260133, rgb(var(--nq-darkblue)));">
     <div :class="{ 'slide-up': isChallengeFinished }">
       <h3 text-center>
         {{ headline }}
@@ -103,12 +103,12 @@ function reset() {
           </li>
         </ul>
         <template v-if="isChallengeFinished">
-          <div flex="~ justify-center items-center col" w-492 inset-x--64 inset-y-0 absolute z-2>
+          <div flex="~ justify-center items-center col" class="dark" scheme-dark w-492 inset-x--64 inset-y-0 absolute z-2>
             <p text="center 40 red-neon" font-retro class="challenge-over">
               Try again
             </p>
-            <p text="center neutral-900 f-lg" class="delayed" px-40 max-w-40ch f-mt-md>
-              Even using a computer, it would take you <b text-neutral>10 lifetimes</b> to crack this wallet...
+            <p text="center white/80 f-lg" class="delayed" px-40 max-w-40ch f-mt-md>
+              Even using a computer, it would take you <b text-white>10 lifetimes</b> to crack this wallet...
             </p>
             <button f-mt-xs nq-pill-tertiary class="delayed" @click="reset">
               Restart

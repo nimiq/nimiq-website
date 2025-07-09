@@ -1,7 +1,22 @@
 <script setup lang="ts">
 const emit = defineEmits(['state'])
 
+const { setSelectedAction, playgroundState } = usePlaygroundIframe()
+
 const state = ref<'idle' | 'stake' | 'buy' | 'swap'>('idle')
+
+// Watch state changes and sync with playground
+watch(state, (newState) => {
+  setSelectedAction(newState)
+}, { immediate: true })
+
+// Watch playground state changes and sync local state
+// This handles external changes like modal close events
+watch(() => playgroundState.value.selectedAction, (newAction) => {
+  if (newAction !== state.value) {
+    state.value = newAction
+  }
+}, { immediate: true })
 
 // @unocss-include
 const states = [
@@ -34,7 +49,7 @@ watchEffect(() => {
 <template>
   <ul flex="~ gap-4" self-end="!" ring="1 blue/80" p-4 rounded-full bg-white h-max relative z-10 style="--un-shadow: 0 0 32px #0682CA;">
     <div ref="pill" rounded-full bg-darkblue transition-all duration-400 ease-in-out inset-y-3 absolute />
-    <li v-for="({ icon, label, value, color }) in states" :key="value" :style="{ '--c': `rgb(var(--nq-${color}) / 1)` }">
+    <li v-for="({ icon, label, value, color }) in states" :key="value" :style="{ '--c': `rgb(var(--nq-${color}) / 1)` }" class="dark" scheme-dark>
       <button flex="~ gap-2 items-center" p-2 pr-12 rounded-full bg-transparent :data-state="value === state ? 'active' : undefined" @click="state = value">
         <div :class="icon" text="neutral-800 data-active:$c" m-8 transition-color />
         <span font="semibold data-active:bold" text="data-active:white" transition-color>

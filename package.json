@@ -31,6 +31,7 @@
     "@unovis/vue": "catalog:frontend",
     "@vueuse/router": "catalog:frontend",
     "medium-zoom": "catalog:frontend",
+    "motion-v": "catalog:",
     "nimiq-rpc-client-ts": "catalog:nimiq",
     "nuxt": "catalog:nuxt",
     "nuxt-og-image": "catalog:nuxt",

@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     'nuxt-module-feed',
     'nuxt-safe-runtime-config',
+    'motion-v/nuxt',
 
     defineNuxtModule({
       meta: { name: 'nuxt-prerender-routes' },
@@ -194,6 +195,10 @@ Disallow: /
       },
       environment: environment.environment,
       showDrafts: environment.showDrafts,
+      wordsChallenge: {
+        publicAddress: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_PUBLIC_ADDRESS,
+        firstRealWords: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS,
+      },
     },
     zoho: {
       requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
@@ -231,6 +236,10 @@ Disallow: /
         }),
         environment: object({}),
         showDrafts: optional(boolean()),
+        wordsChallenge: object({
+          publicAddress: string(),
+          firstRealWords: string(),
+        }),
       }),
       zoho: optional(object({
         requestUrl: string(),
@@ -299,7 +308,7 @@ Disallow: /
       link: [
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/icon', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        // { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },

@@ -37,7 +37,7 @@ const id = `terms-note-${useId()}`
           internal-component="a" :field="link" f-mt-lg nq-arrow nq-pill-lg md:mx-auto :class="{
             'nq-pill-blue': link.variant === 'nq-pill-blue',
             'nq-pill-secondary': link.variant === 'nq-pill-secondary',
-            'nq-pill-tertiary bg-white text-neutral-200': link.variant === 'nq-pill-tertiary',
+            'nq-pill-tertiary bg-white text-neutral': link.variant === 'nq-pill-tertiary',
           }"
         />
       </li>

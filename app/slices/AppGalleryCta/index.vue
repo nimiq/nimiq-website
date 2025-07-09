@@ -4,7 +4,7 @@ import { PrismicRichText } from '#components'
 
 const { slice } = defineProps(getSliceComponentProps<Content.AppGallerySlice>())
 
-const bgColor = getColorClass(slice.primary.bgColor)
+const bgColor = getColorClass(slice.primary.bgColor || 'grey')
 
 const { data: apps } = useApps()
 

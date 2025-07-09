@@ -11595,6 +11595,27 @@ export type VerticalVideoSlice = prismic.SharedSlice<
 >
 
 /**
+ * Primary content in *WalletPlayground → Default → Primary*
+ */
+export interface WalletPlaygroundSliceDefaultPrimary {
+  /**
+   * playground URL field in *WalletPlayground → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: wallet_playground.default.primary.playgroundUrl
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playgroundUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
+}
+
+/**
  * Default variation for WalletPlayground Slice
  *
  * - **API ID**: `default`
@@ -11603,7 +11624,7 @@ export type VerticalVideoSlice = prismic.SharedSlice<
  */
 export type WalletPlaygroundSliceDefault = prismic.SharedSliceVariation<
   'default',
-  Record<string, never>,
+  Simplify<WalletPlaygroundSliceDefaultPrimary>,
   never
 >
 
@@ -12564,6 +12585,7 @@ declare module '@prismicio/client' {
       VerticalVideoSliceVariation,
       WalletPlaygroundSlice,
       WalletPlaygroundSliceDefault,
+      WalletPlaygroundSliceDefaultPrimary,
       WalletPlaygroundSliceVariation,
       WalletWordsChallengeSlice,
       WalletWordsChallengeSliceDefault,

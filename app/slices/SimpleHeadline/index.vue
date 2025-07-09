@@ -26,7 +26,7 @@ function getGradientClass() {
 </script>
 
 <template>
-  <section :nq-section-gap="!isStakingSlice ? '' : undefined" :class="[bgClass, getGradientClass()]" relative data-slice-type="simple-headline" border="t neutral-300 dark:neutral-400">
+  <section :nq-section-gap="!isStakingSlice ? '' : undefined" :class="[bgClass, getGradientClass()]" relative data-slice-type="simple-headline">
     <Headline
       v-if="!isStakingSlice"
       :headline="slice.primary.headline"

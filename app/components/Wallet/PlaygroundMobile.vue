@@ -1,10 +1,53 @@
+<script setup lang="ts">
+import { usePlaygroundIframe } from '~/composables/usePlaygroundIframe'
+
+defineProps<{ playgroundUrl: string }>()
+
+const { handlePlaygroundMessage, onIframeReady, setIframeRef } = usePlaygroundIframe()
+
+const iframeRef = ref()
+
+function handlePlaygroundReady() {
+  // eslint-disable-next-line no-console
+  console.log('Playground iframe is ready')
+  onIframeReady()
+}
+
+function handlePlaygroundError(error: Error) {
+  console.error('Playground iframe error:', error)
+}
+
+// Register iframe reference when component is mounted
+onMounted(() => {
+  if (iframeRef.value) {
+    setIframeRef(iframeRef.value)
+  }
+})
+</script>
+
 <template>
   <div pb-32 relative>
     <div class="bg" left="[calc(var(--px)*-1)]" w="[calc(100%+var(--px)*2)]" inset-0 top--160 absolute z--1 />
     <WalletActionSelector mx-auto w-max />
 
     <div w="[calc(100%+48px)]" p-8 rounded-14 bg-neutral-300 op-50 size-full aspect-0.7 left--24 relative backdrop-blur-3.5 f-mt-xl style="box-shadow: inset 0px 0px 40px #FFFFFF;">
-      <div rounded-8 bg-white size-full />
+      <!-- Playground iframe -->
+      <div v-if="playgroundUrl" rounded-8 size-full>
+        <WalletPlaygroundIframe
+          ref="iframeRef"
+          :playground-url="playgroundUrl"
+          height="100%"
+          @message="handlePlaygroundMessage"
+          @ready="handlePlaygroundReady"
+          @error="handlePlaygroundError"
+        />
+      </div>
+      <!-- Fallback when no URL is provided -->
+      <div v-else rounded-8 bg-white flex size-full items-center justify-center>
+        <p text="center neutral-600 sm">
+          No playground URL configured
+        </p>
+      </div>
     </div>
 
     <WalletCurrencies mt-24 />
