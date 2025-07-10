@@ -1,5 +1,4 @@
 import process from 'node:process'
-import { defineNuxtModule } from '@nuxt/kit'
 import { array, boolean, object, optional, string } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
@@ -34,78 +33,8 @@ export default defineNuxtConfig({
     'nuxt-module-feed',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
-
-    defineNuxtModule({
-      meta: { name: 'nuxt-prerender-routes' },
-      hooks: {
-        'nitro:build:before': async (nitro) => {
-          let pages = await getDynamicPages({ prismicAccessToken, showDrafts: environment.showDrafts })
-          console.log(pages.filter(f => !f.startsWith('/blog')))
-
-          // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
-          if (environment.environment.isNuxthubPreview || environment.environment.isNuxthubProduction)
-            pages = pages.slice(0, 95)
-          nitro.options.prerender.routes = pages
-        },
-      },
-    }),
-
-    defineNuxtModule({
-      meta: { name: 'nuxt-robots-generator' },
-      hooks: {
-        'nitro:build:public-assets': async (nitro) => {
-          const fs = await import('node:fs/promises')
-          const path = await import('node:path')
-
-          let robotsContent = ''
-
-          if (environment.environment.isProduction) {
-            // Production: Allow indexing with restrictions
-            robotsContent = `# Nimiq Website - Production Environment
-User-agent: *
-Allow: /
-
-# Disallow sensitive/technical paths
-Disallow: /api/
-Disallow: /_nuxt/
-Disallow: /_ipx/
-Disallow: /iframes/
-Disallow: /*.json$
-
-# Sitemap
-Sitemap: https://nimiq.com/sitemap.xml
-
-# Search engine specific rules
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Crawl delay for respectful crawling
-Crawl-delay: 1`
-          }
-          else {
-            // All deployments: Block everything
-            robotsContent = `# Nimiq Website - Deployment/Preview Environment
-# This is a deployment or preview environment - blocking all crawlers
-# Environment: ${environment.environment.name}
-
-User-agent: *
-Disallow: /
-
-# No sitemap for non-production environments`
-          }
-
-          // Write robots.txt to the public assets directory
-          const publicDir = path.resolve(nitro.options.output.publicDir)
-          const robotsPath = path.join(publicDir, 'robots.txt')
-
-          await fs.writeFile(robotsPath, robotsContent, 'utf8')
-          console.log(`Generated robots.txt for environment: ${environment.environment.name}`)
-        },
-      },
-    }),
+    './modules/prerender-routes',
+    './modules/robots-generator',
   ],
 
   devtools: { enabled: true },
