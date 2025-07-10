@@ -32,7 +32,7 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
         </p>
         <ul flex="~ gap-16" f-mt-xs>
           <li v-for="({ logo }, i) in slice.primary.poweredByLogos" :key="i">
-            <NuxtImg :src="$prismic.asImageSrc(logo)!" w-full f-h="24/32" object-contain />
+            <PrismicImage :field="logo" w-full f-h="24/32" object-contain />
           </li>
         </ul>
       </div>

@@ -11,7 +11,7 @@ defineProps<{ content: RichTextField, images: ImageField<never>[] }>()
     <!-- TODO Right now we are using a carousel. This is not right. We must use a card swiper instead, see designs -->
     <SimpleCarousel :slides="images" style="--trigger-size:min(300px,20vw); --r: 12px" :shadow="true">
       <template #default="{ slide: image }">
-        <NuxtImg :src="$prismic.asImageSrc(image)!" rounded-8 />
+        <PrismicImage :field="image" rounded-8 />
       </template>
     </SimpleCarousel>
   </div>

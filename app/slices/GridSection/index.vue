@@ -48,7 +48,7 @@ const bgClass = getColorClass(props.slice.primary.bgColor)
     <template v-else-if="slice.variation === 'threeColumnsIconsText'">
       <ul flex="~ col lg:row gap-y-24 lg:items-center" w-full>
         <li v-for="({ headline, image }, i) in slice.items" :key="i" py-24 flex-1 border="b-1 lg:b-0 lg:r-1 last:0 white/15 solid">
-          <NuxtImg :src="$prismic.asImageSrc(image)!" rounded-8 h-80 object-contain lg:mx-auto />
+          <PrismicImage :field="image" rounded-8 h-80 object-contain lg:mx-auto />
           <PrismicText wrapper="h3" text="green md:center f-xl" font-bold max-w-20ch f-mt-xs lg:mx-auto :field="headline" />
         </li>
       </ul>
