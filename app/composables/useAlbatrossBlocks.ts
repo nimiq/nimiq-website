@@ -8,7 +8,6 @@ function _useAlbatrossBlocks() {
       microblocks: ref([]),
       blockNumber: ref(-1),
       batchNumber: ref(-1),
-      matchedTxs: ref([]),
     }
   }
 
@@ -83,7 +82,6 @@ function _useAlbatrossBlocks() {
   const latestBlock = computed(() => microblocks.value.at(-1))
   const batchNumber = computed(() => latestBlock.value?.batch || -1)
   const blockNumber = computed(() => latestBlock.value?.number || -1)
-  const matchedTxs = computed(() => blocks.value.filter(block => block.kind === LiveviewBlockType.MicroBlock).map(block => block.matchedTxs).flat())
 
   return {
     status,
@@ -91,7 +89,6 @@ function _useAlbatrossBlocks() {
     microblocks,
     blockNumber,
     batchNumber,
-    matchedTxs,
   }
 }
 

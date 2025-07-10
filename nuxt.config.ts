@@ -175,12 +175,6 @@ Disallow: /
     prismicAccessToken,
     albatross: {
       nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
-      liveview: {
-        privateKey: process.env.NUXT_ALBATROSS_LIVEVIEW_PRIVATE_KEY,
-        txRecipient: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT,
-        txValue: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_VALUE,
-        txFee: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_FEE,
-      },
     },
     cors: {
       allowedOrigins: ['https://www.nimiq.com', 'https://prestaking.nimiq.network', process.env.NIMIQ_STATIC_PREVIEW].filter(Boolean) as string[],
@@ -216,12 +210,6 @@ Disallow: /
       prismicAccessToken: string(),
       albatross: object({
         nodeRpcUrl: string(),
-        liveview: optional(object({
-          privateKey: string(),
-          txRecipient: string(),
-          txValue: string(),
-          txFee: string(),
-        })),
       }),
       cors: object({
         allowedOrigins: array(string()),

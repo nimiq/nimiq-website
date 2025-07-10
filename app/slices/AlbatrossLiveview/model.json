@@ -12,15 +12,6 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "allowSendTx": {
-          "type": "Boolean",
-          "config": {
-            "label": "Allow Send Transactions",
-            "placeholder_false": "false",
-            "placeholder_true": "true",
-            "default_value": false
-          }
-        },
         "networkNotice": {
           "type": "Text",
           "config": {

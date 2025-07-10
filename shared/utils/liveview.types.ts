@@ -1,4 +1,4 @@
-import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts/types'
+import type { MacroBlock, MicroBlock, Transaction } from 'nimiq-rpc-client-ts/types'
 
 export enum LiveviewBlockType {
   MicroBlock = 'micro',
@@ -11,14 +11,13 @@ export const BLOCKS_WINDOW_SIZE = 20
 export type LiveviewMicroBlock = {
   kind: LiveviewBlockType.MicroBlock
   duration: number
-  matchedTxs: number[]
-  unmatchedTxs: string[]
+  transactions: Transaction[]
   isSkip: boolean
 } & Pick<MicroBlock, 'producer' | 'number' | 'batch' | 'timestamp'>
 
 export type LiveviewMacroBlock = {
   kind: LiveviewBlockType.MacroBlock
-  unmatchedTxs: string[]
+  transactions: Transaction[]
   votes: number
 } & Pick<MacroBlock, 'batch' | 'number'>
 

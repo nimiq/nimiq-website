@@ -2543,17 +2543,6 @@ export type ActivityStatsSlice = prismic.SharedSlice<
  */
 export interface AlbatrossLiveviewSliceDefaultPrimary {
   /**
-   * Allow Send Transactions field in *AlbatrossLiveview → Default → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: albatross_liveview.default.primary.allowSendTx
-   * - **Documentation**: https://prismic.io/docs/field#boolean
-   */
-  allowSendTx: prismic.BooleanField
-
-  /**
    * Network Notice field in *AlbatrossLiveview → Default → Primary*
    *
    * - **Field Type**: Text
