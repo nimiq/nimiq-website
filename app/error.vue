@@ -38,11 +38,6 @@ const homeLinkText = computed(() => isBlogPage.value ? 'Browse all articles' : '
 
 const handleError = () => clearError({ redirect: homeRoute.value })
 
-useHead({
-  title: isBlogPostError.value ? 'Article not found | Nimiq Blog' : `${statusCode.value} - ${statusMessage.value} | Nimiq`,
-  meta: [{ name: 'robots', content: 'noindex, nofollow' }],
-})
-
 const heading = computed(() => {
   if (isBlogPostError.value)
     return 'Article not found'
@@ -60,6 +55,21 @@ const paragraph = computed(() => {
     case 503: return 'Service temporarily unavailable. Please try again later.'
     default: return 'We encountered a problem while trying to load this page. Please try again later.'
   }
+})
+
+// Error pages need proper SEO handling to prevent search engine confusion
+useSeoMeta({
+  title: isBlogPostError.value ? 'Article not found' : `${statusCode.value} - ${statusMessage.value}`,
+  description: computed(() => paragraph.value),
+  robots: 'noindex, nofollow',
+
+  ogTitle: isBlogPostError.value ? 'Article not found' : `${statusCode.value} - ${statusMessage.value}`,
+  ogDescription: computed(() => paragraph.value),
+  ogType: 'website',
+
+  twitterCard: 'summary',
+  twitterTitle: isBlogPostError.value ? 'Article not found' : `${statusCode.value} - ${statusMessage.value}`,
+  twitterDescription: computed(() => paragraph.value),
 })
 const stack = props.error.stack
 // eslint-disable-next-line vue/no-mutating-props

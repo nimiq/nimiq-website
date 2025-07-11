@@ -78,18 +78,20 @@ if (isHome) {
   description = description.replace(/\{\{\s*locations\s*\}\}/, locationsCount.value.toString())
 }
 
-// Hardcoded because site.url config type is unknown and URL is fixed anyway
-const canonicalUrl = `https://nimiq.com${route.path}`
+// Site config ensures consistency across all SEO-related modules
+const siteConfig = useSiteConfig()
+const canonicalUrl = `${siteConfig.url}${route.path}`
 
 const keywords = cmsKeywords || 'Nimiq, cryptocurrency, blockchain, digital money, payments'
 
-// Canonical URL handled separately via useHead because useSeoMeta doesn't support it
+// Canonical URL still needs to be handled separately in current version
 useHead({
   link: [
     { rel: 'canonical', href: canonicalUrl },
   ],
 })
 
+// Centralized SEO meta ensures all social platforms get consistent data
 useSeoMeta({
   title,
   description,
@@ -99,7 +101,7 @@ useSeoMeta({
   ogDescription: description,
   ogUrl: canonicalUrl,
   ogType: 'website',
-  ogSiteName: 'Nimiq',
+  ogSiteName: siteConfig.name,
   ogLocale: 'en_US',
 
   twitterCard: 'summary_large_image',

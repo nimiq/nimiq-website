@@ -1,16 +1,16 @@
+import type { NuxtConfig } from 'nuxt/config'
 import process from 'node:process'
 import { defineNuxtConfig } from 'nuxt/config'
 import { array, boolean, object, optional, string } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
-import { getDynamicPages } from './lib/crawler'
 import environment from './lib/env'
 import { repositoryName } from './slicemachine.config.json'
 
 const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig({
+export default defineNuxtConfig(<NuxtConfig>{
   compatibilityDate: '2025-07-07',
 
   modules: [
@@ -21,17 +21,15 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'reka-ui/nuxt',
     '@nuxtjs/prismic',
-    'nuxt-og-image',
+    '@nuxtjs/seo',
     '@nuxtjs/device',
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
-    '@nuxtjs/sitemap',
     'nuxt-module-feed',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
     './modules/conditional-nuxthub',
     './modules/prerender-routes',
-    './modules/robots-generator',
   ],
 
   devtools: { enabled: true },
@@ -65,16 +63,16 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  site: {
-    url: 'https://nimiq.com',
+  site: { indexable: environment.environment.isProduction },
 
-    // These are just default values and they should be overwritten by the page
-    name: 'Nimiq',
-    description: 'The most accepted cryptocurrency in the world',
-  },
-
-  sitemap: {
-    urls: async () => getDynamicPages({ prismicAccessToken, showDrafts: false }),
+  schemaOrg: {
+    // Search engines understand the organization better with structured data
+    identity: {
+      type: 'Organization',
+      name: 'Nimiq',
+      url: 'https://nimiq.com',
+      logo: 'https://nimiq.com/logo.png',
+    },
   },
 
   // TODO Remove this option
@@ -235,7 +233,6 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
-    // will fetch the fonts from google at build time
     fonts: ['Mulish:400', 'Mulish:700'],
   },
 

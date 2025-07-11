@@ -34,11 +34,9 @@ const subheadlineStr = computed(() => {
 })
 
 watch(subheadlineStr, () => {
-  useHead({
+  useSeoMeta({
     title: props.headline.at(0)!.text,
-    meta: [
-      { name: 'description', content: subheadlineStr.value },
-    ],
+    description: subheadlineStr.value,
   })
 })
 </script>
