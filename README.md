@@ -24,27 +24,179 @@
 
 ---
 
-## Project Overview
+## Quick Start Guide
 
-### Tech Stack
+### Prerequisites
 
-Our website is built with the following technologies:
+- Node.js (version 18 or higher)
+- pnpm package manager
+- Access to Prismic CMS (for content management)
 
-- [Nuxt 4](https://nuxt.com): The core framework powering our application
-- [UnoCSS](https://unocss.dev): Utility-first CSS engine with enhanced flexibility
-- [Prismic](https://prismic.io): Headless CMS for content management
-- [Reka UI](https://reka-ui.com): Component library (similar to Radix UI)
+### Setup Steps
 
-### Development Setup
+1. **Clone and install dependencies**
 
-Make sure to install the dependencies:
+   ```bash
+   git clone https://github.com/nimiq/nimiq-website.git
+   cd nimiq-website
+   pnpm install
+   ```
+
+2. **Environment configuration**
+
+   ```bash
+   cp .env.example .env
+   # Edit .env with your PRISMIC_ACCESS_TOKEN (required)
+   ```
+
+3. **Start development server**
+
+   ```bash
+   pnpm dev
+   ```
+
+4. **Optional: Install git hooks**
+   ```bash
+   npx simple-git-hooks
+   ```
+
+### Common Issues
+
+- **Build fails**: Ensure `PRISMIC_ACCESS_TOKEN` is set in your `.env` file
+- **Components not rendering**: Check if you're connected to the internet (required for Prismic)
+- **Linting errors**: Run `pnpm lint` to see all issues, `pnpm lint:fix` to auto-fix
+
+## Architecture Overview
+
+### Core Stack
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Nuxt 4 App    │    │   Prismic CMS   │    │   UnoCSS        │
+│                 │◄───┤                 │    │                 │
+│ - SSG/SPA       │    │ - Content Mgmt  │    │ - Atomic CSS    │
+│ - Vue Components│    │ - Slices        │    │ - Nimiq Preset  │
+│ - Composables   │    │ - API/CDN       │    │ - Responsive    │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                        │                        │
+         └────────────────────────┼────────────────────────┘
+                                  │
+                    ┌─────────────────┐
+                    │   Static Build  │
+                    │                 │
+                    │ - Pre-rendered  │
+                    │ - CDN Ready     │
+                    │ - Multi-env     │
+                    └─────────────────┘
+```
+
+### Data Flow
+
+1. **Build Time**: Prismic content is fetched and pre-rendered into static pages
+2. **Runtime**: Interactive components hydrate on client-side
+3. **Content**: Managed through Prismic Slicemachine, deployed via Git
+
+### Environment System
+
+The project supports multiple deployment environments:
+
+- **Local**: Development with hot reload and draft content
+- **Production**: Live site (nimiq.com)
+- **GitHub Pages**: PR previews and testing
+- **NuxtHub**: Serverless deployment with edge functions
+- **Internal Static**: Internal previews with/without drafts
+
+## Component Architecture
+
+### Slicemachine Pattern
+
+We use Prismic's Slicemachine for content-driven components. Each slice follows this pattern:
+
+```vue
+<script setup lang="ts">
+import type { Content } from '@prismicio/client'
+
+// Always use typed props for slices
+const { slice } = defineProps(getSliceComponentProps<Content.YourSliceSlice>())
+
+// Handle background colors consistently
+const bgClass = getColorClass(slice.primary.bgColor)
+</script>
+
+<template>
+  <!-- All slices must be wrapped in a section -->
+  <section :class="bgClass">
+    <!-- Slice content here -->
+  </section>
+</template>
+```
+
+### Component Organization
+
+```
+app/
+├── components/
+│   ├── [UI]/           # UI components (no prefix)
+│   ├── [Backgrounds]/  # Background components
+│   └── Feature/        # Feature-specific components
+├── slices/             # Prismic slices (auto-generated)
+│   ├── HeroSection/
+│   ├── RichText/
+│   └── ...
+└── composables/        # Shared logic
+```
+
+### Creating New Slices
+
+1. **Use Slicemachine**: Run `pnpm slicemachine` and go to `http://localhost:9999`
+2. **Create slice**: Define fields and variations in the Slicemachine interface
+3. **Implement component**: Use the template above in `app/slices/YourSlice/index.vue`
+4. **Background colors**: Must use `bg-neutral-0`, `bg-neutral-100`, or `bg-darkblue`
+
+## Code Style Guide
+
+### Rules
+
+- **Linting**: All code must pass `pnpm lint` (ESLint + stylistic rules)
+- **Type checking**: All code must pass `pnpm typecheck` (TypeScript strict mode)
+- **Formatting**: Follow ESLint configuration (runs automatically on save)
+
+### Key Patterns
+
+- **Composables**: Use VueUse first, then create custom composables
+- **Props**: Always use typed props with Vue's `defineProps`
+- **State**: Use Pinia for complex state, `useState` for simple reactive data
+- **Imports**: Use auto-imports for Vue APIs and composables
+
+### Quick Commands
 
 ```bash
-pnpm install
-pnpm dev
-
-npx simple-git-hooks # Optionally install git hooks to run linters on commit
+pnpm lint          # Check all linting issues
+pnpm lint:fix      # Auto-fix linting issues
+pnpm typecheck     # Check TypeScript types
 ```
+
+## Testing
+
+**Note**: This project currently has no testing setup. All quality assurance is done through:
+
+- TypeScript type checking
+- ESLint static analysis
+- Manual testing in different environments
+- PR reviews and staging deployments
+
+## Environment Variables
+
+The project uses environment variables for configuration. Key variables include:
+
+- `PRISMIC_ACCESS_TOKEN`: Required for Prismic CMS access
+- `NUXT_ENVIRONMENT`: Deployment environment (local, production, etc.)
+- `NUXT_PUBLIC_API_ENDPOINT`: Main API endpoint
+- `NUXT_PUBLIC_SUPABASE_URL` & `NUXT_PUBLIC_SUPABASE_KEY`: Database configuration
+
+See `.env.example` for the complete list with descriptions.
+
+## Development Setup
 
 ### Environment Variables
 
@@ -235,25 +387,6 @@ The project includes both frontend and backend components:
 - API endpoints follow RESTful conventions
 - Server middleware handles CORS and authentication
 - NuxtHub integration provides serverless functions when enabled
-
-## Component Guidelines
-
-### Component Organization
-
-Components are organized in the following structure:
-
-- General components in `components/` root
-- UI components in `components/[UI]/`
-- Background components in `components/[Backgrounds]/`
-- Feature-specific components in dedicated folders (e.g., `components/Wallet/`)
-
-### Best Practices
-
-- Use typed props with Vue's `defineProps`
-- Prefer composables for shared logic
-- Follow the single responsibility principle
-- Document complex components with inline comments
-- Use Prismic slice components for CMS-driven content
 
 ## State Management
 
