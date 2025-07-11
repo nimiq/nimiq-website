@@ -46,8 +46,8 @@ function getCssClasses(link: LinkField) {
   </section>
 </template>
 
-<style scoped>
-:global(:where(.nq-overlaps, [nq-overlaps]) + [data-slice-type='logos-grid']) {
+<style>
+:where(.nq-overlaps, [nq-overlaps]) + [data-slice-type='logos-grid'] {
   --uno: 'f-pt-2xl';
 }
 </style>
