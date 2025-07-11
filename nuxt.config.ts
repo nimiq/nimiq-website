@@ -20,7 +20,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     'reka-ui/nuxt',
-    environment.useNuxtHub as true ? '@nuxthub/core' : null,
     '@nuxtjs/prismic',
     'nuxt-og-image',
     '@nuxtjs/device',
@@ -30,15 +29,12 @@ export default defineNuxtConfig({
     'nuxt-module-feed',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
+    './modules/conditional-nuxthub',
     './modules/prerender-routes',
     './modules/robots-generator',
   ],
 
   devtools: { enabled: true },
-
-  image: {
-    prismic: {},
-  },
 
   components: [
     { path: '~/components/[UI]', pathPrefix: false },
