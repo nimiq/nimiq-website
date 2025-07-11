@@ -45,7 +45,12 @@ export function setupCarouselKeyboardNavigation(
 }
 
 /**
- * Carousel composable for single item display
+ * Carousel composable for single item display with smooth scrolling and keyboard navigation.
+ *
+ * Provides programmatic control over carousel navigation with automatic slide detection
+ * and optional keyboard support (arrow keys). Handles smooth scrolling and index tracking.
+ *
+ * @param options - Configuration object with initialIndex, keyboard, and onStepChanged callback
  */
 export function useCarousel(options: CarouselOptions = {}): CarouselResponse {
   const { initialIndex = 0, keyboard = true } = options

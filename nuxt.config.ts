@@ -112,9 +112,9 @@ export default defineNuxtConfig({
       clientNetwork: 'main-albatross',
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
       validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || 'https://validators-api-mainnet.nuxt.dev',
-      supabase: {
-        url: process.env.NUXT_PUBLIC_SUPABASE_URL,
-        key: process.env.NUXT_PUBLIC_SUPABASE_KEY,
+      cryptoMapSupabase: {
+        url: process.env.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_URL,
+        key: process.env.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_KEY,
       },
       environment: environment.environment,
       showDrafts: environment.showDrafts,
@@ -147,7 +147,7 @@ export default defineNuxtConfig({
         clientNetwork: optional(string()),
         apiDomain: string(),
         validatorsApi: optional(string()),
-        supabase: object({
+        cryptoMapSupabase: object({
           url: string(),
           key: string(),
         }),

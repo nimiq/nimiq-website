@@ -24,6 +24,24 @@
 
 ---
 
+## Table of Contents
+
+- [Quick Start Guide](#quick-start-guide)
+- [Architecture Overview](#architecture-overview)
+- [Custom Modules & Extensions](#custom-modules--extensions)
+- [Component Architecture](#component-architecture)
+- [Prismic + Slicemachine](#prismic--slicemachine)
+- [Code Style Guide](#code-style-guide)
+- [Available Scripts](#available-scripts)
+- [Testing](#testing)
+- [Development Setup](#development-setup)
+- [Dynamic Page Generation](#dynamic-page-generation)
+- [API Endpoints](#api-endpoints)
+- [CI/CD Workflow](#cicd-workflow)
+- [Debugging & Troubleshooting](#debugging--troubleshooting)
+- [Security & Best Practices](#security--best-practices)
+- [Contributing Guidelines](#contributing-guidelines)
+
 ## Quick Start Guide
 
 ### Prerequisites
@@ -106,30 +124,44 @@ The project supports multiple deployment environments:
 - **NuxtHub**: Serverless deployment with edge functions
 - **Internal Static**: Internal previews with/without drafts
 
-## Component Architecture
+## Custom Modules & Extensions
 
-### Slicemachine Pattern
+### Nuxt Modules
 
-We use Prismic's Slicemachine for content-driven components. Each slice follows this pattern:
+The project includes custom Nuxt modules for enhanced functionality:
 
-```vue
-<script setup lang="ts">
-import type { Content } from '@prismicio/client'
+- **`prerender-routes.ts`** - Automatically generates dynamic routes for static prerendering
+- **`robots-generator.ts`** - Generates SEO-optimized robots.txt files per environment
 
-// Always use typed props for slices
-const { slice } = defineProps(getSliceComponentProps<Content.YourSliceSlice>())
+### Dependency Management
 
-// Handle background colors consistently
-const bgClass = getColorClass(slice.primary.bgColor)
-</script>
+The project uses a **catalog-based dependency system** via `pnpm-workspace.yaml`:
 
-<template>
-  <!-- All slices must be wrapped in a section -->
-  <section :class="bgClass">
-    <!-- Slice content here -->
-  </section>
-</template>
+```yaml
+catalog:
+  frontend: # Frontend dependencies with shared versions
+  nuxt: # Nuxt ecosystem packages
+  nimiq: # Nimiq blockchain packages
+  prismic: # Prismic CMS packages
+  # ... other catalogs
 ```
+
+**Benefits:**
+
+- Consistent versions across all packages
+- Easier dependency updates
+- Reduced bundle size through deduplication
+- Centralized package management
+
+### WASM & Performance
+
+The project leverages WebAssembly for performance:
+
+- **`@nimiq/core`** - Core blockchain functionality in WASM
+- **`vite-plugin-wasm`** - WASM support in Vite
+- **`vite-plugin-top-level-await`** - Modern async/await support
+
+## Component Architecture
 
 ### Component Organization
 
@@ -145,13 +177,6 @@ app/
 │   └── ...
 └── composables/        # Shared logic
 ```
-
-### Creating New Slices
-
-1. **Use Slicemachine**: Run `pnpm slicemachine` and go to `http://localhost:9999`
-2. **Create slice**: Define fields and variations in the Slicemachine interface
-3. **Implement component**: Use the template above in `app/slices/YourSlice/index.vue`
-4. **Background colors**: Must use `bg-neutral-0`, `bg-neutral-100`, or `bg-darkblue`
 
 ## Code Style Guide
 
@@ -176,6 +201,44 @@ pnpm lint:fix      # Auto-fix linting issues
 pnpm typecheck     # Check TypeScript types
 ```
 
+### Git Hooks & Pre-commit
+
+The project uses `simple-git-hooks` with `lint-staged` for automatic code quality:
+
+- **Pre-commit hook**: Automatically runs `pnpm lint:fix` on staged files
+- **ESLint config**: Uses `@antfu/eslint-config` with UnoCSS and Vue support
+- **Install hooks**: Run `npx simple-git-hooks` after cloning
+
+## Available Scripts
+
+### Build Commands
+
+```bash
+pnpm build                        # Production build
+pnpm build:github-pages          # GitHub Pages build with prerendering
+pnpm build:nuxthub               # NuxtHub build (uses NUXTHUB_ENV)
+pnpm build:internal-static       # Internal static build (no drafts)
+pnpm build:internal-static-drafts # Internal static build (with drafts)
+pnpm generate                    # Generate static site
+pnpm preview                     # Preview built site locally
+```
+
+### Development Commands
+
+```bash
+pnpm dev                         # Start development server
+pnpm slicemachine               # Start Prismic Slicemachine interface
+pnpm cryptomap:types            # Generate Supabase types from schema
+```
+
+### Quality Assurance
+
+```bash
+pnpm lint                       # Check linting issues
+pnpm lint:fix                   # Auto-fix linting issues
+pnpm typecheck                  # TypeScript type checking
+```
+
 ## Testing
 
 **Note**: This project currently has no testing setup. All quality assurance is done through:
@@ -184,17 +247,6 @@ pnpm typecheck     # Check TypeScript types
 - ESLint static analysis
 - Manual testing in different environments
 - PR reviews and staging deployments
-
-## Environment Variables
-
-The project uses environment variables for configuration. Key variables include:
-
-- `PRISMIC_ACCESS_TOKEN`: Required for Prismic CMS access
-- `NUXT_ENVIRONMENT`: Deployment environment (local, production, etc.)
-- `NUXT_PUBLIC_API_ENDPOINT`: Main API endpoint
-- `NUXT_PUBLIC_SUPABASE_URL` & `NUXT_PUBLIC_SUPABASE_KEY`: Database configuration
-
-See `.env.example` for the complete list with descriptions.
 
 ## Development Setup
 
@@ -277,33 +329,34 @@ We use UnoCSS instead of TailwindCSS for more flexibility. Key features include:
 
 ## Prismic + Slicemachine
 
-We use Prismic as our headless CMS. The content is managed through the Prismic dashboard, and the custom types are defined in the `slicemachine`.
+We use Prismic as our headless CMS with Slicemachine for content-driven components. The content is managed through the Prismic dashboard, and the custom types are defined in the `slicemachine`.
 
-In order to modify the slices, you need to run locally the Prismic CLI:
+### Slicemachine Workflow
 
-```bash
-pnpm slicemachine
-```
+1. **Start Slicemachine**: Run `pnpm slicemachine` and go to `http://localhost:9999`
+2. **Create/Edit slices**: Define fields and variations in the Slicemachine interface
+3. **Implement component**: Use the template below in `app/slices/YourSlice/index.vue`
+4. **Check linting**: Run `pnpm lint` to see any type errors from changes
 
-Then, go to the `http://localhost:9999` URL to see the Prismic Slicemachine interface and edit the slices.
+### Slice Component Pattern
 
-Once you are done making changes you should see the changes in the `./app/slices`:
-
-- If you modified an existing slice, the types will be updated and therefore the linter will complain. You can use `pnpm run lint` to see the errors.
-- If you added a new slice, a new folder will be created in `./app/slices`. I recommend you to use this template:
+All slices follow this standardized pattern:
 
 ```vue
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const { slice } = defineProps(getSliceComponentProps<Content.YourNewSlice>()) // Safely typed
+// Always use typed props for slices
+const { slice } = defineProps(getSliceComponentProps<Content.YourSliceSlice>())
 
+// Handle background colors consistently
 const bgClass = getColorClass(slice.primary.bgColor)
 </script>
 
 <template>
+  <!-- All slices must be wrapped in a section -->
   <section :class="bgClass">
-    Your new slice content goes here!
+    <!-- Slice content here -->
   </section>
 </template>
 ```
@@ -370,6 +423,26 @@ The `crawler.ts` utility is responsible for:
 - Supporting pagination for large content sets
 
 This utility is integrated with Nuxt's prerendering system and is called during the build process to ensure all dynamic routes are generated properly.
+
+## API Endpoints
+
+### Available Endpoints
+
+The project includes several API endpoints for data fetching:
+
+- **`/api/exchanges`** - Fetch exchange data from Prismic
+- **`/api/albatross/*`** - Blockchain data endpoints for Nimiq network
+- **`/api/newsletter/*`** - Newsletter subscription management
+
+### Usage Example
+
+```typescript
+// Fetch exchange data
+const exchanges = await $fetch('/api/exchanges')
+
+// Use in composables
+const { data } = await useFetch('/api/exchanges')
+```
 
 ## API Structure
 
@@ -446,11 +519,160 @@ This approach helps maintain cleaner, more testable code by:
 
 ## CI/CD Workflow
 
-The project is deployed through GitHub Actions workflows:
+The project uses three GitHub Actions workflows for comprehensive CI/CD:
 
-1. PRs trigger preview deployments to GitHub Pages
-2. Merged changes to main deploy to staging
-3. Manual deployment to production.
+### 1. CI Workflow (`ci.yml`)
+
+- **Trigger**: All pushes to any branch
+- **Actions**: Linting, type checking, dependency installation
+- **Environment**: Uses `preview` environment with secrets
+- **Node**: Version 22 with pnpm caching
+
+### 2. GitHub Pages Workflow (`github-pages.yml`)
+
+- **Trigger**: Pull requests and main branch changes
+- **Purpose**: Deploy preview builds to GitHub Pages
+- **URL**: `https://nimiq.github.io/nimiq-website/`
+- **Environment**: `github-pages` with prerendering enabled
+
+### 3. NuxtHub Workflow (`nuxthub.yml`)
+
+- **Trigger**: Main branch changes (production) and manual dispatch
+- **Purpose**: Deploy to NuxtHub serverless infrastructure
+- **Environments**: Both production and preview
+- **Features**: Edge functions, KV storage, caching
+
+### Required Secrets & Variables
+
+**Secrets:**
+
+- `PRISMIC_ACCESS_TOKEN` - Prismic CMS access
+- `NUXT_ALBATROSS_NODE_RPC_URL` - Blockchain RPC endpoint
+- `NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_KEY` - Supabase authentication
+- `NUXT_ZOHO_*` - Zoho CRM integration (optional)
+
+**Variables:**
+
+- `NUXT_HUB_ENV` - NuxtHub environment
+- `NUXT_HUB_PROJECT_KEY` - NuxtHub project identifier
+- `NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_URL` - Supabase URL
+- `NUXT_PUBLIC_VALIDATORS_API` - Validators API endpoint
+
+## Debugging & Troubleshooting
+
+### Common Issues
+
+**Build Failures:**
+
+```bash
+# Check environment variables
+echo $PRISMIC_ACCESS_TOKEN  # Should not be empty
+
+# Clear cache and reinstall
+rm -rf node_modules .nuxt .output
+pnpm install
+
+# Check internet connection (required for Prismic)
+curl -I https://nimiq.cdn.prismic.io/api/v2
+```
+
+**Type Errors:**
+
+```bash
+# Regenerate Prismic types
+# This happens automatically when slicemachine updates
+pnpm typecheck
+
+# Regenerate Supabase types
+pnpm cryptomap:types
+```
+
+**Linting Issues:**
+
+```bash
+# See all issues
+pnpm lint
+
+# Auto-fix most issues
+pnpm lint:fix
+
+# Check specific files
+pnpm lint path/to/file.vue
+```
+
+**Development Server Issues:**
+
+```bash
+# Clear Nuxt cache
+rm -rf .nuxt
+
+# Restart with fresh state
+pnpm dev --force
+```
+
+### Performance Debugging
+
+**Bundle Analysis:**
+
+```bash
+# Build and analyze bundle
+pnpm build
+# Check .output/public for generated files
+
+# Monitor build sizes
+ls -la .output/public/_nuxt/
+```
+
+**Network Issues:**
+
+- Check browser Network tab for failed requests
+- Verify API endpoints are responding
+- Ensure Prismic access token is valid
+
+### IDE Setup
+
+**Recommended VS Code Extensions:**
+
+- Vue Language Features (Volar)
+- TypeScript Vue Plugin
+- ESLint
+- UnoCSS
+- Prismic
+
+**Settings:**
+
+```json
+{
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "vue.server.hybridMode": true
+}
+```
+
+## Security & Best Practices
+
+### Environment Variables
+
+- **Never commit secrets** - Use `.env` files (gitignored)
+- **Use different tokens** for different environments
+- **Rotate tokens regularly** - Especially for production
+
+### API Security
+
+- **CORS configuration** - Defined in `nuxt.config.ts`
+- **Rate limiting** - Handled by deployment platforms
+- **Input validation** - Use Valibot schemas for runtime validation
+
+### Content Security
+
+- **Draft content** - Only visible in local/internal-static-drafts environments
+- **Prismic access** - Controlled via access tokens
+- **Static builds** - No server-side secrets exposed
+
+### Performance & Monitoring
+
+- **Bundle optimization** - Automatic code splitting
+- **Image optimization** - `@nuxt/image` with multiple providers
+- **Caching strategy** - Static assets with long-term caching
 
 ## Contributing Guidelines
 
