@@ -1,0 +1,1 @@
+.content[data-state=open][data-v-778c9b78]{animation:slideDown-778c9b78 .3s ease-out}.content[data-state=closed][data-v-778c9b78]{animation:slideUp-778c9b78 .3s ease-out}@keyframes slideDown-778c9b78{0%{height:0}to{height:var(--reka-accordion-content-height)}}@keyframes slideUp-778c9b78{0%{height:var(--reka-accordion-content-height)}to{height:0}}

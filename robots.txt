@@ -1,0 +1,8 @@
+# Nimiq Website - Deployment/Preview Environment
+# This is a deployment or preview environment - blocking all crawlers
+# Environment: github-pages
+
+User-agent: *
+Disallow: /
+
+# No sitemap for non-production environments
