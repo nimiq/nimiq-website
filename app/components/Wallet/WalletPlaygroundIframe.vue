@@ -105,14 +105,74 @@ function handleMessage(event: MessageEvent) {
       return
     }
 
+    /*
+     * DEPRECATION INSTRUCTIONS FOR OLD ACTIONS
+     * =========================================
+     *
+     * TIMELINE FOR DEPRECATION:
+     * 1. Phase 1 (Current): Both old and new actions work simultaneously
+     * 2. Phase 2 (Future): Add deprecation warnings for old actions
+     * 3. Phase 3 (Final): Remove old actions completely
+     *
+     * MIGRATION STEPS:
+     * ================
+     *
+     * TO DEPRECATE OLD ACTIONS:
+     * 1. Add console.warn() for each old action message received
+     * 2. Update playground iframe code to use new actions only
+     * 3. Test thoroughly with new actions
+     * 4. Remove old actions from allowedMessageTypes array
+     * 5. Remove old action handling from usePlaygroundIframe composable
+     *
+     * OLD ACTIONS TO REMOVE:
+     * - 'wallet:connect' → No direct replacement (handled by demo mode)
+     * - 'wallet:transaction' → No direct replacement (handled by demo mode)
+     * - 'wallet:sign' → No direct replacement (handled by demo mode)
+     * - 'wallet:action:request' → No direct replacement (handled by demo mode)
+     * - 'FlowChange' → Replace with 'wallet:action:close-modal' when flow goes to 'idle'
+     *
+     * REPLACEMENT MAPPING:
+     * ===================
+     * FlowChange('stake') → 'wallet:action:open-staking-modal'
+     * FlowChange('buy') → 'wallet:action:open-buy-demo-nim-modal'
+     * FlowChange('swap') → 'wallet:action:open-swap-modal'
+     * FlowChange('idle') → 'wallet:action:close-modal'
+     *
+     * TESTING CHECKLIST:
+     * ==================
+     * □ New actions trigger correct modal states
+     * □ Modal closing resets to idle state
+     * □ Demo mode activation works correctly
+     * □ State synchronization between iframe and parent
+     * □ No console errors with new actions only
+     *
+     * REMOVAL PROCESS:
+     * ================
+     * 1. Remove old action types from allowedMessageTypes
+     * 2. Remove old action handling from switch statement in usePlaygroundIframe
+     * 3. Remove any old action utility functions
+     * 4. Update documentation and examples
+     * 5. Test thoroughly in all playground scenarios
+     */
+
     // Validate message type (whitelist approach)
     const allowedMessageTypes = [
+      // Core system messages
       'playground:ready',
+
+      // Current/legacy wallet actions (will be phased out)
       'wallet:connect',
       'wallet:transaction',
       'wallet:sign',
       'wallet:action:request',
       'FlowChange',
+
+      // Future wallet actions (new standardized approach)
+      'wallet:demo:ready',
+      'wallet:action:open-buy-demo-nim-modal',
+      'wallet:action:open-staking-modal',
+      'wallet:action:open-swap-modal',
+      'wallet:action:close-modal',
     ]
 
     if (!allowedMessageTypes.includes(messageType)) {
@@ -125,6 +185,13 @@ function handleMessage(event: MessageEvent) {
       emit('ready')
       onIframeReady()
       return
+    }
+
+    // Handle demo ready message (future action)
+    if (messageType === 'wallet:demo:ready') {
+      emit('ready')
+      onIframeReady()
+      // Message will also be passed to composable for demo mode activation
     }
 
     // Normalize message structure for composable (ensure it has type property)
@@ -180,17 +247,9 @@ defineExpose({
 <template>
   <div size-full inline-block relative aspect="16/9 desktop:9/16">
     <iframe
-      v-if="validatedPlaygroundUrl"
-      ref="iframeRef"
-      :src="validatedPlaygroundUrl"
-      :sandbox
-      :width
-      :height
-      frameborder="0"
-      allowtransparency="true"
-      rounded-8 border-none size-full shadow-lg transition-opacity duration-300 ease
-      @load="handleIframeLoad"
-      @error="handleIframeError"
+      v-if="validatedPlaygroundUrl" ref="iframeRef" :src="validatedPlaygroundUrl" :sandbox :width :height
+      frameborder="0" allowtransparency="true"
+      outline-none rounded-8 border-none size-full shadow-lg transition-opacity duration-300 ease @load="handleIframeLoad" @error="handleIframeError"
     />
   </div>
 </template>

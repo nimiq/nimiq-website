@@ -11,11 +11,7 @@ const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-05',
-
-  future: {
-    compatibilityVersion: 4,
-  },
+  compatibilityDate: '2025-07-07',
 
   modules: [
     '@vueuse/nuxt',

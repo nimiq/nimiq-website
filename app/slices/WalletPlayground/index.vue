@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
-import { breakpointsTailwind } from '@vueuse/core'
 
 const { slice } = defineProps(getSliceComponentProps<Content.WalletPlaygroundSlice>())
 
-const { isMobileOrTablet } = useDevice()
-const { smaller } = useBreakpoints(breakpointsTailwind)
-const isMobile = computed(() => isMobileOrTablet || smaller('md').value)
+const isMobile = useMediaQuery('(max-width: 768px)', { ssrWidth: 768 })
 
 const playgroundUrl = getUrl(slice.primary.playgroundUrl)
 // eslint-disable-next-line no-console
@@ -18,8 +15,8 @@ if (!playgroundUrl)
 <template>
   <section data-slice-type="wallet-playground" bg-darkerblue scheme-dark relative of-x-clip md:f-pt-3xl children:max-w-none>
     <AnimatedCloudyBg h="[calc(100%+400px)]" max-w-screen pointer-events-none top--400 />
-    <WalletPlaygroundMobile v-if="isMobile" :playground-url="playgroundUrl" />
-    <WalletPlaygroundDesktop v-else w-full z-1 :playground-url="playgroundUrl" />
+    <WalletPlaygroundMobile v-if="isMobile" key="mobile" :playground-url />
+    <WalletPlaygroundDesktop v-else key="desktop" w-full z-1 :playground-url />
   </section>
 </template>
 
@@ -29,6 +26,12 @@ main > section[data-slice-type='hero_section']:has(+ [data-slice-type='wallet-pl
 
   p {
     color: rgb(var(--nq-white) / 0.7);
+  }
+}
+
+@media (max-width: 48rem) {
+  main > [data-slice-type='wallet-playground'] {
+    background-image: linear-gradient(to bottom in oklab, #3d4381, rgb(var(--nq-darkerblue) / 0.8));
   }
 }
 </style>

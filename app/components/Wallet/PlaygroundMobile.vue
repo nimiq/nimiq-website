@@ -28,29 +28,18 @@ onMounted(() => {
 <template>
   <div pb-32 relative>
     <div class="bg" left="[calc(var(--px)*-1)]" w="[calc(100%+var(--px)*2)]" inset-0 top--160 absolute z--1 />
-    <WalletActionSelector mx-auto w-max />
 
-    <div w="[calc(100%+48px)]" p-8 rounded-14 bg-neutral-300 op-50 size-full aspect-0.7 left--24 relative backdrop-blur-3.5 f-mt-xl style="box-shadow: inset 0px 0px 40px #FFFFFF;">
-      <!-- Playground iframe -->
-      <div v-if="playgroundUrl" rounded-8 size-full>
-        <WalletPlaygroundIframe
-          ref="iframeRef"
-          :playground-url="playgroundUrl"
-          height="100%"
-          @message="handlePlaygroundMessage"
-          @ready="handlePlaygroundReady"
-          @error="handlePlaygroundError"
-        />
-      </div>
-      <!-- Fallback when no URL is provided -->
-      <div v-else rounded-8 bg-white flex size-full items-center justify-center>
-        <p text="center neutral-600 sm">
-          No playground URL configured
-        </p>
+    <div w="[calc(100%+48px)]" p-8 rounded-14 size-full aspect-0.7 left--24 relative f-mt-xl>
+      <!-- Background layer with opacity and blur effects -->
+      <div rounded-14 bg-neutral-300 op-50 inset-0 absolute backdrop-blur-3.5 style="box-shadow: inset 0px 0px 40px #FFFFFF;" />
+      <!-- Iframe content layer (no opacity) -->
+      <div rounded-8 size-full relative z-1>
+        <WalletPlaygroundIframe ref="iframeRef" :playground-url height="100%" @message="handlePlaygroundMessage" @ready="handlePlaygroundReady" @error="handlePlaygroundError" />
       </div>
     </div>
+    <WalletActionSelector mx-auto w-max translate-y="-50%" />
 
-    <WalletCurrencies mt-24 />
+    <WalletCurrencies f-mt-2xs />
   </div>
 </template>
 
