@@ -38,11 +38,11 @@ const item = slice.primary.item as Item
 
 <style>
 section:where(.bg-darkblue, [bg-darkblue])
-  + :is(section[data-slice-type='pill-link']):where(.bg-darkblue, [bg-darkblue]),
+  + :where(section[data-slice-type='pill-link']):where(.bg-darkblue, [bg-darkblue]),
 section:where(.bg-neutral-100, [bg-neutral-100])
-  + :is(section[data-slice-type='pill-link']):where(.bg-neutral-100, [bg-neutral-100]),
+  + :where(section[data-slice-type='pill-link']):where(.bg-neutral-100, [bg-neutral-100]),
 section:where(.bg-neutral-0, [bg-neutral-0])
-  + :is(section[data-slice-type='pill-link']):where(.bg-neutral-0, [bg-neutral-0]) {
+  + :where(section[data-slice-type='pill-link']):where(.bg-neutral-0, [bg-neutral-0]) {
   /* Add a border if the pill links are following another section with the same color */
   --uno: 'border-t border-neutral-500';
 }

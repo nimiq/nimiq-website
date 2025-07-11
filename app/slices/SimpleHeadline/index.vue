@@ -56,8 +56,14 @@ section[data-slice-type='pill-link'] + section[data-slice-type='simple-headline'
 /* If the headline is after a slice that is the same theme (dark or light) we increase space */
 /* section.dark:not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline'].dark,
 section:not(.dark):not([data-slice-type='pill-link']) + section[data-slice-type='simple-headline']:not(.dark), */
-section:is([bg-neutral-0], .bg-neutral-0):not(
-    :where([data-slice-type='logos-grid'], [data-slice-type='grid-section'], [data-slice-type='banner'])
+section:where([bg-neutral-0], .bg-neutral-0):not(
+    :where(
+      [data-slice-type='logos-grid'],
+      [data-slice-type='grid-section'],
+      [data-slice-type='banner'],
+      [data-slice-type='pill-link'],
+      [data-slice-type='crypto-map-continent-selector']
+    )
   )
   + section[data-slice-type='simple-headline'].bg-neutral-0 {
   --uno: 'f-pt-5xl border-t border-neutral-300';
@@ -72,12 +78,6 @@ section[data-slice-type='staking-faq'] + section[data-slice-type='simple-headlin
   small {
     --uno: 'text-neutral-700';
   }
-}
-
-section[data-slice-type='crypto-map-continent-selector']:has(+ section[data-slice-type='simple-headline']) {
-  /* --f-pb-min: 108;
-  --f-pb-max: 152;
-  padding-bottom: var(--f-pb); */
 }
 
 [data-slice-type='newsletter-subscription'] + section[data-slice-type='simple-headline'] {

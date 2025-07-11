@@ -39,17 +39,16 @@ const bgClass = getColorClass(props.slice.primary.bgColor)
     </template>
     <template v-else-if="slice.variation === 'threeColumnsImageText'">
       <ul flex="~ col lg:row gap-x-24 gap-y-40 items-center" w-full>
-        <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1>
-          <ResponsiveImage :image w="initial md:w-max lg:initial" rounded flex max-h-229 object-contain lg:mx-auto dark:bg-neutral-200 />
-          <PrismicText wrapper="h3" text="20/26 md:center" mt-24 max-w-24ch lg:mx-auto :field="headline" />
+        <li v-for="({ headline, image }, i) in slice.items" :key="i" flex-1 w-full>
+          <PrismicImage :field="image" w="full md:w-max lg:initial" rounded flex max-h-229 object="contain md:cover lg:contain" lg:mx-auto dark:bg-neutral-200 />
+          <PrismicText wrapper="h3" text="20/26 md:center" mt-24 lg:mx-auto lg:max-w-24ch :field="headline" />
         </li>
       </ul>
     </template>
     <template v-else-if="slice.variation === 'threeColumnsIconsText'">
       <ul flex="~ col lg:row gap-y-24 lg:items-center" w-full>
-        <li v-for="({ headline, image }, i) in slice.items" :key="i" py-24 flex-1 border="b-1 lg:b-0 lg:r-1 last:0 white/15 solid">
-          <PrismicImage :field="image" rounded-8 h-80 object-contain lg:mx-auto />
-          <PrismicText wrapper="h3" text="green md:center f-xl" font-bold max-w-20ch f-mt-xs lg:mx-auto :field="headline" />
+        <li v-for="({ headline, image }, i) in slice.items" :key="i" py-24 flex-1 border="b-1 lg:b-0 lg:r-1 last:0 white/15 solid" md:mx-auto md:w-max>
+          <PrismicImage :field="image" rounded-8 h-80 object-contain md:mx-auto />          <PrismicText wrapper="h3" text="green md:center f-xl" font-bold max-w-20ch f-mt-xs lg:mx-auto :field="headline" />
         </li>
       </ul>
     </template>
