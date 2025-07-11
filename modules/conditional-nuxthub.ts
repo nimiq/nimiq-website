@@ -7,13 +7,19 @@ export default defineNuxtModule({
     name: 'conditional-nuxthub',
     configKey: 'conditionalNuxthub',
   },
-  async setup() {
+  async setup(nuxt) {
     // Check if NuxtHub should be enabled based on environment
     if (environment.useNuxtHub) {
       consola.info('Adding @nuxthub/core module (environment requires NuxtHub)')
 
       // Dynamically install the @nuxthub/core module
       await installModule('@nuxthub/core')
+
+      nuxt.options.hub = {
+        kv: true,
+        cache: true,
+        workers: true,
+      }
     }
     else {
       consola.info('Skipping @nuxthub/core module (environment does not require NuxtHub)')
