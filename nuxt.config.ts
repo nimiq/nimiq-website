@@ -163,6 +163,7 @@ export default defineNuxtConfig(<NuxtConfig>{
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,
     cache: true,
+    workers: true,
   },
 
   router: {
