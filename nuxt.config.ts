@@ -1,4 +1,5 @@
 import process from 'node:process'
+import { defineNuxtConfig } from 'nuxt/config'
 import { array, boolean, object, optional, string } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
@@ -87,10 +88,6 @@ export default defineNuxtConfig({
   // TODO Remove this option
   unocss: {
     nuxtLayers: true,
-  },
-
-  pinia: {
-    storesDirs: ['./app/stores/**'],
   },
 
   prismic: {

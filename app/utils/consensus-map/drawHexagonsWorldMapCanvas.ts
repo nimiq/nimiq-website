@@ -1,3 +1,4 @@
+import type { Peer } from '~/types/nimiq'
 import ConsensusBitMap from './ConsensusBitMap'
 
 /** Map width in hexagons */
