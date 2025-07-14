@@ -7,7 +7,7 @@ export default defineNuxtModule({
     name: 'conditional-nuxthub',
     configKey: 'conditionalNuxthub',
   },
-  async setup(_, nuxt) {
+  setup(_, nuxt) {
     consola.info(`Conditional Nuxthub module for environment: ${environment.environment.name}`)
 
     if (!environment.useNuxtHub) {
@@ -15,11 +15,21 @@ export default defineNuxtModule({
       return
     }
 
-    consola.info('Adding @nuxthub/core module')
+    // Use modules:done hook to ensure NuxtHub is configured after all modules are loaded
+    nuxt.hook('modules:done', async () => {
+      consola.info('Configuring @nuxthub/core module via modules:done hook')
 
-    // Pass through the hub configuration from nuxt.config.ts
-    const hubConfig = (nuxt.options as any).hub || { kv: true, cache: true, workers: true }
+      // Pass through the hub configuration from nuxt.config.ts
+      const hubConfig = (nuxt.options as any).hub || { kv: true, cache: true, workers: true }
 
-    await installModule('@nuxthub/core', hubConfig)
+      try {
+        await installModule('@nuxthub/core', hubConfig)
+        consola.info('Successfully configured @nuxthub/core module')
+      }
+      catch (error) {
+        consola.error('Failed to configure @nuxthub/core module:', error)
+        throw error
+      }
+    })
   },
 })
