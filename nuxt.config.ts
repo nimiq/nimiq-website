@@ -65,6 +65,10 @@ export default defineNuxtConfig(<NuxtConfig>{
 
   site: { indexable: environment.environment.isProduction },
 
+  robots: {
+    robotsTxt: !environment.environment.isProduction,
+  },
+
   schemaOrg: {
     // Search engines understand the organization better with structured data
     identity: {
