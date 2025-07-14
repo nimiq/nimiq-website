@@ -196,6 +196,10 @@ export default defineNuxtConfig({
 
     // Check ./modules/prerender-routes.ts to see more about this
     // More redirects in nginx/default.conf
+
+    // '/privacy-policy': { redirect: '/privacy-policy' },
+    '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
+    '/cookie-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710/cookie-policy' },
   },
 
   nitro: {
