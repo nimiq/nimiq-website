@@ -7,11 +7,15 @@ export default defineNuxtModule({
     name: 'conditional-nuxthub',
     configKey: 'conditionalNuxthub',
   },
-  async setup() {
+  async setup(_, nuxt) {
     if (!environment.useNuxtHub)
       return
 
     consola.info(`Adding @nuxthub/core module: Environment "${environment.environment.name}"`)
-    await installModule('@nuxthub/core', { kv: true, cache: true })
+
+    // Pass through the hub configuration from nuxt.config.ts
+    const hubConfig = (nuxt.options as any).hub || { kv: true, cache: true, workers: true }
+
+    await installModule('@nuxthub/core', hubConfig)
   },
 })
