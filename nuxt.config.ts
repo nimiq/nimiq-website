@@ -66,7 +66,8 @@ export default defineNuxtConfig(<NuxtConfig>{
   site: { indexable: environment.environment.isProduction },
 
   robots: {
-    robotsTxt: !environment.environment.isProduction,
+    // Only generate robots.txt for production and GitHub Pages
+    robotsTxt: !environment.environment.isProduction && !environment.environment.isGitHubPages,
   },
 
   schemaOrg: {
