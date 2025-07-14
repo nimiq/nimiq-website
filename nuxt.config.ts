@@ -3,7 +3,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 import { array, boolean, object, optional, string } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
-import environment from './lib/env'
+import environment, { getSiteUrl } from './lib/env'
 import { repositoryName } from './slicemachine.config.json'
 
 const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
@@ -27,8 +27,7 @@ export default defineNuxtConfig({
     'nuxt-module-feed',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
-    // Conditionally add @nuxthub/core based on environment
-    ...(environment.useNuxtHub ? ['@nuxthub/core'] : []),
+    './modules/conditional-nuxthub',
     './modules/prerender-routes',
   ],
 
@@ -63,8 +62,11 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  // @ts-expect-error site is not a valid option in Nuxt 4
-  site: { indexable: environment.environment.isProduction },
+  // @ts-expect-error not sure why this is invalid
+  site: {
+    url: getSiteUrl(environment.environment.name),
+    indexable: environment.environment.isProduction,
+  },
 
   robots: {
     // Only generate robots.txt for production and GitHub Pages
