@@ -6,9 +6,11 @@ import { defineConfig, presetIcons } from 'unocss'
 import { presetOnmax } from 'unocss-preset-onmax'
 
 export default defineConfig({
+  preflights: [
+    { getCSS: () => '@layer nq-preflight, nq-typography, nq-utilities;' },
+  ],
   rules: [
     [/^area-(.*)$/, ([, t]) => ({ 'grid-area': t })],
-
   ],
   // TODO In the nq-scrollbar-hide, we should include the pseudo-elements
   shortcuts: [

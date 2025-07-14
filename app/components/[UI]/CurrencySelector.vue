@@ -81,9 +81,9 @@ function displayValue(value: FiatCurrency) {
     <ComboboxPortal>
       <ComboboxContent position="popper" will-change="[opacity,transform]" reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade font-normal overscroll-none max-h-256 w-168 top-0 absolute z-10 of-hidden>
         <ComboboxViewport outline="1.5 ~ offset--1.5 white/10" px-4 pb-4 rounded-4 bg-neutral flex="~ col">
-          <label flex="~ items-center gap-12" px-8 pb-6 pt-13 w-full>
+          <label flex="~ items-center gap-8" px-8 pb-6 pt-13 w-full>
             <div text-neutral-800 i-nimiq:magnifying-glass />
-            <ComboboxInput placeholder="Search" text="16 white" outline-none lh-none bg-transparent flex-1 w-full :display-value />
+            <ComboboxInput placeholder="Search" text="16 white" outline="1.5! ~ blue" lh-none px-3 py-2 rounded-4 bg-transparent flex-1 w-full :display-value />
           </label>
           <!-- <hr mb-6 h-1.5 w-full rounded-2 border="white/6"> -->
           <ScrollAreaRoot bg-neutral flex-1 h-full relative of-hidden var:scrollbar-size:10px>

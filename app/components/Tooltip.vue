@@ -11,12 +11,12 @@ defineProps<{ dark?: boolean }>()
     </PopoverTrigger>
     <PopoverPortal>
       <PopoverContent as-child class="tooltip-animation" :side-offset="8" :collision-padding="8" side="bottom" flex="~ col" max-w-360>
-        <div :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow dark'" p-16 rounded-8 z-300 text="neutral-900/80">
+        <div :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow dark scheme-dark'" p-16 rounded-8 text="neutral dark:white">
           <slot />
         </div>
         <PopoverArrow as-child>
           <div rotate-180 :class="{ dark }">
-            <div aria-hidden mt--1 h-8 w-16 i-nimiq:tooltip-triangle class="tooltip-animation" text="neutral dark:white" />
+            <div aria-hidden mt--1 h-8 w-16 i-nimiq:tooltip-triangle class="tooltip-animation" text="darkblue dark:white" />
           </div>
         </PopoverArrow>
       </PopoverContent>

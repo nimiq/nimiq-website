@@ -17,6 +17,10 @@ const { deltaPrice, price1DayAgoLoading, priceLoading, price } = useNimPrice()
 
 const isLoading = computed(() => priceIsLoading.value || priceLoading.value || price1DayAgoLoading.value || volumeIsLoading.value)
 
+// Track aside width to trigger chart re-render when it changes
+const asideRef = ref<HTMLElement>()
+const { width: asideWidth } = useElementSize(asideRef)
+
 const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: MaybeRef<string>, metricChange?: number, label: string, tooltipInfo?: RichTextField }>()
 const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], deltaPriceOneDay?: number }>()
 
@@ -77,8 +81,8 @@ const error = computed(() => {
 
     <DefinePrice v-slot="{ data: [ts, historicPrice], deltaPriceOneDay }">
       <div flex="~ col gap-8" f="$side $side-min-20 $side-max-24" bg-neutral-0 relative f-py-xs :class="{ 'top-21 mx-20': !deltaPriceOneDay }">
-        <div inset-y-0 absolute left="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-transparent to-neutral-0 to-r" />
-        <div right="[calc(var(--f-side)*-1)]" w="$f-side" bg-gradient="from-neutral-0 to-transparent to-r" inset-y-0 absolute f-w-md />
+        <div inset-y-0 absolute left="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, transparent, rgba(var(--nq-neutral-0) / 1))" />
+        <div right="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, rgba(var(--nq-neutral-0) / 1), transparent)" inset-y-0 absolute f-w-md />
         <p text="blue f-3xl" font-semibold lh-none>
           {{ formatFiat(historicPrice, currencyInfo) }}
         </p>
@@ -92,7 +96,7 @@ const error = computed(() => {
 
     <RibbonContainer :label="slice.primary.nimPriceChartLabel!" shadow z-3 md:min-h-480 outline-color="white/20">
       <div grid="~ cols-1 md:cols-[max-content_1fr]" size-full relative of-hidden>
-        <aside md:border="r-1 solid neutral-400" grid="~ cols-[repeat(4,1fr)] md:cols-1 gap-col-20 gap-row-24" w-full relative f-p-md max-md:row-start-2 max-md:of-x-auto>
+        <aside ref="asideRef" md:border="r-1 solid neutral-400" grid="~ cols-[repeat(4,1fr)] md:cols-1 gap-col-20 gap-row-24" w-full relative f-p-md max-md:row-start-2 max-md:of-x-auto>
           <transition enter-active-class="transition duration-200 ease-out" enter-from-class="op-0" enter-to-class="op-100" leave-active-class="transition duration-200 ease-out" leave-from-class="op-100" leave-to-class="op-0">
             <div v-if="isLoading || error" flex="~ items-center gap-8" text=" orange f-sm" translate-x="100%" py-4 rounded-br-6 bg-white right--1 top--1 absolute z-30 f-px-xs border="b r neutral-400" lg:w-max>
               <div scale-90 :class="isLoading ? 'i-nimiq:spinner' : 'i-nimiq:alert'" />
@@ -115,7 +119,7 @@ const error = computed(() => {
           </div>
         </aside>
         <div group relative f-pb-xs>
-          <ChartLine :data="historicPrices || []" leader rounded-8 h-full>
+          <ChartLine :key="asideWidth" :data="historicPrices || []" leader rounded-8 h-full>
             <template #default="{ data: [ts, historicPrice] }">
               <Price :data="[ts, historicPrice]" />
             </template>

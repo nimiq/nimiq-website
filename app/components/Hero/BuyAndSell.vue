@@ -6,9 +6,9 @@ const { slice } = defineProps(getSliceComponentProps<Content.HeroSectionSlice>()
 // Just to make ts happy
 if (slice.variation !== 'buyAndSell')
   throw new Error('Invalid slice variation. Expected "buyAndSell".')
- 
+
 const { fiatAmount, cryptoAmount, lastEdited } = useSyncAmountInputs()
-const { currency, currencyInfo } = useUserCurrency()
+const { currency } = useUserCurrency()
 
 function useSyncAmountInputs() {
   const { price } = useNimPrice()
@@ -21,31 +21,27 @@ function useSyncAmountInputs() {
   const lastEdited = ref<'crypto' | 'fiat'>()
 
   const cryptoAmount = computed<number>({
-    get: () => ['fiat', undefined].includes(cryptoValue.value) 
-      ? cryptoValue.value 
-      : formatNim(cryptoValue.value),
+    get: () => cryptoValue.value,
     set: (value) => {
-      cryptoValue.value = value,
+      cryptoValue.value = value
       lastEdited.value = 'crypto'
-      // fiatValue.value = formatFiat(value * (price.value || 0), currencyInfo.value, { returnJustNumber: true }) as number
+      // Use raw calculation without formatting functions
       fiatValue.value = value * (price.value || 0)
     },
   })
 
   const fiatAmount = computed<number>({
-    get: () => ['crypto', undefined].includes(fiatValue.value) 
-      ? fiatValue.value
-      : formatFiat(fiatValue.value, currencyInfo.value, { returnJustNumber: true }) as number,
+    get: () => fiatValue.value,
     set: (value) => {
       fiatValue.value = value
       lastEdited.value = 'fiat'
+      // Use raw calculation without formatting functions
       cryptoValue.value = price.value ? value / price.value : 0
     },
   })
 
   // When price changes, update based on what the user last edited
-  watch([price, currencyInfo], ([newPrice]) => {
-    console.log('Price changed:', newPrice)
+  watch(price, (newPrice) => {
     if (newPrice) {
       if (lastEdited.value === 'crypto') {
         // Update fiat based on the current crypto value
@@ -58,8 +54,12 @@ function useSyncAmountInputs() {
     }
   })
 
-  setTimeout(() => {
-    cryptoAmount.value = 1 // Trigger formatting in fiat
+  // Quick fix: Ensure fiat value is calculated when price becomes available
+  watchEffect(() => {
+    if (price.value && !lastEdited.value) {
+      // Force recalculation to ensure fiat value is updated
+      fiatValue.value = cryptoValue.value * price.value
+    }
   })
 
   return { cryptoAmount, fiatAmount, lastEdited }
@@ -72,13 +72,7 @@ function useSyncAmountInputs() {
       <Headline :headline="slice.primary.headline" :subline="slice.primary.subline" px="$px" />
       <form grid="~ cols-1 md:cols-[1fr_max-content_1fr] items-center  gap-x-24" max-md:px="$px" mx-auto mt-40 h-max max-w-560 w-full @submit.prevent>
         <div class="group" w-full relative flex="~ items-center gap-12">
-          <AmountInput 
-            :key="lastEdited === 'crypto' ? cryptoAmount : 'fiat'" 
-            v-model="fiatAmount" 
-            rounded="b-0 md:2" 
-            required pr-64 f-text-2xl max-md:translate-y--1.5 group-focus-within:z-10 
-            @blur="lastEdited = undefined" 
-            @focus="lastEdited = 'fiat'" />
+          <AmountInput :key="lastEdited === 'crypto' ? cryptoAmount : 'fiat'" v-model="fiatAmount" rounded="b-0 md:2" required pr-64 f-text-2xl max-md:translate-y--1.5 group-focus-within:z-10 @blur="lastEdited = undefined" @focus="lastEdited = 'fiat'" />
           <div text="neutral-600 group-hover:blue/50 hocus:!neutral-800 group-focus-within:blue!" right-4 top-auto absolute z-40>
             <CurrencySelector v-model="currency" />
           </div>
@@ -87,14 +81,7 @@ function useSyncAmountInputs() {
           =
         </p>
         <div class="group" w-full relative>
-          <AmountInput 
-            :key="lastEdited === 'fiat' ? fiatAmount : 'crypto'" 
-            v-model="cryptoAmount" 
-            required f-text-2xl 
-            rounded="t-0 md:2" 
-            group-focus-within:z-10 
-            @focus="lastEdited = 'crypto'" 
-            @blur="lastEdited = undefined" />
+          <AmountInput :key="lastEdited === 'fiat' ? fiatAmount : 'crypto'" v-model="cryptoAmount" rounded="t-0 md:2" required pr-64 f-text-2xl group-focus-within:z-10 @focus="lastEdited = 'crypto'" @blur="lastEdited = undefined" />
           <div text="neutral-600 group-hover:blue/50 group-focus-within:blue!" transition-colors right-12 top-17 absolute nq-label f-text="12/16">
             NIM
           </div>
