@@ -1,5 +1,11 @@
 import { CryptoCurrency, getExchangeRates, getHistoricExchangeRates } from '@nimiq/utils/fiat-api'
 
+/**
+ * Composable for fetching and managing NIM cryptocurrency price data.
+ *
+ * Provides current NIM price and price from 24 hours ago in the user's preferred currency.
+ * Automatically refreshes price data and calculates price delta.
+ */
 export function useNimPrice() {
   const { currency } = useUserCurrency()
   const priceQuery = useQuery({

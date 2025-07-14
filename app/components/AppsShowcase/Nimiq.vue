@@ -25,7 +25,7 @@ defineProps<{ items: AppsShowcaseSliceNimiqsAppsPrimaryAppsItem[] }>()
           <div i-nimiq:chevron-right text="9 white" />
         </div>
         <div h-196 :class="{ 'max-md:mr--128 md:ml-16': item === 'CPL', 'max-md:mr--128': item === 'Nimiq Wallet', 'md:max-w-245': item === 'Nimiq Pay', 'lg:mt-40 md:row-span-full md:col-start-2 lg:row-span-1 lg:col-start-1': !highlight, 'md:row-span-full md:col-start-2 lg:h-490 lg:mb--68': highlight }" md:mx-auto>
-          <NuxtImg :src="$prismic.asImageSrc(preview)!" :class="{ 'max-xl:scale-155 max-xl:transform-origin-top-left': item === 'Nimiq Wallet' }" />
+          <PrismicImage :field="preview" :class="{ 'max-xl:scale-155 max-xl:transform-origin-top-left': item === 'Nimiq Wallet' }" />
         </div>
       </PrismicLink>
     </li>

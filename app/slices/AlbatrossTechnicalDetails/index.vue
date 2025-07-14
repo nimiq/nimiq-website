@@ -12,7 +12,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 </script>
 
 <template>
-  <section class="dark" text-neutral pt-0 bg-darkerblue>
+  <section class="dark" text-neutral pt-0 bg-darkerblue scheme-dark>
     <div nq-prose-compact text-neutral-800 f-mt-xs>
       <RichText :field="slice.primary.subline" />
     </div>
@@ -60,7 +60,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
         </div>
       </template>
     </Modal>
-    <article v-else grid="~  cols-[repeat(auto-fit,minmax(320px,1fr))] gap-x-64" max-w="$nq-prose-max-width" f-pt-lg>
+    <article v-else gap-x-64 max-w-80ch break-inside-avoid f-pt-lg md:columns-2>
       <RichText v-for="(slide, i) in slides" :key="i" wrapper="div" nq-prose-compact :field="slide.richText" f-mt-md />
     </article>
   </section>
@@ -79,7 +79,7 @@ const { slidePrev, scroller, slideNext, activeIndex, slideTo, canSlideNext, canS
 <style scoped>
 article {
   &:deep(h3) {
-    --uno: 'text-neutral f-mb-xs';
+    --uno: 'text-neutral-0 f-mb-xs';
   }
   &:deep(p) {
     --uno: 'text-neutral-800';

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { breakpointsTailwind } from '@vueuse/core'
+import { breakpointsTailwind, useScroll } from '@vueuse/core'
+import { Motion } from 'motion-v'
 
 defineProps<{ darkHeader?: boolean }>()
 
@@ -19,25 +20,49 @@ watch(y, (newY, oldY) => {
     return
   direction.value = newY < oldY ? 'top' : 'bottom'
 })
-const transition = computed(() => {
-  if (y.value === 0 && direction.value === 'top')
-    return 'shadow 100ms ease-out 400ms, opacity 400ms var(--nq-ease), background-color 300ms var(--nq-ease)'
-  if (direction.value === 'bottom') // We just add a delay to the background-color transition to avoid flashing
-    return 'shadow 100ms ease-out, opacity 400ms var(--nq-ease), background-color 300ms var(--nq-ease) 150ms'
-  return 'shadow 100ms ease-out, opacity 400ms var(--nq-ease), background-color 300ms var(--nq-ease)'
-})
+
+// Animation targets for motion-v
+const animateProps = computed(() => ({
+  opacity: scrolled.value && direction.value === 'bottom' ? 0 : 1,
+  backgroundColor: scrolled.value && direction.value === 'top' ? 'white' : 'transparent',
+  boxShadow: scrolled.value && direction.value === 'top' ? '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)' : '0 0 0 0 transparent',
+}))
+
+// Additional styles that need conditional application
+const conditionalClasses = computed(() => ({
+  'pointer-events-none': scrolled.value && direction.value === 'bottom',
+}))
+
+// Transition configuration for motion-v
+const transitionProps = computed(() => ({
+  default: { type: 'tween', ease: 'easeInOut' } as const,
+  opacity: {
+    duration: 0.4,
+    ease: 'easeInOut' as const,
+  },
+  backgroundColor: {
+    duration: 0.3,
+    ease: 'easeInOut' as const,
+    delay: direction.value === 'bottom' ? 0.15 : 0,
+  },
+  boxShadow: {
+    duration: 0.1,
+    ease: 'easeOut' as const,
+    delay: y.value === 0 && direction.value === 'top' ? 0.4 : 0,
+  },
+}))
 </script>
 
 <template>
-  <header
+  <Motion
+    as="header"
     flex="~ items-center justify-between gap-x-20" mx-16 mb-32 mt-16 p-16 rounded-8 inset-x-16 top-16 fixed sticky z-100
     :class="{
-      'bg-white shadow-xl': scrolled && direction === 'top',
-      'op-100': scrolled && direction === 'top',
-      'op-0 pointer-events-none': scrolled && direction === 'bottom',
-      'dark': !scrolled && darkHeader,
+      dark: !scrolled && darkHeader,
+      ...conditionalClasses,
     }"
-    :style="{ transition }"
+    :animate="animateProps"
+    :transition="transitionProps"
     :data-scrolled="scrolled ? '' : undefined"
   >
     <NuxtLink to="/">
@@ -50,5 +75,5 @@ const transition = computed(() => {
 
     <NavigationMobile v-if="showMobileMenu" />
     <NavigationDesktop v-else />
-  </header>
+  </Motion>
 </template>

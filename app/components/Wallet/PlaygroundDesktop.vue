@@ -1,17 +1,60 @@
 <script setup lang="ts">
+import { usePlaygroundIframe } from '~/composables/usePlaygroundIframe'
+
+defineProps<{ playgroundUrl: string }>()
+
+const { handlePlaygroundMessage, onIframeReady, setIframeRef } = usePlaygroundIframe()
+
+const iframeRef = ref()
+
+function handlePlaygroundReady() {
+  // eslint-disable-next-line no-console
+  console.log('Playground iframe is ready')
+  onIframeReady()
+}
+
+function handlePlaygroundError(error: Error) {
+  console.error('Playground iframe error:', error)
+}
+
+// Register iframe reference when component is mounted
+onMounted(() => {
+  // eslint-disable-next-line no-console
+  console.log('PlaygroundDesktop: Component mounted, iframe ref:', !!iframeRef.value)
+  if (iframeRef.value) {
+    // eslint-disable-next-line no-console
+    console.log('PlaygroundDesktop: Setting iframe ref in composable')
+    setIframeRef(iframeRef.value)
+  }
+})
 </script>
 
 <template>
   <div relative>
-    <div max-w="$nq-max-width" stack mx-auto size-full>
+    <div stack mx-auto size-full>
       <!-- Ribbon fold -->
       <div self-start="!" justify-self-end="!" aria-hidden mr--18 mt-48 w-44 origin-bottom-right rotate--45 z-1 border="22 x-transparent t-0 #EC991C" />
 
       <WalletPlaygroundBackground />
 
       <div p="t-48 x-10 b-10" size-full z-1>
-        <!-- iframe / you can remove bg-slate-200 once the iframe is implemented -->
-        <div rounded-4 bg-slate-200 size-full />
+        <!-- Playground iframe -->
+        <div v-if="playgroundUrl" rounded-4 size-full>
+          <WalletPlaygroundIframe
+            ref="iframeRef"
+            :playground-url="playgroundUrl"
+            height="600px"
+            @message="handlePlaygroundMessage"
+            @ready="handlePlaygroundReady"
+            @error="handlePlaygroundError"
+          />
+        </div>
+        <!-- Fallback when no URL is provided -->
+        <div v-else rounded-4 bg-slate-200 flex size-full items-center justify-center>
+          <p text="center neutral-600">
+            No playground URL configured
+          </p>
+        </div>
       </div>
 
       <!-- Ribbon -->

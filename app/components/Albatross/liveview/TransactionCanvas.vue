@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{ nonces: number[], hashes: string[] }>()
+const props = defineProps<{ hashes: string[] }>()
 
 const WIDTH = 320
 const HEIGHT = 240
@@ -12,7 +12,7 @@ onMounted(() => {
     return
 
   const ctx = canvas.value.getContext('2d')!
-  const txCount = props.nonces.length + props.hashes.length
+  const txCount = props.hashes.length
   let radius, step, padding
 
   if (txCount <= 88) {
@@ -36,20 +36,6 @@ onMounted(() => {
 
   let x = startX
   let y = startY
-
-  for (const nonce of props.nonces) {
-    ctx.beginPath()
-    ctx.arc(x, y, radius, 0, CIRCUMFERENCE)
-    ctx.fillStyle = getLiveviewColorValue({ nonce })
-    ctx.fill()
-
-    y -= step // Go one step up
-
-    if (y < radius) {
-      y = startY // Go back to bottom
-      x -= step // Go one step left
-    }
-  }
 
   for (const hash of props.hashes) {
     ctx.beginPath()

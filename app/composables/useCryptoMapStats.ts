@@ -8,10 +8,10 @@ export interface ContinentStat {
 }
 
 export function useCryptoMapStats() {
-  const { supabase } = useRuntimeConfig().public
+  const { cryptoMapSupabase } = useRuntimeConfig().public
 
   const getSupabaseEndpoint = (fn: string) =>
-    `${supabase.url}/rest/v1/rpc/${fn}?apikey=${supabase.key}`
+    `${cryptoMapSupabase.url}/rest/v1/rpc/${fn}?apikey=${cryptoMapSupabase.key}`
 
   // Load cryptoMap stats with useQuery
   const { data: cryptoMapStats } = useQuery({

@@ -1,10 +1,4 @@
 <script setup lang="ts">
-const allowSendTxQuery = useRouteQuery('allow-send-tx')
-const allowSendTx = computed(() => allowSendTxQuery.value === 'true')
-
-const { canSendTx } = useAlbatrossDummyTx()
-watch(() => allowSendTx.value, value => canSendTx.value = value || false, { immediate: true })
-
 const theme = useRouteQuery('theme')
 // @unocss-include
 const cssClasses = computed(() => theme.value === 'light' ? 'bg-neutral-0' : 'bg-darkblue dark')
@@ -16,7 +10,7 @@ const statsTooltipContent = `This information is meant solely to project potenti
   <NuxtLayout name="iframe" :class="cssClasses">
     <div flex="~ col items-center" w-full of-x-hidden>
       <AlbatrossLiveviewBlockchain w-screen />
-      <AlbatrossInfo :network-notice :stats-tooltip-content :allow-send-tx mt="32 lg:48 xl:72" />
+      <AlbatrossInfo :network-notice :stats-tooltip-content mt="32 lg:48 xl:72" />
     </div>
   </NuxtLayout>
 </template>

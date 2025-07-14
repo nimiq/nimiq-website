@@ -2,7 +2,17 @@
   {
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
-    "primary": {},
+    "primary": {
+      "playgroundUrl": {
+        "__TYPE__": "LinkContent",
+        "key": "c36a37d6-add7-4dd0-b185-641fcde1ccde",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com",
+          "text": "differ"
+        }
+      }
+    },
     "items": []
   }
 ]

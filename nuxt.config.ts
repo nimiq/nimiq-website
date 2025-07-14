@@ -1,17 +1,16 @@
 import process from 'node:process'
-import { defineNuxtModule } from '@nuxt/kit'
+import { defineNuxtConfig } from 'nuxt/config'
 import { array, boolean, object, optional, string } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
-import { getDynamicPages } from './lib/crawler'
-import environment from './lib/env'
+import environment, { getSiteUrl } from './lib/env'
 import { repositoryName } from './slicemachine.config.json'
 
-const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN
+const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-05-05',
+  compatibilityDate: '2025-07-07',
 
   future: {
     compatibilityVersion: 4,
@@ -24,37 +23,27 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     'reka-ui/nuxt',
-    environment.useNuxtHub as true ? '@nuxthub/core' : null,
     '@nuxtjs/prismic',
-    'nuxt-og-image',
+    '@nuxtjs/seo',
     '@nuxtjs/device',
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
-    '@nuxtjs/sitemap',
     'nuxt-module-feed',
     'nuxt-safe-runtime-config',
-
-    defineNuxtModule({
-      meta: { name: 'nuxt-prerender-routes' },
-      hooks: {
-        'nitro:build:before': async (nitro) => {
-          let pages = await getDynamicPages({ prismicAccessToken, showDrafts: environment.showDrafts })
-          console.log(pages.filter(f => !f.startsWith('/blog')))
-
-          // for nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
-          if (environment.environment.isNuxthubPreview || environment.environment.isNuxthubProduction)
-            pages = pages.slice(0, 95)
-          nitro.options.prerender.routes = pages
-        },
-      },
-    }),
+    'motion-v/nuxt',
+    './modules/prerender-routes',
+    environment.useNuxtHub ? '@nuxthub/core' : null,
   ],
 
-  devtools: { enabled: true },
+  // @ts-expect-error hub is ok
+  hub: environment.useNuxtHub
+    ? {
+        kv: true,
+        cache: true,
+      }
+    : undefined,
 
-  image: {
-    prismic: {},
-  },
+  devtools: { enabled: true },
 
   components: [
     { path: '~/components/[UI]', pathPrefix: false },
@@ -86,24 +75,28 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   site: {
-    url: 'https://nimiq.com',
-
-    // These are just default values and they should be overwritten by the page
-    name: 'Nimiq',
-    description: 'The most accepted cryptocurrency in the world',
+    url: getSiteUrl(environment.environment.name),
+    indexable: environment.environment.isProduction,
   },
 
-  sitemap: {
-    urls: async () => getDynamicPages({ prismicAccessToken, showDrafts: false }),
+  robots: {
+    // Only generate robots.txt for production and GitHub Pages
+    robotsTxt: !environment.environment.isProduction && !environment.environment.isGitHubPages,
+  },
+
+  schemaOrg: {
+    // Search engines understand the organization better with structured data
+    identity: {
+      type: 'Organization',
+      name: 'Nimiq',
+      url: 'https://nimiq.com',
+      logo: 'https://nimiq.com/logo.png',
+    },
   },
 
   // TODO Remove this option
   unocss: {
     nuxtLayers: true,
-  },
-
-  pinia: {
-    storesDirs: ['./app/stores/**'],
   },
 
   prismic: {
@@ -117,12 +110,6 @@ export default defineNuxtConfig({
     prismicAccessToken,
     albatross: {
       nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
-      liveview: {
-        privateKey: process.env.NUXT_ALBATROSS_LIVEVIEW_PRIVATE_KEY,
-        txRecipient: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT,
-        txValue: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_VALUE,
-        txFee: process.env.NUXT_ALBATROSS_LIVEVIEW_TX_FEE,
-      },
     },
     cors: {
       allowedOrigins: ['https://www.nimiq.com', 'https://prestaking.nimiq.network', process.env.NIMIQ_STATIC_PREVIEW].filter(Boolean) as string[],
@@ -131,12 +118,16 @@ export default defineNuxtConfig({
       clientNetwork: 'main-albatross',
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
       validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || 'https://validators-api-mainnet.nuxt.dev',
-      supabase: {
-        url: process.env.NUXT_PUBLIC_SUPABASE_URL,
-        key: process.env.NUXT_PUBLIC_SUPABASE_KEY,
+      cryptoMapSupabase: {
+        url: process.env.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_URL,
+        key: process.env.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_KEY,
       },
       environment: environment.environment,
       showDrafts: environment.showDrafts,
+      wordsChallenge: {
+        publicAddress: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_PUBLIC_ADDRESS,
+        firstRealWords: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS,
+      },
     },
     zoho: {
       requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
@@ -154,12 +145,6 @@ export default defineNuxtConfig({
       prismicAccessToken: string(),
       albatross: object({
         nodeRpcUrl: string(),
-        liveview: optional(object({
-          privateKey: string(),
-          txRecipient: string(),
-          txValue: string(),
-          txFee: string(),
-        })),
       }),
       cors: object({
         allowedOrigins: array(string()),
@@ -168,12 +153,16 @@ export default defineNuxtConfig({
         clientNetwork: optional(string()),
         apiDomain: string(),
         validatorsApi: optional(string()),
-        supabase: object({
+        cryptoMapSupabase: object({
           url: string(),
           key: string(),
         }),
         environment: object({}),
         showDrafts: optional(boolean()),
+        wordsChallenge: object({
+          publicAddress: string(),
+          firstRealWords: string(),
+        }),
       }),
       zoho: optional(object({
         requestUrl: string(),
@@ -193,6 +182,7 @@ export default defineNuxtConfig({
     // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,
     cache: true,
+    workers: true,
   },
 
   router: {
@@ -206,6 +196,10 @@ export default defineNuxtConfig({
 
     // Check ./modules/prerender-routes.ts to see more about this
     // More redirects in nginx/default.conf
+
+    // '/privacy-policy': { redirect: '/privacy-policy' },
+    '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
+    '/cookie-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710/cookie-policy' },
   },
 
   nitro: {
@@ -242,7 +236,7 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/icon', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        // { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -263,14 +257,8 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
-    // will fetch the fonts from google at build time
     fonts: ['Mulish:400', 'Mulish:700'],
   },
-
-  // robots: {
-  //   // https://nuxtseo.com/robots/api/config
-  //   disallow: ['/iframes'],
-  // }
 
   feed: {
     sources: [

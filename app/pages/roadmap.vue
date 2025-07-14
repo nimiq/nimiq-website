@@ -4,12 +4,20 @@ import { firstMonth, firstYear, layers, milestones } from '~/components/Roadmap/
 
 const headline = computed(() => ([{ type: 'heading1', text: 'Roadmap', spans: [] }] as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Browse the project\'s past and future. Click on milestones to learn more.', spans: [], direction: 'ltr' }] as RichTextField))
-useHead({
-  title: 'Roadmap - Nimiq Website',
-  meta: [
-    { name: 'description', content: 'Browse the project\'s past and future. Click on milestones to learn more.' },
-  ],
+// Consistent SEO patterns across all pages reduce maintenance overhead
+useSeoMeta({
+  title: 'Roadmap',
+  description: 'Browse the project\'s past and future. Click on milestones to learn more.',
+
+  ogTitle: 'Roadmap',
+  ogDescription: 'Browse the project\'s past and future. Click on milestones to learn more.',
+  ogType: 'website',
+
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Roadmap',
+  twitterDescription: 'Browse the project\'s past and future. Click on milestones to learn more.',
 })
+
 defineOgImageComponent('OgImagePage', {
   title: 'Roadmap',
   subline: 'Browse the project\'s past and future. Click on milestones to learn more.',

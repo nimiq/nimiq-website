@@ -82,6 +82,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "app_gallery": {
+              "type": "SharedSlice"
+            },
             "nimiq_wallet_hoverable": {
               "type": "SharedSlice"
             },

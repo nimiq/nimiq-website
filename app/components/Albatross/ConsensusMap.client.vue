@@ -1,13 +1,103 @@
 <script setup lang="ts">
+import type { Client, PlainBlock } from '@nimiq/core'
 import type { CSSProperties } from 'vue'
+import type { Peer } from '~/types/nimiq'
 import type { WorldMapHexagon } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
+import * as Nimiq from '@nimiq/core'
+import { ConsensusState } from '~/types/nimiq'
 import { drawHexagonsWorldMap, HEXAGONS_WORLD_MAP_ASPECT_RATIO, HEXAGONS_WORLD_MAP_HEIGHT_PIXELS, HEXAGONS_WORLD_MAP_SCALE } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
+import { getHexagonCoords } from '~/utils/consensus-map/drawHexagonsWorldMapProjection'
 
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
 
+// Inline composable that replaces the Pinia store
+function useNimiq() {
+  const { clientNetwork } = useRuntimeConfig().public
+  const consensus = useState<ConsensusState>('nimiq-client', () => ConsensusState.Idle)
+  const head = ref<PlainBlock>()
+  const height = ref(0)
+  const client = useState<Client | undefined>()
+
+  const { locate } = useGeoIp()
+  const peers = ref<Peer[]>([])
+  const userPeer = useState<Peer>()
+
+  const unwatch = ref<(() => Promise<any>)>()
+
+  async function launchNetwork() {
+    consensus.value = ConsensusState.Connecting
+    // await init()
+    // const config = new ClientConfiguration()
+    const config = new Nimiq.ClientConfiguration()
+    config.network(clientNetwork)
+    config.logLevel('debug')
+
+    // client.value = await Client.create(config.build())
+    client.value = await Nimiq.Client.create(config.build())
+
+    const removeConsensusListener = client.value!.addConsensusChangedListener((state) => {
+      // eslint-disable-next-line no-console
+      console.log('Consensus state changed:', state)
+      consensus.value = state === 'syncing' ? ConsensusState.Connecting : ConsensusState.Established
+    })
+
+    const removeHeadListener = client.value!.addHeadChangedListener(async (hash /* , reason, revertedBlocks, adoptedBlocks */) => {
+      const block = await client.value!.getBlock(hash)
+      head.value = block
+      height.value = block.height
+    })
+
+    const removePeerChanged = client.value!.addPeerChangedListener(async (peerId, reason, peerCount, peerInfo) => {
+      // eslint-disable-next-line no-console
+      console.log('Peer changed:', { peerId, reason, peerCount, peerInfo })
+      if (reason === 'left') {
+        peers.value = peers.value.filter(peer => peer.peerId !== peerId)
+        return
+      }
+      if (!peerInfo)
+        return
+
+      const locator = peerInfo.address.split('/')[2]
+      if (!locator || locator === '0.0.0.0')
+        return
+
+      const { lat, lng } = await locate(locator)
+      const { x, y } = getHexagonCoords({ lat, lng })
+      const peer = { peerId, x, y, lat, lng }
+      peers.value.push(peer)
+    })
+
+    unwatch.value = () => Promise.all([removeConsensusListener, removeHeadListener, removePeerChanged])
+  }
+
+  async function disconnect(timeout = 10000) {
+    await client.value?.disconnectNetwork()
+    await until(peers.value.length).toBe(0, { timeout })
+  }
+
+  async function setUserPeer() {
+    const { lat, lng } = await locate()
+    const { x, y } = getHexagonCoords({ lat, lng })
+    userPeer.value = { peerId: 'user', lat, lng, x, y }
+  }
+
+  return {
+    client,
+    launchNetwork,
+    consensus,
+    height,
+    head,
+    disconnect,
+    setUserPeer,
+    userPeer,
+    peers,
+  }
+}
+
+// Use the inline composable
+const { launchNetwork, setUserPeer, consensus, peers, userPeer } = useNimiq()
+
 const canvas = templateRef('canvas')
-const { launchNetwork, /* disconnect, */ setUserPeer } = useNimiq()
-const { consensus, peers, userPeer } = storeToRefs(useNimiq())
 
 const tooltipPosition = ref<CSSProperties>({ transform: 'translate(0, 0)' })
 onMounted(async () => {
@@ -83,8 +173,8 @@ async function connect() {
       <div size-full absolute>
         <canvas ref="canvas" />
         <div v-if="showTooltip" left-0 top-0 absolute z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
-          <div left="[calc(-50%+2px)]" mt-16 relative flex="~ col items-center">
-            <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" text-12 i-nimiq:tooltip-triangle />
+          <div left="[calc(-50%+2px)]" flex="~ col items-center" class="dark" mt-16 scheme-dark relative>
+            <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" text-12 translate-y-3.5 i-nimiq:tooltip-triangle />
             <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" flex="~ items-center" rounded-full transition-colors top--1 bg-gradient-blue>
               <span text-white font-bold px-16 py-8>
                 {{ thisIsYou }}
@@ -99,7 +189,7 @@ async function connect() {
               </div>
               <div animate="ease-out scale-in delay-2s" shrink-0 i-nimiq:spinner />
             </div>
-            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" outline-none text-white font-semibold px-16 py-8 rounded-full w-max ring-3 ring-green transition-colors top--3 z-3>
+            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" outline-none text-white font-semibold px-16 py-8 rounded-full w-max transition-colors top--3 z-3>
               <div layout-id="connect-label" as="span">
                 <div flex="~ items-center justify-between gap-8">
                   <span>

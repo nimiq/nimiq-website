@@ -29,20 +29,22 @@ jobs:
         env:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
 
+      - name: Set environment variables
+        run: |
+          echo "NUXT_ENVIRONMENT=${{ github.ref == 'refs/heads/main' && 'nuxthub-production' || 'nuxthub-preview' }}" >> $GITHUB_ENV
+          echo "NUXTHUB_ENV=${{ github.ref == 'refs/heads/main' && 'nuxthub-production' || 'nuxthub-preview' }}" >> $GITHUB_ENV
+
       - name: Ensure NuxtHub module is installed
         run: pnpx nuxthub@latest ensure
         env:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
-
-      - name: Set environment type
-        run: echo "NUXTHUB_ENV=${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}" >> $GITHUB_ENV
 
       - name: Build application
         run: pnpm build:nuxthub
         env:
           # Secret variables
           NUXT_ALBATROSS_NODE_RPC_URL: ${{ secrets.NUXT_ALBATROSS_NODE_RPC_URL }}
-          NUXT_PUBLIC_SUPABASE_KEY: ${{ secrets.NUXT_PUBLIC_SUPABASE_KEY }}
+          NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_KEY: ${{ secrets.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_KEY }}
           NUXT_ZOHO_CLIENT_ID: ${{ secrets.NUXT_ZOHO_CLIENT_ID }}
           NUXT_ZOHO_CLIENT_SECRET: ${{ secrets.NUXT_ZOHO_CLIENT_SECRET }}
           NUXT_ZOHO_CODE: ${{ secrets.NUXT_ZOHO_CODE }}
@@ -51,12 +53,9 @@ jobs:
           PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
 
           # Variables
-          NUXT_ALBATROSS_LIVEVIEW_TX_FEE: ${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_FEE }}
-          NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT: ${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_RECIPIENT }}
-          NUXT_ALBATROSS_LIVEVIEW_TX_VALUE: ${{ vars.NUXT_ALBATROSS_LIVEVIEW_TX_VALUE }}
           NUXT_HUB_ENV: ${{ vars.NUXT_HUB_ENV }}
           NUXT_HUB_PROJECT_KEY: ${{ vars.NUXT_HUB_PROJECT_KEY }}
-          NUXT_PUBLIC_SUPABASE_URL: ${{ vars.NUXT_PUBLIC_SUPABASE_URL }}
+          NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_URL: ${{ vars.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_URL }}
           NUXT_PUBLIC_VALIDATORS_API: ${{ vars.NUXT_PUBLIC_VALIDATORS_API }}
           NUXT_SITE_ENV: ${{ vars.NUXT_SITE_ENV }}
           NUXT_ZOHO_REQUEST_URL: ${{ vars.NUXT_ZOHO_REQUEST_URL }}

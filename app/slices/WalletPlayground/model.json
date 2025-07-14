@@ -11,7 +11,19 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {},
+      "primary": {
+        "playgroundUrl": {
+          "type": "Link",
+          "config": {
+            "label": "playground URL",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
       "items": {}
     }
   ]

@@ -17,6 +17,15 @@
         "__TYPE__": "FieldContent",
         "value": "fewer",
         "type": "Text"
+      },
+      "showLabels": {
+        "__TYPE__": "BooleanContent",
+        "value": false
+      },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "darkblue",
+        "type": "Select"
       }
     },
     "items": [

@@ -25,7 +25,7 @@ function getCssClasses(link: LinkField) {
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
         <PrismicLink internal-component="a" :field="link" transition-opacity>
-          <NuxtImg :src="$prismic.asImageSrc(logo)!" :class="getCssClasses(link)" op="40 hocus:80" />
+          <PrismicImage :field="logo" :class="getCssClasses(link)" op="40 hocus:80" />
         </PrismicLink>
       </li>
     </ul>
@@ -39,15 +39,15 @@ function getCssClasses(link: LinkField) {
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
         <PrismicLink internal-component="a" :field="link" transition-opacity>
-          <NuxtImg :src="$prismic.asImageSrc(logo)!" :class="getCssClasses(link)" op="40 hocus:80" />
+          <PrismicImage :field="logo" :class="getCssClasses(link)" op="40 hocus:80" />
         </PrismicLink>
       </li>
     </ul>
   </section>
 </template>
 
-<style scoped>
-:global(:where(.nq-overlaps, [nq-overlaps]) + [data-slice-type='logos-grid']) {
+<style>
+:where(.nq-overlaps, [nq-overlaps]) + [data-slice-type='logos-grid'] {
   --uno: 'f-pt-2xl';
 }
 </style>

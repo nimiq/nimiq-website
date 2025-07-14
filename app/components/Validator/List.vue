@@ -30,7 +30,7 @@ function truncate(text: string) {
 
 <template>
   <div :data-state="showAllValidators ? 'open' : 'closed'" :class="showAllValidators ? 'h-auto' : 'h-448 of-y-clip'" :style="`--count: ${validators?.length}`" pb-80 w-full relative transition="height discrete">
-    <div bg-gradient="to-b from-transparent via-neutral-0 to-neutral-0" :class="showAllValidators ? 'op-0' : 'op-100'" aria-hidden h-228 w-full pointer-events-none transition-opacity bottom--48 absolute z-10 />
+    <div :class="showAllValidators ? 'op-0' : 'op-100'" aria-hidden h-228 w-full pointer-events-none transition-opacity bottom--48 absolute z-10 style="background: linear-gradient(to bottom in oklab, transparent 0%, rgb(var(--nq-neutral-0)) 100%);" />
     <button bottom="8 data-open:42" mx-auto transition-bottom inset-x-0 absolute z-10 nq-pill-secondary aria-label="Expand list" @click="toggleShowAllValidators">
       <span v-if="showAllValidators">Show less</span>
       <span v-else>Show more</span>

@@ -3,10 +3,6 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "allowSendTx": {
-        "__TYPE__": "BooleanContent",
-        "value": false
-      },
       "txSecLabel": {
         "__TYPE__": "FieldContent",
         "value": "darkness",

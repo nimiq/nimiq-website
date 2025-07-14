@@ -31,6 +31,27 @@
             "placeholder": ""
           },
           "type": "Text"
+        },
+        "showLabels": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Labels",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "grey",
+              "darkblue"
+            ]
+          }
         }
       },
       "items": {

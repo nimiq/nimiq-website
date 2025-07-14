@@ -1819,6 +1819,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >
 
 type PageDocumentDataSlicesSlice =
+  | AppGallerySlice
   | NimiqWalletHoverableSlice
   | NimTokenDistributionSlice
   | ExchangesGridSlice
@@ -2542,17 +2543,6 @@ export type ActivityStatsSlice = prismic.SharedSlice<
  */
 export interface AlbatrossLiveviewSliceDefaultPrimary {
   /**
-   * Allow Send Transactions field in *AlbatrossLiveview → Default → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: albatross_liveview.default.primary.allowSendTx
-   * - **Documentation**: https://prismic.io/docs/field#boolean
-   */
-  allowSendTx: prismic.BooleanField
-
-  /**
    * Network Notice field in *AlbatrossLiveview → Default → Primary*
    *
    * - **Field Type**: Text
@@ -2710,6 +2700,101 @@ type AlbatrossTechnicalDetailsSliceVariation =
 export type AlbatrossTechnicalDetailsSlice = prismic.SharedSlice<
   'albatross_technical_details',
   AlbatrossTechnicalDetailsSliceVariation
+>
+
+/**
+ * Primary content in *AppGalleryCta → Default → Primary*
+ */
+export interface AppGallerySliceDefaultPrimary {
+  /**
+   * Title field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField
+
+  /**
+   * Description field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField
+
+  /**
+   * Categories Label field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.categoriesLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  categoriesLabel: prismic.KeyTextField
+
+  /**
+   * Background Color field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'grey' | 'white' | 'darkblue'>
+
+  /**
+   * cta field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.cta
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+
+  /**
+   * Categories Description field in *AppGalleryCta → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: app_gallery.default.primary.categoriesDescription
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  categoriesDescription: prismic.KeyTextField
+}
+
+/**
+ * Default variation for AppGalleryCta Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Main variation that includes a title, description, category list, and grid of visual app cards.
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AppGallerySliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<AppGallerySliceDefaultPrimary>,
+  never
+>
+
+/**
+ * Slice variation for *AppGalleryCta*
+ */
+type AppGallerySliceVariation = AppGallerySliceDefault
+
+/**
+ * AppGalleryCta Shared Slice
+ *
+ * - **API ID**: `app_gallery`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AppGallerySlice = prismic.SharedSlice<
+  'app_gallery',
+  AppGallerySliceVariation
 >
 
 /**
@@ -10050,6 +10135,27 @@ export interface SocialMediaGridSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   cultureAndInsightsLabel: prismic.KeyTextField
+
+  /**
+   * Show Labels field in *SocialMediaGrid → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: social_media_grid.default.primary.showLabels
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  showLabels: prismic.BooleanField
+
+  /**
+   * Background Color field in *SocialMediaGrid → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_media_grid.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  bgColor: prismic.SelectField<'white' | 'grey' | 'darkblue'>
 }
 
 /**
@@ -11499,6 +11605,27 @@ export type VerticalVideoSlice = prismic.SharedSlice<
 >
 
 /**
+ * Primary content in *WalletPlayground → Default → Primary*
+ */
+export interface WalletPlaygroundSliceDefaultPrimary {
+  /**
+   * playground URL field in *WalletPlayground → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: wallet_playground.default.primary.playgroundUrl
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  playgroundUrl: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >
+}
+
+/**
  * Default variation for WalletPlayground Slice
  *
  * - **API ID**: `default`
@@ -11507,7 +11634,7 @@ export type VerticalVideoSlice = prismic.SharedSlice<
  */
 export type WalletPlaygroundSliceDefault = prismic.SharedSliceVariation<
   'default',
-  Record<string, never>,
+  Simplify<WalletPlaygroundSliceDefaultPrimary>,
   never
 >
 
@@ -12094,6 +12221,10 @@ declare module '@prismicio/client' {
       AlbatrossTechnicalDetailsSliceDefaultPrimary,
       AlbatrossTechnicalDetailsSliceVariation,
       AllDocumentTypes,
+      AppGallerySlice,
+      AppGallerySliceDefault,
+      AppGallerySliceDefaultPrimary,
+      AppGallerySliceVariation,
       AppsShowcaseSlice,
       AppsShowcaseSliceDefault,
       AppsShowcaseSliceDefaultPrimary,
@@ -12464,6 +12595,7 @@ declare module '@prismicio/client' {
       VerticalVideoSliceVariation,
       WalletPlaygroundSlice,
       WalletPlaygroundSliceDefault,
+      WalletPlaygroundSliceDefaultPrimary,
       WalletPlaygroundSliceVariation,
       WalletWordsChallengeSlice,
       WalletWordsChallengeSliceDefault,

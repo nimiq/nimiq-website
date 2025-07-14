@@ -67,7 +67,7 @@ const allowMapInteraction = ref(false)
 </script>
 
 <template>
-  <section px-0 pb-0 bg-neutral-100 max-lg:mx-0 data-slice-type="crypto-map-continent-selector">
+  <section px-0 pb-0 bg-neutral-0 max-lg:mx-0 data-slice-type="crypto-map-continent-selector">
     <div max-w="none lg:$nq-max-width children:none" w-screen grid="~ cols-1 lg:cols-[min(calc(100vw-64px),411px)_1fr] gap-x-24">
       <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
         <li

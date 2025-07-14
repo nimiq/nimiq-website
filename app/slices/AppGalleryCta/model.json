@@ -1,0 +1,71 @@
+{
+  "type": "SharedSlice",
+  "id": "app_gallery",
+  "name": "AppGalleryCta",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Main variation that includes a title, description, category list, and grid of visual app cards.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading4,heading3"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink",
+            "label": "Description"
+          }
+        },
+        "categoriesLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Categories Label",
+            "placeholder": ""
+          }
+        },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "grey",
+              "white",
+              "darkblue"
+            ]
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "cta",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "categoriesDescription": {
+          "type": "Text",
+          "config": {
+            "label": "Categories Description",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { getLiveviewPillColor } from '~/composables/useColors'
-
 const { statsTooltipContent } = defineProps<{
   networkNotice?: string
   statsTooltipContent?: string
@@ -9,9 +7,6 @@ const { statsTooltipContent } = defineProps<{
   averageRewardsLabel?: string
   averageRewardsValue?: string
 }>()
-
-const { status, animationActive, nonce, canSendTx, sendTx } = useAlbatrossDummyTx()
-const pillClass = computed(() => getLiveviewPillColor({ nonce: nonce.value }))
 
 const tooltipParagraphs = computed(() => {
   if (!statsTooltipContent)
@@ -24,9 +19,6 @@ const tooltipParagraphs = computed(() => {
   <div flex="~ col lg:row gap-y-20 gap-x-24" pb-1 max-sm:mx-24>
     <div flex="~ items-center justify-center gap-x-80 gap-y-32 col md:row" ring="1.5 solid neutral-500" font-semibold px-32 py-20 rounded-8 max-w-712 relative>
       <AlbatrossStats :average-rewards-label :tx-sec-label :tx-speed-label :average-rewards-value />
-      <button v-if="canSendTx" :disabled="animationActive || status !== 'idle'" select-none :class="pillClass" @click="sendTx">
-        Send Test Transaction
-      </button>
       <Tooltip v-if="statsTooltipContent" dark right-12 top-12 absolute aria-label="Notice about these stats">
         <p v-for="(p, i) in tooltipParagraphs" :key="i" style="font-size: var(--nq-font-size)" f-text-sm>
           {{ p }}

@@ -40,25 +40,18 @@ watch(blocks, () => {
 }, { deep: true })
 watchEffect(() => shouldAnimate.value ? resume() : pause())
 
-const { canSendTx } = useAlbatrossDummyTx()
-const AlbatrossLiveviewTxPending = defineAsyncComponent(() => import('./TxPending.vue'))
-
 const { clientNetwork } = useRuntimeConfig().public
 </script>
 
 <template>
   <div ref="target" relative of-x-clip>
-    <div flex="~ justify-end items-center" px-24 min-h-208 of-hidden :class="{ 'pr-84': canSendTx }">
+    <div flex="~ justify-end items-center" px-24 min-h-208 of-hidden>
       <transition-group
         tag="div" flex="~ justify-end items-center" enter-from-class="op-0" enter-active-class="transition-opacity duration-400 ease-in"
         :style="{ transform: `translate3d(${offset}px, 0, 0)` }"
       >
         <AlbatrossLiveviewBlock v-for="block in blocks" :key="`block-${block.number}`" :block :style="{ width: BLOCK_WIDTH }" />
       </transition-group>
-
-      <div v-if="canSendTx" right-32 absolute>
-        <AlbatrossLiveviewTxPending />
-      </div>
     </div>
 
     <div v-if="status !== 'OPEN' || blocks.length === 0" flex="~ justify-center items-center" font-bold min-h-224 inset-0 absolute>

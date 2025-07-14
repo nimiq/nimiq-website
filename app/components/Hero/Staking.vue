@@ -5,7 +5,7 @@ defineProps<{ headline: RichTextField, cta?: LinkField }>()
 </script>
 
 <template>
-  <section pb-0 bg-neutral-0 relative of-x-clip f-p-5xl max-md:pb-100>
+  <section bg-neutral-0 relative of-x-clip f-p-5xl max-md:pb-100>
     <AnimatedCircleRipple left="-100vw lg:-5vw" size="300vw lg:110vw" max-w-none absolute z-0 bottom="10 lg:-300" />
     <div h="400 lg:200" bg-neutral-0 max-w-none pointer-events-none inset-0 absolute z-1 />
     <div class="bg-radial-green" bg-gradient-fn="to-b from-white to-" top="50vh lg:200" max-w-none pointer-events-none inset-0 absolute z-1 />

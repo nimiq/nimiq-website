@@ -30,7 +30,7 @@ const isInternalStatic = environment === 'internal-static'
 const isInternalDrafts = environment === 'internal-static-drafts'
 const isProduction = environment === 'production'
 
-const showDrafts = isLocal || isInternalDrafts || isNuxthubPreview || isNuxthubProduction || isGitHubPages
+const showDrafts = isLocal || isInternalDrafts
 const useNuxtHub = isNuxthubPreview || isNuxthubProduction || isLocal
 
 // GitHub Pages requires a specific base URL
@@ -74,4 +74,12 @@ export default {
     isInternalDrafts,
     isProduction,
   },
+}
+
+export function getSiteUrl(environment: EnvironmentName) {
+  if (environment === 'github-pages')
+    return 'https://nimiq.github.io'
+  if (environment === 'nuxthub-production')
+    return 'https://nimiq.com'
+  return ''
 }

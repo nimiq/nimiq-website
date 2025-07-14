@@ -37,6 +37,12 @@ export const colors: Record<Color, string> = {
 
 type Arg = { hash: string } | { nonce: number } | { publicKey: string }
 
+/**
+ * Determines a color based on hash, nonce, or public key input.
+ * Uses the input to generate a deterministic color selection.
+ *
+ * @param options - Object with hash, nonce, or publicKey property
+ */
 function getColor(options: Arg) {
   let index
 
@@ -52,6 +58,17 @@ function getColor(options: Arg) {
   return colorsList[index]!
 }
 
+/**
+ * Gets background color class for liveview components.
+ */
 export const getLiveviewBgColor = (options: Arg) => colorsBg[getColor(options)]
+
+/**
+ * Gets pill color class for liveview components.
+ */
 export const getLiveviewPillColor = (options: Arg) => colorsPill[getColor(options)]
+
+/**
+ * Gets actual color value (hex/rgb) for liveview components.
+ */
 export const getLiveviewColorValue = (options: Arg) => colors[getColor(options)]

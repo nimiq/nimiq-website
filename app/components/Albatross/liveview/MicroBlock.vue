@@ -17,9 +17,8 @@ const duration = computed(() => {
   return durationFormatter.format(props.block.duration / 1000)
 })
 
-const txCount = computed(() => props.block.matchedTxs.length + props.block.unmatchedTxs.length)
-const nonces = computed(() => props.block.matchedTxs.slice(0, MAX_TXS))
-const hashes = computed(() => props.block.unmatchedTxs.slice(0, MAX_TXS - nonces.value.length))
+const txCount = computed(() => props.block.transactions.length)
+const hashes = computed(() => props.block.transactions.slice(0, MAX_TXS).map(tx => tx.hash.substring(0, 8)))
 
 // @unocss-include
 
@@ -40,7 +39,7 @@ const fontSizeClass = computed(() => {
       Skip Block
     </header>
 
-    <div flex="~ col shrink-0" text-neutral-0 bg-neutral size-160 relative :class="!block.isSkip ? 'rounded-8' : 'rounded-b-8'">
+    <div flex="~ col shrink-0" data-inverted text-neutral bg-neutral-0 size-160 relative :class="!block.isSkip ? 'rounded-8' : 'rounded-b-8'">
       <div flex="~ items-center justify-between" text-15 px-16 pb-10 pt-14>
         <p font-bold :class="fontSizeClass">
           #{{ block.number }}
@@ -54,7 +53,7 @@ const fontSizeClass = computed(() => {
         No Transactions
       </div>
       <div v-else grow-1>
-        <AlbatrossLiveviewTransactionCanvas origin="[0_100%]" scale-50 bottom-0 left-0 absolute :nonces :hashes />
+        <AlbatrossLiveviewTransactionCanvas origin="[0_100%]" scale-50 bottom-0 left-0 absolute :hashes />
       </div>
     </div>
 
@@ -62,7 +61,7 @@ const fontSizeClass = computed(() => {
       <p whitespace-nowrap>
         Slot {{ block.producer.slotNumber }}
       </p>
-      <p whitespace-nowrap>
+      <p v-if="duration !== '?' && Number(duration.replace('s', '')) > 0" whitespace-nowrap>
         {{ duration }} block time
       </p>
     </footer>

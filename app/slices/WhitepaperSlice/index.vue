@@ -6,12 +6,13 @@ import mediumZoom from 'medium-zoom'
 
 const props = defineProps(getSliceComponentProps<Content.WhitepaperSliceSlice>())
 
-enum LitepaperVersion { V1 = '1.0', V2 = '2.0' }
+const LitepaperVersion = { V1: '1.0', V2: '2.0' } as const
+type LitepaperVersionType = typeof LitepaperVersion[keyof typeof LitepaperVersion]
 
 const litepaperV1 = computed(() => props.slice.items[1]!)
 const litepaperV2 = computed(() => props.slice.items[0]!)
 
-const selected = useRouteQuery<LitepaperVersion>('version', LitepaperVersion.V2)
+const selected = useRouteQuery<LitepaperVersionType>('version', LitepaperVersion.V2)
 
 const { define: DefineLitepaper, reuse: ReuseLitepaper } = createReusableTemplate<WhitepaperSliceSliceDefaultItem>()
 

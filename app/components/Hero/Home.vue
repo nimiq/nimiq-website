@@ -34,11 +34,9 @@ const subheadlineStr = computed(() => {
 })
 
 watch(subheadlineStr, () => {
-  useHead({
+  useSeoMeta({
     title: props.headline.at(0)!.text,
-    meta: [
-      { name: 'description', content: subheadlineStr.value },
-    ],
+    description: subheadlineStr.value,
   })
 })
 </script>
@@ -59,7 +57,6 @@ watch(subheadlineStr, () => {
       width="1600"
       height="900"
       src="/assets/images/gods-light.webp"
-      provider="ipx"
       alt="Nimiq Gods Rays Background"
       m-0 size-full pointer-events-none inset-0 absolute blur-60 brightness-80
     />

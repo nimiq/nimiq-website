@@ -6,10 +6,12 @@ defineProps(getSliceComponentProps<Content.WalletWordsChallengeSlice>())
 
 <template>
   <section px-8 bg-neutral-0 relative>
-    <!-- TODO: change slice name -->
-    <ClientOnly>
-      <WalletWordsChallenge :headline="slice.primary.headline!" :subheadline="slice.primary.subheadline!" :guess-the-remaining-words-label="slice.primary.guessTheRemainingWordsLabel!" :you-do-not-stand-a-chance-to-take="slice.primary.youDoNotStandAChanceToTake!" :reward-amount="slice.primary.rewardamount!" />
-    </ClientOnly>
+    <WalletWordsChallenge
+      :headline="slice.primary.headline!" :subheadline="slice.primary.subheadline!"
+      :guess-the-remaining-words-label="slice.primary.guessTheRemainingWordsLabel!"
+      :you-do-not-stand-a-chance-to-take="slice.primary.youDoNotStandAChanceToTake!"
+      :reward-amount="slice.primary.rewardamount!"
+    />
   </section>
 </template>
 
