@@ -1,4 +1,3 @@
-import type { NuxtConfig } from 'nuxt/config'
 import process from 'node:process'
 import { defineNuxtConfig } from 'nuxt/config'
 import { array, boolean, object, optional, string } from 'valibot'
@@ -10,7 +9,7 @@ import { repositoryName } from './slicemachine.config.json'
 const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig(<NuxtConfig>{
+export default defineNuxtConfig({
   compatibilityDate: '2025-07-07',
 
   modules: [
@@ -28,7 +27,8 @@ export default defineNuxtConfig(<NuxtConfig>{
     'nuxt-module-feed',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
-    './modules/conditional-nuxthub',
+    // Conditionally add @nuxthub/core based on environment
+    ...(environment.useNuxtHub ? ['@nuxthub/core'] : []),
     './modules/prerender-routes',
   ],
 
@@ -63,6 +63,7 @@ export default defineNuxtConfig(<NuxtConfig>{
 
   css: ['~/assets/css/main.css'],
 
+  // @ts-expect-error site is not a valid option in Nuxt 4
   site: { indexable: environment.environment.isProduction },
 
   robots: {
