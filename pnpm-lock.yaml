@@ -120,8 +120,8 @@ catalogs:
       specifier: 2.0.0-alpha.1
       version: 2.0.0-alpha.1
     '@nuxthub/core':
-      specifier: ^0.9.0
-      version: 0.9.0
+      specifier: ^0.8.27
+      version: 0.8.27
     '@nuxtjs/device':
       specifier: ^3.2.4
       version: 3.2.4
@@ -278,7 +278,7 @@ importers:
         version: 3.17.3(magicast@0.3.5)
       '@nuxthub/core':
         specifier: catalog:nuxt
-        version: 0.9.0(@netlify/blobs@8.2.0)(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(vite@7.0.4(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
+        version: 0.8.27(@netlify/blobs@8.2.0)(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(vite@7.0.4(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
       '@nuxtjs/device':
         specifier: catalog:nuxt
         version: 3.2.4
@@ -1841,8 +1841,8 @@ packages:
     peerDependencies:
       vue: ^3.3.4
 
-  '@nuxthub/core@0.9.0':
-    resolution: {integrity: sha512-K8GkVcJn1ZoHV9xBiDrRPtBHxlzfysVEXGhdAJ/cR37B43UuWucl9pWKlA59f3VAf6lC8iR/hn3+2qlurcK9Ug==}
+  '@nuxthub/core@0.8.27':
+    resolution: {integrity: sha512-clQ0sa8XrG8z7c/USAKHpbYgivV5zaEfYiGfjTP7H17ySioqO+zfMsmtu87c17A7Tv0pnBAiD8btgE4YD1a/hQ==}
 
   '@nuxtjs/device@3.2.4':
     resolution: {integrity: sha512-jIvN6QeodBNrUrL/1FCHk4bebsiLsGHlJd8c/m2ksLrGY4IZ0npA8IYhDTdYV92epGxoe8+3iZOzCjav+6TshQ==}
@@ -10348,7 +10348,7 @@ snapshots:
       - xml2js
       - yaml
 
-  '@nuxthub/core@0.9.0(@netlify/blobs@8.2.0)(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(vite@7.0.4(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))':
+  '@nuxthub/core@0.8.27(@netlify/blobs@8.2.0)(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(vite@7.0.4(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))':
     dependencies:
       '@cloudflare/workers-types': 4.20250711.0
       '@nuxt/devtools-kit': 2.6.2(magicast@0.3.5)(vite@7.0.4(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
