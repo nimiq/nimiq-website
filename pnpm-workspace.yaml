@@ -50,7 +50,7 @@ catalogs:
     '@nuxthub/core': ^0.8.27
     '@nuxtjs/device': ^3.2.4
     '@nuxtjs/prismic': ^4.1.0
-    nuxt: ^4.0.0-alpha.4
+    nuxt: ^3.17.3
     nuxt-module-feed: ^1.1.4
     unplugin-vue-router: ^0.12.0
 

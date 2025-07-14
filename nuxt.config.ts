@@ -27,9 +27,17 @@ export default defineNuxtConfig({
     'nuxt-module-feed',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
-    './modules/conditional-nuxthub',
     './modules/prerender-routes',
+    environment.useNuxtHub ? '@nuxthub/core' : null,
   ],
+
+  // @ts-expect-error hub is ok
+  hub: environment.useNuxtHub
+    ? {
+        kv: true,
+        cache: true,
+      }
+    : undefined,
 
   devtools: { enabled: true },
 
