@@ -1,0 +1,21 @@
+diff --git a/dist/currency-info/CurrencyInfo.mjs b/dist/currency-info/CurrencyInfo.mjs
+index 907f24c4f82e4eb9843d8bd1149d29a4d9599c09..b91cce8d4c774234dcf2ffefbe2fc6ebe404c563 100644
+--- a/dist/currency-info/CurrencyInfo.mjs
++++ b/dist/currency-info/CurrencyInfo.mjs
+@@ -328,13 +328,13 @@ class CurrencyInfo {
+     }
+     this.code = currencyCode.toUpperCase();
+     const currencyCountry = this.code.substring(0, 2);
+-    const isBrowserEnv = typeof globalThis.navigator !== "undefined";
++    const isBrowserEnv = typeof globalThis.navigator !== "undefined" && typeof globalThis.navigator.language === "string";
+     const nameLocalesToTry = [
+       ...locale ? [locale] : [],
+       // try requested locale
+-      ...isBrowserEnv ? [`${navigator.language.substring(0, 2)}-${currencyCountry}`] : [],
++      ...isBrowserEnv ? [`${globalThis.navigator.language.substring(0, 2)}-${currencyCountry}`] : [],
+       // user language as spoken in currency country
+-      ...isBrowserEnv ? [navigator.language] : []
++      ...isBrowserEnv ? [globalThis.navigator.language] : []
+       // fallback
+     ];
+     let supportsDisplayNames = "DisplayNames" in Intl;

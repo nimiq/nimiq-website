@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
 </script>
 
 <template>
-  <section bg-neutral-0>
+  <section bg-neutral-0 data-slice-type="nimiq-wallet-hoverable">
     <PrismicLink
       internal-component="a" :field="slice.primary.link"
       grid="~ cols-1 md:cols-[1fr_3fr] rows-[1fr_auto] gap-x-96 gap-y-32 md:gap-y-128" w-full f-p-lg nq-hoverable
@@ -39,3 +39,9 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
     </PrismicLink>
   </section>
 </template>
+
+<style>
+section[data-slice-type='simple-headline'] + section[data-slice-type='nimiq-wallet-hoverable'] {
+  --uno: 'pt-0!';
+}
+</style>

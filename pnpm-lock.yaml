@@ -196,6 +196,11 @@ catalogs:
       specifier: ^1.0.0-beta.25
       version: 1.0.0-beta.25
 
+patchedDependencies:
+  '@nimiq/utils':
+    hash: e1a6d264c08ff3ae171a61a50938c2e2e61884456f6bf378a6f19f3409546ef0
+    path: patches/@nimiq__utils.patch
+
 importers:
 
   .:
@@ -205,7 +210,7 @@ importers:
         version: 2.1.1
       '@nimiq/utils':
         specifier: catalog:nimiq
-        version: 0.12.4
+        version: 0.12.4(patch_hash=e1a6d264c08ff3ae171a61a50938c2e2e61884456f6bf378a6f19f3409546ef0)
       '@nuxtjs/seo':
         specifier: 'catalog:'
         version: 3.1.0(@netlify/blobs@8.2.0)(@unhead/vue@2.0.12(vue@3.5.14(typescript@5.8.3)))(db0@0.3.2)(h3@1.15.3)(ioredis@5.6.1)(magicast@0.3.5)(rollup@4.44.2)(unstorage@1.16.0(@netlify/blobs@8.2.0)(db0@0.3.2)(ioredis@5.6.1))(vite@6.3.5(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
@@ -9674,7 +9679,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nimiq/utils@0.12.4':
+  '@nimiq/utils@0.12.4(patch_hash=e1a6d264c08ff3ae171a61a50938c2e2e61884456f6bf378a6f19f3409546ef0)':
     dependencies:
       big-integer: 1.6.52
 

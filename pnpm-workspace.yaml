@@ -1,5 +1,7 @@
 packages:
   - ./
+patchedDependencies:
+  '@nimiq/utils': patches/@nimiq__utils.patch
 catalog:
   '@nuxtjs/seo': ^3.1.0
   '@unocss/preset-wind4': ^66.1.2
@@ -11,7 +13,6 @@ catalogs:
     vite-plugin-top-level-await: ^1.5.0
     vite-plugin-wasm: ^3.4.1
     wrangler: ^4.15.2
-
   frontend:
     '@pinia/colada': ^0.15.3
     '@pinia/colada-nuxt': ^0.1.3
@@ -29,7 +30,6 @@ catalogs:
     vue: latest
     vue-router: ^4.5.1
     vue-tsc: ^2.2.10
-
   lint:
     '@antfu/eslint-config': ^4.13.1
     '@nuxt/eslint': latest
@@ -38,12 +38,10 @@ catalogs:
     eslint-plugin-format: ^1.0.1
     lint-staged: ^16.0.0
     simple-git-hooks: ^2.13.0
-
   nimiq:
     '@nimiq/core': ^2.1.1
     '@nimiq/utils': ^0.12.4
     nimiq-rpc-client-ts: ^1.0.0-beta.28
-
   nuxt:
     '@nuxt/fonts': ^0.11.4
     '@nuxt/image': 2.0.0-alpha.1
@@ -53,22 +51,18 @@ catalogs:
     nuxt: ^3.17.3
     nuxt-module-feed: ^1.1.4
     unplugin-vue-router: ^0.12.0
-
   prismic:
     '@prismicio/client': ^7.17.2
     '@prismicio/richtext': ^2.1.5
     '@slicemachine/adapter-nuxt': ^0.3.77
     slice-machine-ui: ^2.16.0
-
   server:
     consola: ^3.4.2
     sharp: ^0.34.1
     valibot: ^1.1.0
-
   types:
     '@types/node': ^22.15.19
     typescript: ^5.8.3
-
   unocss:
     '@iconify-json/logos': ^1.2.4
     '@iconify/utils': ^2.3.0

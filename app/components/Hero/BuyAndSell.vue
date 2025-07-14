@@ -8,11 +8,10 @@ if (slice.variation !== 'buyAndSell')
   throw new Error('Invalid slice variation. Expected "buyAndSell".')
 
 const { fiatAmount, cryptoAmount, lastEdited } = useSyncAmountInputs()
-const { currency } = useUserCurrency()
+const { currency, currencyInfo } = useUserCurrency()
 
 function useSyncAmountInputs() {
   const { price } = useNimPrice()
-  const { currencyInfo } = useUserCurrency()
 
   // Base values
   const cryptoValue = ref(1)
