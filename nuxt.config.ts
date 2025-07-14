@@ -12,6 +12,10 @@ const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-07',
 
+  future: {
+    compatibilityVersion: 4,
+  },
+
   modules: [
     '@vueuse/nuxt',
     '@pinia/nuxt',
@@ -70,7 +74,6 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  // @ts-expect-error not sure why this is invalid
   site: {
     url: getSiteUrl(environment.environment.name),
     indexable: environment.environment.isProduction,
