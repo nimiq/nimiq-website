@@ -55,7 +55,7 @@ export function useNimVolume() {
     requestCurrency.value !== currencyInfo.value.code,
   )
 
-  const { data: volumeData, state: volumeState, error, isLoading } = useQuery({
+  const { data: volumeData, state: volumeState, error, isLoading, refetch } = useQuery({
     // Use the resolved request currency in the query key for proper caching
     key: computed(() => ['trading_volume', requestCurrency.value]),
     query: async () => {
@@ -67,14 +67,15 @@ export function useNimVolume() {
 
       // Align to the previous full hour boundary
       const lastFullHourTs = nowTs - (nowTs % 3600)
-      volumeApi.searchParams.append('to_ts', String(lastFullHourTs))
 
-      // Use the resolved currency for the API request
-      volumeApi.searchParams.append('tsym', requestCurrency.value)
+      // Clone the base URL to avoid parameter pollution between requests
+      const apiUrl = new URL(volumeApi.toString())
+      apiUrl.searchParams.set('to_ts', String(lastFullHourTs))
+      apiUrl.searchParams.set('tsym', requestCurrency.value)
 
-      const res = await fetchFiatApi<HistohourResponse>(volumeApi.toString(), Provider.CryptoCompare)
+      const res = await fetchFiatApi<HistohourResponse>(apiUrl.toString(), Provider.CryptoCompare)
       if (res.Message.includes('CCCAGG market does not exist'))
-        throw new Error(`CCCAGG market does not exist for this coin pair (${requestCurrency.value}-NIM). Url: ${volumeApi.toString()}`)
+        throw new Error(`CCCAGG market does not exist for this coin pair (${requestCurrency.value}-NIM). Url: ${apiUrl.toString()}`)
 
       if (!res || !res.Data?.Data?.length)
         throw new Error('Failed to fetch hourly volume data')
@@ -92,32 +93,57 @@ export function useNimVolume() {
       const currentDayPoints = recentFirst.slice(0, 24)
       const previousDayPoints = recentFirst.slice(24, 48)
 
-      // Sum the USD volumes (volumeto = QUOTE_VOLUME)
+      // Sum the quote currency volumes (volumeto = QUOTE_VOLUME in request currency)
       // We aggregate to provide a meaningful daily volume rather than hourly spikes
-      const volume = currentDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
-      const prevVolumeUsd = previousDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
+      const currentVolumeInRequestCurrency = currentDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
+      const previousVolumeInRequestCurrency = previousDayPoints.reduce((sum, p) => sum + p.volumeto, 0)
 
-      // Volume is in the requested currency at this point
-      const volumeInRequestCurrency = volume
+      // Convert to user's currency if necessary
+      let volumeInUserCurrency = currentVolumeInRequestCurrency
+      if (needsCurrencyConversion.value) {
+        // When request currency is USD but user wants EUR/GBP, we need USD->target rate
+        // For now, we'll use NIM price as a proxy, but ideally this should use proper forex rates
+        // TODO: Replace with proper forex conversion rates
+        volumeInUserCurrency = currentVolumeInRequestCurrency * (price.value || 0)
+      }
 
-      // Convert to user's currency if necessary (when request currency differs from user currency)
-      const volumeUserCurr = needsCurrencyConversion.value
-        ? volumeInRequestCurrency * (price.value || 0) // Convert USD to user currency
-        : volumeInRequestCurrency // Already in user currency
+      const volumeFormatted = formatFiat(volumeInUserCurrency, currencyInfo.value)
 
-      const volumeFormatted = formatFiat(volumeUserCurr, currencyInfo.value)
-
+      // Calculate volume change using consistent currency (request currency)
       // Daily change percentage helps users track momentum and market activity
-      const volumeChange = prevVolumeUsd > 0 ? (volume - prevVolumeUsd) / prevVolumeUsd : 0
+      const volumeChange = previousVolumeInRequestCurrency > 0
+        ? (currentVolumeInRequestCurrency - previousVolumeInRequestCurrency) / previousVolumeInRequestCurrency
+        : 0
 
-      return { volumeUsd: volume, volumeFormatted, volumeChange }
+      // Return volume in original request currency for consistency with change calculation
+      return {
+        volumeUsd: currentVolumeInRequestCurrency,
+        volumeFormatted,
+        volumeChange,
+      }
     },
-    staleTime: 1 * 60 * 1e3, // 1 minute - balance between fresh data and API load
+    // Performance optimizations:
+    staleTime: 10 * 60 * 1e3, // 10 minutes - volume doesn't change rapidly
+    gcTime: 30 * 60 * 1e3, // Keep in cache for 30 minutes
+    placeholderData: previousData => previousData, // Use previous data while fetching
   })
 
   const volumeUsd = computed(() => volumeData.value?.volumeUsd || 0)
   const volumeFormatted = computed(() => volumeData.value?.volumeFormatted || '0')
   const volumeChange = computed(() => volumeData.value?.volumeChange || 0)
+
+  // Auto-refresh every 5 minutes in the background using a timer
+  if (import.meta.client) {
+    const refreshInterval = setInterval(() => {
+      // Refresh data in the background
+      refetch()
+    }, 5 * 60 * 1000) // Refresh every 5 minutes
+
+    // Cleanup interval on unmount
+    onBeforeUnmount(() => {
+      clearInterval(refreshInterval)
+    })
+  }
 
   return {
     volumeUsd,
@@ -126,5 +152,6 @@ export function useNimVolume() {
     volumeState,
     error,
     volumeIsLoading: isLoading,
+    refreshVolume: refetch, // Expose manual refresh function
   }
 }

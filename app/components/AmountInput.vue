@@ -2,7 +2,7 @@
 const { decimals = 0, min = 0 } = defineProps<{ decimals?: number, min?: number }>()
 
 const amount = defineModel<number>()
-const liveValue = ref(`${amount.value}`)
+const liveValue = ref(amount.value ? `${amount.value}` : '')
 const lastEmittedValue = ref(0)
 
 // Code from https://github.com/nimiq/vue3-components/blob/8d54857370cffc6c5fdb7b75b12b0e2eacbc8f04/src/components/AmountInput/AmountInput.vue#L96
@@ -17,7 +17,6 @@ const formattedValue = computed({
       liveValue.value = ''
       lastEmittedValue.value = 0
       amount.value = 0
-      // context.emit(AmountInputEvent.MODELVALUE_UPDATE, valueInLuna.value)
       return
     }
 
@@ -29,8 +28,11 @@ const formattedValue = computed({
       amount.value = Number(`${regExpResult[1]}${(regExpResult[2] ? regExpResult[3]! : '').padEnd(decimals, '0')}`)
     }
     else {
-      liveValue.value = ''
-      amount.value = min
+      // Only reset to min if we don't already have a valid value
+      if (amount.value === undefined || amount.value === null) {
+        liveValue.value = ''
+        amount.value = min
+      }
     }
 
     if (lastEmittedValue.value !== amount.value) {
@@ -40,22 +42,32 @@ const formattedValue = computed({
 })
 
 function updateValue(newValue?: number) {
-  if (!newValue)
-    return min
-  if (newValue === amount.value)
+  // Handle undefined/null case
+  if (newValue === undefined || newValue === null) {
     return
-  lastEmittedValue.value = newValue || min
-  formattedValue.value = newValue ? (newValue / 10 ** decimals).toString() : ''
+  }
+
+  if (newValue === amount.value) {
+    return
+  }
+
+  lastEmittedValue.value = newValue
+  formattedValue.value = newValue > 0 ? (newValue / 10 ** decimals).toString() : ''
 }
 
 watch(amount, newValue => updateValue(newValue), { immediate: true })
 
 function onBlur() {
-  if (!amount.value && min) {
+  if (!amount.value && min > 0) {
     updateValue(min)
   }
 }
-onMounted(onBlur)
+onMounted(() => {
+  // Don't call onBlur on mount if we already have a valid value
+  if (!amount.value) {
+    onBlur()
+  }
+})
 </script>
 
 <template>

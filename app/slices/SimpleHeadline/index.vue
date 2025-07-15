@@ -62,7 +62,8 @@ section:where([bg-neutral-0], .bg-neutral-0):not(
       [data-slice-type='grid-section'],
       [data-slice-type='banner'],
       [data-slice-type='pill-link'],
-      [data-slice-type='crypto-map-continent-selector']
+      [data-slice-type='crypto-map-continent-selector'],
+      [data-slice-type='buy-and-sell-hero']
     )
   )
   + section[data-slice-type='simple-headline'].bg-neutral-0 {
