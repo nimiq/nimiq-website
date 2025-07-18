@@ -198,6 +198,7 @@ export default defineNuxtConfig({
     // Path redirects
     '/sp': { redirect: '/siliconparadise' },
     '/sp/freecrypto': { redirect: '/siliconparadise?freecrypto#promo' },
+    '/cplink': { redirect: '/cryptopaymentlink' },
     '/exchanges': { redirect: '/buy-and-sell' },
     '/community-funding': { redirect: '/community/funding' },
 
