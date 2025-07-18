@@ -29,7 +29,7 @@ useIntersectionObserver(articleEl, () => {
         <template #bottom>
           <div flex="~ gap-x-32 gap-y-20 wrap items-baseline">
             <SelectRoot v-model="selected">
-              <SelectTrigger flex="~ items-center gap-12" outline-none px-16 py-10 rounded-full bg-gradient-green>
+              <SelectTrigger flex="~ items-center gap-12" outline-none px-16 py-10 rounded-full bg-gradient-green aria-label="Select Litepaper Version">
                 <SelectValue text="f-sm white" nq-label />
                 <div i-nimiq:triangle-down text="10 white" />
               </SelectTrigger>

@@ -77,9 +77,12 @@ export default {
 }
 
 export function getSiteUrl(environment: EnvironmentName) {
-  if (environment === 'github-pages')
-    return 'https://nimiq.github.io'
-  if (environment === 'nuxthub-production')
-    return 'https://nimiq.com'
-  return ''
+  switch (environment) {
+    case 'github-pages':
+      return 'https://nimiq.github.io'
+    case 'production':
+      return 'https://nimiq.com'
+    default:
+      return ''
+  }
 }

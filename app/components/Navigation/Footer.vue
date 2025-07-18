@@ -20,7 +20,7 @@ const bgClass = getColorClass(bgColor)
       </div>
 
       <div text="f-sm neutral-700" self-end area-meta>
-        <NuxtLink to="/" group flex w-max>
+        <NuxtLink to="/" group flex w-max aria-label="Go to Homepage">
           <div h-20="!" w-84="!" op-80 i-nimiq:logos-nimiq-horizontal-mono group-hocus:i-nimiq:logos-nimiq-horizontal />
         </NuxtLink>
         <p v-if="navigation?.nimiqShortDescription" f-mt-xs>

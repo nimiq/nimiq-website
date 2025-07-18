@@ -87,6 +87,7 @@ onMounted(() => {
           target="_blank" size-full
           :to="getLink(socialMedias[item.social]!.link)"
           :class="{ '!animate-none': item.social }"
+          :aria-label="`Visit Nimiq on ${item.social === 'x' ? 'Twitter' : item.social}`"
         >
           <div v-if="item.social === 'youtube'" i-nimiq:logos-youtube-mono text="53 white" />
           <div v-if="item.social === 'x'" i-nimiq:logos-twitter-mono text="64 white" />

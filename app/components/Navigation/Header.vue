@@ -65,7 +65,7 @@ const transitionProps = computed(() => ({
     :transition="transitionProps"
     :data-scrolled="scrolled ? '' : undefined"
   >
-    <NuxtLink to="/">
+    <NuxtLink to="/" aria-label="Nimiq homepage">
       <div class="dark:i-nimiq:logos-nimiq-white-horizontal" text-24 i-nimiq:logos-nimiq-horizontal />
     </NuxtLink>
     <NuxtLink v-if="navigation!.hotCtaLink" :to="navigation!.hotCtaLink" bg="neutral/15 hocus:neutral/20" :class="{ 'children:delay-200': direction === 'bottom' }" external text-neutral mr-auto gap-x-9 truncate nq-pill children:transition-colors>

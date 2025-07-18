@@ -10,36 +10,16 @@ interface PrerenderPagesOptions {
   showDrafts?: boolean
 }
 
-// const pages = [
-//   '/',
-//   '/new-wallet',
-//   '/cryptopaymentlink',
-//   '/nimiq-pay',
-//   '/new-buy-and-sell',
-//   '/contact',
-//   '/newsletter',
-//   '/privacy',
-//   '/blog',
-//   '/team',
-//   '/roadmap',
-//   '/bug-bounty',
-//   '/albatross',
-//   '/community',
-//   '/community/funding',
-//   '/apps',
-//   '/about',
+// These pages are excluded from the prerender process
+export const EXCLUDED_PAGES = [
+  // Custom apps built by other projects
+  '/vote',
+  '/cards',
 
-//   '/litepaper',
-//   '/onepager',
-//   '/staking',
-// ]
-
-// if (env !== 'github-pages') {
-// const env = process.env.NUXT_ENVIRONMENT
-//   pages.push('/litepaper') // TODO Figure out why it shows 500
-//   pages.push('/onepager') // TODO Figure out why it shows 500
-//   pages.push('/staking') // TODO Figure out why it shows 500
-// }
+  // HTML pages found in the public folder
+  '/activation/privacy',
+  '/terms',
+]
 
 export async function getDynamicPages(options: PrerenderPagesOptions) {
   const pagesUrl = await buildPrismicUrl('page', options)
@@ -48,7 +28,7 @@ export async function getDynamicPages(options: PrerenderPagesOptions) {
   const blogPostsUrl = await buildPrismicUrl('blog_page', options)
   const blogArticles = await getBlogPosts(blogPostsUrl).then(posts => posts.map(post => `/blog/${post.slug}`))
 
-  return [...pages, ...blogArticles]
+  return [...pages, ...blogArticles].filter(page => !EXCLUDED_PAGES.includes(page))
 }
 
 async function getPages(url: URL) {
