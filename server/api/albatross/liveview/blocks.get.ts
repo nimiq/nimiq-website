@@ -33,7 +33,7 @@ export default defineWebSocketHandler({
     initRpcClient({ url: nodeRpcUrl })
 
     // Subscribe to new blocks
-    const eventEmitter = await subscribeForHeadBlock(false)
+    const eventEmitter = await subscribeForHeadBlock(true)
     eventEmitter.addEventListener('data', async (event: CustomEvent) => {
       const { data: block } = event.detail
       if (block) {
@@ -82,6 +82,7 @@ export default defineWebSocketHandler({
   },
 
   error(_peer, _event) {
+    console.error('Albatross Blocks WebSocket error', _event)
     if (closeFn)
       closeFn()
   },
