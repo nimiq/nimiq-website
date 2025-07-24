@@ -1,4 +1,5 @@
 import process from 'node:process'
+import { useNuxt } from '@nuxt/kit'
 import { defineNuxtConfig } from 'nuxt/config'
 import { array, boolean, object, optional, string } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
@@ -40,8 +41,8 @@ export default defineNuxtConfig({
     'modules:before': () => {
       // Remove @nuxthub/core if not using NuxtHub
       if (!environment.useNuxtHub) {
-        const config = this as any
-        config.modules = config.modules.filter((module: string) => module !== '@nuxthub/core')
+        const nuxt = useNuxt()
+        nuxt.options.modules = (nuxt.options.modules as string[]).filter(module => module !== '@nuxthub/core')
       }
     },
   },
