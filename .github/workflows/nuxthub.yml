@@ -30,6 +30,6 @@ jobs:
         uses: nuxt-hub/action@v2
         with:
           project-key: nimiq-website-iem5
-          build-command: build:nuxthub
+          build-command: 'build:nuxthub'
         env:
           NUXTHUB_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
