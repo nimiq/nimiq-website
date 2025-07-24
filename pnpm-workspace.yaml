@@ -9,7 +9,7 @@ catalog:
   nuxt-safe-runtime-config: ^0.0.3
 catalogs:
   build:
-    '@nuxt/kit': ^3.17.3
+    '@nuxt/kit': ^4.0.0
     vite-plugin-top-level-await: ^1.5.0
     vite-plugin-wasm: ^3.4.1
     wrangler: ^4.15.2
@@ -20,9 +20,9 @@ catalogs:
     '@pinia/nuxt': ^0.11.1
     '@unovis/ts': 1.5.1
     '@unovis/vue': 1.5.1
-    '@vueuse/core': ^13.2.0
-    '@vueuse/nuxt': ^13.2.0
-    '@vueuse/router': ^13.2.0
+    '@vueuse/core': ^13.5.0
+    '@vueuse/nuxt': ^13.5.0
+    '@vueuse/router': ^13.5.0
     medium-zoom: ^1.1.0
     pinia: ^3.0.3
     reka-ui: ^2.2.1
@@ -45,16 +45,16 @@ catalogs:
   nuxt:
     '@nuxt/fonts': ^0.11.4
     '@nuxt/image': 2.0.0-alpha.1
-    '@nuxthub/core': ^0.8.27
+    '@nuxthub/core': ^0.9.0
     '@nuxtjs/device': ^3.2.4
     '@nuxtjs/prismic': ^4.1.0
-    nuxt: ^3.17.3
+    nuxt: ^4.0.0
     nuxt-module-feed: ^1.1.4
     unplugin-vue-router: ^0.12.0
   prismic:
     '@prismicio/client': ^7.17.2
     '@prismicio/richtext': ^2.1.5
-    '@slicemachine/adapter-nuxt': ^0.3.77
+    '@slicemachine/adapter-nuxt': 0.3.81-alpha.lh-nuxt-4-support.2
     slice-machine-ui: ^2.16.0
   server:
     consola: ^3.4.2

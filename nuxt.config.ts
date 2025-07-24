@@ -33,8 +33,9 @@ export default defineNuxtConfig({
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
     './modules/prerender-routes',
-    environment.useNuxtHub ? '@nuxthub/core' : null,
-  ],
+    // Conditionally add @nuxthub/core based on environment
+    ...(environment.useNuxtHub ? ['@nuxthub/core'] : []),
+  ].filter(Boolean),
 
   devtools: { enabled: true },
 
