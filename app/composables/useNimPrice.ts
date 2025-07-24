@@ -12,7 +12,7 @@ export function useNimPrice() {
     key: computed(() => ['nim-price', 'now', currency.value]),
     query: async () => {
       const rates = await getExchangeRates([CryptoCurrency.NIM], [currency.value])
-      return rates.nim[currency.value?.toLowerCase()] || 0
+      return rates.nim[currency.value?.toLowerCase() as keyof typeof rates.nim] || 0
     },
     staleTime: 60 * 1000,
   })

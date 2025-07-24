@@ -46,7 +46,7 @@ export function useSyncAmountInputs() {
 
   invoke(async () => {
     await until(price).toMatch(v => v !== undefined)
-    fiatAmount.value = price.value
+    fiatAmount.value = price.value!
   })
 
   const fiatKey = computed(() => lastEdited.value === 'crypto' || lastEdited.value === 'loading' ? fiatAmount.value : 'fiat')
