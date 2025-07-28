@@ -1,5 +1,4 @@
 import process from 'node:process'
-import { useNuxt } from '@nuxt/kit'
 import { defineNuxtConfig } from 'nuxt/config'
 import { array, boolean, object, optional, string } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
@@ -34,18 +33,8 @@ export default defineNuxtConfig({
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
     './modules/prerender-routes',
-    '@nuxthub/core',
-  ],
-
-  hooks: {
-    'modules:before': () => {
-      // Remove @nuxthub/core if not using NuxtHub
-      if (!environment.useNuxtHub) {
-        const nuxt = useNuxt()
-        nuxt.options.modules = (nuxt.options.modules as string[]).filter(module => module !== '@nuxthub/core')
-      }
-    },
-  },
+    environment.useNuxtHub && '@nuxthub/core',
+  ].filter(Boolean),
 
   devtools: { enabled: true },
 
