@@ -1,10 +1,8 @@
 <script setup lang="ts">
 const { data: socialMedias } = await useSocialMedias()
 const { data: navigation } = await useNavigation()
-const internalProjectLinks = computed(() => {
-  return navigation.value!.projectLinks.filter(link => link.href.link_type === 'Document')
-})
 
+const internalProjectLinks = computed(() => navigation.value!.projectItems.filter(hasLink))
 const selectedApp = ref(0)
 
 // if we are in / then is home
