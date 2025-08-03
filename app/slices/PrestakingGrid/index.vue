@@ -18,7 +18,7 @@ defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
     <Ember bottom-156 right="40 md:170" :scale=".85" />
     <Ember hidden bottom-532 left-160 md:block :scale=".75" :opacity=".25" />
     <Ember hidden bottom-682 left-490 md:block :scale=".65" :opacity=".25" />
-    <PrismicLink internal-component="a" :field="slice.primary.cta" mt-32 z-10 nq-arrow nq-pill-lg nq-pill-blue>
+    <PrismicLink :field="slice.primary.cta" mt-32 z-10 nq-arrow nq-pill-lg nq-pill-blue>
       {{ slice.primary.cta_label }}
     </PrismicLink>
   </section>

@@ -33,24 +33,24 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
     <div v-if="showLink" flex="~ wrap gap-x-32 gap-y-16 items-center" f-mt-lg style="--nq-font-size-min:18;--nq-font-size-max:22">
       <PrismicLink v-if="hasLink(primary.link)" :field="primary.link" nq-arrow nq-pill-lg nq-pill-blue dark:nq-pill-white />
 
-      <PrismicLink v-if="hasVideoLink" internal-component="a" un-text="neutral-700 hocus:neutral-800" transition-colors :field="p.videoHref!" flex="~ gap-10 items-center">
+      <PrismicLink v-if="hasVideoLink" un-text="neutral-700 hocus:neutral-800" transition-colors :field="p.videoHref!" flex="~ gap-10 items-center">
         <div text-16 i-nimiq:triangle-right />
         <span font-semibold>
           {{ p.videoLabel }}
         </span>
       </PrismicLink>
 
-      <PrismicLink v-if="hasSecondaryLink" internal-component="a" :field="p.secondaryLink!" un-text-white font-bold nq-arrow />
+      <PrismicLink v-if="hasSecondaryLink" :field="p.secondaryLink!" un-text-white font-bold nq-arrow />
     </div>
 
     <ul v-if="hasAnApp" f-mt-xl flex="~ wrap gap-32 lg:gap-40">
       <li v-if="hasAppStore">
-        <PrismicLink internal-component="a" :field="p.appStore!">
+        <PrismicLink :field="p.appStore!">
           <NuxtImg v-if="hasAppStore" src="/assets/images/apple-store-badge.png" h="32 lg:40" alt="Get it on Apple Store" />
         </PrismicLink>
       </li>
       <li v-if="hasPlayStore">
-        <PrismicLink internal-component="a" :field="p.playStore!">
+        <PrismicLink :field="p.playStore!">
           <NuxtImg src="/assets/images/google-play-badge.png" h="32 lg:40" alt="Get it on Google Play" />
         </PrismicLink>
       </li>

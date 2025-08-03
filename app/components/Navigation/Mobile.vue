@@ -24,17 +24,17 @@ const { data: navigation } = await useNavigation()
       >
         <div class="mx-auto mb-32 rounded-full bg-gray-300 flex-shrink-0 h-4 w-80" />
         <div class="mb-16 flex gap-20">
-          <PrismicLink v-if="navigation?.getStartedLinks.at(0)?.href" internal-component="a" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
+          <PrismicLink v-if="navigation?.getStartedLinks.at(0)?.href" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
             {{ navigation.getStartedLinks[0]?.label }}
           </PrismicLink>
-          <PrismicLink v-if="navigation?.getStartedLinks.at(1)?.href" internal-component="a" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
+          <PrismicLink v-if="navigation?.getStartedLinks.at(1)?.href" :field="navigation.getStartedLinks.at(1)!.href" nq-arrow nq-pill-blue>
             {{ navigation.getStartedLinks[1]?.label }}
           </PrismicLink>
         </div>
         <!-- class="nq-scrollbar-hide" -->
         <div of-x-hidden of-y-auto>
           <div class="my-16">
-            <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" internal-component="a" :field="navigation.getStartedLinks.at(2)!.href">
+            <PrismicLink v-if="navigation?.getStartedLinks.at(2)?.href" :field="navigation.getStartedLinks.at(2)!.href">
               <p text="f-sm neutral-700" font-bold nq-arrow>
                 {{ navigation.getStartedLinks[2]?.label }}
               </p>
@@ -62,7 +62,7 @@ const { data: navigation } = await useNavigation()
                   </AccordionTrigger>
                 </AccordionHeader>
                 <AccordionContent class="content" of-hidden>
-                  <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" internal-component="a" :field="href" flex="~ items-center gap-16" font-semibold px-16 pb-10 pt-14 rounded-4 bg-white w-full whitespace-nowrap>
+                  <PrismicLink v-for="({ label: linkLabel, href }, j) in links" :key="j" :field="href" flex="~ items-center gap-16" font-semibold px-16 pb-10 pt-14 rounded-4 bg-white w-full whitespace-nowrap>
                     {{ linkLabel }}
                   </PrismicLink>
                 </AccordionContent>

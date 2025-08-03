@@ -47,7 +47,7 @@ const bgClass = getColorClass(bgColor)
         </p>
         <ul f-mt-md :aria-label="`${label} links`" role="list">
           <li v-for="({ href, label: linkLabel }, j) in links" :key="j" f-mt-xs>
-            <PrismicLink internal-component="a" :field="href" font-semibold un-text="f-sm neutral-800 hocus:neutral-900" transition-colors>
+            <PrismicLink :field="href" font-semibold un-text="f-sm neutral-800 hocus:neutral-900" transition-colors>
               {{ linkLabel }}
             </PrismicLink>
           </li>

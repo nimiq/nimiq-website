@@ -59,7 +59,7 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
         mx-auto px-32 rounded-8 w-full shadow relative of-hidden
       >
         <PrismicLink
-          v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j" internal-component="a"
+          v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j"
           :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1"
           :style="{ backgroundColor: color }" :class="[classes]"
           pointer-cursor text-white rounded-full size-104 absolute
@@ -105,7 +105,7 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
             />
           </div>
           <PrismicLink
-            v-if="hasLink(linkHref) && linkLabel" internal-component="a" :field="linkHref" mt="32 md:24"
+            v-if="hasLink(linkHref) && linkLabel" :field="linkHref" mt="32 md:24"
             nq-arrow nq-pill-lg
             :class="{ 'md:mx-auto nq-pill-blue': hasBgItems, 'lg:mr-128 nq-pill-tertiary text-blue': !hasBgItems }"
           >

@@ -49,7 +49,7 @@ watch(subheadlineStr, () => {
     <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text="neutral-800 f-xl" />
-      <PrismicLink internal-component="a" :field="cta" mt-40 nq-arrow nq-pill-lg nq-pill-blue>
+      <PrismicLink :field="cta" mt-40 nq-arrow nq-pill-lg nq-pill-blue>
         {{ ctaLabel }}
       </PrismicLink>
     </div>

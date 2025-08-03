@@ -54,10 +54,10 @@ function mediaType(item: ZigZagContentSliceDefaultItem) {
           </div>
           <RichText wrapper="div" nq-prose-compact f-mt-lg :field="item.description" />
           <div flex="~ gap-24 md:col lg:row" max-w-lg f-mt-sm>
-            <PrismicLink v-if="hasLink(item.buttonHref)" internal-component="a" :field="item.buttonHref" font-semibold nq-arrow nq-pill-lg nq-pill-blue>
+            <PrismicLink v-if="hasLink(item.buttonHref)" :field="item.buttonHref" font-semibold nq-arrow nq-pill-lg nq-pill-blue>
               {{ item.buttonLabel }}
             </PrismicLink>
-            <PrismicLink v-if="hasLink(item.secondaryButtonHref)" internal-component="a" :field="item.secondaryButtonHref" un-text-blue font-semibold nq-arrow>
+            <PrismicLink v-if="hasLink(item.secondaryButtonHref)" :field="item.secondaryButtonHref" un-text-blue font-semibold nq-arrow>
               {{ item.secondaryButtonLabel }}
             </PrismicLink>
           </div>

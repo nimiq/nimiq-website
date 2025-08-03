@@ -8,7 +8,7 @@ const bgClass = getColorClass(props.slice.primary.bgColor)
 <template>
   <section :class="bgClass" relative z-1>
     <div grid="~ gap-20 cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] justify-center" w-full>
-      <PrismicLink v-for="({ color, headline, iconName, linkHref, shape, subline }, i) in slice.items" :key="i" internal-component="a" :style="`--c:${color}`" :field="linkHref" p="32 lg:40 2xl:48" group relative nq-hoverable class="hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c">
+      <PrismicLink v-for="({ color, headline, iconName, linkHref, shape, subline }, i) in slice.items" :key="i" :style="`--c:${color}`" :field="linkHref" p="32 lg:40 2xl:48" group relative nq-hoverable class="hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c">
         <div v-if="shape === 'Hexagons'" rounded-8 pointer-events-none inset-0 absolute of-hidden>
           <div text="neutral-500/60 group-hocus:white/10" size-full pointer-events-none relative children:transition-colors>
             <div bottom="-50%" text-360 left--164 absolute i-nimiq:logos-nimiq-mono />

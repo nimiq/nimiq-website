@@ -75,7 +75,7 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                 </div>
               </div>
               <PrismicLink
-                v-if="hasLink(link)" :field="link" internal-component="a"
+                v-if="hasLink(link)" :field="link"
                 external f-mt-md nq-arrow nq-pill-lg nq-pill-white
               />
               <div v-if="kind !== 'Europe'" f-mt-sm>
@@ -84,13 +84,13 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                 </h4>
                 <div flex="~ gap-8 items-center" text-white f-mt-2xs>
                   <PrismicLink
-                    :field="socialMedias!.x.link" internal-component="a" bg="white/20 hocus:white/40"
+                    :field="socialMedias!.x.link" bg="white/20 hocus:white/40"
                     external stack rounded-full size-40 transition-colors
                   >
                     <div text="white/80 f-xl" transition-colors i-nimiq:logos-twitter-mono />
                   </PrismicLink>
                   <PrismicLink
-                    :field="socialMedias!.telegram.link" internal-component="a" bg="white/20 hocus:white/40"
+                    :field="socialMedias!.telegram.link" bg="white/20 hocus:white/40"
                     external stack rounded-full size-40 transition-colors
                   >
                     <div

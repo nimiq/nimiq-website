@@ -32,8 +32,8 @@ if (hasLink(cta)) {
 
     <!-- TODO Deprecate this -->
     <template v-if="links.length === 0 && cta && hasLink(cta)">
-      <PrismicLink v-if="!ctaIsVideo" internal-component="a" :field="cta" f-mt-lg nq-arrow nq-pill-lg nq-pill-blue :class="{ 'md:mx-auto': !leftAlign }" />
-      <PrismicLink v-else internal-component="a" :field="cta" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue p-8 rounded-4 transition-colors f-mt-sm>
+      <PrismicLink v-if="!ctaIsVideo" :field="cta" f-mt-lg nq-arrow nq-pill-lg nq-pill-blue :class="{ 'md:mx-auto': !leftAlign }" />
+      <PrismicLink v-else :field="cta" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue p-8 rounded-4 transition-colors f-mt-sm>
         <div ring="1.5 blue" stack text-16 rounded-full size-32>
           <div i-nimiq:triangle-right />
         </div>
@@ -47,7 +47,7 @@ if (hasLink(cta)) {
       <ul flex="~ gap-16 lg:gap-20 wrap" f-mt-md>
         <li v-for="(link, i) in links" :key="i">
           <PrismicLink
-            v-if="link.variant?.startsWith('nq-pill')" internal-component="a" :field="link" nq-arrow nq-pill-lg :class="{
+            v-if="link.variant?.startsWith('nq-pill')" :field="link" nq-arrow nq-pill-lg :class="{
               'md:mx-auto': !leftAlign,
               'nq-pill-blue': link.variant === 'nq-pill-blue',
               'nq-pill-secondary': link.variant === 'nq-pill-secondary',
@@ -56,7 +56,7 @@ if (hasLink(cta)) {
           />
 
           <PrismicLink
-            v-else-if="link.variant === 'video'" internal-component="a" :field="link" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue p-8 rounded-4 transition-colors
+            v-else-if="link.variant === 'video'" :field="link" flex="~ gap-12 items-center" hocus:bg="blue/6" un-text-blue p-8 rounded-4 transition-colors
           >
             <div ring="1.5 blue" stack text-16 rounded-full size-32>
               <div i-nimiq:triangle-right />

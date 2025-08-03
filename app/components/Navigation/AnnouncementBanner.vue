@@ -13,7 +13,7 @@ const {
     <p text="md white" font-semibold z-1>
       {{ headline }}
     </p>
-    <PrismicLink v-if="hasLink(ctaLink)" internal-component="a" :field="ctaLink" mx-0 z-1 nq-pill-secondary hocus:bg-neutral-300>
+    <PrismicLink v-if="hasLink(ctaLink)" :field="ctaLink" mx-0 z-1 nq-pill-secondary hocus:bg-neutral-300>
       {{ ctaLabel }}
     </PrismicLink>
 

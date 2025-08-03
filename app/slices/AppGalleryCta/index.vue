@@ -21,7 +21,7 @@ const appsToShow = computed(() => {
 <template>
   <section :class="bgColor">
     <PrismicLink
-      internal-component="a" :field="slice.primary.cta"
+      :field="slice.primary.cta"
       grid="~ cols-1 md:cols-[1fr_3fr] rows-[1fr_auto] gap-x-96 gap-y-32 md:gap-y-128" w-full f-p-lg nq-hoverable
     >
       <div flex="~ col">

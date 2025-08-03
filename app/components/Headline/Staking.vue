@@ -34,7 +34,7 @@ const id = `terms-note-${useId()}`
     <ul v-if="links.length > 0" flex="~ gap-16 lg:gap-20 wrap">
       <li v-for="(link, i) in links" :key="i">
         <PrismicLink
-          internal-component="a" :field="link" f-mt-lg nq-arrow nq-pill-lg md:mx-auto :class="{
+          :field="link" f-mt-lg nq-arrow nq-pill-lg md:mx-auto :class="{
             'nq-pill-blue': link.variant === 'nq-pill-blue',
             'nq-pill-secondary': link.variant === 'nq-pill-secondary',
             'nq-pill-tertiary bg-white text-neutral': link.variant === 'nq-pill-tertiary',

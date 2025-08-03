@@ -15,7 +15,7 @@ const bgClass = getColorClass(slice.primary.bgColor)
         <RichText wrapper="div" :field="title" />
         <RichText wrapper="div" :field="description" f-mt-sm />
         <div f-mt-md flex="~ gap-14 wrap">
-          <PrismicLink v-for="(link, j) in links.filter(hasLink)" :key="j" internal-component="a" :field="link" :class="j === 0 ? 'nq-pill-blue' : 'nq-pill-secondary'" nq-arrow />
+          <PrismicLink v-for="(link, j) in links.filter(hasLink)" :key="j" :field="link" :class="j === 0 ? 'nq-pill-blue' : 'nq-pill-secondary'" nq-arrow />
         </div>
       </li>
     </ul>
