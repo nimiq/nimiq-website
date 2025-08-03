@@ -48,11 +48,9 @@ const isHome = route.fullPath === '/'
               </p>
 
               <ul role="list" :aria-label="`${navigation.howToTitle} links`" mt-18 flex flex-wrap gap-x-32>
-                <li v-for="({ href, label }, index) in navigation.howToLinks" :key="`how-to-link-${index}`">
+                <li v-for="(link, index) in navigation.howToLinks" :key="`how-to-link-${index}`">
                   <NavigationMenuLink as-child>
-                    <PrismicLink :field="href" un-text="neutral-700 hocus:neutral-800" transition-colors nq-arrow>
-                      {{ label }}
-                    </PrismicLink>
+                    <PrismicLink :field="link" un-text="neutral-700 hocus:neutral-800" transition-colors nq-arrow />
                   </NavigationMenuLink>
                 </li>
               </ul>
@@ -61,7 +59,7 @@ const isHome = route.fullPath === '/'
         </NavigationMenuContent>
       </NavigationMenuItem>
 
-      <NavigationMenuItem v-if="navigation.techLinks.length > 0">
+      <NavigationMenuItem v-if="navigation.techItems.length > 0">
         <NavigationMenuTrigger class="trigger">
           {{ navigation.techGroupName }}
           <div i-nimiq:chevron-down />
@@ -69,11 +67,9 @@ const isHome = route.fullPath === '/'
         <NavigationMenuContent min-w-max left-0 top-0 absolute motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
           <div>
             <ul :aria-label="`${navigation.techGroupName} links`" role="link" grid="~ cols-2 gap-x-8" p-24>
-              <li v-for="({ label, href }) in navigation.techLinks" :key="label!" flex w-full class="link-item">
+              <li v-for="(item, index) in navigation.techItems" :key="`tech-item-${index}`" flex w-full class="link-item">
                 <NavigationMenuLink as-child>
-                  <PrismicLink :field="href">
-                    {{ label }}
-                  </PrismicLink>
+                  <PrismicLink :field="item" />
                 </NavigationMenuLink>
               </li>
             </ul>
@@ -89,7 +85,7 @@ const isHome = route.fullPath === '/'
         </NavigationMenuContent>
       </NavigationMenuItem>
 
-      <NavigationMenuItem v-if="navigation.communityGroupName && navigation.communityLinks.length > 0">
+      <NavigationMenuItem v-if="navigation.communityGroupName && navigation.communityItems.length > 0">
         <NavigationMenuTrigger class="trigger">
           {{ navigation.communityGroupName }}
           <div i-nimiq:chevron-down />
@@ -97,11 +93,9 @@ const isHome = route.fullPath === '/'
         <NavigationMenuContent min-w-max left-0 top-0 absolute motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
           <div p-16 grid grid-cols-1 max-w-6xl>
             <ul :aria-label="`${navigation.communityGroupName} links`" role="link" flex="~ col" pb-24>
-              <li v-for="({ label, href }) in navigation.communityLinks" :key="label!" flex w-full class="link-item">
+              <li v-for="(item, index) in navigation.communityItems" :key="`community-item-${index}`" flex w-full class="link-item">
                 <NavigationMenuLink as-child>
-                  <PrismicLink :field="href">
-                    {{ label }}
-                  </PrismicLink>
+                  <PrismicLink :field="item" />
                 </NavigationMenuLink>
               </li>
             </ul>
@@ -120,11 +114,9 @@ const isHome = route.fullPath === '/'
         <NavigationMenuContent min-w-240 top-0 absolute motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
           <div p-16 grid grid-cols-1>
             <ul :aria-label="`${navigation.projectGroupName} links`" role="link" flex="~ col">
-              <li v-for="({ label, href }) in navigation.projectLinks" :key="label!" flex w-full class="link-item">
+              <li v-for="(item, index) in navigation.projectItems" :key="`project-item-${index}`" flex w-full class="link-item">
                 <NavigationMenuLink as-child>
-                  <PrismicLink :field="href">
-                    {{ label }}
-                  </PrismicLink>
+                  <PrismicLink :field="item" />
                 </NavigationMenuLink>
               </li>
             </ul>

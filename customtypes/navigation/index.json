@@ -53,6 +53,17 @@
                 "label": "Link href*",
                 "select": null
               }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
             }
           }
         }
@@ -63,27 +74,6 @@
           "placeholder": "How to"
         },
         "type": "Text"
-      },
-      "howToLinks": {
-        "type": "Group",
-        "config": {
-          "label": "How to links*",
-          "fields": {
-            "href": {
-              "type": "Link",
-              "config": {
-                "label": "Link href*",
-                "select": null
-              }
-            },
-            "label": {
-              "type": "Text",
-              "config": {
-                "label": "Link label*"
-              }
-            }
-          }
-        }
       },
       "appsAdditionalFooterLinks": {
         "config": {
@@ -105,6 +95,17 @@
           }
         },
         "type": "Group"
+      },
+      "howToLinks": {
+        "type": "Link",
+        "config": {
+          "label": "How To Links",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
       }
     },
     "Tech": {
@@ -163,6 +164,17 @@
           }
         },
         "type": "Group"
+      },
+      "techItems": {
+        "type": "Link",
+        "config": {
+          "label": "Tech Items",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
       }
     },
     "Community": {
@@ -192,6 +204,17 @@
               }
             }
           }
+        }
+      },
+      "communityItems": {
+        "type": "Link",
+        "config": {
+          "label": "Community Items",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
         }
       },
       "communityAdditionalFooterLinks": {
@@ -265,6 +288,17 @@
           }
         },
         "type": "Group"
+      },
+      "projectItems": {
+        "type": "Link",
+        "config": {
+          "label": "Project Items",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
       }
     },
     "Get Started": {
