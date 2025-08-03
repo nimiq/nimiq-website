@@ -35,8 +35,6 @@ useIntersectionObserver(articleRef, () => {
   mediumZoom(':is(header,article) img', { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
 })
 
-useDark()
-
 if (post.value.data.body.at(0)?.primary)
   // @ts-expect-error The background color is always present in this case
   post.value.data.body[0]!.primary.bgColor = 'grey'
