@@ -101,7 +101,13 @@ export default defineNuxtConfig({
     preview: false,
     toolbar: false,
     endpoint: repositoryName,
-    clientConfig: { accessToken: prismicAccessToken },
+    clientConfig: {
+      accessToken: prismicAccessToken,
+      routes: [
+        { type: 'page', path: '/:uid' },
+        { type: 'blog_page', path: '/blog/:uid' },
+      ],
+    },
   },
 
   runtimeConfig: {
