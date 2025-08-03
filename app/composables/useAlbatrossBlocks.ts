@@ -11,9 +11,8 @@ function _useAlbatrossBlocks() {
     }
   }
 
-  // Create state with useState to share between components
-
-  const url = `${useRuntimeConfig().public.apiDomain}/api/albatross/liveview/blocks`
+  const { apiDomain } = useRuntimeConfig().public
+  const url = new URL('/api/albatross/liveview/blocks', apiDomain)
   const { status, data } = useWebSocket(url, {
     onError() {
       console.error('[Albatross Liveview] Error connecting to Albatross Blocks WebSocket')
