@@ -1,6 +1,4 @@
-import type { MaybeRef } from '@vueuse/core'
 import { animate } from 'motion-v'
-import { computed, reactive, toValue, watch } from 'vue'
 
 interface UseMotionAnimatedTextsOptions {
   duration?: MaybeRef<number>

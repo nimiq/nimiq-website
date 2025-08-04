@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useWindowScroll } from '@vueuse/core'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
-
 function getScrollbarWidth(): number {
   // Create a temporary div with scrollbar
   const outer = document.createElement('div')

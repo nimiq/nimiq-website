@@ -1,12 +1,37 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
+import type { ContinentStat } from '~/composables/useCryptoMapStats'
+import { useQuery } from '@pinia/colada'
+import { useIntersectionObserver } from '@vueuse/core'
 
 const props = defineProps(getSliceComponentProps<Content.CryptoMapContinentSelectorSlice>())
 
 const activeItemIndex = ref(0)
 const activeItem = computed(() => props.slice.primary.continents[activeItemIndex.value])
 
-const { cryptoMapContinentsStats: stats } = useCryptoMapStats()
+const sectionElement = ref<HTMLElement | null>(null)
+const isComponentVisible = ref(false)
+
+useIntersectionObserver(
+  sectionElement,
+  ([entry]) => {
+    isComponentVisible.value = entry?.isIntersecting || false
+  },
+  { threshold: 0.1, rootMargin: '100px' },
+)
+
+const { cryptoMapSupabase } = useRuntimeConfig().public
+
+function getSupabaseEndpoint(fn: string) {
+  return `${cryptoMapSupabase.url}/rest/v1/rpc/${fn}?apikey=${cryptoMapSupabase.key}`
+}
+
+const { data: stats } = useQuery({
+  key: () => ['get_stats_for_all_continents'],
+  query: () => $fetch<ContinentStat[]>(getSupabaseEndpoint('get_stats_for_all_continents')),
+  enabled: isComponentVisible,
+})
+
 const locale = useLocale()
 
 const formatter = computed(() => new Intl.NumberFormat(locale.value, { notation: 'compact', maximumFractionDigits: 1 }))
@@ -67,7 +92,7 @@ const allowMapInteraction = ref(false)
 </script>
 
 <template>
-  <section px-0 pb-0 bg-neutral-0 max-lg:mx-0 data-slice-type="crypto-map-continent-selector">
+  <section ref="sectionElement" px-0 pb-0 bg-neutral-0 max-lg:mx-0 data-slice-type="crypto-map-continent-selector">
     <div max-w="none lg:$nq-max-width children:none" w-screen grid="~ cols-1 lg:cols-[min(calc(100vw-64px),411px)_1fr] gap-x-24">
       <ul flex="~ lg:col gap-16" max-lg="snap-x snap-mandatory scroll-pl-32 of-x-auto nq-scrollbar-hide py-20 lg:py-40">
         <li

@@ -12,8 +12,7 @@ interface SupplyResponse {
   mined: number
 }
 
-export function useStakingInfo() {
-  // const validatorsApiBaseUrl = useRuntimeConfig().public.validatorsApi
+export function useStakingInfo(options: { enabled?: MaybeRef<boolean> } = {}) {
   const validatorsApiBaseUrl = 'https://dev.validators-api-mainnet.pages.dev'
 
   const { data: stakingRatio, state: stakingRatioState } = useQuery({
@@ -23,8 +22,9 @@ export function useStakingInfo() {
       const stakedRatio = staking / circulating
       return stakedRatio
     },
-    staleTime: 60 * 5 * 1e3, // 5 min freshness
+    staleTime: 60 * 5 * 1e3,
     placeholderData: previousData => previousData,
+    enabled: computed(() => toValue(options.enabled) ?? true),
   })
 
   const annualRewardPercentage = computed(() => {

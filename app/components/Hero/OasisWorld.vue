@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, RichTextField } from '@prismicio/client'
-import { useScroll } from '@vueuse/core'
 
 defineProps<{
   items: {

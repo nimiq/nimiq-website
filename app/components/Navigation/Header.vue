@@ -63,7 +63,7 @@ const transitionProps = computed(() => ({
     }"
     :animate="animateProps"
     :transition="transitionProps"
-    :data-scrolled="scrolled ? '' : undefined"
+    :data-scrolled="scrolled ? 'true' : 'false'"
   >
     <NuxtLink to="/" aria-label="Nimiq homepage">
       <div class="dark:i-nimiq:logos-nimiq-white-horizontal" text-24 i-nimiq:logos-nimiq-horizontal />

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import mediumZoom from 'medium-zoom'
-import { ref } from 'vue'
 import { components } from '~/slices'
 
 const postSlug = useRouteParams<string>('post')
@@ -73,5 +72,9 @@ if (post.value.data.body.at(0)?.primary)
 }
 :global(.medium-zoom-image--opened) {
   --uno: 'z-101 rounded-8 mt-0 bg-white';
+}
+
+:global([nq-prose] > *:not(img, video, iframe, figure, blockquote, pre, code)) {
+  --uno: 'px-0';
 }
 </style>

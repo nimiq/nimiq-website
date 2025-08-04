@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 const { bgColor, withSocials = false } = defineProps<{ bgColor: 'white' | 'grey' | 'darkblue', withSocials?: boolean }>()
 
 const { data: socialMedias } = await useSocialMedias()
@@ -13,14 +11,25 @@ const columns = ref(0)
 const gap = ref(12)
 const hexagonWidth = computed(() => gap.value * 8.75)
 
+const isVisible = shallowRef(false)
+const sectionRef = useTemplateRef<HTMLElement>('section')
+
+useIntersectionObserver(
+  sectionRef,
+  ([entry]) => {
+    isVisible.value = entry?.isIntersecting || false
+  },
+  { threshold: 0.2, rootMargin: '100px' },
+)
+
 function calculateOpacity(rowIndex: number, colIndex: number) {
   const normalizedRow = rowIndex / (rows.value - 1)
   const normalizedCol = colIndex / (columns.value - 1)
   const distance = Math.abs(normalizedRow + normalizedCol - 1)
-  const threshold = 0.8 // Adjust this value to control the path width
-  if (distance > threshold) // Hide items far from the path
+  const threshold = 0.8
+  if (distance > threshold)
     return 0
-  else // Adjust opacity based on distance from the path
+  else
     return 1 - (distance / threshold)
 }
 
@@ -54,7 +63,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section :class="bgClass" group mx-0 px-0 w-full relative z-2 of-x-hidden f-pt-2xl>
+  <section ref="section" :class="bgClass" group mx-0 px-0 w-full relative z-2 of-x-hidden f-pt-2xl>
     <div
       aria-hidden="true"
       class="grid-parent" max-w-none
@@ -67,26 +76,25 @@ onMounted(() => {
           '--row': item.rowIndex,
           '--col': item.colIndex,
           'opacity': item.opacity && !item.social ? item.opacity : 1,
-          'animation-delay': `${item.rowIndex * 0.1 + item.colIndex * 0.15}s`,
-          'animation-duration': `${(rows - item.rowIndex) * 2 + 4}s`,
         }"
         i-nimiq:logos-nimiq-mono
-        motion-safe:transition="colors duration-800 hocus:duration-100"
-        motion-safe:animate="pulse group-hocus:none"
+        transition="opacity duration-300 ease-out"
         :class="{
-          'text-[red]': item.social === 'youtube',
-          'text-black': item.social === 'x',
-          'text-[#1877f2]': item.social === 'facebook',
+          'text-[red]': item.social === 'youtube' && isVisible,
+          'text-black': item.social === 'x' && isVisible,
+          'text-[#1877f2]': item.social === 'facebook' && isVisible,
           'text-neutral-300 dark:text-neutral-500 hocus:dark:text-neutral-700 hocus:text-neutral-500': !item.social,
+          'opacity-0': item.social && !isVisible,
+          'opacity-100': item.social && isVisible,
         }"
         :data-social="item.social"
       >
         <NuxtLink
-          v-if="item.social" external
+          v-if="item.social && isVisible" external
           flex="~ justify-center items-center"
           target="_blank" size-full
           :to="getLink(socialMedias[item.social]!.link)"
-          :class="{ '!animate-none': item.social }"
+          transition="opacity duration-300 ease-out"
           :aria-label="`Visit Nimiq on ${item.social === 'x' ? 'Twitter' : item.social}`"
         >
           <div v-if="item.social === 'youtube'" i-nimiq:logos-youtube-mono text="53 white" />
@@ -99,16 +107,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-@keyframes pulse {
-  0%,
-  100% {
-    background-color: rgb(var(--nq-neutral-400));
-  }
-  50% {
-    background-color: rgb(var(--nq-neutral-500));
-  }
-}
-
 .grid-parent {
   --hexagon-h: calc(var(--hexagon-w) / 1.1111);
   --hexagon-h-half: calc(var(--hexagon-h) / 2);
@@ -121,8 +119,12 @@ onMounted(() => {
   position: relative;
   content-visibility: auto;
 
-  > *:not([data-social]) {
-    animation: pulse 2s infinite;
+  @media (prefers-reduced-motion: no-preference) {
+    > [data-social] {
+      transition:
+        opacity 300ms ease-out,
+        transform 300ms ease-out;
+    }
   }
 
   > :where(div, a) {
@@ -135,6 +137,18 @@ onMounted(() => {
       margin-top: var(--hexagon-h-half);
       grid-row-end: span 3;
     }
+  }
+
+  > [data-social]:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .grid-parent > * {
+    transition: none !important;
+    animation: none !important;
   }
 }
 </style>

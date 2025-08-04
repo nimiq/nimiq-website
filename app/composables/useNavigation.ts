@@ -65,5 +65,5 @@ function getNavigationBlocks(navigation: NavigationDocumentData) {
       label: navigation.andMoreGroupName,
       links: navigation.andMoreLinks,
     },
-  ]
+  ] as const
 }

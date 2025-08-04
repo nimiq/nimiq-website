@@ -1,11 +1,49 @@
+<script setup lang="ts">
+const circleRippleElement = ref<HTMLElement | null>(null)
+const isComponentVisible = ref(false)
+
+useIntersectionObserver(
+  circleRippleElement,
+  ([entry]) => {
+    isComponentVisible.value = entry?.isIntersecting || false
+  },
+  { threshold: 0.1, rootMargin: '50px' },
+)
+</script>
+
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1800 1800" pointer-events-none>
-    <circle cx="900" cy="900" r="900" fill-green opacity=".1" class="ripple" style="--i: 5" />
-    <!-- <circle cx="900" cy="900" r="870" fill-neutral-0 opacity=".6" class="ripple" style="--i: 4" /> -->
-    <circle cx="900" cy="900" r="757" fill-green opacity=".4" class="ripple" style="--i: 3" />
-    <circle cx="900" cy="900" r="651" fill-neutral-0 opacity=".4" class="ripple" style="--i: 2" />
-    <circle cx="900" cy="900" r="547" fill-green opacity=".2" class="ripple" style="--i: 1" />
-    <circle cx="900" cy="900" r="489" fill-neutral-0 class="ripple" style="--i:0" />
+  <svg ref="circleRippleElement" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1800 1800" pointer-events-none>
+    <circle
+      cx="900" cy="900" r="900"
+      fill-green opacity=".1"
+      class="ripple" :class="[{ 'ripple-active': isComponentVisible }]"
+      style="--i: 5"
+    />
+
+    <circle
+      cx="900" cy="900" r="757"
+      fill-green opacity=".4"
+      class="ripple" :class="[{ 'ripple-active': isComponentVisible }]"
+      style="--i: 3"
+    />
+    <circle
+      cx="900" cy="900" r="651"
+      fill-neutral-0 opacity=".4"
+      class="ripple" :class="[{ 'ripple-active': isComponentVisible }]"
+      style="--i: 2"
+    />
+    <circle
+      cx="900" cy="900" r="547"
+      fill-green opacity=".2"
+      class="ripple" :class="[{ 'ripple-active': isComponentVisible }]"
+      style="--i: 1"
+    />
+    <circle
+      cx="900" cy="900" r="489"
+      fill-neutral-0
+      class="ripple" :class="[{ 'ripple-active': isComponentVisible }]"
+      style="--i:0"
+    />
   </svg>
 </template>
 
@@ -23,9 +61,35 @@
 }
 
 .ripple {
-  animation: ripple 10s ease-in-out infinite;
   --delay: calc(var(--i) * 0.25s);
-  animation-delay: var(--delay);
   transform-origin: center;
+  animation: ripple 10s ease-in-out infinite;
+  animation-delay: var(--delay);
+  animation-play-state: paused;
+  transition: opacity 300ms ease-out;
+}
+
+.ripple-active {
+  animation-play-state: running;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .ripple {
+    animation: none !important;
+    animation-play-state: paused !important;
+  }
+
+  .ripple-active {
+    opacity: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ripple-active {
+    transition:
+      opacity 300ms ease-out,
+      transform 300ms ease-out;
+  }
 }
 </style>

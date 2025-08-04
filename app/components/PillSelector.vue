@@ -1,6 +1,5 @@
 <script setup lang="ts" generic="T">
 import type { CSSProperties } from 'vue'
-import { nextTick, ref, watch } from 'vue'
 
 defineProps<{ options: T[] }>()
 

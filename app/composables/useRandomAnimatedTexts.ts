@@ -1,7 +1,3 @@
-import type { MaybeRef } from '@vueuse/core'
-import { useIntervalFn } from '@vueuse/core'
-import { computed, ref, toValue } from 'vue'
-
 interface UseRandomAnimatedTextsOptions {
   shouldPlay?: MaybeRef<boolean>
 }

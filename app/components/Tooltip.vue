@@ -1,16 +1,57 @@
 <script setup lang="ts">
-defineProps<{ dark?: boolean }>()
+const {
+  dark = false,
+  side = 'bottom' as const,
+  sideOffset = 8,
+  collisionPadding = 8,
+} = defineProps<{
+  dark?: boolean
+  side?: 'top' | 'right' | 'bottom' | 'left'
+  sideOffset?: number
+  collisionPadding?: number
+}>()
+
+const shouldRenderPortal = shallowRef(false)
+const isOpen = shallowRef(false)
+
+function handleTriggerInteraction() {
+  if (!shouldRenderPortal.value) {
+    shouldRenderPortal.value = true
+  }
+}
+
+function handleOpenChange(open: boolean) {
+  isOpen.value = open
+  if (open) {
+    handleTriggerInteraction()
+  }
+}
 </script>
 
 <template>
-  <PopoverRoot>
-    <PopoverTrigger v-bind="$attrs" bg-transparent h-max>
+  <PopoverRoot :open="isOpen" @update:open="handleOpenChange">
+    <PopoverTrigger
+      v-bind="$attrs"
+      bg-transparent
+      h-max
+      @mouseenter="handleTriggerInteraction"
+      @focus="handleTriggerInteraction"
+    >
       <slot name="trigger">
         <div text-12 text-neutral-700 i-nimiq:info />
       </slot>
     </PopoverTrigger>
-    <PopoverPortal>
-      <PopoverContent as-child class="tooltip-animation" :side-offset="8" :collision-padding="8" side="bottom" flex="~ col" max-w-360>
+
+    <PopoverPortal v-if="shouldRenderPortal">
+      <PopoverContent
+        as-child
+        class="tooltip-animation"
+        :side-offset
+        :collision-padding
+        :side
+        flex="~ col"
+        max-w-360
+      >
         <div :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow dark scheme-dark'" p-16 rounded-8 text="neutral dark:white">
           <slot />
         </div>

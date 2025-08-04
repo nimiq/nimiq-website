@@ -58,6 +58,8 @@ watch(subheadlineStr, () => {
       height="900"
       src="/assets/images/gods-light.webp"
       alt="Nimiq Gods Rays Background"
+      loading="eager"
+      priority
       m-0 size-full pointer-events-none inset-0 absolute blur-60 brightness-80
     />
     <div bg-gradient="to-b from-darkblue/0 to-darkblue" m-0 op-80 pointer-events-none inset-0 absolute />

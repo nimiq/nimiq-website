@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
-import { computed, onMounted, ref } from 'vue'
 
 const props = defineProps(getSliceComponentProps<Content.TeamMembersSlice>())
 
