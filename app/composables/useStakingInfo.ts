@@ -13,7 +13,7 @@ interface SupplyResponse {
 }
 
 export function useStakingInfo(options: { enabled?: MaybeRef<boolean> } = {}) {
-  const validatorsApiBaseUrl = 'https://dev.validators-api-mainnet.pages.dev'
+  const validatorsApiBaseUrl = 'https://validators-api-mainnet.pages.dev'
 
   const { data: stakingRatio, state: stakingRatioState } = useQuery({
     key: ['staking_distribution'],
