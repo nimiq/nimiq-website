@@ -7,23 +7,25 @@ interface ConsentData {
 export default defineNuxtRouteMiddleware((to) => {
   const { public: { environment, enableDevAnalytics } } = useRuntimeConfig()
   const isDev = environment.name === 'local' && enableDevAnalytics
-  
-  const consent = useCookie<ConsentData | null>('nimiq-consent', { 
+
+  const consent = useCookie<ConsentData | null>('nimiq-consent', {
     default: () => null,
-    maxAge: 60 * 60 * 24 * 100
+    maxAge: 60 * 60 * 24 * 100,
   })
 
   const CONSENT_VERSION = '1.0'
-  const hasValidConsent = consent.value?.accepted && 
-                         consent.value.version === CONSENT_VERSION
+  const hasValidConsent = consent.value?.accepted
+    && consent.value.version === CONSENT_VERSION
 
-  if (!hasValidConsent) return
+  if (!hasValidConsent)
+    return
 
   if (isDev) {
+    // eslint-disable-next-line no-console
     console.log('📊 [DEV] Would track page view:', {
       url: to.fullPath,
       title: document?.title || 'Loading...',
-      matomo: `setCustomUrl: ${to.fullPath}, setDocumentTitle: ${document?.title || 'Loading...'}, trackPageView`
+      matomo: `setCustomUrl: ${to.fullPath}, setDocumentTitle: ${document?.title || 'Loading...'}, trackPageView`,
     })
     return
   }

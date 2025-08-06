@@ -24,7 +24,7 @@ const highlightsItems = computed(() => items.map(i => i.highlight?.trim()).filte
   <section :class="bgClass" relative>
     <PrismicText :field="p.headline" wrapper="h1" />
     <PrismicText v-if="p.subline" :field="p.subline" wrapper="p" font-400 dark:text-neutral-900 />
-    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${p.headline?.[0]?.text}`" role="list" f-mt-xs flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
+    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${getText(p.headline)}`" role="list" f-mt-xs flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
       <li v-for="(highlight, i) in highlightsItems" :key="i" contents>
         <div v-if="i > 0" rounded-full bg-neutral-500 size-6 />
         <span text="f-xl green" font-semibold>{{ highlight }}</span>

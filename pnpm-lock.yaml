@@ -34,6 +34,9 @@ catalogs:
     nuxt-safe-runtime-config:
       specifier: ^0.0.3
       version: 0.0.3
+    nuxt-security:
+      specifier: ^2.3.0
+      version: 2.3.0
   frontend:
     '@pinia/colada':
       specifier: ^0.15.3
@@ -208,9 +211,6 @@ importers:
 
   .:
     dependencies:
-      '@dargmuesli/nuxt-cookie-control':
-        specifier: ^9.1.0
-        version: 9.1.0(magicast@0.3.5)(webpack@5.99.6(esbuild@0.25.4))
       '@nimiq/core':
         specifier: catalog:nimiq
         version: 2.1.1
@@ -254,7 +254,7 @@ importers:
         specifier: catalog:nuxt
         version: 4.0.1(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.15.19)(@vue/compiler-sfc@3.5.17)(bufferutil@4.0.9)(db0@0.3.2)(eslint@9.27.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.45.1)(terser@5.43.1)(typescript@5.8.3)(utf-8-validate@5.0.10)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue-tsc@2.2.10(typescript@5.8.3))(yaml@2.8.0)
       nuxt-security:
-        specifier: ^2.3.0
+        specifier: 'catalog:'
         version: 2.3.0(magicast@0.3.5)(rollup@4.45.1)
       reka-ui:
         specifier: catalog:frontend
@@ -692,10 +692,6 @@ packages:
 
   '@dabh/diagnostics@2.0.3':
     resolution: {integrity: sha512-hrlQOIi7hAfzsMqlGSFyVucrx38O+j6wiGOf//H2ecvIEqYN4ADBSS2iLMh5UFyDunCNniUIPk/q3riFv45xRA==}
-
-  '@dargmuesli/nuxt-cookie-control@9.1.0':
-    resolution: {integrity: sha512-59wTVn+re0g2PtEv7XKpj0WIcwH4XEYQeJZS53pSkBEhOGN0ShmDD4akJGDWo+OJ7GHXCIVwrJVN6sA1NrgV3Q==}
-    engines: {node: '>=16'}
 
   '@dependents/detective-less@5.0.1':
     resolution: {integrity: sha512-Y6+WUMsTFWE5jb20IFP4YGa5IrGY/+a/FbOSjDF/wz9gepU2hwCYSXRHP/vPwBvwcY3SVMASt4yXxbXNXigmZQ==}
@@ -4543,9 +4539,6 @@ packages:
     resolution: {integrity: sha512-0eW44TGN5SQXU1mWSkKwFstI/22X2bG1nYzZTYMAWjylYURhse752YgbE4Cx46AC+bAvI+/dYTPRk1LqSUnu6w==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
 
-  css-vars-ponyfill@2.4.9:
-    resolution: {integrity: sha512-aZyLue5bdiGVNCiCclNjo123D8I7kyoYNUaAvz+H1JalX1ye4Ilz7jNRRH5YbM+dYD6ucejiydGwk7lol/GCXQ==}
-
   css-what@6.1.0:
     resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
     engines: {node: '>= 6'}
@@ -5626,9 +5619,6 @@ packages:
   get-caller-file@2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
     engines: {node: 6.* || 8.* || >= 10.*}
-
-  get-css-data@2.1.1:
-    resolution: {integrity: sha512-JpMa/f5P4mDXKg6l5/2cHL5xNY77Jap7tHyduMa6BF0E2a7bQ6Tvaz2BIMjeVYZYLcmOZ5w2Ro0yVJEI41tMbw==}
 
   get-east-asian-width@1.3.0:
     resolution: {integrity: sha512-vpeMIQKxczTD/0s2CdEWHcb0eeJe6TFjxb+J5xgX7hScxqrGuyjmv4c1D4A/gelKfyox0gJJwIHF+fLjeaM8kQ==}
@@ -7945,12 +7935,6 @@ packages:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
     engines: {node: '>=0.6.19'}
 
-  string-replace-loader@3.2.0:
-    resolution: {integrity: sha512-q7+F4DC6MAKkszF3ZQEuZ3dDH25wXPxFA0maTLk3TOTAYPLDgwqCeCKIvOd8xJhYYYl+EXusYRCyKIJliT/olg==}
-    engines: {node: '>=4'}
-    peerDependencies:
-      webpack: ^5
-
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -9257,7 +9241,7 @@ snapshots:
     dependencies:
       '@babel/compat-data': 7.27.2
       '@babel/helper-validator-option': 7.27.1
-      browserslist: 4.24.5
+      browserslist: 4.25.1
       lru-cache: 5.1.1
       semver: 6.3.1
 
@@ -9478,16 +9462,6 @@ snapshots:
       colorspace: 1.1.4
       enabled: 2.0.0
       kuler: 2.0.0
-
-  '@dargmuesli/nuxt-cookie-control@9.1.0(magicast@0.3.5)(webpack@5.99.6(esbuild@0.25.4))':
-    dependencies:
-      '@nuxt/kit': 4.0.1(magicast@0.3.5)
-      css-vars-ponyfill: 2.4.9
-      defu: 6.1.4
-      string-replace-loader: 3.2.0(webpack@5.99.6(esbuild@0.25.4))
-    transitivePeerDependencies:
-      - magicast
-      - webpack
 
   '@dependents/detective-less@5.0.1':
     dependencies:
@@ -13787,11 +13761,6 @@ snapshots:
       mdn-data: 2.12.2
       source-map-js: 1.2.1
 
-  css-vars-ponyfill@2.4.9:
-    dependencies:
-      balanced-match: 1.0.2
-      get-css-data: 2.1.1
-
   css-what@6.1.0: {}
 
   csscolorparser@1.0.3: {}
@@ -15088,8 +15057,6 @@ snapshots:
       node-source-walk: 7.0.1
 
   get-caller-file@2.0.5: {}
-
-  get-css-data@2.1.1: {}
 
   get-east-asian-width@1.3.0: {}
 
@@ -18146,11 +18113,6 @@ snapshots:
       bare-events: 2.6.0
 
   string-argv@0.3.2: {}
-
-  string-replace-loader@3.2.0(webpack@5.99.6(esbuild@0.25.4)):
-    dependencies:
-      schema-utils: 4.3.2
-      webpack: 5.99.6(esbuild@0.25.4)
 
   string-width@4.2.3:
     dependencies:

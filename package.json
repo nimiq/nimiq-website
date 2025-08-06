@@ -22,7 +22,6 @@
     "cryptomap:types": "npx supabase gen types --lang=typescript --project-id mycbdmurjytbdahjljoh > app/types/database.types.ts"
   },
   "dependencies": {
-    "@dargmuesli/nuxt-cookie-control": "^9.1.0",
     "@nimiq/core": "catalog:nimiq",
     "@nimiq/utils": "catalog:nimiq",
     "@nuxt/scripts": "catalog:",
@@ -37,7 +36,7 @@
     "motion-v": "catalog:",
     "nimiq-rpc-client-ts": "catalog:nimiq",
     "nuxt": "catalog:nuxt",
-    "nuxt-security": "^2.3.0",
+    "nuxt-security": "catalog:",
     "reka-ui": "catalog:frontend",
     "valibot": "catalog:server",
     "vaul-vue": "catalog:frontend",

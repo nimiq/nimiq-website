@@ -189,6 +189,7 @@ NUXT_PUBLIC_SCRIPTS_GTM_ID_TESTNET=GTM-TESTNET
 ```
 
 **Environment Behavior**:
+
 - **Production/NuxtHub-Production**: Uses production analytics IDs
 - **Local/Development**: Analytics disabled for performance
 - **Other environments**: Use testnet IDs or fallback to production
@@ -726,11 +727,14 @@ The project uses [`nuxt-security`](https://nuxt-security.vercel.app/) for OWASP-
 - **WebSocket Connections** - Configured for real-time blockchain data
 
 **Key CSP Directives:**
-```typescript
-contentSecurityPolicy: {
-  "img-src": ["'self'", "data:", "https://nimiq.prismic.io", "..."],
-  "script-src": ["'self'", "https://stats.nimiq-network.com", "..."],
-  "connect-src": ["'self'", "wss://nimiq-website.je-cf9.workers.dev", "..."]
+
+```json
+{
+  "contentSecurityPolicy": {
+    "img-src": ["'self'", "data:", "https://nimiq.prismic.io", "..."],
+    "script-src": ["'self'", "https://stats.nimiq-network.com", "..."],
+    "connect-src": ["'self'", "wss://nimiq-website.je-cf9.workers.dev", "..."]
+  }
 }
 ```
 

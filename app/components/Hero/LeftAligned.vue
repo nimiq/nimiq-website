@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { RichTextField, TitleField } from '@prismicio/client'
+import type { RichTextField } from '@prismicio/client'
 
-defineProps<{ headline: TitleField, subline: RichTextField }>()
+defineProps<{ headline: RichTextField, subline: RichTextField }>()
 </script>
 
 <template>

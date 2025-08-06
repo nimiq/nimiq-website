@@ -20,6 +20,7 @@ export function useMatomo() {
     consent.value = { accepted: true, version: CONSENT_VERSION, timestamp: Date.now() }
 
     if (isDev) {
+      // eslint-disable-next-line no-console
       console.log('📊 [DEV] Analytics consent accepted - would initialize download tracking')
       return
     }
@@ -34,6 +35,7 @@ export function useMatomo() {
     consent.value = { accepted: false, version: CONSENT_VERSION, timestamp: Date.now() }
 
     if (isDev) {
+      // eslint-disable-next-line no-console
       console.log('📊 [DEV] Analytics consent rejected - would opt out user')
       return
     }
@@ -58,12 +60,14 @@ export function useMatomo() {
   }
 
   function trackEvent(params: TrackEventParams) {
-    if (!consent.value?.accepted || !import.meta.client) return
+    if (!consent.value?.accepted || !import.meta.client)
+      return
     const { eventName, eventCategory = 'Custom', eventAction = eventName, label = '' } = params
 
     if (isDev) {
       const matomo = `trackEvent: ${eventCategory} > ${eventAction} > ${label}`
       const gtm = { event: eventName, event_category: eventCategory, event_action: eventAction, event_label: label }
+      // eslint-disable-next-line no-console
       console.log('📊 [DEV] Would track event:', { eventName, eventCategory, eventAction, label, matomo, gtm })
       return
     }

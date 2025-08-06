@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { KeyTextField, LinkField, TitleField } from '@prismicio/client'
+import type { KeyTextField, LinkField, RichTextField } from '@prismicio/client'
 import { AnimatedTweenedNumber, NuxtLink } from '#components'
 import Map from './Map.vue'
 
 // import { breakpointsTailwind } from '@vueuse/core'
 
-const props = defineProps<{ headline: TitleField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
+const props = defineProps<{ headline: RichTextField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
 
 const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
 
@@ -35,7 +35,7 @@ const subheadlineStr = computed(() => {
 
 watch(subheadlineStr, () => {
   useSeoMeta({
-    title: props.headline.at(0)!.text,
+    title: getText(props.headline),
     description: subheadlineStr.value,
   })
 })
