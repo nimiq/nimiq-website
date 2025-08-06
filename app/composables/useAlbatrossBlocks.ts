@@ -12,7 +12,7 @@ function _useAlbatrossBlocks() {
   }
 
   const { apiDomain } = useRuntimeConfig().public
-  const url = new URL('/api/albatross/liveview/blocks', apiDomain)
+  const url = new URL('/albatross/liveview/blocks', apiDomain)
   const { status, data } = useWebSocket(url, {
     onError() {
       console.error('[Albatross Liveview] Error connecting to Albatross Blocks WebSocket')
