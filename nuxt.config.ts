@@ -291,31 +291,6 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/api/**': { cors: true },
-
-    // Check ./modules/prerender-routes.ts to see more about this
-    // More redirects in nginx/default.conf
-
-    // Path redirects
-    '/sp': { redirect: '/siliconparadise' },
-    '/sp/freecrypto': { redirect: '/siliconparadise?freecrypto#promo' },
-    '/cplink': { redirect: '/cryptopaymentlink' },
-    '/exchanges': { redirect: '/buy-and-sell' },
-    '/community-funding': { redirect: '/community/funding' },
-
-    // Whitepaper redirects
-    '/whitepaper-1': { redirect: '/litepaper?version=1.0' },
-    '/whitepaper': { redirect: '/litepaper' },
-
-    // Developer redirects
-    '/developers/migration/migration-integrators': { redirect: '/developers/build/integrator-guide' },
-    '/developers/llms-full.md': { redirect: '/developers/llms-full.txt' },
-
-    // External redirects
-    '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
-    '/cookie-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710/cookie-policy' },
-    '/podcast': { redirect: 'https://www.youtube.com/watch?v=Z-ypFLS7csU&list=PLuhSf5DE3FFQFSM-Hhb4gXrbcIo3ohVE9&ab_channel=Nimiq' },
-    '/tutorials/ledger': { redirect: 'https://nimiq.github.io/tutorials/ledger-guide' },
-    '/styleguide': { redirect: 'https://www.figma.com/design/GU6cdS85S2v13QcdzW9v8Tav/NIMIQ-Style-Guide--Oct-18-?node-id=0-1&p=f&t=cJ59Z8kfmhP548bH-0' },
   },
 
   nitro: {
