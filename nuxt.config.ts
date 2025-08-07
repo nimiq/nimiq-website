@@ -43,6 +43,7 @@ export default defineNuxtConfig({
     registry: {
       matomoAnalytics: {
         matomoUrl: 'https://stats.nimiq-network.com',
+        siteId: 1,
         trackPageView: true,
         enableLinkTracking: true,
       },
