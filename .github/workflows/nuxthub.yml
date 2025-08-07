@@ -28,5 +28,6 @@ jobs:
         uses: nuxt-hub/action@v2
         with:
           build-command: pnpm run build:nuxthub
+          output-directory: .output
         env:
           NUXTHUB_ENV: ${{ github.ref == 'refs/heads/main' && 'nuxthub-production' || 'nuxthub-preview' }}
