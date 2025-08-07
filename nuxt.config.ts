@@ -50,13 +50,24 @@ export default defineNuxtConfig({
       topLevelAwait(),
     ],
     optimizeDeps: {
-      exclude: ['@nimiq/core', '*.wasm'],
+      exclude: ['@nimiq/core', '*.wasm', '@resvg/resvg-js'],
     },
     worker: {
       plugins: () => [
         wasm(),
         topLevelAwait(),
       ],
+    },
+    ssr: {
+      noExternal: ['@resvg/resvg-js'],
+    },
+    build: {
+      rollupOptions: {
+        external: [
+          /^.*\.node$/,
+          /^@resvg\/resvg-js\/.*\.node$/,
+        ],
+      },
     },
   },
 
@@ -238,6 +249,12 @@ export default defineNuxtConfig({
       options: {
         target: 'esnext',
       },
+    },
+    rollupConfig: {
+      external: [
+        /^.*\.node$/,
+        /^@resvg\/resvg-js\/.*\.node$/,
+      ],
     },
     prerender: {
       crawlLinks: false,
