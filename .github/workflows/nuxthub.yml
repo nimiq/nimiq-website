@@ -24,13 +24,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Ensure NuxtHub module is installed
-        run: pnpx nuxthub@latest ensure
-
       - name: Build & Deploy to NuxtHub
         uses: nuxt-hub/action@v2
         with:
-          project-key: nimiq-website-mqst
           build-command: pnpm run build:nuxthub
         env:
           NUXTHUB_ENV: ${{ github.ref == 'refs/heads/main' && 'nuxthub-production' || 'nuxthub-preview' }}
