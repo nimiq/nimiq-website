@@ -1,6 +1,5 @@
 import type { InferOutput } from 'valibot'
 import process from 'node:process'
-import { consola } from 'consola'
 import { $fetch } from 'ofetch'
 import { literal, union } from 'valibot'
 import { repositoryName } from '../slicemachine.config.json'
@@ -58,7 +57,15 @@ async function checkInternetConnection(): Promise<boolean> {
   }
 }
 
-consola.info(`Running in ${environment} environment and drafts are ${showDrafts ? 'enabled' : 'disabled'}`)
+// eslint-disable-next-line no-console
+console.table({
+  'Environment': environment,
+  'Drafts': showDrafts ? 'enabled' : 'disabled',
+  'NuxtHub': useNuxtHub ? 'enabled' : 'disabled',
+  'GitHub Pages': isGitHubPages ? 'yes' : 'no',
+  'Production': isProduction ? 'yes' : 'no',
+  'Local': isLocal ? 'yes' : 'no',
+})
 
 export default {
   showDrafts,

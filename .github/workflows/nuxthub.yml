@@ -27,7 +27,4 @@ jobs:
       - name: Build & Deploy to NuxtHub
         uses: nuxt-hub/action@v2
         with:
-          build-command: pnpm run build:nuxthub
-          output-directory: .output
-        env:
-          NUXTHUB_ENV: ${{ github.ref == 'refs/heads/main' && 'nuxthub-production' || 'nuxthub-preview' }}
+          build-command: ${{ github.ref == 'refs/heads/main' && 'pnpm run build:nuxthub' || 'pnpm run build:nuxthub-preview' }}

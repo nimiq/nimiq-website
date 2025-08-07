@@ -6,7 +6,8 @@
   "scripts": {
     "build": "NUXT_ENVIRONMENT=production nuxt build",
     "build:github-pages": "NUXT_ENVIRONMENT=github-pages nuxt build --preset github_pages --prerender",
-    "build:nuxthub": "NUXT_ENVIRONMENT=nuxthub-$NUXTHUB_ENV nuxt build",
+    "build:nuxthub": "NUXT_ENVIRONMENT=nuxthub-production nuxt build",
+    "build:nuxthub-preview": "NUXT_ENVIRONMENT=nuxthub-preview nuxt build",
     "build:internal-static": "NUXT_ENVIRONMENT=internal-static nuxt build",
     "build:internal-static-drafts": "NUXT_ENVIRONMENT=internal-static-drafts nuxt build",
     "dev": "nuxt dev",
