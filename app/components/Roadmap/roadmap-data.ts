@@ -9,7 +9,7 @@ export const milestones: Milestone[] = [
   { label: 'Vision', year: 2017, month: 1 },
   { label: 'Crowdfunding', year: 2018, month: 2 },
   { label: 'Initial Launch', year: 2019, month: 2 },
-  { label: 'Accessibility for Users & Merchants', year: 2021, month: 1 },
+  { label: 'Accessibility for Users & Merchants', year: 2020, month: 2 },
   { label: 'Proof-of-Stake Integration/Consolidation', year: 2022, month: 1 },
   { label: 'Adoption offensive', year: 2023, month: 6, untilMonth: 3, untilYear: 2026 },
 ]
