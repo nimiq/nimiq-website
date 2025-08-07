@@ -33,4 +33,4 @@ jobs:
           project-key: nimiq-website-mqst
           build-command: pnpm run build:nuxthub
         env:
-          NUXTHUB_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
+          NUXTHUB_ENV: ${{ github.ref == 'refs/heads/main' && 'nuxthub-production' || 'nuxthub-preview' }}
