@@ -142,7 +142,7 @@ export default defineNuxtConfig({
       topLevelAwait(),
     ],
     optimizeDeps: {
-      exclude: ['@nimiq/core', '*.wasm', '@resvg/resvg-js'],
+      exclude: ['@nimiq/core', '*.wasm'],
     },
     worker: {
       plugins: () => [
@@ -150,14 +150,11 @@ export default defineNuxtConfig({
         topLevelAwait(),
       ],
     },
-    ssr: {
-      noExternal: ['@resvg/resvg-js'],
-    },
+
     build: {
       rollupOptions: {
         external: [
           /^.*\.node$/,
-          /^@resvg\/resvg-js\/.*\.node$/,
         ],
       },
     },
@@ -324,6 +321,7 @@ export default defineNuxtConfig({
       wasm: true,
       websocket: true,
     },
+    wasm: { inline: true },
     esbuild: {
       options: {
         target: 'esnext',
@@ -332,7 +330,6 @@ export default defineNuxtConfig({
     rollupConfig: {
       external: [
         /^.*\.node$/,
-        /^@resvg\/resvg-js\/.*\.node$/,
       ],
     },
     prerender: {
@@ -381,6 +378,7 @@ export default defineNuxtConfig({
 
   ogImage: {
     fonts: ['Mulish:400', 'Mulish:700'],
+    compatibility: { resvg: 'wasm' },
   },
 
   feed: {
