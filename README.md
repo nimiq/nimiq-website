@@ -29,6 +29,7 @@
 - [Quick Start Guide](#quick-start-guide)
 - [Architecture Overview](#architecture-overview)
 - [Custom Modules & Extensions](#custom-modules--extensions)
+- [Analytics: Matomo Tracking](#analytics-matomo-tracking)
 - [Component Architecture](#component-architecture)
 - [Prismic + Slicemachine](#prismic--slicemachine)
 - [Code Style Guide](#code-style-guide)
@@ -160,6 +161,59 @@ The project leverages WebAssembly for performance:
 - **`@nimiq/core`** - Core blockchain functionality in WASM
 - **`vite-plugin-wasm`** - WASM support in Vite
 - **`vite-plugin-top-level-await`** - Modern async/await support
+
+## Analytics: Dual Tracking (Matomo + GTM)
+
+### Setup
+
+**Libraries**: `@nuxt/scripts` with Matomo + Google Tag Manager (production only)
+
+**Configuration**:
+
+- `nuxt.config.ts` - Dual analytics registry with environment variables
+- `ConsentBanner.vue` - Privacy-compliant consent management using Reka UI AlertDialog (SSR-safe)
+- `useMatomo.ts` - Enhanced composable for both analytics systems
+- Uses custom environment system from `lib/env.ts` for production detection
+
+**Environment Variables**:
+
+```bash
+# Production Analytics
+NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_MATOMO_URL=https://stats.nimiq-network.com
+NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_SITE_ID=1
+NUXT_PUBLIC_SCRIPTS_GTM_ID=GTM-NQ9RN8W
+
+# Optional: Testnet/Preview Analytics (fallback to production if not set)
+NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_SITE_ID_TESTNET=2
+NUXT_PUBLIC_SCRIPTS_GTM_ID_TESTNET=GTM-TESTNET
+```
+
+**Environment Behavior**:
+
+- **Production/NuxtHub-Production**: Uses production analytics IDs
+- **Local/Development**: Analytics disabled for performance
+- **Other environments**: Use testnet IDs or fallback to production
+
+### Usage
+
+**Automatic Tracking**: Page views, downloads (.deb|rpm|msi|sha256|asc|pub), and route changes tracked automatically after consent.
+
+**Custom Events**: Track events in both systems automatically:
+
+```vue
+<script setup>
+const { trackEvent } = useMatomo()
+
+// Track in both Matomo and GTM simultaneously
+function trackDownload(filename: string) {
+  trackEvent('download', 'File', 'Download', filename)
+}
+
+function trackButtonClick(section: string) {
+  trackEvent('interaction', 'Click', 'Button', section)
+}
+</script>
+```
 
 ## Component Architecture
 
@@ -661,6 +715,30 @@ ls -la .output/public/_nuxt/
 - **CORS configuration** - Defined in `nuxt.config.ts`
 - **Rate limiting** - Handled by deployment platforms
 - **Input validation** - Use Valibot schemas for runtime validation
+
+### Content Security Policy (CSP)
+
+The project uses [`nuxt-security`](https://nuxt-security.vercel.app/) for OWASP-compliant security headers and Content Security Policy protection:
+
+- **CSP Configuration** - Defined in `nuxt.config.ts` security section
+- **Prismic Integration** - Allows Prismic CMS domains and inline scripts
+- **Analytics Support** - Permits Google Analytics and Matomo tracking
+- **Data URLs** - Enables inline SVG images (`data:` protocol)
+- **WebSocket Connections** - Configured for real-time blockchain data
+
+**Key CSP Directives:**
+
+```json
+{
+  "contentSecurityPolicy": {
+    "img-src": ["'self'", "data:", "https://nimiq.prismic.io", "..."],
+    "script-src": ["'self'", "https://stats.nimiq-network.com", "..."],
+    "connect-src": ["'self'", "wss://nimiq-website.je-cf9.workers.dev", "..."]
+  }
+}
+```
+
+See the [Nuxt Security Module](https://nuxt-security.vercel.app/) for more details.
 
 ### Content Security
 

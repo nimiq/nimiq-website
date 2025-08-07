@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxt/eslint',
     '@nuxt/image',
+    '@nuxt/scripts',
     'reka-ui/nuxt',
     '@nuxtjs/prismic',
     '@nuxtjs/seo',
@@ -31,10 +32,101 @@ export default defineNuxtConfig({
     '@pinia/colada-nuxt',
     'nuxt-module-feed',
     'nuxt-safe-runtime-config',
+    'nuxt-security',
     'motion-v/nuxt',
     './modules/prerender-routes',
     environment.useNuxtHub && '@nuxthub/core',
   ].filter(Boolean),
+
+  // Analytics scripts - loaded in all environments, but behavior controlled by composables
+  scripts: {
+    registry: {
+      matomoAnalytics: {
+        matomoUrl: process.env.NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_MATOMO_URL || 'https://stats.nimiq-network.com',
+        siteId: process.env.NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_SITE_ID,
+        trackPageView: true,
+        enableLinkTracking: true,
+      },
+      googleTagManager: {
+        id: process.env.NUXT_PUBLIC_SCRIPTS_GTM_ID || 'GTM-NQ9RN8W',
+      },
+    },
+  },
+
+  security: {
+    hidePoweredBy: true,
+    headers: {
+      xFrameOptions: 'SAMEORIGIN',
+      contentSecurityPolicy: {
+        'script-src': environment.environment.isLocal
+          ? [
+              '\'self\'',
+              '\'unsafe-inline\'',
+              '\'unsafe-eval\'',
+              'https://static.cdn.prismic.io',
+              'https://nimiq.prismic.io',
+              'https://www.googletagmanager.com',
+              'https://www.google-analytics.com',
+              'https://stats.nimiq-network.com',
+            ]
+          : [
+              '\'strict-dynamic\'',
+              '\'nonce-{{nonce}}\'',
+              '\'unsafe-inline\'',
+              'https://static.cdn.prismic.io',
+            ],
+        'script-src-attr': environment.environment.isLocal
+          ? ['\'unsafe-inline\'']
+          : ['\'none\''],
+        'style-src': [
+          '\'self\'',
+          'https:',
+          '\'unsafe-inline\'',
+        ],
+        'base-uri': ['\'none\''],
+        'font-src': [
+          '\'self\'',
+          'https:',
+          'data:',
+        ],
+        'object-src': ['\'none\''],
+        'frame-src': ['\'self\'', 'https://nimiq.prismic.io', 'https://map.nimiq.com'],
+        'connect-src': [
+          '\'self\'',
+          'wss://nimiq-website.je-cf9.workers.dev',
+          'https://nimiq-website.je-cf9.workers.dev',
+          'https://www.google-analytics.com',
+          'https://analytics.google.com',
+          'https://stats.g.doubleclick.net',
+          'https://stats.nimiq-network.com',
+          'https://mycbdmurjytbdahjljoh.supabase.co',
+          'https://nimiq.prismic.io',
+          'https://dev.validators-api-mainnet.pages.dev',
+          'https://validators-api-mainnet.nuxt.dev',
+          'https://nimiq.cdn.prismic.io',
+        ],
+        'upgrade-insecure-requests': true,
+        'img-src': [
+          '\'self\'',
+          'data:',
+          'https://nimiq.prismic.io',
+          'https://static.cdn.prismic.io',
+          'https://images.prismic.io',
+          'https://nimiq.cdn.prismic.io',
+          'https://www.google-analytics.com',
+          'https://www.googletagmanager.com',
+          'https://*.google.com',
+          'https://*.google.co.th',
+          'https://*.google.co.uk',
+          'https://*.google.de',
+          'https://*.google.fr',
+        ],
+      },
+      crossOriginOpenerPolicy: false,
+      crossOriginEmbedderPolicy: false,
+      xXSSProtection: '1; mode=block',
+    },
+  },
 
   devtools: { enabled: true },
 
@@ -99,7 +191,16 @@ export default defineNuxtConfig({
   },
 
   linkChecker: {
-    excludeLinks: [...EXCLUDED_PAGES, '/vote#rank-curves', '/vote#change-curve', 'magnet:*'],
+    excludeLinks: [
+      ...EXCLUDED_PAGES,
+      '/vote#rank-curves',
+      '/vote#change-curve',
+      'magnet:*',
+      // Nginx redirects - these paths are handled by nginx and redirect to external URLs but we don't want to check them
+      '/privacy-policy',
+      '/privacy',
+      '/cookie-policy',
+    ],
     fetchRemoteUrls: true,
   },
 
@@ -139,6 +240,7 @@ export default defineNuxtConfig({
       },
       environment: environment.environment,
       showDrafts: environment.showDrafts,
+      enableDevAnalytics: process.env.ENABLE_DEV_ANALYTICS === 'true',
       wordsChallenge: {
         publicAddress: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_PUBLIC_ADDRESS,
         firstRealWords: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS,
@@ -174,6 +276,7 @@ export default defineNuxtConfig({
         }),
         environment: object({}),
         showDrafts: optional(boolean()),
+        enableDevAnalytics: optional(boolean()),
         wordsChallenge: object({
           publicAddress: string(),
           firstRealWords: string(),
@@ -213,31 +316,6 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/api/**': { cors: true },
-
-    // Check ./modules/prerender-routes.ts to see more about this
-    // More redirects in nginx/default.conf
-
-    // Path redirects
-    '/sp': { redirect: '/siliconparadise' },
-    '/sp/freecrypto': { redirect: '/siliconparadise?freecrypto#promo' },
-    '/cplink': { redirect: '/cryptopaymentlink' },
-    '/exchanges': { redirect: '/buy-and-sell' },
-    '/community-funding': { redirect: '/community/funding' },
-
-    // Whitepaper redirects
-    '/whitepaper-1': { redirect: '/litepaper?version=1.0' },
-    '/whitepaper': { redirect: '/litepaper' },
-
-    // Developer redirects
-    '/developers/migration/migration-integrators': { redirect: '/developers/build/integrator-guide' },
-    '/developers/llms-full.md': { redirect: '/developers/llms-full.txt' },
-
-    // External redirects
-    '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
-    '/cookie-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710/cookie-policy' },
-    '/podcast': { redirect: 'https://www.youtube.com/watch?v=Z-ypFLS7csU&list=PLuhSf5DE3FFQFSM-Hhb4gXrbcIo3ohVE9&ab_channel=Nimiq' },
-    '/tutorials/ledger': { redirect: 'https://nimiq.github.io/tutorials/ledger-guide' },
-    '/styleguide': { redirect: 'https://www.figma.com/design/GU6cdS85S2v13QcdzW9v8Tav/NIMIQ-Style-Guide--Oct-18-?node-id=0-1&p=f&t=cJ59Z8kfmhP548bH-0' },
   },
 
   nitro: {

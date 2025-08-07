@@ -24,6 +24,7 @@
   "dependencies": {
     "@nimiq/core": "catalog:nimiq",
     "@nimiq/utils": "catalog:nimiq",
+    "@nuxt/scripts": "catalog:",
     "@nuxtjs/seo": "catalog:",
     "@pinia/colada": "catalog:frontend",
     "@pinia/colada-nuxt": "catalog:frontend",
@@ -35,6 +36,7 @@
     "motion-v": "catalog:",
     "nimiq-rpc-client-ts": "catalog:nimiq",
     "nuxt": "catalog:nuxt",
+    "nuxt-security": "catalog:",
     "reka-ui": "catalog:frontend",
     "valibot": "catalog:server",
     "vaul-vue": "catalog:frontend",
