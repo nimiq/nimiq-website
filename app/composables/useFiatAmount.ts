@@ -11,11 +11,12 @@ export function useFiatAmount(amount?: MaybeRef<number>, options: FiatAmountOpti
   const { hideDecimals = false } = options
 
   const { currencyInfo } = useUserCurrency()
+  const locale = useLocale()
 
   const formattedFiat = computed(() => {
     if (!amount)
       return ''
-    return formatFiat(toValue(amount), currencyInfo.value, { hideDecimals })
+    return formatFiat(toValue(amount), currencyInfo.value, locale.value, { hideDecimals })
   })
 
   return { formattedFiat, formatFiat }

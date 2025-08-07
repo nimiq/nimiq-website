@@ -8,6 +8,7 @@ if (slice.variation !== 'buyAndSell')
   throw new Error('Invalid slice variation. Expected "buyAndSell".')
 
 const { currency, currencyInfo } = useUserCurrency()
+const locale = useLocale()
 
 const { marketCapChange, marketCapFormatted } = useNimMarketCap()
 const { currentSupplyFormatted, maxSupplyFormatted } = useNimSupply()
@@ -65,7 +66,7 @@ const error = computed(() => {
           </span>
           <div v-if="metricChange" :class="metricChange < 0 ? 'text-red' : 'text-green'" flex="~ gap-2 items-center">
             <div :class="{ 'rotate-180': metricChange < 0 }" aria-hidden size-7 i-nimiq:triangle-up />
-            <span font-semibold lh-none f-text-sm>{{ formatPercentage(metricChange) }}</span>
+            <span font-semibold lh-none f-text-sm>{{ formatPercentage(metricChange, locale) }}</span>
           </div>
         </div>
         <div flex="~ gap-6 items-center">
@@ -84,12 +85,12 @@ const error = computed(() => {
         <div inset-y-0 absolute left="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, transparent, rgba(var(--nq-neutral-0) / 1))" />
         <div right="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, rgba(var(--nq-neutral-0) / 1), transparent)" inset-y-0 absolute f-w-md />
         <p text="blue f-3xl" font-semibold lh-none>
-          {{ formatFiat(historicPrice, currencyInfo) }}
+          {{ formatFiat(historicPrice, currencyInfo, locale) }}
         </p>
         <NuxtTime v-if="!deltaPriceOneDay" :datetime="ts" year="numeric" month="long" day="numeric" text="f-2xs right neutral-700" lh-none nq-label />
         <div v-else flex="~ items-center" text="f-2xs neutral-700" font-semibold lh-none>
           <div mr-4 size-8 i-nimiq:triangle-up :class="{ 'rotate-180': deltaPriceOneDay < 0 }" />
-          <span>{{ formatDecimal(Math.abs(deltaPriceOneDay)) }} ({{ formatPercentage(deltaPriceOneDay / historicPrice) }})</span>
+          <span>{{ formatDecimal(Math.abs(deltaPriceOneDay), locale) }} ({{ formatPercentage(deltaPriceOneDay / historicPrice, locale) }})</span>
         </div>
       </div>
     </DefinePrice>

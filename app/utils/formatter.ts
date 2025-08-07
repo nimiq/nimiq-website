@@ -4,6 +4,7 @@ import { FormattableNumber } from '@nimiq/utils/formattable-number'
 export function formatFiat<ReturnNumber = false>(
   amount: number,
   currency: CurrencyInfo,
+  locale: string,
   options: {
     maxDecimals?: number // absolute cap on decimals, default 8
     minDecimals?: number // absolute floor, default = currency's "normal" decimals
@@ -55,13 +56,12 @@ export function formatFiat<ReturnNumber = false>(
   if (returnJustNumber)
     return Number.parseFloat(formattedNumber) as ReturnedValue // Combine with symbol
   // Combine with symbol
-  return surroundWithCurrencySymbol(formattedNumber, currency, minDecimals, dynamicMax) as ReturnedValue
+  return surroundWithCurrencySymbol(formattedNumber, currency, locale, minDecimals, dynamicMax) as ReturnedValue
 }
 
-function surroundWithCurrencySymbol(formattedNumber: string, currency: CurrencyInfo, minDecimals: number, maxDecimals: number): string {
-  const locale = useLocale()
+function surroundWithCurrencySymbol(formattedNumber: string, currency: CurrencyInfo, locale: string, minDecimals: number, maxDecimals: number): string {
   // Ask Intl for its parts for a dummy value
-  const parts = new Intl.NumberFormat(locale.value, {
+  const parts = new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: currency.code,
     minimumFractionDigits: minDecimals,
@@ -79,19 +79,17 @@ function surroundWithCurrencySymbol(formattedNumber: string, currency: CurrencyI
   return `${prefix}${formattedNumber}${suffix}`
 }
 
-export function formatPercentage(input: number) {
-  const locale = useLocale()
-  const percentageFormatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
+export function formatPercentage(input: number, locale: string) {
+  const percentageFormatter = new Intl.NumberFormat(locale, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
   return percentageFormatter.format(input)
 }
 
-export function formatNim(input: number, options: Intl.NumberFormatOptions = {}) {
-  const locale = useLocale()
-  const nimFormatter = new Intl.NumberFormat(locale.value, { notation: 'compact', compactDisplay: 'short', minimumFractionDigits: 0, maximumFractionDigits: 2, ...options })
+export function formatNim(input: number, locale: string, options: Intl.NumberFormatOptions = {}) {
+  const nimFormatter = new Intl.NumberFormat(locale, { notation: 'compact', compactDisplay: 'short', minimumFractionDigits: 0, maximumFractionDigits: 2, ...options })
   return nimFormatter.format(input)
 }
 
-export function formatNimWithMeaningfulDigits(amount: number, meaningfulDigits = 4) {
+export function formatNimWithMeaningfulDigits(amount: number, locale: string, meaningfulDigits = 4) {
   if (amount === 0)
     return 0
 
@@ -114,8 +112,7 @@ export function formatNimWithMeaningfulDigits(amount: number, meaningfulDigits =
     decimals = zerosAfterDecimal + meaningfulDigits
   }
 
-  const locale = useLocale()
-  const nimFormatter = new Intl.NumberFormat(locale.value, {
+  const nimFormatter = new Intl.NumberFormat(locale, {
     minimumFractionDigits: 0, // Always allow showing no decimals when not needed
     maximumFractionDigits: decimals,
     useGrouping: true,
@@ -123,8 +120,7 @@ export function formatNimWithMeaningfulDigits(amount: number, meaningfulDigits =
   return Number.parseFloat(nimFormatter.format(amount))
 }
 
-export function formatDecimal(input: number) {
-  const locale = useLocale()
-  const decimalFormatter = new Intl.NumberFormat(locale.value, { minimumFractionDigits: 4, maximumFractionDigits: 4 })
+export function formatDecimal(input: number, locale: string) {
+  const decimalFormatter = new Intl.NumberFormat(locale, { minimumFractionDigits: 4, maximumFractionDigits: 4 })
   return decimalFormatter.format(input)
 }
