@@ -107,7 +107,8 @@ export function useNimVolume() {
         volumeInUserCurrency = currentVolumeInRequestCurrency * (price.value || 0)
       }
 
-      const volumeFormatted = formatFiat(volumeInUserCurrency, currencyInfo.value)
+      const locale = useLocale()
+      const volumeFormatted = formatFiat(volumeInUserCurrency, currencyInfo.value, locale.value)
 
       // Calculate volume change using consistent currency (request currency)
       // Daily change percentage helps users track momentum and market activity

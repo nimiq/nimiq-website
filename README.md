@@ -170,29 +170,16 @@ The project leverages WebAssembly for performance:
 
 **Configuration**:
 
-- `nuxt.config.ts` - Dual analytics registry with environment variables
+- `nuxt.config.ts` - Dual analytics registry with hardcoded production values
 - `ConsentBanner.vue` - Privacy-compliant consent management using Reka UI AlertDialog (SSR-safe)
 - `useMatomo.ts` - Enhanced composable for both analytics systems
 - Uses custom environment system from `lib/env.ts` for production detection
 
-**Environment Variables**:
-
-```bash
-# Production Analytics
-NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_MATOMO_URL=https://stats.nimiq-network.com
-NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_SITE_ID=1
-NUXT_PUBLIC_SCRIPTS_GTM_ID=GTM-NQ9RN8W
-
-# Optional: Testnet/Preview Analytics (fallback to production if not set)
-NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_SITE_ID_TESTNET=2
-NUXT_PUBLIC_SCRIPTS_GTM_ID_TESTNET=GTM-TESTNET
-```
-
 **Environment Behavior**:
 
-- **Production/NuxtHub-Production**: Uses production analytics IDs
-- **Local/Development**: Analytics disabled for performance
-- **Other environments**: Use testnet IDs or fallback to production
+- **Production/NuxtHub-Production**: Uses production analytics IDs (GTM-NQ9RN8W, Matomo Site ID: 1)
+- **Local/Development**: Analytics enabled for testing (controlled via `enableDevAnalytics: true`)
+- **All environments**: Use the same production analytics configuration
 
 ### Usage
 

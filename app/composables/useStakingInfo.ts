@@ -27,11 +27,12 @@ export function useStakingInfo(options: { enabled?: MaybeRef<boolean> } = {}) {
     enabled: computed(() => toValue(options.enabled) ?? true),
   })
 
+  const locale = useLocale()
   const annualRewardPercentage = computed(() => {
     if (!stakingRatio.value)
       return 0
     const reward = calculateStakingRewards({ stakedSupplyRatio: stakingRatio.value })
-    return formatPercentage(reward.gainRatio)
+    return formatPercentage(reward.gainRatio, locale.value)
   })
 
   return {

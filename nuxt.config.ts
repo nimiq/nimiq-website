@@ -42,13 +42,13 @@ export default defineNuxtConfig({
   scripts: {
     registry: {
       matomoAnalytics: {
-        matomoUrl: process.env.NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_MATOMO_URL || 'https://stats.nimiq-network.com',
-        siteId: process.env.NUXT_PUBLIC_SCRIPTS_MATOMO_ANALYTICS_SITE_ID,
+        matomoUrl: 'https://stats.nimiq-network.com',
+        siteId: 1,
         trackPageView: true,
         enableLinkTracking: true,
       },
       googleTagManager: {
-        id: process.env.NUXT_PUBLIC_SCRIPTS_GTM_ID || 'GTM-NQ9RN8W',
+        id: 'GTM-NQ9RN8W',
       },
     },
   },
@@ -240,7 +240,7 @@ export default defineNuxtConfig({
       },
       environment: environment.environment,
       showDrafts: environment.showDrafts,
-      enableDevAnalytics: process.env.ENABLE_DEV_ANALYTICS === 'true',
+      enableDevAnalytics: true,
       wordsChallenge: {
         publicAddress: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_PUBLIC_ADDRESS,
         firstRealWords: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS,
