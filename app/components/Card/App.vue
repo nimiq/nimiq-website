@@ -6,7 +6,7 @@ const link = _link.replace(/\/$/, '').replace(url, '')
 </script>
 
 <template>
-  <NuxtLink :to="link" target="_blank" w="[min(calc(100vw-var(--px,32px)*2),350px)]" :style="`--c: ${color}`" external group p-6 rounded-6 gap-24 h-full nq-hoverable :aria-label="`Go to ${name} website`">
+  <NuxtLink :to="link" target="_blank" w="[min(calc(100vw-var(--px,32px)*2),350px)]" :style="`--c: ${color}`" group external p-6 rounded-6 gap-24 h-full nq-hoverable :aria-label="`Go to ${name} website`">
     <div bg="$c" stack mb-0 rounded-4 h-240>
       <NuxtImg :src="logo" max-w="45%" rounded-4 op-60 h-auto max-h-full object-cover />
       <p text="12 white/70" self-start right-12 top-12 justify-self-end relative nq-label>
