@@ -190,20 +190,23 @@ export default defineNuxtConfig({
     },
   }),
 
-  linkChecker: {
-    excludeLinks: [
-      ...EXCLUDED_PAGES,
-      '/vote#rank-curves',
-      '/vote#change-curve',
-      'magnet:*',
-      // Nginx redirects - these paths are handled by nginx and redirect to external URLs but we don't want to check them
-      '/privacy-policy',
-      '/privacy',
-      '/cookie-policy',
-      '/styleguide',
-    ],
-    fetchRemoteUrls: true,
-  },
+  // Disable link inspections for NuxtHub builds to avoid failures on non-HTTP links (e.g., magnet:)
+  ...(!environment.useNuxtHub && {
+    linkChecker: {
+      excludeLinks: [
+        ...EXCLUDED_PAGES,
+        '/vote#rank-curves',
+        '/vote#change-curve',
+        'magnet:*',
+        // Nginx redirects - these paths are handled by nginx and redirect to external URLs but we don't want to check them
+        '/privacy-policy',
+        '/privacy',
+        '/cookie-policy',
+        '/styleguide',
+      ],
+      fetchRemoteUrls: true,
+    },
+  }),
 
   // // TODO Remove this option
   // unocss: {
