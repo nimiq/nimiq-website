@@ -26,11 +26,11 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     'reka-ui/nuxt',
     '@nuxtjs/prismic',
-    '@nuxtjs/seo',
+    !environment.useNuxtHub && '@nuxtjs/seo', // Skip SEO for NuxtHub builds
     '@nuxtjs/device',
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
-    'nuxt-module-feed',
+    !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
     'nuxt-safe-runtime-config',
     'nuxt-security',
     'motion-v/nuxt',
@@ -167,25 +167,28 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  site: {
-    url: getSiteUrl(environment.environment.name),
-    indexable: environment.environment.isProduction,
-  },
-
-  robots: {
-    // Only generate robots.txt for production and GitHub Pages
-    robotsTxt: !environment.environment.isProduction && !environment.environment.isGitHubPages,
-  },
-
-  schemaOrg: {
-    // Search engines understand the organization better with structured data
-    identity: {
-      type: 'Organization',
-      name: 'Nimiq',
-      url: 'https://nimiq.com',
-      logo: 'https://nimiq.com/logo.png',
+  // SEO configuration - skip for NuxtHub builds
+  ...(!environment.useNuxtHub && {
+    site: {
+      url: getSiteUrl(environment.environment.name),
+      indexable: environment.environment.isProduction,
     },
-  },
+
+    robots: {
+      // Only generate robots.txt for production and GitHub Pages
+      robotsTxt: !environment.environment.isProduction && !environment.environment.isGitHubPages,
+    },
+
+    schemaOrg: {
+      // Search engines understand the organization better with structured data
+      identity: {
+        type: 'Organization',
+        name: 'Nimiq',
+        url: 'https://nimiq.com',
+        logo: 'https://nimiq.com/logo.png',
+      },
+    },
+  }),
 
   linkChecker: {
     excludeLinks: [
@@ -375,14 +378,20 @@ export default defineNuxtConfig({
     },
   },
 
-  ogImage: {
-    fonts: ['Mulish:400', 'Mulish:700'],
-  },
+  // Disable og-image generation on NuxtHub (Cloudflare) due to @resvg/resvg-js native bindings incompatibility
+  ogImage: environment.useNuxtHub
+    ? undefined
+    : {
+        fonts: ['Mulish:400', 'Mulish:700'],
+      },
 
-  feed: {
-    sources: [
-      { path: '/feed.xml', type: 'rss2', cacheTime: 0 },
-    ],
-  },
+  // Feed configuration - skip for NuxtHub builds
+  ...(!environment.useNuxtHub && {
+    feed: {
+      sources: [
+        { path: '/feed.xml', type: 'rss2', cacheTime: 0 },
+      ],
+    },
+  }),
 
 })
