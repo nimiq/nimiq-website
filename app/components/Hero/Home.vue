@@ -3,9 +3,7 @@ import type { KeyTextField, LinkField, RichTextField } from '@prismicio/client'
 import { AnimatedTweenedNumber, NuxtLink } from '#components'
 import Map from './Map.vue'
 
-// import { breakpointsTailwind } from '@vueuse/core'
-
-const props = defineProps<{ headline: RichTextField, subHeadlineTemplate: KeyTextField, cta: LinkField, ctaLabel: KeyTextField }>()
+const props = defineProps<{ headline: RichTextField, subHeadlineTemplate: KeyTextField, link: LinkField }>()
 
 const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
 
@@ -49,9 +47,7 @@ watch(subheadlineStr, () => {
     <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
       <component :is="subheadline" text="neutral-800 f-xl" />
-      <PrismicLink :field="cta" mt-40 nq-arrow nq-pill-lg nq-pill-blue>
-        {{ ctaLabel }}
-      </PrismicLink>
+      <PrismicLink :field="link" mt-40 nq-arrow nq-pill-lg nq-pill-blue />
     </div>
     <NuxtImg
       width="1600"

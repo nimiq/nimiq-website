@@ -919,6 +919,15 @@
         "__TYPE__": "FieldContent",
         "value": "grey",
         "type": "Select"
+      },
+      "link": {
+        "__TYPE__": "LinkContent",
+        "key": "93e1dd4b-71dc-49eb-9947-f6750b9e269b",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com",
+          "text": "thank"
+        }
       }
     },
     "items": [
@@ -957,8 +966,8 @@
         "type": "Link",
         "value": [
           {
-            "__TYPE__": "LinkContent",
             "key": "bd50be21-2322-4fe0-a688-ab9e8d622cdd",
+            "__TYPE__": "LinkContent",
             "value": {
               "__TYPE__": "ExternalLink",
               "url": "http://twitter.com",

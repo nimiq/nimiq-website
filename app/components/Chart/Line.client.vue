@@ -24,7 +24,7 @@ function tooltip(v: T) {
 
 <template>
   <VisXYContainer :data :padding="{ top: 128 }">
-    <VisArea color="url('assets/vertical-stripes.svg#vertical-stripes')" :x :y />
+    <VisArea color="url('/assets/vertical-stripes.svg#vertical-stripes')" :x :y />
     <VisLine :x :y color="rgb(var(--nq-green))" />
     <VisTooltip :vertical-shift="1000" />
     <VisAxis type="x" :grid-line="false" :tick-format />

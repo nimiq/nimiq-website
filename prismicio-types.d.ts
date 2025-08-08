@@ -6737,6 +6737,16 @@ export interface HeroSectionSliceHome2024Primary {
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
   bgColor: prismic.SelectField<'darkblue' | 'grey' | 'white', 'filled'>
+
+  /**
+   * link field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**

@@ -1,10 +1,10 @@
-import type { ImageField } from '@prismicio/client'
+import type { ClientConfig, ImageField } from '@prismicio/client'
 import type { AllDocumentTypes } from '~~/prismicio-types'
 import { createClient } from '@prismicio/client'
 import { getLink } from '../../shared/utils/prismic'
 
 export default cachedEventHandler(async () => {
-  const clientConfig = useRuntimeConfig().public.prismic?.clientConfig
+  const clientConfig = useRuntimeConfig().public.prismic?.clientConfig as ClientConfig
   if (!clientConfig)
     throw createError({ statusCode: 500, statusMessage: 'Prismic options not found' })
   const client = createClient<AllDocumentTypes>('nimiq', clientConfig)
