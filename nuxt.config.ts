@@ -26,13 +26,13 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     'reka-ui/nuxt',
     '@nuxtjs/prismic',
-    !environment.useNuxtHub && '@nuxtjs/seo', // Skip SEO for NuxtHub builds
     '@nuxtjs/device',
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
+    !environment.useNuxtHub && 'nuxt-og-image', // Enable og-image only when not on NuxtHub
+    '@nuxtjs/seo',
     'nuxt-safe-runtime-config',
-    'nuxt-security',
     'motion-v/nuxt',
     './modules/prerender-routes',
     environment.useNuxtHub && '@nuxthub/core',
@@ -50,81 +50,6 @@ export default defineNuxtConfig({
       googleTagManager: {
         id: 'GTM-NQ9RN8W',
       },
-    },
-  },
-
-  security: {
-    hidePoweredBy: true,
-    headers: {
-      xFrameOptions: 'SAMEORIGIN',
-      contentSecurityPolicy: {
-        'script-src': environment.environment.isLocal
-          ? [
-              '\'self\'',
-              '\'unsafe-inline\'',
-              '\'unsafe-eval\'',
-              'https://static.cdn.prismic.io',
-              'https://nimiq.prismic.io',
-              'https://www.googletagmanager.com',
-              'https://www.google-analytics.com',
-              'https://stats.nimiq-network.com',
-            ]
-          : [
-              '\'strict-dynamic\'',
-              '\'nonce-{{nonce}}\'',
-              '\'unsafe-inline\'',
-              'https://static.cdn.prismic.io',
-            ],
-        'script-src-attr': environment.environment.isLocal
-          ? ['\'unsafe-inline\'']
-          : ['\'none\''],
-        'style-src': [
-          '\'self\'',
-          'https:',
-          '\'unsafe-inline\'',
-        ],
-        'base-uri': ['\'none\''],
-        'font-src': [
-          '\'self\'',
-          'https:',
-          'data:',
-        ],
-        'object-src': ['\'none\''],
-        'frame-src': ['\'self\'', 'https://nimiq.prismic.io', 'https://map.nimiq.com'],
-        'connect-src': [
-          '\'self\'',
-          'wss://nimiq-website.je-cf9.workers.dev',
-          'https://nimiq-website.je-cf9.workers.dev',
-          'https://www.google-analytics.com',
-          'https://analytics.google.com',
-          'https://stats.g.doubleclick.net',
-          'https://stats.nimiq-network.com',
-          'https://mycbdmurjytbdahjljoh.supabase.co',
-          'https://nimiq.prismic.io',
-          'https://dev.validators-api-mainnet.pages.dev',
-          'https://validators-api-mainnet.nuxt.dev',
-          'https://nimiq.cdn.prismic.io',
-        ],
-        'upgrade-insecure-requests': true,
-        'img-src': [
-          '\'self\'',
-          'data:',
-          'https://nimiq.prismic.io',
-          'https://static.cdn.prismic.io',
-          'https://images.prismic.io',
-          'https://nimiq.cdn.prismic.io',
-          'https://www.google-analytics.com',
-          'https://www.googletagmanager.com',
-          'https://*.google.com',
-          'https://*.google.co.th',
-          'https://*.google.co.uk',
-          'https://*.google.de',
-          'https://*.google.fr',
-        ],
-      },
-      crossOriginOpenerPolicy: false,
-      crossOriginEmbedderPolicy: false,
-      xXSSProtection: '1; mode=block',
     },
   },
 
@@ -382,14 +307,15 @@ export default defineNuxtConfig({
   },
 
   // Disable og-image generation on NuxtHub (Cloudflare) due to @resvg/resvg-js native bindings incompatibility
-  ogImage: environment.useNuxtHub
-    ? undefined
-    : {
-        fonts: ['Mulish:400', 'Mulish:700'],
-      },
+  // Moved into conditional spread below to appease TS/ESLint config typing
 
   // Feed configuration - skip for NuxtHub builds
   ...(!environment.useNuxtHub && {
+    // eslint-disable-next-line ts/ban-ts-comment
+    // @ts-ignore Provided by nuxt-og-image module
+    ogImage: {
+      fonts: ['Mulish:400', 'Mulish:700'],
+    },
     feed: {
       sources: [
         { path: '/feed.xml', type: 'rss2', cacheTime: 0 },

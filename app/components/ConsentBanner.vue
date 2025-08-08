@@ -1,11 +1,14 @@
 <script setup lang="ts">
 const CONSENT_VERSION = '1.0'
 const { consent, acceptConsent, rejectConsent } = useMatomo()
-const open = computed(() => !consent.value || consent.value.version !== CONSENT_VERSION)
+const open = computed(() => {
+  const version = consent.value?.version
+  return !version || version !== CONSENT_VERSION
+})
 </script>
 
 <template>
-  <AlertDialogRoot v-model:open="open">
+  <AlertDialogRoot :open="open" :modal="false">
     <AlertDialogPortal>
       <AlertDialogContent
         outline="~ 1.5 neutral/10"
@@ -15,7 +18,7 @@ const open = computed(() => !consent.value || consent.value.version !== CONSENT_
         0 -8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent),
         0 8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent);"
       >
-        <AlertDialogTitle text="f-xl neutral-900" font-semibold leading-tight my-0>
+        <AlertDialogTitle text="f-xl neutral-900" font-semibold leading-tight my-0 ml-0>
           Cookie Consent
         </AlertDialogTitle>
 

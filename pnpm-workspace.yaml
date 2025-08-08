@@ -2,13 +2,6 @@ packages:
   - ./
 patchedDependencies:
   '@nimiq/utils': patches/@nimiq__utils.patch
-catalog:
-  '@nuxt/scripts': ^0.11.10
-  '@nuxtjs/seo': ^3.1.0
-  '@unocss/preset-wind4': ^66.1.2
-  motion-v: ^1.5.0
-  nuxt-safe-runtime-config: ^0.0.3
-  nuxt-security: ^2.3.0
 catalogs:
   build:
     '@nuxt/kit': ^4.0.0
@@ -26,6 +19,7 @@ catalogs:
     '@vueuse/nuxt': ^13.5.0
     '@vueuse/router': ^13.5.0
     medium-zoom: ^1.1.0
+    motion-v: ^1.5.0
     pinia: ^3.0.3
     reka-ui: ^2.2.1
     vaul-vue: ^0.4.1
@@ -47,11 +41,14 @@ catalogs:
   nuxt:
     '@nuxt/fonts': ^0.11.4
     '@nuxt/image': 2.0.0-alpha.1
+    '@nuxt/scripts': ^0.11.10
     '@nuxthub/core': ^0.9.0
     '@nuxtjs/device': ^3.2.4
     '@nuxtjs/prismic': ^4.1.0
+    '@nuxtjs/seo': ^3.1.0
     nuxt: ^4.0.0
     nuxt-module-feed: ^1.1.4
+    nuxt-safe-runtime-config: ^0.0.3
     unplugin-vue-router: ^0.12.0
   prismic:
     '@prismicio/client': ^7.17.2
@@ -69,6 +66,7 @@ catalogs:
     '@iconify-json/logos': ^1.2.4
     '@iconify/utils': ^2.3.0
     '@unocss/nuxt': ^66.1.2
+    '@unocss/preset-wind4': ^66.1.2
     '@unocss/reset': ^66.1.2
     nimiq-css: ^1.0.0-beta.30
     nimiq-flags: ^1.0.0-beta.30

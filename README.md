@@ -703,30 +703,6 @@ ls -la .output/public/_nuxt/
 - **Rate limiting** - Handled by deployment platforms
 - **Input validation** - Use Valibot schemas for runtime validation
 
-### Content Security Policy (CSP)
-
-The project uses [`nuxt-security`](https://nuxt-security.vercel.app/) for OWASP-compliant security headers and Content Security Policy protection:
-
-- **CSP Configuration** - Defined in `nuxt.config.ts` security section
-- **Prismic Integration** - Allows Prismic CMS domains and inline scripts
-- **Analytics Support** - Permits Google Analytics and Matomo tracking
-- **Data URLs** - Enables inline SVG images (`data:` protocol)
-- **WebSocket Connections** - Configured for real-time blockchain data
-
-**Key CSP Directives:**
-
-```json
-{
-  "contentSecurityPolicy": {
-    "img-src": ["'self'", "data:", "https://nimiq.prismic.io", "..."],
-    "script-src": ["'self'", "https://stats.nimiq-network.com", "..."],
-    "connect-src": ["'self'", "wss://nimiq-website.je-cf9.workers.dev", "..."]
-  }
-}
-```
-
-See the [Nuxt Security Module](https://nuxt-security.vercel.app/) for more details.
-
 ### Content Security
 
 - **Draft content** - Only visible in local/internal-static-drafts environments

@@ -74,6 +74,8 @@ useSeoMeta({
 const stack = props.error.stack
 // eslint-disable-next-line vue/no-mutating-props
 delete props.error.stack
+
+console.error(props.error)
 </script>
 
 <template>
