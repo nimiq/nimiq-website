@@ -18,22 +18,6 @@ catalogs:
     wrangler:
       specifier: ^4.15.2
       version: 4.15.2
-  default:
-    '@nuxt/scripts':
-      specifier: ^0.11.10
-      version: 0.11.10
-    '@nuxtjs/seo':
-      specifier: ^3.1.0
-      version: 3.1.0
-    '@unocss/preset-wind4':
-      specifier: ^66.1.2
-      version: 66.1.2
-    motion-v:
-      specifier: ^1.5.0
-      version: 1.5.0
-    nuxt-safe-runtime-config:
-      specifier: ^0.0.3
-      version: 0.0.3
   frontend:
     '@pinia/colada':
       specifier: ^0.15.3
@@ -65,6 +49,9 @@ catalogs:
     medium-zoom:
       specifier: ^1.1.0
       version: 1.1.0
+    motion-v:
+      specifier: ^1.5.0
+      version: 1.5.0
     pinia:
       specifier: ^3.0.3
       version: 3.0.3
@@ -122,6 +109,9 @@ catalogs:
     '@nuxt/image':
       specifier: 2.0.0-alpha.1
       version: 2.0.0-alpha.1
+    '@nuxt/scripts':
+      specifier: ^0.11.10
+      version: 0.11.10
     '@nuxthub/core':
       specifier: ^0.9.0
       version: 0.9.0
@@ -131,12 +121,18 @@ catalogs:
     '@nuxtjs/prismic':
       specifier: ^4.1.0
       version: 4.1.0
+    '@nuxtjs/seo':
+      specifier: ^3.1.0
+      version: 3.1.0
     nuxt:
       specifier: ^4.0.0
       version: 4.0.1
     nuxt-module-feed:
       specifier: ^1.1.4
       version: 1.1.4
+    nuxt-safe-runtime-config:
+      specifier: ^0.0.3
+      version: 0.0.3
     unplugin-vue-router:
       specifier: ^0.12.0
       version: 0.12.0
@@ -180,6 +176,9 @@ catalogs:
     '@unocss/nuxt':
       specifier: ^66.1.2
       version: 66.1.2
+    '@unocss/preset-wind4':
+      specifier: ^66.1.2
+      version: 66.1.2
     '@unocss/reset':
       specifier: ^66.1.2
       version: 66.1.2
@@ -215,10 +214,10 @@ importers:
         specifier: catalog:nimiq
         version: 0.12.4(patch_hash=e1a6d264c08ff3ae171a61a50938c2e2e61884456f6bf378a6f19f3409546ef0)
       '@nuxt/scripts':
-        specifier: 'catalog:'
+        specifier: catalog:nuxt
         version: 0.11.10(@netlify/blobs@8.2.0)(@unhead/vue@2.0.12(vue@3.5.14(typescript@5.8.3)))(db0@0.3.2)(ioredis@5.6.1)(magicast@0.3.5)(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))
       '@nuxtjs/seo':
-        specifier: 'catalog:'
+        specifier: catalog:nuxt
         version: 3.1.0(@netlify/blobs@8.2.0)(@unhead/vue@2.0.12(vue@3.5.14(typescript@5.8.3)))(db0@0.3.2)(h3@1.15.3)(ioredis@5.6.1)(magicast@0.3.5)(rollup@4.45.1)(unstorage@1.16.1(@netlify/blobs@8.2.0)(db0@0.3.2)(ioredis@5.6.1))(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
       '@pinia/colada':
         specifier: catalog:frontend
@@ -242,7 +241,7 @@ importers:
         specifier: catalog:frontend
         version: 1.1.0
       motion-v:
-        specifier: 'catalog:'
+        specifier: catalog:frontend
         version: 1.5.0(vue@3.5.14(typescript@5.8.3))
       nimiq-rpc-client-ts:
         specifier: catalog:nimiq
@@ -318,7 +317,7 @@ importers:
         specifier: catalog:unocss
         version: 66.1.2(magicast@0.3.5)(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))(webpack@5.99.6(esbuild@0.25.4))
       '@unocss/preset-wind4':
-        specifier: 'catalog:'
+        specifier: catalog:unocss
         version: 66.1.2
       '@unocss/reset':
         specifier: catalog:unocss
@@ -354,7 +353,7 @@ importers:
         specifier: catalog:nuxt
         version: 1.1.4(magicast@0.3.5)(rollup@4.45.1)
       nuxt-safe-runtime-config:
-        specifier: 'catalog:'
+        specifier: catalog:nuxt
         version: 0.0.3(magicast@0.3.5)
       pinia:
         specifier: catalog:frontend
@@ -12422,7 +12421,7 @@ snapshots:
 
   '@unocss/rule-utils@66.1.2':
     dependencies:
-      '@unocss/core': 66.1.2
+      '@unocss/core': 66.3.3
       magic-string: 0.30.17
 
   '@unocss/rule-utils@66.3.3':
@@ -18508,8 +18507,8 @@ snapshots:
 
   unocss-preset-css-var@1.0.0-beta.25(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3)):
     dependencies:
-      '@unocss/core': 66.1.2
-      '@unocss/rule-utils': 66.1.2
+      '@unocss/core': 66.3.3
+      '@unocss/rule-utils': 66.3.3
       unocss: 66.1.2(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
     transitivePeerDependencies:
       - '@unocss/webpack'
@@ -18520,7 +18519,7 @@ snapshots:
 
   unocss-preset-easing-gradient@1.0.0-beta.25(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3)):
     dependencies:
-      '@unocss/core': 66.1.2
+      '@unocss/core': 66.3.3
       '@unocss/preset-mini': 66.1.2
       unocss: 66.1.2(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
     transitivePeerDependencies:
@@ -18532,7 +18531,7 @@ snapshots:
 
   unocss-preset-fluid-sizing@1.0.0-beta.25:
     dependencies:
-      '@unocss/core': 66.1.2
+      '@unocss/core': 66.3.3
       defu: 6.1.4
 
   unocss-preset-onmax@1.0.0-beta.25(@unocss/preset-wind3@66.3.3)(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3)):
@@ -18562,9 +18561,9 @@ snapshots:
   unocss-preset-reka-ui@1.0.0-beta.25(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3)):
     dependencies:
       '@radix-ui/colors': 3.0.0
-      '@unocss/core': 66.1.2
+      '@unocss/core': 66.3.3
       '@unocss/preset-wind4': 66.1.2
-      '@unocss/rule-utils': 66.1.2
+      '@unocss/rule-utils': 66.3.3
       defu: 6.1.4
       unocss: 66.1.2(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
     transitivePeerDependencies:
@@ -18576,7 +18575,7 @@ snapshots:
 
   unocss-preset-scale-px@1.0.0-beta.25(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3)):
     dependencies:
-      '@unocss/core': 66.1.2
+      '@unocss/core': 66.3.3
       unocss: 66.1.2(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
     transitivePeerDependencies:
       - '@unocss/webpack'
@@ -18593,9 +18592,9 @@ snapshots:
   unocss-preset-unovue@1.0.0-beta.25(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(unocss-preset-animations@1.2.1(@unocss/preset-wind3@66.3.3)(unocss@66.1.2(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))))(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3)):
     dependencies:
       '@radix-ui/colors': 3.0.0
-      '@unocss/core': 66.1.2
+      '@unocss/core': 66.3.3
       '@unocss/preset-wind4': 66.1.2
-      '@unocss/rule-utils': 66.1.2
+      '@unocss/rule-utils': 66.3.3
       defu: 6.1.4
       unocss: 66.1.2(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
       unocss-preset-reka-ui: 1.0.0-beta.25(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.25.4)))(postcss@8.5.6)(vite@7.0.6(@types/node@22.15.19)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.14(typescript@5.8.3))
