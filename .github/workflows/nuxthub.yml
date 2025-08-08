@@ -5,8 +5,6 @@ jobs:
   deploy:
     name: Deploy to NuxtHub
     runs-on: ubuntu-latest
-    env:
-      PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
     permissions:
       contents: read
       id-token: write
@@ -30,3 +28,14 @@ jobs:
         uses: nuxt-hub/action@v2
         with:
           build-command: ${{ github.ref == 'refs/heads/main' && 'pnpm run build:nuxthub' || 'pnpm run build:nuxthub-preview' }}
+        env:
+          PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}
+          NUXT_ALBATROSS_NODE_RPC_URL: ${{ secrets.NUXT_ALBATROSS_NODE_RPC_URL }}
+          NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_KEY: ${{ secrets.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_KEY }}
+          NUXT_HUB_ENV: ${{ vars.NUXT_HUB_ENV }}
+          NUXT_HUB_PROJECT_KEY: ${{ vars.NUXT_HUB_PROJECT_KEY }}
+          NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_URL: ${{ vars.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_URL }}
+          NUXT_PUBLIC_VALIDATORS_API: ${{ vars.NUXT_PUBLIC_VALIDATORS_API }}
+          NUXT_SITE_ENV: ${{ vars.NUXT_SITE_ENV }}
+          NUXT_PUBLIC_WORDS_CHALLENGE_PUBLIC_ADDRESS: ${{ secrets.NUXT_PUBLIC_WORDS_CHALLENGE_PUBLIC_ADDRESS }}
+          NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS: ${{ secrets.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS }}

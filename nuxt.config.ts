@@ -1,6 +1,6 @@
 import process from 'node:process'
 import { defineNuxtConfig } from 'nuxt/config'
-import { array, boolean, object, optional, string } from 'valibot'
+import { array, boolean, object, optional, string, undefined as vUndefined } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
 import { EXCLUDED_PAGES } from './lib/crawler'
@@ -250,15 +250,17 @@ export default defineNuxtConfig({
         firstRealWords: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS,
       },
     },
-    zoho: {
-      requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
-      clientId: process.env.NUXT_ZOHO_CLIENT_ID,
-      clientSecret: process.env.NUXT_ZOHO_CLIENT_SECRET,
-      scope: process.env.NUXT_ZOHO_SCOPE,
-      code: process.env.NUXT_ZOHO_CODE,
-      refreshToken: process.env.NUXT_ZOHO_REFRESH_TOKEN,
-      listkey: process.env.NUXT_ZOHO_LISTKEY,
-    },
+    zoho: environment.environment.isProduction
+      ? {
+          requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
+          clientId: process.env.NUXT_ZOHO_CLIENT_ID,
+          clientSecret: process.env.NUXT_ZOHO_CLIENT_SECRET,
+          scope: process.env.NUXT_ZOHO_SCOPE,
+          code: process.env.NUXT_ZOHO_CODE,
+          refreshToken: process.env.NUXT_ZOHO_REFRESH_TOKEN,
+          listkey: process.env.NUXT_ZOHO_LISTKEY,
+        }
+      : undefined,
   },
 
   safeRuntimeConfig: {
@@ -286,15 +288,17 @@ export default defineNuxtConfig({
           firstRealWords: string(),
         }),
       }),
-      zoho: optional(object({
-        requestUrl: string(),
-        clientId: string(),
-        clientSecret: string(),
-        scope: string(),
-        code: string(),
-        refreshToken: string(),
-        listkey: string(),
-      })),
+      zoho: environment.environment.isProduction
+        ? object({
+            requestUrl: string(),
+            clientId: string(),
+            clientSecret: string(),
+            scope: string(),
+            code: string(),
+            refreshToken: string(),
+            listkey: string(),
+          })
+        : vUndefined(),
     }),
   },
 
