@@ -321,7 +321,6 @@ export default defineNuxtConfig({
       wasm: true,
       websocket: true,
     },
-    wasm: { inline: true },
     esbuild: {
       options: {
         target: 'esnext',
@@ -378,7 +377,6 @@ export default defineNuxtConfig({
 
   ogImage: {
     fonts: ['Mulish:400', 'Mulish:700'],
-    compatibility: { resvg: 'wasm' },
   },
 
   feed: {

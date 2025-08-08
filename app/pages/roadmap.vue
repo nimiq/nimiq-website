@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RichTextField, TitleField } from '@prismicio/client'
+import type { Content, RichTextField, TitleField } from '@prismicio/client'
 import { firstMonth, firstYear, layers, milestones } from '~/components/Roadmap/roadmap-data'
 import NewsletterSubscription from '~/slices/NewsletterSubscription/index.vue'
 
@@ -23,6 +23,27 @@ defineOgImageComponent('OgImagePage', {
   title: 'Roadmap',
   subline: 'Browse the project\'s past and future.',
 })
+
+const newsletterSlice: Content.NewsletterSubscriptionSlice = {
+  slice_type: 'newsletter_subscription',
+  slice_label: null,
+  id: 'roadmap-newsletter',
+  version: 'v1',
+  variation: 'default',
+  items: [],
+  primary: {
+    backgroundColor: 'white',
+    bgColor: 'white',
+    placeholder: 'Enter email address...',
+    cta: [
+      {
+        type: 'heading2',
+        text: 'Stay up to date',
+        spans: [],
+      },
+    ],
+  },
+}
 </script>
 
 <template>
@@ -34,17 +55,10 @@ defineOgImageComponent('OgImagePage', {
     </section>
 
     <NewsletterSubscription
-      :slice="{
-        primary: {
-          bgColor: 'white',
-          cta: [
-            {
-              type: 'heading2',
-              text: 'Stay up to date',
-            },
-          ],
-        },
-      }"
+      :slice="newsletterSlice"
+      :index="0"
+      :slices="[] as any"
+      :context="undefined"
     />
   </NuxtLayout>
 </template>
