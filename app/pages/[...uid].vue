@@ -81,8 +81,8 @@ if (isHome) {
 }
 
 // Site config ensures consistency across all SEO-related modules
-const siteConfig = useSiteConfig()
-const canonicalUrl = `${siteConfig.url}${route.path}`
+const url = 'https://nimiq.com'
+const canonicalUrl = `${url}${route.path}`
 
 const keywords = cmsKeywords || 'Nimiq, cryptocurrency, blockchain, digital money, payments'
 
@@ -103,7 +103,7 @@ useSeoMeta({
   ogDescription: description,
   ogUrl: canonicalUrl,
   ogType: 'website',
-  ogSiteName: siteConfig.name,
+  ogSiteName: 'Nimiq',
   ogLocale: 'en_US',
 
   twitterCard: 'summary_large_image',
@@ -117,6 +117,8 @@ useSeoMeta({
   publisher: 'Nimiq',
 })
 
+const isNuxtHub = useRuntimeConfig().public.environment.isNuxthubPreview || useRuntimeConfig().public.environment.isNuxthubProduction
+
 // Custom images take precedence over generated ones for better brand control
 if (hasImage(cmsImage)) {
   useSeoMeta({
@@ -129,11 +131,9 @@ if (hasImage(cmsImage)) {
   })
   setOgImage({ title, subline: description, image: cmsImage })
 }
-else if (isHome) {
-  defineOgImageComponent('OgImageHome', { title, subline: description })
-}
-else {
-  defineOgImageComponent('OgImagePage', { title, subline: description })
+else if (!isNuxtHub) {
+  // @ts-expect-error - We toggle Nuxt SEO module on and off based on the environment
+  defineOgImageComponent(isHome ? 'OgImageHome' : 'OgImagePage', { title, subline: description })
 }
 </script>
 

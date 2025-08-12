@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { link: _link } = defineProps<{ color: string, link: string, logo: string, type: string, name: string, description: string, developer?: string }>()
 
-const { url } = useSiteConfig()
+const url = 'https://nimiq.com'
 const link = _link.replace(/\/$/, '').replace(url, '')
 </script>
 
