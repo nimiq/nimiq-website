@@ -49,7 +49,7 @@ if (siteEnv) {
 
     // Check if the value matches the environment rules
     if ((isNuxthubProduction || isProduction) && siteEnv !== 'production')
-      throw new Error(`NUXT_SITE_ENV must be "production" for production environments (nuxthub-production, production), but got "${siteEnv}"`)
+      throw new Error(`NUXT_SITE_ENV must be "production" for production environments (current environment: ${environment}), but got "${siteEnv}"`)
 
     if (!isNuxthubProduction && !isProduction && siteEnv !== 'preview')
       throw new Error(`NUXT_SITE_ENV must be "preview" for non-production environments, but got "${siteEnv}"`)
