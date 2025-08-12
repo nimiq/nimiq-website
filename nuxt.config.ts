@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     '@pinia/colada-nuxt',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
     !environment.useNuxtHub && 'nuxt-og-image', // Enable og-image only when not on NuxtHub
-    '@nuxtjs/seo',
+    !environment.useNuxtHub && '@nuxtjs/seo',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
     './modules/prerender-routes',
@@ -128,6 +128,9 @@ export default defineNuxtConfig({
         '/privacy',
         '/cookie-policy',
         '/styleguide',
+        '/cards',
+        '/activation/privacy',
+        '/vote',
       ],
       fetchRemoteUrls: true,
     },
