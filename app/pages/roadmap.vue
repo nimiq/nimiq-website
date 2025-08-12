@@ -19,9 +19,10 @@ useSeoMeta({
   twitterDescription: 'Browse the project\'s past and future.',
 })
 
-defineOgImageComponent('OgImagePage', {
+setOgImage({
   title: 'Roadmap',
   subline: 'Browse the project\'s past and future.',
+  type: 'page',
 })
 
 const newsletterSlice: Content.NewsletterSubscriptionSlice = {

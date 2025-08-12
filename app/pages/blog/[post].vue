@@ -33,6 +33,7 @@ setOgImage({
   title: meta.title,
   subline: meta.description,
   image,
+  type: 'blog',
 })
 
 const articleRef = ref<HTMLElement>()

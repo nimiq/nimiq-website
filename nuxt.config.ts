@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     '@pinia/colada-nuxt',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
     !environment.useNuxtHub && 'nuxt-og-image', // Enable og-image only when not on NuxtHub
-    !environment.useNuxtHub && '@nuxtjs/seo',
+    !environment.environment.isNuxthubPreview && !environment.environment.isNuxthubProduction && '@nuxtjs/seo',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
     './modules/prerender-routes',

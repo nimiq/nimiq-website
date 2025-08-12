@@ -117,8 +117,6 @@ useSeoMeta({
   publisher: 'Nimiq',
 })
 
-const isNuxtHub = useRuntimeConfig().public.environment.isNuxthubPreview || useRuntimeConfig().public.environment.isNuxthubProduction
-
 // Custom images take precedence over generated ones for better brand control
 if (hasImage(cmsImage)) {
   useSeoMeta({
@@ -129,12 +127,14 @@ if (hasImage(cmsImage)) {
     twitterImage: cmsImage.url,
     twitterImageAlt: title,
   })
-  setOgImage({ title, subline: description, image: cmsImage })
 }
-else if (!isNuxtHub) {
-  // @ts-expect-error - We toggle Nuxt SEO module on and off based on the environment
-  defineOgImageComponent(isHome ? 'OgImageHome' : 'OgImagePage', { title, subline: description })
-}
+
+setOgImage({
+  title,
+  subline: description,
+  image: cmsImage,
+  type: isHome ? 'home' : 'page',
+})
 </script>
 
 <template>
