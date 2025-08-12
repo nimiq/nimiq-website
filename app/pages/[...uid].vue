@@ -15,7 +15,9 @@ const { data: page } = await useAsyncData(`prismic-page-${pathParams.join('-')}`
   .catch((error) => {
     console.error(`Page with UID "${uid}" not found in Prismic:`, error)
     throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-  }))
+  }), {
+  server: true,
+})
 
 if (!page.value) {
   console.error(`Page with UID "${uid}" not found`)

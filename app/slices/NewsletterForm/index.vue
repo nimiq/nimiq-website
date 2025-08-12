@@ -19,8 +19,8 @@ const topics = computed(() => nimiqTopicsOptions.filter(topic => topic.model).ma
 const products = computed(() => nimiqProducts.filter(product => product.model).map(product => product.label))
 const body = computed(() => ({ email: email.value, communicationPermission: communicationPermission.value, topics: topics.value, products: products.value }))
 
-const url = `${useRuntimeConfig().public.apiDomain}/api/newsletter/subscribe`
-const { execute: submitForm, status, error } = useFetch(url, { method: 'POST', body, watch: false, immediate: false })
+const url = new URL('/api/newsletter/subscribe', useRuntimeConfig().public.apiDomain)
+const { execute: submitForm, status, error } = useFetch(url.href, { method: 'POST', body, watch: false, immediate: false })
 </script>
 
 <template>

@@ -53,6 +53,7 @@ export function useSocialMedias() {
     ) as Record<SocialMediaName, SocialMediaAttributes>
     return socialMedias
   }, {
+    server: true,
     default() {
       return {} as Record<SocialMediaName, SocialMediaAttributes>
     },

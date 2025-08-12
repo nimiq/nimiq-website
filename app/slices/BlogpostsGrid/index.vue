@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import type { Content, Query } from '@prismicio/client'
+import type { Content } from '@prismicio/client'
+import type { BlogPageDocument } from '~~/prismicio-types'
 import { filter } from '@prismicio/client'
 import ArticleMetadata from '~/components/ArticleMetadata.vue'
 
-defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
+const { slice } = defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
 
-const { showDrafts } = useRuntimeConfig().public
 const itemsPerPage = 25
 const route = useRoute()
 const router = useRouter()
 const page = ref(Number(route.query.page) || 1)
+const { showDrafts } = useRuntimeConfig().public
 
 watch(() => route.query.page, (val) => {
   page.value = Number(val) || 1
@@ -17,26 +18,31 @@ watch(() => route.query.page, (val) => {
 
 watch(page, (val) => {
   router.replace({ query: { ...route.query, page: val !== 1 ? val : undefined } })
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  if (import.meta.client) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 })
 
 const { client } = usePrismic()
-
-const result = ref<Query<Content.BlogPageDocument<string>>>()
-
-watchEffect(async () => {
-  const data = await client.getByType('blog_page', {
+const { data: result } = await useAsyncData(`blog-posts-slice-${page.value}`, async () => {
+  return await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
     filters: showDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
     pageSize: itemsPerPage,
     page: page.value,
   })
-  result.value = data
+}, {
+  server: true,
+  watch: [page],
 })
 
-const results = computed(() => result.value?.results ?? [])
+const posts = computed(() => {
+  if (!result.value?.results)
+    return []
+  return result.value.results.map(r => getBlogMetadata(r as BlogPageDocument))
+})
+
 const totalPages = computed(() => result.value?.total_pages ?? 1)
-const posts = computed(() => results.value.map(r => getBlogMetadata(r as Content.BlogPageDocument)))
 
 const active = useState()
 </script>
@@ -44,12 +50,22 @@ const active = useState()
 <template>
   <section bg-neutral-100 f-pt-3xl>
     <div v-if="posts.length > 0" grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
-      <article v-for="({ uid, href, draft, image, hasImage, title, abstract, date, authors }, i) in posts" :key="uid" :class="page === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
+      <article
+        v-for="({ uid, href, draft, image, hasImage, title, abstract, date, authors }, i) in posts" :key="uid"
+        :class="page === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'"
+      >
         <NuxtLink :to="href" p-0 h-full relative nq-hoverable @click="active = uid">
           <PageInfo :draft right-12 top-12 absolute z-10 />
           <div p-4>
-            <PrismicImage v-if="hasImage" :field="image" rounded-6 h-max w-full object-cover :class="[i === 1 ? 'h-max lg:h-280' : 'h-max', { 'view-transition-post-img contain-layout': active === uid }]" loading="lazy" />
-            <div v-else-if="showDrafts" text-green-400 py-64 rounded-4 flex-1 size-full bg-gradient-green grid="~ place-content-center">
+            <PrismicImage
+              v-if="hasImage" :field="image" rounded-6 h-max w-full object-cover
+              :class="[i === 1 ? 'h-max lg:h-280' : 'h-max', { 'view-transition-post-img contain-layout': active === uid }]"
+              loading="lazy"
+            />
+            <div
+              v-else-if="showDrafts" text-green-400 py-64 rounded-4 flex-1 size-full bg-gradient-green
+              grid="~ place-content-center"
+            >
               <div flex="~ items-center gap-12">
                 <div text-32 op-70 i-nimiq:tools-wench-hammer />
 
@@ -74,12 +90,19 @@ const active = useState()
             <p mt-8 line-clamp-2 text="16 neutral-900 left">
               {{ abstract }}
             </p>
-            <ArticleMetadata :style="`--content: '${slice.primary.labelLearnMore}'`" :class=" i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16" :date :authors="authors.join(', ')" pt-16 gap-x-8 h-max nq-hoverable-cta />
+            <ArticleMetadata
+              :style="`--content: '${slice.primary.labelLearnMore}'`"
+              :class="i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16" :date
+              :authors="authors.join(', ')" pt-16 gap-x-8 h-max nq-hoverable-cta
+            />
             <span sr-only>{{ slice.primary.labelLearnMore }}</span>
           </div>
         </NuxtLink>
       </article>
-      <PaginationRoot v-model:page="page" :total="totalPages * itemsPerPage" :items-per-page show-edges mt-32 col-span-full>
+      <PaginationRoot
+        v-model:page="page" :total="totalPages * itemsPerPage" :items-per-page show-edges mt-32
+        col-span-full
+      >
         <PaginationList v-slot="{ items }" flex="~ gap-16 items-center justify-center">
           <PaginationPrev class="item">
             <div text-9 op-70 i-nimiq:chevron-left />
@@ -104,6 +127,7 @@ const active = useState()
 <style scoped>
 .item {
   --uno: 'rounded-4 size-32 shrink-0 bg-neutral-100 text-neutral-900 text-12 font-semibold hocus:bg-neutral-200 transition-colors ring-1.5 ring-neutral-400 flex items-center justify-center';
+
   &[data-selected] {
     --uno: 'bg-blue text-white ring-none';
   }

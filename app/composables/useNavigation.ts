@@ -18,6 +18,8 @@ export function useNavigation() {
       hotCtaText,
 
     }
+  }, {
+    server: true,
   })
 }
 

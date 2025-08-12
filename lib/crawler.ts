@@ -28,7 +28,10 @@ export async function getDynamicPages(options: PrerenderPagesOptions) {
   const blogPostsUrl = await buildPrismicUrl('blog_page', options)
   const blogArticles = await getBlogPosts(blogPostsUrl).then(posts => posts.map(post => `/blog/${post.slug}`))
 
-  return [...pages, ...blogArticles].filter(page => !EXCLUDED_PAGES.includes(page))
+  // Generate blog pagination routes
+  const blogPaginationRoutes = await getBlogPaginationRoutes(blogPostsUrl)
+
+  return [...pages, ...blogArticles, ...blogPaginationRoutes].filter(page => !EXCLUDED_PAGES.includes(page))
 }
 
 async function getPages(url: URL) {
@@ -85,6 +88,29 @@ export async function getBlogPosts(url: URL) {
   }
 
   return blogPosts
+}
+
+export async function getBlogPaginationRoutes(url: URL) {
+  const paginationRoutes: string[] = []
+
+  // Get the first page to determine total number of posts
+  url.searchParams.set('page', '1')
+  const firstPageResult = await $fetch<Query<BlogPageDocument>>(url.href)
+  const totalPages = firstPageResult.total_pages || 1
+
+  // Generate pagination routes
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1) {
+      // First page is just /blog
+      paginationRoutes.push('/blog')
+    }
+    else {
+      // Other pages are /blog?page=2, /blog?page=3, etc.
+      paginationRoutes.push(`/blog?page=${i}`)
+    }
+  }
+
+  return paginationRoutes
 }
 
 const prismicUrl = new URL(`https://${repositoryName}.cdn.prismic.io`)
