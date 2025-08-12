@@ -44,7 +44,7 @@ const posts = computed(() => {
 
 const totalPages = computed(() => result.value?.total_pages ?? 1)
 
-const active = useState()
+const active = useState('active-blog-post', () => '')
 </script>
 
 <template>
