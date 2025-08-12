@@ -48,11 +48,11 @@ if (siteEnv) {
     parse(siteEnvironmentSchema, siteEnv)
 
     // Check if the value matches the environment rules
-    if (isLocal && siteEnv !== 'preview')
-      throw new Error(`NUXT_SITE_ENV must be "preview" for localhost environment, but got "${siteEnv}"`)
+    if ((isNuxthubProduction || isProduction) && siteEnv !== 'production')
+      throw new Error(`NUXT_SITE_ENV must be "production" for production environments (nuxthub-production, production), but got "${siteEnv}"`)
 
-    if (!isLocal && siteEnv !== 'production')
-      throw new Error(`NUXT_SITE_ENV must be "production" for non-localhost environments, but got "${siteEnv}"`)
+    if (!isNuxthubProduction && !isProduction && siteEnv !== 'preview')
+      throw new Error(`NUXT_SITE_ENV must be "preview" for non-production environments, but got "${siteEnv}"`)
   }
   catch (error) {
     if (error instanceof Error) {
