@@ -1,7 +1,7 @@
 import type { InferOutput } from 'valibot'
 import process from 'node:process'
 import { $fetch } from 'ofetch'
-import { literal, union } from 'valibot'
+import { literal, parse, union } from 'valibot'
 import { repositoryName } from '../slicemachine.config.json'
 
 // Define environment type
@@ -17,6 +17,14 @@ export const environmentSchema = union([
 
 export type EnvironmentName = InferOutput<typeof environmentSchema>
 
+// Define site environment schema
+export const siteEnvironmentSchema = union([
+  literal('preview'),
+  literal('production'),
+])
+
+export type SiteEnvironmentName = InferOutput<typeof siteEnvironmentSchema>
+
 // Get environment from process.env or default to production
 const environment: EnvironmentName = (process.env.NUXT_ENVIRONMENT as EnvironmentName) || (process.env.NODE_ENV === 'development' ? 'local' : 'production')
 
@@ -31,6 +39,28 @@ const isProduction = environment === 'production'
 
 const showDrafts = isLocal || isInternalDrafts
 const useNuxtHub = isNuxthubPreview || isNuxthubProduction || isLocal
+
+// Validate NUXT_SITE_ENV
+const siteEnv = process.env.NUXT_SITE_ENV as SiteEnvironmentName
+if (siteEnv) {
+  try {
+    // Parse and validate the site environment value
+    parse(siteEnvironmentSchema, siteEnv)
+
+    // Check if the value matches the environment rules
+    if (isLocal && siteEnv !== 'preview')
+      throw new Error(`NUXT_SITE_ENV must be "preview" for localhost environment, but got "${siteEnv}"`)
+
+    if (!isLocal && siteEnv !== 'production')
+      throw new Error(`NUXT_SITE_ENV must be "production" for non-localhost environments, but got "${siteEnv}"`)
+  }
+  catch (error) {
+    if (error instanceof Error) {
+      throw new TypeError(`Invalid NUXT_SITE_ENV: ${error.message}`)
+    }
+    throw error
+  }
+}
 
 // GitHub Pages requires a specific base URL
 if (isGitHubPages)
@@ -60,6 +90,7 @@ async function checkInternetConnection(): Promise<boolean> {
 // eslint-disable-next-line no-console
 console.table({
   'Environment': environment,
+  'Site Environment': siteEnv || 'not set',
   'Drafts': showDrafts ? 'enabled' : 'disabled',
   'NuxtHub': useNuxtHub ? 'enabled' : 'disabled',
   'GitHub Pages': isGitHubPages ? 'yes' : 'no',
@@ -71,6 +102,7 @@ export default {
   showDrafts,
   checkInternetConnection,
   useNuxtHub,
+  siteEnv,
   environment: {
     name: environment,
     isLocal,
