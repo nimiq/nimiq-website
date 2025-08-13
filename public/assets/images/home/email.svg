@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="132" height="80" fill="none" viewBox="0 0 132 80">
+  <path fill="url(#a)" d="M7.008 25.602a1.61 1.61 0 0 1 .678-1.173c.172-.12.374-.208.607-.256L124.987.063c.042-.01.062.053.024.071l-87.162 42.2L7.89 27.205a1.59 1.59 0 0 1-.882-1.603Z"/>
+  <path fill="url(#b)" d="M42.655 44.85a3.24 3.24 0 0 0-1.666 3.33L43.051 62h23.143L54.87 54.702a.79.79 0 0 1 .785-1.36l38.64 25.101a1.62 1.62 0 0 0 2.404-.799L125.233.154 42.655 44.85Z"/>
+  <path fill="url(#c)" fill-opacity=".6" d="M66.194 62H43.051l2.479 16.617a1.62 1.62 0 0 0 2.49 1.116l22.655-14.846L66.195 62Z"/>
+  <path fill="url(#d)" d="M66.194 62H43.051l2.479 16.617a1.62 1.62 0 0 0 2.49 1.116l22.655-14.846L66.195 62Z"/>
+  <defs>
+    <radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="rotate(33.802 3.5 11.52) scale(142.004 134.1)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
+    </radialGradient>
+    <radialGradient id="b" cx="0" cy="0" r="1" gradientTransform="rotate(33.802 3.5 11.52) scale(142.004 134.1)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
+    </radialGradient>
+    <radialGradient id="c" cx="0" cy="0" r="1" gradientTransform="matrix(33.41769 13.15792 -8.56165 21.74437 50.477 64.65)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".62"/>
+    </radialGradient>
+    <radialGradient id="d" cx="0" cy="0" r="1" gradientTransform="matrix(33.41769 13.15792 -8.56165 21.74437 50.477 64.65)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#24CCA2"/>
+      <stop offset="1" stop-color="#24CCA2" stop-opacity=".62"/>
+    </radialGradient>
+  </defs>
+</svg>
