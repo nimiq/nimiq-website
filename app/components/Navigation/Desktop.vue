@@ -32,7 +32,7 @@ const isHome = route.fullPath === '/'
                 >
                   <NavigationMenuLink as-child>
                     <PrismicLink :field="href" flex="~ gap-12 items-center">
-                      <PrismicImage :field="logo" h-22 max-w-21 op="20 group-hocus:100" transition-opacity />
+                      <LocalImage :field="logo" h-22 max-w-21 op="20 group-hocus:100" transition-opacity />
                       <span>
                         {{ label }}
                       </span>
@@ -47,7 +47,7 @@ const isHome = route.fullPath === '/'
                 leave-active-class="transition-[opacity,filter] duration-150 blur-0" leave-from-class="op-100"
                 leave-to-class="op-0 blur-2"
               >
-                <PrismicImage
+                <LocalImage
                   v-if="navigation.appsLinks[selectedApp]?.visual" :key="selectedApp"
                   :field="navigation.appsLinks[selectedApp]!.visual" rounded-4 h-full w-300 shadow relative
                   object-contain object-left-top

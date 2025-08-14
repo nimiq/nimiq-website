@@ -19,6 +19,6 @@ const image = computed(() => {
 
 <template>
   <section mx-0 px-0 bg-neutral-100 children:max-w-none>
-    <PrismicImage :field="image" size-full />
+    <LocalImage :field="image" size-full />
   </section>
 </template>

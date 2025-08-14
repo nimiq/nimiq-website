@@ -18,6 +18,9 @@ logs
 .fleet
 .idea
 
+# Downloaded Prismic images (regenerated during build)
+public/prismic-images/
+
 # Local env files
 .env
 .env.*

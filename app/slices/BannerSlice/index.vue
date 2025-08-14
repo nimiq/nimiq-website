@@ -65,7 +65,7 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
           pointer-cursor text-white rounded-full size-104 absolute
         >
           <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />
-          <PrismicImage v-else :field="icon" pointer-events-none scale-125 />
+          <LocalImage v-else :field="icon" pointer-events-none scale-125 />
           <div
             :style="{ borderColor: color }" top="50%" left="50%" border="2 solid" translate-x="-50%"
             translate-y="-50%" rounded-full op-0 size-full pointer-events-none scale-100 absolute
