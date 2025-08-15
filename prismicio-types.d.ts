@@ -3258,6 +3258,16 @@ export interface BannerSliceSliceDefaultItem {
   backgroundPattern: prismic.SelectField<
     'None' | 'Nimiq Apps' | 'Social Media' | 'Nimiq Hexagon'
   >
+
+  /**
+   * link field in *BannerSlice → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner_slice.items[].link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>
 }
 
 /**

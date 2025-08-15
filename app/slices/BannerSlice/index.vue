@@ -42,6 +42,9 @@ async function getBackgroundItems(background: BannerSliceSliceDefaultItem['backg
 
 const items = await Promise.all(props.slice.items.map(async (item) => {
   const bgItems = (await getBackgroundItems(item.backgroundPattern)).filter(i => i.link)
+  if (!item.link)
+    throw new Error(`Link is required in BannerSlice. Context: ${JSON.stringify(props.context)}`)
+
   return { bgItems, hasBgItems: bgItems.length > 0, ...item }
 }))
 </script>
@@ -53,7 +56,7 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
   >
     <template v-if="slice.variation === 'default'">
       <div
-        v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, linkHref, linkLabel, hasBgItems }, i) in items"
+        v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, link, hasBgItems }, i) in items"
         :key="i" outline="1.5 offset--1.5 white/20" :style="`background: var(--nq-${bgColor || 'neutral'})`"
         :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72"
         mx-auto px-32 rounded-8 w-full shadow relative of-hidden
@@ -105,12 +108,10 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
             />
           </div>
           <PrismicLink
-            v-if="hasLink(linkHref) && linkLabel" :field="linkHref" mt="32 md:24"
+            v-if="hasLink(link)" :field="link" mt="32 md:24"
             nq-arrow nq-pill-lg
             :class="{ 'md:mx-auto nq-pill-blue': hasBgItems, 'lg:mr-128 nq-pill-tertiary text-blue': !hasBgItems }"
-          >
-            {{ linkLabel }}
-          </PrismicLink>
+          />
         </div>
       </div>
     </template>

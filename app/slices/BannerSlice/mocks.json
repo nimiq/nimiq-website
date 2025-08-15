@@ -64,6 +64,7 @@
           [
             "linkHref",
             {
+              "key": "d9f208cf-3b16-43a2-933f-f76f05205f63",
               "__TYPE__": "LinkContent",
               "value": {
                 "__TYPE__": "ExternalLink",
@@ -94,6 +95,18 @@
               "value": "None",
               "type": "Select"
             }
+          ],
+          [
+            "link",
+            {
+              "__TYPE__": "LinkContent",
+              "key": "26146525-7709-404b-9d2f-b6d03e42e4f6",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "http://twitter.com",
+                "text": "favorite"
+              }
+            }
           ]
         ]
       }
@@ -115,6 +128,7 @@
         ]
       },
       "cta": {
+        "key": "2fb237fa-2ce8-4ecd-b633-b2b733040021",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
@@ -172,6 +186,7 @@
         ]
       },
       "cta": {
+        "key": "397d4712-7518-4a79-9fc0-50948292a2dd",
         "__TYPE__": "LinkContent",
         "value": {
           "__TYPE__": "ExternalLink",
