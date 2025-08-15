@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { components } from '~/slices'
 
-const params = useRoute().params as { uid: string[] }
-const pathParams = typeof params.uid === 'string' ? [] : params?.uid.filter(Boolean) || []
-const isGrandchildPage = pathParams.length >= 2
-const uid = pathParams.at(-1) || 'home'
+const params = useRoute().params as { uid: string }
+const uid = params.uid || 'home'
 const isHome = uid === 'home'
 
 const { showDrafts } = useRuntimeConfig().public
 const route = useRoute()
 
 const { client } = usePrismic()
-const { data: page } = await useAsyncData(`prismic-page-${pathParams.join('-')}`, () => client.getByUID('page', uid)
+const { data: page } = await useAsyncData(`prismic-page-${uid}`, () => client.getByUID('page', uid)
   .catch((error) => {
     console.error(`Page with UID "${uid}" not found in Prismic:`, error)
     throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
@@ -32,17 +30,6 @@ if (!showDrafts && page.value?.data.draft) {
 if (page.value.uid !== uid) {
   console.error(`Page with UID "${uid}" not found: ${JSON.stringify(page.value)}`)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-}
-
-// Validate parent-child relationships to prevent URL manipulation attacks
-if (isGrandchildPage) {
-  const parentsLengthMatches = page.value?.data.parents.length === pathParams.length - 1
-  const parentsSubpathMatches = page.value?.data.parents.every((parent, index) => (parent as { uid: string }).uid === pathParams[index])
-
-  const notValid = !parentsLengthMatches || !parentsSubpathMatches
-  if (notValid) {
-    throw createError({ statusCode: 404, statusMessage: `The page with UID "${uid}" has incorrect parent structure`, fatal: true })
-  }
 }
 
 definePageMeta({
