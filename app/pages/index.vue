@@ -1,51 +1,45 @@
 <script setup lang="ts">
 import { components } from '~/slices'
 
-const params = useRoute().params as { uid: string }
-const uid = params.uid
+const isHome = true
 
 const { showDrafts } = useRuntimeConfig().public
 const route = useRoute()
 
 const { client } = usePrismic()
-const { data: page } = await useAsyncData(`prismic-page-${uid}`, () => client.getByUID('page', uid)
+const { data: page } = await useAsyncData('prismic-page-home', () => client.getByUID('page', 'home')
   .catch((error) => {
-    console.error(`Page with UID "${uid}" not found in Prismic:`, error)
+    console.error('Home page not found in Prismic:', error)
     throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
   }), {
   server: true,
 })
 
 if (!page.value) {
-  console.error(`Page with UID "${uid}" not found`)
+  console.error('Home page not found')
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
 if (!showDrafts && page.value?.data.draft) {
-  console.error(`Page with UID "${uid}" is a draft and showDraft is set to \`${showDrafts}\``)
+  console.error(`Home page is a draft and showDraft is set to \`${showDrafts}\``)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
-if (page.value.uid !== uid) {
-  console.error(`Page with UID "${uid}" not found: ${JSON.stringify(page.value)}`)
+if (page.value.uid !== 'home') {
+  console.error(`Home page not found: ${JSON.stringify(page.value)}`)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
 definePageMeta({
-  middleware: [
-    async function (to) {
-      // if (to.path === '/supersimpleswap')
-      //   await import('~/assets/css/bg-blue-sss.css')
-      if (to.path === '/onepager')
-        await import('~/assets/css/onepager.css')
-    },
-  ],
+  middleware: [],
 })
 
-const darkHeader = computed(() => page.value?.data.darkHeader || uid === 'supersimpleswap')
+const darkHeader = computed(() => page.value?.data.darkHeader || isHome)
 const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
 
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
+
+const showSocialsHexagonBg = isHome
 
 // CMS takes precedence over slice data for better content management control
 const slice = page.value.data.slices.at(0)
@@ -57,7 +51,12 @@ const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.h
 const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
 
 const title = cmsTitle || firstSliceTitle || 'Nimiq'
-const description = cmsDescription || firstSliceDescription || ''
+let description = cmsDescription || firstSliceDescription || ''
+
+if (isHome) {
+  const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
+  description = description.replace(/\{\{\s*locations\s*\}\}/, locationsCount.value.toString())
+}
 
 // Site config ensures consistency across all SEO-related modules
 const url = 'https://nimiq.com'
@@ -112,12 +111,12 @@ setOgImage({
   title,
   subline: description,
   image: cmsImage,
-  type: 'page',
+  type: isHome ? 'home' : 'page',
 })
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color :dark-header :draft>
+  <NuxtLayout :footer-bg-color :dark-header :draft :show-socials-hexagon-bg>
     <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
   </NuxtLayout>
 </template>
