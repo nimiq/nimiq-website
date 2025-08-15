@@ -41,7 +41,7 @@ const bgClass = getColorClass(bgColor)
         </p>
       </div>
 
-      <div v-for="({ areaName, label, links }) in navigation!.blocks" :key="areaName" :style="`grid-area ${areaName}`">
+      <div v-for="({ areaName, label, links }) in navigation!.blocks" :key="areaName" :style="`grid-area: ${areaName}`">
         <p text="f-xs neutral-700/80" w-full nq-label>
           {{ label }}
         </p>
