@@ -33,22 +33,22 @@ const conditionalClasses = computed(() => ({
   'pointer-events-none': scrolled.value && direction.value === 'bottom',
 }))
 
-// Transition configuration for motion-v
+// Transition configuration for motion-v - optimized for performance
 const transitionProps = computed(() => ({
   default: { type: 'tween', ease: 'easeInOut' } as const,
   opacity: {
-    duration: 0.4,
+    duration: 0.2,
     ease: 'easeInOut' as const,
   },
   backgroundColor: {
-    duration: 0.3,
+    duration: 0.2,
     ease: 'easeInOut' as const,
-    delay: direction.value === 'bottom' ? 0.15 : 0,
+    delay: direction.value === 'bottom' ? 0.05 : 0,
   },
   boxShadow: {
     duration: 0.1,
     ease: 'easeOut' as const,
-    delay: y.value === 0 && direction.value === 'top' ? 0.4 : 0,
+    delay: y.value === 0 && direction.value === 'top' ? 0.2 : 0,
   },
 }))
 </script>

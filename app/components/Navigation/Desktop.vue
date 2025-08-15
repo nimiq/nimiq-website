@@ -5,6 +5,28 @@ const { data: navigation } = await useNavigation()
 const internalProjectLinks = computed(() => navigation.value!.projectItems.filter(hasLink))
 const selectedApp = ref(0)
 
+// Performance optimization for hover changes
+const debouncedSelectedApp = refDebounced(selectedApp, 50)
+
+// Optimize initial navigation render
+const isClientMounted = ref(false)
+onMounted(() => {
+  // Small delay to ensure smooth transition
+  nextTick(() => {
+    isClientMounted.value = true
+  })
+})
+
+// Preload first navigation image for faster initial hover
+const firstAppImage = computed(() => navigation.value?.appsLinks?.[0]?.visual?.url)
+watchEffect(() => {
+  if (import.meta.client && firstAppImage.value) {
+    // Preload the first image to prevent delay on first hover
+    const img = new Image()
+    img.src = firstAppImage.value
+  }
+})
+
 // if we are in / then is home
 const route = useRoute()
 const isHome = route.fullPath === '/'
@@ -28,11 +50,11 @@ const isHome = route.fullPath === '/'
               <ul :aria-label="`${navigation.appsGroupName} links`" role="link" w-max flex="~ col">
                 <li
                   v-for="({ label, href, logo }, index) in navigation.appsLinks" :key="label!" group class="link-item"
-                  @focus="selectedApp = index" @mouseover="selectedApp = index"
+                  @focus="selectedApp = index" @mouseover="() => { if (selectedApp !== index) selectedApp = index }"
                 >
                   <NavigationMenuLink as-child>
                     <PrismicLink :field="href" flex="~ gap-12 items-center">
-                      <PrismicImage :field="logo" h-22 max-w-21 op="20 group-hocus:100" transition-opacity />
+                      <PrismicImage :field="logo" h-22 max-w-21 op="20 group-hocus:100" transition-opacity loading="lazy" />
                       <span>
                         {{ label }}
                       </span>
@@ -42,15 +64,15 @@ const isHome = route.fullPath === '/'
               </ul>
 
               <transition
-                mode="out-in" enter-active-class="transition-[opacity,filter] duration-400"
-                enter-from-class="op-0 blur-2" enter-to-class="op-100 blur-0"
-                leave-active-class="transition-[opacity,filter] duration-150 blur-0" leave-from-class="op-100"
-                leave-to-class="op-0 blur-2"
+                mode="out-in" enter-active-class="transition-opacity duration-200"
+                enter-from-class="op-0" enter-to-class="op-100"
+                leave-active-class="transition-opacity duration-100" leave-from-class="op-100"
+                leave-to-class="op-0"
               >
                 <PrismicImage
-                  v-if="navigation.appsLinks[selectedApp]?.visual" :key="selectedApp"
-                  :field="navigation.appsLinks[selectedApp]!.visual" rounded-4 h-full w-300 shadow relative
-                  object-contain object-left-top
+                  v-if="navigation.appsLinks[debouncedSelectedApp]?.visual" :key="debouncedSelectedApp"
+                  :field="navigation.appsLinks[debouncedSelectedApp]!.visual" rounded-4 h-full w-300 shadow relative
+                  object-contain object-left-top loading="lazy"
                 />
               </transition>
             </div>
@@ -205,24 +227,28 @@ const isHome = route.fullPath === '/'
         drop-shadow data-hidden:op-0 data-hidden:animate-fade-out data-visible:animate-fade-in
       />
 
-      <NavigationMenuIndicator
-        animate="data-visible:fade-in data-hidden:fade-out"
-        transition="all transform ease duration-200" w="$reka-navigation-menu-indicator-size"
-        flex="~ items-end justify-center" translate-x="$reka-navigation-menu-indicator-position" duration-200 top-full
-        absolute z-100 z-12 of-hidden data-hidden:op-0
-      >
-        <div h-12 w-24 translate-y-1 relative i-nimiq:tooltip-triangle />
-      </NavigationMenuIndicator>
+      <ClientOnly>
+        <NavigationMenuIndicator
+          animate="data-visible:fade-in data-hidden:fade-out"
+          transition="all transform ease duration-200" w="$reka-navigation-menu-indicator-size"
+          flex="~ items-end justify-center" translate-x="$reka-navigation-menu-indicator-position" duration-200 top-full
+          absolute z-100 z-12 of-hidden data-hidden:op-0
+        >
+          <div h-12 w-24 translate-y-1 relative i-nimiq:tooltip-triangle />
+        </NavigationMenuIndicator>
+      </ClientOnly>
     </NavigationMenuList>
 
-    <div flex="~ justify-center" min-w-full perspective-2000 right-0 top-full absolute z-10>
-      <NavigationMenuViewport
-        transition="[width,height]" h="$reka-navigation-menu-viewport-height"
-        animate="scale-in data-closed:scale-out" min-w="$reka-navigation-menu-viewport-width" mt-12 rounded-12 bg-white
-        shadow origin-top-center duration-300 relative z-1 of-hidden animate-scale-in
-        outline="1.5 offset--1.5 ~ neutral-200"
-      />
-    </div>
+    <ClientOnly>
+      <div flex="~ justify-center" min-w-full perspective-2000 right-0 top-full absolute z-10>
+        <NavigationMenuViewport
+          transition="[width,height]" h="$reka-navigation-menu-viewport-height"
+          animate="scale-in data-closed:scale-out" min-w="$reka-navigation-menu-viewport-width" mt-12 rounded-12 bg-white
+          shadow origin-top-center duration-200 relative z-1 of-hidden animate-scale-in
+          outline="1.5 offset--1.5 ~ neutral-200"
+        />
+      </div>
+    </ClientOnly>
   </NavigationMenuRoot>
 </template>
 
@@ -232,11 +258,17 @@ const isHome = route.fullPath === '/'
     --uno: 'z-1';
   }
 
+  /* Fallback dimensions before Reka JS calculates actual values */
+  --reka-navigation-menu-viewport-width: 400px;
+  --reka-navigation-menu-viewport-height: 300px;
+  --reka-navigation-menu-indicator-size: 80px;
+  --reka-navigation-menu-indicator-position: 0px;
+
   .trigger {
     --uno: 'bg-transparent px-16 py-4 font-bold text-neutral-800 transition-colors hocus:text-neutral-900 data-open:op-80 flex items-center gap-x-8';
 
     [i-nimiq\:chevron-down] {
-      --uno: 'scale-50 transition-transform duration-300 op-70';
+      --uno: 'scale-50 transition-transform duration-200 op-70';
     }
 
     &[data-state='open'] {
