@@ -8,7 +8,7 @@ const open = computed(() => {
 </script>
 
 <template>
-  <AlertDialogRoot :open="open" :modal="false">
+  <AlertDialogRoot :open="open" :modal="false" @open-auto-focus.prevent>
     <AlertDialogPortal>
       <AlertDialogContent
         outline="~ 1.5 neutral/10"
