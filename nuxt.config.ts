@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
+    // 'prismic-mirror',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
     !environment.useNuxtHub && 'nuxt-og-image', // Enable og-image only when not on NuxtHub
     !environment.environment.isNuxthubPreview && !environment.environment.isNuxthubProduction && '@nuxtjs/seo',
@@ -233,7 +234,7 @@ export default defineNuxtConfig({
     kv: true,
     cache: true,
     workers: true,
-    blob: true,
+    // blob: true,
     bindings: {
       observability: {
         logs: true,
