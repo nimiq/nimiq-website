@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 64 64">
+  <g clip-path="url(#clip0_169_7937)">
+    <g opacity=".4">
+      <path fill="#1f2348" d="M45.335 62.5V48.718a3.489 3.489 0 013.494-3.551h13.838"/>
+      <path fill="#1f2348" d="M45.335 62.5V48.718a3.489 3.489 0 013.494-3.551h13.838L57.68 58.31 45.335 62.5z"/>
+    </g>
+    <path stroke="#1f2348" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M57.227 1.632H57.2c2.915-.026 5.3 2.358 5.3 5.271v39.784c0 8.714-7.102 15.813-15.846 15.813H6.826l-.026-.003a5.32 5.32 0 01-5.3-5.324V6.848C1.474 3.884 3.86 1.5 6.773 1.5l50.454.132z"/>
+    <path stroke="#1f2348" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M27 21.667a5.778 5.778 0 01-5.778 5.777H14V15.89h7.222A5.777 5.777 0 0127 21.667zM27 33.222A5.777 5.777 0 0121.222 39H14V27.445h7.222A5.778 5.778 0 0127 33.221zM19 12v3M19 39v3"/>
+    <g>
+      <path stroke="#1f2348" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M37 35h15M37 27h15M37 19h15"/>
+    </g>
+  </g>
+  <defs>
+    <clipPath id="clip0_169_7937">
+      <path fill="#fff" d="M0 0h64v64H0z" transform="matrix(1 0 0 -1 0 64)"/>
+    </clipPath>
+  </defs>
+</svg>

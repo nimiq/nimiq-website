@@ -43,7 +43,7 @@ const hexagonColor = computed(() => {
       <div ref="media" style="--rotate-x:30deg;--translate-y:-100px;transform: perspective(1800px) rotateX(var(--rotate-x)) translateY(var(--translate-y))" origin="[center_70%]" transition="transform duration-350 ease-[cubic-bezier(0,0,0.25,1)]" mx-auto h-full min-h-500 children:w-full>
         <NuxtImg v-if="slice.variation === 'default'" :src="url" />
         <NuxtLink v-else-if="slice.variation === 'withVideo'" :to="url" external stack mx-auto children:rounded-8 target="_blank">
-          <PrismicImage :field="slice.primary.poster" />
+          <ProxiedPrismicImage :field="slice.primary.poster" />
           <div bg-gradient="to-b from-neutral/30 to-neutral/60" size-full />
           <div i-nimiq:triangle-right text="56 white" />
         </NuxtLink>

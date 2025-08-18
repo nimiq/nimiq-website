@@ -62,7 +62,7 @@ if (post.value.data.body.at(0)?.primary)
             </p>
           </template>
         </ArticleMetadata>
-        <PrismicImage :field="post.data.image" mx-auto mt-104 rounded-8 w-full object-contain view-transition-post-img />
+        <ProxiedPrismicImage :field="post.data.image" mx-auto mt-104 rounded-8 w-full object-contain view-transition-post-img />
       </header>
     </div>
     <SliceZone :slices="post?.data.body ?? []" :components />

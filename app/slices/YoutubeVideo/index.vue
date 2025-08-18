@@ -8,7 +8,7 @@ const bgClass = getColorClass(slice.primary.bgColor)
 <template>
   <section :class="bgClass.replace('dark', '')" nq-overlaps>
     <div ring="1 neutral-200" stack rounded-8 bg-neutral-0 w-full aspect-video shadow>
-      <PrismicImage v-if="hasImage(slice.primary.poster)" :field="slice.primary.poster" rounded-8 size-full object-cover />
+      <ProxiedPrismicImage v-if="hasImage(slice.primary.poster)" :field="slice.primary.poster" rounded-8 size-full object-cover />
       <PrismicLink v-if="slice.primary.youtubeUrl" :field="slice.primary.youtubeUrl" aria-label="Play video">
         <div text="48 md:96 gold" drop-shadow i-nimiq:triangle-right />
       </PrismicLink>

@@ -11,7 +11,7 @@ defineProps(getSliceComponentProps<Content.BuySellWalletSlice>())
       <ul v-if="slice.items.length > 0" f-mt-2xl grid="~ cols-1 sm:cols-2 lg:cols-1 xl:cols-2 gap-x-16 gap-y-24" mt="80 lg:0" pl="lg:16 2xl:64">
         <li v-for="({ cost, description, extraFee, isOfficial, label, logo, paymentMethod }, i) in slice.items" :key="i" shrink-0 :data-inverted="isOfficial ? '' : undefined">
           <div bg="data-inverted:blue neutral" p="24 xl:32" nq-no-color text-white rounded-6>
-            <PrismicImage op-60 max-h-24 :field="logo" />
+            <ProxiedPrismicImage op-60 max-h-24 :field="logo" />
             <RichText v-if="paymentMethod" wrapper="div" f-mt-2xs children:text-left children:text="neutral-0 data-inverted:white" :field="paymentMethod" />
             <RichText v-if="description" wrapper="div" text="data-inverted:white/80 neutral-800" :field="description" min-h-3lh f-mt-xs />
 

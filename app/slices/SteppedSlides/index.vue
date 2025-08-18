@@ -50,7 +50,7 @@ function goToStep(step: number) {
         :data-state="step - 1 === i ? 'active' : undefined" snap="center always" cursor="active:default pointer"
         op="20 data-active:100" flex="~ col" shrink-0 max-w-784 w-full transition-opacity duration-400 @click="() => goToStep(i + 1)"
       >
-        <PrismicImage v-if="'image' in item" :field="item.image" rounded-6 shadow object-cover f-mb-lg />
+        <ProxiedPrismicImage v-if="'image' in item" :field="item.image" rounded-6 shadow object-cover f-mb-lg />
         <!-- <VLottie
           v-else-if="slice.variation === 'withAnimations'"
           :src="item.source.url"

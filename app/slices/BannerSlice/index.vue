@@ -62,13 +62,13 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
         mx-auto px-32 rounded-8 w-full shadow relative of-hidden
       >
         <PrismicLink
-          v-for="({ classes, color, icon, link, name }, j) in bgItems" :key="j"
-          :aria-label="name" flex="~ items-center justify-center" :field="link" tabindex="-1"
+          v-for="({ classes, color, icon, link: linkItem, name }, j) in bgItems" :key="j"
+          :aria-label="name" flex="~ items-center justify-center" :field="linkItem" tabindex="-1"
           :style="{ backgroundColor: color }" :class="[classes]"
           pointer-cursor text-white rounded-full size-104 absolute
         >
           <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />
-          <PrismicImage v-else :field="icon" pointer-events-none scale-125 />
+          <ProxiedPrismicImage v-else :field="icon" pointer-events-none scale-125 />
           <div
             :style="{ borderColor: color }" top="50%" left="50%" border="2 solid" translate-x="-50%"
             translate-y="-50%" rounded-full op-0 size-full pointer-events-none scale-100 absolute

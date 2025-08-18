@@ -7,7 +7,7 @@ defineProps<{ primary: Content.HeroSectionSliceTwoColumnPrimary }>()
 <template>
   <section bg-blue-s3 relative>
     <div v-if="primary.backgroundImage" left="50%" max-w-full bottom-0 absolute>
-      <PrismicImage :field="primary.backgroundImage" />
+      <ProxiedPrismicImage :field="primary.backgroundImage" />
     </div>
 
     <Headline :headline="primary.headline" :subline="primary.subline" children:text-white />
@@ -20,7 +20,7 @@ defineProps<{ primary: Content.HeroSectionSliceTwoColumnPrimary }>()
         </PrismicLink>
       </div>
 
-      <PrismicImage :field="primary.image" mx-auto relative drop-shadow-xl lg:mr-0 />
+      <ProxiedPrismicImage :field="primary.image" mx-auto relative drop-shadow-xl lg:mr-0 />
     </div>
   </section>
 </template>

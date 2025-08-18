@@ -145,7 +145,7 @@ const error = computed(() => {
 
     <p flex="~ items-center justify-center gap-8" f-mt-md text="center f-sm">
       {{ slice.primary.poweredByLabel }} <PrismicLink :field="slice.primary.poweredByLink">
-        <PrismicImage op="80 hocus:100" :field="slice.primary.poweredByLogo" w-full transition-opacity f-h-sm />
+        <ProxiedPrismicImage op="80 hocus:100" :field="slice.primary.poweredByLogo" w-full transition-opacity f-h-sm />
       </PrismicLink>
     </p>
   </div>

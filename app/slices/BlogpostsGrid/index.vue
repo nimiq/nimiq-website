@@ -57,7 +57,7 @@ const active = useState('active-blog-post', () => '')
         <NuxtLink :to="href" p-0 h-full relative nq-hoverable @click="active = uid">
           <PageInfo :draft right-12 top-12 absolute z-10 />
           <div p-4>
-            <PrismicImage
+            <ProxiedPrismicImage
               v-if="hasImage" :field="image" rounded-6 h-max w-full object-cover
               :class="[i === 1 ? 'h-max lg:h-280' : 'h-max', { 'view-transition-post-img contain-layout': active === uid }]"
               loading="lazy"

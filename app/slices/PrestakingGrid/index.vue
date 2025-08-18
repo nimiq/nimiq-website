@@ -9,7 +9,7 @@ defineProps(getSliceComponentProps<Content.PrestakingGridSlice>())
     <NuxtImg src="/assets/images/prestaking-glowing-background.webp" alt="" size-full max-w-none pointer-events-none rotate-180 inset-0 top-0 absolute z-1 object-cover object-bottom />
     <ul flex="~ items-center col lg:row gap-x-24 gap-y-20 justify-center" z-10>
       <li v-for="({ image, content }, i) in slice.primary.items" :key="i" flex="~ col self-stretch lg:row md:items-center gap-x-12 gap-y-24" p-32 rounded-6 relative>
-        <PrismicImage :field="image" size-80 z-20 md:mx-auto />
+        <ProxiedPrismicImage :field="image" size-80 z-20 md:mx-auto />
         <RichText wrapper="div" :field="content" z-1 text="16/24 md:17/25.5 lg:18:28 neutral-900" />
         <div class="glass" ring="1.5 neutral-0/15" aria-hidden rounded-6 inset-0 absolute backdrop-blur-20 />
       </li>
