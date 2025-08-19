@@ -46,18 +46,10 @@ function castInt(input: string | number | undefined): number | undefined {
 if (!isFilled.imageThumbnail(field))
   throw new Error('Image is not filled')
 
-function processImageForLocal(imageUrl: string) {
-  const url = new URL(imageUrl)
-  const fileName = url.pathname.split('/').at(-1) ?? ''
-  const localPath = join('/assets/prismic', fileName)
-
-  return { fileName, localPath, originalUrl: imageUrl }
-}
-
 const originalFieldUrl = field.url
 const mainImage = processImageForLocal(originalFieldUrl)
 
-const responsiveImages: Array<{ key: string, fileName: string, localPath: string, originalUrl: string }> = []
+const responsiveImages: Array<{ key: string } & ReturnType<typeof processImageForLocal>> = []
 const responsiveViews = ['Lg', 'Md', 'Sm', 'Xs'] as const
 
 for (const viewKey of responsiveViews) {
@@ -134,7 +126,7 @@ if (import.meta.server && !isNuxthub) {
     const { constants } = await import('node:fs')
     const { Buffer } = await import('node:buffer')
 
-    async function downloadImageIfNeeded(imageInfo: { fileName: string, localPath: string, originalUrl: string }) {
+    async function downloadImageIfNeeded(imageInfo: ReturnType<typeof processImageForLocal>) {
       const publicFilePath = join(process.cwd(), 'public', imageInfo.localPath)
       const publicDir = join(process.cwd(), 'public', imageInfo.localPath.split('/').slice(0, -1).join('/'))
 

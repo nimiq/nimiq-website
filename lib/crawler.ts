@@ -10,6 +10,10 @@ interface PrerenderPagesOptions {
   showDrafts?: boolean
 }
 
+// Global collections for crawled data
+const blogPosts: Post[] = []
+const allImageUrls: string[] = []
+
 // These pages are excluded from the prerender process
 export const EXCLUDED_PAGES = [
   // Custom apps built by other projects
@@ -28,7 +32,6 @@ export async function getDynamicPages(options: PrerenderPagesOptions) {
   const blogPostsUrl = await buildPrismicUrl('blog_page', options)
   const blogArticles = await getBlogPosts(blogPostsUrl).then(posts => posts.map(post => `/blog/${post.slug}`))
 
-  // Generate blog pagination routes
   const blogPaginationRoutes = await getBlogPaginationRoutes(blogPostsUrl)
 
   return [...pages, ...blogArticles, ...blogPaginationRoutes].filter(page => !EXCLUDED_PAGES.includes(page))
@@ -45,6 +48,13 @@ async function getPages(url: URL) {
         return '/'
       return `/${uid}`
     }))
+
+    // Extract images from page documents
+    results.forEach((result) => {
+      const documentImages = extractImageUrlsFromDocument(result)
+      allImageUrls.push(...documentImages)
+    })
+
     if (next_page === null)
       break
     page++
@@ -62,8 +72,7 @@ interface Post {
   image?: string
   slug?: string
   authors?: string[]
-};
-const blogPosts: Post[] = []
+}
 
 export async function getBlogPosts(url: URL) {
   if (blogPosts.length > 0)
@@ -75,6 +84,10 @@ export async function getBlogPosts(url: URL) {
     results.forEach((result) => {
       const { titleText: title, url, abstract: description, prose: content, date, imageURL: image, authors } = getBlogMetadata(result)
       blogPosts.push({ title, url, description, content, date, image, slug: result.uid, authors })
+
+      // Extract all image URLs from the document
+      const documentImages = extractImageUrlsFromDocument(result)
+      allImageUrls.push(...documentImages)
     })
 
     if (next_page === null)
@@ -141,4 +154,21 @@ export async function buildPrismicUrl(documentType: 'blog_page' | 'page', { pris
   searchUrl.searchParams.set('access_token', prismicAccessToken)
 
   return searchUrl
+}
+
+export function getAllImageUrls(): string[] {
+  return [...new Set(allImageUrls)]
+}
+
+export async function performImageAnalysis(): Promise<void> {
+  const imageUrls = getAllImageUrls()
+  console.warn(`\n🔍 Analyzing ${imageUrls.length} unique Prismic images...`)
+
+  const status = await analyzeImageSync(imageUrls)
+  logImageSyncStatus(status)
+
+  if (status.orphaned.length > 0) {
+    console.warn('\n🧹 Cleaning up orphaned images...')
+    await cleanupOrphanedImages(status)
+  }
 }
