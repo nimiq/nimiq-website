@@ -1,9 +1,9 @@
 import type { Query } from '@prismicio/client'
 import type { BlogPageDocument, ExchangeDocument, NavigationDocument, PageDocument } from '~~/prismicio-types'
-// Centralized service to avoid duplicate API calls between crawler and image downloader
-import process from 'node:process'
 import { filter } from '@prismicio/client'
 import { $fetch } from 'ofetch'
+// Centralized service to avoid duplicate API calls between crawler and image downloader
+import environment from '../../lib/env'
 import { repositoryName } from '../../slicemachine.config.json'
 import { extractImageUrlsWithMetadata } from '../utils/prismic-images'
 
@@ -49,7 +49,8 @@ export async function getPrismicData(options: PrerenderPagesOptions): Promise<Ca
     fetchExchanges(options),
   ])
 
-  const baseUrl = process.env.NUXT_NUXT_PUBLIC_BASE_URL || '/'
+  const baseUrl = environment.baseUrl
+
   const allImages: ImageInfo[] = []
 
   pages.forEach(doc => allImages.push(...extractImageUrlsWithMetadata(baseUrl, doc)))
@@ -184,7 +185,8 @@ async function buildPrismicUrl(documentType: 'blog_page' | 'page' | 'navigation'
   const documentTypeQuery = `[at(document.type,"${documentType}")]`
 
   let filtering = ''
-  if (!showDrafts && documentType !== 'exchange')
+  const supportsDrafts = ['blog_page', 'page', 'exchange']
+  if (!showDrafts && !supportsDrafts.includes(documentType))
     filtering = filter.not(`my.${documentType}.draft`, true)
 
   searchUrl.searchParams.set('q', `[${documentTypeQuery}${filtering}]`)

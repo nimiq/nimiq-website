@@ -80,6 +80,8 @@ async function checkInternetConnection(): Promise<boolean> {
   }
 }
 
+const baseUrl = process.env.NUXT_PUBLIC_BASE_URL || '/'
+
 // eslint-disable-next-line no-console
 console.table({
   'Environment': environment,
@@ -89,7 +91,7 @@ console.table({
   'GitHub Pages': isGitHubPages ? 'yes' : 'no',
   'Production': isProduction ? 'yes' : 'no',
   'Local': isLocal ? 'yes' : 'no',
-  'Base URL': process.env.NUXT_PUBLIC_BASE_URL || '/',
+  'Base URL': baseUrl,
 })
 
 export default {
@@ -107,6 +109,7 @@ export default {
     isInternalDrafts,
     isProduction,
   },
+  baseUrl,
 }
 
 export function getSiteUrl(environment: EnvironmentName) {
