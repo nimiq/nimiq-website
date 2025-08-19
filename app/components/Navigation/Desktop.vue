@@ -54,7 +54,7 @@ const isHome = route.fullPath === '/'
                 >
                   <NavigationMenuLink as-child>
                     <PrismicLink :field="href" flex="~ gap-12 items-center">
-                      <PrismicImage :field="logo" h-22 max-w-21 op="20 group-hocus:100" transition-opacity loading="lazy" />
+                      <ProxiedPrismicImage :field="logo" h-22 max-w-21 op="20 group-hocus:100" transition-opacity loading="lazy" />
                       <span>
                         {{ label }}
                       </span>
@@ -69,7 +69,7 @@ const isHome = route.fullPath === '/'
                 leave-active-class="transition-opacity duration-100" leave-from-class="op-100"
                 leave-to-class="op-0"
               >
-                <PrismicImage
+                <ProxiedPrismicImage
                   v-if="navigation.appsLinks[debouncedSelectedApp]?.visual" :key="debouncedSelectedApp"
                   :field="navigation.appsLinks[debouncedSelectedApp]!.visual" rounded-4 h-full w-300 shadow relative
                   object-contain object-left-top loading="lazy"

@@ -28,7 +28,7 @@ const displayItems = computed(() =>
     <ul columns="1 sm:2 lg:3" gap-0 style="column-rule: 2px solid rgb(var(--nq-neutral-400))">
       <li v-for="({ picture, fullName, role, github, linkedin, twitter, description }) in displayItems" :key="fullName!" break-inside-avoid-column border="b-2 solid neutral-400">
         <div v-if="hasImage(picture)" px-32 pt-32>
-          <PrismicImage :field="picture" rounded-6 w-full object-cover />
+          <ProxiedPrismicImage :field="picture" rounded-6 w-full object-cover />
         </div>
         <svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20" mx-auto w-156 f-mt-xs>
           <mask id="a" fill="#fff">

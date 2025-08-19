@@ -1,0 +1,259 @@
+# Environment-Specific Coding Patterns
+
+## Environment Detection
+
+### Import Environment Utility
+```typescript
+// Always import from lib/env.ts for environment checks
+import environment from '~/lib/env'
+```
+
+### Key Environment Flags
+```typescript
+// Main environment checks
+environment.useNuxtHub           // true for server environments
+environment.environment.isProduction  // true for production builds
+environment.showDrafts           // true for local/draft environments
+
+// Specific environment checks
+environment.environment.isNuxthubPreview
+environment.environment.isNuxthubProduction
+environment.environment.isGitHubPages
+environment.environment.isInternalStatic
+```
+
+## Server vs Static Patterns
+
+### 1. Data Fetching
+
+#### For NuxtHub (Server) Environments
+```typescript
+// ✅ Use useQuery for runtime data
+export function useLiveData() {
+  if (!environment.useNuxtHub) {
+    return { data: null, error: 'Server features not available' }
+  }
+  
+  return useQuery({
+    key: 'live-data',
+    query: () => fetchLiveData(),
+    staleTime: 60 * 1000,
+  })
+}
+```
+
+#### For Static Builds
+```typescript
+// ✅ Use useAsyncData for build-time data
+export function useStaticData() {
+  return useAsyncData('static-data', () => fetchStaticData())
+}
+```
+
+### 2. API Routes
+
+#### Server-Side Only
+```typescript
+// ✅ Place in server/ directory - only available in NuxtHub
+// server/api/data.ts
+export default defineEventHandler(async (event) => {
+  // This will only exist in server environments
+  return await fetchData()
+})
+```
+
+#### Client-Side API Calls
+```typescript
+// ✅ Always check environment before server calls
+export function useApiData() {
+  const fetchData = async () => {
+    if (environment.useNuxtHub) {
+      // Use internal API route
+      return await $fetch('/api/data')
+    } else {
+      // Use external API or fallback
+      return await $fetch('https://external-api.com/data')
+    }
+  }
+  
+  return useAsyncData('api-data', fetchData)
+}
+```
+
+### 3. Component Behavior
+
+#### Environment-Aware Components
+```typescript
+// ✅ Check environment in component setup
+export default defineComponent({
+  setup() {
+    const canUseServerFeatures = computed(() => environment.useNuxtHub)
+    
+    const handleAction = () => {
+      if (canUseServerFeatures.value) {
+        // Server-side action
+        navigateTo('/server-page')
+      } else {
+        // Client-side fallback
+        window.open('/static-page', '_blank')
+      }
+    }
+    
+    return { canUseServerFeatures, handleAction }
+  }
+})
+```
+
+### 4. Module and Feature Gating
+
+#### Conditional Module Loading
+```typescript
+// ✅ In nuxt.config.ts - environment-aware modules
+modules: [
+  // Core modules for all environments
+  '@vueuse/nuxt',
+  '@pinia/nuxt',
+  
+  // NuxtHub-only modules
+  environment.useNuxtHub && '@nuxthub/core',
+  
+  // Static-only modules
+  !environment.useNuxtHub && 'nuxt-og-image',
+  !environment.useNuxtHub && 'nuxt-module-feed',
+].filter(Boolean)
+```
+
+#### Feature Flags
+```typescript
+// ✅ Use runtime config for environment-specific features
+export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      enableServerFeatures: environment.useNuxtHub,
+      enableAnalytics: environment.environment.isProduction,
+      showDrafts: environment.showDrafts,
+    }
+  }
+})
+```
+
+## Error Handling
+
+### Graceful Degradation
+```typescript
+// ✅ Always provide fallbacks for missing features
+export function useServerFeature() {
+  try {
+    if (!environment.useNuxtHub) {
+      return {
+        data: null,
+        error: 'Feature not available in static builds',
+        available: false
+      }
+    }
+    
+    // Server feature implementation
+    return {
+      data: useQuery({ query: fetchServerData }),
+      error: null,
+      available: true
+    }
+  } catch (error) {
+    return {
+      data: null,
+      error: 'Feature failed to initialize',
+      available: false
+    }
+  }
+}
+```
+
+### Environment Validation
+```typescript
+// ✅ Validate environment requirements early
+export function useEnvironmentFeature() {
+  // Early validation
+  if (!environment.useNuxtHub) {
+    console.warn('Server features requested in static build')
+    return { available: false }
+  }
+  
+  // Feature implementation
+  return { available: true, feature: 'server-feature' }
+}
+```
+
+## Testing Considerations
+
+### Environment Mocking
+```typescript
+// ✅ Mock environment for testing
+// In test setup
+vi.mock('~/lib/env', () => ({
+  default: {
+    useNuxtHub: true,
+    environment: { isProduction: false },
+    showDrafts: true
+  }
+}))
+```
+
+### Feature Testing
+```typescript
+// ✅ Test both environments
+describe('useServerFeature', () => {
+  it('should work in NuxtHub environment', () => {
+    // Test server features
+  })
+  
+  it('should gracefully degrade in static builds', () => {
+    // Test fallback behavior
+  })
+})
+```
+
+## Performance Optimization
+
+### Build-Time Optimization
+```typescript
+// ✅ Optimize for static builds
+export function useOptimizedData() {
+  if (!environment.useNuxtHub) {
+    // Pre-fetch and cache at build time
+    return useAsyncData('optimized-data', () => fetchOptimizedData(), {
+      server: false, // Only client-side
+      transform: (data) => optimizeForStatic(data)
+    })
+  }
+  
+  // Runtime optimization for server
+  return useQuery({
+    key: 'optimized-data',
+    query: () => fetchOptimizedData(),
+    staleTime: 300 * 1000, // 5 minutes
+  })
+}
+```
+
+### Conditional Loading
+```typescript
+// ✅ Load heavy features only when needed
+export function useHeavyFeature() {
+  const shouldLoad = computed(() => 
+    environment.useNuxtHub && environment.environment.isProduction
+  )
+  
+  const feature = computed(() => {
+    if (!shouldLoad.value) return null
+    
+    // Dynamic import for heavy features
+    return import('~/features/heavy-feature')
+  })
+  
+  return { feature, shouldLoad }
+}
+```
+description:
+globs:
+alwaysApply: false
+---

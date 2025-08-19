@@ -25,7 +25,7 @@ function getCssClasses(link: LinkField) {
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
         <PrismicLink :field="link" transition-opacity :aria-label="logo.alt || `Partner logo ${i + 1}`">
-          <PrismicImage :field="logo" :class="getCssClasses(link)" op="40 hocus:80" />
+          <ProxiedPrismicImage :field="logo" :class="getCssClasses(link)" op="40 hocus:80" />
         </PrismicLink>
       </li>
     </ul>
@@ -39,7 +39,7 @@ function getCssClasses(link: LinkField) {
       </li>
       <li v-for="({ logo, link }, i) in slice.items" :key="i">
         <PrismicLink :field="link" transition-opacity :aria-label="logo.alt || `Partner logo ${i + 1}`">
-          <PrismicImage :field="logo" :class="getCssClasses(link)" op="40 hocus:80" />
+          <ProxiedPrismicImage :field="logo" :class="getCssClasses(link)" op="40 hocus:80" />
         </PrismicLink>
       </li>
     </ul>

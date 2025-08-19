@@ -22,7 +22,7 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
 
       <div row-span-2 relative>
         <div w="125%" h="145%" border="16 solid neutral-400" rounded-24 inset-0 absolute>
-          <PrismicImage :field="slice.primary.screenshot" rounded-8 />
+          <ProxiedPrismicImage :field="slice.primary.screenshot" rounded-8 />
         </div>
       </div>
 
@@ -32,7 +32,7 @@ defineProps(getSliceComponentProps<Content.NimiqWalletHoverableSlice>())
         </p>
         <ul flex="~ gap-16" f-mt-xs>
           <li v-for="({ logo }, i) in slice.primary.poweredByLogos" :key="i">
-            <PrismicImage :field="logo" w-full f-h="24/32" object-contain />
+            <ProxiedPrismicImage :field="logo" w-full f-h="24/32" object-contain />
           </li>
         </ul>
       </div>

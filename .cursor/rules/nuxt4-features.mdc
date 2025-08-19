@@ -1,0 +1,346 @@
+---
+globs: **/*.vue,**/*.ts,**/*.js
+---
+
+# Nuxt 4 Features & Best Practices
+
+## Auto-Imports
+
+### Directory Structure
+```
+app/
+├── components/          # Auto-imported Vue components
+│   ├── [UI]/          # No prefix - use as <UIButton>
+│   ├── [Backgrounds]/ # No prefix - use as <BackgroundGradient>
+│   └── ...            # Regular components - use as <ComponentName>
+├── composables/        # Auto-imported composables
+├── utils/              # Auto-imported utility functions
+└── types/              # TypeScript definitions
+```
+
+### Component Naming
+```typescript
+// ✅ Good: PascalCase for components
+// components/UserProfile.vue
+export default defineComponent({
+  name: 'UserProfile', // Optional but recommended
+  // ...
+})
+
+// ✅ Good: Kebab-case for files, PascalCase for usage
+// components/user-profile.vue
+// Usage: <UserProfile />
+
+// ❌ Bad: Inconsistent naming
+// components/userProfile.vue
+// Usage: <userProfile />
+```
+
+### Composable Naming
+```typescript
+// ✅ Good: use prefix for composables
+// composables/useUserData.ts
+export function useUserData() {
+  // Implementation
+}
+
+// ✅ Good: Consistent return structure
+export function useCounter() {
+  const count = ref(0)
+  const increment = () => count.value++
+  const decrement = () => count.value--
+  
+  return {
+    count: readonly(count),
+    increment,
+    decrement,
+  }
+}
+
+// ❌ Bad: No use prefix
+export function getUserData() {
+  // This won't be auto-imported
+}
+```
+
+## Nuxt 4 Specific Features
+
+### 1. File-Based Routing
+
+#### Dynamic Routes
+```typescript
+// ✅ Good: Use [param].vue for dynamic routes
+// pages/blog/[slug].vue
+export default definePageMeta({
+  validate: async (route) => {
+    // Validate route parameters
+    const slug = route.params.slug
+    return typeof slug === 'string' && slug.length > 0
+  }
+})
+
+// ✅ Good: Nested dynamic routes
+// pages/blog/[category]/[slug].vue
+export default definePageMeta({
+  validate: async (route) => {
+    const { category, slug } = route.params
+    return category && slug
+  }
+})
+```
+
+#### Route Middleware
+```typescript
+// ✅ Good: Use middleware for route protection
+// middleware/auth.ts
+export default defineNuxtRouteMiddleware((to, from) => {
+  const { $auth } = useNuxtApp()
+  
+  if (!$auth.isAuthenticated && to.path.startsWith('/admin')) {
+    return navigateTo('/login')
+  }
+})
+
+// ✅ Good: Apply middleware in pages
+export default definePageMeta({
+  middleware: ['auth', 'admin']
+})
+```
+
+### 2. Data Fetching
+
+#### useAsyncData vs useQuery
+```typescript
+// ✅ Good: useAsyncData for build-time data
+export function useStaticContent() {
+  return useAsyncData('static-content', () => fetchContent(), {
+    server: true,    // Fetch on server
+    client: false,   // Don't refetch on client
+    transform: (data) => processContent(data)
+  })
+}
+
+// ✅ Good: useQuery for runtime data
+export function useLiveContent() {
+  return useQuery({
+    key: 'live-content',
+    query: () => fetchLiveContent(),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnWindowFocus: false
+  })
+}
+```
+
+#### Dependent Queries
+```typescript
+// ✅ Good: Handle query dependencies
+export function useUserPosts() {
+  const userQuery = useQuery({
+    key: 'user',
+    query: () => fetchUser(),
+  })
+  
+  const postsQuery = useQuery({
+    key: computed(() => ['posts', userQuery.data.value?.id]),
+    query: () => fetchPosts(userQuery.data.value!.id),
+    enabled: computed(() => !!userQuery.data.value?.id),
+  })
+  
+  return {
+    user: userQuery.data,
+    posts: postsQuery.data,
+    isLoading: computed(() => userQuery.isLoading.value || postsQuery.isLoading.value)
+  }
+}
+```
+
+### 3. State Management
+
+#### Pinia Integration
+```typescript
+// ✅ Good: Use Pinia for global state
+// stores/user.ts
+export const useUserStore = defineStore('user', () => {
+  const user = ref<User | null>(null)
+  const isAuthenticated = computed(() => !!user.value)
+  
+  const login = async (credentials: LoginCredentials) => {
+    user.value = await loginUser(credentials)
+  }
+  
+  const logout = () => {
+    user.value = null
+  }
+  
+  return {
+    user: readonly(user),
+    isAuthenticated,
+    login,
+    logout,
+  }
+})
+
+// ✅ Good: Use in components
+export default defineComponent({
+  setup() {
+    const userStore = useUserStore()
+    
+    return {
+      user: userStore.user,
+      isAuthenticated: userStore.isAuthenticated,
+      login: userStore.login,
+      logout: userStore.logout,
+    }
+  }
+})
+```
+
+#### SSR-Safe State
+```typescript
+// ✅ Good: Use useState for SSR-safe global state
+export function useAppState() {
+  return useState('app-state', () => ({
+    theme: 'light',
+    language: 'en',
+    sidebarOpen: false,
+  }))
+}
+
+// ❌ Bad: Global refs break SSR
+const globalState = ref('value') // This will cause SSR issues
+```
+
+### 4. Error Handling
+
+#### Error Boundaries
+```typescript
+// ✅ Good: Use error.vue for global error handling
+// app/error.vue
+export default defineComponent({
+  setup() {
+    const error = useError()
+    const handleError = () => {
+      clearError({ redirect: '/' })
+    }
+    
+    return { error, handleError }
+  }
+})
+
+// ✅ Good: Handle errors in composables
+export function useSafeData() {
+  try {
+    return useAsyncData('safe-data', fetchData)
+  } catch (error) {
+    console.error('Failed to fetch data:', error)
+    return {
+      data: ref(null),
+      error: ref(error),
+      pending: ref(false)
+    }
+  }
+}
+```
+
+### 5. Performance Optimization
+
+#### Lazy Loading
+```typescript
+// ✅ Good: Lazy load heavy components
+export default defineComponent({
+  components: {
+    HeavyChart: defineAsyncComponent(() => import('~/components/HeavyChart.vue'))
+  }
+})
+
+// ✅ Good: Lazy load composables
+export function useLazyFeature() {
+  const feature = ref(null)
+  
+  onMounted(async () => {
+    const { useFeature } = await import('~/composables/useFeature')
+    feature.value = useFeature()
+  })
+  
+  return { feature }
+}
+```
+
+#### Image Optimization
+```vue
+<!-- ✅ Good: Use Nuxt Image for optimization -->
+<template>
+  <NuxtImg
+    :src="image.url"
+    :alt="image.alt"
+    :width="400"
+    :height="300"
+    format="webp"
+    quality="80"
+    loading="lazy"
+  />
+</template>
+
+<!-- ✅ Good: Responsive images -->
+<template>
+  <NuxtImg
+    :src="image.url"
+    :alt="image.alt"
+    sizes="sm:100vw md:50vw lg:400px"
+    preload
+  />
+</template>
+```
+
+### 6. TypeScript Integration
+
+#### Type Definitions
+```typescript
+// ✅ Good: Define types in app/types/
+// app/types/user.ts
+export interface User {
+  id: string
+  name: string
+  email: string
+  avatar?: string
+}
+
+// ✅ Good: Use in composables
+export function useUser(): { user: Ref<User | null> } {
+  const user = ref<User | null>(null)
+  return { user }
+}
+```
+
+#### Component Props
+```typescript
+// ✅ Good: Define component props with types
+export default defineComponent({
+  props: {
+    user: {
+      type: Object as PropType<User>,
+      required: true
+    },
+    showAvatar: {
+      type: Boolean,
+      default: true
+    }
+  },
+  setup(props) {
+    // Props are properly typed
+    const userName = computed(() => props.user.name)
+    return { userName }
+  }
+})
+```
+
+## Best Practices Summary
+
+1. **Always** use auto-imports - don't manually import from `~/components/`, `~/composables/`, `~/utils/`
+2. **Check** environment before using server features
+3. **Use** `useAsyncData` for build-time data, `useQuery` for runtime data
+4. **Implement** graceful degradation for missing features
+5. **Follow** Vue 3 Composition API patterns
+6. **Use** TypeScript for better type safety
+7. **Optimize** for both build-time and runtime performance
+8. **Handle** errors gracefully with proper fallbacks

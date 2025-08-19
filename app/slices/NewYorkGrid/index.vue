@@ -21,22 +21,22 @@ const bgClass = getColorClass(slice.primary.bgColor)
       w-full children:rounded-6 children:shadow
       :class="slice.variation === 'default' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4 one-image' : 'multiple-images grid-cols-1 md:grid-cols-2'"
     >
-      <PrismicImage v-if="slice.variation === 'default'" :field="slice.primary.firstBlockFirstImage" size-full max-h-278 object-cover lg:row-span-2 md:col-span-2 style="grid-area: block1-image" />
+      <ProxiedPrismicImage v-if="slice.variation === 'default'" :field="slice.primary.firstBlockFirstImage" size-full max-h-278 object-cover lg:row-span-2 md:col-span-2 style="grid-area: block1-image" />
       <ul v-else style="grid-area: block1-image" ring="1.5 neutral-200" h="128 lg:192 md:240" children:h="[calc(100%+32px)]" children:w="[calc((2*(100%-24px*2))/5)]" flex="~ gap-12 md:gap-24" bg-white overflow-hidden children:shrink-0 pl="12 md:24" pt="12 md:24">
-        <li><PrismicImage :field="slice.primary.firstBlockFirstImage" size-full object-cover /></li>
-        <li><PrismicImage :field="slice.primary.firstBlockSecondImage" size-full object-cover /></li>
-        <li><PrismicImage :field="slice.primary.firstBlockThirdImage" size-full object-cover /></li>
+        <li><ProxiedPrismicImage :field="slice.primary.firstBlockFirstImage" size-full object-cover /></li>
+        <li><ProxiedPrismicImage :field="slice.primary.firstBlockSecondImage" size-full object-cover /></li>
+        <li><ProxiedPrismicImage :field="slice.primary.firstBlockThirdImage" size-full object-cover /></li>
       </ul>
 
       <ReuseStat :label="slice.primary.firstBlockFirstLabel" :value="slice.primary.firstBlockFirstStat" style="grid-area: block1-stat1" />
       <ReuseStat v-if="slice.variation === 'default'" :label="slice.primary.firstBlockSecondLabel" :value="slice.primary.firstBlockSecondStat" style="grid-area: block1-stat2" />
 
-      <PrismicImage v-if="slice.variation === 'default'" :field="slice.primary.secondBlockFirstImage" size-full max-h-278 object-cover lg:row-span-2 md:col-span-2 style="grid-area: block2-image" />
+      <ProxiedPrismicImage v-if="slice.variation === 'default'" :field="slice.primary.secondBlockFirstImage" size-full max-h-278 object-cover lg:row-span-2 md:col-span-2 style="grid-area: block2-image" />
 
       <ul v-else style="grid-area: block2-image" ring="1.5 neutral-200" h="128 lg:192 md:240" children:h="[calc(100%+32px)]" children:w="[calc((2*(100%-24px*2))/5)]" flex="~ gap-12 md:gap-24" bg-white overflow-hidden children:shrink-0 pl="12 md:24" pt="12 md:24">
-        <li><PrismicImage :field="slice.primary.secondBlockFirstImage" size-full object-cover /></li>
-        <li><PrismicImage :field="slice.primary.secondBlockSecondImage" size-full object-cover /></li>
-        <li><PrismicImage :field="slice.primary.secondBlockThirdImage" size-full object-cover /></li>
+        <li><ProxiedPrismicImage :field="slice.primary.secondBlockFirstImage" size-full object-cover /></li>
+        <li><ProxiedPrismicImage :field="slice.primary.secondBlockSecondImage" size-full object-cover /></li>
+        <li><ProxiedPrismicImage :field="slice.primary.secondBlockThirdImage" size-full object-cover /></li>
       </ul>
 
       <ReuseStat :label="slice.primary.secondBlockFirstLabel" :value="slice.primary.secondBlockFirstStat" style="grid-area: block2-stat1" />

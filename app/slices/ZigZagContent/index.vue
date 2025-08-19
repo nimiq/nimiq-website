@@ -36,7 +36,7 @@ function mediaType(item: ZigZagContentSliceDefaultItem) {
           :low-res="item.videoHigh.url"
           :poster="item.image"
         /> -->
-        <PrismicImage
+        <ProxiedPrismicImage
           v-if="mediaType(item) === 'image'" :field="item.image"
           ring="1.5 neutral-400" aspect="1.39 md:1.48 lg:initial" rounded-6 pointer-events-none shadow object-cover
         />
@@ -47,7 +47,7 @@ function mediaType(item: ZigZagContentSliceDefaultItem) {
             'xl:pr-32 xl:pl-0 md:col-start-2': i % 2 !== 0,
           }"
         >
-          <PrismicImage v-if="hasImage(item.logo)" :field="item.logo" max-md:mx-auto />
+          <ProxiedPrismicImage v-if="hasImage(item.logo)" :field="item.logo" max-md:mx-auto />
           <RichText wrapper="div" f-mt-sm :field="item.headline" />
           <div text-12 f-mt-2xs nq-label>
             {{ item.label }}

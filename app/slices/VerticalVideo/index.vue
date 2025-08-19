@@ -10,11 +10,11 @@ const playVideo = ref(false)
   <section bg-neutral-0 relative of-hidden>
     <div stack>
       <div stack max-w-none w-initial :style="`aspect-ratio: ${getAspectRatio(slice.primary.backgroundImage)}`">
-        <PrismicImage loading="lazy" :field="slice.primary.backgroundImage" />
+        <ProxiedPrismicImage loading="lazy" :field="slice.primary.backgroundImage" />
         <div bg-gradient="to-b from-transparent to-neutral-0" h-200 w-full pointer-events-none self-end="!" />
       </div>
       <button v-if="!playVideo" stack w-max relative bg-none @click="playVideo = true">
-        <PrismicImage loading="lazy" :field="slice.primary.poster" rounded-8 bg-neutral-0 max-w-420 w-full shadow />
+        <ProxiedPrismicImage loading="lazy" :field="slice.primary.poster" rounded-8 bg-neutral-0 max-w-420 w-full shadow />
         <div bg="neutral/40" ring="1.5 neutral/10" stack rounded-full size-64>
           <div text-white size-32 i-nimiq:triangle-right />
         </div>
