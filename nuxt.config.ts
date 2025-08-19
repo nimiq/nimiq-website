@@ -234,7 +234,6 @@ export default defineNuxtConfig({
     kv: true,
     cache: true,
     workers: true,
-    blob: true,
     bindings: {
       observability: {
         logs: true,
