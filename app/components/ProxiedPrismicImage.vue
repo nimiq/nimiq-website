@@ -8,9 +8,10 @@
  * Adapted from https://github.com/prismicio/prismic-vue/blob/68a8be98a79c4627f83ca33735f07668329fe1e3/src/PrismicImage.vue
  */
 
-import type { PrismicImageProps } from '@prismicio/vue'
+import type { FilledImageFieldImage } from '@prismicio/client'
 
-import { asImagePixelDensitySrcSet, asImageWidthSrcSet, isFilled } from '@prismicio/client'
+import type { PrismicImageProps } from '@prismicio/vue'
+import { asImagePixelDensitySrcSet, asImageWidthSrcSet } from '@prismicio/client'
 
 const props = defineProps<PrismicImageProps>()
 const { fallbackAlt, field, widths, alt, pixelDensities, imgixParams } = props
@@ -42,18 +43,15 @@ function castInt(input: string | number | undefined): number | undefined {
   return Number.isNaN(parsed) ? undefined : parsed
 }
 
-if (!isFilled.imageThumbnail(field))
-  throw new Error('Image is not filled')
-
-// Transform field to use local paths
-const localField = transformResponsiveImageFieldToLocal(field)
+const { baseUrl } = useRuntimeConfig().public
+const localField = transformResponsiveImageFieldToLocal(baseUrl, field)
 
 // asImageWidthSrcSet requires full URLs, so we use a dummy domain
 const DUMMY_DOMAIN = 'https://localhost'
 const tempField = {
   ...localField,
   url: `${DUMMY_DOMAIN}${localField.url}`,
-}
+} as FilledImageFieldImage
 
 // Transform responsive variants to use dummy domain for srcSet generation
 const responsiveViews = ['Lg', 'Md', 'Sm', 'Xs'] as const
@@ -90,13 +88,13 @@ else if (pixelDensities) {
   }
 }
 
-const ar = field.dimensions.width / field.dimensions.height
+const ar = field.dimensions ? field.dimensions.width / field.dimensions.height : 1
 
 const castedWidth = castInt(width)
 const castedHeight = castInt(height)
 
-let resolvedWidth = castedWidth ?? field.dimensions.width
-let resolvedHeight = castedHeight ?? field.dimensions.height
+let resolvedWidth = castedWidth ?? field.dimensions?.width
+let resolvedHeight = castedHeight ?? field.dimensions?.height
 
 if (castedWidth != null && castedHeight == null)
   resolvedHeight = castedWidth / ar
@@ -107,12 +105,9 @@ const image = {
   src,
   srcSet,
   alt: alt ?? (field.alt || fallbackAlt),
-  width: Math.round(resolvedWidth),
-  height: Math.round(resolvedHeight),
+  width: resolvedWidth ? Math.round(resolvedWidth) : undefined,
+  height: resolvedHeight ? Math.round(resolvedHeight) : undefined,
 }
-
-// Images are now downloaded during build time by the crawler
-// This component only handles URL transformation to local paths
 </script>
 
 <template>

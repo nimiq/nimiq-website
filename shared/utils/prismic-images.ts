@@ -16,6 +16,20 @@ interface ImageSyncStatus {
   orphaned: string[]
 }
 
+function getImageFolder(): string {
+  return 'assets/images/prismic'
+}
+
+function getPublicImagePath(baseUrl: string, fileName: string): string {
+  const folder = getImageFolder()
+
+  // Normalize base URL (remove trailing slash)
+  const normalizedBase = baseUrl.replace(/\/$/, '')
+
+  // Return the full public path
+  return `${normalizedBase}/${folder}/${fileName}`
+}
+
 // Prevent filesystem conflicts with special characters
 function normalizeFileName(fileName: string): string {
   return fileName
@@ -40,11 +54,11 @@ export function isPrismicImage(url: string): boolean {
   return url.includes('prismic') || url.includes('images.prismic.io')
 }
 
-export function processImageForLocal(imageUrl: string): ImageInfo {
+export function processImageForLocal(baseUrl: string, imageUrl: string): ImageInfo {
   const url = new URL(imageUrl)
   const originalFileName = url.pathname.split('/').at(-1) ?? ''
   const normalizedFileName = normalizeFileName(originalFileName)
-  const localPath = join('/assets/prismic', normalizedFileName)
+  const localPath = getPublicImagePath(baseUrl, normalizedFileName)
 
   return {
     fileName: normalizedFileName,
@@ -55,13 +69,12 @@ export function processImageForLocal(imageUrl: string): ImageInfo {
 }
 
 // Single source of truth for URL transformation
-export function transformToLocalPath(url: string): string {
+export function transformToLocalPath(baseUrl: string, url: string): string {
   if (!isPrismicImage(url)) {
     return url
   }
 
-  const { localPath } = processImageForLocal(url)
-  return localPath
+  return processImageForLocal(baseUrl, url).localPath
 }
 
 export function extractImageUrlsFromDocument(document: any): string[] {
@@ -97,19 +110,19 @@ export function extractImageUrlsFromDocument(document: any): string[] {
   return [...new Set(imageUrls)]
 }
 
-export function extractImageUrlsWithMetadata(document: any): ImageInfo[] {
+export function extractImageUrlsWithMetadata(baseUrl: string, document: any): ImageInfo[] {
   const imageUrls = extractImageUrlsFromDocument(document)
   return imageUrls.map(url => ({
-    ...processImageForLocal(url),
+    ...processImageForLocal(baseUrl, url),
     documentUid: document.uid || document.id,
     documentType: document.type,
   }))
 }
 
-export async function analyzeImageSync(prismicImages: ImageInfo[]): Promise<ImageSyncStatus> {
+export async function analyzeImageSync(baseUrl: string, prismicImages: ImageInfo[]): Promise<ImageSyncStatus> {
   const expectedLocalPaths = new Set(prismicImages.map(img => img.localPath))
 
-  const actualLocalPaths = await getLocalImagePaths()
+  const actualLocalPaths = await getLocalImagePaths(baseUrl)
   const actualLocalPathsSet = new Set(actualLocalPaths)
 
   const synced = prismicImages.filter(img =>
@@ -131,11 +144,11 @@ export async function analyzeImageSync(prismicImages: ImageInfo[]): Promise<Imag
   }
 }
 
-async function getLocalImagePaths(): Promise<string[]> {
+async function getLocalImagePaths(baseUrl: string): Promise<string[]> {
   try {
     const { readdir, stat } = await import('node:fs/promises')
     const process = await import('node:process')
-    const prismicAssetsDir = join(process.cwd(), 'public/assets/prismic')
+    const prismicAssetsDir = join(process.cwd(), 'public', getImageFolder())
 
     try {
       const files = await readdir(prismicAssetsDir)
@@ -146,7 +159,7 @@ async function getLocalImagePaths(): Promise<string[]> {
         const stats = await stat(fullPath)
 
         if (stats.isFile() && isImageFile(file)) {
-          imagePaths.push(`/assets/prismic/${file}`)
+          imagePaths.push(getPublicImagePath(baseUrl, file))
         }
       }
 
@@ -297,8 +310,8 @@ export async function saveImageManifest(manifest: Record<string, string[]>): Pro
     const { writeFile, mkdir } = await import('node:fs/promises')
     const process = await import('node:process')
 
-    const manifestPath = join(process.cwd(), 'public/assets/prismic', 'images-manifest.json')
-    const manifestDir = join(process.cwd(), 'public/assets/prismic')
+    const manifestDir = join(process.cwd(), 'public', getImageFolder())
+    const manifestPath = join(manifestDir, 'images-manifest.json')
 
     await mkdir(manifestDir, { recursive: true })
     await writeFile(manifestPath, JSON.stringify(manifest, null, 2))

@@ -165,6 +165,7 @@ export default defineNuxtConfig({
       allowedOrigins: ['https://www.nimiq.com', 'https://prestaking.nimiq.network', process.env.NIMIQ_STATIC_PREVIEW].filter(Boolean) as string[],
     },
     public: {
+      baseUrl: process.env.NUXT_PUBLIC_BASE_URL || '/',
       clientNetwork: 'main-albatross',
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
       validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || 'https://validators-api-mainnet.nuxt.dev',
@@ -201,6 +202,7 @@ export default defineNuxtConfig({
         allowedOrigins: array(string()),
       }),
       public: object({
+        baseUrl: string(),
         clientNetwork: optional(string()),
         apiDomain: string(),
         validatorsApi: optional(string()),

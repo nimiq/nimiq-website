@@ -45,7 +45,8 @@ async function downloadImages(): Promise<void> {
 
     console.warn(`🔍 Analyzing ${data.allImages.length} unique Prismic images...`)
 
-    const status = await analyzeImageSync(data.allImages)
+    const { baseUrl } = useRuntimeConfig().public
+    const status = await analyzeImageSync(baseUrl, data.allImages)
     logImageSyncStatus(status)
 
     let manifest: Record<string, string[]> = {}

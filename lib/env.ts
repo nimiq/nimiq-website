@@ -89,6 +89,7 @@ console.table({
   'GitHub Pages': isGitHubPages ? 'yes' : 'no',
   'Production': isProduction ? 'yes' : 'no',
   'Local': isLocal ? 'yes' : 'no',
+  'Base URL': process.env.NUXT_PUBLIC_BASE_URL || '/',
 })
 
 export default {

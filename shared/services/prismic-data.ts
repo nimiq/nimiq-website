@@ -1,6 +1,7 @@
-// Centralized service to avoid duplicate API calls between crawler and image downloader
 import type { Query } from '@prismicio/client'
 import type { BlogPageDocument, ExchangeDocument, NavigationDocument, PageDocument } from '~~/prismicio-types'
+// Centralized service to avoid duplicate API calls between crawler and image downloader
+import process from 'node:process'
 import { filter } from '@prismicio/client'
 import { $fetch } from 'ofetch'
 import { repositoryName } from '../../slicemachine.config.json'
@@ -48,13 +49,14 @@ export async function getPrismicData(options: PrerenderPagesOptions): Promise<Ca
     fetchExchanges(options),
   ])
 
+  const baseUrl = process.env.NUXT_NUXT_PUBLIC_BASE_URL || '/'
   const allImages: ImageInfo[] = []
 
-  pages.forEach(doc => allImages.push(...extractImageUrlsWithMetadata(doc)))
-  blogPosts.forEach(doc => allImages.push(...extractImageUrlsWithMetadata(doc)))
+  pages.forEach(doc => allImages.push(...extractImageUrlsWithMetadata(baseUrl, doc)))
+  blogPosts.forEach(doc => allImages.push(...extractImageUrlsWithMetadata(baseUrl, doc)))
   if (navigation)
-    allImages.push(...extractImageUrlsWithMetadata(navigation))
-  exchanges.forEach(doc => allImages.push(...extractImageUrlsWithMetadata(doc)))
+    allImages.push(...extractImageUrlsWithMetadata(baseUrl, navigation))
+  exchanges.forEach(doc => allImages.push(...extractImageUrlsWithMetadata(baseUrl, doc)))
 
   // Remove duplicates and extract URLs
   const uniqueImages = Array.from(
@@ -182,7 +184,7 @@ async function buildPrismicUrl(documentType: 'blog_page' | 'page' | 'navigation'
   const documentTypeQuery = `[at(document.type,"${documentType}")]`
 
   let filtering = ''
-  if (!showDrafts)
+  if (!showDrafts && documentType !== 'exchange')
     filtering = filter.not(`my.${documentType}.draft`, true)
 
   searchUrl.searchParams.set('q', `[${documentTypeQuery}${filtering}]`)
