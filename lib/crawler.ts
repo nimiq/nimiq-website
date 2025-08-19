@@ -20,6 +20,9 @@ export const EXCLUDED_PAGES = [
   // Custom apps built by other projects
   '/vote',
   '/cards',
+  '/styleguide',
+  '/privacy-policy',
+  '/cookie-policy',
 
   // HTML pages found in the public folder
   '/activation/privacy',
