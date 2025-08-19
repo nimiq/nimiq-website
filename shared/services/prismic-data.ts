@@ -28,14 +28,12 @@ interface CachedData {
   exchanges: ExchangeDocument[]
   allImageUrls: string[]
   allImages: ImageInfo[]
-  timestamp: number
 }
 
 let cachedData: CachedData | null = null
-const CACHE_TTL = 5 * 60 * 1000
 
 export async function getPrismicData(options: PrerenderPagesOptions): Promise<CachedData> {
-  if (cachedData && Date.now() - cachedData.timestamp < CACHE_TTL) {
+  if (cachedData) {
     console.warn('🔄 Using cached Prismic data')
     return cachedData
   }
@@ -72,7 +70,6 @@ export async function getPrismicData(options: PrerenderPagesOptions): Promise<Ca
     exchanges,
     allImageUrls,
     allImages: uniqueImages,
-    timestamp: Date.now(),
   }
 
   console.warn(`✅ Cached ${pages.length} pages, ${blogPosts.length} blog posts, ${exchanges.length} exchanges, and ${cachedData.allImages.length} unique images`)
@@ -169,6 +166,7 @@ const prismicUrl = new URL(`https://${repositoryName}.cdn.prismic.io`)
 interface RefsResponse { refs: { id: 'master', ref: string }[] }
 let ref: string
 
+const supportsDrafts = ['blog_page', 'page']
 async function buildPrismicUrl(documentType: 'blog_page' | 'page' | 'navigation' | 'exchange', { prismicAccessToken, showDrafts = false }: PrerenderPagesOptions) {
   if (!ref) {
     const refsUrl = new URL('/api/v2', prismicUrl)
@@ -185,8 +183,7 @@ async function buildPrismicUrl(documentType: 'blog_page' | 'page' | 'navigation'
   const documentTypeQuery = `[at(document.type,"${documentType}")]`
 
   let filtering = ''
-  const supportsDrafts = ['blog_page', 'page', 'exchange']
-  if (!showDrafts && !supportsDrafts.includes(documentType))
+  if (!showDrafts && supportsDrafts.includes(documentType))
     filtering = filter.not(`my.${documentType}.draft`, true)
 
   searchUrl.searchParams.set('q', `[${documentTypeQuery}${filtering}]`)
