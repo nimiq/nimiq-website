@@ -1,8 +1,9 @@
 import type { Query } from '@prismicio/client'
 import type { BlogPageDocument, PageDocument } from '~~/prismicio-types'
+import { getBlogMetadata } from '#shared/utils/blog-post'
+import { analyzeImageSync, cleanupOrphanedImages, extractImageUrlsFromDocument, logImageSyncStatus } from '#shared/utils/prismic-images'
 import { filter } from '@prismicio/client'
 import { $fetch } from 'ofetch'
-import { getBlogMetadata } from '../shared/utils/blog-post'
 import { repositoryName } from '../slicemachine.config.json'
 
 interface PrerenderPagesOptions {

@@ -1,13 +1,13 @@
 import { join } from 'pathe'
 
-export interface ImageInfo {
+interface ImageInfo {
   fileName: string
   originalFileName: string
   localPath: string
   originalUrl: string
 }
 
-export interface ImageSyncStatus {
+interface ImageSyncStatus {
   /** Images available both in Prismic and locally */
   synced: ImageInfo[]
   /** Images in Prismic that need downloading */
@@ -19,9 +19,9 @@ export interface ImageSyncStatus {
 /**
  * Normalize filename to prevent filesystem conflicts
  */
-export function normalizeFileName(fileName: string): string {
+function normalizeFileName(fileName: string): string {
   return fileName
-    .replace(/%([0-9A-F]{2})/gi, (match, hex) => {
+    .replace(/%([0-9A-F]{2})/gi, (_match, hex) => {
       const char = String.fromCharCode(Number.parseInt(hex, 16))
       switch (char) {
         case '(': return '_'
