@@ -1,3 +1,4 @@
+import { $fetch } from 'ofetch'
 import { join } from 'pathe'
 
 interface ImageInfo {
@@ -5,20 +6,17 @@ interface ImageInfo {
   originalFileName: string
   localPath: string
   originalUrl: string
+  documentUid?: string
+  documentType?: string
 }
 
 interface ImageSyncStatus {
-  /** Images available both in Prismic and locally */
   synced: ImageInfo[]
-  /** Images in Prismic that need downloading */
   needDownload: ImageInfo[]
-  /** Local images no longer referenced in Prismic */
   orphaned: string[]
 }
 
-/**
- * Normalize filename to prevent filesystem conflicts
- */
+// Prevent filesystem conflicts with special characters
 function normalizeFileName(fileName: string): string {
   return fileName
     .replace(/%([0-9A-F]{2})/gi, (_match, hex) => {
@@ -38,9 +36,10 @@ function normalizeFileName(fileName: string): string {
     || 'image'
 }
 
-/**
- * Convert Prismic image URL to local storage info
- */
+export function isPrismicImage(url: string): boolean {
+  return url.includes('prismic') || url.includes('images.prismic.io')
+}
+
 export function processImageForLocal(imageUrl: string): ImageInfo {
   const url = new URL(imageUrl)
   const originalFileName = url.pathname.split('/').at(-1) ?? ''
@@ -55,9 +54,16 @@ export function processImageForLocal(imageUrl: string): ImageInfo {
   }
 }
 
-/**
- * Extract all Prismic image URLs from document data
- */
+// Single source of truth for URL transformation
+export function transformToLocalPath(url: string): string {
+  if (!isPrismicImage(url)) {
+    return url
+  }
+
+  const { localPath } = processImageForLocal(url)
+  return localPath
+}
+
 export function extractImageUrlsFromDocument(document: any): string[] {
   const imageUrls: string[] = []
 
@@ -68,7 +74,7 @@ export function extractImageUrlsFromDocument(document: any): string[] {
     if (value.url && typeof value.url === 'string' && value.url.includes('prismic')) {
       imageUrls.push(value.url)
 
-      // Check responsive variants that Prismic generates
+      // Include responsive variants
       const responsiveViews = ['Lg', 'Md', 'Sm', 'Xs'] as const
       for (const viewKey of responsiveViews) {
         const responsiveField = value[viewKey]
@@ -91,11 +97,16 @@ export function extractImageUrlsFromDocument(document: any): string[] {
   return [...new Set(imageUrls)]
 }
 
-/**
- * Compare Prismic images with local storage
- */
-export async function analyzeImageSync(prismicImageUrls: string[]): Promise<ImageSyncStatus> {
-  const prismicImages = prismicImageUrls.map(processImageForLocal)
+export function extractImageUrlsWithMetadata(document: any): ImageInfo[] {
+  const imageUrls = extractImageUrlsFromDocument(document)
+  return imageUrls.map(url => ({
+    ...processImageForLocal(url),
+    documentUid: document.uid || document.id,
+    documentType: document.type,
+  }))
+}
+
+export async function analyzeImageSync(prismicImages: ImageInfo[]): Promise<ImageSyncStatus> {
   const expectedLocalPaths = new Set(prismicImages.map(img => img.localPath))
 
   const actualLocalPaths = await getLocalImagePaths()
@@ -120,9 +131,6 @@ export async function analyzeImageSync(prismicImageUrls: string[]): Promise<Imag
   }
 }
 
-/**
- * Get existing local image paths in assets directory
- */
 async function getLocalImagePaths(): Promise<string[]> {
   try {
     const { readdir, stat } = await import('node:fs/promises')
@@ -159,9 +167,6 @@ function isImageFile(filename: string): boolean {
   return imageExtensions.includes(ext)
 }
 
-/**
- * Log image sync status in readable format
- */
 export function logImageSyncStatus(status: ImageSyncStatus) {
   console.warn('\n📊 Image Sync Status:')
   console.warn(`✅ Images synced (Prismic + Local): ${status.synced.length}`)
@@ -170,22 +175,87 @@ export function logImageSyncStatus(status: ImageSyncStatus) {
 
   if (status.needDownload.length > 0) {
     console.warn('\n⬇️  Missing local images:')
-    status.needDownload.forEach((img) => {
-      console.warn(`   - ${img.fileName} (${img.originalUrl})`)
+    status.needDownload.slice(0, 10).forEach((img) => {
+      const docInfo = img.documentUid ? ` (${img.documentType}:${img.documentUid})` : ''
+      console.warn(`   - ${img.fileName}${docInfo}`)
     })
+    if (status.needDownload.length > 10) {
+      console.warn(`   ... and ${status.needDownload.length - 10} more`)
+    }
   }
 
   if (status.orphaned.length > 0) {
     console.warn('\n🗑️  Orphaned local images:')
-    status.orphaned.forEach((path) => {
+    status.orphaned.slice(0, 5).forEach((path) => {
       console.warn(`   - ${path}`)
     })
+    if (status.orphaned.length > 5) {
+      console.warn(`   ... and ${status.orphaned.length - 5} more`)
+    }
   }
 }
 
-/**
- * Remove local images no longer referenced in Prismic
- */
+export async function downloadPrismicImages(images: ImageInfo[], manifest: Record<string, string[]> = {}): Promise<{ downloadedCount: number, manifest: Record<string, string[]> }> {
+  if (import.meta.client) {
+    console.warn('❌ Download not available (client-side)')
+    return { downloadedCount: 0, manifest }
+  }
+
+  if (images.length === 0) {
+    console.warn('✅ No images to download')
+    return { downloadedCount: 0, manifest }
+  }
+
+  try {
+    const { writeFile, mkdir } = await import('node:fs/promises')
+    const { Buffer } = await import('node:buffer')
+    const process = await import('node:process')
+    let downloadedCount = 0
+    const totalImages = images.length
+
+    console.warn(`\n📥 Starting download of ${totalImages} images...`)
+
+    for (let i = 0; i < images.length; i++) {
+      const imageInfo = images[i]
+      if (!imageInfo)
+        continue
+
+      const progress = Math.round(((i + 1) / totalImages) * 100)
+
+      try {
+        const publicFilePath = join(process.cwd(), 'public', imageInfo.localPath)
+        const publicDir = join(process.cwd(), 'public', imageInfo.localPath.split('/').slice(0, -1).join('/'))
+
+        await mkdir(publicDir, { recursive: true })
+
+        console.warn(`⬇️  [${progress}%] ${i + 1}/${totalImages} - ${imageInfo.fileName}`)
+        const response = await $fetch(imageInfo.originalUrl, { responseType: 'arrayBuffer' })
+        await writeFile(publicFilePath, Buffer.from(response as ArrayBuffer))
+
+        // Add to manifest
+        if (imageInfo.documentUid) {
+          const key = imageInfo.documentType ? `${imageInfo.documentType}:${imageInfo.documentUid}` : imageInfo.documentUid
+          if (!manifest[key])
+            manifest[key] = []
+          manifest[key].push(imageInfo.localPath)
+        }
+
+        downloadedCount++
+      }
+      catch (error) {
+        console.warn(`❌ Failed to download ${imageInfo.fileName}:`, error)
+      }
+    }
+
+    console.warn(`\n✅ Downloaded ${downloadedCount}/${totalImages} images successfully`)
+    return { downloadedCount, manifest }
+  }
+  catch {
+    console.warn('❌ Download not available (Node.js fs not available)')
+    return { downloadedCount: 0, manifest }
+  }
+}
+
 export async function cleanupOrphanedImages(status: ImageSyncStatus): Promise<number> {
   if (status.orphaned.length === 0) {
     console.warn('✅ No orphaned images to clean up')
@@ -215,5 +285,27 @@ export async function cleanupOrphanedImages(status: ImageSyncStatus): Promise<nu
   catch {
     console.warn('❌ Cleanup not available (Node.js fs not available)')
     return 0
+  }
+}
+
+export async function saveImageManifest(manifest: Record<string, string[]>): Promise<void> {
+  if (import.meta.client) {
+    return
+  }
+
+  try {
+    const { writeFile, mkdir } = await import('node:fs/promises')
+    const process = await import('node:process')
+
+    const manifestPath = join(process.cwd(), 'public/assets/prismic', 'images-manifest.json')
+    const manifestDir = join(process.cwd(), 'public/assets/prismic')
+
+    await mkdir(manifestDir, { recursive: true })
+    await writeFile(manifestPath, JSON.stringify(manifest, null, 2))
+
+    console.warn(`📝 Saved image manifest with ${Object.keys(manifest).length} documents`)
+  }
+  catch (error) {
+    console.warn('❌ Failed to save image manifest:', error)
   }
 }

@@ -2,8 +2,8 @@
 /**
  * Proxied Prismic Image Component
  *
- * Downloads and serves Prismic images locally to prevent future attacks on Prismic CMS.
- * We handle the proxy ourselves by caching images during build time in static environments.
+ * Serves Prismic images locally to prevent future attacks on Prismic CMS.
+ * Images are downloaded during build time by the crawler system.
  *
  * Adapted from https://github.com/prismicio/prismic-vue/blob/68a8be98a79c4627f83ca33735f07668329fe1e3/src/PrismicImage.vue
  */
@@ -11,7 +11,6 @@
 import type { PrismicImageProps } from '@prismicio/vue'
 
 import { asImagePixelDensitySrcSet, asImageWidthSrcSet, isFilled } from '@prismicio/client'
-import { join } from 'pathe'
 
 const props = defineProps<PrismicImageProps>()
 const { fallbackAlt, field, widths, alt, pixelDensities, imgixParams } = props
@@ -46,32 +45,23 @@ function castInt(input: string | number | undefined): number | undefined {
 if (!isFilled.imageThumbnail(field))
   throw new Error('Image is not filled')
 
-const originalFieldUrl = field.url
-const mainImage = processImageForLocal(originalFieldUrl)
+// Transform field to use local paths
+const localField = transformResponsiveImageFieldToLocal(field)
 
-const responsiveImages: Array<{ key: string } & ReturnType<typeof processImageForLocal>> = []
-const responsiveViews = ['Lg', 'Md', 'Sm', 'Xs'] as const
-
-for (const viewKey of responsiveViews) {
-  const responsiveField = (field as any)[viewKey]
-  if (responsiveField && responsiveField.url) {
-    const responsive = processImageForLocal(responsiveField.url)
-    responsiveImages.push({ key: viewKey, ...responsive })
-  }
-}
-
-// asImageWidthSrcSet requires full URLs
+// asImageWidthSrcSet requires full URLs, so we use a dummy domain
 const DUMMY_DOMAIN = 'https://localhost'
 const tempField = {
-  ...field,
-  url: `${DUMMY_DOMAIN}${mainImage.localPath}`,
+  ...localField,
+  url: `${DUMMY_DOMAIN}${localField.url}`,
 }
 
-for (const responsive of responsiveImages) {
-  if ((tempField as any)[responsive.key]) {
-    (tempField as any)[responsive.key] = {
-      ...(tempField as any)[responsive.key],
-      url: `${DUMMY_DOMAIN}${responsive.localPath}`,
+// Transform responsive variants to use dummy domain for srcSet generation
+const responsiveViews = ['Lg', 'Md', 'Sm', 'Xs'] as const
+for (const viewKey of responsiveViews) {
+  if ((tempField as any)[viewKey]?.url) {
+    (tempField as any)[viewKey] = {
+      ...(tempField as any)[viewKey],
+      url: `${DUMMY_DOMAIN}${(tempField as any)[viewKey].url}`,
     }
   }
 }
@@ -84,16 +74,20 @@ if (widths || !pixelDensities) {
     ...imgixParams,
     widths: widths === 'defaults' ? components?.imageWidthSrcSetDefaults : widths,
   })
-  src = res.src.replace(DUMMY_DOMAIN, '')
-  srcSet = res.srcset.replaceAll(DUMMY_DOMAIN, '')
+  if (res) {
+    src = res.src.replace(DUMMY_DOMAIN, '')
+    srcSet = res.srcset.replaceAll(DUMMY_DOMAIN, '')
+  }
 }
 else if (pixelDensities) {
   const res = asImagePixelDensitySrcSet(tempField, {
     ...imgixParams,
     pixelDensities: pixelDensities === 'defaults' ? components?.imagePixelDensitySrcSetDefaults : pixelDensities,
   })
-  src = res.src.replace(DUMMY_DOMAIN, '')
-  srcSet = res.srcset.replaceAll(DUMMY_DOMAIN, '')
+  if (res) {
+    src = res.src.replace(DUMMY_DOMAIN, '')
+    srcSet = res.srcset.replaceAll(DUMMY_DOMAIN, '')
+  }
 }
 
 const ar = field.dimensions.width / field.dimensions.height
@@ -117,39 +111,8 @@ const image = {
   height: Math.round(resolvedHeight),
 }
 
-const { isNuxthubPreview, isNuxthubProduction } = useRuntimeConfig().public.environment
-const isNuxthub = isNuxthubPreview || isNuxthubProduction
-
-if (import.meta.server && !isNuxthub) {
-  try {
-    const { access, writeFile, mkdir } = await import('node:fs/promises')
-    const { constants } = await import('node:fs')
-    const { Buffer } = await import('node:buffer')
-
-    async function downloadImageIfNeeded(imageInfo: ReturnType<typeof processImageForLocal>) {
-      const publicFilePath = join(process.cwd(), 'public', imageInfo.localPath)
-      const publicDir = join(process.cwd(), 'public', imageInfo.localPath.split('/').slice(0, -1).join('/'))
-
-      try {
-        await access(publicFilePath, constants.F_OK)
-      }
-      catch {
-        console.warn(`[ProxiedPrismicImage] Downloading image: ${imageInfo.fileName}`)
-        await mkdir(publicDir, { recursive: true })
-        const response = await $fetch(imageInfo.originalUrl, { responseType: 'arrayBuffer' })
-        await writeFile(publicFilePath, Buffer.from(response as ArrayBuffer))
-      }
-    }
-
-    await downloadImageIfNeeded(mainImage)
-    for (const responsiveImage of responsiveImages) {
-      await downloadImageIfNeeded(responsiveImage)
-    }
-  }
-  catch (error) {
-    console.error('Failed to download Prismic images:', error)
-  }
-}
+// Images are now downloaded during build time by the crawler
+// This component only handles URL transformation to local paths
 </script>
 
 <template>
