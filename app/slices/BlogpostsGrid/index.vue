@@ -8,41 +8,36 @@ const { slice } = defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>
 
 const itemsPerPage = 25
 const route = useRoute()
-const router = useRouter()
-const page = ref(Number(route.query.page) || 1)
+const page = computed(() => Number(route.query.page) || 1)
 const { showDrafts } = useRuntimeConfig().public
 
-watch(() => route.query.page, (val) => {
-  page.value = Number(val) || 1
-})
-
-watch(page, (val) => {
-  router.replace({ query: { ...route.query, page: val !== 1 ? val : undefined } })
-  if (import.meta.client) {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-})
-
 const { client } = usePrismic()
-const { data: result } = await useAsyncData(`blog-posts-slice-${page.value}`, async () => {
-  return await client.getByType('blog_page', {
+
+const { data } = await useAsyncData('blog-posts-metadata', async () => {
+  const result = await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
     filters: showDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
-    pageSize: itemsPerPage,
-    page: page.value,
+    pageSize: 100,
   })
+
+  const allPosts = result.results.map(r => getBlogMetadata(r as BlogPageDocument))
+  const totalPages = Math.ceil(allPosts.length / itemsPerPage)
+
+  return { allPosts, totalPages }
 }, {
   server: true,
-  watch: [page],
 })
 
 const posts = computed(() => {
-  if (!result.value?.results)
+  if (!data.value?.allPosts)
     return []
-  return result.value.results.map(r => getBlogMetadata(r as BlogPageDocument))
+
+  const startIndex = (page.value - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  return data.value.allPosts.slice(startIndex, endIndex)
 })
 
-const totalPages = computed(() => result.value?.total_pages ?? 1)
+const totalPages = computed(() => data.value?.totalPages ?? 1)
 
 const active = useState('active-blog-post', () => '')
 </script>
@@ -100,23 +95,31 @@ const active = useState('active-blog-post', () => '')
         </NuxtLink>
       </article>
       <PaginationRoot
-        v-model:page="page" :total="totalPages * itemsPerPage" :items-per-page show-edges mt-32
+        :page :total="totalPages * itemsPerPage" :items-per-page="itemsPerPage" show-edges mt-32
         col-span-full
       >
         <PaginationList v-slot="{ items }" flex="~ gap-16 items-center justify-center">
-          <PaginationPrev class="item">
-            <div text-9 op-70 i-nimiq:chevron-left />
+          <PaginationPrev as-child class="item">
+            <NuxtLink :to="page > 1 ? (page === 2 ? '/blog' : `/blog?page=${page - 1}`) : undefined">
+              <div text-9 op-70 i-nimiq:chevron-left />
+            </NuxtLink>
           </PaginationPrev>
+
           <template v-for="(pageItem, index) in items">
-            <PaginationListItem v-if="pageItem.type === 'page'" :key="index" class="item" :value="pageItem.value">
-              {{ pageItem.value }}
+            <PaginationListItem v-if="pageItem.type === 'page'" :key="index" :value="pageItem.value" as-child class="item">
+              <NuxtLink :to="pageItem.value === 1 ? '/blog' : `/blog?page=${pageItem.value}`">
+                {{ pageItem.value }}
+              </NuxtLink>
             </PaginationListItem>
             <PaginationEllipsis v-else :key="pageItem.type" :index="index" class="item">
               &#8230;
             </PaginationEllipsis>
           </template>
-          <PaginationNext class="item">
-            <div text-9 op-70 i-nimiq:chevron-right />
+
+          <PaginationNext as-child class="item">
+            <NuxtLink :to="page < totalPages ? `/blog?page=${page + 1}` : undefined">
+              <div text-9 op-70 i-nimiq:chevron-right />
+            </NuxtLink>
           </PaginationNext>
         </PaginationList>
       </PaginationRoot>
