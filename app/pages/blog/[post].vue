@@ -65,7 +65,8 @@ if (post.value.data.body.at(0)?.primary)
         <ProxiedPrismicImage :field="post.data.image" mx-auto mt-104 rounded-8 w-full object-contain view-transition-post-img />
       </header>
     </div>
-    <SliceZone :slices="post?.data.body ?? []" :components />
+    <SliceZone v-if="post.data.body.length > 0" :slices="post?.data.body ?? []" :components />
+    <RichText v-else nq-prose wrapper="article" :field="post.data.text" />
     <Disclaimer />
   </NuxtLayout>
 </template>
@@ -83,5 +84,9 @@ if (post.value.data.body.at(0)?.primary)
 
 :global([nq-prose] > *:not(img, video, iframe, figure, blockquote, pre, code)) {
   --uno: 'px-0';
+}
+
+:global([nq-prose] > h2) {
+  --uno: 'mt-2lh';
 }
 </style>
