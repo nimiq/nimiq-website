@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { components } from '~/slices'
 
-const isHome = true
-
 const { showDrafts } = useRuntimeConfig().public
 const route = useRoute()
 
@@ -34,12 +32,9 @@ definePageMeta({
   middleware: [],
 })
 
-const darkHeader = computed(() => page.value?.data.darkHeader || isHome)
 const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
 
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
-
-const showSocialsHexagonBg = isHome
 
 // CMS takes precedence over slice data for better content management control
 const slice = page.value.data.slices.at(0)
@@ -53,10 +48,8 @@ const firstSliceDescription = slice ? getText(slice.primary?.description || slic
 const title = cmsTitle || firstSliceTitle || 'Nimiq'
 let description = cmsDescription || firstSliceDescription || ''
 
-if (isHome) {
-  const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
-  description = description.replace(/\{\{\s*locations\s*\}\}/, locationsCount.value.toString())
-}
+const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
+description = description.replace(/\{\{\s*locations\s*\}\}/, locationsCount.value.toString())
 
 // Site config ensures consistency across all SEO-related modules
 const url = 'https://nimiq.com'
@@ -111,12 +104,12 @@ setOgImage({
   title,
   subline: description,
   image: cmsImage,
-  type: isHome ? 'home' : 'page',
+  type: 'home',
 })
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color :dark-header :draft :show-socials-hexagon-bg>
+  <NuxtLayout :footer-bg-color :draft show-socials-hexagon-bg dark-header>
     <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
   </NuxtLayout>
 </template>

@@ -13,15 +13,19 @@ export function transformImageFieldToLocal(baseUrl: string, field: ImageField): 
 
 export function transformResponsiveImageFieldToLocal(baseUrl: string, _field: ImageField): ImageField {
   const field: any = { ..._field }
-  if (field.url)
+  if (field.url) {
     field.url = transformToLocalPath(baseUrl, field.url)
+    return field
+  }
 
   const responsiveViews = ['Lg', 'Md', 'Sm', 'Xs'] as const
 
   for (const viewKey of responsiveViews) {
     const responsiveField = field[viewKey as any]
-    if (!responsiveField?.url)
+    if (!responsiveField?.url) {
+      console.warn(`[transformResponsiveImageFieldToLocal] The responsive field ${viewKey} has no url.`)
       continue
+    }
     field[viewKey] = {
       ...responsiveField,
       url: transformToLocalPath(baseUrl, responsiveField.url),

@@ -129,9 +129,14 @@ export async function analyzeImageSync(baseUrl: string, prismicImages: ImageInfo
     actualLocalPathsSet.has(img.localPath),
   )
 
+  const ignoredIds = [
+    'Z1x365bqstJ98fVHb',
+    'Z1x37JbqstJ98fVI_',
+    'Z1x36pbqstJ98fVG',
+  ]
   const needDownload = prismicImages.filter(img =>
     !actualLocalPathsSet.has(img.localPath),
-  )
+  ).filter(img => !ignoredIds.includes(img.localPath))
 
   const orphaned = actualLocalPaths.filter(path =>
     !expectedLocalPaths.has(path),
@@ -208,13 +213,24 @@ export function logImageSyncStatus(status: ImageSyncStatus) {
   }
 }
 
+const ignoredIds = [
+  'Z1x36pbqstJ98fVG',
+  'Z1x37JbqstJ98fVI',
+  'Z1x365bqstJ98fVH',
+]
+function shouldSkipImageForHomePage(imageInfo: ImageInfo): boolean {
+  return ignoredIds.includes(imageInfo.originalUrl.split('/').at(-1)?.split('_').at(0) ?? '')
+}
+
 export async function downloadPrismicImages(images: ImageInfo[], manifest: Record<string, string[]> = {}): Promise<{ downloadedCount: number, manifest: Record<string, string[]> }> {
   if (import.meta.client) {
     console.warn('❌ Download not available (client-side)')
     return { downloadedCount: 0, manifest }
   }
 
-  if (images.length === 0) {
+  const filteredImages = images.filter(imageInfo => !shouldSkipImageForHomePage(imageInfo))
+
+  if (filteredImages.length === 0) {
     console.warn('✅ No images to download')
     return { downloadedCount: 0, manifest }
   }
@@ -224,12 +240,12 @@ export async function downloadPrismicImages(images: ImageInfo[], manifest: Recor
     const { Buffer } = await import('node:buffer')
     const process = await import('node:process')
     let downloadedCount = 0
-    const totalImages = images.length
+    const totalImages = filteredImages.length
 
     console.warn(`\n📥 Starting download of ${totalImages} images...`)
 
-    for (let i = 0; i < images.length; i++) {
-      const imageInfo = images[i]
+    for (let i = 0; i < filteredImages.length; i++) {
+      const imageInfo = filteredImages[i]
       if (!imageInfo)
         continue
 
@@ -241,7 +257,7 @@ export async function downloadPrismicImages(images: ImageInfo[], manifest: Recor
 
         await mkdir(publicDir, { recursive: true })
 
-        console.warn(`⬇️  [${progress}%] ${i + 1}/${totalImages} - ${imageInfo.fileName}`)
+        console.warn(`⬇️  [${progress}%] ${i + 1}/${totalImages} - ${imageInfo.fileName} (from ${imageInfo.documentType}:${imageInfo.documentUid})`)
         const response = await $fetch(imageInfo.originalUrl, { responseType: 'arrayBuffer' })
         await writeFile(publicFilePath, Buffer.from(response as ArrayBuffer))
 
@@ -256,7 +272,7 @@ export async function downloadPrismicImages(images: ImageInfo[], manifest: Recor
         downloadedCount++
       }
       catch (error) {
-        console.warn(`❌ Failed to download ${imageInfo.fileName}:`, error)
+        console.warn(`❌ Failed to download ${imageInfo.fileName} (from ${imageInfo.documentType}:${imageInfo.documentUid}):`, error)
       }
     }
 

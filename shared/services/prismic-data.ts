@@ -33,11 +33,14 @@ interface CachedData {
 let cachedData: CachedData | null = null
 
 export async function getPrismicData(options: PrerenderPagesOptions): Promise<CachedData> {
-  if (cachedData) {
-    console.warn('🔄 Using cached Prismic data')
-    return cachedData
-  }
+  // Always fetch fresh data (no persistent cache)
+  return fetchFreshPrismicData(options)
+}
 
+/**
+ * Fetch fresh Prismic data directly from API
+ */
+export async function fetchFreshPrismicData(options: PrerenderPagesOptions): Promise<CachedData> {
   console.warn('🌐 Fetching fresh Prismic data...')
 
   const [pages, blogPosts, navigation, exchanges] = await Promise.all([
@@ -80,6 +83,13 @@ export async function getPrismicData(options: PrerenderPagesOptions): Promise<Ca
 export function clearPrismicCache(): void {
   cachedData = null
   console.warn('🗑️ Cleared Prismic data cache')
+}
+
+/**
+ * Clear all Prismic caches (only in-memory now)
+ */
+export async function clearAllPrismicCaches(): Promise<void> {
+  clearPrismicCache()
 }
 
 export function getCachedPrismicData(): CachedData | null {

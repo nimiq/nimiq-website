@@ -4,6 +4,9 @@ import { components } from '~/slices'
 const params = useRoute().params as { uid: string }
 const uid = params.uid
 
+if (!uid)
+  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+
 const { showDrafts } = useRuntimeConfig().public
 const route = useRoute()
 

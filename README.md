@@ -436,13 +436,6 @@ definePageMeta({
 })
 ```
 
-Additionally, certain pages may have special header styling (dark vs light) based on page data or specific route conditions:
-
-```typescript
-// Logic for dark header styling
-const darkHeader = computed(() => page.value?.data.darkHeader || isHome || uid === 'supersimpleswap')
-```
-
 When creating new pages that need special styling:
 
 1. Add the CSS file in `assets/css/`
