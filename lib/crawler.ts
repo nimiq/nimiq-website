@@ -41,7 +41,7 @@ export async function getDynamicPages(options: PrerenderPagesOptions) {
 }
 
 function generateBlogPaginationRoutes(totalPosts: number): string[] {
-  const postsPerPage = 30
+  const postsPerPage = 25 // Match BlogpostsGrid itemsPerPage
   const totalPages = Math.ceil(totalPosts / postsPerPage)
   const paginationRoutes: string[] = []
 

@@ -3,7 +3,7 @@ import process from 'node:process'
 import { defineNuxtModule } from '@nuxt/kit'
 import environment from '../lib/env'
 import { clearPrismicCache, getPrismicData } from '../shared/services/prismic-data'
-import { analyzeImageSync, cleanupOrphanedImages, downloadPrismicImages, logImageSyncStatus, saveImageManifest } from '../shared/utils/prismic-images'
+import { analyzeImageSync, cleanupOrphanedImages, downloadPrismicImages, logImageSyncStatus } from '../shared/utils/prismic-images'
 
 const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 
@@ -48,26 +48,12 @@ async function downloadImages(): Promise<void> {
     const status = await analyzeImageSync(environment.baseUrl, data.allImages)
     logImageSyncStatus(status)
 
-    let manifest: Record<string, string[]> = {}
-
     if (status.needDownload.length > 0) {
-      const result = await downloadPrismicImages(status.needDownload, manifest)
-      manifest = result.manifest
+      await downloadPrismicImages(status.needDownload)
     }
     else {
       console.warn('✅ All images are already downloaded')
-      // Build manifest from existing images
-      data.allImages.forEach((img) => {
-        if (img.documentUid) {
-          const key = img.documentType ? `${img.documentType}:${img.documentUid}` : img.documentUid
-          if (!manifest[key])
-            manifest[key] = []
-          manifest[key].push(img.localPath)
-        }
-      })
     }
-
-    await saveImageManifest(manifest)
 
     if (status.orphaned.length > 0) {
       console.warn('\\n🧹 Cleaning up orphaned images...')

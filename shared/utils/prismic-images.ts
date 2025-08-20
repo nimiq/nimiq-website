@@ -222,17 +222,17 @@ function shouldSkipImageForHomePage(imageInfo: ImageInfo): boolean {
   return ignoredIds.includes(imageInfo.originalUrl.split('/').at(-1)?.split('_').at(0) ?? '')
 }
 
-export async function downloadPrismicImages(images: ImageInfo[], manifest: Record<string, string[]> = {}): Promise<{ downloadedCount: number, manifest: Record<string, string[]> }> {
+export async function downloadPrismicImages(images: ImageInfo[]): Promise<{ downloadedCount: number }> {
   if (import.meta.client) {
     console.warn('❌ Download not available (client-side)')
-    return { downloadedCount: 0, manifest }
+    return { downloadedCount: 0 }
   }
 
   const filteredImages = images.filter(imageInfo => !shouldSkipImageForHomePage(imageInfo))
 
   if (filteredImages.length === 0) {
     console.warn('✅ No images to download')
-    return { downloadedCount: 0, manifest }
+    return { downloadedCount: 0 }
   }
 
   try {
@@ -261,14 +261,6 @@ export async function downloadPrismicImages(images: ImageInfo[], manifest: Recor
         const response = await $fetch(imageInfo.originalUrl, { responseType: 'arrayBuffer' })
         await writeFile(publicFilePath, Buffer.from(response as ArrayBuffer))
 
-        // Add to manifest
-        if (imageInfo.documentUid) {
-          const key = imageInfo.documentType ? `${imageInfo.documentType}:${imageInfo.documentUid}` : imageInfo.documentUid
-          if (!manifest[key])
-            manifest[key] = []
-          manifest[key].push(imageInfo.localPath)
-        }
-
         downloadedCount++
       }
       catch (error) {
@@ -277,11 +269,11 @@ export async function downloadPrismicImages(images: ImageInfo[], manifest: Recor
     }
 
     console.warn(`\n✅ Downloaded ${downloadedCount}/${totalImages} images successfully`)
-    return { downloadedCount, manifest }
+    return { downloadedCount }
   }
   catch {
     console.warn('❌ Download not available (Node.js fs not available)')
-    return { downloadedCount: 0, manifest }
+    return { downloadedCount: 0 }
   }
 }
 
@@ -314,27 +306,5 @@ export async function cleanupOrphanedImages(status: ImageSyncStatus): Promise<nu
   catch {
     console.warn('❌ Cleanup not available (Node.js fs not available)')
     return 0
-  }
-}
-
-export async function saveImageManifest(manifest: Record<string, string[]>): Promise<void> {
-  if (import.meta.client) {
-    return
-  }
-
-  try {
-    const { writeFile, mkdir } = await import('node:fs/promises')
-    const process = await import('node:process')
-
-    const manifestDir = join(process.cwd(), 'public', getImageFolder())
-    const manifestPath = join(manifestDir, 'images-manifest.json')
-
-    await mkdir(manifestDir, { recursive: true })
-    await writeFile(manifestPath, JSON.stringify(manifest, null, 2))
-
-    console.warn(`📝 Saved image manifest with ${Object.keys(manifest).length} documents`)
-  }
-  catch (error) {
-    console.warn('❌ Failed to save image manifest:', error)
   }
 }
