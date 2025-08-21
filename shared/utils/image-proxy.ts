@@ -1,5 +1,5 @@
 import type { ImageField } from '@prismicio/client'
-import { transformImageUrl } from '../../utils/prismic-images'
+import { transformImageUrl } from '../../utils/prismic-images-client'
 
 export function transformImageFieldToLocal(baseUrl: string, field: ImageField): ImageField {
   if (!field.url)

@@ -1,3 +1,7 @@
+/**
+ * Server-only Prismic image utilities
+ * These functions use Node.js APIs and can only run on the server
+ */
 import type { BlogPageDocument, ExchangeDocument, NavigationDocument, PageDocument } from '~~/prismicio-types'
 import { filter } from '@prismicio/client'
 import consola from 'consola'
@@ -16,67 +20,7 @@ export interface ImageInfo {
 
 const IMAGE_FOLDER = 'assets/images/prismic'
 
-// Transform Prismic URL to local URL
-export function transformImageUrl(baseUrl: string, url: string): string {
-  if (!url?.includes('prismic'))
-    return url
-
-  const fileName = normalizeFileName(url.split('/').pop() || 'image')
-  return `${baseUrl.replace(/\/$/, '')}/${IMAGE_FOLDER}/${fileName}`
-}
-
-// Transform image field with responsive variants
-export function transformImageField(baseUrl: string, field: any): any {
-  const transformed = { ...field }
-
-  if (field.url) {
-    transformed.url = transformImageUrl(baseUrl, field.url)
-  }
-
-  // Handle responsive variants
-  const responsiveViews = ['Lg', 'Md', 'Sm', 'Xs'] as const
-  for (const view of responsiveViews) {
-    const variant = (field as any)[view]
-    if (variant?.url) {
-      (transformed as any)[view] = {
-        ...variant,
-        url: transformImageUrl(baseUrl, variant.url),
-      }
-    }
-  }
-
-  return transformed
-}
-
-// Generate srcSet from transformed field
-export function generateSrcSet(field: any, widths?: number[] | string): { src: string, srcSet: string } {
-  const defaultWidths = [640, 768, 1024, 1280, 1536]
-  const _targetWidths = widths || defaultWidths
-
-  const src = field.url || ''
-  const srcSetEntries: string[] = []
-
-  // Add main image
-  if (src && field.dimensions?.width) {
-    srcSetEntries.push(`${src} ${field.dimensions.width}w`)
-  }
-
-  // Add responsive variants
-  const responsiveViews = ['Xs', 'Sm', 'Md', 'Lg'] as const
-  for (const view of responsiveViews) {
-    const variant = (field as any)[view]
-    if (variant?.url && variant.dimensions?.width) {
-      srcSetEntries.push(`${variant.url} ${variant.dimensions.width}w`)
-    }
-  }
-
-  return {
-    src,
-    srcSet: srcSetEntries.join(', '),
-  }
-}
-
-// Extract all images from Prismic document
+// Extract all images from Prismic document (server-only)
 export function extractImagesFromDocument(baseUrl: string, document: any): ImageInfo[] {
   const images: ImageInfo[] = []
 
@@ -152,7 +96,7 @@ function normalizeFileName(fileName: string): string {
     .replace(/^_+|_+$/g, '') || 'image'
 }
 
-// Fetch all Prismic data and extract images
+// Fetch all Prismic data and extract images (server-only)
 export async function fetchPrismicImages(prismicAccessToken: string, showDrafts = false): Promise<ImageInfo[]> {
   consola.info('🌐 Fetching Prismic data...')
 
@@ -183,7 +127,7 @@ export async function fetchPrismicImages(prismicAccessToken: string, showDrafts 
   return uniqueImages
 }
 
-// Download missing images
+// Download missing images (server-only)
 export async function downloadMissingImages(images: ImageInfo[]): Promise<void> {
   if (import.meta.client)
     return
@@ -271,7 +215,7 @@ async function findMissingImages(images: ImageInfo[]): Promise<ImageInfo[]> {
   }
 }
 
-// Prismic API helpers
+// Prismic API helpers (server-only)
 async function fetchDocuments<T>(
   documentType: string,
   prismicAccessToken: string,
@@ -306,7 +250,7 @@ async function fetchDocument<T>(
     return response.results[0] || null
   }
   catch (error) {
-    console.warn(`⚠️ Failed to fetch ${documentType}:`, error)
+    consola.warn(`⚠️ Failed to fetch ${documentType}:`, error)
     return null
   }
 }

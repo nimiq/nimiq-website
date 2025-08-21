@@ -8,7 +8,7 @@ import process from 'node:process'
 import { defineNuxtModule } from '@nuxt/kit'
 import consola from 'consola'
 import environment from '../lib/env'
-import { downloadMissingImages, fetchPrismicImages } from '../utils/prismic-images'
+import { downloadMissingImages, fetchPrismicImages } from '../utils/prismic-images-server'
 
 const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 
