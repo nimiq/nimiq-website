@@ -13,7 +13,7 @@ const formattedDate = computed(() => {
 </script>
 
 <template>
-  <div flex="~ items-center gap-x-16 wrap" text="12 neutral" nq-label>
+  <div flex="~ items-center gap-x-16 wrap" text="12/2 neutral" nq-label>
     <time :datetime="formattedDate">
       {{ formattedDate }}
     </time>
