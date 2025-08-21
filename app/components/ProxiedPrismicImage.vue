@@ -6,7 +6,7 @@
  * Much simpler than the previous implementation.
  */
 import type { PrismicImageProps } from '@prismicio/vue'
-import { generateSrcSet, transformImageField } from '../../utils/prismic-images'
+import { generateSrcSet, transformImageField } from '~~/utils/prismic-images-client'
 
 const props = defineProps<PrismicImageProps & {
   width?: number | string
