@@ -86,7 +86,27 @@ if (post.value.data.body.at(0)?.primary)
   --uno: 'px-0';
 }
 
+:global([nq-prose] > :where(h2, h3, h4, h5, h6)) {
+  --uno: 'mt-2lh';
+}
+
 :global([nq-prose] > h2) {
   --uno: 'mt-2lh';
+}
+
+:global([nq-prose] > h3) {
+  --uno: 'mt-1.7lh';
+}
+
+:global([nq-prose] > h4) {
+  --uno: 'mt-1.4lh';
+}
+
+:global([nq-prose] > h5) {
+  --uno: 'mt-1.2lh';
+}
+
+:global([nq-prose] > :where(h2, h3, h4, h5, h6) > *) {
+  --uno: 'text-1em';
 }
 </style>
