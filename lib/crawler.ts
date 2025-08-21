@@ -1,5 +1,3 @@
-import type { PrerenderPagesOptions } from '../shared/services/prismic-data'
-import { getPrismicData } from '../shared/services/prismic-data'
 import { getBlogMetadata } from '../shared/utils/blog-post'
 
 const blogPosts: Post[] = []
@@ -18,26 +16,38 @@ export const EXCLUDED_PAGES = [
   '/terms',
 ]
 
-export async function getDynamicPages(options: PrerenderPagesOptions) {
-  const data = await getPrismicData(options)
+export interface PrerenderPagesOptions {
+  prismicAccessToken: string
+  showDrafts?: boolean
+}
 
-  const pages = data.pages.map(({ uid }) => {
+export async function getDynamicPages(options: PrerenderPagesOptions) {
+  // For now, we'll need to implement the Prismic document fetching separately
+  // since the new utils only handle images. This is a temporary solution.
+  const { fetchDocuments } = await import('../utils/prismic-api-helpers')
+
+  const [pages, blogPostsData] = await Promise.all([
+    fetchDocuments('page', options.prismicAccessToken, options.showDrafts),
+    fetchDocuments('blog_page', options.prismicAccessToken, options.showDrafts),
+  ])
+
+  const pageRoutes = pages.map(({ uid }: any) => {
     if (uid === 'home')
       return '/'
     return `/${uid}`
   })
 
-  const blogArticles = data.blogPosts.map(post => `/blog/${post.uid}`)
+  const blogArticles = blogPostsData.map((post: any) => `/blog/${post.uid}`)
 
-  const blogPaginationRoutes = generateBlogPaginationRoutes(data.blogPosts.length)
+  const blogPaginationRoutes = generateBlogPaginationRoutes(blogPostsData.length)
 
   blogPosts.length = 0
-  data.blogPosts.forEach((post) => {
+  blogPostsData.forEach((post: any) => {
     const { titleText: title, url, abstract: description, prose: content, date, imageURL: image, authors } = getBlogMetadata(post)
     blogPosts.push({ title, url, description, content, date, image, slug: post.uid, authors })
   })
 
-  return [...pages, ...blogArticles, ...blogPaginationRoutes].filter(page => !EXCLUDED_PAGES.includes(page))
+  return [...pageRoutes, ...blogArticles, ...blogPaginationRoutes].filter(page => !EXCLUDED_PAGES.includes(page))
 }
 
 function generateBlogPaginationRoutes(totalPosts: number): string[] {

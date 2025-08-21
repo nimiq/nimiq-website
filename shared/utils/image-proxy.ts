@@ -1,5 +1,5 @@
 import type { ImageField } from '@prismicio/client'
-import { transformToLocalPath } from './prismic-images'
+import { transformImageUrl } from '../../utils/prismic-images'
 
 export function transformImageFieldToLocal(baseUrl: string, field: ImageField): ImageField {
   if (!field.url)
@@ -7,14 +7,14 @@ export function transformImageFieldToLocal(baseUrl: string, field: ImageField): 
 
   return {
     ...field,
-    url: transformToLocalPath(baseUrl, field.url),
+    url: transformImageUrl(baseUrl, field.url),
   }
 }
 
 export function transformResponsiveImageFieldToLocal(baseUrl: string, _field: ImageField): ImageField {
   const field: any = { ..._field }
   if (field.url) {
-    field.url = transformToLocalPath(baseUrl, field.url)
+    field.url = transformImageUrl(baseUrl, field.url)
     return field
   }
 
@@ -28,7 +28,7 @@ export function transformResponsiveImageFieldToLocal(baseUrl: string, _field: Im
     }
     field[viewKey] = {
       ...responsiveField,
-      url: transformToLocalPath(baseUrl, responsiveField.url),
+      url: transformImageUrl(baseUrl, responsiveField.url),
     }
   }
 

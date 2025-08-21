@@ -36,7 +36,7 @@ export default defineNuxtConfig({
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
     './modules/prerender-routes',
-    './modules/image-downloader',
+    './modules/prismic-images',
     environment.useNuxtHub && '@nuxthub/core',
   ].filter(Boolean),
 

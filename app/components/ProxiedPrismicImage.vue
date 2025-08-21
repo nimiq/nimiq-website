@@ -1,114 +1,81 @@
 <script lang="ts" setup>
 /**
- * Proxied Prismic Image Component
+ * Simplified Prismic Image Component
  *
- * Serves Prismic images locally to prevent future attacks on Prismic CMS.
- * Images are downloaded during build time by the crawler system.
- *
- * Adapted from https://github.com/prismicio/prismic-vue/blob/68a8be98a79c4627f83ca33735f07668329fe1e3/src/PrismicImage.vue
+ * Serves Prismic images locally and handles responsive variants.
+ * Much simpler than the previous implementation.
  */
-
-import type { FilledImageFieldImage } from '@prismicio/client'
-
 import type { PrismicImageProps } from '@prismicio/vue'
-import { asImagePixelDensitySrcSet, asImageWidthSrcSet } from '@prismicio/client'
+import { generateSrcSet, transformImageField } from '../../utils/prismic-images'
 
-const props = defineProps<PrismicImageProps>()
+const props = defineProps<PrismicImageProps & {
+  width?: number | string
+  height?: number | string
+}>()
 
+const { baseUrl } = useRuntimeConfig().public
 const { components } = useRuntimeConfig().public.prismic
 
+// Transform the image field to use local URLs
+const localField = transformImageField(baseUrl, props.field)
+
+// Generate src and srcSet
+const widthsToUse = props.widths === 'defaults'
+  ? components?.imageWidthSrcSetDefaults
+  : (Array.isArray(props.widths) ? props.widths : undefined)
+const { src, srcSet } = generateSrcSet(localField, widthsToUse)
+
+// Calculate dimensions
+const aspectRatio = props.field.dimensions
+  ? props.field.dimensions.width / props.field.dimensions.height
+  : 1
+
+const width = typeof props.width === 'string' ? Number.parseInt(props.width) : props.width ?? props.field.dimensions?.width
+const height = typeof props.height === 'string' ? Number.parseInt(props.height) : props.height ?? props.field.dimensions?.height
+
+let resolvedWidth = width
+let resolvedHeight = height
+
+// Auto-calculate missing dimension based on aspect ratio
+if (width && !height) {
+  resolvedHeight = Math.round(width / aspectRatio)
+}
+else if (!width && height) {
+  resolvedWidth = Math.round(height * aspectRatio)
+}
+
+const imageProps = {
+  src,
+  srcset: srcSet,
+  alt: props.alt ?? props.field.alt ?? props.fallbackAlt ?? '',
+  width: resolvedWidth,
+  height: resolvedHeight,
+}
+
+// Development warnings
 if (import.meta.dev) {
   watchEffect(() => {
-    if (typeof props.alt === 'string' && props.alt !== '') {
-      console.warn(`[PrismicImage] The "alt" prop can only be used to declare an image as decorative by passing an empty string (alt="") but was provided a non-empty string.`)
+    if (props.alt && props.alt !== '') {
+      console.warn('[PrismicImage] The "alt" prop should only be used to declare decorative images with an empty string')
     }
 
-    if (typeof props.fallbackAlt !== 'undefined' && typeof props.fallbackAlt === 'string' && props.fallbackAlt !== '') {
-      console.warn(`[PrismicImage] The "fallbackAlt" prop can only be used to declare an image as decorative by passing an empty string (fallbackAlt="") but was provided a non-empty string.`)
+    if (props.fallbackAlt && props.fallbackAlt !== '') {
+      console.warn('[PrismicImage] The "fallbackAlt" prop should only be used to declare decorative images with an empty string')
     }
 
     if (props.widths && props.pixelDensities) {
-      console.warn(`[PrismicImage] Only one of "widths" or "pixelDensities" props can be provided. "widths" will be used.`)
+      console.warn('[PrismicImage] Only one of "widths" or "pixelDensities" can be provided. Using "widths"')
     }
   })
-}
-
-function castInt(input: string | number | undefined): number | undefined {
-  if (typeof input === 'number' || typeof input === 'undefined')
-    return input
-  const parsed = Number.parseInt(input)
-  return Number.isNaN(parsed) ? undefined : parsed
-}
-
-const { baseUrl } = useRuntimeConfig().public
-const localField = transformResponsiveImageFieldToLocal(baseUrl, props.field)
-
-// asImageWidthSrcSet requires full URLs, so we use a dummy domain
-const DUMMY_DOMAIN = 'https://localhost'
-const tempField = {
-  ...localField,
-  url: `${DUMMY_DOMAIN}${localField.url}`,
-} as FilledImageFieldImage
-
-// Transform responsive variants to use dummy domain for srcSet generation
-const responsiveViews = ['Lg', 'Md', 'Sm', 'Xs'] as const
-for (const viewKey of responsiveViews) {
-  if ((tempField as any)[viewKey]?.url) {
-    (tempField as any)[viewKey] = {
-      ...(tempField as any)[viewKey],
-      url: `${DUMMY_DOMAIN}${(tempField as any)[viewKey].url}`,
-    }
-  }
-}
-
-let src = ''
-let srcSet = ''
-
-if (props.widths || !props.pixelDensities) {
-  const res = asImageWidthSrcSet(tempField, {
-    ...props.imgixParams,
-    widths: props.widths === 'defaults' ? components?.imageWidthSrcSetDefaults : props.widths,
-  })
-  if (res) {
-    src = res.src.replace(DUMMY_DOMAIN, '')
-    srcSet = res.srcset.replaceAll(DUMMY_DOMAIN, '')
-  }
-}
-else if (props.pixelDensities) {
-  const res = asImagePixelDensitySrcSet(tempField, {
-    ...props.imgixParams,
-    pixelDensities: props.pixelDensities === 'defaults' ? components?.imagePixelDensitySrcSetDefaults : props.pixelDensities,
-  })
-  if (res) {
-    src = res.src.replace(DUMMY_DOMAIN, '')
-    srcSet = res.srcset.replaceAll(DUMMY_DOMAIN, '')
-  }
-}
-
-const ar = props.field.dimensions ? props.field.dimensions.width / props.field.dimensions.height : 1
-
-// @ts-expect-error types are complex
-const castedWidth = castInt(props.width)
-// @ts-expect-error types are complex
-const castedHeight = castInt(props.height)
-
-let resolvedWidth = castedWidth ?? props.field.dimensions?.width
-let resolvedHeight = castedHeight ?? props.field.dimensions?.height
-
-if (castedWidth != null && castedHeight == null)
-  resolvedHeight = castedWidth / ar
-else if (castedWidth == null && castedHeight != null)
-  resolvedWidth = castedHeight * ar
-
-const image = {
-  src,
-  srcSet,
-  alt: props.alt ?? (props.field.alt || props.fallbackAlt),
-  width: resolvedWidth ? Math.round(resolvedWidth) : undefined,
-  height: resolvedHeight ? Math.round(resolvedHeight) : undefined,
 }
 </script>
 
 <template>
-  <NuxtImg :src="image.src" :srcset="image.srcSet" :alt="image.alt" />
+  <NuxtImg
+    :src="imageProps.src"
+    :srcset="imageProps.srcset"
+    :alt="imageProps.alt"
+    :width="imageProps.width"
+    :height="imageProps.height"
+  />
 </template>

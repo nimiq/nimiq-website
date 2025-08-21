@@ -1,6 +1,7 @@
 import type { Feed } from 'nuxt-module-feed'
-import { getPrismicData } from '../../shared/services/prismic-data'
+import type { BlogPageDocument } from '~~/prismicio-types'
 import { getBlogMetadata } from '../../shared/utils/blog-post'
+import { fetchDocuments } from '../../utils/prismic-api-helpers'
 
 export default defineNitroPlugin(async (nitroApp) => {
   nitroApp.hooks.hook('feed:generate', async ({ feed, options }) => {
@@ -21,8 +22,8 @@ export default defineNitroPlugin(async (nitroApp) => {
 
     const { prismicAccessToken } = useRuntimeConfig()
 
-    const data = await getPrismicData({ prismicAccessToken, showDrafts: false })
-    data.blogPosts.forEach((post) => {
+    const blogPosts = await fetchDocuments<BlogPageDocument>('blog_page', prismicAccessToken, false)
+    blogPosts.forEach((post: BlogPageDocument) => {
       const { titleText: title, url, abstract: description, prose: content, date, imageURL: image, authors } = getBlogMetadata(post)
       feed.addItem({ date, description, title, link: url, content, image, author: authors?.map(author => ({ name: author })) })
     })
