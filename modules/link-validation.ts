@@ -399,6 +399,8 @@ const LINK_WHITELIST = [
 
   // Charity & Social
   /^https?:\/\/(www\.)?charitywater\.org\/bitcoin$/,
+  /^http:\/\/www\.nimnow\.com\/$/,
+  /^http:\/\/catarse\.me\/$/,
   /^https?:\/\/(www\.)?europeanpaymentscouncil\.eu\/sites\/default\/files\/participants_export\/sepa_instant_credit_transfer\/sepa_instant_credit_transfer\.pdf\?v=1552295452$/,
   /^https?:\/\/(www\.)?litecoin-foundation\.org/,
 
@@ -436,17 +438,12 @@ const LINK_WHITELIST = [
 
   /^https:\/\/trustwallet\.com\/nimiq-wallet$/,
   /^https:\/\/www\.ten31\.com\/$/,
-  /^https:\/\/repo\.nimiq\.com\/torrents\/nimiq-mainnet-zkp-keys\.torrent$/,
-  /^https:\/\/www\.charitywater\.org\/bitcoin$/,
-  /^https:\/\/twitter\.com\/Ledger\/status\/1006174507751694337$/,
-
-  /^https:\/\/ipfs\.io\/ipfs\/QmUuSz4EFc9EAvRzz8FVAah7xh2huWtiU5vDgzkfR1gXMY\/$/,
-  /^https:\/\/ipfs\.nimiq\.io\/ipfs\/QmUuSz4EFc9EAvRzz8FVAah7xh2huWtiU5vDgzkfR1gXMY\/$/,
-  /^https:\/\/bafybeidbrud57crri5xgdtvnipihzzdxjkghmebxlyseie5qha7sxwkj64\.ipfs\.dweb\.link\/$/,
+  /^https:\/\/ten31\.com\/$/,
 
   /^https:\/\/hackernoon\.com\/atomic-swaps-simply-explained-how-to-swap-cryptocurrencies-without-a-middleman-6cd29680c32e$/,
   /^https:\/\/serotonin\.co\/$/,
   /^https:\/\/cryptoadoption\.io\/$/,
+  /^https:\/\/cryptoadoption\.io\/doku\.php$/,
   /^https:\/\/totalcrypto\.io\/$/,
 
   // Other Services
