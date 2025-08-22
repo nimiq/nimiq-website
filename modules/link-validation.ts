@@ -24,7 +24,6 @@ const LINK_WHITELIST = [
 
   // Social Media & Community
   /^https:\/\/twitter\.com\/nimiq$/,
-  /^http:\/\/twitter\.com\/nimiq$/,
   /^https:\/\/x\.com\/nimiq$/,
   /^http:\/\/x\.com\/nimiq$/,
   /^https:\/\/x\.com\/Nimiq$/,
@@ -59,7 +58,6 @@ const LINK_WHITELIST = [
   /^https:\/\/youtu\.be\/A5zV5YmorH0$/,
   /^https:\/\/youtu\.be\/AEYrQxGILYo\?list=TLPQMDEwNDIwMjA39zgXdzF0BA$/,
   /^https:\/\/youtu\.be\/i0GVdberKZM$/,
-  /^https:\/\/youtu\.be\/Ye9bbDa9o8w$/,
   /^https:\/\/youtu\.be\/dA40oyDVtqs$/,
   /^https:\/\/www\.youtube\.com\/watch\?v=dA40oyDVtqs$/,
   /^https:\/\/youtu\.be\/OmjdtqpWuwY$/,
@@ -97,7 +95,6 @@ const LINK_WHITELIST = [
   /^https:\/\/x\.com\/i\/spaces\/1vOxwrmqYMoJB$/,
   /^https:\/\/x\.com\/i\/spaces\/1YqGovYkQaMKv\.$/,
   /^https:\/\/twitter\.com\/i\/spaces\/1MnGnMperDOKO$/,
-  /^https:\/\/twitter\.com\/i\/spaces\/1YqGovYkQaMKv$/,
   /^https:\/\/twitter\.com\/NimiqMemes$/,
   /^https:\/\/twitter\.com\/nimiq\/status\/1236335060246290432\/photo\/1$/,
   /^https:\/\/t\.me\/nimiqtip_bot$/,
@@ -411,24 +408,12 @@ const LINK_WHITELIST = [
   /^https?:\/\/bafybeid.*\.ipfs\.dweb\.link/,
 
   // Other
-  /^http:\/\/www\.nimnow\.com/,
-  /^http:\/\/catarse\.me/,
+
   /^https?:\/\/(www\.)?unstoppabledomains\.com\/blog\/blog-introducing-the-wallet-alliance$/,
   /^http:\/\/unstoppableweb\.co\/3l1Ldpf$/,
-  /^https?:\/\/(www\.)?hummingbot\.io\/en\/academy\/quickstart\/$/,
-  /^https?:\/\/dist\.hummingbot\.io\/hummingbot_v0\.46\.0_setup\.exe$/,
-  /^https?:\/\/dist\.hummingbot\.io\/hummingbot_v0\.46\.0\.dmg$/,
-  /^https?:\/\/hummingbot\.io\/en\/academy\/quickstart\/4-create-bot\/$/,
-  /^https?:\/\/hummingbot\.io\/en\/academy\/quickstart\/5-earn-rewards\/$/,
-  /^https?:\/\/(www\.)?albacore\.mopsus\.com\/calculator$/,
-  /^https?:\/\/(www\.)?cryptoadoption\.io/,
-  /^https?:\/\/(www\.)?totalcrypto\.io/,
-  /^https?:\/\/(www\.)?ten31\.com/,
-  /^https?:\/\/polygonscan\.com\/address\/0x98e69a6927747339d5e543586fc0262112ebe4bd#code$/,
 
   /^https?:\/\/twitter\.com\/Ledger\/status\/1006174507751694337$/,
   /^https:\/\/apps\.apple\.com\/us\/app\/nimiq-pay\/id6471844738$/,
-  /^https:\/\/apps\.apple\.com\/us\/app\/trust-crypto-wallet\/id1288339409\?mt=8$/,
   /^https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.nimiq\.pay$/,
   /^https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.wallet\.crypto\.trustapp$/,
   /^https:\/\/itunes\.apple\.com\/us\/app\/trust-crypto-wallet\/id1288339409\?mt=8$/,
@@ -438,9 +423,7 @@ const LINK_WHITELIST = [
   /^https:\/\/crypto\.stanford\.edu\/~buenz\/papers\/zether\.pdf$/,
   /^https:\/\/ed25519\.cr\.yp\.to\/$/,
   /^https:\/\/codaprotocol\.com\/$/,
-  /^https:\/\/electriccoin\.co\/wp-content\/uploads\/2019\/09\/Halo\.pdf$/,
-  /^https:\/\/z\.cash\/technology\/zksnarks\/$/,
-  /^https:\/\/www\.nimiq\.dev\/$/,
+
   /^http:\/\/www\.lmdb\.tech\/doc\/$/,
   /^https:\/\/en\.bitcoinwiki\.org\/wiki\/Simplified_Payment_Verification$/,
   /^https:\/\/en\.bitcoin\.it\/wiki\/Atomic_swap$/,
@@ -476,8 +459,6 @@ const LINK_WHITELIST = [
   /^https:\/\/hummingbot\.io\/en\/academy\/quickstart\/5-earn-rewards\/$/,
   /^https:\/\/albacore\.mopsus\.com\/calculator$/,
 
-  /^http:\/\/www\.nimnow\.com/,
-  /^http:\/\/catarse\.me/,
   /^https?:\/\/(www\.)?nimtris\.com/,
   /^https?:\/\/robohash\.org/,
 
@@ -485,7 +466,6 @@ const LINK_WHITELIST = [
   /^https?:\/\/tuwien\.ac\.at/,
   /^https?:\/\/princeton\.edu/,
   /^https?:\/\/(www\.)?sba-research\.org/,
-  /^https?:\/\/bdlt\.school/,
 
   // Government & Regulatory
   /^https?:\/\/(www\.)?blockchain4europe\.eu/,
