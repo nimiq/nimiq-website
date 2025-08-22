@@ -234,7 +234,7 @@ const isHome = route.fullPath === '/'
           flex="~ items-end justify-center" translate-x="$reka-navigation-menu-indicator-position" duration-200 top-full
           absolute z-100 z-12 of-hidden data-hidden:op-0
         >
-          <div h-12 w-24 translate-y-1 relative i-nimiq:tooltip-triangle />
+          <div text-neutral-200 h-12 w-24 translate-y-1 relative i-nimiq:tooltip-triangle />
         </NavigationMenuIndicator>
       </ClientOnly>
     </NavigationMenuList>
@@ -245,7 +245,7 @@ const isHome = route.fullPath === '/'
           transition="[width,height]" h="$reka-navigation-menu-viewport-height"
           animate="scale-in data-closed:scale-out" min-w="$reka-navigation-menu-viewport-width" mt-12 rounded-12 bg-white
           shadow origin-top-center duration-200 relative z-1 of-hidden animate-scale-in
-          outline="1.5 offset--1.5 ~ neutral-200"
+          outline="1.5 ~ neutral-200"
         />
       </div>
     </ClientOnly>
@@ -291,19 +291,9 @@ const isHome = route.fullPath === '/'
   }
 }
 
-header[data-scrolled='true'] {
-  [i-nimiq\:tooltip-triangle] {
-    --uno: 'text-neutral-200';
-  }
-}
-
 header[data-scrolled='false'].dark {
   .trigger:where([data-state='open'], :hover, :focus-visible) {
     --uno: 'text-white/95';
-  }
-
-  [i-nimiq\:tooltip-triangle] {
-    --uno: 'text-white';
   }
 }
 </style>
