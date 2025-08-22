@@ -8,10 +8,6 @@ import { defineNuxtModule } from '@nuxt/kit'
 const LINK_WHITELIST = [
   // Official Nimiq
   /^https?:\/\/([^.]+\.)?nimiq\.(com|network|org|dev|watch)/,
-  /^https?:\/\/(www\.)?validators-api.*\.nuxt\.dev/,
-  /^https?:\/\/(www\.)?stats\.nimiq-network\.com/,
-  /^https?:\/\/(www\.)?forum\.nimiq\.community/,
-  /^https?:\/\/(www\.)?voting\.nimiq\.community/,
   /^https?:\/\/(www\.)?nimiq-testnet\.com/,
   /^https?:\/\/(www\.)?nimiq\.github\.io/,
   /^https?:\/\/nim\.sh/,
@@ -32,6 +28,7 @@ const LINK_WHITELIST = [
   /^https:\/\/x\.com\/nimiq$/,
   /^http:\/\/x\.com\/nimiq$/,
   /^https:\/\/x\.com\/Nimiq$/,
+  /^http:\/\/x\.com\/Nimiq$/,
   /^https:\/\/www\.facebook\.com\/nimiq$/,
   /^https:\/\/www\.instagram\.com\/wearenimiq$/,
   /^https:\/\/www\.instagram\.com\/lecoproject$/,
@@ -54,6 +51,7 @@ const LINK_WHITELIST = [
   /^https:\/\/t\.me\/Kucoin_Exchange$/,
   /^https:\/\/t\.me\/stabilediese$/,
   /^https:\/\/www\.youtube\.com\/watch\?v=bspRbC4K84o$/,
+  /^https:\/\/www\.youtube\.com\/watch\?v=Ye9bbDa9o8w$/,
   /^https:\/\/www\.youtube\.com\/shorts\/-ogl5pAwW_U$/,
   /^https:\/\/www\.youtube\.com\/channel\/UCJ1qu3KXwfmkGwBkU8F1jQg$/,
   /^https:\/\/youtu\.be\/QWbRZVcIrnk$/,
@@ -65,7 +63,6 @@ const LINK_WHITELIST = [
   /^https:\/\/youtu\.be\/dA40oyDVtqs$/,
   /^https:\/\/www\.youtube\.com\/watch\?v=dA40oyDVtqs$/,
   /^https:\/\/youtu\.be\/OmjdtqpWuwY$/,
-  /^https:\/\/www\.youtube\.com\/watch\?v=Ye9bbDa9o8w$/,
   /^https:\/\/youtu\.be\/RBQ_6OqVO68$/,
   /^https:\/\/youtu\.be\/tfae8ld1ILc$/,
   /^https:\/\/youtu\.be\/Yd02UOmKWhU$/,
@@ -105,7 +102,6 @@ const LINK_WHITELIST = [
   /^https:\/\/twitter\.com\/nimiq\/status\/1236335060246290432\/photo\/1$/,
   /^https:\/\/t\.me\/nimiqtip_bot$/,
   /^https:\/\/twitter\.com\/nimiq\/status\/1291040529501880321$/,
-  /^http:\/\/x\.com\/Nimiq$/,
   /^https:\/\/discord\.gg\/pvdg5AZWk7$/,
   /^https:\/\/discord\.gg\/BCxjthcXtX$/,
   /^https:\/\/discord\.gg\/J753fQUnpZ$/,
@@ -124,7 +120,6 @@ const LINK_WHITELIST = [
 
   // App Stores
   /^https:\/\/apps\.apple\.com\/app\/id6471844738$/,
-  /^https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.nimiqsunsetcyberspace$/,
 
   /^https?:\/\/nimiq-slackin\.herokuapp\.com/,
 
@@ -265,7 +260,7 @@ const LINK_WHITELIST = [
   /^https?:\/\/(www\.)?coincenter\.org/,
   /^https?:\/\/(www\.)?electriccoin\.co/,
   /^https?:\/\/(www\.)?z\.cash/,
-  /^https?:\/\/(www\.)?zkscience\.com/,
+
   /^https?:\/\/(www\.)?zkp\.science/,
   /^https?:\/\/(www\.)?nipopows\.com/,
   /^https?:\/\/(www\.)?libp2p\.io/,
@@ -276,14 +271,12 @@ const LINK_WHITELIST = [
   /^http:\/\/cryptonite\.info\/wiki\/index\.php\?title=Main_Page$/,
 
   // Development & Tools
-  /^https?:\/\/(www\.)?nodejs\.org/,
   /^https?:\/\/(www\.)?npmjs\.com/,
   /^https?:\/\/(www\.)?developer\.mozilla\.org/,
-  /^https?:\/\/(www\.)?web\.dev/,
   /^https?:\/\/(www\.)?(fonts\.)?(googleapis|gstatic|google)\.com/,
   /^https?:\/\/(www\.)?chromium\.org/,
   /^https?:\/\/(www\.)?letsencrypt\.org/,
-  /^https?:\/\/developers\.google\.com/,
+  /^https:\/\/developers\.google\.com/,
 
   // GitHub URLs
   /^https:\/\/github\.com\/nimiq$/,
@@ -351,36 +344,19 @@ const LINK_WHITELIST = [
   /^https:\/\/github\.com\/valentinvieriu\/nimiq-vanity-wallet$/,
 
   // Community & Projects
-  /^https?:\/\/(www\.)world\.nimpowered\.com/,
   /^https?:\/\/(www\.)naka\.com/,
-  /^https?:\/\/(www\.)lightning\.network/,
   /^https?:\/\/(www\.)nimiqhub\.com/,
-  /^https?:\/\/(www\.)pixels\.nimpowered\.com/,
-  /^https?:\/\/(www\.)nimiq-game-store\.paulgertz\.com/,
   /^https?:\/\/(www\.)jvm\.com/,
   /^https?:\/\/(www\.)hackerone\.com/,
-  /^https?:\/\/(www\.)trustwallet\.com/,
   /^https?:\/\/(www\.)ledgerwallet\.com/,
-  /^https?:\/\/(www\.)data\.consilium\.europa\.eu/,
-  /^https?:\/\/(www\.)lnt\.org/,
   /^https?:\/\/(www\.)nationalforests\.org/,
   /^https?:\/\/(www\.)501cthree\.org/,
-  /^https?:\/\/(www\.)trinkler\.software/,
   /^https:\/\/trinkler\.software\/$/,
-  /^https?:\/\/(www\.)serotonin\.co/,
-  /^https?:\/\/(www\.)hackernoon\.com/,
-  /^https?:\/\/(www\.)telegra\.ph\/How-to-run-the-Nimiq-Rust-node-on-Android-12-03$/,
-  /^https?:\/\/(www\.)pixel\.auction/,
-  /^https?:\/\/(www\.)nimtris\.com$/,
-  /^https:\/\/2048\.nimiq\.com$/,
   /^https:\/\/shortnim\.vercel\.app\/$/,
   /^https:\/\/hub\.shortnim\.me\/$/,
   /^https:\/\/cashlinks\.shortnim\.me\/$/,
 
   // Infrastructure & Services
-  /^https?:\/\/(www\.)?googletagmanager\.com/,
-  /^https?:\/\/(www\.)?google-analytics\.com/,
-  /^https?:\/\/(www\.)?matomo\.org/,
   /^https?:\/\/(www\.)?fastspot\.freshdesk\.com\/support\/tickets\/new$/,
   /^https?:\/\/(www\.)?securityheaders\.com\/\?q=https%3A%2F%2Fkeyguard\.nimiq\.com$/,
 
@@ -473,12 +449,7 @@ const LINK_WHITELIST = [
   /^https:\/\/en\.wikipedia\.org\/wiki\/Identicon$/,
   /^https:\/\/en\.wikipedia\.org\/wiki\/Fiat_money$/,
 
-  /^https:\/\/blog\.goodaudience\.com\/understanding-zero-knowledge-proofs-through-simple-examples-df673f796d99$/,
-  /^https:\/\/blog\.chainalysis\.com\/reports\/2022-global-crypto-adoption-index\/$/,
   /^https:\/\/opengsn\.org\/$/,
-  /^https:\/\/towardsdatascience\.com\/visualize-programming-language-popularity-using-tiobeindexpy-f82c5a96400d$/,
-  /^https:\/\/emojipedia\.org\/sparkles\/#:~:text=Emoji%20Meaning,beauty%2C%20gratitude%2C%20and%20excitement\.$/,
-  /^https:\/\/blog\.kucoin\.com\/nimiq-nim-token-listing-information-research-project-updates-kucoin$/,
 
   /^https:\/\/trustwallet\.com\/nimiq-wallet$/,
   /^https:\/\/www\.ten31\.com\/$/,
