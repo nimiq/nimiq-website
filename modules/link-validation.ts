@@ -41,11 +41,16 @@ const LINK_WHITELIST = [
   /^https?:\/\/(twitter|x)\.com\/nimiq\/status\/(1194441520897757184|1200533569048850435|1195070449706766342|1527004101992755202|1237477129362853900|1271109189268639749|1443243432865058817|1640803931424018452|1638246500311486464|1793642221704724940|1783338363660951860|1236335060246290432|1291040529501880321)(\/photo\/\d+)?$/i,
   /^https:\/\/twitter\.com\/(terorie_dev|MatthiasHauff)\/status\/\d+$/,
   /^https:\/\/(x|twitter)\.com\/i\/spaces\/(1vOxwrmqYMoJB|1YqGovYkQaMKv\.|1MnGnMperDOKO)$/,
+  // Dynamic link from JS
+  /^https:\/\/twitter\.com\/\$\{\w\}$/,
   // Discord
   /^https:\/\/discord\.gg\/(pvdg5AZWk7|BCxjthcXtX|J753fQUnpZ|XB9SGtEuur)$/,
 
   // LinkedIn
   /^https:\/\/www\.linkedin\.com\/in\/(adriangarcia81|elionchin|desouzamartin|math%C3%A9o-r-b301a996|maxvburger\/?|paberr|s%C3%B6ren-schwert-484b6b100|stefan-koolen)$/,
+
+  // URL used in JS
+  /^https:\/\/www\.linkedin\.com\/in\/\$\{\w\}$/,
 
   // App Stores
   /^https:\/\/apps\.apple\.com\/app\/id6471844738$/,
@@ -182,6 +187,14 @@ const LINK_WHITELIST = [
   /^https?:\/\/(www\.)?letsencrypt\.org/,
   /^https:\/\/developers\.google\.com/,
 
+  // W3C XML Namespaces (commonly found in SVG/XML)
+  /^http:\/\/www\.w3\.org\/2000\/svg$/,
+  /^http:\/\/www\.w3\.org\/1999\/xhtml$/,
+  /^http:\/\/www\.w3\.org\/1999\/xlink$/,
+  /^http:\/\/www\.w3\.org\/1998\/Math\/MathML$/,
+  /^http:\/\/www\.w3\.org\/XML\/1998\/namespace$/,
+  /^http:\/\/www\.w3\.org\/2000\/xmlns\/$/,
+
   // GitHub
   /^https:\/\/github\.com\/(nimiq|nimiq-network)(\/.*)?$/,
   /^https:\/\/github\.com\/satoshilabs\/slips\/blob\/master\/slip-0010\.md$/,
@@ -195,6 +208,8 @@ const LINK_WHITELIST = [
   /^https:\/\/github\.com\/vernnobile\/MuliFont$/,
   /^https:\/\/github\.com\/catarse\/catarse$/,
   /^https:\/\/github\.com\/valentinvieriu\/nimiq-vanity-wallet$/,
+  // Dynamic link from JS
+  /^https:\/\/github\.com\/\$\{\w\}$/,
 
   // Community & Projects
   /^https?:\/\/nimstats\.com/,
@@ -213,6 +228,37 @@ const LINK_WHITELIST = [
   // Infrastructure & Services
   /^https?:\/\/(www\.)?fastspot\.freshdesk\.com\/support\/tickets\/new$/,
   /^https?:\/\/(www\.)?securityheaders\.com\/\?q=https%3A%2F%2Fkeyguard\.nimiq\.com$/,
+
+  // API Endpoints & Data Services
+  /^https:\/\/raw\.githubusercontent\.com\/onmax\/nimiq-awesome\/main\/src\/data\/dist\/nimiq-apps\.json$/,
+  /^https:\/\/data-api\.cryptocompare\.com\/index\/cc$/,
+  /^https:\/\/api\.coingecko\.com\/api\/v3$/,
+  /^https:\/\/firestore\.googleapis\.com\/v1\/projects\/checkout-service\/databases\/\(default\)\/documents\/exchangerates\/rates$/,
+  /^https:\/\/usd-crc-historic-rate\.deno\.dev\/api\/rates\/\$\{[^}]+\}\/\$\{[^}]+\}$/,
+  /^https:\/\/min-api\.cryptocompare\.com\/data\/v2\/histohour$/,
+  /^https:\/\/geoip\.nimiq-network\.com:8443\/v1\/locate$/,
+  /^https:\/\/validators-api-mainnet\.pages\.dev$/,
+  /^https:\/\/min-api\.cryptocompare\.com\/data$/,
+  /^https:\/\/stats\.nimiq-network\.com$/,
+
+  // Forms & External Services
+  /^https:\/\/notionforms\.io\/forms\/nim-prospect-contact-form$/,
+
+  // Development
+  /^http:\/\/localhost(:\d+)?(\/.*)?$/,
+
+  // Prismic & CMS
+  /^https:\/\/prismic\.dev\/msg\/client\/v\$\{[^}]+\}\/[^/]+$/,
+  /^https:\/\/\$\{[^}]+\}\.cdn\.prismic\.io\/api\/v2$/,
+  /^https:\/\/static\.cdn\.prismic\.io\/prismic\.min\.js\?repo=\$\{[^}]+\}&new=true$/,
+  /^https:\/\/github\.com\/prismicio\/slice-machine\/issues\/new\/choose$/,
+
+  // Analytics
+  /^https:\/\/www\.googletagmanager\.com\/gtm\.js$/,
+  /^https:\/\/cdn\.matomo\.cloud\/\$\{[^}]+\}\/$/,
+
+  // In JS files
+  /^https:\/\/vuejs\.org\/error-reference\/#runtime-\$\{[^}]+\}$/,
 
   // Content & Documentation
   /^https?:\/\/(www\.)?wordpress\.org/,
@@ -343,7 +389,6 @@ export default defineNuxtModule({
       const errors: string[] = []
       const regexUsage = new Map<number, { pattern: RegExp, used: boolean, matchCount: number }>()
 
-      // Initialize regex usage tracking
       whitelist.forEach((pattern, index) => {
         regexUsage.set(index, { pattern, used: false, matchCount: 0 })
       })
@@ -358,49 +403,20 @@ export default defineNuxtModule({
         totalRegexPatterns: whitelist.length,
         usedRegexPatterns: 0,
         unusedRegexPatterns: 0,
+        htmlFilesProcessed: 0,
+        jsFilesProcessed: 0,
       }
 
-      findHtmlFiles(outputDir).forEach((file) => {
-        extractLinks(readFileSync(file, 'utf-8'), file).forEach((link) => {
-          if (!link)
-            return
-
-          stats.totalLinks++
-
-          if (link.url.startsWith('#') || link.url.startsWith('mailto:') || link.url.startsWith('tel:'))
-            return
-
-          if (!link.url.startsWith('http')) {
-            stats.internalLinks++
-            return
-          }
-
-          stats.externalLinks++
-
-          if (link.url.startsWith('http://')) {
-            stats.httpOnlyLinks++
-            console.warn(`⚠️  HTTP URL detected: ${link.url} in ${link.file}:${link.line}`)
-          }
-
-          const matchResult = isValidLinkWithTracking(link.url, whitelist, regexUsage)
-          if (matchResult.isValid) {
-            stats.validExternalLinks++
-          }
-          else {
-            stats.invalidExternalLinks++
-            errors.push(`❌ Invalid external link: ${link.url}
-   📍 Found in: ${link.file}:${link.line}
-   🔧 Add pattern to LINK_WHITELIST in modules/link-validation.ts`)
-          }
-        })
-      })
-
-      // Calculate regex usage statistics
+      const allFiles = findSupportedFiles(outputDir)
+      const fileStats = processAllFiles(allFiles, stats, whitelist, regexUsage, errors)
+      Object.assign(stats, fileStats)
       stats.usedRegexPatterns = Array.from(regexUsage.values()).filter(r => r.used).length
       stats.unusedRegexPatterns = stats.totalRegexPatterns - stats.usedRegexPatterns
 
       console.error('\n📊 Link Validation Statistics:')
       console.table({
+        'HTML files processed': stats.htmlFilesProcessed,
+        'JS files processed': stats.jsFilesProcessed,
         'Total links found': stats.totalLinks,
         'Internal links': stats.internalLinks,
         'External links': stats.externalLinks,
@@ -412,7 +428,6 @@ export default defineNuxtModule({
         'Unused regex patterns': stats.unusedRegexPatterns,
       })
 
-      // Report unused regex patterns
       const unusedPatterns = Array.from(regexUsage.entries())
         .filter(([_, data]) => !data.used)
         .map(([index, data]) => ({ index, pattern: data.pattern.source }))
@@ -442,15 +457,36 @@ export default defineNuxtModule({
   },
 })
 
-function findHtmlFiles(dir: string): string[] {
+const LINK_EXTRACTION_PATTERNS = new Map([
+  ['.html', [
+    /<a[^>]+href=["']([^"']+)["'][^>]*>/gi,
+  ]],
+  ['.js', [
+    /"(https?:\/\/[^"]+)"/g,
+    /'(https?:\/\/[^']+)'/g,
+    /`(https?:\/\/[^`]+)`/g,
+  ]],
+])
+
+function findSupportedFiles(dir: string): Array<{ path: string, extension: string }> {
   if (!existsSync(dir))
     return []
-  const files: string[] = []
+
+  const files: Array<{ path: string, extension: string }> = []
+  const supportedExtensions = Array.from(LINK_EXTRACTION_PATTERNS.keys())
 
   function scan(currentDir: string) {
     readdirSync(currentDir, { withFileTypes: true }).forEach((entry) => {
       const fullPath = resolve(currentDir, entry.name)
-      entry.isDirectory() ? scan(fullPath) : entry.name.endsWith('.html') && files.push(fullPath)
+      if (entry.isDirectory()) {
+        scan(fullPath)
+      }
+      else {
+        const extension = supportedExtensions.find(ext => entry.name.endsWith(ext))
+        if (extension) {
+          files.push({ path: fullPath, extension })
+        }
+      }
     })
   }
 
@@ -458,14 +494,94 @@ function findHtmlFiles(dir: string): string[] {
   return files
 }
 
-function extractLinks(content: string, filePath: string) {
+function extractLinksFromFile(content: string, filePath: string, extension: string) {
+  const patterns = LINK_EXTRACTION_PATTERNS.get(extension)
+  if (!patterns) {
+    return []
+  }
+
   return content.split('\n').flatMap((line, index) => {
-    const matches = line.match(/<a[^>]+href=["']([^"']+)["'][^>]*>/gi) || []
-    return matches.map((match) => {
-      const href = match.match(/href=["']([^"']+)["']/)?.[1]
-      return href ? { url: href, line: index + 1, file: filePath } : null
-    }).filter(Boolean)
+    const matches: string[] = []
+    patterns.forEach((pattern) => {
+      if (extension === '.html') {
+        const htmlMatches = line.match(pattern) || []
+        htmlMatches.forEach((match) => {
+          const href = match.match(/href=["']([^"']+)["']/)?.[1]
+          if (href) {
+            matches.push(href)
+          }
+        })
+      }
+      else {
+        let match = pattern.exec(line)
+        while (match !== null) {
+          if (match[1]) {
+            matches.push(match[1])
+          }
+          match = pattern.exec(line)
+        }
+      }
+    })
+
+    return matches.map(url => ({ url, line: index + 1, file: filePath }))
   })
+}
+
+function processAllFiles(
+  files: Array<{ path: string, extension: string }>,
+  stats: any,
+  whitelist: RegExp[],
+  regexUsage: Map<number, { pattern: RegExp, used: boolean, matchCount: number }>,
+  errors: string[],
+) {
+  const fileStats = {
+    htmlFilesProcessed: 0,
+    jsFilesProcessed: 0,
+  }
+
+  files.forEach(({ path: file, extension }) => {
+    if (extension === '.html') {
+      fileStats.htmlFilesProcessed++
+    }
+    else if (extension === '.js') {
+      fileStats.jsFilesProcessed++
+    }
+    const links = extractLinksFromFile(readFileSync(file, 'utf-8'), file, extension)
+    links.forEach((link) => {
+      if (!link)
+        return
+
+      stats.totalLinks++
+
+      if (link.url.startsWith('#') || link.url.startsWith('mailto:') || link.url.startsWith('tel:'))
+        return
+
+      if (!link.url.startsWith('http')) {
+        stats.internalLinks++
+        return
+      }
+
+      stats.externalLinks++
+
+      if (link.url.startsWith('http://')) {
+        stats.httpOnlyLinks++
+        console.warn(`⚠️  HTTP URL detected: ${link.url} in ${link.file}:${link.line}`)
+      }
+
+      const matchResult = isValidLinkWithTracking(link.url, whitelist, regexUsage)
+      if (matchResult.isValid) {
+        stats.validExternalLinks++
+      }
+      else {
+        stats.invalidExternalLinks++
+        errors.push(`❌ Invalid external link: ${link.url}
+   📍 Found in: ${link.file}:${link.line}
+   🔧 Add pattern to LINK_WHITELIST in modules/link-validation.ts`)
+      }
+    })
+  })
+
+  return fileStats
 }
 
 function isValidLinkWithTracking(
