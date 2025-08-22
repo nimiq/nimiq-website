@@ -37,6 +37,7 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
     './modules/prerender-routes',
     './modules/prismic-images',
+    './modules/link-validation', // Enhanced link validation with whitelist
     environment.useNuxtHub && '@nuxthub/core',
   ].filter(Boolean),
 
