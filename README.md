@@ -280,6 +280,31 @@ pnpm lint:fix                   # Auto-fix linting issues
 pnpm typecheck                  # TypeScript type checking
 ```
 
+#### Link Validation
+
+The project includes automatic link validation during production builds to ensure:
+
+- External links are whitelisted (security)
+- Links are accessible (dead link detection)
+- Only approved domains are linked to
+
+**Configuration Location**: Link validation whitelist is configured in `modules/link-validation.ts` at the top of the file in the `LINK_WHITELIST` constant.
+
+**Whitelist Structure**:
+
+```typescript
+const LINK_WHITELIST = [
+  // Domain patterns
+  /^https?:\/\/(www\.)wallet\.nimiq\.com/,
+  /^https?:\/\/(www\.)x\.com\/nimiq/,
+
+  // Exact URLs (with $ to match end)
+  /^https:\/\/example\.com\/specific\/page$/,
+]
+```
+
+Link validation runs automatically on static builds (GitHub Pages, internal static, production) and provides helpful error messages when links need to be added to the whitelist.
+
 ## Testing
 
 **Note**: This project currently has no testing setup. All quality assurance is done through:
