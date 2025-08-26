@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { PageDocument } from '~~/prismicio-types'
 import { components } from '~/slices'
 
 const route = useRoute()
@@ -9,14 +10,15 @@ watch(() => route.query.page, (val) => {
   pageIndex.value = Number(val) || 1
 })
 
-const { client } = usePrismic()
-const { data: page } = await useAsyncData(`prismic-page-blog`, () => client.getByUID('page', 'blog')
-  .catch((error) => {
-    console.error(`Page with UID "blog" not found in Prismic:`, error)
-    throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-  }), {
-  server: true,
-})
+const { data: page } = await usePrismicPage('blog')
+
+// Ensure page is available for template
+if (!page.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Blog page not found', fatal: true })
+}
+
+// Type assertion to help TypeScript
+const blogPage = page as Ref<PageDocument>
 
 // SEO
 useHead({
@@ -29,6 +31,6 @@ useHead({
 
 <template>
   <NuxtLayout footer-bg-color="grey" :dark-header="false" :show-socials-hexagon-bg="false">
-    <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
+    <SliceZone wrapper="main" :slices="blogPage?.data?.slices ?? []" :components />
   </NuxtLayout>
 </template>

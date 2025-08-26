@@ -335,6 +335,7 @@ The website can be built for different runtime environments, each with its own c
 - `nuxthub-preview`: NuxtHub preview environment
 - `internal-static`: Internal static site that mirrors production (no drafts shown)
 - `internal-static-drafts`: Internal static site with draft content visible
+- `internal-dynamic`: Internal dynamic site that uses the Prismic API to fetch content
 
 The build commands in `package.json` are set up to use these environments:
 
@@ -351,6 +352,9 @@ pnpm build:nuxthub
 # Internal static builds
 pnpm build:internal-static
 pnpm build:internal-static-drafts
+
+# Internal dynamic build
+pnpm build:internal-dynamic
 ```
 
 #### Environment-specific Configuration
@@ -367,6 +371,7 @@ const {
   isNuxthubPreview,
   isInternalStatic,
   isInternalStaticDrafts,
+  isInternalDynamic,
 } = useRuntimeConfig().public.environment
 
 // Draft content visibility: True in local and internal-static-drafts environments

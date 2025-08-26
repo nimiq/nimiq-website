@@ -7,29 +7,11 @@ const uid = params.uid
 if (!uid)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 
-const { showDrafts } = useRuntimeConfig().public
 const route = useRoute()
 
-const { client } = usePrismic()
-const { data: page } = await useAsyncData(`prismic-page-${uid}`, () => client.getByUID('page', uid)
-  .catch((error) => {
-    console.error(`Page with UID "${uid}" not found in Prismic:`, error)
-    throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-  }), {
-  server: true,
-})
+const { data: page } = await usePrismicPage(uid)
 
-if (!page.value) {
-  console.error(`Page with UID "${uid}" not found`)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-}
-
-if (!showDrafts && page.value?.data.draft) {
-  console.error(`Page with UID "${uid}" is a draft and showDraft is set to \`${showDrafts}\``)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-}
-
-if (page.value.uid !== uid) {
+if (page.value?.uid !== uid) {
   console.error(`Page with UID "${uid}" not found: ${JSON.stringify(page.value)}`)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }

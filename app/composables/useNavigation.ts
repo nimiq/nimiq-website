@@ -1,8 +1,8 @@
 import type { NavigationDocumentData } from '~~/prismicio-types'
 
 export function useNavigation() {
-  const { client } = usePrismic()
-  return useAsyncData('$prismic_navigation', async () => {
+  return usePrismicData('$prismic_navigation', async () => {
+    const { client } = usePrismic()
     const navigation = await client.getSingle('navigation').then(doc => doc.data)
     if (!navigation)
       throw new Error('Navigation data not found')
@@ -18,8 +18,6 @@ export function useNavigation() {
       hotCtaText,
 
     }
-  }, {
-    server: true,
   })
 }
 
