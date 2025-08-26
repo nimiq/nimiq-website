@@ -267,7 +267,6 @@ export default defineNuxtConfig({
     },
     rollupConfig: {
       external: [
-        /^.*\.node$/,
       ],
     },
     prerender: {
