@@ -4,92 +4,93 @@ import { getBlockByNumber, getBlockNumber } from 'nimiq-rpc-client-ts/http'
 import { BlockType } from 'nimiq-rpc-client-ts/types'
 import { subscribeForHeadBlock } from 'nimiq-rpc-client-ts/ws'
 
-export default defineLazyEventHandler(() => {
-  // Lazy initialization prevents module-loading issues on Cloudflare Workers
-  let lastBlockTimestamp: number | undefined
-  let shouldEnqueue = true
-  const blockQueue = new Map<number, any>()
-  let closeFn: (() => void) | undefined
+export default defineWebSocketHandler({
+  async open(peer) {
+    let lastBlockTimestamp: number | undefined
+    let shouldEnqueue = true
+    const blockQueue = new Map<number, any>()
 
-  return defineWebSocketHandler({
-    async open(peer) {
-      // Reset state for new connections
-      lastBlockTimestamp = undefined
-      shouldEnqueue = true
-      blockQueue.clear()
-      if (closeFn)
-        closeFn()
+    // Debug
+    peer.send(JSON.stringify({ type: 'ping' }))
 
-      const nodeRpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
-      initRpcClient({ url: nodeRpcUrl })
-      const eventEmitter = await subscribeForHeadBlock(true)
-      eventEmitter.addEventListener('data', async (event: CustomEvent) => {
-        const { data: block } = event.detail
-        if (block) {
-          const processedBlock = await (block.type === BlockType.Micro ? getMicroblock(block) : getMacroblock(block as MacroBlock))
-          if (shouldEnqueue)
-            blockQueue.set(processedBlock.number, processedBlock)
-          else
-            peer.send(JSON.stringify(processedBlock))
-        }
-      })
-      eventEmitter.addEventListener('close', () => close())
-      const [isOk, error, head] = await getBlockNumber()
-      if (!isOk)
-        throw createError({ status: 500, message: `Failed to get block number: ${error}` })
-      const promises = []
-      for (let i = 0; i < BLOCKS_WINDOW_SIZE; i++) {
-        const blockNumber = head - i
-        promises.unshift(
-          getBlockByNumber({ blockNumber, includeBody: true }).then(async ([isOk, error, block]) => {
-            if (!isOk)
-              throw createError({ status: 500, message: `Failed to get block ${blockNumber}: ${error}` })
-            return await (block.type === BlockType.Macro ? getMacroblock(block as MacroBlock) : getMicroblock(block))
-          }),
-        )
+    const nodeRpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
+    initRpcClient({ url: nodeRpcUrl })
+
+    const eventEmitter = await subscribeForHeadBlock(true)
+    const closeFn = (eventEmitter as any).close?.bind(eventEmitter)
+
+    eventEmitter.addEventListener('data', async (event: CustomEvent) => {
+      const { data: block } = event.detail
+      if (!block)
+        return
+      const processedBlock
+          = await (block.type === BlockType.Micro
+            ? getMicroblock(block)
+            : getMacroblock(block as MacroBlock))
+      if (shouldEnqueue) {
+        blockQueue.set(processedBlock.number, processedBlock)
       }
-
-      const blocks = await Promise.all(promises)
-      const blockNumbers = blocks.map(block => block.number)
-      peer.send(JSON.stringify(blocks))
-
-      // Send queued blocks that arrived during initial fetch
-      const sortedBlockNumbers = Array.from(blockQueue.keys()).filter(b => !blockNumbers.includes(b)).sort((a, b) => a - b)
-      for (const blockNumber of sortedBlockNumbers) {
-        peer.send(JSON.stringify(blockQueue.get(blockNumber)))
+      else {
+        peer.send(JSON.stringify(processedBlock))
       }
-      shouldEnqueue = false
-      blockQueue.clear()
-    },
+    })
 
-    close(_peer, _event) {
-      if (closeFn)
-        closeFn()
-    },
+    eventEmitter.addEventListener('close', () => {
+      peer.close()
+    })
 
-    error(_peer, _event) {
-      console.error('Albatross Blocks WebSocket error', _event)
-      if (closeFn)
-        closeFn()
-    },
-  })
+    const [isOk, error, head] = await getBlockNumber()
+    if (!isOk)
+      throw createError({ status: 500, message: `Failed to get block number: ${error}` })
 
-  // Helper functions that need access to the lazy-initialized variables
-  async function getMicroblock(block: MicroBlock): Promise<LiveviewMicroBlock> {
-    const { producer, justification, transactions, number, batch, timestamp } = block
-    const isSkip = 'skip' in justification
+    const start = Math.max(0, head - BLOCKS_WINDOW_SIZE + 1)
+    const promises: Promise<any>[] = []
+    for (let blockNumber = start; blockNumber <= head; blockNumber++) {
+      promises.push(
+        getBlockByNumber({ blockNumber, includeBody: true }).then(async ([ok, err, block]) => {
+          if (!ok)
+            throw createError({ status: 500, message: `Failed to get block ${blockNumber}: ${err}` })
+          return block.type === BlockType.Macro
+            ? getMacroblock(block as MacroBlock)
+            : getMicroblock(block)
+        }),
+      )
+    }
 
-    const kind = LiveviewBlockType.MicroBlock
-    const duration = lastBlockTimestamp ? timestamp - lastBlockTimestamp : 0
-    lastBlockTimestamp = timestamp
-    return { producer, isSkip, transactions, duration, kind, number, batch, timestamp }
-  }
+    const blocks = await Promise.all(promises)
+    const sent = new Set(blocks.map(b => b.number))
+    peer.send(JSON.stringify(blocks))
 
-  async function getMacroblock(block: MacroBlock): Promise<LiveviewMacroBlock> {
-    const { transactions, justification, batch, number, timestamp } = block
-    const votes = justification?.sig.signers.length || 0
-    const kind = LiveviewBlockType.MacroBlock
-    lastBlockTimestamp = timestamp
-    return { transactions, votes, batch, kind, number }
-  }
+    // Flush queued blocks
+    const pending = [...blockQueue.keys()].filter(n => !sent.has(n)).sort((a, b) => a - b)
+    for (const n of pending) {
+      peer.send(JSON.stringify(blockQueue.get(n)))
+    }
+    shouldEnqueue = false
+    blockQueue.clear()
+
+    // helpers now close over this connection’s state
+    async function getMicroblock(block: MicroBlock): Promise<LiveviewMicroBlock> {
+      const { producer, justification, transactions, number, batch, timestamp } = block
+      const isSkip = 'skip' in justification
+      const duration = lastBlockTimestamp ? timestamp - lastBlockTimestamp : 0
+      lastBlockTimestamp = timestamp
+      return { producer, isSkip, transactions, duration, kind: LiveviewBlockType.MicroBlock, number, batch, timestamp }
+    }
+
+    async function getMacroblock(block: MacroBlock): Promise<LiveviewMacroBlock> {
+      const { transactions, justification, batch, number, timestamp } = block
+      const votes = justification?.sig?.signers.length ?? 0
+      lastBlockTimestamp = timestamp
+      return { transactions, votes, batch, kind: LiveviewBlockType.MacroBlock, number }
+    }
+
+    // stash a disposer on the peer
+    ;(peer as any)._dispose = () => {
+      closeFn?.()
+    }
+  },
+
+  close(peer) { (peer as any)._dispose?.() },
+  error(peer) { (peer as any)._dispose?.() },
 })

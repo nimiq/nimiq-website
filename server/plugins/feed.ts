@@ -1,6 +1,5 @@
 import type { Feed } from 'nuxt-module-feed'
 import type { BlogPageDocument } from '~~/prismicio-types'
-import { getBlogMetadata } from '../../shared/utils/blog-post'
 import { fetchDocuments } from '../../utils/prismic-api-helpers'
 
 export default defineNitroPlugin(async (nitroApp) => {
