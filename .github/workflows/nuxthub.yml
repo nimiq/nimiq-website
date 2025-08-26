@@ -3,7 +3,7 @@ on: push
 
 jobs:
   deploy:
-    name: Deploy to NuxtHub
+    name: "Deploy to NuxtHub"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -19,12 +19,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
 
+      - name: Ensure NuxtHub module is installed
+        run: pnpx nuxthub@latest ensure
+
       - name: Build & Deploy to NuxtHub
         uses: nuxt-hub/action@v2
         with:
-          build-command: ${{ github.ref == 'refs/heads/main' && 'pnpm run build:nuxthub' || 'pnpm run build:nuxthub-preview' }}
+          project-key: nimiq-website-6dcj
