@@ -4,6 +4,13 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
 import { defineNuxtModule } from '@nuxt/kit'
+import { consola } from 'consola'
+
+// Auto-ignore common false positives to reduce noise
+const IGNORED_URL_PATTERNS = [
+  'w3.org', // SVG namespace declarations
+  'localhost',
+]
 
 const LINK_WHITELIST = [
   // Official Nimiq
@@ -187,14 +194,6 @@ const LINK_WHITELIST = [
   /^https?:\/\/(www\.)?letsencrypt\.org/,
   /^https:\/\/developers\.google\.com/,
 
-  // W3C XML Namespaces (commonly found in SVG/XML)
-  /^http:\/\/www\.w3\.org\/2000\/svg$/,
-  /^http:\/\/www\.w3\.org\/1999\/xhtml$/,
-  /^http:\/\/www\.w3\.org\/1999\/xlink$/,
-  /^http:\/\/www\.w3\.org\/1998\/Math\/MathML$/,
-  /^http:\/\/www\.w3\.org\/XML\/1998\/namespace$/,
-  /^http:\/\/www\.w3\.org\/2000\/xmlns\/$/,
-
   // GitHub
   /^https:\/\/github\.com\/(nimiq|nimiq-network)(\/.*)?$/,
   /^https:\/\/github\.com\/satoshilabs\/slips\/blob\/master\/slip-0010\.md$/,
@@ -243,9 +242,6 @@ const LINK_WHITELIST = [
 
   // Forms & External Services
   /^https:\/\/notionforms\.io\/forms\/nim-prospect-contact-form$/,
-
-  // Development
-  /^http:\/\/localhost(:\d+)?(\/.*)?$/,
 
   // Prismic & CMS
   /^https:\/\/prismic\.dev\/msg\/client\/v\$\{[^}]+\}\/[^/]+$/,
@@ -379,7 +375,6 @@ export default defineNuxtModule({
     name: 'link-validation',
   },
   setup(_options, nuxt) {
-    // Only run in production builds
     if (nuxt.options.dev)
       return
 
@@ -400,6 +395,7 @@ export default defineNuxtModule({
         httpOnlyLinks: 0,
         validExternalLinks: 0,
         invalidExternalLinks: 0,
+        filteredLinks: 0,
         totalRegexPatterns: whitelist.length,
         usedRegexPatterns: 0,
         unusedRegexPatterns: 0,
@@ -407,25 +403,32 @@ export default defineNuxtModule({
         jsFilesProcessed: 0,
       }
 
+      const httpUrlsByPage = new Map<string, string[]>()
+
       const allFiles = findSupportedFiles(outputDir)
-      const fileStats = processAllFiles(allFiles, stats, whitelist, regexUsage, errors)
+      const fileStats = processAllFiles(allFiles, stats, whitelist, regexUsage, errors, httpUrlsByPage)
       Object.assign(stats, fileStats)
       stats.usedRegexPatterns = Array.from(regexUsage.values()).filter(r => r.used).length
       stats.unusedRegexPatterns = stats.totalRegexPatterns - stats.usedRegexPatterns
 
-      console.error('\n📊 Link Validation Statistics:')
+      consola.info('\n📊 Link Validation Statistics:')
       console.table({
-        'HTML files processed': stats.htmlFilesProcessed,
-        'JS files processed': stats.jsFilesProcessed,
-        'Total links found': stats.totalLinks,
-        'Internal links': stats.internalLinks,
-        'External links': stats.externalLinks,
-        'HTTP-only links': stats.httpOnlyLinks,
-        'Valid external links': stats.validExternalLinks,
-        'Invalid external links': stats.invalidExternalLinks,
-        'Total regex patterns': stats.totalRegexPatterns,
-        'Used regex patterns': stats.usedRegexPatterns,
-        'Unused regex patterns': stats.unusedRegexPatterns,
+        '📄 Files processed': `${stats.htmlFilesProcessed + stats.jsFilesProcessed} (${stats.htmlFilesProcessed} HTML, ${stats.jsFilesProcessed} JS)`,
+        '🔗 Total links': stats.totalLinks,
+        '🏠 Internal links': stats.internalLinks,
+        '🌐 External links': stats.externalLinks,
+        '✅ Valid external': stats.validExternalLinks,
+        '🚫 Filtered (ignored)': stats.filteredLinks,
+        '⚠️  HTTP-only links': stats.httpOnlyLinks,
+        '❌ Invalid external': stats.invalidExternalLinks,
+      })
+
+      // Separate section to avoid cluttering main stats
+      consola.info('\n🔧 Regex Pattern Usage:')
+      console.table({
+        '📝 Total patterns': stats.totalRegexPatterns,
+        '✅ Used patterns': stats.usedRegexPatterns,
+        '⚠️  Unused patterns': stats.unusedRegexPatterns,
       })
 
       const unusedPatterns = Array.from(regexUsage.entries())
@@ -433,25 +436,51 @@ export default defineNuxtModule({
         .map(([index, data]) => ({ index, pattern: data.pattern.source }))
 
       if (unusedPatterns.length > 0) {
-        console.warn(`\n⚠️  Found ${unusedPatterns.length} unused regex pattern(s):`)
+        consola.warn(`\n⚠️  Found ${unusedPatterns.length} unused regex pattern(s):`)
         unusedPatterns.forEach(({ index, pattern }) => {
-          console.warn(`   ${index + 1}. /${pattern}/`)
+          consola.warn(`   ${index + 1}. /${pattern}/`)
         })
-        console.warn('   💡 Consider removing unused patterns to keep the whitelist clean')
+        consola.warn('   💡 Consider removing unused patterns to keep the whitelist clean')
       }
       else {
-        console.error('✅ All regex patterns are being used!')
+        consola.success('✅ All regex patterns are being used!')
+      }
+
+      // Group by page to make fixing easier
+      if (httpUrlsByPage.size > 0) {
+        consola.warn(`\n⚠️  ${stats.httpOnlyLinks} HTTP URL${stats.httpOnlyLinks === 1 ? '' : 's'} found ⚠️`)
+
+        const sortedPages = Array.from(httpUrlsByPage.entries()).sort(([a], [b]) => a.localeCompare(b))
+        const maxPagesToShow = 20
+        const totalPages = sortedPages.length
+
+        if (totalPages > maxPagesToShow) {
+          consola.warn(`Showing first ${maxPagesToShow} of ${totalPages} pages with HTTP URLs...`)
+        }
+
+        sortedPages.slice(0, maxPagesToShow).forEach(([pagePath, urls]) => {
+          const uniqueUrls = [...new Set(urls)].sort()
+          consola.warn(`\n📄 ${pagePath}:`)
+          uniqueUrls.forEach((url) => {
+            consola.warn(`  • ${url}`)
+          })
+        })
+
+        if (totalPages > maxPagesToShow) {
+          consola.warn(`\n... and ${totalPages - maxPagesToShow} more pages`)
+          consola.warn('💡 Consider updating these URLs to use HTTPS for better security')
+        }
       }
 
       if (errors.length > 0) {
-        console.error(`\n🚫 Found ${errors.length} invalid external link(s):`)
+        consola.error(`\n🚫 Found ${errors.length} invalid external link(s):`)
         errors.forEach((error, index) => {
-          console.error(`\n${index + 1}. ${error}`)
+          consola.error(`\n${index + 1}. ${error}`)
         })
         process.exit(1)
       }
       else {
-        console.error('✅ All external links passed validation!')
+        consola.success('✅ All external links passed validation!')
       }
     })
   },
@@ -533,6 +562,7 @@ function processAllFiles(
   whitelist: RegExp[],
   regexUsage: Map<number, { pattern: RegExp, used: boolean, matchCount: number }>,
   errors: string[],
+  httpUrlsByPage: Map<string, string[]>,
 ) {
   const fileStats = {
     htmlFilesProcessed: 0,
@@ -565,12 +595,21 @@ function processAllFiles(
 
       if (link.url.startsWith('http://')) {
         stats.httpOnlyLinks++
-        console.warn(`⚠️  HTTP URL detected: ${link.url} in ${link.file}:${link.line}`)
+
+        // Group URLs by page for easier fixing
+        const pagePath = getPagePathFromFile(link.file)
+        if (!httpUrlsByPage.has(pagePath)) {
+          httpUrlsByPage.set(pagePath, [])
+        }
+        httpUrlsByPage.get(pagePath)!.push(link.url)
       }
 
       const matchResult = isValidLinkWithTracking(link.url, whitelist, regexUsage)
       if (matchResult.isValid) {
         stats.validExternalLinks++
+        if (matchResult.filtered) {
+          stats.filteredLinks++
+        }
       }
       else {
         stats.invalidExternalLinks++
@@ -588,11 +627,16 @@ function isValidLinkWithTracking(
   url: string,
   whitelist: RegExp[],
   regexUsage: Map<number, { pattern: RegExp, used: boolean, matchCount: number }>,
-): { isValid: boolean, matchedPatternIndex?: number } {
+): { isValid: boolean, matchedPatternIndex?: number, filtered?: boolean } {
   if (url.startsWith('#') || url.startsWith('mailto:') || url.startsWith('tel:'))
     return { isValid: true }
   if (!url.startsWith('http'))
     return { isValid: true } // Internal links
+
+  // Skip common false positives
+  if (IGNORED_URL_PATTERNS.some(pattern => url.includes(pattern))) {
+    return { isValid: true, filtered: true }
+  }
 
   try {
     // Check if URL matches any pattern in the whitelist
@@ -611,4 +655,25 @@ function isValidLinkWithTracking(
   }
 
   return { isValid: false }
+}
+
+function getPagePathFromFile(filePath: string): string {
+  // Convert file paths to readable page names for grouping
+  const publicIndex = filePath.lastIndexOf('/public/')
+  if (publicIndex === -1)
+    return filePath
+
+  const relativePath = filePath.substring(publicIndex + 8) // Remove '/public/'
+
+  // Clean up HTML paths for readability
+  if (relativePath.endsWith('/index.html')) {
+    return relativePath.replace('/index.html', '') || 'home'
+  }
+
+  // Keep JS files as-is for debugging
+  if (relativePath.startsWith('_nuxt/')) {
+    return relativePath
+  }
+
+  return relativePath || 'home'
 }
