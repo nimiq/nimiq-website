@@ -1,49 +1,39 @@
-import type { AsyncDataOptions } from 'nuxt/app'
-import type { BlogPageDocument, PageDocument } from '~~/prismicio-types'
+import type { ArgumentsType } from '@vueuse/core'
+import type { BlogPageDocument } from '~~/prismicio-types'
+import { filter } from '@prismicio/client'
+import { consola } from 'consola'
 
-/**
- * Unified data fetching for all environments
- * NuxtHub: Only fetch at build time (prerendering), disable SSR fetching
- * Internal-dynamic: Always fetch (build + SSR)
- * Local dev: Always fetch (build + SSR)
- */
-export function usePrismicData<T>(
-  key: string,
-  handler: () => Promise<T>,
-  options?: AsyncDataOptions<T>,
-) {
+type PrismicOptions = ArgumentsType<ReturnType<typeof usePrismic>['client']['getByType']>[1]
+
+export function usePrismicPage(uid: string, options?: PrismicOptions) {
+  const { client } = usePrismic()
   const { enablePrismicSSR } = useRuntimeConfig().public
 
-  return useAsyncData(key, handler, {
-    server: Boolean(enablePrismicSSR),
-    ...options as AsyncDataOptions<T>,
-  })
-}
-
-/**
- * Draft filtering: internal-dynamic always shows drafts, NuxtHub never does
- */
-export function usePrismicPage<T extends PageDocument | BlogPageDocument>(uid: string, type: 'page' | 'blog_page' = 'page') {
-  const { client } = usePrismic()
-  const { showDrafts } = useRuntimeConfig().public
-
-  return usePrismicData(
-    `prismic-${type}-${uid}`,
-    async (): Promise<T> => {
+  return useAsyncData(
+    `prismic-page-${uid}`,
+    async () => {
       try {
-        const page = await client.getByUID(type, uid) as T
-        if (!showDrafts && page?.data.draft) {
+        const draftFilter = filter.not(`my.page.draft`, true)
+        const existingFilters = options?.filters || []
+        const filters = Array.isArray(existingFilters)
+          ? [...existingFilters, draftFilter]
+          : [existingFilters, draftFilter].filter(Boolean)
+        const result = await client.getByUID('page', uid, {
+          ...options,
+          filters,
+        })
+
+        if (!result.data) {
           throw createError({
             statusCode: 404,
             statusMessage: 'Page not found',
             fatal: true,
           })
         }
-
-        return page
+        return result.data
       }
       catch (error) {
-        console.error(`Page with UID "${uid}" not found in Prismic:`, error)
+        consola.error(`Page with UID "${uid}" not found in Prismic:`, error)
         throw createError({
           statusCode: 404,
           statusMessage: 'Page not found',
@@ -51,41 +41,86 @@ export function usePrismicPage<T extends PageDocument | BlogPageDocument>(uid: s
         })
       }
     },
-  )
-}
-
-export function usePrismicSingle(type: string) {
-  return usePrismicData(
-    `prismic-single-${type}`,
-    async () => {
-      const { client } = usePrismic()
-      try {
-        return await client.getSingle(type as any)
-      }
-      catch (error) {
-        console.error(`Single document "${type}" not found in Prismic:`, error)
-        throw new Error(`${type} data not found`)
-      }
+    {
+      server: Boolean(enablePrismicSSR) || (import.meta.server && import.meta.prerender),
     },
   )
 }
 
-export function usePrismicCollection(
-  type: string,
-  options?: any,
-) {
-  return usePrismicData(
-    `prismic-collection-${type}`,
+export function useBlogPost(uid: string, options?: PrismicOptions) {
+  const { client } = usePrismic()
+  const { enablePrismicSSR } = useRuntimeConfig().public
+
+  return useAsyncData(
+    `prismic-blog_post-${uid}`,
     async () => {
+      try {
+        const draftFilter = filter.not(`my.blog_page.draft`, true)
+        const existingFilters = options?.filters || []
+        const filters = Array.isArray(existingFilters)
+          ? [...existingFilters, draftFilter]
+          : [existingFilters, draftFilter].filter(Boolean)
+        const result = await client.getByUID('blog_page', uid, {
+          ...options,
+          filters,
+        })
+        if (!result.data) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: 'Post not found',
+            fatal: true,
+          })
+        }
+        return result.data
+      }
+      catch (error) {
+        consola.error(`Blog post with UID "${uid}" not found in Prismic:`, error)
+        throw createError({
+          statusCode: 404,
+          statusMessage: 'Post not found',
+          fatal: true,
+        })
+      }
+    },
+    {
+      server: Boolean(enablePrismicSSR) || (import.meta.server && import.meta.prerender),
+    },
+  )
+}
+
+export function useBlogPosts(options?: PrismicOptions) {
+  const { enablePrismicSSR } = useRuntimeConfig().public
+
+  return useAsyncData(
+    `prismic-collection-blog_page`,
+    async (): Promise<BlogPageDocument[]> => {
       const { client } = usePrismic()
       try {
-        const result = await client.getByType(type as any, options)
+        const draftFilter = filter.not(`my.blog_page.draft`, true)
+        const existingFilters = options?.filters || []
+        const filters = Array.isArray(existingFilters)
+          ? [...existingFilters, draftFilter]
+          : [existingFilters, draftFilter].filter(Boolean)
+        const result = await client.getByType('blog_page', {
+          ...options,
+          filters,
+        })
+        if (!result.results) {
+          throw createError({
+            statusCode: 404,
+            statusMessage: 'Posts not found',
+            fatal: true,
+          })
+        }
         return result.results
       }
       catch (error) {
-        console.error(`Collection "${type}" not found in Prismic:`, error)
-        throw new Error(`${type} collection not found`)
+        consola.error(`Collection "blog_page" not found in Prismic:`, error)
+        throw new Error(`blog_page collection not found`)
       }
+    },
+    {
+      server: Boolean(enablePrismicSSR) || (import.meta.server && import.meta.prerender),
     },
   )
 }

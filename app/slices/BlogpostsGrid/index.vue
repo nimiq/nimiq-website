@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
-import type { BlogPageDocument } from '~~/prismicio-types'
-import { filter } from '@prismicio/client'
 import ArticleMetadata from '~/components/ArticleMetadata.vue'
 
 const { slice } = defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
@@ -11,36 +9,27 @@ const route = useRoute()
 const page = computed(() => Number(route.query.page) || 1)
 const { showDrafts } = useRuntimeConfig().public
 
-const { environment } = useRuntimeConfig().public
-
-const { data } = await usePrismicData('blog-posts-metadata', async () => {
-  const { client } = usePrismic()
-
-  const shouldShowDrafts = environment.isInternalDynamic
-    || (showDrafts && !environment.isInternalStatic)
-
-  const result = await client.getByType('blog_page', {
-    orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
-    filters: shouldShowDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
-    pageSize: 100,
-  })
-
-  const allPosts = result.results.map(r => getBlogMetadata(r as BlogPageDocument))
-  const totalPages = Math.ceil(allPosts.length / itemsPerPage)
-
-  return { allPosts, totalPages }
+const { data: blogPosts } = await useBlogPosts({
+  orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
+  pageSize: 100,
 })
 
+const allPosts = computed(() => {
+  if (!blogPosts.value)
+    return []
+  return blogPosts.value.map(r => getBlogMetadata(r))
+})
+
+const totalPages = computed(() => Math.ceil(allPosts.value.length / itemsPerPage))
+
 const posts = computed(() => {
-  if (!data.value || !('allPosts' in data.value))
+  if (!allPosts.value.length)
     return []
 
   const startIndex = (page.value - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
-  return (data.value as any).allPosts.slice(startIndex, endIndex)
+  return allPosts.value.slice(startIndex, endIndex)
 })
-
-const totalPages = computed(() => (data.value as any)?.totalPages ?? 1)
 
 const active = useState('active-blog-post', () => '')
 </script>

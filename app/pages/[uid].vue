@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { PageDocument } from '~~/prismicio-types'
 import { components } from '~/slices'
 
 const params = useRoute().params as { uid: string }
@@ -10,7 +9,7 @@ if (!uid)
 
 const route = useRoute()
 
-const { data: page } = await usePrismicPage<PageDocument>(uid)
+const { data: page } = await useBlogPost(uid)
 
 if (page.value?.uid !== uid) {
   console.error(`Page with UID "${uid}" not found: ${JSON.stringify(page.value)}`)

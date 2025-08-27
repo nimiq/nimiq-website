@@ -4,9 +4,9 @@ import { components } from '~/slices'
 
 const postSlug = useRouteParams<string>('post')
 
-const { data: post } = await usePrismicPage(postSlug.value, 'blog_page')
+const { data: post } = await useBlogPost(postSlug.value)
 
-const { readingTime, meta, draft, image } = getBlogMetadata(post.value as BlogPageDocument)
+const { readingTime, meta, draft, image } = getBlogMetadata(post.value)
 
 useHead(meta)
 useSeoMeta({ ...meta, twitterTitle: meta.title, twitterDescription: meta.description, twitterCard: 'summary_large_image' })

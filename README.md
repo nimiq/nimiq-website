@@ -32,6 +32,7 @@
 - [Analytics: Matomo Tracking](#analytics-matomo-tracking)
 - [Component Architecture](#component-architecture)
 - [Prismic + Slicemachine](#prismic--slicemachine)
+- [Prismic SSR Configuration](#prismic-ssr-configuration)
 - [Code Style Guide](#code-style-guide)
 - [Available Scripts](#available-scripts)
 - [Testing](#testing)
@@ -434,6 +435,52 @@ const bgClass = getColorClass(slice.primary.bgColor)
 
 > [!NOTE]
 > It is important that all slices are wrapped in a section tag, so that the css can apply the [correct styles](https://github.com/onmax/nimiq-ui/blob/main/packages/nimiq-css/src/css/static-content.css). The section should have the background color: `bg-neutral-0`, `bg-neutral-100` or `bg-darkblue`.
+
+## Prismic SSR Configuration
+
+The project implements environment-specific Prismic data fetching to optimize performance and deployment strategies across different environments.
+
+### How It Works
+
+**Environment-based fetching strategy:**
+
+- **NuxtHub environments** (`nuxthub-production`, `nuxthub-preview`): Fetch data only during build/prerendering, disable runtime SSR
+- **Internal-dynamic & Local**: Enable both build-time and runtime data fetching
+- **Other environments**: Build-time fetching only
+
+**Key files:**
+
+- [`lib/env.ts`](lib/env.ts) - Environment detection and `enablePrismicSSR` flag configuration
+- [`app/composables/usePrismicData.ts`](app/composables/usePrismicData.ts) - Unified data fetching composable
+
+### Technical Implementation
+
+The `usePrismicData` composable automatically handles the fetching strategy:
+
+```typescript
+// Enables server-side fetching based on environment and build context
+server: Boolean(enablePrismicSSR) || (import.meta.server && import.meta.prerender)
+```
+
+This ensures:
+
+- **Static generation**: Data is fetched during prerendering for all environments
+- **Runtime optimization**: NuxtHub environments skip unnecessary API calls after deployment
+- **Development flexibility**: Local and internal-dynamic environments can fetch data as needed
+
+### Usage
+
+Use the provided composables for consistent behavior across all environments:
+
+```typescript
+// For pages
+const { data: page } = await usePrismicPage<PageDocument>(uid)
+
+// For blogs
+const { data: posts } = await usePrismicCollection('blog_post')
+```
+
+The composables handle environment-specific logic automatically, ensuring optimal performance for each deployment target.
 
 ## Prismic Documents
 

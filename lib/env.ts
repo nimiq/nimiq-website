@@ -45,9 +45,8 @@ const isProduction = environment === 'production'
 const showDrafts = isLocal || isInternalDrafts
 const useNuxtHub = isNuxthubPreview || isNuxthubProduction || isLocal
 
-// Control Prismic data fetching during SSR
-// For NuxtHub production/preview: only fetch during build time (prerendering)
-// For internal-dynamic and local: always allow SSR fetching
+// Enable/disable Prismic SSR based on environment
+// See README.md "Prismic SSR Configuration" for details
 const enablePrismicSSR = isInternalDynamic || isLocal
 
 // Validate NUXT_SITE_ENV

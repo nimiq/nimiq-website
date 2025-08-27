@@ -1,7 +1,7 @@
 import type { NavigationDocumentData } from '~~/prismicio-types'
 
 export function useNavigation() {
-  return usePrismicData('$prismic_navigation', async () => {
+  return useAsyncData('$prismic_navigation', async () => {
     const { client } = usePrismic()
     const navigation = await client.getSingle('navigation').then(doc => doc.data)
     if (!navigation)
@@ -16,7 +16,6 @@ export function useNavigation() {
       copyrightNotice: `© Nimiq Foundation 2017-${new Date().getFullYear()}`,
       hotCtaLink,
       hotCtaText,
-
     }
   })
 }
