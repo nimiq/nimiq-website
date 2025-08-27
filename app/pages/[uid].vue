@@ -9,7 +9,7 @@ if (!uid)
 
 const route = useRoute()
 
-const { data: page } = await useBlogPost(uid)
+const { data: page } = await usePrismicPage(uid)
 
 if (page.value?.uid !== uid) {
   console.error(`Page with UID "${uid}" not found: ${JSON.stringify(page.value)}`)

@@ -30,7 +30,7 @@ export function usePrismicPage(uid: string, options?: PrismicOptions) {
             fatal: true,
           })
         }
-        return result.data
+        return result
       }
       catch (error) {
         consola.error(`Page with UID "${uid}" not found in Prismic:`, error)
@@ -71,7 +71,7 @@ export function useBlogPost(uid: string, options?: PrismicOptions) {
             fatal: true,
           })
         }
-        return result.data
+        return result
       }
       catch (error) {
         consola.error(`Blog post with UID "${uid}" not found in Prismic:`, error)
