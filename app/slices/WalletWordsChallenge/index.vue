@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.WalletWordsChallengeSlice>())
 </script>
 
 <template>
-  <section px-8 bg-neutral-0 relative>
+  <section px-8 bg-neutral-0 relative of-x-clip>
     <WalletWordsChallenge
       :headline="slice.primary.headline!" :subheadline="slice.primary.subheadline!"
       :guess-the-remaining-words-label="slice.primary.guessTheRemainingWordsLabel!"
