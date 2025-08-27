@@ -8,6 +8,6 @@ export default withNuxt(
     unocss: true,
     pnpm: true,
     vue: true,
-    ignores: ['.eslintcache', 'cache/**'],
+    ignores: ['.eslintcache', 'cache/**', '.claude/**'],
   }),
 )
