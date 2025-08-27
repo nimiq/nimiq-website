@@ -27,7 +27,10 @@ const draft = computed(() => page.value?.data && 'draft' in page.value.data && p
 const slice = page.value?.data && 'slices' in page.value.data ? page.value.data.slices.at(0) : undefined
 const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage, meta_keywords: cmsKeywords } = page.value.data
 
+// @ts-expect-error this is a hack to get the title and description from the first slice
 const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.headline) : undefined
+
+// @ts-expect-error this is a hack to get the title and description from the first slice
 const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
 
 const title = cmsTitle || firstSliceTitle || 'Nimiq'
