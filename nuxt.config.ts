@@ -268,7 +268,7 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       wasm: true,
-      // websocket: true,
+      websocket: true,
     },
     esbuild: {
       options: {
@@ -277,7 +277,6 @@ export default defineNuxtConfig({
     },
     rollupConfig: {
       external: [
-        /^.*\.node$/,
       ],
     },
     prerender: {

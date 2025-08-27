@@ -21,6 +21,10 @@ export default defineNuxtModule({
       if (environment.useNuxtHub)
         pages = pages.slice(0, 95)
 
+      // For github pages, remove `/newsletter`
+      if (environment.environment.isGitHubPages)
+        pages = pages.filter(page => page !== '/newsletter')
+
       nitro.options.prerender.routes = pages
     },
   },

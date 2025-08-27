@@ -28,3 +28,4 @@ jobs:
         uses: nuxt-hub/action@v2
         with:
           build-command: ${{ github.ref == 'refs/heads/main' && 'pnpm run build:nuxthub' || 'pnpm run build:nuxthub-preview' }}
+          project-key: nimiq-website-6dcj
