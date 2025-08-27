@@ -6,7 +6,7 @@ const props = defineProps(getSliceComponentProps<Content.SocialMediaGridSlice>()
 const bgColor = getColorClass(props.slice.primary.bgColor || 'grey')
 
 const { data: socialMedias } = await useSocialMedias()
-const getSocialMediaById = (id: string) => Object.values(socialMedias.value).find(socialMedia => socialMedia.id === id)
+const getSocialMediaById = (id: string) => socialMedias.value ? Object.values(socialMedias.value).find(socialMedia => socialMedia.id === id) : undefined
 
 const columns = [
   {

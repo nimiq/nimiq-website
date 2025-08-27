@@ -27,18 +27,21 @@ definePageMeta({
   ],
 })
 
-const darkHeader = computed(() => page.value?.data.darkHeader || uid === 'supersimpleswap')
-const footerBgColor = computed(() => (page.value?.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor)
+const darkHeader = computed(() => (page.value?.data && 'darkHeader' in page.value.data ? page.value.data.darkHeader : false) || uid === 'supersimpleswap')
+const footerBgColor = computed(() => {
+  if (page.value?.data && 'slices' in page.value.data) {
+    return (page.value.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor
+  }
+  return undefined
+})
 
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
 
 // CMS takes precedence over slice data for better content management control
-const slice = page.value.data.slices.at(0)
+const slice = page.value?.data && 'slices' in page.value.data ? page.value.data.slices.at(0) : undefined
 const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage, meta_keywords: cmsKeywords } = page.value.data
 
-// @ts-expect-error this is dangerous, but we control the data
 const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.headline) : undefined
-// @ts-expect-error this is dangerous, but we control the data
 const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
 
 const title = cmsTitle || firstSliceTitle || 'Nimiq'
@@ -103,6 +106,6 @@ setOgImage({
 
 <template>
   <NuxtLayout :footer-bg-color :dark-header :draft>
-    <SliceZone wrapper="main" :slices="page?.data.slices ?? []" :components />
+    <SliceZone wrapper="main" :slices="(page?.data && 'slices' in page.data ? page.data.slices : []) ?? []" :components />
   </NuxtLayout>
 </template>

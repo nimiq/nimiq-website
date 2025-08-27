@@ -6,7 +6,7 @@ const postSlug = useRouteParams<string>('post')
 
 const { data: post } = await usePrismicPage(postSlug.value, 'blog_page')
 
-const { readingTime, meta, draft, image } = getBlogMetadata(post.value!)
+const { readingTime, meta, draft, image } = getBlogMetadata(post.value as BlogPageDocument)
 
 useHead(meta)
 useSeoMeta({ ...meta, twitterTitle: meta.title, twitterDescription: meta.description, twitterCard: 'summary_large_image' })
@@ -23,9 +23,10 @@ useIntersectionObserver(articleRef, () => {
   mediumZoom(':is(header,article) img', { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
 })
 
-if (post.value.data.body.at(0)?.primary)
-  // @ts-expect-error The background color is always present in this case
-  post.value.data.body[0]!.primary.bgColor = 'grey'
+const blogPost = post.value as BlogPageDocument
+if (blogPost.data.body.at(0)?.primary) {
+  blogPost.data.body[0]!.primary.bgColor = 'grey'
+}
 </script>
 
 <template>
@@ -34,9 +35,9 @@ if (post.value.data.body.at(0)?.primary)
       <PageInfo :draft bottom-32 right-32 fixed z-102 />
 
       <header data-section max-w="$nq-prose-max-width" f-pt="96/136" px="32 lg:64">
-        <PrismicText wrapper="h1" :field="post.data.title" style="--nq-font-size-min: 32;--nq-font-size-max: 40" view-transition-post-title />
-        <PrismicText wrapper="p" text-neutral-800 :field="post.data.subline" style="--nq-font-size-min: 18;--nq-font-size-max: 20" />
-        <ArticleMetadata mt="18 lg:24" :date="new Date(post.last_publication_date)" :authors="post.data.authors.map(a => a.name).join(', ')" md:justify-center>
+        <PrismicText wrapper="h1" :field="(post as BlogPageDocument).data.title" style="--nq-font-size-min: 32;--nq-font-size-max: 40" view-transition-post-title />
+        <PrismicText wrapper="p" text-neutral-800 :field="(post as BlogPageDocument).data.subline" style="--nq-font-size-min: 18;--nq-font-size-max: 20" />
+        <ArticleMetadata mt="18 lg:24" :date="new Date(post.last_publication_date)" :authors="(post as BlogPageDocument).data.authors.map((a: any) => a.name).join(', ')" md:justify-center>
           <template #after>
             <div rounded-full bg-neutral-500 size-4 hidden sm:block />
             <p text-neutral-800>
@@ -44,11 +45,11 @@ if (post.value.data.body.at(0)?.primary)
             </p>
           </template>
         </ArticleMetadata>
-        <ProxiedPrismicImage :field="post.data.image" mx-auto mt-104 rounded-8 w-full object-contain view-transition-post-img />
+        <ProxiedPrismicImage :field="(post as BlogPageDocument).data.image" mx-auto mt-104 rounded-8 w-full object-contain view-transition-post-img />
       </header>
     </div>
-    <SliceZone v-if="post.data.body.length > 0" :slices="post?.data.body ?? []" :components />
-    <RichText v-else nq-prose wrapper="article" :field="post.data.text" />
+    <SliceZone v-if="(post as BlogPageDocument).data.body.length > 0" :slices="(post as BlogPageDocument)?.data.body ?? []" :components />
+    <RichText v-else nq-prose wrapper="article" :field="(post as BlogPageDocument).data.text" />
     <Disclaimer />
   </NuxtLayout>
 </template>

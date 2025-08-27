@@ -19,6 +19,8 @@ async function getBackgroundItems(background: BannerSliceSliceDefaultItem['backg
   switch (background) {
     case 'Social Media': {
       const { data: socialMedias } = await useSocialMedias()
+      if (!socialMedias.value)
+        return []
       return [
         { ...socialMedias.value.youtube, name: 'Nimiq\'s YouTube', classes: `text-48 ${classesPositions[0]}` },
         { ...socialMedias.value.github, name: 'Nimiq \'s GitHub', classes: `text-60 ${classesPositions[1]}` },

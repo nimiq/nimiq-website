@@ -93,7 +93,7 @@ onMounted(() => {
           v-if="item.social && isVisible" external
           flex="~ justify-center items-center"
           target="_blank" size-full
-          :to="getLink(socialMedias[item.social]!.link)"
+          :to="socialMedias?.[item.social]?.link ? getLink(socialMedias[item.social].link) : ''"
           transition="opacity duration-300 ease-out"
           :aria-label="`Visit Nimiq on ${item.social === 'x' ? 'Twitter' : item.social}`"
         >
