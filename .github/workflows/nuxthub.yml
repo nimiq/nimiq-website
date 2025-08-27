@@ -1,5 +1,9 @@
 name: Deploy to NuxtHub
-on: push
+on:
+  push:
+    branches:
+      # NuxtHub workers only supports the production env for now
+      - main
 
 jobs:
   deploy:
@@ -27,5 +31,5 @@ jobs:
       - name: Build & Deploy to NuxtHub
         uses: nuxt-hub/action@v2
         with:
-          build-command: ${{ github.ref == 'refs/heads/main' && 'pnpm run build:nuxthub' || 'pnpm run build:nuxthub-preview' }}
+          build-command: pnpm run build:nuxthub
           project-key: nimiq-website-6dcj
