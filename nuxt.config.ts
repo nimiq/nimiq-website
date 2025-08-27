@@ -211,7 +211,17 @@ export default defineNuxtConfig({
           url: string(),
           key: string(),
         }),
-        environment: object({}),
+        environment: object({
+          name: string(),
+          isLocal: boolean(),
+          isGitHubPages: boolean(),
+          isNuxthubPreview: boolean(),
+          isNuxthubProduction: boolean(),
+          isInternalStatic: boolean(),
+          isInternalDrafts: boolean(),
+          isProduction: boolean(),
+          isInternalDynamic: boolean(),
+        }),
         showDrafts: optional(boolean()),
         enableDevAnalytics: optional(boolean()),
         wordsChallenge: object({

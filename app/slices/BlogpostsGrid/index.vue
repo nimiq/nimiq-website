@@ -2,6 +2,7 @@
 import type { Content } from '@prismicio/client'
 import type { BlogPageDocument } from '~~/prismicio-types'
 import { filter } from '@prismicio/client'
+import environment from '~~/lib/env'
 import ArticleMetadata from '~/components/ArticleMetadata.vue'
 
 const { slice } = defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
@@ -11,12 +12,15 @@ const route = useRoute()
 const page = computed(() => Number(route.query.page) || 1)
 const { showDrafts } = useRuntimeConfig().public
 
-const { client } = usePrismic()
+const { data } = await usePrismicData('blog-posts-metadata', async () => {
+  const { client } = usePrismic()
 
-const { data } = await useAsyncData('blog-posts-metadata', async () => {
+  const shouldShowDrafts = environment.environment.isInternalDynamic
+    || (showDrafts && !environment.useNuxtHub)
+
   const result = await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },
-    filters: showDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
+    filters: shouldShowDrafts ? undefined : [filter.not('my.blog_page.draft', true)],
     pageSize: 100,
   })
 
@@ -24,20 +28,18 @@ const { data } = await useAsyncData('blog-posts-metadata', async () => {
   const totalPages = Math.ceil(allPosts.length / itemsPerPage)
 
   return { allPosts, totalPages }
-}, {
-  server: true,
 })
 
 const posts = computed(() => {
-  if (!data.value?.allPosts)
+  if (!data.value || !('allPosts' in data.value))
     return []
 
   const startIndex = (page.value - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
-  return data.value.allPosts.slice(startIndex, endIndex)
+  return (data.value as any).allPosts.slice(startIndex, endIndex)
 })
 
-const totalPages = computed(() => data.value?.totalPages ?? 1)
+const totalPages = computed(() => (data.value as any)?.totalPages ?? 1)
 
 const active = useState('active-blog-post', () => '')
 </script>

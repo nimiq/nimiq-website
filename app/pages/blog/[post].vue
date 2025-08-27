@@ -4,25 +4,7 @@ import { components } from '~/slices'
 
 const postSlug = useRouteParams<string>('post')
 
-const { client } = usePrismic()
-const { data: post } = await useAsyncData(`blog-post-${postSlug.value}`, async () => {
-  try {
-    return await client.getByUID('blog_page', postSlug.value)
-  }
-  catch (error) {
-    console.error(`Blog post with slug "${postSlug.value}" not found:`, error)
-    throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
-  }
-}, {
-  server: true,
-})
-
-const { showDrafts } = useRuntimeConfig().public
-
-if (!post.value || (!showDrafts && post.value?.data.draft)) {
-  console.error(`Blog post with slug "${postSlug.value}" not found`)
-  throw createError({ statusCode: 404, statusMessage: 'Article not found', fatal: true })
-}
+const { data: post } = await usePrismicPage(postSlug.value, 'blog_page')
 
 const { readingTime, meta, draft, image } = getBlogMetadata(post.value!)
 

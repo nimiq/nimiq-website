@@ -1,29 +1,11 @@
 <script setup lang="ts">
 import { components } from '~/slices'
 
-const { showDrafts } = useRuntimeConfig().public
 const route = useRoute()
 
-const { client } = usePrismic()
-const { data: page } = await useAsyncData('prismic-page-home', () => client.getByUID('page', 'home')
-  .catch((error) => {
-    console.error('Home page not found in Prismic:', error)
-    throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-  }), {
-  server: true,
-})
+const { data: page } = await usePrismicPage('home')
 
-if (!page.value) {
-  console.error('Home page not found')
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-}
-
-if (!showDrafts && page.value?.data.draft) {
-  console.error(`Home page is a draft and showDraft is set to \`${showDrafts}\``)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-}
-
-if (page.value.uid !== 'home') {
+if (page.value?.uid !== 'home') {
   console.error(`Home page not found: ${JSON.stringify(page.value)}`)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }

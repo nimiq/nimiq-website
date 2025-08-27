@@ -13,6 +13,7 @@ export const environmentSchema = union([
   literal('nuxthub-preview'),
   literal('internal-static'),
   literal('internal-static-drafts'),
+  literal('internal-dynamic'),
 ])
 
 export type EnvironmentName = InferOutput<typeof environmentSchema>
@@ -35,6 +36,7 @@ const isNuxthubProduction = environment === 'nuxthub-production'
 const isGitHubPages = environment === 'github-pages'
 const isInternalStatic = environment === 'internal-static'
 const isInternalDrafts = environment === 'internal-static-drafts'
+const isInternalDynamic = environment === 'internal-dynamic'
 const isProduction = environment === 'production'
 
 const showDrafts = isLocal || isInternalDrafts
@@ -108,6 +110,7 @@ export default {
     isInternalStatic,
     isInternalDrafts,
     isProduction,
+    isInternalDynamic,
   },
   baseUrl,
 }
