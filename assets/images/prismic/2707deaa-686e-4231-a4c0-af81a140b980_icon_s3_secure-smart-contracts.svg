@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#a)">
+    <g opacity=".4" fill="#fff">
+      <path d="M45.3 1.3v13.8c0 2 1.6 3.6 3.5 3.6h13.9"/>
+      <path d="M45.3 1.3v13.8c0 2 1.6 3.6 3.5 3.6h13.9l-5-13.2-12.4-4.2Z"/>
+    </g>
+    <path d="M57.2 62.4h0c3 0 5.3-2.4 5.3-5.3V17.3c0-8.7-7.1-15.8-15.8-15.8H6.8h0c-3 0-5.3 2.4-5.3 5.3v50.4c0 3 2.4 5.3 5.3 5.3l50.4-.1Z" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M27 21.7a5.8 5.8 0 0 1-5.8 5.7H14V16h7.2a5.8 5.8 0 0 1 5.8 5.8Z" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M27 33.2a5.8 5.8 0 0 1-5.8 5.8H14V27.4h7.2a5.8 5.8 0 0 1 5.8 5.8ZM19 12v3M19 39v3" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path opacity=".4" d="M19 66V52" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <g opacity=".4">
+      <path d="M39 40v7.8a2 2 0 0 1-1.1 1.8L33 51.9a2 2 0 0 0-1.1 1.8V71" stroke="#fff" stroke-width="3"/>
+      <circle cx="39" cy="38" r="4" fill="#fff"/>
+    </g>
+    <g opacity=".4">
+      <path d="M52 40v7.8a2 2 0 0 1-1.1 1.8L46 51.9a2 2 0 0 0-1.1 1.8V71" stroke="#fff" stroke-width="3"/>
+      <circle cx="52" cy="38" r="4" fill="#fff"/>
+    </g>
+  </g>
+  <defs>
+    <clipPath id="a">
+      <path fill="#fff" transform="matrix(1 0 0 -1 0 64)" d="M0 0h64v64H0z"/>
+    </clipPath>
+  </defs>
+</svg>
