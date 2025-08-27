@@ -455,32 +455,12 @@ The project implements environment-specific Prismic data fetching to optimize pe
 
 ### Technical Implementation
 
-The `usePrismicData` composable automatically handles the fetching strategy:
-
-```typescript
-// Enables server-side fetching based on environment and build context
-server: Boolean(enablePrismicSSR) || (import.meta.server && import.meta.prerender)
-```
+The `usePrismicData` composable automatically handles the fetching strategy depending on the environment.
 
 This ensures:
 
 - **Static generation**: Data is fetched during prerendering for all environments
-- **Runtime optimization**: NuxtHub environments skip unnecessary API calls after deployment
-- **Development flexibility**: Local and internal-dynamic environments can fetch data as needed
-
-### Usage
-
-Use the provided composables for consistent behavior across all environments:
-
-```typescript
-// For pages
-const { data: page } = await usePrismicPage<PageDocument>(uid)
-
-// For blogs
-const { data: posts } = await usePrismicCollection('blog_post')
-```
-
-The composables handle environment-specific logic automatically, ensuring optimal performance for each deployment target.
+- **Development flexibility**: Local and internal-dynamic environments can fetch data as needed (SSR).
 
 ## Prismic Documents
 

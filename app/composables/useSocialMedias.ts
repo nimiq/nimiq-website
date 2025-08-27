@@ -34,7 +34,7 @@ const socialMediaConfigs: Record<SocialMediaName, Pick<SocialMediaAttributes, 'c
 }
 
 export function useSocialMedias() {
-  return usePrismicData('$socialMedias', async () => {
+  return useAsyncData('$socialMedias', async () => {
     const { client } = usePrismic()
     const socialMediasData = await client.getByType('socialMedia').then(doc => doc.results!)
 
