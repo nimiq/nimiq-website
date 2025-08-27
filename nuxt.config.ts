@@ -176,6 +176,7 @@ export default defineNuxtConfig({
       },
       environment: environment.environment,
       showDrafts: environment.showDrafts,
+      enablePrismicSSR: environment.enablePrismicSSR,
       enableDevAnalytics: true,
       wordsChallenge: {
         publicAddress: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_PUBLIC_ADDRESS,
@@ -223,6 +224,7 @@ export default defineNuxtConfig({
           isInternalDynamic: boolean(),
         }),
         showDrafts: optional(boolean()),
+        enablePrismicSSR: optional(boolean()),
         enableDevAnalytics: optional(boolean()),
         wordsChallenge: object({
           publicAddress: string(),

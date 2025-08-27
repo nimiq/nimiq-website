@@ -2,15 +2,20 @@ import type { AsyncDataOptions } from 'nuxt/app'
 import type { BlogPageDocument, PageDocument } from '~~/prismicio-types'
 
 /**
- * Unified data fetching for all environments since both NuxtHub and internal-dynamic support SSR
+ * Unified data fetching for all environments
+ * NuxtHub: Only fetch at build time (prerendering), disable SSR fetching
+ * Internal-dynamic: Always fetch (build + SSR)
+ * Local dev: Always fetch (build + SSR)
  */
 export function usePrismicData<T>(
   key: string,
   handler: () => Promise<T>,
   options?: AsyncDataOptions<T>,
 ) {
+  const { enablePrismicSSR } = useRuntimeConfig().public
+
   return useAsyncData(key, handler, {
-    server: true,
+    server: Boolean(enablePrismicSSR),
     ...options as AsyncDataOptions<T>,
   })
 }

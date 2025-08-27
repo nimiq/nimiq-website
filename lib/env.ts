@@ -45,6 +45,11 @@ const isProduction = environment === 'production'
 const showDrafts = isLocal || isInternalDrafts
 const useNuxtHub = isNuxthubPreview || isNuxthubProduction || isLocal
 
+// Control Prismic data fetching during SSR
+// For NuxtHub production/preview: only fetch during build time (prerendering)
+// For internal-dynamic and local: always allow SSR fetching
+const enablePrismicSSR = isInternalDynamic || isLocal
+
 // Validate NUXT_SITE_ENV
 const siteEnv = process.env.NUXT_SITE_ENV as SiteEnvironmentName
 if (siteEnv) {
@@ -96,11 +101,13 @@ console.table({
   'GitHub Pages': isGitHubPages ? 'yes' : 'no',
   'Production': isProduction ? 'yes' : 'no',
   'Local': isLocal ? 'yes' : 'no',
+  'Prismic SSR': enablePrismicSSR ? 'enabled' : 'disabled',
   'Base URL': baseUrl,
 })
 
 export default {
   showDrafts,
+  enablePrismicSSR,
   checkInternetConnection,
   useNuxtHub,
   siteEnv,
