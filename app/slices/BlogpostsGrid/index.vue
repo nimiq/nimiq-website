@@ -2,7 +2,6 @@
 import type { Content } from '@prismicio/client'
 import type { BlogPageDocument } from '~~/prismicio-types'
 import { filter } from '@prismicio/client'
-import environment from '~~/lib/env'
 import ArticleMetadata from '~/components/ArticleMetadata.vue'
 
 const { slice } = defineProps(getSliceComponentProps<Content.BlogpostsGridSlice>())
@@ -12,11 +11,13 @@ const route = useRoute()
 const page = computed(() => Number(route.query.page) || 1)
 const { showDrafts } = useRuntimeConfig().public
 
+const { environment } = useRuntimeConfig().public
+
 const { data } = await usePrismicData('blog-posts-metadata', async () => {
   const { client } = usePrismic()
 
-  const shouldShowDrafts = environment.environment.isInternalDynamic
-    || (showDrafts && !environment.useNuxtHub)
+  const shouldShowDrafts = environment.isInternalDynamic
+    || (showDrafts && !environment.isInternalStatic)
 
   const result = await client.getByType('blog_page', {
     orderings: { field: 'my.blog_page.publish_date', direction: 'desc' },

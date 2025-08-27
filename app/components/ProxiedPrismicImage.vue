@@ -3,8 +3,7 @@
  * Uses direct Prismic URLs for internal-dynamic, proxied URLs for other environments
  */
 import type { PrismicImageProps } from '@prismicio/vue'
-import environment from '~~/lib/env'
-import { generateSrcSet, transformImageField } from '~~/utils/prismic-images-client'
+import { generateSrcSet, transformImageField } from '~~/shared/utils/prismic-images-client'
 
 const props = defineProps<PrismicImageProps & {
   width?: number | string
@@ -14,7 +13,9 @@ const props = defineProps<PrismicImageProps & {
 const { baseUrl } = useRuntimeConfig().public
 const { components } = useRuntimeConfig().public.prismic
 
-const shouldUseDirectPrismic = environment.environment.isInternalDynamic
+const { environment } = useRuntimeConfig().public
+
+const shouldUseDirectPrismic = environment.isInternalDynamic
 
 let src: string
 let srcSet: string | undefined

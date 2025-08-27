@@ -4,6 +4,9 @@ import { $fetch } from 'ofetch'
 import { literal, parse, union } from 'valibot'
 import { repositoryName } from '../slicemachine.config.json'
 
+if (import.meta.client || 'window' in globalThis)
+  throw new Error('env.ts should not be imported on the client side')
+
 // Define environment type
 export const environmentSchema = union([
   literal('local'),

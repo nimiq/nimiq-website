@@ -1,5 +1,5 @@
 interface PlaygroundMessage {
-  type: string
+  type: 'demo:ready' | 'action:change' | 'action:open-buy-modal' | 'action:open-staking-modal' | 'action:open-swap-modal' | 'action:close-modal'
   data?: any
   id?: string
 }
@@ -25,13 +25,13 @@ export function usePlaygroundIframe() {
 
   const iframeRef = useState<any>('playground-iframe-ref', () => null)
 
-  function isStandardizedAction(messageType: string): boolean {
+  function isStandardizedAction(messageType: PlaygroundMessage['type']): boolean {
     return [
-      'wallet:demo:ready',
-      'wallet:action:open-buy-demo-nim-modal',
-      'wallet:action:open-staking-modal',
-      'wallet:action:open-swap-modal',
-      'wallet:action:close-modal',
+      'demo:ready',
+      'action:open-buy-modal',
+      'action:open-staking-modal',
+      'action:open-swap-modal',
+      'action:close-modal',
     ].includes(messageType)
   }
 
@@ -49,9 +49,9 @@ export function usePlaygroundIframe() {
   }
 
   function onIframeReady() {
-    // Sync initial state with iframe on connection
+    // Prevent state desynchronization between parent and iframe
     sendMessage({
-      type: 'wallet:action:change',
+      type: 'action:change',
       data: {
         action: playgroundState.value.selectedAction,
         isDemoMode: playgroundState.value.isDemoMode,
@@ -62,9 +62,9 @@ export function usePlaygroundIframe() {
   function setSelectedAction(action: 'idle' | 'stake' | 'buy' | 'swap') {
     playgroundState.value.selectedAction = action
 
-    // Keep iframe in sync with parent state changes
+    // Prevent iframe from falling out of sync when parent changes
     sendMessage({
-      type: 'wallet:action:change',
+      type: 'action:change',
       data: {
         action,
         isDemoMode: playgroundState.value.isDemoMode,
@@ -87,9 +87,9 @@ export function usePlaygroundIframe() {
     playgroundState.value.isModalOpen = false
     playgroundState.value.openModalType = null
 
-    // Notify iframe that we've returned to idle state
+    // Ensure iframe doesn't remain in stale action state
     sendMessage({
-      type: 'wallet:action:change',
+      type: 'action:change',
       data: {
         action: 'idle',
         isDemoMode: playgroundState.value.isDemoMode,
@@ -101,6 +101,17 @@ export function usePlaygroundIframe() {
     playgroundState.value.isModalOpen = true
     playgroundState.value.openModalType = type
     playgroundState.value.selectedAction = type
+
+    // Ensure wallet UI matches host modal state
+    const modalMap = {
+      buy: 'action:open-buy-modal',
+      stake: 'action:open-staking-modal',
+      swap: 'action:open-swap-modal',
+    } as const
+
+    sendMessage({
+      type: modalMap[type],
+    })
   }
 
   function closeModal() {
@@ -117,23 +128,23 @@ export function usePlaygroundIframe() {
     const messageType = message.type
 
     switch (messageType) {
-      case 'wallet:demo:ready':
+      case 'demo:ready':
         activateDemoMode()
         break
 
-      case 'wallet:action:open-buy-demo-nim-modal':
+      case 'action:open-buy-modal':
         openModal('buy')
         break
 
-      case 'wallet:action:open-staking-modal':
+      case 'action:open-staking-modal':
         openModal('stake')
         break
 
-      case 'wallet:action:open-swap-modal':
+      case 'action:open-swap-modal':
         openModal('swap')
         break
 
-      case 'wallet:action:close-modal':
+      case 'action:close-modal':
         closeModal()
         break
 

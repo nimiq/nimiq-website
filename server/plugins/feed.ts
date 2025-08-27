@@ -1,6 +1,6 @@
 import type { Feed } from 'nuxt-module-feed'
 import type { BlogPageDocument } from '~~/prismicio-types'
-import { fetchDocuments } from '../../utils/prismic-api-helpers'
+import { fetchDocuments } from '../utils/prismic-api-helpers'
 
 export default defineNitroPlugin(async (nitroApp) => {
   nitroApp.hooks.hook('feed:generate', async ({ feed, options }) => {

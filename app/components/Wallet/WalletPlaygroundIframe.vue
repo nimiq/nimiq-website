@@ -1,7 +1,6 @@
 <script setup lang="ts">
 interface PlaygroundMessage {
-  type: string
-  kind?: string
+  type: 'demo:ready' | 'action:change' | 'action:open-buy-modal' | 'action:open-staking-modal' | 'action:open-swap-modal' | 'action:close-modal'
   data?: any
   id?: string
 }
@@ -98,47 +97,21 @@ function handleMessage(event: MessageEvent) {
   try {
     const message = event.data as PlaygroundMessage
 
-    // Validate message structure - handle both 'type' and 'kind' properties
-    const messageType = message.type || message.kind
+    // Validate message structure
+    const messageType = message.type
     if (!message || typeof message !== 'object' || typeof messageType !== 'string') {
       console.warn('WalletPlaygroundIframe: Invalid message structure received')
       return
     }
 
-    /*
-     * CLEANUP COMPLETED: STANDARDIZED MESSAGE FORMAT
-     * ==============================================
-     *
-     * ALL MESSAGES NOW USE SPECIFIC ACTION FORMAT:
-     * - 'playground:ready' → Iframe initialization
-     * - 'wallet:demo:ready' → Demo mode activation
-     * - 'wallet:action:open-buy-demo-nim-modal' → Opens buy modal
-     * - 'wallet:action:open-staking-modal' → Opens staking modal
-     * - 'wallet:action:open-swap-modal' → Opens swap modal
-     * - 'wallet:action:close-modal' → Closes any open modal, returns to idle
-     *
-     * REMOVED LEGACY FORMAT:
-     * - 'FlowChange' → Replaced with specific wallet:action:* messages
-     *
-     * MESSAGE MAPPING:
-     * ================
-     * FlowChange('stake') → 'wallet:action:open-staking-modal'
-     * FlowChange('buy') → 'wallet:action:open-buy-demo-nim-modal'
-     * FlowChange('swap') → 'wallet:action:open-swap-modal'
-     * FlowChange('idle') → 'wallet:action:close-modal'
-     */
-
     // Validate message type (whitelist approach)
     const allowedMessageTypes = [
-      // Core system messages
-      'playground:ready',
-
-      // Standardized wallet action messages
-      'wallet:demo:ready',
-      'wallet:action:open-buy-demo-nim-modal',
-      'wallet:action:open-staking-modal',
-      'wallet:action:open-swap-modal',
-      'wallet:action:close-modal',
+      'demo:ready',
+      'action:change',
+      'action:open-buy-modal',
+      'action:open-staking-modal',
+      'action:open-swap-modal',
+      'action:close-modal',
     ]
 
     if (!allowedMessageTypes.includes(messageType)) {
@@ -146,18 +119,10 @@ function handleMessage(event: MessageEvent) {
       return
     }
 
-    // Handle special ready message
-    if (messageType === 'playground:ready') {
+    // Handle demo ready message
+    if (messageType === 'demo:ready') {
       emit('ready')
       onIframeReady()
-      return
-    }
-
-    // Handle demo ready message (future action)
-    if (messageType === 'wallet:demo:ready') {
-      emit('ready')
-      onIframeReady()
-      // Message will also be passed to composable for demo mode activation
     }
 
     // Normalize message structure for composable (ensure it has type property)
@@ -182,8 +147,8 @@ function handleMessage(event: MessageEvent) {
  * Handle iframe load event
  */
 function handleIframeLoad() {
-  // Send a ready check message to the iframe
-  sendMessage({ type: 'parent:ready' })
+  // Establish initial state to prevent iframe from starting in undefined state
+  sendMessage({ type: 'action:change', data: { action: 'idle', isDemoMode: false } })
 }
 
 /**

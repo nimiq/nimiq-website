@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { PageDocument } from '~~/prismicio-types'
 import { components } from '~/slices'
 
 const params = useRoute().params as { uid: string }
@@ -9,7 +10,7 @@ if (!uid)
 
 const route = useRoute()
 
-const { data: page } = await usePrismicPage(uid)
+const { data: page } = await usePrismicPage<PageDocument>(uid)
 
 if (page.value?.uid !== uid) {
   console.error(`Page with UID "${uid}" not found: ${JSON.stringify(page.value)}`)
@@ -41,7 +42,9 @@ const draft = computed(() => page.value?.data && 'draft' in page.value.data && p
 const slice = page.value?.data && 'slices' in page.value.data ? page.value.data.slices.at(0) : undefined
 const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage, meta_keywords: cmsKeywords } = page.value.data
 
+// @ts-expect-error The error is annoying
 const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.headline) : undefined
+// @ts-expect-error The error is annoying
 const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
 
 const title = cmsTitle || firstSliceTitle || 'Nimiq'

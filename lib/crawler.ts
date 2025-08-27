@@ -24,7 +24,7 @@ export interface PrerenderPagesOptions {
 export async function getDynamicPages(options: PrerenderPagesOptions) {
   // For now, we'll need to implement the Prismic document fetching separately
   // since the new utils only handle images. This is a temporary solution.
-  const { fetchDocuments } = await import('../utils/prismic-api-helpers')
+  const { fetchDocuments } = await import('../server/utils/prismic-api-helpers')
 
   const [pages, blogPostsData] = await Promise.all([
     fetchDocuments('page', options.prismicAccessToken, options.showDrafts),

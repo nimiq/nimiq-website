@@ -1,6 +1,5 @@
 import type { AsyncDataOptions } from 'nuxt/app'
 import type { BlogPageDocument, PageDocument } from '~~/prismicio-types'
-import environment from '~~/lib/env'
 
 /**
  * Unified data fetching for all environments since both NuxtHub and internal-dynamic support SSR
@@ -19,19 +18,16 @@ export function usePrismicData<T>(
 /**
  * Draft filtering: internal-dynamic always shows drafts, NuxtHub never does
  */
-export function usePrismicPage(uid: string, type: 'page' | 'blog_page' = 'page') {
+export function usePrismicPage<T extends PageDocument | BlogPageDocument>(uid: string, type: 'page' | 'blog_page' = 'page') {
   const { client } = usePrismic()
   const { showDrafts } = useRuntimeConfig().public
 
   return usePrismicData(
     `prismic-${type}-${uid}`,
-    async (): Promise<PageDocument | BlogPageDocument> => {
+    async (): Promise<T> => {
       try {
-        const page = await client.getByUID(type, uid) as PageDocument | BlogPageDocument
-
-        const shouldShowDrafts = environment.environment.isInternalDynamic
-          || (showDrafts && !environment.useNuxtHub)
-        if (!shouldShowDrafts && page?.data.draft) {
+        const page = await client.getByUID(type, uid) as T
+        if (!showDrafts && page?.data.draft) {
           throw createError({
             statusCode: 404,
             statusMessage: 'Page not found',
