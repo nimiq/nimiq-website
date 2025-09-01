@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
-import { PrismicRichText } from '#components'
 
 const { slice } = defineProps(getSliceComponentProps<Content.AppGallerySlice>())
 
