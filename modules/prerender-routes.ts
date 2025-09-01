@@ -12,14 +12,15 @@ export default defineNuxtModule({
   },
   hooks: {
     'nitro:build:before': async (nitro) => {
+      if (environment.useNuxtHub) {
+        nitro.options.prerender.routes = ['/']
+        return
+      }
+
       let pages = await getDynamicPages({
         prismicAccessToken,
         showDrafts: environment.showDrafts,
       })
-
-      // For nuxthub, we only pre-render the first 95 pages because the prerendering process is limited to 100 pages
-      if (environment.useNuxtHub)
-        pages = pages.slice(0, 95)
 
       // For github pages, remove `/newsletter`
       if (environment.environment.isGitHubPages)
