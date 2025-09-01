@@ -4,9 +4,7 @@
 .nuxt
 .nitro
 .cache
-# Cache files - keep temporary and draft files out of git
-cache/drafts/
-cache/temp/
+# Cache files - legacy entries removed (cache folder no longer used)
 dist
 
 # Node dependencies
