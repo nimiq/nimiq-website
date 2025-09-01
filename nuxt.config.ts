@@ -166,7 +166,7 @@ export default defineNuxtConfig({
     },
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || '/',
-      clientNetwork: 'main-albatross',
+      clientNetwork: 'MainAlbatross',
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
       validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || 'https://validators-api-mainnet.nuxt.dev',
       cryptoMapSupabase: {

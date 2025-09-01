@@ -30,6 +30,7 @@ function useNimiq() {
     // const config = new ClientConfiguration()
     const config = new Nimiq.ClientConfiguration()
     config.network(clientNetwork)
+    config.syncMode('pico')
     config.logLevel('debug')
 
     // client.value = await Client.create(config.build())
