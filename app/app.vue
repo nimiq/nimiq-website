@@ -5,7 +5,6 @@ const showConsentBanner = environment.isProduction || enableDevAnalytics
 
 <template>
   <div v-if="!environment.isNuxthubPreview && !environment.isNuxthubPreview">
-    ">
     <NuxtPage />
     <ConsentBanner v-if="true || showConsentBanner" />
   </div>
