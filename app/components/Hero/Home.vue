@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { KeyTextField, LinkField, RichTextField } from '@prismicio/client'
+import { AnimatedTweenedNumber, NuxtLink } from '#components'
 import Map from './Map.vue'
 
 const props = defineProps<{ headline: RichTextField, subHeadlineTemplate: KeyTextField, link: LinkField }>()
