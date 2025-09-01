@@ -17,7 +17,14 @@ const nimiqProducts = reactive(Object.values(NewsletterProducts).map(product => 
 
 const topics = computed(() => nimiqTopicsOptions.filter(topic => topic.model).map(topic => topic.label))
 const products = computed(() => nimiqProducts.filter(product => product.model).map(product => product.label))
-const body = computed(() => ({ email: email.value, communicationPermission: communicationPermission.value, topics: topics.value, products: products.value }))
+
+// Use form-encoded body to keep request "simple" and avoid CORS preflight
+const body = computed(() => new URLSearchParams({
+  email: email.value ?? '',
+  communicationPermission: String(communicationPermission.value ?? false),
+  topics: topics.value.join(','),
+  products: products.value.join(','),
+}))
 
 const url = new URL('/api/newsletter/subscribe', useRuntimeConfig().public.apiDomain)
 const { execute: submitForm, status, error } = useFetch(url.href, { method: 'POST', body, watch: false, immediate: false })

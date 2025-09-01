@@ -1,20 +1,29 @@
-import { array, literal, object, safeParse, string, enum as vEnum } from 'valibot'
-import { getZohoAccessToken, NewsletterProducts } from '../../utils/newsletter'
+import { array, literal, object, pipe, safeParse, string, transform, union, enum as vEnum } from 'valibot'
+import { getZohoAccessToken, NewsletterProducts, NewsletterTopics } from '../../utils/newsletter'
 
-// { "email": "test@test.com","communicationPermission": true,"interests": [], "products": []}
 const NewsletterSignupSchema = object({
   email: string(),
-  communicationPermission: literal(true),
-  topics: array(vEnum(NewsletterTopics)),
-  products: array(vEnum(NewsletterProducts)),
+  communicationPermission: pipe(
+    union([literal(true), string()]),
+    transform(v => v === true || (typeof v === 'string' && v.toLowerCase() === 'true')),
+    literal(true),
+  ),
+  topics: pipe(
+    union([array(vEnum(NewsletterTopics)), string()]),
+    transform(v => Array.isArray(v) ? v : (v ? (v as string).split(',').filter(Boolean) : [])),
+    array(vEnum(NewsletterTopics)),
+  ),
+  products: pipe(
+    union([array(vEnum(NewsletterProducts)), string()]),
+    transform(v => Array.isArray(v) ? v : (v ? (v as string).split(',').filter(Boolean) : [])),
+    array(vEnum(NewsletterProducts)),
+  ),
 })
 
 export default defineEventHandler(async (event) => {
-  const { output: body, issues: bodyIssues } = await readValidatedBody(event, body => safeParse(NewsletterSignupSchema, body))
+  const { output: body, issues: bodyIssues } = await readValidatedBody(event, b => safeParse(NewsletterSignupSchema, b))
   if (bodyIssues)
     throw createError({ statusCode: 400, statusMessage: 'Invalid newsletter signup data', message: JSON.stringify(bodyIssues) })
-
-  // await getZohoTokens()
 
   const { communicationPermission, email, products, topics } = body
 

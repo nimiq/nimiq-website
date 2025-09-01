@@ -1,33 +1,42 @@
-# Newsletter Documentation
+# Newsletter Integration
+
+This folder contains the API endpoint and utilities to subscribe users to a Zoho Campaigns list.
 
 ## OAuth with Zoho
 
-### Overview
+There are two distinct flows and two helper functions. Use each in the right phase:
 
-To integrate Zoho into your application, you'll use Zoho's OAuth 2.0 system to obtain access and update tokens. These tokens provide secure access to the Zoho APIs.
+- Initial setup (one‑time): `getZohoTokens()` exchanges an OAuth authorization `code` for an `access_token` and a `refresh_token`. You run this once to obtain the long‑lived `refresh_token` and then store it in `.env`.
+- Runtime (per request): `getZohoAccessToken()` uses the stored `refresh_token` to obtain a short‑lived `access_token` used in API calls to Zoho.
 
-### Update Token
+### 1) Initial setup (one‑time)
 
-1. Zoho API Console: Start by building your application in the [Zoho API Console] (https://accounts.zoho.com/developerconsole).
-2. Generate the tokens to generate the Refresh Token:
-   2.1. Select Self Client and copy the Client ID and Client Secret. Save all these strings in the .env file.
-   2.2. Make sure you also store the `scope` field in the .env so that it is the same for multiple requests.
-   2.3. Generate a `code`.
-   2.4. Run the function `getZohoTokens` in this repo. You can call this function from the `subscribe.post.ts` using a dummy request.
-3. You will have the refresh token in the console. Save it in the .env
+1. Create an app in the Zoho API Console: https://accounts.zoho.com/developerconsole
+2. Choose Self Client and copy `Client ID` and `Client Secret`.
+3. Decide and note the OAuth `scope` required by your API calls (e.g., Campaigns scopes). Keep it consistent.
+4. Generate an authorization `code` in the console.
+5. Add these to your `.env` under `zoho` config (client ID/secret, scope, request URL, and the code).
+6. Run `getZohoTokens()` once (e.g., by temporarily invoking it from a local route or script). It will print a JSON object containing `refresh_token` to the server logs.
+7. Copy the `refresh_token` to `.env` and remove the temporary invocation of `getZohoTokens()`.
 
-### Create your campaign list
+Important: Do not call `getZohoTokens()` in the live subscribe endpoint. It is only for the initial exchange.
 
-This is where all your emails will be collected. Generate it and get the list key.
+### 2) Create your Campaigns list
 
-### Custom Fields
+Create the mailing list in Zoho Campaigns and copy its `listkey`. Store it in `.env`.
 
-Follow the instructions from [Zoho] (https://help.zoho.com/portal/en/kb/campaigns/user-guide/settings/customization/articles/about-custom-fields) to create custom fields.
+### 3) Custom fields
 
-Once you have done this, make sure you update the NewsletterTopics and NewsletterProducts enums accordingly. These fields will also be used in the form, so make sure you change them too.
+Create any custom fields you want to capture (e.g., `Topics`, `Products`, `Consent`) following Zoho’s docs: https://help.zoho.com/portal/en/kb/campaigns/user-guide/settings/customization/articles/about-custom-fields
 
-## Make a request to Zoho
+Update the enums in `server/utils/newsletter.ts` so `NewsletterTopics` and `NewsletterProducts` exactly match the custom field values used in Zoho and the frontend.
 
-Once you have completed all the previous tasks, you can use `getZohoAccessToken` to generate `access_tokens` which will be added to your request header as `const headers = { Authorisation: 'Zoho-oauthtoken ${access_token}' }`.
+## Making requests to Zoho (runtime)
 
-Make sure that the endpoint you are using is compatible with the scope used when generating the refresh token.
+The subscribe endpoint uses `getZohoAccessToken()` to fetch an `access_token` from your stored `refresh_token`, then calls Zoho’s list subscribe API.
+
+- Authorization header: `Authorization: Zoho-oauthtoken <access_token>`
+- Endpoint example: `https://campaigns.zoho.<domain>/api/v1.1/json/listsubscribe`
+- Required params typically include `listkey`, `resfmt`, `source`, and `contactinfo`.
+
+Ensure your OAuth scope includes the permissions needed by the endpoint you call, and that your custom field names match what you send (`Topics`, `Products`, `Consent`).
