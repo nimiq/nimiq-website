@@ -4,15 +4,29 @@ const showConsentBanner = environment.isProduction || enableDevAnalytics
 </script>
 
 <template>
-  <div v-if="!environment.isNuxthubPreview && !environment.isNuxthubPreview">
+  <div v-if="!environment.isNuxthubPreview && !environment.isNuxthubPreview && !environment.isLocal">
     <NuxtPage />
-    <ConsentBanner v-if="true || showConsentBanner" />
+    <ConsentBanner v-if="showConsentBanner" />
   </div>
-  <div v-else>
-    This is a limited environment for previewing Nuxthub. Please visit
-    <NuxtLink href="https://nimiq.com" target="_blank" class="underline">
-      nimiq.com
-    </NuxtLink> for the full experience.
+  <div v-else nq-prose-compact mx-auto rounded-12 bg-neutral-0 max-w-520 shadow f-m-lg f-p-sm>
+    <div flex="~ gap-8 items-center" f-text-lg>
+      <div i-nimiq:info />
+      <h1 f-text-lg>
+        Server Preview
+      </h1>
+    </div>
+    <p f-mt-xs>
+      This is a limited environment for previewing.
+    </p>
+    <p inline f-mt-2xs>
+      Please visit
+      <NuxtLink to="https://nimiq.com" target="_blank" flex="~ gap-4 items-center" external ml-2 inline-flex>
+        <div size-14 i-nimiq:logos-nimiq />
+        nimiq.com
+      </NuxtLink> for the website or <NuxtLink to="https://github.com/nimiq/nimiq-website" external ml-2 inline-flex target="_blank" flex="~ gap-4 items-center">
+        <div size-14 i-nimiq:logos-github />GitHub
+      </NuxtLink> for the code.
+    </p>
   </div>
 </template>
 
