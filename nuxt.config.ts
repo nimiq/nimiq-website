@@ -31,12 +31,12 @@ export default defineNuxtConfig({
     '@pinia/colada-nuxt',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
     !environment.useNuxtHub && 'nuxt-og-image', // Enable og-image only when not on NuxtHub
-    !environment.environment.isNuxthubPreview && !environment.environment.isNuxthubProduction && '@nuxtjs/seo',
+    !environment.useNuxtHub && '@nuxtjs/seo',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
     './modules/prerender-routes',
-    './modules/prismic-images',
-    './modules/link-validation', // Enhanced link validation with whitelist
+    !environment.useNuxtHub && './modules/prismic-images',
+    !environment.useNuxtHub && './modules/link-validation', // Enhanced link validation with whitelist
     environment.useNuxtHub && '@nuxthub/core',
   ].filter(Boolean),
 
