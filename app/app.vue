@@ -4,7 +4,7 @@ const showConsentBanner = environment.isProduction || enableDevAnalytics
 </script>
 
 <template>
-  <div v-if="useNuxtHub">
+  <div v-if="!useNuxtHub">
     <NuxtPage />
     <ConsentBanner v-if="showConsentBanner" />
   </div>
