@@ -8,15 +8,6 @@ const selectedApp = ref(0)
 // Performance optimization for hover changes
 const debouncedSelectedApp = refDebounced(selectedApp, 50)
 
-// Optimize initial navigation render
-const isClientMounted = ref(false)
-onMounted(() => {
-  // Small delay to ensure smooth transition
-  nextTick(() => {
-    isClientMounted.value = true
-  })
-})
-
 // Preload first navigation image for faster initial hover
 const firstAppImage = computed(() => navigation.value?.appsLinks?.[0]?.visual?.url)
 watchEffect(() => {
@@ -33,7 +24,7 @@ const isHome = route.fullPath === '/'
 </script>
 
 <template>
-  <NavigationMenuRoot v-if="navigation" class="header-nav" relative>
+  <NavigationMenuRoot v-if="navigation" class="header-nav" relative :delay-duration="35">
     <NavigationMenuList flex="~ items-center">
       <NavigationMenuItem>
         <NavigationMenuTrigger class="trigger">
