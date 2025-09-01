@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const { environment, enableDevAnalytics } = useRuntimeConfig().public
+const { useNuxtHub, environment, enableDevAnalytics } = useRuntimeConfig().public
 const showConsentBanner = environment.isProduction || enableDevAnalytics
 </script>
 
 <template>
-  <div v-if="!environment.isNuxthubPreview && !environment.isNuxthubPreview && !environment.isLocal">
+  <div v-if="useNuxtHub">
     <NuxtPage />
     <ConsentBanner v-if="showConsentBanner" />
   </div>
@@ -23,7 +23,10 @@ const showConsentBanner = environment.isProduction || enableDevAnalytics
       <NuxtLink to="https://nimiq.com" target="_blank" flex="~ gap-4 items-center" external ml-2 inline-flex>
         <div size-14 i-nimiq:logos-nimiq />
         nimiq.com
-      </NuxtLink> for the website or <NuxtLink to="https://github.com/nimiq/nimiq-website" external ml-2 inline-flex target="_blank" flex="~ gap-4 items-center">
+      </NuxtLink> for the website or <NuxtLink
+        to="https://github.com/nimiq/nimiq-website" external ml-2 inline-flex
+        target="_blank" flex="~ gap-4 items-center"
+      >
         <div size-14 i-nimiq:logos-github />GitHub
       </NuxtLink> for the code.
     </p>

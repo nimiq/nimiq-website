@@ -43,7 +43,7 @@ const isInternalDynamic = environment === 'internal-dynamic'
 const isProduction = environment === 'production'
 
 const showDrafts = isLocal || isInternalDrafts
-const useNuxtHub = isNuxthubPreview || isNuxthubProduction || isLocal
+const useNuxtHub = isNuxthubPreview || isNuxthubProduction
 
 // Enable/disable Prismic SSR based on environment
 // See README.md "Prismic SSR Configuration" for details

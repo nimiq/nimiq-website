@@ -8,8 +8,7 @@ interface SetOgImageOptions {
 }
 
 export function setOgImage({ image, title, subline, type = 'blog' }: SetOgImageOptions) {
-  const isNuxtHub = useRuntimeConfig().public.environment.isNuxthubPreview || useRuntimeConfig().public.environment.isNuxthubProduction
-  if (isNuxtHub)
+  if (useRuntimeConfig().public.useNuxtHub)
     return
 
   if (image && hasImage(image)) {

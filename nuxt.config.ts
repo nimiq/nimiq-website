@@ -25,11 +25,10 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
     'reka-ui/nuxt',
-    '@nuxtjs/prismic',
+    !environment.useNuxtHub && '@nuxtjs/prismic',
     '@nuxtjs/device',
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
-    // 'prismic-mirror',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
     !environment.useNuxtHub && 'nuxt-og-image', // Enable og-image only when not on NuxtHub
     !environment.environment.isNuxthubPreview && !environment.environment.isNuxthubProduction && '@nuxtjs/seo',
@@ -176,6 +175,7 @@ export default defineNuxtConfig({
       },
       environment: environment.environment,
       showDrafts: environment.showDrafts,
+      useNuxtHub: environment.useNuxtHub,
       enablePrismicSSR: environment.enablePrismicSSR,
       enableDevAnalytics: true,
       wordsChallenge: {
@@ -223,9 +223,10 @@ export default defineNuxtConfig({
           isProduction: boolean(),
           isInternalDynamic: boolean(),
         }),
-        showDrafts: optional(boolean()),
-        enablePrismicSSR: optional(boolean()),
-        enableDevAnalytics: optional(boolean()),
+        showDrafts: boolean(),
+        useNuxtHub: boolean(),
+        enablePrismicSSR: boolean(),
+        enableDevAnalytics: boolean(),
         wordsChallenge: object({
           publicAddress: string(),
           firstRealWords: string(),
