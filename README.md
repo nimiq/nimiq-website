@@ -39,6 +39,7 @@
 - [Development Setup](#development-setup)
 - [Dynamic Page Generation](#dynamic-page-generation)
 - [API Endpoints](#api-endpoints)
+- [CORS Configuration](#cors-configuration)
 - [CI/CD Workflow](#cicd-workflow)
 - [Debugging & Troubleshooting](#debugging--troubleshooting)
 - [Security & Best Practices](#security--best-practices)
@@ -534,6 +535,27 @@ const exchanges = await $fetch('/api/exchanges')
 // Use in composables
 const { data } = await useFetch('/api/exchanges')
 ```
+
+## CORS Configuration
+
+The project uses a split architecture where static content is served from `nimiq.com` while API endpoints run on NuxtHub/Cloudflare Workers. This requires proper CORS handling for cross-origin requests.
+
+### Implementation
+
+CORS is handled by `server/middleware/cors.ts` which:
+
+- Only applies to `/api/*` routes
+- Validates origins against the configured whitelist in `runtimeConfig.cors.allowedOrigins`
+- Handles preflight OPTIONS requests with proper headers
+- Never uses wildcard origins for security
+
+### Allowed Origins
+
+Origins are configured in `nuxt.config.ts` and include:
+
+- `https://www.nimiq.com` (production)
+- `https://prestaking.nimiq.network` (prestaking app)
+- Preview URLs from environment variables
 
 ## API Structure
 
