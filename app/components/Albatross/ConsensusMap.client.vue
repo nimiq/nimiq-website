@@ -179,9 +179,9 @@ async function connect() {
               <span text-white font-bold px-16 py-8>
                 {{ thisIsYou }}
               </span>
-              <div layout-id="connect-label" as="button" text-blue font-bold m-6 px-12 py-5 rounded-full bg-white @click="connect">
+              <button layout-id="connect-label" as="button" text-blue font-bold m-6 px-12 py-5 rounded-full bg-white @click="connect">
                 {{ connectLabel }}
-              </div>
+              </button>
             </div>
             <div v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" outline-none text-white font-semibold px-16 py-8 rounded-full w-max transition-colors top--3>
               <div layout-id="connect-label" as="span">
