@@ -10,7 +10,6 @@ import { getHexagonCoords } from '~/utils/consensus-map/drawHexagonsWorldMapProj
 
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
 
-// Inline composable that replaces the Pinia store
 function useNimiq() {
   const { clientNetwork } = useRuntimeConfig().public
   const consensus = useState<ConsensusState>('nimiq-client', () => ConsensusState.Idle)
