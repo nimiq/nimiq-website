@@ -1,9 +1,14 @@
 <script setup lang="ts">
-const emit = defineEmits(['state'])
+import type { Action } from '~/composables/usePlaygroundIframe'
+import { usePlaygroundIframe } from '~/composables/usePlaygroundIframe'
 
-const { setSelectedAction, playgroundState } = usePlaygroundIframe()
+const emit = defineEmits<{
+  state: [state: Action]
+}>()
 
-const state = ref<'idle' | 'stake' | 'buy' | 'swap'>('idle')
+const { playgroundState, setSelectedAction } = usePlaygroundIframe()
+
+const state = ref<Action>('idle')
 
 // Watch state changes and sync with playground
 watch(state, (newState) => {

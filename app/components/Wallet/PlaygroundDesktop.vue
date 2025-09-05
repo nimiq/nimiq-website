@@ -1,32 +1,15 @@
 <script setup lang="ts">
-import { usePlaygroundIframe } from '~/composables/usePlaygroundIframe'
+import type { WalletPlaygroundMessage } from '~/composables/usePlaygroundIframe'
 
-defineProps<{ playgroundUrl: string }>()
-
-const { handlePlaygroundMessage, onIframeReady, setIframeRef } = usePlaygroundIframe()
-
-const iframeRef = ref()
-
-function handlePlaygroundReady() {
-  // eslint-disable-next-line no-console
-  console.log('Playground iframe is ready')
-  onIframeReady()
-}
+defineProps<{ playgroundUrl?: string }>()
 
 function handlePlaygroundError(error: Error) {
   console.error('Playground iframe error:', error)
 }
 
-// Register iframe reference when component is mounted
-onMounted(() => {
-  // eslint-disable-next-line no-console
-  console.log('PlaygroundDesktop: Component mounted, iframe ref:', !!iframeRef.value)
-  if (iframeRef.value) {
-    // eslint-disable-next-line no-console
-    console.log('PlaygroundDesktop: Setting iframe ref in composable')
-    setIframeRef(iframeRef.value)
-  }
-})
+function handlePlaygroundMessage(_message: WalletPlaygroundMessage) {
+  // Parent can handle specific message types if needed
+}
 </script>
 
 <template>
@@ -41,19 +24,19 @@ onMounted(() => {
         <!-- Playground iframe -->
         <div v-if="playgroundUrl" rounded-4 size-full>
           <WalletPlaygroundIframe
-            ref="iframeRef"
             :playground-url="playgroundUrl"
             height="600px"
             @message="handlePlaygroundMessage"
-            @ready="handlePlaygroundReady"
             @error="handlePlaygroundError"
           />
         </div>
         <!-- Fallback when no URL is provided -->
-        <div v-else rounded-4 bg-slate-200 flex size-full items-center justify-center>
-          <p text="center neutral-600">
-            No playground URL configured
-          </p>
+        <div v-else rounded-4 size-full>
+          <WalletPlaygroundIframe
+            height="600px"
+            @message="handlePlaygroundMessage"
+            @error="handlePlaygroundError"
+          />
         </div>
       </div>
 

@@ -1,28 +1,15 @@
 <script setup lang="ts">
-import { usePlaygroundIframe } from '~/composables/usePlaygroundIframe'
+import type { WalletPlaygroundMessage } from '~/composables/usePlaygroundIframe'
 
-defineProps<{ playgroundUrl: string }>()
-
-const { handlePlaygroundMessage, onIframeReady, setIframeRef } = usePlaygroundIframe()
-
-const iframeRef = ref()
-
-function handlePlaygroundReady() {
-  // eslint-disable-next-line no-console
-  console.log('Playground iframe is ready')
-  onIframeReady()
-}
+defineProps<{ playgroundUrl?: string }>()
 
 function handlePlaygroundError(error: Error) {
   console.error('Playground iframe error:', error)
 }
 
-// Register iframe reference when component is mounted
-onMounted(() => {
-  if (iframeRef.value) {
-    setIframeRef(iframeRef.value)
-  }
-})
+function handlePlaygroundMessage(_message: WalletPlaygroundMessage) {
+  // Parent can handle specific message types if needed
+}
 </script>
 
 <template>
@@ -34,7 +21,7 @@ onMounted(() => {
       <div rounded-14 bg-neutral-300 op-50 inset-0 absolute backdrop-blur-3.5 style="box-shadow: inset 0px 0px 40px #FFFFFF;" />
       <!-- Iframe content layer (no opacity) -->
       <div rounded-8 size-full relative z-1>
-        <WalletPlaygroundIframe ref="iframeRef" :playground-url height="100%" @message="handlePlaygroundMessage" @ready="handlePlaygroundReady" @error="handlePlaygroundError" />
+        <WalletPlaygroundIframe :playground-url height="100%" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
       </div>
     </div>
     <WalletActionSelector mx-auto w-max translate-y="-50%" />

@@ -1,16 +1,23 @@
-interface PlaygroundMessage {
-  type: 'demo:ready' | 'action:change' | 'action:open-buy-modal' | 'action:open-staking-modal' | 'action:open-swap-modal' | 'action:close-modal'
-  data?: any
-  id?: string
+export interface WalletPlaygroundMessage {
+  type: 'demo:ready' | 'action:open-buy-modal' | 'action:open-staking-modal' | 'action:open-swap-modal' | 'action:close-modal'
+  data?: {
+    connected?: boolean
+    address?: string
+    action?: Action
+    isDemoMode?: boolean
+  }
 }
+
+export type Action = 'idle' | 'stake' | 'buy' | 'swap'
 
 interface PlaygroundState {
   isConnected: boolean
   currentAddress: string | null
-  selectedAction: 'idle' | 'stake' | 'buy' | 'swap'
+  selectedAction: Action
   isDemoMode: boolean
   isModalOpen: boolean
   openModalType: 'buy' | 'stake' | 'swap' | null
+  playgroundUrl: string
 }
 
 export function usePlaygroundIframe() {
@@ -21,37 +28,47 @@ export function usePlaygroundIframe() {
     isDemoMode: false,
     isModalOpen: false,
     openModalType: null,
+    playgroundUrl: 'https://wallet.nimiq.com',
   }))
 
-  const iframeRef = useState<any>('playground-iframe-ref', () => null)
+  const iframeWrapper = useState<{ sendMessage: (message: WalletPlaygroundMessage) => void } | null>('playground-iframe-ref', () => null)
 
-  function isStandardizedAction(messageType: PlaygroundMessage['type']): boolean {
-    return [
-      'demo:ready',
-      'action:open-buy-modal',
-      'action:open-staking-modal',
-      'action:open-swap-modal',
-      'action:close-modal',
-    ].includes(messageType)
+  const allowedMessageTypes: WalletPlaygroundMessage['type'][] = [
+    'demo:ready',
+    'action:open-buy-modal',
+    'action:open-staking-modal',
+    'action:open-swap-modal',
+    'action:close-modal',
+  ]
+
+  const ActionToMessageType: Record<Action, WalletPlaygroundMessage['type']> = {
+    idle: 'demo:ready',
+    stake: 'action:open-staking-modal',
+    buy: 'action:open-buy-modal',
+    swap: 'action:open-swap-modal',
   }
 
-  function sendMessage(message: PlaygroundMessage) {
-    if (iframeRef.value?.sendMessage) {
-      iframeRef.value.sendMessage(message)
+  function isStandardizedAction(messageType: WalletPlaygroundMessage['type']): boolean {
+    return allowedMessageTypes.includes(messageType)
+  }
+
+  function sendMessage(message: WalletPlaygroundMessage) {
+    if (iframeWrapper.value?.sendMessage) {
+      iframeWrapper.value.sendMessage(message)
     }
     else {
       console.warn('usePlaygroundIframe: Iframe not available, message not sent:', message.type)
     }
   }
 
-  function setIframeRef(ref: any) {
-    iframeRef.value = ref
+  function setIframeRef(ref: { sendMessage: (message: WalletPlaygroundMessage) => void }) {
+    iframeWrapper.value = ref
   }
 
   function onIframeReady() {
     // Prevent state desynchronization between parent and iframe
     sendMessage({
-      type: 'action:change',
+      type: 'demo:ready',
       data: {
         action: playgroundState.value.selectedAction,
         isDemoMode: playgroundState.value.isDemoMode,
@@ -59,12 +76,12 @@ export function usePlaygroundIframe() {
     })
   }
 
-  function setSelectedAction(action: 'idle' | 'stake' | 'buy' | 'swap') {
+  function setSelectedAction(action: Action) {
     playgroundState.value.selectedAction = action
 
-    // Prevent iframe from falling out of sync when parent changes
+    // Keep iframe in sync when parent changes action
     sendMessage({
-      type: 'action:change',
+      type: ActionToMessageType[action],
       data: {
         action,
         isDemoMode: playgroundState.value.isDemoMode,
@@ -89,7 +106,7 @@ export function usePlaygroundIframe() {
 
     // Ensure iframe doesn't remain in stale action state
     sendMessage({
-      type: 'action:change',
+      type: 'demo:ready',
       data: {
         action: 'idle',
         isDemoMode: playgroundState.value.isDemoMode,
@@ -102,16 +119,13 @@ export function usePlaygroundIframe() {
     playgroundState.value.openModalType = type
     playgroundState.value.selectedAction = type
 
-    // Ensure wallet UI matches host modal state
     const modalMap = {
       buy: 'action:open-buy-modal',
       stake: 'action:open-staking-modal',
       swap: 'action:open-swap-modal',
     } as const
 
-    sendMessage({
-      type: modalMap[type],
-    })
+    sendMessage({ type: modalMap[type] })
   }
 
   function closeModal() {
@@ -124,10 +138,12 @@ export function usePlaygroundIframe() {
     playgroundState.value.isDemoMode = true
   }
 
-  async function handlePlaygroundMessage(message: PlaygroundMessage) {
-    const messageType = message.type
+  function setPlaygroundUrl(url: string) {
+    playgroundState.value.playgroundUrl = url
+  }
 
-    switch (messageType) {
+  async function handlePlaygroundMessage(type: WalletPlaygroundMessage['type']) {
+    switch (type) {
       case 'demo:ready':
         activateDemoMode()
         break
@@ -149,7 +165,7 @@ export function usePlaygroundIframe() {
         break
 
       default:
-        console.warn('Unknown message type:', messageType)
+        console.warn('Unknown message type:', type)
     }
   }
 
@@ -161,11 +177,14 @@ export function usePlaygroundIframe() {
     resetActionState,
     connectWallet,
     disconnectWallet,
+    allowedMessageTypes,
     sendMessage,
     handlePlaygroundMessage,
     openModal,
     closeModal,
     activateDemoMode,
+    setPlaygroundUrl,
     isStandardizedAction,
+    ActionToMessageType,
   }
 }

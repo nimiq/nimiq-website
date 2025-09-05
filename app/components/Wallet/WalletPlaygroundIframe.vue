@@ -1,18 +1,15 @@
 <script setup lang="ts">
-interface PlaygroundMessage {
-  type: 'demo:ready' | 'action:change' | 'action:open-buy-modal' | 'action:open-staking-modal' | 'action:open-swap-modal' | 'action:close-modal'
-  data?: any
-  id?: string
-}
+import type { WalletPlaygroundMessage } from '~/composables/usePlaygroundIframe'
+import { usePlaygroundIframe } from '~/composables/usePlaygroundIframe'
 
 const {
-  playgroundUrl,
+  playgroundUrl: propPlaygroundUrl = 'https://wallet.nimiq.com',
   allowedOrigins = [],
   height = '600px',
   width = '100%',
   sandbox = 'allow-scripts allow-same-origin',
 } = defineProps<{
-  playgroundUrl: string
+  playgroundUrl?: string
   allowedOrigins?: string[]
   height?: string
   width?: string
@@ -20,21 +17,32 @@ const {
 }>()
 
 const emit = defineEmits<{
-  message: [message: PlaygroundMessage]
+  message: [message: WalletPlaygroundMessage]
   ready: []
   error: [error: Error]
 }>()
 
-// Get composable functions
-const { setIframeRef, onIframeReady, handlePlaygroundMessage } = usePlaygroundIframe()
+// Use the external composable
+const {
+  playgroundState,
+  setIframeRef,
+  handlePlaygroundMessage,
+  allowedMessageTypes,
+  setPlaygroundUrl,
+  ActionToMessageType,
+  activateDemoMode,
+  connectWallet,
+} = usePlaygroundIframe()
+
+const iframeRef = ref<HTMLIFrameElement>()
 
 // Validate playground URL is HTTPS
 const validatedPlaygroundUrl = computed(() => {
   try {
-    const url = new URL(playgroundUrl)
+    const url = new URL(playgroundState.value.playgroundUrl)
     if (url.protocol !== 'https:')
       throw new Error(`WalletPlaygroundIframe: Only HTTPS URLs are allowed: ${url.href}`)
-    return playgroundUrl
+    return playgroundState.value.playgroundUrl
   }
   catch {
     console.error('WalletPlaygroundIframe: Invalid URL provided')
@@ -42,16 +50,10 @@ const validatedPlaygroundUrl = computed(() => {
   }
 })
 
-const iframeRef = ref<HTMLIFrameElement>()
-
-/**
- * Check if the origin is allowed for communication
- */
 function isOriginAllowed(origin: string): boolean {
   if (allowedOrigins.length === 0) {
-    // If no specific origins are set, allow the iframe's origin
     try {
-      const iframeUrl = new URL(playgroundUrl)
+      const iframeUrl = new URL(playgroundState.value.playgroundUrl)
       return origin === iframeUrl.origin
     }
     catch {
@@ -61,17 +63,14 @@ function isOriginAllowed(origin: string): boolean {
   return allowedOrigins.includes(origin)
 }
 
-/**
- * Send a message to the iframe
- */
-function sendMessage(message: PlaygroundMessage) {
+function sendMessage(message: WalletPlaygroundMessage) {
   if (!iframeRef.value?.contentWindow) {
     console.warn('WalletPlaygroundIframe: No iframe contentWindow available')
     return
   }
 
   try {
-    const targetOrigin = new URL(playgroundUrl).origin
+    const targetOrigin = new URL(playgroundState.value.playgroundUrl).origin
     iframeRef.value.contentWindow.postMessage(message, targetOrigin)
   }
   catch (error) {
@@ -80,61 +79,34 @@ function sendMessage(message: PlaygroundMessage) {
   }
 }
 
-/**
- * Handle incoming messages from the iframe
- */
 function handleMessage(event: MessageEvent) {
-  // Debug: Log all incoming messages
-  // eslint-disable-next-line no-console
-  console.log('🔄 WalletPlaygroundIframe: Received message from:', event.origin, 'Data:', event.data)
-
-  // Verify origin
   if (!isOriginAllowed(event.origin)) {
     console.warn('Received message from unauthorized origin:', event.origin)
     return
   }
 
   try {
-    const message = event.data as PlaygroundMessage
+    const message = event.data as WalletPlaygroundMessage
 
-    // Validate message structure
-    const messageType = message.type
-    if (!message || typeof message !== 'object' || typeof messageType !== 'string') {
+    if (!message || typeof message !== 'object' || typeof message.type !== 'string') {
       console.warn('WalletPlaygroundIframe: Invalid message structure received')
       return
     }
 
-    // Validate message type (whitelist approach)
-    const allowedMessageTypes = [
-      'demo:ready',
-      'action:change',
-      'action:open-buy-modal',
-      'action:open-staking-modal',
-      'action:open-swap-modal',
-      'action:close-modal',
-    ]
-
-    if (!allowedMessageTypes.includes(messageType)) {
-      console.warn('WalletPlaygroundIframe: Unknown/unauthorized message type:', messageType)
+    if (!allowedMessageTypes.includes(message.type)) {
+      console.warn('WalletPlaygroundIframe: Unknown/unauthorized message type:', message.type)
       return
     }
 
-    // Handle demo ready message
-    if (messageType === 'demo:ready') {
+    if (message.type === 'demo:ready') {
+      activateDemoMode()
+      if (message.data?.address) {
+        connectWallet(message.data.address)
+      }
       emit('ready')
-      onIframeReady()
     }
 
-    // Normalize message structure for composable (ensure it has type property)
-    const normalizedMessage = {
-      ...message,
-      type: messageType,
-    }
-
-    // Pass message to composable for handling
-    handlePlaygroundMessage(normalizedMessage)
-
-    // Also emit to parent component
+    handlePlaygroundMessage(message.type)
     emit('message', message)
   }
   catch (error) {
@@ -143,30 +115,43 @@ function handleMessage(event: MessageEvent) {
   }
 }
 
-/**
- * Handle iframe load event
- */
 function handleIframeLoad() {
-  // Establish initial state to prevent iframe from starting in undefined state
-  sendMessage({ type: 'action:change', data: { action: 'idle', isDemoMode: false } })
+  sendMessage({
+    type: 'demo:ready',
+    data: {
+      action: playgroundState.value.selectedAction,
+      isDemoMode: playgroundState.value.isDemoMode,
+    },
+  })
 }
 
-/**
- * Handle iframe error
- */
 function handleIframeError() {
   console.error('WalletPlaygroundIframe: Iframe failed to load')
   emit('error', new Error('Failed to load iframe'))
 }
 
+// Update playground URL when prop changes
+watch(() => propPlaygroundUrl, (newUrl) => {
+  setPlaygroundUrl(newUrl)
+}, { immediate: true })
+
+// Watch for external changes to playground state and send messages
+watch(() => playgroundState.value.selectedAction, (newAction) => {
+  sendMessage({
+    type: ActionToMessageType[newAction],
+    data: {
+      action: newAction,
+      isDemoMode: playgroundState.value.isDemoMode,
+    },
+  })
+})
+
 // Set up message listener
 useEventListener(window, 'message', handleMessage)
 
-// Set iframe reference in composable when component mounts
+// Set iframe reference when component mounts
 onMounted(() => {
-  setIframeRef({
-    sendMessage,
-  })
+  setIframeRef({ sendMessage })
 })
 
 // Expose methods for parent component
