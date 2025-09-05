@@ -3,7 +3,7 @@ import type { Content } from '@prismicio/client'
 
 const { slice } = defineProps(getSliceComponentProps<Content.WalletPlaygroundSlice>())
 
-const isMobile = useMediaQuery('(max-width: 768px)', { ssrWidth: 768 })
+const isMobile = useMediaQuery('(max-width: 768px)', { ssrWidth: 1024 })
 
 const playgroundUrl = getUrl(slice.primary.playgroundUrl)
 // eslint-disable-next-line no-console
