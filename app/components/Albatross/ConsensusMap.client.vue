@@ -3,7 +3,7 @@ import type { Client, PlainBlock } from '@nimiq/core'
 import type { CSSProperties } from 'vue'
 import type { Peer } from '~/types/nimiq'
 import type { WorldMapHexagon } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
-import * as Nimiq from '@nimiq/core'
+import init, * as Nimiq from '@nimiq/core/web'
 import { ConsensusState } from '~/types/nimiq'
 import { drawHexagonsWorldMap, HEXAGONS_WORLD_MAP_ASPECT_RATIO, HEXAGONS_WORLD_MAP_HEIGHT_PIXELS, HEXAGONS_WORLD_MAP_SCALE } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
 import { getHexagonCoords } from '~/utils/consensus-map/drawHexagonsWorldMapProjection'
@@ -25,8 +25,7 @@ function useNimiq() {
 
   async function launchNetwork() {
     consensus.value = ConsensusState.Connecting
-    // await init()
-    // const config = new ClientConfiguration()
+    await init()
     const config = new Nimiq.ClientConfiguration()
     config.network(clientNetwork)
     config.syncMode('pico')
