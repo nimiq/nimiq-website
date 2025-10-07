@@ -4,7 +4,7 @@ import { array, boolean, object, optional, string } from 'valibot'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
 import { EXCLUDED_PAGES } from './lib/crawler'
-import environment, { getSiteUrl } from './lib/env'
+import environment from './lib/env'
 import { repositoryName } from './slicemachine.config.json'
 
 const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
@@ -97,7 +97,7 @@ export default defineNuxtConfig({
   // SEO configuration - skip for NuxtHub builds
   ...(!environment.useNuxtHub && {
     site: {
-      url: getSiteUrl(environment.environment.name),
+      url: process.env.NUXT_PUBLIC_SITE_URL || 'https://nimiq.com',
       indexable: environment.environment.isProduction,
     },
 
