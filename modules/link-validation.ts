@@ -33,10 +33,9 @@ const LINK_WHITELIST = [
   /^https:\/\/www\.facebook\.com\/nimiq$/,
   /^https:\/\/www\.instagram\.com\/wearenimiq$/,
   /^https:\/\/www\.instagram\.com\/lecoproject$/,
-  /^https:\/\/www\.reddit\.com\/r\/Nimiq$/,
+  /^https:\/\/www\.reddit\.com\/r\/Nimiq(\/.*|\?.*)?$/,
   /^https:\/\/www\.youtube\.com\/c\/nimiq$/,
-  /^https?:\/\/discord\.gg\/(cMHemg8|nimiq)$/i,
-  /^https:\/\/discordapp\.com\/invite\/cMHemg8$/,
+  /^https?:\/\/(discord\.gg\/(cMHemg8|nimiq|pvdg5AZWk7|BCxjthcXtX|J753fQUnpZ|XB9SGtEuur)|discord(app)?\.com\/invite\/(cMHemg8|Nimiq))$/i,
   // Telegram
   /^https?:\/\/t\.me\/(nimiq|joinchat\/AAAAAEJW-ozFwo7Er9jpHw|Nimcubator|NimiqTipBot|NimiqTip_bot|NimiqMiners|Kucoin_Exchange|stabilediese)$/i,
   // YouTube
@@ -50,8 +49,6 @@ const LINK_WHITELIST = [
   /^https:\/\/(x|twitter)\.com\/i\/spaces\/(1vOxwrmqYMoJB|1YqGovYkQaMKv\.|1MnGnMperDOKO)$/,
   // Dynamic link from JS
   /^https:\/\/twitter\.com\/\$\{\w\}$/,
-  // Discord
-  /^https:\/\/discord\.gg\/(pvdg5AZWk7|BCxjthcXtX|J753fQUnpZ|XB9SGtEuur)$/,
 
   // LinkedIn
   /^https:\/\/www\.linkedin\.com\/in\/(adriangarcia81|elionchin|desouzamartin|math%C3%A9o-r-b301a996|maxvburger\/?|paberr|s%C3%B6ren-schwert-484b6b100|stefan-koolen)$/,
@@ -77,7 +74,7 @@ const LINK_WHITELIST = [
   /^https:\/\/kriptomat\.io\/$/,
   /^https:\/\/ascendex\.com\/en$/,
   /^https:\/\/fastspot\.io\/$/,
-  /^https:\/\/www\.supersimpleswap\.com\/$/,
+  /^https?:\/\/(www\.|app\.|referrals\.)?supersimpleswap\.com\/?$/,
   /^https:\/\/www\.kucoin\.com\/trade$/,
   /^https:\/\/www\.coinex\.com\/en$/,
   /^https:\/\/coinpay\.cr\/$/,
@@ -101,9 +98,6 @@ const LINK_WHITELIST = [
 
   // Additional URLs
   /^https:\/\/wallet\.nimiq-testnet\.com\/$/,
-  /^https:\/\/supersimpleswap\.com\/$/,
-  /^http:\/\/supersimpleswap\.com\/$/,
-  /^https:\/\/referrals\.supersimpleswap\.com\/$/,
   /^https:\/\/getsome\.nimiq-testnet\.com\/$/,
   /^https:\/\/wallet\.v2\.nimiq-testnet\.com$/,
   /^http:\/\/wallet\.pos\.nimiq-testnet\.com\/$/,
