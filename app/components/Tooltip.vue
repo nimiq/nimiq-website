@@ -34,6 +34,7 @@ function handleOpenChange(open: boolean) {
       v-bind="$attrs"
       bg-transparent
       h-max
+      block
       @mouseenter="handleTriggerInteraction"
       @focus="handleTriggerInteraction"
     >
