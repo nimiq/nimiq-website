@@ -297,6 +297,10 @@ export default defineNuxtConfig({
         '/cookie-policy',
         '/activation/privacy',
         '/terms',
+        // Broken links in draft content
+        '/sp',
+        // Non-HTTP protocols
+        'magnet:*',
       ],
     },
   },

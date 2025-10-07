@@ -7,17 +7,21 @@ type PrismicOptions = ArgumentsType<ReturnType<typeof usePrismic>['client']['get
 
 export function usePrismicPage(uid: string, options?: PrismicOptions) {
   const { client } = usePrismic()
-  const { enablePrismicSSR } = useRuntimeConfig().public
+  const { enablePrismicSSR, showDrafts } = useRuntimeConfig().public
 
   return useAsyncData(
     `prismic-page-${uid}`,
     async () => {
       try {
-        const draftFilter = filter.not(`my.page.draft`, true)
         const existingFilters = options?.filters || []
-        const filters = Array.isArray(existingFilters)
-          ? [...existingFilters, draftFilter]
-          : [existingFilters, draftFilter].filter(Boolean)
+        const filters = showDrafts
+          ? (Array.isArray(existingFilters) ? existingFilters : [existingFilters].filter(Boolean))
+          : (() => {
+              const draftFilter = filter.not(`my.page.draft`, true)
+              return Array.isArray(existingFilters)
+                ? [...existingFilters, draftFilter]
+                : [existingFilters, draftFilter].filter(Boolean)
+            })()
         const result = await client.getByUID('page', uid, {
           ...options,
           filters,
@@ -49,17 +53,21 @@ export function usePrismicPage(uid: string, options?: PrismicOptions) {
 
 export function useBlogPost(uid: string, options?: PrismicOptions) {
   const { client } = usePrismic()
-  const { enablePrismicSSR } = useRuntimeConfig().public
+  const { enablePrismicSSR, showDrafts } = useRuntimeConfig().public
 
   return useAsyncData(
     `prismic-blog_post-${uid}`,
     async () => {
       try {
-        const draftFilter = filter.not(`my.blog_page.draft`, true)
         const existingFilters = options?.filters || []
-        const filters = Array.isArray(existingFilters)
-          ? [...existingFilters, draftFilter]
-          : [existingFilters, draftFilter].filter(Boolean)
+        const filters = showDrafts
+          ? (Array.isArray(existingFilters) ? existingFilters : [existingFilters].filter(Boolean))
+          : (() => {
+              const draftFilter = filter.not(`my.blog_page.draft`, true)
+              return Array.isArray(existingFilters)
+                ? [...existingFilters, draftFilter]
+                : [existingFilters, draftFilter].filter(Boolean)
+            })()
         const result = await client.getByUID('blog_page', uid, {
           ...options,
           filters,
@@ -89,18 +97,22 @@ export function useBlogPost(uid: string, options?: PrismicOptions) {
 }
 
 export function useBlogPosts(options?: PrismicOptions) {
-  const { enablePrismicSSR } = useRuntimeConfig().public
+  const { enablePrismicSSR, showDrafts } = useRuntimeConfig().public
 
   return useAsyncData(
     `prismic-collection-blog_page`,
     async (): Promise<BlogPageDocument[]> => {
       const { client } = usePrismic()
       try {
-        const draftFilter = filter.not(`my.blog_page.draft`, true)
         const existingFilters = options?.filters || []
-        const filters = Array.isArray(existingFilters)
-          ? [...existingFilters, draftFilter]
-          : [existingFilters, draftFilter].filter(Boolean)
+        const filters = showDrafts
+          ? (Array.isArray(existingFilters) ? existingFilters : [existingFilters].filter(Boolean))
+          : (() => {
+              const draftFilter = filter.not(`my.blog_page.draft`, true)
+              return Array.isArray(existingFilters)
+                ? [...existingFilters, draftFilter]
+                : [existingFilters, draftFilter].filter(Boolean)
+            })()
         const result = await client.getByType('blog_page', {
           ...options,
           filters,
