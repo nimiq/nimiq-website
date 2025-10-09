@@ -36,7 +36,7 @@ onUnmounted(() => router.replace({ query: { ...route.query, [queryName]: undefin
       <Transition name="modal">
         <DialogContent
           :key="name" lg="top-1/2 left-1/2 translate--1/2" rounded="t-8 lg:8"
-          outline-none data-modal h-max max-h-85dvh w-full shadow-lg transform bottom-0 fixed z-200 of-y-auto lg:max-w-500
+          data-modal outline-none h-max max-h-85dvh w-full shadow-lg transform bottom-0 fixed z-200 of-y-auto lg:max-w-500
           @open-auto-focus.prevent
         >
           <div py-32 bg-neutral-0 relative ring="1.5 neutral/3" class="modal-container">
@@ -44,7 +44,7 @@ onUnmounted(() => router.replace({ query: { ...route.query, [queryName]: undefin
               <slot name="top" />
             </div>
 
-            <DialogTitle text="24 center neutral lh-24" font-bold lh-none mb-12 px-24 lg:px-40 as="h2">
+            <DialogTitle text="24 center neutral lh-24" lh-none font-bold mb-12 px-24 lg:px-40 as="h2">
               <slot name="title" />
             </DialogTitle>
             <DialogDescription text="center neutral" px-24 block lg:px-40>

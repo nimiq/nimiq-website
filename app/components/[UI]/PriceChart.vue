@@ -25,7 +25,7 @@ const { width: asideWidth } = useElementSize(asideRef)
 const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: MaybeRef<string>, metricChange?: number, label: string, tooltipInfo?: RichTextField }>()
 const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], deltaPriceOneDay?: number }>()
 
-  type ControlPosition = 'top' | 'bottom'
+type ControlPosition = 'top' | 'bottom'
 
 // Determine optimal control position based on price trend, with explicit reactivity to period and currency
 const controlsPosition = ref<ControlPosition>('bottom')
@@ -61,16 +61,16 @@ const error = computed(() => {
       <div flex="~ col gap-8" relative :data-state="metricValue === '0' ? 'inactive' : 'active'" z-1 reka-inactive:animate-pulse>
         <div outline="~ 1.5 neutral-200 offset--1.5" rounded-6 bg-neutral-100 h-full w-full inset--12 absolute z--1 reka-active:hidden w="[calc(100%+24px)]" />
         <div flex="~ gap-8 items-center">
-          <span text="f-lg neutral" font-semibold lh-none whitespace-nowrap>
+          <span text="f-lg neutral" lh-none font-semibold whitespace-nowrap>
             {{ metricValue }}
           </span>
           <div v-if="metricChange" :class="metricChange < 0 ? 'text-red' : 'text-green'" flex="~ gap-2 items-center">
             <div :class="{ 'rotate-180': metricChange < 0 }" aria-hidden size-7 i-nimiq:triangle-up />
-            <span font-semibold lh-none f-text-sm>{{ formatPercentage(metricChange, locale) }}</span>
+            <span lh-none font-semibold f-text-sm>{{ formatPercentage(metricChange, locale) }}</span>
           </div>
         </div>
         <div flex="~ gap-6 items-center">
-          <p text="f-xs neutral-800" font-normal lh-none w-max>
+          <p text="f-xs neutral-800" lh-none font-normal w-max>
             {{ label }}
           </p>
           <Tooltip v-if="tooltipInfo">
@@ -84,11 +84,11 @@ const error = computed(() => {
       <div flex="~ col gap-8" f="$side $side-min-20 $side-max-24" bg-neutral-0 relative f-py-xs :class="{ 'top-21 mx-20': !deltaPriceOneDay }">
         <div inset-y-0 absolute left="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, transparent, rgba(var(--nq-neutral-0) / 1))" />
         <div right="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, rgba(var(--nq-neutral-0) / 1), transparent)" inset-y-0 absolute f-w-md />
-        <p text="blue f-3xl" font-semibold lh-none>
+        <p text="blue f-3xl" lh-none font-semibold>
           {{ formatFiat(historicPrice, currencyInfo, locale) }}
         </p>
         <NuxtTime v-if="!deltaPriceOneDay" :datetime="ts" year="numeric" month="long" day="numeric" text="f-2xs right neutral-700" lh-none nq-label />
-        <div v-else flex="~ items-center" text="f-2xs neutral-700" font-semibold lh-none>
+        <div v-else flex="~ items-center" text="f-2xs neutral-700" lh-none font-semibold>
           <div mr-4 size-8 i-nimiq:triangle-up :class="{ 'rotate-180': deltaPriceOneDay < 0 }" />
           <span>{{ formatDecimal(Math.abs(deltaPriceOneDay), locale) }} ({{ formatPercentage(deltaPriceOneDay / historicPrice, locale) }})</span>
         </div>

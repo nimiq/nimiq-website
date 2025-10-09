@@ -31,6 +31,6 @@ function getIcon(score: number) {
 <template>
   <div :class="{ 'ring-1.5 ring-$ring-c px-10': showBorder }" flex="~ items-center gap-4" nq-raw py-6 rounded-full h-max w-max text="$c" :style="`--c: rgb(var(--nq-${getScoreColor(score)})); --ring-c: rgb(var(--nq-${getScoreColor(score)}) / 0.5)`">
     <div :class="getIcon(score)" text-1.125em />
-    <span text-1.5em font-semibold lh-none>{{ formatter.format(score * 5) }}</span>
+    <span text-1.5em lh-none font-semibold>{{ formatter.format(score * 5) }}</span>
   </div>
 </template>

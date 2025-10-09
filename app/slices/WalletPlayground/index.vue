@@ -13,7 +13,7 @@ if (!playgroundUrl)
 </script>
 
 <template>
-  <section data-slice-type="wallet-playground" bg-darkerblue scheme-dark relative of-x-clip md:f-pt-3xl children:max-w-none>
+  <section data-slice-type="wallet-playground" bg-darkerblue scheme-dark relative of-x-clip children:max-w-none md:f-pt-3xl>
     <AnimatedCloudyBg h="[calc(100%+400px)]" max-w-screen pointer-events-none top--400 />
     <WalletPlaygroundMobile v-if="isMobile" key="mobile" :playground-url />
     <WalletPlaygroundDesktop v-else key="desktop" w-full z-1 :playground-url />

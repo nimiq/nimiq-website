@@ -77,7 +77,7 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
           />
         </PrismicLink>
         <div v-if="bgColor === 'white'" class="curtain" pointer-events-none inset-0 absolute />
-        <div v-else-if="bgColor === 'green'" rounded-6 pointer-events-none inset-1.5 absolute bg-gradient-green />
+        <div v-else-if="bgColor === 'green'" rounded-6 bg-gradient-green pointer-events-none inset-1.5 absolute />
 
         <div
           v-if="backgroundPattern === 'Nimiq Hexagon'" text="200 md:300 lg:400" pointer-events-none absolute
