@@ -182,21 +182,15 @@ catalogs:
     '@unocss/reset':
       specifier: ^66.5.2
       version: 66.5.2
-    nimiq-css:
-      specifier: ^1.0.0-beta.129
-      version: 1.0.0-beta.129
     nimiq-flags:
-      specifier: ^1.0.0-beta.129
-      version: 1.0.0-beta.129
-    nimiq-icons:
       specifier: ^1.0.0-beta.129
       version: 1.0.0-beta.129
     unocss:
       specifier: ^66.5.2
       version: 66.5.2
     unocss-preset-onmax:
-      specifier: ^1.0.0-beta.43
-      version: 1.0.0-beta.43
+      specifier: ^1.0.0-beta.44
+      version: 1.0.0-beta.44
 
 patchedDependencies:
   '@nimiq/utils':
@@ -341,14 +335,14 @@ importers:
         specifier: catalog:lint
         version: 16.2.3
       nimiq-css:
-        specifier: catalog:unocss
-        version: 1.0.0-beta.129(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
+        specifier: 1.0.0-beta.132
+        version: 1.0.0-beta.132(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
       nimiq-flags:
         specifier: catalog:unocss
         version: 1.0.0-beta.129
       nimiq-icons:
-        specifier: catalog:unocss
-        version: 1.0.0-beta.129
+        specifier: 1.0.0-beta.130
+        version: 1.0.0-beta.130
       nuxt-module-feed:
         specifier: catalog:nuxt
         version: 1.1.4(magicast@0.3.5)(rollup@4.52.4)
@@ -375,7 +369,7 @@ importers:
         version: 66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
       unocss-preset-onmax:
         specifier: catalog:unocss
-        version: 1.0.0-beta.43(@unocss/preset-wind3@66.5.2)(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
+        version: 1.0.0-beta.44(@unocss/preset-wind3@66.5.2)(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
       unplugin-vue-router:
         specifier: catalog:nuxt
         version: 0.15.0(@vue/compiler-sfc@3.5.22)(typescript@5.9.3)(vue-router@4.5.1(vue@3.5.22(typescript@5.9.3)))(vue@3.5.22(typescript@5.9.3))
@@ -6120,15 +6114,18 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  nimiq-css@1.0.0-beta.129:
-    resolution: {integrity: sha512-zAXWcQclIVygClyLlJZZrv8FE5BdxtFMdjgI327hayWS22bbjX2hvKIPCyx2JfYZ5UzU6YnGxc+B8+3ZTgheyw==}
+  nimiq-css@1.0.0-beta.132:
+    resolution: {integrity: sha512-QLFnthveNh0Doue0iA0Bgpct8cqc4ZsJotQhNHXlXhu7u2kwTsgqRYhZNZtFMUu53HqCJymjmANqasgH/JOvOg==}
     engines: {node: '>=18'}
 
   nimiq-flags@1.0.0-beta.129:
     resolution: {integrity: sha512-xdWea8J819qGMrhdQiiSOw/Bu5mwNGB41QsOzpyfclbKTNOglLpeUG0Gz4WSB5s45A4L0b0LaiNEGNsozv/cvg==}
 
-  nimiq-icons@1.0.0-beta.129:
-    resolution: {integrity: sha512-pjwXQ9MHhDUh+VDR4Ed5RNeqsSWYGsXytSvozc5YntcQAebIFqyHB59/Ih2VnRasBtSD12hKATeaxg99VNU+iw==}
+  nimiq-icons@1.0.0-beta.130:
+    resolution: {integrity: sha512-nl/kPZqaKqk79g3RN9nwCivFc05/ZxjGwLtpJtjySbjDvofea/kQQ74riTJlRAAHyT3ceiHZpKBfiNLPRAjiUQ==}
+
+  nimiq-icons@1.0.0-beta.132:
+    resolution: {integrity: sha512-PlsM7aeFxbCDuS8nGcXYKfuf0g2N5RXmN0Bj7l6fjzgszQG2So/uJYmxGBHtqmRyWuVhZI6jZoNNZHez/8w8qQ==}
 
   nimiq-rpc-client-ts@1.0.0-beta.35:
     resolution: {integrity: sha512-7zUM/ySappO53Kvz7NPI4FA/9ErKCu86QTqC3d/FZDbp5rRYbMqPwJDyhrb6lBTdOk5qzImLGX6KULo53/Nl2Q==}
@@ -7557,26 +7554,26 @@ packages:
       '@unocss/preset-wind3':
         optional: true
 
-  unocss-preset-css-var@1.0.0-beta.43:
-    resolution: {integrity: sha512-d707O38lMhH9jbtt60tDSkFpEIUjQYXNfq83Gh0xKJbvezJgERMap8+DqfDD7UGe5YYqygo+sGtCOcp/eqQqjw==}
+  unocss-preset-css-var@1.0.0-beta.44:
+    resolution: {integrity: sha512-9rfThwZZPhDxZr36HdvR6Z9lo1SPYWi+1NVqBY6vUoqZTUYgFHU7lZWdaL4HGgOZQ64aOaf9Ja2eZwGLGmzW6g==}
 
-  unocss-preset-easing-gradient@1.0.0-beta.43:
-    resolution: {integrity: sha512-ozmjNsUgGqAvP5+xVxxh9PgQsO+gbTUpNXbQUo9ldSH7c7/KbbIN01DugJWB28aMBSu1cia89e36JaPa3pMTxA==}
+  unocss-preset-easing-gradient@1.0.0-beta.44:
+    resolution: {integrity: sha512-CD+DYVnJDmLkHIGuMYpOIIY4IcSYkZpVWj8HT5yyY+RRuK4w4vUnGezzNXaw8MRFfQdn8RNOwqh5rm7Saem/0w==}
 
-  unocss-preset-fluid-sizing@1.0.0-beta.43:
-    resolution: {integrity: sha512-srzss7/5Dp/K9wqqTg3j0zERDyIytSTzZldDEiFVS5EtTSLFF7vS1+5GaNfoAQjCvNMvco1nDwcLwixaZ10B2A==}
+  unocss-preset-fluid-sizing@1.0.0-beta.44:
+    resolution: {integrity: sha512-Sf5MaxKk4ic/eIDBS0odzrSBrWYl7ufOG4wameDTvVKTdW+uL1Xeq0DXngLidRDGNdyt3dFXRNAEVrTC6a1cHg==}
 
   unocss-preset-light-dark@1.0.0-beta.43:
     resolution: {integrity: sha512-4YuBlSmSBP2FydFoPcFQRB3Kpy2zZ82vCH84TdDBxrrDUjbCoxS4zarAdyEGA+IFLrjWasYVHPflFLV/cRTlWA==}
 
-  unocss-preset-onmax@1.0.0-beta.43:
-    resolution: {integrity: sha512-d5jUWDH1AUYrZcPsHR1EGlZttKj8a/TotUub1Nuc/j2aqQNRDTHbfnjn/S5ya2lJq3SESJjfeu6FE+s7fLs8CQ==}
+  unocss-preset-onmax@1.0.0-beta.44:
+    resolution: {integrity: sha512-3hdgzUxG5UsggH20qMI2fxKc34aoyEA3cNKjeQevT+mZxOw2jCNIIMX6VCz3rHmnUgXiY/jXxX8sZlkwMIVN6g==}
 
-  unocss-preset-reka-ui@1.0.0-beta.43:
-    resolution: {integrity: sha512-QsP7+I645zupAK4FziGHYkpsB7PXnJMBFQyW3aJcTZQYga0HV43odYQaxddybgdgVk+cmIKbw6zUVyhKIdCq6Q==}
+  unocss-preset-reka-ui@1.0.0-beta.44:
+    resolution: {integrity: sha512-XaKDokVVM/HEorkIN2lkRFWIXDySI/g8PWUNSRZTRuudw8FchCoV0i/6K3IDEEw/b/2Nnad07UZy5ZK1ryAMtQ==}
 
-  unocss-preset-scale-px@1.0.0-beta.43:
-    resolution: {integrity: sha512-Fc+tt7IFvtmrSzRA7qcO4EGWHVIbjrHT5jlcsLoHNoWxYlDoW2txgQYHJcZcvPeGihIV4qrDb0imTgCyCcn3kw==}
+  unocss-preset-scale-px@1.0.0-beta.44:
+    resolution: {integrity: sha512-+n5E2ZdOnkbaHs/mbTVXxywJ61QLr45FHwx+cg6Uyb98nSXFU2sxRcMOTIq036gpGBb7wnMQBY7ZeqGMMOKrZA==}
 
   unocss-preset-shadcn@0.5.0:
     resolution: {integrity: sha512-e/bF/+b5adcolHio3kst3WVF+f09+BiDkyTshUVqcWXB0RabQ0T8lzqfM3KAegTTi1iJo1jjCZoE88cUzaVDmQ==}
@@ -7584,8 +7581,8 @@ packages:
       unocss: '>=0.56.0 < 101'
       unocss-preset-animations: ^1.1.1
 
-  unocss-preset-unovue@1.0.0-beta.43:
-    resolution: {integrity: sha512-/eQwGYmUfKUgJcJGGIq0vUDxrvMfW+CxVGotevS8H2a110MyHo6vjVrnLtcjaS6MDiT164kuTW1VBXO4VSzhmg==}
+  unocss-preset-unovue@1.0.0-beta.44:
+    resolution: {integrity: sha512-ABr9QbHqONGMw7S0Fkl1pegJnsP93VbXrE2ggUUh6fV5BQvR4WQ4Kf0/7F2clAFMebiuTmmYdLRFKf5JHOFSbg==}
 
   unocss@66.5.2:
     resolution: {integrity: sha512-GCFq6ilalDE33dbjZKgeBHgKGLL/t87XM5sS0aqhD0RgzHhbT2f6Jtsmmg2Q3GASlk5uvJLxh9ifUvPQ13BdyQ==}
@@ -14806,12 +14803,12 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  nimiq-css@1.0.0-beta.129(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
+  nimiq-css@1.0.0-beta.132(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
     dependencies:
       '@iconify/utils': 3.0.2
       '@unocss/preset-web-fonts': 66.5.2
       '@unocss/preset-wind4': 66.5.2
-      nimiq-icons: 1.0.0-beta.129
+      nimiq-icons: 1.0.0-beta.132
       ts-cssjson: 3.0.1
       unocss: 66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
       unocss-preset-light-dark: 1.0.0-beta.43
@@ -14825,7 +14822,11 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  nimiq-icons@1.0.0-beta.129:
+  nimiq-icons@1.0.0-beta.130:
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  nimiq-icons@1.0.0-beta.132:
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -16761,7 +16762,7 @@ snapshots:
     optionalDependencies:
       '@unocss/preset-wind3': 66.5.2
 
-  unocss-preset-css-var@1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
+  unocss-preset-css-var@1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
     dependencies:
       '@unocss/core': 66.5.2
       '@unocss/rule-utils': 66.5.2
@@ -16772,7 +16773,7 @@ snapshots:
       - supports-color
       - vite
 
-  unocss-preset-easing-gradient@1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
+  unocss-preset-easing-gradient@1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
     dependencies:
       '@unocss/core': 66.5.2
       '@unocss/preset-mini': 66.5.2
@@ -16783,7 +16784,7 @@ snapshots:
       - supports-color
       - vite
 
-  unocss-preset-fluid-sizing@1.0.0-beta.43:
+  unocss-preset-fluid-sizing@1.0.0-beta.44:
     dependencies:
       '@unocss/core': 66.5.2
       defu: 6.1.4
@@ -16792,7 +16793,7 @@ snapshots:
     dependencies:
       '@unocss/core': 66.5.2
 
-  unocss-preset-onmax@1.0.0-beta.43(@unocss/preset-wind3@66.5.2)(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
+  unocss-preset-onmax@1.0.0-beta.44(@unocss/preset-wind3@66.5.2)(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
     dependencies:
       '@unocss/core': 66.5.2
       '@unocss/preset-attributify': 66.5.2
@@ -16803,11 +16804,11 @@ snapshots:
       pathe: 2.0.3
       unocss: 66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
       unocss-preset-animations: 1.2.1(@unocss/preset-wind3@66.5.2)(unocss@66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)))
-      unocss-preset-css-var: 1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
-      unocss-preset-easing-gradient: 1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
-      unocss-preset-fluid-sizing: 1.0.0-beta.43
-      unocss-preset-scale-px: 1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
-      unocss-preset-unovue: 1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(unocss-preset-animations@1.2.1(@unocss/preset-wind3@66.5.2)(unocss@66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))))(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
+      unocss-preset-css-var: 1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
+      unocss-preset-easing-gradient: 1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
+      unocss-preset-fluid-sizing: 1.0.0-beta.44
+      unocss-preset-scale-px: 1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
+      unocss-preset-unovue: 1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(unocss-preset-animations@1.2.1(@unocss/preset-wind3@66.5.2)(unocss@66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))))(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
     transitivePeerDependencies:
       - '@unocss/preset-wind3'
       - '@unocss/webpack'
@@ -16815,7 +16816,7 @@ snapshots:
       - supports-color
       - vite
 
-  unocss-preset-reka-ui@1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
+  unocss-preset-reka-ui@1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
     dependencies:
       '@radix-ui/colors': 3.0.0
       '@unocss/core': 66.5.2
@@ -16829,7 +16830,7 @@ snapshots:
       - supports-color
       - vite
 
-  unocss-preset-scale-px@1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
+  unocss-preset-scale-px@1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
     dependencies:
       '@unocss/core': 66.5.2
       unocss: 66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
@@ -16844,7 +16845,7 @@ snapshots:
       unocss: 66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
       unocss-preset-animations: 1.2.1(@unocss/preset-wind3@66.5.2)(unocss@66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)))
 
-  unocss-preset-unovue@1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(unocss-preset-animations@1.2.1(@unocss/preset-wind3@66.5.2)(unocss@66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))))(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
+  unocss-preset-unovue@1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(unocss-preset-animations@1.2.1(@unocss/preset-wind3@66.5.2)(unocss@66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))))(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)):
     dependencies:
       '@radix-ui/colors': 3.0.0
       '@unocss/core': 66.5.2
@@ -16852,7 +16853,7 @@ snapshots:
       '@unocss/rule-utils': 66.5.2
       defu: 6.1.4
       unocss: 66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
-      unocss-preset-reka-ui: 1.0.0-beta.43(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
+      unocss-preset-reka-ui: 1.0.0-beta.44(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
       unocss-preset-shadcn: 0.5.0(unocss-preset-animations@1.2.1(@unocss/preset-wind3@66.5.2)(unocss@66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))))(unocss@66.5.2(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1)))
     transitivePeerDependencies:
       - '@unocss/webpack'
