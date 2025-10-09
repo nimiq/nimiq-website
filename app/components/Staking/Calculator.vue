@@ -70,8 +70,8 @@ const rewards = computed(() => calculateStakingRewards({
         <span text="max-md:center neutral-800" font-semibold>{{ stakingAmountLabel }}</span>
         <label flex="~ items-baseline gap-8" text="neutral hocus:blue focus-within:blue" h-max w-max transition-colors self-end max-md:mx-auto>
           <!-- <input v-model="formattedValue" bg-transparent type="text" style="field-sizing: content" px-2 font-semibold lh-none f-text-xl inputmode="decimal"> -->
-          <AmountInput v-model="amount" :decimals :min="1" style="padding:0" outline-none max-w-9ch min-w-0 w-max shadow-none text="blue f-2xl" />
-          <span font-bold lh-none flex-1 text="blue f-lg">NIM</span>
+          <AmountInput v-model="amount" :decimals :min="1" style="padding:0" shadow-none outline-none max-w-9ch min-w-0 w-max text="blue f-2xl" />
+          <span lh-none font-bold flex-1 text="blue f-lg">NIM</span>
         </label>
 
         <div flex="~ gap-8 items-center max-md:justify-center" max-md:mt-8>
@@ -111,7 +111,7 @@ const rewards = computed(() => calculateStakingRewards({
             +<AnimatedTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
           </p>
         </div>
-        <span text="28 green" font-semibold lh-none mt-12>
+        <span text="28 green" lh-none font-semibold mt-12>
           +<AnimatedTweenedNumber :value="rewards.gain" :duration="1000" /> NIM
         </span>
       </div>

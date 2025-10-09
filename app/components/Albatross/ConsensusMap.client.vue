@@ -174,7 +174,7 @@ async function connect() {
         <div v-if="showTooltip" left-0 top-0 absolute z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
           <div left="[calc(-50%+2px)]" flex="~ col items-center" class="dark" mt-16 scheme-dark relative>
             <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" text-12 translate-y-3.5 i-nimiq:tooltip-triangle />
-            <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" flex="~ items-center" rounded-full transition-colors top--1 bg-gradient-blue>
+            <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" flex="~ items-center" rounded-full bg-gradient-blue transition-colors top--1>
               <span text-white font-bold px-16 py-8>
                 {{ thisIsYou }}
               </span>
@@ -182,13 +182,13 @@ async function connect() {
                 {{ connectLabel }}
               </button>
             </div>
-            <div v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" outline-none text-white font-semibold px-16 py-8 rounded-full w-max transition-colors top--3>
+            <div v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" text-white font-semibold px-16 py-8 outline-none rounded-full w-max transition-colors top--3>
               <div layout-id="connect-label" as="span">
                 Connecting
               </div>
               <div animate="ease-out scale-in delay-2s" shrink-0 i-nimiq:spinner />
             </div>
-            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" outline-none text-white font-semibold px-16 py-8 rounded-full w-max transition-colors top--3 z-3>
+            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" text-white font-semibold px-16 py-8 outline-none rounded-full w-max transition-colors top--3 z-3>
               <div layout-id="connect-label" as="span">
                 <div flex="~ items-center justify-between gap-8">
                   <span>

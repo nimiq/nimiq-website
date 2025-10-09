@@ -22,7 +22,7 @@ const { data: navigation } = await useNavigation()
       <DrawerContent
         class="mt-24 p-24 rounded-t-10 bg-white flex flex-col h-full max-h-90dvh bottom-0 left-0 right-0 fixed z-100"
       >
-        <div class="mx-auto mb-32 rounded-full bg-gray-300 flex-shrink-0 h-4 w-80" />
+        <div class="bg-gray-300 mx-auto mb-32 rounded-full flex-shrink-0 h-4 w-80" />
         <div class="mb-16 flex gap-20">
           <PrismicLink v-if="navigation?.getStartedLinks.at(0)?.href" :field="navigation.getStartedLinks.at(0)!.href" nq-pill-secondary>
             {{ navigation.getStartedLinks[0]?.label }}
@@ -54,7 +54,7 @@ const { data: navigation } = await useNavigation()
 
               <AccordionItem v-if="links.length" py-8 of-hidden :value="label as string">
                 <AccordionHeader>
-                  <AccordionTrigger outline-none leading-none px-5 bg-white flex flex-1 gap-x-8 h-45 cursor-default items-center>
+                  <AccordionTrigger leading-none px-5 outline-none bg-white flex flex-1 gap-x-8 h-45 cursor-default items-center>
                     <span text-12 uppercase>{{ label }}</span>
                     <div
                       class="text-10 text-neutral transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] i-nimiq:chevron-down group-data-[state=open]:rotate-180"

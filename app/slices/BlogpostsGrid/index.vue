@@ -50,7 +50,7 @@ const active = useState('active-blog-post', () => '')
               loading="lazy"
             />
             <div
-              v-else-if="showDrafts" text-green-400 py-64 rounded-4 flex-1 size-full bg-gradient-green
+              v-else-if="showDrafts" text-green-400 py-64 rounded-4 bg-gradient-green flex-1 size-full
               grid="~ place-content-center"
             >
               <div flex="~ items-center gap-12">

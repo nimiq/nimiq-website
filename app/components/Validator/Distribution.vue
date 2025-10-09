@@ -34,7 +34,7 @@ const data = computed(() => {
       <template #default="{ color, value, name, logo, balance }">
         <div :key="name" :style="{ '--c': color }" ring="1.5 $c" flex="~ items-center gap-16" data-tooltip-container text-neutral font-semibold p-16 rounded-8 bg-neutral-0 w-max shadow>
           <img v-if="logo" :src="logo" size-40 loading="lazy">
-          <div flex="~ gap-2 col" font-semibold lh-none>
+          <div flex="~ gap-2 col" lh-none font-semibold>
             <h3 f-text-lg>
               {{ name }}
             </h3>
@@ -42,7 +42,7 @@ const data = computed(() => {
               <span text="f-sm neutral-800" lh-none>
                 {{ percentageFormatter.format(value) }}
               </span>
-              <p v-if="balance > 0" text="green f-xs" font-bold lh-none>
+              <p v-if="balance > 0" text="green f-xs" lh-none font-bold>
                 {{ amountFormatter.format(balance / 1e5) }} NIM
               </p>
             </div>

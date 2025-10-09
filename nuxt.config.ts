@@ -1,7 +1,6 @@
 import process from 'node:process'
 import { defineNuxtConfig } from 'nuxt/config'
 import { array, boolean, object, optional, string } from 'valibot'
-import topLevelAwait from 'vite-plugin-top-level-await'
 import wasm from 'vite-plugin-wasm'
 import { EXCLUDED_PAGES } from './lib/crawler'
 import environment from './lib/env'
@@ -66,7 +65,6 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       wasm(),
-      topLevelAwait(),
     ],
     optimizeDeps: {
       exclude: ['@nimiq/core', '*.wasm'],
@@ -74,7 +72,6 @@ export default defineNuxtConfig({
     worker: {
       plugins: () => [
         wasm(),
-        topLevelAwait(),
       ],
     },
 

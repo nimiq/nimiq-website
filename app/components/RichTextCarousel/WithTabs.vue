@@ -29,7 +29,7 @@ const selectedItem = computed(() => items.value.find(i => i.key === selectedKey.
           {{ comingSoonLabel }}
         </p>
         <button
-          :disabled="comingSoon" flex="~ items-center gap-6" rounded-8 h-full whitespace-nowrap f-px-sm f-py-xs bg-gradient-blue op="50 selected:100 hocus:not-disabled:100" @click="selectedKey = key"
+          :disabled="comingSoon" flex="~ items-center gap-6" rounded-8 bg-gradient-blue h-full whitespace-nowrap f-px-sm f-py-xs op="50 selected:100 hocus:not-disabled:100" @click="selectedKey = key"
         >
           <template v-if="key !== 'Naka'">
             <ProxiedPrismicImage :field="buttonLogo" h-full w-24 />

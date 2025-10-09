@@ -99,7 +99,7 @@ function reset() {
             {{ word }}
           </li>
           <li v-for="(input, i) in userInputs" :key="i" shrink-0>
-            <input v-model="input.value" type="text" border="2 white/30 hocus:blue" :placeholder="`${i + 12}`" text="center blue" outline-none font-semibold px-2 caret-blue rounded-4 bg-transparent h-36 w-full transition un-placeholder="font-semibold text-white/30" @blur="submitWords">
+            <input v-model="input.value" type="text" border="2 white/30 hocus:blue" :placeholder="`${i + 12}`" text="center blue" font-semibold px-2 outline-none caret-blue rounded-4 bg-transparent h-36 w-full transition un-placeholder="font-semibold text-white/30" @blur="submitWords">
           </li>
         </ul>
         <template v-if="isChallengeFinished">
