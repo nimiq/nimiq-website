@@ -79,7 +79,8 @@ export function useBlogPost(uid: string, options?: PrismicOptions) {
             fatal: true,
           })
         }
-        return result
+        // Ensure the result is serializable by converting to plain object
+        return JSON.parse(JSON.stringify(result))
       }
       catch (error) {
         consola.error(`Blog post with UID "${uid}" not found in Prismic:`, error)
