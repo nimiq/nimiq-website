@@ -73,10 +73,6 @@ catalogs:
     nimiq-icons: ^1.0.0-beta.129
     unocss: ^66.5.2
     unocss-preset-onmax: ^1.0.0-beta.44
-  conflicts_unocss_1_0_0mbeta_132:
-    nimiq-css: 1.0.0-beta.132
-  conflicts_unocss_1_0_0mbeta_130:
-    nimiq-icons: 1.0.0-beta.130
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - '@scarf/scarf'
