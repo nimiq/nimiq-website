@@ -8,6 +8,16 @@ const showEditor = ref(isDev)
 const layers = isDev ? useLocalStorage('roadmap-layers', defaultLayers) : ref(defaultLayers)
 const milestones = isDev ? useLocalStorage('roadmap-milestones', defaultMilestones) : ref(defaultMilestones)
 
+const milestonesJson = computed({
+  get: () => JSON.stringify(milestones.value, null, 2),
+  set: (val: string) => milestones.value = JSON.parse(val),
+})
+
+const layersJson = computed(() => layers.value.map((_, i) => ({
+  get: () => JSON.stringify(layers.value[i], null, 2),
+  set: (val: string) => layers.value[i] = JSON.parse(val),
+})))
+
 const headline = computed(() => ([{ type: 'heading1', text: 'Roadmap', spans: [] }] as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Browse the project\'s past and future.', spans: [], direction: 'ltr' }] as RichTextField))
 // Consistent SEO patterns across all pages reduce maintenance overhead
@@ -74,23 +84,15 @@ const newsletterSlice: Content.NewsletterSubscriptionSlice = {
           </TabsTrigger>
         </TabsList>
         <TabsContent nq-mt-12 value="milestones">
-          <textarea
-            :value="JSON.stringify(milestones, null, 2)"
-            font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box
-            @input="(e) => milestones = JSON.parse((e.target as HTMLTextAreaElement).value)"
-          />
+          <textarea v-model="milestonesJson" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box />
         </TabsContent>
         <TabsContent v-for="(item, i) in layers" :key="item.name" nq-mt-12 :value="item.name">
-          <textarea
-            :value="JSON.stringify(item, null, 2)"
-            font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box
-            @input="(e) => layers[i] = JSON.parse((e.target as HTMLTextAreaElement).value)"
-          />
+          <textarea v-model="layersJson[i]" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box />
         </TabsContent>
       </TabsRoot>
     </section>
 
-    <section class="nq-no-color" mx-0 px-0 bg-neutral-100 block children:max-w-none>
+    <section class="nq-no-color" mx-32 px-0 bg-neutral-100 block children:max-w-none>
       <Roadmap :milestones :layers :first-year :first-month />
     </section>
 
