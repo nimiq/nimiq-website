@@ -5,18 +5,17 @@ import NewsletterSubscription from '~/slices/NewsletterSubscription/index.vue'
 
 const isDev = useRuntimeConfig().public.environment.isProduction === false
 const showEditor = ref(isDev)
-const layers = isDev ? useLocalStorage('roadmap-layers', defaultLayers) : ref(defaultLayers)
-const milestones = isDev ? useLocalStorage('roadmap-milestones', defaultMilestones) : ref(defaultMilestones)
 
-const milestonesJson = computed({
-  get: () => JSON.stringify(milestones.value, null, 2),
-  set: (val: string) => milestones.value = JSON.parse(val),
-})
+const milestonesJson = isDev
+  ? useLocalStorage('roadmap-milestones-json', JSON.stringify(defaultMilestones, null, 2))
+  : ref(JSON.stringify(defaultMilestones, null, 2))
 
-const layersJson = computed(() => layers.value.map((_, i) => ({
-  get: () => JSON.stringify(layers.value[i], null, 2),
-  set: (val: string) => layers.value[i] = JSON.parse(val),
-})))
+const layersJson = isDev
+  ? defaultLayers.map((layer, i) => useLocalStorage(`roadmap-layer-${i}-json`, JSON.stringify(layer, null, 2)))
+  : defaultLayers.map(layer => ref(JSON.stringify(layer, null, 2)))
+
+const milestones = computed(() => JSON.parse(milestonesJson.value))
+const layers = computed(() => layersJson.map(json => JSON.parse(json.value)))
 
 const headline = computed(() => ([{ type: 'heading1', text: 'Roadmap', spans: [] }] as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Browse the project\'s past and future.', spans: [], direction: 'ltr' }] as RichTextField))
