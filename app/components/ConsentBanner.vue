@@ -19,7 +19,7 @@ const open = computed(() => {
         0 -8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent),
         0 8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent);" @open-auto-focus.prevent
       >
-        <AlertDialogTitle text="f-xl neutral-900" leading-tight font-semibold my-0 ml-0>
+        <AlertDialogTitle leading-tight font-semibold my-0 ml-0 text="f-xl neutral-900">
           Cookie Consent
         </AlertDialogTitle>
 
