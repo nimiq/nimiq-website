@@ -182,9 +182,15 @@ catalogs:
     '@unocss/reset':
       specifier: ^66.5.2
       version: 66.5.2
+    nimiq-css:
+      specifier: ^1.0.0-beta.132
+      version: 1.0.0-beta.132
     nimiq-flags:
       specifier: ^1.0.0-beta.129
       version: 1.0.0-beta.129
+    nimiq-icons:
+      specifier: ^1.0.0-beta.129
+      version: 1.0.0-beta.132
     unocss:
       specifier: ^66.5.2
       version: 66.5.2
@@ -335,14 +341,14 @@ importers:
         specifier: catalog:lint
         version: 16.2.3
       nimiq-css:
-        specifier: 1.0.0-beta.132
+        specifier: catalog:unocss
         version: 1.0.0-beta.132(@unocss/webpack@66.5.2(webpack@5.99.6(esbuild@0.25.10)))(postcss@8.5.6)(vite@7.1.9(@types/node@24.7.0)(jiti@2.6.1)(terser@5.44.0)(yaml@2.8.1))
       nimiq-flags:
         specifier: catalog:unocss
         version: 1.0.0-beta.129
       nimiq-icons:
-        specifier: 1.0.0-beta.130
-        version: 1.0.0-beta.130
+        specifier: catalog:unocss
+        version: 1.0.0-beta.132
       nuxt-module-feed:
         specifier: catalog:nuxt
         version: 1.1.4(magicast@0.3.5)(rollup@4.52.4)
@@ -6120,9 +6126,6 @@ packages:
 
   nimiq-flags@1.0.0-beta.129:
     resolution: {integrity: sha512-xdWea8J819qGMrhdQiiSOw/Bu5mwNGB41QsOzpyfclbKTNOglLpeUG0Gz4WSB5s45A4L0b0LaiNEGNsozv/cvg==}
-
-  nimiq-icons@1.0.0-beta.130:
-    resolution: {integrity: sha512-nl/kPZqaKqk79g3RN9nwCivFc05/ZxjGwLtpJtjySbjDvofea/kQQ74riTJlRAAHyT3ceiHZpKBfiNLPRAjiUQ==}
 
   nimiq-icons@1.0.0-beta.132:
     resolution: {integrity: sha512-PlsM7aeFxbCDuS8nGcXYKfuf0g2N5RXmN0Bj7l6fjzgszQG2So/uJYmxGBHtqmRyWuVhZI6jZoNNZHez/8w8qQ==}
@@ -14819,10 +14822,6 @@ snapshots:
       - vite
 
   nimiq-flags@1.0.0-beta.129:
-    dependencies:
-      '@iconify/types': 2.0.0
-
-  nimiq-icons@1.0.0-beta.130:
     dependencies:
       '@iconify/types': 2.0.0
 
