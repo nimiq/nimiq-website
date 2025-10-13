@@ -12,13 +12,14 @@ const open = computed(() => {
     <AlertDialogPortal>
       <AlertDialogContent
         outline="~ 1.5 neutral/10"
-        class="nq-prose-compact" mx-auto rounded-8 bg-neutral-0 max-w-none shadow transition-all duration-300 ease-out inset-x-12 bottom-12 fixed z-101 f-p-lg flex="~ col" style="box-shadow:
+        class="nq-prose-compact"
+        mx-auto rounded-8 bg-neutral-0 max-w-none shadow transition-all duration-300 ease-out inset-x-12 bottom-12 fixed z-101 f-p-lg flex="~ col" style="box-shadow:
         0 4px 6px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 6%, transparent),
         0 -4px 6px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 6%, transparent),
         0 -8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent),
-        0 8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent);"
+        0 8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent);" @open-auto-focus.prevent
       >
-        <AlertDialogTitle text="f-xl neutral-900" font-semibold leading-tight my-0 ml-0>
+        <AlertDialogTitle text="f-xl neutral-900" leading-tight font-semibold my-0 ml-0>
           Cookie Consent
         </AlertDialogTitle>
 
