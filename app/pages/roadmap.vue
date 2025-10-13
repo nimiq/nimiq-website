@@ -53,7 +53,7 @@ const newsletterSlice: Content.NewsletterSubscriptionSlice = {
 </script>
 
 <template>
-  <NuxtLayout footer-bg-color="white" draft>
+  <NuxtLayout footer-bg-color="white">
     <HeroDefault :primary="{ headline, subline, bgColor: 'grey' }" />
 
     <label v-if="isDev" flex="~ items-center gap-8" ring="1.5 blue/40" px-12 py-4 rounded-full bg-neutral-300 bottom-80 right-32 fixed z-100 f-text-xs>
