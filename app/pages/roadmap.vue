@@ -86,7 +86,7 @@ const newsletterSlice: Content.NewsletterSubscriptionSlice = {
           <textarea v-model="milestonesJson" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box />
         </TabsContent>
         <TabsContent v-for="(item, i) in layers" :key="item.name" nq-mt-12 :value="item.name">
-          <textarea v-model="layersJson[i]" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box />
+          <textarea :value="layersJson[i]" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box @input="(e) => layersJson[i] = (e.target as HTMLTextAreaElement).value" />
         </TabsContent>
       </TabsRoot>
     </section>
