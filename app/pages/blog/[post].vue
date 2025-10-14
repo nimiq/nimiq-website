@@ -24,7 +24,6 @@ useIntersectionObserver(articleRef, () => {
 })
 
 if (post.value?.data.body.at(0)?.primary) {
-  // @ts-expect-error this is a hack to get the bg to work
   post.value.data.body[0]!.primary.bgColor = 'grey'
 }
 </script>

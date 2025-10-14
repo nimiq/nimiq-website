@@ -2,7 +2,7 @@
   "name": "website",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.18.1",
   "scripts": {
     "dev": "nuxt dev",
     "build": "NUXT_ENVIRONMENT=production nuxt build",
