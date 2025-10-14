@@ -81,6 +81,7 @@ export const layers: Layer[] = [
           { icon: 'i-nimiq:duotone-usdc-nim-swap', name: 'Crypto/fiat swaps', year: 2022, month: 12, row: 2 },
           { icon: 'i-nimiq:leaf-3', name: 'Pre-Staking', year: 2024, month: 5 },
           { icon: 'i-nimiq:leaf-2', name: 'Staking', year: 2024, month: 11 },
+          { icon: 'i-nimiq:logos-usdt-mono', name: 'Cashlink Support for Stablecoins', year: 2025, month: 12 },
         ],
       },
       {
@@ -112,6 +113,22 @@ export const layers: Layer[] = [
         items: [
           { icon: 'i-nimiq:logos-nimiq-pay-horizontal-mono w-42 text-18', year: 2024, month: 4 },
           { name: 'BTC-Lightning Support', year: 2024, month: 7 },
+          { name: 'Mini-App Framework', year: 2025, month: 12 },
+        ],
+      },
+      {
+        name: 'MultiSig App',
+        items: [
+          { name: 'NIM Support', year: 2025, month: 12 },
+        ],
+      },
+      {
+        name: 'Cryptopayment.link',
+        items: [
+          { name: 'First Version', year: 2020, month: 2 },
+          { name: 'Improved Version Released', year: 2022, month: 6 },
+          { icon: 'i-nimiq:logos-usdc-mono', name: 'USDC Support', year: 2023, month: 7 },
+          { icon: 'i-nimiq:logos-usdt-mono', name: 'USDT Support', year: 2025, month: 12 },
         ],
       },
     ],
