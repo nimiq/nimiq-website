@@ -6,16 +6,24 @@ import NewsletterSubscription from '~/slices/NewsletterSubscription/index.vue'
 const isDev = useRuntimeConfig().public.environment.isProduction === false
 const showEditor = ref(isDev)
 
-const milestonesJson = isDev
+const milestones = isDev
   ? useLocalStorage('roadmap-milestones-json', JSON.stringify(defaultMilestones, null, 2))
   : ref(JSON.stringify(defaultMilestones, null, 2))
 
-const layersJson = isDev
-  ? defaultLayers.map((layer, i) => useLocalStorage(`roadmap-layer-${i}-json`, JSON.stringify(layer, null, 2)))
-  : defaultLayers.map(layer => ref(JSON.stringify(layer, null, 2)))
+const networkLayer = isDev
+  ? useLocalStorage('roadmap-layer-0-json', JSON.stringify(defaultLayers[0], null, 2))
+  : ref(JSON.stringify(defaultLayers[0], null, 2))
 
-const milestones = computed(() => JSON.parse(milestonesJson.value))
-const layers = computed(() => layersJson.map(json => JSON.parse(json.value)))
+const appLayer = isDev
+  ? useLocalStorage('roadmap-layer-1-json', JSON.stringify(defaultLayers[1], null, 2))
+  : ref(JSON.stringify(defaultLayers[1], null, 2))
+
+const adoptionLayer = isDev
+  ? useLocalStorage('roadmap-layer-2-json', JSON.stringify(defaultLayers[2], null, 2))
+  : ref(JSON.stringify(defaultLayers[2], null, 2))
+
+const parsedMilestones = computed(() => JSON.parse(milestones.value))
+const layers = computed(() => [JSON.parse(networkLayer.value), JSON.parse(appLayer.value), JSON.parse(adoptionLayer.value)])
 
 const headline = computed(() => ([{ type: 'heading1', text: 'Roadmap', spans: [] }] as TitleField))
 const subline = computed(() => ([{ type: 'paragraph', text: 'Browse the project\'s past and future.', spans: [], direction: 'ltr' }] as RichTextField))
@@ -83,16 +91,22 @@ const newsletterSlice: Content.NewsletterSubscriptionSlice = {
           </TabsTrigger>
         </TabsList>
         <TabsContent nq-mt-12 value="milestones">
-          <textarea v-model="milestonesJson" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box />
+          <textarea v-model="milestones" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box />
         </TabsContent>
-        <TabsContent v-for="(item, i) in layers" :key="item.name" nq-mt-12 :value="item.name">
-          <textarea :value="layersJson[i]" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box @input="(e) => layersJson[i] = (e.target as HTMLTextAreaElement).value" />
+        <TabsContent nq-mt-12 value="Network Layer">
+          <textarea v-model="networkLayer" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box />
+        </TabsContent>
+        <TabsContent nq-mt-12 value="App Layer">
+          <textarea v-model="appLayer" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box />
+        </TabsContent>
+        <TabsContent nq-mt-12 value="Adoption Layer">
+          <textarea v-model="adoptionLayer" font-mono bg-neutral-100 min-h-90vh w-full f-text-sm nq-input-box />
         </TabsContent>
       </TabsRoot>
     </section>
 
     <section class="nq-no-color" mx-32 px-0 bg-neutral-100 block children:max-w-none>
-      <Roadmap :milestones :layers :first-year :first-month />
+      <Roadmap :milestones="parsedMilestones" :layers :first-year :first-month />
     </section>
 
     <NewsletterSubscription
