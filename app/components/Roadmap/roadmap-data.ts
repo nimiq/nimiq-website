@@ -81,7 +81,7 @@ export const layers: Layer[] = [
           { icon: 'i-nimiq:duotone-usdc-nim-swap', name: 'Crypto/fiat swaps', year: 2022, month: 12, row: 2 },
           { icon: 'i-nimiq:leaf-3', name: 'Pre-Staking', year: 2024, month: 5 },
           { icon: 'i-nimiq:leaf-2', name: 'Staking', year: 2024, month: 11 },
-          { icon: 'i-nimiq:logos-usdt-mono', name: 'Cashlink Support for Stablecoins', year: 2025, month: 12 },
+          { icon: 'i-nimiq:logos-usdt-mono', name: 'Stablecoins Cashlink', year: 2025, month: 12 },
         ],
       },
       {
@@ -91,8 +91,8 @@ export const layers: Layer[] = [
             { icon: 'i-nimiq:logos-nimiq-horizontal-mono w-68 h-16', name: 'Checkout', year: 2020, month: 2 },
           ],
           [
-            { icon: 'i-nimiq:logos-cpl-horizontal-mono w-82', name: '1.0', year: 2020, month: 12 },
-            { icon: 'i-nimiq:logos-cpl-horizontal-mono  w-82', name: '2.0', year: 2022, month: 1, milestone: 'Accessibility for Merchants' },
+            { icon: 'i-nimiq:logos-cpl-horizontal-mono w-130', name: '1.0', year: 2020, month: 12 },
+            { icon: 'i-nimiq:logos-cpl-horizontal-mono  w-130', name: '2.0', year: 2022, month: 1, milestone: 'Accessibility for Merchants' },
           ],
         ],
       },
