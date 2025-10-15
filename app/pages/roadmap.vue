@@ -80,7 +80,7 @@ const newsletterSlice: Content.NewsletterSubscriptionSlice = {
       </span>
     </label>
 
-    <section v-if="showEditor" nq-wide>
+    <section v-if="showEditor">
       <TabsRoot w-full :default-value="layers[0]!.name">
         <TabsList p-2 rounded-full bg-neutral-300 ring="1.5 neutral/5" flex="~ items-center gap-16">
           <TabsTrigger value="milestones" bg="neutral-300 data-active:neutral" text="neutral-900 data-active:neutral-0 f-xs" px-12 py-8 rounded-full nq-label>
@@ -105,7 +105,7 @@ const newsletterSlice: Content.NewsletterSubscriptionSlice = {
       </TabsRoot>
     </section>
 
-    <section class="nq-no-color" mx-32 px-0 bg-neutral-100 block children:max-w-none>
+    <section class="nq-no-color" mx-0 px-0 bg-neutral-100 block children:max-w-none>
       <Roadmap :milestones="parsedMilestones" :layers :first-year :first-month />
     </section>
 
