@@ -124,6 +124,8 @@ export default defineConfig({
     'text-white',
     'bg-gold-500',
     'text-gold-1100',
+    'w-96',
+    'text-inherit',
   ],
 
   theme: {
