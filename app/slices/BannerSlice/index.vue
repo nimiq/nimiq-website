@@ -166,7 +166,7 @@ const items = (await Promise.all(props.slice.items.map(async (item) => {
       </ul>
     </div>
     <div v-else-if="slice.variation === 'withRibbon'" max-w-none>
-      <RibbonContainer label="New release" color="purple" shadow>
+      <RibbonContainer label="New release" color="purple" shadow icon="i-nimiq:verified-filled" var:top:-25px>
         <div flex="~ col lg:row gap-x-32 md:gap-x-40 gap-y-64 items-center" p="x-32 md:x-72 y-64 md:t-72 lg:b-72" w-full>
           <div flex="~ col ~md:items-center">
             <div v-if="slice.primary.icon" flex="~ items-center gap-12">
