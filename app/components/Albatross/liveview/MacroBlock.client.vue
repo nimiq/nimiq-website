@@ -9,11 +9,11 @@ const progress = computed(() => Math.min(props.block.votes / requiredVotes.value
 
 <template>
   <div :class="{ accepted: progress === 1 }" title="Macro Block" flex="~ col justify-between items-center shrink-0" text="14 white center" text-white my--24 rounded-8 bg-green h-208 w-160 transition-300 relative>
-    <header text-11 font-bold lh-24 uppercase tracking="0.1em">
+    <header text-11 lh-24 font-bold uppercase tracking="0.1em">
       Macro Block
     </header>
 
-    <div text-24 font-bold lh-none>
+    <div text-24 lh-none font-bold>
       M{{ block.batch }}
     </div>
 

@@ -35,7 +35,7 @@ const fontSizeClass = computed(() => {
 
 <template>
   <div title="Micro Block">
-    <header v-if="block.isSkip" text="12 white center" mt--22 py-4 rounded-t-8 w-160 bg-gradient-orange nq-label>
+    <header v-if="block.isSkip" text="12 white center" mt--22 py-4 rounded-t-8 bg-gradient-orange w-160 nq-label>
       Skip Block
     </header>
 
@@ -44,7 +44,7 @@ const fontSizeClass = computed(() => {
         <p font-bold :class="fontSizeClass">
           #{{ block.number }}
         </p>
-        <p v-if="txCount > 0" text-13 font-semibold lh-none>
+        <p v-if="txCount > 0" text-13 lh-none font-semibold>
           {{ txCount }} TX
         </p>
       </div>

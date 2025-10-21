@@ -68,7 +68,7 @@ const isHome = route.fullPath === '/'
               </transition>
             </div>
             <div v-if="navigation.howToTitle && navigation.howToLinks.length > 0" px-40 py-32 bg-darkblue bg-op-6>
-              <p text-12 font-bold lh-none op-60 whitespace-nowrap uppercase>
+              <p text-12 lh-none font-bold op-60 whitespace-nowrap uppercase>
                 {{ navigation.howToTitle }}
               </p>
 
@@ -201,7 +201,7 @@ const isHome = route.fullPath === '/'
                   :field="href" flex="~ col gap-12" bg="hocus:darkblue/6"
                   un-text="darkblue/90 hocus:darkblue" p-24 rounded-4 w-full transition-colors
                 >
-                  <p font-semibold lh-none>
+                  <p lh-none font-semibold>
                     {{ label }}
                   </p>
                   <p text-14>
