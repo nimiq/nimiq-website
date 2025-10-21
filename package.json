@@ -84,7 +84,6 @@
     "unocss": "catalog:unocss",
     "unocss-preset-onmax": "catalog:unocss",
     "unplugin-vue-router": "catalog:nuxt",
-    "vite-plugin-top-level-await": "catalog:build",
     "vite-plugin-wasm": "catalog:build",
     "vue": "catalog:frontend",
     "vue-router": "catalog:frontend",
