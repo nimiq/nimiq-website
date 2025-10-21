@@ -230,6 +230,99 @@
       },
       "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
       "items": {}
+    },
+    {
+      "id": "withRibbon",
+      "name": "WithRibbon",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "BannerSlice",
+      "primary": {
+        "backgroundColor": {
+          "config": {
+            "label": "Background Color",
+            "placeholder": "",
+            "options": [
+              "blue-dark",
+              "green",
+              "white",
+              "grey",
+              "blue"
+            ]
+          },
+          "type": "Select"
+        },
+        "overlapsNextSection": {
+          "type": "Boolean",
+          "config": {
+            "label": "Overlaps Next Section",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": true
+          }
+        },
+        "draft": {
+          "type": "Boolean",
+          "config": {
+            "label": "draft",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        },
+        "icon": {
+          "type": "Text",
+          "config": {
+            "label": "icon",
+            "placeholder": ""
+          }
+        },
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "label",
+            "placeholder": ""
+          }
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading3,strong,em,hyperlink,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "subline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "subline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
     }
   ]
 }

@@ -116,7 +116,8 @@
                   "options": [
                     "Nimiq Pay",
                     "CPL",
-                    "Nimiq Wallet"
+                    "Nimiq Wallet",
+                    "Multisig Wallet"
                   ]
                 }
               },
@@ -127,6 +128,15 @@
                   "placeholder": "",
                   "allowTargetBlank": true,
                   "select": null
+                }
+              },
+              "draft": {
+                "type": "Boolean",
+                "config": {
+                  "label": "draft",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
                 }
               }
             }

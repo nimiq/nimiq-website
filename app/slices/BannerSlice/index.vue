@@ -4,6 +4,13 @@ import type { BannerSliceSliceDefaultItem } from '~~/prismicio-types'
 
 const props = defineProps(getSliceComponentProps<Content.BannerSliceSlice>())
 
+const { showDrafts } = useRuntimeConfig().public
+const showBanner = computed(() => {
+  if (props.slice.variation !== 'withRibbon')
+    return true
+  return props.slice.primary.draft && showDrafts
+})
+
 // @unocss-include
 
 const classesPositions = [
@@ -53,6 +60,7 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
 
 <template>
   <section
+    v-if="showBanner"
     nq-overlaps bg-neutral-0 relative z-10 :class="{ 'pb-0': slice.variation !== 'default' }"
     data-slice-type="banner"
   >

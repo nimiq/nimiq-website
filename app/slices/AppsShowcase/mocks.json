@@ -108,6 +108,7 @@
               [
                 "link",
                 {
+                  "key": "0e308315-6ad0-4583-892e-fd9cc84579b3",
                   "__TYPE__": "LinkContent",
                   "value": {
                     "__TYPE__": "ExternalLink",
@@ -119,8 +120,15 @@
                 "item",
                 {
                   "__TYPE__": "FieldContent",
-                  "value": "CPL",
+                  "value": "Nimiq Wallet",
                   "type": "Select"
+                }
+              ],
+              [
+                "draft",
+                {
+                  "__TYPE__": "BooleanContent",
+                  "value": true
                 }
               ]
             ]

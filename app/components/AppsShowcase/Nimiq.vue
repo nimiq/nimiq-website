@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import type { AppsShowcaseSliceNimiqsAppsPrimaryAppsItem } from '~~/prismicio-types'
 
-defineProps<{ items: AppsShowcaseSliceNimiqsAppsPrimaryAppsItem[] }>()
+const { items: _items } = defineProps<{ items: AppsShowcaseSliceNimiqsAppsPrimaryAppsItem[] }>()
+
+const { showDrafts } = useRuntimeConfig().public
+const items = computed(() => _items.filter(item => showDrafts || !item.draft))
 </script>
 
 <template>

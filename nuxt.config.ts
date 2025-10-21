@@ -64,25 +64,17 @@ export default defineNuxtConfig({
   ],
 
   vite: {
-    plugins: [
-      wasm(),
-      topLevelAwait(),
-    ],
+    plugins: [wasm(), topLevelAwait()],
     optimizeDeps: {
       exclude: ['@nimiq/core', '*.wasm'],
     },
     worker: {
-      plugins: () => [
-        wasm(),
-        topLevelAwait(),
-      ],
+      plugins: () => [wasm(), topLevelAwait()],
     },
 
     build: {
       rollupOptions: {
-        external: [
-          /^.*\.node$/,
-        ],
+        external: [/^.*\.node$/],
       },
     },
   },
@@ -103,7 +95,9 @@ export default defineNuxtConfig({
 
     robots: {
       // Only generate robots.txt for production and GitHub Pages
-      robotsTxt: !environment.environment.isProduction && !environment.environment.isGitHubPages,
+      robotsTxt:
+        !environment.environment.isProduction
+        && !environment.environment.isGitHubPages,
     },
 
     schemaOrg: {
@@ -162,13 +156,19 @@ export default defineNuxtConfig({
       nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
     },
     cors: {
-      allowedOrigins: ['https://www.nimiq.com', 'https://prestaking.nimiq.network', process.env.NIMIQ_STATIC_PREVIEW].filter(Boolean) as string[],
+      allowedOrigins: [
+        'https://www.nimiq.com',
+        'https://prestaking.nimiq.network',
+        process.env.NIMIQ_STATIC_PREVIEW,
+      ].filter(Boolean) as string[],
     },
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || '/',
       clientNetwork: 'MainAlbatross',
       apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
-      validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || 'https://validators-api-mainnet.nuxt.dev',
+      validatorsApi:
+        process.env.NUXT_PUBLIC_VALIDATORS_API
+        || 'https://validators-api-mainnet.nuxt.dev',
       cryptoMapSupabase: {
         url: process.env.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_URL,
         key: process.env.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_KEY,
@@ -180,7 +180,8 @@ export default defineNuxtConfig({
       enableDevAnalytics: true,
       wordsChallenge: {
         publicAddress: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_PUBLIC_ADDRESS,
-        firstRealWords: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS,
+        firstRealWords:
+          process.env.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS,
       },
     },
     zoho: {
@@ -279,8 +280,7 @@ export default defineNuxtConfig({
       },
     },
     rollupConfig: {
-      external: [
-      ],
+      external: [],
     },
     prerender: {
       crawlLinks: false,
@@ -288,7 +288,7 @@ export default defineNuxtConfig({
         '/nimiq-website/_ipx/s_1600x900/assets/images/gods-light.webp',
         '/nimiq-website/_ipx/s_3200x1800/assets/images/gods-light.webp',
         '/nimiq-website/_ipx/_/assets/images/apple-store-badge.png',
-        '/nimiq-website/_ipx/_/assets/images/google-play-badge.png',
+        '/nimiq-website/_ipx/_/assets/images/google-play-badge.svg',
         // External pages built by other projects - prevent Nuxt from trying to generate them
         '/vote',
         '/cards',
@@ -323,9 +323,20 @@ export default defineNuxtConfig({
       ],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-        { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
-        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#1f2348' },
+        {
+          name: 'apple-mobile-web-app-status-bar-style',
+          content: 'black-translucent',
+        },
+        {
+          name: 'theme-color',
+          media: '(prefers-color-scheme: light)',
+          content: 'white',
+        },
+        {
+          name: 'theme-color',
+          media: '(prefers-color-scheme: dark)',
+          content: '#1f2348',
+        },
       ],
       htmlAttrs: {
         lang: 'en',
@@ -350,10 +361,7 @@ export default defineNuxtConfig({
       fonts: ['Mulish:400', 'Mulish:700'],
     },
     feed: {
-      sources: [
-        { path: '/feed.xml', type: 'rss2', cacheTime: 0 },
-      ],
+      sources: [{ path: '/feed.xml', type: 'rss2', cacheTime: 0 }],
     },
   }),
-
 })
