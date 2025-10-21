@@ -1,7 +1,7 @@
 import type { MacroBlock, MicroBlock } from 'nimiq-rpc-client-ts/types'
 import { initRpcClient } from 'nimiq-rpc-client-ts/client'
 import { getBlockByNumber, getBlockNumber } from 'nimiq-rpc-client-ts/http'
-import { BlockType } from 'nimiq-rpc-client-ts/types'
+import { BlockTypeEnum } from 'nimiq-rpc-client-ts/types'
 import { subscribeForHeadBlock } from 'nimiq-rpc-client-ts/ws'
 
 export default defineWebSocketHandler({
@@ -24,9 +24,9 @@ export default defineWebSocketHandler({
       if (!block)
         return
       const processedBlock
-          = await (block.type === BlockType.Micro
-            ? getMicroblock(block)
-            : getMacroblock(block as MacroBlock))
+        = await (block.type === BlockTypeEnum.Micro
+          ? getMicroblock(block)
+          : getMacroblock(block as MacroBlock))
       if (shouldEnqueue) {
         blockQueue.set(processedBlock.number, processedBlock)
       }
@@ -50,7 +50,7 @@ export default defineWebSocketHandler({
         getBlockByNumber({ blockNumber, includeBody: true }).then(async ([ok, err, block]) => {
           if (!ok)
             throw createError({ status: 500, message: `Failed to get block ${blockNumber}: ${err}` })
-          return block.type === BlockType.Macro
+          return block.type === BlockTypeEnum.Macro
             ? getMacroblock(block as MacroBlock)
             : getMicroblock(block)
         }),
