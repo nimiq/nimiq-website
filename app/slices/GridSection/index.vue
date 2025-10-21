@@ -57,8 +57,8 @@ const bgClass = getColorClass(props.slice.primary.bgColor)
       </ul>
     </template>
     <template v-else-if="slice.variation === 'threeColumnsIconsInline'">
-      <ul flex="~ col lg:row gap-y-24 lg:items-center" w-full>
-        <li v-for="({ content, icon }, i) in slice.primary.items" :key="i" flex-1 pb="24 last:0 lg:0" lg:p="x-32 first:l-0 last:r-0" border="b-1 lg:b-0 lg:r-1 last:0 neutral/15 solid" flex="~ gap-x-12 items-center">
+      <ul flex="~ col lg:row gap-y-24 md:items-center" w-full>
+        <li v-for="({ content, icon }, i) in slice.primary.items" :key="i" flex-1 flex="~ gap-x-12 items-center">
           <div style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)" stack rounded-full shrink-0 size-32>
             <div :class="icon" text="16 white" />
           </div>

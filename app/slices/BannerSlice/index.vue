@@ -49,19 +49,22 @@ async function getBackgroundItems(background: BannerSliceSliceDefaultItem['backg
   }
 }
 
-const items = await Promise.all(props.slice.items.map(async (item) => {
+const items = (await Promise.all(props.slice.items.map(async (item) => {
+  if (props.slice.variation === 'withRibbon')
+    return undefined
   const bgItems = (await getBackgroundItems(item.backgroundPattern)).filter(i => i.link)
   if (!item.link)
     throw new Error(`Link is required in BannerSlice. Context: ${JSON.stringify(props.context)}`)
 
   return { bgItems, hasBgItems: bgItems.length > 0, ...item }
-}))
+}))).filter((item): item is NonNullable<typeof item> => item !== undefined)
 </script>
 
 <template>
   <section
     v-if="showBanner"
-    nq-overlaps bg-neutral-0 relative z-10 :class="{ 'pb-0': slice.variation !== 'default' }"
+    nq-overlaps bg-neutral-0 relative z-10 of-x-clip
+    :class="{ 'pb-0': slice.variation !== 'default', 'px-8 [--pt:0]': slice.variation === 'withRibbon' }"
     data-slice-type="banner"
   >
     <template v-if="slice.variation === 'default'">
@@ -161,6 +164,24 @@ const items = await Promise.all(props.slice.items.map(async (item) => {
           <p>{{ description }}</p>
         </li>
       </ul>
+    </div>
+    <div v-else-if="slice.variation === 'withRibbon'" max-w-none>
+      <RibbonContainer label="New release" color="purple" shadow>
+        <div flex="~ col lg:row gap-x-32 md:gap-x-40 gap-y-64 items-center" p="x-32 md:x-72 y-64 md:t-72 lg:b-72" w-full>
+          <div flex="~ col ~md:items-center">
+            <div v-if="slice.primary.icon" flex="~ items-center gap-12">
+              <div :class="slice.primary.icon" f-size="40/48" />
+              <h2 f-text="20/22" text="neutral left" font-600>
+                {{ slice.primary.label }}
+              </h2>
+            </div>
+            <RichText wrapper="div" :field="slice.primary.headline" f-mt-2xs text="f-xl ~md:center" />
+            <RichText wrapper="div" :field="slice.primary.subline" text="neutral-700 f-xl ~md:center" max-w-55ch f-mt-xs />
+            <PrismicLink v-if="hasLink(slice.primary.link)" :field="slice.primary.link" f-mt-md nq-arrow nq-pill-lg nq-pill-blue />
+          </div>
+          <ProxiedPrismicImage v-if="slice.primary.image.url" :field="slice.primary.image" rounded-8 h-auto max-w-full w-max of-hidden max-lg:max-h-120 md:max-w-352 max-md:self-start />
+        </div>
+      </RibbonContainer>
     </div>
   </section>
 </template>

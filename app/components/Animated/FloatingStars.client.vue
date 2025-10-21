@@ -7,16 +7,56 @@ const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
 const ctx = computed(() => canvas.value?.getContext('2d'))
 const { pixelRatio } = useDevicePixelRatio()
 
-const starsCount = 6
+const starsCount = 10
 
 const MIN_DURATION = 30 * 1000 // 30s
 const MAX_DURATION = 60 * 1000 // 60s
 
-// Adjusting angle range to be between 9 and ~4 o'clock
-const minAngle = Math.PI
-const maxAngle = Math.PI * 2.2
+// Spawn everywhere except the 6–9 o'clock wedge (angles π/2 → π)
+const blockedStart = Math.PI / 2
+const blockedEnd = Math.PI
+const allowedRanges = [
+  { start: 0, end: blockedStart },
+  { start: blockedEnd, end: Math.PI * 2 },
+]
+const slotCount = starsCount * 2
+const totalAllowedLength = allowedRanges.reduce((sum, { start, end }) => sum + Math.max(0, end - start), 0)
+const angleSlots: number[] = []
+let slotsRemaining = slotCount
 
-const angles = Array.from({ length: starsCount * 2 }, () => minAngle + Math.random() * (maxAngle - minAngle))
+for (const [index, range] of allowedRanges.entries()) {
+  const length = Math.max(0, range.end - range.start)
+  if (length === 0)
+    continue
+
+  let rangeSlots = index === allowedRanges.length - 1
+    ? slotsRemaining
+    : Math.max(1, Math.round(slotCount * (length / totalAllowedLength)))
+  rangeSlots = Math.min(rangeSlots, slotsRemaining)
+  if (rangeSlots <= 0)
+    continue
+
+  const step = length / rangeSlots
+  for (let i = 0; i < rangeSlots; i++) {
+    const base = range.start + (i + 0.5) * step
+    const jitter = (Math.random() - 0.5) * step * 0.4
+    angleSlots.push(normalizeAngle(base + jitter))
+  }
+
+  slotsRemaining -= rangeSlots
+}
+
+if (slotsRemaining > 0 && allowedRanges.length) {
+  const { start, end } = allowedRanges.at(-1)!
+  const step = (end - start) / slotsRemaining || (Math.PI * 2) / slotsRemaining
+  for (let i = 0; i < slotsRemaining; i++) {
+    const base = start + (i + 0.5) * step
+    angleSlots.push(normalizeAngle(base))
+  }
+}
+
+angleSlots.sort(() => Math.random() - 0.5)
+let nextSlotIndex = 0
 
 const stars = ref<Star[]>([])
 
@@ -37,12 +77,6 @@ function animate() {
   // }
   // ctx.value.stroke()
 
-  // spawn new stars up to starsCount
-  if (stars.value.length < starsCount && Math.random() < 0.03) {
-    const angle = angles[Math.floor(Math.random() * angles.length)]!
-    stars.value.push(new Star(angle))
-  }
-
   // update & draw
   for (let i = stars.value.length - 1; i >= 0; i--) {
     const star = stars.value[i]!
@@ -53,6 +87,11 @@ function animate() {
     else {
       star.draw(ctx.value)
     }
+  }
+
+  while (stars.value.length < starsCount) {
+    if (!spawnStar())
+      break
   }
 }
 
@@ -65,18 +104,14 @@ whenever(ctx, () => {
   canvas.value.height = canvas.value.offsetHeight * pixelRatio.value
   ctx.value!.scale(pixelRatio.value, pixelRatio.value)
 
+  nextSlotIndex = Math.floor(Math.random() * angleSlots.length)
+
   // clear & refill with a few stars already in-flight
   stars.value = []
-  const initialStarCount = Math.floor(starsCount * 0.75)
+  const initialStarCount = starsCount
   for (let i = 0; i < initialStarCount; i++) {
-    const star = new Star(angles[Math.floor(Math.random() * angles.length)]!)
-    // jump into random progress of its life [0–0.8]
-    const p = Math.random() * 0.8
-    star.startTime = performance.now() - star.duration * p
-    star.progress = p
-    star.x = star.originalX + star.dx * p
-    star.y = star.originalY + star.dy * p
-    stars.value.push(star)
+    if (!spawnStar(Math.random() * 0.8))
+      break
   }
 
   resume()
@@ -87,6 +122,36 @@ const starSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 
 </svg>`
 const starImage = new Image()
 starImage.src = `data:image/svg+xml;charset=utf8,${encodeURIComponent(starSVG)}`
+
+function normalizeAngle(angle: number) {
+  const twoPi = Math.PI * 2
+  angle %= twoPi
+  return angle < 0 ? angle + twoPi : angle
+}
+
+function spawnStar(progress?: number) {
+  const slotIndex = findAvailableSlot()
+  if (slotIndex === undefined)
+    return false
+
+  const star = new Star(angleSlots[slotIndex]!, slotIndex)
+  if (progress !== undefined)
+    star.seedProgress(progress)
+  stars.value.push(star)
+  return true
+}
+
+function findAvailableSlot(attempts = angleSlots.length) {
+  for (let i = 0; i < attempts; i++) {
+    const slotIndex = nextSlotIndex
+    nextSlotIndex = (nextSlotIndex + 1) % angleSlots.length
+    const hasYoungStar = stars.value.some(star => star.slotIndex === slotIndex && star.progress < 0.25)
+    if (hasYoungStar)
+      continue
+    return slotIndex
+  }
+  return undefined
+}
 
 class Star {
   x = 0
@@ -102,9 +167,11 @@ class Star {
   initialOpacity = 0
   duration = 0 // ms
   completed = false
+  slotIndex = 0
 
-  constructor(angle: number) {
+  constructor(angle: number, slotIndex: number) {
     this.angle = angle
+    this.slotIndex = slotIndex
     this.reset()
   }
 
@@ -134,10 +201,18 @@ class Star {
     this.size = Math.random() * 2.5 + 0.75
     this.initialOpacity = Math.random() * 0.4 + 0.6
 
-    // duration 15–25s
+    // duration 30–60s
     this.duration = Math.random() * (MAX_DURATION - MIN_DURATION) + MIN_DURATION
     this.startTime = performance.now()
     this.progress = 0
+    this.completed = false
+  }
+
+  seedProgress(p: number) {
+    this.startTime = performance.now() - this.duration * p
+    this.progress = p
+    this.x = this.originalX + this.dx * p
+    this.y = this.originalY + this.dy * p
     this.completed = false
   }
 

@@ -60,8 +60,7 @@ section.gradient-transparent-green {
 
 section.gradient-transparent-green-transparent {
   --pt: 160px;
-  --pb: 160px;
-  --gradient-height: 252px;
+  --gradient-height: 352px;
   background: linear-gradient(
     180deg,
     rgb(var(--nq-neutral-0)) 0px,
@@ -97,7 +96,16 @@ section.gradient-transparent-green-transparent {
     rgb(var(--nq-neutral-0)) calc(100% - 0.1179 * var(--gradient-height)),
     rgb(var(--nq-neutral-0)) 100%
   );
-  --uno: 'bg-green';
+  --uno: 'bg-green f-pb-320/456';
+
+  + [nq-overlaps] {
+    > * {
+      --uno: 'translate-y--320';
+    }
+    + section {
+      --pt: 0;
+    }
+  }
 }
 
 @keyframes ringPulse {

@@ -70,6 +70,7 @@ export default defineConfig({
     'i-nimiq:shield',
     'i-nimiq:duotone-htlc-box',
     'i-nimiq:duotone-envelope',
+    'i-nimiq:logos-multisig',
   ],
 
   theme: {

@@ -18,9 +18,9 @@ function getGradientClass() {
     return
   const currentIndex = slices.indexOf(slice)
   // @ts-expect-error the types are meh
-  const nextSliceBgColor = slices.at(currentIndex + 1)?.primary.bgColor
+  const nextSliceBgColor = slices.at(currentIndex + 1)?.primary.bgColor || 'white'
   // @ts-expect-error the types are meh
-  const prevSliceBgColor = slices.at(currentIndex - 1)?.primary.bgColor
+  const prevSliceBgColor = slices.at(currentIndex - 1)?.primary.bgColor || 'white'
   return (nextSliceBgColor === prevSliceBgColor) ? 'gradient-transparent-green-transparent' : 'gradient-transparent-green'
 }
 </script>
@@ -70,7 +70,7 @@ section:where([bg-neutral-0], .bg-neutral-0):not(
   --uno: 'f-pt-5xl border-t border-neutral-300';
 }
 
-section[bg-neutral-0]:has(+ section[data-slice-type='simple-headline'].bg-neutral-0) {
+section[bg-neutral-0]:not([data-slice-type='banner']):has(+ section[data-slice-type='simple-headline'].bg-neutral-0) {
   --uno: 'f-pt-5xl';
 }
 
