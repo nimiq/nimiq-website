@@ -24,13 +24,13 @@ catalogs:
     vue-router: ^4.5.1
     vue-tsc: ^2.2.10
   lint:
-    '@antfu/eslint-config': ^4.13.1
+    '@antfu/eslint-config': ^5.4.1
     '@nuxt/eslint': latest
-    '@unocss/eslint-plugin': ^66.1.2
-    eslint: ^9.27.0
-    eslint-plugin-format: ^1.0.1
-    lint-staged: ^16.0.0
-    simple-git-hooks: ^2.13.0
+    '@unocss/eslint-plugin': ^66.5.2
+    eslint: ^9.37.0
+    eslint-plugin-format: ^1.0.2
+    lint-staged: ^16.2.3
+    simple-git-hooks: ^2.13.1
   nimiq:
     '@nimiq/core': ^2.1.1
     '@nimiq/utils': ^0.12.4

@@ -25,7 +25,7 @@ const { width: asideWidth } = useElementSize(asideRef)
 const [DefineMetric, ReuseMetric] = createReusableTemplate<{ metricValue: MaybeRef<string>, metricChange?: number, label: string, tooltipInfo?: RichTextField }>()
 const [DefinePrice, Price] = createReusableTemplate<{ data: [number, number], deltaPriceOneDay?: number }>()
 
-  type ControlPosition = 'top' | 'bottom'
+type ControlPosition = 'top' | 'bottom'
 
 // Determine optimal control position based on price trend, with explicit reactivity to period and currency
 const controlsPosition = ref<ControlPosition>('bottom')
