@@ -91,6 +91,7 @@ export const components = defineSliceZoneComponents({
   rich_text_carousel: defineAsyncComponent(
     () => import('./RichTextCarousel/index.vue'),
   ),
+  roadmap: defineAsyncComponent(() => import('./Roadmap/index.vue')),
   roadmap_section: defineAsyncComponent(
     () => import('./RoadmapSection/index.vue'),
   ),

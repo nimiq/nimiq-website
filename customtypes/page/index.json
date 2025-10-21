@@ -82,6 +82,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "roadmap": {
+              "type": "SharedSlice"
+            },
             "app_gallery": {
               "type": "SharedSlice"
             },

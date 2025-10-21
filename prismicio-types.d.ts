@@ -1908,6 +1908,7 @@ export type NimiqEventDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | RoadmapSlice
   | AppGallerySlice
   | NimiqWalletHoverableSlice
   | NimTokenDistributionSlice
@@ -9767,6 +9768,81 @@ export type RichTextCarouselSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Roadmap → Default → Primary*
+ */
+export interface RoadmapSliceDefaultPrimary {
+  /**
+   * Milestones field in *Roadmap → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: roadmap.default.primary.milestones
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  milestones: prismic.KeyTextField;
+
+  /**
+   * First Layer field in *Roadmap → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: roadmap.default.primary.firstLayer
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  firstLayer: prismic.KeyTextField;
+
+  /**
+   * Second Layer field in *Roadmap → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: roadmap.default.primary.secondLayer
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  secondLayer: prismic.KeyTextField;
+
+  /**
+   * Third Layer field in *Roadmap → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: roadmap.default.primary.thirdLayer
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  thirdLayer: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Roadmap Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type RoadmapSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<RoadmapSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Roadmap*
+ */
+type RoadmapSliceVariation = RoadmapSliceDefault;
+
+/**
+ * Roadmap Shared Slice
+ *
+ * - **API ID**: `roadmap`
+ * - **Description**: Roadmap
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type RoadmapSlice = prismic.SharedSlice<
+  "roadmap",
+  RoadmapSliceVariation
+>;
+
+/**
  * Primary content in *RoadmapSection → Default → Primary*
  */
 export interface RoadmapSectionSliceDefaultPrimary {
@@ -12742,6 +12818,10 @@ declare module "@prismicio/client" {
       RichTextCarouselSliceVariation,
       RichTextCarouselSliceDefault,
       RichTextCarouselSliceWithTabs,
+      RoadmapSlice,
+      RoadmapSliceDefaultPrimary,
+      RoadmapSliceVariation,
+      RoadmapSliceDefault,
       RoadmapSectionSlice,
       RoadmapSectionSliceDefaultPrimary,
       RoadmapSectionSliceVariation,

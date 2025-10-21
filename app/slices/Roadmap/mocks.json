@@ -1,0 +1,29 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "milestones": {
+        "__TYPE__": "FieldContent",
+        "value": "gulf",
+        "type": "Text"
+      },
+      "firstLayer": {
+        "__TYPE__": "FieldContent",
+        "value": "shall",
+        "type": "Text"
+      },
+      "secondLayer": {
+        "__TYPE__": "FieldContent",
+        "value": "number",
+        "type": "Text"
+      },
+      "thirdLayer": {
+        "__TYPE__": "FieldContent",
+        "value": "ourselves",
+        "type": "Text"
+      }
+    },
+    "items": []
+  }
+]
