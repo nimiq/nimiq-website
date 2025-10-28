@@ -2,74 +2,74 @@ packages:
   - ./
 catalogs:
   build:
-    '@nuxt/kit': ^4.0.0
-    vite-plugin-wasm: ^3.4.1
-    wrangler: ^4.15.2
+    '@nuxt/kit': ^4.2.0
+    vite-plugin-wasm: ^3.5.0
+    wrangler: ^4.45.1
   frontend:
-    '@pinia/colada': ^0.15.3
-    '@pinia/colada-nuxt': ^0.1.3
-    '@pinia/colada-plugin-delay': ^0.0.6
-    '@pinia/nuxt': ^0.11.1
-    '@unovis/ts': 1.5.1
-    '@unovis/vue': 1.5.1
-    '@vueuse/core': ^13.5.0
-    '@vueuse/nuxt': ^13.5.0
-    '@vueuse/router': ^13.5.0
+    '@pinia/colada': ^0.17.6
+    '@pinia/colada-nuxt': ^0.2.3
+    '@pinia/colada-plugin-delay': ^0.1.0
+    '@pinia/nuxt': ^0.11.2
+    '@unovis/ts': 1.6.1
+    '@unovis/vue': 1.6.1
+    '@vueuse/core': ^13.0.0
+    '@vueuse/nuxt': ^13.9.0
+    '@vueuse/router': ^13.0.0
     medium-zoom: ^1.1.0
-    motion-v: ^1.5.0
+    motion-v: ^1.7.4
     pinia: ^3.0.3
-    reka-ui: ^2.2.1
+    reka-ui: ^2.6.0
     vaul-vue: ^0.4.1
     vue: latest
-    vue-router: ^4.5.1
-    vue-tsc: ^2.2.10
+    vue-router: ^4.6.3
+    vue-tsc: ^3.1.2
   lint:
-    '@antfu/eslint-config': ^5.4.1
+    '@antfu/eslint-config': ^6.1.0
     '@nuxt/eslint': latest
-    '@unocss/eslint-plugin': ^66.5.2
-    eslint: ^9.37.0
+    '@unocss/eslint-plugin': ^66.5.4
+    eslint: ^9.38.0
     eslint-plugin-format: ^1.0.2
-    lint-staged: ^16.2.3
+    lint-staged: ^16.2.6
     simple-git-hooks: ^2.13.1
   nimiq:
-    '@nimiq/core': ^2.1.1
+    '@nimiq/core': ^2.2.0
     '@nimiq/utils': ^0.12.4
     nimiq-rpc-client-ts: ^1.0.0-beta.35
   nuxt:
     '@nuxt/fonts': ^0.11.4
     '@nuxt/image': 2.0.0-alpha.1
-    '@nuxt/scripts': ^0.11.10
+    '@nuxt/scripts': ^0.13.0
     '@nuxthub/core': ^0.9.0
     '@nuxtjs/device': ^3.2.4
     '@nuxtjs/prismic': ^4.1.0
-    '@nuxtjs/seo': ^3.1.0
-    nuxt: ^4.0.0
+    '@nuxtjs/seo': ^3.2.2
+    nuxt: ^4.2.0
     nuxt-module-feed: ^1.1.4
     nuxt-safe-runtime-config: ^0.0.3
-    unplugin-vue-router: ^0.12.0
+    unplugin-vue-router: ^0.16.0
   prismic:
-    '@prismicio/client': ^7.17.2
+    '@prismicio/client': ^7.20.3
     '@prismicio/richtext': ^2.1.5
-    '@slicemachine/adapter-nuxt': 0.3.81-alpha.lh-nuxt-4-support.2
-    slice-machine-ui: ^2.16.0
+    '@slicemachine/adapter-nuxt': 0.3.86
+    slice-machine-ui: ^2.19.1
   server:
     consola: ^3.4.2
-    sharp: ^0.34.1
+    sharp: ^0.34.4
     valibot: ^1.1.0
   types:
-    '@types/node': ^22.15.19
-    typescript: ^5.8.3
+    '@types/node': ^24.9.1
+    typescript: ^5.9.3
   unocss:
-    '@iconify-json/logos': ^1.2.4
-    '@iconify/utils': ^2.3.0
-    '@unocss/nuxt': ^66.1.2
-    '@unocss/preset-wind4': ^66.1.2
-    '@unocss/reset': ^66.1.2
+    '@iconify-json/logos': ^1.2.10
+    '@iconify/utils': ^3.0.2
+    '@unocss/nuxt': ^66.5.4
+    '@unocss/preset-wind4': ^66.5.4
+    '@unocss/reset': ^66.5.4
     nimiq-css: ^1.0.0-beta.30
-    nimiq-flags: ^1.0.0-beta.30
+    nimiq-flags: ^1.0.0-beta.136
     nimiq-icons: ^1.0.0-beta.30
-    unocss: ^66.1.2
-    unocss-preset-onmax: ^1.0.0-beta.25
+    unocss: ^66.5.4
+    unocss-preset-onmax: ^1.0.0-beta.52
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - '@scarf/scarf'
