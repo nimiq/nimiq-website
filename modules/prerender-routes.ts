@@ -26,6 +26,10 @@ export default defineNuxtModule({
       if (environment.environment.isGitHubPages)
         pages = pages.filter(page => page !== '/newsletter')
 
+      // Skip blog index for dynamic builds
+      if (environment.environment.isInternalDynamic)
+        pages = pages.filter(page => !page.startsWith('/blog?') && page !== '/blog')
+
       nitro.options.prerender.routes = pages
     },
   },
