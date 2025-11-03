@@ -30,3 +30,6 @@ logs
 
 # Planning docs
 docs/
+
+# Prismic cached data
+scripts/prismic-data/

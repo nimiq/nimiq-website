@@ -1,5 +1,7 @@
 packages:
   - ./
+catalog:
+  tsx: ^4.20.6
 catalogs:
   build:
     '@nuxt/kit': ^4.0.0
