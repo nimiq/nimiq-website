@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-07',
 
   future: {
-    compatibilityVersion: 4,
+    compatibilityVersion: 5,
   },
 
   modules: [
@@ -68,6 +68,10 @@ export default defineNuxtConfig({
     ],
     optimizeDeps: {
       exclude: ['@nimiq/core', '*.wasm'],
+      include: ['@vueuse/core', '@vueuse/nuxt'],
+    },
+    ssr: {
+      noExternal: ['@vueuse/core', '@vueuse/nuxt'],
     },
     worker: {
       plugins: () => [
@@ -277,11 +281,6 @@ export default defineNuxtConfig({
       wasm: true,
       websocket: true,
     },
-    esbuild: {
-      options: {
-        target: 'esnext',
-      },
-    },
     rollupConfig: {
       external: [],
     },
@@ -313,6 +312,7 @@ export default defineNuxtConfig({
     renderJsonPayloads: true,
     viewTransition: true,
     typedPages: true,
+    extractAsyncDataHandlers: !environment.environment.isInternalDynamic && !environment.environment.isLocal && !environment.useNuxtHub,
   },
 
   app: {
