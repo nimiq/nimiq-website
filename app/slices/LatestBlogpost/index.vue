@@ -1,8 +1,9 @@
 <script setup lang="ts">
-defineProps(getSliceComponentProps(['slice', 'index', 'slices', 'context']))
+import type { Content } from '@prismicio/client'
+
+const { slice } = defineProps(getSliceComponentProps<Content.LatestBlogpostSlice>())
 </script>
 
 <template>
-  <!-- TODO Remove this component once new layout is done -->
-  <div sr-only />
+  <ContentLatestBlogpost :slice="slice as any" />
 </template>

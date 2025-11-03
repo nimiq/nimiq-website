@@ -21,7 +21,9 @@
     "lint:fix": "eslint . --fix  --cache",
     "prepare": "nuxt prepare",
     "typecheck": "nuxt typecheck",
-    "cryptomap:types": "npx supabase gen types --lang=typescript --project-id mycbdmurjytbdahjljoh > app/types/database.types.ts"
+    "cryptomap:types": "npx supabase gen types --lang=typescript --project-id mycbdmurjytbdahjljoh > app/types/database.types.ts",
+    "prismic:sync": "tsx scripts/prismic-sync.ts",
+    "prismic:convert": "tsx scripts/prismic-convert.ts"
   },
   "dependencies": {
     "@nimiq/core": "catalog:nimiq",
@@ -80,6 +82,7 @@
     "sharp": "catalog:server",
     "simple-git-hooks": "catalog:lint",
     "slice-machine-ui": "catalog:prismic",
+    "tsx": "catalog:",
     "typescript": "catalog:types",
     "unocss": "catalog:unocss",
     "unocss-preset-onmax": "catalog:unocss",

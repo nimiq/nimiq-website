@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const props = defineProps(getSliceComponentProps<Content.NewsletterSubscriptionSlice>())
-const bgClass = getColorClass(props.slice.primary.bgColor)
+const { slice } = defineProps(getSliceComponentProps<Content.NewsletterSubscriptionSlice>())
 </script>
 
 <template>
-  <section :class="bgClass" data-slice-type="newsletter-subscription">
-    <PrismicText :field="slice.primary.cta" wrapper="h3" text-center />
-    <NewsletterEmailInput text-24 f-mt-xl />
-  </section>
+  <ContentNewsletterSubscription :slice="slice as any" />
 </template>

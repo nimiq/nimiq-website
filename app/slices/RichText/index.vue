@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-const props = defineProps(getSliceComponentProps<Content.RichTextSlice>())
-
-const bgClass = getColorClass(props.slice.primary.bgColor)
+const { slice } = defineProps(getSliceComponentProps<Content.RichTextSlice>())
 </script>
 
 <template>
-  <section :class="bgClass">
-    <RichText nq-prose text-20 wrapper="article" :field="slice.primary.richText" />
-  </section>
+  <ContentRichText :slice="slice as any" />
 </template>

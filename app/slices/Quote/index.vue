@@ -1,17 +1,11 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-defineProps(getSliceComponentProps<Content.QuoteSlice>())
+const { slice } = defineProps(getSliceComponentProps<Content.QuoteSlice>())
 </script>
 
 <template>
-  <section relative z-1 f-p-5xl>
-    <div bg-green h-200 max-w-none pointer-events-none inset-x-0 top-0 absolute />
-    <div class="bg" h-600 max-w-none pointer-events-none inset-x-0 top-200 absolute />
-    <div i-nimiq:duotone-safe-lock text="left md:center 96 md:112 white" />
-    <RichText wrapper="div" :field="slice.primary.quote" text="white f-2xl left md:center" max-w-36ch relative z-1 f-mt-md />
-    <PrismicLink v-if="hasLink(slice.primary.cta)" :field="slice.primary.cta" shadow-none f-mt-sm nq-arrow nq-pill-lg nq-pill-tertiary />
-  </section>
+  <ContentQuote :slice="slice as any" />
 </template>
 
 <style scoped>

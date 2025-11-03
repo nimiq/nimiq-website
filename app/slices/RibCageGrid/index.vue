@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps<Content.RibCageGridSlice>())
 </script>
 
 <template>
-  <section bg-neutral-0>
+  <section>
     TODO!
   </section>
 </template>

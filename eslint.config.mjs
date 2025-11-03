@@ -8,6 +8,6 @@ export default withNuxt(
     unocss: true,
     pnpm: true,
     vue: true,
-    ignores: ['.eslintcache', 'cache/**', '.claude/**', 'prismicio-types.d.ts'],
+    ignores: ['.eslintcache', 'cache/**', '.claude/**', 'prismicio-types.d.ts', 'scripts/prismic-data/**'],
   }),
 )
