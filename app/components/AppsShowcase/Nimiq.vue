@@ -52,7 +52,7 @@ const [DefineItem, Item] = createReusableTemplate<AppsShowcaseSliceNimiqsAppsPri
       </div>
     </PrismicLink>
   </DefineItem>
-  <div of-x-clip>
+  <div max-w-none of-x-clip>
     <ul grid="~ cols-1 lg:cols-2 gap-20 md:gap-22">
       <li v-for="(item, i) in items" :key="i" :class="{ 'lg:col-span-full': item.highlight }" style="--ring-color: transparent" bg="neutral-300 hocus:neutral-0" p-0 of-initial nq-hoverable>
         <Item v-if="item.item !== 'Multisig Wallet'" v-bind="item" />
