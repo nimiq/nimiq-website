@@ -24,3 +24,9 @@ logs
 !.env.example
 
 .wrangler
+
+# Git worktrees
+.worktrees/
+
+# Planning docs
+docs/
