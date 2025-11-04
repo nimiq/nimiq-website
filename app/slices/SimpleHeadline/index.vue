@@ -47,9 +47,4 @@ section[data-slice-type='staking-faq'] + section[data-slice-type='simple-headlin
   --f-pt-max: 272;
   padding-top: var(--f-pt);
 }
-
-section[data-slice-type='simple-headline'] + section[data-slice-type='simple-headline'] {
-  display: none;
-  visibility: hidden;
-}
 </style>

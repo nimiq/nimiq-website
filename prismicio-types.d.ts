@@ -5771,6 +5771,31 @@ export interface HeroSectionSliceOasisPrimaryItemsItem {
 }
 
 /**
+ * Item in *HeroSection → Home 2024 → Primary → Works With Items*
+ */
+export interface HeroSectionSliceHome2024PrimaryWorksWithItemsItem {
+  /**
+   * link field in *HeroSection → Home 2024 → Primary → Works With Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.worksWithItems[].link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * logo field in *HeroSection → Home 2024 → Primary → Works With Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.worksWithItems[].logo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo: prismic.ImageField<never>;
+}
+
+/**
  * Primary content in *HeroSection → Default slice → Primary*
  */
 export interface HeroSectionSliceDefaultSlicePrimary {
@@ -6884,6 +6909,28 @@ export interface HeroSectionSliceHome2024Primary {
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Works With Items field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.worksWithItems[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  worksWithItems: prismic.GroupField<
+    Simplify<HeroSectionSliceHome2024PrimaryWorksWithItemsItem>
+  >;
+
+  /**
+   * Works With Label field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.worksWithLabel
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  worksWithLabel: prismic.KeyTextField;
 }
 
 /**
@@ -12698,6 +12745,7 @@ declare module "@prismicio/client" {
       HeroSectionSliceHalfImagePrimary,
       HeroSectionSliceHeroSectionWithImagePrimary,
       HeroSectionSliceHeroSectionWithImageItem,
+      HeroSectionSliceHome2024PrimaryWorksWithItemsItem,
       HeroSectionSliceHome2024Primary,
       HeroSectionSliceStakingPrimary,
       HeroSectionSliceBuyAndSellPrimary,

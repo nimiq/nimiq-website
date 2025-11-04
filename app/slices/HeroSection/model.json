@@ -905,6 +905,41 @@
             "allowText": true,
             "repeat": false
           }
+        },
+        "worksWithItems": {
+          "type": "Group",
+          "config": {
+            "label": "Works With Items",
+            "repeat": true,
+            "fields": {
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              },
+              "logo": {
+                "type": "Image",
+                "config": {
+                  "label": "logo",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        },
+        "worksWithLabel": {
+          "type": "Text",
+          "config": {
+            "label": "Works With Label",
+            "placeholder": ""
+          }
         }
       },
       "items": {},

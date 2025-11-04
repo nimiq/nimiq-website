@@ -1,41 +1,12 @@
 <script setup lang="ts">
-import type { KeyTextField, LinkField, RichTextField } from '@prismicio/client'
-import { AnimatedTweenedNumber, NuxtLink } from '#components'
+import type { KeyTextField, LinkField, RichTextField, ImageField } from '@prismicio/client'
 import Map from './Map.vue'
 
-const props = defineProps<{ headline: RichTextField, subHeadlineTemplate: KeyTextField, link: LinkField }>()
+const props = defineProps<{ headline: RichTextField, subHeadline: KeyTextField, link: LinkField, worksWithLabel: KeyTextField, worksWithItems: ({logo: ImageField, link: LinkField })[] }>()
 
-const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
-
-// const { md, xl } = useBreakpoints(breakpointsTailwind)
-
-// @unocss-include
-
-const locationsSpan = h(NuxtLink, { class: 'text-blue', to: 'https://map.nimiq.com', target: '_blank' }, () => [
-  h(AnimatedTweenedNumber, {
-    value: locationsCount.value || 0,
-    duration: 1300,
-  }),
-  ' locations',
-])
-
-const subheadline = computed(() => {
-  const pre = props.subHeadlineTemplate?.split('{{')[0]?.toString()
-  const post = props.subHeadlineTemplate?.split('}}')[1]?.toString()
-  return h('p', {}, [pre, locationsSpan, post])
-})
-
-const subheadlineStr = computed(() => {
-  const pre = props.subHeadlineTemplate?.split('{{')[0]?.toString()
-  const post = props.subHeadlineTemplate?.split('}}')[1]?.toString()
-  return `${pre} ${locationsCount.value} ${post}`
-})
-
-watch(subheadlineStr, () => {
-  useSeoMeta({
-    title: getText(props.headline),
-    description: subheadlineStr.value,
-  })
+useSeoMeta({
+  title: getText(props.headline),
+  description: props.subHeadline,
 })
 </script>
 
@@ -46,8 +17,16 @@ watch(subheadlineStr, () => {
   >
     <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
-      <component :is="subheadline" text="neutral-800 f-xl" />
+      <p text="neutral-800 f-xl">{{ subHeadline }}</p>
       <PrismicLink :field="link" mt-40 nq-arrow nq-pill-lg nq-pill-blue />
+      <div flex="~ gap-24 wrap items-center" f-mt-lg>
+        <h3 w-max nq-label>{{ worksWithLabel }}</h3>
+        <template v-for="(item, i) in worksWithItems" :key="i">
+          <PrismicLink :field="item.link" op="50 hocus:100" transition-opacity ml-16>
+            <ProxiedPrismicImage :field="item.logo" h-32 />
+          </PrismicLink>
+        </template>
+      </div>
     </div>
     <NuxtImg
       width="1600"
