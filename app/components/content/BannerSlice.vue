@@ -54,7 +54,7 @@ async function getBackgroundItems(background: any) {
       ]
     }
     case 'Nimiq Apps': {
-      const { data: apps } = useApps()
+      const { data: apps } = await useApps()
       const randomApps = apps.value!.communityApps.sort(() => Math.random() - 0.5).slice(0, 6)
       return randomApps.map(({ color, logo, link: linkStr, name }, i) => {
         const link: any = { link_type: 'Web', url: linkStr, target: '_blank' }
