@@ -33,7 +33,7 @@ const item = slice.primary.item as Item
 </script>
 
 <template>
-  <section :class="bgClass" class="nq-section-gap" data-slice-type="pill-link" mx-0 f-pt-2xl pb-2 relative children:max-w-none max-md:items-start>
+  <section class="nq-section-gap" data-slice-type="pill-link" mx-0 pb-2 relative children:max-w-none max-md:items-start :class="[bgClass, {'f-pt-2xl': item==='The Apps'}]">
     <div flex="~ items-center gap-10" mr-8 py-6 pl-8 pr-20 rounded-full>
       <div :style="`--c: var(--nq-${itemColors[item]})`" style="color: rgb(var(--c)); background-color: rgb(var(--c) / 0.2);" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
         <div :class="icons[item]" h="18 lg:30" w="16 lg:26" class="gradient" />

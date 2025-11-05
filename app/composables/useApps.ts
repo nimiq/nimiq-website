@@ -36,8 +36,26 @@ export interface NimiqApp extends AppApi {
 const spotLightApps = ['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map']
 
 function transformAppToAttributes(app: NimiqApp, labelTeamNimiq: string): NimiqApp {
+  const slug = (app as any).slug || app.name.toLowerCase().replace(/\s+/g, '-')
+
+  // Transform remote asset URLs to local paths
+  let logo = app.logo
+  let screenshot = app.screenshot
+
+  if (logo) {
+    const logoExt = logo.split('.').pop() || 'svg'
+    logo = `/apps/${slug}-logo.${logoExt}`
+  }
+
+  if (screenshot) {
+    const screenshotExt = screenshot.split('.').pop() || 'png'
+    screenshot = `/apps/${slug}-screenshot.${screenshotExt}`
+  }
+
   return {
     ...app,
+    logo,
+    screenshot,
     isHighlighted: spotLightApps.includes(app.name),
     priorityLevel: spotLightApps.includes(app.name) ? 'high' : 'low',
     developer: app.developer || labelTeamNimiq,
@@ -47,14 +65,15 @@ function transformAppToAttributes(app: NimiqApp, labelTeamNimiq: string): NimiqA
 
 export function useApps({ labelTeamNimiq = 'Team Nimiq' }: UseAppsOption = {}) {
   return useAsyncData(async () => {
-    const apps = await $fetch('https://raw.githubusercontent.com/onmax/nimiq-awesome/main/src/data/dist/nimiq-apps.json')
-      .then(res => JSON.parse(res as any) as NimiqApp[])
+    const { data: apps } = await useFetch('https://raw.githubusercontent.com/onmax/nimiq-awesome/main/src/data/dist/nimiq-apps.json', {
+      transform: d => JSON.parse(d as string) as AppApi[]
+    })
 
-    if (!apps)
+    if (!apps.value)
       throw new Error('Failed to fetch apps')
 
-    const spotlightedApps = apps.filter(app => spotLightApps.includes(app.name))
-    const nonSpotlightedApps = apps.filter(app => !spotLightApps.includes(app.name))
+    const spotlightedApps = apps.value.filter(app => spotLightApps.includes(app.name))
+    const nonSpotlightedApps = apps.value.filter(app => !spotLightApps.includes(app.name))
 
     spotlightedApps.sort((a, b) => spotLightApps.indexOf(a.name) - spotLightApps.indexOf(b.name))
 

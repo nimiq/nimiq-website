@@ -36,6 +36,7 @@ const footerBgColor = computed(() => {
 })
 
 const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
+const showSocialsHexagonBg = computed(() => uid === 'november')
 
 // CMS takes precedence over slice data for better content management control
 const slice = page.value?.data && 'slices' in page.value.data ? page.value.data.slices.at(0) : undefined
@@ -107,7 +108,7 @@ setOgImage({
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color :dark-header :draft>
+  <NuxtLayout :footer-bg-color :dark-header :draft :show-socials-hexagon-bg="showSocialsHexagonBg">
     <SliceZone wrapper="main" :slices="(page?.data && 'slices' in page.data ? page.data.slices : []) ?? []" :components />
   </NuxtLayout>
 </template>

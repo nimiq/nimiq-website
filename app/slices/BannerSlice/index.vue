@@ -5,7 +5,7 @@ const { slice } = defineProps(getSliceComponentProps<Content.BannerSliceSlice>()
 </script>
 
 <template>
-  <ContentBannerSlice :slice="slice as any" />
+  <ContentBanner :slice="slice as any" />
 </template>
 
 <style scoped>

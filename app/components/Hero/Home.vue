@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { KeyTextField, LinkField, RichTextField, ImageField } from '@prismicio/client'
+import type { ImageField, KeyTextField, LinkField, RichTextField } from '@prismicio/client'
 import Map from './Map.vue'
 
-const props = defineProps<{ headline: RichTextField, subHeadline: KeyTextField, link: LinkField, worksWithLabel: KeyTextField, worksWithItems: ({logo: ImageField, link: LinkField })[] }>()
+const props = defineProps<{ headline: RichTextField, subHeadline: KeyTextField, link: LinkField, worksWithLabel: KeyTextField, worksWithItems: ({ logo: ImageField, link: LinkField })[] }>()
 
 useSeoMeta({
   title: getText(props.headline),
@@ -17,15 +17,17 @@ useSeoMeta({
   >
     <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
-      <p text="neutral-800 f-xl">{{ subHeadline }}</p>
+      <p text="neutral-800 f-xl">
+        {{ subHeadline }}
+      </p>
       <PrismicLink :field="link" mt-40 nq-arrow nq-pill-lg nq-pill-blue />
-      <div flex="~ gap-24 wrap items-center" f-mt-lg>
-        <h3 w-max nq-label>{{ worksWithLabel }}</h3>
-        <template v-for="(item, i) in worksWithItems" :key="i">
-          <PrismicLink :field="item.link" op="50 hocus:100" transition-opacity ml-16>
-            <ProxiedPrismicImage :field="item.logo" h-32 />
-          </PrismicLink>
-        </template>
+      <div f-mt-lg flex="~ wrap items-center gap-24" gap-y-12>
+        <h3 mb="0 max-md:24" w="max-md:full md:max" nq-label>
+          {{ worksWithLabel }}
+        </h3>
+        <PrismicLink v-for="(item, i) in worksWithItems" :key="i" :field="item.link" op="50 hocus:100" transition-opacity>
+          <ProxiedPrismicImage :field="item.logo" h-32 />
+        </PrismicLink>
       </div>
     </div>
     <NuxtImg
