@@ -144,7 +144,7 @@ export interface BlogPageDocumentDataAuthorsItem {
   name: prismic.KeyTextField;
 }
 
-type BlogPageDocumentDataBodySlice = FullScreenImageSlice | RichTextSlice;
+type BlogPageDocumentDataBodySlice = RichTextSlice;
 
 /**
  * Content for Blog Article documents
@@ -304,7 +304,6 @@ type ChildPageDocumentDataSlicesSlice =
   | ZigZagContentSlice
   | SimpleHeadlineSlice
   | AppsShowcaseSlice
-  | TweetsMarqueeSlice
   | PillLinkSlice
   | HeroSectionSlice
   | LogosGridSlice
@@ -312,34 +311,25 @@ type ChildPageDocumentDataSlicesSlice =
   | GridSectionSlice
   | BannerSliceSlice
   | TeamMembersSlice
-  | ActivityStatsSlice
   | YoutubeVideoSlice
-  | SupplyDistributionSlice
   | TiltedMediaSlice
   | WhitepaperSliceSlice
   | SocialMediaGridSlice
   | SteppedSlidesSlice
-  | RibCageGridSlice
   | StakingSliceSlice
   | SteppedLottieSlice
   | RichTextCarouselSlice
   | SimpleCarouselSlice
-  | S3CurrencyBannerSlice
-  | RoadmapSectionSlice
   | NewYorkGridSlice
   | RichTextCardsSlice
   | PuzzleGridSlice
   | NewsletterSubscriptionSlice
   | RichTextSlice
-  | PodcastPlatformsSlice
   | LinkGridSlice
   | LottieSliceSlice
   | LargeGridSlice
-  | GallerySectionSlice
   | LatestBlogpostSlice
-  | IframeEmbedSlice
   | CtaSectionSlice
-  | FullScreenImageSlice
   | HeroStatsSlice
   | ExchangesShowcaseSlice
   | FlagsMarqueeSlice
@@ -347,9 +337,7 @@ type ChildPageDocumentDataSlicesSlice =
   | BlogpostsGridSlice
   | CardsCarouselSlice
   | BuySellWalletSlice
-  | StartingGridSlice
-  | ConsensusMapSlice
-  | FloatingVideoSlice;
+  | ConsensusMapSlice;
 
 /**
  * Content for Child Page documents
@@ -564,7 +552,6 @@ type HomeDocumentDataBodySlice =
   | ZigZagContentSlice
   | PrestakingGridSlice
   | PillLinkSlice
-  | TweetsMarqueeSlice
   | AppsShowcaseSlice
   | SimpleHeadlineSlice
   | LogosGridSlice
@@ -573,44 +560,33 @@ type HomeDocumentDataBodySlice =
   | GridSectionSlice
   | AlbatrossLiveviewSlice
   | YoutubeVideoSlice
-  | ActivityStatsSlice
   | TeamMembersSlice
   | WhitepaperSliceSlice
-  | SupplyDistributionSlice
   | TiltedMediaSlice
-  | RibCageGridSlice
   | SteppedSlidesSlice
   | SocialMediaGridSlice
   | RichTextCarouselSlice
   | SteppedLottieSlice
   | StakingSliceSlice
-  | S3CurrencyBannerSlice
-  | RoadmapSectionSlice
   | SimpleCarouselSlice
   | RichTextCardsSlice
   | NewYorkGridSlice
   | NewsletterSubscriptionSlice
-  | PodcastPlatformsSlice
   | RichTextSlice
   | PuzzleGridSlice
   | LottieSliceSlice
   | LinkGridSlice
   | LatestBlogpostSlice
-  | IframeEmbedSlice
-  | GallerySectionSlice
   | LargeGridSlice
   | HeroStatsSlice
-  | FullScreenImageSlice
   | CtaSectionSlice
   | ContactFormSlice
   | FlagsMarqueeSlice
   | ExchangesShowcaseSlice
   | BuySellWalletSlice
-  | StartingGridSlice
   | ConsensusMapSlice
   | CardsCarouselSlice
-  | BlogpostsGridSlice
-  | FloatingVideoSlice;
+  | BlogpostsGridSlice;
 
 /**
  * Content for Home documents
@@ -1936,34 +1912,25 @@ type PageDocumentDataSlicesSlice =
   | GridSectionSlice
   | AlbatrossLiveviewSlice
   | YoutubeVideoSlice
-  | ActivityStatsSlice
   | TeamMembersSlice
   | WhitepaperSliceSlice
   | TiltedMediaSlice
-  | SupplyDistributionSlice
-  | RibCageGridSlice
   | SteppedSlidesSlice
   | SocialMediaGridSlice
   | RichTextCarouselSlice
   | SteppedLottieSlice
   | StakingSliceSlice
-  | RoadmapSectionSlice
-  | S3CurrencyBannerSlice
   | SimpleCarouselSlice
   | RichTextCardsSlice
   | RichTextSlice
   | NewYorkGridSlice
   | NewsletterSubscriptionSlice
-  | PodcastPlatformsSlice
   | PuzzleGridSlice
   | LottieSliceSlice
   | LargeGridSlice
   | LinkGridSlice
   | LatestBlogpostSlice
-  | IframeEmbedSlice
-  | GallerySectionSlice
   | CtaSectionSlice
-  | FullScreenImageSlice
   | HeroStatsSlice
   | ExchangesShowcaseSlice
   | FlagsMarqueeSlice
@@ -1971,9 +1938,7 @@ type PageDocumentDataSlicesSlice =
   | BlogpostsGridSlice
   | CardsCarouselSlice
   | BuySellWalletSlice
-  | StartingGridSlice
-  | ConsensusMapSlice
-  | FloatingVideoSlice;
+  | ConsensusMapSlice;
 
 /**
  * Content for Page documents
@@ -2535,98 +2500,6 @@ export type AllDocumentTypes =
   | SocialMediaDocument
   | StakingValuesDocument
   | TestDocument;
-
-/**
- * Primary content in *ActivityStats → Default → Primary*
- */
-export interface ActivityStatsSliceDefaultPrimary {
-  /**
-   * Background Color field in *ActivityStats → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: activity_stats.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<"grey" | "white">;
-
-  /**
-   * Stats From Label field in *ActivityStats → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: activity_stats.default.primary.statsFromLabel
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  statsFromLabel: prismic.KeyTextField;
-}
-
-/**
- * Primary content in *ActivityStats → Items*
- */
-export interface ActivityStatsSliceDefaultItem {
-  /**
-   * Stat field in *ActivityStats → Items*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: activity_stats.items[].stat
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  stat: prismic.SelectField<
-    "GitHub commits" | "GitHub additions" | "Lunar Crush - Social engagement"
-  >;
-
-  /**
-   * Label (See placeholder) field in *ActivityStats → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: { stat } commits
-   * - **API ID Path**: activity_stats.items[].label
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  label: prismic.KeyTextField;
-
-  /**
-   * Color field in *ActivityStats → Items*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: activity_stats.items[].color
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  color: prismic.SelectField<"blue" | "green" | "gold">;
-}
-
-/**
- * Default variation for ActivityStats Slice
- *
- * - **API ID**: `default`
- * - **Description**: ActivityStats
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type ActivityStatsSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<ActivityStatsSliceDefaultPrimary>,
-  Simplify<ActivityStatsSliceDefaultItem>
->;
-
-/**
- * Slice variation for *ActivityStats*
- */
-type ActivityStatsSliceVariation = ActivityStatsSliceDefault;
-
-/**
- * ActivityStats Shared Slice
- *
- * - **API ID**: `activity_stats`
- * - **Description**: ActivityStats
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type ActivityStatsSlice = prismic.SharedSlice<
-  "activity_stats",
-  ActivityStatsSliceVariation
->;
 
 /**
  * Primary content in *AlbatrossLiveview → Default → Primary*
@@ -5037,282 +4910,6 @@ export type FlagsMarqueeSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *FloatingVideo → Items*
- */
-export interface FloatingVideoSliceDefaultSliceItem {
-  /**
-   * section field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].section
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  section: prismic.KeyTextField;
-
-  /**
-   * Selected Background field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].selectedBackground
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  selectedBackground: prismic.SelectField<"get_it" | "hold_it" | "spend_it">;
-
-  /**
-   * headline field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].headline
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  headline: prismic.RichTextField;
-
-  /**
-   * content field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].content
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  content: prismic.RichTextField;
-
-  /**
-   * High Quality Video* field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Link to Media
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].videoHigh
-   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
-   */
-  videoHigh: prismic.LinkToMediaField<prismic.FieldState, never>;
-
-  /**
-   * Medium Quality Video field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Link to Media
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].videoMedium
-   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
-   */
-  videoMedium: prismic.LinkToMediaField<prismic.FieldState, never>;
-
-  /**
-   * Low Quality Video field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Link to Media
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].videoLow
-   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
-   */
-  videoLow: prismic.LinkToMediaField<prismic.FieldState, never>;
-
-  /**
-   * videoHeadline field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].videoHeadline
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  videoHeadline: prismic.RichTextField;
-
-  /**
-   * callToActionUrl* field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].callToActionUrl
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  callToActionUrl: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * callToActionText* field in *FloatingVideo → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: floating_video.items[].callToActionText
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  callToActionText: prismic.KeyTextField;
-}
-
-/**
- * Default slice variation for FloatingVideo Slice
- *
- * - **API ID**: `default-slice`
- * - **Description**: FloatingVideo
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type FloatingVideoSliceDefaultSlice = prismic.SharedSliceVariation<
-  "default-slice",
-  Record<string, never>,
-  Simplify<FloatingVideoSliceDefaultSliceItem>
->;
-
-/**
- * Slice variation for *FloatingVideo*
- */
-type FloatingVideoSliceVariation = FloatingVideoSliceDefaultSlice;
-
-/**
- * FloatingVideo Shared Slice
- *
- * - **API ID**: `floating_video`
- * - **Description**: FloatingVideo
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type FloatingVideoSlice = prismic.SharedSlice<
-  "floating_video",
-  FloatingVideoSliceVariation
->;
-
-/**
- * Primary content in *FullScreenImage → Default → Primary*
- */
-export interface FullScreenImageSliceDefaultPrimary {
-  /**
-   * Image field in *FullScreenImage → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: full_screen_image.default.primary.image
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image: prismic.ImageField<"Small" | "Medium" | "Large" | "XL">;
-}
-
-/**
- * Default variation for FullScreenImage Slice
- *
- * - **API ID**: `default`
- * - **Description**: FullScreenImage
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type FullScreenImageSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<FullScreenImageSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *FullScreenImage*
- */
-type FullScreenImageSliceVariation = FullScreenImageSliceDefault;
-
-/**
- * FullScreenImage Shared Slice
- *
- * - **API ID**: `full_screen_image`
- * - **Description**: FullScreenImage
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type FullScreenImageSlice = prismic.SharedSlice<
-  "full_screen_image",
-  FullScreenImageSliceVariation
->;
-
-/**
- * Primary content in *GallerySection → Default → Primary*
- */
-export interface GallerySectionSliceDefaultPrimary {
-  /**
-   * Background Color field in *GallerySection → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: white
-   * - **API ID Path**: gallery_section.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<
-    "white" | "blue" | "blue-dark" | "green" | "gold" | "grey",
-    "filled"
-  >;
-
-  /**
-   * Link Text field in *GallerySection → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gallery_section.default.primary.linkText
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  linkText: prismic.KeyTextField;
-
-  /**
-   * Link Href field in *GallerySection → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gallery_section.default.primary.linkHref
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  linkHref: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
- * Primary content in *GallerySection → Items*
- */
-export interface GallerySectionSliceDefaultItem {
-  /**
-   * Image* field in *GallerySection → Items*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: gallery_section.items[].image
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image: prismic.ImageField<never>;
-}
-
-/**
- * Default variation for GallerySection Slice
- *
- * - **API ID**: `default`
- * - **Description**: GallerySection
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type GallerySectionSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<GallerySectionSliceDefaultPrimary>,
-  Simplify<GallerySectionSliceDefaultItem>
->;
-
-/**
- * Slice variation for *GallerySection*
- */
-type GallerySectionSliceVariation = GallerySectionSliceDefault;
-
-/**
- * GallerySection Shared Slice
- *
- * - **API ID**: `gallery_section`
- * - **Description**: GallerySection
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type GallerySectionSlice = prismic.SharedSlice<
-  "gallery_section",
-  GallerySectionSliceVariation
->;
-
-/**
  * Item in *GridSection → Three columns Icons inline → Primary → items*
  */
 export interface GridSectionSliceThreeColumnsIconsInlinePrimaryItemsItem {
@@ -7219,160 +6816,6 @@ export type HeroStatsSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *IframeEmbed → Default → Primary*
- */
-export interface IframeEmbedSliceDefaultPrimary {
-  /**
-   * Background Color field in *IframeEmbed → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: grey
-   * - **API ID Path**: iframe_embed.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<
-    "grey" | "white" | "blue" | "blue-dark" | "green" | "blue-s3",
-    "filled"
-  >;
-
-  /**
-   * URL field in *IframeEmbed → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: iframe_embed.default.primary.url
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  url: prismic.KeyTextField;
-
-  /**
-   * Width field in *IframeEmbed → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: iframe_embed.default.primary.width
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  width: prismic.KeyTextField;
-
-  /**
-   * Height field in *IframeEmbed → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: iframe_embed.default.primary.height
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  height: prismic.KeyTextField;
-}
-
-/**
- * Default variation for IframeEmbed Slice
- *
- * - **API ID**: `default`
- * - **Description**: IframeEmbed
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type IframeEmbedSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<IframeEmbedSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Primary content in *IframeEmbed → Fullscreen → Primary*
- */
-export interface IframeEmbedSliceFullscreenPrimary {
-  /**
-   * Background Color field in *IframeEmbed → Fullscreen → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: grey
-   * - **API ID Path**: iframe_embed.fullscreen.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<
-    "grey" | "white" | "blue" | "blue-dark" | "green" | "blue-s3",
-    "filled"
-  >;
-
-  /**
-   * URL field in *IframeEmbed → Fullscreen → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: iframe_embed.fullscreen.primary.url
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  url: prismic.KeyTextField;
-
-  /**
-   * Open Fullscreen Label field in *IframeEmbed → Fullscreen → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: iframe_embed.fullscreen.primary.openFullscreenLabel
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  openFullscreenLabel: prismic.KeyTextField;
-
-  /**
-   * Exit Fullscreen Label field in *IframeEmbed → Fullscreen → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: iframe_embed.fullscreen.primary.exitFullscreenLabel
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  exitFullscreenLabel: prismic.KeyTextField;
-
-  /**
-   * Overlaps Next Section field in *IframeEmbed → Fullscreen → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: iframe_embed.fullscreen.primary.overlapsNextSection
-   * - **Documentation**: https://prismic.io/docs/fields/boolean
-   */
-  overlapsNextSection: prismic.BooleanField;
-}
-
-/**
- * Fullscreen variation for IframeEmbed Slice
- *
- * - **API ID**: `fullscreen`
- * - **Description**: IframeEmbed
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type IframeEmbedSliceFullscreen = prismic.SharedSliceVariation<
-  "fullscreen",
-  Simplify<IframeEmbedSliceFullscreenPrimary>,
-  never
->;
-
-/**
- * Slice variation for *IframeEmbed*
- */
-type IframeEmbedSliceVariation =
-  | IframeEmbedSliceDefault
-  | IframeEmbedSliceFullscreen;
-
-/**
- * IframeEmbed Shared Slice
- *
- * - **API ID**: `iframe_embed`
- * - **Description**: IframeEmbed
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type IframeEmbedSlice = prismic.SharedSlice<
-  "iframe_embed",
-  IframeEmbedSliceVariation
->;
-
-/**
  * Primary content in *LargeGrid → Default → Primary*
  */
 export interface LargeGridSliceDefaultPrimary {
@@ -8648,173 +8091,6 @@ export type PillLinkSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *PodcastPlatforms → Default → Primary*
- */
-export interface PodcastPlatformsSliceDefaultPrimary {
-  /**
-   * Headline field in *PodcastPlatforms → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Listen on your favorite platforms
-   * - **API ID Path**: podcast_platforms.default.primary.headline
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  headline: prismic.RichTextField;
-
-  /**
-   * Subline field in *PodcastPlatforms → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Download this episode to listen...
-   * - **API ID Path**: podcast_platforms.default.primary.subline
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  subline: prismic.RichTextField;
-
-  /**
-   * Spotify Url field in *PodcastPlatforms → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: podcast_platforms.default.primary.spotifyUrl
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  spotifyUrl: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Apple Podcast Url field in *PodcastPlatforms → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: podcast_platforms.default.primary.applePodcastUrl
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  applePodcastUrl: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Google Podcasts Url field in *PodcastPlatforms → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: podcast_platforms.default.primary.googlePodcastsUrl
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  googlePodcastsUrl: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Castbox Url field in *PodcastPlatforms → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: podcast_platforms.default.primary.castboxUrl
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  castboxUrl: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Overcast Url field in *PodcastPlatforms → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: podcast_platforms.default.primary.overcastUrl
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  overcastUrl: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Pocketcasts Url field in *PodcastPlatforms → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: podcast_platforms.default.primary.pocketcastsUrl
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pocketcastsUrl: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Stitcher Url field in *PodcastPlatforms → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: podcast_platforms.default.primary.stitcherUrl
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  stitcherUrl: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
- * Default variation for PodcastPlatforms Slice
- *
- * - **API ID**: `default`
- * - **Description**: PodcastPlatforms
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type PodcastPlatformsSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<PodcastPlatformsSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *PodcastPlatforms*
- */
-type PodcastPlatformsSliceVariation = PodcastPlatformsSliceDefault;
-
-/**
- * PodcastPlatforms Shared Slice
- *
- * - **API ID**: `podcast_platforms`
- * - **Description**: PodcastPlatforms
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type PodcastPlatformsSlice = prismic.SharedSlice<
-  "podcast_platforms",
-  PodcastPlatformsSliceVariation
->;
-
-/**
  * Item in *PrestakingGrid → Default → Primary → Items*
  */
 export interface PrestakingGridSliceDefaultPrimaryItemsItem {
@@ -9157,142 +8433,6 @@ type QuoteSliceVariation = QuoteSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type QuoteSlice = prismic.SharedSlice<"quote", QuoteSliceVariation>;
-
-/**
- * Primary content in *RibCageGrid → Default → Primary*
- */
-export interface RibCageGridSliceDefaultPrimary {
-  /**
-   * Background Color field in *RibCageGrid → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rib_cage_grid.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<"white" | "grey">;
-}
-
-/**
- * Primary content in *RibCageGrid → Items*
- */
-export interface RibCageGridSliceDefaultItem {
-  /**
-   * Logo field in *RibCageGrid → Items*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rib_cage_grid.items[].logo
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  logo: prismic.ImageField<never>;
-
-  /**
-   * Headline field in *RibCageGrid → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rib_cage_grid.items[].headline
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  headline: prismic.KeyTextField;
-
-  /**
-   * Headline Logo field in *RibCageGrid → Items*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rib_cage_grid.items[].headlineLogo
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  headlineLogo: prismic.ImageField<never>;
-
-  /**
-   * Label field in *RibCageGrid → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rib_cage_grid.items[].label
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  label: prismic.KeyTextField;
-
-  /**
-   * Description field in *RibCageGrid → Items*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rib_cage_grid.items[].description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  description: prismic.RichTextField;
-
-  /**
-   * Link Label field in *RibCageGrid → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rib_cage_grid.items[].linkLabel
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  linkLabel: prismic.KeyTextField;
-
-  /**
-   * Link Href field in *RibCageGrid → Items*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rib_cage_grid.items[].linkHref
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  linkHref: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Twitter Username field in *RibCageGrid → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rib_cage_grid.items[].twitterUsername
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  twitterUsername: prismic.KeyTextField;
-}
-
-/**
- * Default variation for RibCageGrid Slice
- *
- * - **API ID**: `default`
- * - **Description**: RibCageGrid
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type RibCageGridSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<RibCageGridSliceDefaultPrimary>,
-  Simplify<RibCageGridSliceDefaultItem>
->;
-
-/**
- * Slice variation for *RibCageGrid*
- */
-type RibCageGridSliceVariation = RibCageGridSliceDefault;
-
-/**
- * RibCageGrid Shared Slice
- *
- * - **API ID**: `rib_cage_grid`
- * - **Description**: RibCageGrid
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type RibCageGridSlice = prismic.SharedSlice<
-  "rib_cage_grid",
-  RibCageGridSliceVariation
->;
 
 /**
  * Primary content in *RichText → Default → Primary*
@@ -9840,264 +8980,6 @@ type RoadmapSliceVariation = RoadmapSliceDefault;
 export type RoadmapSlice = prismic.SharedSlice<
   "roadmap",
   RoadmapSliceVariation
->;
-
-/**
- * Primary content in *RoadmapSection → Default → Primary*
- */
-export interface RoadmapSectionSliceDefaultPrimary {
-  /**
-   * Headline field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: roadmap_section.default.primary.headline
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  headline: prismic.RichTextField;
-
-  /**
-   * Subline field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: roadmap_section.default.primary.subline
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  subline: prismic.RichTextField;
-
-  /**
-   * Show Disclaimer field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: roadmap_section.default.primary.showDisclaimer
-   * - **Documentation**: https://prismic.io/docs/fields/boolean
-   */
-  showDisclaimer: prismic.BooleanField;
-
-  /**
-   * Disclaimer field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: roadmap_section.default.primary.disclaimer
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  disclaimer: prismic.RichTextField;
-
-  /**
-   * Flask icon explanation field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: roadmap_section.default.primary.flaskIconExplanation
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  flaskIconExplanation: prismic.RichTextField;
-
-  /**
-   * Label for "We are here" marker field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: We are here
-   * - **API ID Path**: roadmap_section.default.primary.weAreHereLabel
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  weAreHereLabel: prismic.KeyTextField;
-
-  /**
-   * Label for 'All started here' marker field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: All started here
-   * - **API ID Path**: roadmap_section.default.primary.allStartedHereLabel
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  allStartedHereLabel: prismic.KeyTextField;
-
-  /**
-   * Background Color field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: white
-   * - **API ID Path**: roadmap_section.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<"white" | "grey", "filled">;
-
-  /**
-   * Link Label field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: roadmap_section.default.primary.linkLabel
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  linkLabel: prismic.KeyTextField;
-
-  /**
-   * Link Href field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: roadmap_section.default.primary.linkHref
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  linkHref: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Hide past years field in *RoadmapSection → Default → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: roadmap_section.default.primary.hidePast
-   * - **Documentation**: https://prismic.io/docs/fields/boolean
-   */
-  hidePast: prismic.BooleanField;
-}
-
-/**
- * Default variation for RoadmapSection Slice
- *
- * - **API ID**: `default`
- * - **Description**: RoadmapSection
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type RoadmapSectionSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<RoadmapSectionSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *RoadmapSection*
- */
-type RoadmapSectionSliceVariation = RoadmapSectionSliceDefault;
-
-/**
- * RoadmapSection Shared Slice
- *
- * - **API ID**: `roadmap_section`
- * - **Description**: RoadmapSection
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type RoadmapSectionSlice = prismic.SharedSlice<
-  "roadmap_section",
-  RoadmapSectionSliceVariation
->;
-
-/**
- * Primary content in *S3CurrencyBanner → Default → Primary*
- */
-export interface S3CurrencyBannerSliceDefaultPrimary {
-  /**
-   * Background Color field in *S3CurrencyBanner → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: white
-   * - **API ID Path**: s3_currency_banner.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<
-    "white" | "grey" | "blue-dark" | "blue" | "green" | "blue-s3",
-    "filled"
-  >;
-
-  /**
-   * Fee Label field in *S3CurrencyBanner → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: s3_currency_banner.default.primary.feeLabel
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  feeLabel: prismic.KeyTextField;
-
-  /**
-   * Fee Image field in *S3CurrencyBanner → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: s3_currency_banner.default.primary.feeImage
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  feeImage: prismic.ImageField<never>;
-}
-
-/**
- * Primary content in *S3CurrencyBanner → Items*
- */
-export interface S3CurrencyBannerSliceDefaultItem {
-  /**
-   * Image field in *S3CurrencyBanner → Items*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: s3_currency_banner.items[].image
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image: prismic.ImageField<never>;
-
-  /**
-   * Title field in *S3CurrencyBanner → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: s3_currency_banner.items[].title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Description field in *S3CurrencyBanner → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: s3_currency_banner.items[].description
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  description: prismic.KeyTextField;
-}
-
-/**
- * Default variation for S3CurrencyBanner Slice
- *
- * - **API ID**: `default`
- * - **Description**: S3CurrencyBanner
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type S3CurrencyBannerSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<S3CurrencyBannerSliceDefaultPrimary>,
-  Simplify<S3CurrencyBannerSliceDefaultItem>
->;
-
-/**
- * Slice variation for *S3CurrencyBanner*
- */
-type S3CurrencyBannerSliceVariation = S3CurrencyBannerSliceDefault;
-
-/**
- * S3CurrencyBanner Shared Slice
- *
- * - **API ID**: `s3_currency_banner`
- * - **Description**: S3CurrencyBanner
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type S3CurrencyBannerSlice = prismic.SharedSlice<
-  "s3_currency_banner",
-  S3CurrencyBannerSliceVariation
 >;
 
 /**
@@ -10903,102 +9785,6 @@ export type StakingSliceSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *StartingGrid → Default → Primary*
- */
-export interface StartingGridSliceDefaultPrimary {
-  /**
-   * Background Color field in *StartingGrid → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: starting_grid.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<"white" | "grey">;
-}
-
-/**
- * Primary content in *StartingGrid → Items*
- */
-export interface StartingGridSliceDefaultItem {
-  /**
-   * Link Label field in *StartingGrid → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: starting_grid.items[].linkLabel
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  linkLabel: prismic.KeyTextField;
-
-  /**
-   * Link Href field in *StartingGrid → Items*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: starting_grid.items[].linkHref
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  linkHref: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Image field in *StartingGrid → Items*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: starting_grid.items[].image
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image: prismic.ImageField<never>;
-
-  /**
-   * Description field in *StartingGrid → Items*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: starting_grid.items[].description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  description: prismic.RichTextField;
-}
-
-/**
- * Default variation for StartingGrid Slice
- *
- * - **API ID**: `default`
- * - **Description**: StartingGrid
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type StartingGridSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<StartingGridSliceDefaultPrimary>,
-  Simplify<StartingGridSliceDefaultItem>
->;
-
-/**
- * Slice variation for *StartingGrid*
- */
-type StartingGridSliceVariation = StartingGridSliceDefault;
-
-/**
- * StartingGrid Shared Slice
- *
- * - **API ID**: `starting_grid`
- * - **Description**: StartingGrid
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type StartingGridSlice = prismic.SharedSlice<
-  "starting_grid",
-  StartingGridSliceVariation
->;
-
-/**
  * Primary content in *SteppedLottie → Default → Primary*
  */
 export interface SteppedLottieSliceDefaultPrimary {
@@ -11330,124 +10116,6 @@ export type SteppedSlidesSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *SupplyDistribution → Default → Primary*
- */
-export interface SupplyDistributionSliceDefaultPrimary {
-  /**
-   * Background Color field in *SupplyDistribution → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: supply_distribution.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<"white" | "grey">;
-}
-
-/**
- * Primary content in *SupplyDistribution → Items*
- */
-export interface SupplyDistributionSliceDefaultItem {
-  /**
-   * Type field in *SupplyDistribution → Items*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: supply_distribution.items[].type
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  type: prismic.SelectField<
-    | "block_reward"
-    | "crowdfunding"
-    | "charity"
-    | "early_contributors_&_team"
-    | "foundation"
-  >;
-
-  /**
-   * Name field in *SupplyDistribution → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: supply_distribution.items[].name
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  name: prismic.KeyTextField;
-
-  /**
-   * Color field in *SupplyDistribution → Items*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: supply_distribution.items[].color
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  color: prismic.SelectField<
-    "green" | "blue-light" | "gold" | "orange" | "red"
-  >;
-
-  /**
-   * Percentage field in *SupplyDistribution → Items*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: supply_distribution.items[].percentage
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  percentage: prismic.NumberField;
-
-  /**
-   * Tooltip Headline field in *SupplyDistribution → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: supply_distribution.items[].tooltipHeadline
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  tooltipHeadline: prismic.KeyTextField;
-
-  /**
-   * Tooltip Description field in *SupplyDistribution → Items*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: supply_distribution.items[].tooltipDescription
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  tooltipDescription: prismic.RichTextField;
-}
-
-/**
- * Default variation for SupplyDistribution Slice
- *
- * - **API ID**: `default`
- * - **Description**: SupplyDistribution
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type SupplyDistributionSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<SupplyDistributionSliceDefaultPrimary>,
-  Simplify<SupplyDistributionSliceDefaultItem>
->;
-
-/**
- * Slice variation for *SupplyDistribution*
- */
-type SupplyDistributionSliceVariation = SupplyDistributionSliceDefault;
-
-/**
- * SupplyDistribution Shared Slice
- *
- * - **API ID**: `supply_distribution`
- * - **Description**: SupplyDistribution
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type SupplyDistributionSlice = prismic.SharedSlice<
-  "supply_distribution",
-  SupplyDistributionSliceVariation
->;
-
-/**
  * Primary content in *TeamMembers → Default → Primary*
  */
 export interface TeamMembersSliceDefaultPrimary {
@@ -11749,55 +10417,6 @@ type TiltedMediaSliceVariation =
 export type TiltedMediaSlice = prismic.SharedSlice<
   "tilted_media",
   TiltedMediaSliceVariation
->;
-
-/**
- * Primary content in *TweetsMarquee → Default → Primary*
- */
-export interface TweetsMarqueeSliceDefaultPrimary {
-  /**
-   * Background Color field in *TweetsMarquee → Default → Primary*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **Default Value**: white
-   * - **API ID Path**: tweets_marquee.default.primary.backgroundColor
-   * - **Documentation**: https://prismic.io/docs/fields/select
-   */
-  backgroundColor: prismic.SelectField<
-    "white" | "grey" | "blue-dark",
-    "filled"
-  >;
-}
-
-/**
- * Default variation for TweetsMarquee Slice
- *
- * - **API ID**: `default`
- * - **Description**: TweetsMarquee
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TweetsMarqueeSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<TweetsMarqueeSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *TweetsMarquee*
- */
-type TweetsMarqueeSliceVariation = TweetsMarqueeSliceDefault;
-
-/**
- * TweetsMarquee Shared Slice
- *
- * - **API ID**: `tweets_marquee`
- * - **Description**: TweetsMarquee
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TweetsMarqueeSlice = prismic.SharedSlice<
-  "tweets_marquee",
-  TweetsMarqueeSliceVariation
 >;
 
 /**
@@ -12570,11 +11189,6 @@ declare module "@prismicio/client" {
       TestDocument,
       TestDocumentData,
       AllDocumentTypes,
-      ActivityStatsSlice,
-      ActivityStatsSliceDefaultPrimary,
-      ActivityStatsSliceDefaultItem,
-      ActivityStatsSliceVariation,
-      ActivityStatsSliceDefault,
       AlbatrossLiveviewSlice,
       AlbatrossLiveviewSliceDefaultPrimary,
       AlbatrossLiveviewSliceVariation,
@@ -12657,19 +11271,6 @@ declare module "@prismicio/client" {
       FlagsMarqueeSliceDefaultPrimary,
       FlagsMarqueeSliceVariation,
       FlagsMarqueeSliceDefault,
-      FloatingVideoSlice,
-      FloatingVideoSliceDefaultSliceItem,
-      FloatingVideoSliceVariation,
-      FloatingVideoSliceDefaultSlice,
-      FullScreenImageSlice,
-      FullScreenImageSliceDefaultPrimary,
-      FullScreenImageSliceVariation,
-      FullScreenImageSliceDefault,
-      GallerySectionSlice,
-      GallerySectionSliceDefaultPrimary,
-      GallerySectionSliceDefaultItem,
-      GallerySectionSliceVariation,
-      GallerySectionSliceDefault,
       GridSectionSlice,
       GridSectionSliceDefaultPrimary,
       GridSectionSliceDefaultItem,
@@ -12717,12 +11318,6 @@ declare module "@prismicio/client" {
       HeroStatsSliceDefaultItem,
       HeroStatsSliceVariation,
       HeroStatsSliceDefault,
-      IframeEmbedSlice,
-      IframeEmbedSliceDefaultPrimary,
-      IframeEmbedSliceFullscreenPrimary,
-      IframeEmbedSliceVariation,
-      IframeEmbedSliceDefault,
-      IframeEmbedSliceFullscreen,
       LargeGridSlice,
       LargeGridSliceDefaultPrimary,
       LargeGridSliceDefaultItem,
@@ -12776,10 +11371,6 @@ declare module "@prismicio/client" {
       PillLinkSliceDefaultPrimary,
       PillLinkSliceVariation,
       PillLinkSliceDefault,
-      PodcastPlatformsSlice,
-      PodcastPlatformsSliceDefaultPrimary,
-      PodcastPlatformsSliceVariation,
-      PodcastPlatformsSliceDefault,
       PrestakingGridSlice,
       PrestakingGridSliceDefaultPrimaryItemsItem,
       PrestakingGridSliceDefaultPrimary,
@@ -12794,11 +11385,6 @@ declare module "@prismicio/client" {
       QuoteSliceDefaultPrimary,
       QuoteSliceVariation,
       QuoteSliceDefault,
-      RibCageGridSlice,
-      RibCageGridSliceDefaultPrimary,
-      RibCageGridSliceDefaultItem,
-      RibCageGridSliceVariation,
-      RibCageGridSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceWithLottiePrimary,
@@ -12822,15 +11408,6 @@ declare module "@prismicio/client" {
       RoadmapSliceDefaultPrimary,
       RoadmapSliceVariation,
       RoadmapSliceDefault,
-      RoadmapSectionSlice,
-      RoadmapSectionSliceDefaultPrimary,
-      RoadmapSectionSliceVariation,
-      RoadmapSectionSliceDefault,
-      S3CurrencyBannerSlice,
-      S3CurrencyBannerSliceDefaultPrimary,
-      S3CurrencyBannerSliceDefaultItem,
-      S3CurrencyBannerSliceVariation,
-      S3CurrencyBannerSliceDefault,
       SimpleCarouselSlice,
       SimpleCarouselSliceDefaultItem,
       SimpleCarouselSliceWithMediaPrimary,
@@ -12864,11 +11441,6 @@ declare module "@prismicio/client" {
       StakingSliceSliceDefaultPrimary,
       StakingSliceSliceVariation,
       StakingSliceSliceDefault,
-      StartingGridSlice,
-      StartingGridSliceDefaultPrimary,
-      StartingGridSliceDefaultItem,
-      StartingGridSliceVariation,
-      StartingGridSliceDefault,
       SteppedLottieSlice,
       SteppedLottieSliceDefaultPrimary,
       SteppedLottieSliceDefaultItem,
@@ -12882,11 +11454,6 @@ declare module "@prismicio/client" {
       SteppedSlidesSliceVariation,
       SteppedSlidesSliceDefault,
       SteppedSlidesSliceWithAnimations,
-      SupplyDistributionSlice,
-      SupplyDistributionSliceDefaultPrimary,
-      SupplyDistributionSliceDefaultItem,
-      SupplyDistributionSliceVariation,
-      SupplyDistributionSliceDefault,
       TeamMembersSlice,
       TeamMembersSliceDefaultPrimary,
       TeamMembersSliceDefaultItem,
@@ -12898,10 +11465,6 @@ declare module "@prismicio/client" {
       TiltedMediaSliceVariation,
       TiltedMediaSliceDefault,
       TiltedMediaSliceWithVideo,
-      TweetsMarqueeSlice,
-      TweetsMarqueeSliceDefaultPrimary,
-      TweetsMarqueeSliceVariation,
-      TweetsMarqueeSliceDefault,
       ValidatorListSlice,
       ValidatorListSliceVariation,
       ValidatorListSliceDefault,

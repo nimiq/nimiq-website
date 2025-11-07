@@ -166,9 +166,6 @@
             "youtube_video": {
               "type": "SharedSlice"
             },
-            "activity_stats": {
-              "type": "SharedSlice"
-            },
             "team_members": {
               "type": "SharedSlice"
             },
@@ -176,12 +173,6 @@
               "type": "SharedSlice"
             },
             "tilted_media": {
-              "type": "SharedSlice"
-            },
-            "supply_distribution": {
-              "type": "SharedSlice"
-            },
-            "rib_cage_grid": {
               "type": "SharedSlice"
             },
             "stepped_slides": {
@@ -199,12 +190,6 @@
             "staking_slice": {
               "type": "SharedSlice"
             },
-            "roadmap_section": {
-              "type": "SharedSlice"
-            },
-            "s3_currency_banner": {
-              "type": "SharedSlice"
-            },
             "simple_carousel": {
               "type": "SharedSlice"
             },
@@ -218,9 +203,6 @@
               "type": "SharedSlice"
             },
             "newsletter_subscription": {
-              "type": "SharedSlice"
-            },
-            "podcast_platforms": {
               "type": "SharedSlice"
             },
             "puzzle_grid": {
@@ -238,16 +220,7 @@
             "latest_blogpost": {
               "type": "SharedSlice"
             },
-            "iframe_embed": {
-              "type": "SharedSlice"
-            },
-            "gallery_section": {
-              "type": "SharedSlice"
-            },
             "cta_section": {
-              "type": "SharedSlice"
-            },
-            "full_screen_image": {
               "type": "SharedSlice"
             },
             "hero_stats": {
@@ -271,13 +244,7 @@
             "buy_sell_wallet": {
               "type": "SharedSlice"
             },
-            "starting_grid": {
-              "type": "SharedSlice"
-            },
             "consensus_map": {
-              "type": "SharedSlice"
-            },
-            "floating_video": {
               "type": "SharedSlice"
             }
           }

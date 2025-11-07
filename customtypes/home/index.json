@@ -40,9 +40,6 @@
             "pill_link": {
               "type": "SharedSlice"
             },
-            "tweets_marquee": {
-              "type": "SharedSlice"
-            },
             "apps_showcase": {
               "type": "SharedSlice"
             },
@@ -67,22 +64,13 @@
             "youtube_video": {
               "type": "SharedSlice"
             },
-            "activity_stats": {
-              "type": "SharedSlice"
-            },
             "team_members": {
               "type": "SharedSlice"
             },
             "whitepaper_slice": {
               "type": "SharedSlice"
             },
-            "supply_distribution": {
-              "type": "SharedSlice"
-            },
             "tilted_media": {
-              "type": "SharedSlice"
-            },
-            "rib_cage_grid": {
               "type": "SharedSlice"
             },
             "stepped_slides": {
@@ -100,12 +88,6 @@
             "staking_slice": {
               "type": "SharedSlice"
             },
-            "s3_currency_banner": {
-              "type": "SharedSlice"
-            },
-            "roadmap_section": {
-              "type": "SharedSlice"
-            },
             "simple_carousel": {
               "type": "SharedSlice"
             },
@@ -116,9 +98,6 @@
               "type": "SharedSlice"
             },
             "newsletter_subscription": {
-              "type": "SharedSlice"
-            },
-            "podcast_platforms": {
               "type": "SharedSlice"
             },
             "rich_text": {
@@ -136,19 +115,10 @@
             "latest_blogpost": {
               "type": "SharedSlice"
             },
-            "iframe_embed": {
-              "type": "SharedSlice"
-            },
-            "gallery_section": {
-              "type": "SharedSlice"
-            },
             "large_grid": {
               "type": "SharedSlice"
             },
             "hero_stats": {
-              "type": "SharedSlice"
-            },
-            "full_screen_image": {
               "type": "SharedSlice"
             },
             "cta_section": {
@@ -166,9 +136,6 @@
             "buy_sell_wallet": {
               "type": "SharedSlice"
             },
-            "starting_grid": {
-              "type": "SharedSlice"
-            },
             "consensus_map": {
               "type": "SharedSlice"
             },
@@ -176,9 +143,6 @@
               "type": "SharedSlice"
             },
             "blogposts_grid": {
-              "type": "SharedSlice"
-            },
-            "floating_video": {
               "type": "SharedSlice"
             }
           }

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client'
 
-defineProps(getSliceComponentProps<Content.ValidatorListSlice>())
+const { slice } = defineProps(getSliceComponentProps<Content.ValidatorListSlice>())
 </script>
 
 <template>
-  <section bg-neutral-0 relative z-11 of-y-initial>
-    <ValidatorList />
-  </section>
+  <ContentValidatorList :slice="slice as any" />
 </template>

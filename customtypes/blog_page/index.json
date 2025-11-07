@@ -77,9 +77,6 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "full_screen_image": {
-              "type": "SharedSlice"
-            },
             "rich_text": {
               "type": "SharedSlice"
             }
