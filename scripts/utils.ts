@@ -1,4 +1,8 @@
 import type { RichTextField } from '@prismicio/client'
+import { Buffer } from 'node:buffer'
+import { mkdir, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import process from 'node:process'
 import { asText, serialize, wrapMapSerializer } from '@prismicio/richtext'
 
 /**
@@ -34,6 +38,16 @@ export function prismicImageToLocalPath(url: string): string {
     return url
   const fileName = normalizeFileName(url.split('/').pop() || 'image')
   return `/${IMAGE_FOLDER}/${fileName}`
+}
+
+/**
+ * Convert Prismic CDN URL to local path for blog images
+ */
+export function blogImageToLocalPath(url: string, blogSlug: string): string {
+  if (!url?.includes('prismic'))
+    return url
+  const fileName = normalizeFileName(url.split('/').pop() || 'image')
+  return `/images/blog/${blogSlug}/${fileName}`
 }
 
 const markdownSerializer = wrapMapSerializer({
@@ -77,4 +91,38 @@ export function richTextToPlainText(richText: RichTextField): string {
   if (!richText || richText.length === 0)
     return ''
   return asText(richText)
+}
+
+/**
+ * Convert Prismic CDN URL to local path for exchanges
+ */
+export function exchangeLogoToLocalPath(url: string, slug: string): string {
+  if (!url?.includes('prismic'))
+    return url
+  const fileName = normalizeFileName(url.split('/').pop() || 'logo')
+  const ext = fileName.split('.').pop()
+  return `/images/exchanges/${slug}.${ext}`
+}
+
+/**
+ * Download image from URL and save locally
+ */
+export async function downloadImage(url: string, localPath: string): Promise<void> {
+  if (!url)
+    return
+
+  try {
+    const response = await fetch(url)
+    if (!response.ok)
+      throw new Error(`Failed to fetch ${url}: ${response.statusText}`)
+
+    const buffer = await response.arrayBuffer()
+    const fullPath = join(process.cwd(), 'public', localPath)
+    const dir = join(fullPath, '..')
+    await mkdir(dir, { recursive: true })
+    await writeFile(fullPath, Buffer.from(buffer))
+  }
+  catch (error) {
+    throw new Error(`Failed to download image from ${url}: ${error}`)
+  }
 }

@@ -33,3 +33,9 @@ docs/
 
 # Prismic cached data
 scripts/prismic-data/
+
+# Generated content
+content/
+public/images/blog/
+public/images/exchanges/
+public/images/pages/

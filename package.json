@@ -22,7 +22,7 @@
     "prepare": "nuxt prepare",
     "typecheck": "nuxt typecheck",
     "cryptomap:types": "npx supabase gen types --lang=typescript --project-id mycbdmurjytbdahjljoh > app/types/database.types.ts",
-    "prismic:sync": "tsx scripts/prismic-blog-sync.ts && pnpm lint:fix"
+    "prismic:sync": "tsx scripts/prismic-sync.ts && pnpm lint:fix"
   },
   "dependencies": {
     "@nimiq/core": "catalog:nimiq",
