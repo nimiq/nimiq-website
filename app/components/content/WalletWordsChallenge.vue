@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import WalletWordsChallengeComponent from '~/components/Wallet/WordsChallenge.client.vue'
+
 interface WalletWordsChallengeSlice {
   primary: {
     headline: string
@@ -14,7 +16,7 @@ defineProps<{ slice: WalletWordsChallengeSlice }>()
 
 <template>
   <section px-8 bg-neutral-0 relative of-x-clip>
-    <WalletWordsChallenge
+    <WalletWordsChallengeComponent
       :headline="slice.primary.headline" :subheadline="slice.primary.subheadline"
       :guess-the-remaining-words-label="slice.primary.guessTheRemainingWordsLabel"
       :you-do-not-stand-a-chance-to-take="slice.primary.youDoNotStandAChanceToTake"

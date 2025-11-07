@@ -12,10 +12,9 @@ interface TiltedMediaSlice {
 }
 
 const props = defineProps<{ slice: TiltedMediaSlice }>()
-const bgClass = getColorClass(props.slice.primary.bgColor)
+const bgClass = getColorClass(() => (props.slice.primary.bgColor as 'white' | 'grey' | 'darkblue' | 'blue-s3' | undefined) ?? 'grey')
 const url = computed(() => {
   if (props.slice.variation === 'default')
-    // @ts-expect-error The URL is always present in this case
     return props.slice.primary.media.url
   if (props.slice.variation === 'withVideo')
     return props.slice.primary.video.embed_url
