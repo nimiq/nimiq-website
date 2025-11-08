@@ -201,6 +201,7 @@ const LINK_WHITELIST = [
   /^https:\/\/github\.com\/vernnobile\/MuliFont$/,
   /^https:\/\/github\.com\/catarse\/catarse$/,
   /^https:\/\/github\.com\/valentinvieriu\/nimiq-vanity-wallet$/,
+  /^https:\/\/github\.com\/hrxi$/,
   // Dynamic link from JS
   /^https:\/\/github\.com\/\$\{\w\}$/,
 
