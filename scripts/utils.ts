@@ -50,13 +50,19 @@ export function blogImageToLocalPath(url: string, blogSlug: string): string {
   return `/images/blog/${blogSlug}/${fileName}`
 }
 
+function cleanHeadingText(text: string): string {
+  // Remove bold markers if entire heading is bold: "**Overview**" -> "Overview"
+  // Keep partial bold: "Winter of **2025**" -> "Winter of **2025**"
+  return text.replace(/^\*\*(.+)\*\*$/, '$1')
+}
+
 const markdownSerializer = wrapMapSerializer({
-  heading1: ({ children }) => `# ${children.join('')}\n\n`,
-  heading2: ({ children }) => `## ${children.join('')}\n\n`,
-  heading3: ({ children }) => `### ${children.join('')}\n\n`,
-  heading4: ({ children }) => `#### ${children.join('')}\n\n`,
-  heading5: ({ children }) => `##### ${children.join('')}\n\n`,
-  heading6: ({ children }) => `###### ${children.join('')}\n\n`,
+  heading1: ({ children }) => `# ${cleanHeadingText(children.join(''))}\n\n`,
+  heading2: ({ children }) => `## ${cleanHeadingText(children.join(''))}\n\n`,
+  heading3: ({ children }) => `### ${cleanHeadingText(children.join(''))}\n\n`,
+  heading4: ({ children }) => `#### ${cleanHeadingText(children.join(''))}\n\n`,
+  heading5: ({ children }) => `##### ${cleanHeadingText(children.join(''))}\n\n`,
+  heading6: ({ children }) => `###### ${cleanHeadingText(children.join(''))}\n\n`,
   paragraph: ({ children }) => `${children.join('')}\n\n`,
   preformatted: ({ node }) => `\`\`\`\n${node.text}\n\`\`\`\n\n`,
   strong: ({ children }) => `**${children.join('')}**`,
@@ -91,6 +97,18 @@ export function richTextToPlainText(richText: RichTextField): string {
   if (!richText || richText.length === 0)
     return ''
   return asText(richText)
+}
+
+/**
+ * Convert Prismic rich text to plain text (no markdown headers)
+ * Used for page YAML fields where headers are added by components
+ */
+export function richTextToPlainTextNoHeaders(richText: RichTextField): string {
+  if (!richText || richText.length === 0)
+    return ''
+  const markdown = richTextToMarkdown(richText)
+  // Remove markdown headers but keep content
+  return markdown.replace(/^#{1,6}\s+/gm, '').trim()
 }
 
 /**

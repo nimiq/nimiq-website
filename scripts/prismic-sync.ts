@@ -3,7 +3,8 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 import { consola } from 'consola'
-import { blogImageToLocalPath, downloadImage, exchangeLogoToLocalPath, normalizeFileName, richTextToMarkdown, richTextToPlainText } from './utils'
+import yaml from 'js-yaml'
+import { blogImageToLocalPath, downloadImage, exchangeLogoToLocalPath, normalizeFileName, richTextToMarkdown, richTextToPlainText, richTextToPlainTextNoHeaders } from './utils'
 
 const PRISMIC_API = 'https://nimiq.cdn.prismic.io/api/v2'
 const PRISMIC_TOKEN = process.env.PRISMIC_ACCESS_TOKEN
@@ -183,24 +184,17 @@ function generateFrontmatter(doc: BlogPageDocument, images: ImageMap[]): string 
     }
   }
 
-  // Generate YAML
-  const yaml = Object.entries(frontmatter)
-    .map(([key, value]) => {
-      if (value === undefined || value === null)
-        return null
-      if (typeof value === 'string') {
-        const escaped = value.replace(/"/g, '\\"')
-        return `${key}: "${escaped}"`
-      }
-      if (Array.isArray(value)) {
-        return `${key}:\n${value.map(v => `  - "${v}"`).join('\n')}`
-      }
-      return `${key}: ${JSON.stringify(value)}`
-    })
-    .filter(Boolean)
-    .join('\n')
+  // Clean and generate YAML
+  const cleanedFrontmatter = cleanObject(frontmatter)
+  const yamlContent = yaml.dump(cleanedFrontmatter, {
+    indent: 2,
+    lineWidth: -1,
+    noRefs: true,
+    quotingType: '"',
+    forceQuotes: false,
+  })
 
-  return `---\n${yaml}\n---\n`
+  return `---\n${yamlContent}---\n`
 }
 
 function convertBodyToMarkdown(doc: BlogPageDocument): string {
@@ -249,7 +243,7 @@ function convertBlogPost(doc: BlogPageDocument): { markdown: string, images: Ima
 }
 
 async function saveMarkdownFile(slug: string, content: string, publishDate: string): Promise<void> {
-  const contentDir = join(process.cwd(), 'content', 'blog')
+  const contentDir = join(process.cwd(), 'content', 'preview', 'blog')
   await mkdir(contentDir, { recursive: true })
 
   // Extract year-month-day from publish date
@@ -289,22 +283,18 @@ async function convertExchange(doc: ExchangeDocument): Promise<{ yaml: string, l
     frontmatter.link = link.url || link.href || ''
   }
 
-  // Generate YAML
-  const yaml = Object.entries(frontmatter)
-    .map(([key, value]) => {
-      if (value === undefined || value === null)
-        return null
-      if (typeof value === 'string') {
-        const escaped = value.replace(/"/g, '\\"')
-        return `${key}: "${escaped}"`
-      }
-      return `${key}: ${JSON.stringify(value)}`
-    })
-    .filter(Boolean)
-    .join('\n')
+  // Clean and generate YAML
+  const cleanedFrontmatter = cleanObject(frontmatter)
+  const yamlContent = yaml.dump(cleanedFrontmatter, {
+    indent: 2,
+    lineWidth: -1,
+    noRefs: true,
+    quotingType: '"',
+    forceQuotes: false,
+  })
 
   return {
-    yaml: `---\n${yaml}\n---\n`,
+    yaml: `---\n${yamlContent}---\n`,
     logoUrl,
     logoPath,
   }
@@ -378,7 +368,7 @@ function isLinkField(value: any): boolean {
 }
 
 function shouldSkipField(key: string): boolean {
-  const skipFields = ['id', 'slice_type', 'slice_label', 'variation', 'version', 'dimensions', 'edit', 'link_type', 'target', 'spans']
+  const skipFields = ['id', 'slice_type', 'slice_label', 'variation', 'version', 'dimensions', 'edit', 'link_type', 'target', 'spans', 'backgroundColor']
   return skipFields.includes(key)
 }
 
@@ -392,6 +382,67 @@ function convertLinkToUrl(link: any): string {
   if (link.link_type === 'Media')
     return link.url || ''
   return link.url || ''
+}
+
+function sliceTypeToComponentName(sliceType: string): string {
+  const componentMap: Record<string, string> = {
+    hero_section: 'HeroSection',
+    apps_showcase: 'AppsShowcase',
+    banner_slice: 'BannerSlice',
+    albatross_liveview: 'AlbatrossLiveview',
+    albatross_technical_details: 'AlbatrossTechnicalDetails',
+    prestaking_grid: 'PrestakingGrid',
+    crypto_map_continent_selector: 'CryptoMapContinentSelector',
+    logos_grid: 'LogosGrid',
+    grid_section: 'GridSection',
+    simple_carousel: 'SimpleCarousel',
+    rich_text: 'RichText',
+    new_york_grid: 'NewYorkGrid',
+    newsletter_subscription: 'NewsletterSubscription',
+    latest_blogpost: 'LatestBlogpost',
+    cta_section: 'CtaSection',
+    hero_stats: 'HeroStats',
+    exchanges_showcase: 'ExchangesShowcase',
+    exchanges_grid: 'ExchangesGrid',
+    flags_marquee: 'FlagsMarquee',
+    contact_form: 'ContactForm',
+    blogposts_grid: 'BlogpostsGrid',
+    cards_carousel: 'CardsCarousel',
+    buy_sell_wallet: 'BuySellWallet',
+    consensus_map: 'ConsensusMap',
+    roadmap: 'Roadmap',
+    app_gallery: 'AppGalleryCta',
+    staking_calculator: 'StakingCalculator',
+    staking_distribution: 'StakingDistribution',
+    staking_faq: 'StakingFaq',
+    validator_list: 'ValidatorList',
+    vertical_video: 'VerticalVideo',
+    youtube_video: 'YoutubeVideo',
+    team_members: 'TeamMembers',
+    whitepaper_slice: 'WhitepaperSlice',
+    tilted_media: 'TiltedMedia',
+    stepped_slides: 'SteppedSlides',
+    social_media_grid: 'SocialMediaGrid',
+    rich_text_carousel: 'RichTextCarousel',
+    stepped_lottie: 'SteppedLottie',
+    staking_slice: 'StakingSlice',
+    rich_text_cards: 'RichTextCards',
+    puzzle_grid: 'PuzzleGrid',
+    lottie_slice: 'LottieSlice',
+    large_grid: 'LargeGrid',
+    link_grid: 'LinkGrid',
+    zig_zag_content: 'ZigZagContent',
+    pill_link: 'PillLink',
+    quote: 'Quote',
+    wallet_playground: 'WalletPlayground',
+    currency_comparison: 'CurrencyComparison',
+    wallet_words_challenge: 'WalletWordsChallenge',
+    newsletter_form: 'NewsletterForm',
+    nimiq_wallet_hoverable: 'NimiqWalletHoverable',
+    nim_token_distribution: 'NimTokenDistribution',
+    simple_headline: 'SimpleHeadline',
+  }
+  return componentMap[sliceType] || sliceType
 }
 
 function getSliceKeyName(slice: any, index: number, allSlices: any[]): string {
@@ -482,9 +533,9 @@ async function extractFieldValue(value: any, pageSlug: string, fieldPath: string
   if (value === null || value === undefined)
     return null
 
-  // RichText → markdown
+  // RichText → plain text (no markdown headers for page YAML)
   if (isRichTextField(value)) {
-    return richTextToMarkdown(value)
+    return richTextToPlainTextNoHeaders(value)
   }
 
   // Image → download + local path
@@ -551,64 +602,33 @@ async function convertSliceToData(slice: any, pageSlug: string, sliceKey: string
   return data
 }
 
-function objectToYaml(obj: any, indent: number = 0): string {
-  const spaces = ' '.repeat(indent)
-  let yaml = ''
-
-  for (const [key, value] of Object.entries(obj)) {
-    if (value === null || value === undefined)
-      continue
-
-    if (typeof value === 'string') {
-      // Multiline strings
-      if (value.includes('\n')) {
-        yaml += `${spaces}${key}: |\n`
-        const lines = value.split('\n')
-        for (const line of lines) {
-          yaml += `${spaces}  ${line}\n`
-        }
-      }
-      else {
-        // Escape quotes and special YAML chars
-        const escaped = value.replace(/"/g, '\\"')
-        yaml += `${spaces}${key}: "${escaped}"\n`
-      }
-    }
-    else if (typeof value === 'number' || typeof value === 'boolean') {
-      yaml += `${spaces}${key}: ${value}\n`
-    }
-    else if (Array.isArray(value)) {
-      if (value.length === 0) {
-        yaml += `${spaces}${key}: []\n`
-      }
-      else if (typeof value[0] === 'object') {
-        yaml += `${spaces}${key}:\n`
-        for (const item of value) {
-          yaml += `${spaces}  -\n`
-          const itemYaml = objectToYaml(item, indent + 4)
-          yaml += itemYaml
-        }
-      }
-      else {
-        yaml += `${spaces}${key}:\n`
-        for (const item of value) {
-          const escaped = typeof item === 'string' ? item.replace(/"/g, '\\"') : item
-          yaml += `${spaces}  - "${escaped}"\n`
-        }
-      }
-    }
-    else if (typeof value === 'object') {
-      yaml += `${spaces}${key}:\n`
-      yaml += objectToYaml(value, indent + 2)
-    }
+function cleanObject(obj: any): any {
+  if (obj === null || obj === undefined)
+    return undefined
+  if (typeof obj === 'string') {
+    const trimmed = obj.trim()
+    return trimmed === '' ? undefined : trimmed
   }
-
-  return yaml
+  if (Array.isArray(obj)) {
+    const cleaned = obj.map(cleanObject).filter(item => item !== undefined)
+    return cleaned.length === 0 ? undefined : cleaned
+  }
+  if (typeof obj === 'object') {
+    const cleaned: any = {}
+    for (const [key, value] of Object.entries(obj)) {
+      const cleanedValue = cleanObject(value)
+      if (cleanedValue !== undefined)
+        cleaned[key] = cleanedValue
+    }
+    return Object.keys(cleaned).length === 0 ? undefined : cleaned
+  }
+  return obj
 }
 
 async function convertPageToYAML(doc: PageDocument, navigation?: NavigationDocument | null): Promise<string> {
   const pageSlug = doc.uid
   const sections: Record<string, any> = {}
+  const sliceKeys: Array<{ key: string, type: string }> = []
 
   // Extract meta
   sections.meta = {
@@ -640,6 +660,7 @@ async function convertPageToYAML(doc: PageDocument, navigation?: NavigationDocum
       try {
         const sliceData = await convertSliceToData(slice, pageSlug, sliceKey)
         sections[sliceKey] = sliceData
+        sliceKeys.push({ key: sliceKey, type: slice.slice_type })
       }
       catch (error) {
         consola.warn(`⚠ Failed to process slice ${sliceKey}:`, error)
@@ -657,12 +678,24 @@ async function convertPageToYAML(doc: PageDocument, navigation?: NavigationDocum
     }
   }
 
-  // Generate YAML
-  let yaml = '---\n'
-  yaml += objectToYaml(sections, 0)
-  yaml += '---\n'
+  // Clean and generate YAML
+  const cleanedSections = cleanObject(sections)
+  const yamlContent = yaml.dump(cleanedSections, {
+    indent: 2,
+    lineWidth: -1, // Disable line wrapping
+    noRefs: true, // Disable anchors/references
+    quotingType: '"',
+    forceQuotes: false,
+  })
 
-  return yaml
+  // Generate MDC body with component tags
+  let body = ''
+  for (const { key, type } of sliceKeys) {
+    const componentName = sliceTypeToComponentName(type)
+    body += `::${componentName}{:${key}}\n::\n\n`
+  }
+
+  return `---\n${yamlContent}---\n\n${body}`
 }
 
 async function syncPages(): Promise<ConversionStats> {
@@ -682,7 +715,7 @@ async function syncPages(): Promise<ConversionStats> {
       consola.success('Fetched navigation document for footer data')
     }
 
-    const contentDir = join(process.cwd(), 'content', 'pages')
+    const contentDir = join(process.cwd(), 'content', 'preview')
     await mkdir(contentDir, { recursive: true })
 
     consola.start(`Converting ${pages.length} page(s)...\n`)
@@ -690,7 +723,9 @@ async function syncPages(): Promise<ConversionStats> {
     for (const page of pages) {
       try {
         const yaml = await convertPageToYAML(page, navigation)
-        const filepath = join(contentDir, `${page.uid}.yml`)
+        // Rename home to index for routing, use .md extension for MDC support
+        const filename = page.uid === 'home' ? 'index.md' : `${page.uid}.md`
+        const filepath = join(contentDir, filename)
         await writeFile(filepath, yaml, 'utf-8')
         stats.success++
         consola.success(`✓ ${page.uid}`)
