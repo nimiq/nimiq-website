@@ -37,6 +37,8 @@ export default defineNuxtConfig({
     !environment.useNuxtHub && './modules/prismic-images',
     !environment.useNuxtHub && './modules/link-validation', // Enhanced link validation with whitelist
     environment.useNuxtHub && '@nuxthub/core',
+
+    '@nuxt/content',
   ].filter(Boolean),
 
   // Analytics scripts - loaded in all environments, but behavior controlled by composables
