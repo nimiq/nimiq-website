@@ -13,7 +13,6 @@ export const EXCLUDED_PAGES = [
 
   // HTML pages found in the public folder
   '/activation/privacy',
-  '/terms',
 ]
 
 export interface PrerenderPagesOptions {
