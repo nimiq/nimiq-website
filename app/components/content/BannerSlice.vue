@@ -38,6 +38,11 @@ const classesPositions = [
   'invisible xl:visible xl:bottom--40 xl:right--30',
 ]
 
+const logoCustomClasses: Record<string, string> = {
+  'NimWorld': 'filter-brightness-0 filter-invert scale-75',
+  'Trust Wallet': 'scale-150',
+}
+
 async function getBackgroundItems(background: any) {
   switch (background) {
     case 'Social Media': {
@@ -93,16 +98,13 @@ const items = (await Promise.all(props.slice.items.map(async (item: any) => {
       >
         <PrismicLink
           v-for="({ classes, color, icon, link: linkItem, name }, j) in bgItems" :key="j"
-          :aria-label="name" flex="~ items-center justify-center" :field="linkItem" tabindex="-1"
-          :style="{ backgroundColor: color }" :class="[classes]"
-          pointer-cursor text-white rounded-full size-104 absolute
+          :aria-label="name" :field="linkItem" tabindex="-1"
+          :class="[classes]"
+          pointer-cursor size-104 absolute i-nimiq:logos-nimiq-mono :style="{ color }"
         >
-          <div v-if="typeof icon === 'string'" :class="icon" pointer-events-none />
-          <ProxiedPrismicImage v-else :field="icon" pointer-events-none scale-125 />
-          <div
-            :style="{ borderColor: color }" top="50%" left="50%" border="2 solid" translate-x="-50%"
-            translate-y="-50%" rounded-full op-0 size-full pointer-events-none scale-100 absolute
-          />
+          <div v-if="typeof icon === 'string' && icon.startsWith('i-')" :class="icon" pointer-events-none text-white flex="~ items-center justify-center" size-full />
+          <img v-else-if="typeof icon === 'string'" :src="icon" :alt="name" pointer-events-none size-full object-contain scale-110 :class="logoCustomClasses[name]" />
+          <ProxiedPrismicImage v-else :field="icon" pointer-events-none size-full object-contain p-16 :class="logoCustomClasses[name]" />
         </PrismicLink>
         <div v-if="bgColor === 'white'" class="curtain" pointer-events-none inset-0 absolute />
         <div v-else-if="bgColor === 'green'" rounded-6 pointer-events-none inset-1.5 absolute bg-gradient-green />
