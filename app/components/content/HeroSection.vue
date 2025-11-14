@@ -21,7 +21,7 @@ const { slice } = defineProps<{ slice: HeroSectionSlice, slices: any[], index: n
 <template>
   <HeroDefault v-if="slice.variation === 'default-slice'" v-bind="slice as any" :data-slice-type="slice.slice_type" />
   <HeroTwoColumn v-if="slice.variation === 'twoColumn'" v-bind="slice as any" :data-slice-type="slice.slice_type" />
-  <HeroHome v-if="slice.variation === 'home2024'" :headline="slice.primary.headline!" :subline="slice.primary.subline as any" :link="slice.primary.link!" :data-slice-type="slice.slice_type" />
+  <HeroHome v-if="slice.variation === 'home2024'" :headline="slice.primary.headline!" :subline="slice.primary.subheadline as any" :link="slice.primary.link!" :data-slice-type="slice.slice_type" />
   <HeroLeftAligned v-if="slice.variation === 'leftAligned'" :headline="slice.primary.headline!" :subline="slice.primary.subline!" />
   <HeroStaking v-if="slice.variation === 'staking'" :headline="slice.primary.headline!" :cta="slice.primary.cta!" />
   <HeroBuyAndSell v-if="slice.variation === 'buyAndSell'" v-bind="$props as any" />
