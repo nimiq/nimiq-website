@@ -3,40 +3,7 @@ import type { KeyTextField, LinkField, RichTextField } from '@prismicio/client'
 import { AnimatedTweenedNumber, NuxtLink } from '#components'
 import Map from './Map.vue'
 
-const props = defineProps<{ headline: RichTextField, subHeadlineTemplate: KeyTextField, link: LinkField }>()
-
-const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
-
-// const { md, xl } = useBreakpoints(breakpointsTailwind)
-
-// @unocss-include
-
-const locationsSpan = h(NuxtLink, { class: 'text-blue', to: 'https://map.nimiq.com', target: '_blank' }, () => [
-  h(AnimatedTweenedNumber, {
-    value: locationsCount.value || 0,
-    duration: 1300,
-  }),
-  ' locations',
-])
-
-const subheadline = computed(() => {
-  const pre = props.subHeadlineTemplate?.split('{{')[0]?.toString()
-  const post = props.subHeadlineTemplate?.split('}}')[1]?.toString()
-  return h('p', {}, [pre, locationsSpan, post])
-})
-
-const subheadlineStr = computed(() => {
-  const pre = props.subHeadlineTemplate?.split('{{')[0]?.toString()
-  const post = props.subHeadlineTemplate?.split('}}')[1]?.toString()
-  return `${pre} ${locationsCount.value} ${post}`
-})
-
-watch(subheadlineStr, () => {
-  useSeoMeta({
-    title: getText(props.headline),
-    description: subheadlineStr.value,
-  })
-})
+const props = defineProps<{ headline: RichTextField, subline: KeyTextField, link: LinkField }>()
 </script>
 
 <template>
@@ -46,7 +13,7 @@ watch(subheadlineStr, () => {
   >
     <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
-      <component :is="subheadline" text="neutral-800 f-xl" />
+      <p text="neutral-800 f-xl">{{ subline }}</p>
       <PrismicLink :field="link" mt-40 nq-arrow nq-pill-lg nq-pill-blue />
     </div>
     <NuxtImg

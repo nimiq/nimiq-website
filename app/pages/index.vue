@@ -34,10 +34,7 @@ const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.h
 const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
 
 const title = cmsTitle || firstSliceTitle || 'Nimiq'
-let description = cmsDescription || firstSliceDescription || ''
-
-const { cryptoMapLocationsCount: locationsCount } = useCryptoMapStats()
-description = description.replace(/\{\{\s*locations\s*\}\}/, locationsCount.value.toString())
+const description = cmsDescription || firstSliceDescription || ''
 
 // Site config ensures consistency across all SEO-related modules
 const url = 'https://nimiq.com'
