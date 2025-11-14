@@ -79,16 +79,17 @@ const items = (await Promise.all(props.slice.items.map(async (item: any) => {
 <template>
   <section
     v-if="showBanner"
-    nq-overlaps bg-neutral-0 relative z-10 of-x-clip
-    :class="{ 'pb-0': slice.variation !== 'default', 'px-8 [--pt:0]': slice.variation === 'withRibbon' }"
+    bg-neutral-0 relative z-10 of-x-clip
+    :class="{ 'pb-0': slice.variation !== 'default', 'px-8 [--pt:0]': slice.variation === 'withRibbon', 'pt-0': slice.variation === 'default' }"
     data-slice-type="banner"
   >
     <template v-if="slice.variation === 'default'">
       <div
         v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, link, hasBgItems }, i) in items"
-        :key="i" outline="1.5 offset--1.5 white/20" :style="`background: var(--nq-${bgColor || 'neutral'})`"
+        :key="i" :style="`background: var(--nq-${bgColor || 'neutral'})`"
         :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72"
         mx-auto px-32 rounded-8 w-full shadow relative of-hidden
+        outline="1.5 offset--1.5 ~ neutral/10"
       >
         <PrismicLink
           v-for="({ classes, color, icon, link: linkItem, name }, j) in bgItems" :key="j"
@@ -206,23 +207,5 @@ const items = (await Promise.all(props.slice.items.map(async (item: any) => {
 .curtain {
   background: linear-gradient(180deg, rgb(var(--nq-neutral-0) / 0.1) 50%, rgb(var(--nq-neutral-0) / 0.5) 100%);
   box-shadow: inset 0px 0px 101.171px rgba(var(--nq-neutral-0) / 0.75);
-}
-
-a:hover div:last-child {
-  animation: radar-pulse 1.2s ease-out infinite;
-}
-
-@keyframes radar-pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.95);
-    border-width: 2px;
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate(-50%, -50%) scale(1.5);
-    border-width: 0;
-    opacity: 0;
-  }
 }
 </style>

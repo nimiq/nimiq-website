@@ -3,8 +3,9 @@ import type { AppsShowcaseSliceDefaultPrimary } from '~~/prismicio-types'
 
 const { labelTeamNimiq } = defineProps<AppsShowcaseSliceDefaultPrimary>()
 
-const { data } = await useApps({ labelTeamNimiq: labelTeamNimiq! })
-const { filteredApps, getSpotlightAppsPosition, madeBy } = useAppsGrid(data.value!)
+const { data: apps } = await useApps({ labelTeamNimiq: labelTeamNimiq! })
+console.log({apps:apps})
+const { filteredApps, getSpotlightAppsPosition, madeBy } = useAppsGrid(apps.value!)
 
 function useAppsGrid({ apps, spotLightApps }: { apps: NimiqApp[], spotLightApps: string[] }) {
   type MadeByType = 'anyone' | 'official' | 'community'

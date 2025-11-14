@@ -46,20 +46,18 @@ const [DefineItem, Item] = createReusableTemplate<AppsShowcaseSliceNimiqsAppsPri
         <ProxiedPrismicImage
           :field="preview"
           :class="{
-            'max-xl:scale-155 max-xl:transform-origin-top-left': item === 'Nimiq Wallet' || item === 'Multisig Wallet',
+            'max-xl:scale-155 scale-120 max-xl:transform-origin-top-left bottom--32 relative': item === 'Nimiq Wallet' || item === 'Multisig Wallet',
           }"
         />
       </div>
     </PrismicLink>
   </DefineItem>
-  <div max-w-none of-x-clip>
     <ul grid="~ cols-1 lg:cols-2 gap-20 md:gap-22">
-      <li v-for="(item, i) in items" :key="i" :class="{ 'lg:col-span-full': item.highlight }" style="--ring-color: transparent" bg="neutral-300 hocus:neutral-0" p-0 of-initial nq-hoverable>
+      <li v-for="(item, i) in items" :key="i" :class="{ 'lg:col-span-full': item.highlight }" style="--ring-color: transparent" bg="neutral-300 hocus:neutral-0" p-0 of-initial nq-hoverable isolate>
         <Item v-if="item.item !== 'Multisig Wallet'" v-bind="item" />
         <RibbonContainer v-else outline-transparent bg-transparent color="purple" label="New Release" var:top:25px icon="i-nimiq:verified-filled">
           <Item v-bind="item" w-full />
         </RibbonContainer>
       </li>
     </ul>
-  </div>
 </template>
