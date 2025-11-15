@@ -1,0 +1,1 @@
+import{b1 as t,b2 as s,b3 as e,b4 as n,b5 as r,b6 as c,b7 as g}from"./BgLt8HC-.js";const i=a=>n(a),h=a=>s(a),u=a=>c(a),b=a=>t(a)||"",f=a=>r(a)||"",x=a=>g(a)||"",k=a=>e(a)||"";function m(a){return!a||!i(a)?"":a.url}function T({dimensions:a}){return a?a.width/a.height:0}export{i as a,f as b,k as c,u as d,m as e,T as f,b as g,h,x as i};

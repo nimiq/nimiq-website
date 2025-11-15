@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 40 40">
+					<g clip-path="url(#a)">
+						<rect width="40" height="18" fill="url(#b)" rx="4" />
+						<rect width="21" height="18" y="22" fill="url(#c)" rx="4" />
+						<rect width="15" height="18" x="25" y="22" fill="url(#d)" rx="4" />
+					</g>
+					<defs>
+						<radialGradient id="b" cx="0" cy="0" r="1" gradientTransform="matrix(-40 0 0 -18 40 18)"
+							gradientUnits="userSpaceOnUse">
+							<stop stop-color="#265DD7" />
+							<stop offset="1" stop-color="#0582CA" />
+						</radialGradient>
+						<radialGradient id="c" cx="0" cy="0" r="1" gradientTransform="matrix(-21 0 0 -18 21 40)"
+							gradientUnits="userSpaceOnUse">
+							<stop stop-color="#EC991C" />
+							<stop offset="1" stop-color="#E9B213" />
+						</radialGradient>
+						<radialGradient id="d" cx="0" cy="0" r="1" gradientTransform="matrix(-15 0 0 -18 40 40)"
+							gradientUnits="userSpaceOnUse">
+							<stop stop-color="#260133" />
+							<stop offset="1" stop-color="#1F2348" />
+						</radialGradient>
+						<clipPath id="a">
+							<path fill="white" d="M0 0h40v40H0z" />
+						</clipPath>
+					</defs>
+				</svg>
