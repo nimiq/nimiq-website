@@ -231,7 +231,7 @@ const LINK_WHITELIST = [
   /^https:\/\/usd-crc-historic-rate\.deno\.dev\/api\/rates\/\$\{[^}]+\}\/\$\{[^}]+\}$/,
   /^https:\/\/min-api\.cryptocompare\.com\/data\/v2\/histohour$/,
   /^https:\/\/geoip\.nimiq-network\.com:8443\/v1\/locate$/,
-  /^https:\/\/validators-api-mainnet\.pages\.dev$/,
+  /^https:\/\/validators-api-mainnet\.pages\.dev\/?.*$/,
   /^https:\/\/min-api\.cryptocompare\.com\/data$/,
   /^https:\/\/stats\.nimiq-network\.com$/,
 
