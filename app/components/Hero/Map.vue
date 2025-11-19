@@ -42,7 +42,7 @@ onMounted(() => {
   <div :class="{ visible: isVisible, delayed: isDelayed }" class="map">
     <NuxtImg class="base-map" src="/assets/images/home-hero/map.svg" alt="World map" />
     <svg viewBox="0 0 977 362" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g class="green-group europe" opacity="1" fill-rule="evenodd" clip-rule="evenodd" fill="#1F2348">
+      <!-- <g class="green-group europe" opacity="1" fill-rule="evenodd" clip-rule="evenodd" fill="#1F2348">
         <path
           d="M432.199 67.438c.084.847-1.017 1.61-2.372 1.694-1.356.085-2.542-.508-2.627-1.355-.084-.847 1.017-1.61 2.372-1.694 1.61-.085 2.627.508 2.627 1.355Z"
         />
@@ -76,9 +76,9 @@ onMounted(() => {
         <path
           d="M881.094 313.361c.085 1.017-.932 1.271-2.287.762-1.355-.508-2.796-1.863-2.88-2.795-.085-1.017.932-1.271 2.287-.763 1.44.678 2.796 1.864 2.88 2.796Z"
         />
-      </g>
+      </g> -->
 
-      <g class="marker-group">
+      <!-- <g class="marker-group">
         <g
           v-for="marker in markers"
           :key="marker.id"
@@ -130,7 +130,7 @@ onMounted(() => {
             :y="marker.y"
           />
         </g>
-      </g>
+      </g> -->
 
       <symbol id="marker" viewBox="0 0 158 200" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#a)">
@@ -276,9 +276,9 @@ svg {
   filter: drop-shadow(0px 0px 2px rgba(var(--nq-green-on-light) / 0.5));
 }
 
-.marker-group use + text {
+/* .marker-group use + text {
   pointer-events: none;
-}
+} */
 
 /* Map animation variables */
 .map {
@@ -295,7 +295,7 @@ svg {
 }
 
 /* Markers */
-.marker-group use + use,
+/* .marker-group use + use,
 .marker-group use + use + text,
 .small-marker-group use + use {
   opacity: 0;
@@ -306,10 +306,10 @@ svg {
     transform var(--duration) var(--nq-ease),
     filter var(--duration) var(--nq-ease),
     opacity var(--duration) var(--nq-ease);
-}
+} */
 
 /* Animation for large markers & green groups */
-.delayed .marker-group .marker-europe use,
+/* .delayed .marker-group .marker-europe use,
 .delayed .marker-group .marker-europe text {
   transition-delay: calc(var(--delay) * 2);
 }
@@ -323,10 +323,10 @@ svg {
 }
 .delayed .green-group.australia {
   transition-delay: calc(var(--delay) * 3);
-}
+} */
 
 /* Animation for small markers */
-.delayed .small-marker-group .small-marker-1 use {
+/* .delayed .small-marker-group .small-marker-1 use {
   transition-delay: calc(var(--delay) * 4);
 }
 .delayed .small-marker-group .small-marker-2 use {
@@ -340,7 +340,7 @@ svg {
 }
 .delayed .small-marker-group .small-marker-5 use {
   transition-delay: calc(var(--delay) * 8);
-}
+} */
 
 /* Show green groups when visible */
 .visible .green-group {
@@ -348,15 +348,15 @@ svg {
 }
 
 /* Show markers when visible */
-.visible .marker-group use + use,
+/* .visible .marker-group use + use,
 .visible .marker-group use + use + text,
 .visible .small-marker-group use + use {
   opacity: 1;
   transform: translateY(0);
-}
+} */
 
 /* Hover states */
-.marker-group use:hover + use,
+/* .marker-group use:hover + use,
 .marker-group use:hover + use + text,
 .small-marker-group use:hover + use {
   transform: translateY(-8px);
@@ -365,5 +365,5 @@ svg {
 .marker-group use + use,
 .small-marker-group use + use {
   filter: drop-shadow(0px 0px 4px rgba(var(--nq-green-on-light) / 0.25));
-}
+} */
 </style>
