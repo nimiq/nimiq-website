@@ -5,6 +5,7 @@ import { resolve } from 'node:path'
 import process from 'node:process'
 import { defineNuxtModule } from '@nuxt/kit'
 import { consola } from 'consola'
+import environment from '../lib/env'
 
 // Auto-ignore common false positives to reduce noise
 const IGNORED_URL_PATTERNS = [
@@ -154,6 +155,7 @@ const LINK_WHITELIST = [
   /^https:\/\/eprint\.iacr\.org\/2016\/889\.pdf$/,
   /^https:\/\/lightning\.network\/lightning-network-paper\.pdf$/,
   /^https:\/\/eprint\.iacr\.org\/2016\/555\.pdf$/,
+  /^https:\/\/eprint\.iacr\.org\/2020\/1261\.pdf$/,
   /^http:\/\/data\.consilium\.europa\.eu\/doc\/document\/ST-5419-2016-INIT\/en\/pdf$/,
   /^https:\/\/www\.welivesecurity\.com\/2019\/02\/08\/first-clipper-malware-google-play\/$/,
   /^https:\/\/bitcoinist\.com\/google-play-store-metamask-malware\/$/,
@@ -371,7 +373,7 @@ export default defineNuxtModule({
     name: 'link-validation',
   },
   setup(_options, nuxt) {
-    if (nuxt.options.dev)
+    if (nuxt.options.dev || environment.showDrafts)
       return
 
     nuxt.hook('nitro:build:public-assets', () => {
