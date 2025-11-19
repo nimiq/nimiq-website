@@ -207,7 +207,7 @@ const LINK_WHITELIST = [
 
   // Community & Projects
   /^https?:\/\/nimstats\.com/,
-  /^https?:\/\/(www\.)naka\.com/,
+  /^https?:\/\/(www\.)?naka\.com/,
   /^https?:\/\/(www\.)nimiqhub\.com/,
   /^https?:\/\/(www\.)jvm\.com/,
   /^https?:\/\/(www\.)hackerone\.com/,
@@ -269,7 +269,8 @@ const LINK_WHITELIST = [
   /^https?:\/\/(www\.)?tokenpay\.com/,
   /^https?:\/\/(www\.)?salamantex\.com\/en\/newsroom\/208-concardis-and-salamantex-enable-payment-with-cryptocurrencies-at-the-pos-throughout-austria$/,
   /^https?:\/\/(www\.)?bidali\.com/,
-  /^https?:\/\/(www\.)?bluecode\.com\/en$/,
+  /^https?:\/\/(www\.)?bluecode\.com/,
+  /^https?:\/\/(www\.)?polygon\.technology/,
   /^https?:\/\/(www\.)?evolution-host\.com/,
   /^https?:\/\/(www\.)?go\.online-ident\.ch\/privacy\/en$/,
   /^https?:\/\/(www\.)?nimiq\.noviopay\.com/,
