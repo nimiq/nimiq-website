@@ -328,7 +328,6 @@ type ChildPageDocumentDataSlicesSlice =
   | LinkGridSlice
   | LottieSliceSlice
   | LargeGridSlice
-  | LatestBlogpostSlice
   | CtaSectionSlice
   | HeroStatsSlice
   | ExchangesShowcaseSlice
@@ -576,7 +575,6 @@ type HomeDocumentDataBodySlice =
   | PuzzleGridSlice
   | LottieSliceSlice
   | LinkGridSlice
-  | LatestBlogpostSlice
   | LargeGridSlice
   | HeroStatsSlice
   | CtaSectionSlice
@@ -1929,7 +1927,6 @@ type PageDocumentDataSlicesSlice =
   | LottieSliceSlice
   | LargeGridSlice
   | LinkGridSlice
-  | LatestBlogpostSlice
   | CtaSectionSlice
   | HeroStatsSlice
   | ExchangesShowcaseSlice
@@ -5332,6 +5329,41 @@ export type GridSectionSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *HeroSection → Home → Primary → logos*
+ */
+export interface HeroSectionSliceHomePrimaryLogosItem {
+  /**
+   * logo field in *HeroSection → Home → Primary → logos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home.primary.logos[].logo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * Link field in *HeroSection → Home → Primary → logos*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home.primary.logos[].link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * label field in *HeroSection → Home → Primary → logos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home.primary.logos[].label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
  * Item in *HeroSection → Oasis → Primary → items*
  */
 export interface HeroSectionSliceOasisPrimaryItemsItem {
@@ -5365,6 +5397,41 @@ export interface HeroSectionSliceOasisPrimaryItemsItem {
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *HeroSection → Home 2024 → Primary → organizations*
+ */
+export interface HeroSectionSliceHome2024PrimaryOrganizationsItem {
+  /**
+   * logo field in *HeroSection → Home 2024 → Primary → organizations*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.organizations[].logo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * label field in *HeroSection → Home 2024 → Primary → organizations*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.organizations[].label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * url field in *HeroSection → Home 2024 → Primary → organizations*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.organizations[].url
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  url: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -5759,6 +5826,16 @@ export interface HeroSectionSliceHomePrimary {
       "nq-pill-blue" | "nq-pill-secondary" | "nq-pill-tertiary" | "video"
     >
   >;
+
+  /**
+   * logos field in *HeroSection → Home → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home.primary.logos[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  logos: prismic.GroupField<Simplify<HeroSectionSliceHomePrimaryLogosItem>>;
 }
 
 /**
@@ -6481,6 +6558,18 @@ export interface HeroSectionSliceHome2024Primary {
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * organizations field in *HeroSection → Home 2024 → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section.home2024.primary.organizations[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  organizations: prismic.GroupField<
+    Simplify<HeroSectionSliceHome2024PrimaryOrganizationsItem>
+  >;
 }
 
 /**
@@ -6952,61 +7041,6 @@ type LargeGridSliceVariation = LargeGridSliceDefault;
 export type LargeGridSlice = prismic.SharedSlice<
   "large_grid",
   LargeGridSliceVariation
->;
-
-/**
- * Primary content in *LatestBlogpost → Default → Primary*
- */
-export interface LatestBlogpostSliceDefaultPrimary {
-  /**
-   * Label for "by" field in *LatestBlogpost → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Used in "By [Nimiq Team]"
-   * - **API ID Path**: latest_blogpost.default.primary.labelBy
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  labelBy: prismic.KeyTextField;
-
-  /**
-   * Label for "Learn more" field in *LatestBlogpost → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Learn more
-   * - **API ID Path**: latest_blogpost.default.primary.labelLearnMore
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  labelLearnMore: prismic.KeyTextField;
-}
-
-/**
- * Default variation for LatestBlogpost Slice
- *
- * - **API ID**: `default`
- * - **Description**: LatestBlogpost
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type LatestBlogpostSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<LatestBlogpostSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *LatestBlogpost*
- */
-type LatestBlogpostSliceVariation = LatestBlogpostSliceDefault;
-
-/**
- * LatestBlogpost Shared Slice
- *
- * - **API ID**: `latest_blogpost`
- * - **Description**: LatestBlogpost
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type LatestBlogpostSlice = prismic.SharedSlice<
-  "latest_blogpost",
-  LatestBlogpostSliceVariation
 >;
 
 /**
@@ -11291,6 +11325,7 @@ declare module "@prismicio/client" {
       HeroSectionSlice,
       HeroSectionSliceDefaultSlicePrimary,
       HeroSectionSliceDefaultSliceItem,
+      HeroSectionSliceHomePrimaryLogosItem,
       HeroSectionSliceHomePrimary,
       HeroSectionSliceTwoColumnPrimary,
       HeroSectionSliceLeftAlignedPrimary,
@@ -11299,6 +11334,7 @@ declare module "@prismicio/client" {
       HeroSectionSliceHalfImagePrimary,
       HeroSectionSliceHeroSectionWithImagePrimary,
       HeroSectionSliceHeroSectionWithImageItem,
+      HeroSectionSliceHome2024PrimaryOrganizationsItem,
       HeroSectionSliceHome2024Primary,
       HeroSectionSliceStakingPrimary,
       HeroSectionSliceBuyAndSellPrimary,
@@ -11323,10 +11359,6 @@ declare module "@prismicio/client" {
       LargeGridSliceDefaultItem,
       LargeGridSliceVariation,
       LargeGridSliceDefault,
-      LatestBlogpostSlice,
-      LatestBlogpostSliceDefaultPrimary,
-      LatestBlogpostSliceVariation,
-      LatestBlogpostSliceDefault,
       LinkGridSlice,
       LinkGridSliceDefaultPrimary,
       LinkGridSliceDefaultItem,

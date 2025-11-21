@@ -217,9 +217,6 @@
             "link_grid": {
               "type": "SharedSlice"
             },
-            "latest_blogpost": {
-              "type": "SharedSlice"
-            },
             "cta_section": {
               "type": "SharedSlice"
             },

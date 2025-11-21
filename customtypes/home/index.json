@@ -112,9 +112,6 @@
             "link_grid": {
               "type": "SharedSlice"
             },
-            "latest_blogpost": {
-              "type": "SharedSlice"
-            },
             "large_grid": {
               "type": "SharedSlice"
             },
