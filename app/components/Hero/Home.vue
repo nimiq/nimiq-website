@@ -19,7 +19,7 @@ const _props = defineProps<{ headline: RichTextField, subline: KeyTextField, lin
       <div v-if="logos?.length" mt-80 flex="~ col md:row wrap" gap-32 justify="start md:center" items="start md:center">
         <span text-neutral-700 nq-label>Works with</span>
         <div flex="~ wrap" gap-32 justify="start md:center" items-center>
-          <PrismicLink v-for="(item, i) in logos" :key="i" :field="item.url" :class="item.url?.url?.startsWith('https://naka.com') ? 'h-26' : 'h-32'" op="85 hocus:100" transition-opacity>
+          <PrismicLink v-for="(item, i) in logos" :key="i" :field="item.url" :class="'url' in item.url && item.url.url?.startsWith('https://naka.com') ? 'h-26' : 'h-32'" op="85 hocus:100" transition-opacity>
             <PrismicImage :field="item.logo" h-full w-auto />
           </PrismicLink>
         </div>
