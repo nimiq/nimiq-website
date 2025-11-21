@@ -86,14 +86,14 @@ const items = (await Promise.all(props.slice.items.map(async (item: any) => {
     v-if="showBanner"
     bg-neutral-0 relative z-10 of-x-clip
     :class="{ 'pb-0': slice.variation !== 'default', 'px-8 [--pt:0]': slice.variation === 'withRibbon', 'pt-0': slice.variation === 'default' }"
-    data-slice-type="banner"
+    data-slice-type="banner" f-px-sm
   >
     <template v-if="slice.variation === 'default'">
       <div
         v-for="({ headline, subline, bgItems, bgColor, backgroundPattern, label, link, hasBgItems }, i) in items"
         :key="i" :style="`background: var(--nq-${bgColor || 'neutral'})`"
         :data-inverted="bgColor === 'green' ? '' : undefined" py="24 lg:72"
-        mx-auto px-32 rounded-8 w-full shadow relative of-hidden
+        px-32 rounded-8 w-full shadow relative of-hidden max-w="none lg:[calc(var(--nq-max-width)-32px)]"
         outline="1.5 offset--1.5 ~ neutral/10"
       >
         <PrismicLink
