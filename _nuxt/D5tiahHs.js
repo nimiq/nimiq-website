@@ -1,0 +1,1 @@
+import{b2 as t,b3 as s,b4 as e,b5 as n,b6 as r,b7 as c,b8 as g}from"./DbFzLaGs.js";const i=a=>n(a),h=a=>s(a),u=a=>c(a),b=a=>t(a)||"",f=a=>r(a)||"",x=a=>g(a)||"",k=a=>e(a)||"";function m(a){return!a||!i(a)?"":a.url}function T({dimensions:a}){return a?a.width/a.height:0}export{i as a,f as b,k as c,u as d,m as e,T as f,b as g,h,x as i};
