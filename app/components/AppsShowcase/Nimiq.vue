@@ -52,12 +52,12 @@ const [DefineItem, Item] = createReusableTemplate<AppsShowcaseSliceNimiqsAppsPri
       </div>
     </PrismicLink>
   </DefineItem>
-    <ul grid="~ cols-1 lg:cols-2 gap-20 md:gap-22" f-px-sm>
-      <li v-for="(item, i) in items" :key="i" :class="{ 'lg:col-span-full': item.highlight }" style="--ring-color: transparent" bg="neutral-300 hocus:neutral-0" p-0 of-initial nq-hoverable isolate>
-        <Item v-if="item.item !== 'Multisig Wallet'" v-bind="item" />
-        <RibbonContainer v-else outline-transparent bg-transparent color="purple" label="New Release" var:top:25px icon="i-nimiq:verified-filled">
-          <Item v-bind="item" w-full />
-        </RibbonContainer>
-      </li>
-    </ul>
+  <ul grid="~ cols-1 lg:cols-2 gap-20 md:gap-22" f-px-sm>
+    <li v-for="(item, i) in items" :key="i" :class="{ 'lg:col-span-full': item.highlight }" style="--ring-color: transparent" bg="neutral-300 hocus:neutral-0" p-0 of-initial isolate nq-hoverable>
+      <Item v-if="item.item !== 'Multisig Wallet'" v-bind="item" />
+      <RibbonContainer v-else outline-transparent bg-transparent color="purple" label="New Release" var:top:25px icon="i-nimiq:verified-filled">
+        <Item v-bind="item" w-full />
+      </RibbonContainer>
+    </li>
+  </ul>
 </template>

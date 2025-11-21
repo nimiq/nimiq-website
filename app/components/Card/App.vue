@@ -21,10 +21,13 @@ const logoConfig: Record<string, { classes?: string, invert?: boolean }> = {
 
 const logoClasses = computed(() => {
   const config = logoConfig[name]
-  if (!config) return ''
+  if (!config)
+    return ''
   const classes = []
-  if (config.invert) classes.push('invert brightness-0')
-  if (config.classes) classes.push(config.classes)
+  if (config.invert)
+    classes.push('invert brightness-0')
+  if (config.classes)
+    classes.push(config.classes)
   return classes.join(' ')
 })
 </script>
@@ -32,8 +35,8 @@ const logoClasses = computed(() => {
 <template>
   <NuxtLink :to="link" target="_blank" w="[min(calc(100vw-var(--px,32px)*2),350px)]" :style="`--c: ${color}`" external group p-6 rounded-6 gap-24 h-full nq-hoverable :aria-label="`Go to ${name} website`">
     <div bg="$c" stack mb-0 rounded-4 h-240>
-      <div v-if="name === 'Nimiq Tip Bot'" i-nimiq:logos-telegram-mono text="white/80" size-96 />
-      <NuxtImg v-else :src="logo" max-w="45%" rounded-4 h-auto max-h-full object-cover min-w-82 :class="logoClasses" />
+      <div v-if="name === 'Nimiq Tip Bot'" text="white/80" size-96 i-nimiq:logos-telegram-mono />
+      <NuxtImg v-else :src="logo" max-w="45%" rounded-4 h-auto max-h-full min-w-82 object-cover :class="logoClasses" />
       <p text="12 white/70" self-start right-12 top-12 justify-self-end relative nq-label>
         {{ type }}
       </p>

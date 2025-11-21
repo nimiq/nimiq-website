@@ -11,13 +11,13 @@ const markerWidth = 160 // height is 202
 const smallMarkerWidth = 120 // height is 141
 
 // Define the markers with their positions and text
-const markers: MarkerData[] = [
+const _markers: MarkerData[] = [
   { id: 'europe', x: 350, y: -175, width: markerWidth, text: '2000' },
   { id: 'australia', x: 800, y: 70, width: markerWidth, text: '250' },
 ]
 
 // Small markers data
-const smallMarkers: MarkerData[] = [
+const _smallMarkers: MarkerData[] = [
   { id: '1', x: -5, y: 3, width: smallMarkerWidth },
   { id: '2', x: 115, y: -94, width: smallMarkerWidth },
   { id: '3', x: 162, y: 41, width: smallMarkerWidth },

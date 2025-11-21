@@ -2,7 +2,7 @@
 import type { GroupField, ImageField, KeyTextField, LinkField, RichTextField } from '@prismicio/client'
 import Map from './Map.vue'
 
-const props = defineProps<{ headline: RichTextField, subline: KeyTextField, link: LinkField, logos: GroupField<{ logo: ImageField, url: LinkField }> }>()
+const _props = defineProps<{ headline: RichTextField, subline: KeyTextField, link: LinkField, logos: GroupField<{ logo: ImageField, url: LinkField }> }>()
 </script>
 
 <template>
@@ -12,7 +12,9 @@ const props = defineProps<{ headline: RichTextField, subline: KeyTextField, link
   >
     <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
       <PrismicText nq-heading-lg :field="headline" wrapper="h1" />
-      <p text="neutral-800 f-xl">{{ subline }}</p>
+      <p text="neutral-800 f-xl">
+        {{ subline }}
+      </p>
       <PrismicLink :field="link" mt-40 nq-arrow nq-pill-lg nq-pill-blue />
       <div v-if="logos?.length" mt-80 flex="~ col md:row wrap" gap-32 justify="start md:center" items="start md:center">
         <span text-neutral-700 nq-label>Works with</span>
