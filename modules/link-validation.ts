@@ -28,6 +28,7 @@ const LINK_WHITELIST = [
   /^https?:\/\/(www\.)?cp\.link/,
   /^https?:\/\/(www\.)?cryptopayment\.link/,
   /^https?:\/\/(www\.)?cryptocity\.network/,
+  /^https?:\/\/(www\.)?nimiq\.fm/,
 
   // Social Media & Community
   /^https?:\/\/(twitter|x)\.com\/nimiq$/i,

@@ -1,13 +1,11 @@
 <script setup lang="ts">
 const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ darkHeader?: boolean, footerBgColor?: 'white' | 'grey' | 'darkblue', draft?: boolean, showSocialsHexagonBg?: boolean }>()
-
-const { data: navigation } = await useNavigation()
 </script>
 
 <template>
   <!-- eslint-disable vue/no-multiple-template-root -->
   <NuxtRouteAnnouncer />
-  <NavigationAnnouncementBanner v-if="navigation!.announcementBannerShow" v-bind="navigation!" />
+  <NavigationAnnouncementBanner />
   <NavigationHeader :dark-header />
   <slot />
   <div bottom-20 right-20 fixed z-102>
