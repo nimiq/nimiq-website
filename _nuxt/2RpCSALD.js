@@ -1,0 +1,1 @@
+import{d as t,e as s,o as _}from"./DQ-GA-mZ.js";import{g as i}from"./CpsPJSKh.js";const p=t({__name:"LottieSlice",props:{slice:{},slices:{}},setup(n){return(e,o)=>" TODO "}}),r=Object.assign(p,{__name:"ContentLottieSlice"}),m=t({__name:"index",props:i(),setup(n){return(e,o)=>{const c=r;return _(),s(c,{slice:e.slice},null,8,["slice"])}}});export{m as default};

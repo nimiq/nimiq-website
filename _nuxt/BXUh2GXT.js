@@ -1,0 +1,1 @@
+import{_ as r}from"./DlAUqK2U.js";import{A as o,o as s,N as a,O as t}from"./DQ-GA-mZ.js";const n={};function c(e,m){return s(),o("main",t(e.$attrs,{"min-h":"screen 100dvh","max-w-full":""}),[a(e.$slots,"default")],16)}const i=r(n,[["render",c]]);export{i as default};
