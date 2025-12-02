@@ -1,10 +1,11 @@
 import type { BlogPageDocument, ExchangeDocument, NavigationDocument, PageDocument } from '../prismicio-types.js'
+import 'dotenv/config'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 import { consola } from 'consola'
 import yaml from 'js-yaml'
-import { blogImageToLocalPath, downloadImage, exchangeLogoToLocalPath, normalizeFileName, richTextToMarkdown, richTextToPlainText, richTextToPlainTextNoHeaders } from './utils'
+import { blogImageToLocalPath, downloadImage, exchangeLogoToLocalPath, normalizeFileName, richTextToMarkdown, richTextToPlainText, richTextToPlainTextNoHeaders, sanitizeMarkdownHtmlLinks } from './utils'
 
 const PRISMIC_API = 'https://nimiq.cdn.prismic.io/api/v2'
 const PRISMIC_TOKEN = process.env.PRISMIC_ACCESS_TOKEN
@@ -243,7 +244,7 @@ function convertBlogPost(doc: BlogPageDocument): { markdown: string, images: Ima
 }
 
 async function saveMarkdownFile(slug: string, content: string, publishDate: string): Promise<void> {
-  const contentDir = join(process.cwd(), 'content', 'preview', 'blog')
+  const contentDir = join(process.cwd(), 'content', 'blog')
   await mkdir(contentDir, { recursive: true })
 
   // Extract year-month-day from publish date
@@ -253,8 +254,11 @@ async function saveMarkdownFile(slug: string, content: string, publishDate: stri
   const day = String(date.getDate()).padStart(2, '0')
   const datePrefix = `${year}-${month}-${day}`
 
+  // Sanitize HTML links in markdown content
+  const sanitizedContent = sanitizeMarkdownHtmlLinks(content)
+
   const filepath = join(contentDir, `${datePrefix}_${slug}.md`)
-  await writeFile(filepath, content, 'utf-8')
+  await writeFile(filepath, sanitizedContent, 'utf-8')
 }
 
 async function convertExchange(doc: ExchangeDocument): Promise<{ yaml: string, logoUrl?: string, logoPath?: string }> {
@@ -301,7 +305,7 @@ async function convertExchange(doc: ExchangeDocument): Promise<{ yaml: string, l
 }
 
 async function saveYamlFile(slug: string, content: string): Promise<void> {
-  const contentDir = join(process.cwd(), 'content', 'exchanges')
+  const contentDir = join(process.cwd(), 'content', 'collections', 'exchanges')
   await mkdir(contentDir, { recursive: true })
 
   // Strip "exchange-" prefix if present
@@ -715,7 +719,7 @@ async function syncPages(): Promise<ConversionStats> {
       consola.success('Fetched navigation document for footer data')
     }
 
-    const contentDir = join(process.cwd(), 'content', 'preview')
+    const contentDir = join(process.cwd(), 'content')
     await mkdir(contentDir, { recursive: true })
 
     consola.start(`Converting ${pages.length} page(s)...\n`)

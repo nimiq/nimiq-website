@@ -1,27 +1,15 @@
-import type { SocialMediaDocument } from '~~/prismicio-types'
+export type SocialMediaName = 'x' | 'telegram' | 'discord' | 'facebook' | 'github' | 'instagram' | 'nimiqForum' | 'reddit' | 'youtube'
 
-export type SocialMediaAttributes = SocialMediaDocument['data'] & {
+export interface SocialMediaData {
+  platform: SocialMediaName
+  link: string
+  label: string
   color: string
   icon: string
-  id: string
-}
-
-export type SocialMediaName = Exclude<SocialMediaAttributes['platform'], null>
-
-export const SocialMedia: Record<SocialMediaName, SocialMediaName> = {
-  x: 'x',
-  telegram: 'telegram',
-  discord: 'discord',
-  facebook: 'facebook',
-  github: 'github',
-  instagram: 'instagram',
-  nimiqForum: 'nimiqForum',
-  reddit: 'reddit',
-  youtube: 'youtube',
 }
 
 // @unocss-include
-const socialMediaConfigs: Record<SocialMediaName, Pick<SocialMediaAttributes, 'color' | 'icon'>> = {
+const socialMediaConfigs: Record<SocialMediaName, Pick<SocialMediaData, 'color' | 'icon'>> = {
   x: { color: 'oklch(0 0 0)', icon: 'i-nimiq:logos-twitter-mono' },
   telegram: { color: 'oklch(0.6 0.14119 241.5546)', icon: 'i-nimiq:logos-telegram-mono scale-97' },
   reddit: { color: 'oklch(0.66 0.229356 35.4025)', icon: 'i-nimiq:logos-reddit-mono scale-105' },
@@ -35,21 +23,21 @@ const socialMediaConfigs: Record<SocialMediaName, Pick<SocialMediaAttributes, 'c
 
 export function useSocialMedias() {
   return useAsyncData('$socialMedias', async () => {
-    const { client } = usePrismic()
-    const socialMediasData = await client.getByType('socialMedia').then(doc => doc.results!)
+    const data = await queryCollection('socialMedia').first()
 
-    if (!socialMediasData?.length)
+    if (!data)
       throw new Error('Social media data not found')
 
     const socialMedias = Object.fromEntries(
-      Object.entries(socialMediaConfigs).map(([socialMedia, config]) => {
-        const prismicData = socialMediasData.find(item => item.data.platform === socialMedia)
-        if (!prismicData) {
-          throw new Error(`Platform data not found for ${socialMedia}`)
-        }
-        return [socialMedia, { ...prismicData.data, id: prismicData.id, ...config }]
+      Object.entries(socialMediaConfigs).map(([platform, config]) => {
+        const item = data[platform as SocialMediaName]
+        if (!item)
+          throw new Error(`Platform data not found for ${platform}`)
+
+        return [platform, { ...item, ...config }]
       }),
-    ) as Record<SocialMediaName, SocialMediaAttributes>
+    ) as Record<SocialMediaName, SocialMediaData>
+
     return socialMedias
   })
 }

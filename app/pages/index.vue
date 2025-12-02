@@ -1,100 +1,106 @@
 <script setup lang="ts">
-import { components } from '~/slices'
+const { data: page } = await useAsyncData('home', () => queryCollection('pages').path('/index').first())
 
-const route = useRoute()
-
-const { data: page } = await usePrismicPage('home')
-
-if (page.value?.uid !== 'home') {
-  console.error(`Home page not found: ${JSON.stringify(page.value)}`)
+if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
-definePageMeta({
-  middleware: [],
-})
+const route = useRoute()
 
-const footerBgColor = computed(() => {
-  if (page.value?.data && 'slices' in page.value.data) {
-    return (page.value.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor
-  }
-  return undefined
-})
+// SEO meta from content
+const title = page.value.meta?.title || 'Nimiq'
+const description = page.value.meta?.description || ''
 
-const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
-
-// CMS takes precedence over slice data for better content management control
-const slice = page.value?.data && 'slices' in page.value.data ? page.value.data.slices.at(0) : undefined
-const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage, meta_keywords: cmsKeywords } = page.value.data
-
-// @ts-expect-error this is a hack to get the title and description from the first slice
-const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.headline) : undefined
-
-// @ts-expect-error this is a hack to get the title and description from the first slice
-const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
-
-const title = cmsTitle || firstSliceTitle || 'Nimiq'
-const description = cmsDescription || firstSliceDescription || ''
-
-// Site config ensures consistency across all SEO-related modules
 const url = 'https://nimiq.com'
 const canonicalUrl = `${url}${route.path}`
 
-const keywords = cmsKeywords || 'Nimiq, cryptocurrency, blockchain, digital money, payments'
-
-// Canonical URL still needs to be handled separately in current version
 useHead({
-  link: [
-    { rel: 'canonical', href: canonicalUrl },
-  ],
+  link: [{ rel: 'canonical', href: canonicalUrl }],
 })
 
-// Centralized SEO meta ensures all social platforms get consistent data
 useSeoMeta({
   title,
   description,
-  keywords,
-
   ogTitle: title,
   ogDescription: description,
   ogUrl: canonicalUrl,
   ogType: 'website',
   ogSiteName: 'Nimiq',
   ogLocale: 'en_US',
-
   twitterCard: 'summary_large_image',
   twitterTitle: title,
   twitterDescription: description,
   twitterSite: '@nimiq',
   twitterCreator: '@nimiq',
-
-  // Robots handled globally in nuxt.config.ts for environment-specific control
   author: 'Nimiq Team',
   publisher: 'Nimiq',
 })
 
-// Custom images take precedence over generated ones for better brand control
-if (hasImage(cmsImage)) {
-  useSeoMeta({
-    ogImage: cmsImage.url,
-    ogImageAlt: title,
-    ogImageWidth: cmsImage.dimensions?.width,
-    ogImageHeight: cmsImage.dimensions?.height,
-    twitterImage: cmsImage.url,
-    twitterImageAlt: title,
-  })
-}
-
 setOgImage({
   title,
   subline: description,
-  image: cmsImage,
   type: 'home',
 })
+
+// Footer bg color from last section
+const footerBgColor = computed(() => page.value?.grid?.bgColor || 'darkblue')
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color :draft show-socials-hexagon-bg dark-header>
-    <SliceZone wrapper="main" :slices="(page?.data && 'slices' in page.data ? page.data.slices : []) ?? []" :components />
+  <NuxtLayout :footer-bg-color show-socials-hexagon-bg dark-header>
+    <main v-if="page">
+      <HeroHome
+        v-if="page.hero"
+        :headline="page.hero.headline"
+        :subline="page.hero.subheadline"
+        :link="page.hero.link"
+        :logos="page.hero.organizations"
+      />
+
+      <PillLink
+        v-if="page.pill_link"
+        :item="page.pill_link.item"
+        :label="page.pill_link.label"
+        :bg-color="page.pill_link.bgColor"
+      />
+
+      <SimpleHeadline
+        v-if="page.simple_headline"
+        :headline="page.simple_headline.headline"
+        :subline="page.simple_headline.subline"
+        :bg-color="page.simple_headline.bgColor"
+      />
+
+      <AppsShowcaseNimiq
+        v-if="page.apps"
+        :apps="page.apps.apps"
+      />
+
+      <BannerSlice
+        v-if="page.banner"
+        :items="page.banner.items"
+        :overlaps-next-section="page.banner.overlapsNextSection"
+      />
+
+      <PillLink
+        v-if="page.pill_link_2"
+        :item="page.pill_link_2.item"
+        :label="page.pill_link_2.label"
+        :bg-color="page.pill_link_2.bgColor"
+      />
+
+      <SimpleHeadline
+        v-if="page.an_instant_zero_fee__headline"
+        :headline="page.an_instant_zero_fee__headline.headline"
+        :subline="page.an_instant_zero_fee__headline.subline"
+        :bg-color="page.an_instant_zero_fee__headline.bgColor"
+      />
+
+      <GridSection
+        v-if="page.grid"
+        :items="page.grid.items"
+        :bg-color="page.grid.bgColor"
+      />
+    </main>
   </NuxtLayout>
 </template>

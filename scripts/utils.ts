@@ -4,6 +4,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 import { asText, serialize, wrapMapSerializer } from '@prismicio/richtext'
+import { consola } from 'consola'
 
 /**
  * Normalize Prismic image filename
@@ -56,6 +57,37 @@ function cleanHeadingText(text: string): string {
   return text.replace(/^\*\*(.+)\*\*$/, '$1')
 }
 
+/**
+ * Sanitize URLs to handle malformed URIs that cause MDC parser errors
+ * - Large data URIs with complex content can cause decoding issues
+ * - URLs with embedded markdown syntax (e.g., %[text](url)) are malformed
+ */
+function sanitizeUrl(url: string, linkText: string): string {
+  if (!url)
+    return url
+
+  // Check for embedded markdown link syntax in URL (e.g., %[text](url))
+  // This happens when markdown gets incorrectly embedded in URL encoding
+  if (url.includes('%[') && url.includes('](')) {
+    consola.warn(`Malformed URL with embedded markdown detected in link "${linkText}", attempting to fix`)
+    // Remove the markdown link syntax, keeping just the URL encoding
+    url = url.replace(/%\[([^\]]+)\]\(([^)]+)\)/g, '%2F$1')
+  }
+
+  // Detect data URIs
+  if (url.startsWith('data:')) {
+    // Data URIs longer than 500 chars often cause MDC parser issues
+    // especially those with complex JSON/regex patterns
+    if (url.length > 500) {
+      consola.warn(`Large data URI detected in link "${linkText}" (${url.length} chars), replacing with placeholder`)
+      // Return a placeholder that indicates the file can be requested
+      return '#contact-for-file'
+    }
+  }
+
+  return url
+}
+
 const markdownSerializer = wrapMapSerializer({
   heading1: ({ children }) => `# ${cleanHeadingText(children.join(''))}\n\n`,
   heading2: ({ children }) => `## ${cleanHeadingText(children.join(''))}\n\n`,
@@ -76,7 +108,11 @@ const markdownSerializer = wrapMapSerializer({
     return `![${node.alt || ''}](${localPath})\n\n`
   },
   embed: ({ node }) => `\n${node.oembed.html}\n\n`,
-  hyperlink: ({ node, children }) => `[${children.join('')}](${node.data.url})`,
+  hyperlink: ({ node, children }) => {
+    const linkText = children.join('')
+    const sanitizedUrl = sanitizeUrl(node.data.url, linkText)
+    return `[${linkText}](${sanitizedUrl})`
+  },
   label: ({ children }) => children.join(''),
   span: ({ text }) => text,
 })
@@ -97,6 +133,23 @@ export function richTextToPlainText(richText: RichTextField): string {
   if (!richText || richText.length === 0)
     return ''
   return asText(richText)
+}
+
+/**
+ * Sanitize HTML links in markdown content to fix malformed URLs
+ * Fixes patterns like %[text](url) that got embedded in URL encoding
+ */
+export function sanitizeMarkdownHtmlLinks(markdown: string): string {
+  // Fix malformed URLs in HTML href attributes
+  // Pattern: href="...%[text](url)..." → href="...%2Ftext..."
+  return markdown.replace(
+    /href="([^"]*)%\[([^\]]+)\]\(([^)]+)\)([^"]*)"/g,
+    (match, before, text, url, after) => {
+      consola.warn(`Fixed malformed URL in HTML link: %[${text}](${url})`)
+      // Replace the malformed pattern with proper encoding
+      return `href="${before}%2F${text}${after}"`
+    },
+  )
 }
 
 /**
