@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('home', () => queryCollection('pages').path('/index').first())
+const { data: page } = await useAsyncData('home', () => queryCollection('pages').path('/').first())
 
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
@@ -36,68 +36,62 @@ useSeoMeta({
   publisher: 'Nimiq',
 })
 
-setOgImage({
-  title,
-  subline: description,
-  type: 'home',
-})
-
 // Footer bg color from last section
-const footerBgColor = computed(() => page.value?.grid?.bgColor || 'darkblue')
+const footerBgColor = computed(() => (page.value?.grid?.bgColor as 'white' | 'grey' | 'darkblue') || 'darkblue')
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color show-socials-hexagon-bg dark-header>
+  <NuxtLayout :footer-bg-color="footerBgColor" show-socials-hexagon-bg dark-header>
     <main v-if="page">
-      <HeroHome
+      <SectionHeroHome
         v-if="page.hero"
         :headline="page.hero.headline"
-        :subline="page.hero.subheadline"
+        :subheadline="page.hero.subheadline"
         :link="page.hero.link"
-        :logos="page.hero.organizations"
+        :organizations="page.hero.organizations"
       />
 
-      <PillLink
+      <SectionPillLink
         v-if="page.pill_link"
         :item="page.pill_link.item"
         :label="page.pill_link.label"
         :bg-color="page.pill_link.bgColor"
       />
 
-      <SimpleHeadline
+      <SectionSimpleHeadline
         v-if="page.simple_headline"
         :headline="page.simple_headline.headline"
         :subline="page.simple_headline.subline"
         :bg-color="page.simple_headline.bgColor"
       />
 
-      <AppsShowcaseNimiq
-        v-if="page.apps"
+      <SectionAppsShowcase
+        v-if="page.apps?.apps"
         :apps="page.apps.apps"
       />
 
-      <BannerSlice
-        v-if="page.banner"
+      <SectionBanner
+        v-if="page.banner?.items"
         :items="page.banner.items"
         :overlaps-next-section="page.banner.overlapsNextSection"
       />
 
-      <PillLink
+      <SectionPillLink
         v-if="page.pill_link_2"
         :item="page.pill_link_2.item"
         :label="page.pill_link_2.label"
         :bg-color="page.pill_link_2.bgColor"
       />
 
-      <SimpleHeadline
+      <SectionSimpleHeadline
         v-if="page.an_instant_zero_fee__headline"
         :headline="page.an_instant_zero_fee__headline.headline"
         :subline="page.an_instant_zero_fee__headline.subline"
         :bg-color="page.an_instant_zero_fee__headline.bgColor"
       />
 
-      <GridSection
-        v-if="page.grid"
+      <SectionGridSection
+        v-if="page.grid?.items"
         :items="page.grid.items"
         :bg-color="page.grid.bgColor"
       />

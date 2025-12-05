@@ -5,12 +5,12 @@ const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ dark
 <template>
   <!-- eslint-disable vue/no-multiple-template-root -->
   <NuxtRouteAnnouncer />
-  <NavigationAnnouncementBanner />
-  <NavigationHeader :dark-header />
+  <AppNavigationAnnouncementBanner />
+  <AppHeader :dark-header />
   <slot />
   <div bottom-20 right-20 fixed z-102>
-    <PageInfo :draft with-env />
+    <AppPageInfo :draft with-env />
   </div>
-  <HexagonsBackground z-1 :bg-color="footerBgColor" :with-socials="showSocialsHexagonBg" />
-  <NavigationFooter :bg-color="footerBgColor" />
+  <AppHexagonsBackground z-1 :bg-color="footerBgColor" :with-socials="showSocialsHexagonBg" />
+  <AppFooter :bg-color="footerBgColor" />
 </template>
