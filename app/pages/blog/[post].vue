@@ -49,7 +49,7 @@ if (post.value?.data.body.at(0)?.primary) {
     </div>
     <SliceZone v-if="post.data.body.length > 0" :slices="post.data.body" :components />
     <RichText v-else nq-prose wrapper="article" :field="post.data.text" />
-    <Disclaimer />
+    <Disclaimer children:px-0 />
   </NuxtLayout>
 </template>
 
@@ -66,26 +66,6 @@ if (post.value?.data.body.at(0)?.primary) {
 
 :global([nq-prose] > *:not(img, video, iframe, figure, blockquote, pre, code)) {
   --uno: 'px-0';
-}
-
-:global([nq-prose] > :where(h2, h3, h4, h5, h6)) {
-  --uno: 'mt-2lh';
-}
-
-:global([nq-prose] > h2) {
-  --uno: 'mt-2lh';
-}
-
-:global([nq-prose] > h3) {
-  --uno: 'mt-1.7lh';
-}
-
-:global([nq-prose] > h4) {
-  --uno: 'mt-1.4lh';
-}
-
-:global([nq-prose] > h5) {
-  --uno: 'mt-1.2lh';
 }
 
 :global([nq-prose] > :where(h2, h3, h4, h5, h6) > *) {
