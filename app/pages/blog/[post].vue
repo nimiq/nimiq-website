@@ -33,7 +33,7 @@ if (post.value?.data.body.at(0)?.primary) {
     <div ref="articleRef">
       <PageInfo :draft bottom-32 right-32 fixed z-102 />
 
-      <header data-section max-w="$nq-prose-max-width" f-pt="96/136" px="32 lg:64">
+      <header data-section max-w="$nq-prose-max-width" f-pt="96/136" px="32 lg:64" pb-0>
         <PrismicText wrapper="h1" :field="post.data.title" style="--nq-font-size-min: 32;--nq-font-size-max: 40" view-transition-post-title />
         <PrismicText wrapper="p" text-neutral-800 :field="post.data.subline" style="--nq-font-size-min: 18;--nq-font-size-max: 20" />
         <ArticleMetadata mt="18 lg:24" :date="new Date(post.last_publication_date)" :authors="post.data.authors.map((a: any) => a.name).join(', ')" md:justify-center>
@@ -44,12 +44,12 @@ if (post.value?.data.body.at(0)?.primary) {
             </p>
           </template>
         </ArticleMetadata>
-        <ProxiedPrismicImage :field="post.data.image" mx-auto mt-104 rounded-8 w-full object-contain view-transition-post-img />
+        <ProxiedPrismicImage :field="post.data.image" mx-auto f-mt-2xl rounded-8 w-full object-contain view-transition-post-img />
       </header>
     </div>
     <SliceZone v-if="post.data.body.length > 0" :slices="post.data.body" :components />
     <RichText v-else nq-prose wrapper="article" :field="post.data.text" />
-    <Disclaimer children:px-0 />
+    <Disclaimer />
   </NuxtLayout>
 </template>
 
@@ -72,7 +72,11 @@ if (post.value?.data.body.at(0)?.primary) {
   --uno: 'text-1em';
 }
 
-:global(article[nq-prose] > :first-child) {
-  --uno: 'mt-0';
+:global([nq-prose] > :where(h2, h3, h4, h5, h6)) {
+  --uno: 'mt-1.5lh';
+}
+
+:global(section:has(article[nq-prose])) {
+  --uno: 'f-pt-2xl';
 }
 </style>

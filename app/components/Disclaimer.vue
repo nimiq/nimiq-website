@@ -6,10 +6,10 @@ const bgClass = getColorClass(color)
 <template>
   <section :class="bgClass" group mx-0 children:max-w-none>
     <div class="nq-prose" transition-colors children:text="f-sm neutral-800 group-hocus:neutral-900">
-      <h2>
+      <h2 px-0>
         Disclaimer
       </h2>
-      <p lh="[1.75]" f-mt-xs>
+      <p lh="[1.75]" f-mt-xs px-0>
         None of the statements must be viewed as an endorsement or recommendation for Nimiq, any cryptocurrency, or
         investment product. Neither the information, nor any opinion contained herein constitutes a solicitation or offer
         by the creators or participants to buy or sell any securities or other financial instruments or provide any
