@@ -1,12 +1,8 @@
 import process from 'node:process'
 import { defineNuxtConfig } from 'nuxt/config'
-import { array, boolean, object, optional, string } from 'valibot'
+import { boolean, object, optional, string } from 'valibot'
 import wasm from 'vite-plugin-wasm'
-import { EXCLUDED_PAGES } from './lib/crawler'
 import environment from './lib/env'
-import { repositoryName } from './slicemachine.config.json'
-
-const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN!
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -24,7 +20,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
     'reka-ui/nuxt',
-    !environment.useNuxtHub && '@nuxtjs/prismic',
     '@nuxtjs/device',
     '@nuxt/fonts',
     '@pinia/colada-nuxt',
@@ -33,11 +28,7 @@ export default defineNuxtConfig({
     !environment.useNuxtHub && '@nuxtjs/seo',
     'nuxt-safe-runtime-config',
     'motion-v/nuxt',
-    './modules/prerender-routes',
-    !environment.useNuxtHub && './modules/prismic-images',
-    !environment.useNuxtHub && './modules/link-validation', // Enhanced link validation with whitelist
     environment.useNuxtHub && '@nuxthub/core',
-
     '@nuxt/content',
   ].filter(Boolean),
 
@@ -59,8 +50,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   components: [
-    { path: '~/components/[UI]', pathPrefix: false },
-    { path: '~/components/[Backgrounds]', pathPrefix: false },
     '~/components',
   ],
 
@@ -116,57 +105,12 @@ export default defineNuxtConfig({
     },
   }),
 
-  // Disable link inspections for NuxtHub builds to avoid failures on non-HTTP links (e.g., magnet:)
-  ...(!environment.useNuxtHub && {
-    linkChecker: {
-      excludeLinks: [
-        ...EXCLUDED_PAGES,
-        '/vote#rank-curves',
-        '/vote#change-curve',
-        'magnet:*',
-        // Nginx redirects - these paths are handled by nginx and redirect to external URLs but we don't want to check them
-        '/privacy-policy',
-        '/privacy',
-        '/cookie-policy',
-        '/styleguide',
-        '/cards',
-        '/activation/privacy',
-        '/vote',
-      ],
-      fetchRemoteUrls: true,
-    },
-  }),
-
   // // TODO Remove this option
   // unocss: {
   //   nuxtLayers: true,
   // },
 
-  prismic: {
-    preview: false,
-    toolbar: false,
-    endpoint: repositoryName,
-    clientConfig: {
-      accessToken: prismicAccessToken,
-      routes: [
-        { type: 'page', path: '/:uid' },
-        { type: 'blog_page', path: '/blog/:uid' },
-      ],
-    },
-  },
-
   runtimeConfig: {
-    prismicAccessToken,
-    albatross: {
-      nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
-    },
-    cors: {
-      allowedOrigins: [
-        'https://www.nimiq.com',
-        'https://prestaking.nimiq.network',
-        process.env.NIMIQ_STATIC_PREVIEW,
-      ].filter(Boolean) as string[],
-    },
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || '/',
       clientNetwork: 'MainAlbatross',
@@ -181,7 +125,6 @@ export default defineNuxtConfig({
       environment: environment.environment,
       showDrafts: environment.showDrafts,
       useNuxtHub: environment.useNuxtHub,
-      enablePrismicSSR: environment.enablePrismicSSR,
       enableDevAnalytics: true,
       wordsChallenge: {
         publicAddress: process.env.NUXT_PUBLIC_WORDS_CHALLENGE_PUBLIC_ADDRESS,
@@ -202,13 +145,6 @@ export default defineNuxtConfig({
 
   safeRuntimeConfig: {
     $schema: object({
-      prismicAccessToken: string(),
-      albatross: object({
-        nodeRpcUrl: string(),
-      }),
-      cors: object({
-        allowedOrigins: array(string()),
-      }),
       public: object({
         baseUrl: string(),
         clientNetwork: optional(string()),
@@ -231,7 +167,6 @@ export default defineNuxtConfig({
         }),
         showDrafts: boolean(),
         useNuxtHub: boolean(),
-        enablePrismicSSR: boolean(),
         enableDevAnalytics: boolean(),
         wordsChallenge: object({
           publicAddress: string(),
@@ -270,14 +205,9 @@ export default defineNuxtConfig({
     },
   },
 
-  routeRules: {
-    '/api/**': { cors: true },
-  },
-
   nitro: {
     experimental: {
       wasm: true,
-      websocket: true,
     },
     esbuild: {
       options: {
@@ -289,6 +219,7 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: false,
+      failOnError: false, // TODO: Re-enable once all pages/images are ready
       ignore: [
         '/nimiq-website/_ipx/s_1600x900/assets/images/gods-light.webp',
         '/nimiq-website/_ipx/s_3200x1800/assets/images/gods-light.webp',
@@ -324,28 +255,22 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/icon', href: '/favicon.ico' },
-        // { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'apple-mobile-web-app-status-bar-style',
-          content: 'black-translucent',
-        },
-        {
-          name: 'theme-color',
-          media: '(prefers-color-scheme: light)',
-          content: 'white',
-        },
-        {
-          name: 'theme-color',
-          media: '(prefers-color-scheme: dark)',
-          content: '#1f2348',
-        },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
+        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#1f2348' },
+        { name: 'author', content: 'Nimiq Team' },
+        { name: 'publisher', content: 'Nimiq' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'Nimiq' },
+        { property: 'og:locale', content: 'en_US' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@nimiq' },
+        { name: 'twitter:creator', content: '@nimiq' },
       ],
-      htmlAttrs: {
-        lang: 'en',
-      },
+      htmlAttrs: { lang: 'en' },
     },
   },
 

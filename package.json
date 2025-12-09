@@ -16,7 +16,7 @@
     "generate:github-pages": "NUXT_ENVIRONMENT=github-pages nuxt generate --preset github_pages --prerender",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "slicemachine": "start-slicemachine",
+
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --fix  --cache",
     "prepare": "nuxt prepare",
@@ -56,11 +56,11 @@
     "@nuxt/kit": "catalog:build",
     "@nuxthub/core": "catalog:nuxt",
     "@nuxtjs/device": "catalog:nuxt",
-    "@nuxtjs/prismic": "catalog:nuxt",
+
     "@pinia/nuxt": "catalog:frontend",
     "@prismicio/client": "catalog:prismic",
     "@prismicio/richtext": "catalog:prismic",
-    "@slicemachine/adapter-nuxt": "catalog:prismic",
+
     "@types/js-yaml": "catalog:",
     "@types/node": "catalog:types",
     "@unocss/eslint-plugin": "catalog:lint",
@@ -71,7 +71,7 @@
     "@vueuse/nuxt": "catalog:frontend",
     "better-sqlite3": "catalog:",
     "consola": "catalog:server",
-    "dotenv": "^17.2.3",
+    "dotenv": "catalog:",
     "eslint": "catalog:lint",
     "eslint-plugin-format": "catalog:lint",
     "js-yaml": "catalog:",
@@ -85,7 +85,7 @@
     "pinia": "catalog:frontend",
     "sharp": "catalog:server",
     "simple-git-hooks": "catalog:lint",
-    "slice-machine-ui": "catalog:prismic",
+
     "tsx": "catalog:",
     "typescript": "catalog:types",
     "unocss": "catalog:unocss",

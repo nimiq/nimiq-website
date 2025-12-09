@@ -1,100 +1,58 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('home', () => queryCollection('pages').path('/').first())
-
-if (!page.value) {
+if (!page.value)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-}
 
-const route = useRoute()
-
-// SEO meta from content
+// Page-specific SEO (globals in nuxt.config.ts)
 const title = page.value.meta?.title || 'Nimiq'
 const description = page.value.meta?.description || ''
-
-const url = 'https://nimiq.com'
-const canonicalUrl = `${url}${route.path}`
-
-useHead({
-  link: [{ rel: 'canonical', href: canonicalUrl }],
-})
-
-useSeoMeta({
-  title,
-  description,
-  ogTitle: title,
-  ogDescription: description,
-  ogUrl: canonicalUrl,
-  ogType: 'website',
-  ogSiteName: 'Nimiq',
-  ogLocale: 'en_US',
-  twitterCard: 'summary_large_image',
-  twitterTitle: title,
-  twitterDescription: description,
-  twitterSite: '@nimiq',
-  twitterCreator: '@nimiq',
-  author: 'Nimiq Team',
-  publisher: 'Nimiq',
-})
-
-// Footer bg color from last section
-const footerBgColor = computed(() => (page.value?.grid?.bgColor as 'white' | 'grey' | 'darkblue') || 'darkblue')
+useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com' })
+useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com' }] })
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color="footerBgColor" show-socials-hexagon-bg dark-header>
+  <NuxtLayout show-socials-hexagon-bg dark-header>
     <main v-if="page">
-      <SectionHeroHome
-        v-if="page.hero"
-        :headline="page.hero.headline"
-        :subheadline="page.hero.subheadline"
-        :link="page.hero.link"
-        :organizations="page.hero.organizations"
-      />
+      <!-- Hero section -->
+      <section v-if="page.hero" dark text-neutral mx-0 py-0 bg-darkblue relative of-hidden children:max-w-none max-md:min-h-auto pt="148 md:153 lg:160" min-h="auto md:100vh lg:110vh" flex="~ col justify-between">
+        <SectionHeroHome :headline="page.hero.headline" :subheadline="page.hero.subheadline" :link="page.hero.link" :organizations="page.hero.organizations" />
+      </section>
 
-      <SectionPillLink
-        v-if="page.pill_link"
-        :item="page.pill_link.item"
-        :label="page.pill_link.label"
-        :bg-color="page.pill_link.bgColor"
-      />
+      <!-- The Apps section -->
+      <section v-if="page.simple_headline" nq-section-gap bg-neutral-0 relative>
+        <div flex="~ items-center gap-10" py-6 pl-8 pr-20 rounded-full f-mb-lg>
+          <div style="--c: var(--nq-blue); color: rgb(var(--c)); background-color: rgb(var(--c) / 0.2);" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
+            <div i-nimiq:arrows-to-sides size="18 lg:30" class="pill-gradient" />
+          </div>
+          <span text="18 neutral-700" nq-label>The Apps</span>
+        </div>
+        <SectionSimpleHeadline :headline="page.simple_headline.headline" :subline="page.simple_headline.subline" />
+      </section>
 
-      <SectionSimpleHeadline
-        v-if="page.simple_headline"
-        :headline="page.simple_headline.headline"
-        :subline="page.simple_headline.subline"
-        :bg-color="page.simple_headline.bgColor"
-      />
+      <section v-if="page.apps?.apps" nq-section-gap bg-neutral-0>
+        <SectionAppsShowcase :apps="page.apps.apps" :banner="page.banner" />
+      </section>
 
-      <SectionAppsShowcase
-        v-if="page.apps?.apps"
-        :apps="page.apps.apps"
-      />
+      <!-- The Tech section -->
+      <section v-if="page.an_instant_zero_fee__headline" nq-section-gap bg-neutral-0 relative>
+        <div flex="~ items-center gap-10" py-6 pl-8 pr-20 rounded-full f-mb-lg>
+          <div style="--c: var(--nq-green); color: rgb(var(--c)); background-color: rgb(var(--c) / 0.2);" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
+            <div i-nimiq:bolt size="18 lg:30" class="pill-gradient" />
+          </div>
+          <span text="18 neutral-700" nq-label>The Tech</span>
+        </div>
+        <SectionSimpleHeadline :headline="page.an_instant_zero_fee__headline.headline" :subline="page.an_instant_zero_fee__headline.subline" />
+      </section>
 
-      <SectionBanner
-        v-if="page.banner?.items"
-        :items="page.banner.items"
-        :overlaps-next-section="page.banner.overlapsNextSection"
-      />
-
-      <SectionPillLink
-        v-if="page.pill_link_2"
-        :item="page.pill_link_2.item"
-        :label="page.pill_link_2.label"
-        :bg-color="page.pill_link_2.bgColor"
-      />
-
-      <SectionSimpleHeadline
-        v-if="page.an_instant_zero_fee__headline"
-        :headline="page.an_instant_zero_fee__headline.headline"
-        :subline="page.an_instant_zero_fee__headline.subline"
-        :bg-color="page.an_instant_zero_fee__headline.bgColor"
-      />
-
-      <SectionGridSection
-        v-if="page.grid?.items"
-        :items="page.grid.items"
-        :bg-color="page.grid.bgColor"
-      />
+      <section v-if="page.grid?.items" dark nq-section-gap bg-darkblue>
+        <SectionGridSection :items="page.grid.items" />
+      </section>
     </main>
   </NuxtLayout>
 </template>
+
+<style>
+.pill-gradient {
+  background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, rgb(var(--c) / 1) 0%, rgb(var(--c) / 0.3) 100%);
+}
+</style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ darkHeader?: boolean, footerBgColor?: 'white' | 'grey' | 'darkblue', draft?: boolean, showSocialsHexagonBg?: boolean }>()
+const { darkHeader = false, draft } = defineProps<{ darkHeader?: boolean, draft?: boolean, showSocialsHexagonBg?: boolean }>()
 </script>
 
 <template>
@@ -11,6 +11,6 @@ const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ dark
   <div bottom-20 right-20 fixed z-102>
     <AppPageInfo :draft with-env />
   </div>
-  <AppHexagonsBackground z-1 :bg-color="footerBgColor" :with-socials="showSocialsHexagonBg" />
-  <AppFooter :bg-color="footerBgColor" />
+  <AppHexagonsBackground z-1 :with-socials="showSocialsHexagonBg" />
+  <AppFooter />
 </template>

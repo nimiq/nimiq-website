@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { bgColor, withSocials = false } = defineProps<{ bgColor: 'white' | 'grey' | 'darkblue', withSocials?: boolean }>()
+const { withSocials = false } = defineProps<{ withSocials?: boolean }>()
 
 const { data: site } = await useAsyncData('site', () => queryCollection('site').first())
 const socialLinks = computed(() => {
@@ -7,8 +7,6 @@ const socialLinks = computed(() => {
     return {}
   return Object.fromEntries(site.value.socials.map(s => [s.id, s.link]))
 })
-
-const bgClass = getColorClass(() => bgColor)
 
 const rows = computed(() => 5)
 const { width } = useWindowSize()
@@ -55,7 +53,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="section" :class="bgClass" group mx-0 px-0 w-full relative z-2 of-x-hidden f-pt-2xl>
+  <section ref="section" dark group mx-0 px-0 bg-darkblue w-full relative z-2 of-x-hidden f-pt-2xl>
     <div aria-hidden="true" class="grid-parent" max-w-none :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
       <div
         v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`"

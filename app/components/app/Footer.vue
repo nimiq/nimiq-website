@@ -1,13 +1,10 @@
 <script lang="ts" setup>
-const { bgColor } = defineProps<{ bgColor: 'white' | 'grey' | 'darkblue' }>()
 const { data: site } = await useAsyncData('site', () => queryCollection('site').first())
-
-const bgClass = getColorClass(bgColor)
 const copyrightNotice = computed(() => site.value?.footer.copyright ?? '')
 </script>
 
 <template>
-  <footer v-if="site" :class="bgClass" data-section z-10 f-pt-2xl>
+  <footer v-if="site" dark data-section bg-darkblue z-10 f-pt-2xl>
     <div grid="~ gap-40 md:gap-48 items-start xl:gap-104">
       <div flex="~ col" f-text-sm area-contact>
         <p>{{ site.footer.newsletterCta }}</p>

@@ -1,11 +1,63 @@
-import type { BlogPageDocument, ExchangeDocument, NavigationDocument, PageDocument } from '../prismicio-types.js'
-import 'dotenv/config'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 import { consola } from 'consola'
 import yaml from 'js-yaml'
 import { blogImageToLocalPath, downloadImage, exchangeLogoToLocalPath, normalizeFileName, richTextToMarkdown, richTextToPlainText, richTextToPlainTextNoHeaders, sanitizeMarkdownHtmlLinks } from './utils'
+import 'dotenv/config'
+
+// Local type definitions for Prismic documents (previously in prismicio-types.d.ts)
+interface PrismicDocument<T = any> {
+  id: string
+  uid: string
+  type: string
+  href: string
+  tags: string[]
+  first_publication_date: string
+  last_publication_date: string
+  slugs: string[]
+  data: T
+}
+
+interface BlogPageData {
+  title: any[]
+  subline: any[]
+  text?: any[]
+  body?: any[]
+  image?: { url?: string, alt?: string, dimensions?: { width: number, height: number } }
+  meta_image?: { url?: string, alt?: string }
+  meta_title?: string
+  meta_description?: string
+  publish_date?: string
+  authors: Array<{ name: string }>
+  draft?: boolean
+}
+
+interface ExchangeData {
+  name: string
+  logo?: { url?: string }
+  link?: { url?: string, href?: string, link_type?: string }
+}
+
+interface NavigationData {
+  newsletterCta?: string
+  newsletterPlaceholder?: string
+  socialMediaCta?: string
+  nimiqShortDescription?: string
+}
+
+interface PageData {
+  meta_title?: string
+  meta_description?: string
+  meta_keywords?: string
+  meta_image?: { url?: string }
+  slices?: any[]
+}
+
+type BlogPageDocument = PrismicDocument<BlogPageData>
+type ExchangeDocument = PrismicDocument<ExchangeData>
+type NavigationDocument = PrismicDocument<NavigationData>
+type PageDocument = PrismicDocument<PageData>
 
 const PRISMIC_API = 'https://nimiq.cdn.prismic.io/api/v2'
 const PRISMIC_TOKEN = process.env.PRISMIC_ACCESS_TOKEN
