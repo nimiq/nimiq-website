@@ -27,11 +27,11 @@ const bgClass = getColorClass(bgColor)
           {{ navigation.nimiqShortDescription }}
         </p>
         <div text="neutral-800 hocus:neutral-900" transition-colors f-mt-xs flex="~ gap-16 items-center wrap">
-          <NuxtLink to="/privacy-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
+          <NuxtLink to="/privacy-policy" external font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
             Privacy Policy
           </NuxtLink>
           <div aria-hidden rounded-full bg-current op-40 size-4 />
-          <NuxtLink to="/cookie-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
+          <NuxtLink to="/cookie-policy" external font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
             Cookie Policy
           </NuxtLink>
         </div>

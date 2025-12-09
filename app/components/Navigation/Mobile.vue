@@ -75,11 +75,11 @@ const { data: navigation } = await useNavigation()
           <SocialMediaLogosList text-18 :items="[SocialMedia.x, SocialMedia.telegram, SocialMedia.reddit, SocialMedia.github, SocialMedia.youtube, SocialMedia.discord, SocialMedia.nimiqForum, SocialMedia.facebook, SocialMedia.instagram]" />
 
           <div text="neutral-800 hocus:neutral-900" transition-colors f-mt-md flex="~ gap-16 items-center">
-            <NuxtLink to="/privacy-policy" class="font-semibold op-60 hocus:op-90">
+            <NuxtLink to="/privacy-policy" external class="font-semibold op-60 hocus:op-90">
               Privacy Policy
             </NuxtLink>
             <div aria-hidden rounded-full bg-current op-40 size-4 />
-            <NuxtLink to="/cookie-policy" class="font-semibold op-60 hocus:op-90">
+            <NuxtLink to="/cookie-policy" external class="font-semibold op-60 hocus:op-90">
               Cookie Policy
             </NuxtLink>
           </div>

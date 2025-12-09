@@ -26,7 +26,7 @@ const open = computed(() => {
         <AlertDialogDescription text="f-sm neutral-700" leading-relaxed mx-0 f-mt-xs>
           We use cookies and similar technologies to enhance your experience. By continuing to browse,
           you agree to our use of cookies for analytics and tracking.
-          <NuxtLink to="/privacy-policy" target="_blank" nq-arrow>
+          <NuxtLink to="/privacy-policy" external target="_blank" nq-arrow>
             Learn more
           </NuxtLink>
         </AlertDialogDescription>
