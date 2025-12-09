@@ -72,7 +72,7 @@ if (post.value?.data.body.at(0)?.primary) {
   --uno: 'text-1em';
 }
 
-:global([nq-prose] > :where(h2, h3, h4, h5, h6)) {
+:global([nq-prose] > :where(h2, h3, h4, h5, h6):not(:first-child)) {
   --uno: 'mt-1.5lh';
 }
 
