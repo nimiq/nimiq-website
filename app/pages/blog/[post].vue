@@ -91,4 +91,8 @@ if (post.value?.data.body.at(0)?.primary) {
 :global([nq-prose] > :where(h2, h3, h4, h5, h6) > *) {
   --uno: 'text-1em';
 }
+
+:global(article[nq-prose] > :first-child) {
+  --uno: 'mt-0';
+}
 </style>
