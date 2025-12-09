@@ -43,7 +43,7 @@ const LINK_WHITELIST = [
   /^https?:\/\/t\.me\/(nimiq|joinchat\/AAAAAEJW-ozFwo7Er9jpHw|Nimcubator|NimiqTipBot|NimiqTip_bot|NimiqMiners|Kucoin_Exchange|stabilediese)$/i,
   // YouTube
   /^https:\/\/(www\.)?youtube\.com\/(c\/nimiq|channel\/UCJ1qu3KXwfmkGwBkU8F1jQg)$/,
-  /^https:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)(bspRbC4K84o|Ye9bbDa9o8w|QWbRZVcIrnk|JhkVjRxfj7A|A5zV5YmorH0|AEYrQxGILYo|i0GVdberKZM|dA40oyDVtqs|OmjdtqpWuwY|RBQ_6OqVO68|tfae8ld1ILc|Yd02UOmKWhU|ROtyliYTobE|IJDGE8Mg-uw|ME5osB8sX_s|9TsZ_xjExXs|klN-ToclwW4|yURX6FMky-A|ZIW46wXbPSw|3RhVpyHZBiQ|j50u5jtEjFM|kH5bNvN753M|uDka0kokfe0)(\?.*|&amp;.*)?$/,
+  /^https:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)(bspRbC4K84o|Ye9bbDa9o8w|QWbRZVcIrnk|JhkVjRxfj7A|A5zV5YmorH0|AEYrQxGILYo|i0GVdberKZM|dA40oyDVtqs|OmjdtqpWuwY|RBQ_6OqVO68|tfae8ld1ILc|Yd02UOmKWhU|ROtyliYTobE|IJDGE8Mg-uw|ME5osB8sX_s|9TsZ_xjExXs|klN-ToclwW4|yURX6FMky-A|ZIW46wXbPSw|3RhVpyHZBiQ|j50u5jtEjFM|kH5bNvN753M|uDka0kokfe0|e5pq6pY0DxQ|r-xqd0VhZek|o9eCdi3imyQ)(\?.*|&amp;.*)?$/,
   /^https:\/\/(www\.)?youtube\.com\/shorts\/(-ogl5pAwW_U|3OQAe2elrks)(\?.*)?$/,
   // Twitter
   /^https:\/\/twitter\.com\/(Max_Nimiq|NimiqMemes|nimiqnetwork)$/,
