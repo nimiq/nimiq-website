@@ -20,7 +20,7 @@ setOgImage({
 
 const articleRef = ref<HTMLElement>()
 useIntersectionObserver(articleRef, () => {
-  mediumZoom(':is(header,article) img', { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
+  mediumZoom(':is(header,article) img:not(a *)', { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
 })
 
 if (post.value?.data.body.at(0)?.primary) {
