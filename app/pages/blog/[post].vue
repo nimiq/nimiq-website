@@ -44,7 +44,7 @@ if (post.value?.data.body.at(0)?.primary) {
             </p>
           </template>
         </ArticleMetadata>
-        <ProxiedPrismicImage :field="post.data.image" mx-auto f-mt-2xl rounded-8 w-full object-contain view-transition-post-img />
+        <ProxiedPrismicImage :field="post.data.image" mx-auto rounded-8 w-full object-contain view-transition-post-img f-mt-2xl />
       </header>
     </div>
     <SliceZone v-if="post.data.body.length > 0" :slices="post.data.body" :components />
