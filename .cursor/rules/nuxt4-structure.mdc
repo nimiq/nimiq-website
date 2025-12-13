@@ -16,7 +16,7 @@ This project uses **Nuxt 4** with the new directory structure and auto-imports. 
 
 ### 2. Static Production Build
 - **Purpose**: Static site generation for end users
-- **Builds**: `production`, `github-pages`, `internal-static`
+- **Builds**: `production`, `internal-static`
 - **Features**: Build-time rendering only, no server runtime
 - **Modules**: Excludes NuxtHub, includes static optimization
 

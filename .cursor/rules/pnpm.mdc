@@ -53,9 +53,6 @@ pnpm preview
 
 ### Specialized Build Commands
 ```bash
-# Build for GitHub Pages
-pnpm build:github-pages
-
 # Build for NuxtHub
 pnpm build:nuxthub
 

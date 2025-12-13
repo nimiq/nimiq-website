@@ -18,7 +18,6 @@ environment.showDrafts           // true for local/draft environments
 // Specific environment checks
 environment.environment.isNuxthubPreview
 environment.environment.isNuxthubProduction
-environment.environment.isGitHubPages
 environment.environment.isInternalStatic
 ```
 

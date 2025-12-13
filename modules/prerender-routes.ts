@@ -22,10 +22,6 @@ export default defineNuxtModule({
         showDrafts: environment.showDrafts,
       })
 
-      // For github pages, remove `/newsletter`
-      if (environment.environment.isGitHubPages)
-        pages = pages.filter(page => page !== '/newsletter')
-
       // Skip blog index for dynamic builds
       if (environment.environment.isInternalDynamic)
         pages = pages.filter(page => !page.startsWith('/blog?') && page !== '/blog')

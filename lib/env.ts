@@ -11,7 +11,6 @@ if (import.meta.client || 'window' in globalThis)
 export const environmentSchema = union([
   literal('local'),
   literal('production'),
-  literal('github-pages'),
   literal('nuxthub-production'),
   literal('nuxthub-preview'),
   literal('internal-static'),
@@ -36,7 +35,6 @@ const environment: EnvironmentName = (process.env.NUXT_ENVIRONMENT as Environmen
 const isLocal = environment === 'local'
 const isNuxthubPreview = environment === 'nuxthub-preview'
 const isNuxthubProduction = environment === 'nuxthub-production'
-const isGitHubPages = environment === 'github-pages'
 const isInternalStatic = environment === 'internal-static'
 const isInternalDrafts = environment === 'internal-static-drafts'
 const isInternalDynamic = environment === 'internal-dynamic'
@@ -63,10 +61,6 @@ if (siteEnv) {
     throw error
   }
 }
-
-// GitHub Pages requires a specific base URL
-if (isGitHubPages)
-  process.env.NUXT_APP_BASE_URL = '/nimiq-website/'
 
 // Function to check internet connection by trying to fetch the Prismic home page
 async function checkInternetConnection(): Promise<boolean> {
@@ -97,7 +91,6 @@ console.table({
   'Site Environment': siteEnv || 'not set',
   'Drafts': showDrafts ? 'enabled' : 'disabled',
   'NuxtHub': useNuxtHub ? 'enabled' : 'disabled',
-  'GitHub Pages': isGitHubPages ? 'yes' : 'no',
   'Production': isProduction ? 'yes' : 'no',
   'Local': isLocal ? 'yes' : 'no',
   'Prismic SSR': enablePrismicSSR ? 'enabled' : 'disabled',
@@ -113,7 +106,6 @@ export default {
   environment: {
     name: environment,
     isLocal,
-    isGitHubPages,
     isNuxthubPreview,
     isNuxthubProduction,
     isInternalStatic,
@@ -126,8 +118,6 @@ export default {
 
 export function getSiteUrl(environment: EnvironmentName) {
   switch (environment) {
-    case 'github-pages':
-      return 'https://nimiq.github.io'
     case 'production':
       return 'https://nimiq.com'
     default:

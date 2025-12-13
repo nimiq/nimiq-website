@@ -13,12 +13,10 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/nimiq/nimiq-website/actions/workflows/github-pages.yaml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/github-pages.yaml/badge.svg" alt="GitHub pages Status"></a>
     <a href="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yml"><img src="https://github.com/nimiq/nimiq-website/actions/workflows/nuxthub.yml/badge.svg" alt="API Status"></a>
 </p>
 
 <p align="center">
-    <a href="https://nimiq.github.io/nimiq-website/">GitHub Pages</a>
     <a href="https://nimiq.com">Production</a>
 </p>
 
@@ -123,7 +121,6 @@ The project supports multiple deployment environments:
 
 - **Local**: Development with hot reload and draft content
 - **Production**: Live site (nimiq.com)
-- **GitHub Pages**: PR previews and testing
 - **NuxtHub**: Serverless deployment with edge functions
 - **Internal Static**: Internal previews with/without drafts
 
@@ -258,7 +255,6 @@ The project uses `simple-git-hooks` with `lint-staged` for automatic code qualit
 
 ```bash
 pnpm build                        # Production build
-pnpm build:github-pages          # GitHub Pages build with prerendering
 pnpm build:nuxthub               # NuxtHub build (uses NUXTHUB_ENV)
 pnpm build:internal-static       # Internal static build (no drafts)
 pnpm build:internal-static-drafts # Internal static build (with drafts)
@@ -305,7 +301,7 @@ const LINK_WHITELIST = [
 ]
 ```
 
-Link validation runs automatically on static builds (GitHub Pages, internal static, production) and provides helpful error messages when links need to be added to the whitelist.
+Link validation runs automatically on static builds (internal static, production) and provides helpful error messages when links need to be added to the whitelist.
 
 ## Testing
 
@@ -332,7 +328,6 @@ The website can be built for different runtime environments, each with its own c
 
 - `local`: Development environment (default when running `pnpm dev`)
 - `production`: Production environment (nimiq.com)
-- `github-pages`: GitHub Pages preview environment
 - `nuxthub-production`: NuxtHub production environment
 - `nuxthub-preview`: NuxtHub preview environment
 - `internal-static`: Internal static site that mirrors production (no drafts shown)
@@ -344,9 +339,6 @@ The build commands in `package.json` are set up to use these environments:
 ```bash
 # Production build
 pnpm build
-
-# GitHub Pages build
-pnpm build:github-pages
 
 # NuxtHub builds (uses NUXTHUB_ENV to determine production/preview)
 pnpm build:nuxthub
@@ -368,7 +360,6 @@ const {
   name, // Typed as EnvironmentName
   isLocal,
   isProduction,
-  isGitHubPages,
   isNuxthubProduction,
   isNuxthubPreview,
   isInternalStatic,
@@ -641,14 +632,7 @@ The project uses three GitHub Actions workflows for comprehensive CI/CD:
 - **Environment**: Uses `preview` environment with secrets
 - **Node**: Version 22 with pnpm caching
 
-### 2. GitHub Pages Workflow (`github-pages.yml`)
-
-- **Trigger**: Pull requests and main branch changes
-- **Purpose**: Deploy preview builds to GitHub Pages
-- **URL**: `https://nimiq.github.io/nimiq-website/`
-- **Environment**: `github-pages` with prerendering enabled
-
-### 3. NuxtHub Workflow (`nuxthub.yml`)
+### 2. NuxtHub Workflow (`nuxthub.yml`)
 
 - **Trigger**: Main branch changes (production) and manual dispatch
 - **Purpose**: Deploy to NuxtHub serverless infrastructure

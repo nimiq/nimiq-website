@@ -97,10 +97,8 @@ export default defineNuxtConfig({
     },
 
     robots: {
-      // Only generate robots.txt for production and GitHub Pages
-      robotsTxt:
-        !environment.environment.isProduction
-        && !environment.environment.isGitHubPages,
+      // Only generate robots.txt for production
+      robotsTxt: !environment.environment.isProduction,
     },
 
     schemaOrg: {
@@ -219,7 +217,6 @@ export default defineNuxtConfig({
         environment: object({
           name: string(),
           isLocal: boolean(),
-          isGitHubPages: boolean(),
           isNuxthubPreview: boolean(),
           isNuxthubProduction: boolean(),
           isInternalStatic: boolean(),
