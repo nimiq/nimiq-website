@@ -60,6 +60,8 @@
     "@vueuse/nuxt": "catalog:frontend",
     "consola": "catalog:server",
     "dotenv": "catalog:",
+    "drizzle-kit": "catalog:studio",
+    "drizzle-orm": "catalog:studio",
     "eslint": "catalog:lint",
     "eslint-plugin-format": "catalog:lint",
     "js-yaml": "catalog:",

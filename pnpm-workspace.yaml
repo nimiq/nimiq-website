@@ -57,6 +57,9 @@ catalogs:
     consola: ^3.4.2
     sharp: ^0.34.1
     valibot: ^1.1.0
+  studio:
+    drizzle-kit: ^0.30.5
+    drizzle-orm: ^0.38.3
   types:
     '@types/node': ^22.15.19
     typescript: ^5.8.3
@@ -71,6 +74,7 @@ catalogs:
     unocss: ^66.1.2
     unocss-preset-onmax: ^1.0.0-beta.25
 onlyBuiltDependencies:
+  - better-sqlite3
   - '@parcel/watcher'
   - '@scarf/scarf'
   - '@swc/core'
