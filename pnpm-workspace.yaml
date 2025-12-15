@@ -1,12 +1,11 @@
 packages:
   - ./
 catalog:
-  '@nuxt/content': ^3.8.0
   '@nuxt/hints': 1.0.0-alpha.3
   '@types/js-yaml': ^4.0.9
   dotenv: ^17.2.3
   js-yaml: ^4.1.0
-  marked: ^17.0.1
+  nuxt-link-checker: ^4.3.9
   nuxt-studio: 1.0.0-alpha.4
   tsx: ^4.20.6
 catalogs:
@@ -44,10 +43,9 @@ catalogs:
     '@nuxt/icon': ^2.1.1
     '@nuxt/image': 2.0.0-alpha.1
     '@nuxt/scripts': ^0.11.10
-    '@nuxthub/core': ^0.9.0
     '@nuxtjs/device': ^3.2.4
     '@nuxtjs/seo': ^3.1.0
-    nuxt: ^4.0.0
+    nuxt: ^4.2.0
     nuxt-module-feed: ^1.1.4
     nuxt-safe-runtime-config: ^0.0.3
   prismic:

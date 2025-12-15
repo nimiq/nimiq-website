@@ -51,6 +51,7 @@ Optional: Install git hooks with `npx simple-git-hooks`
 **Stack:** Nuxt 4 + Vue 3 + UnoCSS + Nuxt Content v3
 
 **Environments:**
+
 - `local` - Development with hot reload
 - `production` - Live site (nimiq.com)
 - `studio` - NuxtHub/Cloudflare deployment
@@ -70,6 +71,7 @@ pnpm typecheck    # TypeScript check
 ### CSS: UnoCSS
 
 Uses UnoCSS with [Nimiq CSS](https://onmax.github.io/nimiq-ui/) preset. Key differences from Tailwind:
+
 - `p-4` = 4px (not 16px)
 - Attributify mode supported
 - Fluid sizing: `f-pt-md` for responsive spacing
@@ -94,29 +96,32 @@ PRISMIC_ACCESS_TOKEN=xxx npx tsx scripts/prismic-sync.ts
 ```
 
 Options:
+
 - `--cache` - Use cached Prismic responses
 - `--force` - Force refresh from API
 - `--incremental` - Only update changed files
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Development server |
-| `pnpm build` | Production build |
+| Command             | Description              |
+| ------------------- | ------------------------ |
+| `pnpm dev`          | Development server       |
+| `pnpm build`        | Production build         |
 | `pnpm build:studio` | NuxtHub/Cloudflare build |
-| `pnpm generate` | Static site generation |
-| `pnpm lint:fix` | Auto-fix linting |
-| `pnpm typecheck` | TypeScript check |
+| `pnpm generate`     | Static site generation   |
+| `pnpm lint:fix`     | Auto-fix linting         |
+| `pnpm typecheck`    | TypeScript check         |
 
 ## CI/CD
 
 **Workflows:**
+
 - `ci.yml` - Linting + type checking on all branches
 - `github-pages.yml` - Preview deployments
 - `nuxthub.yml` - Production deployment
 
 **Required secrets:**
+
 - `PRISMIC_ACCESS_TOKEN` - For content sync
 - `NUXT_ALBATROSS_NODE_RPC_URL` - Blockchain RPC
 
