@@ -1,29 +1,32 @@
+import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs'
 import process from 'node:process'
 import { defineNuxtConfig } from 'nuxt/config'
 import { boolean, object, optional, string } from 'valibot'
 import wasm from 'vite-plugin-wasm'
 import environment from './lib/env'
 
+const IPX_CACHE_DIR = '.cache/ipx'
+const IPX_OUTPUT_DIR = '.output/public/_ipx'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-07',
 
   future: {
-    compatibilityVersion: 4,
+    compatibilityVersion: 5,
   },
 
   modules: [
     '@vueuse/nuxt',
-    '@pinia/nuxt',
     '@unocss/nuxt',
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxt/hints',
+    '@nuxt/icon',
     'reka-ui/nuxt',
     '@nuxtjs/device',
     '@nuxt/fonts',
-    '@pinia/colada-nuxt',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
     !environment.useNuxtHub && 'nuxt-og-image', // Enable og-image only when not on NuxtHub
     !environment.useNuxtHub && '@nuxtjs/seo',
@@ -32,7 +35,20 @@ export default defineNuxtConfig({
     environment.useNuxtHub && '@nuxthub/core',
     '@nuxt/content',
     'nuxt-studio',
+    'nuxt-link-checker',
   ].filter(Boolean),
+
+  image: {
+    quality: 80,
+    format: ['webp'],
+  },
+
+  icon: {
+    customCollections: [
+      { prefix: 'custom', dir: './public/assets/custom-icons' },
+    ],
+    serverBundle: 'local',
+  },
 
   studio: {
     repository: { provider: 'github', owner: 'nimiq', repo: 'website', branch: 'main' },
@@ -128,6 +144,13 @@ export default defineNuxtConfig({
           process.env.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS,
       },
     },
+    zoho: {
+      requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
+      clientId: process.env.NUXT_ZOHO_CLIENT_ID,
+      clientSecret: process.env.NUXT_ZOHO_CLIENT_SECRET,
+      refreshToken: process.env.NUXT_ZOHO_REFRESH_TOKEN,
+      listkey: process.env.NUXT_ZOHO_LISTKEY,
+    },
   },
 
   safeRuntimeConfig: {
@@ -141,6 +164,7 @@ export default defineNuxtConfig({
         enableDevAnalytics: boolean(),
         wordsChallenge: object({ publicAddress: string(), firstRealWords: string() }),
       }),
+      zoho: object({ requestUrl: string(), clientId: string(), clientSecret: string(), refreshToken: string(), listkey: string() }),
     }),
   },
 
@@ -158,22 +182,15 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    experimental: {
-      wasm: true,
-    },
-    esbuild: {
-      options: {
-        target: 'esnext',
-      },
-    },
+    experimental: { wasm: true },
+    esbuild: { options: { target: 'esnext' } },
+    compressPublicAssets: { gzip: true, brotli: true },
+    minify: true,
     prerender: {
-      crawlLinks: false,
+      concurrency: 8, // Parallel prerendering for faster builds
+      crawlLinks: true,
       failOnError: false, // TODO: Re-enable once all pages/images are ready
       ignore: [
-        '/nimiq-website/_ipx/s_1600x900/assets/images/gods-light.webp',
-        '/nimiq-website/_ipx/s_3200x1800/assets/images/gods-light.webp',
-        '/nimiq-website/_ipx/_/assets/images/apple-store-badge.png',
-        '/nimiq-website/_ipx/_/assets/images/google-play-badge.svg',
         // External pages built by other projects - prevent Nuxt from trying to generate them
         '/vote',
         '/cards',
@@ -188,6 +205,29 @@ export default defineNuxtConfig({
         'magnet:*',
       ],
     },
+  },
+
+  hooks: {
+    // Restore IPX cache before build
+    'build:before': function () {
+      if (existsSync(IPX_CACHE_DIR)) {
+        mkdirSync('.output/public', { recursive: true })
+        cpSync(IPX_CACHE_DIR, IPX_OUTPUT_DIR, { recursive: true })
+      }
+    },
+    // Save IPX cache after build
+    'build:done': function () {
+      if (existsSync(IPX_OUTPUT_DIR)) {
+        rmSync(IPX_CACHE_DIR, { recursive: true, force: true })
+        cpSync(IPX_OUTPUT_DIR, IPX_CACHE_DIR, { recursive: true })
+      }
+    },
+  },
+
+  experimental: {
+    viewTransition: true,
+    typedPages: true,
+    buildCache: true,
   },
 
   app: {

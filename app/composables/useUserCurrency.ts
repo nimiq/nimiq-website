@@ -6,7 +6,7 @@ export const supportedFiatCurrencies = ['AED', 'ARS', 'AUD', 'BRL', 'CAD', 'CHF'
 export const fiatCurrencies = supportedFiatCurrencies.map(ticker => FiatCurrency[ticker])
 
 function guessUserCurrency() {
-  const languageRegex = new RegExp('^(\\w+)(?:-\\w{3,4})*(?:-(\\w{2})\\b)?')
+  const languageRegex = /^(\w+)(?:-\w{3,4})*(?:-(\w{2})\b)?/
   const locale = useLocale()
   const match = locale.value.match(languageRegex)
   if (!match)

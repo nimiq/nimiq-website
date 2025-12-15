@@ -3,20 +3,20 @@ defineProps<{ headline: string, subline?: string, cta?: string, label?: string, 
 
 function getLinkMeta(url: string) {
   if (url.includes('t.me') || url.includes('telegram'))
-    return { icon: 'i-nimiq:logos-telegram-mono', label: 'Telegram' }
+    return { icon: 'nimiq:logos-telegram-mono', label: 'Telegram' }
   if (url.includes('discord'))
-    return { icon: 'i-nimiq:logos-discord-mono', label: 'Discord' }
+    return { icon: 'nimiq:logos-discord-mono', label: 'Discord' }
   if (url.includes('twitter') || url.includes('x.com'))
-    return { icon: 'i-nimiq:logos-twitter-x-mono', label: 'Twitter' }
+    return { icon: 'nimiq:logos-twitter-x-mono', label: 'Twitter' }
   if (url.includes('github'))
-    return { icon: 'i-nimiq:logos-github-mono', label: 'GitHub' }
-  return { icon: 'i-nimiq:arrow-right', label: 'Link' }
+    return { icon: 'nimiq:logos-github-mono', label: 'GitHub' }
+  return { icon: 'nimiq:arrow-right', label: 'Link' }
 }
 </script>
 
 <template>
   <div flex="~ col md:items-center">
-    <div v-if="iconName" :class="iconName" text-54 op-15 f-mt-sm />
+    <Icon v-if="iconName" :name="iconName" class="text-54 op-15 f-mt-sm" />
     <p v-if="label" mb-16 w-max block f-text-sm nq-label md:mx-auto>
       {{ label }}
     </p>
@@ -32,7 +32,7 @@ function getLinkMeta(url: string) {
     </NuxtLink>
     <div v-if="links?.length" flex="~ gap-16 wrap" f-mt-lg md:mx-auto>
       <NuxtLink v-for="link in links" :key="link" :to="link" :external="link.startsWith('http')" :target="link.startsWith('http') ? '_blank' : undefined" nq-pill-lg nq-pill-secondary flex="~ items-center gap-8">
-        <div :class="getLinkMeta(link).icon" text-20 />
+        <Icon :name="getLinkMeta(link).icon" class="text-20" />
         <span>{{ getLinkMeta(link).label }}</span>
       </NuxtLink>
     </div>

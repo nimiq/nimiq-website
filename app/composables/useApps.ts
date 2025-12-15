@@ -14,13 +14,13 @@ export interface NimiqApp {
 }
 
 const appColor: Record<AppType, string> = {
-  'E-commerce': 'rgb(var(--nq-blue))',
-  'Games': 'rgb(var(--nq-purple))',
-  'Infrastructure': 'rgb(var(--nq-red))',
-  'Insights': 'rgb(var(--nq-green))',
-  'Miner': 'rgb(var(--nq-neutral) / 1)',
-  'Wallets': 'rgb(var(--nq-orange))',
-  'Bots': 'rgb(var(--nq-gold))',
+  'E-commerce': 'var(--colors-blue)',
+  'Games': 'var(--colors-purple)',
+  'Infrastructure': 'var(--colors-red)',
+  'Insights': 'var(--colors-green)',
+  'Miner': 'var(--colors-neutral)',
+  'Wallets': 'var(--colors-orange)',
+  'Bots': 'var(--colors-gold)',
   'Faucet': '#FA7268',
   'Promotion': '#795548',
 }

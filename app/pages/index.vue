@@ -21,8 +21,8 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com' }] })
       <!-- The Apps section -->
       <section v-if="page.simple_headline" nq-section-gap bg-neutral-0 relative>
         <div flex="~ items-center gap-10" py-6 pl-8 pr-20 rounded-full f-mb-lg>
-          <div style="--c: var(--nq-blue); color: rgb(var(--c)); background-color: rgb(var(--c) / 0.2);" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
-            <div i-nimiq:arrows-to-sides size="18 lg:30" class="pill-gradient" />
+          <div style="--c: var(--colors-blue)" text="$c" bg="[color-mix(in_oklch,var(--c)_20%,transparent)]" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
+            <Icon name="nimiq:arrows-to-sides" class="pill-gradient size-18 lg:size-30" />
           </div>
           <span text="18 neutral-700" nq-label>The Apps</span>
         </div>
@@ -55,6 +55,10 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com' }] })
 
 <style>
 .pill-gradient {
-  background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, rgb(var(--c) / 1) 0%, rgb(var(--c) / 0.3) 100%);
+  background: radial-gradient(
+    78.95% 73.1% at 12.5% 14.72%,
+    var(--c) 0%,
+    color-mix(in oklch, var(--c) 30%, transparent) 100%
+  );
 }
 </style>

@@ -4,8 +4,6 @@
   "account_id": "cf9baad7d68d7ee717f3339731e81dfb",
   "compatibility_date": "2024-12-01",
   "compatibility_flags": ["nodejs_compat"],
-  "main": ".output/server/index.mjs",
-  "assets": { "directory": ".output/public" },
   "observability": { "enabled": true },
   "kv_namespaces": [
     { "binding": "KV", "id": "35978085085c4dafb22e1c9abf48ba70" },

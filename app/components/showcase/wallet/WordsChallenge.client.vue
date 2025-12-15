@@ -65,7 +65,7 @@ function reset() {
       </div>
     </div>
   </div>
-  <div ref="container" flex="~ col" class="dark" px="16 sm:64" mx-auto pb-48 pt-32 rounded-8 max-w-492 shadow relative z-1 of-hidden style="background-image: linear-gradient(to bottom, #260133, rgb(var(--nq-darkblue)));">
+  <div ref="container" flex="~ col" class="dark" px="16 sm:64" mx-auto pb-48 pt-32 rounded-8 max-w-492 shadow relative z-1 of-hidden style="background-image: linear-gradient(to bottom, #260133, var(--colors-darkblue));">
     <div :class="{ 'slide-up': isChallengeFinished }">
       <h3 text-center>
         {{ headline }}
@@ -94,7 +94,7 @@ function reset() {
             {{ word }}
           </li>
           <li v-for="(input, i) in userInputs" :key="i" shrink-0>
-            <input v-model="input.value" type="text" :aria-label="`Word ${i + 12 + 1}`" border="2 white/30 hocus:blue" :placeholder="`${i + 12}`" text="center blue" outline-none font-semibold px-2 caret-blue rounded-4 bg-transparent h-36 w-full transition un-placeholder="font-semibold text-white/30" autocomplete="off" @blur="submitWords">
+            <input v-model="input.value" type="text" :aria-label="`Word ${i + 12 + 1}`" border="2 white/30 hocus:blue" :placeholder="`${i + 12}`" text="center blue" font-semibold px-2 outline-none caret-blue rounded-4 bg-transparent h-36 w-full transition un-placeholder="font-semibold text-white/30" autocomplete="off" @blur="submitWords">
           </li>
         </ul>
         <template v-if="isChallengeFinished">
@@ -115,14 +115,14 @@ function reset() {
 
     <div mt-32 relative>
       <!-- SyntheticWave inlined -->
-      <div :style="`--grid-color: var(--nq-${isChallengeFinished ? 'purple' : 'blue'})`" flex="~ col" pointer-events-none inset--64 top-0 absolute z-0>
+      <div :style="`--grid-color: var(--colors-${isChallengeFinished ? 'purple' : 'blue'})`" flex="~ col" pointer-events-none inset--64 top-0 absolute z-0>
         <div class="grid-container" flex="~ basis-200" bg-inherit perspective-1200 relative before="absolute inset-0" />
         <div inset-0 absolute class="retro-overlay" />
       </div>
       <p text="f-xl white/80 center" font-semibold relative z-1>
         {{ youDoNotStandAChanceToTake }}
       </p>
-      <div i-custom:10-million-nim mt-32 h-66 w-full relative z-1 />
+      <Icon name="custom:10-million-nim" class="mt-32 h-66 w-full relative z-1" />
     </div>
   </div>
 </template>
@@ -133,12 +133,12 @@ function reset() {
   --x2: 17vw;
   background-image: linear-gradient(
     90deg,
-    rgba(var(--nq-neutral-0) / 1) 0%,
-    rgba(var(--nq-neutral-0) / 1) var(--x1),
-    rgba(var(--nq-neutral-0) / 0.6) var(--x2),
-    rgba(var(--nq-neutral-0) / 0.6) calc(100% - var(--x2)),
-    rgba(var(--nq-neutral-0) / 1) calc(100% - var(--x1)),
-    rgba(var(--nq-neutral-0) / 1) 100%
+    var(--colors-neutral-0) 0%,
+    var(--colors-neutral-0) var(--x1),
+    color-mix(in oklch, var(--colors-neutral-0) 60%, transparent) var(--x2),
+    color-mix(in oklch, var(--colors-neutral-0) 60%, transparent) calc(100% - var(--x2)),
+    var(--colors-neutral-0) calc(100% - var(--x1)),
+    var(--colors-neutral-0) 100%
   );
   &:nth-child(2n) {
     --x1: 8vw;
@@ -184,13 +184,13 @@ function reset() {
   --uno: 'content-empty absolute inset-0';
   --uno: 'rotate-x-50 scale-173 translate-z--200';
   background:
-    linear-gradient(to right, rgb(var(--grid-color, var(--nq-blue)) / 1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(var(--grid-color, var(--nq-blue)) / 1) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-color, var(--colors-blue)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color, var(--colors-blue)) 1px, transparent 1px);
   background-size:
     2.5rem 10rem,
     10rem 0.75rem;
   animation: grid 16s linear infinite;
-  filter: drop-shadow(0 0 2px rgb(var(--grid-color, var(--nq-blue)) / 1));
+  filter: drop-shadow(0 0 2px var(--grid-color, var(--colors-blue)));
 }
 @keyframes grid {
   from {

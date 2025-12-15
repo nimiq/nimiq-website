@@ -16,8 +16,8 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/roadmap' }] })
         <HeroSimple :headline="page.hero.headline" :subline="page.hero.subline" />
       </section>
 
-      <section v-if="page.roadmap?.items" nq-section-gap bg-neutral-100>
-        <RoadmapSection :items="page.roadmap.items" />
+      <section v-if="page.roadmap" bg-neutral-100>
+        <RoadmapSection :roadmap="page.roadmap" />
       </section>
 
       <section v-if="page.newsletter" nq-section-gap bg-neutral-100>

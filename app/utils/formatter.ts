@@ -61,3 +61,8 @@ export function formatNim(input: number, locale: string, options: Intl.NumberFor
   const nimFormatter = new Intl.NumberFormat(locale, { notation: 'compact', compactDisplay: 'short', minimumFractionDigits: 0, maximumFractionDigits: 2, ...options })
   return nimFormatter.format(input)
 }
+
+export function formatDecimal(input: number, locale: string, options: Intl.NumberFormatOptions = {}) {
+  const decimalFormatter = new Intl.NumberFormat(locale, { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 6, ...options })
+  return decimalFormatter.format(input)
+}

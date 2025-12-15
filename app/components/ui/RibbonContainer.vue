@@ -18,7 +18,7 @@ const starColorMap = { gold: '#e9b213', purple: '#1F2348' }
 
       <UiFloatingStars v-if="floatingStars" aria-hidden="true" translate="-50%" absolute left="50%" top="30%" z-21 :color="starColorMap[color]" />
       <div :style="{ backgroundImage: gradientMap[color] }" text="f-lg white" rounded="6 br-0" f-px="16/20" f-pr="28/20" lh-none ml-auto pl-20 w-max relative z-22 f-py-xs flex="~ items-center gap-8">
-        <div v-if="icon" :class="icon" text="0.85em" />
+        <Icon v-if="icon" :name="icon" class="text-0.85em" />
         {{ label }}
       </div>
     </div>

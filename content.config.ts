@@ -38,7 +38,7 @@ const highlightItemSchema = z.object({ highlight: z.string() })
 // Grid & card schemas
 const gridItemSchema = z.object({ headline: z.string(), subline: z.string().optional(), image: z.string().optional(), icon: z.string().optional(), iconName: z.string().optional() })
 const gridSchema = z.object({ items: z.array(gridItemSchema) })
-const largeGridItemSchema = gridItemSchema.extend({ shape: z.string().optional(), linkHref: z.string().optional(), color: z.string().optional() })
+const largeGridItemSchema = gridItemSchema.extend({ shape: z.string().optional(), linkHref: z.string().optional() })
 const largeGridSchema = z.object({ items: z.array(largeGridItemSchema) })
 
 // Simple headline
@@ -80,7 +80,7 @@ const appGalleryCtaSchema = z.object({ title: z.string(), description: z.string(
 
 // Buy-and-sell schemas
 const walletHoverSchema = z.object({ title: z.string(), description: z.string(), screenshot: z.string(), link: z.string(), poweredByLabel: z.string().optional(), poweredByLogos: z.array(z.object({ logo: z.string() })).optional() })
-const tokenDistributionItemSchema = z.object({ color: z.string(), title: z.string(), percentage: z.number(), description: z.string() })
+const tokenDistributionItemSchema = z.object({ title: z.string(), percentage: z.number(), description: z.string() })
 const buyAndSellBannerSchema = z.object({ headline: z.string(), cta: z.string(), features: z.array(z.object({ icon: z.string(), description: z.string() })).optional() })
 
 // Litepaper schema
@@ -358,7 +358,7 @@ export default defineContentConfig({
       source: 'roadmap.md',
       schema: z.object({
         hero: heroBaseSchema,
-        roadmap: z.object({ items: z.array(z.object({ title: z.string(), description: z.string().optional(), status: z.string().optional(), items: z.array(z.object({ title: z.string(), status: z.string().optional() })).optional() })) }).optional(),
+        roadmap: z.object({ milestones: z.string(), firstLayer: z.string(), secondLayer: z.string(), thirdLayer: z.string() }).optional(),
         newsletter: z.object({ cta: z.string() }).optional(),
         footer: footerSchema.optional(),
       }),

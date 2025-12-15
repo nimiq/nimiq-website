@@ -26,7 +26,7 @@ function submitForm() {
     <label for="newsletter-email" class="sr-only">Email address</label>
     <input id="newsletter-email" v-model="email" type="email" name="email" required rounded-full relative nq-input-box :placeholder="placeholder || 'Enter email address...'" autocomplete="email">
     <button aria-label="Submit your email" type="submit" :disabled="!email" group rounded-full size-1.6875em aspect-1 transition-colors right-0.1875em top-0.1875em absolute not-disabled:cursor-pointer bg="not-disabled:gradient-blue hocus:not-disabled:gradient-blue-darkened disabled:!neutral-300" flex="~ items-center justify-center">
-      <div i-nimiq:arrow-right text="0.6875em white group-disabled:neutral-600" />
+      <Icon name="nimiq:arrow-right" class="text-[0.6875em] text-white group-disabled:text-neutral-600" />
     </button>
     <!-- The following div is always on the dom to avoid CLS -->
     <div h="0.5em md:0.75em" font-semibold mt-0.25em pl-0.75em text="0.875em lg:0.9375em 2xl:1em red mt-0.5em">

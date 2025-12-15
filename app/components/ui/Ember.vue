@@ -82,7 +82,7 @@ div {
     filter 0.3s ease,
     transform 0.5s ease;
   transform: scale(var(--scale));
-  filter: drop-shadow(0 0 32px rgba(var(--nq-neutral) / 0.25));
+  filter: drop-shadow(0 0 32px color-mix(in oklch, var(--colors-neutral) 25%, transparent));
 
   &:hover {
     --animation-play-state: paused;

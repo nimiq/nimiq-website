@@ -12,7 +12,7 @@ interface GridItem {
 
 interface Props {
   items: GridItem[]
-  variation?: 'default' | 'withBackground' | 'threeColumnsImageText' | 'threeColumnsIconsText' | 'threeColumnsIconsInline' | 'iconGrid'
+  variation?: 'default' | 'threeColumnsImageText' | 'threeColumnsIconsText' | 'threeColumnsIconsInline' | 'iconGrid'
 }
 
 withDefaults(defineProps<Props>(), { variation: 'default' })
@@ -22,7 +22,7 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
   <template v-if="variation === 'default' || variation === 'iconGrid'">
     <ul nq-grid-330>
       <li v-for="(item, i) in items" :key="i" grid="~ cols-[auto_1fr] rows-[auto_1fr] gap-x-20 gap-y12 lg:gap-y-16 items-center">
-        <div v-if="item.icon" :class="item.icon" size="48 lg:56 xl:64" />
+        <Icon v-if="item.icon" :name="item.icon" class="size-48 lg:size-56 xl:size-64" />
         <NuxtImg v-else-if="item.image" :src="item.image" size="48 lg:56 xl:64" />
         <div text-left>
           {{ item.headline }}
@@ -32,21 +32,6 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
         </p>
       </li>
     </ul>
-  </template>
-
-  <template v-else-if="variation === 'withBackground'">
-    <div grid="~ cols-1 lg:cols-3 gap-8 md:gap-16" data-slice-variation="withBackground">
-      <NuxtLink
-        v-for="(item, i) in items" :key="i"
-        flex="~ row gap-20 items-center" :style="`--c: ${item.color}`"
-        :to="item.linkHref" group p-20 nq-hoverable class="hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c"
-      >
-        <div v-if="item.iconName" :class="item.iconName" text="32 md:48 $c group-hocus:!white" transition-colors />
-        <div whitespace-nowrap flex="~ items-center" text="group-hocus:children:!white">
-          {{ item.headline }}
-        </div>
-      </NuxtLink>
-    </div>
   </template>
 
   <template v-else-if="variation === 'threeColumnsImageText'">
@@ -77,7 +62,7 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
     <ul flex="~ col lg:row gap-y-24 md:items-center" w-full>
       <li v-for="(item, i) in items" :key="i" flex-1 flex="~ gap-x-12 items-center">
         <div style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)" stack rounded-full shrink-0 size-32>
-          <div v-if="item.icon" :class="item.icon" text="16 white" />
+          <Icon v-if="item.icon" :name="item.icon" class="text-16 text-white" />
         </div>
         <div text="f-lg neutral-900">
           {{ item.content }}
@@ -86,15 +71,3 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
     </ul>
   </template>
 </template>
-
-<style scoped>
-[data-slice-variation='withBackground'] {
-  [nq-hoverable]:hover,
-  [nq-hoverable]:focus-visible {
-    &::before {
-      background-image: none;
-      background: var(--c);
-    }
-  }
-}
-</style>

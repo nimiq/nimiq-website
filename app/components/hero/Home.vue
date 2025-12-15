@@ -38,9 +38,9 @@ onMounted(() => showMap.value = true)
   <!-- Map -->
   <div mt-120 max-w-none w-full flex="~ justify-center">
     <div class="map-container" w="80%" pt-23 min-w-680 relative z-1>
-      <div class="ellipse-shape" bg-neutral-300 z--1 mix-blend-multiply blur-20 />
-      <div class="ellipse-shape" z--2 blur-120 style="background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%)" />
-      <div class="ellipse-shape" bg-white z--1 />
+      <div class="ellipse-shape" rounded="[50%]" bg-neutral-300 shrink-0 h="[--height]" w="[--width]" translate-x="-1/2" left="1/2" top-0 absolute z--1 mix-blend-multiply blur-20 />
+      <div class="ellipse-shape" rounded="[50%]" shrink-0 h="[--height]" w="[--width]" translate-x="-1/2" left="1/2" top-0 absolute z--2 blur-120 style="background: radial-gradient(100% 100% at 100% 100%, #0b7ff2 0%, #0ca6fe 100%)" />
+      <div class="ellipse-shape" rounded="[50%]" bg-white shrink-0 h="[--height]" w="[--width]" translate-x="-1/2" left="1/2" top-0 absolute z--1 />
       <Transition name="fade" appear>
         <NuxtImg v-if="showMap" src="/assets/images/home-hero/map.svg" alt="World map" />
       </Transition>
@@ -59,9 +59,6 @@ onMounted(() => showMap.value = true)
   @media (max-width: 768px) {
     --width: 1048px;
     --height: 605px;
-  }
-  .ellipse-shape {
-    --uno: 'absolute left-50% translate-x--50% w-$width h-$height rounded-50% top-0 shrink-0';
   }
 }
 .fade-enter-active {

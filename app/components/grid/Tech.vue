@@ -4,11 +4,11 @@ defineProps<{ headline: string, subline?: string, items: GridItem[] }>()
 </script>
 
 <template>
-  <section dark nq-section-gap bg-darkblue scheme-dark relative>
+  <div dark nq-section-gap bg-darkblue scheme-dark relative>
     <!-- The Tech pill -->
     <div flex="~ items-center gap-10" py-6 pl-8 pr-20 rounded-full f-mb-lg>
-      <div style="--c: var(--nq-green); color: rgb(var(--c)); background-color: rgb(var(--c) / 0.2);" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
-        <div i-nimiq:bolt size="18 lg:30" class="pill-gradient" />
+      <div style="--c: var(--colors-green)" text="$c" bg="[color-mix(in_oklch,var(--c)_20%,transparent)]" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
+        <Icon name="nimiq:bolt" class="pill-gradient size-18 lg:size-30" />
       </div>
       <span text="18 neutral-200" nq-label>The Tech</span>
     </div>
@@ -27,7 +27,7 @@ defineProps<{ headline: string, subline?: string, items: GridItem[] }>()
     <ul flex="~ col lg:row gap-y-24 lg:items-center" w-full f-mt-xl>
       <li v-for="(item, i) in items" :key="i" py-24 flex-1 border="b-1 lg:b-0 lg:r-1 last:0 white/15 solid" md:mx-auto md:w-max>
         <NuxtImg v-if="item.image" :src="item.image" rounded-8 h-80 object-contain md:mx-auto />
-        <div v-else-if="item.icon" :class="item.icon" h-80 md:mx-auto />
+        <Icon v-else-if="item.icon" :name="item.icon" class="h-80 md:mx-auto" />
         <h3 text="green md:center f-xl" font-bold max-w-20ch f-mt-xs lg:mx-auto>
           {{ item.headline }}
         </h3>
@@ -36,11 +36,15 @@ defineProps<{ headline: string, subline?: string, items: GridItem[] }>()
         </p>
       </li>
     </ul>
-  </section>
+  </div>
 </template>
 
 <style scoped>
 .pill-gradient {
-  background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, rgb(var(--c) / 1) 0%, rgb(var(--c) / 0.3) 100%);
+  background: radial-gradient(
+    78.95% 73.1% at 12.5% 14.72%,
+    var(--c) 0%,
+    color-mix(in oklch, var(--c) 30%, transparent) 100%
+  );
 }
 </style>

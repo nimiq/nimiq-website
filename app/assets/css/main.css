@@ -20,7 +20,7 @@
 
 /* Accessibility: Focus visible styles */
 :focus-visible {
-  outline: 2px solid rgb(var(--nq-blue));
+  outline: 2px solid var(--colors-blue);
   outline-offset: 2px;
 }
 
@@ -30,7 +30,7 @@
   top: -100%;
   left: 16px;
   padding: 8px 16px;
-  background: rgb(var(--nq-blue));
+  background: var(--colors-blue);
   color: white;
   border-radius: 4px;
   z-index: 9999;

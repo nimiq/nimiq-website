@@ -8,7 +8,7 @@ import { createReusableTemplate } from '@vueuse/core'
 
 const { apps } = defineProps<{ apps: AppItem[], banner?: { items: BannerItem[] } }>()
 const bannerPositions = ['bottom--40 right--30 md:right-88 md:bottom--44 xl:right-180', 'invisible md:visible md:right--18 md:bottom-50 lg:bottom-100 lg:right--32 xl:right-70 xl:bottom-60', 'invisible md:visible md:left-88 md:bottom--52 xl:left-180', 'invisible md:visible md:left--36 md:bottom-42 lg:bottom-92 xl:left-70 xl:bottom-60', 'invisible xl:visible xl:bottom--40 xl:left--30', 'invisible xl:visible xl:bottom--40 xl:right--30']
-const bannerColors: Record<string, string> = { 'Games': 'rgb(var(--nq-purple))', 'Insights': 'rgb(var(--nq-green))', 'Faucet': '#FA7268', 'E-commerce': 'rgb(var(--nq-blue))', 'Infrastructure': 'rgb(var(--nq-red))', 'Wallets': 'rgb(var(--nq-orange))', 'Bots': 'rgb(var(--nq-gold))' }
+const bannerColors: Record<string, string> = { 'Games': 'var(--colors-purple)', 'Insights': 'var(--colors-green)', 'Faucet': '#FA7268', 'E-commerce': 'var(--colors-blue)', 'Infrastructure': 'var(--colors-red)', 'Wallets': 'var(--colors-orange)', 'Bots': 'var(--colors-gold)' }
 function shuffle<T>(arr: T[]): T[] {
   return [...arr].sort(() => Math.random() - 0.5)
 }
@@ -28,7 +28,7 @@ const bgApps = ref<Array<{ name: string, type: string, logo: string, link: strin
 onMounted(() => {
   if (!communityAppsData.value?.apps)
     return
-  bgApps.value = shuffle(communityAppsData.value.apps).slice(0, 6).map((app, i) => ({ ...app, color: bannerColors[app.type] || 'rgb(var(--nq-neutral))', classes: bannerPositions[i]! }))
+  bgApps.value = shuffle(communityAppsData.value.apps).slice(0, 6).map((app, i) => ({ ...app, color: bannerColors[app.type] || 'var(--colors-neutral)', classes: bannerPositions[i]! }))
 })
 </script>
 
@@ -42,9 +42,9 @@ onMounted(() => {
     >
       <!-- Icon -->
       <div v-if="app.item === 'Nimiq Pay'" size="48 lg:56" rounded-12 bg-gradient-gold grid="~ place-content-center" lg:mx-auto>
-        <div i-nimiq:logos-nimiq-pay-vertical-mono text="32 [#ededee]" />
+        <Icon name="nimiq:logos-nimiq-pay-vertical-mono" class="text-32 text-[#ededee]" />
       </div>
-      <div v-else-if="app.item === 'CPL'" size="48 lg:56" i-nimiq:logos-cpl-tag lg:mx-auto />
+      <Icon v-else-if="app.item === 'CPL'" name="nimiq:logos-cpl-tag" class="size-48 lg:mx-auto lg:size-56" />
 
       <!-- Title -->
       <h3 text="22/28.6 lg:28/36.4" font-semibold mt-16 lg:text-center>
@@ -57,8 +57,8 @@ onMounted(() => {
       </p>
 
       <!-- Mobile arrow -->
-      <div grid="~ place-content-center" mb-32 rounded-full size-32 bg-gradient-blue max-md:mt-12 md:hidden>
-        <div i-nimiq:chevron-right text="9 white" />
+      <div grid="~ place-content-center" mb-32 rounded-full bg-gradient-blue size-32 max-md:mt-12 md:hidden>
+        <Icon name="nimiq:chevron-right" class="text-9 text-white" />
       </div>
 
       <!-- Preview image -->
@@ -83,8 +83,8 @@ onMounted(() => {
       rounded-8 w-full of-hidden
     >
       <!-- Icon -->
-      <div v-if="app.item === 'Nimiq Wallet'" text-56 i-nimiq:logos-nimiq lg:ml-24 />
-      <div v-else-if="app.item === 'Multisig Wallet'" text-56 i-nimiq:logos-multisig lg:ml-24 />
+      <Icon v-if="app.item === 'Nimiq Wallet'" name="nimiq:logos-nimiq" class="text-56 lg:ml-24" />
+      <Icon v-else-if="app.item === 'Multisig Wallet'" name="nimiq:logos-multisig" class="text-56 lg:ml-24" />
 
       <!-- Title -->
       <h3 text="22/28.6 lg:28/36.4" font-semibold mt-16 text-left lg:ml-24>
@@ -97,8 +97,8 @@ onMounted(() => {
       </p>
 
       <!-- Mobile arrow -->
-      <div grid="~ place-content-center" mb-32 rounded-full size-32 bg-gradient-blue max-md:mt-12 md:hidden>
-        <div i-nimiq:chevron-right text="9 white" />
+      <div grid="~ place-content-center" mb-32 rounded-full bg-gradient-blue size-32 max-md:mt-12 md:hidden>
+        <Icon name="nimiq:chevron-right" class="text-9 text-white" />
       </div>
 
       <!-- Preview image -->
@@ -132,7 +132,7 @@ onMounted(() => {
       style="--ring-color: transparent"
       bg="neutral-300 hocus:neutral-0" p-0 of-initial isolate nq-hoverable lg:col-span-full
     >
-      <UiRibbonContainer v-if="app.item === 'Multisig Wallet'" color="purple" label="New Release" icon="i-nimiq:verified-filled" var:top:25px>
+      <UiRibbonContainer v-if="app.item === 'Multisig Wallet'" color="purple" label="New Release" icon="nimiq:verified-filled" var:top:25px>
         <LargeCard :app />
       </UiRibbonContainer>
       <LargeCard v-else :app />
@@ -143,8 +143,8 @@ onMounted(() => {
       <div py="24 lg:72" px-32 rounded-8 bg-neutral w-full shadow relative of-hidden outline="1.5 offset--1.5 ~ neutral/10">
         <!-- Background app logos -->
         <NuxtLink v-for="(bg, j) in bgApps" :key="j" :to="bg.link" target="_blank" :aria-label="bg.name" tabindex="-1" :class="[bg.classes]" pointer-cursor stack size-104 absolute>
-          <div size-full i-nimiq:logos-nimiq-mono :style="{ color: bg.color }" />
-          <img :src="bg.logo" :alt="bg.name" p-16 size-full pointer-events-none object-contain>
+          <Icon name="nimiq:logos-nimiq-mono" class="size-full" :style="{ color: bg.color }" />
+          <NuxtImg :src="bg.logo" :alt="bg.name" p-16 size-full pointer-events-none object-contain />
         </NuxtLink>
 
         <!-- Content -->

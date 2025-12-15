@@ -17,17 +17,18 @@ const copyrightNotice = computed(() => site.value?.footer.copyright ?? '')
 
       <div text="f-sm neutral-700" self-end area-meta>
         <NuxtLink to="/" group flex w-max aria-label="Go to Homepage">
-          <div h-20="!" w-84="!" op-80 i-nimiq:logos-nimiq-horizontal-mono group-hocus:i-nimiq:logos-nimiq-horizontal />
+          <Icon name="nimiq:logos-nimiq-horizontal-mono" class="op-80 h-20! w-84! group-hocus:hidden" />
+          <Icon name="nimiq:logos-nimiq-horizontal" class="hidden h-20! w-84! group-hocus:block" />
         </NuxtLink>
         <p f-mt-xs>
           {{ site.footer.description }}
         </p>
         <div text="neutral-800 hocus:neutral-900" transition-colors f-mt-xs flex="~ gap-16 items-center wrap">
-          <NuxtLink to="/privacy-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
+          <NuxtLink to="/privacy-policy" font-semibold text="neutral-800 hocus:neutral-900" transition-colors>
             Privacy Policy
           </NuxtLink>
           <div aria-hidden rounded-full bg-current op-40 size-4 />
-          <NuxtLink to="/cookie-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
+          <NuxtLink to="/cookie-policy" font-semibold text="neutral-800 hocus:neutral-900" transition-colors>
             Cookie Policy
           </NuxtLink>
         </div>
@@ -42,7 +43,7 @@ const copyrightNotice = computed(() => site.value?.footer.copyright ?? '')
         </p>
         <ul f-mt-md :aria-label="`${group.label} links`" role="list">
           <li v-for="(link, j) in group.links" :key="j" f-mt-xs>
-            <NuxtLink :to="link.href" font-semibold un-text="f-sm neutral-800 hocus:neutral-900" transition-colors>
+            <NuxtLink :to="link.href" font-semibold text="f-sm neutral-800 hocus:neutral-900" transition-colors>
               {{ link.text }}
             </NuxtLink>
           </li>

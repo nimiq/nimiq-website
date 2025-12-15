@@ -11,9 +11,9 @@ interface Props {
   items?: HighlightItem[]
 }
 
-const props = defineProps<Props>()
+const { headline, subline, link, linkLabel, items } = defineProps<Props>()
 
-const highlightsItems = computed(() => props.items?.map(i => i.highlight?.trim()).filter(Boolean) || [])
+const highlightsItems = computed(() => items?.map(i => i.highlight?.trim()).filter(Boolean) || [])
 </script>
 
 <template>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-
 const { color = '#e9b213' } = defineProps<{ color?: string }>()
 
 const canvas = useTemplateRef<HTMLCanvasElement>('canvas')

@@ -58,16 +58,16 @@ function getHighlightedUrl(link: string) {
           Filter by author of the app
         </p>
         <label f-py-xs f-pl-xs>
-          <input id="anyone" v-model="madeBy" type="radio" value="anyone">
-          <span>Anyone</span>
+          <input id="anyone" v-model="madeBy" type="radio" value="anyone" sr-only>
+          <span text="neutral-700" text-16 font-semibold transition-colors f-px-xs>Anyone</span>
         </label>
         <label f-py-xs>
-          <input id="official" v-model="madeBy" type="radio" value="official">
-          <span>Official</span>
+          <input id="official" v-model="madeBy" type="radio" value="official" sr-only>
+          <span text="neutral-700" text-16 font-semibold transition-colors f-px-xs>Official</span>
         </label>
         <label f-py-xs f-pr-xs>
-          <input id="community" v-model="madeBy" type="radio" value="community">
-          <span>Community</span>
+          <input id="community" v-model="madeBy" type="radio" value="community" sr-only>
+          <span text="neutral-700" text-16 font-semibold transition-colors f-px-xs>Community</span>
         </label>
       </fieldset>
     </form>
@@ -77,7 +77,7 @@ function getHighlightedUrl(link: string) {
         <!-- CardApp (non-highlighted) -->
         <NuxtLink v-if="!app.isHighlighted" :to="getAppLink(app)" target="_blank" w="[min(calc(100vw-var(--px,32px)*2),350px)]" :style="`--c: ${app.color}`" external group p-6 rounded-6 gap-24 h-full nq-hoverable :aria-label="`Go to ${app.name} website`">
           <div bg="$c" stack mb-0 rounded-4 h-240>
-            <div v-if="app.name === 'Nimiq Tip Bot'" text="white/80" size-96 i-nimiq:logos-telegram-mono />
+            <Icon v-if="app.name === 'Nimiq Tip Bot'" name="nimiq:logos-telegram-mono" class="text-white/80 size-96" />
             <NuxtImg v-else :src="app.logo" max-w="45%" rounded-4 h-auto max-h-full min-w-82 object-cover :class="getLogoClasses(app.name)" />
             <p text="12 white/70" self-start right-12 top-12 justify-self-end relative nq-label>
               {{ app.type }}
@@ -120,14 +120,6 @@ function getHighlightedUrl(link: string) {
 
 <style scoped>
 fieldset label {
-  input {
-    --uno: 'sr-only';
-  }
-
-  span {
-    --uno: 'text-neutral-700 transition-colors f-px-xs text-16 font-semibold';
-  }
-
   input:checked + span {
     --uno: 'text-neutral';
   }

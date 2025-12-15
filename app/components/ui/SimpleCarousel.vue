@@ -9,9 +9,9 @@ const { activeIndex, scroller, slideNext, slidePrev, slideTo } = useCarousel({ o
 <template>
   <div flex="~ col" cursor-default>
     <div mx-auto h-full max-w-full relative rounded="$r" :class="{ shadow }">
-      <div class="arrow" :class="activeIndex > 0 ? 'visible' : 'invisible'">
-        <button tabindex="-1" aria-label="Prev slide" class="prev" @click="slidePrev">
-          <div i-nimiq:chevron-left />
+      <div class="arrow" h-full hidden items-center absolute z-20 md:flex :class="activeIndex > 0 ? 'visible' : 'invisible'">
+        <button tabindex="-1" aria-label="Prev slide" class="prev" rounded-full bg-neutral-300 op-0 grid size-64 cursor-pointer transition-opacity place-items-center z-30 hover:op-100 @click="slidePrev">
+          <Icon name="nimiq:chevron-left" />
         </button>
       </div>
       <div mx-0 h-full z-10 rounded="$r">
@@ -21,9 +21,9 @@ const { activeIndex, scroller, slideNext, slidePrev, slideTo } = useCarousel({ o
           </li>
         </ul>
       </div>
-      <div class="arrow" right-0 top-0 :class="activeIndex < slides.length - 1 ? 'visible' : 'invisible'">
-        <button tabindex="-1" aria-label="Next slide" class="next" @click="slideNext">
-          <div i-nimiq:chevron-right />
+      <div class="arrow" h-full hidden items-center right-0 top-0 absolute z-20 md:flex :class="activeIndex < slides.length - 1 ? 'visible' : 'invisible'">
+        <button tabindex="-1" aria-label="Next slide" class="next" rounded-full bg-neutral-300 op-0 grid size-64 cursor-pointer transition-opacity place-items-center z-30 hover:op-100 @click="slideNext">
+          <Icon name="nimiq:chevron-right" />
         </button>
       </div>
     </div>
@@ -39,11 +39,7 @@ const { activeIndex, scroller, slideNext, slidePrev, slideTo } = useCarousel({ o
 
 <style scoped>
 .arrow {
-  --uno: 'absolute z-20 h-full md:flex items-center hidden';
-
   button {
-    --uno: 'bg-neutral-300 rounded-full grid place-items-center size-64 transition-opacity cursor-pointer z-30 op-0 hover:op-100';
-
     &.prev {
       right: calc(var(--trigger-size, 200px) / 4);
     }

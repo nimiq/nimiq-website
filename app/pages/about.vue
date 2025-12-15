@@ -7,6 +7,13 @@ const title = page.value.hero?.headline ? `${page.value.hero.headline} | Nimiq` 
 const description = page.value.hero?.subline || ''
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/about' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
+
+// Colors defined in page, not in content
+const gridColors = ['var(--colors-orange)', 'var(--colors-purple)', 'var(--colors-red)']
+const largeGridColors = ['var(--colors-blue)']
+
+const gridItemsWithColors = computed(() => page.value?.grid?.items.map((item, i) => ({ ...item, color: gridColors[i] })) || [])
+const largeGridItemsWithColors = computed(() => page.value?.large_grid?.items.map((item, i) => ({ ...item, color: largeGridColors[i] })) || [])
 </script>
 
 <template>
@@ -27,7 +34,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
 
       <!-- Grid links (whitepaper, onepager, etc) -->
       <section v-if="page.grid?.items" nq-section-gap bg-neutral-100>
-        <GridSection :items="page.grid.items" variation="withBackground" />
+        <GridLinks :items="gridItemsWithColors" />
       </section>
 
       <!-- Nimiq's Mission -->
@@ -45,7 +52,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
 
       <!-- Large grid (Team link) -->
       <section v-if="page.large_grid?.items" nq-section-gap bg-neutral-100>
-        <GridLarge :items="page.large_grid.items" />
+        <GridLarge :items="largeGridItemsWithColors" />
       </section>
 
       <!-- Roadmap -->

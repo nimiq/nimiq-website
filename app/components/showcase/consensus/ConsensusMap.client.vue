@@ -154,20 +154,20 @@ async function connect() {
         <canvas ref="canvas" />
         <div v-if="showTooltip" left-0 top-0 absolute z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
           <div left="[calc(-50%+2px)]" flex="~ col items-center" class="dark" mt-16 scheme-dark relative>
-            <div :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" text-12 translate-y-3.5 i-nimiq:tooltip-triangle />
-            <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" flex="~ items-center" rounded-full transition-colors top--1 bg-gradient-blue>
+            <Icon name="nimiq:tooltip-triangle" :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" class="text-12 translate-y-3.5" />
+            <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" flex="~ items-center" rounded-full bg-gradient-blue transition-colors top--1>
               <span text-white font-bold px-16 py-8>{{ thisIsYou }}</span>
               <button layout-id="connect-label" as="button" text-blue font-bold m-6 px-12 py-5 rounded-full bg-white @click="connect">
                 {{ connectLabel }}
               </button>
             </div>
-            <div v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" outline-none text-white font-semibold px-16 py-8 rounded-full w-max transition-colors top--3>
+            <div v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" text-white font-semibold px-16 py-8 outline-none rounded-full w-max transition-colors top--3>
               <div layout-id="connect-label" as="span">
                 {{ connecting }}
               </div>
-              <div animate="ease-out scale-in delay-2s" shrink-0 i-nimiq:spinner />
+              <Icon name="nimiq:spinner" class="animate-ease-out shrink-0 animate-scale-in animate-delay-2s" />
             </div>
-            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" outline-none text-white font-semibold px-16 py-8 rounded-full w-max transition-colors top--3 z-3>
+            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" text-white font-semibold px-16 py-8 outline-none rounded-full w-max transition-colors top--3 z-3>
               <div layout-id="connect-label" as="span">
                 <div flex="~ items-center justify-between gap-8">
                   <span>Connected</span>
@@ -203,17 +203,17 @@ async function connect() {
   background-image:
     linear-gradient(
       to bottom,
-      rgb(var(--nq-neutral-0) / 1) 0%,
-      rgb(var(--nq-neutral-0) / 0) var(--curtain-size),
-      rgb(var(--nq-neutral-0) / 0) calc(100% - var(--curtain-size)),
-      rgb(var(--nq-neutral-0) / 1) 100%
+      var(--colors-neutral-0) 0%,
+      transparent var(--curtain-size),
+      transparent calc(100% - var(--curtain-size)),
+      var(--colors-neutral-0) 100%
     ),
     linear-gradient(
       to right,
-      rgb(var(--nq-neutral-0) / 1) 0%,
-      rgb(var(--nq-neutral-0) / 0) var(--curtain-size),
-      rgb(var(--nq-neutral-0) / 0) calc(100% - var(--curtain-size)),
-      rgb(var(--nq-neutral-0) / 1) 100%
+      var(--colors-neutral-0) 0%,
+      transparent var(--curtain-size),
+      transparent calc(100% - var(--curtain-size)),
+      var(--colors-neutral-0) 100%
     );
 }
 </style>

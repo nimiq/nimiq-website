@@ -22,7 +22,7 @@ const open = computed(() => {
         0 8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent);"
         @open-auto-focus.prevent
       >
-        <AlertDialogTitle text="f-xl neutral-900" font-semibold leading-tight my-0 ml-0>
+        <AlertDialogTitle text="f-xl neutral-900" leading-tight font-semibold my-0 ml-0>
           Cookie Consent
         </AlertDialogTitle>
 
@@ -38,12 +38,12 @@ const open = computed(() => {
             op-85 cursor-pointer transition-colors nq-pill-tertiary hocus:bg-neutral-300
             @click="rejectConsent"
           >
-            <div mr-8 op-80 scale-60 i-nimiq:cross />
+            <Icon name="nimiq:cross" class="mr-8 op-80 scale-60" />
             Reject
           </AlertDialogCancel>
 
           <AlertDialogAction cursor-pointer nq-pill-blue @click="acceptConsent">
-            <div mr-8 op-80 scale-90 i-nimiq:check />
+            <Icon name="nimiq:check" class="mr-8 op-80 scale-90" />
             Accept
           </AlertDialogAction>
         </div>

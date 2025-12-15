@@ -7,21 +7,18 @@ const { data: page } = await useAsyncData('blog-page', () => queryCollection('bl
 if (!page.value)
   throw createError({ statusCode: 404, statusMessage: 'Blog page not found', fatal: true })
 
-const { data: allPosts } = await useAsyncData('blog-posts', () =>
-  queryCollection('blog').order('publishedAt', 'DESC').all())
+const { data: totalCount } = await useAsyncData('blog-count', () =>
+  queryCollection('blog').count())
 
-const posts = computed(() => {
-  if (!allPosts.value)
-    return []
-  const start = (pageIndex.value - 1) * itemsPerPage
-  return allPosts.value.slice(start, start + itemsPerPage)
-})
+const totalPages = computed(() => Math.ceil((totalCount.value || 0) / itemsPerPage))
 
-const totalPages = computed(() => {
-  if (!allPosts.value)
-    return 0
-  return Math.ceil(allPosts.value.length / itemsPerPage)
-})
+const { data: posts } = await useAsyncData(`blog-posts-${pageIndex.value}`, () =>
+  queryCollection('blog')
+    .select('title', 'slug', 'description', 'publishedAt', 'image', 'authors')
+    .order('publishedAt', 'DESC')
+    .skip((pageIndex.value - 1) * itemsPerPage)
+    .limit(itemsPerPage)
+    .all())
 
 const active = useState('active-blog-post', () => '')
 
@@ -40,7 +37,7 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
       </section>
 
       <section v-if="page.blog_grid" bg-neutral-100 f-pt-3xl>
-        <div v-if="posts.length > 0" grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
+        <div v-if="posts?.length" grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
           <article v-for="(post, i) in posts" :key="post.slug" :class="pageIndex === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
             <NuxtLink :to="`/blog/${post.slug}`" p-0 h-full relative nq-hoverable @click="active = post.slug">
               <div p-4>
@@ -73,7 +70,7 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
             <PaginationList v-slot="{ items }" flex="~ gap-16 items-center justify-center">
               <PaginationPrev as-child class="pagination-item">
                 <NuxtLink :to="pageIndex > 1 ? (pageIndex === 2 ? '/blog' : `/blog?page=${pageIndex - 1}`) : undefined">
-                  <div text-9 op-70 i-nimiq:chevron-left />
+                  <Icon name="nimiq:chevron-left" class="text-9 op-70" />
                 </NuxtLink>
               </PaginationPrev>
 
@@ -90,7 +87,7 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
 
               <PaginationNext as-child class="pagination-item">
                 <NuxtLink :to="pageIndex < totalPages ? `/blog?page=${pageIndex + 1}` : undefined">
-                  <div text-9 op-70 i-nimiq:chevron-right />
+                  <Icon name="nimiq:chevron-right" class="text-9 op-70" />
                 </NuxtLink>
               </PaginationNext>
             </PaginationList>
@@ -105,10 +102,6 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
 
 <style scoped>
 .pagination-item {
-  --uno: 'rounded-4 size-32 shrink-0 bg-neutral-100 text-neutral-900 text-12 font-semibold hocus:bg-neutral-200 transition-colors ring-1.5 ring-neutral-400 flex items-center justify-center';
-
-  &[data-selected] {
-    --uno: 'bg-blue text-white ring-none';
-  }
+  --uno: 'rounded-4 size-32 shrink-0 bg-neutral-100 text-neutral-900 text-12 font-semibold hocus:bg-neutral-200 transition-colors ring-1.5 ring-neutral-400 flex items-center justify-center reka-selected:bg-blue reka-selected:text-white reka-selected:ring-none';
 }
 </style>

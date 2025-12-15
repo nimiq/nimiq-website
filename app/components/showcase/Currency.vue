@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Currency { name: string, crypto: string, mainFeature: string, secondFeature: string, thirdFeature: string, fee: string, time: string, adjective: string }
 
-const props = defineProps<{ currencies: Currency[], feeLabel: string, timeLabel: string }>()
+const { currencies, feeLabel, timeLabel } = defineProps<{ currencies: Currency[], feeLabel: string, timeLabel: string }>()
 
 const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Currency & { twoColumns?: boolean }>()
 </script>
@@ -11,16 +11,16 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Currency & { twoColum
     <template #default="{ adjective, crypto, fee, mainFeature, name, secondFeature, thirdFeature, time, twoColumns = false }">
       <li :class="{ 'md:grid md:rows-[max-content,auto,auto,auto] md:cols-2 xl:block gap-x-32': twoColumns }">
         <div flex="~ items-center gap-12" text-48 col-span-full>
-          <div v-if="crypto === 'NIM'" i-nimiq:logos-nimiq />
-          <div v-else-if="crypto === 'BTC'" i-nimiq:logos-bitcoin />
+          <Icon v-if="crypto === 'NIM'" name="nimiq:logos-nimiq" />
+          <Icon v-else-if="crypto === 'BTC'" name="nimiq:logos-bitcoin" />
           <div v-else-if="crypto === 'USDC/USDT'" flex="~ items-center gap-12">
-            <div i-nimiq:logos-usdc />
+            <Icon name="nimiq:logos-usdc" />
             <div my-10 bg-neutral-400 w-1 self-stretch />
-            <div i-nimiq:logos-usdt />
+            <Icon name="nimiq:logos-usdt" />
           </div>
           <span font-semibold text="f-xl neutral">{{ name }}</span>
           <div v-if="crypto === 'NIM'" flex="~ items-center gap-6" text-green px-6 py-4 rounded-full bg-green-400>
-            <div text-14 i-nimiq:eco />
+            <Icon name="nimiq:eco" class="text-14" />
             <span text-green f-text-xs nq-label>Eco</span>
           </div>
         </div>
@@ -34,7 +34,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Currency & { twoColum
 
         <div flex="~ gap-8 items-start" :class="{ 'f-mt-sm': !twoColumns, 'row-start-2 col-start-2 f-mt-md': twoColumns }">
           <div class="gradient" stack rounded-full shrink-0 size-28>
-            <div text="14 white" :class="{ 'i-nimiq:bolt': crypto === 'NIM', 'i-nimiq:arrows-to-sides scale-120': crypto === 'BTC', 'i-nimiq:balance': crypto === 'USDC/USDT' }" />
+            <Icon :name="crypto === 'NIM' ? 'nimiq:bolt' : crypto === 'BTC' ? 'nimiq:arrows-to-sides' : 'nimiq:balance'" class="text-14 text-white" :class="{ 'scale-120': crypto === 'BTC' }" />
           </div>
           <p whitespace-nowrap>
             {{ secondFeature }}
@@ -43,7 +43,7 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Currency & { twoColum
 
         <div flex="~ gap-8 items-center" f-mt-2xs>
           <div class="gradient" stack rounded-full shrink-0 size-28>
-            <div text="16 white" :class="{ 'i-nimiq:leaf-2-filled scale-80 bottom--1 relative': crypto === 'NIM', 'i-nimiq:digital-gold scale-120 right--1 relative': crypto === 'BTC', 'i-nimiq:arrows-to-center-triangle': crypto === 'USDC/USDT' }" />
+            <Icon :name="crypto === 'NIM' ? 'nimiq:leaf-2-filled' : crypto === 'BTC' ? 'nimiq:digital-gold' : 'nimiq:arrows-to-center-triangle'" class="text-16 text-white" :class="{ 'scale-80 bottom--1 relative': crypto === 'NIM', 'scale-120 right--1 relative': crypto === 'BTC' }" />
           </div>
           <p whitespace-nowrap>
             {{ thirdFeature }}
@@ -51,9 +51,9 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Currency & { twoColum
         </div>
 
         <p f-mt-sm>
-          {{ props.feeLabel }}: <span text-neutral font-semibold>{{ fee }}</span>
+          {{ feeLabel }}: <span text-neutral font-semibold>{{ fee }}</span>
         </p>
-        <p>{{ props.timeLabel }}: <span text-neutral font-semibold>{{ time }}</span></p>
+        <p>{{ timeLabel }}: <span text-neutral font-semibold>{{ time }}</span></p>
       </li>
     </template>
   </DefineCrypto>
@@ -69,8 +69,8 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Currency & { twoColum
 .gradient {
   background: radial-gradient(
     78.95% 73.1% at 12.5% 14.72%,
-    rgb(var(--nq-neutral) / 0.4) 0%,
-    rgb(var(--nq-neutral) / 0.25) 100%
+    color-mix(in oklch, var(--colors-neutral) 40%, transparent) 0%,
+    color-mix(in oklch, var(--colors-neutral) 25%, transparent) 100%
   );
 }
 </style>

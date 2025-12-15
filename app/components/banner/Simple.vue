@@ -4,19 +4,19 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
 </script>
 
 <template>
-  <section pt-0 bg-neutral-0 relative z-10 of-x-clip f-px-sm>
+  <div pt-0 bg-neutral-0 relative z-10 of-x-clip f-px-sm>
     <div
       v-for="(item, i) in items" :key="i"
       class="banner-item"
       py="24 lg:72" px-32 rounded-8 w-full shadow relative of-hidden
       max-w="none lg:[calc(var(--nq-max-width)-32px)]"
-      outline="1.5 offset--1.5 ~ neutral/10"
+      outline="~ 1.5 offset--1.5 neutral/10"
     >
       <!-- Hexagon pattern decoration -->
       <div v-if="item.backgroundPattern === 'Nimiq Hexagon'" text="200 md:300 lg:400" pointer-events-none absolute bottom="-10 lg:-0.2775em" right="-0.2em lg:-0.25em">
-        <div text-transparent i-nimiq:logos-nimiq-mono>
-          <div size-full bg-gradient="to-bl from-transparent via-transparent to-neutral/20" />
-        </div>
+        <Icon name="nimiq:logos-nimiq-mono" class="text-transparent relative">
+          <div bg-gradient="to-bl from-transparent via-transparent to-neutral/20" size-full inset-0 absolute />
+        </Icon>
       </div>
 
       <div flex="~ wrap justify-between" max-w-full w-full items-end relative z-10>
@@ -34,17 +34,17 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
         <NuxtLink v-if="item.link" :to="item.link" mt="32 md:24" nq-arrow nq-pill-lg nq-pill-blue lg:mr-128 />
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>
 /* Default: neutral background */
 .banner-item {
-  background: rgb(var(--nq-neutral));
+  background: var(--colors-neutral);
 }
 /* Accent items (2nd, 4th, etc) get darkblue */
 .banner-item:nth-child(even) {
-  background: rgb(var(--nq-darkblue));
-  color: rgb(var(--nq-neutral));
+  background: var(--colors-darkblue);
+  color: var(--colors-neutral);
 }
 </style>

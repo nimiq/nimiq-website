@@ -10,6 +10,12 @@ const { data: post } = await useAsyncData(`blog-${slug}`, () =>
 if (!post.value)
   throw createError({ statusCode: 404, statusMessage: 'Blog post not found', fatal: true })
 
+const { data: surroundings } = await useAsyncData(`blog-surroundings-${slug}`, () =>
+  queryCollectionItemSurroundings('blog', post.value!.path, { fields: ['title', 'slug'] }))
+
+const prev = computed(() => surroundings.value?.[0])
+const next = computed(() => surroundings.value?.[1])
+
 const readingTime = computed(() => calculateReadingTime(post.value?.description || ''))
 
 const meta = {
@@ -23,7 +29,7 @@ useSeoMeta({ ...meta, ogTitle: meta.title, ogDescription: meta.description, twit
 const articleRef = ref<HTMLElement>()
 onMounted(() => {
   useIntersectionObserver(articleRef, () => {
-    mediumZoom(':is(header,article) img:not(a *)', { margin: 24, background: 'rgb(var(--nq-neutral-0) / 1)' })
+    mediumZoom(':is(header,article) img:not(a *)', { margin: 24, background: 'var(--colors-neutral-0)' })
   })
 })
 </script>
@@ -57,6 +63,18 @@ onMounted(() => {
     </div>
 
     <ContentRenderer :value="post" nq-prose wrapper="article" />
+
+    <nav v-if="prev || next" data-section flex="~ col sm:row gap-16 sm:gap-32" max-w="$nq-prose-max-width" px="32 lg:64" f-pt-xl>
+      <NuxtLink v-if="prev" :to="`/blog/${prev.slug}`" flex="~ col 1" p-24 rounded-8 bg-neutral-100 ring="1 neutral-400" nq-hoverable>
+        <span text="12 neutral-800" nq-label>Previous</span>
+        <span text="16 neutral-900" mt-8 line-clamp-2>{{ prev.title }}</span>
+      </NuxtLink>
+      <div v-else flex-1 />
+      <NuxtLink v-if="next" :to="`/blog/${next.slug}`" flex="~ col 1" ring="1 neutral-400" p-24 text-right rounded-8 bg-neutral-100 nq-hoverable>
+        <span text="12 neutral-800" nq-label>Next</span>
+        <span text="16 neutral-900" mt-8 line-clamp-2>{{ next.title }}</span>
+      </NuxtLink>
+    </nav>
 
     <Disclaimer />
   </NuxtLayout>
