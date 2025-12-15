@@ -1,3 +1,5 @@
+import { consola } from 'consola'
+
 interface ConsentData {
   accepted: boolean
   version: string
@@ -21,8 +23,7 @@ export default defineNuxtRouteMiddleware((to) => {
     return
 
   if (isDev) {
-    // eslint-disable-next-line no-console
-    console.log('📊 [DEV] Would track page view:', {
+    consola.log('📊 [DEV] Would track page view:', {
       url: to.fullPath,
       title: document?.title || 'Loading...',
       matomo: `setCustomUrl: ${to.fullPath}, setDocumentTitle: ${document?.title || 'Loading...'}, trackPageView`,

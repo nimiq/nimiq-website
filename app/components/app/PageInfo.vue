@@ -1,12 +1,12 @@
 <script setup lang="ts">
-const { withEnv = false, draft = false } = defineProps<{ withEnv?: boolean, draft?: boolean }>()
+const { withEnv = false } = defineProps<{ withEnv?: boolean }>()
 
 const { isProduction, name } = useRuntimeConfig().public.environment
 const { enablePrismicSSR } = useRuntimeConfig().public
 </script>
 
 <template>
-  <div v-if="!isProduction && (draft || withEnv || enablePrismicSSR)" flex="~ items-center gap-16 wrap">
+  <div v-if="!isProduction && (withEnv || enablePrismicSSR)" flex="~ items-center gap-16 wrap">
     <Tooltip v-if="withEnv" shrink-0>
       <template #trigger>
         <div ring="1.5 white" outline="1.5 ~ neutral-400" capitalize f-text-2xs nq-pill-lg nq-pill-tertiary>
@@ -25,10 +25,6 @@ const { enablePrismicSSR } = useRuntimeConfig().public
     <div v-if="enablePrismicSSR" shrink-0 title="Prismic Server-Side Rendering is enabled. This will be hidden in production" ring="1.5 white" f-text-2xs nq-pill-lg nq-pill-blue>
       <div i-nimiq:server />
       Prismic SSR
-    </div>
-    <div v-if="draft" shrink-0 title="This item is a draft in the CMS. This will be hidden in production" ring="1.5 white" f-text-2xs nq-pill-lg nq-pill-orange>
-      <div i-nimiq:locked-lock />
-      Draft
     </div>
   </div>
 </template>

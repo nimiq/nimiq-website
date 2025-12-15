@@ -5,3 +5,39 @@
   --font-size-max-em: 1;
   font-weight: inherit;
 }
+
+/* Accessibility: Global reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility: Focus visible styles */
+:focus-visible {
+  outline: 2px solid rgb(var(--nq-blue));
+  outline-offset: 2px;
+}
+
+/* Accessibility: Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  padding: 8px 16px;
+  background: rgb(var(--nq-blue));
+  color: white;
+  border-radius: 4px;
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 16px;
+}

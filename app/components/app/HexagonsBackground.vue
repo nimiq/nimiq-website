@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { withSocials = false } = defineProps<{ withSocials?: boolean }>()
+const { withSocials = false, bgColor = 'darkblue' } = defineProps<{ withSocials?: boolean, bgColor?: 'grey' | 'darkblue' }>()
 
-const { data: site } = await useAsyncData('site', () => queryCollection('site').first())
+const { data: site } = await useSite()
 const socialLinks = computed(() => {
   if (!site.value?.socials)
     return {}
@@ -53,7 +53,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="section" dark group mx-0 px-0 bg-darkblue w-full relative z-2 of-x-hidden f-pt-2xl>
+  <section ref="section" :class="bgColor === 'grey' ? 'bg-neutral-100' : 'bg-darkblue dark'" group mx-0 px-0 w-full relative z-2 of-x-hidden f-pt-2xl>
     <div aria-hidden="true" class="grid-parent" max-w-none :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
       <div
         v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`"

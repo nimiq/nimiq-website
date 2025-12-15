@@ -8,7 +8,7 @@ onMounted(() => showMap.value = true)
 
 <template>
   <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
-    <h1 nq-heading-lg>
+    <h1 nq-heading-lg text-neutral-0>
       {{ headline }}
     </h1>
     <p v-if="subheadline" text="neutral-800 f-xl">

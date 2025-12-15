@@ -3,13 +3,16 @@ const id = useId()
 const delay = useState(`ember-${id}`, () => Math.floor(Math.random() * 6000))
 
 const shouldJump = ref(false)
+const { start: resetJump } = useTimeoutFn(() => {
+  shouldJump.value = false
+}, 500, { immediate: false })
 
 // Randomly jump and flip the icon :)
 function onHover() {
   if (shouldJump.value)
     return
   shouldJump.value = true
-  setTimeout(() => shouldJump.value = false, 500)
+  resetJump()
 }
 </script>
 

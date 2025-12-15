@@ -2,10 +2,13 @@ packages:
   - ./
 catalog:
   '@nuxt/content': ^3.8.0
+  '@nuxt/hints': 1.0.0-alpha.3
   '@types/js-yaml': ^4.0.9
   better-sqlite3: ^12.4.1
   dotenv: ^17.2.3
   js-yaml: ^4.1.0
+  marked: ^17.0.1
+  nuxt-studio: 1.0.0-alpha.4
   tsx: ^4.20.6
 catalogs:
   build:

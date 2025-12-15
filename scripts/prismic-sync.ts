@@ -30,7 +30,6 @@ interface BlogPageData {
   meta_description?: string
   publish_date?: string
   authors: Array<{ name: string }>
-  draft?: boolean
 }
 
 interface ExchangeData {
@@ -214,7 +213,6 @@ function generateFrontmatter(doc: BlogPageDocument, images: ImageMap[]): string 
     publishedAt: doc.data.publish_date || doc.first_publication_date,
     updatedAt: doc.last_publication_date,
     authors: doc.data.authors.map(a => a.name),
-    draft: doc.data.draft || false,
   }
 
   // Add image if exists

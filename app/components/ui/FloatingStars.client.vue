@@ -6,6 +6,11 @@ const { color = '#e9b213' } = defineProps<{ color?: string }>()
 const canvas = useTemplateRef<HTMLCanvasElement>('canvas')
 const ctx = computed(() => canvas.value?.getContext('2d'))
 const { pixelRatio } = useDevicePixelRatio()
+const isVisible = shallowRef(false)
+
+useIntersectionObserver(canvas, ([entry]) => {
+  isVisible.value = entry?.isIntersecting || false
+}, { threshold: 0.1 })
 
 const starsCount = 10
 
@@ -95,7 +100,14 @@ function animate() {
   }
 }
 
-const { resume } = useRafFn(animate, { immediate: false })
+const { pause, resume } = useRafFn(animate, { immediate: false })
+
+watch(isVisible, (visible) => {
+  if (visible && ctx.value)
+    resume()
+  else
+    pause()
+})
 
 whenever(ctx, () => {
   if (!canvas.value)
@@ -116,7 +128,8 @@ whenever(ctx, () => {
       break
   }
 
-  resume()
+  if (isVisible.value)
+    resume()
 })
 
 const starSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 11 11">

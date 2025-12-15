@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { data: site } = await useAsyncData('site', () => queryCollection('site').first())
+const { data: site } = await useSite()
 const copyrightNotice = computed(() => site.value?.footer.copyright ?? '')
 </script>
 
