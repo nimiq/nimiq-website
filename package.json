@@ -46,7 +46,7 @@
     "@nuxt/icon": "catalog:nuxt",
     "@nuxt/image": "catalog:nuxt",
     "@nuxt/kit": "catalog:build",
-    "@nuxthub/core": "catalog:nuxt",
+    "@nuxthub/core": "catalog:",
     "@nuxtjs/device": "catalog:nuxt",
     "@prismicio/client": "catalog:prismic",
     "@prismicio/richtext": "catalog:prismic",
