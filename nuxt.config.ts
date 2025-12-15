@@ -171,6 +171,7 @@ export default defineNuxtConfig({
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore Hub is dynamic
   hub: {
+    database: true,
     kv: true,
     cache: true,
   },
