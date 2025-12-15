@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/scripts',
+    '@nuxt/hints',
     'reka-ui/nuxt',
     '@nuxtjs/device',
     '@nuxt/fonts',
@@ -30,9 +31,18 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
     environment.useNuxtHub && '@nuxthub/core',
     '@nuxt/content',
+    'nuxt-studio',
   ].filter(Boolean),
 
-  // Analytics scripts - loaded in all environments, but behavior controlled by composables
+  studio: {
+    repository: { provider: 'github', owner: 'nimiq', repo: 'website', branch: 'main' },
+    // Google OAuth moderators (GitHub uses repo permissions instead)
+    // Env: STUDIO_GOOGLE_MODERATORS=maximogarciamtnez@gmail.com
+    // Env: STUDIO_GITHUB_CLIENT_ID, STUDIO_GITHUB_CLIENT_SECRET, STUDIO_GITHUB_TOKEN
+    // Env: STUDIO_GOOGLE_CLIENT_ID, STUDIO_GOOGLE_CLIENT_SECRET
+  },
+
+  // Analytics scripts - deferred until page is ready
   scripts: {
     registry: {
       matomoAnalytics: {
@@ -40,9 +50,11 @@ export default defineNuxtConfig({
         siteId: 2,
         trackPageView: true,
         enableLinkTracking: true,
+        scriptOptions: { trigger: 'onNuxtReady' },
       },
       googleTagManager: {
         id: 'GTM-NQ9RN8W',
+        scriptOptions: { trigger: 'onNuxtReady' },
       },
     },
   },
@@ -88,10 +100,7 @@ export default defineNuxtConfig({
     },
 
     robots: {
-      // Only generate robots.txt for production and GitHub Pages
-      robotsTxt:
-        !environment.environment.isProduction
-        && !environment.environment.isGitHubPages,
+      robotsTxt: environment.environment.isProduction,
     },
 
     schemaOrg: {
@@ -105,25 +114,12 @@ export default defineNuxtConfig({
     },
   }),
 
-  // // TODO Remove this option
-  // unocss: {
-  //   nuxtLayers: true,
-  // },
-
   runtimeConfig: {
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || '/',
       clientNetwork: 'MainAlbatross',
-      apiDomain: process.env.NUXT_PUBLIC_API_ENDPOINT || '',
-      validatorsApi:
-        process.env.NUXT_PUBLIC_VALIDATORS_API
-        || 'https://validators-api-mainnet.nuxt.dev',
-      cryptoMapSupabase: {
-        url: process.env.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_URL,
-        key: process.env.NUXT_PUBLIC_CRYPTO_MAP_SUPABASE_KEY,
-      },
+      validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || 'https://validators-api-mainnet.nuxt.dev',
       environment: environment.environment,
-      showDrafts: environment.showDrafts,
       useNuxtHub: environment.useNuxtHub,
       enableDevAnalytics: true,
       wordsChallenge: {
@@ -132,15 +128,6 @@ export default defineNuxtConfig({
           process.env.NUXT_PUBLIC_WORDS_CHALLENGE_FIRST_REAL_WORDS,
       },
     },
-    zoho: {
-      requestUrl: process.env.NUXT_ZOHO_REQUEST_URL,
-      clientId: process.env.NUXT_ZOHO_CLIENT_ID,
-      clientSecret: process.env.NUXT_ZOHO_CLIENT_SECRET,
-      scope: process.env.NUXT_ZOHO_SCOPE,
-      code: process.env.NUXT_ZOHO_CODE,
-      refreshToken: process.env.NUXT_ZOHO_REFRESH_TOKEN,
-      listkey: process.env.NUXT_ZOHO_LISTKEY,
-    },
   },
 
   safeRuntimeConfig: {
@@ -148,39 +135,11 @@ export default defineNuxtConfig({
       public: object({
         baseUrl: string(),
         clientNetwork: optional(string()),
-        apiDomain: string(),
         validatorsApi: optional(string()),
-        cryptoMapSupabase: object({
-          url: string(),
-          key: string(),
-        }),
-        environment: object({
-          name: string(),
-          isLocal: boolean(),
-          isGitHubPages: boolean(),
-          isNuxthubPreview: boolean(),
-          isNuxthubProduction: boolean(),
-          isInternalStatic: boolean(),
-          isInternalDrafts: boolean(),
-          isProduction: boolean(),
-          isInternalDynamic: boolean(),
-        }),
-        showDrafts: boolean(),
+        environment: object({ name: string(), isLocal: boolean(), isStudio: boolean(), isProduction: boolean() }),
         useNuxtHub: boolean(),
         enableDevAnalytics: boolean(),
-        wordsChallenge: object({
-          publicAddress: string(),
-          firstRealWords: string(),
-        }),
-      }),
-      zoho: object({
-        requestUrl: string(),
-        clientId: string(),
-        clientSecret: string(),
-        scope: string(),
-        code: string(),
-        refreshToken: string(),
-        listkey: string(),
+        wordsChallenge: object({ publicAddress: string(), firstRealWords: string() }),
       }),
     }),
   },
@@ -188,15 +147,8 @@ export default defineNuxtConfig({
   // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore Hub is dynamic
   hub: {
-    // NuxtHub options. See https://hub.nuxt.com/docs/getting-started/installation
     kv: true,
     cache: true,
-    workers: true,
-    bindings: {
-      observability: {
-        logs: true,
-      },
-    },
   },
 
   router: {
@@ -213,9 +165,6 @@ export default defineNuxtConfig({
       options: {
         target: 'esnext',
       },
-    },
-    rollupConfig: {
-      external: [],
     },
     prerender: {
       crawlLinks: false,
@@ -241,13 +190,6 @@ export default defineNuxtConfig({
     },
   },
 
-  experimental: {
-    payloadExtraction: true,
-    renderJsonPayloads: true,
-    viewTransition: true,
-    typedPages: true,
-  },
-
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',
@@ -255,6 +197,9 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/icon', href: '/favicon.ico' },
+        { rel: 'preconnect', href: 'https://stats.nimiq-network.com' },
+        { rel: 'preconnect', href: 'https://wallet.nimiq.com' },
+        { rel: 'dns-prefetch', href: 'https://validators-api-mainnet.nuxt.dev' },
       ],
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
