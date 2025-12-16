@@ -28,9 +28,9 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/apps' }] })
       </section>
 
       <!-- Add your app CTA -->
-      <section v-if="page.simple_headline" nq-section-gap text-center bg-neutral-0>
-        <HeadlineSimple :headline="page.simple_headline.headline" :subline="page.simple_headline.subline" />
-        <NuxtLink v-if="page.simple_headline.cta" :to="page.simple_headline.cta" target="_blank" mx-auto f-mt-lg nq-arrow nq-pill-lg nq-pill-blue>
+      <section v-if="page.simpleHeadline" nq-section-gap text-center bg-neutral-0>
+        <HeadlineSimple :headline="page.simpleHeadline.headline" :subline="page.simpleHeadline.subline" />
+        <NuxtLink v-if="page.simpleHeadline.cta" :to="page.simpleHeadline.cta" target="_blank" mx-auto f-mt-lg nq-arrow nq-pill-lg nq-pill-blue>
           Developer Center
         </NuxtLink>
       </section>

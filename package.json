@@ -28,6 +28,7 @@
     "@unovis/ts": "catalog:frontend",
     "@unovis/vue": "catalog:frontend",
     "@vueuse/router": "catalog:frontend",
+    "marked": "catalog:",
     "medium-zoom": "catalog:frontend",
     "motion-v": "catalog:frontend",
     "nimiq-rpc-client-ts": "catalog:nimiq",

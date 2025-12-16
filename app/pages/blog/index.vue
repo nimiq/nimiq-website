@@ -36,7 +36,7 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
         </p>
       </section>
 
-      <section v-if="page.blog_grid" bg-neutral-100 f-pt-3xl>
+      <section v-if="page.blogGrid" bg-neutral-100 f-pt-3xl>
         <div v-if="posts?.length" grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
           <article v-for="(post, i) in posts" :key="post.slug" :class="pageIndex === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
             <NuxtLink :to="`/blog/${post.slug}`" p-0 h-full relative nq-hoverable @click="active = post.slug">
@@ -53,15 +53,15 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
                 <p mt-8 line-clamp-2 text="16 neutral-900 left">
                   {{ post.description }}
                 </p>
-                <div :style="`--content: '${page.blog_grid.labelLearnMore}'`" :class="i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16" flex="~ items-center gap-x-16 wrap" text="12 neutral" lh="[2]" pt-16 gap-x-8 h-max nq-label nq-hoverable-cta>
+                <div :style="`--content: '${page.blogGrid.labelLearnMore}'`" :class="i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16" flex="~ items-center gap-x-16 wrap" text="12 neutral" lh="[2]" pt-16 gap-x-8 h-max nq-label nq-hoverable-cta>
                   <NuxtTime v-if="new Date(post.publishedAt).getFullYear() === new Date().getFullYear()" :datetime="post.publishedAt" month="short" day="numeric" />
                   <NuxtTime v-else :datetime="post.publishedAt" month="short" day="numeric" year="numeric" />
                   <address flex="~ gap-1ch" not-italic>
-                    <span text-neutral-800>{{ page.blog_grid.labelBy }}</span>
+                    <span text-neutral-800>{{ page.blogGrid.labelBy }}</span>
                     <span text-blue>{{ post.authors?.join(', ') || 'Team Nimiq' }}</span>
                   </address>
                 </div>
-                <span sr-only>{{ page.blog_grid.labelLearnMore }}</span>
+                <span sr-only>{{ page.blogGrid.labelLearnMore }}</span>
               </div>
             </NuxtLink>
           </article>

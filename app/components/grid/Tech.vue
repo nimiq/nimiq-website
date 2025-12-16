@@ -4,9 +4,9 @@ defineProps<{ headline: string, subline?: string, items: GridItem[] }>()
 </script>
 
 <template>
-  <div dark nq-section-gap bg-darkblue scheme-dark relative>
+  <div>
     <!-- The Tech pill -->
-    <div flex="~ items-center gap-10" py-6 pl-8 pr-20 rounded-full f-mb-lg>
+    <div flex="~ items-center gap-10 md:mx-auto md:w-max" py-6 pl-8 pr-20 rounded-full f-mb-lg>
       <div style="--c: var(--colors-green)" text="$c" bg="[color-mix(in_oklch,var(--c)_20%,transparent)]" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
         <Icon name="nimiq:bolt" class="pill-gradient size-18 lg:size-30" />
       </div>

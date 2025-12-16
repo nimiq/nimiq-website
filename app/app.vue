@@ -5,7 +5,7 @@ const showConsentBanner = environment.isProduction || enableDevAnalytics
 
 <template>
   <NuxtPage />
-  <ConsentBanner v-if="showConsentBanner" />
+  <AppConsentBanner v-if="showConsentBanner" />
 </template>
 
 <style>

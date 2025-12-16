@@ -17,12 +17,12 @@ useSeoMeta({ title, description, ogTitle: title, ogDescription: description })
 
       <TeamMembers v-if="page.team?.items" :items="page.team.items" />
 
-      <section v-if="page.simple_headline" nq-section-gap bg-neutral-100>
+      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-100>
         <HeadlineSimple
-          :headline="page.simple_headline.headline"
-          :subline="page.simple_headline.subline"
-          :link-href="page.simple_headline.linkHref"
-          :link-label="page.simple_headline.linkLabel"
+          :headline="page.simpleHeadline.headline"
+          :subline="page.simpleHeadline.subline"
+          :link-href="page.simpleHeadline.linkHref"
+          :link-label="page.simpleHeadline.linkLabel"
         />
       </section>
     </main>

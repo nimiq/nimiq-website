@@ -1,5 +1,6 @@
 import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs'
 import process from 'node:process'
+import nimiqIcons from 'nimiq-icons/icons.json'
 import { defineNuxtConfig } from 'nuxt/config'
 import { boolean, object, optional, string } from 'valibot'
 import wasm from 'vite-plugin-wasm'
@@ -46,6 +47,7 @@ export default defineNuxtConfig({
   icon: {
     customCollections: [
       { prefix: 'custom', dir: './public/assets/custom-icons' },
+      nimiqIcons,
     ],
     serverBundle: 'local',
   },
@@ -82,23 +84,11 @@ export default defineNuxtConfig({
   ],
 
   vite: {
-    plugins: [
-      wasm(),
-    ],
-    optimizeDeps: {
-      exclude: ['@nimiq/core', '*.wasm'],
-    },
-    worker: {
-      plugins: () => [
-        wasm(),
-      ],
-    },
-
-    build: {
-      rollupOptions: {
-        external: [/^.*\.node$/],
-      },
-    },
+    plugins: [wasm()],
+    optimizeDeps: { exclude: ['@nimiq/core', '*.wasm'] },
+    worker: { plugins: () => [wasm()] },
+    build: { rollupOptions: { external: [/^.*\.node$/] } },
+    server: { watch: { usePolling: true, interval: 100 } },
   },
 
   features: {

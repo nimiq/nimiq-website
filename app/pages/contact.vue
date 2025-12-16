@@ -16,12 +16,12 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/contact' }] })
         <HeroSimple :headline="page.hero.headline" :subline="page.hero.subline" />
       </section>
 
-      <section v-if="page.social_media?.items" nq-section-gap bg-neutral-100>
-        <GridSocialMedia v-bind="page.social_media" />
+      <section v-if="page.socialMedia?.items" nq-section-gap bg-neutral-100>
+        <GridSocialMedia v-bind="page.socialMedia" />
       </section>
 
-      <section v-if="page.simple_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.simple_headline.headline" :subline="page.simple_headline.subline" />
+      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.simpleHeadline.headline" :subline="page.simpleHeadline.subline" />
       </section>
 
       <section v-if="page.contact" nq-section-gap bg-neutral-100>

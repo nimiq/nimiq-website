@@ -20,42 +20,42 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
         <ContentQuote :text="page.quote.text" :author="page.quote.author" />
       </section>
 
-      <section v-if="page.simple_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.simple_headline.headline" :subline="page.simple_headline.subline" />
+      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.simpleHeadline.headline" :subline="page.simpleHeadline.subline" />
       </section>
 
-      <section v-if="page.staking_calculator" nq-section-gap bg-neutral-100>
-        <StakingCalculator :data="page.staking_calculator" />
+      <section v-if="page.stakingCalculator" nq-section-gap bg-neutral-100>
+        <StakingCalculator :data="page.stakingCalculator" />
       </section>
 
-      <section v-if="page.active_and_decentral_headline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.active_and_decentral_headline.headline" :subline="page.active_and_decentral_headline.subline" />
+      <section v-if="page.activeAndDecentralHeadline" nq-section-gap bg-neutral-0>
+        <HeadlineSimple :headline="page.activeAndDecentralHeadline.headline" :subline="page.activeAndDecentralHeadline.subline" />
       </section>
 
-      <section v-if="page.staking_distribution" nq-section-gap bg-neutral-0>
-        <StakingDistribution :data="page.staking_distribution" />
+      <section v-if="page.stakingDistribution" nq-section-gap bg-neutral-0>
+        <StakingDistribution :data="page.stakingDistribution" />
       </section>
 
-      <section v-if="page.so_easy_everyone_can_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.so_easy_everyone_can_headline.headline" :subline="page.so_easy_everyone_can_headline.subline" />
+      <section v-if="page.soEasyEveryoneCanHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.soEasyEveryoneCanHeadline.headline" :subline="page.soEasyEveryoneCanHeadline.subline" />
       </section>
 
       <section v-if="page.video" nq-section-gap bg-neutral-100>
         <ContentYouTube :embed-url="page.video.embedUrl" :poster="page.video.poster" :title="page.video.title" />
       </section>
 
-      <section v-if="page.let_others_do_the_wo_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.let_others_do_the_wo_headline.headline" :subline="page.let_others_do_the_wo_headline.subline" />
+      <section v-if="page.letOthersDoTheWoHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.letOthersDoTheWoHeadline.headline" :subline="page.letOthersDoTheWoHeadline.subline" />
       </section>
 
       <BannerSection v-if="page.banner?.items" :items="page.banner.items" :overlaps-next-section="page.banner.overlapsNextSection" />
 
-      <section v-if="page.staking_faq?.items" nq-section-gap bg-neutral-100>
-        <StakingFaq :items="page.staking_faq.items" />
+      <section v-if="page.stakingFaq?.items" nq-section-gap bg-neutral-100>
+        <StakingFaq :items="page.stakingFaq.items" />
       </section>
 
-      <section v-if="page.stake_in_the_nimiq_w_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.stake_in_the_nimiq_w_headline.headline" :subline="page.stake_in_the_nimiq_w_headline.subline" :links="page.stake_in_the_nimiq_w_headline.links" />
+      <section v-if="page.stakeInTheNimiqWHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.stakeInTheNimiqWHeadline.headline" :subline="page.stakeInTheNimiqWHeadline.subline" :links="page.stakeInTheNimiqWHeadline.links" />
       </section>
     </main>
   </NuxtLayout>

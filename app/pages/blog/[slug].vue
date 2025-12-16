@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import mediumZoom from 'medium-zoom'
 
-const route = useRoute()
-const slug = route.params.slug as string
+const route = useRoute('blog-slug')
+const slug = route.params.slug
 
 const { data: post } = await useAsyncData(`blog-${slug}`, () =>
   queryCollection('blog').where('slug', '=', slug).first())

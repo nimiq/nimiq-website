@@ -24,11 +24,11 @@ const copyrightNotice = computed(() => site.value?.footer.copyright ?? '')
           {{ site.footer.description }}
         </p>
         <div text="neutral-800 hocus:neutral-900" transition-colors f-mt-xs flex="~ gap-16 items-center wrap">
-          <NuxtLink to="/privacy-policy" font-semibold text="neutral-800 hocus:neutral-900" transition-colors>
+          <NuxtLink to="/privacy-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
             Privacy Policy
           </NuxtLink>
           <div aria-hidden rounded-full bg-current op-40 size-4 />
-          <NuxtLink to="/cookie-policy" font-semibold text="neutral-800 hocus:neutral-900" transition-colors>
+          <NuxtLink to="/cookie-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
             Cookie Policy
           </NuxtLink>
         </div>
@@ -43,7 +43,7 @@ const copyrightNotice = computed(() => site.value?.footer.copyright ?? '')
         </p>
         <ul f-mt-md :aria-label="`${group.label} links`" role="list">
           <li v-for="(link, j) in group.links" :key="j" f-mt-xs>
-            <NuxtLink :to="link.href" font-semibold text="f-sm neutral-800 hocus:neutral-900" transition-colors>
+            <NuxtLink :to="link.href" font-semibold un-text="f-sm neutral-800 hocus:neutral-900" transition-colors>
               {{ link.text }}
             </NuxtLink>
           </li>

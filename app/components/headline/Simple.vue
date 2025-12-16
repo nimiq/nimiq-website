@@ -15,7 +15,7 @@ function getLinkMeta(url: string) {
 </script>
 
 <template>
-  <div flex="~ col md:items-center">
+  <div flex="~ col md:items-center" f-pb="56/96">
     <Icon v-if="iconName" :name="iconName" class="text-54 op-15 f-mt-sm" />
     <p v-if="label" mb-16 w-max block f-text-sm nq-label md:mx-auto>
       {{ label }}

@@ -2,14 +2,14 @@
 interface WalletPage {
   'meta'?: { title?: string, description?: string }
   'hero'?: { headline: string, subline: string, link: string }
-  'wallet_playground'?: { playgroundUrl: string }
+  'walletPlayground'?: { playgroundUrl: string }
   'consensus'?: { label: string, headline: string, subline: string, thisIsYou: string, connect: string, connecting: string }
-  'simple_headline'?: { headline: string, subline?: string, label?: string }
-  'currency_comparison'?: { currencies: any[], feeLabel: string, timeLabel: string }
-  '24_words_better_than_headline'?: { headline: string, subline?: string, label?: string }
+  'simpleHeadline'?: { headline: string, subline?: string, label?: string }
+  'currencyComparison'?: { currencies: any[], feeLabel: string, timeLabel: string }
+  '24WordsBetterThanHeadline'?: { headline: string, subline?: string, label?: string }
   'grid'?: { items: any[] }
-  'wallet_challenge'?: { headline: string, subheadline: string, guessTheRemainingWordsLabel: string, youDoNotStandAChanceToTake: string, rewardamount: string }
-  'no_email_or_download_headline'?: { headline: string, links?: string[] }
+  'walletChallenge'?: { headline: string, subheadline: string, guessTheRemainingWordsLabel: string, youDoNotStandAChanceToTake: string, rewardamount: string }
+  'noEmailOrDownloadHeadline'?: { headline: string, links?: string[] }
 }
 
 const { data: page } = await useAsyncData('wallet', () => queryCollection('wallet').first() as Promise<WalletPage | null>)
@@ -29,36 +29,36 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <HeroWallet :headline="page.hero.headline" :subline="page.hero.subline" :link="page.hero.link" />
       </section>
 
-      <section v-if="page.wallet_playground" dark nq-section-gap bg-darkblue scheme-dark relative>
-        <ShowcaseWallet :playground-url="page.wallet_playground.playgroundUrl" />
+      <section v-if="page.walletPlayground" dark nq-section-gap bg-darkblue scheme-dark relative>
+        <ShowcaseWallet :playground-url="page.walletPlayground.playgroundUrl" />
       </section>
 
       <section v-if="page.consensus" dark nq-section-gap px-0 pb-0 bg-darkerblue scheme-dark relative>
         <ShowcaseConsensus :label="page.consensus.label" :headline="page.consensus.headline" :subline="page.consensus.subline" :this-is-you="page.consensus.thisIsYou" :connect="page.consensus.connect" :connecting="page.consensus.connecting" />
       </section>
 
-      <section v-if="page.simple_headline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.simple_headline.headline" :subline="page.simple_headline.subline" :label="page.simple_headline.label" />
+      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-0>
+        <HeadlineSimple :headline="page.simpleHeadline.headline" :subline="page.simpleHeadline.subline" :label="page.simpleHeadline.label" />
       </section>
 
-      <section v-if="page.currency_comparison" nq-section-gap bg-neutral-0>
-        <ShowcaseCurrency :currencies="page.currency_comparison.currencies" :fee-label="page.currency_comparison.feeLabel" :time-label="page.currency_comparison.timeLabel" />
+      <section v-if="page.currencyComparison" nq-section-gap bg-neutral-0>
+        <ShowcaseCurrency :currencies="page.currencyComparison.currencies" :fee-label="page.currencyComparison.feeLabel" :time-label="page.currencyComparison.timeLabel" />
       </section>
 
-      <section v-if="page['24_words_better_than_headline']" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page['24_words_better_than_headline'].headline" :subline="page['24_words_better_than_headline'].subline" :label="page['24_words_better_than_headline'].label" />
+      <section v-if="page['24WordsBetterThanHeadline']" nq-section-gap bg-neutral-0>
+        <HeadlineSimple :headline="page['24WordsBetterThanHeadline'].headline" :subline="page['24WordsBetterThanHeadline'].subline" :label="page['24WordsBetterThanHeadline'].label" />
       </section>
 
       <section v-if="page.grid?.items" nq-section-gap bg-neutral-0>
         <GridSection :items="page.grid.items.map((i: any) => ({ headline: i.content, icon: i.icon }))" />
       </section>
 
-      <section v-if="page.wallet_challenge" dark nq-section-gap bg-darkblue scheme-dark relative>
-        <ShowcaseWalletWords :headline="page.wallet_challenge.headline" :subheadline="page.wallet_challenge.subheadline" :guess-the-remaining-words-label="page.wallet_challenge.guessTheRemainingWordsLabel" :you-do-not-stand-a-chance-to-take="page.wallet_challenge.youDoNotStandAChanceToTake" :rewardamount="page.wallet_challenge.rewardamount" />
+      <section v-if="page.walletChallenge" dark nq-section-gap bg-darkblue scheme-dark relative>
+        <ShowcaseWalletWords :headline="page.walletChallenge.headline" :subheadline="page.walletChallenge.subheadline" :guess-the-remaining-words-label="page.walletChallenge.guessTheRemainingWordsLabel" :you-do-not-stand-a-chance-to-take="page.walletChallenge.youDoNotStandAChanceToTake" :rewardamount="page.walletChallenge.rewardamount" />
       </section>
 
-      <section v-if="page.no_email_or_download_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.no_email_or_download_headline.headline" :links="page.no_email_or_download_headline.links" />
+      <section v-if="page.noEmailOrDownloadHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.noEmailOrDownloadHeadline.headline" :links="page.noEmailOrDownloadHeadline.links" />
       </section>
     </main>
   </NuxtLayout>

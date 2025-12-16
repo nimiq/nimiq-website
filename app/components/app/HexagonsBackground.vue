@@ -53,32 +53,37 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="section" :class="bgColor === 'grey' ? 'bg-neutral-100' : 'bg-darkblue dark'" aria-hidden="true" class="grid-parent" group mx-0 px-0 max-w-none w-full relative z-2 of-x-hidden f-pt-2xl :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
-    <div
-      v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`"
-      :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? item.opacity : 1 }"
-      class="transition-opacity duration-300 ease-out"
-      :class="{
-        'text-[red]': item.social === 'youtube' && isVisible,
-        'text-black': item.social === 'x' && isVisible,
-        'text-[#1877f2]': item.social === 'facebook' && isVisible,
-        'text-neutral-300 dark:text-neutral-500 hocus:dark:text-neutral-700 hocus:text-neutral-500': !item.social,
-        'opacity-0': item.social && !isVisible,
-        'opacity-100': item.social && isVisible,
-      }"
-      :data-social="item.social"
-    >
-      <Icon name="nimiq:logos-nimiq-mono" class="size-full" />
-      <NuxtLink
-        v-if="item.social && isVisible && socialLinks[item.social]" flex="~ justify-center items-center"
-        target="_blank" :to="socialLinks[item.social]" transition="opacity duration-300 ease-out"
-        :aria-label="`Visit Nimiq on ${item.social === 'x' ? 'Twitter' : item.social}`"
-        external size-full inset-0 absolute
+  <div ref="section" :class="bgColor === 'grey' ? 'bg-neutral-100' : 'bg-darkblue dark'" group mx-0 px-0 w-full relative z-2 of-x-hidden f-pt-2xl>
+    <div aria-hidden="true" class="grid-parent" max-w-none :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
+      <div
+        v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`"
+        :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? item.opacity : 1 }"
+        relative flex="~ items-center justify-center"
+        transition="opacity duration-300 ease-out"
+        :class="{
+          'text-[red]': item.social === 'youtube' && isVisible,
+          'text-black': item.social === 'x' && isVisible,
+          'text-[#1877f2]': item.social === 'facebook' && isVisible,
+          'text-neutral-300 dark:text-neutral-500 hocus:dark:text-neutral-700 hocus:text-neutral-500': !item.social,
+          'opacity-0': item.social && !isVisible,
+          'opacity-100': item.social && isVisible,
+        }"
+        :data-social="item.social"
       >
-        <Icon v-if="item.social === 'youtube'" name="nimiq:logos-youtube-mono" class="text-53 text-white" />
-        <Icon v-if="item.social === 'x'" name="nimiq:logos-twitter-mono" class="text-64 text-white" />
-        <Icon v-if="item.social === 'facebook'" name="nimiq:logos-facebook-mono" class="text-62 text-white" />
-      </NuxtLink>
+        <Icon name="nimiq:logos-nimiq-mono" size-full inset-0 absolute />
+        <NuxtLink
+          v-if="item.social && isVisible && socialLinks[item.social]"
+          flex="~ justify-center items-center"
+          target="_blank" external size-full inset-0 absolute z-1
+          :to="socialLinks[item.social]"
+          transition="opacity duration-300 ease-out"
+          :aria-label="`Visit Nimiq on ${item.social === 'x' ? 'Twitter' : item.social}`"
+        >
+          <Icon v-if="item.social === 'youtube'" name="nimiq:logos-youtube-mono" text="53 white" />
+          <Icon v-if="item.social === 'x'" name="nimiq:logos-twitter-mono" text="64 white" />
+          <Icon v-if="item.social === 'facebook'" name="nimiq:logos-facebook-mono" text="62 white" />
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>

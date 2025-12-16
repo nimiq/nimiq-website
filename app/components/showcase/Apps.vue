@@ -9,6 +9,7 @@ import { createReusableTemplate } from '@vueuse/core'
 const { apps } = defineProps<{ apps: AppItem[], banner?: { items: BannerItem[] } }>()
 const bannerPositions = ['bottom--40 right--30 md:right-88 md:bottom--44 xl:right-180', 'invisible md:visible md:right--18 md:bottom-50 lg:bottom-100 lg:right--32 xl:right-70 xl:bottom-60', 'invisible md:visible md:left-88 md:bottom--52 xl:left-180', 'invisible md:visible md:left--36 md:bottom-42 lg:bottom-92 xl:left-70 xl:bottom-60', 'invisible xl:visible xl:bottom--40 xl:left--30', 'invisible xl:visible xl:bottom--40 xl:right--30']
 const bannerColors: Record<string, string> = { 'Games': 'var(--colors-purple)', 'Insights': 'var(--colors-green)', 'Faucet': '#FA7268', 'E-commerce': 'var(--colors-blue)', 'Infrastructure': 'var(--colors-red)', 'Wallets': 'var(--colors-orange)', 'Bots': 'var(--colors-gold)' }
+const bannerLogoClasses: Record<string, string> = { 'NimWorld': 'filter-brightness-0 filter-invert scale-75', 'Trust Wallet': 'scale-150' }
 function shuffle<T>(arr: T[]): T[] {
   return [...arr].sort(() => Math.random() - 0.5)
 }
@@ -22,13 +23,13 @@ const regularApps = computed(() => apps.filter(app => !app.highlight))
 const [DefineSmallCard, SmallCard] = createReusableTemplate<{ app: AppItem }>()
 const [DefineLargeCard, LargeCard] = createReusableTemplate<{ app: AppItem }>()
 
-// BannerViewAllApps - load community apps for background
-const { data: communityAppsData } = await useAsyncData('banner-community-apps', () => queryCollection('communityApps').first())
+// BannerViewAllApps - load community apps for background (developer !== '@nimiq')
+const { data: appsData } = await useApps()
 const bgApps = ref<Array<{ name: string, type: string, logo: string, link: string, color: string, classes: string }>>([])
 onMounted(() => {
-  if (!communityAppsData.value?.apps)
+  if (!appsData.value?.communityApps)
     return
-  bgApps.value = shuffle(communityAppsData.value.apps).slice(0, 6).map((app, i) => ({ ...app, color: bannerColors[app.type] || 'var(--colors-neutral)', classes: bannerPositions[i]! }))
+  bgApps.value = shuffle(appsData.value.communityApps).slice(0, 6).map((app, i) => ({ ...app, color: bannerColors[app.type] || 'var(--colors-neutral)', classes: bannerPositions[i]! }))
 })
 </script>
 
@@ -69,7 +70,7 @@ onMounted(() => {
         }"
         h-196 md:mx-auto lg:mt-40 lg:row-span-1 md:row-span-full lg:col-start-1 md:col-start-2
       >
-        <NuxtImg :src="app.preview" :alt="app.title" h-full w-auto />
+        <NuxtImg :src="app.preview" :alt="app.title" />
       </div>
     </NuxtLink>
   </DefineSmallCard>
@@ -140,11 +141,10 @@ onMounted(() => {
 
     <!-- Banner card (full width) - BannerViewAllApps inlined -->
     <li v-if="banner?.items?.[0]" p-0 lg:col-span-full>
-      <div py="24 lg:72" px-32 rounded-8 bg-neutral w-full shadow relative of-hidden outline="1.5 offset--1.5 ~ neutral/10">
+      <div py="24 lg:72" px-32 rounded-8 bg-white w-full shadow relative of-hidden max-w="none lg:[calc(var(--nq-max-width)-32px)]" outline="1.5 offset--1.5 ~ neutral/10">
         <!-- Background app logos -->
-        <NuxtLink v-for="(bg, j) in bgApps" :key="j" :to="bg.link" target="_blank" :aria-label="bg.name" tabindex="-1" :class="[bg.classes]" pointer-cursor stack size-104 absolute>
-          <Icon name="nimiq:logos-nimiq-mono" class="size-full" :style="{ color: bg.color }" />
-          <NuxtImg :src="bg.logo" :alt="bg.name" p-16 size-full pointer-events-none object-contain />
+        <NuxtLink v-for="(bg, j) in bgApps" :key="j" :to="bg.link" target="_blank" :aria-label="bg.name" tabindex="-1" :class="[bg.classes]" pointer-cursor size-104 absolute i-nimiq:logos-nimiq-mono :style="{ color: bg.color }">
+          <NuxtImg :src="bg.logo" :alt="bg.name" size-full pointer-events-none scale-110 object-contain :class="bannerLogoClasses[bg.name]" />
         </NuxtLink>
 
         <!-- Content -->

@@ -7,7 +7,7 @@ const { enablePrismicSSR } = useRuntimeConfig().public
 
 <template>
   <div v-if="!isProduction && (withEnv || enablePrismicSSR)" flex="~ items-center gap-16 wrap">
-    <Tooltip v-if="withEnv" shrink-0>
+    <UiTooltip v-if="withEnv" shrink-0>
       <template #trigger>
         <div ring="1.5 white" outline="~ 1.5 neutral-400" capitalize f-text-2xs nq-pill-lg nq-pill-tertiary>
           {{ name }}
@@ -23,7 +23,7 @@ const { enablePrismicSSR } = useRuntimeConfig().public
           </NuxtLink>
         </p>
       </template>
-    </Tooltip>
+    </UiTooltip>
     <div v-if="enablePrismicSSR" shrink-0 title="Prismic Server-Side Rendering is enabled. This will be hidden in production" ring="1.5 white" f-text-2xs nq-pill-lg nq-pill-blue>
       <Icon name="nimiq:server" />
       Prismic SSR

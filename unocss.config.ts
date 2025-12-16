@@ -83,6 +83,8 @@ export default defineConfig({
         'enter-from-right': 'ease',
         'exit-to-left': 'ease',
         'exit-to-right': 'ease',
+        'slide-down': 'ease',
+        'slide-up': 'ease',
       },
       durations: {
         'scale-out': '200ms',
@@ -93,6 +95,8 @@ export default defineConfig({
         'enter-from-right': '250ms',
         'exit-to-left': '250ms',
         'exit-to-right': '250ms',
+        'slide-down': '300ms',
+        'slide-up': '300ms',
       },
       keyframes: {
         'enter-from-right': '{from {opacity:0;transform:translateX(200px)} to {opacity:1;transform:translateX(0)}}',
@@ -103,6 +107,8 @@ export default defineConfig({
         'scale-out': '{from {opacity:1;transform:rotateX(0deg) scale(1)} to {opacity:0;transform:rotateX(-10deg) scale(0.95)}}',
         'fade-in': '{from {opacity:0} to {opacity:1}}',
         'fade-out': '{from {opacity:1} to {opacity:0}}',
+        'slide-down': '{from {height:0} to {height:var(--reka-accordion-content-height)}}',
+        'slide-up': '{from {height:var(--reka-accordion-content-height)} to {height:0}}',
       },
     },
   },

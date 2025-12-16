@@ -13,28 +13,28 @@ useSeoMeta({ title, description, ogTitle: title, ogDescription: description })
     <main v-if="page">
       <HeroBuyAndSell v-if="page.hero" :data="page.hero" />
 
-      <section v-if="page.simple_headline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.simple_headline.headline" :subline="page.simple_headline.subline" :label="page.simple_headline.label" :links="page.simple_headline.links" />
+      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-0>
+        <HeadlineSimple :headline="page.simpleHeadline.headline" :subline="page.simpleHeadline.subline" :label="page.simpleHeadline.label" :links="page.simpleHeadline.links" />
       </section>
 
       <GridExchanges />
 
-      <section v-if="page.buy_nim_in_the_walle_headline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.buy_nim_in_the_walle_headline.headline" :subline="page.buy_nim_in_the_walle_headline.subline" :label="page.buy_nim_in_the_walle_headline.label" :links="page.buy_nim_in_the_walle_headline.links" />
+      <section v-if="page.buyNimInTheWalleHeadline" nq-section-gap bg-neutral-0>
+        <HeadlineSimple :headline="page.buyNimInTheWalleHeadline.headline" :subline="page.buyNimInTheWalleHeadline.subline" :label="page.buyNimInTheWalleHeadline.label" :links="page.buyNimInTheWalleHeadline.links" />
       </section>
 
-      <ShowcaseWalletHoverable v-if="page.wallet_hover" :data="page.wallet_hover" />
+      <ShowcaseWalletHoverable v-if="page.walletHover" :data="page.walletHover" />
 
-      <section v-if="page.one_of_the_smallest__headline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.one_of_the_smallest__headline.headline" :subline="page.one_of_the_smallest__headline.subline" :label="page.one_of_the_smallest__headline.label" />
+      <section v-if="page.oneOfTheSmallestHeadline" nq-section-gap bg-neutral-0>
+        <HeadlineSimple :headline="page.oneOfTheSmallestHeadline.headline" :subline="page.oneOfTheSmallestHeadline.subline" :label="page.oneOfTheSmallestHeadline.label" />
       </section>
 
-      <TokenDistribution v-if="page.token_distribution?.item" :items="page.token_distribution.item" />
+      <TokenDistribution v-if="page.tokenDistribution?.item" :items="page.tokenDistribution.item" />
 
-      <BannerBuyAndSell v-if="page.buy_and_sell_banner" :data="page.buy_and_sell_banner" />
+      <BannerBuyAndSell v-if="page.buyAndSellBanner" :data="page.buyAndSellBanner" />
 
-      <section v-if="page.no_download_no_perso_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.no_download_no_perso_headline.headline" :links="page.no_download_no_perso_headline.links" />
+      <section v-if="page.noDownloadNoPersoHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.noDownloadNoPersoHeadline.headline" :links="page.noDownloadNoPersoHeadline.links" />
       </section>
     </main>
   </NuxtLayout>

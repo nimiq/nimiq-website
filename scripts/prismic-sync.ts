@@ -361,6 +361,8 @@ function convertBodyToMarkdown(doc: BlogPageDocument): string {
 
 function cleanMarkdown(content: string): string {
   return content
+    // Replace unusual line terminators (Line Separator U+2028, Paragraph Separator U+2029) with newlines
+    .replace(/[\u2028\u2029]/g, '\n')
     // Remove irregular whitespace (non-breaking spaces, zero-width spaces, etc)
     .replace(/[\u00A0\u1680\u180E\u2000-\u200B\u202F\u205F\u3000\uFEFF]/g, ' ')
     // Remove trailing spaces
@@ -451,7 +453,8 @@ async function saveYamlFile(slug: string, content: string): Promise<void> {
   // Strip "exchange-" prefix if present
   const cleanSlug = slug.replace(/^exchange-/, '')
   const filepath = join(contentDir, `${cleanSlug}.yaml`)
-  await writeFile(filepath, content, 'utf-8')
+  // Sanitize line terminators before writing
+  await writeFile(filepath, cleanMarkdown(content), 'utf-8')
 }
 
 function getBlogFilepath(slug: string, publishDate: string): string {
@@ -581,7 +584,7 @@ function convertLinkToUrl(link: any): string {
   return link.url || ''
 }
 
-function sliceTypeToComponentName(sliceType: string): string {
+function _sliceTypeToComponentName(sliceType: string): string {
   const componentMap: Record<string, string> = {
     hero_section: 'HeroSection',
     apps_showcase: 'AppsShowcase',
@@ -787,7 +790,7 @@ const FRONTMATTER_KEY_RENAMES: Record<string, Record<string, string>> = {
 }
 
 // Page-specific MDC key overrides (frontmatterKey → mdcKey)
-const PAGE_KEY_OVERRIDES: Record<string, Record<string, string>> = {
+const _PAGE_KEY_OVERRIDES: Record<string, Record<string, string>> = {
   'buy-and-sell': { buyAndSellBanner: 'banner', exchangesGrid: 'exchanges_grid' },
 }
 
@@ -823,7 +826,7 @@ const PAGE_CONTENT_OVERRIDES: Record<string, Record<string, any>> = {
 }
 
 // Custom MDC order per page (some pages skip certain MDC tags)
-const PAGE_MDC_SKIP: Record<string, string[]> = {
+const _PAGE_MDC_SKIP: Record<string, string[]> = {
   home: ['stakingHeadline'], // stakingHeadline added to content but no MDC tag
   apps: ['hero', 'simpleHeadline'], // Apps page has no MDC tags
 }
@@ -1170,21 +1173,7 @@ async function convertPageToYAML(doc: PageDocument, navigation?: NavigationDocum
   // Post-process YAML to add quotes to fields that need them (contains {{ or specific patterns)
   yamlContent = postProcessYamlQuoting(yamlContent, pageSlug)
 
-  // Generate MDC body with component tags
-  const mdcSkip = PAGE_MDC_SKIP[pageSlug] || []
-  let body = ''
-  for (const { key, type } of sliceKeys) {
-    // Skip MDC tags for certain keys
-    if (mdcSkip.includes(key))
-      continue
-    // Apply key overrides for MDC references (format: { generatedKey: mdcKey })
-    const pageOverrides = PAGE_KEY_OVERRIDES[pageSlug] || {}
-    const mdcKey = pageOverrides[key] || key
-    const componentName = sliceTypeToComponentName(type)
-    body += `::${componentName}{:${mdcKey}}\n::\n\n`
-  }
-
-  return `---\n${yamlContent}---\n\n${body}`
+  return `---\n${yamlContent}---\n`
 }
 
 // Custom page generator for apps (has fully custom structure)
@@ -1266,9 +1255,11 @@ async function syncPages(): Promise<ConversionStats> {
         }
 
         // Use custom generator for apps page
-        const content = page.uid === 'apps'
+        const rawContent = page.uid === 'apps'
           ? generateAppsPage(page)
           : await convertPageToYAML(page, navigation)
+        // Sanitize line terminators before writing
+        const content = cleanMarkdown(rawContent)
         await writeFile(filepath, content, 'utf-8')
         stats.success++
         consola.success(`✓ ${page.uid}`)

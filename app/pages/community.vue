@@ -16,40 +16,40 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
         <HeroSimple :headline="page.hero.headline" :subline="page.hero.subline" />
       </section>
 
-      <section v-if="page.new_york" nq-section-gap bg-neutral-0>
-        <GridNewYork v-bind="page.new_york" />
+      <section v-if="page.newYork" nq-section-gap bg-neutral-0>
+        <GridNewYork v-bind="page.newYork" />
       </section>
 
-      <section v-if="page.simple_headline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.simple_headline.headline" :icon-name="page.simple_headline.iconName" :links="page.simple_headline.links" />
+      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-0>
+        <HeadlineSimple :headline="page.simpleHeadline.headline" :icon-name="page.simpleHeadline.iconName" :links="page.simpleHeadline.links" />
       </section>
 
       <TokenFlags v-if="page.flags" :flags="page.flags.flags" />
 
-      <section v-if="page.get_in_touch_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.get_in_touch_headline.headline" :subline="page.get_in_touch_headline.subline" />
+      <section v-if="page.getInTouchHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.getInTouchHeadline.headline" :subline="page.getInTouchHeadline.subline" />
       </section>
 
-      <section v-if="page.social_media" nq-section-gap bg-neutral-100>
-        <GridSocialMedia v-bind="page.social_media" />
+      <section v-if="page.socialMedia" nq-section-gap bg-neutral-100>
+        <GridSocialMedia v-bind="page.socialMedia" />
       </section>
 
       <section v-if="page.newsletter" nq-section-gap bg-neutral-100>
         <BannerNewsletter :cta="page.newsletter.cta" />
       </section>
 
-      <section v-if="page.nimiq_community_apps_headline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.nimiq_community_apps_headline.headline" :subline="page.nimiq_community_apps_headline.subline" :label="page.nimiq_community_apps_headline.label" />
+      <section v-if="page.nimiqCommunityAppsHeadline" nq-section-gap bg-neutral-0>
+        <HeadlineSimple :headline="page.nimiqCommunityAppsHeadline.headline" :subline="page.nimiqCommunityAppsHeadline.subline" :label="page.nimiqCommunityAppsHeadline.label" />
       </section>
 
-      <section v-if="page.app_gallery" nq-section-gap bg-neutral-0>
-        <BannerAppGallery v-bind="page.app_gallery" />
+      <section v-if="page.appGallery" nq-section-gap bg-neutral-0>
+        <BannerAppGallery v-bind="page.appGallery" />
       </section>
 
       <BannerSimple v-if="page.banner" :overlaps-next-section="page.banner.overlapsNextSection" :items="page.banner.items" />
 
-      <section v-if="page.feedback_headline" nq-section-gap dark bg-darkblue>
-        <HeadlineSimple :headline="page.feedback_headline.headline" :subline="page.feedback_headline.subline" :links="page.feedback_headline.links" />
+      <section v-if="page.feedbackHeadline" nq-section-gap dark bg-darkblue>
+        <HeadlineSimple :headline="page.feedbackHeadline.headline" :subline="page.feedbackHeadline.subline" :links="page.feedbackHeadline.links" />
       </section>
     </main>
   </NuxtLayout>

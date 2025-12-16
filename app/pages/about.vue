@@ -13,7 +13,7 @@ const gridColors = ['var(--colors-orange)', 'var(--colors-purple)', 'var(--color
 const largeGridColors = ['var(--colors-blue)']
 
 const gridItemsWithColors = computed(() => page.value?.grid?.items.map((item, i) => ({ ...item, color: gridColors[i] })) || [])
-const largeGridItemsWithColors = computed(() => page.value?.large_grid?.items.map((item, i) => ({ ...item, color: largeGridColors[i] })) || [])
+const largeGridItemsWithColors = computed(() => page.value?.largeGrid?.items.map((item, i) => ({ ...item, color: largeGridColors[i] })) || [])
 </script>
 
 <template>
@@ -25,11 +25,11 @@ const largeGridItemsWithColors = computed(() => page.value?.large_grid?.items.ma
       </section>
 
       <!-- Tilted Media (Video) -->
-      <ContentTiltedMedia v-if="page.tilted_media" :video="page.tilted_media.video" :headline="page.tilted_media.headline" :poster="page.tilted_media.poster" />
+      <ContentTiltedMedia v-if="page.tiltedMedia" :video="page.tiltedMedia.video" :headline="page.tiltedMedia.headline" :poster="page.tiltedMedia.poster" />
 
       <!-- Take a deep dive -->
-      <section v-if="page.simple_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.simple_headline.headline" :label="page.simple_headline.label" />
+      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.simpleHeadline.headline" :label="page.simpleHeadline.label" />
       </section>
 
       <!-- Grid links (whitepaper, onepager, etc) -->
@@ -38,31 +38,31 @@ const largeGridItemsWithColors = computed(() => page.value?.large_grid?.items.ma
       </section>
 
       <!-- Nimiq's Mission -->
-      <section v-if="page.nimiq_s_mission_headline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.nimiq_s_mission_headline.headline" />
+      <section v-if="page.nimiqSMissionHeadline" nq-section-gap bg-neutral-0>
+        <HeadlineSimple :headline="page.nimiqSMissionHeadline.headline" />
       </section>
 
       <!-- Rich text content -->
       <ContentRichText v-if="page.content" :rich-text="page.content.richText" :center-heading="page.content.centerHeading" />
 
       <!-- Meet the people -->
-      <section v-if="page.meet_the_people_behi_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.meet_the_people_behi_headline.headline" />
+      <section v-if="page.meetThePeopleBehiHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.meetThePeopleBehiHeadline.headline" />
       </section>
 
       <!-- Large grid (Team link) -->
-      <section v-if="page.large_grid?.items" nq-section-gap bg-neutral-100>
+      <section v-if="page.largeGrid?.items" nq-section-gap bg-neutral-100>
         <GridLarge :items="largeGridItemsWithColors" />
       </section>
 
       <!-- Roadmap -->
-      <section v-if="page.roadmap_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.roadmap_headline.headline" :subline="page.roadmap_headline.subline" :links="page.roadmap_headline.links" />
+      <section v-if="page.roadmapHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.roadmapHeadline.headline" :subline="page.roadmapHeadline.subline" :links="page.roadmapHeadline.links" />
       </section>
 
       <!-- Feedback -->
-      <section v-if="page.feedback_headline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.feedback_headline.headline" :subline="page.feedback_headline.subline" :links="page.feedback_headline.links" />
+      <section v-if="page.feedbackHeadline" nq-section-gap bg-neutral-100>
+        <HeadlineSimple :headline="page.feedbackHeadline.headline" :subline="page.feedbackHeadline.subline" :links="page.feedbackHeadline.links" />
       </section>
     </main>
   </NuxtLayout>
