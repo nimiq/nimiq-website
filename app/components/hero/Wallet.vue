@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ headline: string, subline: string, link: string }>()
+const { headline, subline, link = 'https://wallet.nimiq.com' } = defineProps<{ headline: string, subline: string, link?: string }>()
 </script>
 
 <template>

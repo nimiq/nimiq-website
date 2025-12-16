@@ -2,7 +2,7 @@
 import type { StyleValue } from 'vue'
 import type { DonutDatum } from '../chart/Donut.client.vue'
 
-defineProps<{ data: { headline?: string } }>()
+// No props needed - all data comes from useStakingInfo composable
 
 const target = useTemplateRef<HTMLDivElement>('target')
 const isVisible = useElementVisibility(target)

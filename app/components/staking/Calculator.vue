@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
 
-interface CalculatorData {
-  headline?: string
+const { amountLabel, periodLabel, rewardsLabel, initialStakingAmount = 1_000_000 } = defineProps<{
   amountLabel?: string
   periodLabel?: string
   rewardsLabel?: string
-}
-
-const { data, initialStakingAmount = 1_000_000 } = defineProps<{ data: CalculatorData, initialStakingAmount?: number }>()
+  initialStakingAmount?: number
+}>()
 
 const decimals = ref(0)
 const storageKey = 'staking-calculator'
@@ -55,12 +53,9 @@ const rewards = computed(() => calculateStakingRewards({
 
 <template>
   <div flex="~ col gap-y-16 md:items-center">
-    <h2 v-if="data.headline" text-12 w-max nq-label>
-      {{ data.headline }}
-    </h2>
     <div ring="1.5 neutral-400" mx-auto rounded-4 bg-neutral-0 max-w-full w-max shadow flex="~ items-center wrap">
       <div grid="~ max-md:cols-1 md:rows-[auto_1fr] gap-x-32 gap-y-12 md:flow-col " mx-auto p-32 of-auto>
-        <span text="max-md:center neutral-800" font-semibold>{{ data.amountLabel || 'Amount' }}</span>
+        <span text="max-md:center neutral-800" font-semibold>{{ amountLabel || 'Amount' }}</span>
         <label flex="~ items-baseline gap-8" text="neutral hocus:blue focus-within:blue" h-max w-max transition-colors self-end max-md:mx-auto>
           <UiAmountInput v-model="amount" :decimals :min="1" style="padding:0" shadow-none outline-none max-w-9ch min-w-0 w-max text="blue f-2xl" />
           <span lh-none font-bold flex-1 text="blue f-lg">NIM</span>
@@ -83,7 +78,7 @@ const rewards = computed(() => calculateStakingRewards({
 
         <div flex="~ gap-8 items-center max-md:justify-center" max-md:mt-8>
           <p w-max>
-            {{ data.periodLabel || 'Period' }}
+            {{ periodLabel || 'Period' }}
           </p>
           <UiTooltip>
             <p>Select how long you plan to stake your NIM</p>
@@ -94,7 +89,7 @@ const rewards = computed(() => calculateStakingRewards({
       <div flex="~ col md:justify-center items-center md:items-end" bg="green/10" rounded="b-4 md:b-0 md:r-4" px-32 py-24 flex-1 self-stretch>
         <div flex="~ items-center" text-neutral-800>
           <p mr-8>
-            {{ data.rewardsLabel || 'Return in NIM' }}*
+            {{ rewardsLabel || 'Return in NIM' }}*
           </p>
           <UiTooltip mr-16>
             <p>Estimated rewards based on current network parameters</p>

@@ -27,33 +27,33 @@ const allAppsSource = defineCollectionSource({
 // ============================================================================
 
 const metaSchema = z.object({ title: z.string(), description: z.string(), image: z.string().optional() })
-const footerSchema = z.object({ newsletterCta: z.string().optional(), newsletterPlaceholder: z.string().optional(), socialMediaCta: z.string().optional(), nimiqShortDescription: z.string().optional() })
 const linkSchema = z.object({ text: z.string(), href: z.string() })
 
-// Hero variants
-const heroBaseSchema = z.object({ headline: z.string(), subline: z.string().optional(), link: z.string().optional(), linkHref: z.string().optional(), linkLabel: z.string().optional() })
+// Hero schema
+const heroSchema = z.object({ headline: z.string(), subline: z.string(), link: z.string().optional() })
 const organizationSchema = z.object({ logo: z.string(), url: z.string() })
-const highlightItemSchema = z.object({ highlight: z.string() })
+const highlightSchema = z.object({ highlight: z.string() })
 
 // Grid & card schemas
-const gridItemSchema = z.object({ headline: z.string(), subline: z.string().optional(), image: z.string().optional(), icon: z.string().optional(), iconName: z.string().optional() })
+const gridItemSchema = z.object({ headline: z.string(), subline: z.string().optional(), image: z.string().optional(), icon: z.string().optional(), color: z.string().optional(), link: z.string().optional() })
 const gridSchema = z.object({ items: z.array(gridItemSchema) })
-const largeGridItemSchema = gridItemSchema.extend({ shape: z.string().optional(), linkHref: z.string().optional() })
-const largeGridSchema = z.object({ items: z.array(largeGridItemSchema) })
+const techGridSchema = z.object({ headline: z.string(), subline: z.string().optional(), items: z.array(gridItemSchema) })
+const largeGridItemSchema = gridItemSchema.extend({ shape: z.string().optional() })
 
-// Simple headline
-const simpleHeadlineSchema = z.object({ headline: z.string(), subline: z.string().optional(), cta: z.string().optional(), label: z.string().optional(), iconName: z.string().optional(), links: z.array(z.string()).optional(), linkHref: z.string().optional(), linkLabel: z.string().optional() })
+// Headline schema with actions
+const actionSchema = z.object({ href: z.string(), label: z.string().optional(), icon: z.string().optional(), variant: z.enum(['arrow', 'primary', 'secondary']).optional() })
+const headlineSchema = z.object({ headline: z.string(), subline: z.string().optional(), label: z.string().optional(), icon: z.string().optional(), actions: z.array(actionSchema).optional() })
 
 // Media schemas
-const tiltedMediaSchema = z.object({ overlapsNextSection: z.boolean().optional(), media: z.string().optional(), video: z.object({ embed_url: z.string(), title: z.string().optional() }).optional(), poster: z.string().optional(), headline: z.string().optional() })
+const mediaSchema = z.object({ src: z.string(), poster: z.string().optional() })
 
 // Content schemas
 const contentSchema = z.object({ richText: z.string(), centerHeading: z.boolean().optional() })
-const richTextCardSchema = z.object({ content: z.string() })
+const cardSchema = z.object({ content: z.string() })
 
 // Banner & pill schemas
 const bannerItemSchema = z.object({ headline: z.string(), subline: z.string().optional(), label: z.string().optional(), link: z.string().optional() })
-const pillLinkSchema = z.object({ item: z.string(), label: z.string().optional() })
+const pillLinkSchema = z.object({ item: z.string(), label: z.string().optional(), icon: z.string() })
 
 // App schemas
 const appItemSchema = z.object({ highlight: z.boolean().optional().default(false), title: z.string(), description: z.string(), preview: z.string(), item: z.string(), link: z.string() })
@@ -83,9 +83,6 @@ const walletHoverSchema = z.object({ title: z.string(), description: z.string(),
 const tokenDistributionItemSchema = z.object({ title: z.string(), percentage: z.number(), description: z.string() })
 const buyAndSellBannerSchema = z.object({ headline: z.string(), cta: z.string(), features: z.array(z.object({ icon: z.string(), description: z.string() })).optional() })
 
-// Litepaper schema
-const whitepaperItemSchema = z.object({ headline: z.string(), subline: z.string(), versionNumber: z.string(), date: z.string(), content: z.string(), jumpToTheLatestChanges: z.string().optional(), updated: z.string().optional() })
-
 // Contact schema
 const contactSchema = z.object({ headline: z.string().optional(), subline: z.string().optional(), nameLabel: z.string().optional(), emailLabel: z.string().optional(), messageLabel: z.string().optional(), submitLabel: z.string().optional() })
 
@@ -103,17 +100,15 @@ export default defineContentConfig({
       type: 'page',
       source: 'index.md',
       schema: z.object({
-        meta: metaSchema.optional(),
-        hero: heroBaseSchema.extend({ subheadline: z.string().optional(), organizations: z.array(organizationSchema).optional() }),
-        pillLink: pillLinkSchema.optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        apps: z.object({ apps: z.array(appItemSchema) }).optional(),
-        banner: z.object({ overlapsNextSection: z.boolean().optional().default(false), items: z.array(bannerItemSchema) }).optional(),
-        pillLink2: pillLinkSchema.optional(),
-        anInstantZeroFeeHeadline: simpleHeadlineSchema.optional(),
-        grid: gridSchema.optional(),
-        stakingHeadline: z.object({ headline: z.string(), subline: z.string().optional(), link: z.string().optional(), stakingNote: z.string().optional() }).optional(),
-        footer: footerSchema.optional(),
+        meta: metaSchema,
+        hero: heroSchema.extend({ organizations: z.array(organizationSchema).optional() }),
+        appsLink: pillLinkSchema,
+        apps: z.object({ headline: headlineSchema, items: z.array(appItemSchema) }),
+        banner: z.object({ overlapsNextSection: z.boolean().optional().default(false), items: z.array(bannerItemSchema) }),
+        techLink: pillLinkSchema,
+        techGrid: techGridSchema,
+        staking: headlineSchema.extend({ stakingNote: z.string().optional() }),
+        community: headlineSchema,
       }),
     }),
 
@@ -121,17 +116,13 @@ export default defineContentConfig({
       type: 'page',
       source: 'about.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        tiltedMedia: tiltedMediaSchema.optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        grid: gridSchema.optional(),
-        nimiqSMissionHeadline: simpleHeadlineSchema.optional(),
-        content: contentSchema.optional(),
-        meetThePeopleBehiHeadline: simpleHeadlineSchema.optional(),
-        largeGrid: largeGridSchema.optional(),
-        roadmapHeadline: simpleHeadlineSchema.optional(),
-        feedbackHeadline: simpleHeadlineSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        media: mediaSchema,
+        dive: z.object({ headline: headlineSchema, items: z.array(gridItemSchema) }),
+        mission: z.string(),
+        team: z.object({ headline: headlineSchema, items: z.array(largeGridItemSchema) }),
+        roadmap: headlineSchema,
+        feedback: headlineSchema,
       }),
     }),
 
@@ -139,20 +130,16 @@ export default defineContentConfig({
       type: 'page',
       source: 'nimiq-pay.md',
       schema: z.object({
-        meta: metaSchema.optional(),
-        hero: heroBaseSchema.extend({ playStore: z.string().optional(), appStore: z.string().optional(), items: z.array(highlightItemSchema).optional() }),
-        tiltedMedia: tiltedMediaSchema.optional(),
-        logos: logosGridSchema.optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        grid: gridSchema.optional(),
-        whatIsTheNimiqPaHeadline: simpleHeadlineSchema.optional(),
-        textCards: z.object({ items: z.array(richTextCardSchema) }).optional(),
-        textCarousel: textCarouselSchema.optional(),
-        oneAppToPoolThemHeadline: simpleHeadlineSchema.optional(),
-        textCarousel2: textCarouselSchema.optional(),
-        discoverAWholeEcoHeadline: simpleHeadlineSchema.optional(),
-        zigzag: z.object({ items: z.array(zigzagItemSchema) }).optional(),
-        footer: footerSchema.optional(),
+        meta: metaSchema,
+        hero: heroSchema.extend({ playStore: z.string().optional(), appStore: z.string().optional(), items: z.array(highlightSchema).optional() }),
+        media: mediaSchema,
+        logos: logosGridSchema,
+        intro: headlineSchema,
+        grid: gridSchema,
+        about: z.object({ headline: headlineSchema, items: z.array(cardSchema) }),
+        textCarousel: textCarouselSchema,
+        pooling: z.object({ headline: headlineSchema, carousel: textCarouselSchema }),
+        discover: z.object({ headline: headlineSchema, items: z.array(zigzagItemSchema) }),
       }),
     }),
 
@@ -160,17 +147,15 @@ export default defineContentConfig({
       type: 'page',
       source: 'wallet.md',
       schema: z.object({
-        'hero': heroBaseSchema,
-        'walletPlayground': z.object({ playgroundUrl: z.string() }).optional(),
-        'consensus': z.object({ label: z.string().optional(), headline: z.string().optional(), subline: z.string().optional(), thisIsYou: z.string().optional(), connect: z.string().optional(), connecting: z.string().optional() }).optional(),
-        'simpleHeadline': simpleHeadlineSchema.optional(),
-        'currencyComparison': z.object({ currencies: z.string(), feeLabel: z.string().optional(), timeLabel: z.string().optional() }).optional(),
-        'banner': z.object({ overlapsNextSection: z.boolean().optional(), icon: z.string().optional(), label: z.string().optional(), headline: z.string().optional(), subline: z.string().optional(), link: z.string().optional(), image: z.string().optional() }).optional(),
-        '24WordsBetterThanHeadline': simpleHeadlineSchema.optional(),
-        'grid': gridSchema.optional(),
-        'walletChallenge': z.object({ headline: z.string(), subheadline: z.string().optional(), guessTheRemainingWordsLabel: z.string().optional(), youDoNotStandAChanceToTake: z.string().optional(), rewardamount: z.string().optional() }).optional(),
-        'noEmailOrDownloadHeadline': simpleHeadlineSchema.optional(),
-        'footer': footerSchema.optional(),
+        hero: heroSchema,
+        playground: z.object({ url: z.string() }),
+        consensus: z.object({ label: z.string(), headline: z.string(), subline: z.string(), thisIsYou: z.string(), connect: z.string(), connecting: z.string() }),
+        intro: headlineSchema,
+        currencies: z.object({ items: z.array(z.object({ name: z.string(), crypto: z.string(), mainFeature: z.string(), secondFeature: z.string(), thirdFeature: z.string(), fee: z.string(), time: z.string(), adjective: z.string() })), feeLabel: z.string(), timeLabel: z.string() }),
+        banner: z.object({ overlapsNextSection: z.boolean().optional(), icon: z.string(), label: z.string(), headline: z.string(), subline: z.string(), link: z.string(), image: z.string() }),
+        seed: z.object({ headline: headlineSchema, items: z.array(gridItemSchema) }),
+        challenge: z.object({ headline: z.string(), subline: z.string(), guessLabel: z.string(), chanceLabel: z.string(), reward: z.string() }),
+        noEmail: headlineSchema,
       }),
     }),
 
@@ -178,15 +163,12 @@ export default defineContentConfig({
       type: 'page',
       source: 'buy-and-sell.md',
       schema: z.object({
-        hero: heroBaseSchema.extend({ nimPriceChartLabel: z.string().optional(), marketCapLabel: z.string().optional(), marketCapInfo: z.string().optional(), volume24HLabel: z.string().optional(), volume24HInfo: z.string().optional(), totalSupplyLabel: z.string().optional(), totalSupplyInfo: z.string().optional(), maxSupplyLabel: z.string().optional(), maxSupplyInfo: z.string().optional(), poweredByLogo: z.string().optional(), poweredByLink: z.string().optional(), poweredByLabel: z.string().optional() }),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        buyNimInTheWalleHeadline: simpleHeadlineSchema.optional(),
-        walletHover: walletHoverSchema.optional(),
-        oneOfTheSmallestHeadline: simpleHeadlineSchema.optional(),
-        tokenDistribution: z.object({ item: z.array(tokenDistributionItemSchema) }).optional(),
-        buyAndSellBanner: buyAndSellBannerSchema.optional(),
-        noDownloadNoPersoHeadline: simpleHeadlineSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema.extend({ nimPriceChartLabel: z.string(), marketCapLabel: z.string(), marketCapInfo: z.string(), volume24HLabel: z.string(), volume24HInfo: z.string(), totalSupplyLabel: z.string(), totalSupplyInfo: z.string(), maxSupplyLabel: z.string(), maxSupplyInfo: z.string(), poweredByLogo: z.string(), poweredByLink: z.string(), poweredByLabel: z.string() }),
+        intro: headlineSchema,
+        wallet: z.object({ headline: headlineSchema, content: walletHoverSchema }),
+        distribution: z.object({ headline: headlineSchema, items: z.array(tokenDistributionItemSchema) }),
+        cta: buyAndSellBannerSchema,
+        noDownload: headlineSchema,
       }),
     }),
 
@@ -194,18 +176,14 @@ export default defineContentConfig({
       type: 'page',
       source: 'community.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        newYork: newYorkGridSchema.optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        flags: z.object({ flags: z.string() }).optional(),
-        getInTouchHeadline: simpleHeadlineSchema.optional(),
-        socialMedia: socialMediaGridSchema.optional(),
-        newsletter: z.object({ cta: z.string(), placeholder: z.string().optional() }).optional(),
-        nimiqCommunityAppsHeadline: simpleHeadlineSchema.optional(),
-        appGallery: appGalleryCtaSchema.optional(),
-        banner: z.object({ overlapsNextSection: z.boolean().optional(), items: z.array(bannerItemSchema) }).optional(),
-        feedbackHeadline: simpleHeadlineSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        stats: newYorkGridSchema,
+        countries: z.object({ headline: headlineSchema, flags: z.string() }),
+        social: z.object({ headline: headlineSchema, grid: socialMediaGridSchema }),
+        newsletter: z.object({ cta: z.string(), placeholder: z.string().optional() }),
+        apps: z.object({ headline: headlineSchema, gallery: appGalleryCtaSchema }),
+        banner: z.object({ overlapsNextSection: z.boolean().optional(), items: z.array(bannerItemSchema) }),
+        feedback: headlineSchema,
       }),
     }),
 
@@ -213,35 +191,33 @@ export default defineContentConfig({
       type: 'page',
       source: 'team.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        team: z.object({ items: z.array(teamMemberSchema) }),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        members: z.object({ items: z.array(teamMemberSchema) }),
+        cta: headlineSchema,
       }),
     }),
 
-    litepaper: defineCollection({
+    litepaperPos: defineCollection({
       type: 'page',
-      source: 'litepaper.md',
-      schema: z.object({
-        meta: metaSchema.optional(),
-        whitepaper: z.object({ items: z.array(whitepaperItemSchema) }),
-        footer: footerSchema.optional(),
-      }),
+      source: 'litepaper-pos.md',
+      schema: z.object({ headline: z.string(), subline: z.string(), versionNumber: z.string(), date: z.string() }),
+    }),
+
+    litepaperPow: defineCollection({
+      type: 'page',
+      source: 'litepaper-pow.md',
+      schema: z.object({ headline: z.string(), subline: z.string(), versionNumber: z.string(), date: z.string() }),
     }),
 
     cryptopaymentlink: defineCollection({
       type: 'page',
       source: 'cryptopaymentlink.md',
       schema: z.object({
-        hero: heroBaseSchema.extend({ items: z.array(highlightItemSchema).optional() }),
-        tiltedMedia: tiltedMediaSchema.optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        grid: gridSchema.optional(),
-        whatIsCryptopaymenHeadline: simpleHeadlineSchema.optional(),
-        textCards: z.object({ items: z.array(richTextCardSchema) }).optional(),
-        steppedSlides: steppedSlidesSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema.extend({ items: z.array(highlightSchema).optional() }),
+        media: mediaSchema,
+        features: z.object({ headline: headlineSchema, items: z.array(gridItemSchema) }),
+        about: z.object({ headline: headlineSchema, items: z.array(cardSchema) }),
+        steps: steppedSlidesSchema,
       }),
     }),
 
@@ -249,10 +225,9 @@ export default defineContentConfig({
       type: 'page',
       source: 'blog.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        blogGrid: z.object({ labelBy: z.string(), labelLearnMore: z.string(), mediaType: z.string().optional() }).optional(),
-        newsletter: z.object({ cta: z.string() }).optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        grid: z.object({ labelBy: z.string(), labelLearnMore: z.string(), mediaType: z.string().optional() }),
+        newsletter: z.object({ cta: z.string() }),
       }),
     }),
 
@@ -260,9 +235,9 @@ export default defineContentConfig({
       type: 'page',
       source: 'apps.md',
       schema: z.object({
-        meta: metaSchema.optional(),
-        hero: heroBaseSchema.extend({ subheadline: z.string().optional() }),
-        simpleHeadline: simpleHeadlineSchema.optional(),
+        meta: metaSchema,
+        hero: heroSchema,
+        cta: headlineSchema,
       }),
     }),
 
@@ -270,9 +245,8 @@ export default defineContentConfig({
       type: 'page',
       source: 'albatross.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        albatrossDetails: z.object({ items: z.array(z.object({ headline: z.string(), description: z.string().optional() })) }).optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        details: z.object({ items: z.array(z.object({ headline: z.string(), description: z.string().optional() })) }),
       }),
     }),
 
@@ -280,8 +254,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'bug-bounty.md',
       schema: z.object({
-        content: contentSchema.extend({ centerHeading: z.boolean().optional() }),
-        footer: footerSchema.optional(),
+        content: z.string(),
       }),
     }),
 
@@ -289,36 +262,29 @@ export default defineContentConfig({
       type: 'page',
       source: 'contact.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        socialMedia: socialMediaGridSchema.optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        contact: contactSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        social: z.object({ headline: headlineSchema, grid: socialMediaGridSchema }),
+        form: contactSchema,
       }),
     }),
 
     newsletterPage: defineCollection({
       type: 'page',
       source: 'newsletter.md',
-      schema: z.object({
-        footer: footerSchema.optional(),
-      }),
+      schema: z.object({}),
     }),
 
     oasis: defineCollection({
       type: 'page',
       source: 'oasis.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        hero2: heroBaseSchema.optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        largeGrid: largeGridSchema.optional(),
-        howDoesItWorkHeadline: simpleHeadlineSchema.optional(),
-        youtube: z.object({ embedUrl: z.string(), title: z.string().optional() }).optional(),
-        oasisIsAnOpenTecHeadline: simpleHeadlineSchema.optional(),
-        collaborateWithNimHeadline: simpleHeadlineSchema.optional(),
-        contact: contactSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        secondHero: heroSchema,
+        about: z.object({ headline: headlineSchema, items: z.array(largeGridItemSchema) }),
+        howItWorks: z.object({ headline: headlineSchema, embedUrl: z.string(), title: z.string().optional() }),
+        openTech: headlineSchema,
+        collaborate: headlineSchema,
+        form: contactSchema,
       }),
     }),
 
@@ -326,9 +292,8 @@ export default defineContentConfig({
       type: 'page',
       source: 'onepager.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        content: contentSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        content: z.string(),
       }),
     }),
 
@@ -336,10 +301,9 @@ export default defineContentConfig({
       type: 'page',
       source: 'podcast.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        newsletter: z.object({ cta: z.string() }).optional(),
-        blogGrid: z.object({ labelBy: z.string(), labelLearnMore: z.string(), mediaType: z.string().optional() }).optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        newsletter: z.object({ cta: z.string() }),
+        grid: z.object({ labelBy: z.string(), labelLearnMore: z.string(), mediaType: z.string().optional() }),
       }),
     }),
 
@@ -347,9 +311,8 @@ export default defineContentConfig({
       type: 'page',
       source: 'privacy.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        content: contentSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        content: contentSchema,
       }),
     }),
 
@@ -357,10 +320,9 @@ export default defineContentConfig({
       type: 'page',
       source: 'roadmap.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        roadmap: z.object({ milestones: z.string(), firstLayer: z.string(), secondLayer: z.string(), thirdLayer: z.string() }).optional(),
-        newsletter: z.object({ cta: z.string() }).optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        milestones: z.object({ label: z.string(), firstLayer: z.string(), secondLayer: z.string(), thirdLayer: z.string() }),
+        newsletter: z.object({ cta: z.string() }),
       }),
     }),
 
@@ -368,20 +330,16 @@ export default defineContentConfig({
       type: 'page',
       source: 'staking.md',
       schema: z.object({
-        meta: metaSchema.optional(),
-        hero: heroBaseSchema,
-        quote: z.object({ text: z.string(), author: z.string().optional() }).optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        stakingCalculator: z.object({ headline: z.string().optional(), amountLabel: z.string().optional(), periodLabel: z.string().optional(), rewardsLabel: z.string().optional() }).optional(),
-        activeAndDecentralHeadline: simpleHeadlineSchema.optional(),
-        stakingDistribution: z.object({ headline: z.string().optional() }).optional(),
-        soEasyEveryoneCanHeadline: simpleHeadlineSchema.optional(),
-        video: z.object({ embedUrl: z.string(), poster: z.string().optional(), title: z.string().optional() }).optional(),
-        letOthersDoTheWoHeadline: simpleHeadlineSchema.optional(),
-        banner: z.object({ overlapsNextSection: z.boolean().optional(), items: z.array(bannerItemSchema) }).optional(),
-        stakingFaq: z.object({ items: z.array(z.object({ question: z.string(), answer: z.string() })) }).optional(),
-        stakeInTheNimiqWHeadline: simpleHeadlineSchema.optional(),
-        footer: footerSchema.optional(),
+        meta: metaSchema,
+        hero: heroSchema,
+        quote: z.object({ text: z.string(), author: z.string().optional() }),
+        calculator: z.object({ headline: headlineSchema, amountLabel: z.string(), periodLabel: z.string(), rewardsLabel: z.string() }),
+        distribution: z.object({ headline: headlineSchema }),
+        video: z.object({ headline: headlineSchema, embedUrl: z.string(), poster: z.string().optional(), title: z.string().optional() }),
+        delegate: headlineSchema,
+        banner: z.object({ overlapsNextSection: z.boolean().optional(), items: z.array(bannerItemSchema) }),
+        faq: z.object({ items: z.array(z.object({ question: z.string(), answer: z.string() })) }),
+        wallet: headlineSchema,
       }),
     }),
 
@@ -389,9 +347,8 @@ export default defineContentConfig({
       type: 'page',
       source: 'terms.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        content: contentSchema.extend({ centerHeading: z.boolean().optional() }),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        content: z.string(),
       }),
     }),
 
@@ -399,9 +356,8 @@ export default defineContentConfig({
       type: 'page',
       source: 'activation-terms.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        content: contentSchema.extend({ centerHeading: z.boolean().optional() }),
-        footer: footerSchema.optional(),
+        hero: z.object({ headline: z.string(), subline: z.string() }),
+        content: z.string(),
       }),
     }),
 
@@ -409,30 +365,12 @@ export default defineContentConfig({
       type: 'page',
       source: 'community-funding.md',
       schema: z.object({
-        hero: heroBaseSchema,
-        heroStats: z.object({ items: z.array(z.object({ label: z.string(), value: z.string() })) }).optional(),
-        steppedSlides: steppedSlidesSchema.optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        cards: z.object({ items: z.array(z.object({ headline: z.string(), description: z.string().optional(), icon: z.string().optional() })) }).optional(),
-        noNimiqAccountYetHeadline: simpleHeadlineSchema.optional(),
-        footer: footerSchema.optional(),
-      }),
-    }),
-
-    november: defineCollection({
-      type: 'page',
-      source: 'november.md',
-      schema: z.object({
-        meta: metaSchema.optional(),
-        hero: heroBaseSchema.extend({ subheadline: z.string().optional(), organizations: z.array(organizationSchema).optional() }),
-        pillLink: pillLinkSchema.optional(),
-        simpleHeadline: simpleHeadlineSchema.optional(),
-        apps: z.object({ apps: z.array(appItemSchema) }).optional(),
-        banner: z.object({ overlapsNextSection: z.boolean().optional().default(false), items: z.array(bannerItemSchema) }).optional(),
-        pillLink2: pillLinkSchema.optional(),
-        anInstantZeroFeeHeadline: simpleHeadlineSchema.optional(),
-        grid: gridSchema.optional(),
-        footer: footerSchema.optional(),
+        hero: heroSchema,
+        stats: z.object({ items: z.array(z.object({ label: z.string(), value: z.string() })) }),
+        steps: steppedSlidesSchema,
+        intro: headlineSchema,
+        cards: z.object({ items: z.array(z.object({ headline: z.string(), description: z.string().optional(), icon: z.string().optional() })) }),
+        account: headlineSchema,
       }),
     }),
 

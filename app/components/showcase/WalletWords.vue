@@ -1,9 +1,9 @@
 <script setup lang="ts">
-defineProps<{ headline: string, subheadline: string, guessTheRemainingWordsLabel: string, youDoNotStandAChanceToTake: string, rewardamount: string }>()
+defineProps<{ headline: string, subline: string, guessLabel: string, chanceLabel: string, reward: string }>()
 </script>
 
 <template>
   <ClientOnly>
-    <ShowcaseWalletWordsChallenge :headline :subheadline :guess-the-remaining-words-label="guessTheRemainingWordsLabel" :you-do-not-stand-a-chance-to-take="youDoNotStandAChanceToTake" :reward-amount="rewardamount" />
+    <ShowcaseWalletWordsChallenge :headline :subline :guess-label="guessLabel" :chance-label="chanceLabel" :reward="reward" />
   </ClientOnly>
 </template>

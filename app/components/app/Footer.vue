@@ -1,10 +1,11 @@
 <script lang="ts" setup>
+defineProps<{ bgColor: string }>()
 const { data: site } = await useSite()
 const copyrightNotice = computed(() => site.value?.footer.copyright ?? '')
 </script>
 
 <template>
-  <footer v-if="site" dark data-section bg-darkblue z-10 f-pt-2xl>
+  <footer v-if="site" dark data-section :class="bgColor" z-10 f-pt-2xl>
     <div grid="~ gap-40 md:gap-48 items-start xl:gap-104">
       <div flex="~ col" f-text-sm area-contact>
         <p>{{ site.footer.newsletterCta }}</p>

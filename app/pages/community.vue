@@ -1,55 +1,60 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('community', () => queryCollection('community').first())
-if (!page.value)
+const { data } = await useAsyncData('community', () => queryCollection('community').first())
+if (!data.value)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 
-const title = page.value.hero?.headline ? `${page.value.hero.headline} | Nimiq` : 'Community | Nimiq'
-const description = page.value.hero?.subline || ''
+const page = data.value
+const title = `${page.hero.headline} | Nimiq`
+const description = page.hero.subline
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/community' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
 </script>
 
 <template>
   <NuxtLayout>
-    <main v-if="page">
-      <section v-if="page.hero" nq-section-gap bg-neutral-0>
-        <HeroSimple :headline="page.hero.headline" :subline="page.hero.subline" />
+    <main>
+      <section bg-neutral-0>
+        <Hero v-bind="page.hero" />
       </section>
 
-      <section v-if="page.newYork" nq-section-gap bg-neutral-0>
-        <GridNewYork v-bind="page.newYork" />
+      <section bg-neutral-0>
+        <GridNewYork v-bind="page.stats" />
       </section>
 
-      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.simpleHeadline.headline" :icon-name="page.simpleHeadline.iconName" :links="page.simpleHeadline.links" />
+      <section bg-neutral-0>
+        <Headline v-bind="page.countries.headline" />
       </section>
 
-      <TokenFlags v-if="page.flags" :flags="page.flags.flags" />
-
-      <section v-if="page.getInTouchHeadline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.getInTouchHeadline.headline" :subline="page.getInTouchHeadline.subline" />
+      <section bg-neutral-0>
+        <TokenFlags :flags="page.countries.flags" />
       </section>
 
-      <section v-if="page.socialMedia" nq-section-gap bg-neutral-100>
-        <GridSocialMedia v-bind="page.socialMedia" />
+      <section bg-neutral-100>
+        <Headline v-bind="page.social.headline" />
       </section>
 
-      <section v-if="page.newsletter" nq-section-gap bg-neutral-100>
-        <BannerNewsletter :cta="page.newsletter.cta" />
+      <section bg-neutral-100>
+        <GridSocialMedia v-bind="page.social.grid" />
       </section>
 
-      <section v-if="page.nimiqCommunityAppsHeadline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.nimiqCommunityAppsHeadline.headline" :subline="page.nimiqCommunityAppsHeadline.subline" :label="page.nimiqCommunityAppsHeadline.label" />
+      <section bg-neutral-100>
+        <BannerNewsletter v-bind="page.newsletter" />
       </section>
 
-      <section v-if="page.appGallery" nq-section-gap bg-neutral-0>
-        <BannerAppGallery v-bind="page.appGallery" />
+      <section bg-neutral-0>
+        <Headline v-bind="page.apps.headline" />
       </section>
 
-      <BannerSimple v-if="page.banner" :overlaps-next-section="page.banner.overlapsNextSection" :items="page.banner.items" />
+      <section bg-neutral-0>
+        <BannerAppGallery v-bind="page.apps.gallery" />
+      </section>
 
-      <section v-if="page.feedbackHeadline" nq-section-gap dark bg-darkblue>
-        <HeadlineSimple :headline="page.feedbackHeadline.headline" :subline="page.feedbackHeadline.subline" :links="page.feedbackHeadline.links" />
+      <section bg-neutral-0>
+        <Banner v-bind="page.banner" />
+      </section>
+
+      <section dark bg-darkblue>
+        <Headline v-bind="page.feedback" />
       </section>
     </main>
   </NuxtLayout>

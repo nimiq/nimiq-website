@@ -1,61 +1,62 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('nimiq-pay', () => queryCollection('nimiqPay').first())
-if (!page.value)
+const { data } = await useAsyncData('nimiq-pay', () => queryCollection('nimiqPay').first())
+if (!data.value)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 
-const title = page.value.meta?.title || 'Nimiq Pay'
-const description = page.value.meta?.description || ''
-useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogImage: page.value.meta?.image, ogUrl: 'https://nimiq.com/nimiq-pay' })
+const page = data.value
+const title = page.meta?.title || 'Nimiq Pay'
+const description = page.meta?.description || ''
+useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogImage: page.meta?.image, ogUrl: 'https://nimiq.com/nimiq-pay' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
 </script>
 
 <template>
-  <NuxtLayout v-if="page">
+  <NuxtLayout>
     <main>
-      <section v-if="page.hero" nq-section-gap bg-neutral-100 relative>
-        <HeroPay :headline="page.hero.headline" :subline="page.hero.subline" :play-store="page.hero.playStore" :app-store="page.hero.appStore" :items="page.hero.items" />
+      <section nq-section-gap bg-neutral-100 relative>
+        <HeroPay v-bind="page.hero" />
       </section>
 
-      <ContentTiltedMedia v-if="page.tiltedMedia" :media="page.tiltedMedia.media" :video="page.tiltedMedia.video" :headline="page.tiltedMedia.headline" :poster="page.tiltedMedia.poster" :overlaps-next-section="page.tiltedMedia.overlapsNextSection" />
+      <ContentTiltedMedia v-bind="page.media" :overlaps-next-section="false" />
 
-      <section v-if="page.logos" nq-section-gap bg-neutral-100>
-        <GridLogos :label="page.logos.label" :items="page.logos.items" />
+      <section nq-section-gap bg-neutral-100>
+        <GridLogos v-bind="page.logos" />
       </section>
 
-      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.simpleHeadline.headline" :subline="page.simpleHeadline.subline" />
+      <section nq-section-gap bg-neutral-0>
+        <Headline v-bind="page.intro" />
       </section>
 
-      <section v-if="page.grid?.items" nq-section-gap bg-neutral-0>
-        <GridSection :items="page.grid.items" />
+      <section nq-section-gap bg-neutral-0>
+        <GridSection v-bind="page.grid" />
       </section>
 
-      <section v-if="page.whatIsTheNimiqPaHeadline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.whatIsTheNimiqPaHeadline.headline" :subline="page.whatIsTheNimiqPaHeadline.subline" />
+      <section nq-section-gap bg-neutral-0>
+        <Headline v-bind="page.about.headline" />
       </section>
 
-      <section v-if="page.textCards?.items" nq-section-gap bg-neutral-0>
-        <ContentRichTextCards :items="page.textCards.items" />
+      <section nq-section-gap bg-neutral-0>
+        <ContentRichTextCards :items="page.about.items" />
       </section>
 
-      <section v-if="page.textCarousel" nq-section-gap bg-neutral-100>
-        <ContentRichTextCarousel :content="page.textCarousel.content" :items="page.textCarousel.items" variation="default" />
+      <section nq-section-gap bg-neutral-100>
+        <ContentRichTextCarousel v-bind="page.textCarousel" variation="default" />
       </section>
 
-      <section v-if="page.oneAppToPoolThemHeadline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.oneAppToPoolThemHeadline.headline" :subline="page.oneAppToPoolThemHeadline.subline" />
+      <section nq-section-gap bg-neutral-0>
+        <Headline v-bind="page.pooling.headline" />
       </section>
 
-      <section v-if="page.textCarousel2" nq-section-gap bg-neutral-0>
-        <ContentRichTextCarousel :items="page.textCarousel2.items" variation="withTabs" />
+      <section nq-section-gap bg-neutral-0>
+        <ContentRichTextCarousel v-bind="page.pooling.carousel" variation="withTabs" />
       </section>
 
-      <section v-if="page.discoverAWholeEcoHeadline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.discoverAWholeEcoHeadline.headline" :subline="page.discoverAWholeEcoHeadline.subline" :label="page.discoverAWholeEcoHeadline.label" />
+      <section nq-section-gap bg-neutral-0>
+        <Headline v-bind="page.discover.headline" />
       </section>
 
-      <section v-if="page.zigzag?.items" nq-section-gap bg-neutral-0>
-        <ContentZigZag :items="page.zigzag.items" />
+      <section nq-section-gap bg-neutral-0>
+        <ContentZigZag :items="page.discover.items" />
       </section>
     </main>
   </NuxtLayout>

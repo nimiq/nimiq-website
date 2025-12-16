@@ -1,7 +1,11 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('bug-bounty', () => queryCollection('bugBounty').first())
-if (!page.value)
+const { data } = await useAsyncData('bug-bounty', () => queryCollection('bugBounty').first())
+if (!data.value)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+
+const page = data.value
+const { data: contentData } = await useAsyncData('bug-bounty-content', () => parseMarkdown(page.content))
+const content = contentData.value!
 
 const title = 'Bug Bounty Program | Nimiq'
 const description = 'Strengthen Nimiq\'s security and earn rewards through our bug bounty program.'
@@ -11,8 +15,10 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/bug-bounty' }] })
 
 <template>
   <NuxtLayout>
-    <main v-if="page">
-      <ContentRichText v-if="page.content" :rich-text="page.content.richText" :center-heading="page.content.centerHeading" />
+    <main>
+      <section bg-neutral-0>
+        <ContentRenderer :value="content" article nq-prose text-20 mx-auto max-w-prose />
+      </section>
     </main>
   </NuxtLayout>
 </template>

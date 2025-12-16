@@ -1,12 +1,12 @@
 <script setup lang="ts">
-interface RoadmapData {
-  milestones: string
+interface MilestonesData {
+  label: string
   firstLayer: string
   secondLayer: string
   thirdLayer: string
 }
 
-const { roadmap } = defineProps<{ roadmap: RoadmapData }>()
+const { milestones } = defineProps<{ milestones: MilestonesData }>()
 
 function tryParse(input: any, key: string) {
   if (!input)
@@ -23,16 +23,16 @@ function tryParse(input: any, key: string) {
 const firstYear = 2017
 const firstMonth = 1
 
-const milestones = tryParse(roadmap.milestones, 'milestones')
-const firstLayer = tryParse(roadmap.firstLayer, 'firstLayer')
-const secondLayer = tryParse(roadmap.secondLayer, 'secondLayer')
-const thirdLayer = tryParse(roadmap.thirdLayer, 'thirdLayer')
+const milestonesData = tryParse(milestones.label, 'milestones')
+const firstLayer = tryParse(milestones.firstLayer, 'firstLayer')
+const secondLayer = tryParse(milestones.secondLayer, 'secondLayer')
+const thirdLayer = tryParse(milestones.thirdLayer, 'thirdLayer')
 
 const layers = [firstLayer, secondLayer, thirdLayer]
 </script>
 
 <template>
   <div mx-0 px-0 bg-neutral-0 block children:max-w-none>
-    <Roadmap :milestones :layers :first-year :first-month />
+    <Roadmap :milestones="milestonesData" :layers :first-year :first-month />
   </div>
 </template>

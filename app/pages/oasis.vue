@@ -1,51 +1,52 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('oasis', () => queryCollection('oasis').first())
-if (!page.value)
+const { data } = await useAsyncData('oasis', () => queryCollection('oasis').first())
+if (!data.value)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 
-const title = page.value.hero?.headline ? `${page.value.hero.headline} | Nimiq` : 'OASIS | Nimiq'
-const description = page.value.hero?.subline || ''
+const page = data.value
+const title = `${page.hero.headline} | Nimiq`
+const description = page.hero.subline
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/oasis' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/oasis' }] })
 </script>
 
 <template>
   <NuxtLayout>
-    <main v-if="page">
-      <section v-if="page.hero" nq-section-gap bg-neutral-100>
-        <HeroSimple :headline="page.hero.headline" :subline="page.hero.subline" />
+    <main>
+      <section nq-section-gap bg-neutral-100>
+        <Hero v-bind="page.hero" />
       </section>
 
-      <section v-if="page.hero2" nq-section-gap bg-neutral-0>
-        <HeroSimple :headline="page.hero2.headline" :subline="page.hero2.subline" />
+      <section nq-section-gap bg-neutral-0>
+        <Hero v-bind="page.secondHero" />
       </section>
 
-      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.simpleHeadline.headline" :subline="page.simpleHeadline.subline" />
+      <section nq-section-gap bg-neutral-100>
+        <Headline v-bind="page.about.headline" />
       </section>
 
-      <section v-if="page.largeGrid?.items" nq-section-gap bg-neutral-100>
-        <GridLarge :items="page.largeGrid.items" />
+      <section nq-section-gap bg-neutral-100>
+        <GridLarge :items="page.about.items" />
       </section>
 
-      <section v-if="page.howDoesItWorkHeadline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.howDoesItWorkHeadline.headline" :subline="page.howDoesItWorkHeadline.subline" />
+      <section nq-section-gap bg-neutral-100>
+        <Headline v-bind="page.howItWorks.headline" />
       </section>
 
-      <section v-if="page.youtube" nq-section-gap bg-neutral-100>
-        <ContentYouTube :embed-url="page.youtube.embedUrl" :title="page.youtube.title" />
+      <section nq-section-gap bg-neutral-100>
+        <ContentYouTube :embed-url="page.howItWorks.embedUrl" :title="page.howItWorks.title" />
       </section>
 
-      <section v-if="page.oasisIsAnOpenTecHeadline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.oasisIsAnOpenTecHeadline.headline" :subline="page.oasisIsAnOpenTecHeadline.subline" />
+      <section nq-section-gap bg-neutral-0>
+        <Headline v-bind="page.openTech" />
       </section>
 
-      <section v-if="page.collaborateWithNimHeadline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.collaborateWithNimHeadline.headline" :subline="page.collaborateWithNimHeadline.subline" />
+      <section nq-section-gap bg-neutral-0>
+        <Headline v-bind="page.collaborate" />
       </section>
 
-      <section v-if="page.contact" nq-section-gap bg-neutral-0>
-        <ContactForm :data="page.contact" />
+      <section nq-section-gap bg-neutral-0>
+        <ContactForm :data="page.form" />
       </section>
     </main>
   </NuxtLayout>

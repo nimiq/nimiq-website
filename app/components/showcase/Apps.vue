@@ -150,10 +150,10 @@ onMounted(() => {
         <!-- Content -->
         <div flex="~ wrap justify-between" flex-col max-w-full w-max relative z-10 md:mx-auto lg:max-w-60ch md:items-center>
           <div max-w-60ch md:text-center>
-            <h3 nq-heading>
+            <h3 nq-heading mt-0>
               {{ banner.items[0].headline }}
             </h3>
-            <p v-if="banner.items[0].subline" text-neutral-700 f-mt-xs>
+            <p v-if="banner.items[0].subline" text-neutral-700 mb-0 f-mt-xs>
               {{ banner.items[0].subline }}
             </p>
           </div>

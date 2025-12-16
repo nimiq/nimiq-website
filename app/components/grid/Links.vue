@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface LinkItem { iconName?: string, headline?: string, color?: string, linkHref?: string }
+interface LinkItem { icon?: string, headline?: string, color?: string, link?: string }
 defineProps<{ items: LinkItem[] }>()
 </script>
 
@@ -7,10 +7,10 @@ defineProps<{ items: LinkItem[] }>()
   <div grid="~ cols-1 lg:cols-3 gap-8 md:gap-16">
     <NuxtLink
       v-for="(item, i) in items" :key="i"
-      flex="~ row gap-20 items-center" :style="`--c: ${item.color}`"
-      :to="item.linkHref" group p-20 nq-hoverable class="hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c"
+      flex="~ row gap-20 items-center" :style="`--c: var(--colors-${item.color})`"
+      :to="item.link" group p-20 nq-hoverable class="hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c"
     >
-      <Icon v-if="item.iconName" :name="item.iconName" class="text-32 text-$c transition-colors md:text-48 group-hocus:!text-white" />
+      <Icon v-if="item.icon" :name="item.icon" class="text-32 text-$c transition-colors md:text-48 group-hocus:!text-white" />
       <div whitespace-nowrap flex="~ items-center" text="group-hocus:children:!white">
         {{ item.headline }}
       </div>

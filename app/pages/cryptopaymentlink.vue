@@ -1,11 +1,9 @@
 <script setup lang="ts">
 interface CryptopaymentPage {
   hero?: { headline: string, subline?: string, linkHref?: string, linkLabel?: string, link?: string, items?: { highlight: string }[] }
-  tiltedMedia?: { overlapsNextSection?: boolean, media?: string, video?: { embed_url: string }, poster?: string }
-  simpleHeadline?: { headline: string, subline?: string }
-  grid?: { items: { icon?: string, headline: string, subline?: string }[] }
-  whatIsCryptopaymenHeadline?: { headline: string, subline?: string, links?: string[] }
-  textCards?: { items: { content: string, bgColor?: string }[] }
+  tiltedMedia?: { src: string, poster?: string }
+  features?: { headline: { headline: string, subline?: string }, content: { items: { icon?: string, headline: string, subline?: string }[] } }
+  whatIs?: { headline: { headline: string, subline?: string, links?: string[] }, content: { items: { content: string, bgColor?: string }[] } }
   steppedSlides?: { headline: string, description?: string, items: { image: string, label: string, description: string }[] }
 }
 
@@ -23,34 +21,34 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/cryptopaymentlink'
   <NuxtLayout>
     <main v-if="page">
       <section v-if="page.hero" nq-section-gap bg-neutral-100>
-        <HeroProduct :headline="page.hero.headline" :subline="page.hero.subline" :link="page.hero.linkHref || page.hero.link" :link-label="page.hero.linkLabel" :items="page.hero.items" />
+        <HeroProduct v-bind="page.hero" :link="page.hero.linkHref || page.hero.link" />
       </section>
 
-      <ContentTiltedMedia v-if="page.tiltedMedia" :media="page.tiltedMedia.media" :video="page.tiltedMedia.video" :overlaps-next-section="page.tiltedMedia.overlapsNextSection" />
+      <ContentTiltedMedia v-if="page.tiltedMedia" v-bind="page.tiltedMedia" :overlaps-next-section="true" />
 
-      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-0>
-        <HeadlineSimple :headline="page.simpleHeadline.headline" :subline="page.simpleHeadline.subline" />
+      <section v-if="page.features" nq-section-gap bg-neutral-0>
+        <Headline v-bind="page.features.headline" />
       </section>
 
-      <section v-if="page.grid?.items" nq-section-gap bg-neutral-0>
-        <GridSection :items="page.grid.items" variation="iconGrid" />
+      <section v-if="page.features?.content?.items" nq-section-gap bg-neutral-0>
+        <GridSection v-bind="page.features.content" variation="iconGrid" />
       </section>
 
-      <section v-if="page.whatIsCryptopaymenHeadline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.whatIsCryptopaymenHeadline.headline" :subline="page.whatIsCryptopaymenHeadline.subline" :links="page.whatIsCryptopaymenHeadline.links" />
+      <section v-if="page.whatIs" nq-section-gap bg-neutral-100>
+        <Headline v-bind="page.whatIs.headline" />
       </section>
 
-      <section v-if="page.textCards?.items" nq-section-gap bg-neutral-100>
-        <ContentRichTextCards :items="page.textCards.items" />
+      <section v-if="page.whatIs?.content?.items" nq-section-gap bg-neutral-100>
+        <ContentRichTextCards v-bind="page.whatIs.content" />
       </section>
 
       <section v-if="page.steppedSlides" nq-section-gap bg-neutral-0>
-        <ContentStepped :headline="page.steppedSlides.headline" :description="page.steppedSlides.description" :items="page.steppedSlides.items" />
+        <ContentStepped v-bind="page.steppedSlides" />
       </section>
 
-      <!-- Reuses whatIsCryptopaymenHeadline data as final CTA -->
-      <section v-if="page.whatIsCryptopaymenHeadline" nq-section-gap bg-neutral-100>
-        <HeadlineSimple :headline="page.whatIsCryptopaymenHeadline.headline" :subline="page.whatIsCryptopaymenHeadline.subline" :links="page.whatIsCryptopaymenHeadline.links" />
+      <!-- Reuses whatIs data as final CTA -->
+      <section v-if="page.whatIs" nq-section-gap bg-neutral-100>
+        <Headline v-bind="page.whatIs.headline" />
       </section>
     </main>
   </NuxtLayout>

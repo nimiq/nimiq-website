@@ -10,6 +10,7 @@ import 'dotenv/config'
 const USE_CACHE = process.argv.includes('--cache')
 const FORCE_REFRESH = process.argv.includes('--force')
 const INCREMENTAL = process.argv.includes('--incremental')
+const SYNC_PAGES = process.argv.includes('--pages')
 const CACHE_DIR = join(process.cwd(), 'scripts', 'prismic-data')
 
 // Local type definitions for Prismic documents (previously in prismicio-types.d.ts)
@@ -185,7 +186,7 @@ async function fetchDocuments<T>(type: string, label: string): Promise<T[]> {
   return allDocs
 }
 
-async function fetchNavigationSingleton(): Promise<NavigationDocument | null> {
+async function _fetchNavigationSingleton(): Promise<NavigationDocument | null> {
   // Try to load from cache first (unless force refresh)
   if (USE_CACHE && !FORCE_REFRESH) {
     const cached = await loadFromCache<NavigationDocument>('navigation')
@@ -527,8 +528,10 @@ async function syncBlogs(): Promise<ConversionStats> {
 // Page Sync Functions
 // ============================================================================
 
+const RICHTEXT_TYPES = ['heading1', 'heading2', 'heading3', 'heading4', 'heading5', 'heading6', 'paragraph', 'preformatted', 'list-item', 'o-list-item', 'image', 'embed', 'hyperlink']
+
 function isRichTextField(value: any): boolean {
-  return Array.isArray(value) && value.length > 0 && value[0]?.type
+  return Array.isArray(value) && value.length > 0 && RICHTEXT_TYPES.includes(value[0]?.type)
 }
 
 function isImageField(value: any): boolean {
@@ -777,7 +780,7 @@ function getSliceKeyName(slice: any, index: number, allSlices: any[]): string {
 
 // Slices to skip entirely (removed from content)
 const SKIP_SLICES: Record<string, string[]> = {
-  home: ['joinOurLiveCommunityHeadline', 'stakingHeadline'], // stakingHeadline has custom content
+  home: ['stakingHeadline'], // stakingHeadline has custom content
   oasis: ['links'],
   community: ['cards', 'eventsMeetupsHeadline'],
   wallet: ['stakingHeadline'],
@@ -799,10 +802,10 @@ const PAGE_CONTENT_OVERRIDES: Record<string, Record<string, any>> = {
   home: {
     // Custom staking headline (different content from Prismic)
     stakingHeadline: {
-      headline: 'Earn up to {{ interestPerAnnum }} by staking your NIM',
-      subline: 'Secure the network and earn passive income with Nimiq\'s eco-friendly proof-of-stake.',
-      link: 'https://wallet.nimiq.com',
-      stakingNote: 'APY varies based on total staked supply and is not guaranteed.',
+      headline: 'Stake NIM at {{ interestPerAnnum }} p.a.',
+      subline: 'Deposit your NIM to strengthen the network and create new NIM.',
+      link: '/staking',
+      stakingNote: 'average return based on the current distribution. This is not financial advice.',
     },
     // Custom grid images (simplified names)
     _gridImageOverrides: {
@@ -1026,7 +1029,7 @@ function cleanObject(obj: any): any {
   return obj
 }
 
-async function convertPageToYAML(doc: PageDocument, navigation?: NavigationDocument | null): Promise<string> {
+async function convertPageToYAML(doc: PageDocument): Promise<string> {
   const pageSlug = doc.uid
   const sections: Record<string, any> = {}
   const sliceKeys: Array<{ key: string, type: string }> = []
@@ -1133,6 +1136,13 @@ async function convertPageToYAML(doc: PageDocument, navigation?: NavigationDocum
     }
   }
 
+  // Transform tiltedMedia to simplified format: { src, poster? }
+  if (sections.tiltedMedia) {
+    const tm = sections.tiltedMedia
+    const src = tm.media || tm.video?.embed_url || ''
+    sections.tiltedMedia = { src, ...(tm.poster ? { poster: tm.poster } : {}) }
+  }
+
   // Transform roadmap JSON layers - apply icon transformations using regex to preserve formatting
   if (pageSlug === 'roadmap' && sections.roadmap) {
     const transformLayerIcons = (jsonStr: string): string => {
@@ -1147,17 +1157,6 @@ async function convertPageToYAML(doc: PageDocument, navigation?: NavigationDocum
       sections.roadmap.secondLayer = transformLayerIcons(sections.roadmap.secondLayer)
     if (sections.roadmap.thirdLayer)
       sections.roadmap.thirdLayer = transformLayerIcons(sections.roadmap.thirdLayer)
-  }
-
-  // Add footer section from navigation if available (skip for pages with custom footer handling)
-  const skipFooterPages = ['apps']
-  if (navigation?.data && !skipFooterPages.includes(pageSlug)) {
-    sections.footer = {
-      newsletterCta: navigation.data.newsletterCta || '',
-      newsletterPlaceholder: navigation.data.newsletterPlaceholder || '',
-      socialMediaCta: navigation.data.socialMediaCta || '',
-      nimiqShortDescription: navigation.data.nimiqShortDescription || '',
-    }
   }
 
   // Clean and generate YAML
@@ -1226,12 +1225,6 @@ async function syncPages(): Promise<ConversionStats> {
       return stats
     }
 
-    // Fetch navigation singleton for footer data
-    const navigation = await fetchNavigationSingleton()
-    if (navigation) {
-      consola.success('Fetched navigation document for footer data')
-    }
-
     const contentDir = join(process.cwd(), OUTPUT_DIR)
     await mkdir(contentDir, { recursive: true })
 
@@ -1257,7 +1250,7 @@ async function syncPages(): Promise<ConversionStats> {
         // Use custom generator for apps page
         const rawContent = page.uid === 'apps'
           ? generateAppsPage(page)
-          : await convertPageToYAML(page, navigation)
+          : await convertPageToYAML(page)
         // Sanitize line terminators before writing
         const content = cleanMarkdown(rawContent)
         await writeFile(filepath, content, 'utf-8')
@@ -1348,13 +1341,15 @@ async function main() {
 Usage: pnpm tsx scripts/prismic-sync.ts [options]
 
 Options:
+  --pages        Sync pages from Prismic (disabled by default)
   --cache        Use cached Prismic responses (skip API calls if cache exists)
   --force        Force refresh from Prismic API (ignore cache)
   --incremental  Only update files that have changed since last sync
   --help         Show this help message
 
 Examples:
-  pnpm tsx scripts/prismic-sync.ts                    # Full sync from Prismic
+  pnpm tsx scripts/prismic-sync.ts                    # Sync blogs + exchanges only
+  pnpm tsx scripts/prismic-sync.ts --pages            # Sync everything including pages
   pnpm tsx scripts/prismic-sync.ts --cache            # Use cached data
   pnpm tsx scripts/prismic-sync.ts --incremental      # Only update changed files
   pnpm tsx scripts/prismic-sync.ts --force            # Force re-fetch all data
@@ -1375,6 +1370,8 @@ Examples:
     modes.push('force-refresh')
   if (INCREMENTAL)
     modes.push('incremental')
+  if (SYNC_PAGES)
+    modes.push('pages')
   if (modes.length > 0) {
     consola.info(`Mode: ${modes.join(', ')}`)
   }
@@ -1391,30 +1388,33 @@ Examples:
     const exchangeStats = await syncExchanges()
     const exchangeTime = ((Date.now() - exchangeStartTime) / 1000).toFixed(2)
 
-    consola.info('\n')
-
-    const pageStartTime = Date.now()
-    const pageStats = await syncPages()
-    const pageTime = ((Date.now() - pageStartTime) / 1000).toFixed(2)
+    let pageStats: ConversionStats = { success: 0, failed: 0, errors: [] }
+    let pageTime = '0.00'
+    if (SYNC_PAGES) {
+      consola.info('\n')
+      const pageStartTime = Date.now()
+      pageStats = await syncPages()
+      pageTime = ((Date.now() - pageStartTime) / 1000).toFixed(2)
+    }
 
     const totalTime = ((Date.now() - totalStartTime) / 1000).toFixed(2)
     const totalSuccess = blogStats.success + exchangeStats.success + pageStats.success
     const totalFailed = blogStats.failed + exchangeStats.failed + pageStats.failed
     const allErrors = [...blogStats.errors, ...exchangeStats.errors, ...pageStats.errors]
 
-    consola.box({
-      title: 'Content Sync Complete',
-      message: `
-Blog Sync: ✓ ${blogStats.success} ✗ ${blogStats.failed} (${blogTime}s)
-Exchange Sync: ✓ ${exchangeStats.success} ✗ ${exchangeStats.failed} (${exchangeTime}s)
-Page Sync: ✓ ${pageStats.success} ✗ ${pageStats.failed} (${pageTime}s)
-Total: ✓ ${totalSuccess} ✗ ${totalFailed}
+    const messageParts = [
+      `Blog Sync: ✓ ${blogStats.success} ✗ ${blogStats.failed} (${blogTime}s)`,
+      `Exchange Sync: ✓ ${exchangeStats.success} ✗ ${exchangeStats.failed} (${exchangeTime}s)`,
+    ]
+    if (SYNC_PAGES) {
+      messageParts.push(`Page Sync: ✓ ${pageStats.success} ✗ ${pageStats.failed} (${pageTime}s)`)
+    }
+    messageParts.push(`Total: ✓ ${totalSuccess} ✗ ${totalFailed}`, '', `Total time: ${totalTime}s`)
+    if (allErrors.length > 0) {
+      messageParts.push('', `Errors:\n${allErrors.map(e => `- ${e.uid}: ${e.error}`).join('\n')}`)
+    }
 
-Total time: ${totalTime}s
-
-${allErrors.length > 0 ? `Errors:\n${allErrors.map(e => `- ${e.uid}: ${e.error}`).join('\n')}` : ''}
-      `.trim(),
-    })
+    consola.box({ title: 'Content Sync Complete', message: messageParts.join('\n') })
 
     if (totalFailed > 0) {
       process.exit(1)

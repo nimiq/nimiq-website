@@ -3,13 +3,13 @@ const route = useRoute()
 const pageIndex = computed(() => Number(route.query.page) || 1)
 const itemsPerPage = 25
 
-const { data: page } = await useAsyncData('blog-page', () => queryCollection('blogPage').first())
-if (!page.value)
+const { data: pageData } = await useAsyncData('blog-page', () => queryCollection('blogPage').first())
+if (!pageData.value)
   throw createError({ statusCode: 404, statusMessage: 'Blog page not found', fatal: true })
 
-const { data: totalCount } = await useAsyncData('blog-count', () =>
-  queryCollection('blog').count())
+const page = pageData.value
 
+const { data: totalCount } = await useAsyncData('blog-count', () => queryCollection('blog').count())
 const totalPages = computed(() => Math.ceil((totalCount.value || 0) / itemsPerPage))
 
 const { data: posts } = await useAsyncData(`blog-posts-${pageIndex.value}`, () =>
@@ -28,15 +28,15 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
 
 <template>
   <NuxtLayout :dark-header="false" :show-socials-hexagon-bg="false" footer-bg-color="grey">
-    <main v-if="page">
-      <section v-if="page.hero" bg-neutral-100 f-pt-3xl>
+    <main>
+      <section bg-neutral-100 f-pt-3xl>
         <h1>{{ page.hero.headline }}</h1>
         <p v-if="page.hero.subline" text-neutral-800 f-mt-sm>
           {{ page.hero.subline }}
         </p>
       </section>
 
-      <section v-if="page.blogGrid" bg-neutral-100 f-pt-3xl>
+      <section bg-neutral-100 f-pt-3xl>
         <div v-if="posts?.length" grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
           <article v-for="(post, i) in posts" :key="post.slug" :class="pageIndex === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
             <NuxtLink :to="`/blog/${post.slug}`" p-0 h-full relative nq-hoverable @click="active = post.slug">
@@ -53,15 +53,15 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
                 <p mt-8 line-clamp-2 text="16 neutral-900 left">
                   {{ post.description }}
                 </p>
-                <div :style="`--content: '${page.blogGrid.labelLearnMore}'`" :class="i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16" flex="~ items-center gap-x-16 wrap" text="12 neutral" lh="[2]" pt-16 gap-x-8 h-max nq-label nq-hoverable-cta>
+                <div :style="`--content: '${page.grid.labelLearnMore}'`" :class="i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16" flex="~ items-center gap-x-16 wrap" text="12 neutral" lh="[2]" pt-16 gap-x-8 h-max nq-label nq-hoverable-cta>
                   <NuxtTime v-if="new Date(post.publishedAt).getFullYear() === new Date().getFullYear()" :datetime="post.publishedAt" month="short" day="numeric" />
                   <NuxtTime v-else :datetime="post.publishedAt" month="short" day="numeric" year="numeric" />
                   <address flex="~ gap-1ch" not-italic>
-                    <span text-neutral-800>{{ page.blogGrid.labelBy }}</span>
+                    <span text-neutral-800>{{ page.grid.labelBy }}</span>
                     <span text-blue>{{ post.authors?.join(', ') || 'Team Nimiq' }}</span>
                   </address>
                 </div>
-                <span sr-only>{{ page.blogGrid.labelLearnMore }}</span>
+                <span sr-only>{{ page.grid.labelLearnMore }}</span>
               </div>
             </NuxtLink>
           </article>
@@ -95,7 +95,7 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
         </div>
       </section>
 
-      <BannerNewsletter v-if="page.newsletter" :cta="page.newsletter.cta" />
+      <BannerNewsletter :cta="page.newsletter.cta" />
     </main>
   </NuxtLayout>
 </template>

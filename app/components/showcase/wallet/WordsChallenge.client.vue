@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ headline: string, subheadline: string, guessTheRemainingWordsLabel: string, youDoNotStandAChanceToTake: string, rewardAmount: string }>()
+defineProps<{ headline: string, subline?: string, guessLabel?: string, chanceLabel?: string, reward?: string }>()
 
 const marqueeRows = 6
 const wordsPerRow = 14
@@ -71,7 +71,7 @@ function reset() {
         {{ headline }}
       </h3>
       <p mt-16 text="center neutral-800 f-sm">
-        {{ subheadline }}
+        {{ subline }}
       </p>
 
       <div mt-32 relative>
@@ -79,7 +79,7 @@ function reset() {
           <div v-if="isChallengeFinished" bg-neutral-0 bg-op-20 pointer-events-none inset-x--64 inset-y--16 absolute z-2 backdrop-blur-8 />
         </transition>
         <p text="center blue" font-bold>
-          {{ guessTheRemainingWordsLabel }}
+          {{ guessLabel }}
         </p>
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.7 228.6" w-90 left--20 top-8 absolute>
@@ -120,7 +120,7 @@ function reset() {
         <div inset-0 absolute class="retro-overlay" />
       </div>
       <p text="f-xl white/80 center" font-semibold relative z-1>
-        {{ youDoNotStandAChanceToTake }}
+        {{ chanceLabel }}
       </p>
       <Icon name="custom:10-million-nim" class="mt-32 h-66 w-full relative z-1" />
     </div>

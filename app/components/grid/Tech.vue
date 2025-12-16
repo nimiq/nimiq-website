@@ -5,14 +5,6 @@ defineProps<{ headline: string, subline?: string, items: GridItem[] }>()
 
 <template>
   <div>
-    <!-- The Tech pill -->
-    <div flex="~ items-center gap-10 md:mx-auto md:w-max" py-6 pl-8 pr-20 rounded-full f-mb-lg>
-      <div style="--c: var(--colors-green)" text="$c" bg="[color-mix(in_oklch,var(--c)_20%,transparent)]" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
-        <Icon name="nimiq:bolt" class="pill-gradient size-18 lg:size-30" />
-      </div>
-      <span text="18 neutral-200" nq-label>The Tech</span>
-    </div>
-
     <!-- Headline -->
     <div flex="~ col md:items-center">
       <h2 nq-heading break-keep md:text-center>

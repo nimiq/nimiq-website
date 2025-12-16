@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Currency { name: string, crypto: string, mainFeature: string, secondFeature: string, thirdFeature: string, fee: string, time: string, adjective: string }
 
-const { currencies, feeLabel, timeLabel } = defineProps<{ currencies: Currency[], feeLabel: string, timeLabel: string }>()
+const { items, feeLabel, timeLabel } = defineProps<{ items: Currency[], feeLabel: string, timeLabel: string }>()
 
 const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Currency & { twoColumns?: boolean }>()
 </script>
@@ -58,10 +58,10 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Currency & { twoColum
     </template>
   </DefineCrypto>
 
-  <ul v-if="currencies.length >= 3" grid="~ cols-1 md:cols-2 xl:cols-3">
-    <ReuseCrypto v-bind="currencies[0]!" border="b-1 neutral-300 xl:b-0 md:r-1" p="b-32 xl:b-0 md:r-32" />
-    <ReuseCrypto v-bind="currencies[1]!" border="b-1 neutral-300 xl:b-0 xl:r-1" p="y-32 md:t-0 xl:y-0 md:l-32" />
-    <ReuseCrypto v-bind="currencies[2]!" col="span-full xl:span-1" p="t-32 xl:t-0 xl:l-32" :two-columns="true" />
+  <ul v-if="items.length >= 3" grid="~ cols-1 md:cols-2 xl:cols-3">
+    <ReuseCrypto v-bind="items[0]!" border="b-1 neutral-300 xl:b-0 md:r-1" p="b-32 xl:b-0 md:r-32" />
+    <ReuseCrypto v-bind="items[1]!" border="b-1 neutral-300 xl:b-0 xl:r-1" p="y-32 md:t-0 xl:y-0 md:l-32" />
+    <ReuseCrypto v-bind="items[2]!" col="span-full xl:span-1" p="t-32 xl:t-0 xl:l-32" :two-columns="true" />
   </ul>
 </template>
 

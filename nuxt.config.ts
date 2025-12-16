@@ -88,7 +88,6 @@ export default defineNuxtConfig({
     optimizeDeps: { exclude: ['@nimiq/core', '*.wasm'] },
     worker: { plugins: () => [wasm()] },
     build: { rollupOptions: { external: [/^.*\.node$/] } },
-    server: { watch: { usePolling: true, interval: 100 } },
   },
 
   features: {

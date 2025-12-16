@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Organization { logo: string, url: string }
-defineProps<{ headline: string, subheadline?: string, link?: string, organizations?: Organization[] }>()
+defineProps<{ headline: string, subline?: string, link?: string, organizations?: Organization[] }>()
 
 const showMap = ref(false)
 onMounted(() => showMap.value = true)
@@ -11,8 +11,8 @@ onMounted(() => showMap.value = true)
     <h1 nq-heading-lg text-white>
       {{ headline }}
     </h1>
-    <p v-if="subheadline" text="neutral-800 f-xl">
-      {{ subheadline }}
+    <p v-if="subline" text="neutral-800 f-xl">
+      {{ subline }}
     </p>
     <NuxtLink v-if="link" :to="link" mt-40 nq-arrow nq-pill-lg nq-pill-blue>
       Go to Wallet
