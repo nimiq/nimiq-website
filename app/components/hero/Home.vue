@@ -1,21 +1,22 @@
 <script setup lang="ts">
 interface Organization { logo: string, url: string }
-defineProps<{ headline: string, subline?: string, link?: string, organizations?: Organization[] }>()
+const { title, description, link, organizations } = defineProps<{ title: string, description?: string, link?: { href: string, label?: string }, organizations?: Organization[] }>()
 
 const showMap = ref(false)
 onMounted(() => showMap.value = true)
+const isExternal = computed(() => link?.href?.startsWith('http'))
 </script>
 
 <template>
   <div flex="grow ~ col justify-center" z-10 children:md:mx-auto>
     <h1 nq-heading-lg text-white>
-      {{ headline }}
+      {{ title }}
     </h1>
-    <p v-if="subline" text="neutral-800 f-xl">
-      {{ subline }}
+    <p v-if="description" text="neutral-800 f-xl">
+      {{ description }}
     </p>
-    <NuxtLink v-if="link" :to="link" mt-40 nq-arrow nq-pill-lg nq-pill-blue>
-      Go to Wallet
+    <NuxtLink v-if="link" :to="link.href" :external="isExternal" mt-40 nq-arrow nq-pill-lg nq-pill-blue :target="isExternal ? '_blank' : undefined">
+      {{ link.label || 'Go to Wallet' }}
     </NuxtLink>
     <div v-if="organizations?.length" mt-80 flex="~ col md:row wrap" gap-32 justify="start md:center" items="start md:center">
       <span text-neutral-700 nq-label>Works with</span>

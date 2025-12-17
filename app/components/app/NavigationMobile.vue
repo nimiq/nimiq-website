@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger } from 'vaul-vue'
 
-const { data: site } = await useSite()
-const copyrightNotice = computed(() => site.value?.footer.copyright ?? '')
+const site = await useSite()
+const copyrightNotice = site.footer.copyright ?? ''
 </script>
 
 <template>

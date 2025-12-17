@@ -1,12 +1,8 @@
 <script setup lang="ts">
 const { withSocials = false, bgColor = 'darkblue' } = defineProps<{ withSocials?: boolean, bgColor?: 'grey' | 'darkblue' }>()
 
-const { data: site } = await useSite()
-const socialLinks = computed(() => {
-  if (!site.value?.socials)
-    return {}
-  return Object.fromEntries(site.value.socials.map(s => [s.id, s.link]))
-})
+const site = await useSite()
+const socialLinks = Object.fromEntries(site.socials?.map(s => [s.id, s.link]) ?? [])
 
 const rows = computed(() => 5)
 const { width } = useWindowSize()

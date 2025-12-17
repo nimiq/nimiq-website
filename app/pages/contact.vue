@@ -1,11 +1,8 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('contact', () => queryCollection('contact').first())
-if (!data.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+const page = await queryCollection('contact').first()!
 
-const page = data.value
-const title = `${page.hero.headline} | Nimiq`
-const description = page.hero.subline
+const title = page.seo?.title || page.hero?.title || 'Contact Nimiq'
+const description = page.seo?.description || page.hero?.description
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/contact' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/contact' }] })
 </script>

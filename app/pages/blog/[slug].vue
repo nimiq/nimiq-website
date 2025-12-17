@@ -16,8 +16,6 @@ const { data: surroundings } = await useAsyncData(`blog-surroundings-${slug}`, (
 const prev = computed(() => surroundings.value?.[0])
 const next = computed(() => surroundings.value?.[1])
 
-const readingTime = computed(() => calculateReadingTime(post.value?.description || ''))
-
 const meta = {
   title: post.value.title,
   description: post.value.description,
@@ -54,7 +52,7 @@ onMounted(() => {
           </address>
           <div rounded-full bg-neutral-500 size-4 hidden sm:block />
           <p text-neutral-800>
-            {{ readingTime }} min
+            {{ post.readingTime }} min
           </p>
         </div>
 

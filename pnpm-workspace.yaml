@@ -5,12 +5,18 @@ catalog:
   '@nuxt/hints': 1.0.0-alpha.3
   '@nuxthub/core': 0.10.1
   '@types/js-yaml': ^4.0.9
+  '@vitest/browser': ^4.0.16
   dotenv: ^17.2.3
   js-yaml: ^4.1.0
   marked: ^17.0.1
+  mdream: ^0.15.3
   nuxt-link-checker: ^4.3.9
   nuxt-studio: 1.0.0-beta.0
+  pixelmatch: ^7.1.0
+  playwright: ^1.57.0
+  pngjs: ^7.0.0
   tsx: ^4.20.6
+  vitest: ^4.0.16
 catalogs:
   build:
     '@nuxt/kit': ^4.0.0

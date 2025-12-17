@@ -1,12 +1,9 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('nimiq-pay', () => queryCollection('nimiqPay').first())
-if (!data.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+const page = await queryCollection('nimiqPay').first()!
 
-const page = data.value
-const title = page.meta?.title || 'Nimiq Pay'
-const description = page.meta?.description || ''
-useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogImage: page.meta?.image, ogUrl: 'https://nimiq.com/nimiq-pay' })
+const title = page.seo?.title || page.hero?.title || 'Nimiq Pay'
+const description = page.seo?.description || page.hero?.description
+useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/nimiq-pay' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
 </script>
 
@@ -17,7 +14,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
         <HeroPay v-bind="page.hero" />
       </section>
 
-      <ContentTiltedMedia v-bind="page.media" :overlaps-next-section="false" />
+      <TiltedMedia v-bind="page.media" :overlaps-next-section="false" />
 
       <section nq-section-gap bg-neutral-100>
         <GridLogos v-bind="page.logos" />
@@ -36,11 +33,11 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
       </section>
 
       <section nq-section-gap bg-neutral-0>
-        <ContentRichTextCards :items="page.about.items" />
+        <RichTextCards :items="page.about.items" />
       </section>
 
       <section nq-section-gap bg-neutral-100>
-        <ContentRichTextCarousel v-bind="page.textCarousel" variation="default" />
+        <RichTextCarousel v-bind="page.textCarousel" variation="default" />
       </section>
 
       <section nq-section-gap bg-neutral-0>
@@ -48,7 +45,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
       </section>
 
       <section nq-section-gap bg-neutral-0>
-        <ContentRichTextCarousel v-bind="page.pooling.carousel" variation="withTabs" />
+        <RichTextCarousel v-bind="page.pooling.carousel" variation="withTabs" />
       </section>
 
       <section nq-section-gap bg-neutral-0>
@@ -56,7 +53,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
       </section>
 
       <section nq-section-gap bg-neutral-0>
-        <ContentZigZag :items="page.discover.items" />
+        <ZigZag :items="page.discover.items" />
       </section>
     </main>
   </NuxtLayout>

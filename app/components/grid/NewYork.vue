@@ -20,21 +20,23 @@ const [DefineStats, ReuseStat] = createReusableTemplate<{ label?: string, value?
     </div>
 
     <ReuseStat v-if="blocks[0]?.stats[0]" :label="blocks[0].stats[0].label" :value="blocks[0].stats[0].stat" style="grid-area: block1-stat1" />
+    <ReuseStat v-if="blocks[0]?.stats[1]" :label="blocks[0].stats[1].label" :value="blocks[0].stats[1].stat" style="grid-area: block1-stat2" />
 
     <div style="grid-area: block2-image" ring="1.5 neutral-200" h="128 lg:192 md:240" rounded-6 bg-white of-hidden>
       <NuxtImg v-if="blocks[1]" :src="blocks[1].image" size-full object-cover />
     </div>
 
     <ReuseStat v-if="blocks[1]?.stats[0]" :label="blocks[1].stats[0].label" :value="blocks[1].stats[0].stat" style="grid-area: block2-stat1" />
+    <ReuseStat v-if="blocks[1]?.stats[1]" :label="blocks[1].stats[1].label" :value="blocks[1].stats[1].stat" style="grid-area: block2-stat2" />
   </div>
 </template>
 
 <style scoped>
 .multiple-images {
-  grid-template-areas: 'block1-image' 'block1-stat1' 'block2-image' 'block2-stat1';
+  grid-template-areas: 'block1-image' 'block1-stat1' 'block1-stat2' 'block2-image' 'block2-stat1' 'block2-stat2';
 
   @screen lg {
-    grid-template-areas: 'block1-image block2-stat1' 'block1-image block2-image' 'block1-stat1 block2-image';
+    grid-template-areas: 'block1-image block2-stat1' 'block1-image block2-stat2' 'block1-image block2-image' 'block1-stat1 block2-image' 'block1-stat2 block2-image';
   }
 }
 </style>

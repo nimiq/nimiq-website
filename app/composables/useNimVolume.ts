@@ -13,6 +13,19 @@ function isHistohourSupportedCurrency(currency: FiatCurrency): currency is Histo
 }
 
 export function useNimVolume() {
+  // Skip during SSR - volume data is client-side only
+  if (import.meta.server) {
+    return {
+      volumeUsd: computed(() => 0),
+      volumeFormatted: computed(() => '0'),
+      volumeChange: computed(() => 0),
+      volumeStatus: readonly(ref('pending')),
+      error: readonly(ref(null)),
+      volumeIsLoading: computed(() => true),
+      refreshVolume: () => {},
+    }
+  }
+
   const { currencyInfo } = useUserCurrency()
   const { price } = useNimPrice()
 

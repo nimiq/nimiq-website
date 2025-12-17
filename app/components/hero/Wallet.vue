@@ -1,17 +1,19 @@
 <script setup lang="ts">
-const { headline, subline, link = 'https://wallet.nimiq.com' } = defineProps<{ headline: string, subline: string, link?: string }>()
+const { title, description, link } = defineProps<{ title: string, description?: string, link?: { href: string, label?: string } }>()
+const linkHref = computed(() => link?.href || 'https://wallet.nimiq.com')
+const isExternal = computed(() => linkHref.value.startsWith('http'))
 </script>
 
 <template>
   <div flex="grow ~ col justify-center items-center" px-24 text-center z-10>
     <h1 nq-heading-lg text-neutral-0 whitespace-pre-line>
-      {{ headline.replace(/\\L/g, '\n') }}
+      {{ title.replace(/\\L/g, '\n') }}
     </h1>
-    <p text="neutral-800 f-xl" mt-24 max-w-prose whitespace-pre-line>
-      {{ subline }}
+    <p v-if="description" text="neutral-800 f-xl" mt-24 max-w-prose whitespace-pre-line>
+      {{ description }}
     </p>
-    <NuxtLink :to="link" external mt-40 nq-arrow nq-pill-lg nq-pill-blue target="_blank">
-      Go to Wallet
+    <NuxtLink :to="linkHref" :external="isExternal" mt-40 nq-arrow nq-pill-lg nq-pill-blue :target="isExternal ? '_blank' : undefined">
+      {{ link?.label || 'Go to Wallet' }}
     </NuxtLink>
   </div>
 

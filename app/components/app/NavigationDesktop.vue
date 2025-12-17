@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import { refDebounced } from '@vueuse/core'
 
-const { data: site } = await useSite()
+const site = await useSite()
 
 // if we are in / then is home
 const route = useRoute()
 const isHome = route.fullPath === '/'
 
 // Get specific navigation groups
-const appsGroup = computed(() => site.value?.navigation?.find(g => g.label === 'Apps'))
-const techGroup = computed(() => site.value?.navigation?.find(g => g.label === 'Technology'))
-const communityGroup = computed(() => site.value?.navigation?.find(g => g.label === 'Community'))
-const projectGroup = computed(() => site.value?.navigation?.find(g => g.label === 'Project'))
+const appsGroup = site.navigation?.find(g => g.label === 'Apps')
+const techGroup = site.navigation?.find(g => g.label === 'Tech')
+const communityGroup = site.navigation?.find(g => g.label === 'Community')
+const projectGroup = site.navigation?.find(g => g.label === 'Project')
 
 // Social media items for specific sections
-const techSocials = computed(() => site.value?.socials?.filter(s => ['reddit', 'discord', 'telegram'].includes(s.id)) ?? [])
-const allSocials = computed(() => site.value?.socials ?? [])
-const github = computed(() => site.value?.socials?.find(s => s.id === 'github'))
+const techSocials = site.socials?.filter(s => ['reddit', 'discord', 'telegram'].includes(s.id)) ?? []
+const allSocials = site.socials ?? []
+const github = site.socials?.find(s => s.id === 'github')
 
 // Apps hover state for image preview
 const selectedApp = ref(0)
@@ -186,7 +186,7 @@ watchEffect(() => {
       <NavigationMenuItem>
         <NavigationMenuLink as-child>
           <NuxtLink to="https://wallet.nimiq.com" ml-16 nq-pill-lg :class="isHome ? 'home nq-pill-secondary' : 'nq-pill-blue'">
-            Get Started
+            Get started
           </NuxtLink>
         </NavigationMenuLink>
       </NavigationMenuItem>

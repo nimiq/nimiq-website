@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineProps<{ bgColor: string }>()
-const { data: site } = await useSite()
-const copyrightNotice = computed(() => site.value?.footer.copyright ?? '')
+const site = await useSite()
+const copyrightNotice = site.footer.copyright ?? ''
 </script>
 
 <template>

@@ -1,17 +1,11 @@
 <script setup lang="ts">
-interface HighlightItem {
-  highlight?: string
-}
-
-interface Props {
-  headline: string
-  subline?: string
+const { title, description, appStore, playStore, items } = defineProps<{
+  title: string
+  description?: string
   appStore?: string
   playStore?: string
-  items?: HighlightItem[]
-}
-
-const { headline, subline, appStore, playStore, items } = defineProps<Props>()
+  items?: { highlight?: string }[]
+}>()
 
 const highlightsItems = computed(() => items?.map(i => i.highlight?.trim()).filter(Boolean) || [])
 </script>
@@ -19,12 +13,12 @@ const highlightsItems = computed(() => items?.map(i => i.highlight?.trim()).filt
 <template>
   <div>
     <h1 nq-heading>
-      {{ headline }}
+      {{ title }}
     </h1>
-    <p v-if="subline" text-neutral-700 font-400 mx-auto max-w-prose f-mt-xs dark:text-neutral-900>
-      {{ subline }}
+    <p v-if="description" text-neutral-700 font-400 mx-auto max-w-prose f-mt-xs dark:text-neutral-900>
+      {{ description }}
     </p>
-    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${headline}`" role="list" f-mt-xs flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
+    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${title}`" role="list" f-mt-xs flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
       <li v-for="(highlight, i) in highlightsItems" :key="i" contents>
         <div v-if="i > 0" rounded-full bg-neutral-500 size-6 />
         <span text="f-xl green" font-semibold>{{ highlight }}</span>

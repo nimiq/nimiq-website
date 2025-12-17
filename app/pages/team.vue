@@ -1,26 +1,24 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('team', () => queryCollection('team').first())
-if (!data.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+const page = await queryCollection('team').first()!
 
-const page = data.value
-const title = `${page.hero.headline} | Nimiq`
-const description = page.hero.subline
-useSeoMeta({ title, description, ogTitle: title, ogDescription: description })
+const title = page.seo?.title || page.hero?.title || 'Team'
+const description = page.seo?.description || page.hero?.description
+useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/team' })
+useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/team' }] })
 </script>
 
 <template>
   <NuxtLayout>
     <main>
-      <section bg-neutral-0>
+      <section nq-section-gap bg-neutral-0>
         <Hero v-bind="page.hero" />
       </section>
 
-      <section bg-neutral-0>
+      <section nq-section-gap bg-neutral-0>
         <TeamMembers v-bind="page.members" />
       </section>
 
-      <section bg-neutral-100>
+      <section nq-section-gap bg-neutral-100>
         <Headline v-bind="page.cta" />
       </section>
     </main>

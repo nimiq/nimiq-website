@@ -1,14 +1,9 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('terms', () => queryCollection('terms').first())
-if (!data.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+const page = await queryCollection('terms').first()!
+const content = await parseMarkdown(page.content)
 
-const page = data.value
-const { data: contentData } = await useAsyncData('terms-content', () => parseMarkdown(page.content))
-const content = contentData.value!
-
-const title = `${page.hero.headline} | Nimiq`
-const description = page.hero.subline
+const title = page.seo?.title || page.hero?.title || 'Terms | Nimiq'
+const description = page.seo?.description || page.hero?.description
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/terms' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/terms' }] })
 </script>
@@ -21,7 +16,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/terms' }] })
       </section>
 
       <section nq-section-gap bg-neutral-0>
-        <ContentRenderer :value="content" article nq-prose text-20 mx-auto max-w-prose />
+        <ContentRenderer :value="content" tag="article" f-prose text-neutral-900 children:mx-auto children:max-w-prose />
       </section>
     </main>
   </NuxtLayout>

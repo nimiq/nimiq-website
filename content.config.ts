@@ -26,11 +26,12 @@ const allAppsSource = defineCollectionSource({
 // SHARED SCHEMAS
 // ============================================================================
 
-const metaSchema = z.object({ title: z.string(), description: z.string(), image: z.string().optional() })
 const linkSchema = z.object({ text: z.string(), href: z.string() })
+const seoSchema = z.object({ title: z.string().optional(), description: z.string().optional() })
+const heroLinkSchema = z.object({ href: z.string(), label: z.string().optional() })
 
 // Hero schema
-const heroSchema = z.object({ headline: z.string(), subline: z.string(), link: z.string().optional() })
+const heroSchema = z.object({ title: z.string(), description: z.string().optional(), link: heroLinkSchema.optional() })
 const organizationSchema = z.object({ logo: z.string(), url: z.string() })
 const highlightSchema = z.object({ highlight: z.string() })
 
@@ -41,7 +42,7 @@ const techGridSchema = z.object({ headline: z.string(), subline: z.string().opti
 const largeGridItemSchema = gridItemSchema.extend({ shape: z.string().optional() })
 
 // Headline schema with actions
-const actionSchema = z.object({ href: z.string(), label: z.string().optional(), icon: z.string().optional(), variant: z.enum(['arrow', 'primary', 'secondary']).optional() })
+const actionSchema = z.object({ href: z.string(), label: z.string().optional(), icon: z.string().optional(), variant: z.string().optional() })
 const headlineSchema = z.object({ headline: z.string(), subline: z.string().optional(), label: z.string().optional(), icon: z.string().optional(), actions: z.array(actionSchema).optional() })
 
 // Media schemas
@@ -59,11 +60,11 @@ const pillLinkSchema = z.object({ item: z.string(), label: z.string().optional()
 const appItemSchema = z.object({ highlight: z.boolean().optional().default(false), title: z.string(), description: z.string(), preview: z.string(), item: z.string(), link: z.string() })
 
 // Text carousel schemas
-const textCarouselItemSchema = z.object({ slide: z.string() })
+const textCarouselItemSchema = z.object({ slide: z.string().optional(), key: z.string().optional(), buttonLogo: z.string().optional(), content: z.string().optional(), comingSoon: z.boolean().optional(), comingSoonLabel: z.string().optional() })
 const textCarouselSchema = z.object({ content: z.string().optional(), items: z.array(textCarouselItemSchema) })
 
 // Other section schemas
-const logosGridSchema = z.object({ label: z.string().optional(), items: z.array(z.object({ logo: z.string(), link: z.string() })) })
+const logosGridSchema = z.object({ label: z.string().optional(), items: z.array(z.object({ logo: z.string(), link: z.string(), alt: z.string().optional() })) })
 const zigzagItemSchema = z.object({ headline: z.string(), description: z.string().optional(), image: z.string().optional(), label: z.string().optional(), buttonLabel: z.string().optional(), buttonHref: z.string().optional(), secondaryButtonLabel: z.string().optional(), secondaryButtonLabelMobile: z.string().optional(), secondaryButtonHref: z.string().optional() })
 const steppedSlidesSchema = z.object({ headline: z.string(), description: z.string().optional(), items: z.array(z.object({ image: z.string(), label: z.string(), description: z.string() })) })
 
@@ -100,7 +101,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'index.md',
       schema: z.object({
-        meta: metaSchema,
+        seo: seoSchema.optional(),
         hero: heroSchema.extend({ organizations: z.array(organizationSchema).optional() }),
         appsLink: pillLinkSchema,
         apps: z.object({ headline: headlineSchema, items: z.array(appItemSchema) }),
@@ -116,6 +117,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'about.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         media: mediaSchema,
         dive: z.object({ headline: headlineSchema, items: z.array(gridItemSchema) }),
@@ -130,7 +132,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'nimiq-pay.md',
       schema: z.object({
-        meta: metaSchema,
+        seo: seoSchema.optional(),
         hero: heroSchema.extend({ playStore: z.string().optional(), appStore: z.string().optional(), items: z.array(highlightSchema).optional() }),
         media: mediaSchema,
         logos: logosGridSchema,
@@ -147,11 +149,13 @@ export default defineContentConfig({
       type: 'page',
       source: 'wallet.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         playground: z.object({ url: z.string() }),
         consensus: z.object({ label: z.string(), headline: z.string(), subline: z.string(), thisIsYou: z.string(), connect: z.string(), connecting: z.string() }),
         intro: headlineSchema,
         currencies: z.object({ items: z.array(z.object({ name: z.string(), crypto: z.string(), mainFeature: z.string(), secondFeature: z.string(), thirdFeature: z.string(), fee: z.string(), time: z.string(), adjective: z.string() })), feeLabel: z.string(), timeLabel: z.string() }),
+        staking: headlineSchema.extend({ stakingNote: z.string().optional() }),
         banner: z.object({ overlapsNextSection: z.boolean().optional(), icon: z.string(), label: z.string(), headline: z.string(), subline: z.string(), link: z.string(), image: z.string() }),
         seed: z.object({ headline: headlineSchema, items: z.array(gridItemSchema) }),
         challenge: z.object({ headline: z.string(), subline: z.string(), guessLabel: z.string(), chanceLabel: z.string(), reward: z.string() }),
@@ -163,6 +167,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'buy-and-sell.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema.extend({ nimPriceChartLabel: z.string(), marketCapLabel: z.string(), marketCapInfo: z.string(), volume24HLabel: z.string(), volume24HInfo: z.string(), totalSupplyLabel: z.string(), totalSupplyInfo: z.string(), maxSupplyLabel: z.string(), maxSupplyInfo: z.string(), poweredByLogo: z.string(), poweredByLink: z.string(), poweredByLabel: z.string() }),
         intro: headlineSchema,
         wallet: z.object({ headline: headlineSchema, content: walletHoverSchema }),
@@ -176,6 +181,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'community.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         stats: newYorkGridSchema,
         countries: z.object({ headline: headlineSchema, flags: z.string() }),
@@ -191,6 +197,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'team.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         members: z.object({ items: z.array(teamMemberSchema) }),
         cta: headlineSchema,
@@ -200,24 +207,28 @@ export default defineContentConfig({
     litepaperPos: defineCollection({
       type: 'page',
       source: 'litepaper-pos.md',
-      schema: z.object({ headline: z.string(), subline: z.string(), versionNumber: z.string(), date: z.string() }),
+      schema: z.object({ seo: seoSchema.optional(), headline: z.string(), subline: z.string(), versionNumber: z.string(), date: z.string() }),
     }),
 
     litepaperPow: defineCollection({
       type: 'page',
       source: 'litepaper-pow.md',
-      schema: z.object({ headline: z.string(), subline: z.string(), versionNumber: z.string(), date: z.string() }),
+      schema: z.object({ seo: seoSchema.optional(), headline: z.string(), subline: z.string(), versionNumber: z.string(), date: z.string() }),
     }),
 
     cryptopaymentlink: defineCollection({
       type: 'page',
       source: 'cryptopaymentlink.md',
       schema: z.object({
-        hero: heroSchema.extend({ items: z.array(highlightSchema).optional() }),
-        media: mediaSchema,
-        features: z.object({ headline: headlineSchema, items: z.array(gridItemSchema) }),
-        about: z.object({ headline: headlineSchema, items: z.array(cardSchema) }),
-        steps: steppedSlidesSchema,
+        seo: seoSchema.optional(),
+        hero: heroSchema.extend({ linkHref: z.string().optional(), linkLabel: z.string().optional(), items: z.array(highlightSchema).optional() }),
+        tiltedMedia: z.object({ src: z.string(), poster: z.string().optional() }).optional(),
+        simpleHeadline: headlineSchema.optional(),
+        grid: gridSchema.optional(),
+        whatIsCryptopaymentlinkHeadline: headlineSchema.optional(),
+        textCards: z.object({ items: z.array(cardSchema) }).optional(),
+        steppedSlides: steppedSlidesSchema.optional(),
+        finalCta: headlineSchema.optional(),
       }),
     }),
 
@@ -225,6 +236,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'blog.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         grid: z.object({ labelBy: z.string(), labelLearnMore: z.string(), mediaType: z.string().optional() }),
         newsletter: z.object({ cta: z.string() }),
@@ -235,7 +247,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'apps.md',
       schema: z.object({
-        meta: metaSchema,
+        seo: seoSchema.optional(),
         hero: heroSchema,
         cta: headlineSchema,
       }),
@@ -245,6 +257,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'albatross.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         details: z.object({ items: z.array(z.object({ headline: z.string(), description: z.string().optional() })) }),
       }),
@@ -254,6 +267,8 @@ export default defineContentConfig({
       type: 'page',
       source: 'bug-bounty.md',
       schema: z.object({
+        seo: seoSchema.optional(),
+        hero: heroSchema,
         content: z.string(),
       }),
     }),
@@ -262,6 +277,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'contact.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         social: z.object({ headline: headlineSchema, grid: socialMediaGridSchema }),
         form: contactSchema,
@@ -271,18 +287,37 @@ export default defineContentConfig({
     newsletterPage: defineCollection({
       type: 'page',
       source: 'newsletter.md',
-      schema: z.object({}),
+      schema: z.object({
+        seo: seoSchema.optional(),
+        hero: heroSchema,
+        form: z.object({
+          emailLabel: z.string(),
+          permissionTitle: z.string(),
+          permissionDescription: z.string(),
+          permissionCheckbox: z.string(),
+          interestsTitle: z.string(),
+          interestsDescription: z.string(),
+          interests: z.array(z.string()),
+          productsTitle: z.string(),
+          products: z.array(z.string()),
+          submitButton: z.string(),
+        }),
+      }),
     }),
 
     oasis: defineCollection({
       type: 'page',
       source: 'oasis.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         secondHero: heroSchema,
+        centralAmerica: z.object({ title: z.string(), description: z.string(), socials: z.array(z.object({ icon: z.string(), href: z.string() })) }).optional(),
+        notAvailable: z.object({ title: z.string(), description: z.string(), link: z.object({ label: z.string(), href: z.string() }).optional(), socials: z.array(z.object({ icon: z.string(), href: z.string() })) }).optional(),
         about: z.object({ headline: headlineSchema, items: z.array(largeGridItemSchema) }),
         howItWorks: z.object({ headline: headlineSchema, embedUrl: z.string(), title: z.string().optional() }),
         openTech: headlineSchema,
+        integrations: z.array(z.object({ title: z.string(), description: z.string(), links: z.array(z.object({ label: z.string(), href: z.string() })) })).optional(),
         collaborate: headlineSchema,
         form: contactSchema,
       }),
@@ -292,6 +327,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'onepager.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         content: z.string(),
       }),
@@ -301,6 +337,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'podcast.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         newsletter: z.object({ cta: z.string() }),
         grid: z.object({ labelBy: z.string(), labelLearnMore: z.string(), mediaType: z.string().optional() }),
@@ -311,6 +348,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'privacy.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         content: contentSchema,
       }),
@@ -320,6 +358,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'roadmap.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         milestones: z.object({ label: z.string(), firstLayer: z.string(), secondLayer: z.string(), thirdLayer: z.string() }),
         newsletter: z.object({ cta: z.string() }),
@@ -330,16 +369,16 @@ export default defineContentConfig({
       type: 'page',
       source: 'staking.md',
       schema: z.object({
-        meta: metaSchema,
+        seo: seoSchema.optional(),
         hero: heroSchema,
         quote: z.object({ text: z.string(), author: z.string().optional() }),
         calculator: z.object({ headline: headlineSchema, amountLabel: z.string(), periodLabel: z.string(), rewardsLabel: z.string() }),
-        distribution: z.object({ headline: headlineSchema }),
-        video: z.object({ headline: headlineSchema, embedUrl: z.string(), poster: z.string().optional(), title: z.string().optional() }),
+        distribution: z.object({ headline: headlineSchema, stakedHeadline: z.string().optional(), stakedDescription: z.string().optional(), distributedHeadline: z.string().optional(), distributedDescription: z.string().optional() }),
+        video: z.object({ headline: headlineSchema, embedUrl: z.string(), poster: z.string().optional(), title: z.string().optional(), description: z.string().optional() }),
         delegate: headlineSchema,
         banner: z.object({ overlapsNextSection: z.boolean().optional(), items: z.array(bannerItemSchema) }),
-        faq: z.object({ items: z.array(z.object({ question: z.string(), answer: z.string() })) }),
-        wallet: headlineSchema,
+        faq: z.object({ forumLink: z.object({ text: z.string(), href: z.string() }).optional(), items: z.array(z.object({ question: z.string(), answer: z.string() })) }),
+        wallet: headlineSchema.extend({ stakingNote: z.string().optional() }),
       }),
     }),
 
@@ -347,6 +386,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'terms.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         content: z.string(),
       }),
@@ -356,7 +396,8 @@ export default defineContentConfig({
       type: 'page',
       source: 'activation-terms.md',
       schema: z.object({
-        hero: z.object({ headline: z.string(), subline: z.string() }),
+        seo: seoSchema.optional(),
+        hero: z.object({ title: z.string(), description: z.string().optional() }),
         content: z.string(),
       }),
     }),
@@ -365,6 +406,7 @@ export default defineContentConfig({
       type: 'page',
       source: 'community-funding.md',
       schema: z.object({
+        seo: seoSchema.optional(),
         hero: heroSchema,
         stats: z.object({ items: z.array(z.object({ label: z.string(), value: z.string() })) }),
         steps: steppedSlidesSchema,
@@ -381,7 +423,7 @@ export default defineContentConfig({
     blog: defineCollection({
       type: 'page',
       source: 'blog/*.md',
-      schema: z.object({ title: z.string(), description: z.string(), slug: z.string(), publishedAt: z.string(), updatedAt: z.string().optional(), authors: z.array(z.string()), image: z.string().optional() }),
+      schema: z.object({ title: z.string(), description: z.string(), slug: z.string(), publishedAt: z.string(), updatedAt: z.string().optional(), authors: z.array(z.string()), image: z.string().optional(), readingTime: z.number().optional() }),
     }),
 
     // ========================================================================

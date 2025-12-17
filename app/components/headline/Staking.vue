@@ -26,13 +26,13 @@ const id = `terms-note-${useId()}`
       <circle cx="73.76" cy="73.76" r="41.76" fill="url(#a)" />
       <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M72.53 75.07v16.61m0-16.61C60.13 75.07 56 68.33 56 55c15.5 0 16.53 6.64 16.53 20.07Zm18.71-9.5c0 12.4-6.31 18.89-18.71 18.89 0-17.56 5.28-18.89 18.71-18.89Z" translate-y-3 />
     </svg>
-    <h2 nq-heading text="wrap md:balance" f-mt-md>
+    <h1 nq-heading text="wrap md:balance" f-mt-md>
       {{ headlineParts[0] }}
       <span bg="green/20" data-percentage text-white px-10 py-3 rounded-4 inline-flex="~">
         ~{{ annualRewardPercentage }}<Icon name="nimiq:asterisk" class="text-14 translate-y-8" :aria-labelledby="id" />
       </span>
       {{ headlineParts[1] }}
-    </h2>
+    </h1>
     <p v-if="subline" text="white/80 md:center" f-mt-sm>
       {{ subline }}
     </p>

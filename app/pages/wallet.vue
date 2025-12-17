@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('wallet', () => queryCollection('wallet').first())
-if (!data.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+const page = await queryCollection('wallet').first()!
 
-const page = data.value
-useSeoMeta({ title: 'Nimiq Wallet', description: page.hero.subline, ogTitle: 'Nimiq Wallet', ogDescription: page.hero.subline, ogUrl: 'https://nimiq.com/wallet' })
+const title = page.seo?.title || page.hero?.title || 'Nimiq Wallet'
+const description = page.seo?.description || page.hero?.description
+useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/wallet' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
 </script>
 
@@ -30,6 +29,12 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
       <section nq-section-gap bg-neutral-0>
         <ShowcaseCurrency v-bind="page.currencies" />
       </section>
+
+      <section dark class="staking-gradient" scheme-dark relative>
+        <HeadlineStaking v-bind="page.staking" />
+      </section>
+
+      <BannerWallet v-bind="page.banner" />
 
       <section nq-section-gap bg-neutral-0>
         <Headline v-bind="page.seed.headline" />

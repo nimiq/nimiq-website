@@ -13,7 +13,7 @@ const { items: animatedWords } = useRandomAnimatedTexts(wordsList.flatMap(row =>
 const { publicAddress: prizeAddress, firstRealWords: firstRealWordsStr } = useRuntimeConfig().public.wordsChallenge
 const firstRealWords = firstRealWordsStr.split(',')
 
-const userInputs = reactive([ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref(''), ref('')])
+const userInputs = reactive(Array.from({ length: 12 }, () => ref('')))
 if (import.meta.env.DEV)
   userInputs.forEach(input => input.value = 'dummy')
 const isChallengeFinished = ref(false)

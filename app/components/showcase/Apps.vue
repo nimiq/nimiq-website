@@ -8,11 +8,7 @@ import { createReusableTemplate } from '@vueuse/core'
 
 const { apps } = defineProps<{ apps: AppItem[], banner?: { items: BannerItem[] } }>()
 const bannerPositions = ['bottom--40 right--30 md:right-88 md:bottom--44 xl:right-180', 'invisible md:visible md:right--18 md:bottom-50 lg:bottom-100 lg:right--32 xl:right-70 xl:bottom-60', 'invisible md:visible md:left-88 md:bottom--52 xl:left-180', 'invisible md:visible md:left--36 md:bottom-42 lg:bottom-92 xl:left-70 xl:bottom-60', 'invisible xl:visible xl:bottom--40 xl:left--30', 'invisible xl:visible xl:bottom--40 xl:right--30']
-const bannerColors: Record<string, string> = { 'Games': 'var(--colors-purple)', 'Insights': 'var(--colors-green)', 'Faucet': '#FA7268', 'E-commerce': 'var(--colors-blue)', 'Infrastructure': 'var(--colors-red)', 'Wallets': 'var(--colors-orange)', 'Bots': 'var(--colors-gold)' }
 const bannerLogoClasses: Record<string, string> = { 'NimWorld': 'filter-brightness-0 filter-invert scale-75', 'Trust Wallet': 'scale-150' }
-function shuffle<T>(arr: T[]): T[] {
-  return [...arr].sort(() => Math.random() - 0.5)
-}
 
 interface AppItem { highlight?: boolean, title: string, description: string, preview: string, item: string, link: string }
 interface BannerItem { headline: string, subline?: string, link?: string }
@@ -29,7 +25,7 @@ const bgApps = ref<Array<{ name: string, type: string, logo: string, link: strin
 onMounted(() => {
   if (!appsData.value?.communityApps)
     return
-  bgApps.value = shuffle(appsData.value.communityApps).slice(0, 6).map((app, i) => ({ ...app, color: bannerColors[app.type] || 'var(--colors-neutral)', classes: bannerPositions[i]! }))
+  bgApps.value = shuffle(appsData.value.communityApps).slice(0, 6).map((app, i) => ({ ...app, classes: bannerPositions[i]! }))
 })
 </script>
 

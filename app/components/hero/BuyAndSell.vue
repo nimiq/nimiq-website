@@ -1,24 +1,27 @@
 <script setup lang="ts">
-interface HeroData {
-  headline: string
-  subline?: string
-  nimPriceChartLabel?: string
-  marketCapLabel?: string
-  marketCapInfo?: string
-  volume24HLabel?: string
-  volume24HInfo?: string
-  totalSupplyLabel?: string
-  totalSupplyInfo?: string
-  maxSupplyLabel?: string
-  maxSupplyInfo?: string
-  poweredByLogo?: string
-  poweredByLink?: string
-  poweredByLabel?: string
-}
+defineProps<{
+  data: {
+    title: string
+    description?: string
+    nimPriceChartLabel?: string
+    marketCapLabel?: string
+    marketCapInfo?: string
+    volume24HLabel?: string
+    volume24HInfo?: string
+    totalSupplyLabel?: string
+    totalSupplyInfo?: string
+    maxSupplyLabel?: string
+    maxSupplyInfo?: string
+    poweredByLogo?: string
+    poweredByLink?: string
+    poweredByLabel?: string
+  }
+}>()
 
-defineProps<{ data: HeroData }>()
-
-const { currency, currencyInfo } = useUserCurrency()
+// SSR-safe currency and locale - only access on client
+const userCurrency = import.meta.client ? useUserCurrency() : { currency: ref('USD'), currencyInfo: computed(() => null) }
+const currency = userCurrency.currency
+const currencyInfo = userCurrency.currencyInfo
 const locale = useLocale()
 
 const { marketCapChange, marketCapFormatted } = useNimMarketCap()
@@ -61,10 +64,10 @@ const error = computed(() => {
 <template>
   <div py="80 md:120" flex="~ col items-center" px-0 text-center bg-neutral-0 relative of-x-clip>
     <h1 nq-heading-lg max-w-prose>
-      {{ data.headline }}
+      {{ data.title }}
     </h1>
-    <p v-if="data.subline" text="neutral-700 f-lg" mt-24 max-w-prose>
-      {{ data.subline }}
+    <p v-if="data.description" text="neutral-700 f-lg" mt-24 max-w-prose>
+      {{ data.description }}
     </p>
 
     <!-- Price chart ribbon -->
@@ -85,7 +88,7 @@ const error = computed(() => {
                 <span text="f-lg neutral" lh-none font-semibold whitespace-nowrap>{{ marketCapFormatted }}</span>
                 <div v-if="marketCapChange" :class="marketCapChange < 0 ? 'text-red' : 'text-green'" flex="~ gap-2 items-center">
                   <Icon name="nimiq:triangle-up" aria-hidden class="size-7" :class="{ 'rotate-180': marketCapChange < 0 }" />
-                  <span lh-none font-semibold f-text-sm>{{ formatPercentage(marketCapChange, locale) }}</span>
+                  <span lh-none font-semibold f-text-sm>{{ formatPercentage(marketCapChange, locale.value) }}</span>
                 </div>
               </div>
               <p text="f-xs neutral-800" lh-none font-normal>
@@ -99,7 +102,7 @@ const error = computed(() => {
                 <span text="f-lg neutral" lh-none font-semibold whitespace-nowrap>{{ volumeFormatted }}</span>
                 <div v-if="volumeChange" :class="volumeChange < 0 ? 'text-red' : 'text-green'" flex="~ gap-2 items-center">
                   <Icon name="nimiq:triangle-up" aria-hidden class="size-7" :class="{ 'rotate-180': volumeChange < 0 }" />
-                  <span lh-none font-semibold f-text-sm>{{ formatPercentage(volumeChange, locale) }}</span>
+                  <span lh-none font-semibold f-text-sm>{{ formatPercentage(volumeChange, locale.value) }}</span>
                 </div>
               </div>
               <p text="f-xs neutral-800" lh-none font-normal>
@@ -136,7 +139,7 @@ const error = computed(() => {
                   <div inset-y-0 absolute left="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, transparent, var(--colors-neutral-0))" />
                   <div right="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, var(--colors-neutral-0), transparent)" inset-y-0 absolute f-w-md />
                   <p text="blue f-3xl" lh-none font-semibold>
-                    {{ formatFiat(historicPrice, currencyInfo, locale) }}
+                    {{ currencyInfo ? formatFiat(historicPrice, currencyInfo, locale.value) : '' }}
                   </p>
                   <NuxtTime :datetime="ts" year="numeric" month="long" day="numeric" text="f-2xs right neutral-700" lh-none nq-label />
                 </div>
@@ -148,11 +151,11 @@ const error = computed(() => {
                 <div inset-y-0 absolute left="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, transparent, var(--colors-neutral-0))" />
                 <div right="[calc(var(--f-side)*-1)]" w="$f-side" style="background-image: linear-gradient(to right in oklab, var(--colors-neutral-0), transparent)" inset-y-0 absolute f-w-md />
                 <p text="blue f-3xl" lh-none font-semibold>
-                  {{ formatFiat(historicPrices.at(-1)![1], currencyInfo, locale) }}
+                  {{ currencyInfo ? formatFiat(historicPrices.at(-1)![1], currencyInfo, locale.value) : '' }}
                 </p>
-                <div v-if="deltaPrice" flex="~ items-center" text="f-2xs neutral-700" lh-none font-semibold>
+                <div v-if="deltaPrice && currencyInfo" flex="~ items-center" text="f-2xs neutral-700" lh-none font-semibold>
                   <Icon name="nimiq:triangle-up" class="mr-4 size-8" :class="{ 'rotate-180': deltaPrice < 0 }" />
-                  <span>{{ formatDecimal(Math.abs(deltaPrice), locale) }} ({{ formatPercentage(deltaPrice / historicPrices.at(-1)![1], locale) }})</span>
+                  <span>{{ formatDecimal(Math.abs(deltaPrice), locale.value) }} ({{ formatPercentage(deltaPrice / historicPrices.at(-1)![1], locale.value) }})</span>
                 </div>
               </div>
             </div>

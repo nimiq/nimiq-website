@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface LogosGridProps {
   label?: string
-  items: { logo: string, link: string }[]
+  items: { logo: string, link: string, alt?: string }[]
 }
 
 defineProps<LogosGridProps>()
@@ -14,9 +14,9 @@ defineProps<LogosGridProps>()
         {{ label }}
       </p>
     </li>
-    <li v-for="({ logo, link }, i) in items" :key="i">
-      <NuxtLink :to="link" external target="_blank" transition-opacity :aria-label="`Partner logo ${i + 1}`">
-        <NuxtImg :src="logo" max-h-36 w-full op="40 hocus:80" />
+    <li v-for="({ logo, link, alt }, i) in items" :key="i">
+      <NuxtLink :to="link" external target="_blank" transition-opacity :aria-label="alt || `Partner logo ${i + 1}`">
+        <NuxtImg :src="logo" :alt="alt" max-h-36 w-full op="40 hocus:80" />
       </NuxtLink>
     </li>
   </ul>

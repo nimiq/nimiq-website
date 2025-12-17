@@ -1,5 +1,11 @@
 export function useNimPrice() {
-  const { currency } = useUserCurrency()
+  // Get currency value, defaulting to USD during SSR
+  const currency = computed(() => {
+    if (import.meta.server)
+      return 'USD'
+    const { currency: userCurrency } = useUserCurrency()
+    return userCurrency.value
+  })
 
   const { data: price, status: priceStatus, error: priceError, refresh: refreshPrice } = useFetch<number>('/api/nim-price', {
     query: computed(() => ({ currency: currency.value })),

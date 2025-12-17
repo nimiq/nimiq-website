@@ -28,10 +28,6 @@ const appColor: Record<AppType, string> = {
 const spotlightApps = ['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map']
 const validTypes: AppType[] = ['Insights', 'E-commerce', 'Games', 'Faucet', 'Promotion', 'Miner', 'Wallets', 'Infrastructure', 'Bots']
 
-function shuffle<T>(arr: T[]): T[] {
-  return [...arr].sort(() => Math.random() - 0.5)
-}
-
 function transformApp(app: { name: string, type: string, logo: string, link: string, description?: string, developer?: string, screenshot?: string }): NimiqApp {
   const type = validTypes.includes(app.type as AppType) ? app.type as AppType : 'Infrastructure'
   return {

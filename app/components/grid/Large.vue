@@ -12,7 +12,7 @@ defineProps<{ items: LargeGridItem[] }>()
           <Icon name="nimiq:logos-nimiq-mono" class="text-360 right--214 top--140 absolute" />
         </div>
       </div>
-      <Icon v-if="item.icon" :name="item.icon" class="nq-prose-compact text-96 text-blue max-w-128 f-mb-sm md:text-120 group-hocus:text-white" :class="{ 'md:mx-auto': item.subline }" />
+      <Icon v-if="item.icon && typeof item.icon === 'string'" :name="item.icon" class="nq-prose-compact text-96 text-blue max-w-128 f-mb-sm md:text-120 group-hocus:text-white" :class="{ 'md:mx-auto': item.subline }" />
       <h3 z-1 text="f-2xl group-hocus:white" :class="{ 'md:text-center': item.subline }">
         {{ item.headline }}
       </h3>

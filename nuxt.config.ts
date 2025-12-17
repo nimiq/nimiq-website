@@ -117,6 +117,7 @@ export default defineNuxtConfig({
         logo: 'https://nimiq.com/logo.png',
       },
     },
+
   }),
 
   runtimeConfig: {

@@ -1,11 +1,8 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('apps', () => queryCollection('appsPage').first())
-if (!data.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+const page = await queryCollection('appsPage').first()!
 
-const page = data.value
-const title = page.meta?.title || 'Apps | Nimiq'
-const description = page.meta?.description || ''
+const title = page.seo?.title || page.hero?.title || page.meta?.title || 'Nimiq Apps'
+const description = page.seo?.description || page.hero?.description || page.meta?.description
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/apps' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/apps' }] })
 </script>
@@ -15,10 +12,10 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/apps' }] })
     <main>
       <section nq-section-gap bg-neutral-0 pt="148 md:153 lg:160">
         <h1 nq-heading>
-          {{ page.hero.headline }}
+          {{ page.hero.title }}
         </h1>
-        <p v-if="page.hero.subline" text="neutral-700 center" mx-auto max-w-60ch f-mt-xs>
-          {{ page.hero.subline }}
+        <p v-if="page.hero.description" text="neutral-700 center" mx-auto max-w-60ch f-mt-xs>
+          {{ page.hero.description }}
         </p>
       </section>
 

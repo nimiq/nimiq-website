@@ -1,13 +1,10 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('home', () => queryCollection('home').first())
-if (!data.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+const page = await queryCollection('home').first()!
 
-const page = data.value
-const title = page.meta.title
-const description = page.meta.description
-useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com' })
-useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com' }] })
+const title = page.seo?.title || page.hero?.title || 'Nimiq'
+const description = page.seo?.description || page.hero?.description
+useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/' })
+useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface Action { href: string, label?: string, icon?: string, variant?: 'arrow' | 'primary' | 'secondary' }
+interface Action { href: string, label?: string, icon?: string, variant?: string }
 defineProps<{ headline: string, subline?: string, label?: string, icon?: string, actions?: Action[] }>()
 
 function isExternal(url: string) {
@@ -19,15 +19,18 @@ function isExternal(url: string) {
     <p v-if="subline" max-w-prose md:text-center>
       {{ subline }}
     </p>
-    <div v-if="actions?.length" flex="~ gap-16 wrap" f-mt-lg md:mx-auto>
-      <template v-for="action in actions" :key="action.href">
-        <NuxtLink v-if="action.variant === 'arrow'" :to="action.href" nq-arrow nq-pill-lg nq-pill-blue />
-        <NuxtLink v-else :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined" nq-pill-lg :class="action.variant === 'secondary' ? 'nq-pill-secondary' : 'nq-pill-blue'" flex="~ items-center gap-8">
+    <ul v-if="actions?.length" flex="~ gap-16 wrap" f-mt-lg md:mx-auto>
+      <li v-for="action in actions" :key="action.href">
+        <NuxtLink v-if="action.variant === 'arrow' && !action.label" :to="action.href" nq-arrow nq-pill-lg nq-pill-blue />
+        <NuxtLink v-else-if="action.variant === 'arrow' && action.label" :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined" nq-pill-lg nq-pill-blue flex="~ items-center gap-8">
+          <span>{{ action.label }}</span>
+        </NuxtLink>
+        <NuxtLink v-else :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined" nq-pill-lg :class="action.variant || 'nq-pill-blue'" flex="~ items-center gap-8">
           <Icon v-if="action.icon" :name="action.icon" class="text-20" />
           <span v-if="action.label">{{ action.label }}</span>
         </NuxtLink>
-      </template>
-    </div>
+      </li>
+    </ul>
     <slot />
   </div>
 </template>

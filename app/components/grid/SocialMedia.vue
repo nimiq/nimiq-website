@@ -16,7 +16,18 @@ const socialMediaMap: Record<string, string> = { twitter: 'x', nimiq_forum: 'nim
 
 function getSocialById(id: string) {
   const mappedId = socialMediaMap[id] || id
-  return site.value?.socials?.find(s => s.id === mappedId)
+  const social = site.value?.socials?.find(s => s.id === mappedId)
+  if (!social) return social
+  // Contact grid shows lowercase labels for some socials, keeps proper case for others
+  const lowercaseIds = ['reddit', 'facebook', 'telegram', 'youtube', 'discord', 'instagram']
+  let label = social.label
+  if (lowercaseIds.includes(mappedId)) {
+    label = social.label.toLowerCase()
+  } else if (mappedId === 'nimiqForum') {
+    // Special case: nimiqForum should have lowercase 'n' in contact grid
+    label = 'nimiqForum'
+  }
+  return { ...social, label }
 }
 
 function filterDefined<T>(arr: (T | undefined | null)[]): T[] {
@@ -37,7 +48,7 @@ const columns = computed(() => [
       <div w-full f-mt-md flex="~ col gap-y-8 lg:gap-y-16">
         <NuxtLink v-for="(social, j) in column.items" :key="j" :to="social.link" external target="_blank" flex="~ row items-center gap-24" :style="`--c:${social.color}`" group nq-hoverable class="hocus:text-white hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c">
           <Icon :name="social.icon" class="size-32 md:size-40" />
-          <span capitalize f-text-lg>{{ social.label }}</span>
+          <span f-text-lg>{{ social.label }}</span>
         </NuxtLink>
       </div>
     </li>

@@ -1,14 +1,9 @@
 <script setup lang="ts">
-const { data } = await useAsyncData('about', () => queryCollection('about').first())
-if (!data.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+const page = await queryCollection('about').first()!
+const missionContent = await parseMarkdown(page.mission)
 
-const page = data.value
-const { data: missionData } = await useAsyncData('about-mission', () => parseMarkdown(page.mission))
-const missionContent = missionData.value!
-
-const title = 'About Nimiq'
-const description = page.hero.subline
+const title = page.seo?.title || page.hero?.title || 'About Nimiq'
+const description = page.seo?.description || page.hero?.description
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/about' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
 </script>
@@ -17,7 +12,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
   <NuxtLayout show-socials-hexagon-bg>
     <main>
       <section nq-section-gap bg-neutral-0>
-        <Hero v-bind="{ headline: page.hero.headline, subline: page.hero.subline }" />
+        <Hero v-bind="page.hero" />
         <ContentTiltedMedia v-bind="page.media" :overlaps-next-section="false" />
       </section>
 
@@ -39,7 +34,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
         <Headline v-bind="page.roadmap" />
       </section>
 
-      <section nq-section-gap dark bg-darkblue scheme-dark>
+      <section nq-section-gap bg-neutral-0>
         <Headline v-bind="page.feedback" />
       </section>
     </main>

@@ -40,3 +40,6 @@ content/
 public/images/blog/
 public/images/exchanges/
 public/images/pages/
+
+# Test screenshots
+tests/screenshots/

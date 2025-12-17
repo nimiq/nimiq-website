@@ -30,9 +30,9 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
   <NuxtLayout :dark-header="false" :show-socials-hexagon-bg="false" footer-bg-color="grey">
     <main>
       <section bg-neutral-100 f-pt-3xl>
-        <h1>{{ page.hero.headline }}</h1>
-        <p v-if="page.hero.subline" text-neutral-800 f-mt-sm>
-          {{ page.hero.subline }}
+        <h1>{{ page.hero.title }}</h1>
+        <p v-if="page.hero.description" text-neutral-800 f-mt-sm>
+          {{ page.hero.description }}
         </p>
       </section>
 

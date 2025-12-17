@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface BannerItem { headline: string, subline?: string, backgroundPattern?: string, label?: string, link?: string }
+interface BannerItem { headline: string, subline?: string, backgroundPattern?: string, label?: string, link?: string, linkLabel?: string }
 defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
 </script>
 
@@ -31,7 +31,10 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
             {{ item.subline }}
           </p>
         </div>
-        <NuxtLink v-if="item.link" :to="item.link" mt="32 md:24" nq-arrow nq-pill-lg nq-pill-blue lg:mr-128 />
+        <NuxtLink v-if="item.link && item.linkLabel" :to="item.link" mt="32 md:24" nq-pill-lg nq-pill-blue lg:mr-128>
+          {{ item.linkLabel }}
+        </NuxtLink>
+        <NuxtLink v-else-if="item.link" :to="item.link" mt="32 md:24" nq-arrow nq-pill-lg nq-pill-blue lg:mr-128 />
       </div>
     </div>
   </div>

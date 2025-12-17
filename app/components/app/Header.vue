@@ -9,9 +9,9 @@ const { isMobileOrTablet } = useDevice()
 const { smaller } = useBreakpoints(breakpointsTailwind)
 const showMobileMenu = computed(() => isMobileOrTablet || smaller('lg').value)
 
-const { data: site } = await useSite()
+const site = await useSite()
 const announcement = computed(() => {
-  const a = site.value?.announcement
+  const a = site.announcement
   if (!a)
     return null
   const now = new Date()

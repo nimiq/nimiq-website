@@ -2,10 +2,10 @@
 import mediumZoom from 'medium-zoom'
 import { SelectContent, SelectItem, SelectItemIndicator, SelectItemText, SelectPortal, SelectRoot, SelectTrigger, SelectValue, SelectViewport } from 'reka-ui'
 
-const { data: posPage } = await useAsyncData('litepaper-pos', () => queryCollection('litepaperPos').first())
-const { data: powPage } = await useAsyncData('litepaper-pow', () => queryCollection('litepaperPow').first())
+const posPage = await queryCollection('litepaperPos').first()
+const powPage = await queryCollection('litepaperPow').first()
 
-if (!posPage.value || !powPage.value)
+if (!posPage || !powPage)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 
 const LitepaperVersion = { V1: '1.0', V2: '2.0' } as const
@@ -18,19 +18,21 @@ const selected = computed({
   set: (v: LitepaperVersionType) => router.replace({ query: { ...route.query, version: v } }),
 })
 
-const currentPage = computed(() => selected.value === LitepaperVersion.V1 ? powPage.value : posPage.value)
+const currentPage = computed(() => selected.value === LitepaperVersion.V1 ? powPage : posPage)
 
-const title = 'Whitepaper | Nimiq'
-const description = 'Nimiq\'s whitepaper - A simple, secure and censorship-resistant payment protocol, native to the web.'
+const title = posPage.seo?.title || posPage.headline || 'Whitepaper | Nimiq'
+const description = posPage.seo?.description || posPage.subline || 'Nimiq\'s whitepaper - A simple, secure and censorship-resistant payment protocol, native to the web.'
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/litepaper' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/litepaper' }] })
 
 const articleEl = useTemplateRef<HTMLElement>('articleEl')
 onMounted(() => {
+  let unwatched = false
   const unwatch = watch(articleEl, (el) => {
-    if (el) {
+    if (el && !unwatched) {
       mediumZoom(':is(header,article) img', { margin: 24, background: 'var(--colors-neutral-0)' })
-      unwatch()
+      unwatched = true
+      nextTick(() => unwatch())
     }
   }, { immediate: true })
 })
