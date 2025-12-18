@@ -9,9 +9,10 @@ const IMAGE_FOLDER = 'assets/images/prismic'
  * Transform a Prismic URL to local path (no baseUrl needed)
  * images.prismic.io/nimiq/ID_filename.ext -> /assets/images/prismic/ID_filename.ext
  * nimiq.cdn.prismic.io/nimiq/ID_filename.ext -> /assets/images/prismic/ID_filename.ext
+ * prismic-io.s3.amazonaws.com/nimiq/ID_filename.ext -> /assets/images/prismic/ID_filename.ext
  */
 export function transformPrismicUrl(url: string): string {
-  if (!url?.includes('prismic.io'))
+  if (!url?.includes('prismic'))
     return url
   // Handle images.prismic.io/nimiq/...
   const imagesMatch = url.match(/images\.prismic\.io\/nimiq\/([^?]+)/)
@@ -25,6 +26,12 @@ export function transformPrismicUrl(url: string): string {
     const fileName = normalizeFileName(cdnMatch[1])
     return `/${IMAGE_FOLDER}/${fileName}`
   }
+  // Handle prismic-io.s3.amazonaws.com/nimiq/...
+  const s3Match = url.match(/prismic-io\.s3\.amazonaws\.com\/nimiq\/([^?]+)/)
+  if (s3Match) {
+    const fileName = normalizeFileName(s3Match[1])
+    return `/${IMAGE_FOLDER}/${fileName}`
+  }
   return url
 }
 
@@ -36,7 +43,7 @@ export function transformPrismicDocument<T>(doc: T): T {
   if (!doc)
     return doc
   if (typeof doc === 'string')
-    return (doc.includes('prismic.io') ? transformPrismicUrl(doc) : doc) as T
+    return (doc.includes('prismic') ? transformPrismicUrl(doc) : doc) as T
   if (Array.isArray(doc))
     return doc.map(transformPrismicDocument) as T
   if (typeof doc === 'object') {

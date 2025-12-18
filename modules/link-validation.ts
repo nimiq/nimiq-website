@@ -16,7 +16,8 @@ const IGNORED_URL_PATTERNS = [
 // URLs that should never appear - build fails if found
 const BLOCKED_URL_PATTERNS = [
   'nimiq.cdn.prismic.io/nimiq/', // block CDN image assets (not API)
-  'images.prismic.io',
+  'images.prismic.io/nimiq/', // block images.prismic.io image assets
+  'prismic-io.s3.amazonaws.com/nimiq', // Prismic S3 storage
 ]
 
 const LINK_WHITELIST = [
