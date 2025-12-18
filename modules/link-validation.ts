@@ -15,7 +15,8 @@ const IGNORED_URL_PATTERNS = [
 
 // URLs that should never appear - build fails if found
 const BLOCKED_URL_PATTERNS = [
-  'nimiq.cdn.prismic.io/nimiq/', // make sure we don't hit this server since it is a mafia
+  'nimiq.cdn.prismic.io', // make sure we don't hit this server since it is a mafia
+  'images.prismic.io',
 ]
 
 const LINK_WHITELIST = [
@@ -28,7 +29,6 @@ const LINK_WHITELIST = [
   /^https?:\/\/nim\.link/,
   /^https?:\/\/cms\.nim\.team/,
   /^https?:\/\/nimiq-migration-monitor\.netlify\.app/,
-  /^https?:\/\/images\.prismic\.io\/nimiq/,
   /^https?:\/\/(www\.)?cplink\.com/,
   /^https?:\/\/(www\.)?cp\.link/,
   /^https?:\/\/(www\.)?cryptopayment\.link/,
