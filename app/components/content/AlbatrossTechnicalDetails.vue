@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { RichTextField } from '@prismicio/client'
 import { ModalName } from '~/components/Modal.vue'
+import { transformPrismicDocument } from '~~/shared/utils/prismic-images-client'
 
 interface AlbatrossTechnicalDetailsSlice {
   primary: {
@@ -11,7 +12,7 @@ interface AlbatrossTechnicalDetailsSlice {
 
 const { slice } = defineProps<{ slice: AlbatrossTechnicalDetailsSlice, slices?: any[] }>()
 const { client } = usePrismic()
-const { data } = await useAsyncData('technical_details', () => client.getSingle('albatrossSingleType').then(doc => doc.data))
+const { data } = await useAsyncData('technical_details', () => client.getSingle('albatrossSingleType').then(doc => transformPrismicDocument(doc.data)))
 const { buttonLabel, slides } = data.value!
 
 const carousel = useCarousel({ initialIndex: 0 })

@@ -1,11 +1,13 @@
 import type { NavigationDocumentData } from '~~/prismicio-types'
+import { transformPrismicDocument } from '~~/shared/utils/prismic-images-client'
 
 export function useNavigation() {
   return useAsyncData('$prismic_navigation', async () => {
     const { client } = usePrismic()
-    const navigation = await client.getSingle('navigation').then(doc => doc.data)
-    if (!navigation)
+    const rawNavigation = await client.getSingle('navigation').then(doc => doc.data)
+    if (!rawNavigation)
       throw new Error('Navigation data not found')
+    const navigation = transformPrismicDocument(rawNavigation)
     // TODO Deprecate this in favour of link with text
     const { hotCtaLink, hotCtaText } = getHotCta(navigation)
     const blocks = getNavigationBlocks(navigation)

@@ -1,6 +1,7 @@
 import type { ClientConfig, ImageField } from '@prismicio/client'
 import type { AllDocumentTypes } from '~~/prismicio-types'
 import { createClient } from '@prismicio/client'
+import { transformPrismicDocument } from '~~/shared/utils/prismic-images-client'
 
 export default cachedEventHandler(async () => {
   const clientConfig = useRuntimeConfig().public.prismic?.clientConfig as ClientConfig
@@ -13,7 +14,7 @@ export default cachedEventHandler(async () => {
       direction: 'desc',
     }],
     pageSize: 100,
-  }).then(res => res.map(exchange => ({
+  }).then(res => res.map(exchange => transformPrismicDocument({
     link: getLink(exchange.data.link),
     name: exchange.data.name,
     logo: exchange.data.logo satisfies ImageField,

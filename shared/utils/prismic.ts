@@ -7,7 +7,14 @@ export const hasText = (text?: RichTextField) => isFilled.richText(text)
 export const getText = (text?: RichTextField) => asText(text) || ''
 export const getLink = (text?: LinkField) => asLink(text) || ''
 export const getDate = (text?: DateField) => asDate(text) || ''
-export const getImage = (img?: ImageField) => asImageSrc(img) || ''
+export function getImage(img?: ImageField) {
+  if (!img?.url)
+    return ''
+  // Handle already-transformed local URLs
+  if (img.url.startsWith('/'))
+    return img.url
+  return asImageSrc(img) || ''
+}
 export function getUrl(obj?: LinkToMediaField | LinkField | LinkToMediaField) {
   if (!obj || !hasLink(obj))
     return ''

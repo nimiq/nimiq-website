@@ -5,6 +5,49 @@
 
 const IMAGE_FOLDER = 'assets/images/prismic'
 
+/**
+ * Transform a Prismic URL to local path (no baseUrl needed)
+ * images.prismic.io/nimiq/ID_filename.ext -> /assets/images/prismic/ID_filename.ext
+ * nimiq.cdn.prismic.io/nimiq/ID_filename.ext -> /assets/images/prismic/ID_filename.ext
+ */
+export function transformPrismicUrl(url: string): string {
+  if (!url?.includes('prismic.io'))
+    return url
+  // Handle images.prismic.io/nimiq/...
+  const imagesMatch = url.match(/images\.prismic\.io\/nimiq\/([^?]+)/)
+  if (imagesMatch) {
+    const fileName = normalizeFileName(imagesMatch[1])
+    return `/${IMAGE_FOLDER}/${fileName}`
+  }
+  // Handle nimiq.cdn.prismic.io/nimiq/...
+  const cdnMatch = url.match(/nimiq\.cdn\.prismic\.io\/nimiq\/([^?]+)/)
+  if (cdnMatch) {
+    const fileName = normalizeFileName(cdnMatch[1])
+    return `/${IMAGE_FOLDER}/${fileName}`
+  }
+  return url
+}
+
+/**
+ * Recursively transform ALL Prismic image URLs in any document/object
+ * Use at data-fetch layer to transform URLs before they reach components
+ */
+export function transformPrismicDocument<T>(doc: T): T {
+  if (!doc)
+    return doc
+  if (typeof doc === 'string')
+    return (doc.includes('prismic.io') ? transformPrismicUrl(doc) : doc) as T
+  if (Array.isArray(doc))
+    return doc.map(transformPrismicDocument) as T
+  if (typeof doc === 'object') {
+    const result: Record<string, unknown> = {}
+    for (const [key, value] of Object.entries(doc))
+      result[key] = transformPrismicDocument(value)
+    return result as T
+  }
+  return doc
+}
+
 // Transform Prismic URL to local URL (client-safe)
 export function transformImageUrl(baseUrl: string, url: string): string {
   if (!url?.includes('prismic'))

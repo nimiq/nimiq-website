@@ -1,27 +1,18 @@
 <script setup lang="ts">
-import type { RTLabelNode, RTLinkNode } from '@prismicio/client'
+import type { RTImageNode, RTLabelNode, RTLinkNode } from '@prismicio/client'
 import type { PrismicRichTextProps } from '@prismicio/vue'
+import { transformPrismicUrl } from '~~/shared/utils/prismic-images-client'
 
 const props = defineProps<PrismicRichTextProps>()
 
 const [DefineLabel, ReuseLabel] = createReusableTemplate<{ node: RTLabelNode & { text: string } }>()
 const [DefineHyperlink, ReuseHyperlink] = createReusableTemplate<{ node: RTLinkNode }>()
-
-// Transform prismic.io URLs to local proxied URLs
-function transformPrismicUrl(url: string): string {
-  if (!url?.includes('images.prismic.io'))
-    return url
-  const match = url.match(/images\.prismic\.io\/nimiq\/([^_]+)_(.+?)(\?|$)/)
-  if (match) {
-    const [, id, filename] = match
-    return `/assets/images/prismic/${id}_${filename}`
-  }
-  return url
-}
+const [DefineImage, ReuseImage] = createReusableTemplate<{ node: RTImageNode }>()
 
 const components = {
   label: ReuseLabel,
   hyperlink: ReuseHyperlink,
+  image: ReuseImage,
 }
 </script>
 
@@ -40,5 +31,8 @@ const components = {
   <DefineHyperlink v-slot="{ node }">
     <a :href="transformPrismicUrl(node.data.url || '')" :target="node.data.target" rel="noopener"><slot /></a>
   </DefineHyperlink>
+  <DefineImage v-slot="{ node }">
+    <img :src="transformPrismicUrl(node.url)" :alt="node.alt || ''" :width="node.dimensions?.width" :height="node.dimensions?.height">
+  </DefineImage>
   <PrismicRichText v-bind="{ ...props, ...$attrs }" :components />
 </template>

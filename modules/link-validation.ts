@@ -15,7 +15,7 @@ const IGNORED_URL_PATTERNS = [
 
 // URLs that should never appear - build fails if found
 const BLOCKED_URL_PATTERNS = [
-  'nimiq.cdn.prismic.io', // make sure we don't hit this server since it is a mafia
+  'nimiq.cdn.prismic.io/nimiq/', // block CDN image assets (not API)
   'images.prismic.io',
 ]
 
@@ -197,8 +197,13 @@ const LINK_WHITELIST = [
   /^https?:\/\/(www\.)?letsencrypt\.org/,
   /^https:\/\/developers\.google\.com/,
 
-  // GitHub
+  // GitHub & Raw Content
   /^https:\/\/github\.com\/(nimiq|nimiq-network)(\/.*)?$/,
+  /^https:\/\/raw\.githubusercontent\.com\/onmax\/nimiq-awesome\//,
+
+  // External Asset CDNs
+  /^https:\/\/prismic-io\.s3\.amazonaws\.com\/nimiq\//,
+  /^https:\/\/[\w-]+\.maillist-manage\.(eu|com)\//,
   /^https:\/\/github\.com\/satoshilabs\/slips\/blob\/master\/slip-0010\.md$/,
   /^https:\/\/github\.com\/consensys\/handel$/,
   /^https:\/\/github\.com\/ethereum\/wiki\/wiki\/Patricia-Tree$/,
@@ -407,6 +412,7 @@ export default defineNuxtModule({
         unusedRegexPatterns: 0,
         htmlFilesProcessed: 0,
         jsFilesProcessed: 0,
+        jsonFilesProcessed: 0,
       }
 
       const httpUrlsByPage = new Map<string, string[]>()
@@ -420,7 +426,7 @@ export default defineNuxtModule({
 
       consola.info('\n📊 Link Validation Statistics:')
       console.table({
-        '📄 Files processed': `${stats.htmlFilesProcessed + stats.jsFilesProcessed} (${stats.htmlFilesProcessed} HTML, ${stats.jsFilesProcessed} JS)`,
+        '📄 Files processed': `${stats.htmlFilesProcessed + stats.jsFilesProcessed + stats.jsonFilesProcessed} (${stats.htmlFilesProcessed} HTML, ${stats.jsFilesProcessed} JS, ${stats.jsonFilesProcessed} JSON)`,
         '🔗 Total links': stats.totalLinks,
         '🏠 Internal links': stats.internalLinks,
         '🌐 External links': stats.externalLinks,
@@ -514,11 +520,17 @@ export default defineNuxtModule({
 const LINK_EXTRACTION_PATTERNS = new Map([
   ['.html', [
     /<a[^>]+href=["']([^"']+)["'][^>]*>/gi,
+    /<img[^>]+src=["']([^"']+)["'][^>]*>/gi,
+    /srcset=["']([^"']+)["']/gi,
+    /<meta[^>]+content=["'](https?:\/\/[^"']+)["'][^>]*>/gi,
   ]],
   ['.js', [
     /"(https?:\/\/[^"]+)"/g,
     /'(https?:\/\/[^']+)'/g,
     /`(https?:\/\/[^`]+)`/g,
+  ]],
+  ['.json', [
+    /"(https?:\/\/[^"]+)"/g,
   ]],
 ])
 
@@ -560,9 +572,32 @@ function extractLinksFromFile(content: string, filePath: string, extension: stri
       if (extension === '.html') {
         const htmlMatches = line.match(pattern) || []
         htmlMatches.forEach((match) => {
+          // Handle <a href="">
           const href = match.match(/href=["']([^"']+)["']/)?.[1]
           if (href) {
             matches.push(href)
+            return
+          }
+          // Handle <img src="">
+          const src = match.match(/src=["']([^"']+)["']/)?.[1]
+          if (src) {
+            matches.push(src)
+            return
+          }
+          // Handle srcset="url1 640w, url2 828w"
+          const srcset = match.match(/srcset=["']([^"']+)["']/)?.[1]
+          if (srcset) {
+            srcset.split(',').forEach((entry) => {
+              const url = entry.trim().split(/\s+/)[0]
+              if (url?.startsWith('http'))
+                matches.push(url)
+            })
+            return
+          }
+          // Handle <meta content="https://...">
+          const content = match.match(/content=["'](https?:\/\/[^"']+)["']/)?.[1]
+          if (content) {
+            matches.push(content)
           }
         })
       }
@@ -593,6 +628,7 @@ function processAllFiles(
   const fileStats = {
     htmlFilesProcessed: 0,
     jsFilesProcessed: 0,
+    jsonFilesProcessed: 0,
   }
 
   files.forEach(({ path: file, extension }) => {
@@ -601,6 +637,9 @@ function processAllFiles(
     }
     else if (extension === '.js') {
       fileStats.jsFilesProcessed++
+    }
+    else if (extension === '.json') {
+      fileStats.jsonFilesProcessed++
     }
     const links = extractLinksFromFile(readFileSync(file, 'utf-8'), file, extension)
     links.forEach((link) => {
@@ -639,6 +678,13 @@ function processAllFiles(
         }
         blockedUrlsByPage.get(pagePath)!.push({ url: link.url, line: link.line })
         return // Skip whitelist validation for blocked URLs
+      }
+
+      // JSON files only check for blocked patterns, skip whitelist validation
+      // (they contain data URLs, not navigable links)
+      if (extension === '.json') {
+        stats.validExternalLinks++
+        return
       }
 
       const matchResult = isValidLinkWithTracking(link.url, whitelist, regexUsage)

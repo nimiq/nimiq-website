@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { transformPrismicDocument } from '~~/shared/utils/prismic-images-client'
+
 interface ExchangesGridSlice {
   primary: Record<string, never>
 }
@@ -8,7 +10,7 @@ defineProps<{ slice: ExchangesGridSlice, slices?: any[] }>()
 const { client } = usePrismic()
 const { data: exchanges } = await useAsyncData(`exchanges`, async () => {
   try {
-    return await client.getAllByType('exchange').then(res => res.map(r => r.data))
+    return await client.getAllByType('exchange').then(res => res.map(r => transformPrismicDocument(r.data)))
   }
   catch (error) {
     console.error(`Exchanges not found:`, error)

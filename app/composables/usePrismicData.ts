@@ -2,6 +2,7 @@ import type { ArgumentsType } from '@vueuse/core'
 import type { BlogPageDocument } from '~~/prismicio-types'
 import { filter } from '@prismicio/client'
 import { consola } from 'consola'
+import { transformPrismicDocument } from '~~/shared/utils/prismic-images-client'
 
 type PrismicOptions = ArgumentsType<ReturnType<typeof usePrismic>['client']['getByType']>[1]
 
@@ -34,7 +35,7 @@ export function usePrismicPage(uid: string, options?: PrismicOptions) {
             fatal: true,
           })
         }
-        return result
+        return transformPrismicDocument(result)
       }
       catch (error) {
         consola.error(`Page with UID "${uid}" not found in Prismic:`, error)
@@ -80,7 +81,7 @@ export function useBlogPost(uid: string, options?: PrismicOptions) {
           })
         }
         // Ensure the result is serializable by converting to plain object
-        return JSON.parse(JSON.stringify(result))
+        return transformPrismicDocument(JSON.parse(JSON.stringify(result)))
       }
       catch (error) {
         consola.error(`Blog post with UID "${uid}" not found in Prismic:`, error)
@@ -125,7 +126,7 @@ export function useBlogPosts(options?: PrismicOptions) {
             fatal: true,
           })
         }
-        return result.results
+        return transformPrismicDocument(result.results)
       }
       catch (error) {
         consola.error(`Collection "blog_page" not found in Prismic:`, error)
