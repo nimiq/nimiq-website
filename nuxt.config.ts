@@ -283,6 +283,7 @@ export default defineNuxtConfig({
       external: [],
     },
     prerender: {
+      concurrency: 8,
       crawlLinks: false,
       ignore: [
         '/nimiq-website/_ipx/s_1600x900/assets/images/gods-light.webp',
