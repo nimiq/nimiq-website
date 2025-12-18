@@ -13,6 +13,11 @@ const IGNORED_URL_PATTERNS = [
   'localhost',
 ]
 
+// URLs that should never appear - build fails if found
+const BLOCKED_URL_PATTERNS = [
+  'nimiq.cdn.prismic.io/nimiq/', // make sure we don't hit this server since it is a mafia
+]
+
 const LINK_WHITELIST = [
   // Official Nimiq
   /^https?:\/\/([^.]+\.)?nimiq\.(com|network|org|dev|watch)/,
@@ -395,6 +400,7 @@ export default defineNuxtModule({
         httpOnlyLinks: 0,
         validExternalLinks: 0,
         invalidExternalLinks: 0,
+        blockedLinks: 0,
         filteredLinks: 0,
         totalRegexPatterns: whitelist.length,
         usedRegexPatterns: 0,
@@ -404,9 +410,10 @@ export default defineNuxtModule({
       }
 
       const httpUrlsByPage = new Map<string, string[]>()
+      const blockedUrlsByPage = new Map<string, Array<{ url: string, line: number }>>()
 
       const allFiles = findSupportedFiles(outputDir)
-      const fileStats = processAllFiles(allFiles, stats, whitelist, regexUsage, errors, httpUrlsByPage)
+      const fileStats = processAllFiles(allFiles, stats, whitelist, regexUsage, errors, httpUrlsByPage, blockedUrlsByPage)
       Object.assign(stats, fileStats)
       stats.usedRegexPatterns = Array.from(regexUsage.values()).filter(r => r.used).length
       stats.unusedRegexPatterns = stats.totalRegexPatterns - stats.usedRegexPatterns
@@ -420,6 +427,7 @@ export default defineNuxtModule({
         '✅ Valid external': stats.validExternalLinks,
         '🚫 Filtered (ignored)': stats.filteredLinks,
         '⚠️  HTTP-only links': stats.httpOnlyLinks,
+        '🚷 Blocked links': stats.blockedLinks,
         '❌ Invalid external': stats.invalidExternalLinks,
       })
 
@@ -472,11 +480,28 @@ export default defineNuxtModule({
         }
       }
 
+      // Report blocked URLs
+      if (blockedUrlsByPage.size > 0) {
+        consola.error(`\n🚫 ${stats.blockedLinks} BLOCKED URL${stats.blockedLinks === 1 ? '' : 's'} found 🚫`)
+        consola.error('These URLs are forbidden and must be removed or replaced:\n')
+
+        const sortedPages = Array.from(blockedUrlsByPage.entries()).sort(([a], [b]) => a.localeCompare(b))
+        sortedPages.forEach(([pagePath, items]) => {
+          consola.error(`📄 ${pagePath}:`)
+          items.forEach(({ url, line }) => {
+            consola.error(`  • ${url} (line ${line})`)
+          })
+        })
+      }
+
       if (errors.length > 0) {
         consola.error(`\n🚫 Found ${errors.length} invalid external link(s):`)
         errors.forEach((error, index) => {
           consola.error(`\n${index + 1}. ${error}`)
         })
+      }
+
+      if (errors.length > 0 || blockedUrlsByPage.size > 0) {
         process.exit(1)
       }
       else {
@@ -563,6 +588,7 @@ function processAllFiles(
   regexUsage: Map<number, { pattern: RegExp, used: boolean, matchCount: number }>,
   errors: string[],
   httpUrlsByPage: Map<string, string[]>,
+  blockedUrlsByPage: Map<string, Array<{ url: string, line: number }>>,
 ) {
   const fileStats = {
     htmlFilesProcessed: 0,
@@ -602,6 +628,17 @@ function processAllFiles(
           httpUrlsByPage.set(pagePath, [])
         }
         httpUrlsByPage.get(pagePath)!.push(link.url)
+      }
+
+      // Check for blocked URLs
+      if (BLOCKED_URL_PATTERNS.some(pattern => link.url.includes(pattern))) {
+        stats.blockedLinks++
+        const pagePath = getPagePathFromFile(link.file)
+        if (!blockedUrlsByPage.has(pagePath)) {
+          blockedUrlsByPage.set(pagePath, [])
+        }
+        blockedUrlsByPage.get(pagePath)!.push({ url: link.url, line: link.line })
+        return // Skip whitelist validation for blocked URLs
       }
 
       const matchResult = isValidLinkWithTracking(link.url, whitelist, regexUsage)
