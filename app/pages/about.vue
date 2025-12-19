@@ -13,7 +13,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
     <main>
       <section nq-section-gap bg-neutral-0>
         <Hero v-bind="page.hero" />
-        <ContentTiltedMedia v-bind="page.media" :overlaps-next-section="false" />
+        <TiltedMedia v-bind="page.media" />
       </section>
 
       <section nq-section-gap bg-neutral-0>

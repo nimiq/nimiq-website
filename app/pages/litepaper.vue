@@ -53,7 +53,7 @@ onMounted(() => {
             <SelectRoot v-model="selected">
               <SelectTrigger flex="~ items-center gap-12" px-16 py-10 outline-none rounded-full bg-gradient-green aria-label="Select Litepaper Version">
                 <SelectValue text="f-sm white" nq-label />
-                <div i-nimiq:triangle-down text="10 white" />
+                <Icon name="nimiq:triangle-down" text="10 white" />
               </SelectTrigger>
 
               <SelectPortal>
@@ -67,7 +67,7 @@ onMounted(() => {
                         Version {{ v }}
                       </SelectItemText>
                       <SelectItemIndicator>
-                        <div i-nimiq:triangle-left text="10 neutral-800" />
+                        <Icon name="nimiq:triangle-left" text="10 neutral-800" />
                       </SelectItemIndicator>
                     </SelectItem>
                   </SelectViewport>

@@ -139,7 +139,8 @@ onMounted(() => {
     <li v-if="banner?.items?.[0]" p-0 lg:col-span-full>
       <div py="24 lg:72" px-32 rounded-8 bg-white w-full shadow relative of-hidden max-w="none lg:[calc(var(--nq-max-width)-32px)]" outline="1.5 offset--1.5 ~ neutral/10">
         <!-- Background app logos -->
-        <NuxtLink v-for="(bg, j) in bgApps" :key="j" :to="bg.link" target="_blank" :aria-label="bg.name" tabindex="-1" :class="[bg.classes]" pointer-cursor size-104 absolute i-nimiq:logos-nimiq-mono :style="{ color: bg.color }">
+        <NuxtLink v-for="(bg, j) in bgApps" :key="j" :to="bg.link" target="_blank" :aria-label="bg.name" tabindex="-1" :class="[bg.classes]" pointer-cursor size-104 absolute :style="{ color: bg.color }">
+          <Icon name="nimiq:logos-nimiq-mono" size-full absolute inset-0 />
           <NuxtImg :src="bg.logo" :alt="bg.name" size-full pointer-events-none scale-110 object-contain :class="bannerLogoClasses[bg.name]" />
         </NuxtLink>
 

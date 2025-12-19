@@ -206,14 +206,14 @@ catalogs:
       specifier: ^66.1.2
       version: 66.1.2
     nimiq-css:
-      specifier: ^1.0.0-beta.30
-      version: 1.0.0-beta.149
+      specifier: ^1.0.0-beta.160
+      version: 1.0.0-beta.160
     nimiq-flags:
-      specifier: ^1.0.0-beta.30
-      version: 1.0.0-beta.30
+      specifier: ^1.0.0-beta.160
+      version: 1.0.0-beta.160
     nimiq-icons:
-      specifier: ^1.0.0-beta.30
-      version: 1.0.0-beta.30
+      specifier: ^1.0.0-beta.160
+      version: 1.0.0-beta.160
     unocss:
       specifier: ^66.1.2
       version: 66.1.2
@@ -375,13 +375,13 @@ importers:
         version: 0.15.3
       nimiq-css:
         specifier: catalog:unocss
-        version: 1.0.0-beta.149(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.19.12)))(postcss@8.5.6)(vite@7.3.0(@types/node@22.15.19)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))
+        version: 1.0.0-beta.160(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.19.12)))(postcss@8.5.6)(vite@7.3.0(@types/node@22.15.19)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))
       nimiq-flags:
         specifier: catalog:unocss
-        version: 1.0.0-beta.30
+        version: 1.0.0-beta.160
       nimiq-icons:
         specifier: catalog:unocss
-        version: 1.0.0-beta.30
+        version: 1.0.0-beta.160
       nuxt-link-checker:
         specifier: 'catalog:'
         version: 4.3.9(@netlify/blobs@8.2.0)(db0@0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.38.4(@cloudflare/workers-types@4.20251213.0)(better-sqlite3@12.4.1)))(h3@1.15.4)(ioredis@5.8.2)(magicast@0.5.1)(vite@7.3.0(@types/node@22.15.19)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))(vue@3.5.14(typescript@5.8.3))
@@ -3697,8 +3697,8 @@ packages:
   '@types/node@24.0.13':
     resolution: {integrity: sha512-Qm9OYVOFHFYg3wJoTSrz80hoec5Lia/dPp84do3X7dZvLikQvM1YpmvTBEdIr/e+U8HTkFjLHLnl78K/qjf+jQ==}
 
-  '@types/node@25.0.2':
-    resolution: {integrity: sha512-gWEkeiyYE4vqjON/+Obqcoeffmk0NF15WSBwSs7zwVA2bAbTaE0SJ7P0WNGoJn8uE7fiaV5a7dKYIJriEqOrmA==}
+  '@types/node@25.0.3':
+    resolution: {integrity: sha512-W609buLVRVmeW693xKfzHeIV6nJGGz98uCPfeXI1ELMLXVeKYZ9m15fAMSaUPBHYLGFsVRcMmSCksQOrZV9BYA==}
 
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
@@ -7423,18 +7423,15 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  nimiq-css@1.0.0-beta.149:
-    resolution: {integrity: sha512-7GilnboCqV1fHoLqcPhJx6k90bJacaRI2HhslAmSR57sl4h7AlSqyrOHiZBavscAuIQ12U+Q0O91qFEJG9jQZw==}
+  nimiq-css@1.0.0-beta.160:
+    resolution: {integrity: sha512-PBtTaSukc8hahlRxKZUQM0J+lRZeaj6R+JtxMPoZ8WzXB9QLbPobgCv3ClvZYVp7A/Azuwtbi/bLPLPXy8I2aA==}
     engines: {node: '>=18'}
 
-  nimiq-flags@1.0.0-beta.30:
-    resolution: {integrity: sha512-6N02hCcYOpA+q1RbW40wdqiVFL5mXQs7/c01V6oAaNOrnBXdnJiVP1OYg+FpaNicV7RCvRDm+SxqdiSqHTl6EA==}
+  nimiq-flags@1.0.0-beta.160:
+    resolution: {integrity: sha512-GHPEPXgLRGErn6edU5p+KgfsZfoG6F78yp7+Z7IgNbVqM8bZ0QpREoYz3YKs/Pq37NPd2AlrXBdiHJYksp6V8g==}
 
-  nimiq-icons@1.0.0-beta.149:
-    resolution: {integrity: sha512-zAZW8yfUqR56g/NsmvV9SxlUu5ApcXmHObTRUItvqGap4SaoH6jQOauSAPgZ0+MFk97ONlz9OQZnRPsRXw7ZpA==}
-
-  nimiq-icons@1.0.0-beta.30:
-    resolution: {integrity: sha512-Z6TJS6/l//zSRPCMbkWodpS4yvXNJRQlmMOR0LTlkouIrX3X5m+5YC5rp7zIRdw8iGx6Q2m0MNCZjNjMUpfNKg==}
+  nimiq-icons@1.0.0-beta.160:
+    resolution: {integrity: sha512-xdalJj2ulnocFXufxIlZdH/o48R/1nwzEVXZNhlesXRpTs//6Q7FFwtKyyot7pciDlPYrpjb6mciqxEnhslaOA==}
 
   nimiq-rpc-client-ts@1.0.0-beta.35:
     resolution: {integrity: sha512-7zUM/ySappO53Kvz7NPI4FA/9ErKCu86QTqC3d/FZDbp5rRYbMqPwJDyhrb6lBTdOk5qzImLGX6KULo53/Nl2Q==}
@@ -9954,7 +9951,7 @@ snapshots:
       eslint-plugin-regexp: 2.10.0(eslint@9.38.0(jiti@2.6.1))
       eslint-plugin-toml: 0.12.0(eslint@9.38.0(jiti@2.6.1))
       eslint-plugin-unicorn: 61.0.2(eslint@9.38.0(jiti@2.6.1))
-      eslint-plugin-unused-imports: 4.3.0(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.38.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.38.0(jiti@2.6.1))
+      eslint-plugin-unused-imports: 4.3.0(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.32.1(eslint@9.38.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.38.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.38.0(jiti@2.6.1))
       eslint-plugin-vue: 10.5.1(@stylistic/eslint-plugin@5.5.0(eslint@9.38.0(jiti@2.6.1)))(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.38.0(jiti@2.6.1))(vue-eslint-parser@10.2.0(eslint@9.38.0(jiti@2.6.1)))
       eslint-plugin-yml: 1.18.0(eslint@9.38.0(jiti@2.6.1))
       eslint-processor-vue-blocks: 2.0.0(@vue/compiler-sfc@3.5.25)(eslint@9.38.0(jiti@2.6.1))
@@ -13310,7 +13307,7 @@ snapshots:
     dependencies:
       undici-types: 7.8.0
 
-  '@types/node@25.0.2':
+  '@types/node@25.0.3':
     dependencies:
       undici-types: 7.16.0
 
@@ -16208,7 +16205,7 @@ snapshots:
       semver: 7.7.2
       strip-indent: 4.0.0
 
-  eslint-plugin-unused-imports@4.3.0(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.38.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.38.0(jiti@2.6.1)):
+  eslint-plugin-unused-imports@4.3.0(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.32.1(eslint@9.38.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.38.0(jiti@2.6.1))(typescript@5.8.3))(eslint@9.38.0(jiti@2.6.1)):
     dependencies:
       eslint: 9.38.0(jiti@2.6.1)
     optionalDependencies:
@@ -17187,7 +17184,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 25.0.2
+      '@types/node': 25.0.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -17998,12 +17995,12 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  nimiq-css@1.0.0-beta.149(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.19.12)))(postcss@8.5.6)(vite@7.3.0(@types/node@22.15.19)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)):
+  nimiq-css@1.0.0-beta.160(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.19.12)))(postcss@8.5.6)(vite@7.3.0(@types/node@22.15.19)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2)):
     dependencies:
       '@iconify/utils': 3.1.0
       '@unocss/preset-web-fonts': 66.5.10
       '@unocss/preset-wind4': 66.5.10
-      nimiq-icons: 1.0.0-beta.149
+      nimiq-icons: 1.0.0-beta.160
       ts-cssjson: 3.0.1
       unocss: 66.5.10(@unocss/webpack@66.1.2(webpack@5.99.6(esbuild@0.19.12)))(postcss@8.5.6)(vite@7.3.0(@types/node@22.15.19)(jiti@2.6.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))
       unocss-preset-light-dark: 1.0.0-beta.52
@@ -18013,15 +18010,11 @@ snapshots:
       - supports-color
       - vite
 
-  nimiq-flags@1.0.0-beta.30:
+  nimiq-flags@1.0.0-beta.160:
     dependencies:
       '@iconify/types': 2.0.0
 
-  nimiq-icons@1.0.0-beta.149:
-    dependencies:
-      '@iconify/types': 2.0.0
-
-  nimiq-icons@1.0.0-beta.30:
+  nimiq-icons@1.0.0-beta.160:
     dependencies:
       '@iconify/types': 2.0.0
 

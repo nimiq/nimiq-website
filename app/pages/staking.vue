@@ -52,7 +52,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
       </section>
 
       <section nq-section-gap bg-neutral-100>
-        <ContentYouTube :embed-url="page.video.embedUrl" :poster="page.video.poster" :title="page.video.title" />
+        <YouTube :embed-url="page.video.embedUrl" :poster="page.video.poster" :title="page.video.title" />
       </section>
 
       <section v-if="page.video.description" nq-section-gap bg-neutral-100>

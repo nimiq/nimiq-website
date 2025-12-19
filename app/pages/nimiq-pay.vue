@@ -12,9 +12,8 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
     <main>
       <section nq-section-gap bg-neutral-100 relative>
         <HeroPay v-bind="page.hero" />
+        <TiltedMedia v-bind="page.media" />
       </section>
-
-      <TiltedMedia v-bind="page.media" :overlaps-next-section="false" />
 
       <section nq-section-gap bg-neutral-100>
         <GridLogos v-bind="page.logos" />

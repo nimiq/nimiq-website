@@ -12,9 +12,8 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/cryptopaymentlink'
     <main>
       <section v-if="page.hero" nq-section-gap bg-neutral-100>
         <HeroProduct v-bind="page.hero" />
+        <TiltedMedia v-if="page.tiltedMedia" v-bind="page.tiltedMedia" />
       </section>
-
-      <TiltedMedia v-if="page.tiltedMedia" v-bind="page.tiltedMedia" :overlaps-next-section="true" />
 
       <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-0>
         <Headline v-bind="page.simpleHeadline" />

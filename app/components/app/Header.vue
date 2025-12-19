@@ -74,10 +74,11 @@ const transitionProps = computed(() => ({
     :data-scrolled="scrolled ? 'true' : 'false'"
   >
     <NuxtLink to="/" aria-label="Nimiq homepage">
-      <div class="dark:i-nimiq:logos-nimiq-white-horizontal" text-24 i-nimiq:logos-nimiq-horizontal />
+      <Icon name="nimiq:logos-nimiq-horizontal" text-24 class="dark:hidden" />
+      <Icon name="nimiq:logos-nimiq-white-horizontal" text-24 class="hidden dark:block" />
     </NuxtLink>
     <NuxtLink v-if="announcement" :to="announcement.href" bg="neutral/15 hocus:neutral/20" :class="{ 'children:delay-200': direction === 'bottom' }" external text-neutral mr-auto gap-x-9 truncate nq-pill children:transition-colors>
-      <div shrink-0 i-nimiq:flame />
+      <Icon name="nimiq:flame" shrink-0 />
       <span text-neutral truncate>{{ announcement.text }}</span>
     </NuxtLink>
 
