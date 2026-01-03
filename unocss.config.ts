@@ -1,3 +1,5 @@
+import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
+import presetIcons from '@unocss/preset-icons'
 import { theme } from '@unocss/preset-wind4/theme'
 import { presetNimiq } from 'nimiq-css'
 import { defineConfig } from 'unocss'
@@ -31,6 +33,11 @@ export default defineConfig({
       typography: true,
       staticContent: true,
       fonts: false,
+    }),
+    presetIcons({
+      collections: {
+        'oasis-regions': FileSystemIconLoader('./public/assets/oasis-regions'),
+      },
     }),
   ],
 

@@ -10,15 +10,15 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
 <template>
   <NuxtLayout dark-header>
     <main>
-      <section dark text-neutral mx-0 py-0 bg-darkblue scheme-dark relative of-hidden children:max-w-none max-md:min-h-auto pt="148 md:153 lg:160" min-h="auto md:100vh">
+      <section dark class="bg-darkerblue" scheme-dark relative>
         <HeroWallet v-bind="page.hero" />
       </section>
 
-      <section dark nq-section-gap bg-darkblue scheme-dark relative>
+      <section bg-darkerblue scheme-dark relative of-x-clip children:max-w-none md:f-pt-3xl>
         <ShowcaseWallet :playground-url="page.playground.url" />
       </section>
 
-      <section dark nq-section-gap px-0 pb-0 bg-darkerblue scheme-dark relative>
+      <section dark px-0 pb-0 pt-160 bg-darkerblue scheme-dark relative>
         <ShowcaseConsensus v-bind="page.consensus" />
       </section>
 
@@ -26,25 +26,23 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <Headline v-bind="page.intro" />
       </section>
 
-      <section nq-section-gap bg-neutral-0>
+      <section bg-neutral-0>
         <ShowcaseCurrency v-bind="page.currencies" />
       </section>
 
-      <section dark class="staking-gradient" scheme-dark relative>
+      <section bg-neutral-100 class="gradient-transparent-green-transparent" relative>
         <HeadlineStaking v-bind="page.staking" />
       </section>
-
-      <BannerWallet v-bind="page.banner" />
 
       <section nq-section-gap bg-neutral-0>
         <Headline v-bind="page.seed.headline" />
       </section>
 
-      <section nq-section-gap bg-neutral-0>
+      <section bg-neutral-0>
         <GridSection :items="page.seed.items" />
       </section>
 
-      <section dark nq-section-gap bg-darkblue scheme-dark relative>
+      <section px-8 bg-neutral-0 relative of-x-clip>
         <ShowcaseWalletWords v-bind="page.challenge" />
       </section>
 

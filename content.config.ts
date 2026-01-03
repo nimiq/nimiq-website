@@ -18,7 +18,7 @@ const allAppsSource = defineCollectionSource({
   getItem: async () => {
     const res = await fetch('https://raw.githubusercontent.com/onmax/nimiq-awesome/main/src/data/dist/nimiq-apps.json')
     const data = await res.json() as AppApiData[]
-    return { apps: data.filter(app => app.logo) }
+    return { apps: data.filter(app => app.logo || app.screenshot) }
   },
 })
 
@@ -187,6 +187,7 @@ export default defineContentConfig({
         countries: z.object({ headline: headlineSchema, flags: z.string() }),
         social: z.object({ headline: headlineSchema, grid: socialMediaGridSchema }),
         newsletter: z.object({ cta: z.string(), placeholder: z.string().optional() }),
+        events: headlineSchema,
         apps: z.object({ headline: headlineSchema, gallery: appGalleryCtaSchema }),
         banner: z.object({ overlapsNextSection: z.boolean().optional(), items: z.array(bannerItemSchema) }),
         feedback: headlineSchema,
@@ -225,7 +226,7 @@ export default defineContentConfig({
         tiltedMedia: z.object({ src: z.string(), poster: z.string().optional() }).optional(),
         simpleHeadline: headlineSchema.optional(),
         grid: gridSchema.optional(),
-        whatIsCryptopaymentlinkHeadline: headlineSchema.optional(),
+        learnItHeadline: headlineSchema.optional(),
         textCards: z.object({ items: z.array(cardSchema) }).optional(),
         steppedSlides: steppedSlidesSchema.optional(),
         finalCta: headlineSchema.optional(),
@@ -269,7 +270,7 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema,
-        content: z.string(),
+        content: contentSchema,
       }),
     }),
 
@@ -310,16 +311,15 @@ export default defineContentConfig({
       source: 'oasis.md',
       schema: z.object({
         seo: seoSchema.optional(),
-        hero: heroSchema,
-        secondHero: heroSchema,
-        centralAmerica: z.object({ title: z.string(), description: z.string(), socials: z.array(z.object({ icon: z.string(), href: z.string() })) }).optional(),
-        notAvailable: z.object({ title: z.string(), description: z.string(), link: z.object({ label: z.string(), href: z.string() }).optional(), socials: z.array(z.object({ icon: z.string(), href: z.string() })) }).optional(),
-        about: z.object({ headline: headlineSchema, items: z.array(largeGridItemSchema) }),
-        howItWorks: z.object({ headline: headlineSchema, embedUrl: z.string(), title: z.string().optional() }),
-        openTech: headlineSchema,
-        integrations: z.array(z.object({ title: z.string(), description: z.string(), links: z.array(z.object({ label: z.string(), href: z.string() })) })).optional(),
-        collaborate: headlineSchema,
-        form: contactSchema,
+        hero: z.object({ headline: z.string(), subline: z.string().optional(), linkHref: z.string().optional(), linkLabel: z.string().optional(), secondaryLinkHref: z.string().optional(), secondaryLinkLabel: z.string().optional() }),
+        oasisWorld: z.object({ beTheFirstToKnowLabel: z.string().optional(), items: z.array(z.object({ kind: z.enum(['Europe', 'Central America', 'World']), title: z.string(), subline: z.string(), linkLabel: z.string().optional(), linkHref: z.string().optional() })) }).optional(),
+        tryIt: headlineSchema.optional(),
+        largeGrid: z.array(largeGridItemSchema).optional(),
+        howDoesItWork: headlineSchema.optional(),
+        youtube: z.object({ url: z.string(), title: z.string().optional() }).optional(),
+        openTech: headlineSchema.optional(),
+        integrations: z.array(z.object({ title: z.string(), description: z.string(), links: z.array(z.object({ label: z.string(), href: z.string(), variant: z.string().optional() })) })).optional(),
+        collaborate: headlineSchema.optional(),
       }),
     }),
 
@@ -329,7 +329,7 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema,
-        content: z.string(),
+        content: contentSchema,
       }),
     }),
 
@@ -360,7 +360,7 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema,
-        milestones: z.object({ label: z.string(), firstLayer: z.string(), secondLayer: z.string(), thirdLayer: z.string() }),
+        roadmap: z.object({ milestones: z.string(), firstLayer: z.string(), secondLayer: z.string(), thirdLayer: z.string() }),
         newsletter: z.object({ cta: z.string() }),
       }),
     }),
@@ -387,8 +387,8 @@ export default defineContentConfig({
       source: 'terms.md',
       schema: z.object({
         seo: seoSchema.optional(),
-        hero: heroSchema,
-        content: z.string(),
+        hero: z.object({ headline: z.string(), subline: z.string().optional() }),
+        content: contentSchema,
       }),
     }),
 
@@ -397,8 +397,8 @@ export default defineContentConfig({
       source: 'activation-terms.md',
       schema: z.object({
         seo: seoSchema.optional(),
-        hero: z.object({ title: z.string(), description: z.string().optional() }),
-        content: z.string(),
+        hero: z.object({ headline: z.string(), subline: z.string().optional() }),
+        content: contentSchema,
       }),
     }),
 

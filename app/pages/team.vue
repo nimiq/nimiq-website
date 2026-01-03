@@ -14,7 +14,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/team' }] })
         <Hero v-bind="page.hero" />
       </section>
 
-      <section nq-section-gap bg-neutral-0>
+      <section bg-neutral-0>
         <TeamMembers v-bind="page.members" />
       </section>
 

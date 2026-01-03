@@ -10,72 +10,67 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
 <template>
   <NuxtLayout>
     <main>
-      <section class="staking-gradient" pt-80>
-        <HeadlineStaking :headline="page.hero.title" :subline="page.hero.description" />
-      </section>
+      <!-- Section 0: Hero with white bg + radial green gradient -->
+      <HeroStaking :headline="page.hero.title" />
 
-      <section nq-section-gap bg-neutral-100>
-        <Quote :text="page.quote.text" :author="page.quote.author" />
-      </section>
+      <!-- Section 1: Quote on green gradient -->
+      <StakingQuote :text="page.quote.text" />
 
-      <section nq-section-gap bg-neutral-100>
+      <!-- Section 2: Calculator section with headline + calculator -->
+      <section nq-section-gap class="staking-calculator-section" bg-neutral-100 f-py-3xl>
         <Headline v-bind="page.calculator.headline" />
+        <StakingCalculator :amount-label="page.calculator.amountLabel" :period-label="page.calculator.periodLabel" :rewards-label="page.calculator.rewardsLabel" f-mt-2xl />
       </section>
 
-      <section nq-section-gap bg-neutral-100>
-        <StakingCalculator :amount-label="page.calculator.amountLabel" :period-label="page.calculator.periodLabel" :rewards-label="page.calculator.rewardsLabel" />
-      </section>
-
-      <section nq-section-gap bg-neutral-0>
+      <!-- Section 3: Distribution with charts -->
+      <section bg-neutral-0 f-py-3xl>
         <Headline v-bind="page.distribution.headline" />
+        <StakingDistribution f-mt-2xl />
       </section>
 
-      <section nq-section-gap bg-neutral-0>
-        <StakingDistribution />
-      </section>
-
-      <section v-if="page.distribution.stakedHeadline || page.distribution.distributedHeadline" nq-section-gap bg-neutral-0>
-        <div flex="~ col md:row gap-32">
-          <div v-if="page.distribution.stakedHeadline" flex="~ col" flex-1>
-            <h3 nq-h3>{{ page.distribution.stakedHeadline }}</h3>
-            <p>{{ page.distribution.stakedDescription }}</p>
-          </div>
-          <div v-if="page.distribution.distributedHeadline" flex="~ col" flex-1>
-            <h3 nq-h3>{{ page.distribution.distributedHeadline }}</h3>
-            <p>{{ page.distribution.distributedDescription }}</p>
-          </div>
-        </div>
-      </section>
-
-      <section nq-section-gap bg-neutral-100>
+      <!-- Section 4: Video section (staking in wallet) -->
+      <section nq-section-gap bg-neutral-0 f-py-3xl>
         <Headline v-bind="page.video.headline" />
-      </section>
-
-      <section nq-section-gap bg-neutral-100>
-        <YouTube :embed-url="page.video.embedUrl" :poster="page.video.poster" :title="page.video.title" />
-      </section>
-
-      <section v-if="page.video.description" nq-section-gap bg-neutral-100>
-        <div flex="~ col md:items-center">
-          <h3 v-if="page.video.title" nq-h3 md:text-center>{{ page.video.title }}</h3>
-          <p max-w-prose md:text-center>{{ page.video.description }}</p>
+        <YouTube :embed-url="page.video.embedUrl" :poster="page.video.poster" :title="page.video.title" f-mt-2xl />
+        <div v-if="page.video.description" flex="~ col md:items-center" f-mt-lg>
+          <h3 v-if="page.video.title" nq-h3 md:text-center>
+            {{ page.video.title }}
+          </h3>
+          <p max-w-prose md:text-center>
+            {{ page.video.description }}
+          </p>
         </div>
       </section>
 
-      <section nq-section-gap bg-neutral-100>
+      <!-- Section 5: Validator pools + banner -->
+      <section nq-section-gap bg-neutral-0 f-py-3xl>
         <Headline v-bind="page.delegate" />
+        <ValidatorList f-mt-2xl />
+        <BannerSection :items="page.banner.items" :overlaps-next-section="false" f-mt-3xl />
       </section>
 
-      <BannerSection :items="page.banner.items" :overlaps-next-section="page.banner.overlapsNextSection" />
-
-      <section nq-section-gap bg-neutral-100>
-        <h2 v-if="page.faq.headline" nq-h2>{{ page.faq.headline }}</h2>
+      <!-- Section 6: FAQ + footer hero -->
+      <section bg-neutral-100 f-py-3xl>
+        <h2 v-if="page.faq.headline" nq-h2>
+          {{ page.faq.headline }}
+        </h2>
         <StakingFaq :items="page.faq.items" :forum-link="page.faq.forumLink" />
-      </section>
-
-      <section class="staking-gradient">
-        <HeadlineStaking v-bind="page.wallet" />
+        <div class="staking-footer-hero" f-mt-3xl>
+          <HeadlineStaking v-bind="page.wallet" />
+        </div>
       </section>
     </main>
   </NuxtLayout>
 </template>
+
+<style>
+.staking-calculator-section {
+  background: linear-gradient(180deg, rgb(var(--nq-green) / 0.1) 0%, rgb(var(--nq-neutral-100)) 20%);
+}
+
+.staking-footer-hero {
+  background: linear-gradient(180deg, transparent 0%, rgb(var(--nq-green) / 0.3) 100%);
+  border-radius: 16px;
+  padding: 48px 24px;
+}
+</style>

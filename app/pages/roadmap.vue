@@ -15,7 +15,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/roadmap' }] })
       </section>
 
       <section bg-neutral-100>
-        <RoadmapSection :milestones="page.milestones" />
+        <RoadmapSection v-bind="page.roadmap" />
       </section>
 
       <section nq-section-gap bg-neutral-100>

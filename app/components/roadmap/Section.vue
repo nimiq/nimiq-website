@@ -1,12 +1,5 @@
 <script setup lang="ts">
-interface MilestonesData {
-  label: string
-  firstLayer: string
-  secondLayer: string
-  thirdLayer: string
-}
-
-const { milestones } = defineProps<{ milestones: MilestonesData }>()
+const props = defineProps<{ milestones: string, firstLayer: string, secondLayer: string, thirdLayer: string }>()
 
 function tryParse(input: any, key: string) {
   if (!input)
@@ -23,10 +16,10 @@ function tryParse(input: any, key: string) {
 const firstYear = 2017
 const firstMonth = 1
 
-const milestonesData = tryParse(milestones.label, 'milestones')
-const firstLayer = tryParse(milestones.firstLayer, 'firstLayer')
-const secondLayer = tryParse(milestones.secondLayer, 'secondLayer')
-const thirdLayer = tryParse(milestones.thirdLayer, 'thirdLayer')
+const milestonesData = tryParse(props.milestones, 'milestones')
+const firstLayer = tryParse(props.firstLayer, 'firstLayer')
+const secondLayer = tryParse(props.secondLayer, 'secondLayer')
+const thirdLayer = tryParse(props.thirdLayer, 'thirdLayer')
 
 const layers = [firstLayer, secondLayer, thirdLayer]
 </script>

@@ -47,7 +47,7 @@ export function useUserCurrency() {
       localeValue = localeValue.split('@')[0].trim()
 
     // Validate format: should be xx or xx-XX
-    if (!/^[a-z]{2}(-[A-Z]{2})?$/i.test(localeValue))
+    if (!/^[a-z]{2}(?:-[A-Z]{2})?$/i.test(localeValue))
       localeValue = 'en-US'
 
     try {

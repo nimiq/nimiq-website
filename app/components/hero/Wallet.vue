@@ -6,22 +6,16 @@ const isExternal = computed(() => linkHref.value.startsWith('http'))
 
 <template>
   <div flex="grow ~ col justify-center items-center" px-24 text-center z-10>
-    <h1 nq-heading-lg text-neutral-0 whitespace-pre-line>
+    <h1>
       {{ title.replace(/\\L/g, '\n') }}
     </h1>
-    <p v-if="description" text="neutral-800 f-xl" mt-24 max-w-prose whitespace-pre-line>
+    <p v-if="description" text="neutral-900" font-400 whitespace-pre-line>
       {{ description }}
     </p>
-    <NuxtLink :to="linkHref" :external="isExternal" mt-40 nq-arrow nq-pill-lg nq-pill-blue :target="isExternal ? '_blank' : undefined">
-      {{ link?.label || 'Go to Wallet' }}
-    </NuxtLink>
+    <div flex="~ wrap gap-x-32 gap-y-16 items-center" f-mt-lg style="--nq-font-size-min:18;--nq-font-size-max:22">
+      <NuxtLink :to="linkHref" :external="isExternal" nq-arrow nq-pill-lg nq-pill-blue dark:nq-pill-white :target="isExternal ? '_blank' : undefined">
+        {{ link?.label || 'Create a wallet' }}
+      </NuxtLink>
+    </div>
   </div>
-
-  <!-- Background effects -->
-  <NuxtImg width="1600" height="900" src="/assets/images/gods-light.webp" alt="" loading="eager" priority m-0 size-full pointer-events-none inset-0 absolute blur-60 brightness-80 />
-  <div bg-gradient="to-b from-darkblue/0 to-darkblue" m-0 op-80 pointer-events-none inset-0 absolute />
-  <UiEmber left-100 top="77 sm:112 md:200" style="--scale: 1.05" />
-  <UiEmber right-80 top-170 style="--scale: 0.7" />
-  <UiEmber bottom="200 md:300" left="56vw md:30vw" style="--scale: 0.92" />
-  <UiEmber bottom-260 right-32 style="--scale: 1" />
 </template>

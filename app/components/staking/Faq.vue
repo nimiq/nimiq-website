@@ -23,8 +23,10 @@ defineProps<{ items: FaqItem[], forumLink?: ForumLink }>()
         </p>
       </li>
     </ul>
-    <p v-if="forumLink" f-mt-lg text-center>
-      {{ forumLink.text }} <NuxtLink :to="forumLink.href" text-blue>Nimiq forum</NuxtLink>
+    <p v-if="forumLink" text-center f-mt-lg>
+      {{ forumLink.text }} <NuxtLink :to="forumLink.href" text-blue>
+        Nimiq forum
+      </NuxtLink>
     </p>
   </div>
 </template>

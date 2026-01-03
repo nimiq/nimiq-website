@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
@@ -29,6 +29,7 @@ function findPrismicUrls(dir: string, matches: PrismicUrlMatch[] = []): PrismicU
       lines.forEach((line, index) => {
         const urlRegex = new RegExp(`${FORBIDDEN_URL_PREFIX.replace(/[./]/g, '\\$&')}[^\\s)>"']*`, 'g')
         let match: RegExpExecArray | null
+        // eslint-disable-next-line no-cond-assign
         while ((match = urlRegex.exec(line)) !== null) {
           matches.push({
             file: fullPath.replace(process.cwd(), ''),

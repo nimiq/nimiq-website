@@ -10,33 +10,31 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
 
 <template>
   <NuxtLayout show-socials-hexagon-bg>
-    <main>
-      <section nq-section-gap bg-neutral-0>
-        <Hero v-bind="page.hero" />
-        <TiltedMedia v-bind="page.media" />
-      </section>
+    <section nq-section-gap bg-neutral-0>
+      <Hero v-bind="page.hero" />
+      <TiltedMedia v-bind="page.media" />
+    </section>
 
-      <section nq-section-gap bg-neutral-0>
-        <Headline v-bind="page.dive.headline" />
-        <GridLinks :items="page.dive.items" />
-      </section>
+    <section nq-section-gap bg-neutral-0>
+      <Headline v-bind="page.dive.headline" />
+      <GridLinks :items="page.dive.items" />
+    </section>
 
-      <section nq-section-gap bg-neutral-100>
-        <ContentRenderer :value="missionContent" tag="article" f-prose text-neutral-900 children:mx-auto children:max-w-prose />
-      </section>
+    <section nq-section-gap bg-neutral-100>
+      <ContentRenderer :value="missionContent" tag="article" f-prose text-neutral-900 children:mx-auto children:max-w-prose />
+    </section>
 
-      <section nq-section-gap bg-neutral-0>
-        <Headline v-bind="page.team.headline" />
-        <GridLarge :items="page.team.items" />
-      </section>
+    <section nq-section-gap bg-neutral-0>
+      <Headline v-bind="page.team.headline" />
+      <GridLarge :items="page.team.items" />
+    </section>
 
-      <section nq-section-gap bg-neutral-0>
-        <Headline v-bind="page.roadmap" />
-      </section>
+    <section nq-section-gap bg-neutral-0>
+      <Headline v-bind="page.roadmap" />
+    </section>
 
-      <section nq-section-gap bg-neutral-0>
-        <Headline v-bind="page.feedback" />
-      </section>
-    </main>
+    <section nq-section-gap bg-neutral-0>
+      <Headline v-bind="page.feedback" />
+    </section>
   </NuxtLayout>
 </template>

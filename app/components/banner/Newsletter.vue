@@ -9,7 +9,7 @@ defineProps<{ cta: string, afterText?: AfterText }>()
       {{ cta }}
     </h3>
     <UiNewsletterEmailInput text-24 f-mt-xl />
-    <div v-if="afterText" f-mt-xl text-center>
+    <div v-if="afterText" text-center f-mt-xl>
       <h2 nq-heading font-semibold>
         {{ afterText.headline }}
       </h2>

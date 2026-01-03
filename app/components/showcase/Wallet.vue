@@ -81,6 +81,7 @@ onUnmounted(() => {
 <template>
   <!-- Desktop -->
   <div relative max-md:hidden>
+    <div h="[calc(100%+400px)]" max-w-screen pointer-events-none top--400 />
     <div stack mx-auto size-full>
       <!-- Ribbon fold -->
       <div self-start="!" justify-self-end="!" aria-hidden mr--18 mt-48 w-44 origin-bottom-right rotate--45 z-1 border="22 x-transparent t-0 #EC991C" />

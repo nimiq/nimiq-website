@@ -36,8 +36,10 @@ const PAGES = [
 function normalizeMarkdown(md: string): string {
   return md
     // ANSI escape codes - do this FIRST before any other processing
-    .replace(/\x1b\[\d+m/g, '')
-    .replace(/\u001b\[\d+m/g, '')  // Unicode escape variant
+    // eslint-disable-next-line no-control-regex
+    .replace(/\x1B\[\d+m/g, '')
+    // eslint-disable-next-line no-control-regex
+    .replace(/\u001B\[\d+m/g, '') // Unicode escape variant
     // Text ANSI codes (not actual escape sequences, but literal text like [7m, [27m)
     .replace(/\[7m/g, '')
     .replace(/\[27m/g, '')
@@ -74,11 +76,13 @@ function normalizeMarkdown(md: string): string {
     .replace(/\[Go to apps\]/g, '[View all apps]')
 
     // Link title attributes (prod has them, local doesn't)
+    // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group, regexp/optimal-quantifier-concatenation
     .replace(/\]\(([^)]+)\s+"[^"]+"\)/g, ']($1)')
 
     // Special space characters and normalize whitespace
-    .replace(/[\u00A0\u2007\u202F\u200B\u200C\u200D\uFEFF\u0020\u2000-\u200A\u205F\u3000]/g, ' ')
-    .replace(/blockchain\.[\s\S]*?Take/g, 'blockchain. Take')  // About page: handle any chars between
+    // eslint-disable-next-line no-misleading-character-class
+    .replace(/[\u00A0\u202F\u200B\u200C\u200D\uFEFF\u0020\u2000-\u200A\u205F\u3000]/g, ' ')
+    .replace(/blockchain\.[\s\S]*?Take/g, 'blockchain. Take') // About page: handle any chars between
     .replace(/\s+/g, ' ')
     .replace(/ ?\n ?/g, '\n')
 
@@ -91,8 +95,8 @@ function normalizeMarkdown(md: string): string {
     .replace(/\[Youtube\]/g, '[YouTube]')
 
     // Apostrophe and quote variants
-    .replace(/\u2019/g, "'")
-    .replace(/[\u201C\u201D]/g, '"')  // Curly double quotes → straight quotes
+    .replace(/\u2019/g, '\'')
+    .replace(/[\u201C\u201D]/g, '"') // Curly double quotes → straight quotes
 
     // Blog post date format (strip year and comma from dates like "Nov 23, 2023")
     .replace(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2}), \d{4}/g, '$1 $2')
@@ -104,9 +108,9 @@ function normalizeMarkdown(md: string): string {
     .replace(/<h[34]>([^<]+)<\/h[34]>/g, '$1')
 
     // Heading level differences
-    .replace(/####+ /g, '## ')
+    .replace(/#{4,} /g, '## ')
     .replace(/### /g, '## ')
-    .replace(/^## Stake NIM and get/gm, '# Stake NIM and get')  // Staking hero should be H1
+    .replace(/^## Stake NIM and get/gm, '# Stake NIM and get') // Staking hero should be H1
 
     // Video poster images
     .replace(/\[!\[.*?\]\([^)]+\)\]\(https:\/\/www\.youtube\.com[^)]+\)\n*/g, '')
@@ -153,7 +157,7 @@ function normalizeMarkdown(md: string): string {
 
     // Duplicate titles
     .replace(/^([^\n]+)\n\n\1\n/m, '$1\n')
-    .replace(/^Don't sleep on crypto\. Create a wallet in seconds\. Don't sleep on crypto\. Create a wallet in seconds\./m, "Don't sleep on crypto. Create a wallet in seconds.")
+    .replace(/^Don't sleep on crypto\. Create a wallet in seconds\. Don't sleep on crypto\. Create a wallet in seconds\./m, 'Don\'t sleep on crypto. Create a wallet in seconds.')
 
     // Cookie consent (remove entirely - dynamic element)
     .replace(/## Cookie Consent[\s\S]*?Accept$/g, '')
@@ -178,14 +182,14 @@ function normalizeMarkdown(md: string): string {
     .replace(/\*\s+\*\s+\*\s+\*\s+\*/g, '* * * * *')
     .replace(/---/g, '* * * * *')
     // Terms page: normalize list indentation (prod has extra spaces before nested bullets)
-    .replace(/\n  - /g, '\n- ')
-    .replace(/\n    - /g, '\n- ')
+    .replace(/\n {2}- /g, '\n- ')
+    .replace(/\n {4}- /g, '\n- ')
     // Terms page: remove code block markers created by deep indentation
     .replace(/\n```\n/g, '\n')
     .replace(/```/g, '')
 
     // Strip everything after the footer starts (raw HTML/CSS at the end)
-    .replace(/}\s*}\s*Tune in to the soundtrack[\s\S]*$/m, '')
+    .replace(/\}\s*\}\s*Tune in to the soundtrack[\s\S]*$/m, '')
 
     // Strip raw HTML tags
     .replace(/<[^>]+>/g, '')
@@ -197,16 +201,16 @@ function normalizeMarkdown(md: string): string {
     .replace(/Staking rewards/g, 'Return in NIM')
     .replace(/Assuming current network conditions remain constant/g, 'depends on the current total staking')
     .replace(/Auto-restake rewards/g, 'Auto restake')
-    .replace(/## Staking calculator/g, '')  // Calculator heading appears inconsistently
-    .replace(/ —/g, '')  // Remove em dash from quote author attribution
-    .replace(/## Want to run a validator yourself\? Check out the docs\. \[\]\([^)]+\)/g, '')  // Banner appears in local but content order differs from prod
-    .replace(/## What you need to know/g, '## What you nEed to know')  // Match prod's weird capitalization
-    .replace(/~[\d.]+% annually/g, '~X% annually')  // Normalize dynamic staking percentage
-    .replace(/\+[\d.]+% \+[\d,]+/g, '+X% +X')  // Normalize dynamic staking rewards
-    .replace(/[\d.]+% staked/g, 'X% staked')  // Normalize dynamic staked percentage
-    .replace(/Live/g, '')  // Remove "Live" label (appears in local but not prod)
-    .replace(/(forum\.nimiq\.community\/\)) # (Stake in the Nimiq wallet and get ~X% annually)/g, '$1 ## $2')  // Second staking heading should be H2
-    .replace(/\[7m !\[\]\(\[IMAGE\]\) !\[\]\(\[IMAGE\]\)\[27m/g, '')  // Video poster images (prod only)
+    .replace(/## Staking calculator/g, '') // Calculator heading appears inconsistently
+    .replace(/ —/g, '') // Remove em dash from quote author attribution
+    .replace(/## Want to run a validator yourself\? Check out the docs\. \[\]\([^)]+\)/g, '') // Banner appears in local but content order differs from prod
+    .replace(/## What you need to know/g, '## What you nEed to know') // Match prod's weird capitalization
+    .replace(/~[\d.]+% annually/g, '~X% annually') // Normalize dynamic staking percentage
+    .replace(/\+[\d.]+% \+[\d,]+/g, '+X% +X') // Normalize dynamic staking rewards
+    .replace(/[\d.]+% staked/g, 'X% staked') // Normalize dynamic staked percentage
+    .replace(/Live/g, '') // Remove "Live" label (appears in local but not prod)
+    .replace(/(forum\.nimiq\.community\/\)) # (Stake in the Nimiq wallet and get ~X% annually)/g, '$1 ## $2') // Second staking heading should be H2
+    .replace(/\[7m !\[\]\(\[IMAGE\]\) !\[\]\(\[IMAGE\]\)\[27m/g, '') // Video poster images (prod only)
 
     // Trailing space on lines
     .replace(/ $/gm, '')
@@ -222,7 +226,8 @@ function normalizeMarkdown(md: string): string {
 
     // Team page: randomized member order - normalize by sorting alphabetically
     .replace(/# The Team Team Nimiq is driven[\s\S]*?## Join the team/g, (match) => {
-      const members = match.match(/## ([^\n]+)(Front-end Engineer|Blockchain Core Developer|UI\/UX & Communication|Design|Blockchain Researcher & Core Developer|Counsel & Representation|Communication Manager|Store Onboarding Manager|Nimiq Co-Creator[^#]+|System Virtuoso|Ecosystem Development|Community Manager|Technical Writer|Advisor LatAm Regulators & Fintech Bridge|Front-end Engineer & Core Developer)[^#]+/g) || []
+      // eslint-disable-next-line regexp/no-misleading-capturing-group, regexp/optimal-quantifier-concatenation
+      const _members = match.match(/## ([^\n]+)(Front-end Engineer|Blockchain Core Developer|UI\/UX & Communication|Design|Blockchain Researcher & Core Developer|Counsel & Representation|Communication Manager|Store Onboarding Manager|Nimiq Co-Creator[^#]+|System Virtuoso|Ecosystem Development|Community Manager|Technical Writer|Advisor LatAm Regulators & Fintech Bridge|Front-end Engineer & Core Developer)[^#]+/g) || []
       return '# The Team Team Nimiq is driven to contribute something to society that is meaningful, large scale and cutting edge. Join us. [TEAM MEMBERS]\n\n## Join the team'
     })
 
@@ -305,7 +310,7 @@ function normalizeMarkdown(md: string): string {
     .replace(/ !\[BTC Lightning\]\([^)]+\)/g, ' - Coming Soon![]([IMAGE])BTC Lightning')
 
     // Cookie consent banner (appears after hydration on local but not on prod)
-    .replace(/## Cookie Consent[\s\S]*?Reject[\s\S]*?Accept/g, "")
+    .replace(/## Cookie Consent[\s\S]*?Reject[\s\S]*?Accept/g, '')
 
     // Final cleanup
     .replace(/\n{3,}/g, '\n\n')
@@ -314,16 +319,22 @@ function normalizeMarkdown(md: string): string {
 
 let browser: Browser
 
-beforeAll(async () => { browser = await chromium.launch() })
-afterAll(async () => { await browser.close() })
+beforeAll(async () => {
+  browser = await chromium.launch()
+})
+afterAll(async () => {
+  await browser.close()
+})
 
 async function getMarkdown(url: string) {
   const page = await browser.newPage()
   page.setDefaultTimeout(60000)
   const waitStrategy = url.includes('/wallet') || url.includes('/staking') || url.includes('/onepager') || url.includes('/team') || url.includes('/activation-terms') || url.includes('/terms') || url.includes('/nimiq-pay') ? 'load' : url.includes('/blog') ? 'domcontentloaded' : 'networkidle'
   await page.goto(url, { waitUntil: waitStrategy, timeout: 60000 })
-  if (url.includes('/wallet')) await page.waitForTimeout(15000) // Extra wait for wallet page client-side hydration
-  else if (url.includes('/staking') || url.includes('/onepager') || url.includes('/team') || url.includes('/activation-terms') || url.includes('/terms') || url.includes('/blog') || url.includes('/nimiq-pay')) await page.waitForTimeout(5000) // Extra wait for page hydration
+  if (url.includes('/wallet'))
+    await page.waitForTimeout(15000) // Extra wait for wallet page client-side hydration
+  else if (url.includes('/staking') || url.includes('/onepager') || url.includes('/team') || url.includes('/activation-terms') || url.includes('/terms') || url.includes('/blog') || url.includes('/nimiq-pay'))
+    await page.waitForTimeout(5000) // Extra wait for page hydration
   const html = await page.content()
   await page.close()
   return htmlToMarkdown(html)
@@ -347,4 +358,3 @@ describe('content Parity', () => {
     })
   }
 })
-

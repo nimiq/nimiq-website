@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const page = await queryCollection('activationTerms').first()!
-const content = await parseMarkdown(page.content)
+const content = await parseMarkdown(page.content?.richText || '')
 
-const title = page.seo?.title || page.hero?.title || 'NIM Activation Terms'
-const description = page.seo?.description || page.hero?.description
+const title = page.seo?.title || page.hero?.headline || 'NIM Activation Terms'
+const description = page.seo?.description || page.hero?.subline
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/activation-terms' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/activation-terms' }] })
 </script>
@@ -12,7 +12,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/activation-terms' 
   <NuxtLayout>
     <main>
       <section nq-section-gap bg-neutral-100>
-        <Hero v-bind="page.hero" />
+        <Hero :title="page.hero?.headline" :description="page.hero?.subline" />
       </section>
 
       <section nq-section-gap bg-neutral-0>

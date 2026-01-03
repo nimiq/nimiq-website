@@ -17,13 +17,15 @@ const socialMediaMap: Record<string, string> = { twitter: 'x', nimiq_forum: 'nim
 function getSocialById(id: string) {
   const mappedId = socialMediaMap[id] || id
   const social = site.value?.socials?.find(s => s.id === mappedId)
-  if (!social) return social
+  if (!social)
+    return social
   // Contact grid shows lowercase labels for some socials, keeps proper case for others
   const lowercaseIds = ['reddit', 'facebook', 'telegram', 'youtube', 'discord', 'instagram']
   let label = social.label
   if (lowercaseIds.includes(mappedId)) {
     label = social.label.toLowerCase()
-  } else if (mappedId === 'nimiqForum') {
+  }
+  else if (mappedId === 'nimiqForum') {
     // Special case: nimiqForum should have lowercase 'n' in contact grid
     label = 'nimiqForum'
   }

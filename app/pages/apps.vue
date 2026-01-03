@@ -19,7 +19,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/apps' }] })
         </p>
       </section>
 
-      <section nq-section-gap bg-neutral-0>
+      <section px-0 bg-neutral-0 of-x-clip max-lg:children:max-w-none class="pt-0!">
         <ShowcaseAppsAll />
       </section>
 

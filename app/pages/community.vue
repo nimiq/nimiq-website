@@ -26,12 +26,13 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
         <BannerNewsletter v-bind="page.newsletter" />
       </section>
 
-      <section nq-section-gap bg-neutral-0>
-        <Headline v-bind="page.apps.headline" />
-        <BannerAppGallery v-bind="page.apps.gallery" />
+      <section nq-section-gap bg-neutral-100>
+        <Headline v-bind="page.events" />
       </section>
 
       <section nq-section-gap bg-neutral-0>
+        <Headline v-bind="page.apps.headline" />
+        <BannerAppGallery v-bind="page.apps.gallery" />
         <Banner v-bind="page.banner" />
       </section>
 

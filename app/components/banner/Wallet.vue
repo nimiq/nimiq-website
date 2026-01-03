@@ -22,13 +22,13 @@ defineProps<WalletBannerData>()
         <h3 nq-heading>
           {{ headline }}
         </h3>
-        <p f-mt-md max-w-60ch>
+        <p max-w-60ch f-mt-md>
           {{ subline }}
         </p>
-        <NuxtLink :to="link" mt="32 md:24" nq-arrow nq-pill-lg nq-pill-blue self-start />
+        <NuxtLink :to="link" mt="32 md:24" self-start nq-arrow nq-pill-lg nq-pill-blue />
       </div>
       <div v-if="image" relative lg:self-end>
-        <img :src="image" alt="" class="max-w-full h-auto max-h-200 lg:max-h-300">
+        <img :src="image" alt="" class="h-auto max-h-200 max-w-full lg:max-h-300">
       </div>
     </div>
   </div>

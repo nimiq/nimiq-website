@@ -15,27 +15,20 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/cryptopaymentlink'
         <TiltedMedia v-if="page.tiltedMedia" v-bind="page.tiltedMedia" />
       </section>
 
-      <section v-if="page.simpleHeadline" nq-section-gap bg-neutral-0>
-        <Headline v-bind="page.simpleHeadline" />
+      <section v-if="page.simpleHeadline || page.grid?.items" nq-section-gap bg-neutral-0>
+        <Headline v-if="page.simpleHeadline" v-bind="page.simpleHeadline" />
+        <GridSection v-if="page.grid?.items" v-bind="page.grid" variation="iconGrid" />
       </section>
 
-      <section v-if="page.grid?.items" nq-section-gap bg-neutral-0>
-        <GridSection v-bind="page.grid" variation="iconGrid" />
+      <section v-if="page.learnItHeadline || page.textCards?.items" nq-section-gap bg-neutral-100>
+        <Headline v-if="page.learnItHeadline" v-bind="page.learnItHeadline" />
+        <RichTextCards v-if="page.textCards?.items" v-bind="page.textCards" />
       </section>
 
-      <section v-if="page.whatIsCryptopaymentlinkHeadline" nq-section-gap bg-neutral-100>
-        <Headline v-bind="page.whatIsCryptopaymentlinkHeadline" />
-      </section>
-
-      <section v-if="page.textCards?.items" nq-section-gap bg-neutral-100>
-        <RichTextCards v-bind="page.textCards" />
-      </section>
-
-      <section v-if="page.steppedSlides" nq-section-gap bg-neutral-0>
+      <section v-if="page.steppedSlides" mx-0 px-0 bg-neutral-0 of-x-clip children:max-w-none>
         <Stepped v-bind="page.steppedSlides" />
       </section>
 
-      <!-- Final CTA -->
       <section v-if="page.finalCta" nq-section-gap bg-neutral-100>
         <Headline v-bind="page.finalCta" />
       </section>

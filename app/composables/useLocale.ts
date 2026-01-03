@@ -6,7 +6,7 @@ function sanitizeLocale(locale: string | undefined): string {
   const sanitized = locale.split('@')[0].trim()
 
   // Basic validation: should match xx or xx-XX format
-  if (!/^[a-z]{2}(-[A-Z]{2})?$/i.test(sanitized))
+  if (!/^[a-z]{2}(?:-[A-Z]{2})?$/i.test(sanitized))
     return 'en-US'
 
   return sanitized
