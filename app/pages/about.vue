@@ -15,25 +15,25 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
       <TiltedMedia v-bind="page.media" />
     </section>
 
-    <section nq-section-gap bg-neutral-0>
+    <section nq-section-gap bg-neutral-100>
       <Headline v-bind="page.dive.headline" />
       <GridLinks :items="page.dive.items" />
     </section>
 
-    <section nq-section-gap bg-neutral-100>
+    <section nq-section-gap bg-neutral-0>
       <ContentRenderer :value="missionContent" tag="article" f-prose text-neutral-900 children:mx-auto children:max-w-prose />
     </section>
 
-    <section nq-section-gap bg-neutral-0>
+    <section nq-section-gap bg-neutral-100>
       <Headline v-bind="page.team.headline" />
       <GridLarge :items="page.team.items" />
     </section>
 
-    <section nq-section-gap bg-neutral-0>
+    <section nq-section-gap bg-neutral-100>
       <Headline v-bind="page.roadmap" />
     </section>
 
-    <section nq-section-gap bg-neutral-0>
+    <section nq-section-gap bg-neutral-100>
       <Headline v-bind="page.feedback" />
     </section>
   </NuxtLayout>

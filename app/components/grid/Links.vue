@@ -10,10 +10,10 @@ defineProps<{ items: LinkItem[] }>()
       flex="~ row gap-20 items-center" :style="`--c: var(--colors-${item.color})`"
       :to="item.link" group p-20 nq-hoverable class="hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c"
     >
-      <Icon v-if="item.icon" :name="item.icon" class="text-32 text-$c transition-colors md:text-48 group-hocus:!text-white" />
-      <div whitespace-nowrap flex="~ items-center" text="group-hocus:children:!white">
+      <Icon v-if="item.icon" :name="item.icon" class="text-48 text-$c transition-colors group-hocus:!text-white" />
+      <h4 whitespace-nowrap flex="~ items-center" text="group-hocus:children:!white" text-22 font-semibold>
         {{ item.headline }}
-      </div>
+      </h4>
     </NuxtLink>
   </div>
 </template>

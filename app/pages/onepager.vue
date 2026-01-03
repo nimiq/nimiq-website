@@ -2,7 +2,7 @@
 import '~/assets/css/onepager.css'
 
 const page = await queryCollection('onepager').first()!
-const content = await parseMarkdown(page.content.richText)
+const content = await parseMarkdown(page.content)
 
 const title = page.seo?.title || page.hero?.title || 'Nimiq in a Nutshell | Nimiq'
 const description = page.seo?.description || page.hero?.description
@@ -12,14 +12,15 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/onepager' }] })
 
 <template>
   <NuxtLayout>
-    <main>
-      <section nq-section-gap bg-neutral-100>
-        <Hero v-bind="page.hero" />
-      </section>
+    <section bg-neutral-100 f-py-lg>
+      <div mx-auto max-w-prose px-24>
+        <h1 nq-heading font-bold>{{ page.hero?.title }}</h1>
+        <p v-if="page.hero?.description" text-neutral-700 mt-16>{{ page.hero.description }}</p>
+      </div>
+    </section>
 
-      <section nq-section-gap bg-neutral-0>
-        <ContentRenderer :value="content" tag="article" nq-prose text-neutral-900 children:mx-auto children:max-w-prose />
-      </section>
-    </main>
+    <section nq-section-gap bg-neutral-100>
+      <ContentRenderer :value="content" tag="article" nq-prose mx-auto max-w-prose />
+    </section>
   </NuxtLayout>
 </template>
