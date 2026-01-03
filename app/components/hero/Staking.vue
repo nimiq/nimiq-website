@@ -7,7 +7,7 @@ const id = `terms-note-${useId()}`
 </script>
 
 <template>
-  <div bg-neutral-0 relative of-x-clip f-p-5xl max-md:pb-100>
+  <section bg-neutral-0 relative of-x-clip f-p-5xl max-md:pb-100>
     <!-- Background layers for the green radial gradient effect -->
     <AnimatedCircleRipple left="-100vw lg:-5vw" size="300vw lg:110vw" max-w-none absolute z-0 bottom="10 lg:-300" />
     <div h="400 lg:200" bg-neutral-0 max-w-none pointer-events-none inset-0 absolute z-1 />
@@ -29,7 +29,7 @@ const id = `terms-note-${useId()}`
         <Icon aria-hidden name="nimiq:asterisk" class="size-0.4em translate-x--8 translate-y-4 sm:translate-x-4 sm:translate-y-8" /> average return based on the current distribution. This is not financial advice.
       </small>
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>

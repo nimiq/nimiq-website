@@ -1,17 +1,20 @@
 import type { Buffer } from 'node:buffer'
-import type { Browser } from 'playwright'
+import type { Browser, Page } from 'playwright'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import pixelmatch from 'pixelmatch'
 import { chromium } from 'playwright'
 import { PNG } from 'pngjs'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { comparePageStyles, extractSectionStyles } from './lib/style-comparison'
+import type { PageStyleDiff, StyleData } from './lib/style-comparison'
+import { generateEnhancedReport } from './lib/report-generator'
 
 const LOCAL = 'http://localhost:3000'
 const PROD = 'https://nimiq.com'
 const SCREENSHOT_DIR = 'tests/screenshots'
 
 const CONFIG = {
-  allowedMismatchedPixelRatio: 0.40, // 40% of pixels can differ (relaxed for migration)
+  allowedMismatchedPixelRatio: 0.10, // 10% of pixels can differ (balance between strictness and Prismic→Nuxt Content migration realities)
   pixelmatchThreshold: 0.1, // color sensitivity (0-1)
   allowedHeightDifferenceRatio: 0.50, // 50% height difference allowed (some prod pages have duplicate content bugs)
 }
@@ -19,17 +22,24 @@ const CONFIG = {
 // Page/section specific threshold overrides (see INTENTIONAL_CHANGES.md files)
 const SECTION_OVERRIDES: Record<string, Record<number, number>> = {
   '/oasis': { 0: 0.70 }, // Hero globe has intentional CSS differences
+  '/staking': { 0: 0.30, 1: 0.60, 5: 0.25 }, // Hero, quote, and validator sections have rendering differences (Prismic→Nuxt migration)
+  '/blog': { 0: 0.25 }, // Hero section has rendering differences
 }
 
-// Pages with external iframes that prevent networkidle from completing
-const PAGES_WITH_IFRAMES = ['/oasis', '/contact']
+// Page-specific height difference overrides
+const HEIGHT_OVERRIDES: Record<string, number> = {
+  '/onepager': 0.60, // Mobile content renders taller on prod (old Prismic structure vs new Nuxt Content)
+}
+
+// Pages with external iframes or slow-loading resources that prevent networkidle from completing
+const PAGES_WITH_IFRAMES = ['/oasis', '/contact', '/staking']
 
 // URL mappings for production (old site uses .html extension for some pages)
 const PROD_URL_MAP: Record<string, string> = {
   '/terms': '/terms.html',
 }
 
-const PAGES = [
+const ALL_PAGES = [
   '/',
   '/about',
   '/apps',
@@ -54,6 +64,10 @@ const PAGES = [
   '/blog/virtual-nimiq-cards',
   '/blog/nimiq-proof-of-stake-is-now-live',
 ]
+
+// Support TEST_PAGE environment variable for page-by-page testing
+const TEST_PAGE = process.env.TEST_PAGE
+const PAGES = TEST_PAGE ? [TEST_PAGE] : ALL_PAGES
 
 const VIEWPORTS = [
   { name: 'mobile', width: 390, height: 844 },
@@ -130,6 +144,51 @@ async function capturePageSections(url: string, viewport: Viewport, pagePath: st
 
   await page.close()
   return screenshots
+}
+
+/**
+ * Capture page sections with style extraction (keeps page open)
+ */
+async function captureWithStyles(url: string, viewport: Viewport, pagePath: string): Promise<{ screenshots: SectionScreenshot[], page: Page }> {
+  const page = await browser.newPage({ viewport: { width: viewport.width, height: viewport.height } })
+  page.setDefaultTimeout(60000)
+  const domain = url.includes('localhost') ? 'localhost' : 'nimiq.com'
+  await page.context().addCookies([{ ...CONSENT_COOKIE, domain }])
+  const waitUntil = PAGES_WITH_IFRAMES.includes(pagePath) ? 'load' : 'networkidle'
+  await page.goto(url, { waitUntil, timeout: 60000 })
+
+  // Hide UI elements
+  const isLocal = url.includes('localhost')
+  await page.addStyleTag({
+    content: `
+      body > [role="alertdialog"] { display: none !important; }
+      ${isLocal
+          ? `main ~ div[fixed], main ~ [class*="fixed"], [class*="environment"], [class*="env-pill"], div[bottom-20][right-20][fixed] { display: none !important; }`
+          : `[role="banner"]:has(+ header), header { display: none !important; }`
+      }
+    `,
+  })
+  await page.waitForTimeout(2000)
+
+  const sections = page.locator('main section')
+  const count = await sections.count()
+  const screenshots: SectionScreenshot[] = []
+
+  for (let i = 0; i < count; i++) {
+    const section = sections.nth(i)
+    const isVisible = await section.isVisible()
+    if (!isVisible)
+      continue
+    await section.scrollIntoViewIfNeeded()
+    await page.waitForTimeout(300)
+    const buffer = await section.screenshot()
+    const bgColor = await section.evaluate(el => getComputedStyle(el).backgroundColor)
+    const hasSectionGap = await section.evaluate(el => el.hasAttribute('nq-section-gap'))
+    screenshots.push({ index: i, buffer, bgColor, hasSectionGap })
+  }
+
+  // Return page for style extraction (caller must close it)
+  return { screenshots, page }
 }
 
 function mergeBuffersVertically(buffers: Buffer[]): Buffer {
@@ -224,7 +283,7 @@ ${failures.length ? `<div class="failures"><strong>Failures:</strong><pre>${fail
   writeFileSync(`${baseDir}/report.html`, html)
 }
 
-function compareImages(img1: Buffer, img2: Buffer, diffPath: string): { diffPixels: number, totalPixels: number, diffRatio: number, sizeMismatch: boolean, heightDiff?: string } {
+function compareImages(img1: Buffer, img2: Buffer, diffPath: string, allowedHeightDiff: number = CONFIG.allowedHeightDifferenceRatio): { diffPixels: number, totalPixels: number, diffRatio: number, sizeMismatch: boolean, heightDiff?: string } {
   const png1 = PNG.sync.read(img1)
   const png2 = PNG.sync.read(img2)
 
@@ -235,7 +294,7 @@ function compareImages(img1: Buffer, img2: Buffer, diffPath: string): { diffPixe
 
   // Height can differ by allowedHeightDifferenceRatio
   const heightDiffRatio = Math.abs(png1.height - png2.height) / Math.max(png1.height, png2.height)
-  if (heightDiffRatio > CONFIG.allowedHeightDifferenceRatio) {
+  if (heightDiffRatio > allowedHeightDiff) {
     return { diffPixels: -1, totalPixels: 0, diffRatio: 1, sizeMismatch: true, heightDiff: `${(heightDiffRatio * 100).toFixed(1)}% (${png1.height} vs ${png2.height})` }
   }
 
@@ -296,12 +355,13 @@ describe('visual Regression', () => {
 
         // Compare matching sections
         const minSections = Math.min(localSections.length, prodSections.length)
+        const heightThreshold = HEIGHT_OVERRIDES[path] ?? CONFIG.allowedHeightDifferenceRatio
         for (let i = 0; i < minSections; i++) {
           const local = localSections[i]
           const prod = prodSections[i]
           const diffPath = `${baseDir}/diff/section-${i}.png`
 
-          const result = compareImages(local.buffer, prod.buffer, diffPath)
+          const result = compareImages(local.buffer, prod.buffer, diffPath, heightThreshold)
           const threshold = SECTION_OVERRIDES[path]?.[i] ?? CONFIG.allowedMismatchedPixelRatio
 
           if (result.sizeMismatch) {
@@ -312,8 +372,46 @@ describe('visual Regression', () => {
           }
         }
 
-        // Generate HTML report
-        generateHtmlReport(baseDir, localSections, prodSections, failures)
+        // If failures detected, extract and compare styles
+        let styleDiff: PageStyleDiff | undefined
+        if (failures.length > 0) {
+          try {
+            // Re-capture with pages kept open for style extraction
+            const [localData, prodData] = await Promise.all([
+              captureWithStyles(`${LOCAL}${path}`, viewport, path),
+              captureWithStyles(`${PROD}${prodPath}`, viewport, path),
+            ])
+
+            // Extract styles from each section
+            const localStylesAll: StyleData[][] = []
+            const prodStylesAll: StyleData[][] = []
+
+            for (let i = 0; i < minSections; i++) {
+              const [localStyles, prodStyles] = await Promise.all([
+                extractSectionStyles(localData.page, i),
+                extractSectionStyles(prodData.page, i),
+              ])
+              localStylesAll.push(localStyles)
+              prodStylesAll.push(prodStyles)
+            }
+
+            // Compare all styles
+            styleDiff = comparePageStyles(localStylesAll, prodStylesAll)
+
+            // Save style diff to JSON
+            writeFileSync(`${baseDir}/style-diff.json`, JSON.stringify(styleDiff, null, 2))
+
+            // Close pages
+            await localData.page.close()
+            await prodData.page.close()
+          }
+          catch (error) {
+            console.error('Style comparison failed:', error)
+          }
+        }
+
+        // Generate enhanced HTML report with style diffs
+        generateEnhancedReport(baseDir, localSections, prodSections, failures, styleDiff)
 
         if (failures.length > 0) {
           expect.fail(`${failures.length} issue(s):\n${failures.join('\n')}\nReport: ${baseDir}/report.html`)

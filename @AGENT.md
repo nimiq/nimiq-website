@@ -9,17 +9,55 @@
 pnpm test:visual
 ```
 
-## Quick Test Single Page
+## Page-by-Page Testing (RECOMMENDED)
 ```bash
-pnpm vitest run tests/visual.test.ts -t "/ - desktop"
+# Test single page (both mobile + desktop)
+TEST_PAGE=/about pnpm test:visual
+
+# Test single viewport
+pnpm vitest run tests/visual.test.ts -t "/about - desktop"
 pnpm vitest run tests/visual.test.ts -t "/about - mobile"
 ```
+
+**Always use TEST_PAGE for page-by-page workflow!**
 
 ## After Making Changes
 ```bash
 pnpm lint:fix
 pnpm typecheck
 ```
+
+## Style Diff Analysis (NEW!)
+When tests fail, enhanced reports include computed style comparison:
+
+**Report locations:**
+- `tests/screenshots/{page}/{viewport}/report.html` - Visual + style diffs
+- `tests/screenshots/{page}/{viewport}/style-diff.json` - Detailed style data
+
+**style-diff.json structure:**
+```json
+{
+  "typography": [
+    {
+      "section": 0,
+      "element": "H1 \"Welcome to Nimiq\"",
+      "differences": [
+        "fontSize: 32px → 36px",
+        "fontWeight: 400 → 500"
+      ]
+    }
+  ],
+  "colors": [...],
+  "spacing": [...],
+  "hoverable": [...]
+}
+```
+
+**Focus areas:**
+- **Typography** (PRIMARY): font-size, weight, family, line-height - exact match
+- **Colors**: Major diffs only (oklch→rgb conversion)
+- **Spacing**: Inner content padding/margin
+- **Hoverable**: nq-hoverable elements
 
 ## View Reports
 ```bash

@@ -1,49 +1,46 @@
-# Fix Plan - Visual Regression
+# Visual Regression Fix Plan - Page-by-Page Progress
 
-## Priority 1: Homepage
-- [ ] Fix section count mismatch (local=5, prod=6)
-- [ ] Fix section height differences
-- [ ] Match all section backgrounds
+**Instructions**: Work on ONE page at a time. Mark ✓ when BOTH viewports pass for that page.
 
-## Priority 2: Core Pages
-- [ ] /about - Match structure and styling
-- [ ] /apps - Match structure and styling
-- [ ] /wallet - Match structure and styling
-- [ ] /staking - Match structure and styling
+| Page | Mobile | Desktop | Notes |
+|------|--------|---------|-------|
+| / | [ ] | [ ] | Homepage - CRITICAL |
+| /about | [ ] | [ ] | |
+| /apps | [ ] | [ ] | |
+| /wallet | [ ] | [ ] | |
+| /staking | [ ] | [ ] | |
+| /nimiq-pay | [ ] | [ ] | |
+| /buy-and-sell | [ ] | [ ] | |
+| /cryptopaymentlink | [ ] | [ ] | |
+| /community | [ ] | [ ] | |
+| /contact | [ ] | [ ] | iframe page |
+| /team | [ ] | [ ] | |
+| /roadmap | [ ] | [ ] | |
+| /litepaper | [ ] | [ ] | |
+| /onepager | [ ] | [ ] | |
+| /blog | [ ] | [ ] | Blog list |
+| /blog/multisig-shared-wallet | [ ] | [ ] | |
+| /blog/virtual-nimiq-cards | [ ] | [ ] | |
+| /blog/nimiq-proof-of-stake-is-now-live | [ ] | [ ] | |
+| /newsletter | [ ] | [ ] | |
+| /oasis | [ ] | [ ] | iframe page |
+| /terms | [ ] | [ ] | |
+| /activation-terms | [ ] | [ ] | |
+| /bug-bounty | [ ] | [ ] | |
 
-## Priority 3: Product Pages
-- [ ] /nimiq-pay
-- [ ] /buy-and-sell
-- [ ] /cryptopaymentlink
+## Current Page Being Fixed
+_Update this as you work:_
+- **Page**: (none)
+- **Status**: Not started
+- **Last Error**: N/A
 
-## Priority 4: Community/Info Pages
-- [ ] /community
-- [ ] /contact
-- [ ] /team
-- [ ] /roadmap
-- [ ] /litepaper
-- [ ] /onepager
+## Style Diff Focus
+- **Typography**: Font size, weight, family, line-height (EXACT match)
+- **Colors**: Major diffs only (oklch vs rgb conversion)
+- **Spacing**: Inner content padding/margin
+- **Hoverable**: nq-hoverable elements
 
-## Priority 5: Blog
-- [ ] /blog (list page)
-- [ ] /blog/multisig-shared-wallet
-- [ ] /blog/virtual-nimiq-cards
-- [ ] /blog/nimiq-proof-of-stake-is-now-live
-
-## Priority 6: Legal/Other
-- [ ] /newsletter
-- [ ] /oasis
-- [ ] /terms
-- [ ] /activation-terms
-- [ ] /bug-bounty
-
-## Cleanup Tasks (as encountered)
-- [ ] Remove unused components
-- [ ] Rename unclear composables
-- [ ] Simplify content structure
-- [ ] Document intentional changes
-
-## Notes
-- Compare with ~/nimiq/website-old/ for reference
-- Use pnpm patch if nimiq-css needs updates
-- Check both mobile and desktop viewports
+## Completion
+✓ All pages marked ✓ for BOTH viewports
+✓ Full test passes: `pnpm test:visual` exits 0
+✓ No errors in logs

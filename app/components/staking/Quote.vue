@@ -3,12 +3,12 @@ defineProps<{ text: string }>()
 </script>
 
 <template>
-  <div relative z-1 f-p-5xl>
+  <section relative z-1 f-p-5xl>
     <div bg-green h-200 max-w-none pointer-events-none inset-x-0 top-0 absolute />
     <div class="bg" h-600 max-w-none pointer-events-none inset-x-0 top-200 absolute />
     <div i-nimiq:duotone-safe-lock text="left md:center 96 md:112 white" />
     <p text="white f-2xl left md:center" max-w-36ch relative z-1 f-mt-md v-html="text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')" />
-  </div>
+  </section>
 </template>
 
 <style scoped>

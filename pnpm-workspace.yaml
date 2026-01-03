@@ -6,7 +6,9 @@ catalog:
   '@nuxthub/core': 0.10.1
   '@types/js-yaml': ^4.0.9
   '@vitest/browser': ^4.0.16
+  '@vitest/ui': ^4.0.16
   dotenv: ^17.2.3
+  unist-util-visit: ^5.0.0
   js-yaml: ^4.1.0
   marked: ^17.0.1
   mdream: ^0.15.3
@@ -95,3 +97,5 @@ onlyBuiltDependencies:
   - utf-8-validate
   - vue-demi
   - workerd
+patchedDependencies:
+  '@nuxt/content': patches/@nuxt__content.patch

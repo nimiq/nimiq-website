@@ -17,17 +17,35 @@ pnpm test:visual  # Must exit 0 (all tests pass)
 After each `pnpm test:visual` run, check HTML reports at:
 `tests/screenshots/{page}/{viewport}/report.html`
 
-## Workflow
-1. Run `pnpm test:visual` to identify failing pages
-2. Open the HTML report for the failing page
-3. Compare local vs prod screenshots section by section
-4. Identify the issue (CSS, content, structure, missing component)
-5. Fix the issue by:
-   - Editing components in `app/components/`
-   - Editing page content in `content/`
-   - Editing styles (can use pnpm patch on nimiq-css if needed)
-   - Comparing with `~/nimiq/website-old/` for reference
-6. Repeat until test passes
+## CRITICAL: Page-by-Page Workflow
+
+**Work on ONE page at a time. Check @fix_plan.md for first unchecked page.**
+
+### Per-Page Workflow:
+1. Check @fix_plan.md - find first page without ✓ in both Mobile & Desktop
+2. Run: `TEST_PAGE=/page pnpm test:visual` (e.g., TEST_PAGE=/about)
+3. If PASSES: Mark ✓ in @fix_plan.md for both viewports, move to next page
+4. If FAILS:
+   - Open `tests/screenshots/{page}/{viewport}/report.html`
+   - Analyze pixel diffs (red overlay images)
+   - Analyze style diffs (typography, colors, spacing, hoverable)
+   - Check `style-diff.json` for computed style differences
+   - Fix issues (primary focus: typography - font sizes changed in nimiq-css update)
+   - Re-run SAME page: `TEST_PAGE=/page pnpm test:visual`
+   - Repeat until PASSES
+5. Only after page passes BOTH viewports (mobile + desktop), move to next
+
+### Style Diff Priority:
+- **Typography** (PRIMARY): Exact match - font-size, weight, family, line-height
+- **Colors**: Major diffs - avoid white→dark-blue mistakes (oklch vs rgb)
+- **Spacing**: Inner content padding/margin (not section-level)
+- **Hoverable**: nq-hoverable elements (simple check)
+
+### Fix Strategy:
+- Typography issues: Check nimiq-css version, use pnpm patch if needed
+- Missing content: Migrate from `~/nimiq/website-old/`
+- Structure diffs: Ensure same `<section>` count in `<main>`
+- Component mismatches: Compare with `~/nimiq/website-old/components/`
 
 ## What Can Be Changed
 - `app/components/**` - Vue components
@@ -70,17 +88,20 @@ Explaining what changed and why.
 
 ## Commands
 ```bash
-# Run all visual tests
+# Test single page (both viewports)
+TEST_PAGE=/about pnpm test:visual
+
+# Test single page + viewport
+pnpm vitest run tests/visual.test.ts -t "/about - mobile"
+
+# Run all visual tests (DO NOT use during page-by-page workflow)
 pnpm test:visual
-
-# Test single page
-pnpm vitest run tests/visual.test.ts -t "/ - desktop"
-
-# Serve screenshot reports
-pnpm test:visual:serve
 
 # Dev server (must be running)
 pnpm dev
+
+# Serve screenshot reports
+pnpm test:visual:serve
 
 # Lint and typecheck after changes
 pnpm lint:fix && pnpm typecheck
@@ -92,5 +113,8 @@ pnpm lint:fix && pnpm typecheck
 - Check `nq-section-gap` attribute for section merging logic
 - Compare old vs new component implementations
 
-## Completion Promise
-COMPLETE when: `pnpm test:visual` exits with code 0 (all visual tests pass)
+## Exit Criteria
+COMPLETE when:
+1. All pages in @fix_plan.md marked ✓ for Mobile AND Desktop
+2. `pnpm test:visual` (full test) exits code 0
+3. No ERROR in logs
