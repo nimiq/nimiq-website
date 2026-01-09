@@ -35,8 +35,8 @@ docs/
 # Prismic cached data
 scripts/prismic-data/
 
-# Generated content
-content/
+# Generated content (blog images only - content/ tracked for local dev)
+# content/
 public/images/blog/
 public/images/exchanges/
 public/images/pages/

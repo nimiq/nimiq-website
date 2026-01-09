@@ -1,0 +1,101 @@
+footer:
+  newsletterCta: Sign up for our monthly newsletter
+  newsletterPlaceholder: your@email.com
+  socialMediaCta: Join the Nimiq community
+  description: Nimiq is a blockchain payment protocol designed for payments and designed to be easy to use. It enables payments to happen directly between the payer and receiver, using the open blockchain as the backend.
+  copyright: "© Nimiq"
+
+navigation:
+  - label: Apps
+    links:
+      - text: Wallet
+        href: /wallet
+      - text: Nimiq Pay
+        href: /nimiq-pay
+      - text: Crypto Map
+        href: https://map.nimiq.com
+      - text: All apps
+        href: /apps
+  - label: Tech
+    links:
+      - text: Onepager
+        href: /onepager
+      - text: Developers
+        href: https://nimiq.dev
+      - text: Litepaper
+        href: /litepaper
+      - text: Albatross
+        href: /albatross
+  - label: Community
+    links:
+      - text: Overview
+        href: /community
+      - text: Blog
+        href: /blog
+      - text: Podcast
+        href: /podcast
+  - label: Project
+    links:
+      - text: About
+        href: /about
+      - text: Team
+        href: /team
+      - text: Roadmap
+        href: /roadmap
+      - text: Staking
+        href: /staking
+  - label: Get started
+    links:
+      - text: Login
+        href: https://wallet.nimiq.com
+      - text: New wallet
+        href: https://wallet.nimiq.com
+      - text: Buy NIM
+        href: /buy-and-sell
+
+socials:
+  - id: twitter
+    label: X
+    link: https://twitter.com/nimiq
+    icon: logos:x
+    color: "#000000"
+  - id: telegram
+    label: Telegram
+    link: https://t.me/Nimiq
+    icon: logos:telegram
+    color: "#0088cc"
+  - id: reddit
+    label: Reddit
+    link: https://www.reddit.com/r/Nimiq
+    icon: logos:reddit-icon
+    color: "#ff4500"
+  - id: github
+    label: Github
+    link: https://github.com/nimiq
+    icon: logos:github-icon
+    color: "#000000"
+  - id: youtube
+    label: Youtube
+    link: https://www.youtube.com/c/nimiq
+    icon: logos:youtube-icon
+    color: "#ff0000"
+  - id: discord
+    label: Discord
+    link: https://discord.gg/nimiq
+    icon: logos:discord-icon
+    color: "#7289da"
+  - id: forum
+    label: Forum
+    link: https://forum.nimiq.community
+    icon: lucide:message-circle
+    color: "#f79820"
+  - id: facebook
+    label: Facebook
+    link: https://www.facebook.com/nimiq
+    icon: logos:facebook
+    color: "#1877f2"
+  - id: instagram
+    label: Instagram
+    link: https://www.instagram.com/wearenimiq
+    icon: logos:instagram-icon
+    color: "#e4405f"
