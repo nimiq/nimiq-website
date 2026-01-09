@@ -1,3 +1,5 @@
+import { consola } from 'consola'
+
 interface ConsentData {
   accepted: boolean
   version: string
@@ -20,8 +22,7 @@ export function useMatomo() {
     consent.value = { accepted: true, version: CONSENT_VERSION, timestamp: Date.now() }
 
     if (isDev) {
-      // eslint-disable-next-line no-console
-      console.log('📊 [DEV] Analytics consent accepted - would initialize download tracking')
+      consola.log('📊 [DEV] Analytics consent accepted - would initialize download tracking')
       return
     }
 
@@ -35,8 +36,7 @@ export function useMatomo() {
     consent.value = { accepted: false, version: CONSENT_VERSION, timestamp: Date.now() }
 
     if (isDev) {
-      // eslint-disable-next-line no-console
-      console.log('📊 [DEV] Analytics consent rejected - would opt out user')
+      consola.log('📊 [DEV] Analytics consent rejected - would opt out user')
       return
     }
 
@@ -67,8 +67,7 @@ export function useMatomo() {
     if (isDev) {
       const matomo = `trackEvent: ${eventCategory} > ${eventAction} > ${label}`
       const gtm = { event: eventName, event_category: eventCategory, event_action: eventAction, event_label: label }
-      // eslint-disable-next-line no-console
-      console.log('📊 [DEV] Would track event:', { eventName, eventCategory, eventAction, label, matomo, gtm })
+      consola.log('📊 [DEV] Would track event:', { eventName, eventCategory, eventAction, label, matomo, gtm })
       return
     }
 

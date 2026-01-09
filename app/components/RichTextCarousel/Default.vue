@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import type { ImageField, RichTextField } from '@prismicio/client'
-
-defineProps<{ content: RichTextField, images: ImageField<never>[] }>()
+const { content, images } = defineProps<{ content: string, images: string[] }>()
+const validImages = computed(() => images?.filter(Boolean) || [])
 </script>
 
 <template>
   <div flex="~ gap-32 md:gap-40 lg:gap-48 xl:gap-64 col md:row">
-    <RichText wrapper="div" nq-prose-compact text="14 md:18 neutral-900" :field="content" />
+    <MDC :value="content" wrapper="div" class="nq-prose-compact" text="14 md:18 neutral-900" />
 
-    <!-- TODO Right now we are using a carousel. This is not right. We must use a card swiper instead, see designs -->
-    <SimpleCarousel :slides="images" style="--trigger-size:min(300px,20vw); --r: 12px" :shadow="true">
-      <template #default="{ slide: image }">
-        <ProxiedPrismicImage :field="image" rounded-8 />
+    <ClientOnly v-if="validImages.length > 0">
+      <UiSimpleCarousel :slides="validImages" style="--trigger-size:min(300px,20vw); --r: 12px" :shadow="true">
+        <template #default="{ slide }">
+          <NuxtImg v-if="slide" :src="slide" rounded-8 />
+        </template>
+      </UiSimpleCarousel>
+      <template #fallback>
+        <NuxtImg :src="validImages[0]" rounded-8 />
       </template>
-    </SimpleCarousel>
+    </ClientOnly>
   </div>
 </template>

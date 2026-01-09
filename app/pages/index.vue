@@ -1,100 +1,64 @@
 <script setup lang="ts">
-import { components } from '~/slices'
+const page = await queryCollection('home').first()!
 
-const route = useRoute()
-
-const { data: page } = await usePrismicPage('home')
-
-if (page.value?.uid !== 'home') {
-  console.error(`Home page not found: ${JSON.stringify(page.value)}`)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
-}
-
-definePageMeta({
-  middleware: [],
-})
-
-const footerBgColor = computed(() => {
-  if (page.value?.data && 'slices' in page.value.data) {
-    return (page.value.data.slices.at(-1)?.primary as { bgColor: 'white' | 'grey' | 'darkblue' })?.bgColor
-  }
-  return undefined
-})
-
-const draft = computed(() => page.value?.data && 'draft' in page.value.data && page.value?.data.draft)
-
-// CMS takes precedence over slice data for better content management control
-const slice = page.value?.data && 'slices' in page.value.data ? page.value.data.slices.at(0) : undefined
-const { meta_title: cmsTitle, meta_description: cmsDescription, meta_image: cmsImage, meta_keywords: cmsKeywords } = page.value.data
-
-// @ts-expect-error this is a hack to get the title and description from the first slice
-const firstSliceTitle = slice ? getText(slice.primary?.title || slice.primary?.headline) : undefined
-
-// @ts-expect-error this is a hack to get the title and description from the first slice
-const firstSliceDescription = slice ? getText(slice.primary?.description || slice.primary?.subline) : undefined
-
-const title = cmsTitle || firstSliceTitle || 'Nimiq'
-const description = cmsDescription || firstSliceDescription || ''
-
-// Site config ensures consistency across all SEO-related modules
-const url = 'https://nimiq.com'
-const canonicalUrl = `${url}${route.path}`
-
-const keywords = cmsKeywords || 'Nimiq, cryptocurrency, blockchain, digital money, payments'
-
-// Canonical URL still needs to be handled separately in current version
-useHead({
-  link: [
-    { rel: 'canonical', href: canonicalUrl },
-  ],
-})
-
-// Centralized SEO meta ensures all social platforms get consistent data
-useSeoMeta({
-  title,
-  description,
-  keywords,
-
-  ogTitle: title,
-  ogDescription: description,
-  ogUrl: canonicalUrl,
-  ogType: 'website',
-  ogSiteName: 'Nimiq',
-  ogLocale: 'en_US',
-
-  twitterCard: 'summary_large_image',
-  twitterTitle: title,
-  twitterDescription: description,
-  twitterSite: '@nimiq',
-  twitterCreator: '@nimiq',
-
-  // Robots handled globally in nuxt.config.ts for environment-specific control
-  author: 'Nimiq Team',
-  publisher: 'Nimiq',
-})
-
-// Custom images take precedence over generated ones for better brand control
-if (hasImage(cmsImage)) {
-  useSeoMeta({
-    ogImage: cmsImage.url,
-    ogImageAlt: title,
-    ogImageWidth: cmsImage.dimensions?.width,
-    ogImageHeight: cmsImage.dimensions?.height,
-    twitterImage: cmsImage.url,
-    twitterImageAlt: title,
-  })
-}
-
-setOgImage({
-  title,
-  subline: description,
-  image: cmsImage,
-  type: 'home',
-})
+const title = page.seo?.title || page.hero?.title || 'Nimiq'
+const description = page.seo?.description || page.hero?.description
+useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/' })
+useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
 </script>
 
 <template>
-  <NuxtLayout :footer-bg-color :draft show-socials-hexagon-bg dark-header>
-    <SliceZone wrapper="main" :slices="(page?.data && 'slices' in page.data ? page.data.slices : []) ?? []" :components />
+  <NuxtLayout show-socials-hexagon-bg dark-header>
+    <main>
+      <!-- Section 0: Hero (prod: pt=160, pb=0) -->
+      <section class="dark" text-neutral mx-0 bg-darkblue scheme-dark relative of-hidden children:max-w-none max-md:min-h-auto pt="148 md:153 lg:160" min-h="auto md:100vh lg:110vh" flex="~ col justify-between" style="--pb: 0px">
+        <HeroHome v-bind="page.hero" />
+      </section>
+
+      <!-- Section 1: Apps pill link (prod: pt=200, pb=2) -->
+      <section class="nq-section-gap bg-neutral-0" style="--pb: 2px">
+        <UiPillLink v-bind="page.appsLink" style="--c: var(--colors-blue)" />
+      </section>
+
+      <!-- Section 2: Apps headline (prod: pt=24, pb=48) -->
+      <section nq-section-gap bg-neutral-0 style="--pt: 24px; --pb: 48px">
+        <Headline v-bind="page.apps.headline" />
+      </section>
+
+      <!-- Section 3: Apps showcase cards (prod: pt=48, pb=22) -->
+      <section bg-neutral-0 style="--pt: 48px; --pb: 22px">
+        <ShowcaseAppsCards :apps="page.apps.items" />
+      </section>
+
+      <!-- Section 4: Apps banner (prod: pt=0, pb=200) -->
+      <section bg-neutral-0 style="--pt: 0px">
+        <ShowcaseAppsBanner :banner="page.banner" />
+      </section>
+
+      <!-- Section 5: Tech pill link (prod: pt=200, pb=2) -->
+      <section class="dark nq-section-gap bg-darkerblue" style="--pb: 2px">
+        <UiPillLink v-bind="page.techLink" style="--c: var(--colors-green)" />
+      </section>
+
+      <!-- Section 6: Tech headline (prod: pt=24, pb=48) -->
+      <section nq-section-gap class="dark bg-darkerblue" style="--pt: 24px; --pb: 48px">
+        <GridTechHeadline v-bind="page.techGrid" />
+      </section>
+
+      <!-- Section 7: Tech grid items (prod: pt=48, pb=48) -->
+      <section class="dark bg-darkerblue" style="--pt: 48px; --pb: 48px">
+        <GridTechItems :items="page.techGrid.items" />
+      </section>
+
+      <!-- Section 8: Staking (prod: pt=152, pb=200) - staking has internal padding -->
+      <section class="dark gradient-transparent-green staking-gradient bg-darkerblue" style="--pt: 0px">
+        <HeadlineStaking v-bind="page.staking" />
+      </section>
+
+      <!-- Section 9: Community (prod: pt=200, pb=48) -->
+      <section nq-section-gap bg-neutral-0 style="--pb: 48px">
+        <Headline v-bind="page.community" />
+      </section>
+    </main>
   </NuxtLayout>
 </template>

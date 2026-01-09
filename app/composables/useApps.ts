@@ -1,81 +1,87 @@
-const appColor: Record<AppType, string> = {
-  'E-commerce': 'rgb(var(--nq-blue))',
-  'Games': 'rgb(var(--nq-purple))',
-  'Infrastructure': 'rgb(var(--nq-red))',
-  'Insights': 'rgb(var(--nq-green))',
-  'Miner': 'rgb(var(--nq-neutral) / 1)',
-  'Wallets': 'rgb(var(--nq-orange))',
-  'Bots': 'rgb(var(--nq-gold))',
-  'Faucet': '#FA7268', // pink
-  'Promotion': '#795548', // brown
-}
-
-export interface UseAppsOption {
-  labelTeamNimiq?: string
-}
-
-type PriorityLevel = 'high' | 'low' | 'medium'
 type AppType = 'Insights' | 'E-commerce' | 'Games' | 'Faucet' | 'Promotion' | 'Miner' | 'Wallets' | 'Infrastructure' | 'Bots'
+type MadeBy = 'anyone' | 'official' | 'community'
 
-interface AppApi {
+export interface NimiqApp {
   name: string
-  description: string
+  description?: string
   link: string
   type: AppType
   logo: string
-  screenshot: string
+  screenshot?: string
   developer?: string
-}
-
-export interface NimiqApp extends AppApi {
   isHighlighted: boolean
-  priorityLevel: PriorityLevel
   color: string
 }
 
-const spotLightApps = ['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map']
-
-function transformAppToAttributes(app: NimiqApp, labelTeamNimiq: string): NimiqApp {
-  return {
-    ...app,
-    isHighlighted: spotLightApps.includes(app.name),
-    priorityLevel: spotLightApps.includes(app.name) ? 'high' : 'low',
-    developer: app.developer || labelTeamNimiq,
-    color: app.type ? appColor[app.type] : '#000',
-  } satisfies NimiqApp
+const appColor: Record<AppType, string> = {
+  'E-commerce': 'var(--colors-blue)',
+  'Games': 'var(--colors-purple)',
+  'Infrastructure': 'var(--colors-red)',
+  'Insights': 'var(--colors-green)',
+  'Miner': 'var(--colors-neutral)',
+  'Wallets': 'var(--colors-orange)',
+  'Bots': 'var(--colors-gold)',
+  'Faucet': '#FA7268',
+  'Promotion': '#795548',
 }
 
-export function useApps({ labelTeamNimiq = 'Team Nimiq' }: UseAppsOption = {}) {
-  return useAsyncData(async () => {
-    const apps = await $fetch('https://raw.githubusercontent.com/onmax/nimiq-awesome/main/src/data/dist/nimiq-apps.json')
-      .then(res => JSON.parse(res as any) as NimiqApp[])
+const spotlightApps = ['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map']
+const validTypes: AppType[] = ['Insights', 'E-commerce', 'Games', 'Faucet', 'Promotion', 'Miner', 'Wallets', 'Infrastructure', 'Bots']
 
-    if (!apps)
-      throw new Error('Failed to fetch apps')
+function transformApp(app: { name: string, type: string, logo: string, link: string, description?: string, developer?: string, screenshot?: string }): NimiqApp {
+  const type = validTypes.includes(app.type as AppType) ? app.type as AppType : 'Infrastructure'
+  return {
+    ...app,
+    type,
+    developer: app.developer || '@nimiq',
+    isHighlighted: spotlightApps.includes(app.name),
+    color: appColor[type],
+  }
+}
 
-    const spotlightedApps = apps.filter(app => spotLightApps.includes(app.name))
-    const nonSpotlightedApps = apps.filter(app => !spotLightApps.includes(app.name))
+export function useApps() {
+  return useAsyncData('all-apps', async () => {
+    const data = await queryCollection('allApps').first()
+    if (!data?.apps?.length)
+      throw new Error('Failed to fetch apps data. Build cannot continue without apps.')
 
-    spotlightedApps.sort((a, b) => spotLightApps.indexOf(a.name) - spotLightApps.indexOf(b.name))
+    const transformed = data.apps.map(transformApp)
+    const highlighted = transformed.filter(app => app.isHighlighted)
+    const regular = transformed.filter(app => !app.isHighlighted)
 
-    for (let i = nonSpotlightedApps.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      const temp = nonSpotlightedApps[i]!
-      nonSpotlightedApps[i] = nonSpotlightedApps[j]!
-      nonSpotlightedApps[j] = temp
-    }
+    // Sort spotlight apps by their position in the spotlightApps array
+    highlighted.sort((a, b) => spotlightApps.indexOf(a.name) - spotlightApps.indexOf(b.name))
 
-    const processedApps = [...spotlightedApps, ...nonSpotlightedApps]
-
-    const transformedApps = processedApps.map(app => transformAppToAttributes(app, labelTeamNimiq))
-    const communityApps = transformedApps.filter(app => app.developer !== '@nimiq')
-    const officialApps = transformedApps.filter(app => app.developer === '@nimiq')
-
+    const apps = [...highlighted, ...shuffle(regular)]
     return {
-      apps: transformedApps,
-      spotLightApps,
-      communityApps,
-      officialApps,
+      apps,
+      spotlightApps: highlighted,
+      communityApps: apps.filter(app => app.developer !== '@nimiq'),
+      officialApps: apps.filter(app => app.developer === '@nimiq'),
     }
   })
+}
+
+export function useAppsFilter(apps: Ref<NimiqApp[] | undefined>) {
+  const madeBy = useRouteQuery<MadeBy>('made-by', 'anyone')
+
+  const filteredApps = computed(() => {
+    if (!apps.value)
+      return []
+    if (madeBy.value === 'official')
+      return apps.value.filter(app => app.developer === '@nimiq')
+    if (madeBy.value === 'community')
+      return apps.value.filter(app => app.developer !== '@nimiq')
+    return apps.value
+  })
+
+  function getSpotlightPosition(app: NimiqApp) {
+    if (!app.isHighlighted)
+      return undefined
+    const index = spotlightApps.indexOf(app.name)
+    // Position spotlight apps at rows 1, 4, 7 (every 3rd row starting at 1)
+    return { gridRow: `${(index + 1) * 3 - 2}`, class: 'spotlight-app spotlight-span-2' }
+  }
+
+  return { madeBy, filteredApps, getSpotlightPosition }
 }

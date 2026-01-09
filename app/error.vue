@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const props = defineProps<{ error: Error & { statusCode?: number, statusMessage?: string } }>()
+const { error } = defineProps<{ error: Error & { statusCode?: number, statusMessage?: string } }>()
 
-const statusCode = computed(() => props.error.statusCode || 404)
+const statusCode = computed(() => error.statusCode || 404)
 const statusMessage = computed(() => {
-  if (props.error.statusMessage)
-    return props.error.statusMessage
+  if (error.statusMessage)
+    return error.statusMessage
 
   switch (statusCode.value) {
     case 404: return 'Page not found'
@@ -23,7 +23,7 @@ const isDeveloperPage = computed(() => {
     || route.path.includes('/dev/') || route.path.includes('/docs/')
 })
 
-const isBlogPostError = computed(() => props.error.message === 'Article not found')
+const isBlogPostError = computed(() => error.message === 'Article not found')
 const isBlogPage = computed(() => route.path.startsWith('/blog') || isBlogPostError.value)
 
 onMounted(() => {
@@ -71,11 +71,14 @@ useSeoMeta({
   twitterTitle: isBlogPostError.value ? 'Article not found' : `${statusCode.value} - ${statusMessage.value}`,
   twitterDescription: computed(() => paragraph.value),
 })
-const stack = props.error.stack
-// eslint-disable-next-line vue/no-mutating-props
-delete props.error.stack
+const stack = error.stack
+// Create error copy without stack for display (avoid showing stack twice)
+const errorWithoutStack = computed(() => {
+  const { stack: _, ...rest } = { ...error }
+  return rest
+})
 
-console.error(props.error)
+console.error(error)
 </script>
 
 <template>
@@ -95,7 +98,7 @@ console.error(props.error)
             <span>Details</span>
           </summary>
 
-          <pre bg="red/10" text-red-1100 outline-red-600>{{ error }}</pre>
+          <pre bg="red/10" text-red-1100 outline-red-600>{{ errorWithoutStack }}</pre>
 
           <span text-red-1100 f-px-sm f-mt-md nq-label>Stack</span>
           <pre bg="red/10" text-red-1100 mt-4 outline-red-600>{{ stack }}</pre>

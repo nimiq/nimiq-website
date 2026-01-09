@@ -1,11 +1,17 @@
 export function useNimMarketCap() {
   const { price, price1DayAgo } = useNimPrice()
-  const { currencyInfo } = useUserCurrency()
   const { currentSupply, supplyYesterday } = useNimSupply()
-  const locale = useLocale()
 
   const marketCap = computed(() => currentSupply * (price.value || 0))
-  const marketCapFormatted = computed(() => formatFiat(marketCap.value, currencyInfo.value, locale.value))
+
+  // SSR-safe formatting - only access currencyInfo on client
+  const marketCapFormatted = computed(() => {
+    if (import.meta.server)
+      return '0'
+    const { currencyInfo } = useUserCurrency()
+    const locale = useLocale()
+    return formatFiat(marketCap.value, currencyInfo.value, locale.value)
+  })
 
   const marketCapChange = computed(() => {
     if (!price.value || !price1DayAgo.value)
@@ -14,9 +20,5 @@ export function useNimMarketCap() {
     return (marketCap.value - marketCapYesterdayUsd) / marketCapYesterdayUsd
   })
 
-  return {
-    marketCap,
-    marketCapFormatted,
-    marketCapChange,
-  }
+  return { marketCap, marketCapFormatted, marketCapChange }
 }

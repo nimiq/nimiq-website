@@ -1,17 +1,30 @@
 packages:
   - ./
 catalog:
+  '@nuxt/content': ^3.9.0
+  '@nuxt/hints': 1.0.0-alpha.3
+  '@nuxthub/core': 0.10.1
+  '@types/js-yaml': ^4.0.9
+  '@vitest/browser': ^4.0.16
+  '@vitest/ui': ^4.0.16
+  dotenv: ^17.2.3
+  unist-util-visit: ^5.0.0
+  js-yaml: ^4.1.0
+  marked: ^17.0.1
+  mdream: ^0.15.3
+  nuxt-link-checker: ^4.3.9
+  nuxt-studio: 1.0.0-beta.0
+  pixelmatch: ^7.1.0
+  playwright: ^1.57.0
+  pngjs: ^7.0.0
   tsx: ^4.20.6
+  vitest: ^4.0.16
 catalogs:
   build:
     '@nuxt/kit': ^4.0.0
     vite-plugin-wasm: ^3.4.1
     wrangler: ^4.15.2
   frontend:
-    '@pinia/colada': ^0.15.3
-    '@pinia/colada-nuxt': ^0.1.3
-    '@pinia/colada-plugin-delay': ^0.0.6
-    '@pinia/nuxt': ^0.11.1
     '@unovis/ts': 1.5.1
     '@unovis/vue': 1.5.1
     '@vueuse/core': ^13.5.0
@@ -19,7 +32,6 @@ catalogs:
     '@vueuse/router': ^13.5.0
     medium-zoom: ^1.1.0
     motion-v: ^1.5.0
-    pinia: ^3.0.3
     reka-ui: ^2.2.1
     vaul-vue: ^0.4.1
     vue: latest
@@ -39,40 +51,39 @@ catalogs:
     nimiq-rpc-client-ts: ^1.0.0-beta.35
   nuxt:
     '@nuxt/fonts': ^0.11.4
+    '@nuxt/icon': ^2.1.1
     '@nuxt/image': 2.0.0-alpha.1
     '@nuxt/scripts': ^0.11.10
-    '@nuxthub/core': ^0.9.0
     '@nuxtjs/device': ^3.2.4
-    '@nuxtjs/prismic': ^4.1.0
     '@nuxtjs/seo': ^3.1.0
-    nuxt: ^4.0.0
+    nuxt: ^4.2.0
     nuxt-module-feed: ^1.1.4
     nuxt-safe-runtime-config: ^0.0.3
-    unplugin-vue-router: ^0.12.0
   prismic:
     '@prismicio/client': ^7.17.2
     '@prismicio/richtext': ^2.1.5
-    '@slicemachine/adapter-nuxt': 0.3.81-alpha.lh-nuxt-4-support.2
-    slice-machine-ui: ^2.16.0
   server:
     consola: ^3.4.2
     sharp: ^0.34.1
     valibot: ^1.1.0
+  studio:
+    drizzle-kit: ^0.30.5
+    drizzle-orm: ^0.38.3
   types:
     '@types/node': ^22.15.19
     typescript: ^5.8.3
   unocss:
     '@iconify-json/logos': ^1.2.4
-    '@iconify/utils': ^2.3.0
     '@unocss/nuxt': ^66.1.2
     '@unocss/preset-wind4': ^66.1.2
     '@unocss/reset': ^66.1.2
-    nimiq-css: ^1.0.0-beta.30
-    nimiq-flags: ^1.0.0-beta.30
-    nimiq-icons: ^1.0.0-beta.30
+    nimiq-css: ^1.0.0-beta.160
+    nimiq-flags: ^1.0.0-beta.160
+    nimiq-icons: ^1.0.0-beta.160
     unocss: ^66.1.2
     unocss-preset-onmax: ^1.0.0-beta.25
 onlyBuiltDependencies:
+  - better-sqlite3
   - '@parcel/watcher'
   - '@scarf/scarf'
   - '@swc/core'
@@ -86,3 +97,5 @@ onlyBuiltDependencies:
   - utf-8-validate
   - vue-demi
   - workerd
+patchedDependencies:
+  '@nuxt/content': patches/@nuxt__content.patch

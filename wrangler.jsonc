@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nimiq-website-studio",
+  "account_id": "cf9baad7d68d7ee717f3339731e81dfb",
+  "compatibility_date": "2025-12-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "d1_databases": [{ "binding": "DB", "database_name": "nimiq-website-studio-db", "database_id": "1110fe44-386f-404e-addc-43c7fb716469" }],
+  "kv_namespaces": [
+    { "binding": "KV", "id": "35978085085c4dafb22e1c9abf48ba70" },
+    { "binding": "CACHE", "id": "3b21c867b7fb46b9956987e1174b367a" }
+  ]
+}

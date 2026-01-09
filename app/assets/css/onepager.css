@@ -1,3 +1,11 @@
+/* Style gold text paragraphs after Vision/Mission headings */
+article[nq-prose] h2 + p > strong:only-child {
+  color: var(--colors-gold);
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: block;
+}
+
 table {
   margin-top: 56px;
   display: block;
@@ -38,7 +46,6 @@ table {
         font-size: 14px;
       }
 
-      /* TODO This seems to be broken between columns :/ */
       &.spacer {
         &:not(:first-child) {
           border-top-right-radius: 8px;

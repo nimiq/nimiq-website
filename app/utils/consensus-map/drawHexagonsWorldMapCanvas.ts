@@ -1,32 +1,19 @@
 import type { Peer } from '~/types/nimiq'
 import ConsensusBitMap from './ConsensusBitMap'
 
-/** Map width in hexagons */
 export const HEXAGONS_WORLD_MAP_WIDTH = 129
-/** Map height in hexagons */
 export const HEXAGONS_WORLD_MAP_HEIGHT = 52
-
 export const HEXAGONS_WORLD_MAP_WIDTH_PIXELS = 1037
 export const HEXAGONS_WORLD_MAP_HEIGHT_PIXELS = 531
 
 const { isMobile } = useDevice()
 export const HEXAGONS_WORLD_MAP_ASPECT_RATIO = isMobile ? HEXAGONS_WORLD_MAP_HEIGHT_PIXELS / HEXAGONS_WORLD_MAP_WIDTH_PIXELS : HEXAGONS_WORLD_MAP_WIDTH_PIXELS / HEXAGONS_WORLD_MAP_HEIGHT_PIXELS
-
-/** distance between 2 hexagons vertically in relation to its height */
 export const HEXAGONS_WORLD_MAP_VERTICAL_HEXAGON_DISTANCE = 1.142
-/** overlap between 2 hexagons horizontally in relation to its width */
 export const HEXAGONS_WORLD_MAP_HEIGHT_HORIZONTAL_HEXAGON_OVERLAP = 0.98
-
 export const HEXAGONS_WORLD_MAP_SCALE = (2 * HEXAGONS_WORLD_MAP_WIDTH_PIXELS) / (HEXAGONS_WORLD_MAP_WIDTH * HEXAGONS_WORLD_MAP_HEIGHT_HORIZONTAL_HEXAGON_OVERLAP)
 
-/**
- * start and end point offset on a circle
- */
 const CURVINESS_ANGLE = Math.PI / 6
-
-// how long the tangent to the control point is in relation to the distance between the two points
 const CURVINESS_FACTOR = 0.2
-
 const SPLINE_ANIMATION_DURATION = 2000
 const easeOut = (t: number) => 1 - (1 - t) ** 3
 
@@ -42,6 +29,7 @@ function paintUserHexagon(dc: CanvasRenderingContext2D, self: WorldMapHexagon) {
 function paintPeerHexagon(dc: CanvasRenderingContext2D, _self: WorldMapHexagon) {
   dc.fillStyle = 'rgba(255,255,255,0.3)'
 }
+
 function paintNormalHexagon(dc: CanvasRenderingContext2D, _self: WorldMapHexagon) {
   dc.fillStyle = 'rgba(255,255,255,0.1)'
 }
@@ -55,81 +43,33 @@ export class WorldMapHexagon {
     this.position.y = y
   }
 
-  /**
-   * x coordinate of top left border of the bounding box
-   */
   public get left() {
     return this.position.x * HEXAGONS_WORLD_MAP_SCALE * HEXAGONS_WORLD_MAP_HEIGHT_HORIZONTAL_HEXAGON_OVERLAP
   }
 
-  /**
-   * y coordinate of top left border of the bounding box
-   */
   public get top() {
     const off = this.position.x % 2 === 0 ? 0.5 : 0
-    return (
-      (this.position.y + off) * HEXAGONS_WORLD_MAP_SCALE * HEXAGONS_WORLD_MAP_VERTICAL_HEXAGON_DISTANCE
-      - 0.5 * HEXAGONS_WORLD_MAP_SCALE
-      + 2
-    )
+    return (this.position.y + off) * HEXAGONS_WORLD_MAP_SCALE * HEXAGONS_WORLD_MAP_VERTICAL_HEXAGON_DISTANCE - 0.5 * HEXAGONS_WORLD_MAP_SCALE + 2
   }
 
   public draw(dc: CanvasRenderingContext2D): boolean {
     dc.lineWidth = 1
     dc.beginPath()
     dc.moveTo(this.left + 0.22 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.04 * HEXAGONS_WORLD_MAP_SCALE)
-    dc.arc(
-      this.left + 0.298 * HEXAGONS_WORLD_MAP_SCALE,
-      this.top + 0.0825 * HEXAGONS_WORLD_MAP_SCALE,
-      0.0825 * HEXAGONS_WORLD_MAP_SCALE,
-      (7 / 6) * Math.PI,
-      1.5 * Math.PI,
-    )
+    dc.arc(this.left + 0.298 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.0825 * HEXAGONS_WORLD_MAP_SCALE, 0.0825 * HEXAGONS_WORLD_MAP_SCALE, (7 / 6) * Math.PI, 1.5 * Math.PI)
     dc.lineTo(this.left + 0.71 * HEXAGONS_WORLD_MAP_SCALE, this.top)
-    dc.arc(
-      this.left + 0.71 * HEXAGONS_WORLD_MAP_SCALE,
-      this.top + 0.0825 * HEXAGONS_WORLD_MAP_SCALE,
-      0.0825 * HEXAGONS_WORLD_MAP_SCALE,
-      1.5 * Math.PI,
-      (11 / 6) * Math.PI,
-    )
+    dc.arc(this.left + 0.71 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.0825 * HEXAGONS_WORLD_MAP_SCALE, 0.0825 * HEXAGONS_WORLD_MAP_SCALE, 1.5 * Math.PI, (11 / 6) * Math.PI)
     dc.lineTo(this.left + 0.9875 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.4 * HEXAGONS_WORLD_MAP_SCALE)
-    dc.arc(
-      this.left + 0.9175 * HEXAGONS_WORLD_MAP_SCALE,
-      this.top + 0.445 * HEXAGONS_WORLD_MAP_SCALE,
-      0.0825 * HEXAGONS_WORLD_MAP_SCALE,
-      (11 / 6) * Math.PI,
-      (1 / 6) * Math.PI,
-    )
+    dc.arc(this.left + 0.9175 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.445 * HEXAGONS_WORLD_MAP_SCALE, 0.0825 * HEXAGONS_WORLD_MAP_SCALE, (11 / 6) * Math.PI, (1 / 6) * Math.PI)
     dc.lineTo(this.left + 0.78 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.85 * HEXAGONS_WORLD_MAP_SCALE)
-    dc.arc(
-      this.left + 0.71 * HEXAGONS_WORLD_MAP_SCALE,
-      this.top + 0.8075 * HEXAGONS_WORLD_MAP_SCALE,
-      0.0825 * HEXAGONS_WORLD_MAP_SCALE,
-      (1 / 6) * Math.PI,
-      0.5 * Math.PI,
-    )
+    dc.arc(this.left + 0.71 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.8075 * HEXAGONS_WORLD_MAP_SCALE, 0.0825 * HEXAGONS_WORLD_MAP_SCALE, (1 / 6) * Math.PI, 0.5 * Math.PI)
     dc.lineTo(this.left + 0.29 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.89 * HEXAGONS_WORLD_MAP_SCALE)
-    dc.arc(
-      this.left + 0.298 * HEXAGONS_WORLD_MAP_SCALE,
-      this.top + 0.8075 * HEXAGONS_WORLD_MAP_SCALE,
-      0.0825 * HEXAGONS_WORLD_MAP_SCALE,
-      0.5 * Math.PI,
-      (5 / 6) * Math.PI,
-    )
+    dc.arc(this.left + 0.298 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.8075 * HEXAGONS_WORLD_MAP_SCALE, 0.0825 * HEXAGONS_WORLD_MAP_SCALE, 0.5 * Math.PI, (5 / 6) * Math.PI)
     dc.lineTo(this.left + 0.0125 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.49 * HEXAGONS_WORLD_MAP_SCALE)
-    dc.arc(
-      this.left + 0.0825 * HEXAGONS_WORLD_MAP_SCALE,
-      this.top + 0.445 * HEXAGONS_WORLD_MAP_SCALE,
-      0.0825 * HEXAGONS_WORLD_MAP_SCALE,
-      (5 / 6) * Math.PI,
-      (7 / 6) * Math.PI,
-    )
+    dc.arc(this.left + 0.0825 * HEXAGONS_WORLD_MAP_SCALE, this.top + 0.445 * HEXAGONS_WORLD_MAP_SCALE, 0.0825 * HEXAGONS_WORLD_MAP_SCALE, (5 / 6) * Math.PI, (7 / 6) * Math.PI)
     dc.closePath()
     this.paintHexagon(dc, this)
-
     dc.fill()
-
     return false
   }
 }
@@ -139,12 +79,9 @@ class WorldMapArc {
   public top1: number
   public left2: number
   public top2: number
-
   public ts: number | undefined
   public animation = 0
-
   public onAnimationEnd: (() => void) | undefined
-
   public state: 'animation-in' | 'animation-out' | 'normal' | 'animation-out-finished' = 'animation-in'
 
   constructor(from: { top: number, left: number }, to: { top: number, left: number }) {
@@ -169,7 +106,6 @@ class WorldMapArc {
     t = now - this.ts
     this.animation = Math.min((this.animation + t) / SPLINE_ANIMATION_DURATION, 1)
 
-    // Calculate middle points of hexagons
     const x1mid = this.left1 + 0.5 * HEXAGONS_WORLD_MAP_SCALE
     const y1mid = this.top1 + 0.445 * HEXAGONS_WORLD_MAP_SCALE
     const x2mid = this.left2 + 0.5 * HEXAGONS_WORLD_MAP_SCALE
@@ -183,9 +119,7 @@ class WorldMapArc {
     if (this.state === 'animation-in' || this.state === 'animation-out') {
       dc.strokeStyle = 'rgba(117, 121, 157, 1)'
       dc.setLineDash([distance, distance])
-      dc.lineDashOffset = this.state === 'animation-in'
-        ? -(distance + easeOut(this.animation) * distance)
-        : -easeOut(this.animation) * distance
+      dc.lineDashOffset = this.state === 'animation-in' ? -(distance + easeOut(this.animation) * distance) : -easeOut(this.animation) * distance
     }
     else if (this.state === 'normal') {
       dc.strokeStyle = 'rgba(117, 121, 157, 1)'
@@ -194,8 +128,8 @@ class WorldMapArc {
     }
 
     dc.lineCap = 'round'
-
     dc.beginPath()
+
     if (distance >= 3.5 * HEXAGONS_WORLD_MAP_SCALE) {
       let counterAngle = 0
       let tangent = 0
@@ -209,7 +143,6 @@ class WorldMapArc {
         tangent = angle - Math.PI / 2
         angle -= CURVINESS_ANGLE
       }
-
       dc.moveTo(x1mid + Math.cos(angle) * HEXAGONS_WORLD_MAP_SCALE, y1mid + Math.sin(angle) * HEXAGONS_WORLD_MAP_SCALE * 0.89)
       dc.quadraticCurveTo(
         (x1mid + x2mid) / 2 + Math.cos(tangent) * distance * CURVINESS_FACTOR,
@@ -225,7 +158,6 @@ class WorldMapArc {
 
     dc.stroke()
 
-    // Return true if still animating, considering both creation and removal animations
     if (this.animation === 1 && this.state === 'animation-in') {
       this.state = 'normal'
     }
@@ -234,21 +166,8 @@ class WorldMapArc {
 }
 
 export interface DrawHexagonsWorldMapOptions {
-  /**
-   * Whether the container is scrollable in the x-axis. Relevant for mobile.
-   * @default true
-   */
-  // scrollable?: boolean
-
-  /* */
   userPeer: Ref<Peer | undefined>
   peers: Ref<Peer[]>
-
-  /**
-   * Whether to center the map on the user's location
-   *
-   * @default false
-   */
   centerOnUser?: boolean
 }
 
@@ -256,7 +175,6 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
   const container = computed(() => canvas.value?.parentElement as HTMLElement)
   const { userPeer, peers, centerOnUser = false } = options
   const { height: containerHeight } = useElementSize(container)
-
   const context = computed(() => canvas.value?.getContext('2d'))
 
   const hexagons = ref<WorldMapHexagon[]>([])
@@ -266,6 +184,7 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
         hexagons.value.push(new WorldMapHexagon(x, y))
     }
   }
+
   const userHexagon = ref<WorldMapHexagon>()
   watch(userPeer, () => {
     if (!userPeer.value)
@@ -278,20 +197,8 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
     userHexagon.value.paintHexagon = paintUserHexagon
   }, { immediate: true, deep: true })
 
-  // const peerHexagons = useArrayMap(peers, (peer) => {
-  //   console.log('peersHexagon', peer.x, peer.y)
-  //   let hexagon = hexagons.value.find(({ x, y }) => x === peer.x && y === peer.y)
-  //   if (!hexagon) {
-  //     hexagon = new WorldMapHexagon(peer.x, peer.y)
-  //     hexagons.value.push(hexagon)
-  //   }
-  //   hexagon.paintHexagon = paintPeerHexagon
-  //   return hexagon
-  // })
-
   const peerHexagons = ref<WorldMapHexagon[]>([])
   const arcs = ref<WorldMapArc[]>([])
-
   const { pixelRatio } = useDevicePixelRatio()
 
   function resetCanvas() {
@@ -306,14 +213,11 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
     context.value!.scale(scale, scale)
     context.value!.clearRect(0, 0, context.value!.canvas.width, context.value!.canvas.height)
 
-    // If we have a user hexagon and the option to center on the user is enabled, center the map
     if (centerOnUser && userHexagon.value) {
       const userX = userHexagon.value.left + (HEXAGONS_WORLD_MAP_SCALE / 2)
       const userY = userHexagon.value.top + (HEXAGONS_WORLD_MAP_SCALE / 2)
       const centerX = (canvas.value.width / pixelRatio.value) / (2 * scale)
       const centerY = (canvas.value.height / pixelRatio.value) / (2 * scale)
-
-      // Translate so that the user's hexagon is at the center
       context.value!.translate(centerX - userX, centerY - userY)
     }
   }
@@ -325,7 +229,6 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
     const stillAnimating = arcs.value.map(arc => arc.draw(context.value!, 1)).some(animating => animating)
     hexagons.value.forEach(hexagon => hexagon.draw(context.value!))
     if (!stillAnimating) {
-      // Clean up finished removal animations
       arcs.value = arcs.value.filter(arc => arc.state !== 'animation-out-finished')
       pause()
     }
@@ -364,41 +267,7 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
     })
 
     draw()
-    // return [...addedHexagons, ...waitingForRemoval]
   }, { deep: true })
 
-  return {
-    userHexagon,
-  }
-
-  // watchArray(peers, (_newPeers, _oldPeers, _addedPeers, removedPeers) => {
-  //   console.log({ removedPeers }, 'Removing')
-  //   if (!userHexagon.value)
-  //     return
-
-  //   // Start removal animation for arcs connected to removed peers
-  //   console.log({
-  //     userHexagon: userHexagon.value,
-  //     arcs: arcs.value,
-  //     removedPeers,
-  //   })
-  //   console.log(JSON.stringify(arcs.value.map(arc => ({ x1: arc.x1, y1: arc.y1, x2: arc.x2, y2: arc.y2 }))))
-  //   console.log('1232', peerHexagons.value.length, peerHexagons.value.map(peerHexagon => ({ x: peerHexagon.position.x, y: peerHexagon.position.y })))
-  //   const removedPeerHexagons = removedPeers?.map(peer => peerHexagons.value.find(peerHexagon => peerHexagon.position.x === peer.x && peerHexagon.position.y === peer.y))
-  //   console.log(JSON.stringify(removedPeerHexagons))
-  //   removedPeerHexagons?.forEach((removedHexagon) => {
-  //     const arc = arcs.value.find(arc => removedHexagon?.x === arc.x2 && removedHexagon?.y === arc.y2)
-  //     console.log({ arc })
-  //     if (!arc)
-  //       return
-  //     console.log({ arc }, 'Removing arc')
-  //     arc.removing = true
-  //   })
-
-  //   // Handle new peers
-  //   const untrackedPeerHexagons = peerHexagons.value.filter(peerHexagon => !arcs.value.find(arc => arc.x2 === peerHexagon.x && arc.y2 === peerHexagon.y))
-  //   arcs.value.push(...untrackedPeerHexagons.map(peerHexagon => new WorldMapArc(userHexagon.value!, peerHexagon)))
-
-  //   draw()
-  // }, { deep: true, immediate: true })
+  return { userHexagon }
 }

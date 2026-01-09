@@ -66,7 +66,6 @@ export function usePlaygroundIframe() {
   }
 
   function onIframeReady() {
-    // Prevent state desynchronization between parent and iframe
     sendMessage({
       type: 'demo:ready',
       data: {
@@ -78,14 +77,9 @@ export function usePlaygroundIframe() {
 
   function setSelectedAction(action: Action) {
     playgroundState.value.selectedAction = action
-
-    // Keep iframe in sync when parent changes action
     sendMessage({
       type: ActionToMessageType[action],
-      data: {
-        action,
-        isDemoMode: playgroundState.value.isDemoMode,
-      },
+      data: { action, isDemoMode: playgroundState.value.isDemoMode },
     })
   }
 
@@ -103,14 +97,9 @@ export function usePlaygroundIframe() {
     playgroundState.value.selectedAction = 'idle'
     playgroundState.value.isModalOpen = false
     playgroundState.value.openModalType = null
-
-    // Ensure iframe doesn't remain in stale action state
     sendMessage({
       type: 'demo:ready',
-      data: {
-        action: 'idle',
-        isDemoMode: playgroundState.value.isDemoMode,
-      },
+      data: { action: 'idle', isDemoMode: playgroundState.value.isDemoMode },
     })
   }
 
@@ -118,13 +107,7 @@ export function usePlaygroundIframe() {
     playgroundState.value.isModalOpen = true
     playgroundState.value.openModalType = type
     playgroundState.value.selectedAction = type
-
-    const modalMap = {
-      buy: 'action:open-buy-modal',
-      stake: 'action:open-staking-modal',
-      swap: 'action:open-swap-modal',
-    } as const
-
+    const modalMap = { buy: 'action:open-buy-modal', stake: 'action:open-staking-modal', swap: 'action:open-swap-modal' } as const
     sendMessage({ type: modalMap[type] })
   }
 
@@ -147,23 +130,18 @@ export function usePlaygroundIframe() {
       case 'demo:ready':
         activateDemoMode()
         break
-
       case 'action:open-buy-modal':
         openModal('buy')
         break
-
       case 'action:open-staking-modal':
         openModal('stake')
         break
-
       case 'action:open-swap-modal':
         openModal('swap')
         break
-
       case 'action:close-modal':
         closeModal()
         break
-
       default:
         console.warn('Unknown message type:', type)
     }

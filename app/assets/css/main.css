@@ -1,7 +1,73 @@
+/* Font rendering to match production */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Typography overrides to match production (nimiq-css beta.30 values) */
+.nq-prose,
+[nq-prose] {
+  & h1 {
+    --font-size-min-em: 2.75;
+    --font-size-max-em: 3;
+  }
+  & h2 {
+    --font-size-min-em: 2;
+    --font-size-max-em: 2.375;
+    margin-top: var(--nq-m-size);
+    margin-bottom: 40px;
+  }
+  & h3 {
+    --font-size-min-em: 1.625;
+    --font-size-max-em: 1.875;
+  }
+  & h4 {
+    --font-size-min-em: 1.375;
+    --font-size-max-em: 1.625;
+  }
+}
+
 [nq-prose] h3 a {
   /* TODO Move this to nimiq-ui */
   /* Fix for /blog/introducing-nimiq-pay */
   --font-size-min-em: 1;
   --font-size-max-em: 1;
   font-weight: inherit;
+}
+
+/* Accessibility: Global reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility: Focus visible styles */
+:focus-visible {
+  outline: 2px solid var(--colors-blue);
+  outline-offset: 2px;
+}
+
+/* Accessibility: Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  padding: 8px 16px;
+  background: var(--colors-blue);
+  color: white;
+  border-radius: 4px;
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 16px;
 }

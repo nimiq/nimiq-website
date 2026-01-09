@@ -2049,16 +2049,9 @@ const words = [
   'zoo',
 ]
 
-export function useWords() {
-  function getRandomWords(count: number): { word: string, i: number }[] {
-    const shuffled = words.map((word, index) => ({ word, i: index % 24 + 1 }))
-      .sort(() => 0.5 - Math.random())
-    return shuffled
-      .slice(0, count)
-  }
+export { words }
 
-  return {
-    words,
-    getRandomWords,
-  }
+export function getRandomWords(count: number): { word: string, i: number }[] {
+  const shuffled = words.map((word, index) => ({ word, i: index % 24 + 1 })).sort(() => 0.5 - Math.random())
+  return shuffled.slice(0, count)
 }

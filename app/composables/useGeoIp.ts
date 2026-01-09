@@ -4,10 +4,7 @@ export interface LatLng {
 }
 
 export interface GeoIpResponse {
-  location?: {
-    longitude?: number
-    latitude?: number
-  }
+  location?: { longitude?: number, latitude?: number }
   country?: string
   city?: string
   city_names?: { [language: string]: string }
@@ -25,7 +22,5 @@ export function useGeoIp() {
     return { lat: location.latitude, lng: location.longitude } as LatLng
   }
 
-  return {
-    locate,
-  }
+  return { locate }
 }

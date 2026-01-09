@@ -1,0 +1,16 @@
+diff --git a/dist/module.mjs b/dist/module.mjs
+index a63fab4cb33a651a563e766372a9ca1c443303d8..e9d40780ed16250b3915629f77289e063f710a3d 100644
+--- a/dist/module.mjs
++++ b/dist/module.mjs
+@@ -3125,9 +3125,11 @@ async function processCollectionItems(nuxt, collections, options) {
+   }
+   const sqlDumpList = Object.values(collectionDump).flatMap((a) => a);
+   db.exec(`DROP TABLE IF EXISTS ${infoCollection.tableName}`);
++  db.exec('BEGIN TRANSACTION');
+   for (const sql of sqlDumpList) {
+     db.exec(sql);
+   }
++  db.exec('COMMIT');
+   const tags = sqlDumpList.flatMap((sql) => sql.match(/(?<=(^|,|\[)\[")[^"]+(?=")/g) || []);
+   const uniqueTags = [
+     ...Object.values(options.renderer.alias || {}),

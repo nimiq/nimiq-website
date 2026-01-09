@@ -1,16 +1,19 @@
 <script setup lang="ts">
-const { darkHeader = false, footerBgColor = 'grey', draft } = defineProps<{ darkHeader?: boolean, footerBgColor?: 'white' | 'grey' | 'darkblue', draft?: boolean, showSocialsHexagonBg?: boolean }>()
+const { darkHeader = false, footerBgColor = 'grey' } = defineProps<{ darkHeader?: boolean, showSocialsHexagonBg?: boolean, footerBgColor?: 'grey' | 'darkblue' }>()
 </script>
 
 <template>
   <!-- eslint-disable vue/no-multiple-template-root -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <NuxtRouteAnnouncer />
-  <NavigationAnnouncementBanner />
-  <NavigationHeader :dark-header />
-  <slot />
+  <AppNavigationAnnouncementBanner />
+  <AppHeader :dark-header />
+  <main id="main-content">
+    <slot />
+  </main>
   <div bottom-20 right-20 fixed z-102>
-    <PageInfo :draft with-env />
+    <AppPageInfo with-env />
   </div>
-  <HexagonsBackground z-1 :bg-color="footerBgColor" :with-socials="showSocialsHexagonBg" />
-  <NavigationFooter :bg-color="footerBgColor" />
+  <AppHexagonsBackground z-1 :with-socials="showSocialsHexagonBg" :bg-color="footerBgColor" />
+  <AppFooter :bg-color="footerBgColor" />
 </template>

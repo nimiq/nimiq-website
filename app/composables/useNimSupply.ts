@@ -10,11 +10,5 @@ export function useNimSupply() {
   const maxSupply = TOTAL_SUPPLY / 1e5
   const maxSupplyFormatted = computed(() => `${formatNim(maxSupply, locale.value)} NIM`)
 
-  return {
-    currentSupply,
-    supplyYesterday,
-    currentSupplyFormatted,
-    maxSupply,
-    maxSupplyFormatted,
-  }
+  return { currentSupply, supplyYesterday, currentSupplyFormatted, maxSupply, maxSupplyFormatted }
 }

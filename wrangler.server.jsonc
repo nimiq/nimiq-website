@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nimiq-website-server",
+  "account_id": "cf9baad7d68d7ee717f3339731e81dfb",
+  "compatibility_date": "2024-12-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  "kv_namespaces": [
+    { "binding": "KV", "id": "33b6941ec22e4b63ade5a11460b85568" },
+    { "binding": "CACHE", "id": "211825c35c8743a9ae37312d08b40355" }
+  ]
+}
