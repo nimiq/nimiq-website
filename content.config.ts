@@ -42,8 +42,9 @@ const techGridSchema = z.object({ headline: z.string(), subline: z.string().opti
 const largeGridItemSchema = gridItemSchema.extend({ shape: z.string().optional() })
 
 // Headline schema with actions
-const actionSchema = z.object({ href: z.string(), label: z.string().optional(), icon: z.string().optional(), variant: z.string().optional() })
-const headlineSchema = z.object({ headline: z.string(), subline: z.string().optional(), label: z.string().optional(), icon: z.string().optional(), actions: z.array(actionSchema).optional() })
+const actionSchema = z.object({ href: z.string(), label: z.string().optional(), icon: z.string().optional(), variant: z.string().optional(), color: z.string().optional() })
+// buttons is legacy from Studio content - supports both buttons and actions
+const headlineSchema = z.object({ headline: z.string(), subline: z.string().optional(), label: z.string().optional(), icon: z.string().optional(), actions: z.array(actionSchema).optional(), buttons: z.array(actionSchema).optional() })
 
 // Media schemas
 const mediaSchema = z.object({ src: z.string(), poster: z.string().optional() })
