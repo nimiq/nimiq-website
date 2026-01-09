@@ -71,3 +71,17 @@ html {
 .skip-link:focus {
   top: 16px;
 }
+
+/* Fix nq-pill-tertiary - nimiq-css has invalid outline syntax and gradient override issue */
+.nq-pill-tertiary,
+[nq-pill-tertiary] {
+  background-image: none !important;
+  background: var(--colors-neutral-0) !important;
+  color: var(--colors-neutral) !important;
+  outline: 1.5px solid var(--colors-neutral-500) !important;
+}
+.nq-pill-tertiary:hover,
+[nq-pill-tertiary]:hover {
+  background: var(--colors-neutral-50) !important;
+  outline-color: var(--colors-neutral-600) !important;
+}

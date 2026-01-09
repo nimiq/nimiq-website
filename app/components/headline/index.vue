@@ -13,7 +13,10 @@ function isExternal(url: string) {
 function getPillClass(action: Action) {
   if (action.color)
     return `nq-pill-${action.color}`
-  return action.variant || 'nq-pill-blue'
+  // If variant already has nq-pill- prefix, use directly; otherwise add prefix
+  if (action.variant?.startsWith('nq-pill-'))
+    return action.variant
+  return action.variant ? `nq-pill-${action.variant}` : 'nq-pill-blue'
 }
 </script>
 

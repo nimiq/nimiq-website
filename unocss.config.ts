@@ -44,6 +44,7 @@ export default defineConfig({
 
   safelist: [
     // Styling classes used in content YAML
+    'nq-pill-tertiary',
     'bg-blue/10',
     'text-blue-1100',
     'bg-blue',
