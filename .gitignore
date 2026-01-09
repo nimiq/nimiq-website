@@ -41,5 +41,6 @@ public/images/blog/
 public/images/exchanges/
 public/images/pages/
 
-# Test screenshots
+# Test screenshots (except intentional changes docs)
 tests/screenshots/
+!tests/screenshots/**/INTENTIONAL_CHANGES.md
