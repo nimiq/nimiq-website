@@ -4,7 +4,7 @@
 Nimiq website migration from Prismic-based to Nuxt Content v3. Goal: visual parity with nimiq.com production.
 
 ## Current Task: Visual Regression Fixes
-Run `pnpm test:visual` and fix until all tests pass. See PROMPT.md for detailed instructions.
+Run `pnpm test:visual` and fix until all tests pass.
 
 ## Key Commands
 ```bash
