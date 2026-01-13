@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Action { href: string, label?: string, icon?: string, variant?: string, color?: string }
-const props = defineProps<{ headline?: string, subline?: string, label?: string, icon?: string, actions?: Action[], buttons?: Action[], small?: boolean, compact?: boolean }>()
+const props = defineProps<{ headline?: string, subline?: string, label?: string, icon?: string, actions?: Action[], buttons?: Action[], smallHeading?: boolean, compact?: boolean }>()
 
 // Support both actions and buttons (Studio uses buttons)
 const actionItems = computed(() => props.actions ?? props.buttons ?? [])
@@ -23,13 +23,13 @@ function getPillClass(action: Action) {
 <template>
   <div flex="~ col md:items-center" :class="compact ? 'pb-24' : 'f-pb-40/56'" w-full>
     <Icon v-if="icon" :name="icon" class="text-54 op-15 f-mt-sm" />
-    <p v-if="label" mb-16 w-max block f-text-sm nq-label md:mx-auto>
+    <p v-if="label" mb-16 w-max block f-text-sm nq-label md:mx-auto uppercase>
       {{ label }}
     </p>
-    <h2 v-if="headline && !small" nq-heading font-semibold max-w-none break-keep md:text-center>
+    <h2 v-if="headline && !smallHeading" nq-heading font-semibold max-w-none break-keep md:text-center>
       {{ headline }}
     </h2>
-    <h2 v-else-if="headline && small" break-keep md:text-center class="heading-small">
+    <h2 v-else-if="headline" break-keep md:text-center font-normal lh-1.3 text="[clamp(calc(14*1.25*1px),calc(14*1.25*1px+(16*1.4-14*1.25)*((100vw-375px)/(1440-375))),calc(16*1.4*1px))] neutral-900" max-w-none>
       {{ headline }}
     </h2>
     <p v-if="subline" max-w-prose md:text-center :class="!headline ? '' : ''">
@@ -53,13 +53,3 @@ function getPillClass(action: Action) {
   </div>
 </template>
 
-<style scoped>
-/* Small heading style (h4 visual appearance) */
-.heading-small {
-  font-weight: 400 !important;
-  line-height: 1.3 !important;
-  font-size: 18px !important;
-  color: var(--colors-neutral) !important;
-  max-width: none !important;
-}
-</style>

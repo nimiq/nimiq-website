@@ -16,7 +16,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
     <TiltedMedia v-bind="page.media" />
 
     <section nq-section-gap bg-neutral-100>
-      <Headline v-bind="page.dive.headline" />
+      <Headline v-bind="page.dive.headline" small-heading />
       <GridLinks :items="page.dive.items" />
     </section>
 

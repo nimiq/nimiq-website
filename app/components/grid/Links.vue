@@ -8,10 +8,10 @@ defineProps<{ items: LinkItem[] }>()
     <NuxtLink
       v-for="(item, i) in items" :key="i"
       flex="~ row gap-20 items-center" :style="`--c: var(--colors-${item.color})`"
-      :to="item.link" group p-20 nq-hoverable class="hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c"
+      :to="item.link" group p-20 nq-hoverable bg-neutral-300 class="hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c"
     >
-      <Icon v-if="item.icon" :name="item.icon" text="32 md:48 $c" class="transition-colors group-hocus:!text-white" />
-      <h4 whitespace-nowrap flex="~ items-center" text="22 group-hocus:!white" font-semibold transition-colors>
+      <Icon v-if="item.icon" :name="item.icon" text="32 md:48 $c" transition-colors class="group-hocus:!text-white" />
+      <h4 whitespace-nowrap flex="~ items-center" font-semibold transition-colors class="group-hocus:!text-white">
         {{ item.headline }}
       </h4>
     </NuxtLink>
