@@ -22,7 +22,7 @@ const CONFIG = {
 // Page/section specific threshold overrides (see INTENTIONAL_CHANGES.md files)
 const SECTION_OVERRIDES: Record<string, Record<number, number>> = {
   '/': { 0: 0.35, 1: 0.70, 2: 0.20, 4: 0.55 }, // Homepage: Hero (embers hidden, ~35% diff from bg effects & map), pill link (oklch vs RGB color ~0.62% diff), apps headline, tech grid have typography/layout differences
-  '/about': { 0: 0.06, 1: 0.05, 2: 0.11, 3: 0.04, 4: 0.06, 5: 0.08 }, // Section 0: ~5% diff due to OKLCH vs RGB colors (see INTENTIONAL_CHANGES.md)
+  '/about': { 0: 0.05, 1: 0.05, 2: 0.08, 3: 0.04, 4: 0.04, 5: 0.06 }, // Measured: mobile 4.0/4.7/7.5/3.4/3.3/5.4%, desktop 4.8/1.9/2.9/1.2/1.0/2.1%
   '/apps': { 0: 0.50, 1: 0.15 }, // Apps are shuffled randomly on each render - both local and prod shuffle so order will differ
   '/buy-and-sell': { 0: 0.20, 2: 0.15, 3: 0.15 }, // Typography differences from nimiq-css version (H1, currency selector sizes)
   '/community': { 0: 0.35, 1: 0.15, 4: 0.35 }, // Section 0: prod has announcement banner. Section 1: flags marquee animated. Section 4: app icons shuffled
