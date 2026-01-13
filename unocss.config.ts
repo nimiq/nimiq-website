@@ -32,7 +32,7 @@ export default defineConfig({
       attributifyUtilities: true,
       typography: true,
       staticContent: true,
-      fonts: false,
+      fonts: true,
     }),
     presetIcons({
       collections: {

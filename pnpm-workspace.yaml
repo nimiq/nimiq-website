@@ -40,7 +40,7 @@ catalogs:
   lint:
     '@antfu/eslint-config': ^5.4.1
     '@nuxt/eslint': latest
-    '@unocss/eslint-plugin': ^66.5.2
+    '@unocss/eslint-plugin': ^66.5.10
     eslint: ^9.37.0
     eslint-plugin-format: ^1.0.2
     lint-staged: ^16.2.3
@@ -74,13 +74,13 @@ catalogs:
     typescript: ^5.8.3
   unocss:
     '@iconify-json/logos': ^1.2.4
-    '@unocss/nuxt': ^66.1.2
-    '@unocss/preset-wind4': ^66.1.2
-    '@unocss/reset': ^66.1.2
+    '@unocss/nuxt': ^66.5.10
+    '@unocss/preset-wind4': ^66.5.10
+    '@unocss/reset': ^66.5.10
     nimiq-css: ^1.0.0-beta.160
     nimiq-flags: ^1.0.0-beta.160
     nimiq-icons: ^1.0.0-beta.160
-    unocss: ^66.1.2
+    unocss: ^66.5.10
     unocss-preset-onmax: ^1.0.0-beta.25
 onlyBuiltDependencies:
   - better-sqlite3

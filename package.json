@@ -47,7 +47,6 @@
     "@antfu/eslint-config": "catalog:lint",
     "@iconify-json/logos": "catalog:unocss",
     "@nuxt/eslint": "catalog:lint",
-    "@nuxt/fonts": "catalog:nuxt",
     "@nuxt/icon": "catalog:nuxt",
     "@nuxt/image": "catalog:nuxt",
     "@nuxt/kit": "catalog:build",

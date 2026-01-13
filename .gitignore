@@ -44,3 +44,4 @@ public/images/pages/
 # Test screenshots (except intentional changes docs)
 tests/screenshots/
 !tests/screenshots/**/INTENTIONAL_CHANGES.md
+public/assets/fonts/

@@ -27,7 +27,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     'reka-ui/nuxt',
     '@nuxtjs/device',
-    '@nuxt/fonts',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
     !environment.useNuxtHub && 'nuxt-og-image', // Enable og-image only when not on NuxtHub
     !environment.useNuxtHub && '@nuxtjs/seo',
@@ -78,11 +77,6 @@ export default defineNuxtConfig({
   },
 
   devtools: { enabled: true },
-
-  // Font configuration - Mulish and Fira Code (weights: 400, 600, 700)
-  fonts: {
-    provider: 'google',
-  },
 
   components: [
     '~/components',
