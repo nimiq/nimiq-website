@@ -1,5 +1,32 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+@plugin '../../../lib/tailwind-fluid.ts';
+
+/* ==========================================================================
+   Fluid Sizing Utilities (f-*)
+
+   Generates responsive values using CSS clamp() that scale smoothly
+   between 320px (min) and 1440px (max) viewport widths.
+
+   Usage:
+   - Named scale:     f-mt-md, f-pt-xl, f-text-lg
+   - Custom min/max:  f-pt-96/136, f-h-36/52, f-pb-60/80
+
+   Spacing Scale (px):
+     2xs: 4-6    xs: 8-12    sm: 12-16   md: 16-24
+     lg: 24-32   xl: 32-48   2xl: 48-64  3xl: 64-96
+     4xl: 96-128 5xl: 160-200
+
+   Font Scale (px):
+     2xs: 10-11  xs: 11-12   sm: 12-14   base: 14-16
+     lg: 16-18   xl: 18-20   2xl: 20-24  3xl: 24-30
+     4xl: 30-36  5xl: 36-48  6xl: 48-60
+
+   Properties: m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py,
+               gap, w, h, size, top, right, bottom, left, text (font-size)
+
+   See lib/tailwind-fluid.ts for implementation details.
+   ========================================================================== */
 
 /* ==========================================================================
    Custom Variants
