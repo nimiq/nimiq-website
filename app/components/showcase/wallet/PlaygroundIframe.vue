@@ -111,6 +111,6 @@ defineExpose({ sendMessage })
 
 <template>
   <div class="size-full inline-block relative aspect-16/9 aspect-desktop:9/16">
-    <iframe v-if="validatedPlaygroundUrl" ref="iframeRef" class="outline-none rounded-8 border-none size-full shadow-lg transition-opacity duration-300" :src="validatedPlaygroundUrl" :sandbox :width :height frameborder="0" allowtransparency="true" ease @load="handleIframeLoad" @error="handleIframeError" />
+    <iframe v-if="validatedPlaygroundUrl" ref="iframeRef" class="outline-none rounded-2 border-none size-full shadow-lg transition-opacity duration-300" :src="validatedPlaygroundUrl" :sandbox :width :height frameborder="0" allowtransparency="true" ease @load="handleIframeLoad" @error="handleIframeError" />
   </div>
 </template>

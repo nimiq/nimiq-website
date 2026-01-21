@@ -4,15 +4,15 @@ defineProps<{ data: { headline?: string, subline?: string, nameLabel?: string, e
 
 <template>
   <div class="f-container">
-    <div v-if="data.headline || data.subline" class="mb-8 text-center">
-      <h2 v-if="data.headline" class="nq-h2 mb-2">
+    <div v-if="data.headline || data.subline" class="mb-2 text-center">
+      <h2 v-if="data.headline" class="nq-h2 mb-0.5">
         {{ data.headline }}
       </h2>
       <p v-if="data.subline" class="nq-text text-neutral-700">
         {{ data.subline }}
       </p>
     </div>
-    <form class="mx-auto max-w-lg space-y-4">
+    <form class="mx-auto max-w-lg space-y-1">
       <div>
         <label class="nq-label" :for="`name-${$.uid}`">{{ data.nameLabel || 'Name' }}</label>
         <input :id="`name-${$.uid}`" class="nq-input" type="text" required>

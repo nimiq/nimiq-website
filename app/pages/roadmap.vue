@@ -20,7 +20,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/roadmap' }] })
 
       <section class="nq-section-gap bg-neutral-100">
         <div class="flex flex-col flex-items-center text-center">
-          <h2 v-if="page.newsletter.cta" class="text-neutral-700 text-f-lg mb-24">
+          <h2 v-if="page.newsletter.cta" class="text-neutral-700 text-f-lg mb-6">
             {{ page.newsletter.cta }}
           </h2>
           <UiNewsletterEmailInput />

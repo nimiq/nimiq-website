@@ -4,8 +4,8 @@ defineProps<{ label: string, headline: string, subline: string, thisIsYou: strin
 
 <template>
   <div class="flex flex-col flex-xl:row flex-justify-center m-0 max-w-none w-full">
-    <div class="flex flex-col pl-$px xl:pb-200 xl:pt-32 xl:w-50vw">
-      <p v-if="label" class="mb-16 w-max f-text-sm nq-label" block>
+    <div class="flex flex-col pl-$px xl:pb-[200px] xl:pt-8 xl:w-50vw">
+      <p v-if="label" class="mb-4 w-max f-text-sm nq-label" block>
         {{ label }}
       </p>
       <h2 class="text-left break-keep">

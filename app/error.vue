@@ -101,7 +101,7 @@ console.error(error)
           <pre class="bg-red/10 text-red-1100 outline-red-600">{{ errorWithoutStack }}</pre>
 
           <span class="text-red-1100 f-px-sm f-mt-md nq-label">Stack</span>
-          <pre class="bg-red/10 text-red-1100 mt-4 outline-red-600">{{ stack }}</pre>
+          <pre class="bg-red/10 text-red-1100 mt-1 outline-red-600">{{ stack }}</pre>
         </details>
       </div>
     </section>

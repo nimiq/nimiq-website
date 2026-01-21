@@ -26,8 +26,8 @@ const progress = computed(() => {
 })
 
 const bgColor = { 'Europe': 'bg-green', 'Central America': 'bg-blue', 'World': 'bg-orange' } as const
-const fiatIcons = { 'Europe': ['i-nimiq:logos-euro-outline-mono translate-x--1.5'], 'Central America': ['i-nimiq:logos-usd-outline-mono', 'i-nimiq:logos-colones-outline-mono'], 'World': [] } as const
-const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-nimiq:logos-bitcoin-outline-mono translate-x--1.5'], 'Central America': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-nimiq:logos-bitcoin-outline-mono translate-x-0.5'], 'World': [] } as const
+const fiatIcons = { 'Europe': ['i-nimiq:logos-euro-outline-mono -translate-x-[1.5px]'], 'Central America': ['i-nimiq:logos-usd-outline-mono', 'i-nimiq:logos-colones-outline-mono'], 'World': [] } as const
+const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-nimiq:logos-bitcoin-outline-mono -translate-x-[1.5px]'], 'Central America': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-nimiq:logos-bitcoin-outline-mono translate-x-[0.5px]'], 'World': [] } as const
 </script>
 
 <template>
@@ -42,26 +42,26 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
       </div>
     </div>
     <div class="bg-neutral-100 max-w-none w-full z-1">
-      <div ref="scroller" class="mx-auto max-w-480 w-full relative">
-        <ul class="flex flex-gap-16 flex-md:gap-32 flex-items-stretch pb-64 h-full w-full justify-self-start of-x-auto scroll-px-32 nq-scrollbar-hide" snap="x mandatory">
+      <div ref="scroller" class="mx-auto max-w-[480px] w-full relative">
+        <ul class="flex gap-4 flex-md:gap-8 flex-items-stretch pb-16 h-full w-full justify-self-start of-x-auto scroll-px-8 nq-scrollbar-hide" snap="x mandatory">
           <li v-for="(item, i) in items" :key="i" class="p-first:l-32 p-last:r-32 flex-1 shrink-0 h-full" snap="start always" data-slide>
-            <div class="rounded-8 max-w-480 w-full f-p-lg md:w-416" :class="bgColor[item.kind]">
-              <h3 class="text-white text-f-2xl font-bold mb-8">
+            <div class="rounded-2 max-w-[480px] w-full f-p-lg md:w-[416px]" :class="bgColor[item.kind]">
+              <h3 class="text-white text-f-2xl font-bold mb-2">
                 {{ item.title }}
               </h3>
-              <p class="text-white/80 text-f-base mb-16">
+              <p class="text-white/80 text-f-base mb-4">
                 {{ item.subline }}
               </p>
-              <div v-if="item.kind !== 'World'" class="flex flex-gap-8 flex-items-center text-white f-mt-sm">
-                <div v-for="(icon, j) in fiatIcons[item.kind]" :key="j" class="flex flex-gap-8">
-                  <div class="rounded-full size-40 ring-1.5 ring-white/40" stack>
-                    <div class="size-24" :class="icon" />
+              <div v-if="item.kind !== 'World'" class="flex gap-2 flex-items-center text-white f-mt-sm">
+                <div v-for="(icon, j) in fiatIcons[item.kind]" :key="j" class="flex gap-2">
+                  <div class="rounded-full size-10 ring-1.5 ring-white/40" stack>
+                    <div class="size-6" :class="icon" />
                   </div>
                 </div>
-                <div class="mx-12 op-50 f-text-2xl" i-nimiq:exchange />
-                <div v-for="(icon, j) in cryptoIcons[item.kind]" :key="j" class="flex flex-gap-8">
-                  <div class="rounded-full size-40 ring-1.5 ring-white/40" stack>
-                    <div class="size-24" :class="icon" />
+                <div class="mx-3 op-50 f-text-2xl" i-nimiq:exchange />
+                <div v-for="(icon, j) in cryptoIcons[item.kind]" :key="j" class="flex gap-2">
+                  <div class="rounded-full size-10 ring-1.5 ring-white/40" stack>
+                    <div class="size-6" :class="icon" />
                   </div>
                 </div>
               </div>
@@ -70,20 +70,20 @@ const cryptoIcons = { 'Europe': ['i-nimiq:logos-nimiq-hexagon-outline-mono', 'i-
                 <h4 class="text-f-xs text-white/50 nq-label">
                   {{ beTheFirstToKnowLabel }}
                 </h4>
-                <div class="flex flex-gap-8 flex-items-center text-white f-mt-2xs">
-                  <a class="bg-white/20 bg-hocus:white/40 rounded-full size-40 transition-colors" href="https://twitter.com/nimiq" target="_blank" rel="noopener noreferrer" stack aria-label="Twitter">
+                <div class="flex gap-2 flex-items-center text-white f-mt-2xs">
+                  <a class="bg-white/20 bg-hocus:white/40 rounded-full size-10 transition-colors" href="https://twitter.com/nimiq" target="_blank" rel="noopener noreferrer" stack aria-label="Twitter">
                     <div class="text-white/80 text-f-xl transition-colors" i-nimiq:logos-twitter-mono />
                   </a>
-                  <a class="bg-white/20 bg-hocus:white/40 rounded-full size-40 transition-colors" href="https://t.me/nimiq" target="_blank" rel="noopener noreferrer" stack aria-label="Telegram">
-                    <div class="text-white/80 text-f-lg text-hocus:white translate-x--1 translate-y-1 transition-colors" i-nimiq:logos-telegram-mono />
+                  <a class="bg-white/20 bg-hocus:white/40 rounded-full size-10 transition-colors" href="https://t.me/nimiq" target="_blank" rel="noopener noreferrer" stack aria-label="Telegram">
+                    <div class="text-white/80 text-f-lg text-hocus:white -translate-x-px translate-y-px transition-colors" i-nimiq:logos-telegram-mono />
                   </a>
                 </div>
               </div>
             </div>
           </li>
         </ul>
-        <div class="flex flex-gap-6 flex-justify-center pb-32">
-          <div v-for="i in 3" :key="i" class="rounded-full size-8 transition-colors" :class="(progress < 0.33 && i === 1) || (progress >= 0.33 && progress < 0.66 && i === 2) || (progress >= 0.66 && i === 3) ? 'bg-green' : 'bg-neutral-300'" />
+        <div class="flex gap-1.5 flex-justify-center pb-8">
+          <div v-for="i in 3" :key="i" class="rounded-full size-2 transition-colors" :class="(progress < 0.33 && i === 1) || (progress >= 0.33 && progress < 0.66 && i === 2) || (progress >= 0.66 && i === 3) ? 'bg-green' : 'bg-neutral-300'" />
         </div>
       </div>
     </div>

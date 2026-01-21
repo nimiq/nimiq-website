@@ -18,7 +18,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <ShowcaseWallet :playground-url="page.playground.url" />
       </section>
 
-      <section class="px-0 pb-0 pt-160 bg-darkerblue relative" dark scheme-dark>
+      <section class="px-0 pb-0 pt-40 bg-darkerblue relative" dark scheme-dark>
         <ShowcaseConsensus v-bind="page.consensus" />
       </section>
 
@@ -42,7 +42,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <GridSection :items="page.seed.items" />
       </section>
 
-      <section class="px-8 bg-neutral-0 relative of-x-clip">
+      <section class="px-2 bg-neutral-0 relative of-x-clip">
         <ShowcaseWalletWords v-bind="page.challenge" />
       </section>
 

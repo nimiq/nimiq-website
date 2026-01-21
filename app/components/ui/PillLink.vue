@@ -3,9 +3,9 @@ defineProps<{ item: string, label?: string, icon: string }>()
 </script>
 
 <template>
-  <div class="flex flex-items-center flex-gap-10 flex-md:mx-auto flex-md:w-max py-6 pl-8 pr-20 rounded-full f-mb-sm">
-    <div class="text-$c bg-[color-mix(in_oklch,var(--c)_20%,transparent)] size-28 size-lg:40 rounded-full grid grid-place-content-center" aria-hidden>
-      <Icon class="pill-gradient size-18 lg:size-30" :name="icon" />
+  <div class="flex flex-items-center gap-2.5 flex-md:mx-auto flex-md:w-max py-1.5 pl-2 pr-5 rounded-full f-mb-sm">
+    <div class="text-$c bg-[color-mix(in_oklch,var(--c)_20%,transparent)] size-7 size-lg:40 rounded-full grid grid-place-content-center" aria-hidden>
+      <Icon class="pill-gradient size-[18px] lg:size-[30px]" :name="icon" />
     </div>
     <span class="text-18 text-neutral-700 nq-label">{{ item }}</span>
   </div>

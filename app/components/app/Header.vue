@@ -64,12 +64,12 @@ const transitionProps = computed(() => ({
 </script>
 
 <template>
-  <Motion class="flex flex-items-center flex-justify-between flex-gap-x-20 mx-16 mb-32 mt-16 p-16 rounded-8 inset-x-16 top-16 fixed sticky z-100" as="header" :dark="!scrolled && darkHeader ? '' : undefined" :class="conditionalClasses" :animate="animateProps" :transition="transitionProps" :data-scrolled="scrolled ? 'true' : 'false'">
+  <Motion class="flex flex-items-center flex-justify-between gap-x-5 mx-4 mb-8 mt-4 p-4 rounded-2 inset-x-4 top-4 fixed sticky z-100" as="header" :dark="!scrolled && darkHeader ? '' : undefined" :class="conditionalClasses" :animate="animateProps" :transition="transitionProps" :data-scrolled="scrolled ? 'true' : 'false'">
     <NuxtLink to="/" aria-label="Nimiq homepage">
       <Icon class="dark:hidden text-24" name="nimiq:logos-nimiq-horizontal" />
       <Icon class="hidden dark:block text-24" name="nimiq:logos-nimiq-white-horizontal" />
     </NuxtLink>
-    <NuxtLink v-if="announcement" class="bg-neutral/15 bg-hocus:neutral/20 text-neutral mr-auto gap-x-9 truncate nq-pill" :to="announcement.href" :class="{ 'children:delay-200': direction === 'bottom' }" external children:transition-colors>
+    <NuxtLink v-if="announcement" class="bg-neutral/15 bg-hocus:neutral/20 text-neutral mr-auto gap-x-[9px] truncate nq-pill" :to="announcement.href" :class="{ 'children:delay-200': direction === 'bottom' }" external children:transition-colors>
       <Icon class="shrink-0" name="nimiq:flame" />
       <span class="text-neutral truncate">{{ announcement.text }}</span>
     </NuxtLink>

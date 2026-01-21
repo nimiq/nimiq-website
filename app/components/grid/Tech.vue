@@ -16,10 +16,10 @@ defineProps<{ headline: string, subline?: string, items: GridItem[] }>()
     </div>
 
     <!-- Grid -->
-    <ul class="flex flex-col flex-lg:row flex-gap-y-24 flex-lg:items-center w-full f-mt-xl">
-      <li v-for="(item, i) in items" :key="i" class="py-24 flex-1 border-b-1 border-lg:b-0 border-lg:r-1 border-last:0 border-white/15 border-solid md:mx-auto md:w-max">
-        <NuxtImg v-if="item.image" class="rounded-8 h-80 object-contain md:mx-auto" :src="item.image" />
-        <Icon v-else-if="item.icon" class="h-80 md:mx-auto" :name="item.icon" />
+    <ul class="flex flex-col flex-lg:row gap-y-6 flex-lg:items-center w-full f-mt-xl">
+      <li v-for="(item, i) in items" :key="i" class="py-6 flex-1 border-b-1 border-lg:b-0 border-lg:r-1 border-last:0 border-white/15 border-solid md:mx-auto md:w-max">
+        <NuxtImg v-if="item.image" class="rounded-2 h-20 object-contain md:mx-auto" :src="item.image" />
+        <Icon v-else-if="item.icon" class="h-20 md:mx-auto" :name="item.icon" />
         <h3 class="text-green text-md:center text-f-xl font-bold max-w-20ch f-mt-xs lg:mx-auto">
           {{ item.headline }}
         </h3>

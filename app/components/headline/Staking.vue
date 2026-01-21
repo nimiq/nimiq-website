@@ -15,18 +15,18 @@ const id = `terms-note-${useId()}`
 
 <template>
   <div class="flex flex-col flex-md:items-center group" data-inverted>
-    <AnimatedStakingRipple class="text-green text-data-inverted:white size-120" />
+    <AnimatedStakingRipple class="text-green text-data-inverted:white size-[120px]" />
     <h2 class="f-mt-md text-data-inverted:white text-wrap text-md:balance">
       {{ headlineParts[0] }}
-      <span class="bg-green/15 bg-data-inverted:white/30 text-green text-data-inverted:white px-10 py-3 rounded-4 inline-flex-~" data-percentage>
-        ~{{ annualRewardPercentage }}<Icon class="text-14 translate-y-8" name="nimiq:asterisk" :aria-labelledby="id" />
+      <span class="bg-green/15 bg-data-inverted:white/30 text-green text-data-inverted:white px-2.5 py-[3px] rounded-1 inline-flex-~" data-percentage>
+        ~{{ annualRewardPercentage }}<Icon class="text-14 translate-y-2" name="nimiq:asterisk" :aria-labelledby="id" />
       </span>
       {{ headlineParts[1] }}
     </h2>
     <p v-if="subline" class="data-inverted:text-white/80">
       {{ subline }}
     </p>
-    <ul v-if="actions?.length" class="flex flex-gap-16 flex-lg:gap-20 flex-wrap">
+    <ul v-if="actions?.length" class="flex gap-4 flex-lg:gap-5 flex-wrap">
       <li v-for="action in actions" :key="action.href">
         <NuxtLink
           class="f-mt-lg nq-arrow nq-pill-lg md:mx-auto" :to="action.href" :class="{

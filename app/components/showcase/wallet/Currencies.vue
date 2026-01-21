@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col flex-gap-20 flex-justify-center flex-items-center">
-    <div class="flex flex-gap-12 flex-items-center text-white/40 text-34">
+  <div class="flex flex-col gap-5 flex-justify-center flex-items-center">
+    <div class="flex gap-3 flex-items-center text-white/40 text-34">
       <Icon class="text-32" name="nimiq:logos-nimiq-mono" title="NIM" />
       <Icon name="nimiq:logos-bitcoin-mono" title="BTC" />
       <Icon name="nimiq:logos-usdc-mono" title="USDC" />

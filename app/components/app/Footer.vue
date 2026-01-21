@@ -6,29 +6,29 @@ const copyrightNotice = site.footer.copyright ?? ''
 
 <template>
   <footer v-if="site" class="z-10 f-pt-2xl" dark data-section :class="bgColor">
-    <div class="grid grid-gap-40 grid-md:gap-48 grid-items-start grid-xl:gap-104">
+    <div class="grid gap-10 grid-md:gap-12 grid-items-start grid-xl:gap-[104px]">
       <div class="flex flex-col f-text-sm" area-contact>
         <p>{{ site.footer.newsletterCta }}</p>
         <UiNewsletterEmailInput class="f-mt-xs" :placeholder="site.footer.newsletterPlaceholder" />
         <p class="f-mt-xs">
           {{ site.footer.socialMediaCta }}
         </p>
-        <UiSocialMediaLogosList class="mx--8 op-60 f-text-xl" :items="site.socials" />
+        <UiSocialMediaLogosList class="-mx-2 op-60 f-text-xl" :items="site.socials" />
       </div>
 
       <div class="text-f-sm text-neutral-700 self-end" area-meta>
         <NuxtLink class="group flex w-max" to="/" aria-label="Go to Homepage">
-          <Icon class="op-80 h-20! w-84! group-hocus:hidden" name="nimiq:logos-nimiq-horizontal-mono" />
-          <Icon class="hidden h-20! w-84! group-hocus:block" name="nimiq:logos-nimiq-horizontal" />
+          <Icon class="op-80 h-5! w-[84px]! group-hocus:hidden" name="nimiq:logos-nimiq-horizontal-mono" />
+          <Icon class="hidden h-5! w-[84px]! group-hocus:block" name="nimiq:logos-nimiq-horizontal" />
         </NuxtLink>
         <p class="f-mt-xs">
           {{ site.footer.description }}
         </p>
-        <div class="text-neutral-800 text-hocus:neutral-900 transition-colors f-mt-xs flex flex-gap-16 flex-items-center flex-wrap">
+        <div class="text-neutral-800 text-hocus:neutral-900 transition-colors f-mt-xs flex gap-4 flex-items-center flex-wrap">
           <NuxtLink class="font-semibold transition-colors" to="/privacy-policy" un-text="neutral-800 hocus:neutral-900">
             Privacy Policy
           </NuxtLink>
-          <div class="rounded-full bg-current op-40 size-4" aria-hidden />
+          <div class="rounded-full bg-current op-40 size-1" aria-hidden />
           <NuxtLink class="font-semibold transition-colors" to="/cookie-policy" un-text="neutral-800 hocus:neutral-900">
             Cookie Policy
           </NuxtLink>
@@ -51,9 +51,9 @@ const copyrightNotice = site.footer.copyright ?? ''
         </ul>
       </div>
 
-      <hr class="bg-neutral-400 h-1 w-full relative sr-only" area-hr-1>
-      <hr class="bg-neutral-400 h-1 w-full relative sr-only lg:hidden" area-hr-2>
-      <hr class="bg-neutral-400 h-1 w-full relative sr-only md:hidden" area-hr-3>
+      <hr class="bg-neutral-400 h-px w-full relative sr-only" area-hr-1>
+      <hr class="bg-neutral-400 h-px w-full relative sr-only lg:hidden" area-hr-2>
+      <hr class="bg-neutral-400 h-px w-full relative sr-only md:hidden" area-hr-3>
     </div>
   </footer>
 </template>

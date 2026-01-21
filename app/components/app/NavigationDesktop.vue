@@ -43,12 +43,12 @@ watchEffect(() => {
         </NavigationMenuTrigger>
         <NavigationMenuContent class="w-max left-0 top-0 absolute" motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
           <div>
-            <div class="flex flex-gap-20 px-20 py-32">
+            <div class="flex gap-5 px-5 py-8">
               <ul class="w-max flex flex-col" :aria-label="`${appsGroup.label} links`" role="link">
                 <li v-for="(item, index) in appsGroup.links" :key="item.text" class="link-item group" @focus="selectedApp = index" @mouseover="() => { if (selectedApp !== index) selectedApp = index }">
                   <NavigationMenuLink as-child>
-                    <NuxtLink class="flex flex-gap-12 flex-items-center" :to="item.href">
-                      <NuxtImg v-if="item.logo" class="h-22 max-w-21 op-20 op-group-hocus:100 transition-opacity" :src="item.logo" :alt="item.text" />
+                    <NuxtLink class="flex gap-3 flex-items-center" :to="item.href">
+                      <NuxtImg v-if="item.logo" class="h-[22px] max-w-[21px] op-20 op-group-hocus:100 transition-opacity" :src="item.logo" :alt="item.text" />
                       <span>{{ item.text }}</span>
                     </NuxtLink>
                   </NavigationMenuLink>
@@ -56,15 +56,15 @@ watchEffect(() => {
               </ul>
 
               <Transition mode="out-in" enter-active-class="transition-opacity duration-200" enter-from-class="op-0" enter-to-class="op-100" leave-active-class="transition-opacity duration-100" leave-from-class="op-100" leave-to-class="op-0">
-                <NuxtImg v-if="appsGroup.links[debouncedSelectedApp]?.image" :key="debouncedSelectedApp" class="rounded-4 h-full w-300 relative object-contain object-left-top" :src="appsGroup.links[debouncedSelectedApp]!.image" :alt="appsGroup.links[debouncedSelectedApp]!.text" shadow loading="lazy" />
+                <NuxtImg v-if="appsGroup.links[debouncedSelectedApp]?.image" :key="debouncedSelectedApp" class="rounded-1 h-full w-[300px] relative object-contain object-left-top" :src="appsGroup.links[debouncedSelectedApp]!.image" :alt="appsGroup.links[debouncedSelectedApp]!.text" shadow loading="lazy" />
               </Transition>
             </div>
 
-            <div v-if="appsGroup.howTo?.title && appsGroup.howTo?.links?.length" class="px-40 py-32 bg-darkblue bg-op-6">
+            <div v-if="appsGroup.howTo?.title && appsGroup.howTo?.links?.length" class="px-10 py-8 bg-darkblue bg-op-6">
               <p class="text-12 lh-none font-bold op-60 whitespace-nowrap uppercase">
                 {{ appsGroup.howTo.title }}
               </p>
-              <ul class="mt-18 flex flex-wrap gap-x-32" role="list" :aria-label="`${appsGroup.howTo.title} links`">
+              <ul class="mt-[18px] flex flex-wrap gap-x-8" role="list" :aria-label="`${appsGroup.howTo.title} links`">
                 <li v-for="(link, index) in appsGroup.howTo.links" :key="`how-to-link-${index}`">
                   <NavigationMenuLink as-child>
                     <NuxtLink class="transition-colors nq-arrow" :to="link.href" un-text="neutral-700 hocus:neutral-800">
@@ -86,18 +86,18 @@ watchEffect(() => {
         </NavigationMenuTrigger>
         <NavigationMenuContent class="min-w-max left-0 top-0 absolute" motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
           <div>
-            <ul class="grid grid-cols-2 grid-gap-x-8 p-24" :aria-label="`${techGroup.label} links`" role="link">
+            <ul class="grid grid-cols-2 gap-x-2 p-6" :aria-label="`${techGroup.label} links`" role="link">
               <li v-for="(item, index) in techGroup.links" :key="`tech-item-${index}`" class="link-item flex w-full">
                 <NavigationMenuLink as-child>
-                  <NuxtLink class="font-semibold px-16 py-10 rounded-4 flex-1 cursor-pointer whitespace-nowrap transition-colors bg-hocus:darkblue/6" :to="item.href" un-text="darkblue/60 hocus:darkblue">
+                  <NuxtLink class="font-semibold px-4 py-2.5 rounded-1 flex-1 cursor-pointer whitespace-nowrap transition-colors bg-hocus:darkblue/6" :to="item.href" un-text="darkblue/60 hocus:darkblue">
                     {{ item.text }}
                   </NuxtLink>
                 </NavigationMenuLink>
               </li>
             </ul>
-            <hr class="bg-darkblue op-10 h-1 w-full">
-            <div class="flex flex-items-center flex-justify-between flex-gap-x-20 px-32 py-20">
-              <NuxtLink v-if="github" class="flex flex-items-center flex-gap-12 pr-4 flex-1 nq-arrow after:ml--4 border-r-1.5 border-solid border-darkblue/10" :to="github.link" un-text="15 neutral-800">
+            <hr class="bg-darkblue op-10 h-px w-full">
+            <div class="flex flex-items-center flex-justify-between gap-x-5 px-8 py-5">
+              <NuxtLink v-if="github" class="flex flex-items-center gap-3 pr-1 flex-1 nq-arrow after:-ml-1 border-r-1.5 border-solid border-darkblue/10" :to="github.link" un-text="15 neutral-800">
                 <Icon class="text-20 op-70" :name="github.icon" />
                 GitHub
               </NuxtLink>
@@ -114,18 +114,18 @@ watchEffect(() => {
           <Icon class="text-8" name="nimiq:chevron-down" />
         </NavigationMenuTrigger>
         <NavigationMenuContent class="min-w-max left-0 top-0 absolute" motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
-          <div class="p-16 grid max-w-6xl" grid-cols-1>
-            <ul class="flex flex-col pb-24" :aria-label="`${communityGroup.label} links`" role="link">
+          <div class="p-4 grid max-w-6xl" grid-cols-1>
+            <ul class="flex flex-col pb-6" :aria-label="`${communityGroup.label} links`" role="link">
               <li v-for="(item, index) in communityGroup.links" :key="`community-item-${index}`" class="link-item flex w-full">
                 <NavigationMenuLink as-child>
-                  <NuxtLink class="font-semibold px-16 py-10 rounded-4 flex-1 cursor-pointer whitespace-nowrap transition-colors bg-hocus:darkblue/6" :to="item.href" un-text="darkblue/60 hocus:darkblue">
+                  <NuxtLink class="font-semibold px-4 py-2.5 rounded-1 flex-1 cursor-pointer whitespace-nowrap transition-colors bg-hocus:darkblue/6" :to="item.href" un-text="darkblue/60 hocus:darkblue">
                     {{ item.text }}
                   </NuxtLink>
                 </NavigationMenuLink>
               </li>
             </ul>
-            <hr class="bg-darkblue op-10 h-1 w-full">
-            <UiSocialMediaLogosList class="text-18 mt-16 op-80" :items="allSocials" />
+            <hr class="bg-darkblue op-10 h-px w-full">
+            <UiSocialMediaLogosList class="text-18 mt-4 op-80" :items="allSocials" />
           </div>
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -136,12 +136,12 @@ watchEffect(() => {
           {{ projectGroup.label }}
           <Icon class="text-8" name="nimiq:chevron-down" />
         </NavigationMenuTrigger>
-        <NavigationMenuContent class="min-w-240 left-0 top-0 absolute" motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
-          <div class="p-16 grid" grid-cols-1>
+        <NavigationMenuContent class="min-w-60 left-0 top-0 absolute" motion-from-end:animate-enter-from-right motion-from-start:animate-enter-from-left motion-to-end:animate-exit-to-right motion-to-start:animate-exit-to-left>
+          <div class="p-4 grid" grid-cols-1>
             <ul class="flex flex-col" :aria-label="`${projectGroup.label} links`" role="link">
               <li v-for="(item, index) in projectGroup.links" :key="`project-item-${index}`" class="link-item flex w-full">
                 <NavigationMenuLink as-child>
-                  <NuxtLink class="font-semibold px-16 py-10 rounded-4 flex-1 cursor-pointer whitespace-nowrap transition-colors bg-hocus:darkblue/6" :to="item.href" un-text="darkblue/60 hocus:darkblue">
+                  <NuxtLink class="font-semibold px-4 py-2.5 rounded-1 flex-1 cursor-pointer whitespace-nowrap transition-colors bg-hocus:darkblue/6" :to="item.href" un-text="darkblue/60 hocus:darkblue">
                     {{ item.text }}
                   </NuxtLink>
                 </NavigationMenuLink>
@@ -154,7 +154,7 @@ watchEffect(() => {
       <!-- Get Started CTA -->
       <NavigationMenuItem>
         <NavigationMenuLink as-child>
-          <NuxtLink class="ml-16 nq-pill-lg" to="https://wallet.nimiq.com" :class="isHome ? 'home nq-pill-secondary' : 'nq-pill-blue'">
+          <NuxtLink class="ml-4 nq-pill-lg" to="https://wallet.nimiq.com" :class="isHome ? 'home nq-pill-secondary' : 'nq-pill-blue'">
             Get started
           </NuxtLink>
         </NavigationMenuLink>
@@ -164,14 +164,14 @@ watchEffect(() => {
 
       <ClientOnly>
         <NavigationMenuIndicator class="animate-reka-not-hidden:fade-in animate-reka-hidden:fade-out transition-all transition-transform transition-ease transition-duration-200 w-$reka-navigation-menu-indicator-size flex flex-items-end flex-justify-center translate-x-$reka-navigation-menu-indicator-position duration-200 top-full absolute z-100 z-12 of-hidden reka-hidden:op-0">
-          <Icon class="text-neutral-200 h-12 w-24 translate-y-1 relative" name="nimiq:tooltip-triangle" />
+          <Icon class="text-neutral-200 h-3 w-6 translate-y-px relative" name="nimiq:tooltip-triangle" />
         </NavigationMenuIndicator>
       </ClientOnly>
     </NavigationMenuList>
 
     <ClientOnly>
       <div class="flex flex-justify-center min-w-full right-0 top-full absolute z-10" perspective-2000>
-        <NavigationMenuViewport class="transition-[width,height] h-$reka-navigation-menu-viewport-height animate-scale-in animate-reka-closed:scale-out min-w-$reka-navigation-menu-viewport-width mt-12 rounded-12 bg-white origin-top-center duration-200 relative z-1 of-hidden animate-scale-in outline-1.5 outline outline-neutral-200" shadow />
+        <NavigationMenuViewport class="transition-[width,height] h-$reka-navigation-menu-viewport-height animate-scale-in animate-reka-closed:scale-out min-w-$reka-navigation-menu-viewport-width mt-3 rounded-3 bg-white origin-top-center duration-200 relative z-1 of-hidden animate-scale-in outline-1.5 outline outline-neutral-200" shadow />
       </div>
     </ClientOnly>
   </NavigationMenuRoot>
@@ -190,7 +190,7 @@ watchEffect(() => {
   --reka-navigation-menu-indicator-position: 0px;
 
   .trigger {
-    --uno: 'bg-transparent px-16 py-4 font-bold text-neutral-800 transition-colors hocus:text-neutral-900 reka-open:op-80 flex items-center gap-x-8';
+    --uno: 'bg-transparent px-4 py-1 font-bold text-neutral-800 transition-colors hocus:text-neutral-900 reka-open:op-80 flex items-center gap-x-2';
 
     :deep(svg) {
       --uno: 'transition-transform duration-200 op-70';
@@ -203,7 +203,7 @@ watchEffect(() => {
 
   li.link-item {
     a {
-      --uno: 'flex-1 cursor-pointer whitespace-nowrap font-semibold rounded-4 transition-colors px-16 py-10 hocus:bg-darkblue/6 text-darkblue/60 hocus:text-darkblue';
+      --uno: 'flex-1 cursor-pointer whitespace-nowrap font-semibold rounded-1 transition-colors px-4 py-2.5 hocus:bg-darkblue/6 text-darkblue/60 hocus:text-darkblue';
     }
   }
 

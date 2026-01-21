@@ -81,10 +81,10 @@ onUnmounted(() => {
 <template>
   <!-- Desktop -->
   <div class="relative max-md:hidden">
-    <div class="h-[calc(100%+400px)] max-w-screen pointer-events-none top--400" />
+    <div class="h-[calc(100%+400px)] max-w-screen pointer-events-none -top-[400px]" />
     <div class="mx-auto size-full" stack>
       <!-- Ribbon fold -->
-      <div class="self-start-! justify-self-end-! mr--18 mt-48 w-44 origin-bottom-right rotate--45 z-1 border-22 border-x-transparent border-t-0 border-#EC991C" aria-hidden />
+      <div class="self-start-! justify-self-end-! -mr-[18px] mt-12 w-11 origin-bottom-right rotate--45 z-1 border-22 border-x-transparent border-t-0 border-#EC991C" aria-hidden />
 
       <!-- Playground Background -->
       <div ref="containerRef" class="playground-background" :style="{ '--scrollbar-width': `${scrollbarWidth}px` }">
@@ -124,18 +124,18 @@ onUnmounted(() => {
       </div>
 
       <div class="p-t-48 p-x-10 p-b-10 size-full z-1">
-        <div v-if="playgroundUrl" class="rounded-4 size-full">
+        <div v-if="playgroundUrl" class="rounded-1 size-full">
           <ShowcaseWalletPlaygroundIframe :playground-url="playgroundUrl" height="600px" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
         </div>
-        <div v-else class="rounded-4 size-full">
+        <div v-else class="rounded-1 size-full">
           <ShowcaseWalletPlaygroundIframe height="600px" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
         </div>
       </div>
 
       <!-- Ribbon -->
-      <div class="self-start-! justify-self-end-! mr--18 mt-11 w-max relative z-10">
+      <div class="self-start-! justify-self-end-! -mr-[18px] mt-[11px] w-max relative z-10">
         <UiFloatingStars class="translate--50% absolute left-50% top-50% z-1" />
-        <div class="bg-#E9B213 text-f-lg text-white rounded-6 rounded-br-0 font-semibold ml-auto px-20 py-16 w-max relative z-2">
+        <div class="bg-#E9B213 text-f-lg text-white rounded-1.5 rounded-br-0 font-semibold ml-auto px-5 py-4 w-max relative z-2">
           Try live preview
         </div>
       </div>
@@ -148,12 +148,12 @@ onUnmounted(() => {
   </div>
 
   <!-- Mobile -->
-  <div class="pb-32 relative md:hidden">
-    <div class="mobile-bg left-[calc(var(--px)*-1)] w-[calc(100%+var(--px)*2)] inset-0 top--160 absolute z--1" />
+  <div class="pb-8 relative md:hidden">
+    <div class="mobile-bg left-[calc(var(--px)*-1)] w-[calc(100%+var(--px)*2)] inset-0 -top-40 absolute z--1" />
 
-    <div class="w-[calc(100%+48px)] p-8 rounded-14 size-full aspect-0.7 left--24 relative f-mt-xl">
-      <div class="rounded-14 bg-neutral-300 op-50 inset-0 absolute backdrop-blur-3.5" style="box-shadow: inset 0px 0px 40px #FFFFFF;" />
-      <div class="rounded-8 size-full relative z-1">
+    <div class="w-[calc(100%+48px)] p-2 rounded-3.5 size-full aspect-0.7 -left-6 relative f-mt-xl">
+      <div class="rounded-3.5 bg-neutral-300 op-50 inset-0 absolute backdrop-blur-3.5" style="box-shadow: inset 0px 0px 40px #FFFFFF;" />
+      <div class="rounded-2 size-full relative z-1">
         <ShowcaseWalletPlaygroundIframe :playground-url height="100%" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
       </div>
     </div>

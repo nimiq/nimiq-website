@@ -18,9 +18,9 @@ const appsToShow = computed(() => {
 </script>
 
 <template>
-  <NuxtLink class="grid grid-cols-1 grid-md:cols-[1fr_3fr] grid-rows-[1fr_auto] grid-gap-x-96 grid-gap-y-32 grid-md:gap-y-128 bg-neutral-0 w-full f-p-lg nq-hoverable" :to="cta">
+  <NuxtLink class="grid grid-cols-1 grid-md:cols-[1fr_3fr] grid-rows-[1fr_auto] gap-x-24 gap-y-8 grid-md:gap-y-32 bg-neutral-0 w-full f-p-lg nq-hoverable" :to="cta">
     <div class="flex flex-col">
-      <Icon class="size-40" name="custom:apps" />
+      <Icon class="size-10" name="custom:apps" />
       <h3 class="font-bold text-f-lg f-mt-xs">
         {{ title }}
       </h3>
@@ -30,9 +30,9 @@ const appsToShow = computed(() => {
     </div>
 
     <div class="row-span-2 relative">
-      <div class="w-125% h-145% border-16 border-solid border-neutral-400 rounded-24 inset-0 absolute">
-        <ul class="grid grid-cols-3 rounded-8 bg-white size-full f-p-sm f-gap-sm">
-          <li v-for="app in appsToShow" :key="app.name" class="rounded-8" :style="`background: ${app.color}`" stack>
+      <div class="w-125% h-145% border-16 border-solid border-neutral-400 rounded-6 inset-0 absolute">
+        <ul class="grid grid-cols-3 rounded-2 bg-white size-full f-p-sm f-gap-sm">
+          <li v-for="app in appsToShow" :key="app.name" class="rounded-2" :style="`background: ${app.color}`" stack>
             <NuxtImg class="f-size-136/180 object-contain mix-blend-lighten" :src="app.logo" />
           </li>
         </ul>

@@ -37,20 +37,20 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
       </section>
 
       <section class="bg-neutral-100 f-pt-3xl">
-        <div v-if="posts?.length" class="grid grid-cols-1 grid-lg:cols-2 grid-xl:cols-3 grid-gap-16 w-full">
+        <div v-if="posts?.length" class="grid grid-cols-1 grid-lg:cols-2 grid-xl:cols-3 gap-4 w-full">
           <article v-for="(post, i) in posts" :key="post.slug" :class="pageIndex === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
             <NuxtLink class="p-0 h-full relative nq-hoverable" :to="`/blog/${post.slug}`" @click="active = post.slug">
-              <div class="p-4">
-                <NuxtImg v-if="post.image" class="rounded-6 h-max w-full object-cover" :src="post.image" :alt="post.title" loading="lazy" :class="[i === 1 ? 'h-max lg:h-280' : 'h-max', { 'view-transition-post-img contain-layout': active === post.slug }]" />
+              <div class="p-1">
+                <NuxtImg v-if="post.image" class="rounded-1.5 h-max w-full object-cover" :src="post.image" :alt="post.title" loading="lazy" :class="[i === 1 ? 'h-max lg:h-[280px]' : 'h-max', { 'view-transition-post-img contain-layout': active === post.slug }]" />
               </div>
-              <div class="flex flex-col p-24 h-full">
+              <div class="flex flex-col p-6 h-full">
                 <h2 class="text-left" :class="[{ 'view-transition-post-title contain-layout': active === post.slug }, i === 0 ? 'f-text-3xl' : i === 1 ? 'f-text-2xl' : 'f-text-xl']">
                   {{ post.title }}
                 </h2>
-                <p class="mt-8 line-clamp-2 text-16 text-neutral-900 text-left">
+                <p class="mt-2 line-clamp-2 text-16 text-neutral-900 text-left">
                   {{ post.description }}
                 </p>
-                <div class="flex flex-items-center flex-gap-x-16 flex-wrap text-12 text-neutral lh-[2] pt-16 gap-x-8 h-max nq-label nq-hoverable-cta" :style="`--content: '${page.grid.labelLearnMore}'`" :class="i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16">
+                <div class="flex flex-items-center gap-x-4 flex-wrap text-12 text-neutral lh-[2] pt-4 gap-x-2 h-max nq-label nq-hoverable-cta" :style="`--content: '${page.grid.labelLearnMore}'`" :class="i === 1 ? 'mt-1' : 'mt-auto'" after="text-blue content-$content text-16">
                   <NuxtTime v-if="new Date(post.publishedAt).getFullYear() === new Date().getFullYear()" :datetime="post.publishedAt" month="short" day="numeric" />
                   <NuxtTime v-else :datetime="post.publishedAt" month="short" day="numeric" year="numeric" />
                   <address class="flex flex-gap-1ch not-italic">
@@ -63,8 +63,8 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
             </NuxtLink>
           </article>
 
-          <PaginationRoot class="mt-32 col-span-full" :page="pageIndex" :total="totalPages * itemsPerPage" :items-per-page="itemsPerPage" show-edges>
-            <PaginationList v-slot="{ items }" class="flex flex-gap-16 flex-items-center flex-justify-center">
+          <PaginationRoot class="mt-8 col-span-full" :page="pageIndex" :total="totalPages * itemsPerPage" :items-per-page="itemsPerPage" show-edges>
+            <PaginationList v-slot="{ items }" class="flex gap-4 flex-items-center flex-justify-center">
               <PaginationPrev class="pagination-item" as-child>
                 <NuxtLink :to="pageIndex > 1 ? (pageIndex === 2 ? '/blog' : `/blog?page=${pageIndex - 1}`) : undefined">
                   <Icon class="text-9 op-70" name="nimiq:chevron-left" />
@@ -99,6 +99,6 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
 
 <style scoped>
 .pagination-item {
-  --uno: 'rounded-4 size-32 shrink-0 bg-neutral-100 text-neutral-900 text-12 font-semibold hocus:bg-neutral-200 transition-colors ring-1.5 ring-neutral-400 flex items-center justify-center reka-selected:bg-blue reka-selected:text-white reka-selected:ring-none';
+  --uno: 'rounded-1 size-8 shrink-0 bg-neutral-100 text-neutral-900 text-12 font-semibold hocus:bg-neutral-200 transition-colors ring-1.5 ring-neutral-400 flex items-center justify-center reka-selected:bg-blue reka-selected:text-white reka-selected:ring-none';
 }
 </style>

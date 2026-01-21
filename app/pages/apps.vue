@@ -10,7 +10,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/apps' }] })
 <template>
   <NuxtLayout>
     <main>
-      <section class="nq-section-gap bg-neutral-0 pt-148 pt-md:153 pt-lg:160">
+      <section class="nq-section-gap bg-neutral-0 pt-[148px] pt-md:153 pt-lg:160">
         <h1 class="nq-heading">
           {{ page.hero.title }}
         </h1>

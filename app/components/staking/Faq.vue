@@ -13,8 +13,8 @@ defineProps<{ items: FaqItem[], forumLink?: ForumLink }>()
 
 <template>
   <div class="flex flex-col flex-md:items-center">
-    <ul class="grid grid-cols-1 grid-md:cols-2 grid-lg:cols-3 grid-gap-24">
-      <li v-for="(item, i) in items" :key="i" class="p-16 rounded-6 bg-neutral-200">
+    <ul class="grid grid-cols-1 grid-md:cols-2 grid-lg:cols-3 gap-6">
+      <li v-for="(item, i) in items" :key="i" class="p-4 rounded-1.5 bg-neutral-200">
         <h3 class="text-16 font-bold">
           {{ item.question }}
         </h3>

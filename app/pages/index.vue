@@ -11,7 +11,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
   <NuxtLayout show-socials-hexagon-bg dark-header>
     <main>
       <!-- Section 0: Hero (prod: pt=160, pb=0) -->
-      <section class="dark text-neutral mx-0 bg-darkblue relative of-hidden max-md:min-h-auto pt-148 pt-md:153 pt-lg:160 min-h-auto min-h-md:100vh min-h-lg:110vh flex flex-col flex-justify-between" scheme-dark children:max-w-none style="--pb: 0px">
+      <section class="dark text-neutral mx-0 bg-darkblue relative of-hidden max-md:min-h-auto pt-[148px] pt-md:153 pt-lg:160 min-h-auto min-h-md:100vh min-h-lg:110vh flex flex-col flex-justify-between" scheme-dark children:max-w-none style="--pb: 0px">
         <HeroHome v-bind="page.hero" />
       </section>
 

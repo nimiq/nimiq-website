@@ -9,7 +9,7 @@ const duration = computed(() => isMobile.value ? '60s' : '40s')
 </script>
 
 <template>
-  <div class="flags-marquee mx-0 px-0 bg-neutral-0 max-w-full max-w-screen of-x-hidden h-64 h-md:80 bg-repeat-x" :style="{ 'backgroundImage': `url(${flags})`, 'backgroundSize': 'auto 100%', '--duration': duration }" />
+  <div class="flags-marquee mx-0 px-0 bg-neutral-0 max-w-full max-w-screen of-x-hidden h-16 h-md:80 bg-repeat-x" :style="{ 'backgroundImage': `url(${flags})`, 'backgroundSize': 'auto 100%', '--duration': duration }" />
 </template>
 
 <style scoped>

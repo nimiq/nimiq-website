@@ -37,24 +37,24 @@ function goToStep(stepNum: number) {
       <h2 class="nq-heading md:text-center">
         {{ headline }}
       </h2>
-      <p v-if="description" class="text-neutral-700 text-f-lg text-md:center mt-16 max-w-prose">
+      <p v-if="description" class="text-neutral-700 text-f-lg text-md:center mt-4 max-w-prose">
         {{ description }}
       </p>
     </div>
 
-    <ul class="flex flex-gap-6 mx-auto w-max f-mt-lg">
-      <li v-for="i in items.length" :key="i" class="flex-1 max-w-96 w-full" :data-state="step === i ? 'active' : undefined">
-        <button class="bg-neutral-400 bg-hocus:neutral-500 bg-data-active:green mx-auto rounded-2 h-4 w-96 transition-colors relative" before="absolute inset--16" @click="() => goToStep(i)" />
+    <ul class="flex gap-1.5 mx-auto w-max f-mt-lg">
+      <li v-for="i in items.length" :key="i" class="flex-1 max-w-24 w-full" :data-state="step === i ? 'active' : undefined">
+        <button class="bg-neutral-400 bg-hocus:neutral-500 bg-data-active:green mx-auto rounded-0.5 h-1 w-24 transition-colors relative" before="absolute -inset-4" @click="() => goToStep(i)" />
       </li>
     </ul>
 
-    <ul ref="scroller" class="flex flex-gap-16 flex-md:gap-32 flex-xl:gap-48 px-[calc((100%-min(87.2%,684px))/2)] m-x-auto of-y-hidden f-pb-md f-mt-2xl nq-scrollbar-hide" snap="x mandatory" @scroll.passive="calculateStep">
-      <li v-for="(item, i) in items" :key="i" class="cursor-active:default cursor-pointer op-20 op-data-active:100 flex flex-col shrink-0 max-w-784 w-full transition-opacity duration-400" :data-state="step - 1 === i ? 'active' : undefined" snap="center always" @click="() => goToStep(i + 1)">
-        <NuxtImg class="rounded-6 object-cover f-mb-lg" :src="item.image" shadow />
-        <p class="text-neutral-800 text-f-xs px-8 px-md:32 px-xl:48 mt-auto nq-label">
+    <ul ref="scroller" class="flex gap-4 flex-md:gap-8 flex-xl:gap-12 px-[calc((100%-min(87.2%,684px))/2)] m-x-auto of-y-hidden f-pb-md f-mt-2xl nq-scrollbar-hide" snap="x mandatory" @scroll.passive="calculateStep">
+      <li v-for="(item, i) in items" :key="i" class="cursor-active:default cursor-pointer op-20 op-data-active:100 flex flex-col shrink-0 max-w-[784px] w-full transition-opacity duration-400" :data-state="step - 1 === i ? 'active' : undefined" snap="center always" @click="() => goToStep(i + 1)">
+        <NuxtImg class="rounded-1.5 object-cover f-mb-lg" :src="item.image" shadow />
+        <p class="text-neutral-800 text-f-xs px-2 px-md:32 px-xl:48 mt-auto nq-label">
           {{ item.label }}
         </p>
-        <p class="text-neutral-800 text-f-xl px-8 px-md:32 px-xl:48 f-mt-2xs">
+        <p class="text-neutral-800 text-f-xl px-2 px-md:32 px-xl:48 f-mt-2xs">
           {{ item.description }}
         </p>
       </li>

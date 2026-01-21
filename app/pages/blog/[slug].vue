@@ -35,7 +35,7 @@ onMounted(() => {
 <template>
   <NuxtLayout v-if="post" footer-bg-color="grey">
     <div ref="articleRef">
-      <header class="max-w-$nq-prose-max-width f-pt-96/136 px-32 px-lg:64 pb-0" data-section>
+      <header class="max-w-$nq-prose-max-width f-pt-96/136 px-8 px-lg:64 pb-0" data-section>
         <h1 style="--nq-font-size-min: 32;--nq-font-size-max: 40" view-transition-post-title>
           {{ post.title }}
         </h1>
@@ -43,34 +43,34 @@ onMounted(() => {
           {{ post.description }}
         </p>
 
-        <div class="mt-18 mt-lg:24 flex flex-items-center flex-gap-x-16 flex-wrap text-12 text-neutral lh-[2] nq-label md:justify-center">
+        <div class="mt-[18px] mt-lg:24 flex flex-items-center gap-x-4 flex-wrap text-12 text-neutral lh-[2] nq-label md:justify-center">
           <NuxtTime v-if="new Date(post.publishedAt).getFullYear() === new Date().getFullYear()" :datetime="post.publishedAt" month="short" day="numeric" />
           <NuxtTime v-else :datetime="post.publishedAt" month="short" day="numeric" year="numeric" />
           <address class="flex flex-gap-1ch not-italic">
             <span class="text-neutral-800">by</span>
             <span class="text-blue">{{ post.authors?.join(', ') || 'Team Nimiq' }}</span>
           </address>
-          <div class="rounded-full bg-neutral-500 size-4 sm:block" hidden />
+          <div class="rounded-full bg-neutral-500 size-1 sm:block" hidden />
           <p class="text-neutral-800">
             {{ post.readingTime }} min
           </p>
         </div>
 
-        <NuxtImg v-if="post.image" class="mx-auto rounded-8 w-full object-contain f-mt-2xl" :src="post.image" :alt="post.title" view-transition-post-img />
+        <NuxtImg v-if="post.image" class="mx-auto rounded-2 w-full object-contain f-mt-2xl" :src="post.image" :alt="post.title" view-transition-post-img />
       </header>
     </div>
 
     <ContentRenderer class="nq-prose" :value="post" wrapper="article" />
 
-    <nav v-if="prev || next" class="flex flex-col flex-sm:row flex-gap-16 flex-sm:gap-32 max-w-$nq-prose-max-width px-32 px-lg:64 f-pt-xl" data-section>
-      <NuxtLink v-if="prev" class="flex flex-col flex-1 p-24 rounded-8 bg-neutral-100 ring-1 ring-neutral-400 nq-hoverable" :to="`/blog/${prev.slug}`">
+    <nav v-if="prev || next" class="flex flex-col flex-sm:row gap-4 flex-sm:gap-8 max-w-$nq-prose-max-width px-8 px-lg:64 f-pt-xl" data-section>
+      <NuxtLink v-if="prev" class="flex flex-col flex-1 p-6 rounded-2 bg-neutral-100 ring-1 ring-neutral-400 nq-hoverable" :to="`/blog/${prev.slug}`">
         <span class="text-12 text-neutral-800 nq-label">Previous</span>
-        <span class="text-16 text-neutral-900 mt-8 line-clamp-2">{{ prev.title }}</span>
+        <span class="text-16 text-neutral-900 mt-2 line-clamp-2">{{ prev.title }}</span>
       </NuxtLink>
       <div v-else class="flex-1" />
-      <NuxtLink v-if="next" class="flex flex-col flex-1 ring-1 ring-neutral-400 p-24 text-right rounded-8 bg-neutral-100 nq-hoverable" :to="`/blog/${next.slug}`">
+      <NuxtLink v-if="next" class="flex flex-col flex-1 ring-1 ring-neutral-400 p-6 text-right rounded-2 bg-neutral-100 nq-hoverable" :to="`/blog/${next.slug}`">
         <span class="text-12 text-neutral-800 nq-label">Next</span>
-        <span class="text-16 text-neutral-900 mt-8 line-clamp-2">{{ next.title }}</span>
+        <span class="text-16 text-neutral-900 mt-2 line-clamp-2">{{ next.title }}</span>
       </NuxtLink>
     </nav>
 
@@ -86,7 +86,7 @@ onMounted(() => {
   --uno: 'z-100';
 }
 :global(.medium-zoom-image--opened) {
-  --uno: 'z-101 rounded-8 mt-0 bg-white';
+  --uno: 'z-101 rounded-2 mt-0 bg-white';
 }
 
 :global([nq-prose] > *:not(img, video, iframe, figure, blockquote, pre, code)) {
@@ -98,7 +98,7 @@ onMounted(() => {
 }
 
 :global([nq-prose] > :where(h2, h3, h4, h5, h6):not(:first-child)) {
-  --uno: 'mt-1.5lh';
+  --uno: 'mt-px.5lh';
 }
 
 :global(section:has(article[nq-prose])) {

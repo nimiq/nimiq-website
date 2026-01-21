@@ -17,7 +17,7 @@ function onHover() {
 </script>
 
 <template>
-  <div class="ui-ember op-80 size-28 absolute z-1" :class="{ 'jump-and-flip': shouldJump }" :style="`--delay: ${delay}ms;`" v-bind="$attrs" @mouseover="onHover">
+  <div class="ui-ember op-80 size-7 absolute z-1" :class="{ 'jump-and-flip': shouldJump }" :style="`--delay: ${delay}ms;`" v-bind="$attrs" @mouseover="onHover">
     <svg viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g class="filter-url(#filter0_i_874_198)">
         <path d="M17.6357 7.04307C18.1214 7.86814 18.1214 8.88467 17.6357 9.70974L14.4954 15.0431C14.0096 15.8681 13.1118 16.3764 12.1402 16.3764H5.85976C4.88817 16.3764 3.99038 15.8681 3.50458 15.0431L0.364347 9.70974C-0.121449 8.88467 -0.121449 7.86814 0.364347 7.04307L3.50458 1.70974C3.99038 0.884668 4.88817 0.376404 5.85976 0.376404L12.1402 0.376404C13.1118 0.376404 14.0096 0.884668 14.4954 1.70974L17.6357 7.04307Z" fill="url(#paint0_linear_874_198)" fill-opacity="0.6" />

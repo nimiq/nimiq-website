@@ -45,20 +45,20 @@ onMounted(() => {
         <h1 class="nq-heading-lg">
           {{ currentPage.headline }}
         </h1>
-        <p v-if="currentPage.subline" class="text-neutral-700 text-f-lg mt-24 max-w-prose">
+        <p v-if="currentPage.subline" class="text-neutral-700 text-f-lg mt-6 max-w-prose">
           {{ currentPage.subline }}
         </p>
-        <div class="flex flex-gap-x-32 flex-gap-y-20 flex-wrap flex-items-baseline mt-32">
+        <div class="flex gap-x-8 gap-y-5 flex-wrap flex-items-baseline mt-8">
           <SelectRoot v-model="selected">
-            <SelectTrigger class="flex flex-items-center flex-gap-12 px-16 py-10 outline-none rounded-full bg-gradient-green" aria-label="Select Litepaper Version">
+            <SelectTrigger class="flex flex-items-center gap-3 px-4 py-2.5 outline-none rounded-full bg-gradient-green" aria-label="Select Litepaper Version">
               <SelectValue class="text-f-sm text-white nq-label" />
               <Icon class="text-10 text-white" name="nimiq:triangle-down" />
             </SelectTrigger>
 
             <SelectPortal>
-              <SelectContent class="rounded-18 bg-white min-w-120 w-full z-10" :side-offset="5" shadow>
-                <SelectViewport class="p-4">
-                  <SelectItem v-for="v in LitepaperVersion" :key="v" class="flex flex-gap-8 flex-items-center px-16 py-10 outline-none rounded-14 cursor-pointer transition-colors" :value="v" hocus:bg-neutral-200>
+              <SelectContent class="rounded-[18px] bg-white min-w-[120px] w-full z-10" :side-offset="5" shadow>
+                <SelectViewport class="p-1">
+                  <SelectItem v-for="v in LitepaperVersion" :key="v" class="flex gap-2 flex-items-center px-4 py-2.5 outline-none rounded-3.5 cursor-pointer transition-colors" :value="v" hocus:bg-neutral-200>
                     <SelectItemText class="text-14 nq-label">
                       Version {{ v }}
                     </SelectItemText>

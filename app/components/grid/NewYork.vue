@@ -8,21 +8,21 @@ const [DefineStats, ReuseStat] = createReusableTemplate<{ label?: string, value?
 
 <template>
   <DefineStats v-slot="{ label, value }">
-    <div class="flex flex-col p-16 p-sm:24 rounded-6 bg-neutral-0 ring-1.5 ring-neutral-200" shadow>
+    <div class="flex flex-col p-4 p-sm:24 rounded-1.5 bg-neutral-0 ring-1.5 ring-neutral-200" shadow>
       <span class="nq-label text-neutral-700 text-12">{{ label }}</span>
-      <span class="mt-12 mt-sm:16 font-bold text-green text-f-xl">{{ value }}</span>
+      <span class="mt-3 mt-sm:16 font-bold text-green text-f-xl">{{ value }}</span>
     </div>
   </DefineStats>
 
-  <div class="one-image grid grid-flow-row grid-gap-8 grid-lg:rows-[auto,1fr,auto] grid-lg:gap-24 grid-cols-1 grid-md:cols-2 grid-lg:cols-4 mx-0 bg-neutral-0 w-full" children:rounded-6 children:shadow>
-    <div class="ring-1.5 ring-neutral-200 h-128 h-md:240 h-lg:auto lg:max-h-278 rounded-6 bg-white of-hidden lg:row-span-2 md:col-span-2" style="grid-area: block1-image">
+  <div class="one-image grid grid-flow-row gap-2 grid-lg:rows-[auto,1fr,auto] grid-lg:gap-6 grid-cols-1 grid-md:cols-2 grid-lg:cols-4 mx-0 bg-neutral-0 w-full" children:rounded-1.5 children:shadow>
+    <div class="ring-1.5 ring-neutral-200 h-32 h-md:240 h-lg:auto lg:max-h-[278px] rounded-1.5 bg-white of-hidden lg:row-span-2 md:col-span-2" style="grid-area: block1-image">
       <NuxtImg v-if="blocks[0]" class="size-full object-cover" :src="blocks[0].image" />
     </div>
 
     <ReuseStat v-if="blocks[0]?.stats[0]" :label="blocks[0].stats[0].label" :value="blocks[0].stats[0].stat" style="grid-area: block1-stat1" />
     <ReuseStat v-if="blocks[0]?.stats[1]" :label="blocks[0].stats[1].label" :value="blocks[0].stats[1].stat" style="grid-area: block1-stat2" />
 
-    <div class="ring-1.5 ring-neutral-200 h-128 h-md:240 h-lg:auto lg:max-h-278 rounded-6 bg-white of-hidden lg:row-span-2 md:col-span-2" style="grid-area: block2-image">
+    <div class="ring-1.5 ring-neutral-200 h-32 h-md:240 h-lg:auto lg:max-h-[278px] rounded-1.5 bg-white of-hidden lg:row-span-2 md:col-span-2" style="grid-area: block2-image">
       <NuxtImg v-if="blocks[1]" class="size-full object-cover" :src="blocks[1].image" />
     </div>
 

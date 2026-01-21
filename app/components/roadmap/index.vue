@@ -62,16 +62,16 @@ const milestones = computed(() => {
 
     <header class="flex flex-items-center w-max relative of-visible ml-$ml pt-$pt">
       <div class="pl-0 left-0 absolute z-1 w-$pl flex flex-items-center flex-justify-center">
-        <p class="text-center text-10 px-6 bg-neutral-100 whitespace-nowrap z-1 nq-label">
+        <p class="text-center text-10 px-1.5 bg-neutral-100 whitespace-nowrap z-1 nq-label">
           {{ firstYear }}
         </p>
-        <div class="flex flex-items-center flex-gap-6 right--2 absolute">
-          <div v-for="i in 4" :key="i" class="bg-neutral-500 h-1 w-5 ring-y-0.5 ring-neutral-500" />
+        <div class="flex flex-items-center gap-1.5 -right-0.5 absolute">
+          <div v-for="i in 4" :key="i" class="bg-neutral-500 h-px w-[5px] ring-y-0.5 ring-neutral-500" />
         </div>
       </div>
       <div class="layer pl-$pl items-center z-1 of-visible" grid-rows-1 style="grid-template-columns: repeat(calc(1 + var(--columns)), var(--columns-w))">
         <div v-for="({ label, month, year, untilMonth, untilYear }, i) in milestones" :key="i" :style="`--year: ${year}; --month: ${month + (i > 0 ? 1 : 0)}; --until-year: ${untilYear}; --until-month:${untilMonth}`" drop-shadow first="">
-          <div class="text-10/12 text-neutral text-center flex flex-justify-center flex-items-center bg-neutral-0 bg-dark:neutral-400 px-16 rounded-6 h-full min-h-52 nq-label">
+          <div class="text-10/12 text-neutral text-center flex flex-justify-center flex-items-center bg-neutral-0 bg-dark:neutral-400 px-4 rounded-1.5 h-full min-h-[52px] nq-label">
             {{ label }}
           </div>
         </div>
@@ -81,22 +81,22 @@ const milestones = computed(() => {
       </div>
     </header>
 
-    <ul class="flex flex-col flex-gap-16 ml-$ml w-max f-pt-lg f-mt-xs">
-      <li v-for="(layer, l) in layers" :key="layer.name" class="flex flex-col flex-justify-end p-24 pr-0 rounded-l-6 w-max self-end relative pl-$pl" :class="layer.layerClasses">
-        <div v-for="block in layer.blocks" :key="block.name" class="mt-24 first:mt-0 flex flex-justify-end">
-          <div class="pt-12 relative">
+    <ul class="flex flex-col gap-4 ml-$ml w-max f-pt-lg f-mt-xs">
+      <li v-for="(layer, l) in layers" :key="layer.name" class="flex flex-col flex-justify-end p-6 pr-0 rounded-l-1.5 w-max self-end relative pl-$pl" :class="layer.layerClasses">
+        <div v-for="block in layer.blocks" :key="block.name" class="mt-6 first:mt-0 flex flex-justify-end">
+          <div class="pt-3 relative">
             <span class="text-10 left-0 top-0 absolute nq-label" grid-row-span-full block :class="layer.text">{{ block.name }}</span>
-            <div v-if="isNestedBlocks(block.items)" class="flex flex-gap-8" :style="`--block-index:${l}`" :class="{ 'mr--3': block.items.length > 1 }">
-              <div v-for="(subblock, i) in block.items" :key="i" class="layer force-row-height rounded-6 p-$p-block last:rounded-r-0" :style="getNestedBlocksStyles(block.items, i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" shadow>
+            <div v-if="isNestedBlocks(block.items)" class="flex gap-2" :style="`--block-index:${l}`" :class="{ '-mr-[3px]': block.items.length > 1 }">
+              <div v-for="(subblock, i) in block.items" :key="i" class="layer force-row-height rounded-1.5 p-$p-block last:rounded-r-0" :style="getNestedBlocksStyles(block.items, i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" shadow>
                 <RoadmapBlock v-for="item in subblock" :key="item.name" v-bind="item" />
               </div>
             </div>
-            <div v-else class="layer force-row-height p-16 pr-0 rounded-l-6" :style="getStartOfBlock(block.items)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" shadow>
+            <div v-else class="layer force-row-height p-4 pr-0 rounded-l-1.5" :style="getStartOfBlock(block.items)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" shadow>
               <RoadmapBlock v-for="(item, i) in block.items" :key="i" v-bind="item" />
             </div>
           </div>
         </div>
-        <div class="text-18 bottom-24 left-24 absolute flex flex-items-center flex-gap-12" :class="layer.text">
+        <div class="text-18 bottom-6 left-6 absolute flex flex-items-center gap-3" :class="layer.text">
           <Icon class="text-32" :name="layer.icon" />
           <span class="font-bold">{{ layer.name }}</span>
         </div>

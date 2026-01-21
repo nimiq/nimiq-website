@@ -5,14 +5,14 @@ const isExternal = computed(() => linkHref.value.startsWith('http'))
 </script>
 
 <template>
-  <div class="flex-grow flex flex-col flex-justify-center flex-items-center px-24 text-center z-10">
+  <div class="flex-grow flex flex-col flex-justify-center flex-items-center px-6 text-center z-10">
     <h1>
       {{ title.replace(/\\L/g, '\n') }}
     </h1>
     <p v-if="description" class="text-white/70 font-400 whitespace-pre-line">
       {{ description }}
     </p>
-    <div class="flex flex-wrap flex-gap-x-32 flex-gap-y-16 flex-items-center f-mt-lg" style="--nq-font-size-min:18;--nq-font-size-max:22">
+    <div class="flex flex-wrap gap-x-8 gap-y-4 flex-items-center f-mt-lg" style="--nq-font-size-min:18;--nq-font-size-max:22">
       <NuxtLink class="nq-arrow nq-pill-lg nq-pill-blue dark:nq-pill-white" :to="linkHref" :external="isExternal" :target="isExternal ? '_blank' : undefined">
         {{ link?.label || 'Create a wallet' }}
       </NuxtLink>

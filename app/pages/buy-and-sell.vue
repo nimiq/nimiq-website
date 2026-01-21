@@ -31,7 +31,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/buy-and-sell' }] }
       <section class="nq-section-gap bg-neutral-0">
         <Headline class="pb-0" v-bind="page.distribution.headline" />
         <TokenDistribution :items="page.distribution.items" />
-        <BannerBuyAndSell class="mt-32" :data="page.cta" />
+        <BannerBuyAndSell class="mt-8" :data="page.cta" />
       </section>
 
       <!-- Section 4: No download CTA -->

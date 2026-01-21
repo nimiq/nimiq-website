@@ -21,9 +21,9 @@ function getPillClass(action: Action) {
 </script>
 
 <template>
-  <div class="flex flex-col flex-md:items-center w-full" :class="compact ? 'pb-24' : 'f-pb-40/56'">
+  <div class="flex flex-col flex-md:items-center w-full" :class="compact ? 'pb-6' : 'f-pb-40/56'">
     <Icon v-if="icon" class="text-54 op-15 f-mt-sm" :name="icon" />
-    <p v-if="label" class="mb-16 w-max f-text-sm nq-label md:mx-auto uppercase" block>
+    <p v-if="label" class="mb-4 w-max f-text-sm nq-label md:mx-auto uppercase" block>
       {{ label }}
     </p>
     <h2 v-if="headline && !smallHeading" class="nq-heading font-semibold max-w-none break-keep md:text-center">
@@ -35,14 +35,14 @@ function getPillClass(action: Action) {
     <p v-if="subline" class="max-w-prose md:text-center" :class="!headline ? '' : ''">
       {{ subline }}
     </p>
-    <ul v-if="actionItems.length" class="flex flex-gap-16 flex-wrap f-mt-lg md:mx-auto">
+    <ul v-if="actionItems.length" class="flex gap-4 flex-wrap f-mt-lg md:mx-auto">
       <li v-for="action in actionItems" :key="action.href">
         <NuxtLink v-if="action.variant === 'arrow' && !action.label" class="nq-arrow nq-pill-lg nq-pill-blue" :to="action.href" />
-        <NuxtLink v-else-if="action.variant === 'arrow' && action.label" class="nq-pill-lg nq-pill-blue flex flex-items-center flex-gap-8" :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined">
+        <NuxtLink v-else-if="action.variant === 'arrow' && action.label" class="nq-pill-lg nq-pill-blue flex flex-items-center gap-2" :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined">
           <span>{{ action.label }}</span>
           <Icon class="text-16" name="nimiq:arrow-right" />
         </NuxtLink>
-        <NuxtLink v-else class="nq-pill-lg flex flex-items-center flex-gap-8" :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined" :class="getPillClass(action)">
+        <NuxtLink v-else class="nq-pill-lg flex flex-items-center gap-2" :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined" :class="getPillClass(action)">
           <Icon v-if="action.icon" class="text-20" :name="action.icon" />
           <span v-if="action.label">{{ action.label }}</span>
           <Icon v-if="isExternal(action.href) && !action.icon" class="text-16" name="nimiq:arrow-top-right" />

@@ -17,7 +17,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/contact' }] })
 
       <section class="nq-section-gap bg-neutral-100">
         <Headline v-bind="page.social.headline" />
-        <iframe class="mx-auto rounded-6 h-651 max-w-392 w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
+        <iframe class="mx-auto rounded-1.5 h-[651px] max-w-[392px] w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
       </section>
     </main>
   </NuxtLayout>

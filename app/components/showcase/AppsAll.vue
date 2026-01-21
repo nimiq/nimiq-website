@@ -69,18 +69,18 @@ function getHighlightedUrl(link: string) {
     </fieldset>
   </form>
 
-  <ul v-if="filteredApps.length" class="f-mt-xl grid grid-gap-16 grid-cols-1 grid-md:cols-[repeat(auto-fit,min(100%,350px))] grid-xl:gap-24 grid-2xl:gap-32 grid-justify-center">
+  <ul v-if="filteredApps.length" class="f-mt-xl grid gap-4 grid-cols-1 grid-md:cols-[repeat(auto-fit,min(100%,350px))] grid-xl:gap-6 grid-2xl:gap-8 grid-justify-center">
     <li v-for="(app, i) in filteredApps" :key="i" class="w-full" :style="getSpotlightPosition(app)" :class="getSpotlightPosition(app)?.class">
       <!-- CardApp (non-highlighted) -->
-      <NuxtLink v-if="!app.isHighlighted" class="w-[min(calc(100vw-var(--px,32px)*2),350px)] group p-6 rounded-6 gap-24 h-full nq-hoverable" :to="getAppLink(app)" target="_blank" :style="`--c: ${app.color}`" external :aria-label="`Go to ${app.name} website`">
-        <div class="bg-$c mb-0 rounded-4 h-240" stack>
-          <Icon v-if="app.name === 'Nimiq Tip Bot'" class="text-white/80 size-96" name="nimiq:logos-telegram-mono" />
-          <NuxtImg v-else class="max-w-45% rounded-4 h-auto max-h-full min-w-82 object-cover" :src="app.logo" :class="getLogoClasses(app.name)" />
-          <p class="text-12 text-white/70 self-start right-12 top-12 justify-self-end relative nq-label">
+      <NuxtLink v-if="!app.isHighlighted" class="w-[min(calc(100vw-var(--px,32px)*2),350px)] group p-1.5 rounded-1.5 gap-6 h-full nq-hoverable" :to="getAppLink(app)" target="_blank" :style="`--c: ${app.color}`" external :aria-label="`Go to ${app.name} website`">
+        <div class="bg-$c mb-0 rounded-1 h-60" stack>
+          <Icon v-if="app.name === 'Nimiq Tip Bot'" class="text-white/80 size-24" name="nimiq:logos-telegram-mono" />
+          <NuxtImg v-else class="max-w-45% rounded-1 h-auto max-h-full min-w-[82px] object-cover" :src="app.logo" :class="getLogoClasses(app.name)" />
+          <p class="text-12 text-white/70 self-start right-3 top-3 justify-self-end relative nq-label">
             {{ app.type }}
           </p>
         </div>
-        <div class="p-26 pt-0 flex-1 flex flex-col flex-gap-12">
+        <div class="p-[26px] pt-0 flex-1 flex flex-col gap-3">
           <h3>{{ app.name }}</h3>
           <p class="text-16 text-neutral-800 text-group-hover:neutral-900 mt-0 transition-colors leading-150">
             {{ app.description }}
@@ -94,9 +94,9 @@ function getHighlightedUrl(link: string) {
       </NuxtLink>
 
       <!-- CardHighlighted -->
-      <div v-else class="flex flex-wrap flex-items-center flex-gap-8 rounded-6 bg-neutral-0 h-full f-p-xs" shadow>
-        <NuxtImg v-if="app.screenshot" class="rounded-4 rounded-8 h-auto max-h-445 max-h-md:full max-w-full w-full w-md:320 object-cover" :src="app.screenshot" />
-        <div class="flex flex-col flex-gap-12 p-24 flex-1">
+      <div v-else class="flex flex-wrap flex-items-center gap-2 rounded-1.5 bg-neutral-0 h-full f-p-xs" shadow>
+        <NuxtImg v-if="app.screenshot" class="rounded-1 rounded-2 h-auto max-h-[445px] max-h-md:full max-w-full w-full w-md:320 object-cover" :src="app.screenshot" />
+        <div class="flex flex-col gap-3 p-6 flex-1">
           <h3>{{ app.name }}</h3>
           <p class="text-16 text-neutral-800 mt-0 leading-150">
             {{ app.description }}
