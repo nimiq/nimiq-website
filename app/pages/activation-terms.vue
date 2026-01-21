@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('activationTerms').first()!
+const page = await usePage('activationTerms')
 const content = await parseMarkdown(page.content?.richText || '')
 
 const title = page.seo?.title || page.hero?.headline || 'NIM Activation Terms'

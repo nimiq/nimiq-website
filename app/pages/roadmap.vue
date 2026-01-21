@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('roadmap').first()!
+const page = await usePage('roadmap')
 
 const title = page.seo?.title || page.hero?.title || 'Roadmap'
 const description = page.seo?.description || page.hero?.description

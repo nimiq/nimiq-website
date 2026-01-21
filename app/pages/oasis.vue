@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('oasis').first()!
+const page = await usePage('oasis')
 
 const title = page.seo?.title || page.hero?.headline || 'Nimiq OASIS'
 const description = page.seo?.description || page.hero?.subline

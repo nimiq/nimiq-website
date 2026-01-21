@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('cryptopaymentlink').first()!
+const page = await usePage('cryptopaymentlink')
 
 const title = page.seo?.title || page.hero?.title || 'Crypto Payment Link'
 const description = page.seo?.description || page.hero?.description

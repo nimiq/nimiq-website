@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('about').first()!
+const page = await usePage('about')
 const missionContent = await parseMarkdown(page.mission.content)
 
 const title = page.seo?.title || page.hero?.title || 'About Nimiq'

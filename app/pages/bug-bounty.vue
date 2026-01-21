@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('bugBounty').first()!
+const page = await usePage('bugBounty')
 const content = await parseMarkdown(page.content?.richText || '')
 
 const title = page.seo?.title || page.hero?.title || 'Bug Bounty Program | Nimiq'

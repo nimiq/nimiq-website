@@ -1,5 +1,5 @@
 <script setup lang="ts">
-interface Action { href: string, label?: string, icon?: string, variant?: 'arrow' | 'primary' | 'secondary' | 'tertiary' }
+interface Action { href: string, label?: string, icon?: string, variant?: string, color?: string }
 const { headline, subline, actions, stakingNote } = defineProps<{
   headline: string
   subline?: string

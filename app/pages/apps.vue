@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const page = await queryCollection('appsPage').first()!
+const page = await usePage('appsPage')
 
-const title = page.seo?.title || page.hero?.title || page.meta?.title || 'Nimiq Apps'
-const description = page.seo?.description || page.hero?.description || page.meta?.description
+const title = page.seo?.title || page.hero?.title || 'Nimiq Apps'
+const description = page.seo?.description || page.hero?.description
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/apps' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/apps' }] })
 </script>

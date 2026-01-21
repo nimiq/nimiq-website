@@ -18,10 +18,8 @@ defineProps<{
   }
 }>()
 
-// SSR-safe currency and locale - only access on client
-const userCurrency = import.meta.client ? useUserCurrency() : { currency: ref('USD'), currencyInfo: computed(() => null) }
-const currency = userCurrency.currency
-const currencyInfo = userCurrency.currencyInfo
+// SSR-safe currency and locale
+const { currency, currencyInfo } = useUserCurrency()
 const locale = useLocale()
 
 const { marketCapChange, marketCapFormatted } = useNimMarketCap()
@@ -88,7 +86,7 @@ const error = computed(() => {
                 <span class="text-f-lg text-neutral lh-none font-semibold whitespace-nowrap">{{ marketCapFormatted }}</span>
                 <div v-if="marketCapChange" class="flex gap-0.5 flex-items-center" :class="marketCapChange < 0 ? 'text-red' : 'text-green'">
                   <Icon class="size-[7px]" name="nimiq:triangle-up" aria-hidden :class="{ 'rotate-180': marketCapChange < 0 }" />
-                  <span class="lh-none font-semibold f-text-sm">{{ formatPercentage(marketCapChange, locale.value) }}</span>
+                  <span class="lh-none font-semibold f-text-sm">{{ formatPercentage(marketCapChange, locale) }}</span>
                 </div>
               </div>
               <p class="text-f-xs text-neutral-800 lh-none font-normal">
@@ -102,7 +100,7 @@ const error = computed(() => {
                 <span class="text-f-lg text-neutral lh-none font-semibold whitespace-nowrap">{{ volumeFormatted }}</span>
                 <div v-if="volumeChange" class="flex gap-0.5 flex-items-center" :class="volumeChange < 0 ? 'text-red' : 'text-green'">
                   <Icon class="size-[7px]" name="nimiq:triangle-up" aria-hidden :class="{ 'rotate-180': volumeChange < 0 }" />
-                  <span class="lh-none font-semibold f-text-sm">{{ formatPercentage(volumeChange, locale.value) }}</span>
+                  <span class="lh-none font-semibold f-text-sm">{{ formatPercentage(volumeChange, locale) }}</span>
                 </div>
               </div>
               <p class="text-f-xs text-neutral-800 lh-none font-normal">
@@ -139,7 +137,7 @@ const error = computed(() => {
                   <div class="inset-y-0 absolute left-[calc(var(--f-side)*-1)] w-$f-side" style="background-image: linear-gradient(to right in oklab, transparent, var(--colors-neutral-0))" />
                   <div class="right-[calc(var(--f-side)*-1)] w-$f-side inset-y-0 absolute f-w-md" style="background-image: linear-gradient(to right in oklab, var(--colors-neutral-0), transparent)" />
                   <p class="text-blue text-f-3xl lh-none font-semibold">
-                    {{ currencyInfo ? formatFiat(historicPrice, currencyInfo, locale.value) : '' }}
+                    {{ currencyInfo ? formatFiat(historicPrice, currencyInfo, locale) : '' }}
                   </p>
                   <NuxtTime class="text-f-2xs text-right text-neutral-700 lh-none nq-label" :datetime="ts" year="numeric" month="long" day="numeric" />
                 </div>
@@ -151,11 +149,11 @@ const error = computed(() => {
                 <div class="inset-y-0 absolute left-[calc(var(--f-side)*-1)] w-$f-side" style="background-image: linear-gradient(to right in oklab, transparent, var(--colors-neutral-0))" />
                 <div class="right-[calc(var(--f-side)*-1)] w-$f-side inset-y-0 absolute f-w-md" style="background-image: linear-gradient(to right in oklab, var(--colors-neutral-0), transparent)" />
                 <p class="text-blue text-f-3xl lh-none font-semibold">
-                  {{ currencyInfo ? formatFiat(historicPrices.at(-1)![1], currencyInfo, locale.value) : '' }}
+                  {{ currencyInfo ? formatFiat(historicPrices.at(-1)![1], currencyInfo, locale) : '' }}
                 </p>
                 <div v-if="deltaPrice && currencyInfo" class="flex flex-items-center text-f-2xs text-neutral-700 lh-none font-semibold">
                   <Icon class="mr-1 size-2" name="nimiq:triangle-up" :class="{ 'rotate-180': deltaPrice < 0 }" />
-                  <span>{{ formatDecimal(Math.abs(deltaPrice), locale.value) }} ({{ formatPercentage(deltaPrice / historicPrices.at(-1)![1], locale.value) }})</span>
+                  <span>{{ formatDecimal(Math.abs(deltaPrice), locale) }} ({{ formatPercentage(deltaPrice / historicPrices.at(-1)![1], locale) }})</span>
                 </div>
               </div>
             </div>

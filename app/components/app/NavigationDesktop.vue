@@ -23,7 +23,7 @@ const selectedApp = ref(0)
 const debouncedSelectedApp = refDebounced(selectedApp, 50)
 
 // Preload first navigation image for faster initial hover
-const firstAppImage = computed(() => appsGroup.value?.links?.[0]?.image)
+const firstAppImage = computed(() => appsGroup?.links?.[0]?.image)
 watchEffect(() => {
   if (import.meta.client && firstAppImage.value) {
     const img = new Image()

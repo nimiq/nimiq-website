@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('team').first()!
+const page = await usePage('team')
 
 const title = page.seo?.title || page.hero?.title || 'Team'
 const description = page.seo?.description || page.hero?.description

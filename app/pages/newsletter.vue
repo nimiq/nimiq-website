@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('newsletterPage').first()!
+const page = await usePage('newsletterPage')
 
 const title = page.seo?.title || page.hero?.title || 'Newsletter'
 const description = page.seo?.description || page.hero?.description

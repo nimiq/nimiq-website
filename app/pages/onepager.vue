@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import '~/assets/css/onepager.css'
 
-const page = await queryCollection('onepager').first()!
+const page = await usePage('onepager')
 const content = await parseMarkdown(page.content?.richText || '')
 
-const title = page.seo?.title || page.hero?.headline || 'Nimiq in a Nutshell | Nimiq'
-const description = page.seo?.description || page.hero?.subline
+const title = page.seo?.title || page.hero?.title || 'Nimiq in a Nutshell | Nimiq'
+const description = page.seo?.description || page.hero?.description
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/onepager' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/onepager' }] })
 </script>
@@ -15,10 +15,10 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/onepager' }] })
     <section class="bg-neutral-100 f-py-lg">
       <div class="mx-auto max-w-prose px-6">
         <h1 class="nq-heading font-bold">
-          {{ page.hero?.headline }}
+          {{ page.hero?.title }}
         </h1>
-        <p v-if="page.hero?.subline" class="text-neutral-700 mt-4">
-          {{ page.hero.subline }}
+        <p v-if="page.hero?.description" class="text-neutral-700 mt-4">
+          {{ page.hero.description }}
         </p>
       </div>
     </section>

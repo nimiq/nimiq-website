@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('nimiqPay').first()!
+const page = await usePage('nimiqPay')
 
 const title = page.seo?.title || page.hero?.title || 'Nimiq Pay'
 const description = page.seo?.description || page.hero?.description
