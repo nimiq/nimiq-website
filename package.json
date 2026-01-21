@@ -46,6 +46,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "catalog:lint",
     "@nuxt/eslint": "catalog:lint",
+    "@nuxt/fonts": "catalog:",
     "@nuxt/icon": "catalog:nuxt",
     "@nuxt/image": "catalog:nuxt",
     "@nuxt/kit": "catalog:build",
@@ -54,6 +55,7 @@
     "@nuxtjs/tailwindcss": "catalog:",
     "@prismicio/client": "catalog:prismic",
     "@prismicio/richtext": "catalog:prismic",
+    "@tailwindcss/typography": "catalog:",
     "@types/js-yaml": "catalog:",
     "@types/node": "catalog:types",
     "@vitest/browser": "catalog:",

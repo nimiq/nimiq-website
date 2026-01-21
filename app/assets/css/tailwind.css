@@ -1,10 +1,42 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 /*
- * Nimiq Color System
- * All colors use OKLCH format with light-dark() for automatic dark mode support
+ * Nimiq Typography & Color System
+ * Fonts: Mulish (sans), Fira Code (mono), Press Start 2P (retro)
+ * Colors use OKLCH format with light-dark() for automatic dark mode support
  */
 @theme {
+  /* ==========================================================================
+     Font Families
+     ========================================================================== */
+  --font-sans: 'Mulish', 'Mulish Fallback: Arial', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Fira Code', 'Fira Code Fallback: Arial', ui-monospace, monospace;
+  --font-retro: 'Press Start 2P', 'Press Start 2P Fallback: Arial', monospace;
+
+  /* Nimiq font aliases (for compatibility with nimiq-css) */
+  --nq-font-sans: var(--font-sans);
+  --nq-font-mono: var(--font-mono);
+  --nq-font-retro: var(--font-retro);
+  --nq-font-family: var(--font-sans);
+
+  /* ==========================================================================
+     Font Sizes (matching nimiq-css scale)
+     ========================================================================== */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+  --text-6xl: 3.75rem; /* 60px */
+
+  /* ==========================================================================
+     Colors
+     ========================================================================== */
   /* Base colors (non-adaptive) */
   --color-white: oklch(1 0 90);
   --color-darkblue: oklch(0.2737 0.068 276.29);
@@ -676,5 +708,413 @@
     background-color: var(--color-white);
     opacity: 1;
     bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   Nimiq Prose Styling (nq-prose)
+   Fluid typography with responsive font sizes matching nimiq-css
+   ========================================================================== */
+
+/* Fluid typography variables */
+:root {
+  --unit: 16px;
+  --nq-screen-width-min-em: 23.4375;
+  --nq-screen-width-max-em: 72;
+  --f-screen-range-em: calc(var(--nq-screen-width-max-em) - var(--nq-screen-width-min-em));
+  --nq-prose-max-width: 780px;
+}
+
+@layer components {
+  /* --------------------------------------------------------------------------
+     nq-prose - Rich text content styling
+     -------------------------------------------------------------------------- */
+  .nq-prose,
+  .nq-prose-compact,
+  [nq-prose],
+  [nq-prose-compact] {
+    font-size: 16px;
+  }
+
+  /* Padding for non-compact prose */
+  :is(.nq-prose, [nq-prose]):not(:where(.nq-prose-compact, [nq-prose-compact]))
+    > :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  :is(.nq-prose, [nq-prose]):not(:where(.nq-prose-compact, [nq-prose-compact]))
+    > :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):last-child {
+    padding-bottom: 6rem;
+  }
+
+  @media (min-width: 1153px) {
+    :is(.nq-prose, [nq-prose]):not(:where(.nq-prose-compact, [nq-prose-compact]))
+      > :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):last-child {
+      padding-bottom: 8rem;
+    }
+  }
+
+  /* Fluid font sizing */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact]) * {
+    --f-factor: calc((100vw - var(--unit) * var(--nq-screen-width-min-em)) / var(--f-screen-range-em));
+    --nq-m-range: calc(var(--margin-max-em, 1) - var(--margin-min-em, 0.5));
+    --nq-m-fluid: calc(var(--unit) * var(--margin-min-em, 0.5) + var(--nq-m-range) * var(--f-factor));
+    --nq-m-size: clamp(
+      calc(var(--unit) * var(--margin-min-em, 0.5)),
+      var(--nq-m-fluid),
+      calc(var(--margin-max-em, 1) * var(--unit))
+    );
+    --font-size-range: calc(var(--font-size-max-em, 1) - var(--font-size-min-em, 0.9));
+    --font-size-fluid: calc(var(--unit) * var(--font-size-min-em, 0.9) + var(--font-size-range) * var(--f-factor));
+    --font-size: clamp(
+      calc(var(--unit) * var(--font-size-min-em, 0.9)),
+      var(--font-size-fluid),
+      calc(var(--unit) * var(--font-size-max-em, 1))
+    );
+    font-size: var(--font-size);
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact]) > :first-child {
+    margin-top: 0;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact]) > :last-child {
+    margin-bottom: 0;
+  }
+
+  /* Base prose element styling */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)) {
+    font-family: var(--nq-font-sans, 'Mulish');
+    line-height: 1.5;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--nq-prose-max-width, 780px);
+  }
+
+  /* Headings */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1) {
+    --font-size-min-em: 2.75;
+    --font-size-max-em: 3;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(
+      h1 + :not(:where(h1, h2, h3, h4))
+    ) {
+    --margin-min-em: 7;
+    --margin-max-em: 7.5;
+    margin-top: var(--nq-m-size);
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h2) {
+    --font-size-min-em: 2;
+    --font-size-max-em: 2.375;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    margin-top: var(--nq-m-size);
+    --margin-min-em: 5.5;
+    --margin-max-em: 6;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h2):where(h1 + h2) {
+    --margin-min-em: 2.5;
+    --margin-max-em: 3;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h3) {
+    --font-size-min-em: 1.625;
+    --font-size-max-em: 1.875;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    margin-top: var(--nq-m-size);
+    --margin-min-em: 5.5;
+    --margin-max-em: 6;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h3):where(h2 + h3) {
+    --margin-min-em: 2;
+    --margin-max-em: 2.25;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h4) {
+    --font-size-min-em: 1.375;
+    --font-size-max-em: 1.625;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    margin-top: var(--nq-m-size);
+    --margin-min-em: 5.5;
+    --margin-max-em: 6;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h3 + h4) {
+    --margin-min-em: 2;
+    --margin-max-em: 2.25;
+  }
+
+  /* Heading anchor links */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id] {
+    color: var(--color-neutral);
+    margin-left: -1.25rem;
+    min-height: 1em;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: relative;
+    width: 100%;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6
+    )[id]::after {
+    content: '#';
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: 50ms opacity var(--nq-ease, ease-in-out);
+    z-index: 1;
+  }
+
+  @media (min-width: 769px) {
+    :where(
+        :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+          :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id],
+        :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+          :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6
+          )[id]::after
+      ):hover::after {
+      opacity: 0.5;
+    }
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id]:has(
+      a:focus-visible
+    ) {
+    outline: 0.125rem solid var(--color-blue);
+    outline-offset: 0.125rem;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id]
+    > a {
+    color: var(--color-neutral);
+    font-size: inherit;
+    font-weight: inherit;
+    inset: -6px 0 0;
+    padding-left: 20px;
+    position: absolute;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id]
+    > a::after {
+    inset: 0;
+    position: absolute;
+  }
+
+  /* Paragraphs */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(p) {
+    line-height: 1.5;
+    margin-bottom: 0;
+    margin-top: 0;
+    --font-size-min-em: 0.9;
+    --font-size-max-em: 1;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(p)
+    + p {
+    margin-top: 16px;
+  }
+
+  /* Figcaption */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(figure)
+    figcaption {
+    color: var(--color-neutral-700);
+    --font-size-min-em: 0.75;
+    --font-size-max-em: 0.875;
+    font-weight: 700;
+    line-height: 1.3125;
+  }
+
+  :where(.dark, [data-theme='dark'])
+    :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(figure)
+    figcaption {
+    color: color-mix(in oklch, var(--color-white) 80%, transparent);
+  }
+
+  /* Blockquote */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(blockquote) {
+    background: var(--color-green-400);
+    --margin-min-em: 0.875;
+    --margin-max-em: 1;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1.5px var(--color-green-600);
+    font-weight: 600;
+    padding: var(--nq-m-size);
+    transform: translateX(-8px);
+    width: calc(100% + 16px);
+    --font-size-min-em: 0.75;
+    --font-size-max-em: 0.875;
+  }
+
+  /* Images and media */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(img, video, iframe) {
+    border-radius: 6px;
+    --margin-min-em: 1.125;
+    --margin-max-em: 1.375;
+    margin-top: var(--nq-m-size);
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(img, video, iframe):has(
+      + figcaption
+    ) {
+    --margin-min-em: 0.75;
+    --margin-max-em: 1;
+    margin-bottom: var(--nq-m-size);
+  }
+
+  /* Links */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(a) {
+    color: var(--color-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 150ms ease;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(a):hover {
+    color: var(--color-blue-1100);
+  }
+
+  /* Lists */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(ul, ol) {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding-left: 1.5em;
+    --font-size-min-em: 0.9;
+    --font-size-max-em: 1;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(li) {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(ul) {
+    list-style-type: disc;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(ol) {
+    list-style-type: decimal;
+  }
+
+  /* Code */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(code) {
+    font-family: var(--nq-font-mono);
+    font-size: 0.875em;
+    background: var(--color-neutral-200);
+    padding: 0.125em 0.375em;
+    border-radius: 4px;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(pre) {
+    font-family: var(--nq-font-mono);
+    font-size: 0.875em;
+    background: var(--color-neutral-100);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(pre)
+    code {
+    background: transparent;
+    padding: 0;
+  }
+
+  /* Tables */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    --font-size-min-em: 0.875;
+    --font-size-max-em: 1;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(th, td) {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-neutral-300);
+    text-align: left;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(th) {
+    font-weight: 700;
+    background: var(--color-neutral-100);
+  }
+
+  /* Horizontal rule */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(hr) {
+    border: none;
+    border-top: 1px solid var(--color-neutral-400);
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
+  /* Fix for heading links in prose */
+  [nq-prose] h3 a {
+    --font-size-min-em: 1;
+    --font-size-max-em: 1;
+    font-weight: inherit;
   }
 }

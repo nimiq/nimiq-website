@@ -4,9 +4,11 @@ patchedDependencies:
   '@nuxt/content': patches/@nuxt__content.patch
 catalog:
   '@nuxt/content': ^3.9.0
+  '@nuxt/fonts': ^0.12.1
   '@nuxt/hints': 1.0.0-alpha.3
   '@nuxthub/core': 0.10.1
   '@nuxtjs/tailwindcss': 7.0.0-beta.1
+  '@tailwindcss/typography': ^0.5.19
   '@types/js-yaml': ^4.0.9
   '@vitest/browser': ^4.0.16
   '@vitest/ui': ^4.0.16
