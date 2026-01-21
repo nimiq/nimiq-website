@@ -1,6 +1,21 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+/* ==========================================================================
+   Custom Variants
+   hocus: (hover + focus), group-hocus:, and motion variants
+   ========================================================================== */
+
+/* hocus: applies styles on hover OR focus */
+@custom-variant hocus (&:hover, &:focus);
+
+/* group-hocus: applies when parent .group is hovered OR focused */
+@custom-variant group-hocus (.group:hover &, .group:focus &);
+
+/* Motion variants for accessibility */
+@custom-variant motion-safe (@media (prefers-reduced-motion: no-preference));
+@custom-variant motion-reduce (@media (prefers-reduced-motion: reduce));
+
 /*
  * Nimiq Typography & Color System
  * Fonts: Mulish (sans), Fira Code (mono), Press Start 2P (retro)
