@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/hints',
     '@nuxt/icon',
+    '@nuxtjs/tailwindcss',
     'reka-ui/nuxt',
     '@nuxtjs/device',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
@@ -36,6 +37,10 @@ export default defineNuxtConfig({
     'nuxt-studio',
     'nuxt-link-checker',
   ].filter(Boolean),
+
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+  },
 
   image: {
     quality: 80,

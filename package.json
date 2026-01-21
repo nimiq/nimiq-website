@@ -51,6 +51,7 @@
     "@nuxt/kit": "catalog:build",
     "@nuxthub/core": "catalog:",
     "@nuxtjs/device": "catalog:nuxt",
+    "@nuxtjs/tailwindcss": "catalog:",
     "@prismicio/client": "catalog:prismic",
     "@prismicio/richtext": "catalog:prismic",
     "@types/js-yaml": "catalog:",
