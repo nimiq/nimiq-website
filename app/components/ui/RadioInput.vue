@@ -25,11 +25,11 @@ onMounted(updateValues)
 </script>
 
 <template>
-  <div :id flex="~ gap-2 items-center" group rounded-4 bg-neutral-200 w-max relative>
-    <div ref="pill" group-focus-visible:ring="1.5 blue offset-1 offset-white" :style="pillStyles" rounded-4 bg-neutral ease-out inset-y-0 absolute transition="[left,width,background-color]" />
-    <label v-for="(option, i) in options" :key="i" z-1 :data-state="isSelected(option) ? 'active' : undefined">
-      <input v-model="model" type="radio" :value="option" sr-only>
-      <div text="12 neutral-800 reka-active:neutral-0" lh-none tracking-0.8 px-8 py-4 cursor-pointer transition-colors relative nq-label>
+  <div :id class="flex flex-gap-2 flex-items-center group rounded-4 bg-neutral-200 w-max relative">
+    <div ref="pill" class="group-focus-visible:ring-1.5 blue offset-1 offset-white rounded-4 bg-neutral ease-out inset-y-0 absolute transition-[left,width,background-color]" :style="pillStyles" />
+    <label v-for="(option, i) in options" :key="i" class="z-1" :data-state="isSelected(option) ? 'active' : undefined">
+      <input v-model="model" class="sr-only" type="radio" :value="option">
+      <div class="text-12 text-neutral-800 text-reka-active:neutral-0 lh-none tracking-0.8 px-8 py-4 cursor-pointer transition-colors relative nq-label">
         <slot name="label" :option>
           {{ getLabel(option) }}
         </slot>

@@ -44,13 +44,13 @@ const columns = computed(() => [
 </script>
 
 <template>
-  <ul grid="~ cols-1 md:cols-3 gap-x-8 lg:gap-x-16 gap-y-24" bg-neutral-100 w-full>
-    <li v-for="(column, i) in columns.filter(c => c.items.length)" :key="i" flex="~ col md:items-center">
-      <span v-if="showLabels" text="12 md:14 neutral-700" nq-label>{{ column.label }}</span>
-      <div w-full f-mt-md flex="~ col gap-y-8 lg:gap-y-16">
-        <NuxtLink v-for="(social, j) in column.items" :key="j" :to="social.link" external target="_blank" flex="~ row items-center gap-24" :style="`--c:${social.color}`" group nq-hoverable class="hocus:text-white hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c">
-          <Icon :name="social.icon" class="size-32 md:size-40" />
-          <span f-text-lg>{{ social.label }}</span>
+  <ul class="grid grid-cols-1 grid-md:cols-3 grid-gap-x-8 grid-lg:gap-x-16 grid-gap-y-24 bg-neutral-100 w-full">
+    <li v-for="(column, i) in columns.filter(c => c.items.length)" :key="i" class="flex flex-col flex-md:items-center">
+      <span v-if="showLabels" class="text-12 text-md:14 text-neutral-700 nq-label">{{ column.label }}</span>
+      <div class="w-full f-mt-md flex flex-col flex-gap-y-8 flex-lg:gap-y-16">
+        <NuxtLink v-for="(social, j) in column.items" :key="j" class="hocus:text-white hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c flex flex-row flex-items-center flex-gap-24 group nq-hoverable" :to="social.link" external target="_blank" :style="`--c:${social.color}`">
+          <Icon class="size-32 md:size-40" :name="social.icon" />
+          <span class="f-text-lg">{{ social.label }}</span>
         </NuxtLink>
       </div>
     </li>

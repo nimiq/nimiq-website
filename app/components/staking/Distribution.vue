@@ -23,9 +23,9 @@ const startAngle = computed(() => (90 - 180 * (datum.value.at(0)?.value || 0)))
 </script>
 
 <template>
-  <div ref="target" relative flex="~ col items-center">
+  <div ref="target" class="relative flex flex-col flex-items-center">
     <ChartDonut :data="datum" :start-angle />
-    <div ring="1.5 green" text-neutral font-semibold px-12 py-6 rounded-full bg-neutral-0 right-8 top-196 absolute>
+    <div class="ring-1.5 ring-green text-neutral font-semibold px-12 py-6 rounded-full bg-neutral-0 right-8 top-196 absolute">
       {{ formatter.format(stakingRatio ?? 0) }} staked
     </div>
   </div>

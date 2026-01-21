@@ -16,25 +16,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="banner?.items?.[0]" f-px-sm>
-    <div py="24 lg:72" px-32 rounded-8 bg-white w-full shadow relative of-hidden max-w="none lg:[calc(var(--nq-max-width)-32px)]" outline="1.5 offset--1.5 ~ neutral/10">
+  <div v-if="banner?.items?.[0]" class="f-px-sm">
+    <div class="py-24 py-lg:72 px-32 rounded-8 bg-white w-full relative of-hidden max-w-none max-w-lg:[calc(var(--nq-max-width)-32px)] outline-1.5 outline-offset--1.5 outline outline-neutral/10" shadow>
       <!-- Background app logos -->
-      <NuxtLink v-for="(bg, j) in bgApps" :key="j" :to="bg.link" target="_blank" :aria-label="bg.name" tabindex="-1" :class="[bg.classes]" pointer-cursor size-104 absolute :style="{ color: bg.color }">
-        <Icon name="nimiq:logos-nimiq-mono" size-full inset-0 absolute />
-        <NuxtImg :src="bg.logo" :alt="bg.name" size-full pointer-events-none scale-110 object-contain :class="bannerLogoClasses[bg.name]" />
+      <NuxtLink v-for="(bg, j) in bgApps" :key="j" class="size-104 absolute" :to="bg.link" target="_blank" :aria-label="bg.name" tabindex="-1" :class="[bg.classes]" pointer-cursor :style="{ color: bg.color }">
+        <Icon class="size-full inset-0 absolute" name="nimiq:logos-nimiq-mono" />
+        <NuxtImg class="size-full pointer-events-none scale-110 object-contain" :src="bg.logo" :alt="bg.name" :class="bannerLogoClasses[bg.name]" />
       </NuxtLink>
 
       <!-- Content -->
-      <div flex="~ wrap justify-between" flex-col max-w-full w-max relative z-10 md:mx-auto lg:max-w-60ch md:items-center>
-        <div max-w-60ch md:text-center>
-          <h3 nq-heading mt-0>
+      <div class="flex flex-wrap flex-justify-between flex-col max-w-full w-max relative z-10 md:mx-auto lg:max-w-60ch md:items-center">
+        <div class="max-w-60ch md:text-center">
+          <h3 class="nq-heading mt-0">
             {{ banner.items[0].headline }}
           </h3>
-          <p v-if="banner.items[0].subline" text-neutral-700 mb-0 f-mt-xs>
+          <p v-if="banner.items[0].subline" class="text-neutral-700 mb-0 f-mt-xs">
             {{ banner.items[0].subline }}
           </p>
         </div>
-        <NuxtLink v-if="banner.items[0].link" :to="banner.items[0].link" mt="32 md:24" nq-arrow nq-pill-lg nq-pill-blue md:mx-auto>
+        <NuxtLink v-if="banner.items[0].link" class="mt-32 mt-md:24 nq-arrow nq-pill-lg nq-pill-blue md:mx-auto" :to="banner.items[0].link">
           Go to apps
         </NuxtLink>
       </div>

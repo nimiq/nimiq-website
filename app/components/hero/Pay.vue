@@ -12,27 +12,27 @@ const highlightsItems = computed(() => items?.map(i => i.highlight?.trim()).filt
 
 <template>
   <div>
-    <h1 nq-heading>
+    <h1 class="nq-heading">
       {{ title }}
     </h1>
-    <p v-if="description" text-neutral-700 font-400 mx-auto max-w-prose f-mt-xs dark:text-neutral-900>
+    <p v-if="description" class="text-neutral-700 font-400 mx-auto max-w-prose f-mt-xs dark:text-neutral-900">
       {{ description }}
     </p>
-    <ul v-if="highlightsItems.length > 0" :aria-label="`Highlights of ${title}`" role="list" f-mt-xs flex="~ md:justify-center items-center wrap gap-x-16 gap-y-4">
-      <li v-for="(highlight, i) in highlightsItems" :key="i" contents>
-        <div v-if="i > 0" rounded-full bg-neutral-500 size-6 />
-        <span text="f-xl green" font-semibold>{{ highlight }}</span>
+    <ul v-if="highlightsItems.length > 0" class="f-mt-xs flex flex-md:justify-center flex-items-center flex-wrap flex-gap-x-16 flex-gap-y-4" :aria-label="`Highlights of ${title}`" role="list">
+      <li v-for="(highlight, i) in highlightsItems" :key="i" class="contents">
+        <div v-if="i > 0" class="rounded-full bg-neutral-500 size-6" />
+        <span class="text-f-xl text-green font-semibold">{{ highlight }}</span>
       </li>
     </ul>
-    <ul v-if="appStore || playStore" f-mt-xl flex="~ wrap gap-32 lg:gap-40 justify-center">
+    <ul v-if="appStore || playStore" class="f-mt-xl flex flex-wrap flex-gap-32 flex-lg:gap-40 flex-justify-center">
       <li v-if="appStore">
         <NuxtLink :to="appStore" external target="_blank">
-          <NuxtImg src="/assets/images/apple-store-badge.png" f-h="36/52" alt="Get it on Apple Store" />
+          <NuxtImg class="f-h-36/52" src="/assets/images/apple-store-badge.png" alt="Get it on Apple Store" />
         </NuxtLink>
       </li>
       <li v-if="playStore">
         <NuxtLink :to="playStore" external target="_blank">
-          <NuxtImg src="/assets/images/google-play-badge.svg" f-h="36/52" alt="Get it on Google Play" />
+          <NuxtImg class="f-h-36/52" src="/assets/images/google-play-badge.svg" alt="Get it on Google Play" />
         </NuxtLink>
       </li>
     </ul>

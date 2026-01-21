@@ -11,7 +11,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
   <NuxtLayout show-socials-hexagon-bg dark-header>
     <main>
       <!-- Section 0: Hero (prod: pt=160, pb=0) -->
-      <section class="dark" text-neutral mx-0 bg-darkblue scheme-dark relative of-hidden children:max-w-none max-md:min-h-auto pt="148 md:153 lg:160" min-h="auto md:100vh lg:110vh" flex="~ col justify-between" style="--pb: 0px">
+      <section class="dark text-neutral mx-0 bg-darkblue relative of-hidden max-md:min-h-auto pt-148 pt-md:153 pt-lg:160 min-h-auto min-h-md:100vh min-h-lg:110vh flex flex-col flex-justify-between" scheme-dark children:max-w-none style="--pb: 0px">
         <HeroHome v-bind="page.hero" />
       </section>
 
@@ -21,17 +21,17 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
       </section>
 
       <!-- Section 2: Apps headline (prod: pt=24, pb=48) -->
-      <section nq-section-gap bg-neutral-0 style="--pt: 24px; --pb: 48px">
+      <section class="nq-section-gap bg-neutral-0" style="--pt: 24px; --pb: 48px">
         <Headline v-bind="page.apps.headline" />
       </section>
 
       <!-- Section 3: Apps showcase cards (prod: pt=48, pb=22) -->
-      <section bg-neutral-0 style="--pt: 48px; --pb: 22px">
+      <section class="bg-neutral-0" style="--pt: 48px; --pb: 22px">
         <ShowcaseAppsCards :apps="page.apps.items" />
       </section>
 
       <!-- Section 4: Apps banner (prod: pt=0, pb=200) -->
-      <section bg-neutral-0 style="--pt: 0px">
+      <section class="bg-neutral-0" style="--pt: 0px">
         <ShowcaseAppsBanner :banner="page.banner" />
       </section>
 
@@ -41,7 +41,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
       </section>
 
       <!-- Section 6: Tech headline (prod: pt=24, pb=48) -->
-      <section nq-section-gap class="dark bg-darkerblue" style="--pt: 24px; --pb: 48px">
+      <section class="dark bg-darkerblue nq-section-gap" style="--pt: 24px; --pb: 48px">
         <GridTechHeadline v-bind="page.techGrid" />
       </section>
 
@@ -56,7 +56,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
       </section>
 
       <!-- Section 9: Community (prod: pt=200, pb=48) -->
-      <section nq-section-gap bg-neutral-0 style="--pb: 48px">
+      <section class="nq-section-gap bg-neutral-0" style="--pb: 48px">
         <Headline v-bind="page.community" />
       </section>
     </main>

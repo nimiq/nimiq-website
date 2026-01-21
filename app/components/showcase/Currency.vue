@@ -10,58 +10,58 @@ const [DefineCrypto, ReuseCrypto] = createReusableTemplate<Currency & { twoColum
   <DefineCrypto>
     <template #default="{ adjective, crypto, fee, mainFeature, name, secondFeature, thirdFeature, time, twoColumns = false }">
       <li :class="{ 'md:grid md:rows-[max-content,auto,auto,auto] md:cols-2 xl:block gap-x-32': twoColumns }">
-        <div flex="~ items-center gap-12" text-48 col-span-full>
+        <div class="flex flex-items-center flex-gap-12 text-48 col-span-full">
           <Icon v-if="crypto === 'NIM'" name="nimiq:logos-nimiq" />
           <Icon v-else-if="crypto === 'BTC'" name="nimiq:logos-bitcoin" />
-          <div v-else-if="crypto === 'USDC/USDT'" flex="~ items-center gap-12">
+          <div v-else-if="crypto === 'USDC/USDT'" class="flex flex-items-center flex-gap-12">
             <Icon name="nimiq:logos-usdc" />
-            <div my-10 bg-neutral-400 w-1 self-stretch />
+            <div class="my-10 bg-neutral-400 w-1 self-stretch" />
             <Icon name="nimiq:logos-usdt" />
           </div>
-          <span font-semibold text="f-xl neutral">{{ name }}</span>
-          <div v-if="crypto === 'NIM'" flex="~ items-center gap-6" text-green px-6 py-4 rounded-full bg-green-400>
-            <Icon name="nimiq:eco" class="text-14" />
-            <span text-green f-text-xs nq-label>Eco</span>
+          <span class="font-semibold text-f-xl text-neutral">{{ name }}</span>
+          <div v-if="crypto === 'NIM'" class="flex flex-items-center flex-gap-6 text-green px-6 py-4 rounded-full bg-green-400">
+            <Icon class="text-14" name="nimiq:eco" />
+            <span class="text-green f-text-xs nq-label">Eco</span>
           </div>
         </div>
 
-        <p text="neutral/70 f-xs" px-8 py-4 rounded-4 bg-neutral-400 h-max w-max f-mt-md nq-label>
+        <p class="text-neutral/70 text-f-xs px-8 py-4 rounded-4 bg-neutral-400 h-max w-max f-mt-md nq-label">
           {{ adjective }}
         </p>
-        <p row-span-4 col-start-1 f-text-lg f-mt-2xs>
+        <p class="row-span-4 col-start-1 f-text-lg f-mt-2xs">
           {{ mainFeature }}
         </p>
 
-        <div flex="~ gap-8 items-start" :class="{ 'f-mt-sm': !twoColumns, 'row-start-2 col-start-2 f-mt-md': twoColumns }">
-          <div class="gradient" stack rounded-full shrink-0 size-28>
-            <Icon :name="crypto === 'NIM' ? 'nimiq:bolt' : crypto === 'BTC' ? 'nimiq:arrows-to-sides' : 'nimiq:balance'" class="text-14 text-white" :class="{ 'scale-120': crypto === 'BTC' }" />
+        <div class="flex flex-gap-8 flex-items-start" :class="{ 'f-mt-sm': !twoColumns, 'row-start-2 col-start-2 f-mt-md': twoColumns }">
+          <div class="gradient rounded-full shrink-0 size-28" stack>
+            <Icon class="text-14 text-white" :name="crypto === 'NIM' ? 'nimiq:bolt' : crypto === 'BTC' ? 'nimiq:arrows-to-sides' : 'nimiq:balance'" :class="{ 'scale-120': crypto === 'BTC' }" />
           </div>
-          <p whitespace-nowrap>
+          <p class="whitespace-nowrap">
             {{ secondFeature }}
           </p>
         </div>
 
-        <div flex="~ gap-8 items-center" f-mt-2xs>
-          <div class="gradient" stack rounded-full shrink-0 size-28>
-            <Icon :name="crypto === 'NIM' ? 'nimiq:leaf-2-filled' : crypto === 'BTC' ? 'nimiq:digital-gold' : 'nimiq:arrows-to-center-triangle'" class="text-16 text-white" :class="{ 'scale-80 bottom--1 relative': crypto === 'NIM', 'scale-120 right--1 relative': crypto === 'BTC' }" />
+        <div class="flex flex-gap-8 flex-items-center f-mt-2xs">
+          <div class="gradient rounded-full shrink-0 size-28" stack>
+            <Icon class="text-16 text-white" :name="crypto === 'NIM' ? 'nimiq:leaf-2-filled' : crypto === 'BTC' ? 'nimiq:digital-gold' : 'nimiq:arrows-to-center-triangle'" :class="{ 'scale-80 bottom--1 relative': crypto === 'NIM', 'scale-120 right--1 relative': crypto === 'BTC' }" />
           </div>
-          <p whitespace-nowrap>
+          <p class="whitespace-nowrap">
             {{ thirdFeature }}
           </p>
         </div>
 
-        <p f-mt-sm>
-          {{ feeLabel }}: <span text-neutral font-semibold>{{ fee }}</span>
+        <p class="f-mt-sm">
+          {{ feeLabel }}: <span class="text-neutral font-semibold">{{ fee }}</span>
         </p>
-        <p>{{ timeLabel }}: <span text-neutral font-semibold>{{ time }}</span></p>
+        <p>{{ timeLabel }}: <span class="text-neutral font-semibold">{{ time }}</span></p>
       </li>
     </template>
   </DefineCrypto>
 
-  <ul v-if="items.length >= 3" grid="~ cols-1 md:cols-2 xl:cols-3">
-    <ReuseCrypto v-bind="items[0]!" border="b-1 neutral-300 xl:b-0 md:r-1" p="b-32 xl:b-0 md:r-32" />
-    <ReuseCrypto v-bind="items[1]!" border="b-1 neutral-300 xl:b-0 xl:r-1" p="y-32 md:t-0 xl:y-0 md:l-32" />
-    <ReuseCrypto v-bind="items[2]!" col="span-full xl:span-1" p="t-32 xl:t-0 xl:l-32" :two-columns="true" />
+  <ul v-if="items.length >= 3" class="grid grid-cols-1 grid-md:cols-2 grid-xl:cols-3">
+    <ReuseCrypto class="border-b-1 border-neutral-300 border-xl:b-0 border-md:r-1 p-b-32 p-xl:b-0 p-md:r-32" v-bind="items[0]!" />
+    <ReuseCrypto class="border-b-1 border-neutral-300 border-xl:b-0 border-xl:r-1 p-y-32 p-md:t-0 p-xl:y-0 p-md:l-32" v-bind="items[1]!" />
+    <ReuseCrypto class="col-span-full col-xl:span-1 p-t-32 p-xl:t-0 p-xl:l-32" v-bind="items[2]!" :two-columns="true" />
   </ul>
 </template>
 

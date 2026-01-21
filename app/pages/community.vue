@@ -10,33 +10,33 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
 <template>
   <NuxtLayout>
     <main>
-      <section nq-section-gap bg-neutral-0>
+      <section class="nq-section-gap bg-neutral-0">
         <Hero v-bind="page.hero" />
         <GridNewYork v-bind="page.stats" />
       </section>
 
-      <section nq-section-gap bg-neutral-0>
+      <section class="nq-section-gap bg-neutral-0">
         <Headline v-bind="page.countries.headline" />
         <TokenFlags :flags="page.countries.flags" />
       </section>
 
-      <section nq-section-gap bg-neutral-100>
+      <section class="nq-section-gap bg-neutral-100">
         <Headline v-bind="page.social.headline" />
         <GridSocialMedia v-bind="page.social.grid" />
         <BannerNewsletter v-bind="page.newsletter" />
       </section>
 
-      <section nq-section-gap bg-neutral-100>
+      <section class="nq-section-gap bg-neutral-100">
         <Headline v-bind="page.events" />
       </section>
 
-      <section nq-section-gap bg-neutral-0>
+      <section class="nq-section-gap bg-neutral-0">
         <Headline v-bind="page.apps.headline" />
         <BannerAppGallery v-bind="page.apps.gallery" />
         <Banner v-bind="page.banner" />
       </section>
 
-      <section nq-section-gap dark bg-darkblue scheme-dark>
+      <section class="nq-section-gap bg-darkblue" dark scheme-dark>
         <Headline v-bind="page.feedback" />
       </section>
     </main>

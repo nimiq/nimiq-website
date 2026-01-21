@@ -12,12 +12,12 @@ useIntersectionObserver(
 </script>
 
 <template>
-  <svg ref="circleRippleElement" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1800 1800" pointer-events-none>
-    <circle cx="900" cy="900" r="900" fill-green opacity=".1" class="ripple" :class="[{ 'ripple-active': isComponentVisible }]" style="--i: 5" />
-    <circle cx="900" cy="900" r="757" fill-green opacity=".4" class="ripple" :class="[{ 'ripple-active': isComponentVisible }]" style="--i: 3" />
-    <circle cx="900" cy="900" r="651" fill-neutral-0 opacity=".4" class="ripple" :class="[{ 'ripple-active': isComponentVisible }]" style="--i: 2" />
-    <circle cx="900" cy="900" r="547" fill-green opacity=".2" class="ripple" :class="[{ 'ripple-active': isComponentVisible }]" style="--i: 1" />
-    <circle cx="900" cy="900" r="489" fill-neutral-0 class="ripple" :class="[{ 'ripple-active': isComponentVisible }]" style="--i:0" />
+  <svg ref="circleRippleElement" class="pointer-events-none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1800 1800">
+    <circle class="ripple fill-green opacity-.1" cx="900" cy="900" r="900" :class="[{ 'ripple-active': isComponentVisible }]" style="--i: 5" />
+    <circle class="ripple fill-green opacity-.4" cx="900" cy="900" r="757" :class="[{ 'ripple-active': isComponentVisible }]" style="--i: 3" />
+    <circle class="ripple fill-neutral-0 opacity-.4" cx="900" cy="900" r="651" :class="[{ 'ripple-active': isComponentVisible }]" style="--i: 2" />
+    <circle class="ripple fill-green opacity-.2" cx="900" cy="900" r="547" :class="[{ 'ripple-active': isComponentVisible }]" style="--i: 1" />
+    <circle class="ripple fill-neutral-0" cx="900" cy="900" r="489" :class="[{ 'ripple-active': isComponentVisible }]" style="--i:0" />
   </svg>
 </template>
 

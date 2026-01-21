@@ -4,14 +4,14 @@ defineProps<{ items: GridItem[] }>()
 </script>
 
 <template>
-  <ul flex="~ col lg:row gap-y-24 lg:items-center" w-full>
-    <li v-for="(item, i) in items" :key="i" py-24 flex-1 border="b-1 lg:b-0 lg:r-1 last:0 white/15 solid" md:mx-auto md:w-max>
-      <NuxtImg v-if="item.image" :src="item.image" rounded-8 h-80 object-contain md:mx-auto />
-      <Icon v-else-if="item.icon" :name="item.icon" class="h-80 md:mx-auto" />
-      <h3 text="green md:center f-xl" font-bold max-w-20ch f-mt-xs lg:mx-auto>
+  <ul class="flex flex-col flex-lg:row flex-gap-y-24 flex-lg:items-center w-full">
+    <li v-for="(item, i) in items" :key="i" class="py-24 flex-1 border-b-1 border-lg:b-0 border-lg:r-1 border-last:0 border-white/15 border-solid md:mx-auto md:w-max">
+      <NuxtImg v-if="item.image" class="rounded-8 h-80 object-contain md:mx-auto" :src="item.image" />
+      <Icon v-else-if="item.icon" class="h-80 md:mx-auto" :name="item.icon" />
+      <h3 class="text-green text-md:center text-f-xl font-bold max-w-20ch f-mt-xs lg:mx-auto">
         {{ item.headline }}
       </h3>
-      <p v-if="item.subline" text="neutral-700 md:center" max-w-20ch f-mt-xs lg:mx-auto>
+      <p v-if="item.subline" class="text-neutral-700 text-md:center max-w-20ch f-mt-xs lg:mx-auto">
         {{ item.subline }}
       </p>
     </li>

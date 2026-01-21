@@ -3,12 +3,12 @@ defineProps<{ items: T[], shouldPlay?: boolean }>()
 </script>
 
 <template>
-  <div w-full relative of-hidden>
-    <ul flex relative inline-flex="~" v-bind="$attrs" class="marquee" :style="`animation-play-state: ${shouldPlay ? 'running' : 'paused'}`">
-      <li v-for="(item, i) in items" :key="i" :style="`--index: ${i}`" w-fit whitespace-nowrap>
+  <div class="w-full relative of-hidden">
+    <ul class="marquee flex relative inline-flex-~" v-bind="$attrs" :style="`animation-play-state: ${shouldPlay ? 'running' : 'paused'}`">
+      <li v-for="(item, i) in items" :key="i" class="w-fit whitespace-nowrap" :style="`--index: ${i}`">
         <slot :item="item" :index="i" />
       </li>
-      <li v-for="(item, i) in items" :key="i" :style="`--index: ${i}`" w-fit whitespace-nowrap>
+      <li v-for="(item, i) in items" :key="i" class="w-fit whitespace-nowrap" :style="`--index: ${i}`">
         <slot :item="item" :index="i" />
       </li>
     </ul>

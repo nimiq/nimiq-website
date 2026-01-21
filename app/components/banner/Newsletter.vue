@@ -4,16 +4,16 @@ defineProps<{ cta: string, afterText?: AfterText }>()
 </script>
 
 <template>
-  <div bg-neutral-100>
-    <h3 text-center>
+  <div class="bg-neutral-100">
+    <h3 class="text-center">
       {{ cta }}
     </h3>
-    <UiNewsletterEmailInput text-24 f-mt-xl />
-    <div v-if="afterText" text-center f-mt-xl>
-      <h2 nq-heading font-semibold>
+    <UiNewsletterEmailInput class="text-24 f-mt-xl" />
+    <div v-if="afterText" class="text-center f-mt-xl">
+      <h2 class="nq-heading font-semibold">
         {{ afterText.headline }}
       </h2>
-      <p f-mt-xs>
+      <p class="f-mt-xs">
         {{ afterText.description }}
       </p>
     </div>

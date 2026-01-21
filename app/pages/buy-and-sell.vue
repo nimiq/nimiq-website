@@ -11,31 +11,31 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/buy-and-sell' }] }
   <NuxtLayout>
     <main>
       <!-- Section 0: Hero -->
-      <section bg-neutral-0>
+      <section class="bg-neutral-0">
         <HeroBuyAndSell :data="page.hero" />
       </section>
 
       <!-- Section 1: Exchanges (headline + grid) -->
-      <section nq-section-gap bg-neutral-0>
+      <section class="nq-section-gap bg-neutral-0">
         <Headline v-bind="page.intro" />
-        <GridExchanges f-mt-2xl />
+        <GridExchanges class="f-mt-2xl" />
       </section>
 
       <!-- Section 2: Wallet (headline + showcase) -->
-      <section nq-section-gap bg-neutral-0>
+      <section class="nq-section-gap bg-neutral-0">
         <Headline v-bind="page.wallet.headline" />
-        <ShowcaseWalletHoverable :data="page.wallet.content" f-mt-2xl />
+        <ShowcaseWalletHoverable class="f-mt-2xl" :data="page.wallet.content" />
       </section>
 
       <!-- Section 3: Distribution (headline + chart + banner) -->
-      <section nq-section-gap bg-neutral-0>
-        <Headline v-bind="page.distribution.headline" pb-0 />
+      <section class="nq-section-gap bg-neutral-0">
+        <Headline class="pb-0" v-bind="page.distribution.headline" />
         <TokenDistribution :items="page.distribution.items" />
-        <BannerBuyAndSell :data="page.cta" mt-32 />
+        <BannerBuyAndSell class="mt-32" :data="page.cta" />
       </section>
 
       <!-- Section 4: No download CTA -->
-      <section nq-section-gap bg-neutral-100>
+      <section class="nq-section-gap bg-neutral-100">
         <Headline v-bind="page.noDownload" />
       </section>
     </main>

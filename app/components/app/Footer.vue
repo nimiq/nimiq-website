@@ -5,55 +5,55 @@ const copyrightNotice = site.footer.copyright ?? ''
 </script>
 
 <template>
-  <footer v-if="site" dark data-section :class="bgColor" z-10 f-pt-2xl>
-    <div grid="~ gap-40 md:gap-48 items-start xl:gap-104">
-      <div flex="~ col" f-text-sm area-contact>
+  <footer v-if="site" class="z-10 f-pt-2xl" dark data-section :class="bgColor">
+    <div class="grid grid-gap-40 grid-md:gap-48 grid-items-start grid-xl:gap-104">
+      <div class="flex flex-col f-text-sm" area-contact>
         <p>{{ site.footer.newsletterCta }}</p>
-        <UiNewsletterEmailInput f-mt-xs :placeholder="site.footer.newsletterPlaceholder" />
-        <p f-mt-xs>
+        <UiNewsletterEmailInput class="f-mt-xs" :placeholder="site.footer.newsletterPlaceholder" />
+        <p class="f-mt-xs">
           {{ site.footer.socialMediaCta }}
         </p>
-        <UiSocialMediaLogosList mx--8 op-60 f-text-xl :items="site.socials" />
+        <UiSocialMediaLogosList class="mx--8 op-60 f-text-xl" :items="site.socials" />
       </div>
 
-      <div text="f-sm neutral-700" self-end area-meta>
-        <NuxtLink to="/" group flex w-max aria-label="Go to Homepage">
-          <Icon name="nimiq:logos-nimiq-horizontal-mono" class="op-80 h-20! w-84! group-hocus:hidden" />
-          <Icon name="nimiq:logos-nimiq-horizontal" class="hidden h-20! w-84! group-hocus:block" />
+      <div class="text-f-sm text-neutral-700 self-end" area-meta>
+        <NuxtLink class="group flex w-max" to="/" aria-label="Go to Homepage">
+          <Icon class="op-80 h-20! w-84! group-hocus:hidden" name="nimiq:logos-nimiq-horizontal-mono" />
+          <Icon class="hidden h-20! w-84! group-hocus:block" name="nimiq:logos-nimiq-horizontal" />
         </NuxtLink>
-        <p f-mt-xs>
+        <p class="f-mt-xs">
           {{ site.footer.description }}
         </p>
-        <div text="neutral-800 hocus:neutral-900" transition-colors f-mt-xs flex="~ gap-16 items-center wrap">
-          <NuxtLink to="/privacy-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
+        <div class="text-neutral-800 text-hocus:neutral-900 transition-colors f-mt-xs flex flex-gap-16 flex-items-center flex-wrap">
+          <NuxtLink class="font-semibold transition-colors" to="/privacy-policy" un-text="neutral-800 hocus:neutral-900">
             Privacy Policy
           </NuxtLink>
-          <div aria-hidden rounded-full bg-current op-40 size-4 />
-          <NuxtLink to="/cookie-policy" font-semibold un-text="neutral-800 hocus:neutral-900" transition-colors>
+          <div class="rounded-full bg-current op-40 size-4" aria-hidden />
+          <NuxtLink class="font-semibold transition-colors" to="/cookie-policy" un-text="neutral-800 hocus:neutral-900">
             Cookie Policy
           </NuxtLink>
         </div>
-        <p text-neutral-600 f-mt-md>
+        <p class="text-neutral-600 f-mt-md">
           {{ copyrightNotice }}
         </p>
       </div>
 
       <div v-for="(group, i) in site.navigation" :key="i" :style="`grid-area: ${['project', 'tech', 'apps', 'get-started', 'community', 'and-more'][i]}`">
-        <p text="f-xs neutral-700/80" w-full nq-label>
+        <p class="text-f-xs text-neutral-700/80 w-full nq-label">
           {{ group.label }}
         </p>
-        <ul f-mt-md :aria-label="`${group.label} links`" role="list">
-          <li v-for="(link, j) in group.links" :key="j" f-mt-xs>
-            <NuxtLink :to="link.href" font-semibold un-text="f-sm neutral-800 hocus:neutral-900" transition-colors>
+        <ul class="f-mt-md" :aria-label="`${group.label} links`" role="list">
+          <li v-for="(link, j) in group.links" :key="j" class="f-mt-xs">
+            <NuxtLink class="font-semibold transition-colors" :to="link.href" un-text="f-sm neutral-800 hocus:neutral-900">
               {{ link.text }}
             </NuxtLink>
           </li>
         </ul>
       </div>
 
-      <hr bg-neutral-400 h-1 w-full relative sr-only area-hr-1>
-      <hr bg-neutral-400 h-1 w-full relative sr-only area-hr-2 lg:hidden>
-      <hr bg-neutral-400 h-1 w-full relative sr-only area-hr-3 md:hidden>
+      <hr class="bg-neutral-400 h-1 w-full relative sr-only" area-hr-1>
+      <hr class="bg-neutral-400 h-1 w-full relative sr-only lg:hidden" area-hr-2>
+      <hr class="bg-neutral-400 h-1 w-full relative sr-only md:hidden" area-hr-3>
     </div>
   </footer>
 </template>

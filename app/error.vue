@@ -83,25 +83,25 @@ console.error(error)
 
 <template>
   <NuxtLayout>
-    <section bg-neutral-100 f-pt-2xl>
+    <section class="bg-neutral-100 f-pt-2xl">
       <h1>{{ heading }}</h1>
       <p>{{ paragraph }}</p>
-      <div f-mt-lg flex="~ md:justify-center">
-        <NuxtLink :to="homeRoute" nq-arrow nq-pill-lg nq-pill-blue @click="handleError">
+      <div class="f-mt-lg flex flex-md:justify-center">
+        <NuxtLink class="nq-arrow nq-pill-lg nq-pill-blue" :to="homeRoute" @click="handleError">
           {{ homeLinkText }}
         </NuxtLink>
       </div>
 
-      <div nq-prose-compact w-full f-mt-lg>
+      <div class="nq-prose-compact w-full f-mt-lg">
         <details>
-          <summary w-full cursor-pointer text="center neutral-800">
+          <summary class="w-full cursor-pointer text-center text-neutral-800">
             <span>Details</span>
           </summary>
 
-          <pre bg="red/10" text-red-1100 outline-red-600>{{ errorWithoutStack }}</pre>
+          <pre class="bg-red/10 text-red-1100 outline-red-600">{{ errorWithoutStack }}</pre>
 
-          <span text-red-1100 f-px-sm f-mt-md nq-label>Stack</span>
-          <pre bg="red/10" text-red-1100 mt-4 outline-red-600>{{ stack }}</pre>
+          <span class="text-red-1100 f-px-sm f-mt-md nq-label">Stack</span>
+          <pre class="bg-red/10 text-red-1100 mt-4 outline-red-600">{{ stack }}</pre>
         </details>
       </div>
     </section>

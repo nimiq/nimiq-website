@@ -18,20 +18,20 @@ function handleOpenChange(open: boolean) {
 
 <template>
   <PopoverRoot :open="isOpen" @update:open="handleOpenChange">
-    <PopoverTrigger v-bind="$attrs" bg-transparent h-max block @mouseenter="handleTriggerInteraction" @focus="handleTriggerInteraction">
+    <PopoverTrigger class="bg-transparent h-max" v-bind="$attrs" block @mouseenter="handleTriggerInteraction" @focus="handleTriggerInteraction">
       <slot name="trigger">
-        <Icon name="nimiq:info" class="text-12 text-neutral-700" />
+        <Icon class="text-12 text-neutral-700" name="nimiq:info" />
       </slot>
     </PopoverTrigger>
 
     <PopoverPortal v-if="shouldRenderPortal">
-      <PopoverContent as-child class="tooltip-animation" :side-offset :collision-padding :side flex="~ col" max-w-360>
-        <div :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow dark scheme-dark'" p-16 rounded-8 text="neutral dark:white">
+      <PopoverContent class="tooltip-animation flex flex-col max-w-360" as-child :side-offset :collision-padding :side>
+        <div class="p-16 rounded-8 text-neutral text-dark:white" :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow dark scheme-dark'">
           <slot />
         </div>
         <PopoverArrow as-child>
-          <div rotate-180 :class="{ dark }">
-            <Icon aria-hidden name="nimiq:tooltip-triangle" class="tooltip-animation text-darkblue mt--1 h-8 w-16 dark:text-white" />
+          <div class="rotate-180" :class="{ dark }">
+            <Icon class="tooltip-animation text-darkblue mt--1 h-8 w-16 dark:text-white" aria-hidden name="nimiq:tooltip-triangle" />
           </div>
         </PopoverArrow>
       </PopoverContent>

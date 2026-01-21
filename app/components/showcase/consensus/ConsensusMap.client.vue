@@ -147,29 +147,29 @@ async function connect() {
 </script>
 
 <template>
-  <div of-hidden>
-    <div relative xl:w-65vw :style="`aspect-ratio: ${HEXAGONS_WORLD_MAP_ASPECT_RATIO}`">
-      <div size-full absolute z-1 xl:max-w-50vw class="curtain" />
-      <div size-full absolute>
+  <div class="of-hidden">
+    <div class="relative xl:w-65vw" :style="`aspect-ratio: ${HEXAGONS_WORLD_MAP_ASPECT_RATIO}`">
+      <div class="curtain size-full absolute z-1 xl:max-w-50vw" />
+      <div class="size-full absolute">
         <canvas ref="canvas" />
-        <div v-if="showTooltip" left-0 top-0 absolute z-1 :style="tooltipPosition" animate="delay-500 fade-in both">
-          <div left="[calc(-50%+2px)]" flex="~ col items-center" class="dark" mt-16 scheme-dark relative>
-            <Icon name="nimiq:tooltip-triangle" :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" class="text-12 translate-y-3.5" />
-            <div v-if="consensus === 'idle'" layout-id="connect" ring="0.2 blue" flex="~ items-center" rounded-full bg-gradient-blue transition-colors top--1>
-              <span text-white font-bold px-16 py-8>{{ thisIsYou }}</span>
-              <button layout-id="connect-label" as="button" text-blue font-bold m-6 px-12 py-5 rounded-full bg-white @click="connect">
+        <div v-if="showTooltip" class="left-0 top-0 absolute z-1 animate-delay-500 animate-fade-in animate-both" :style="tooltipPosition">
+          <div class="dark left-[calc(-50%+2px)] flex flex-col flex-items-center mt-16 relative" scheme-dark>
+            <Icon class="text-12 translate-y-3.5" name="nimiq:tooltip-triangle" :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" />
+            <div v-if="consensus === 'idle'" class="ring-0.2 ring-blue flex flex-items-center rounded-full bg-gradient-blue transition-colors top--1" layout-id="connect">
+              <span class="text-white font-bold px-16 py-8">{{ thisIsYou }}</span>
+              <button class="text-blue font-bold m-6 px-12 py-5 rounded-full bg-white" layout-id="connect-label" as="button" @click="connect">
                 {{ connectLabel }}
               </button>
             </div>
-            <div v-else-if="consensus === 'connecting'" layout-id="connect" ring="0.2 orange" flex="~ items-center gap-8" class="bg-gradient-orange" text-white font-semibold px-16 py-8 outline-none rounded-full w-max transition-colors top--3>
+            <div v-else-if="consensus === 'connecting'" class="bg-gradient-orange ring-0.2 ring-orange flex flex-items-center flex-gap-8 text-white font-semibold px-16 py-8 outline-none rounded-full w-max transition-colors top--3" layout-id="connect">
               <div layout-id="connect-label" as="span">
                 {{ connecting }}
               </div>
-              <Icon name="nimiq:spinner" class="animate-ease-out shrink-0 animate-scale-in animate-delay-2s" />
+              <Icon class="animate-ease-out shrink-0 animate-scale-in animate-delay-2s" name="nimiq:spinner" />
             </div>
-            <div v-else-if="consensus === 'established'" layout-id="connect" flex="~ items-center gap-8" class="bg-gradient-green" text-white font-semibold px-16 py-8 outline-none rounded-full w-max transition-colors top--3 z-3>
+            <div v-else-if="consensus === 'established'" class="bg-gradient-green flex flex-items-center flex-gap-8 text-white font-semibold px-16 py-8 outline-none rounded-full w-max transition-colors top--3 z-3" layout-id="connect">
               <div layout-id="connect-label" as="span">
-                <div flex="~ items-center justify-between gap-8">
+                <div class="flex flex-items-center flex-justify-between flex-gap-8">
                   <span>Connected</span>
                 </div>
               </div>
@@ -178,17 +178,17 @@ async function connect() {
         </div>
       </div>
 
-      <div v-if="consensus !== 'idle'" bottom="0 xl:32" font-semibold mx-auto p-24 rounded-6 bg-white bg-op-6 h-auto max-w-400 transition-height inset-x-0 absolute z-2 backdrop-blur-24 animate="fade-in-up both delay-1250ms">
+      <div v-if="consensus !== 'idle'" class="bottom-0 bottom-xl:32 font-semibold mx-auto p-24 rounded-6 bg-white bg-op-6 h-auto max-w-400 transition-height inset-x-0 absolute z-2 backdrop-blur-24 animate-fade-in-up animate-both animate-delay-1250ms">
         <transition enter-active-class="transition duration-200 ease-out" enter-from-class="translate-y--1lh" enter-to-class="translate-y-0" leave-active-class="transition duration-200 ease-out" leave-from-class="translate-y-0" leave-to-class="translate-y--1lh">
-          <p v-if="consensus === 'connecting'" text="neutral-800 11 center" w="[calc(100%-48px)]" top--1.4lh absolute nq-label>
+          <p v-if="consensus === 'connecting'" class="text-neutral-800 text-11 text-center w-[calc(100%-48px)] top--1.4lh absolute nq-label">
             Did you know that
           </p>
         </transition>
         <transition mode="out-in" enter-active-class="transition duration-200 ease-out origin-center-bottom" enter-from-class="transform translate-y-1lh op-0 blur-4 scale-95" enter-to-class="translate-y-0 op-100 blur-0 scale-100" leave-active-class="transition duration-200 ease-out origin-center-top" leave-from-class="transform translate-y-0 op-100 scale-100" leave-to-class="translate-y--1lh op-0 scale-95">
-          <p v-if="consensus === 'connecting'" :key="currentFact" text="white/60 center f-lg" h-2lh>
+          <p v-if="consensus === 'connecting'" :key="currentFact" class="text-white/60 text-center text-f-lg h-2lh">
             {{ currentFact }}
           </p>
-          <p v-else key="connected" text="white/60 center f-lg" h-2lh>
+          <p v-else key="connected" class="text-white/60 text-center text-f-lg h-2lh">
             Your browser is now directly connected to {{ peers.length }} peers on the network.
           </p>
         </transition>

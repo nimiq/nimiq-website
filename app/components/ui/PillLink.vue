@@ -3,11 +3,11 @@ defineProps<{ item: string, label?: string, icon: string }>()
 </script>
 
 <template>
-  <div flex="~ items-center gap-10 md:mx-auto md:w-max" py-6 pl-8 pr-20 rounded-full f-mb-sm>
-    <div text="$c" bg="[color-mix(in_oklch,var(--c)_20%,transparent)]" aria-hidden size="28 lg:40" rounded-full grid="~ place-content-center">
-      <Icon :name="icon" class="pill-gradient size-18 lg:size-30" />
+  <div class="flex flex-items-center flex-gap-10 flex-md:mx-auto flex-md:w-max py-6 pl-8 pr-20 rounded-full f-mb-sm">
+    <div class="text-$c bg-[color-mix(in_oklch,var(--c)_20%,transparent)] size-28 size-lg:40 rounded-full grid grid-place-content-center" aria-hidden>
+      <Icon class="pill-gradient size-18 lg:size-30" :name="icon" />
     </div>
-    <span text="18 neutral-700" nq-label>{{ item }}</span>
+    <span class="text-18 text-neutral-700 nq-label">{{ item }}</span>
   </div>
 </template>
 

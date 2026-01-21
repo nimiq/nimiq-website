@@ -3,11 +3,11 @@ defineProps<{ text: string }>()
 </script>
 
 <template>
-  <section relative z-1 f-p-5xl>
-    <div bg-green h-200 max-w-none pointer-events-none inset-x-0 top-0 absolute />
-    <div class="bg" h-600 max-w-none pointer-events-none inset-x-0 top-200 absolute />
-    <div i-nimiq:duotone-safe-lock text="left md:center 96 md:112 white" />
-    <p text="white f-2xl left md:center" max-w-36ch relative z-1 f-mt-md v-html="text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')" />
+  <section class="relative z-1 f-p-5xl">
+    <div class="bg-green h-200 max-w-none pointer-events-none inset-x-0 top-0 absolute" />
+    <div class="bg h-600 max-w-none pointer-events-none inset-x-0 top-200 absolute" />
+    <div class="text-left text-md:center text-96 text-md:112 text-white" i-nimiq:duotone-safe-lock />
+    <p class="text-white text-f-2xl text-left text-md:center max-w-36ch relative z-1 f-mt-md" v-html="text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')" />
   </section>
 </template>
 

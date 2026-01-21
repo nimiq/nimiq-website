@@ -10,8 +10,8 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/bug-bounty' }] })
 
 <template>
   <NuxtLayout>
-    <section nq-section-gap bg-neutral-100>
-      <ContentRenderer :value="content" article nq-prose mx-auto max-w-prose />
+    <section class="nq-section-gap bg-neutral-100">
+      <ContentRenderer class="nq-prose mx-auto max-w-prose" :value="content" article />
     </section>
   </NuxtLayout>
 </template>
