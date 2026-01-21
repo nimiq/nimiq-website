@@ -19,7 +19,6 @@ export default defineNuxtConfig({
 
   modules: [
     '@vueuse/nuxt',
-    '@unocss/nuxt',
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/scripts',
@@ -87,11 +86,6 @@ export default defineNuxtConfig({
     optimizeDeps: { exclude: ['@nimiq/core', '*.wasm'] },
     worker: { plugins: () => [wasm()] },
     build: { rollupOptions: { external: [/^.*\.node$/] } },
-  },
-
-  features: {
-    // For UnoCSS
-    inlineStyles: false,
   },
 
   css: ['~/assets/css/main.css'],

@@ -1,7 +1,3 @@
-<script lang="ts">
-// @unocss-include
-</script>
-
 <script setup lang="ts">
 import { createReusableTemplate } from '@vueuse/core'
 

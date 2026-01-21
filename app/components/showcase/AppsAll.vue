@@ -5,8 +5,6 @@ const { data } = await useApps()
 const apps = computed(() => data.value?.apps)
 const { madeBy, filteredApps, getSpotlightPosition } = useAppsFilter(apps)
 
-// CardApp logo config
-// @unocss-include
 const logoConfig: Record<string, { classes?: string, invert?: boolean }> = {
   'NIM Donations': { invert: true },
   'Multisig Wallet': { invert: true },

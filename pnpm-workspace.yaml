@@ -1,5 +1,7 @@
 packages:
   - ./
+patchedDependencies:
+  '@nuxt/content': patches/@nuxt__content.patch
 catalog:
   '@nuxt/content': ^3.9.0
   '@nuxt/hints': 1.0.0-alpha.3
@@ -8,7 +10,6 @@ catalog:
   '@vitest/browser': ^4.0.16
   '@vitest/ui': ^4.0.16
   dotenv: ^17.2.3
-  unist-util-visit: ^5.0.0
   js-yaml: ^4.1.0
   marked: ^17.0.1
   mdream: ^0.15.3
@@ -18,6 +19,7 @@ catalog:
   playwright: ^1.57.0
   pngjs: ^7.0.0
   tsx: ^4.20.6
+  unist-util-visit: ^5.0.0
   vitest: ^4.0.16
 catalogs:
   build:
@@ -40,7 +42,6 @@ catalogs:
   lint:
     '@antfu/eslint-config': ^5.4.1
     '@nuxt/eslint': latest
-    '@unocss/eslint-plugin': ^66.5.10
     eslint: ^9.37.0
     eslint-plugin-format: ^1.0.2
     lint-staged: ^16.2.3
@@ -48,9 +49,9 @@ catalogs:
   nimiq:
     '@nimiq/core': ^2.1.1
     '@nimiq/utils': ^0.12.4
+    nimiq-icons: ^1.0.0-beta.160
     nimiq-rpc-client-ts: ^1.0.0-beta.35
   nuxt:
-    '@nuxt/fonts': ^0.11.4
     '@nuxt/icon': ^2.1.1
     '@nuxt/image': 2.0.0-alpha.1
     '@nuxt/scripts': ^0.11.10
@@ -72,16 +73,6 @@ catalogs:
   types:
     '@types/node': ^22.15.19
     typescript: ^5.8.3
-  unocss:
-    '@iconify-json/logos': ^1.2.4
-    '@unocss/nuxt': ^66.5.10
-    '@unocss/preset-wind4': ^66.5.10
-    '@unocss/reset': ^66.5.10
-    nimiq-css: ^1.0.0-beta.160
-    nimiq-flags: ^1.0.0-beta.160
-    nimiq-icons: ^1.0.0-beta.160
-    unocss: ^66.5.10
-    unocss-preset-onmax: ^1.0.0-beta.25
 onlyBuiltDependencies:
   - better-sqlite3
   - '@parcel/watcher'
@@ -97,5 +88,3 @@ onlyBuiltDependencies:
   - utf-8-validate
   - vue-demi
   - workerd
-patchedDependencies:
-  '@nuxt/content': patches/@nuxt__content.patch

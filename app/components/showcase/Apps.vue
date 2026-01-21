@@ -1,8 +1,3 @@
-<script lang="ts">
-// @unocss-include
-// BannerViewAllApps config
-</script>
-
 <script setup lang="ts">
 import { createReusableTemplate } from '@vueuse/core'
 
