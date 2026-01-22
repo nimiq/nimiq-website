@@ -38,13 +38,13 @@ Once you are happy with the amounts to be swapped, you’ll click the “Confirm
 
 ## Step 1: Create, verify and sign the swap
 
-To sign a swap, we first need… to have one! That’s right, we haven't initiated a swap yet. What we got so far is an *estimate*. An estimate from Fastspot gives no guarantee about the available liquidity or whether the selected assets can actually be swapped currently. For example, the EUR asset might be disabled for maintenance.
+To sign a swap, we first need… to have one! That’s right, we haven't initiated a swap yet. What we got so far is an _estimate_. An estimate from Fastspot gives no guarantee about the available liquidity or whether the selected assets can actually be swapped currently. For example, the EUR asset might be disabled for maintenance.
 
 So to get started, we get a definite quote first which includes the guarantee that a swap is actually possible and can be executed. The wallet is requesting a quote from Fastspot at the moment you click the confirm button. The quoted amounts should be the same or very close to the estimate displayed before.
 
 Together with your destination and refund addresses involved in the swap and the fees calculated for your transactions, the wallet forwards the details of the swap to the Keyguard. The Keyguard will show you the amounts, swap rate, and fees for you to make sure everything is correct.
 
-Now we arrive at an important detail. So far, the swap has not been *confirmed* with Fastspot. What does that mean? It means nothing has happened yet on-chain for this swap. It also means this swap does not yet count against your swap limits and canceling the process here, before entering your password, has no consequences. However, the quote that the swap is based on is only valid for around 15 minutes, so if not confirmed with your password within that time, you have to start over.
+Now we arrive at an important detail. So far, the swap has not been _confirmed_ with Fastspot. What does that mean? It means nothing has happened yet on-chain for this swap. It also means this swap does not yet count against your swap limits and canceling the process here, before entering your password, has no consequences. However, the quote that the swap is based on is only valid for around 15 minutes, so if not confirmed with your password within that time, you have to start over.
 
 OK, so you entered your password and confirmed your intention to do the swap. The Keyguard — technically speaking the Hub, but for the purpose of this explanation we can consider them to be the same — now takes both your destination and refund addresses and sends them to Fastspot to confirm the quote. Fastspot then generates and returns the contract details that will be used for this swap. For NIM and BTC this is binary data encoding the rules of the respective contract, and for EUR this is the ID of an OASIS contract.
 
@@ -58,7 +58,7 @@ Now that everything is prepared, we can move on to the **actual on-chain part**!
 
 Let’s recap the situation we are in. The Keyguard just signed two transactions - one to fund a contract and one to redeem a contract — it also signed a third refund transaction, but let’s skip that for now. The wallet still knows what swap they are for and stores the transactions for now as they will only be sent in the next steps. The wallet then fetches the confirmed swap object from the Fastspot API to learn about which contracts are involved in the swap and to confirm that the swap is still happening. For swaps involving EUR, the wallet also fetches the EUR-HTLC, including its funding details, directly from OASIS to not rely on Fastpot to correctly forward this information.
 
-Since Fastspot controls the secret of the swap, it is also the first to create an on-chain HTLC contract, namely the contract that locks up the currency that you are going to receive. We need to wait for this contract to be created irreversibly. For NIM this means waiting for the creation transaction to be mined into a block, for BTC it is enough when the transaction is in the mempool — with ‘replace-by-fee’ disabled — and for EUR this means OASIS reporting the contract to be *cleared* — FinTech-speak for ‘funded’.
+Since Fastspot controls the secret of the swap, it is also the first to create an on-chain HTLC contract, namely the contract that locks up the currency that you are going to receive. We need to wait for this contract to be created irreversibly. For NIM this means waiting for the creation transaction to be mined into a block, for BTC it is enough when the transaction is in the mempool — with ‘replace-by-fee’ disabled — and for EUR this means OASIS reporting the contract to be _cleared_ — FinTech-speak for ‘funded’.
 
 The wallet, via a swap-library — soon to be available for other projects as a package — monitors the respective blockchain or OASIS API for the criteria mentioned above, including validating that the amount, ownership, and expiry of **the contract is correct**.
 
@@ -68,7 +68,7 @@ You as the user see this waiting period as the puzzle piece animating its labyri
 
 ## Step 3: Fund the outgoing contract
 
-Once the wallet is certain that Fastpot held up its part of the deal, the contract committing *your side* of the swap is created. This works the same way Fastspot did it: the wallet simply broadcasts your funding transaction, which you signed in the Keyguard earlier, to the respective blockchain. For EUR, it displays the payment details that you should use to send a SEPA Instant transaction to fund the OASIS contract. Again, we need to wait for the contract to be created irrevocably, meaning mined for Nimiq, in the mempool for Bitcoin, and status “cleared” in OASIS. Fastspot also waits for that.
+Once the wallet is certain that Fastpot held up its part of the deal, the contract committing _your side_ of the swap is created. This works the same way Fastspot did it: the wallet simply broadcasts your funding transaction, which you signed in the Keyguard earlier, to the respective blockchain. For EUR, it displays the payment details that you should use to send a SEPA Instant transaction to fund the OASIS contract. Again, we need to wait for the contract to be created irrevocably, meaning mined for Nimiq, in the mempool for Bitcoin, and status “cleared” in OASIS. Fastspot also waits for that.
 
 **Note**: It can happen that the BTC transaction fees have risen sharply between when the swap quote was created and when your BTC transaction is sent. In this case, Fastspot can not accept your BTC transaction just because it is in the mempool. Instead, it requires that the transaction gets mined, which in the Bitcoin network can take a few more minutes.
 
@@ -92,7 +92,7 @@ You already prepared the claiming transaction when you signed the funding transa
 
 But what happens when the secret never gets published? Then the timelock part of the Hashed Timelock Contract comes into play: after a predefined time, in our case 1.5 hours, the contracts expire, and the funds are automatically sent back to the original owners. That applies for both contracts, so if for whatever reason Fastspot “forgets” to pick up its funds, the contracts will time out and you will get your part back. Neither can get lost.
 
-**Side-note for devs:** The contract that you are funding times out a little bit *before* the one that Fastspot creates. That way there is no possibility of Fastspot claiming your contract, but you not having enough time to claim the other one. Smart, eh? :)
+**Side-note for devs:** The contract that you are funding times out a little bit _before_ the one that Fastspot creates. That way there is no possibility of Fastspot claiming your contract, but you not having enough time to claim the other one. Smart, eh? :)
 
 ## Conclusion
 

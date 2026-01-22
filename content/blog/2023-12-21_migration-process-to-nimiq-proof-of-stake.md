@@ -56,7 +56,7 @@ By this point, validators will then abide by a waiting period for confirmations 
 
 ### **After this, the PoS blockchain officially launches, and validators start the block production as per the Albatross protocol specification. **🎉
 
-If some miners and users want to keep using the PoW chain even after launching the PoS chain, they can continue doing so. It is important to note that for the migration, only the transition block is considered the latest state of the PoW blockchain. This block serves as the *Snapshot from PoW*, capturing the state of the network at the moment of transition. Moving forward, the PoS chain will operate independently from the previous PoW chain.
+If some miners and users want to keep using the PoW chain even after launching the PoS chain, they can continue doing so. It is important to note that for the migration, only the transition block is considered the latest state of the PoW blockchain. This block serves as the _Snapshot from PoW_, capturing the state of the network at the moment of transition. Moving forward, the PoS chain will operate independently from the previous PoW chain.
 
 This marks a pivotal evolution for Nimiq, and more comprehensive details will be released to ensure community members are well-informed and prepared. The enthusiasm and support from the Nimiq community have been instrumental in this journey, and as the network approaches this new chapter, the anticipation and collaborative spirit are more palpable than ever. We can’t thank you enough for your support.
 

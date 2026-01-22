@@ -27,7 +27,7 @@ With the progress that we've made, we felt that this was the perfect time to sha
 
 ### The Wallet is running on the real deal, and your feedback is invaluable
 
-The Nimiq Wallet is actually connected to a running network of  Proof-of-Stake DevNet nodes currently managed by the Nimiq team. Nothing you see in the DevNet staking Wallet is a simulation. Sending NIM, staking, un-staking and payouts are real (in devNIM). Currently, our focus lies on running the DevNet under regular conditions. Security hardening will follow later. If you find anything that feels like a bug, please share it in the [Nimiq Forum](https://forum.nimiq.community/t/devnet-staking-wallet-feedback/1729).
+The Nimiq Wallet is actually connected to a running network of Proof-of-Stake DevNet nodes currently managed by the Nimiq team. Nothing you see in the DevNet staking Wallet is a simulation. Sending NIM, staking, un-staking and payouts are real (in devNIM). Currently, our focus lies on running the DevNet under regular conditions. Security hardening will follow later. If you find anything that feels like a bug, please share it in the [Nimiq Forum](https://forum.nimiq.community/t/devnet-staking-wallet-feedback/1729).
 
 ![](/assets/images/prismic/d1e5fbe8-34db-4c3b-bfd5-d2a1b65fd6d6_letsgoscale.png)
 

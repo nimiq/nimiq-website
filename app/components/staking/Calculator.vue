@@ -52,63 +52,63 @@ const rewards = computed(() => calculateStakingRewards({
 </script>
 
 <template>
-  <div flex="~ col gap-y-16 md:items-center">
-    <div ring="1.5 neutral-400" mx-auto rounded-4 bg-neutral-0 max-w-full w-max shadow flex="~ items-center wrap">
-      <div grid="~ max-md:cols-1 md:rows-[auto_1fr] gap-x-32 gap-y-12 md:flow-col " mx-auto p-32 of-auto>
-        <span text="max-md:center neutral-800" font-semibold>{{ amountLabel || 'Amount' }}</span>
-        <label flex="~ items-baseline gap-8" text="neutral hocus:blue focus-within:blue" h-max w-max transition-colors self-end max-md:mx-auto>
-          <UiAmountInput v-model="amount" :decimals :min="1" style="padding:0" shadow-none outline-none max-w-9ch min-w-0 w-max text="blue f-2xl" />
-          <span lh-none font-bold flex-1 text="blue f-lg">NIM</span>
+  <div class="flex flex-col gap-y-4 flex-md:items-center">
+    <div class="ring-1.5 ring-neutral-400 mx-auto rounded-1 bg-neutral-0 max-w-full w-max flex flex-items-center flex-wrap" shadow>
+      <div class="grid grid-max-md:cols-1 grid-md:rows-[auto_1fr] gap-x-8 gap-y-3 grid-md:flow-col mx-auto p-8 of-auto">
+        <span class="text-max-md:center text-neutral-800 font-semibold">{{ amountLabel || 'Amount' }}</span>
+        <label class="flex flex-items-baseline gap-2 text-neutral text-hocus:blue text-focus-within:blue h-max w-max transition-colors self-end max-md:mx-auto">
+          <UiAmountInput v-model="amount" class="shadow-none outline-none max-w-9ch min-w-0 w-max text-blue text-xl md:text-2xl" :decimals :min="1" style="padding:0" />
+          <span class="lh-none font-bold flex-1 text-blue text-base md:text-lg">NIM</span>
         </label>
 
-        <div flex="~ gap-8 items-center max-md:justify-center" max-md:mt-8>
-          <span w-max>Total stake</span>
+        <div class="flex gap-2 flex-items-center flex-max-md:justify-center max-md:mt-2">
+          <span class="w-max">Total stake</span>
           <UiTooltip>
             <p>Choose a staking supply scenario or use live data</p>
           </UiTooltip>
         </div>
-        <UiRadioInput v-model="selectedStakedSupply" :options="stakedSupplyOptions" h-max self-end max-md:mx-auto>
+        <UiRadioInput v-model="selectedStakedSupply" class="h-max self-end max-md:mx-auto" :options="stakedSupplyOptions">
           <template #label="{ option }">
             <template v-if="(stakeSupplyRatios[option] ?? -1) >= 0">
               <span>{{ option }}</span>
-              <div v-if="option === selectedStakedSupply && selectedStakedSupply === StakeSupply.Live" class="blink" rounded-full bg-green size-4 right-2 top-2 absolute />
+              <div v-if="option === selectedStakedSupply && selectedStakedSupply === StakeSupply.Live" class="blink rounded-full bg-green size-1 right-0.5 top-0.5 absolute" />
             </template>
           </template>
         </UiRadioInput>
 
-        <div flex="~ gap-8 items-center max-md:justify-center" max-md:mt-8>
-          <p w-max>
+        <div class="flex gap-2 flex-items-center flex-max-md:justify-center max-md:mt-2">
+          <p class="w-max">
             {{ periodLabel || 'Period' }}
           </p>
           <UiTooltip>
             <p>Select how long you plan to stake your NIM</p>
           </UiTooltip>
         </div>
-        <UiRadioInput v-model="selectedStakingPeriod" h-max self-end max-md:mx-auto :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
+        <UiRadioInput v-model="selectedStakingPeriod" class="h-max self-end max-md:mx-auto" :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
       </div>
-      <div flex="~ col md:justify-center items-center md:items-end" bg="green/10" rounded="b-4 md:b-0 md:r-4" px-32 py-24 flex-1 self-stretch>
-        <div flex="~ items-center" text-neutral-800>
-          <p mr-8>
+      <div class="flex flex-col flex-md:justify-center flex-items-center flex-md:items-end bg-green/10 rounded-b-1 rounded-md:b-0 rounded-md:r-4 px-8 py-6 flex-1 self-stretch">
+        <div class="flex flex-items-center text-neutral-800">
+          <p class="mr-2">
             {{ rewardsLabel || 'Return in NIM' }}*
           </p>
-          <UiTooltip mr-16>
+          <UiTooltip class="mr-4">
             <p>Estimated rewards based on current network parameters</p>
           </UiTooltip>
-          <p text="green/60 right" font-bold w-8ch lg:ml-auto>
+          <p class="text-green/60 text-right font-bold w-8ch lg:ml-auto">
             +<UiTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
           </p>
         </div>
-        <span text="28 green" lh-none font-semibold mt-12>
+        <span class="text-28 text-green lh-none font-semibold mt-3">
           +<UiTweenedNumber :value="rewards.gain" :duration="1000" /> NIM
         </span>
       </div>
     </div>
-    <p text="max-md:center green-1100" font-semibold>
+    <p class="text-max-md:center text-green-1100 font-semibold">
       *Assuming current network conditions remain constant
     </p>
-    <label flex="~ items-center max-md:justify-center">
-      <input v-model="autoRestake" type="checkbox" nq-switch>
-      <span ml-12 mr-6 cursor-pointer>Auto-restake rewards</span>
+    <label class="flex flex-items-center flex-max-md:justify-center">
+      <input v-model="autoRestake" class="nq-switch" type="checkbox">
+      <span class="ml-3 mr-1.5 cursor-pointer">Auto-restake rewards</span>
       <UiTooltip>
         <p>Automatically compound your staking rewards</p>
       </UiTooltip>

@@ -18,32 +18,32 @@ const appsToShow = computed(() => {
 </script>
 
 <template>
-  <NuxtLink :to="cta" grid="~ cols-1 md:cols-[1fr_3fr] rows-[1fr_auto] gap-x-96 gap-y-32 md:gap-y-128" bg-neutral-0 w-full f-p-lg nq-hoverable>
-    <div flex="~ col">
-      <Icon name="custom:apps" class="size-40" />
-      <h3 font-bold text-f-lg f-mt-xs>
+  <NuxtLink class="grid grid-cols-1 grid-md:cols-[1fr_3fr] grid-rows-[1fr_auto] gap-x-24 gap-y-8 grid-md:gap-y-32 bg-neutral-0 w-full p-6 md:p-8 nq-hoverable" :to="cta">
+    <div class="flex flex-col">
+      <Icon class="size-10" name="custom:apps" />
+      <h3 class="font-bold text-base md:text-lg mt-2 md:mt-3">
         {{ title }}
       </h3>
-      <p text-neutral-800 f-mt-2xs>
+      <p class="text-neutral-800 mt-1 md:mt-1.5">
         {{ description }}
       </p>
     </div>
 
-    <div row-span-2 relative>
-      <div w="125%" h="145%" border="16 solid neutral-400" rounded-24 inset-0 absolute>
-        <ul grid="~ cols-3" rounded-8 bg-white size-full f-p-sm f-gap-sm>
-          <li v-for="app in appsToShow" :key="app.name" :style="`background: ${app.color}`" stack rounded-8>
-            <NuxtImg :src="app.logo" f-size="136/180" object-contain mix-blend-lighten />
+    <div class="row-span-2 relative">
+      <div class="w-125% h-145% border-16 border-solid border-neutral-400 rounded-6 inset-0 absolute">
+        <ul class="grid grid-cols-3 rounded-2 bg-white size-full p-3 md:p-4 gap-3 md:gap-4">
+          <li v-for="app in appsToShow" :key="app.name" class="rounded-2" :style="`background: ${app.color}`" stack>
+            <NuxtImg class="size-[136px] md:size-[180px] object-contain mix-blend-lighten" :src="app.logo" />
           </li>
         </ul>
       </div>
     </div>
 
-    <div flex="~ col">
-      <p v-if="categoriesLabel" nq-label>
+    <div class="flex flex-col">
+      <p v-if="categoriesLabel" class="nq-label">
         {{ categoriesLabel }}
       </p>
-      <p v-if="categoriesDescription" text-neutral-800 f-mt-xs>
+      <p v-if="categoriesDescription" class="text-neutral-800 mt-2 md:mt-3">
         {{ categoriesDescription }}
       </p>
     </div>

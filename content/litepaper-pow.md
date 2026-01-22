@@ -39,15 +39,15 @@ Collaborations & Grants
 Research Publications
 
 - [Albatross: An optimistic consensus algorithm](https://arxiv.org/abs/1903.01589)
-A technical research paper resulting from Nimiq's collaboration with Trinkler Software. It is a new PoS consensus algorithm that is able to achieve a performance close to the theoretical maximum for a single chain.
+  A technical research paper resulting from Nimiq's collaboration with Trinkler Software. It is a new PoS consensus algorithm that is able to achieve a performance close to the theoretical maximum for a single chain.
 - [Nimiq OASIS](/oasis)
-The Open Asset Swap Interaction Scheme is the blueprint for a potentially disruptive crypto-to-fiat bridge, making fiat currency behave as if it were tokens on the blockchain, providing a unique way of connecting the traditional banking network with non-custodial crypto exchanges.
+  The Open Asset Swap Interaction Scheme is the blueprint for a potentially disruptive crypto-to-fiat bridge, making fiat currency behave as if it were tokens on the blockchain, providing a unique way of connecting the traditional banking network with non-custodial crypto exchanges.
 
 ![](/assets/images/prismic/66325e6f-cd73-4254-bd5f-1f129a5a7f11_whitepaper_nimiq-history.png)
 
 Motivation
 
-Cryptocurrency as a valid concept has been confirmed by the growth and persistence of [Bitcoin](https://bitcoin.org/bitcoin.pdf) since its launch in 2009. More than just a technical idea, it laid the foundation for a disruptive means of transacting value not seen before in the history of humankind, by allowing "payments to be sent directly from one party to another without going through a financial institution" *Footnote: Satoshi Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System" https://bitcoin.org/bitcoin.pdf*. This brilliant concept has fostered a grand ecosystem with a broad range of ideas and technical solutions.
+Cryptocurrency as a valid concept has been confirmed by the growth and persistence of [Bitcoin](https://bitcoin.org/bitcoin.pdf) since its launch in 2009. More than just a technical idea, it laid the foundation for a disruptive means of transacting value not seen before in the history of humankind, by allowing "payments to be sent directly from one party to another without going through a financial institution" _Footnote: Satoshi Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System" https://bitcoin.org/bitcoin.pdf_. This brilliant concept has fostered a grand ecosystem with a broad range of ideas and technical solutions.
 
 Cryptocurrencies still represent only a small fraction of the global [money supply](https://coincenter.org/entry/how-do-cryptocurrencies-affect-monetary-policy). And much of their adoption so far has been driven by centralized services that hold your crypto assets for you (centralized crypto exchanges, payment providers, etc). We are therefore still far away from the goal of crypto mass adoption, even more so in its original peer-to-peer, non-centralized sense. The reasons centralized solutions appeal to users seem to be convenience and ease of use, as they employ the same interaction patterns we became familiar with by using online banking. This familiarity in turn leads to a feeling of safety. But this convenience and feeling of safety come with a serious trade-off: giving up the ownership of your keys to a third party, violating what is considered to be the most fundamental reason for the creation of cryptocurrencies in the first place.
 
@@ -85,7 +85,7 @@ Powered by the knowledge we now hold and in deep gratitude for the hard work of 
 
 Open Source and Developer Accessibility
 
-*Nimiq is encompassed by a strong philanthropic mindset, it is open-source and aims to become entirely community-driven.*
+_Nimiq is encompassed by a strong philanthropic mindset, it is open-source and aims to become entirely community-driven._
 
 Team Nimiq is a tech-focused team with a deeply rooted open-source mentality. The project's source code is released to the public on the [official GitHub repository](https://github.com/nimiq) to encourage peer review and interaction with developers. The project's main focus is to enable the most accessible, censorship-resistant payment solutions. This intrinsically means that Team Nimiq works to provide the framework and tools for developers to further build applications that tap into the Nimiq Payment Ecosystem. To guide and support developers on this journey, Nimiq provides the [Nimiq Developer Center](https://www.nimiq.dev)
 

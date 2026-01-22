@@ -34,13 +34,13 @@ This situation calls for an adjustment of the emission curve to reasonably maint
 
 **A. Maintain initial absolute NIM reward**
 
-By keeping the initial emission at the same level as previously selected (525 NIM/min), the original annual reward reduction percentage  of 1.47% would need to be increased to approximately 3%. This adjustment means that each year, the reward would lower a bit more than originally elected, extending the timeline to reach the total supply target**.**
+By keeping the initial emission at the same level as previously selected (525 NIM/min), the original annual reward reduction percentage of 1.47% would need to be increased to approximately 3%. This adjustment means that each year, the reward would lower a bit more than originally elected, extending the timeline to reach the total supply target**.**
 
 ![](/assets/images/prismic/8267ed03-f12a-4ded-920e-4e3248f306ed_2.png)
 
 **B. Maintain Initial annual supply growth**
 
-Alternatively, by keeping the initial annual supply growth (“Inflation”) at the same level as previously selected (4.1%)),  the initial emission would need to be increased to around 1000 NIM per minute. This approach means** **more NIM would be distributed initially, but to reach the same total supply target, the reward would have to be decreasing faster, with the annual reduction rate increased to approximately 6%**.**
+Alternatively, by keeping the initial annual supply growth (“Inflation”) at the same level as previously selected (4.1%)), the initial emission would need to be increased to around 1000 NIM per minute. This approach means\*\* **more NIM would be distributed initially, but to reach the same total supply target, the reward would have to be decreasing faster, with the annual reduction rate increased to approximately 6%**.\*\*
 
 ![](/assets/images/prismic/65d4bee13a605798c18bf3c0_Screenshot2024-02-20at08.57.54.png)
 

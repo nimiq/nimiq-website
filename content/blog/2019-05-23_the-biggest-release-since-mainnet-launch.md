@@ -101,7 +101,7 @@ Team Nimiq is evaluating a single-sign-on feature. More on this in an upcoming p
 
 Go ahead and [create a new Account](https://safe.nimiq.com/?onboarding=signup).
 
-Help Nimiq to grow by giving feedback on what you like and what you think could be improved. Share it on [Twitter](https://twitter.com/nimiq) *#easynimiq* or discuss on [Telegram](https://t.me/Nimiq)and [Discord](https://discordapp.com/invite/cMHemg8).
+Help Nimiq to grow by giving feedback on what you like and what you think could be improved. Share it on [Twitter](https://twitter.com/nimiq) _#easynimiq_ or discuss on [Telegram](https://t.me/Nimiq)and [Discord](https://discordapp.com/invite/cMHemg8).
 
 Pura Vida
 

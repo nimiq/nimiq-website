@@ -29,7 +29,7 @@ Here’s a general summary of the entire process:
 
 ## Results
 
-As explained above, there are two independent phases, each with its own set of results.  Phase 1 is for generating generic parameters for the ZKP circuits, called the Powers of Tau. These parameters are only specific to the cryptographic curve and ZKP proving system being used. They can be reused by other projects, thus this first phrase is the one that is relevant to the entire crypto space. Phase 2 then builds upon Phase 1, refining the parameters of the ZKP circuits and ultimately generating both proving and verifying keys for the Nimiq-specific use case. These keys need to be derived for each statement that is to be proven in zero-knowledge proofs.
+As explained above, there are two independent phases, each with its own set of results. Phase 1 is for generating generic parameters for the ZKP circuits, called the Powers of Tau. These parameters are only specific to the cryptographic curve and ZKP proving system being used. They can be reused by other projects, thus this first phrase is the one that is relevant to the entire crypto space. Phase 2 then builds upon Phase 1, refining the parameters of the ZKP circuits and ultimately generating both proving and verifying keys for the Nimiq-specific use case. These keys need to be derived for each statement that is to be proven in zero-knowledge proofs.
 
 **Phase 1: Powers of Tau**
 
@@ -53,7 +53,7 @@ Here are the details of Phase 2 of the Nimiq ZKP Ceremony:
 
 **Attestations**
 
-Attestations are *proofs* that prove that a participant actually contributed to a specific phase. These *proofs* use *beacon hashes* from the Bitcoin blockchain, which are stored in the attestation repository. You can manually verify the commit dates by accessing the attestation repository [here](https://github.com/nimiq/ceremony-attestations).
+Attestations are _proofs_ that prove that a participant actually contributed to a specific phase. These _proofs_ use _beacon hashes_ from the Bitcoin blockchain, which are stored in the attestation repository. You can manually verify the commit dates by accessing the attestation repository [here](https://github.com/nimiq/ceremony-attestations).
 
 The keys generated in the ceremony are the final result of the entire process and can be accessed as follows:
 
@@ -97,7 +97,7 @@ The ceremony is the initial part, where contributors generate the proving and ve
 
 ### What's Next?
 
-We are grateful to everyone who participated in the ZKP Ceremony and are thrilled to announce that Nimiq transition to PoS is now getting  very close to happening. We are excited to share the results with our community and are open to discuss the results and process with anyone interested.
+We are grateful to everyone who participated in the ZKP Ceremony and are thrilled to announce that Nimiq transition to PoS is now getting very close to happening. We are excited to share the results with our community and are open to discuss the results and process with anyone interested.
 
 Thank you for your continued support and involvement. The journey to Nimiq PoS continues, and we look forward to the next steps!
 

@@ -107,7 +107,7 @@ The NIM token (native token of the Nimiq Blockchain) followed this creation proc
 
 **NIM activated from NET** as of July 31 2018 amount to 712'315'677 NIM and are part of the circulating supply. The remaining difference (~337'684'323 NIM) to be activated from NET is visible at account addresses [NQ69 9A4A MB83 HXDQ 4J46 BH5R 4JFF QMA9 C3GN](https://nimiq.watch/#NQ69+9A4A+MB83+HXDQ+4J46+BH5R+4JFF+QMA9+C3GN) and [NQ15 MLJN 23YB 8FBM 61TN 7LYG 2212 LVBG 4V19](https://nimiq.watch/#NQ15+MLJN+23YB+8FBM+61TN+7LYG+2212+LVBG+4V19). Since these NIM can be activated at any moment from remaining NET token holders, we also consider them part of the circulating supply.
 
-*Reminder: The deadline for activating NIM from NET is October 14 2018, 11:59 pm UTC-12. After this time [Activation](https://activation.nimiq.com/#welcome) of NIM from NET will no longer be supported. This also means that NET will no longer be associated with the utility of the Token of the Nimiq Blockchain. The plan is to immutably stop the NET contract some short time after the Activation deadline.*
+_Reminder: The deadline for activating NIM from NET is October 14 2018, 11:59 pm UTC-12. After this time [Activation](https://activation.nimiq.com/#welcome) of NIM from NET will no longer be supported. This also means that NET will no longer be associated with the utility of the Token of the Nimiq Blockchain. The plan is to immutably stop the NET contract some short time after the Activation deadline._
 
 All other NIM are either acquired through mining or released through a vesting contract (all vesting durations are measured from April 14 2018).
 

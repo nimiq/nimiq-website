@@ -13,9 +13,9 @@ image: /images/blog/nimiq-a-frictionless-payment-protocol-native-to-the-web/1edb
 
 On June 6th we published the [Nimiq Beta Testnet](https://nimiq.com/betanet/) to get early community feedback and gather real-world data. Some people were missing the nerdy talk. So here it is:
 
-*Nimiq is a frictionless peer-to-peer payment protocol for the World Wide Web. It is a third-generation Blockchain protocol combining elements of Bitcoin and Ethereum, streamlined for the web platform. And without a doubt, it is [open source](https://github.com/nimiq-network/core) and fully decentralized.*
+_Nimiq is a frictionless peer-to-peer payment protocol for the World Wide Web. It is a third-generation Blockchain protocol combining elements of Bitcoin and Ethereum, streamlined for the web platform. And without a doubt, it is [open source](https://github.com/nimiq-network/core) and fully decentralized._
 
-*Browsers are first-class citizens in the Nimiq distributed network. They are able to establish consensus with the network, and enable true peer-to-peer payments from within, all without a trusted third party. In comparison to conventional cryptocurrencies, this browser-first approach lowers barriers of entry by orders of magnitudes for developers, customers and merchants.*
+_Browsers are first-class citizens in the Nimiq distributed network. They are able to establish consensus with the network, and enable true peer-to-peer payments from within, all without a trusted third party. In comparison to conventional cryptocurrencies, this browser-first approach lowers barriers of entry by orders of magnitudes for developers, customers and merchants._
 
 ## Overview
 
@@ -55,7 +55,7 @@ There are some drawbacks of this approach:
 
 ### Storage
 
-Browser Nodes use the [IndexedDB API](https://developer.mozilla.org/en/docs/Web/API/IndexedDB_API) to store Blockchain data and keys on the user’s hard drive. Since the browser can’t store gigabytes of data, we compress the Blockchain with the Mini-Blockchain scheme (see *Compression*). In the beta testnet, the private key is stored unencrypted and gets deleted if the user clears his browser history.
+Browser Nodes use the [IndexedDB API](https://developer.mozilla.org/en/docs/Web/API/IndexedDB_API) to store Blockchain data and keys on the user’s hard drive. Since the browser can’t store gigabytes of data, we compress the Blockchain with the Mini-Blockchain scheme (see _Compression_). In the beta testnet, the private key is stored unencrypted and gets deleted if the user clears his browser history.
 
 In the mainnet we will have much higher security standards:
 
@@ -97,7 +97,7 @@ Promises and the beloved [async/await](https://developer.mozilla.org/en-US/docs/
 
 It is nonsensical to have web users download gigabytes of Blockchain data to establish consensus. Especially in the case of a weak network connection, which would make this nearly impossible. So we need to compress the data such that light-clients can synchronize within seconds.
 
-That’s where the *[Mini-Blockchain Scheme](http://cryptonite.info/wiki/index.php?title=Main_Page)* comes into play: It introduces an *Accounts Tree (a [Merkle Patricia Tree](https://github.com/ethereum/wiki/wiki/Patricia-Tree))* which has multiple advantages in comparison to the design of Bitcoin:
+That’s where the _[Mini-Blockchain Scheme](http://cryptonite.info/wiki/index.php?title=Main_Page)_ comes into play: It introduces an _Accounts Tree (a [Merkle Patricia Tree](https://github.com/ethereum/wiki/wiki/Patricia-Tree))_ which has multiple advantages in comparison to the design of Bitcoin:
 
 - It simplifies transactions. The end user doesn’t need to deal with the concept of unspent outputs. Only an account and a balance is contained.
 - The user can download only the headers of the Blockchain plus simple cryptographic proofs for account balances, which breaks down to downloading only a couple of hundred kilobytes instead of gigabytes without losing trust or security.
@@ -107,7 +107,7 @@ That’s where the *[Mini-Blockchain Scheme](http://cryptonite.info/wiki/index.p
 
 ### Instant transactions
 
-Based on *“[The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments](https://lightning.network/lightning-network-paper.pdf)”* Nimiq implements *Hashed Timelock Contracts *to enable *payment channels *and within those scalable instant off-chain transactions. This solves the scalability issues beyond micro-payments. Moreover, they enable *atomic swaps* for cross-chain interoperability. There are also approaches to enable *onion routing* on top the Lightning Network to provide anonymity in a way similar to the Tor Browser.
+Based on _“[The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments](https://lightning.network/lightning-network-paper.pdf)”_ Nimiq implements *Hashed Timelock Contracts *to enable *payment channels *and within those scalable instant off-chain transactions. This solves the scalability issues beyond micro-payments. Moreover, they enable _atomic swaps_ for cross-chain interoperability. There are also approaches to enable _onion routing_ on top the Lightning Network to provide anonymity in a way similar to the Tor Browser.
 
 ### Simplicity: No scripting language.
 
@@ -117,7 +117,7 @@ There is one exception to the “no smart contracts” approach: For the Lightni
 
 ### Blockchain Parameters (preliminary)
 
-- Block time: 1 minute (inspired by the results of *[On the Security and Performance of Proof of Work Blockchains](https://eprint.iacr.org/2016/555.pdf)*)
+- Block time: 1 minute (inspired by the results of _[On the Security and Performance of Proof of Work Blockchains](https://eprint.iacr.org/2016/555.pdf)_)
 - Block reward: starts with 5 Nimiq (NIM); halves every ~2'100'000 blocks. This approach models [Bitcoin’s approach](https://en.bitcoin.it/wiki/Controlled_supply), while taking into account that Nimiq’s block time is 10 times faster. (In the betanet the reward is just constant)
 - Max Block size: 1 MB
 - Difficulty adjustment: Every 10 blocks
@@ -125,7 +125,7 @@ There is one exception to the “no smart contracts” approach: For the Lightni
 
 ### Cross-Chain Compatibility
 
-*Hash Timelock Contracts* not just allow off-chain transactions and scalability. We will use them for cross-chain transactions to become compatible with the great work of projects like Ethereum and Bitcoin. This allows Nimiq users to use the advanced smart contract features of Ethereum and it allows users of other cryptocurrencies to easily exchange into Nimiq without an intermediary.
+_Hash Timelock Contracts_ not just allow off-chain transactions and scalability. We will use them for cross-chain transactions to become compatible with the great work of projects like Ethereum and Bitcoin. This allows Nimiq users to use the advanced smart contract features of Ethereum and it allows users of other cryptocurrencies to easily exchange into Nimiq without an intermediary.
 
 ## Conclusion
 

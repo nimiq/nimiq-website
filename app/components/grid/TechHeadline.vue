@@ -3,11 +3,11 @@ defineProps<{ headline: string, subline?: string }>()
 </script>
 
 <template>
-  <div flex="~ col md:items-center">
-    <h2 nq-heading break-keep md:text-center>
+  <div class="flex flex-col flex-md:items-center">
+    <h2 class="nq-heading break-keep md:text-center">
       {{ headline }}
     </h2>
-    <p v-if="subline" text-neutral-600 md:text-center>
+    <p v-if="subline" class="text-neutral-600 md:text-center">
       {{ subline }}
     </p>
   </div>

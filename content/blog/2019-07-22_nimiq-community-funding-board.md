@@ -39,7 +39,7 @@ It’s your vote, your voice, and every vote matters!
 
 ## Make a difference
 
-***“Voting is not only our right. It is our power” —*** Loung Ung
+**_“Voting is not only our right. It is our power” —_** Loung Ung
 
 Any democratic process is only as strong as the levels of participation. If you share our belief in Nimiq’s bright future, then make sure you don’t lose your right to have your say in who will represent you in the next Nimiq Community Funding Board.
 

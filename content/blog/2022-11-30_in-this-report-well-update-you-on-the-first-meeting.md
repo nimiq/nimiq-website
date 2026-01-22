@@ -61,7 +61,7 @@ We like the idea of decentralizing staking pools and allowing services to build 
 
 **Milestone 1 - $5000 in NIM**
 
-*Infrastructure and blockchain technology running*
+_Infrastructure and blockchain technology running_
 
 History Node
 
@@ -77,7 +77,7 @@ Documentation on how to reproduce the state of milestone
 
 **Milestone 2 - $4000 in NIM**
 
-*Define user flow and UI design and improve maintainability of core system*
+_Define user flow and UI design and improve maintainability of core system_
 
 Monitoring including thresholds for alerts
 
@@ -87,7 +87,7 @@ Draft of informational Website
 
 **Milestone 3 - $3000 in NIM**
 
-*Create a system that allows the user to set up a validator via the UI*
+_Create a system that allows the user to set up a validator via the UI_
 
 Connection between chain information node to get chain data
 
@@ -99,7 +99,7 @@ Finalizing informational website
 
 **Milestone 4 - $3000 in NIM**
 
-*Finalize the system by adding payment and informational dashboards for customers*
+_Finalize the system by adding payment and informational dashboards for customers_
 
 Implementation of the payment systems in frontend and backend
 

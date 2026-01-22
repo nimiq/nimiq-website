@@ -49,7 +49,7 @@ The red button next to the “Google Button” can be used to report any issue w
 
 ![](/assets/images/prismic/9caf176f-55f3-489f-aae8-b701a56a5ec0_Screenshot_from_2022-12-19_20-00-45.png)
 
- After reporting the issue you can click on “Back to the Map” to continue searching for places.
+After reporting the issue you can click on “Back to the Map” to continue searching for places.
 
 ## Adding a new shop to the map
 

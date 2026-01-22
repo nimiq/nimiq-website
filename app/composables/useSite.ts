@@ -1,3 +1,6 @@
 export async function useSite() {
-  return queryCollection('site').first()!
+  const site = await queryCollection('site').first()
+  if (!site)
+    throw createError({ statusCode: 500, message: 'Site configuration not found' })
+  return site
 }

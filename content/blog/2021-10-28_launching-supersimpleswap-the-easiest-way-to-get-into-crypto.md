@@ -35,7 +35,7 @@ Here is all it takes for you to hold your own BTC or NIM. Visit [supersimpleswap
 1. Enter the bank name you're going to be paying from
 1. Enter the wallet address for receiving crypto or create a new Nimiq wallet supporting NIM and BTC on the fly
 1. Click 'Start Swap'
-1. Send a SEPA *Instant* transaction to the indicated bank account
+1. Send a SEPA _Instant_ transaction to the indicated bank account
 1. And receive your crypto within minutes.
 
 Did you notice that no sign-up process was needed to do that? So, in conclusion, crypto can now be bought and sold directly from and to your bank account! No exchange in-between, no centralized service keeping your keys, no identification process up-front.

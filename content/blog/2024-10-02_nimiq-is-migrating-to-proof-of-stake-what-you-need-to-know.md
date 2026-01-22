@@ -105,19 +105,16 @@ Becoming a Validator requires technical expertise and having a machine running 2
 
 The migration will occur in three key phases:
 
-1. **Validator Registration Phase (Currently underway)
-***Begins: September 12
-Ends: October 6
-*During this phase, users interested in becoming validators can register. This is essential for setting up the network’s security infrastructure under the new PoS system.
-1. **Pre-staking Phase
-***Begins: October 7
-Ends: November 10
-*In this phase, users can begin staking their NIM before the full migration is complete. This allows users to start receiving rewards early by locking their NIM in staking contracts.
-1. **Activation Phase
-***Begins: November 19, ~7 AM UTC
-Ends: When 80% of the pre-staked NIM is ready.
+1. **Validator Registration Phase (Currently underway) \***Begins: September 12
+   Ends: October 6
+   \*During this phase, users interested in becoming validators can register. This is essential for setting up the network’s security infrastructure under the new PoS system.
+1. **Pre-staking Phase \***Begins: October 7
+   Ends: November 10
+   \*In this phase, users can begin staking their NIM before the full migration is complete. This allows users to start receiving rewards early by locking their NIM in staking contracts.
+1. **Activation Phase \***Begins: November 19, ~7 AM UTC
+   Ends: When 80% of the pre-staked NIM is ready.
 
-*This phase triggers the full activation of the Proof of Stake system. Validators will start operating, and NIM holders will begin enjoying the new system’s benefits.
+\*This phase triggers the full activation of the Proof of Stake system. Validators will start operating, and NIM holders will begin enjoying the new system’s benefits.
 
 ## Final Thoughts
 

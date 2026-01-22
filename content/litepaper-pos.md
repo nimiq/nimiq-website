@@ -65,7 +65,7 @@ The Nimiq Network has been designed for a total supply of 21 Billion NIM. The sm
 - 1.5% Early Contributors (6-month vesting)
 - 1% Creators (3-year vesting)
 
-When launching the Mainnet on April 14, 2018, the first 721 blocks totalling 3'176'435.57 NIM (0.00015% of the total final supply) had been mined and burned to NQ07 0000 0000 0000 0000 0000 0000 0000 0000. *Footnote: A burn address is a valid address in the Nimiq Blockchain, but the private key needed to move funds is unknown. It is not possible for anybody, including Team Nimiq, to use funds once they have been sent to a burn address.* This was done to prevent several problems associated with a low difficulty in the network, such as multiple chain forks, orphaned blocks, and possible malicious attacks. The NIM were burned so as not to adversely distort the NIM stakeholder distribution.
+When launching the Mainnet on April 14, 2018, the first 721 blocks totalling 3'176'435.57 NIM (0.00015% of the total final supply) had been mined and burned to NQ07 0000 0000 0000 0000 0000 0000 0000 0000. _Footnote: A burn address is a valid address in the Nimiq Blockchain, but the private key needed to move funds is unknown. It is not possible for anybody, including Team Nimiq, to use funds once they have been sent to a burn address._ This was done to prevent several problems associated with a low difficulty in the network, such as multiple chain forks, orphaned blocks, and possible malicious attacks. The NIM were burned so as not to adversely distort the NIM stakeholder distribution.
 
 You can find the [current supply metrics at Nimiq.Cafe](https://metrics.nimiq.cafe/supply), a community project.
 
@@ -82,7 +82,7 @@ Albatross
 
 Albatross is a new proof-of-stake consensus algorithm that improves on the current state-of-the-art in technology, namely the [Tendermint consensus engine](https://tendermint.com/) and [Protocol Lab's LibP2P peer-to-peer networking layer](https://libp2p.io/). This allows Nimiq 2.0 to reach a performance close to the theoretical maximum for a single chain. A [technical paper describing Albatross](https://arxiv.org/abs/1903.01589) was published in March 2019 by members of Team Nimiq in collaboration with Trinkler Software. The Albatross consensus algorithm is inspired by speculative Byzantine-fault-tolerant (BFT) algorithms and then improves on classical BFT algorithms by adding what we call the "optimistic approach" which increases speed and efficiency without sacrificing security.
 
-*Classical* BFT algorithms provide consensus in distributed systems while considering a limited number of malicious or Byzantine actors. One of the most prominent examples of such an algorithm is PBFT, which the Tendermint cryptocurrency is leveraging at its core for example.
+_Classical_ BFT algorithms provide consensus in distributed systems while considering a limited number of malicious or Byzantine actors. One of the most prominent examples of such an algorithm is PBFT, which the Tendermint cryptocurrency is leveraging at its core for example.
 
 A new advancement over Classical BFT algorithms are Speculative BFT algorithms. They allow for drastic performance increases in the case of no malicious actors being present. This is the so-called **optimistic case**. In case Byzantine actors are present and try tampering with the protocol, other network participants will notice and switch the protocol into its slower and more conservative mode, offering the same security guarantees as standard BFT protocols. Otherwise, in the best case, the optimistic consensus algorithm is able to perform much better than classical ones, while still having a performance similar to standard ones in the attack case.
 
@@ -90,13 +90,13 @@ Team Nimiq is also working on optimizations for Albatross such as [Handel](https
 
 Block Production
 
-In proof-of-work blockchains, every new block is mined (created) by a node from the network, called a miner. In Albatross, the nodes that are responsible for producing new blocks are called validators. Anyone who has a stake in the system can volunteer as a validator by depositing their stake as a security that can be *slashed* as a punishment for misbehaving.
+In proof-of-work blockchains, every new block is mined (created) by a node from the network, called a miner. In Albatross, the nodes that are responsible for producing new blocks are called validators. Anyone who has a stake in the system can volunteer as a validator by depositing their stake as a security that can be _slashed_ as a punishment for misbehaving.
 
 Block production in Albatross is divided into epochs. As the following figure shows, each epoch consists of a constant number of micro blocks — four micro blocks in the example below — followed by a macro block. Micro blocks contain the transactions and have a single block producer that is randomly chosen from the set of validators. While anyone can volunteer to be a validator, the actual set of validators in a given epoch — the active validators – is chosen by the macro block of the preceding epoch.
 
 ![Nimiq's block production](/assets/images/prismic/e75bb13b-8c05-4b61-9c19-5d4a7eb200e1_whitepaper_block-production.svg)
 
-In the example above, block number 0 determines the active validators v_0, …, v_k for the epoch from block 1 to block 5. To be able to randomly choose the next block producer from the list of validators, each block contains a random beacon, depicted above by r_i. The block producer of a block uses a so-called Verifiable Random Function (VRF) to produce the next random value r_i from the previous value r_(i-1). Every other participant can then verify the correctness of the next random value.
+In the example above, block number 0 determines the active validators v*0, …, v_k for the epoch from block 1 to block 5. To be able to randomly choose the next block producer from the list of validators, each block contains a random beacon, depicted above by r_i. The block producer of a block uses a so-called Verifiable Random Function (VRF) to produce the next random value r_i from the previous value r*(i-1). Every other participant can then verify the correctness of the next random value.
 
 Given these random beacons in each block, every participant of Albatross is then able to determine the next block producer vσ(r) from the list of active validators. The production of micro blocks is thus as simple as the selected block producer putting transactions into a block, signing the block cryptographically, and sending the block to the network.
 
@@ -113,7 +113,7 @@ A more detailed explanation of these cases can be found in the [technical paper]
 
 Compression
 
-*As a [blockchain streamlined for the web](https://www.nimiq.com/whitepaper/#blockchain-streamlined-for-the-web), Nimiq must minimize the amount of data necessary for web users to achieve consensus.*
+_As a [blockchain streamlined for the web](https://www.nimiq.com/whitepaper/#blockchain-streamlined-for-the-web), Nimiq must minimize the amount of data necessary for web users to achieve consensus._
 
 The following methods are built into the Nimiq Blockchain to reduce the amount of data a browser client needs to download in order to achieve the key functionalities of a decentralized payment system: reach consensus, check balances, validate received transactions, and send transactions.
 
@@ -317,7 +317,7 @@ Nimiq has made a solid step in this direction by setting out to develop the [Nim
 Integrations
 
 - **SuperSimpleSwap**: As the first product to integrate OASIS, Nimiq developed [SuperSimpleSwap.com](https://supersimpleswap.com/). Thanks to Nimiq's collaboration with TEN31 Bank, SuperSimpleSwap enables customers at any of the 2'000+ banks in **20 European countries** that are part of the SEPA instant network to exchange value between crypto and fiat systems. In the spirit of decentralization, OASIS is open for other banks and DEXes to tie in.
-- More coming *soon*.
+- More coming _soon_.
 
 Making the Vision a Reality
 

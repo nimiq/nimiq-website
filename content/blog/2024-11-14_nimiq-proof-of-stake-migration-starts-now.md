@@ -28,7 +28,7 @@ You can find the full documentation[ here](https://www.nimiq.com/developers/migr
 - Download the code[ here](https://github.com/nimiq/core-js/releases/tag/v1.6.4) or access compiled binaries[ here](https://www.nimiq.com/developers/build/nimiq-pow/downloads.html).
 - **Syncing Shortcut**: Download a snapshot via [IPFS](https://ipfs.nimiq.io/ipfs/QmRKvFVpTdXagvgZG5cF9qdz13x9DkZhUvwXAS5YMaqTfu?filename=pow-main-full-consensus.zip) or [Torrent](https://repo.nimiq.com/torrents/nimiq-pow-main-full-consensus.torrent), extract it, and place it in your PoW client directory to speed up sync time. If using a third-party source, verify it with this SHA256 hash:
 
-<code style="font-family: Fira Code; background: rgba(31, 35, 72, 0.06);padding: 4px;border-radius: 4px;color: rgba(31, 35, 72, 0.8);font-size: 0.8em;">97fba2d6a9c8eaeb5fe568337e8052097fdffaae3f047b2f283e7007f30851cf  pow-main-full-consensus.zip</code>
+<code style="font-family: Fira Code; background: rgba(31, 35, 72, 0.06);padding: 4px;border-radius: 4px;color: rgba(31, 35, 72, 0.8);font-size: 0.8em;">97fba2d6a9c8eaeb5fe568337e8052097fdffaae3f047b2f283e7007f30851cf pow-main-full-consensus.zip</code>
 
 **3. Download the Latest PoS Release, now 1.0.0-rc.5, which was released on November 17, 2024.**
 

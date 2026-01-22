@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('roadmap').first()!
+const page = await usePage('roadmap')
 
 const title = page.seo?.title || page.hero?.title || 'Roadmap'
 const description = page.seo?.description || page.hero?.description
@@ -10,17 +10,17 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/roadmap' }] })
 <template>
   <NuxtLayout>
     <main>
-      <section nq-section-gap bg-neutral-100>
+      <section class="nq-section-gap bg-neutral-100">
         <Hero v-bind="page.hero" />
       </section>
 
-      <section bg-neutral-100>
+      <section class="bg-neutral-100">
         <RoadmapSection v-bind="page.roadmap" />
       </section>
 
-      <section nq-section-gap bg-neutral-100>
-        <div flex="~ col items-center" text-center>
-          <h2 v-if="page.newsletter.cta" text="neutral-700 f-lg" mb-24>
+      <section class="nq-section-gap bg-neutral-100">
+        <div class="flex flex-col flex-items-center text-center">
+          <h2 v-if="page.newsletter.cta" class="text-neutral-700 text-base md:text-lg mb-6">
             {{ page.newsletter.cta }}
           </h2>
           <UiNewsletterEmailInput />

@@ -23,20 +23,20 @@ const selectedItem = computed(() => items.value.find(i => i.key === selectedKey.
 
 <template>
   <div>
-    <ul w="[calc(100%+64px)]" flex="~ gap-24 xl:gap-32 xl:justify-center" snap="x normal" mx--32 pt-18 of-x-auto nq-scrollbar-hide lg:pr-0>
-      <li v-for="({ buttonLogo, comingSoon, comingSoonLabel, key }) in items" :key scroll-mx="32 xl:64" shrink-0 relative first:pl-32 last:pr-32 :data-selected="selectedKey === key ? '' : undefined">
-        <p v-if="comingSoon" ring="1 neutral-500" text-10 font-bold px-8 py-4 rounded-4 bg-neutral-400 whitespace-nowrap left-8 top--14 absolute z-1 nq-label>
+    <ul class="w-[calc(100%+64px)] flex gap-6 flex-xl:gap-8 flex-xl:justify-center -mx-8 pt-[18px] of-x-auto nq-scrollbar-hide lg:pr-0" snap="x normal">
+      <li v-for="({ buttonLogo, comingSoon, comingSoonLabel, key }) in items" :key class="scroll-mx-8 xl:64 shrink-0 relative first:pl-8 last:pr-8" :data-selected="selectedKey === key ? '' : undefined">
+        <p v-if="comingSoon" class="ring-1 ring-neutral-500 text-10 font-bold px-2 py-1 rounded-1 bg-neutral-400 whitespace-nowrap left-2 -top-3.5 absolute z-1 nq-label">
           {{ comingSoonLabel }}
         </p>
-        <button :disabled="comingSoon" flex="~ items-center gap-6" rounded-8 bg-gradient-blue h-full whitespace-nowrap f-px-sm f-py-xs op="50 selected:100 hocus:not-disabled:100" @click="selectedKey = key">
-          <NuxtImg v-if="key === 'Naka'" :src="buttonLogo" h-18 w-full />
+        <button class="flex flex-items-center gap-1.5 rounded-2 bg-gradient-blue h-full whitespace-nowrap px-3 md:px-4 py-2 md:py-3 op-50 op-selected:100 op-hocus:not-disabled:100" :disabled="comingSoon" @click="selectedKey = key">
+          <NuxtImg v-if="key === 'Naka'" class="h-[18px] w-full" :src="buttonLogo" />
           <template v-else>
-            <NuxtImg :src="buttonLogo" h-full w-24 />
-            <span text="white f-xl" font-semibold>{{ key }}</span>
+            <NuxtImg class="h-full w-6" :src="buttonLogo" />
+            <span class="text-white text-lg md:text-xl font-semibold">{{ key }}</span>
           </template>
         </button>
       </li>
     </ul>
-    <RichTextCarouselDefault v-if="selectedItem" f-mt-2xl :images="selectedItem.images" :content="selectedItem.content" />
+    <RichTextCarouselDefault v-if="selectedItem" class="mt-12 md:mt-16" :images="selectedItem.images" :content="selectedItem.content" />
   </div>
 </template>

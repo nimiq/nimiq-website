@@ -49,35 +49,23 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="section" :class="bgColor === 'grey' ? 'bg-neutral-100' : 'bg-darkblue dark'" group mx-0 px-0 w-full relative z-2 of-x-hidden f-pt-2xl>
-    <div aria-hidden="true" class="grid-parent" max-w-none :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
+  <div ref="section" class="group mx-0 px-0 w-full relative z-2 of-x-hidden pt-12 md:pt-16" :class="bgColor === 'grey' ? 'bg-neutral-100' : 'bg-darkblue dark'">
+    <div class="grid-parent max-w-none" aria-hidden="true" :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
       <div
-        v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`"
-        :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? item.opacity : 1 }"
-        relative flex="~ items-center justify-center"
-        transition="opacity duration-300 ease-out"
-        :class="{
+        v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`" class="relative flex flex-items-center flex-justify-center transition-opacity transition-duration-300 transition-ease-out" :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? item.opacity : 1 }" :class="{
           'text-[red]': item.social === 'youtube' && isVisible,
           'text-black': item.social === 'x' && isVisible,
           'text-[#1877f2]': item.social === 'facebook' && isVisible,
           'text-neutral-300 dark:text-neutral-500 hocus:dark:text-neutral-700 hocus:text-neutral-500': !item.social,
           'opacity-0': item.social && !isVisible,
           'opacity-100': item.social && isVisible,
-        }"
-        :data-social="item.social"
+        }" :data-social="item.social"
       >
-        <Icon name="nimiq:logos-nimiq-mono" size-full inset-0 absolute />
-        <NuxtLink
-          v-if="item.social && isVisible && socialLinks[item.social]"
-          flex="~ justify-center items-center"
-          target="_blank" external size-full inset-0 absolute z-1
-          :to="socialLinks[item.social]"
-          transition="opacity duration-300 ease-out"
-          :aria-label="`Visit Nimiq on ${item.social === 'x' ? 'Twitter' : item.social}`"
-        >
-          <Icon v-if="item.social === 'youtube'" name="nimiq:logos-youtube-mono" text="53 white" />
-          <Icon v-if="item.social === 'x'" name="nimiq:logos-twitter-mono" text="64 white" />
-          <Icon v-if="item.social === 'facebook'" name="nimiq:logos-facebook-mono" text="62 white" />
+        <Icon class="size-full inset-0 absolute" name="nimiq:logos-nimiq-mono" />
+        <NuxtLink v-if="item.social && isVisible && socialLinks[item.social]" class="flex flex-justify-center flex-items-center size-full inset-0 absolute z-1 transition-opacity transition-duration-300 transition-ease-out" target="_blank" external :to="socialLinks[item.social]" :aria-label="`Visit Nimiq on ${item.social === 'x' ? 'Twitter' : item.social}`">
+          <Icon v-if="item.social === 'youtube'" class="text-53 text-white" name="nimiq:logos-youtube-mono" />
+          <Icon v-if="item.social === 'x'" class="text-64 text-white" name="nimiq:logos-twitter-mono" />
+          <Icon v-if="item.social === 'facebook'" class="text-62 text-white" name="nimiq:logos-facebook-mono" />
         </NuxtLink>
       </div>
     </div>

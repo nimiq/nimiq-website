@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('team').first()!
+const page = await usePage('team')
 
 const title = page.seo?.title || page.hero?.title || 'Team'
 const description = page.seo?.description || page.hero?.description
@@ -10,15 +10,15 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/team' }] })
 <template>
   <NuxtLayout>
     <main>
-      <section nq-section-gap bg-neutral-0>
+      <section class="nq-section-gap bg-neutral-0">
         <Hero v-bind="page.hero" />
       </section>
 
-      <section bg-neutral-0>
+      <section class="bg-neutral-0">
         <TeamMembers v-bind="page.members" />
       </section>
 
-      <section nq-section-gap bg-neutral-100>
+      <section class="nq-section-gap bg-neutral-100">
         <Headline v-bind="page.cta" />
       </section>
     </main>

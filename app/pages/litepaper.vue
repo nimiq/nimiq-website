@@ -40,40 +40,37 @@ onMounted(() => {
 
 <template>
   <NuxtLayout v-if="currentPage">
-    <section bg-neutral-100>
-      <div max-w-780px w-full>
-        <h1 nq-heading-lg>
+    <section class="bg-neutral-100">
+      <div class="max-w-780px w-full">
+        <h1 class="nq-heading-lg">
           {{ currentPage.headline }}
         </h1>
-        <p v-if="currentPage.subline" text="neutral-700 f-lg" mt-24 max-w-prose>
+        <p v-if="currentPage.subline" class="text-neutral-700 text-base md:text-lg mt-6 max-w-prose">
           {{ currentPage.subline }}
         </p>
-        <div flex="~ gap-x-32 gap-y-20 wrap items-baseline" mt-32>
+        <div class="flex gap-x-8 gap-y-5 flex-wrap flex-items-baseline mt-8">
           <SelectRoot v-model="selected">
-            <SelectTrigger flex="~ items-center gap-12" px-16 py-10 outline-none rounded-full bg-gradient-green aria-label="Select Litepaper Version">
-              <SelectValue text="f-sm white" nq-label />
-              <Icon name="nimiq:triangle-down" text="10 white" />
+            <SelectTrigger class="flex flex-items-center gap-3 px-4 py-2.5 outline-none rounded-full bg-gradient-green" aria-label="Select Litepaper Version">
+              <SelectValue class="text-xs md:text-sm text-white nq-label" />
+              <Icon class="text-10 text-white" name="nimiq:triangle-down" />
             </SelectTrigger>
 
             <SelectPortal>
-              <SelectContent :side-offset="5" rounded-18 bg-white min-w-120 w-full shadow z-10>
-                <SelectViewport p-4>
-                  <SelectItem
-                    v-for="v in LitepaperVersion" :key="v" :value="v" flex="~ gap-8 items-center"
-                    px-16 py-10 outline-none rounded-14 cursor-pointer transition-colors hocus:bg-neutral-200
-                  >
-                    <SelectItemText text-14 nq-label>
+              <SelectContent class="rounded-[18px] bg-white min-w-[120px] w-full z-10" :side-offset="5" shadow>
+                <SelectViewport class="p-1">
+                  <SelectItem v-for="v in LitepaperVersion" :key="v" class="flex gap-2 flex-items-center px-4 py-2.5 outline-none rounded-3.5 cursor-pointer transition-colors" :value="v" hocus:bg-neutral-200>
+                    <SelectItemText class="text-14 nq-label">
                       Version {{ v }}
                     </SelectItemText>
                     <SelectItemIndicator>
-                      <Icon name="nimiq:triangle-left" text="10 neutral-800" />
+                      <Icon class="text-10 text-neutral-800" name="nimiq:triangle-left" />
                     </SelectItemIndicator>
                   </SelectItem>
                 </SelectViewport>
               </SelectContent>
             </SelectPortal>
           </SelectRoot>
-          <span nq-label text="f-xs neutral-700">
+          <span class="nq-label text-[11px] md:text-xs text-neutral-700">
             Updated
             <NuxtTime :datetime="new Date(currentPage.date)" month="long" day="numeric" year="numeric" />
           </span>
@@ -81,11 +78,11 @@ onMounted(() => {
       </div>
     </section>
 
-    <section ref="articleEl" bg-neutral-100>
-      <ContentRenderer v-if="selected === LitepaperVersion.V2 && posPage" :value="posPage" article nq-prose text-20 max-w-780px />
-      <ContentRenderer v-else-if="powPage" :value="powPage" article nq-prose text-20 max-w-780px />
+    <section ref="articleEl" class="bg-neutral-100">
+      <ContentRenderer v-if="selected === LitepaperVersion.V2 && posPage" class="nq-prose text-20 max-w-780px" :value="posPage" article />
+      <ContentRenderer v-else-if="powPage" class="nq-prose text-20 max-w-780px" :value="powPage" article />
     </section>
 
-    <AppDisclaimer bg-color="grey" />
+    <AppDisclaimer class="bg-color-grey" />
   </NuxtLayout>
 </template>

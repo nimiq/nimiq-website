@@ -40,7 +40,7 @@ Because Nimiq already focuses on Rust, it made sense to add Rust to the bounty l
 
 Other programming languages like NIM and Hax were also considered for a bounty. However, seeing that these other options are neither core nor in the top 50 most popular programming languages, they were passed over for community bounty rewards for now.
 
-***However, the Community Funding Board does want to make it clear that just because a language is not on the ‘approved list of community bounties’, it shouldn’t deter you from going ahead and contributing.***
+**_However, the Community Funding Board does want to make it clear that just because a language is not on the ‘approved list of community bounties’, it shouldn’t deter you from going ahead and contributing._**
 
 In the case that a community member develops anything that’s actually being used, then the Board commits to reactively rewarding those initial efforts. That’s what Board reactive rewards are for and how they intend to be used and distributed moving forward.
 

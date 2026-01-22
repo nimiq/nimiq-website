@@ -3,7 +3,7 @@ footer:
   newsletterPlaceholder: your@email.com
   socialMediaCta: Join the Nimiq community
   description: Nimiq is a blockchain payment protocol designed for payments and designed to be easy to use. It enables payments to happen directly between the payer and receiver, using the open blockchain as the backend.
-  copyright: "© Nimiq"
+  copyright: © Nimiq
 
 navigation:
   - label: Apps
@@ -58,44 +58,44 @@ socials:
     label: X
     link: https://twitter.com/nimiq
     icon: logos:x
-    color: "#000000"
+    color: '#000000'
   - id: telegram
     label: Telegram
     link: https://t.me/Nimiq
     icon: logos:telegram
-    color: "#0088cc"
+    color: '#0088cc'
   - id: reddit
     label: Reddit
     link: https://www.reddit.com/r/Nimiq
     icon: logos:reddit-icon
-    color: "#ff4500"
+    color: '#ff4500'
   - id: github
     label: Github
     link: https://github.com/nimiq
     icon: logos:github-icon
-    color: "#000000"
+    color: '#000000'
   - id: youtube
     label: Youtube
     link: https://www.youtube.com/c/nimiq
     icon: logos:youtube-icon
-    color: "#ff0000"
+    color: '#ff0000'
   - id: discord
     label: Discord
     link: https://discord.gg/nimiq
     icon: logos:discord-icon
-    color: "#7289da"
+    color: '#7289da'
   - id: forum
     label: Forum
     link: https://forum.nimiq.community
     icon: lucide:message-circle
-    color: "#f79820"
+    color: '#f79820'
   - id: facebook
     label: Facebook
     link: https://www.facebook.com/nimiq
     icon: logos:facebook
-    color: "#1877f2"
+    color: '#1877f2'
   - id: instagram
     label: Instagram
     link: https://www.instagram.com/wearenimiq
     icon: logos:instagram-icon
-    color: "#e4405f"
+    color: '#e4405f'

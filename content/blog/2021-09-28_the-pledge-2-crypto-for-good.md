@@ -21,7 +21,7 @@ The best way to implement and communicate such a commitment—and the way Nimiq 
 
 Nimiq at creation of its Genesis Block in April 2018 allocated 2% (420 million) of its total maximum coin supply (21 billion) to a special [Nimiq wallet address](https://nimiq.watch/#NQ19+YG54+46TX+EHGQ+D2R2+V8XA+JX84+UFG0+S0MC). This wallet address is owned by the ImpactX Foundation, a registered 501c3 that was set up specifically for the purpose of “supporting projects of high social and ecological impact” ([nimiq.com/about/#charity](http://nimiq.com/about/#charity)). If NIM were to reach 1/100th of the market cap of Bitcoin for example, the USD equivalent of these funds to use for good would almost reach half a billion USD! It is important to choose a setup that protects the intended charitable purpose and use of funds through the entity's statutes and its jurisdiction.
 
-**Time release  **
+**Time release **
 
 While control of funds should at the very least be decentralized via multi-signature cold storage wallets and other security enhancing means, an additional factor to consider is to enforce a “gradual release” approach for the designated 2% of coin supply. This encourages taking a longer term view for the use of these funds in line with growth and reach of the project in time. In the case of Nimiq’s ImpactX Foundation, the 420 million NIM are bound in a vesting type smart contract which programmatically releases portions periodically over the course of 10 years. To be precise, 1/20th of the 420 million NIM vests every 6 months which is publicly verifiable in any [Nimiq block explorer](https://nimiq.watch/#NQ19+YG54+46TX+EHGQ+D2R2+V8XA+JX84+UFG0+S0MC).
 

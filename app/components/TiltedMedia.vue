@@ -24,23 +24,23 @@ const embedUrl = computed(() => {
 
 <template>
   <!-- eslint-disable-next-line vue/no-restricted-html-elements - section required to match prod structure -->
-  <section mx-0 px-0 bg-neutral-100>
+  <section class="mx-0 px-0 bg-neutral-100">
     <!-- Hexagon background decoration -->
-    <div max-w-screen w-full relative of-x-clip>
-      <div w="320vw md:140vw" i-custom:bg-hexagons text-neutral-800 h-full h-screen max-w-none pointer-events-none inset-0 absolute />
+    <div class="max-w-screen w-full relative of-x-clip">
+      <div class="w-320vw w-md:140vw text-neutral-800 h-full h-screen max-w-none pointer-events-none inset-0 absolute" i-custom:bg-hexagons />
     </div>
     <!-- Tilted media content -->
-    <div px-32 w-full of-x-clip max-md:max-w-none style="--f-mb-min: 96; --f-mb-max: 128;">
-      <div ref="media" style="--rotate-x:30deg;--translate-y:-100px;transform: perspective(1800px) rotateX(var(--rotate-x)) translateY(var(--translate-y))" origin="[center_70%]" transition="transform duration-350 ease-[cubic-bezier(0,0,0.25,1)]" mx-auto h-full min-h-500 children:w-full>
+    <div class="px-8 w-full of-x-clip max-md:max-w-none mb-24 md:mb-32">
+      <div ref="media" class="origin-[center_70%] transition-transform transition-duration-350 transition-ease-[cubic-bezier(0,0,0.25,1)] mx-auto h-full min-h-[500px]" style="--rotate-x:30deg;--translate-y:-100px;transform: perspective(1800px) rotateX(var(--rotate-x)) translateY(var(--translate-y))" children:w-full>
         <template v-if="isYouTube">
-          <NuxtLink v-if="poster" :to="src" external stack mx-auto children:rounded-8 target="_blank">
-            <NuxtImg :src="poster" rounded-8 w-full />
-            <div bg-gradient="to-b from-neutral/30 to-neutral/60" size-full />
-            <Icon name="nimiq:triangle-right" text="56 white" />
+          <NuxtLink v-if="poster" class="mx-auto" :to="src" external stack children:rounded-2 target="_blank">
+            <NuxtImg class="rounded-2 w-full" :src="poster" />
+            <div class="bg-gradient-to-b from-neutral/30 to-neutral/60 size-full" />
+            <Icon class="text-56 text-white" name="nimiq:triangle-right" />
           </NuxtLink>
-          <iframe v-else :src="embedUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen rounded-8 w-full aspect-video />
+          <iframe v-else class="rounded-2 w-full aspect-video" :src="embedUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
         </template>
-        <NuxtImg v-else :src rounded-8 />
+        <NuxtImg v-else class="rounded-2" :src />
       </div>
     </div>
   </section>
