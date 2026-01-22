@@ -8,7 +8,7 @@ export const fiatCurrencies = supportedFiatCurrencies.map(ticker => FiatCurrency
 function guessUserCurrency() {
   const languageRegex = /^(\w+)(?:-\w{3,4})*(?:-(\w{2})\b)?/
   const locale = useLocale()
-  const match = locale.value.match(languageRegex)
+  const match = locale.value?.match(languageRegex)
   if (!match)
     return FiatCurrency.USD
   const [, language, region] = match
@@ -44,7 +44,7 @@ export function useUserCurrency() {
     let localeValue = locale.value || 'en-US'
     // Additional sanitization: remove @posix and other invalid suffixes
     if (typeof localeValue === 'string')
-      localeValue = localeValue.split('@')[0].trim()
+      localeValue = localeValue.split('@')[0]?.trim() || 'en-US'
 
     // Validate format: should be xx or xx-XX
     if (!/^[a-z]{2}(?:-[A-Z]{2})?$/i.test(localeValue))

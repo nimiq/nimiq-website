@@ -29,65 +29,62 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
 <template>
   <NuxtLayout :dark-header="false" :show-socials-hexagon-bg="false" footer-bg-color="grey">
     <main>
-      <section bg-neutral-100 f-pt-3xl>
+      <section class="bg-neutral-100 pt-16 md:pt-24">
         <h1>{{ page.hero.title }}</h1>
-        <p v-if="page.hero.description" text-neutral-800 f-mt-sm>
+        <p v-if="page.hero.description" class="text-neutral-800 mt-3 md:mt-4">
           {{ page.hero.description }}
         </p>
       </section>
 
-      <section bg-neutral-100 f-pt-3xl>
-        <div v-if="posts?.length" grid="~ cols-1 lg:cols-2 xl:cols-3 gap-16" w-full>
+      <section class="bg-neutral-100 pt-16 md:pt-24">
+        <div v-if="posts?.length" class="grid grid-cols-1 grid-lg:cols-2 grid-xl:cols-3 gap-4 w-full">
           <article v-for="(post, i) in posts" :key="post.slug" :class="pageIndex === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
-            <NuxtLink :to="`/blog/${post.slug}`" p-0 h-full relative nq-hoverable @click="active = post.slug">
-              <div p-4>
-                <NuxtImg
-                  v-if="post.image" :src="post.image" :alt="post.title" rounded-6 h-max w-full object-cover loading="lazy"
-                  :class="[i === 1 ? 'h-max lg:h-280' : 'h-max', { 'view-transition-post-img contain-layout': active === post.slug }]"
-                />
+            <NuxtLink class="p-0 h-full relative nq-hoverable" :to="`/blog/${post.slug}`" @click="active = post.slug">
+              <div class="p-1">
+                <NuxtImg v-if="post.image" class="rounded-1.5 h-max w-full object-cover" :src="post.image" :alt="post.title" loading="lazy" :class="[i === 1 ? 'h-max lg:h-[280px]' : 'h-max', { 'view-transition-post-img contain-layout': active === post.slug }]" />
               </div>
-              <div flex="~ col" p-24 h-full>
-                <h2 text-left :class="[{ 'view-transition-post-title contain-layout': active === post.slug }, i === 0 ? 'f-text-3xl' : i === 1 ? 'f-text-2xl' : 'f-text-xl']">
+              <div class="flex flex-col p-6 h-full">
+                <h2 class="text-left" :class="[{ 'view-transition-post-title contain-layout': active === post.slug }, i === 0 ? 'text-2xl md:text-3xl' : i === 1 ? 'text-xl md:text-2xl' : 'text-lg md:text-xl']">
                   {{ post.title }}
                 </h2>
-                <p mt-8 line-clamp-2 text="16 neutral-900 left">
+                <p class="mt-2 line-clamp-2 text-16 text-neutral-900 text-left">
                   {{ post.description }}
                 </p>
-                <div :style="`--content: '${page.grid.labelLearnMore}'`" :class="i === 1 ? 'mt-4' : 'mt-auto'" after="text-blue content-$content text-16" flex="~ items-center gap-x-16 wrap" text="12 neutral" lh="[2]" pt-16 gap-x-8 h-max nq-label nq-hoverable-cta>
+                <div class="flex flex-items-center gap-x-4 flex-wrap text-12 text-neutral lh-[2] pt-4 gap-x-2 h-max nq-label nq-hoverable-cta" :style="`--content: '${page.grid.labelLearnMore}'`" :class="i === 1 ? 'mt-1' : 'mt-auto'" after="text-blue content-$content text-16">
                   <NuxtTime v-if="new Date(post.publishedAt).getFullYear() === new Date().getFullYear()" :datetime="post.publishedAt" month="short" day="numeric" />
                   <NuxtTime v-else :datetime="post.publishedAt" month="short" day="numeric" year="numeric" />
-                  <address flex="~ gap-1ch" not-italic>
-                    <span text-neutral-800>{{ page.grid.labelBy }}</span>
-                    <span text-blue>{{ post.authors?.join(', ') || 'Team Nimiq' }}</span>
+                  <address class="flex flex-gap-1ch not-italic">
+                    <span class="text-neutral-800">{{ page.grid.labelBy }}</span>
+                    <span class="text-blue">{{ post.authors?.join(', ') || 'Team Nimiq' }}</span>
                   </address>
                 </div>
-                <span sr-only>{{ page.grid.labelLearnMore }}</span>
+                <span class="sr-only">{{ page.grid.labelLearnMore }}</span>
               </div>
             </NuxtLink>
           </article>
 
-          <PaginationRoot :page="pageIndex" :total="totalPages * itemsPerPage" :items-per-page="itemsPerPage" show-edges mt-32 col-span-full>
-            <PaginationList v-slot="{ items }" flex="~ gap-16 items-center justify-center">
-              <PaginationPrev as-child class="pagination-item">
+          <PaginationRoot class="mt-8 col-span-full" :page="pageIndex" :total="totalPages * itemsPerPage" :items-per-page="itemsPerPage" show-edges>
+            <PaginationList v-slot="{ items }" class="flex gap-4 flex-items-center flex-justify-center">
+              <PaginationPrev class="pagination-item" as-child>
                 <NuxtLink :to="pageIndex > 1 ? (pageIndex === 2 ? '/blog' : `/blog?page=${pageIndex - 1}`) : undefined">
-                  <Icon name="nimiq:chevron-left" class="text-9 op-70" />
+                  <Icon class="text-9 op-70" name="nimiq:chevron-left" />
                 </NuxtLink>
               </PaginationPrev>
 
               <template v-for="(pageItem, index) in items">
-                <PaginationListItem v-if="pageItem.type === 'page'" :key="index" :value="pageItem.value" as-child class="pagination-item">
+                <PaginationListItem v-if="pageItem.type === 'page'" :key="index" class="pagination-item" :value="pageItem.value" as-child>
                   <NuxtLink :to="pageItem.value === 1 ? '/blog' : `/blog?page=${pageItem.value}`">
                     {{ pageItem.value }}
                   </NuxtLink>
                 </PaginationListItem>
-                <PaginationEllipsis v-else :key="pageItem.type" :index="index" class="pagination-item">
+                <PaginationEllipsis v-else :key="pageItem.type" class="pagination-item" :index="index">
                   &#8230;
                 </PaginationEllipsis>
               </template>
 
-              <PaginationNext as-child class="pagination-item">
+              <PaginationNext class="pagination-item" as-child>
                 <NuxtLink :to="pageIndex < totalPages ? `/blog?page=${pageIndex + 1}` : undefined">
-                  <Icon name="nimiq:chevron-right" class="text-9 op-70" />
+                  <Icon class="text-9 op-70" name="nimiq:chevron-right" />
                 </NuxtLink>
               </PaginationNext>
             </PaginationList>
@@ -102,6 +99,6 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
 
 <style scoped>
 .pagination-item {
-  --uno: 'rounded-4 size-32 shrink-0 bg-neutral-100 text-neutral-900 text-12 font-semibold hocus:bg-neutral-200 transition-colors ring-1.5 ring-neutral-400 flex items-center justify-center reka-selected:bg-blue reka-selected:text-white reka-selected:ring-none';
+  --uno: 'rounded-1 size-8 shrink-0 bg-neutral-100 text-neutral-900 text-12 font-semibold hocus:bg-neutral-200 transition-colors ring-1.5 ring-neutral-400 flex items-center justify-center reka-selected:bg-blue reka-selected:text-white reka-selected:ring-none';
 }
 </style>

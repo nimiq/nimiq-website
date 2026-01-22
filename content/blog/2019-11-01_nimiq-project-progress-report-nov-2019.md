@@ -54,7 +54,7 @@ To switch between versions of the Whitepaper, you will now find a version select
 
 ### Introducing UTXOTree
 
- The UTXOTree is a novel data structure which will hold the balances of accounts in Nimiq 2.0. Currently, the Nimiq 1.0 Blockchain utilizes Merkle Trees as Ethereum does. For Nimiq 2.0 the Core Team has come up with a way of mixing the UTXO structure used by Bitcoin with the Merkle Trees. If it sounds groundbreaking it’s because it is!
+The UTXOTree is a novel data structure which will hold the balances of accounts in Nimiq 2.0. Currently, the Nimiq 1.0 Blockchain utilizes Merkle Trees as Ethereum does. For Nimiq 2.0 the Core Team has come up with a way of mixing the UTXO structure used by Bitcoin with the Merkle Trees. If it sounds groundbreaking it’s because it is!
 
 ### Faster consensus of Browser Clients with QuickSync
 

@@ -17,13 +17,13 @@ This innovative approach focuses on making the Euro (USD, etc) directly behave a
 
 In October 2018, Nimiq came in contact with Matthias von Hauff, the progressively thinking Founder and CEO of the WEG Bank AG. The fruitful initial conversations between Nimiq co-founder Elion Chin and Matthias von Hauff called for a more extensive get-together in person. The opportunity to brainstorm and bring Nimiq together with a traditional bank proprietor that is uniquely open to crypto made sense in every way. While the meeting was swiftly scheduled for November 2018 during Nimiq’s hackathon in Costa Rica, the growing relationship with Agora Trade triggered the idea to also invite its founding partners Reto Trinkler and Andrea Castiglione to expand the brainstorming into a roundtable triangle of boundless creative potential:
 
-- **Payment protocol**: Nimiq, the *browser-first* blockchain that leads with ease-of-use, represented by Philipp von Styp-Rekowsky, Pascal Berrang, Marvin Wissfeld, Elion Chin and counsel Mauricio Lara.
+- **Payment protocol**: Nimiq, the _browser-first_ blockchain that leads with ease-of-use, represented by Philipp von Styp-Rekowsky, Pascal Berrang, Marvin Wissfeld, Elion Chin and counsel Mauricio Lara.
 - **Financial institution**: German WEG Bank AG and its ‘can do’ crypto-revolution-friendly owner Matthias von Hauff.
 - **Exchange**: Non-custodial, browser-based exchange Agora Trade and its visionary founders Reto Trinkler and Andrea Castiglione.
 
 ## Making magic happen
 
-In just three days the group went from sharing their respective views regarding technological solutions and practical needs, to Philipp, Pascal and Marvin drafting a groundbreaking scheme blueprint for Crypto ⟷ Euro (USD, etc) transactions: an approach that establishes the Euro itself as the *programmable* counterparty to a non-custodial cross-chain transaction. In simple terms, it means that in a transaction to buy or sell Crypto, the counterparty could now be a Euro account holder,
+In just three days the group went from sharing their respective views regarding technological solutions and practical needs, to Philipp, Pascal and Marvin drafting a groundbreaking scheme blueprint for Crypto ⟷ Euro (USD, etc) transactions: an approach that establishes the Euro itself as the _programmable_ counterparty to a non-custodial cross-chain transaction. In simple terms, it means that in a transaction to buy or sell Crypto, the counterparty could now be a Euro account holder,
 
 - Without a single, centralized intermediary ever controlling the two assets that are being exchanged, and
 - Without the owner of each asset giving up custody until the conditions for the settlement are verifiably fulfilled.
@@ -32,7 +32,7 @@ One of the beauties of the solution is, that it works without issuing or acting 
 
 ## Introducing Nimiq OASIS
 
-Nimiq has set out to develop **Nimiq OASIS **(***O**pen **A**sset **S**wap **I**nteraction **S**cheme*), the middle layer that powers Fiat / Crypto trades as described above. Following additional engineering meetings with Fiducia GAD IT AG, one of Germany’s largest financial institution API providers, Nimiq has recently finalized the specification of this layer. NIM ⟷ Euro trades will be triggered on the Agora Trade platform and supported by the WEG Bank AG. The general potential of Nimiq OASIS goes far, as following an introductory period, it will be non-exclusive and empower other banks, exchanges and blockchains to tie in and allow decentralization and adoption in ways that reflect the spirit of blockchain technology.
+Nimiq has set out to develop **Nimiq OASIS **(**\*O**pen **A**sset **S**wap **I**nteraction **S**cheme\*), the middle layer that powers Fiat / Crypto trades as described above. Following additional engineering meetings with Fiducia GAD IT AG, one of Germany’s largest financial institution API providers, Nimiq has recently finalized the specification of this layer. NIM ⟷ Euro trades will be triggered on the Agora Trade platform and supported by the WEG Bank AG. The general potential of Nimiq OASIS goes far, as following an introductory period, it will be non-exclusive and empower other banks, exchanges and blockchains to tie in and allow decentralization and adoption in ways that reflect the spirit of blockchain technology.
 
 Matthias von Hauff, Founder and CEO of WEG Bank AG:
 

@@ -10,15 +10,15 @@ const starColorMap = { gold: '#e9b213', purple: '#1F2348' }
 </script>
 
 <template>
-  <div max-w="none md:$nq-max-width" stack mx-auto rounded-8 size-full min-h-128 relative var:top:-25 :class="{ shadow }">
+  <div class="max-w-none max-w-md:$nq-max-width mx-auto rounded-2 size-full min-h-32 relative" stack var:top:-25 :class="{ shadow }">
     <slot name="default" />
 
-    <div self-start="!" justify-self-end="!" mr--32 w-max relative top="$top" z-10>
-      <div aria-hidden="true" w-44 origin-bottom-right translate-y--1 rotate--45 bottom-0 right-0 absolute z-1 :style="{ borderColor: `transparent transparent ${foldColorMap[color]} transparent`, borderWidth: '22px' }" />
+    <div class="self-start-! justify-self-end-! -mr-8 w-max relative top-$top z-10">
+      <div class="w-11 origin-bottom-right -translate-y-px rotate--45 bottom-0 right-0 absolute z-1" aria-hidden="true" :style="{ borderColor: `transparent transparent ${foldColorMap[color]} transparent`, borderWidth: '22px' }" />
 
-      <UiFloatingStars v-if="floatingStars" aria-hidden="true" translate="-50%" absolute left="50%" top="30%" z-21 :color="starColorMap[color]" />
-      <div :style="{ backgroundImage: gradientMap[color] }" text="f-lg white" rounded="6 br-0" f-px="16/20" f-pr="28/20" lh-none ml-auto pl-20 w-max relative z-22 f-py-xs flex="~ items-center gap-8">
-        <Icon v-if="icon" :name="icon" class="text-0.85em" />
+      <UiFloatingStars v-if="floatingStars" class="translate--50% absolute left-50% top-30% z-21" aria-hidden="true" :color="starColorMap[color]" />
+      <div class="text-base md:text-lg text-white rounded-1.5 rounded-br-0 px-4 md:px-5 pr-7 md:pr-5 lh-none ml-auto pl-5 w-max relative z-22 py-2 md:py-3 flex flex-items-center gap-2" :style="{ backgroundImage: gradientMap[color] }">
+        <Icon v-if="icon" class="text-0.85em" :name="icon" />
         {{ label }}
       </div>
     </div>

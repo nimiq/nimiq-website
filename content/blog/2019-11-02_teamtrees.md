@@ -29,7 +29,7 @@ Nimiq’s passion for environmental preservation comes from its strong presence 
 
 ![](/assets/images/prismic/8bc68a01-04eb-4da1-8045-2887547836e3_blog_teamtrees_3.png)
 
-*Caption: Nimiq's Nerd Campus in the Costa Rican Jungle*
+_Caption: Nimiq's Nerd Campus in the Costa Rican Jungle_
 
 When it comes to tackling climate change, Team Nimiq are certainly avid readers of researchers like Tom Crowther, who is the senior author of scientific papers like “[The global tree restoration potential](https://science.sciencemag.org/cgi/doi/10.1126/science.aax0848)” in Science magazine.
 

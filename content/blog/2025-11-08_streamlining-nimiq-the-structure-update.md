@@ -13,7 +13,7 @@ In our last update, we shared that we were taking time to rethink our strategy a
 
 That's why we're doing two things today. First, we're sharing the new organizational structure as a result of this work. Second, we're answering the questions we've collected in the last three months from you across our community channels like Telegram, Discord, and the Forum. You'll find these questions and answers posted in the Nimiq Forum. With this new structure, the right teams/bodies can now give you clear, accountable answers on the topics they own.
 
-## The New Structure:  How We're Organized
+## The New Structure: How We're Organized
 
 Our new structure is built around a few main bodies and teams:
 

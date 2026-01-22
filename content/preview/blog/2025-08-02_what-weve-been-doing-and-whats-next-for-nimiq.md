@@ -9,7 +9,7 @@ authors:
 image: /images/blog/what-weve-been-doing-and-whats-next-for-nimiq/aI0GfKTt2nPbZr7X_communityupdateBLOG.png
 ---
 
-With the launch of  Nimiq’s Proof‑of‑Stake consensus last November, we crossed off the final item on the technical roadmap first sketched in our [2017](https://medium.com/nimiq/nimiq-a-peer-to-peer-payment-protocol-native-to-the-web-ffd324bb084) and [2020](https://www.nimiq.com/litepaper/) whitepapers. Building original technology took longer than anticipated, which kept us focused inward while the market changed around us. With the new core protocol complete, we shifted our attention to analyzing what would drive real-world traction and defining what comes next.
+With the launch of Nimiq’s Proof‑of‑Stake consensus last November, we crossed off the final item on the technical roadmap first sketched in our [2017](https://medium.com/nimiq/nimiq-a-peer-to-peer-payment-protocol-native-to-the-web-ffd324bb084) and [2020](https://www.nimiq.com/litepaper/) whitepapers. Building original technology took longer than anticipated, which kept us focused inward while the market changed around us. With the new core protocol complete, we shifted our attention to analyzing what would drive real-world traction and defining what comes next.
 
 ## Here’s What’s Been Going On
 

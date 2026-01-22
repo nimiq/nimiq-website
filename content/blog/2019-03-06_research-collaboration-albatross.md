@@ -15,47 +15,47 @@ Team [Nimiq](https://nimiq.com/) is proud to present Albatross, the outcome of o
 
 ## What is Proof-of-Stake?
 
-In a Proof-of-Stake (PoS) based consensus algorithm, the node eligible to append the next block is chosen proportional to the stake it has in the system. That makes block production very cheap compared to Proof-of-Work (PoW) based algorithms. Misbehavior (e.g. in the form of forks) is often punished by *slashing* the stake of the misbehaving node and burning or redistributing it.
+In a Proof-of-Stake (PoS) based consensus algorithm, the node eligible to append the next block is chosen proportional to the stake it has in the system. That makes block production very cheap compared to Proof-of-Work (PoW) based algorithms. Misbehavior (e.g. in the form of forks) is often punished by _slashing_ the stake of the misbehaving node and burning or redistributing it.
 
 The three most important benefits of PoS over PoW are:
 
 - *a drastically reduced energy consumption: *there is no need to perform labor that is highly energy consuming to secure the blockchain,
-- *reduced risk of centralization:* specifically, economies of scale are less of an issue in PoS, and
-- *the equivalent of* *51% attacks being more expensive:* misbehaving nodes permanently lose their stake, compared to reusable hardware in PoW.
+- _reduced risk of centralization:_ specifically, economies of scale are less of an issue in PoS, and
+- _the equivalent of_ _51% attacks being more expensive:_ misbehaving nodes permanently lose their stake, compared to reusable hardware in PoW.
 
 ## What does “optimistic consensus algorithm” mean?
 
-We describe Albatross — our novel blockchain consensus algorithm — to be *optimistic*.
+We describe Albatross — our novel blockchain consensus algorithm — to be _optimistic_.
 
 This term does **not** mean that we sacrifice any security but means that it is inspired by *speculative *Byzantine-fault-tolerant (BFT) algorithms.
 
-*Classical* BFT algorithms provide consensus in distributed systems while considering a limited number of malicious or Byzantine actors. One of the most prominent examples of such an algorithm is PBFT, which, e.g., the Tendermint cryptocurrency is leveraging at its core.
+_Classical_ BFT algorithms provide consensus in distributed systems while considering a limited number of malicious or Byzantine actors. One of the most prominent examples of such an algorithm is PBFT, which, e.g., the Tendermint cryptocurrency is leveraging at its core.
 
-*Speculative* BFT algorithms are an advancement over standard BFT algorithms. They allow for drastic performance increases in the case of no malicious actors being present. This is the so-called *optimistic* case and where our description finds its origin. In case Byzantine actors are present and try tampering with the protocol, others can notice and switch the protocol into its slower and more conservative mode, offering the same security guarantees as standard BFT protocols.
+_Speculative_ BFT algorithms are an advancement over standard BFT algorithms. They allow for drastic performance increases in the case of no malicious actors being present. This is the so-called _optimistic_ case and where our description finds its origin. In case Byzantine actors are present and try tampering with the protocol, others can notice and switch the protocol into its slower and more conservative mode, offering the same security guarantees as standard BFT protocols.
 
 Hence, in the best case, optimistic consensus algorithms are able to perform much better than classical ones. During an attack case, optimistic algorithms still have a performance similar to standard ones.
 
 ## The Albatross protocol
 
-In Albatross, those nodes that are responsible for producing new blocks are called *validators*. Anyone who has a stake in the system can volunteer as a validator by depositing his/her stake as security that can be *slashed*.
+In Albatross, those nodes that are responsible for producing new blocks are called _validators_. Anyone who has a stake in the system can volunteer as a validator by depositing his/her stake as security that can be _slashed_.
 
-Block production in Albatross is divided into *epochs*. As the following figure shows, each epoch consists of a constant number of *micro blocks* (four micro blocks in the example below) followed by a *macro block*. *Micro blocks* contain the transactions and have a single block producer that is randomly chosen from the *validators*. While anyone can volunteer to be a validator, the actual set of validators in a given epoch (the *active validators*) is chosen by the *macro block* of the preceding epoch.
+Block production in Albatross is divided into _epochs_. As the following figure shows, each epoch consists of a constant number of _micro blocks_ (four micro blocks in the example below) followed by a _macro block_. _Micro blocks_ contain the transactions and have a single block producer that is randomly chosen from the _validators_. While anyone can volunteer to be a validator, the actual set of validators in a given epoch (the _active validators_) is chosen by the _macro block_ of the preceding epoch.
 
 ![](/assets/images/prismic/4b3bc20b-2d76-4dc9-86a8-a81b5c6ab688_blog_research-collaboration-albatross_1.png)
 
-In our example, block number 0 determines the *active validators v_0,…,v_k* for the epoch from block 1 to block 5.
+In our example, block number 0 determines the _active validators v_0,…,v_k_ for the epoch from block 1 to block 5.
 
-To be able to randomly choose the next block producer from the list of validators, each block contains a random beacon, depicted above by r_i. The block producer of a block uses a so-called *Verifiable Random Function* (VRF) to produce the next random value r_i from the previous value r_{i-1}. Every other participant can then verify the correctness of the next random value.
+To be able to randomly choose the next block producer from the list of validators, each block contains a random beacon, depicted above by r*i. The block producer of a block uses a so-called *Verifiable Random Function* (VRF) to produce the next random value r_i from the previous value r*{i-1}. Every other participant can then verify the correctness of the next random value.
 
-Given these random beacons in each block, every participant of Albatross is then able to determine the next block producer v_{σ(r)} from the list of *active validators*.
+Given these random beacons in each block, every participant of Albatross is then able to determine the next block producer v\_{σ(r)} from the list of _active validators_.
 
-The production of *micro blocks* is thus as simple as the selected block producer putting transactions into a block, signing the block cryptographically, and sending the block to the network.
+The production of _micro blocks_ is thus as simple as the selected block producer putting transactions into a block, signing the block cryptographically, and sending the block to the network.
 
-The production of *macro blocks* is a bit more involved but happens much more rarely. *Macro blocks* are built using the classical PBFT protocol. To this end, the chosen block producer — or in this case rather a proposer — constructs the next random value and, from this value, determines the new list of *active validators* for the next epoch. The list of validators is chosen from all volunteers weighed by their stake and based on the random beacon. The block proposer then publishes its proposal, and all other active validators vote on it in two rounds. *Macro blocks* do not contain any transactions.
+The production of _macro blocks_ is a bit more involved but happens much more rarely. _Macro blocks_ are built using the classical PBFT protocol. To this end, the chosen block producer — or in this case rather a proposer — constructs the next random value and, from this value, determines the new list of _active validators_ for the next epoch. The list of validators is chosen from all volunteers weighed by their stake and based on the random beacon. The block proposer then publishes its proposal, and all other active validators vote on it in two rounds. _Macro blocks_ do not contain any transactions.
 
 There is no notion of targeted block time between blocks, and thus blocks can be produced almost as fast as the network allows.
 
-While the explanation above only covers the optimistic case, the protocol remains secure under the assumption of at most ⅓ of the validator list being Byzantine actors. These actors, however, can temporarily slow the chain and put block production into the more conservative mode. Byzantine actors can mainly trigger two mechanisms: (1) forks, which cause the next block producer to pick one of the conflicting blocks and allow validators to *slash* the malicious validator’s stake, and (2) delays, which cause another validator to produce the block instead.
+While the explanation above only covers the optimistic case, the protocol remains secure under the assumption of at most ⅓ of the validator list being Byzantine actors. These actors, however, can temporarily slow the chain and put block production into the more conservative mode. Byzantine actors can mainly trigger two mechanisms: (1) forks, which cause the next block producer to pick one of the conflicting blocks and allow validators to _slash_ the malicious validator’s stake, and (2) delays, which cause another validator to produce the block instead.
 
 A more detailed explanation of these cases can be found in the [technical paper](https://arxiv.org/abs/1903.01589).
 

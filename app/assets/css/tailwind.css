@@ -1,0 +1,1135 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* ==========================================================================
+   Custom Variants
+   hocus: (hover + focus), group-hocus:, and motion variants
+   ========================================================================== */
+
+/* hocus: applies styles on hover OR focus */
+@custom-variant hocus (&:hover, &:focus);
+
+/* group-hocus: applies when parent .group is hovered OR focused */
+@custom-variant group-hocus (.group:hover &, .group:focus &);
+
+/* Motion variants for accessibility */
+@custom-variant motion-safe (@media (prefers-reduced-motion: no-preference));
+@custom-variant motion-reduce (@media (prefers-reduced-motion: reduce));
+
+/*
+ * Nimiq Typography & Color System
+ * Fonts: Mulish (sans), Fira Code (mono), Press Start 2P (retro)
+ * Colors use OKLCH format with light-dark() for automatic dark mode support
+ */
+@theme {
+  /* ==========================================================================
+     Font Families
+     ========================================================================== */
+  --font-sans: 'Mulish', 'Mulish Fallback: Arial', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Fira Code', 'Fira Code Fallback: Arial', ui-monospace, monospace;
+  --font-retro: 'Press Start 2P', 'Press Start 2P Fallback: Arial', monospace;
+
+  /* Nimiq font aliases (for compatibility with nimiq-css) */
+  --nq-font-sans: var(--font-sans);
+  --nq-font-mono: var(--font-mono);
+  --nq-font-retro: var(--font-retro);
+  --nq-font-family: var(--font-sans);
+
+  /* ==========================================================================
+     Font Sizes (matching nimiq-css scale)
+     ========================================================================== */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+  --text-6xl: 3.75rem; /* 60px */
+
+  /* ==========================================================================
+     Colors
+     ========================================================================== */
+  /* Base colors (non-adaptive) */
+  --color-white: oklch(1 0 90);
+  --color-darkblue: oklch(0.2737 0.068 276.29);
+  --color-darkerblue: oklch(0.2182 0.0371 280.55);
+
+  /* Neutral palette */
+  --color-neutral-0: light-dark(oklch(1 0 90), oklch(0.2737 0.068 276.29));
+  --color-neutral-50: light-dark(oklch(0.9881 0 89.88), oklch(0.2388 0.0344 281));
+  --color-neutral-100: light-dark(oklch(0.9791 0 89.88), oklch(0.2472 0.0341 281.14));
+  --color-neutral-200: light-dark(oklch(0.9677 0.0027 286.35), oklch(0.2679 0.0334 281.42));
+  --color-neutral-300: light-dark(oklch(0.95 0.004 286.32), oklch(0.2842 0.033 281.61));
+  --color-neutral-400: light-dark(oklch(0.9203 0.0067 286.27), oklch(0.3117 0.0304 281.85));
+  --color-neutral-500: light-dark(oklch(0.8681 0.0096 279.67), oklch(0.3991 0.0252 282.18));
+  --color-neutral-600: light-dark(oklch(0.8347 0.0125 281.04), oklch(0.4429 0.0229 282.19));
+  --color-neutral-700: light-dark(oklch(0.6613 0.0281 280.83), oklch(0.64 0.0148 285.97));
+  --color-neutral-800: light-dark(oklch(0.5889 0.0335 281.21), oklch(0.7168 0.0101 279.62));
+  --color-neutral-900: light-dark(oklch(0.4374 0.0495 279.71), oklch(0.8619 0.0055 286.28));
+  --color-neutral-1100: light-dark(oklch(1 0 90), oklch(0.2185 0.0213 246.2));
+  --color-neutral: light-dark(oklch(0.2737 0.068 276.29), oklch(1 0 90));
+
+  /* Blue palette */
+  --color-blue-400: light-dark(oklch(0.9545 0.0167 236.69), oklch(0.2716 0.0521 257.92));
+  --color-blue-500: light-dark(oklch(0.9109 0.0327 232.24), oklch(0.3193 0.0701 251.54));
+  --color-blue-600: light-dark(oklch(0.8885 0.0428 231.75), oklch(0.3477 0.0771 249.07));
+  --color-blue-1100: light-dark(oklch(0.481 0.1164 243.72), oklch(0.6982 0.1694 243.83));
+  --color-blue: light-dark(oklch(0.5849 0.1438 244.29), oklch(0.6982 0.1694 243.83));
+
+  /* Green palette */
+  --color-green-400: light-dark(oklch(0.9637 0.017 187.9), oklch(0.2764 0.0331 242.34));
+  --color-green-500: light-dark(oklch(0.9307 0.034 185.2), oklch(0.333 0.0416 210.14));
+  --color-green-600: light-dark(oklch(0.9154 0.0432 185.62), oklch(0.3622 0.0475 203.62));
+  --color-green-1100: light-dark(oklch(0.5564 0.0992 178.59), oklch(0.755 0.1426 170.23));
+  --color-green: light-dark(oklch(0.6932 0.1245 178.48), oklch(0.755 0.1426 170.23));
+
+  /* Orange palette */
+  --color-orange-400: light-dark(oklch(0.951 0.0221 74.1), oklch(0.2755 0.014 3.07));
+  --color-orange-500: light-dark(oklch(0.9396 0.0436 71.7), oklch(0.3344 0.0381 61.07));
+  --color-orange-600: light-dark(oklch(0.9251 0.0549 71.49), oklch(0.3634 0.0513 63.86));
+  --color-orange-1100: light-dark(oklch(0.6769 0.1633 57), oklch(0.772 0.1738 64.55));
+  --color-orange: light-dark(oklch(0.7387 0.179 56.67), oklch(0.772 0.1738 64.55));
+
+  /* Red palette */
+  --color-red-400: light-dark(oklch(0.9544 0.0166 26.65), oklch(0.2655 0.0357 328.64));
+  --color-red-500: light-dark(oklch(0.9112 0.0328 27.11), oklch(0.3103 0.0508 358.44));
+  --color-red-600: light-dark(oklch(0.8878 0.0422 25.25), oklch(0.3368 0.0603 6.45));
+  --color-red-1100: light-dark(oklch(0.515 0.1713 30.54), oklch(0.6881 0.2018 30.03));
+  --color-red: light-dark(oklch(0.598 0.1886 30.3), oklch(0.6881 0.2018 30.03));
+
+  /* Gold palette */
+  --color-gold-400: light-dark(oklch(0.9765 0.022 89.79), oklch(0.2916 0.009 340.92));
+  --color-gold-500: light-dark(oklch(0.9556 0.0434 91.27), oklch(0.3564 0.0252 69.32));
+  --color-gold-600: light-dark(oklch(0.9434 0.0539 92.15), oklch(0.3918 0.0369 76.19));
+  --color-gold-1100: light-dark(oklch(0.6642 0.1329 85.55), oklch(0.8517 0.1579 83.77));
+  --color-gold: light-dark(oklch(0.7924 0.1593 85.61), oklch(0.8517 0.1579 83.77));
+
+  /* Purple palette */
+  --color-purple-400: light-dark(oklch(0.9494 0.0083 301.35), oklch(0.2524 0.0591 291.66));
+  --color-purple-500: light-dark(oklch(0.8984 0.0181 300.04), oklch(0.2869 0.0801 296.38));
+  --color-purple-600: light-dark(oklch(0.8725 0.0224 300.16), oklch(0.3037 0.0894 298.08));
+  --color-purple-1100: light-dark(oklch(0.3841 0.0825 296.42), oklch(0.5483 0.2189 304.41));
+  --color-purple: light-dark(oklch(0.4629 0.1027 296.59), oklch(0.5483 0.2189 304.41));
+
+  /* Easing */
+  --nq-ease: cubic-bezier(0.25, 0, 0, 1);
+
+  /* Shadow */
+  --nq-shadow: 0 1.125rem 2.25rem rgba(0, 0, 0, 0.07);
+}
+
+/* Gradient variables for pills and hoverables */
+:root {
+  /* Blue gradients */
+  --color-blue-gradient-from: oklch(0.5849 0.1438 244.29);
+  --color-blue-gradient-to: oklch(0.481 0.1164 243.72);
+  --color-blue-gradient-darkened-from: oklch(0.53 0.13 244.29);
+  --color-blue-gradient-darkened-to: oklch(0.43 0.11 243.72);
+
+  /* Green gradients */
+  --color-green-gradient-from: oklch(0.6932 0.1245 178.48);
+  --color-green-gradient-to: oklch(0.5564 0.0992 178.59);
+  --color-green-gradient-darkened-from: oklch(0.64 0.12 178.48);
+  --color-green-gradient-darkened-to: oklch(0.51 0.09 178.59);
+
+  /* Orange gradients */
+  --color-orange-gradient-from: oklch(0.7387 0.179 56.67);
+  --color-orange-gradient-to: oklch(0.6769 0.1633 57);
+  --color-orange-gradient-darkened-from: oklch(0.69 0.17 56.67);
+  --color-orange-gradient-darkened-to: oklch(0.63 0.15 57);
+
+  /* Red gradients */
+  --color-red-gradient-from: oklch(0.598 0.1886 30.3);
+  --color-red-gradient-to: oklch(0.515 0.1713 30.54);
+  --color-red-gradient-darkened-from: oklch(0.55 0.17 30.3);
+  --color-red-gradient-darkened-to: oklch(0.47 0.16 30.54);
+
+  /* Gold gradients */
+  --color-gold-gradient-from: oklch(0.7924 0.1593 85.61);
+  --color-gold-gradient-to: oklch(0.6642 0.1329 85.55);
+  --color-gold-gradient-darkened-from: oklch(0.74 0.15 85.61);
+  --color-gold-gradient-darkened-to: oklch(0.61 0.12 85.55);
+}
+
+/* ==========================================================================
+   Nimiq Component Utilities
+   ========================================================================== */
+
+@layer components {
+  /* --------------------------------------------------------------------------
+     nq-label - Uppercase label text
+     -------------------------------------------------------------------------- */
+  .nq-label {
+    text-transform: uppercase;
+    letter-spacing: 0.17em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-neutral-800);
+  }
+
+  :where([data-inverted] *) .nq-label {
+    color: color-mix(in oklch, var(--color-neutral-0) 80%, transparent);
+  }
+
+  :where(.dark, [data-theme='dark']) .nq-label {
+    color: color-mix(in oklch, var(--color-white) 70%, transparent);
+  }
+
+  /* --------------------------------------------------------------------------
+     nq-arrow - Arrow indicator after links
+     -------------------------------------------------------------------------- */
+  .nq-arrow::after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    mask: var(--nq-icon) no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    color: inherit;
+    margin-left: 0.4em;
+    transition: transform 100ms ease-out;
+    width: 0.7em;
+    height: 0.7em;
+    --nq-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=');
+  }
+
+  /* External links: arrow rotated 135deg */
+  a[href^='http'] .nq-arrow::after,
+  .nq-arrow[href^='http']::after {
+    margin-bottom: 1px;
+    rotate: 0.375turn;
+  }
+
+  /* Internal links: arrow rotated 180deg */
+  a:where(:not([href^='http'])) .nq-arrow::after,
+  .nq-arrow:where(:not([href^='http']))::after {
+    margin-bottom: 1px;
+    rotate: 0.5turn;
+  }
+
+  .nq-arrow:hover::after,
+  a:hover .nq-arrow::after {
+    transform: translateX(-0.25em);
+  }
+
+  /* --------------------------------------------------------------------------
+     nq-arrow-back - Arrow indicator before links (back navigation)
+     -------------------------------------------------------------------------- */
+  .nq-arrow-back::before {
+    content: '';
+    position: relative;
+    display: inline-block;
+    mask: var(--nq-icon) no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    color: inherit;
+    transition: transform 100ms ease-out;
+    width: 0.7em;
+    height: 0.7em;
+    --nq-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMTIgMTIiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQuNjY2IDEwIDEgNmwzLjY2Ny00TTIuNjE5IDZIMTEiLz48L3N2Zz4=');
+    margin-right: 0.4em;
+    margin-bottom: 1px;
+  }
+
+  .nq-arrow-back:hover::before,
+  a:hover .nq-arrow-back::before {
+    transform: translateX(-0.25em);
+  }
+
+  /* --------------------------------------------------------------------------
+     nq-pill - Pill-shaped buttons/badges
+     -------------------------------------------------------------------------- */
+  .nq-pill,
+  .nq-pill-lg,
+  .nq-pill-xl,
+  .nq-pill-blue,
+  .nq-pill-white,
+  .nq-pill-gold,
+  .nq-pill-green,
+  .nq-pill-orange,
+  .nq-pill-red,
+  .nq-pill-secondary,
+  .nq-pill-tertiary {
+    position: relative;
+    font-weight: bold;
+    font-size: 0.875rem;
+    padding: 0.1875rem 0.8125rem;
+    border: none;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.125rem;
+    line-height: 1.5;
+    height: max-content;
+    width: max-content;
+    text-decoration: none;
+    color: white;
+    outline: none;
+    background-image: radial-gradient(at 100% 100% in oklab, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
+    --nq-gradient-from: var(--color-blue-gradient-from);
+    --nq-gradient-to: var(--color-blue-gradient-to);
+    transition:
+      --nq-gradient-from 200ms var(--nq-ease),
+      --nq-gradient-to 200ms var(--nq-ease);
+  }
+
+  .nq-pill:where([disabled]),
+  .nq-pill-lg:where([disabled]),
+  .nq-pill-xl:where([disabled]),
+  .nq-pill-blue:where([disabled]),
+  .nq-pill-white:where([disabled]),
+  .nq-pill-gold:where([disabled]),
+  .nq-pill-green:where([disabled]),
+  .nq-pill-orange:where([disabled]),
+  .nq-pill-red:where([disabled]),
+  .nq-pill-secondary:where([disabled]),
+  .nq-pill-tertiary:where([disabled]) {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .nq-pill:focus-visible,
+  .nq-pill-lg:focus-visible,
+  .nq-pill-xl:focus-visible,
+  .nq-pill-blue:focus-visible,
+  .nq-pill-white:focus-visible,
+  .nq-pill-gold:focus-visible,
+  .nq-pill-green:focus-visible,
+  .nq-pill-orange:focus-visible,
+  .nq-pill-red:focus-visible,
+  .nq-pill-secondary:focus-visible,
+  .nq-pill-tertiary:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+  }
+
+  /* nq-pill-lg */
+  .nq-pill-lg {
+    font-size: 1rem;
+    padding: 0.3125rem 1rem;
+  }
+
+  /* nq-pill-xl */
+  .nq-pill-xl {
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition:
+      transform 450ms var(--nq-ease),
+      box-shadow 450ms var(--nq-ease),
+      background-color 250ms var(--nq-ease),
+      --nq-gradient-from 200ms var(--nq-ease),
+      --nq-gradient-to 200ms var(--nq-ease);
+    will-change: box-shadow;
+    text-transform: uppercase;
+    letter-spacing: 0.094em;
+    min-width: 12.5rem;
+    flex: 1;
+    padding: 1.25rem 2rem;
+    line-height: 1.25rem;
+    font-size: 1rem;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    margin: 1rem;
+  }
+
+  .nq-pill-xl:where(:hover, :focus) {
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.2);
+    transform: translate3D(0, -2px, 0);
+  }
+
+  .nq-pill-xl:active {
+    outline: none;
+    box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
+    transform: translate3D(0, 1px, 0);
+    transition:
+      transform 200ms cubic-bezier(0.41, 0.34, 0.26, 1.55),
+      box-shadow 200ms cubic-bezier(0.41, 0.34, 0.26, 1.55),
+      background-color 200ms var(--nq-ease),
+      --nq-gradient-from 200ms var(--nq-ease),
+      --nq-gradient-to 200ms var(--nq-ease);
+  }
+
+  /* nq-pill-blue */
+  .nq-pill-blue {
+    --nq-gradient-from: var(--color-blue-gradient-from);
+    --nq-gradient-to: var(--color-blue-gradient-to);
+  }
+
+  .nq-pill-blue:hover,
+  .nq-pill-blue:focus-visible {
+    --nq-gradient-from: var(--color-blue-gradient-darkened-from);
+    --nq-gradient-to: var(--color-blue-gradient-darkened-to);
+  }
+
+  /* nq-pill-white */
+  .nq-pill-white {
+    background: var(--color-white);
+    background-image: none;
+    color: var(--color-blue);
+    transition: background 200ms var(--nq-ease);
+  }
+
+  .nq-pill-white:hover,
+  .nq-pill-white:focus-visible {
+    background: #fafafa;
+  }
+
+  /* nq-pill-green */
+  .nq-pill-green {
+    --nq-gradient-from: var(--color-green-gradient-from);
+    --nq-gradient-to: var(--color-green-gradient-to);
+  }
+
+  .nq-pill-green:hover,
+  .nq-pill-green:focus-visible {
+    --nq-gradient-from: var(--color-green-gradient-darkened-from);
+    --nq-gradient-to: var(--color-green-gradient-darkened-to);
+  }
+
+  /* nq-pill-red */
+  .nq-pill-red {
+    --nq-gradient-from: var(--color-red-gradient-from);
+    --nq-gradient-to: var(--color-red-gradient-to);
+  }
+
+  .nq-pill-red:hover,
+  .nq-pill-red:focus-visible {
+    --nq-gradient-from: var(--color-red-gradient-darkened-from);
+    --nq-gradient-to: var(--color-red-gradient-darkened-to);
+  }
+
+  /* nq-pill-gold */
+  .nq-pill-gold {
+    --nq-gradient-from: var(--color-gold-gradient-from);
+    --nq-gradient-to: var(--color-gold-gradient-to);
+  }
+
+  .nq-pill-gold:hover,
+  .nq-pill-gold:focus-visible {
+    --nq-gradient-from: var(--color-gold-gradient-darkened-from);
+    --nq-gradient-to: var(--color-gold-gradient-darkened-to);
+  }
+
+  /* nq-pill-orange */
+  .nq-pill-orange {
+    --nq-gradient-from: var(--color-orange-gradient-from);
+    --nq-gradient-to: var(--color-orange-gradient-to);
+  }
+
+  .nq-pill-orange:hover,
+  .nq-pill-orange:focus-visible {
+    --nq-gradient-from: var(--color-orange-gradient-darkened-from);
+    --nq-gradient-to: var(--color-orange-gradient-darkened-to);
+  }
+
+  /* nq-pill-secondary */
+  .nq-pill-secondary {
+    background: var(--color-neutral-400);
+    background-image: none;
+    color: var(--color-neutral);
+    transition: background 200ms ease-in-out;
+  }
+
+  .nq-pill-secondary:hover,
+  .nq-pill-secondary:focus-visible {
+    background: var(--color-neutral-500);
+  }
+
+  :where(.dark, [data-theme='dark'], .bg-darkblue, .bg-neutral, .bg-darkerblue) .nq-pill-secondary {
+    background: color-mix(in oklch, var(--color-white) 10%, transparent);
+  }
+
+  :where(.dark, [data-theme='dark'], .bg-darkblue, .bg-neutral, .bg-darkerblue) .nq-pill-secondary:hover,
+  :where(.dark, [data-theme='dark'], .bg-darkblue, .bg-neutral, .bg-darkerblue) .nq-pill-secondary:focus-visible {
+    background: color-mix(in oklch, var(--color-white) 20%, transparent);
+  }
+
+  /* nq-pill-tertiary */
+  .nq-pill-tertiary {
+    outline: 1.5px solid var(--color-neutral-500);
+    color: var(--color-neutral);
+    background: var(--color-neutral-0);
+    background-image: none;
+  }
+
+  .nq-pill-tertiary:hover {
+    background: var(--color-neutral-50);
+    outline-color: var(--color-neutral-600);
+  }
+
+  :where(.dark, [data-theme='dark']) .nq-pill-tertiary:hover {
+    background: var(--color-neutral-200);
+  }
+
+  /* --------------------------------------------------------------------------
+     nq-card - Card containers
+     -------------------------------------------------------------------------- */
+  .nq-card {
+    background-color: var(--color-neutral-50);
+    color: var(--color-neutral);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    outline: 1.5px solid color-mix(in oklch, var(--color-neutral) 4%, transparent);
+    outline-offset: -1.5px;
+    padding: 1.5rem;
+  }
+
+  .nq-card-lg {
+    max-width: 37.5rem;
+    background: var(--color-neutral-0);
+    color: var(--color-neutral);
+    border-radius: 0.625rem;
+    box-shadow: var(--nq-shadow);
+    outline: 1.5px solid color-mix(in oklch, var(--color-neutral) 6%, transparent);
+    outline-offset: -1.5px;
+    margin: 1rem 0.5rem;
+  }
+
+  @media screen and (min-width: 450px) {
+    .nq-card-lg {
+      margin: 1rem;
+    }
+  }
+
+  .nq-card-lg header {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 450px) {
+    .nq-card-lg header {
+      padding: 2rem;
+    }
+  }
+
+  .nq-card-lg header h1,
+  .nq-card-lg header h2 {
+    margin: 0;
+  }
+
+  .nq-card-lg header .nq-notice {
+    margin: 1.5rem 0 0;
+  }
+
+  .nq-card-lg section {
+    padding: 1.5rem;
+  }
+
+  @media screen and (min-width: 450px) {
+    .nq-card-lg section {
+      padding: 2rem;
+    }
+  }
+
+  .nq-card-lg header + section {
+    padding-top: 0.5rem;
+  }
+
+  .nq-card-lg section > *:first-child {
+    margin-top: 0;
+  }
+
+  .nq-card-lg section > *:last-child {
+    margin-bottom: 0;
+  }
+
+  .nq-card-lg footer {
+    padding: 0.5rem;
+  }
+
+  .nq-card-lg section + footer {
+    padding-top: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     nq-hoverable - Hoverable cards with gradient backgrounds
+     -------------------------------------------------------------------------- */
+  .nq-hoverable,
+  .nq-hoverable-blue,
+  .nq-hoverable-green,
+  .nq-hoverable-orange,
+  .nq-hoverable-red,
+  .nq-hoverable-gold {
+    --nq-gradient-from: var(--color-neutral-300);
+    --nq-gradient-to: color-mix(in oklch, var(--color-neutral-300) 65%, transparent);
+    background-image: radial-gradient(at 100% 100% in oklab, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
+    color: var(--color-neutral);
+    border-radius: 0.5rem;
+    outline: 1.5px solid color-mix(in oklch, var(--color-neutral) 4%, transparent);
+    outline-offset: -1.5px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition:
+      --nq-gradient-from 300ms var(--nq-ease),
+      --nq-gradient-to 300ms var(--nq-ease),
+      transform 200ms ease-out,
+      box-shadow 200ms ease-out,
+      color 200ms ease-out,
+      outline-color 200ms ease-out;
+  }
+
+  @media (hover: hover) {
+    .nq-hoverable:where(:hover, :focus-visible),
+    .nq-hoverable-blue:where(:hover, :focus-visible),
+    .nq-hoverable-green:where(:hover, :focus-visible),
+    .nq-hoverable-orange:where(:hover, :focus-visible),
+    .nq-hoverable-red:where(:hover, :focus-visible),
+    .nq-hoverable-gold:where(:hover, :focus-visible) {
+      --nq-gradient-from: var(--color-white);
+      --nq-gradient-to: var(--color-white);
+      color: var(--hoverable-text, var(--color-darkblue));
+      box-shadow: var(--nq-shadow);
+      outline-color: color-mix(in oklch, var(--color-neutral) 2%, transparent);
+      transform: translateY(-0.375rem);
+    }
+
+    .nq-hoverable > *,
+    .nq-hoverable-blue > *,
+    .nq-hoverable-green > *,
+    .nq-hoverable-orange > *,
+    .nq-hoverable-red > *,
+    .nq-hoverable-gold > * {
+      z-index: 1;
+    }
+  }
+
+  /* nq-hoverable-blue */
+  .nq-hoverable-blue {
+    --nq-gradient-from: var(--color-blue-gradient-from);
+    --nq-gradient-to: var(--color-blue-gradient-to);
+    color: white;
+  }
+
+  @media (hover: hover) {
+    .nq-hoverable-blue:hover,
+    .nq-hoverable-blue:focus-visible {
+      --nq-gradient-from: var(--color-blue-gradient-darkened-from);
+      --nq-gradient-to: var(--color-blue-gradient-darkened-to);
+      --hoverable-text: var(--color-white);
+    }
+  }
+
+  /* nq-hoverable-green */
+  .nq-hoverable-green {
+    --nq-gradient-from: var(--color-green-gradient-from);
+    --nq-gradient-to: var(--color-green-gradient-to);
+    color: white;
+  }
+
+  @media (hover: hover) {
+    .nq-hoverable-green:hover,
+    .nq-hoverable-green:focus-visible {
+      --nq-gradient-from: var(--color-green-gradient-darkened-from);
+      --nq-gradient-to: var(--color-green-gradient-darkened-to);
+      --hoverable-text: var(--color-white);
+    }
+  }
+
+  /* nq-hoverable-orange */
+  .nq-hoverable-orange {
+    --nq-gradient-from: var(--color-orange-gradient-from);
+    --nq-gradient-to: var(--color-orange-gradient-to);
+    color: white;
+  }
+
+  @media (hover: hover) {
+    .nq-hoverable-orange:hover,
+    .nq-hoverable-orange:focus-visible {
+      --nq-gradient-from: var(--color-orange-gradient-darkened-from);
+      --nq-gradient-to: var(--color-orange-gradient-darkened-to);
+      --hoverable-text: var(--color-white);
+    }
+  }
+
+  /* nq-hoverable-red */
+  .nq-hoverable-red {
+    --nq-gradient-from: var(--color-red-gradient-from);
+    --nq-gradient-to: var(--color-red-gradient-to);
+    color: white;
+  }
+
+  @media (hover: hover) {
+    .nq-hoverable-red:hover,
+    .nq-hoverable-red:focus-visible {
+      --nq-gradient-from: var(--color-red-gradient-darkened-from);
+      --nq-gradient-to: var(--color-red-gradient-darkened-to);
+      --hoverable-text: var(--color-white);
+    }
+  }
+
+  /* nq-hoverable-gold */
+  .nq-hoverable-gold {
+    --nq-gradient-from: var(--color-gold-gradient-from);
+    --nq-gradient-to: var(--color-gold-gradient-to);
+    color: white;
+  }
+
+  @media (hover: hover) {
+    .nq-hoverable-gold:hover,
+    .nq-hoverable-gold:focus-visible {
+      --nq-gradient-from: var(--color-gold-gradient-darkened-from);
+      --nq-gradient-to: var(--color-gold-gradient-darkened-to);
+      --hoverable-text: var(--color-white);
+    }
+  }
+
+  /* nq-hoverable-cta - Call-to-action text that appears on hover */
+  .nq-hoverable-cta {
+    transform-style: preserve-3d;
+    position: relative;
+  }
+
+  .nq-hoverable-cta::after {
+    width: 100%;
+    content: var(--nq-content, 'Learn more');
+    font-size: clamp(0.75rem, 0.75rem + (1 - 0.75) * var(--fluid-bp, 0.5), 1rem);
+    white-space: nowrap;
+    background-color: transparent;
+    font-weight: bold;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--color-blue);
+    position: absolute;
+    bottom: -1lh;
+    opacity: 0;
+    transition:
+      opacity 150ms ease-out,
+      bottom 150ms ease-out,
+      background-color 200ms var(--nq-ease);
+  }
+
+  :where(
+      .nq-hoverable,
+      .nq-hoverable-blue,
+      .nq-hoverable-green,
+      .nq-hoverable-orange,
+      .nq-hoverable-red,
+      .nq-hoverable-gold
+    ):where(:hover, :focus-visible)
+    .nq-hoverable-cta::after {
+    background-color: var(--color-white);
+    opacity: 1;
+    bottom: 0;
+  }
+}
+
+/* ==========================================================================
+   Nimiq Prose Styling (nq-prose)
+   Fluid typography with responsive font sizes matching nimiq-css
+   ========================================================================== */
+
+/* Fluid typography variables */
+:root {
+  --unit: 16px;
+  --nq-screen-width-min-em: 23.4375;
+  --nq-screen-width-max-em: 72;
+  --f-screen-range-em: calc(var(--nq-screen-width-max-em) - var(--nq-screen-width-min-em));
+  --nq-prose-max-width: 780px;
+}
+
+@layer components {
+  /* --------------------------------------------------------------------------
+     nq-prose - Rich text content styling
+     -------------------------------------------------------------------------- */
+  .nq-prose,
+  .nq-prose-compact,
+  [nq-prose],
+  [nq-prose-compact] {
+    font-size: 16px;
+  }
+
+  /* Padding for non-compact prose */
+  :is(.nq-prose, [nq-prose]):not(:where(.nq-prose-compact, [nq-prose-compact]))
+    > :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  :is(.nq-prose, [nq-prose]):not(:where(.nq-prose-compact, [nq-prose-compact]))
+    > :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):last-child {
+    padding-bottom: 6rem;
+  }
+
+  @media (min-width: 1153px) {
+    :is(.nq-prose, [nq-prose]):not(:where(.nq-prose-compact, [nq-prose-compact]))
+      > :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):last-child {
+      padding-bottom: 8rem;
+    }
+  }
+
+  /* Fluid font sizing */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact]) * {
+    --f-factor: calc((100vw - var(--unit) * var(--nq-screen-width-min-em)) / var(--f-screen-range-em));
+    --nq-m-range: calc(var(--margin-max-em, 1) - var(--margin-min-em, 0.5));
+    --nq-m-fluid: calc(var(--unit) * var(--margin-min-em, 0.5) + var(--nq-m-range) * var(--f-factor));
+    --nq-m-size: clamp(
+      calc(var(--unit) * var(--margin-min-em, 0.5)),
+      var(--nq-m-fluid),
+      calc(var(--margin-max-em, 1) * var(--unit))
+    );
+    --font-size-range: calc(var(--font-size-max-em, 1) - var(--font-size-min-em, 0.9));
+    --font-size-fluid: calc(var(--unit) * var(--font-size-min-em, 0.9) + var(--font-size-range) * var(--f-factor));
+    --font-size: clamp(
+      calc(var(--unit) * var(--font-size-min-em, 0.9)),
+      var(--font-size-fluid),
+      calc(var(--unit) * var(--font-size-max-em, 1))
+    );
+    font-size: var(--font-size);
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact]) > :first-child {
+    margin-top: 0;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact]) > :last-child {
+    margin-bottom: 0;
+  }
+
+  /* Base prose element styling */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)) {
+    font-family: var(--nq-font-sans, 'Mulish');
+    line-height: 1.5;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--nq-prose-max-width, 780px);
+  }
+
+  /* Headings */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1) {
+    --font-size-min-em: 2.75;
+    --font-size-max-em: 3;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(
+      h1 + :not(:where(h1, h2, h3, h4))
+    ) {
+    --margin-min-em: 7;
+    --margin-max-em: 7.5;
+    margin-top: var(--nq-m-size);
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h2) {
+    --font-size-min-em: 2;
+    --font-size-max-em: 2.375;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    margin-top: var(--nq-m-size);
+    --margin-min-em: 5.5;
+    --margin-max-em: 6;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h2):where(h1 + h2) {
+    --margin-min-em: 2.5;
+    --margin-max-em: 3;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h3) {
+    --font-size-min-em: 1.625;
+    --font-size-max-em: 1.875;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    margin-top: var(--nq-m-size);
+    --margin-min-em: 5.5;
+    --margin-max-em: 6;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h3):where(h2 + h3) {
+    --margin-min-em: 2;
+    --margin-max-em: 2.25;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h4) {
+    --font-size-min-em: 1.375;
+    --font-size-max-em: 1.625;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 24px;
+    margin-top: var(--nq-m-size);
+    --margin-min-em: 5.5;
+    --margin-max-em: 6;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h3 + h4) {
+    --margin-min-em: 2;
+    --margin-max-em: 2.25;
+  }
+
+  /* Heading anchor links */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id] {
+    color: var(--color-neutral);
+    margin-left: -1.25rem;
+    min-height: 1em;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: relative;
+    width: 100%;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6
+    )[id]::after {
+    content: '#';
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition: 50ms opacity var(--nq-ease, ease-in-out);
+    z-index: 1;
+  }
+
+  @media (min-width: 769px) {
+    :where(
+        :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+          :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id],
+        :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+          :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6
+          )[id]::after
+      ):hover::after {
+      opacity: 0.5;
+    }
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id]:has(
+      a:focus-visible
+    ) {
+    outline: 0.125rem solid var(--color-blue);
+    outline-offset: 0.125rem;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id]
+    > a {
+    color: var(--color-neutral);
+    font-size: inherit;
+    font-weight: inherit;
+    inset: -6px 0 0;
+    padding-left: 20px;
+    position: absolute;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(h1, h2, h3, h4, h5, h6)[id]
+    > a::after {
+    inset: 0;
+    position: absolute;
+  }
+
+  /* Paragraphs */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(p) {
+    line-height: 1.5;
+    margin-bottom: 0;
+    margin-top: 0;
+    --font-size-min-em: 0.9;
+    --font-size-max-em: 1;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(p)
+    + p {
+    margin-top: 16px;
+  }
+
+  /* Figcaption */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(figure)
+    figcaption {
+    color: var(--color-neutral-700);
+    --font-size-min-em: 0.75;
+    --font-size-max-em: 0.875;
+    font-weight: 700;
+    line-height: 1.3125;
+  }
+
+  :where(.dark, [data-theme='dark'])
+    :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(figure)
+    figcaption {
+    color: color-mix(in oklch, var(--color-white) 80%, transparent);
+  }
+
+  /* Blockquote */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(blockquote) {
+    background: var(--color-green-400);
+    --margin-min-em: 0.875;
+    --margin-max-em: 1;
+    border-radius: 6px;
+    box-shadow: 0 0 0 1.5px var(--color-green-600);
+    font-weight: 600;
+    padding: var(--nq-m-size);
+    transform: translateX(-8px);
+    width: calc(100% + 16px);
+    --font-size-min-em: 0.75;
+    --font-size-max-em: 0.875;
+  }
+
+  /* Images and media */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(img, video, iframe) {
+    border-radius: 6px;
+    --margin-min-em: 1.125;
+    --margin-max-em: 1.375;
+    margin-top: var(--nq-m-size);
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(img, video, iframe):has(
+      + figcaption
+    ) {
+    --margin-min-em: 0.75;
+    --margin-max-em: 1;
+    margin-bottom: var(--nq-m-size);
+  }
+
+  /* Links */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(a) {
+    color: var(--color-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 150ms ease;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(a):hover {
+    color: var(--color-blue-1100);
+  }
+
+  /* Lists */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(ul, ol) {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding-left: 1.5em;
+    --font-size-min-em: 0.9;
+    --font-size-max-em: 1;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(li) {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(ul) {
+    list-style-type: disc;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(ol) {
+    list-style-type: decimal;
+  }
+
+  /* Code */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(code) {
+    font-family: var(--nq-font-mono);
+    font-size: 0.875em;
+    background: var(--color-neutral-200);
+    padding: 0.125em 0.375em;
+    border-radius: 4px;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(pre) {
+    font-family: var(--nq-font-mono);
+    font-size: 0.875em;
+    background: var(--color-neutral-100);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(pre)
+    code {
+    background: transparent;
+    padding: 0;
+  }
+
+  /* Tables */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    --font-size-min-em: 0.875;
+    --font-size-max-em: 1;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(th, td) {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-neutral-300);
+    text-align: left;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(th) {
+    font-weight: 700;
+    background: var(--color-neutral-100);
+  }
+
+  /* Horizontal rule */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(hr) {
+    border: none;
+    border-top: 1px solid var(--color-neutral-400);
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
+  /* Fix for heading links in prose */
+  [nq-prose] h3 a {
+    --font-size-min-em: 1;
+    --font-size-max-em: 1;
+    font-weight: inherit;
+  }
+}

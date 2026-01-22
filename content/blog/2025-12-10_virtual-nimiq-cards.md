@@ -20,7 +20,7 @@ The Nimiq team is pleased to announce the completion of the next milestone for s
 
 [![Demo: Pay with NAKA Card in Nimiq Pay ](/assets/images/prismic/aTbQSnNYClf9n7CT_Bildschirmfoto2025-12-08um14.17.28.png)](https://youtu.be/o9eCdi3imyQ)
 
-Starting today, Android users from, and within, the countries surrounding the current NAKA hotspots* can activate a self-custodial Nimiq Card directly in the app after a short verification process. For now, the virtual card is primarily useful for users living in or frequently traveling to Switzerland and El Salvador, where the NAKA Payment Network is already active at select merchant locations.
+Starting today, Android users from, and within, the countries surrounding the current NAKA hotspots\* can activate a self-custodial Nimiq Card directly in the app after a short verification process. For now, the virtual card is primarily useful for users living in or frequently traveling to Switzerland and El Salvador, where the NAKA Payment Network is already active at select merchant locations.
 
 ## 🎥 Testing NAKA Card payments in Lugano
 
@@ -52,7 +52,7 @@ As payments evolved, it became clear that true scalability would come from build
 
 When the Nimiq team first tested the NAKA Card in Lugano in 2024, the experience confirmed what both projects had believed all along: this was the right direction for real-world crypto adoption. Today, Nimiq and NAKA continue to build on this shared foundation, combining NAKA’s decentralized card payment network with Nimiq’s self-custodial technology to make crypto payments as seamless and accessible as traditional ones. It’s a partnership built not only on shared technology, but on a shared belief in freedom, self-custody, simplicity, and long-term impact.
 
-*“With the NIM-powered payment card, Nimiq didn’t just ship a feature, they showed what user-owned money looks like when it finally reaches everyday life. No buzzwords, no theory, just tap and go. This is the direction we believed in from day one of our collaboration nearly three years ago. Today feels big, but it’s nowhere near the ceiling.’’*
+_“With the NIM-powered payment card, Nimiq didn’t just ship a feature, they showed what user-owned money looks like when it finally reaches everyday life. No buzzwords, no theory, just tap and go. This is the direction we believed in from day one of our collaboration nearly three years ago. Today feels big, but it’s nowhere near the ceiling.’’_
 
 **Dejan Roljic**, CEO & Founder of NAKA
 
@@ -64,7 +64,7 @@ The Nimiq Card is currently supported on all compatible Android devices and will
 
 Together with NAKA, we’re working to increase the number of acceptance points for NIM, helping our users experience self-custodial NIM payments in everyday life. Nimiq aims to make NIM spendable across an expanding set of acceptance networks. Priority regions include Latin America, supported by NAKA’s increasing infrastructure presence, and other markets outside Europe.
 
-*"NAKA's EMV compatibility enables us to integrate the NAKA Payment Network into our existing network of payment partners and acquirers. This allows NIM payments to be accepted across more payment networks and locations, making the virtual Nimiq NAKA Card usable in an even broader ecosystem."*
+_"NAKA's EMV compatibility enables us to integrate the NAKA Payment Network into our existing network of payment partners and acquirers. This allows NIM payments to be accepted across more payment networks and locations, making the virtual Nimiq NAKA Card usable in an even broader ecosystem."_
 
 **Max Burger**, Nimiq Ecosystem Development Lead
 
@@ -83,4 +83,4 @@ We’re excited for what’s ahead and look forward to empowering NIM holders ar
 Pura Vida,
 Team Nimiq
 
-*Switzerland, Austria, Germany, France, Italy, Liechtenstein, Monaco, El Salvador, Costa Rica, Nicaragua, Guatemala.
+\*Switzerland, Austria, Germany, France, Italy, Liechtenstein, Monaco, El Salvador, Costa Rica, Nicaragua, Guatemala.

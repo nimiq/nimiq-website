@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('newsletterPage').first()!
+const page = await usePage('newsletterPage')
 
 const title = page.seo?.title || page.hero?.title || 'Newsletter'
 const description = page.seo?.description || page.hero?.description
@@ -15,47 +15,47 @@ const selectedProducts = ref<string[]>([])
 <template>
   <NuxtLayout>
     <main>
-      <section nq-section-gap bg-neutral-100>
-        <div flex="~ col items-center" mx-auto text-center max-w-2xl>
-          <h1 nq-heading-lg>
+      <section class="nq-section-gap bg-neutral-100">
+        <div class="flex flex-col flex-items-center mx-auto text-center max-w-2xl">
+          <h1 class="nq-heading-lg">
             {{ page.hero.title }}
           </h1>
-          <p text="neutral-700 f-lg" mt-24 max-w-prose>
+          <p class="text-neutral-700 text-base md:text-lg mt-6 max-w-prose">
             {{ page.hero.description }}
           </p>
 
-          <form mt-48 text-left w-full @submit.prevent>
+          <form class="mt-12 text-left w-full" @submit.prevent>
             <!-- Email Field -->
-            <div mb-24>
-              <label for="email" font-semibold>{{ page.form.emailLabel }}</label>
-              <input id="email" v-model="email" type="email" required mt-8 w-full nq-input-box>
+            <div class="mb-6">
+              <label class="font-semibold" for="email">{{ page.form.emailLabel }}</label>
+              <input id="email" v-model="email" class="mt-2 w-full nq-input-box" type="email" required>
             </div>
 
             <!-- Communication Permission -->
-            <div mb-24>
-              <p font-semibold mb-8>
+            <div class="mb-6">
+              <p class="font-semibold mb-2">
                 {{ page.form.permissionTitle }}
               </p>
-              <p text="neutral-700 f-sm" mb-12>
+              <p class="text-neutral-700 text-xs md:text-sm mb-3">
                 {{ page.form.permissionDescription }}
               </p>
-              <label flex="~ gap-8" items-start>
-                <input v-model="permissionGranted" type="checkbox" required mt-4>
-                <span text="f-sm">Yes, I would like to subscribe to the free Nimiq.com newsletter and receive information tailored to my needs at the email address I have provided based on my registration data and newsletter preferences. I hereby accept the <a href="/privacy-policy" text-blue hover:underline>Privacy Policy.</a></span>
+              <label class="flex gap-2 items-start">
+                <input v-model="permissionGranted" class="mt-1" type="checkbox" required>
+                <span class="text-xs md:text-sm">Yes, I would like to subscribe to the free Nimiq.com newsletter and receive information tailored to my needs at the email address I have provided based on my registration data and newsletter preferences. I hereby accept the <a class="text-blue hover:underline" href="/privacy-policy">Privacy Policy.</a></span>
               </label>
             </div>
 
             <!-- Interests -->
-            <div mb-24>
-              <p font-semibold mb-8>
+            <div class="mb-6">
+              <p class="font-semibold mb-2">
                 {{ page.form.interestsTitle }}
               </p>
-              <p text="neutral-700 f-sm" mb-12>
+              <p class="text-neutral-700 text-xs md:text-sm mb-3">
                 {{ page.form.interestsDescription }}
               </p>
-              <div flex="~ wrap gap-x-16 gap-y-8">
+              <div class="flex flex-wrap gap-x-4 gap-y-2">
                 <template v-for="(interest, index) in page.form.interests" :key="interest">
-                  <label flex="~ gap-8" items-center>
+                  <label class="flex gap-2 items-center">
                     <input v-model="selectedInterests" type="checkbox" :value="interest">
                     <span>{{ interest }}</span>
                   </label>
@@ -65,13 +65,13 @@ const selectedProducts = ref<string[]>([])
             </div>
 
             <!-- Products -->
-            <div mb-24>
-              <p font-semibold mb-8>
+            <div class="mb-6">
+              <p class="font-semibold mb-2">
                 {{ page.form.productsTitle }}
               </p>
-              <div flex="~ wrap gap-x-16 gap-y-8">
+              <div class="flex flex-wrap gap-x-4 gap-y-2">
                 <template v-for="(product, index) in page.form.products" :key="product">
-                  <label flex="~ gap-8" items-center>
+                  <label class="flex gap-2 items-center">
                     <input v-model="selectedProducts" type="checkbox" :value="product">
                     <span>{{ product }}</span>
                   </label>
@@ -81,7 +81,7 @@ const selectedProducts = ref<string[]>([])
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" nq-button-solid w-full>
+            <button class="nq-button-solid w-full" type="submit">
               {{ page.form.submitButton }}
             </button>
           </form>

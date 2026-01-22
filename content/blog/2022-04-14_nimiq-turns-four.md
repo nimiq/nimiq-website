@@ -99,7 +99,7 @@ We are getting closer by the day, improving stability and fine-tuning the operat
 
 **Improving** **stability** has been the main focus in the last couple of months. While running tests on the current Nimiq 2.0 implementation, Nimiq blockchain developers found performance decreased after a certain amount of data has been processed.
 
-After solving different issues and improving the general functionality of the nodes, it became clear that a source of instability was **Macro Block Creation, Database Size and Disk Usage** by the nodes.  Several improvements have been made on this front, including the change from LMDB to MDBX and the creation of a non-history node.
+After solving different issues and improving the general functionality of the nodes, it became clear that a source of instability was **Macro Block Creation, Database Size and Disk Usage** by the nodes. Several improvements have been made on this front, including the change from LMDB to MDBX and the creation of a non-history node.
 
 Once the nodes reached a stable state our blockchain developers began **Stress Testing**. This includes working on improving testing coverage and setting up a complete monitoring stack for the Nimiq 2.0 infrastructure. Also integrating an albatross stress test tool built by RedManer, a community dev (thanks!).
 

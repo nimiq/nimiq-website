@@ -3,29 +3,29 @@ defineProps<{ data: { headline?: string, subline?: string, nameLabel?: string, e
 </script>
 
 <template>
-  <div f-container>
-    <div v-if="data.headline || data.subline" mb-8 text-center>
-      <h2 v-if="data.headline" nq-h2 mb-2>
+  <div class="f-container">
+    <div v-if="data.headline || data.subline" class="mb-2 text-center">
+      <h2 v-if="data.headline" class="nq-h2 mb-0.5">
         {{ data.headline }}
       </h2>
-      <p v-if="data.subline" nq-text text-neutral-700>
+      <p v-if="data.subline" class="nq-text text-neutral-700">
         {{ data.subline }}
       </p>
     </div>
-    <form mx-auto max-w-lg space-y-4>
+    <form class="mx-auto max-w-lg space-y-1">
       <div>
-        <label nq-label :for="`name-${$.uid}`">{{ data.nameLabel || 'Name' }}</label>
-        <input :id="`name-${$.uid}`" nq-input type="text" required>
+        <label class="nq-label" :for="`name-${$.uid}`">{{ data.nameLabel || 'Name' }}</label>
+        <input :id="`name-${$.uid}`" class="nq-input" type="text" required>
       </div>
       <div>
-        <label nq-label :for="`email-${$.uid}`">{{ data.emailLabel || 'Email' }}</label>
-        <input :id="`email-${$.uid}`" nq-input type="email" required>
+        <label class="nq-label" :for="`email-${$.uid}`">{{ data.emailLabel || 'Email' }}</label>
+        <input :id="`email-${$.uid}`" class="nq-input" type="email" required>
       </div>
       <div>
-        <label nq-label :for="`message-${$.uid}`">{{ data.messageLabel || 'Message' }}</label>
-        <textarea :id="`message-${$.uid}`" nq-input rows="5" required />
+        <label class="nq-label" :for="`message-${$.uid}`">{{ data.messageLabel || 'Message' }}</label>
+        <textarea :id="`message-${$.uid}`" class="nq-input" rows="5" required />
       </div>
-      <button nq-button-primary type="submit">
+      <button class="nq-button-primary" type="submit">
         {{ data.submitLabel || 'Submit' }}
       </button>
     </form>

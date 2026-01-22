@@ -17,7 +17,7 @@ The new version of Nimiq Pay, supporting payments at Bitcoin Lightning acceptanc
 
 Cryptocurrency payments are becoming more and more popular around the world every day. Still, each cryptocurrency is building its own ecosystem with its own set of users and merchants. This brings an issue as old as the internet itself: using an app for each different network.
 
-Nimiq is all about bringing elegant and simple solutions to make cryptocurrency payments an easy experience that is on par with existing payment apps in traditional finance. Similar to *TradFi*, the ideal way to pay in crypto is clearly one single app that allows users to pay in every payment network out there, in a fully-self custodial way. Making it simple and straightforward for users, while hiding all the complexity under the hood.
+Nimiq is all about bringing elegant and simple solutions to make cryptocurrency payments an easy experience that is on par with existing payment apps in traditional finance. Similar to _TradFi_, the ideal way to pay in crypto is clearly one single app that allows users to pay in every payment network out there, in a fully-self custodial way. Making it simple and straightforward for users, while hiding all the complexity under the hood.
 
 With the initial launch of Nimiq Pay, Nimiq users tasted simple and easy mobile payments in all shops accepting NIM. Nimiq's vision is to be able to pay everywhere with NIM. To take a first step forward in this direction, Nimiq Pay is now integrating the largest payment network in the crypto world: Bitcoin Lightning Network.
 

@@ -20,10 +20,10 @@ The NIM Treasury Accumulation Plan authorizes purchasing up to 5% of the circula
 
 ## Activity from September 2025
 
-- Total NIM Acquired:  98’373’000
-- Average Price: $  0.0006759 per NIM
-- USD Spent: $  66’490
-- % of Circulating Acquired:   0.73%
+- Total NIM Acquired: 98’373’000
+- Average Price: $ 0.0006759 per NIM
+- USD Spent: $ 66’490
+- % of Circulating Acquired: 0.73%
 - Reporting Period: August 28 — Sept 30, 2025
 
 The following addresses currently hold project-acquired NIM and can be audited by the public:

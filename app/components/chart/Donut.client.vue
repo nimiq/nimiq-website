@@ -24,8 +24,8 @@ export interface DonutDatum { color: string, value: number }
 </script>
 
 <template>
-  <div flex="~ col items-center">
-    <VisSingleContainer :data :height="280" :width="280" size-280 max-w-280 relative>
+  <div class="flex flex-col flex-items-center">
+    <VisSingleContainer class="size-[280px] max-w-[280px] relative" :data :height="280" :width="280">
       <VisDonut :color :value :angle-range :corner-radius="8" :arc-width="64" :pad-angle="0.045" :show-background="false" />
       <VisTooltip v-if="slots.default" :triggers="{ [Donut.selectors.segment]: template }" />
     </VisSingleContainer>

@@ -22,14 +22,14 @@ function submitForm() {
 </script>
 
 <template>
-  <form max-w-32em w-full relative @submit.prevent="submitForm">
-    <label for="newsletter-email" class="sr-only">Email address</label>
-    <input id="newsletter-email" v-model="email" type="email" name="email" required rounded-full relative nq-input-box :placeholder="placeholder || 'Enter email address...'" autocomplete="email">
-    <button aria-label="Submit your email" type="submit" :disabled="!email" group rounded-full size-1.6875em aspect-1 transition-colors right-0.1875em top-0.1875em absolute not-disabled:cursor-pointer bg="not-disabled:gradient-blue hocus:not-disabled:gradient-blue-darkened disabled:!neutral-300" flex="~ items-center justify-center">
-      <Icon name="nimiq:arrow-right" class="text-[0.6875em] text-white group-disabled:text-neutral-600" />
+  <form class="max-w-32em w-full relative" @submit.prevent="submitForm">
+    <label class="sr-only" for="newsletter-email">Email address</label>
+    <input id="newsletter-email" v-model="email" class="rounded-full relative nq-input-box" type="email" name="email" required :placeholder="placeholder || 'Enter email address...'" autocomplete="email">
+    <button class="group rounded-full size-px.6875em aspect-1 transition-colors right-0.1875em top-0.1875em absolute bg-not-disabled:gradient-blue bg-hocus:not-disabled:gradient-blue-darkened bg-disabled:!neutral-300 flex flex-items-center flex-justify-center" aria-label="Submit your email" type="submit" :disabled="!email" not-disabled:cursor-pointer>
+      <Icon class="text-[0.6875em] text-white group-disabled:text-neutral-600" name="nimiq:arrow-right" />
     </button>
     <!-- The following div is always on the dom to avoid CLS -->
-    <div h="0.5em md:0.75em" font-semibold mt-0.25em pl-0.75em text="0.875em lg:0.9375em 2xl:1em red mt-0.5em">
+    <div class="h-0.5em h-md:0.75em font-semibold mt-0.25em pl-0.75em text-0.875em text-lg:0.9375em text-2xl:1em text-red text-mt-0.5em">
       <span v-if="invalidEmailMessage && email">{{ invalidEmailMessage }}</span>
     </div>
   </form>

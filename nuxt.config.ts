@@ -19,12 +19,13 @@ export default defineNuxtConfig({
 
   modules: [
     '@vueuse/nuxt',
-    '@unocss/nuxt',
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxt/hints',
     '@nuxt/icon',
+    '@nuxt/fonts',
+    '@nuxtjs/tailwindcss',
     'reka-ui/nuxt',
     '@nuxtjs/device',
     !environment.useNuxtHub && 'nuxt-module-feed', // Skip feed for NuxtHub builds
@@ -37,6 +38,22 @@ export default defineNuxtConfig({
     'nuxt-studio',
     'nuxt-link-checker',
   ].filter(Boolean),
+
+  fonts: {
+    families: [
+      { name: 'Mulish', provider: 'google', weights: [400, 500, 600, 700], styles: ['normal', 'italic'] },
+      { name: 'Fira Code', provider: 'google', weights: [400, 500, 600, 700] },
+      { name: 'Press Start 2P', provider: 'google', weights: [400] },
+    ],
+    defaults: {
+      weights: [400, 500, 600, 700],
+      styles: ['normal', 'italic'],
+    },
+  },
+
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+  },
 
   image: {
     quality: 80,
@@ -87,11 +104,6 @@ export default defineNuxtConfig({
     optimizeDeps: { exclude: ['@nimiq/core', '*.wasm'] },
     worker: { plugins: () => [wasm()] },
     build: { rollupOptions: { external: [/^.*\.node$/] } },
-  },
-
-  features: {
-    // For UnoCSS
-    inlineStyles: false,
   },
 
   css: ['~/assets/css/main.css'],

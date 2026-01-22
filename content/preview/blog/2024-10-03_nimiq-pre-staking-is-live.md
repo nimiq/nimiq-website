@@ -63,8 +63,9 @@ The more you optimize your pre-staking strategy, the better your chances!
 
 [**Learn more details on the Pre-staking page!**](https://prestaking.nimiq.com/)
 
-### **
-How to Participate?**
+### \*\*
+
+How to Participate?\*\*
 
 From Monday October 7 to Sunday November 10, 2024, follow these simple steps to join the pre-staking campaign:
 

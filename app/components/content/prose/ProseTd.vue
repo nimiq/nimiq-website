@@ -1,5 +1,5 @@
 <template>
-  <td lh-snug text-18 p="y-18 x-8" min-w-16 align-top border-b="1 neutral-200">
+  <td class="lh-snug text-18 p-y-18 p-x-8 min-w-4 border-b-1 neutral-200" align-top>
     <slot />
   </td>
 </template>

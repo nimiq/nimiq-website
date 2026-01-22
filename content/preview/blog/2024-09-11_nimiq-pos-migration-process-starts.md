@@ -16,14 +16,14 @@ The day has come. As Nimiq PoS quickly approaches Release Candidate status, we c
 Things are getting real, and now more than ever, it is important for the Nimiq Community to stay informed and understand how to participate in the upcoming migration phases. Here are the approximate dates for the three phases, kicking off with the first, the “Validator Registration” Phase, which lasts no more than **23** days, followed by the second, the “Pre-Staking Phase” which lasts no more than **34** days, and culminating in the third, the “Activation Phase”:
 
 - **Phase 1: Validator Registration
-Starts**: September 12
-**Ends**: October 6
+  Starts**: September 12
+  **Ends**: October 6
 - **Phase 2: Pre-Staking
-Starts**: October 7
-**Ends**: November 10
+  Starts**: October 7
+  **Ends**: November 10
 - **Phase 3: Activation
-Starts**: November 19, ~7 AM UTC
-**Ends**: When 80% of the pre-staked NIM signals readiness. After 24 hours from the start, the activation resets for a new candidate transition block and activation attempt.
+  Starts**: November 19, ~7 AM UTC
+  **Ends**: When 80% of the pre-staked NIM signals readiness. After 24 hours from the start, the activation resets for a new candidate transition block and activation attempt.
 
 ![](/assets/images/prismic/ZuHlfhoQrfVKl_QJ_MigrationPhaseswDates.png)
 

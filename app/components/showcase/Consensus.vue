@@ -3,19 +3,19 @@ defineProps<{ label: string, headline: string, subline: string, thisIsYou: strin
 </script>
 
 <template>
-  <div flex="~ col xl:row justify-center" m-0 max-w-none w-full>
-    <div flex="~ col" pl="$px" xl:pb-200 xl:pt-32 xl:w-50vw>
-      <p v-if="label" mb-16 w-max block f-text-sm nq-label>
+  <div class="flex flex-col flex-xl:row flex-justify-center m-0 max-w-none w-full">
+    <div class="flex flex-col pl-$px xl:pb-[200px] xl:pt-8 xl:w-50vw">
+      <p v-if="label" class="mb-4 w-max text-xs md:text-sm nq-label" block>
         {{ label }}
       </p>
-      <h2 text-left break-keep>
+      <h2 class="text-left break-keep">
         {{ headline }}
       </h2>
-      <p text-left>
+      <p class="text-left">
         {{ subline }}
       </p>
     </div>
-    <div xl:w-50vw>
+    <div class="xl:w-50vw">
       <ClientOnly>
         <ShowcaseConsensusConsensusMap :connect-label="connect" :this-is-you="thisIsYou" :connecting />
       </ClientOnly>

@@ -378,7 +378,7 @@ export default defineContentConfig({
         video: z.object({ headline: headlineSchema, embedUrl: z.string(), poster: z.string().optional(), title: z.string().optional(), description: z.string().optional() }),
         delegate: headlineSchema,
         banner: z.object({ overlapsNextSection: z.boolean().optional(), items: z.array(bannerItemSchema) }),
-        faq: z.object({ forumLink: z.object({ text: z.string(), href: z.string() }).optional(), items: z.array(z.object({ question: z.string(), answer: z.string() })) }),
+        faq: z.object({ headline: z.string().optional(), forumLink: z.object({ text: z.string(), href: z.string() }).optional(), items: z.array(z.object({ question: z.string(), answer: z.string() })) }),
         wallet: headlineSchema.extend({ stakingNote: z.string().optional() }),
       }),
     }),

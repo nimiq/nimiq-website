@@ -55,35 +55,35 @@ function useCurrencyOptions() {
 </script>
 
 <template>
-  <ComboboxRoot v-model="selectedCurrency" relative bg="transparent hocus:neutral-200">
-    <ComboboxAnchor w-max inline-flex="~ items-center justify-between gap-5">
-      <ComboboxTrigger flex="~ gap-3 items-center" px-6 py-3 rounded-4 bg-transparent transition-colors>
+  <ComboboxRoot v-model="selectedCurrency" class="relative bg-transparent bg-hocus:neutral-200">
+    <ComboboxAnchor class="w-max inline-flex-~ items-center justify-between gap-[5px]">
+      <ComboboxTrigger class="flex gap-[3px] flex-items-center px-1.5 py-[3px] rounded-1 bg-transparent transition-colors">
         <slot name="trigger" v-bind="{ selectedCurrency }">
-          <span f-text="12/16" text-current nq-label>{{ selectedCurrency.toLocaleUpperCase() }}</span>
-          <Icon name="nimiq:triangle-down" class="op-60 size-7" />
+          <span class="text-[12px] md:text-[16px] text-current nq-label">{{ selectedCurrency.toLocaleUpperCase() }}</span>
+          <Icon class="op-60 size-[7px]" name="nimiq:triangle-down" />
         </slot>
       </ComboboxTrigger>
     </ComboboxAnchor>
 
     <ComboboxPortal>
-      <ComboboxContent position="popper" will-change="[opacity,transform]" reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade font-normal overscroll-none max-h-256 w-168 top-0 absolute z-10 of-hidden>
-        <ComboboxViewport outline="1.5 ~ offset--1.5 white/10" px-4 pb-4 rounded-4 bg-neutral flex="~ col">
-          <label flex="~ items-center gap-8" px-8 pb-6 pt-13 w-full>
-            <Icon name="nimiq:magnifying-glass" class="text-neutral-800" />
-            <ComboboxInput placeholder="Search" text="16 white" outline="1.5! ~ blue" lh-none px-3 py-2 rounded-4 bg-transparent flex-1 w-full />
+      <ComboboxContent class="reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade font-normal overscroll-none max-h-64 w-[168px] top-0 absolute z-10 of-hidden" position="popper" will-change="[opacity,transform]">
+        <ComboboxViewport class="outline-1.5 outline outline-offset--1.5 outline-white/10 px-1 pb-1 rounded-1 bg-neutral flex flex-col">
+          <label class="flex flex-items-center gap-2 px-2 pb-1.5 pt-[13px] w-full">
+            <Icon class="text-neutral-800" name="nimiq:magnifying-glass" />
+            <ComboboxInput class="text-16 text-white outline-1.5! outline outline-blue lh-none px-[3px] py-0.5 rounded-1 bg-transparent flex-1 w-full" placeholder="Search" />
           </label>
-          <ScrollAreaRoot bg-neutral flex-1 h-full relative of-hidden var:scrollbar-size:10px>
-            <div h-16 w-full top-0 absolute z-2 bg-gradient="to-t from-transparent to-neutral" />
-            <ScrollAreaViewport py-16 h-218 w-full>
-              <ComboboxItem v-for="option in options" :key="option.value" :value="option.value" flex="~ items-center gap-8" bg="hocus:white/10 reka-active:white/10" p-8 rounded-2 transition-colors>
-                <Icon :name="option.icon" class="shrink-0 size-20" />
-                <span text="f-sm white/95" lh-none>{{ option.value.toLocaleUpperCase() }}</span>
+          <ScrollAreaRoot class="bg-neutral flex-1 h-full relative of-hidden" var:scrollbar-size:10px>
+            <div class="h-4 w-full top-0 absolute z-2 bg-gradient-to-t from-transparent to-neutral" />
+            <ScrollAreaViewport class="py-4 h-[218px] w-full">
+              <ComboboxItem v-for="option in options" :key="option.value" class="flex flex-items-center gap-2 bg-hocus:white/10 bg-reka-active:white/10 p-2 rounded-0.5 transition-colors" :value="option.value">
+                <Icon class="shrink-0 size-5" :name="option.icon" />
+                <span class="text-xs md:text-sm text-white/95 lh-none">{{ option.value.toLocaleUpperCase() }}</span>
               </ComboboxItem>
             </ScrollAreaViewport>
-            <ScrollAreaScrollbar flex="~" bg="neutral-900" p-2 w-10 select-none inset-y-0 z-20 touch-none orientation="vertical">
-              <ScrollAreaThumb rounded-5 bg-neutral-700 flex-1 content-empty relative before="absolute top--50% left--50% -translate-x--50% -translate-y--50% size-full min-h-40 min-w-40" />
+            <ScrollAreaScrollbar class="flex bg-neutral-900 p-0.5 w-2.5 select-none inset-y-0 z-20 touch-none" orientation="vertical">
+              <ScrollAreaThumb class="rounded-[5px] bg-neutral-700 flex-1 content-empty relative" before="absolute top--50% left--50% -translate-x--50% -translate-y--50% size-full min-h-10 min-w-10" />
             </ScrollAreaScrollbar>
-            <div h-16 w-full bottom-0 absolute z-2 bg-gradient="to-b from-transparent to-neutral" />
+            <div class="h-4 w-full bottom-0 absolute z-2 bg-gradient-to-b from-transparent to-neutral" />
           </ScrollAreaRoot>
         </ComboboxViewport>
         <ComboboxArrow />

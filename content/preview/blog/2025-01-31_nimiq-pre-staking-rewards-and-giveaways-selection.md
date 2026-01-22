@@ -9,7 +9,7 @@ authors:
 image: /images/blog/nimiq-pre-staking-rewards-and-giveaways-selection/Z5mKMJbqstJ99-G_BlogpostNimiqPrestakinggiveaway.png
 ---
 
-The Pre-Staking Campaign was a resounding success, and it’s all thanks to you, the amazing Nimiq community! Your participation and enthusiasm have played a vital role in this migration milestone achievement. As anticipated, we are getting ready to distribute all campaign rewards.  Below, you’ll find detailed information about the giveaways and rewards distribution process—let’s dive in!
+The Pre-Staking Campaign was a resounding success, and it’s all thanks to you, the amazing Nimiq community! Your participation and enthusiasm have played a vital role in this migration milestone achievement. As anticipated, we are getting ready to distribute all campaign rewards. Below, you’ll find detailed information about the giveaways and rewards distribution process—let’s dive in!
 
 ### Giveaways Selection
 

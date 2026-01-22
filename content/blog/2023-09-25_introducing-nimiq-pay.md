@@ -29,7 +29,7 @@ Locating places that accept NIM should be as easy as finding a coffee shop nearb
 
 You can track our progress with this initiative at [map.nimiq.com](https://map.nimiq.com/). Keep an eye out for more updates, and if you're aware of any stores that should be on our map, please don't hesitate to reach out to us!
 
-### Incentives through Cashback and Bonus** **Points:
+### Incentives through Cashback and Bonus\*\* \*\*Points:
 
 The user choice of one form of payment over another is often tied to incentives provided to the user. As a first in crypto, Nimiq Pay will introduce a way for Sponsors to unlock a rewards program for users. We’re building and integrating the infrastructure that supports a form of “loyalty” program, which will allow Sponsors to target specific areas (cities, etc) or merchants (brands, etc) with adoption campaigns. Users that opt-in may receive cashbacks from transactions and bonus points by spending their NIM at sponsored locations and engaging with the app, learning more about the Nimiq ecosystem, or participating in tasks.
 

@@ -34,7 +34,7 @@ The truth is that most users do not know that they have been infected with clipb
 
 ## How can Nimiq Identicons combat clipboard hijacking
 
-For those that don’t know, an identicon is “a visual representation of a hash value . . . that serves to identify a user of a computer system as a form of avatar while protecting the users’ privacy”. With Nimiq, virtually-unique identicons are assigned to every account address (Nimiqs terminology in place of “wallet address”) and aim to make each address identifiable at just a glance. Based on [Robohash](https://robohash.org/),** **the challenge Nimiq had to overcome when developing its identicons, was to ensure they are exceptionally recognizable whilst also offering a high level of variability to enable the generation of a different identicon for each Nimiq account address.
+For those that don’t know, an identicon is “a visual representation of a hash value . . . that serves to identify a user of a computer system as a form of avatar while protecting the users’ privacy”. With Nimiq, virtually-unique identicons are assigned to every account address (Nimiqs terminology in place of “wallet address”) and aim to make each address identifiable at just a glance. Based on [Robohash](https://robohash.org/),\*\* \*\*the challenge Nimiq had to overcome when developing its identicons, was to ensure they are exceptionally recognizable whilst also offering a high level of variability to enable the generation of a different identicon for each Nimiq account address.
 
 Indeed, identicons are used to help visualize Ethereum addresses in popular wallets like MyEtherWallet. However, these types of identicons are more geared to tech-savvy audiences and typical internet users often don’t find them recognizable, distinguishable or memorable.
 
@@ -65,7 +65,7 @@ If a Nimiq user is subject to a clipboard hijacking attack and the malware repla
 
 Want to check out some of Nimiq’s Identicons for yourself? [Take a look here](https://nimiq.github.io/iqons).
 
-There is also an ongoing effort to improve the usability in the *check-at-a-glance *user interaction, by adding a suggested name to each identicon. Many thanks and credit to community developer [Terorie](https://github.com/terorie) for contributing the *naming scheme*.
+There is also an ongoing effort to improve the usability in the *check-at-a-glance *user interaction, by adding a suggested name to each identicon. Many thanks and credit to community developer [Terorie](https://github.com/terorie) for contributing the _naming scheme_.
 
 Yes, it’s true that clipboard hijacking attacks can be protected against by double or triple checking recipient account addresses before sending. However, that does make things more complicated and time-consuming, also most people trust that their computer will paste what they copied. That’s why the instant recognizability and huge variation of Nimiq Identicons can help protect NIM users and foil clipboard hijacking attempts in both a simple and straight forward way.
 
@@ -83,7 +83,7 @@ Each Nimiq Identicon has five different elements, bottoms, faces, sides, tops bo
 - 9 body colors
 - 10 background colors
 
-That means there are 10 * 9 * 8 * 21⁴ = 140,026,320 different identicons that can be generated. This means that Nimiq is capable of generating more than 100 million highly differentiated and instantly recognizable identicons.
+That means there are 10 _ 9 _ 8 \* 21⁴ = 140,026,320 different identicons that can be generated. This means that Nimiq is capable of generating more than 100 million highly differentiated and instantly recognizable identicons.
 
 ## Final word
 

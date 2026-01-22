@@ -80,11 +80,11 @@ onUnmounted(() => {
 
 <template>
   <!-- Desktop -->
-  <div relative max-md:hidden>
-    <div h="[calc(100%+400px)]" max-w-screen pointer-events-none top--400 />
-    <div stack mx-auto size-full>
+  <div class="relative max-md:hidden">
+    <div class="h-[calc(100%+400px)] max-w-screen pointer-events-none -top-[400px]" />
+    <div class="mx-auto size-full" stack>
       <!-- Ribbon fold -->
-      <div self-start="!" justify-self-end="!" aria-hidden mr--18 mt-48 w-44 origin-bottom-right rotate--45 z-1 border="22 x-transparent t-0 #EC991C" />
+      <div class="self-start-! justify-self-end-! -mr-[18px] mt-12 w-11 origin-bottom-right rotate--45 z-1 border-22 border-x-transparent border-t-0 border-#EC991C" aria-hidden />
 
       <!-- Playground Background -->
       <div ref="containerRef" class="playground-background" :style="{ '--scrollbar-width': `${scrollbarWidth}px` }">
@@ -96,7 +96,7 @@ onUnmounted(() => {
             <svg class="metacloud two" :style="{ '--translate-x': cloudTranslations.two }" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z" />
             </svg>
-            <svg class="metacloud three" max-sm:hidden :style="{ '--translate-x': cloudTranslations.three }" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="metacloud three max-sm:hidden" :style="{ '--translate-x': cloudTranslations.three }" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M120 43C120 54.598 110.598 64 99 64H21C9.40202 64 0 54.598 0 43C0 31.402 9.40202 22 21 22C22.4727 22 23.9101 22.1516 25.2972 22.4401C28.7758 15.6484 35.845 11 44 11C48.4407 11 52.5595 12.3783 55.9518 14.7306C58.6183 6.19486 66.5857 0 76 0C87.598 0 97 9.40202 97 21C97 21.3678 96.9905 21.7335 96.9719 22.0967C97.6393 22.0327 98.3158 22 99 22C110.598 22 120 31.402 120 43Z" />
             </svg>
             <svg class="metacloud four" :style="{ '--translate-x': cloudTranslations.four }" viewBox="0 0 120 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,14 +108,14 @@ onUnmounted(() => {
           </div>
         </div>
         <div class="pb-container">
-          <div class="rect" max-sm:hidden>
+          <div class="rect max-sm:hidden">
             <svg viewBox="0 0 1096 658" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g opacity="0.5" max-sm:hidden>
+              <g class="opacity-0.5 max-sm:hidden">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M21 26C23.7614 26 26 23.7614 26 21C26 18.2386 23.7614 16 21 16C18.2386 16 16 18.2386 16 21C16 23.7614 18.2386 26 21 26Z" fill="#1F2348" />
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M37 26C39.7614 26 42 23.7614 42 21C42 18.2386 39.7614 16 37 16C34.2386 16 32 18.2386 32 21C32 23.7614 34.2386 26 37 26Z" fill="#1F2348" />
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M53 26C55.7614 26 58 23.7614 58 21C58 18.2386 55.7614 16 53 16C50.2386 16 48 18.2386 48 21C48 23.7614 50.2386 26 53 26Z" fill="#1F2348" />
               </g>
-              <g opacity="0.5">
+              <g class="opacity-0.5">
                 <rect x="368" y="12" width="360" height="14" rx="7" fill="#1F2348" />
               </g>
             </svg>
@@ -123,43 +123,43 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <div p="t-48 x-10 b-10" size-full z-1>
-        <div v-if="playgroundUrl" rounded-4 size-full>
+      <div class="p-t-48 p-x-10 p-b-10 size-full z-1">
+        <div v-if="playgroundUrl" class="rounded-1 size-full">
           <ShowcaseWalletPlaygroundIframe :playground-url="playgroundUrl" height="600px" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
         </div>
-        <div v-else rounded-4 size-full>
+        <div v-else class="rounded-1 size-full">
           <ShowcaseWalletPlaygroundIframe height="600px" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
         </div>
       </div>
 
       <!-- Ribbon -->
-      <div self-start="!" justify-self-end="!" mr--18 mt-11 w-max relative z-10>
-        <UiFloatingStars translate="-50%" absolute left="50%" top="50%" z-1 />
-        <div bg="#E9B213" text="f-lg white" rounded="6 br-0" font-semibold ml-auto px-20 py-16 w-max relative z-2>
+      <div class="self-start-! justify-self-end-! -mr-[18px] mt-[11px] w-max relative z-10">
+        <UiFloatingStars class="translate--50% absolute left-50% top-50% z-1" />
+        <div class="bg-#E9B213 text-base md:text-lg text-white rounded-1.5 rounded-br-0 font-semibold ml-auto px-5 py-4 w-max relative z-2">
           Try live preview
         </div>
       </div>
 
       <!-- Selector -->
-      <ShowcaseWalletActionSelector translate-y="[calc(50%-10px)]" />
+      <ShowcaseWalletActionSelector class="translate-y-[calc(50%-10px)]" />
     </div>
 
-    <ShowcaseWalletCurrencies f-mt-lg />
+    <ShowcaseWalletCurrencies class="mt-6 md:mt-8" />
   </div>
 
   <!-- Mobile -->
-  <div pb-32 relative md:hidden>
-    <div class="mobile-bg" left="[calc(var(--px)*-1)]" w="[calc(100%+var(--px)*2)]" inset-0 top--160 absolute z--1 />
+  <div class="pb-8 relative md:hidden">
+    <div class="mobile-bg left-[calc(var(--px)*-1)] w-[calc(100%+var(--px)*2)] inset-0 -top-40 absolute z--1" />
 
-    <div w="[calc(100%+48px)]" p-8 rounded-14 size-full aspect-0.7 left--24 relative f-mt-xl>
-      <div rounded-14 bg-neutral-300 op-50 inset-0 absolute backdrop-blur-3.5 style="box-shadow: inset 0px 0px 40px #FFFFFF;" />
-      <div rounded-8 size-full relative z-1>
+    <div class="w-[calc(100%+48px)] p-2 rounded-3.5 size-full aspect-0.7 -left-6 relative mt-8 md:mt-12">
+      <div class="rounded-3.5 bg-neutral-300 op-50 inset-0 absolute backdrop-blur-3.5" style="box-shadow: inset 0px 0px 40px #FFFFFF;" />
+      <div class="rounded-2 size-full relative z-1">
         <ShowcaseWalletPlaygroundIframe :playground-url height="100%" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
       </div>
     </div>
-    <ShowcaseWalletActionSelector mx-auto w-max translate-y="-50%" />
+    <ShowcaseWalletActionSelector class="mx-auto w-max translate-y--50%" />
 
-    <ShowcaseWalletCurrencies f-mt-2xs />
+    <ShowcaseWalletCurrencies class="mt-1 md:mt-1.5" />
   </div>
 </template>
 

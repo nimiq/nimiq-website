@@ -31,7 +31,7 @@ In terms of ongoing community bounties, Nimiq has received Java and Go RPC clien
 
 ![](/assets/images/prismic/27fb65db-7729-4349-910d-eaa77cbe7329_blog_community-funding-board-10th-meeting_3.gif)
 
-*| Last election results*
+_| Last election results_
 
 Nimiq’s vision for the Community Funding Board is to work with three elected community representatives to determine which community initiatives to support and to act in the best interests of Nimiq’s expanding ecosystem. You could say that the ethos is ‘by the community, for the community’.
 
@@ -84,9 +84,9 @@ After candidate submissions have been closed, the voting app will be configured 
 
 ![](/assets/images/prismic/57a137d0-1193-433e-9d16-af5949741edc_blog_community-funding-board-10th-meeting_7.png)
 
-*| Last community elections. A total of 113 votes were received.*
+_| Last community elections. A total of 113 votes were received._
 
-*“Elections aren't just about who votes but who doesn't vote.” - Michelle Obama*
+_“Elections aren't just about who votes but who doesn't vote.” - Michelle Obama_
 
 As a NIM stakeholder, it is your right to decide who represents you in the Nimiq Community Funding Board. Use your vote and have your say in the future of Nimiq.
 

@@ -29,9 +29,10 @@ Next, we display the transaction fee, which consists of:
 
 - **Native transaction fee**: Calculated by multiplying the gas limit (aka <code style="background: rgba(31, 35, 72, 0.1); word-wrap: break-word; padding: .1rem .3rem .2rem; border-radius: .2rem; ">requiredRelayGas</code> in the OpenGSN Contract) by the gas price (given by the network and the OpenGSN Relay). Amount is in MATIC.
 - **OpenGSN fee**: Allows the wallet to send transactions on behalf of the user using a Relay Server. Calculated as follows:
-<code style="background: rgba(31, 35, 72, 0.1); word-wrap: break-word; padding: .1rem .3rem .2rem; border-radius: .2rem; ">nativeFee * (1 + pctRelayFee) + baseRelayFee</code><br/><br/>
+  <code style="background: rgba(31, 35, 72, 0.1); word-wrap: break-word; padding: .1rem .3rem .2rem; border-radius: .2rem; ">nativeFee \* (1 + pctRelayFee) + baseRelayFee</code><br/><br/>
 
 To reduce the fee as much as possible, the Nimiq Wallet scouts different relay servers and selects the one with the lowest fees. We do this by retrieving and filtering the logs from <code style="background: rgba(31, 35, 72, 0.1); word-wrap: break-word; padding: .1rem .3rem .2rem; border-radius: .2rem; ">RelayServerRegistered</code> event in the Relayer Hub Contract. Amount is in MATIC.
+
 - **Uniswap fee**: Fee for exchanging USDC to MATIC to pay the OpenGSN Relay. Paid in USDC. We cannot determine the exact amount of the fee in advance, so we use a 10% buffer as a fee. You can read more about this in step 7.
 
 We calculate the transaction fees, convert them to USDC using the MATIC-USDC exchange rate on Uniswap, and display the fee to the user prior to the transaction. The fee potentially changes with every Polygon block, so we update it regularly until the user confirms the transaction. The final fee includes an additional 10% buffer for Uniswap, which is refunded if not used.

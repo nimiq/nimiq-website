@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('contact').first()!
+const page = await usePage('contact')
 
 const title = page.seo?.title || page.hero?.title || 'Contact Nimiq'
 const description = page.seo?.description || page.hero?.description
@@ -10,14 +10,14 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/contact' }] })
 <template>
   <NuxtLayout>
     <main>
-      <section bg-neutral-0>
+      <section class="bg-neutral-0">
         <HeroProduct :title="page.hero.title" :description="page.hero.description" />
         <GridSocialMedia v-bind="page.social.grid" />
       </section>
 
-      <section nq-section-gap bg-neutral-100>
+      <section class="nq-section-gap bg-neutral-100">
         <Headline v-bind="page.social.headline" />
-        <iframe mx-auto rounded-6 h-651 max-w-392 w-full src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
+        <iframe class="mx-auto rounded-1.5 h-[651px] max-w-[392px] w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
       </section>
     </main>
   </NuxtLayout>

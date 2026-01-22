@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const page = await queryCollection('terms').first()!
+const page = await usePage('terms')
 const content = await parseMarkdown(page.content?.richText || '')
 
 const title = page.seo?.title || page.hero?.headline || 'Terms | Nimiq'
@@ -11,12 +11,12 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/terms' }] })
 <template>
   <NuxtLayout>
     <main>
-      <section nq-section-gap bg-neutral-100>
+      <section class="nq-section-gap bg-neutral-100">
         <Hero :title="page.hero?.headline" :description="page.hero?.subline" />
       </section>
 
-      <section nq-section-gap bg-neutral-0>
-        <ContentRenderer :value="content" tag="article" f-prose text-neutral-900 children:mx-auto children:max-w-prose />
+      <section class="nq-section-gap bg-neutral-0">
+        <ContentRenderer class="f-prose text-neutral-900" :value="content" tag="article" children:mx-auto children:max-w-prose />
       </section>
     </main>
   </NuxtLayout>

@@ -17,7 +17,7 @@ For those new to the ZKP Ceremony, we encourage you to visit [**the introductory
 
 ## Phase 1 Termination and Results
 
-We are pleased to announce the conclusion of Phase 1 of the Nimiq ZKP Ceremony, in which there was strong participation from  92 contributors over the course of 9 rounds.
+We are pleased to announce the conclusion of Phase 1 of the Nimiq ZKP Ceremony, in which there was strong participation from 92 contributors over the course of 9 rounds.
 
 The beacon's hash was selected from the Bitcoin blockchain (**Block #840514**), which has the hash ‘000000000000000000023d754340f19f2de938d5343408cacce3a95c362e4d58’. For developers and open-source enthusiasts, [**the attestation repository is accessible here**](https://github.com/nimiq/ceremony-attestations), providing all necessary files to utilize Phase 1 outputs.
 

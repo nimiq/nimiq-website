@@ -61,9 +61,9 @@ function oklchToRgb(oklch: string): string {
     return 'rgb(0, 0, 0)' // Fallback
   }
 
-  const L = parseFloat(match[1]) / 100 // Lightness 0-1
-  const C = parseFloat(match[2]) // Chroma
-  const H = parseFloat(match[3]) // Hue in degrees
+  const L = Number.parseFloat(match[1]) / 100 // Lightness 0-1
+  const C = Number.parseFloat(match[2]) // Chroma
+  const H = Number.parseFloat(match[3]) // Hue in degrees
 
   // Convert oklch → oklab → xyz → rgb
   // This is a simplified conversion (full conversion is complex)
@@ -104,7 +104,7 @@ function oklchToRgb(oklch: string): string {
 function gammaCorrect(val: number): number {
   return val <= 0.0031308
     ? 12.92 * val
-    : 1.055 * Math.pow(val, 1 / 2.4) - 0.055
+    : 1.055 * val ** (1 / 2.4) - 0.055
 }
 
 /**
@@ -118,9 +118,9 @@ function oklabToRgb(oklab: string): string {
     return 'rgb(0, 0, 0)' // Fallback
   }
 
-  const L = parseFloat(match[1]) // Lightness 0-1
-  const a = parseFloat(match[2])
-  const b = parseFloat(match[3])
+  const L = Number.parseFloat(match[1]) // Lightness 0-1
+  const a = Number.parseFloat(match[2])
+  const b = Number.parseFloat(match[3])
 
   // oklab to xyz (corrected matrix)
   const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3
@@ -161,9 +161,9 @@ function hexToRgb(hex: string): string {
     hex = hex.split('').map(c => c + c).join('')
   }
 
-  const r = parseInt(hex.substring(0, 2), 16)
-  const g = parseInt(hex.substring(2, 4), 16)
-  const b = parseInt(hex.substring(4, 6), 16)
+  const r = Number.parseInt(hex.substring(0, 2), 16)
+  const g = Number.parseInt(hex.substring(2, 4), 16)
+  const b = Number.parseInt(hex.substring(4, 6), 16)
 
   return `rgb(${r}, ${g}, ${b})`
 }
@@ -194,9 +194,9 @@ function parseRgb(rgb: string): RGB | null {
   }
 
   return {
-    r: parseInt(match[1]),
-    g: parseInt(match[2]),
-    b: parseInt(match[3]),
+    r: Number.parseInt(match[1]),
+    g: Number.parseInt(match[2]),
+    b: Number.parseInt(match[3]),
   }
 }
 

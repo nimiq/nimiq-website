@@ -19,7 +19,7 @@ To get this initiative off the ground, we are looking for three members of the N
 
 The Nimiq team proposes:
 
-- **Setting up the “Community Funding Board”: **Made up of** **six members: Three from the Nimiq team & three community representatives. Project funding proposals will be granted if more than 50% of the board accept the funding proposal.
+- **Setting up the “Community Funding Board”: **Made up of\*\* \*\*six members: Three from the Nimiq team & three community representatives. Project funding proposals will be granted if more than 50% of the board accept the funding proposal.
 - **Submitting “Community Funding Proposals”:** These can be submitted by anyone in the Nimiq community.
 
 ## What’s expected of board members?
@@ -59,7 +59,7 @@ It’s a three step process taking place once a month:
 1. **Public announcement**: The highest voted projects will be announced at least one week before the board meeting so that the community can voice their thoughts and opinions.
 1. **Board meeting**: Guided by the community votes and feedback, the board will decide which projects proposals to accept or reject, or if changes need to be made. All final decisions will come with feedback.
 
-***PLEASE NOTE**: Team Nimiq is currently working on finalizing the details. If you think you already have a strong reason to apply for funding before we deploy the whole process we are happy to hear your feedback on Discord or directly via [sven@nimiq.com](mailto:sven@nimiq.com).*
+**\*PLEASE NOTE**: Team Nimiq is currently working on finalizing the details. If you think you already have a strong reason to apply for funding before we deploy the whole process we are happy to hear your feedback on Discord or directly via [sven@nimiq.com](mailto:sven@nimiq.com).\*
 
 A follow-up post with precise details on what a proposal needs to contain, criteria of the board’s decision process, funding possibilities as well as limitations will be published soon. The entire team is very excited about the Nimiq Community Project Funding and curious to see, review, and finally support projects of our community members!
 

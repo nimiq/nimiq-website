@@ -86,7 +86,7 @@ wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installa
 
 wget https://raw.githubusercontent.com/CoinAlpha/hummingbot/development/installation/docker-commands/update.sh
 
-chmod a+x *.sh
+chmod a+x \*.sh
 
 ./create.sh
 
