@@ -8,13 +8,13 @@ hero:
   link:
     href: https://wallet.nimiq.com
   organizations:
-    - logo: /images/pages/home/hero-organizations-0-logo-aQoiz7pReVYa4CmX_bluecode-logo-white.svg
+    - logo: /assets/images/prismic/aQoiz7pReVYa4CmX_bluecode-logo-white.svg
       url: https://www.bluecode.com/
-    - logo: /images/pages/home/hero-organizations-1-logo-aQoizrpReVYa4CmW_btc-lightning-logo-white.svg
+    - logo: /assets/images/prismic/aQoizrpReVYa4CmW_btc-lightning-logo-white.svg
       url: https://lightning.network/
-    - logo: /images/pages/home/hero-organizations-2-logo-aQoizLpReVYa4CmU_naka-logo-white.svg
+    - logo: /assets/images/prismic/aQoizLpReVYa4CmU_naka-logo-white.svg
       url: https://naka.com/
-    - logo: /images/pages/home/hero-organizations-3-logo-aR4LSGGnmrmGqDDI_polygon-logo.svg
+    - logo: /assets/images/prismic/aR4LSGGnmrmGqDDI_polygon-logo.svg
       url: https://polygon.technology/
 appsLink:
   item: The Apps
@@ -28,25 +28,25 @@ apps:
     - highlight: false
       title: Pay App
       description: Pay with NIM at more acceptance points every day
-      preview: /images/pages/home/apps-apps-0-preview-Zt7oXRoQrfVKl2hA_NimiqPayPreview.webp
+      preview: /assets/images/prismic/Zt7oXRoQrfVKl2hA_NimiqPayPreview.webp
       item: Nimiq Pay
       link: https://www.nimiq.com/nimiq-pay/
     - highlight: false
       title: Cryptopayment.link
       description: Start accepting NIM, BTC and USDC in seconds
-      preview: /images/pages/home/apps-apps-1-preview-Zt7oXRoQrfVKl2g_CPLPreview.webp
+      preview: /assets/images/prismic/Zt7oXRoQrfVKl2g_CPLPreview.webp
       item: CPL
       link: https://cplink.com/
     - highlight: true
       title: Nimiq wallet
       description: Buying, staking, swapping, the wallet does it all
-      preview: /images/pages/home/apps-apps-2-preview-Zt7oXhoQrfVKl2hB_NimiqWalletPreview.webp
+      preview: /assets/images/prismic/Zt7oXhoQrfVKl2hB_NimiqWalletPreview.webp
       item: Nimiq Wallet
       link: https://wallet.nimiq.com
     - highlight: true
       title: Multisig Wallet
       description: Share wallets with family, friends and business partners
-      preview: /images/pages/home/apps-apps-3-preview-aPdOyLpReVYa3gOo_multisig-preview.svg
+      preview: /assets/images/prismic/aPdOyLpReVYa3gOo_multisig-preview.svg
       item: Multisig Wallet
       link: https://multisig.nimiq.com
 banner:
@@ -64,11 +64,11 @@ techGrid:
   subline: Easy to use, intuitively designed and free of tech jargon, Nimiq apps are accessible to everyone and will always be.
   items:
     - headline: Sending a transaction takes less energy than sending an email
-      image: /images/pages/home/email.svg
+      image: /assets/images/home/email.svg
     - headline: Transactions cost a fraction compared to credit cards
-      image: /images/pages/home/card.svg
+      image: /assets/images/home/card.svg
     - headline: It can handle about 3x more transactions than PayPal
-      image: /images/pages/home/stats.svg
+      image: /assets/images/home/stats.svg
 staking:
   headline: "Stake NIM at {{ interestPerAnnum }} p.a."
   subline: "Deposit your NIM to strengthen the network and create new NIM."

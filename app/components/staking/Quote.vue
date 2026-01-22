@@ -3,12 +3,12 @@ defineProps<{ text: string }>()
 </script>
 
 <template>
-  <section class="relative z-1 p-40 md:p-[200px]">
+  <div class="relative z-1 p-40 md:p-[200px]">
     <div class="bg-green h-[200px] max-w-none pointer-events-none inset-x-0 top-0 absolute" />
     <div class="bg h-[600px] max-w-none pointer-events-none inset-x-0 top-[200px] absolute" />
     <div class="text-left text-md:center text-96 text-md:112 text-white" i-nimiq:duotone-safe-lock />
     <p class="text-white text-xl md:text-2xl text-left text-md:center max-w-36ch relative z-1 mt-4 md:mt-6" v-html="text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')" />
-  </section>
+  </div>
 </template>
 
 <style scoped>
