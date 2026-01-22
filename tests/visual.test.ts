@@ -1,456 +1,284 @@
-import type { Buffer } from 'node:buffer'
-import type { Browser, Page } from 'playwright'
-import type { PageStyleDiff, StyleData } from './lib/style-comparison'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { exec } from 'node:child_process'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { promisify } from 'node:util'
 import pixelmatch from 'pixelmatch'
-import { chromium } from 'playwright'
 import { PNG } from 'pngjs'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-import { generateEnhancedReport } from './lib/report-generator'
-import { comparePageStyles, extractSectionStyles } from './lib/style-comparison'
 
-const LOCAL = process.env.LOCAL_URL || 'http://localhost:3000'
+const execAsync = promisify(exec)
+
+const LOCAL = 'http://localhost:3000'
 const PROD = 'https://nimiq.com'
-const SCREENSHOT_DIR = 'tests/screenshots'
+const SCREENSHOTS_DIR = 'tests/screenshots'
 
-const CONFIG = {
-  allowedMismatchedPixelRatio: 0.00, // 0% - pixel perfect matching
-  pixelmatchThreshold: 0.1, // color sensitivity (0-1)
-  allowedHeightDifferenceRatio: 0.50, // 50% height difference allowed (some prod pages have duplicate content bugs)
-}
-
-// Page/section specific threshold overrides (see INTENTIONAL_CHANGES.md files)
-const SECTION_OVERRIDES: Record<string, Record<number, number>> = {
-  '/': { 0: 0.35, 1: 0.70, 2: 0.20, 4: 0.55 }, // Homepage: Hero (embers hidden, ~35% diff from bg effects & map), pill link (oklch vs RGB color ~0.62% diff), apps headline, tech grid have typography/layout differences
-  '/about': { 0: 0.05, 1: 0.05, 2: 0.08, 3: 0.04, 4: 0.04, 5: 0.06 }, // Measured: mobile 4.0/4.7/7.5/3.4/3.3/5.4%, desktop 4.8/1.9/2.9/1.2/1.0/2.1%
-  '/apps': { 0: 0.50, 1: 0.15 }, // Apps are shuffled randomly on each render - both local and prod shuffle so order will differ
-  '/buy-and-sell': { 0: 0.20, 2: 0.15, 3: 0.15 }, // Typography differences from nimiq-css version (H1, currency selector sizes)
-  '/community': { 0: 0.35, 1: 0.15, 4: 0.35 }, // Section 0: prod has announcement banner. Section 1: flags marquee animated. Section 4: app icons shuffled
-  '/cryptopaymentlink': { 0: 0.30, 2: 0.30, 3: 0.12, 4: 0.12 }, // Hero + tilted media, RichTextCards styling, stepped slides minor diffs
-  '/litepaper': { 0: 0.15 }, // Minor hero/typography differences
-  '/nimiq-pay': { 0: 0.12, 5: 0.12 }, // Hero tilted media positioning, ecosystem section image loading differences
-  '/oasis': { 0: 0.70, 3: 0.12, 4: 0.35 }, // Hero globe, region grid, and contact form have rendering differences
-  '/onepager': { 1: 0.12 }, // Content rendering minor differences
-  '/roadmap': { 0: 0.20 }, // Hero rendering differences
-  '/staking': { 0: 0.30, 1: 0.65, 3: 0.15, 5: 0.25 }, // Hero, quote (height diff), and validator sections have rendering differences
-  '/team': { 0: 0.25 }, // Team grid layout differences
-  '/wallet': { 0: 0.70, 2: 0.60, 3: 0.40 }, // Hero gradient (iframe has dynamic balance values), zigzag, and layout differences
-  '/blog': { 0: 0.25 }, // Hero section has rendering differences
-}
-
-// Page-specific height difference overrides
-const HEIGHT_OVERRIDES: Record<string, number> = {
-  '/onepager': 0.60, // Mobile content renders taller on prod (old Prismic structure vs new Nuxt Content)
-  '/staking': 0.65, // Quote section height differs on mobile
-}
-
-// Pages with external iframes or slow-loading resources that prevent networkidle from completing
-const PAGES_WITH_IFRAMES = ['/oasis', '/contact', '/staking', '/wallet']
-
-// URL mappings for production (old site uses .html extension for some pages)
-const PROD_URL_MAP: Record<string, string> = {
-  '/terms': '/terms.html',
-}
-
-const _ALL_PAGES = [
-  '/',
-  '/about',
-  '/apps',
-  '/buy-and-sell',
-  '/community',
-  '/contact',
-  '/cryptopaymentlink',
-  '/litepaper',
-  '/nimiq-pay',
-  '/newsletter',
-  '/oasis',
-  '/onepager',
-  '/roadmap',
-  '/staking',
-  '/team',
-  // '/terms',  // Prod is static HTML without <main>/<section> - see tests/screenshots/terms/INTENTIONAL_CHANGES.md
-  // '/activation-terms',  // Prod returns 404 - page never existed on old site, new content from migrated Prismic
-  '/wallet',
-  '/bug-bounty',
-  '/blog',
-  '/blog/multisig-shared-wallet',
-  '/blog/virtual-nimiq-cards',
-  '/blog/nimiq-proof-of-stake-is-now-live',
-]
-
-// TEST_PAGE and TEST_SECTIONS are mandatory
-const TEST_PAGE = process.env.TEST_PAGE
-const TEST_SECTIONS = process.env.TEST_SECTIONS?.split(',').map(s => Number.parseInt(s.trim()))
-
-if (!TEST_PAGE || !TEST_SECTIONS?.length) {
-  throw new Error('TEST_PAGE and TEST_SECTIONS env vars are required. Usage: TEST_PAGE=/about TEST_SECTIONS=0,1,2 pnpm test:visual')
-}
-
-const PAGES = [TEST_PAGE]
+const PAGES = ['/', '/about', '/developers', '/exchanges', '/staking', '/blog']
 
 const VIEWPORTS = [
-  { name: 'mobile', width: 390, height: 844 },
-  { name: 'desktop', width: 1440, height: 900 },
+  { name: 'desktop', width: 1280, height: 800 },
+  { name: 'mobile', width: 375, height: 667 },
 ]
 
-type Viewport = typeof VIEWPORTS[0]
+// 0% target but allow small threshold for anti-aliasing
+const PIXEL_DIFF_THRESHOLD = 0.01
 
-interface SectionScreenshot { index: number, buffer: Buffer, bgColor?: string, hasSectionGap?: boolean }
-
-const CONSENT_COOKIE = { name: 'nimiq-consent', value: JSON.stringify({ accepted: true, version: '1.0', timestamp: Date.now() }), path: '/' }
-
-function getPageName(path: string): string {
-  if (path === '/')
-    return 'home'
-  return path.replace(/^\//, '').replace(/\//g, '-')
+interface ComparisonResult {
+  page: string
+  viewport: string
+  localPath: string
+  prodPath: string
+  diffPath: string
+  diffPixels: number
+  totalPixels: number
+  diffPercent: number
+  passed: boolean
+  localSnapshot?: string
+  prodSnapshot?: string
 }
 
-function createDirs(pageName: string, viewportName: string) {
-  const base = `${SCREENSHOT_DIR}/${pageName}/${viewportName}`
-  mkdirSync(`${base}/local`, { recursive: true })
-  mkdirSync(`${base}/prod`, { recursive: true })
-  mkdirSync(`${base}/diff`, { recursive: true })
-  return base
+async function agentBrowser(cmd: string, session: string = 'default'): Promise<string> {
+  const { stdout, stderr } = await execAsync(`npx agent-browser --session ${session} ${cmd}`, { timeout: 120000 })
+  if (stderr && !stderr.includes('npm warn'))
+    console.warn('agent-browser stderr:', stderr)
+  return stdout.trim()
 }
 
-let browser: Browser
-
-beforeAll(async () => {
-  browser = await chromium.launch()
-})
-afterAll(async () => {
-  await browser.close()
-})
-
-async function capturePageSections(url: string, viewport: Viewport, pagePath: string): Promise<SectionScreenshot[]> {
-  const page = await browser.newPage({ viewport: { width: viewport.width, height: viewport.height }, colorScheme: 'light' })
-  page.setDefaultTimeout(60000)
-  const domain = url.includes('localhost') ? 'localhost' : 'nimiq.com'
-  await page.context().addCookies([{ ...CONSENT_COOKIE, domain }])
-  // Use 'load' for pages with iframes (networkidle never completes due to external resources)
-  const waitUntil = PAGES_WITH_IFRAMES.includes(pagePath) ? 'load' : 'networkidle'
-  await page.goto(url, { waitUntil, timeout: 60000 })
-
-  // Hide UI elements that differ between environments and pause animations
-  const isLocal = url.includes('localhost')
-  await page.addStyleTag({
-    content: `
-      body > [role="alertdialog"] { display: none !important; }
-      ${isLocal
-          ? `main ~ div[fixed], main ~ [class*="fixed"], [class*="environment"], [class*="env-pill"], div[bottom-20][right-20][fixed] { display: none !important; }`
-          : `[role="banner"]:has(+ header), header { display: none !important; }`
-      }
-      /* Pause all animations and transitions for deterministic screenshots */
-      *, *::before, *::after {
-        animation-play-state: paused !important;
-        transition: none !important;
-      }
-      /* Hide animated decorative elements (ember hexagons) that cause non-deterministic diffs */
-      [data-v-dec1fa39], div[op-80][size-28][absolute][z-1] { display: none !important; }
-    `,
-  })
-  await page.waitForTimeout(2000)
-
-  const sections = page.locator('main section')
-  const count = await sections.count()
-  const screenshots: SectionScreenshot[] = []
-
-  for (let i = 0; i < count; i++) {
-    const section = sections.nth(i)
-    const isVisible = await section.isVisible()
-    if (!isVisible)
-      continue
-    await section.scrollIntoViewIfNeeded()
-    await page.waitForTimeout(300)
-    const buffer = await section.screenshot()
-    const bgColor = await section.evaluate(el => getComputedStyle(el).backgroundColor)
-    const hasSectionGap = await section.evaluate(el => el.hasAttribute('nq-section-gap'))
-    screenshots.push({ index: i, buffer, bgColor, hasSectionGap })
-  }
-
-  await page.close()
-  return screenshots
+async function ensureDir(dir: string) {
+  if (!existsSync(dir))
+    mkdirSync(dir, { recursive: true })
 }
 
-/**
- * Capture page sections with style extraction (keeps page open)
- */
-async function captureWithStyles(url: string, viewport: Viewport, pagePath: string): Promise<{ screenshots: SectionScreenshot[], page: Page }> {
-  const page = await browser.newPage({ viewport: { width: viewport.width, height: viewport.height }, colorScheme: 'light' })
-  page.setDefaultTimeout(60000)
-  const domain = url.includes('localhost') ? 'localhost' : 'nimiq.com'
-  await page.context().addCookies([{ ...CONSENT_COOKIE, domain }])
-  const waitUntil = PAGES_WITH_IFRAMES.includes(pagePath) ? 'load' : 'networkidle'
-  await page.goto(url, { waitUntil, timeout: 60000 })
-
-  // Hide UI elements and pause animations
-  const isLocal = url.includes('localhost')
-  await page.addStyleTag({
-    content: `
-      body > [role="alertdialog"] { display: none !important; }
-      ${isLocal
-          ? `main ~ div[fixed], main ~ [class*="fixed"], [class*="environment"], [class*="env-pill"], div[bottom-20][right-20][fixed] { display: none !important; }`
-          : `[role="banner"]:has(+ header), header { display: none !important; }`
-      }
-      /* Pause all animations and transitions for deterministic screenshots */
-      *, *::before, *::after {
-        animation-play-state: paused !important;
-        transition: none !important;
-      }
-      /* Hide animated decorative elements (ember hexagons) that cause non-deterministic diffs */
-      [data-v-dec1fa39], div[op-80][size-28][absolute][z-1] { display: none !important; }
-    `,
-  })
-  await page.waitForTimeout(2000)
-
-  const sections = page.locator('main section')
-  const count = await sections.count()
-  const screenshots: SectionScreenshot[] = []
-
-  for (let i = 0; i < count; i++) {
-    const section = sections.nth(i)
-    const isVisible = await section.isVisible()
-    if (!isVisible)
-      continue
-    await section.scrollIntoViewIfNeeded()
-    await page.waitForTimeout(300)
-    const buffer = await section.screenshot()
-    const bgColor = await section.evaluate(el => getComputedStyle(el).backgroundColor)
-    const hasSectionGap = await section.evaluate(el => el.hasAttribute('nq-section-gap'))
-    screenshots.push({ index: i, buffer, bgColor, hasSectionGap })
-  }
-
-  // Return page for style extraction (caller must close it)
-  return { screenshots, page }
+async function takeFullPageScreenshot(url: string, outputPath: string, session: string, viewport: { width: number, height: number }): Promise<void> {
+  await agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, session)
+  await agentBrowser(`open "${url}"`, session)
+  // Wait for page to fully load
+  await agentBrowser('wait 2000', session)
+  await agentBrowser(`screenshot --full "${outputPath}"`, session)
 }
 
-function mergeBuffersVertically(buffers: Buffer[]): Buffer {
-  if (buffers.length === 1)
-    return buffers[0]
-  const pngs = buffers.map(b => PNG.sync.read(b))
-  const width = pngs[0].width
-  const totalHeight = pngs.reduce((h, p) => h + p.height, 0)
-  const merged = new PNG({ width, height: totalHeight })
+async function getAccessibilitySnapshot(session: string): Promise<string> {
+  return await agentBrowser('snapshot --compact', session)
+}
 
-  let y = 0
-  for (const png of pngs) {
-    for (let row = 0; row < png.height; row++) {
-      for (let col = 0; col < width; col++) {
-        const srcIdx = (row * png.width + col) * 4
-        const dstIdx = ((y + row) * width + col) * 4
-        merged.data[dstIdx] = png.data[srcIdx]
-        merged.data[dstIdx + 1] = png.data[srcIdx + 1]
-        merged.data[dstIdx + 2] = png.data[srcIdx + 2]
-        merged.data[dstIdx + 3] = png.data[srcIdx + 3]
-      }
+function compareImages(localPath: string, prodPath: string, diffPath: string): { diffPixels: number, totalPixels: number } {
+  const localImg = PNG.sync.read(readFileSync(localPath))
+  const prodImg = PNG.sync.read(readFileSync(prodPath))
+
+  // Handle different image sizes by padding the smaller one
+  const maxWidth = Math.max(localImg.width, prodImg.width)
+  const maxHeight = Math.max(localImg.height, prodImg.height)
+
+  const padImage = (img: PNG, targetWidth: number, targetHeight: number): PNG => {
+    if (img.width === targetWidth && img.height === targetHeight)
+      return img
+    const padded = new PNG({ width: targetWidth, height: targetHeight })
+    // Fill with white background
+    for (let i = 0; i < padded.data.length; i += 4) {
+      padded.data[i] = 255
+      padded.data[i + 1] = 255
+      padded.data[i + 2] = 255
+      padded.data[i + 3] = 255
     }
-    y += png.height
+    // Copy original image
+    PNG.bitblt(img, padded, 0, 0, img.width, img.height, 0, 0)
+    return padded
   }
-  return PNG.sync.write(merged)
+
+  const paddedLocal = padImage(localImg, maxWidth, maxHeight)
+  const paddedProd = padImage(prodImg, maxWidth, maxHeight)
+
+  const diff = new PNG({ width: maxWidth, height: maxHeight })
+
+  const diffPixels = pixelmatch(
+    paddedLocal.data,
+    paddedProd.data,
+    diff.data,
+    maxWidth,
+    maxHeight,
+    { threshold: 0.1 },
+  )
+
+  writeFileSync(diffPath, PNG.sync.write(diff))
+
+  return { diffPixels, totalPixels: maxWidth * maxHeight }
 }
 
-function mergeAdjacentSections(sections: SectionScreenshot[]): SectionScreenshot[] {
-  if (sections.length === 0)
-    return []
-  const merged: SectionScreenshot[] = []
-  let currentBuffers: Buffer[] = [sections[0].buffer]
-  let currentBgColor = sections[0].bgColor
-
-  for (let i = 1; i < sections.length; i++) {
-    const section = sections[i]
-    // Only merge if same bg color AND next section doesn't have nq-section-gap
-    const canMerge = section.bgColor === currentBgColor && !section.hasSectionGap
-    if (canMerge) {
-      currentBuffers.push(section.buffer)
-    }
-    else {
-      merged.push({ index: merged.length, buffer: mergeBuffersVertically(currentBuffers), bgColor: currentBgColor })
-      currentBuffers = [section.buffer]
-      currentBgColor = section.bgColor
-    }
-  }
-  merged.push({ index: merged.length, buffer: mergeBuffersVertically(currentBuffers), bgColor: currentBgColor })
-  return merged
-}
-
-function _generateHtmlReport(baseDir: string, localSections: SectionScreenshot[], prodSections: SectionScreenshot[], failures: string[]) {
-  const maxSections = Math.max(localSections.length, prodSections.length)
-  const rows = []
-
-  for (let i = 0; i < maxSections; i++) {
-    const hasLocal = i < localSections.length
-    const hasProd = i < prodSections.length
-    const localImg = hasLocal ? `local/section-${i}.png` : ''
-    const prodImg = hasProd ? `prod/section-${i}.png` : ''
-    const diffImg = hasLocal && hasProd ? `diff/section-${i}.png` : ''
-
-    rows.push(`
-      <tr>
-        <td><strong>Section ${i}</strong></td>
-        <td>${hasLocal ? `<img src="${localImg}" style="max-width:100%">` : '<em>missing</em>'}</td>
-        <td>${hasProd ? `<img src="${prodImg}" style="max-width:100%">` : '<em>missing</em>'}</td>
-        <td>${diffImg ? `<img src="${diffImg}" style="max-width:100%" onerror="this.parentElement.innerHTML='<em>no diff</em>'">` : ''}</td>
-      </tr>
-    `)
-  }
-
+function generateHtmlReport(results: ComparisonResult[], outputPath: string) {
   const html = `<!DOCTYPE html>
-<html><head><title>Visual Diff Report</title>
-<style>
-  body { font-family: system-ui; margin: 20px; background: #1a1a1a; color: #fff; }
-  table { border-collapse: collapse; width: 100%; }
-  th, td { border: 1px solid #333; padding: 10px; text-align: center; vertical-align: top; }
-  th { background: #2a2a2a; }
-  img { max-height: 400px; object-fit: contain; }
-  .failures { background: #4a1a1a; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
-  .failures pre { margin: 0; white-space: pre-wrap; }
-</style></head><body>
-<h1>Visual Diff: ${baseDir.split('/').slice(-2).join('/')}</h1>
-${failures.length ? `<div class="failures"><strong>Failures:</strong><pre>${failures.join('\n')}</pre></div>` : ''}
-<table>
-  <tr><th>Section</th><th>Local</th><th>Prod</th><th>Diff</th></tr>
-  ${rows.join('')}
-</table>
-</body></html>`
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Comparison Report</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f5f5f5; padding: 2rem; }
+    h1 { margin-bottom: 1rem; }
+    .summary { background: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; }
+    .summary.pass { border-left: 4px solid #22c55e; }
+    .summary.fail { border-left: 4px solid #ef4444; }
+    .results { display: grid; gap: 2rem; }
+    .result { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .result-header { padding: 1rem; border-bottom: 1px solid #e5e5e5; display: flex; justify-content: space-between; align-items: center; }
+    .result-header.pass { background: #dcfce7; }
+    .result-header.fail { background: #fee2e2; }
+    .badge { padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+    .badge.pass { background: #22c55e; color: white; }
+    .badge.fail { background: #ef4444; color: white; }
+    .images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 1rem; }
+    .image-container { text-align: center; }
+    .image-container img { max-width: 100%; border: 1px solid #e5e5e5; border-radius: 4px; }
+    .image-container p { margin-top: 0.5rem; font-size: 0.875rem; color: #666; }
+    .snapshot { padding: 1rem; background: #f9f9f9; font-family: monospace; font-size: 0.75rem; white-space: pre-wrap; max-height: 300px; overflow: auto; }
+    .error { color: #ef4444; padding: 1rem; }
+    details { margin-top: 1rem; }
+    summary { cursor: pointer; padding: 0.5rem 1rem; background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <h1>Visual Comparison Report</h1>
+  <div class="summary ${results.every(r => r.passed) ? 'pass' : 'fail'}">
+    <strong>Overall: ${results.filter(r => r.passed).length}/${results.length} passed</strong>
+    <p>Generated: ${new Date().toISOString()}</p>
+  </div>
+  <div class="results">
+    ${results.map(r => `
+    <div class="result">
+      <div class="result-header ${r.passed ? 'pass' : 'fail'}">
+        <div>
+          <strong>${r.page}</strong> - ${r.viewport}
+          <span>(${r.diffPercent.toFixed(2)}% diff)</span>
+        </div>
+        <span class="badge ${r.passed ? 'pass' : 'fail'}">${r.passed ? 'PASS' : 'FAIL'}</span>
+      </div>
+      ${r.totalPixels > 0
+        ? `
+      <div class="images">
+        <div class="image-container">
+          <img src="${r.localPath.replace('tests/screenshots/', '')}" alt="Local">
+          <p>Local (localhost:3000)</p>
+        </div>
+        <div class="image-container">
+          <img src="${r.prodPath.replace('tests/screenshots/', '')}" alt="Production">
+          <p>Production (nimiq.com)</p>
+        </div>
+        <div class="image-container">
+          <img src="${r.diffPath.replace('tests/screenshots/', '')}" alt="Diff">
+          <p>Difference (${r.diffPixels.toLocaleString()} pixels)</p>
+        </div>
+      </div>
+      ${r.localSnapshot || r.prodSnapshot
+        ? `
+      <details>
+        <summary>Accessibility Snapshots</summary>
+        <div style="display: grid; grid-template-columns: 1fr 1fr;">
+          <div>
+            <h4 style="padding: 0.5rem;">Local</h4>
+            <div class="snapshot">${r.localSnapshot || 'N/A'}</div>
+          </div>
+          <div>
+            <h4 style="padding: 0.5rem;">Production</h4>
+            <div class="snapshot">${r.prodSnapshot || 'N/A'}</div>
+          </div>
+        </div>
+      </details>
+      `
+        : ''}
+      `
+        : ''}
+    </div>
+    `).join('')}
+  </div>
+</body>
+</html>`
 
-  writeFileSync(`${baseDir}/report.html`, html)
+  writeFileSync(outputPath, html)
 }
 
-function compareImages(img1: Buffer, img2: Buffer, diffPath: string, allowedHeightDiff: number = CONFIG.allowedHeightDifferenceRatio): { diffPixels: number, totalPixels: number, diffRatio: number, sizeMismatch: boolean, heightDiff?: string } {
-  const png1 = PNG.sync.read(img1)
-  const png2 = PNG.sync.read(img2)
+describe('visual Comparison', () => {
+  const results: ComparisonResult[] = []
 
-  // Width must match exactly
-  if (png1.width !== png2.width) {
-    return { diffPixels: -1, totalPixels: 0, diffRatio: 1, sizeMismatch: true, heightDiff: `width mismatch: ${png1.width} vs ${png2.width}` }
-  }
+  beforeAll(async () => {
+    await ensureDir(SCREENSHOTS_DIR)
 
-  // Height can differ by allowedHeightDifferenceRatio
-  const heightDiffRatio = Math.abs(png1.height - png2.height) / Math.max(png1.height, png2.height)
-  if (heightDiffRatio > allowedHeightDiff) {
-    return { diffPixels: -1, totalPixels: 0, diffRatio: 1, sizeMismatch: true, heightDiff: `${(heightDiffRatio * 100).toFixed(1)}% (${png1.height} vs ${png2.height})` }
-  }
+    // Check if local dev server is running
+    try {
+      const response = await fetch(LOCAL)
+      if (!response.ok)
+        throw new Error(`Local server returned ${response.status}`)
+    }
+    catch {
+      throw new Error(`Local dev server not running at ${LOCAL}. Run 'pnpm dev' first.`)
+    }
+  })
 
-  // If heights differ but within tolerance, compare the overlapping region
-  const compareHeight = Math.min(png1.height, png2.height)
-  const diff = new PNG({ width: png1.width, height: compareHeight })
+  afterAll(async () => {
+    // Generate report
+    const reportPath = join(SCREENSHOTS_DIR, 'report.html')
+    generateHtmlReport(results, reportPath)
+    console.warn(`\nReport generated: ${reportPath}`)
 
-  // Compare only the overlapping top portion
-  const tempPng1 = new PNG({ width: png1.width, height: compareHeight })
-  const tempPng2 = new PNG({ width: png2.width, height: compareHeight })
-  png1.data.copy(tempPng1.data, 0, 0, compareHeight * png1.width * 4)
-  png2.data.copy(tempPng2.data, 0, 0, compareHeight * png2.width * 4)
+    // Close browser sessions
+    await agentBrowser('close', 'local').catch(() => {})
+    await agentBrowser('close', 'prod').catch(() => {})
+  })
 
-  const diffPixels = pixelmatch(tempPng1.data, tempPng2.data, diff.data, png1.width, compareHeight, { threshold: CONFIG.pixelmatchThreshold })
-  const totalPixels = png1.width * compareHeight
-  const diffRatio = diffPixels / totalPixels
-
-  // Only save diff if there are differences
-  if (diffPixels > 0) {
-    writeFileSync(diffPath, PNG.sync.write(diff))
-  }
-
-  return { diffPixels, totalPixels, diffRatio, sizeMismatch: false }
-}
-
-describe('visual Regression', () => {
-  for (const path of PAGES) {
+  for (const page of PAGES) {
     for (const viewport of VIEWPORTS) {
-      it(`${path} - ${viewport.name}`, async () => {
-        const pageName = getPageName(path)
-        const baseDir = createDirs(pageName, viewport.name)
+      it(`${page} - ${viewport.name}`, async () => {
+        const pageName = page === '/' ? 'home' : page.slice(1)
+        const pageDir = join(SCREENSHOTS_DIR, pageName, viewport.name)
+        await ensureDir(pageDir)
 
-        // Capture sections from both environments
-        const prodPath = PROD_URL_MAP[path] || path
-        const [localRaw, prodRaw] = await Promise.all([
-          capturePageSections(`${LOCAL}${path}`, viewport, path),
-          capturePageSections(`${PROD}${prodPath}`, viewport, path),
-        ])
+        const localPath = join(pageDir, 'local.png')
+        const prodPath = join(pageDir, 'prod.png')
+        const diffPath = join(pageDir, 'diff.png')
 
-        // Merge adjacent sections with same background color
-        const localSections = mergeAdjacentSections(localRaw)
-        const prodSections = mergeAdjacentSections(prodRaw)
-
-        // Save all screenshots
-        for (const s of localSections) {
-          writeFileSync(`${baseDir}/local/section-${s.index}.png`, s.buffer)
-        }
-        for (const s of prodSections) {
-          writeFileSync(`${baseDir}/prod/section-${s.index}.png`, s.buffer)
+        const result: ComparisonResult = {
+          page,
+          viewport: viewport.name,
+          localPath,
+          prodPath,
+          diffPath,
+          diffPixels: 0,
+          totalPixels: 0,
+          diffPercent: 100,
+          passed: false,
         }
 
-        const failures: string[] = []
+        try {
+          // Take screenshots in parallel using different sessions
+          await Promise.all([
+            takeFullPageScreenshot(`${LOCAL}${page}`, localPath, 'local', viewport),
+            takeFullPageScreenshot(`${PROD}${page}`, prodPath, 'prod', viewport),
+          ])
 
-        // Compare only the specified sections
-        const minSections = Math.min(localSections.length, prodSections.length)
-        const heightThreshold = HEIGHT_OVERRIDES[path] ?? CONFIG.allowedHeightDifferenceRatio
-        const sectionsToCompare = TEST_SECTIONS
+          // Get accessibility snapshots
+          const [localSnapshot, prodSnapshot] = await Promise.all([
+            getAccessibilitySnapshot('local'),
+            getAccessibilitySnapshot('prod'),
+          ])
+          result.localSnapshot = localSnapshot
+          result.prodSnapshot = prodSnapshot
 
-        for (const i of sectionsToCompare) {
-          if (i >= minSections)
-            continue
-          const local = localSections[i]
-          const prod = prodSections[i]
-          const diffPath = `${baseDir}/diff/section-${i}.png`
+          // Compare images
+          const comparison = compareImages(localPath, prodPath, diffPath)
+          result.diffPixels = comparison.diffPixels
+          result.totalPixels = comparison.totalPixels
+          result.diffPercent = (comparison.diffPixels / comparison.totalPixels) * 100
+          result.passed = result.diffPercent <= PIXEL_DIFF_THRESHOLD
 
-          const result = compareImages(local.buffer, prod.buffer, diffPath, heightThreshold)
-          const threshold = SECTION_OVERRIDES[path]?.[i] ?? CONFIG.allowedMismatchedPixelRatio
+          results.push(result)
 
-          if (result.sizeMismatch) {
-            failures.push(`Section ${i}: size mismatch${result.heightDiff ? ` (${result.heightDiff})` : ''}`)
-          }
-          else if (result.diffRatio > threshold) {
-            failures.push(`Section ${i}: ${(result.diffRatio * 100).toFixed(2)}% diff (threshold: ${threshold * 100}%)`)
-          }
+          expect(result.diffPercent, `Visual diff exceeded ${PIXEL_DIFF_THRESHOLD}% (got ${result.diffPercent.toFixed(2)}%)`).toBeLessThanOrEqual(PIXEL_DIFF_THRESHOLD)
         }
-
-        // If failures detected, extract and compare styles
-        let styleDiff: PageStyleDiff | undefined
-        if (failures.length > 0) {
-          try {
-            // Re-capture with pages kept open for style extraction
-            const [localData, prodData] = await Promise.all([
-              captureWithStyles(`${LOCAL}${path}`, viewport, path),
-              captureWithStyles(`${PROD}${prodPath}`, viewport, path),
-            ])
-
-            // Extract styles from each section (or just the specified section)
-            const localStylesAll: StyleData[][] = []
-            const prodStylesAll: StyleData[][] = []
-
-            for (const i of sectionsToCompare) {
-              if (i >= minSections)
-                continue
-              const [localStyles, prodStyles] = await Promise.all([
-                extractSectionStyles(localData.page, i),
-                extractSectionStyles(prodData.page, i),
-              ])
-              localStylesAll.push(localStyles)
-              prodStylesAll.push(prodStyles)
-            }
-
-            // Compare all styles
-            styleDiff = comparePageStyles(localStylesAll, prodStylesAll)
-
-            // Save style diff to JSON
-            writeFileSync(`${baseDir}/style-diff.json`, JSON.stringify(styleDiff, null, 2))
-
-            // Close pages
-            await localData.page.close()
-            await prodData.page.close()
-          }
-          catch (error) {
-            console.error('Style comparison failed:', error)
-          }
+        catch (error) {
+          // Only push if not already pushed (expect failures happen after push)
+          if (!results.includes(result))
+            results.push(result)
+          throw error
         }
-
-        // Generate enhanced HTML report with style diffs
-        generateEnhancedReport(baseDir, localSections, prodSections, failures, styleDiff)
-
-        if (failures.length > 0) {
-          expect.fail(`${failures.length} issue(s):\n${failures.join('\n')}\nReport: ${baseDir}/report.html`)
-        }
-      })
+      }, 120000) // 2 minute timeout per test
     }
   }
 })

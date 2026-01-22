@@ -10,8 +10,10 @@ catalog:
   '@nuxtjs/tailwindcss': 7.0.0-beta.1
   '@tailwindcss/typography': ^0.5.19
   '@types/js-yaml': ^4.0.9
+  '@types/pngjs': ^6.0.5
   '@vitest/browser': ^4.0.16
   '@vitest/ui': ^4.0.16
+  agent-browser: ^0.6.0
   dotenv: ^17.2.3
   js-yaml: ^4.1.0
   marked: ^17.0.1
@@ -77,6 +79,7 @@ catalogs:
     '@types/node': ^22.15.19
     typescript: ^5.8.3
 onlyBuiltDependencies:
+  - agent-browser
   - better-sqlite3
   - '@parcel/watcher'
   - '@scarf/scarf'
