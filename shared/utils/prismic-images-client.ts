@@ -16,19 +16,19 @@ export function transformPrismicUrl(url: string): string {
     return url
   // Handle images.prismic.io/nimiq/...
   const imagesMatch = url.match(/images\.prismic\.io\/nimiq\/([^?]+)/)
-  if (imagesMatch) {
+  if (imagesMatch?.[1]) {
     const fileName = normalizeFileName(imagesMatch[1])
     return `/${IMAGE_FOLDER}/${fileName}`
   }
   // Handle nimiq.cdn.prismic.io/nimiq/...
   const cdnMatch = url.match(/nimiq\.cdn\.prismic\.io\/nimiq\/([^?]+)/)
-  if (cdnMatch) {
+  if (cdnMatch?.[1]) {
     const fileName = normalizeFileName(cdnMatch[1])
     return `/${IMAGE_FOLDER}/${fileName}`
   }
   // Handle prismic-io.s3.amazonaws.com/nimiq/...
   const s3Match = url.match(/prismic-io\.s3\.amazonaws\.com\/nimiq\/([^?]+)/)
-  if (s3Match) {
+  if (s3Match?.[1]) {
     const fileName = normalizeFileName(s3Match[1])
     return `/${IMAGE_FOLDER}/${fileName}`
   }
