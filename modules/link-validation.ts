@@ -106,6 +106,7 @@ const LINK_WHITELIST = [
   /^https:\/\/medium\.com\/u\/57600910a883\?source=post_page-----b6b90c0bb1d5----------------------$/,
 
   // Additional URLs
+  /^https:\/\/maestroi\.github\.io\/nimiq-doom$/,
   /^https:\/\/maestroi\.github\.io\/nimiq-doom\/$/,
   /^https:\/\/wallet\.nimiq-testnet\.com\/$/,
   /^https:\/\/getsome\.nimiq-testnet\.com\/$/,
