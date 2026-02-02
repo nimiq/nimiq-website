@@ -58,15 +58,16 @@ function play() {
       v-else
       ref="videoEl"
       :src="videoUrl"
-      :autoplay="slice.primary.autoplay"
-      :loop="slice.primary.loop"
-      :muted="slice.primary.autoplay"
       :poster="hasPoster ? getImage(slice.primary.poster) : undefined"
+      :loop="slice.primary.loop"
+      :autoplay="slice.primary.autoplay || undefined"
+      :muted="slice.primary.autoplay || undefined"
       controls
       playsinline
       w-full
       rounded-6
       bg-neutral-100
+      @loadeddata="slice.primary.autoplay && ($event.target as HTMLVideoElement).play()"
     />
 
     <!-- Caption -->
