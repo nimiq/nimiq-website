@@ -28,7 +28,7 @@ function play() {
 </script>
 
 <template>
-  <figure f-my-lg max-w-3xl mx-auto>
+  <figure f-my-lg w="[calc(100%+32px)]" mx--16>
     <!-- Video with poster overlay -->
     <div v-if="hasPoster && !isPlaying && !slice.primary.autoplay" relative rounded-6 overflow-hidden bg-neutral-100>
       <ProxiedPrismicImage
