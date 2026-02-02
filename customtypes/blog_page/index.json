@@ -79,6 +79,9 @@
           "choices": {
             "rich_text": {
               "type": "SharedSlice"
+            },
+            "blog_video": {
+              "type": "SharedSlice"
             }
           }
         }
