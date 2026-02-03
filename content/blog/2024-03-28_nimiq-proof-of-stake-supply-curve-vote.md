@@ -6,7 +6,7 @@ publishedAt: "2024-03-28"
 updatedAt: 2024-04-06T18:33:46+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-proof-of-stake-supply-curve-vote/Zf2v7scYqOFdyCRe_supplycurvearticle-3-.jpg
+image: /assets/images/prismic/Zf2v7scYqOFdyCRe_supplycurvearticle-3-.jpg
 ---
 
 In the wake of the consideration phase detailed in the previous blog post “[Nimiq Proof-of-Stake Supply Curve Update](https://www.nimiq.com/blog/nimiq-proof-of-stake-supply-curve-update/)”, the stage has been set for a pivotal voting process. This process is designed to determine the future of the Nimiq supply curve as it transitions to Proof-of-Stake (PoS).

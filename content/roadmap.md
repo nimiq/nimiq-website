@@ -15,7 +15,7 @@ roadmap:
   firstLayer: |-
     {
       "name": "Network Layer",
-      "layerClasses": "bg-blue/10",
+      "layerClasses": "bg-blue-500/10",
       "text": "text-blue-1100",
       "icon": "nimiq:duotone-network",
       "blocksClasses": "bg-blue text-white",
@@ -40,7 +40,7 @@ roadmap:
             { "icon": "nimiq:moon", "name": "Luna Testnet", "year": 2018, "month": 4, "row": 2 },
             { "name": "<b>1.0</b> Nimiq PoW", "year": 2019, "month": 1, "milestone": "Crowdfunding" },
             { "icon": "nimiq:mining", "name": "Browser mining", "year": 2019, "month": 9 },
-            { "icon": "logos:rust relative scale-120", "name": "Rust implementation", "year": 2019, "month": 11, "row": 2 },
+            { "icon": "logos:rust relative scale-[1.2]", "name": "Rust implementation", "year": 2019, "month": 11, "row": 2 },
             { "icon": "nimiq:tools-wench-hammer", "name": "Development PoS", "year": 2020, "month": 8 },
             { "icon": "logos:webassembly", "name": "WASM support", "year": 2021, "month": 7 },
             { "icon": "nimiq:handshake", "name": "Sync protocol redesign", "year": 2022, "month": 2, "row": 2 },
@@ -59,7 +59,7 @@ roadmap:
   secondLayer: |-
     {
       "name": "App Layer",
-      "layerClasses": "bg-gold/10 pl-120",
+      "layerClasses": "bg-gold-500/10 pl-[120px]",
       "text": "text-gold-1100",
       "icon": "nimiq:duotone-nim-phone",
       "blocksClasses": "bg-gold text-white",
@@ -67,8 +67,8 @@ roadmap:
         {
           "name": "Wallet",
           "items": [
-            { "icon": "nimiq:logos-nimiq-wallet-horizontal-mono w-96 text-inherit", "name": "1.0", "withBg": true, "year": 2019, "month": 2 },
-            { "icon": "nimiq:logos-nimiq-wallet-horizontal-mono w-96 text-inherit", "name": "2.0", "withBg": true, "year": 2020, "month": 1, "milestone": "Initial Launch" },
+            { "icon": "nimiq:logos-nimiq-wallet-horizontal-mono w-24 text-inherit", "name": "1.0", "withBg": true, "year": 2019, "month": 2 },
+            { "icon": "nimiq:logos-nimiq-wallet-horizontal-mono w-24 text-inherit", "name": "2.0", "withBg": true, "year": 2020, "month": 1, "milestone": "Initial Launch" },
             { "icon": "nimiq:ledger-2", "name": "Ledger integration", "year": 2020, "month": 9, "row": 3 },
             { "icon": "nimiq:logos-btc-mono", "name": "BTC Integration", "year": 2021, "month": 4 },
             { "icon": "nimiq:logos-usdc-mono", "name": "USDC Integration", "year": 2021, "month": 4, "row": 2 },
@@ -83,17 +83,17 @@ roadmap:
           "name": "Merchants App",
           "items": [
             [
-              { "icon": "nimiq:logos-nimiq-horizontal-mono w-68 h-16", "name": "Checkout", "year": 2020, "month": 2 }
+              { "icon": "nimiq:logos-nimiq-horizontal-mono w-[68px] h-4", "name": "Checkout", "year": 2020, "month": 2 }
             ],
             [
-              { "icon": "nimiq:logos-cpl-horizontal-mono w-130", "name": "1.0", "year": 2020, "month": 12 },
-              { "icon": "nimiq:logos-cpl-horizontal-mono w-130", "name": "2.0", "year": 2022, "month": 1, "milestone": "Accessibility for Merchants" }
+              { "icon": "nimiq:logos-cpl-horizontal-mono w-[130px]", "name": "1.0", "year": 2020, "month": 12 },
+              { "icon": "nimiq:logos-cpl-horizontal-mono w-[130px]", "name": "2.0", "year": 2022, "month": 1, "milestone": "Accessibility for Merchants" }
             ]
           ]
         },
         {
           "name": "Exchange Service",
-          "nestedBlocksClasses": "first:z-1 last:ml--12 last:rounded-0 last:w-[calc(100%+12px)] last:pl-32 last:shadow-none last:bg-gold-500 last:text-gold-1100 last:font-semibold",
+          "nestedBlocksClasses": "first:z-10 last:-ml-3 last:rounded-none last:w-[calc(100%+12px)] last:pl-8 last:shadow-none last:bg-gold-500 last:text-gold-1100 last:font-semibold",
           "items": [
             [
               { "icon": "nimiq:logos-super-simple-swap-mono", "name": "SuperSimpleSwap", "year": 2020, "month": 11 }
@@ -106,7 +106,7 @@ roadmap:
         {
           "name": "Payment App",
           "items": [
-            { "icon": "nimiq:logos-nimiq-pay-horizontal-mono w-42 text-18", "year": 2024, "month": 4 },
+            { "icon": "nimiq:logos-nimiq-pay-horizontal-mono w-[42px] text-lg", "year": 2024, "month": 4 },
             { "name": "BTC-Lightning Support", "year": 2024, "month": 7 },
             { "name": "Mini-App Framework", "year": 2025, "month": 12 }
           ]
@@ -130,7 +130,7 @@ roadmap:
     }
   thirdLayer: |-
     {
-      "layerClasses": "bg-orange/10 pl-146",
+      "layerClasses": "bg-orange-500/10 pl-[146px]",
       "text": "text-orange-1100",
       "icon": "nimiq:duotone-group",
       "name": "Adoption Layer",
@@ -139,7 +139,7 @@ roadmap:
         {
           "name": "Adoption campaigns",
           "items": [
-            { "icon": "nimiq:logos-cryptocity-horizontal-mono w-68 text-23", "withBg": true, "year": 2022, "month": 6 },
+            { "icon": "nimiq:logos-cryptocity-horizontal-mono w-[68px] text-[23px]", "withBg": true, "year": 2022, "month": 6 },
             { "icon": "nimiq:landmark", "name": "Criptociudad San Jose (Costa Rica)", "year": 2023, "month": 2 },
             { "icon": "nimiq:landmark", "name": "Kryptostadt Mannheim (Germany)", "year": 2023, "month": 6, "row": 2 },
             { "icon": "nimiq:landmark", "name": "Criptocity Toronto (Canada)", "year": 2024, "month": 10 },
@@ -150,7 +150,7 @@ roadmap:
         {
           "name": "Acceptance registry",
           "items": [
-            { "year": 2023, "month": 2, "icon": "nimiq:logos-crypto-map-horizontal-mono w-96 text-inherit" }
+            { "year": 2023, "month": 2, "icon": "nimiq:logos-crypto-map-horizontal-mono w-24 text-inherit" }
           ]
         }
       ]

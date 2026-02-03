@@ -6,7 +6,7 @@ publishedAt: "2021-02-16"
 updatedAt: 2022-04-20T13:34:56+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-20-status-and-outlook/dbb0adb7-cb6a-4ba6-8fff-855a08246f13_blog_nimiq-20-status-and-outlook_1.png
+image: /assets/images/prismic/dbb0adb7-cb6a-4ba6-8fff-855a08246f13_blog_nimiq-20-status-and-outlook_1.png
 ---
 
 ## The path we've already walked

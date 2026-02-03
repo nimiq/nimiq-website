@@ -6,7 +6,7 @@ publishedAt: "2020-08-12"
 updatedAt: 2022-04-20T13:24:22+0000
 authors:
   - COMMUNITY FUNDING BOARD
-image: /images/blog/community-funding-board-15th-meeting/7e917db9-79d8-42e3-b2a5-c1ce74c34f7c_blog_community-funding-board-15th-meeting_1.png
+image: /assets/images/prismic/7e917db9-79d8-42e3-b2a5-c1ce74c34f7c_blog_community-funding-board-15th-meeting_1.png
 ---
 
 Welcome to another meeting report from the Community Funding Board. The Nimiq Community has been growing a lot lately and the board is well aware of it. During this meeting we discussed two proposals from the community, continued organizing the upcoming Community Hackathon, talked about the Nimiq Community Hosting Service and rewarded users for their valuable contribution to the community. Let’s get to it!

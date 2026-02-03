@@ -6,7 +6,7 @@ publishedAt: "2019-03-27"
 updatedAt: 2022-04-20T13:29:58+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/trust-wallet-collaboration/2740e424-aebe-4ecf-8e35-e6d4af2a3880_blog_trust-wallet-collaboration_1.png
+image: /assets/images/prismic/2740e424-aebe-4ecf-8e35-e6d4af2a3880_blog_trust-wallet-collaboration_1.png
 ---
 
 Team Nimiq would like to extend special thanks to **[Terorie](https://github.com/terorie/)** and **[Vasconcelos](https://github.com/lucaslg26)**, both members of the Nimiq community, for their instrumental help in spearheading this new collaboration with **[Trust Wallet](https://trustwallet.com/)**.

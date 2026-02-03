@@ -6,7 +6,7 @@ publishedAt: "2024-04-12"
 updatedAt: 2024-04-13T07:45:30+0000
 authors:
   - Team Nimiq
-image: /images/blog/happy-birthday-nimiq---welcome-nimiq-proof-of-stake/ZhmwSTjCgu4jzy7U_Protect4-6-.png
+image: /assets/images/prismic/ZhmwSTjCgu4jzy7U_Protect4-6-.png
 ---
 
 ## Celebrating Six Years of the Nimiq Blockchain

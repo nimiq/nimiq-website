@@ -6,7 +6,7 @@ publishedAt: "2019-05-31"
 updatedAt: 2023-12-07T16:36:27+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nim-is-on-kucoin/9646fcd7-f05f-4e8a-b0ca-a627fcbd309a_blog_nim-is-on-kucoin_3.png
+image: /assets/images/prismic/9646fcd7-f05f-4e8a-b0ca-a627fcbd309a_blog_nim-is-on-kucoin_3.png
 ---
 
 Top exchange listing

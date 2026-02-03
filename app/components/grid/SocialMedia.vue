@@ -12,23 +12,17 @@ const { newsAndAnnouncementsLabel = '', discussionsAndSupportLabel = '', culture
 
 const { data: site } = await useAsyncData('site', () => queryCollection('site').first())
 
-const socialMediaMap: Record<string, string> = { twitter: 'x', nimiq_forum: 'nimiqForum' }
+// Map from content IDs to site.yaml social IDs
+const socialMediaMap: Record<string, string> = { nimiq_forum: 'forum', twitter: 'x' }
 
 function getSocialById(id: string) {
   const mappedId = socialMediaMap[id] || id
   const social = site.value?.socials?.find(s => s.id === mappedId)
   if (!social)
     return social
-  // Contact grid shows lowercase labels for some socials, keeps proper case for others
-  const lowercaseIds = ['reddit', 'facebook', 'telegram', 'youtube', 'discord', 'instagram']
-  let label = social.label
-  if (lowercaseIds.includes(mappedId)) {
-    label = social.label.toLowerCase()
-  }
-  else if (mappedId === 'nimiqForum') {
-    // Special case: nimiqForum should have lowercase 'n' in contact grid
-    label = 'nimiqForum'
-  }
+  // Contact grid displays platform names - capitalize for display
+  // Special case: forum should display as "NimiqForum" in contact grid
+  const label = mappedId === 'forum' ? 'NimiqForum' : social.label
   return { ...social, label }
 }
 
@@ -44,13 +38,13 @@ const columns = computed(() => [
 </script>
 
 <template>
-  <ul class="grid grid-cols-1 grid-md:cols-3 gap-x-2 grid-lg:gap-x-4 gap-y-6 bg-neutral-100 w-full">
-    <li v-for="(column, i) in columns.filter(c => c.items.length)" :key="i" class="flex flex-col flex-md:items-center">
-      <span v-if="showLabels" class="text-12 text-md:14 text-neutral-700 nq-label">{{ column.label }}</span>
-      <div class="w-full mt-4 md:mt-6 flex flex-col gap-y-2 flex-lg:gap-y-4">
-        <NuxtLink v-for="(social, j) in column.items" :key="j" class="hocus:text-white hocus:var:nq-gradient-from:$c hocus:var:nq-gradient-to:$c flex flex-row flex-items-center gap-6 group nq-hoverable" :to="social.link" external target="_blank" :style="`--c:${social.color}`">
-          <Icon class="size-8 md:size-10" :name="social.icon" />
-          <span class="text-base md:text-lg">{{ social.label }}</span>
+  <ul class="grid grid-cols-1 md:grid-cols-3 gap-x-8 lg:gap-x-16 gap-y-24 w-full">
+    <li v-for="(column, i) in columns.filter(c => c.items.length)" :key="i" class="flex flex-col md:items-center">
+      <span v-if="showLabels" class="text-12 md:text-14 text-neutral-700 nq-label">{{ column.label }}</span>
+      <div class="w-full f-mt-md flex flex-col gap-y-8 lg:gap-y-16">
+        <NuxtLink v-for="(social, j) in column.items" :key="j" class="social-link group nq-hoverable" :to="social.link" external target="_blank" :style="`--social-color:${social.color}`">
+          <Icon class="!size-32 md:!size-40" :name="social.icon" />
+          <span class="capitalize f-text-lg">{{ social.label }}</span>
         </NuxtLink>
       </div>
     </li>
@@ -58,13 +52,22 @@ const columns = computed(() => [
 </template>
 
 <style scoped>
-[nq-hoverable] {
-  &:hover,
-  &:focus-visible {
-    &::before {
-      background-image: none;
-      background: var(--c);
-    }
-  }
+.social-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  color: white;
+}
+
+/* Override nq-hoverable gradient on hover to use social color */
+.social-link:hover::before,
+.social-link:focus-visible::before {
+  background-image: none;
+  background: var(--social-color);
 }
 </style>

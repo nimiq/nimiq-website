@@ -6,7 +6,7 @@ publishedAt: "2024-05-31"
 updatedAt: 2024-05-31T15:11:38+0000
 authors:
   - Team Nimiq
-image: /images/blog/unlock-unique-promotional-rewards-with-nimiq--asce/Zlng66WtHYXtT-i3_BlogStakeatAscendEX.png
+image: /assets/images/prismic/Zlng66WtHYXtT-i3_BlogStakeatAscendEX.png
 ---
 
 Nimiq is set to switch from Proof-of-Work (PoW) to Proof-of-Stake, marking a significant upgrade to Nimiq’s native blockchain performance. This switch will enable over 1000 transactions per second with near-instant confirmation times, making Nimiq payments one of the fastest and most efficient in the industry without compromising censorship resistance.

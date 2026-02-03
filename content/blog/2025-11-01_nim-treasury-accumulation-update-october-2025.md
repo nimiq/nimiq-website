@@ -6,8 +6,8 @@ publishedAt: "2025-11-01"
 updatedAt: 2025-11-01T20:03:22+0000
 authors:
   - Team Nimiq
-image: /images/blog/nim-treasury-accumulation-update-october-2025/aQT-2LpReVYa35n4_NIMTreasuryAccumulationUpdateOct2025.png
-ogImage: /images/blog/nim-treasury-accumulation-update-october-2025/aOQeSp5xUNkB1mwM_TreasuryAccumulationUpdateSeptemberv2.1.png
+image: /assets/images/prismic/aQT-2LpReVYa35n4_NIMTreasuryAccumulationUpdateOct2025.png
+ogImage: /assets/images/prismic/aOQeSp5xUNkB1mwM_TreasuryAccumulationUpdateSeptemberv2.1.png
 ---
 
 ## Overview

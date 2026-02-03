@@ -6,7 +6,7 @@ publishedAt: "2021-09-28"
 updatedAt: 2022-04-20T13:33:04+0000
 authors:
   - ELION CHIN
-image: /images/blog/the-pledge-2-crypto-for-good/7833b6c3-4ee8-4faf-a298-283525d7299d_blog_the-pledge-2-crypto-for-good_1.png
+image: /assets/images/prismic/7833b6c3-4ee8-4faf-a298-283525d7299d_blog_the-pledge-2-crypto-for-good_1.png
 ---
 
 When you are in the position to pursue the creation of a useful crypto currency (or token), it just appears profoundly relevant to consider tying into it a verifiable commitment to giving back. On a global scale we are dealing with growing ecological challenges (water pollution, deforestation, etc) and we live in an increasingly divided world (access to the monetary system, education, health care, etc). Social media provides us with more insights into disparities and increased awareness provides an opportunity for crypto projects to align their purpose and emotional connection with the generation that cares. Imagine the combined impact the industry could have if every crypto project was to adopt a similar pledge. In hindsight, at the current combined market cap of around $2 trillion that would translate to $40 billion the crypto industry could have allocated for good! Going forward it is an important “why” that any project can add to the list of reasons for pursuing success.

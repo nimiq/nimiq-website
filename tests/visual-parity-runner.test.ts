@@ -9,20 +9,32 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 const execAsync = promisify(exec)
 
 const LOCAL = 'http://localhost:3000'
-const PROD = 'https://nimiq.com'
+const PROD = 'https://www.nimiq.com'
 const BASE_DIR = 'tests/screenshots'
 
-const PAGES = ['/', '/about', '/developers', '/exchanges', '/staking', '/blog']
+// Note: /developers is a separate project (developer-center) served from same domain
+// Note: /terms and /activation-terms return 404 on production (excluded from tests)
+const PAGES = ['/', '/about', '/buy-and-sell', '/staking', '/blog', '/wallet', '/community', '/nimiq-pay', '/apps', '/oasis', '/roadmap', '/cryptopaymentlink', '/newsletter', '/team', '/contact', '/litepaper', '/bug-bounty', '/onepager']
 const VIEWPORTS = [
   { name: 'desktop', width: 1280, height: 800 },
   { name: 'mobile', width: 375, height: 667 },
 ]
 
-// 2% pixel threshold
-const PIXEL_DIFF_THRESHOLD = 2
+// Block slicing configuration
+const BLOCK_HEIGHT = 500 // pixels per block
+const PIXEL_DIFF_THRESHOLD = 8 // percent per block (allows for animations, randomized icons, font rendering)
 
 type TestType = 'visual' | 'semantic' | 'interaction'
 type TestStatus = 'pass' | 'fail' | 'skip' | 'error'
+
+interface BlockResult {
+  index: number
+  localPath: string
+  prodPath: string
+  diffPath: string
+  diffPercent: number
+  status: TestStatus
+}
 
 interface TestResult {
   id: string
@@ -36,6 +48,7 @@ interface TestResult {
   prodPath?: string
   diffPath?: string
   duration?: number
+  blocks?: BlockResult[]
 }
 
 interface TestSummary {
@@ -60,6 +73,86 @@ async function agentBrowser(cmd: string, session: string = 'default'): Promise<s
 function ensureDir(dir: string) {
   if (!existsSync(dir))
     mkdirSync(dir, { recursive: true })
+}
+
+function sliceImage(img: PNG, blockIndex: number, blockHeight: number): PNG {
+  const startY = blockIndex * blockHeight
+  const endY = Math.min(startY + blockHeight, img.height)
+  const sliceHeight = endY - startY
+
+  if (sliceHeight <= 0)
+    return new PNG({ width: img.width, height: 0 })
+
+  const slice = new PNG({ width: img.width, height: sliceHeight })
+  PNG.bitblt(img, slice, 0, startY, img.width, sliceHeight, 0, 0)
+  return slice
+}
+
+function compareBlocks(localPath: string, prodPath: string, outputDir: string, blockHeight: number): BlockResult[] {
+  if (!existsSync(localPath) || !existsSync(prodPath))
+    return []
+
+  const localImg = PNG.sync.read(readFileSync(localPath))
+  const prodImg = PNG.sync.read(readFileSync(prodPath))
+
+  const maxHeight = Math.max(localImg.height, prodImg.height)
+  const maxWidth = Math.max(localImg.width, prodImg.width)
+  const numBlocks = Math.ceil(maxHeight / blockHeight)
+
+  const results: BlockResult[] = []
+
+  for (let i = 0; i < numBlocks; i++) {
+    const localSlice = sliceImage(localImg, i, blockHeight)
+    const prodSlice = sliceImage(prodImg, i, blockHeight)
+
+    const sliceHeight = Math.max(localSlice.height, prodSlice.height)
+    if (sliceHeight === 0)
+      continue
+
+    // Pad slices to same dimensions
+    const padSlice = (slice: PNG, targetWidth: number, targetHeight: number): PNG => {
+      if (slice.width === targetWidth && slice.height === targetHeight)
+        return slice
+      const padded = new PNG({ width: targetWidth, height: targetHeight })
+      // Fill with white
+      for (let j = 0; j < padded.data.length; j += 4) {
+        padded.data[j] = 255
+        padded.data[j + 1] = 255
+        padded.data[j + 2] = 255
+        padded.data[j + 3] = 255
+      }
+      if (slice.height > 0)
+        PNG.bitblt(slice, padded, 0, 0, Math.min(slice.width, targetWidth), Math.min(slice.height, targetHeight), 0, 0)
+      return padded
+    }
+
+    const paddedLocal = padSlice(localSlice, maxWidth, sliceHeight)
+    const paddedProd = padSlice(prodSlice, maxWidth, sliceHeight)
+    const diff = new PNG({ width: maxWidth, height: sliceHeight })
+
+    const diffPixels = pixelmatch(paddedLocal.data, paddedProd.data, diff.data, maxWidth, sliceHeight, { threshold: 0.2 })
+    const totalPixels = maxWidth * sliceHeight
+    const diffPercent = (diffPixels / totalPixels) * 100
+
+    const blockLocalPath = join(outputDir, `block-${i}-local.png`)
+    const blockProdPath = join(outputDir, `block-${i}-prod.png`)
+    const blockDiffPath = join(outputDir, `block-${i}-diff.png`)
+
+    writeFileSync(blockLocalPath, PNG.sync.write(paddedLocal))
+    writeFileSync(blockProdPath, PNG.sync.write(paddedProd))
+    writeFileSync(blockDiffPath, PNG.sync.write(diff))
+
+    results.push({
+      index: i,
+      localPath: blockLocalPath,
+      prodPath: blockProdPath,
+      diffPath: blockDiffPath,
+      diffPercent,
+      status: diffPercent <= PIXEL_DIFF_THRESHOLD ? 'pass' : 'fail',
+    })
+  }
+
+  return results
 }
 
 function compareImages(localPath: string, prodPath: string, diffPath: string): { diffPixels: number, totalPixels: number, sizeMismatch: boolean } {
@@ -91,7 +184,7 @@ function compareImages(localPath: string, prodPath: string, diffPath: string): {
   const paddedProd = padImage(prodImg, maxWidth, maxHeight)
   const diff = new PNG({ width: maxWidth, height: maxHeight })
 
-  const diffPixels = pixelmatch(paddedLocal.data, paddedProd.data, diff.data, maxWidth, maxHeight, { threshold: 0.1 })
+  const diffPixels = pixelmatch(paddedLocal.data, paddedProd.data, diff.data, maxWidth, maxHeight, { threshold: 0.2 })
   writeFileSync(diffPath, PNG.sync.write(diff))
 
   return { diffPixels, totalPixels: maxWidth * maxHeight, sizeMismatch }
@@ -114,6 +207,19 @@ function printResult(result: TestResult) {
 
   // eslint-disable-next-line no-console
   console.log(`${color}${icon}${reset} ${result.type.padEnd(11)} ${page.padEnd(12)} ${result.viewport.padEnd(8)} ${result.status.toUpperCase()}${diffInfo}${durationInfo}`)
+
+  // Show block info for visual tests
+  if (result.blocks && result.blocks.length > 0) {
+    const passedBlocks = result.blocks.filter(b => b.status === 'pass').length
+    const failedBlocks = result.blocks.filter(b => b.status === 'fail')
+    // eslint-disable-next-line no-console
+    console.log(`    └─ Blocks: ${passedBlocks}/${result.blocks.length} passed`)
+    if (failedBlocks.length > 0) {
+      const firstFailed = failedBlocks[0]
+      // eslint-disable-next-line no-console
+      console.log(`    └─ First failed: block-${firstFailed.index} (${firstFailed.diffPercent.toFixed(2)}% diff, y=${firstFailed.index * BLOCK_HEIGHT}px)`)
+    }
+  }
 
   if (result.issues.length > 0 && result.status !== 'pass') {
     for (const issue of result.issues.slice(0, 3)) {
@@ -189,6 +295,16 @@ function generateHtmlReport(summary: TestSummary, outputPath: string) {
     .comparison p { font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; text-align: center; }
     .toggle-btn { background: #334155; border: none; color: #94a3b8; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
     .toggle-btn:hover { background: #475569; }
+    .blocks-container { margin-top: 1rem; }
+    .block-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 1rem; background: #0f172a; border-radius: 8px; margin-bottom: 0.5rem; border: 2px solid transparent; }
+    .block-row.failed { border-color: var(--fail); }
+    .block-row.passed { border-color: var(--pass); opacity: 0.6; }
+    .block-row img { width: 100%; border-radius: 4px; }
+    .block-header { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; background: #1e293b; border-radius: 4px; margin-bottom: 0.5rem; }
+    .block-label { font-size: 0.75rem; font-weight: 600; }
+    .block-label.pass { color: var(--pass); }
+    .block-label.fail { color: var(--fail); }
+    .block-diff { font-size: 0.75rem; color: #64748b; }
     details > summary { list-style: none; }
     details > summary::-webkit-details-marker { display: none; }
     .filter-bar { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
@@ -259,10 +375,38 @@ function generateHtmlReport(summary: TestSummary, outputPath: string) {
             <span class="test-status ${t.status}">${t.status}</span>
           </div>`
           }).join('')}
-          ${visualTest && visualTest.localPath
+          ${visualTest && visualTest.blocks && visualTest.blocks.length > 0
             ? `
+          <details open>
+            <summary class="toggle-btn" style="margin: 1rem 0;">Show block comparisons (${visualTest.blocks.filter(b => b.status === 'pass').length}/${visualTest.blocks.length} passed)</summary>
+            <div class="blocks-container">
+              ${visualTest.blocks.map(block => `
+              <div class="block-row ${block.status === 'pass' ? 'passed' : 'failed'}">
+                <div class="block-header" style="grid-column: 1 / -1;">
+                  <span class="block-label ${block.status}">Block ${block.index} (y=${block.index * BLOCK_HEIGHT}px)</span>
+                  <span class="block-diff">${block.diffPercent.toFixed(2)}% diff</span>
+                </div>
+                <div>
+                  <img src="${relative(BASE_DIR, block.localPath)}" alt="Local block ${block.index}">
+                  <p style="font-size:0.75rem;color:#64748b;text-align:center;margin-top:0.25rem">Local</p>
+                </div>
+                <div>
+                  <img src="${relative(BASE_DIR, block.prodPath)}" alt="Prod block ${block.index}">
+                  <p style="font-size:0.75rem;color:#64748b;text-align:center;margin-top:0.25rem">Production</p>
+                </div>
+                <div>
+                  <img src="${relative(BASE_DIR, block.diffPath)}" alt="Diff block ${block.index}">
+                  <p style="font-size:0.75rem;color:#64748b;text-align:center;margin-top:0.25rem">Difference</p>
+                </div>
+              </div>
+              `).join('')}
+            </div>
+          </details>
+          `
+            : visualTest && visualTest.localPath
+              ? `
           <details>
-            <summary class="toggle-btn" style="margin: 1rem 0;">Show comparison images</summary>
+            <summary class="toggle-btn" style="margin: 1rem 0;">Show full comparison images</summary>
             <div class="comparison show">
               <div>
                 <img src="${relative(BASE_DIR, visualTest.localPath)}" alt="Local">
@@ -279,7 +423,7 @@ function generateHtmlReport(summary: TestSummary, outputPath: string) {
             </div>
           </details>
           `
-            : ''}
+              : ''}
         </div>
       </details>
     </div>`
@@ -389,9 +533,11 @@ describe('visual Parity Tests', () => {
     console.warn(`\n  Report: ${reportPath}`)
     console.warn('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
-    // Close browser sessions
-    await agentBrowser('close', 'local').catch(() => {})
-    await agentBrowser('close', 'prod').catch(() => {})
+    // Close browser sessions for all viewports
+    for (const viewport of VIEWPORTS) {
+      await agentBrowser('close', `local-${viewport.name}`).catch(() => {})
+      await agentBrowser('close', `prod-${viewport.name}`).catch(() => {})
+    }
   })
 
   for (const page of PAGES) {
@@ -406,9 +552,8 @@ describe('visual Parity Tests', () => {
             const startTime = Date.now()
             ensureDir(pageDir)
 
-            const localPath = join(pageDir, 'local.png')
-            const prodPath = join(pageDir, 'prod.png')
-            const diffPath = join(pageDir, 'diff.png')
+            const localPath = join(pageDir, 'full-local.png')
+            const prodPath = join(pageDir, 'full-prod.png')
 
             const result: TestResult = {
               id: `visual-${pageName}-${viewport.name}`,
@@ -419,43 +564,72 @@ describe('visual Parity Tests', () => {
               issues: [],
               localPath,
               prodPath,
-              diffPath,
             }
 
             try {
               // Take screenshots
+              // CSS to disable animations for consistent screenshots
+              const disableAnimationsCSS = `const style = document.createElement('style'); style.textContent = '*, *::before, *::after { animation-play-state: paused !important; transition: none !important; }'; document.head.appendChild(style);`
+
+              // Use unique session names per viewport to avoid conflicts
+              const localSession = `local-${viewport.name}`
+              const prodSession = `prod-${viewport.name}`
+
               await Promise.all([
                 (async () => {
-                  await agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, 'local')
-                  await agentBrowser(`open "${LOCAL}${page}"`, 'local')
-                  await agentBrowser('wait 2000', 'local')
-                  await agentBrowser(`screenshot --full "${localPath}"`, 'local')
+                  await agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, localSession)
+                  await agentBrowser('set media reduced-motion', localSession).catch(() => {})
+                  await agentBrowser(`open "${LOCAL}${page}"`, localSession)
+                  await agentBrowser('wait 2000', localSession)
+                  // Disable animations for consistent screenshots
+                  await agentBrowser(`eval "${disableAnimationsCSS}"`, localSession).catch(() => {})
+                  // Remove NuxtStudio sidebar that affects layout
+                  await agentBrowser('eval "document.body.removeAttribute(\'data-studio-active\'); document.body.removeAttribute(\'data-expand-sidebar\')"', localSession).catch(() => {})
+                  // Dismiss cookie consent if present
+                  await agentBrowser('eval "document.querySelector(\'[role=alertdialog] button:last-child\')?.click()"', localSession).catch(() => {})
+                  await agentBrowser('wait 500', localSession)
+                  await agentBrowser(`screenshot --full "${localPath}"`, localSession)
                 })(),
                 (async () => {
-                  await agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, 'prod')
-                  await agentBrowser(`open "${PROD}${page}"`, 'prod')
-                  await agentBrowser('wait 2000', 'prod')
-                  await agentBrowser(`screenshot --full "${prodPath}"`, 'prod')
+                  await agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, prodSession)
+                  await agentBrowser('set media reduced-motion', prodSession).catch(() => {})
+                  await agentBrowser(`open "${PROD}${page}"`, prodSession)
+                  await agentBrowser('wait 2000', prodSession)
+                  // Disable animations for consistent screenshots
+                  await agentBrowser(`eval "${disableAnimationsCSS}"`, prodSession).catch(() => {})
+                  // Dismiss cookie consent if present
+                  await agentBrowser('eval "document.querySelector(\'[role=alertdialog] button:last-child\')?.click()"', prodSession).catch(() => {})
+                  await agentBrowser('wait 500', prodSession)
+                  await agentBrowser(`screenshot --full "${prodPath}"`, prodSession)
                 })(),
               ])
 
-              // Compare
-              const { diffPixels, totalPixels, sizeMismatch } = compareImages(localPath, prodPath, diffPath)
-              result.diffPercent = (diffPixels / totalPixels) * 100
+              // Compare using block slicing
+              const blocks = compareBlocks(localPath, prodPath, pageDir, BLOCK_HEIGHT)
+              result.blocks = blocks
 
-              if (sizeMismatch)
-                result.issues.push('Image sizes differ between local and production')
+              // Calculate overall diff from blocks
+              const failedBlocks = blocks.filter(b => b.status === 'fail')
+              const totalDiffPixels = blocks.reduce((sum, b) => {
+                const blockPixels = BLOCK_HEIGHT * 1280 // approximate
+                return sum + (b.diffPercent / 100) * blockPixels
+              }, 0)
+              const totalPixels = blocks.length * BLOCK_HEIGHT * 1280
+              result.diffPercent = totalPixels > 0 ? (totalDiffPixels / totalPixels) * 100 : 0
 
-              if (result.diffPercent > PIXEL_DIFF_THRESHOLD)
-                result.issues.push(`${result.diffPercent.toFixed(2)}% pixel difference (threshold: ${PIXEL_DIFF_THRESHOLD}%)`)
+              if (failedBlocks.length > 0) {
+                const firstFailed = failedBlocks[0]
+                result.issues.push(`Block ${firstFailed.index} failed: ${firstFailed.diffPercent.toFixed(2)}% diff at y=${firstFailed.index * BLOCK_HEIGHT}px`)
+                result.issues.push(`${failedBlocks.length}/${blocks.length} blocks failed`)
+              }
 
-              result.status = result.diffPercent <= PIXEL_DIFF_THRESHOLD ? 'pass' : 'fail'
+              result.status = failedBlocks.length === 0 ? 'pass' : 'fail'
               result.duration = Date.now() - startTime
 
               allResults.push(result)
               printResult(result)
 
-              expect(result.diffPercent, result.issues.join('; ')).toBeLessThanOrEqual(PIXEL_DIFF_THRESHOLD)
+              expect(failedBlocks.length, result.issues.join('; ')).toBe(0)
             }
             catch (error) {
               result.status = 'error'

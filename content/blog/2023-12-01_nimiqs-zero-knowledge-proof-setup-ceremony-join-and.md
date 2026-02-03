@@ -6,7 +6,7 @@ publishedAt: "2023-12-01"
 updatedAt: 2023-12-06T07:21:09+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiqs-zero-knowledge-proof-setup-ceremony-join-and/3c024edf-2208-4ef3-88ad-52c2ead12006_Blog_hero.png
+image: /assets/images/prismic/3c024edf-2208-4ef3-88ad-52c2ead12006_Blog_hero.png
 ---
 
 Welcome to a groundbreaking moment in blockchain technology – Nimiq's Zero-Knowledge Proof Setup Ceremony. This ceremony is a huge technical milestone; but also a community-driven effort that invites tech enthusiasts to participate and make their mark in the blockchain world.

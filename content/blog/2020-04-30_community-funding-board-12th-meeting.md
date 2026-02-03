@@ -6,7 +6,7 @@ publishedAt: "2020-04-30"
 updatedAt: 2022-04-20T13:07:55+0000
 authors:
   - COMMUNITY FUNDING BOARD
-image: /images/blog/community-funding-board-12th-meeting/3f647d5a-e3bf-4918-9306-f9194176ce4f_blog_community-funding-board-12th-meeting_1.png
+image: /assets/images/prismic/3f647d5a-e3bf-4918-9306-f9194176ce4f_blog_community-funding-board-12th-meeting_1.png
 ---
 
 Unless you sealed yourself in a nuclear bunker back in 2019, you will probably know that the world has a teeny tiny problem right now. All this has meant that a few billion people are now living in lockdown, with many having their lives turned upside down.

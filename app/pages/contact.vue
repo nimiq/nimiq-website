@@ -12,12 +12,16 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/contact' }] })
     <main>
       <section class="bg-neutral-0">
         <HeroProduct :title="page.hero.title" :description="page.hero.description" />
-        <GridSocialMedia v-bind="page.social.grid" />
       </section>
 
-      <section class="nq-section-gap bg-neutral-100">
+      <GridSocialMedia v-bind="page.social.grid" />
+
+      <section class="bg-neutral-100">
         <Headline v-bind="page.social.headline" />
-        <iframe class="mx-auto rounded-1.5 h-[651px] max-w-[392px] w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
+      </section>
+
+      <section class="bg-neutral-100">
+        <iframe class="mx-auto rounded-md h-[651px] max-w-[392px] w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
       </section>
     </main>
   </NuxtLayout>

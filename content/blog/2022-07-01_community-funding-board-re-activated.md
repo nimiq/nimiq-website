@@ -6,7 +6,7 @@ publishedAt: "2022-07-01"
 updatedAt: 2022-11-30T17:53:01+0000
 authors:
   - Michael Diese
-image: /images/blog/community-funding-board-re-activated/77aef715-74e3-45f1-b64f-c6189d76afec_community_voting_article_33_.png
+image: /assets/images/prismic/77aef715-74e3-45f1-b64f-c6189d76afec_community_voting_article_33_.png
 ---
 
 Nimiq 2.0 implementation has finally reached a release candidate phase, making it possible for community developers to begin testing their use cases for Nimiq 2.0.

@@ -6,7 +6,7 @@ publishedAt: "2021-06-09"
 updatedAt: 2022-04-20T13:18:57+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-oasis-launch-press-release/d798a88c-a794-4c36-abc0-a20b80a68a2a_blog_nimiq-oasis-launch-press-release_1.png
+image: /assets/images/prismic/d798a88c-a794-4c36-abc0-a20b80a68a2a_blog_nimiq-oasis-launch-press-release_1.png
 ---
 
 Nimiq, together with TEN31 bank, achieved a breakthrough for compatibility between blockchain and traditional banking with the release of the OASIS (Open Asset Swap Interaction Scheme) technology. For the first time, Nimiq OASIS enables a decentralized and therefore secure purchase of cryptocurrencies by bank transfer: from money in your bank account to cryptocurrency in your self-custodial wallet in a few minutes - and vice versa (volume limits apply). All without the need to open an account with a centralized crypto exchange and the associated, usually time-consuming identification process.

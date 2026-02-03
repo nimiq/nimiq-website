@@ -6,7 +6,7 @@ publishedAt: "2025-11-08"
 updatedAt: 2025-11-09T02:50:54+0000
 authors:
   - Team Nimiq
-image: /images/blog/streamlining-nimiq-the-structure-update/aI0GfKTt2nPbZr7X_communityupdateBLOG.png
+image: /assets/images/prismic/aI0GfKTt2nPbZr7X_communityupdateBLOG.png
 ---
 
 In our last update, we shared that we were taking time to rethink our strategy and restructure our work processes. Over those same months, many of you have been asking questions in our community channels, about everything from marketing plans and development priorities to partnerships, product features, and how we're organized. To properly answer many of these questions, we first needed to complete this restructuring, to get everyone on the same page and establish a clear direction we can stand behind.

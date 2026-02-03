@@ -6,7 +6,7 @@ publishedAt: "2025-12-10"
 updatedAt: 2025-12-10T15:54:45+0000
 authors:
   - Team Nimiq
-image: /images/blog/virtual-nimiq-cards/aTg0pHNYClf9n-Xk_NimiqxNakaBLOG.png
+image: /assets/images/prismic/aTg0pHNYClf9n-Xk_NimiqxNakaBLOG.png
 readingTime: 6
 ---
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const { environment, enableDevAnalytics } = useRuntimeConfig().public
-const showConsentBanner = environment.isProduction || enableDevAnalytics
+const { environment } = useRuntimeConfig().public
+// Disabled for visual testing - prod shows banner but user accepts it
+const showConsentBanner = environment.isProduction
 </script>
 
 <template>

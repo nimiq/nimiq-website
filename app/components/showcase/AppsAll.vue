@@ -54,39 +54,39 @@ function getHighlightedUrl(link: string) {
       <p class="sr-only">
         Filter by author of the app
       </p>
-      <label class="py-2 md:py-3 pl-2 md:pl-3">
+      <label class="py-[8px] md:py-[12px] pl-[8px] md:pl-[12px]">
         <input id="anyone" v-model="madeBy" class="sr-only" type="radio" value="anyone">
-        <span class="text-neutral-700 text-16 font-semibold transition-colors px-2 md:px-3">Anyone</span>
+        <span class="text-neutral-700 text-[16px] font-semibold transition-colors px-[8px] md:px-[12px]">Anyone</span>
       </label>
-      <label class="py-2 md:py-3">
+      <label class="py-[8px] md:py-[12px]">
         <input id="official" v-model="madeBy" class="sr-only" type="radio" value="official">
-        <span class="text-neutral-700 text-16 font-semibold transition-colors px-2 md:px-3">Official</span>
+        <span class="text-neutral-700 text-[16px] font-semibold transition-colors px-[8px] md:px-[12px]">Official</span>
       </label>
-      <label class="py-2 md:py-3 pr-2 md:pr-3">
+      <label class="py-[8px] md:py-[12px] pr-[8px] md:pr-[12px]">
         <input id="community" v-model="madeBy" class="sr-only" type="radio" value="community">
-        <span class="text-neutral-700 text-16 font-semibold transition-colors px-2 md:px-3">Community</span>
+        <span class="text-neutral-700 text-[16px] font-semibold transition-colors px-[8px] md:px-[12px]">Community</span>
       </label>
     </fieldset>
   </form>
 
-  <ul v-if="filteredApps.length" class="mt-8 md:mt-12 grid gap-4 grid-cols-1 grid-md:cols-[repeat(auto-fit,min(100%,350px))] grid-xl:gap-6 grid-2xl:gap-8 grid-justify-center">
+  <ul v-if="filteredApps.length" class="mt-[32px] md:mt-[48px] grid gap-[16px] grid-cols-1 md:grid-cols-[repeat(auto-fit,min(100%,350px))] xl:gap-[24px] 2xl:gap-[32px] justify-center">
     <li v-for="(app, i) in filteredApps" :key="i" class="w-full" :style="getSpotlightPosition(app)" :class="getSpotlightPosition(app)?.class">
       <!-- CardApp (non-highlighted) -->
-      <NuxtLink v-if="!app.isHighlighted" class="w-[min(calc(100vw-var(--px,32px)*2),350px)] group p-1.5 rounded-1.5 gap-6 h-full nq-hoverable" :to="getAppLink(app)" target="_blank" :style="`--c: ${app.color}`" external :aria-label="`Go to ${app.name} website`">
-        <div class="bg-$c mb-0 rounded-1 h-60" stack>
-          <Icon v-if="app.name === 'Nimiq Tip Bot'" class="text-white/80 size-24" name="nimiq:logos-telegram-mono" />
-          <NuxtImg v-else class="max-w-45% rounded-1 h-auto max-h-full min-w-[82px] object-cover" :src="app.logo" :class="getLogoClasses(app.name)" />
-          <p class="text-12 text-white/70 self-start right-3 top-3 justify-self-end relative nq-label">
+      <NuxtLink v-if="!app.isHighlighted" class="w-[min(calc(100vw-var(--px,32px)*2),350px)] group p-[6px] rounded-[6px] gap-[24px] h-full nq-hoverable" :to="getAppLink(app)" target="_blank" :style="`--c: ${app.color}`" external :aria-label="`Go to ${app.name} website`">
+        <div class="bg-[var(--c)] mb-0 rounded-[4px] h-[240px] grid place-items-center relative">
+          <Icon v-if="app.name === 'Nimiq Tip Bot'" class="text-white/80 size-[96px]" name="nimiq:logos-telegram-mono" />
+          <NuxtImg v-else class="max-w-[45%] rounded-[4px] h-auto max-h-full min-w-[82px] object-cover" :src="app.logo" :class="getLogoClasses(app.name)" />
+          <p class="text-[12px] text-white/70 self-start right-[12px] top-[12px] justify-self-end absolute nq-label">
             {{ app.type }}
           </p>
         </div>
-        <div class="p-[26px] pt-0 flex-1 flex flex-col gap-3">
+        <div class="p-[26px] pt-0 flex-1 flex flex-col gap-[12px]">
           <h3>{{ app.name }}</h3>
-          <p class="text-16 text-neutral-800 text-group-hover:neutral-900 mt-0 transition-colors leading-150">
+          <p class="text-[16px] text-neutral-800 group-hover:text-neutral-900 mt-0 transition-colors leading-[150%]">
             {{ app.description }}
           </p>
           <div class="nq-hoverable-cta mt-auto w-max">
-            <p v-if="app.developer" class="text-14 nq-label">
+            <p v-if="app.developer" class="text-[14px] nq-label">
               By <span class="text-blue">{{ app.developer }}</span>
             </p>
           </div>
@@ -94,14 +94,14 @@ function getHighlightedUrl(link: string) {
       </NuxtLink>
 
       <!-- CardHighlighted -->
-      <div v-else class="flex flex-wrap flex-items-center gap-2 rounded-1.5 bg-neutral-0 h-full p-2 md:p-3" shadow>
-        <NuxtImg v-if="app.screenshot" class="rounded-1 rounded-2 h-auto max-h-[445px] max-h-md:full max-w-full w-full w-md:320 object-cover" :src="app.screenshot" />
-        <div class="flex flex-col gap-3 p-6 flex-1">
+      <div v-else class="flex flex-wrap items-center gap-[8px] rounded-[6px] bg-neutral-0 h-full p-[8px] md:p-[12px] shadow">
+        <NuxtImg v-if="app.screenshot" class="rounded-[4px] md:rounded-[8px] h-auto max-h-[445px] max-md:h-full max-w-full w-full md:w-[320px] object-cover" :src="app.screenshot" />
+        <div class="flex flex-col gap-[12px] p-[24px] flex-1">
           <h3>{{ app.name }}</h3>
-          <p class="text-16 text-neutral-800 mt-0 leading-150">
+          <p class="text-[16px] text-neutral-800 mt-0 leading-[150%]">
             {{ app.description }}
           </p>
-          <NuxtLink class="mx-0 mt-4 md:mt-6 nq-arrow nq-pill-lg nq-pill-blue" :to="getHighlightedUrl(app.link)">
+          <NuxtLink class="mx-0 mt-[16px] md:mt-[24px] nq-arrow nq-pill-lg nq-pill-blue" :to="getHighlightedUrl(app.link)">
             Learn more
           </NuxtLink>
         </div>
@@ -117,11 +117,11 @@ function getHighlightedUrl(link: string) {
 <style scoped>
 fieldset label {
   input:checked + span {
-    --uno: 'text-neutral';
+    color: var(--color-neutral);
   }
 
   input:where(:focus-visible, :hover) + span {
-    --uno: 'text-neutral-900';
+    color: var(--color-neutral-900);
   }
 }
 

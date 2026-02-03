@@ -6,7 +6,7 @@ publishedAt: "2019-09-12"
 updatedAt: 2022-04-20T13:27:04+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/new-community-board-and-6th-meeting/c72d0da6-72b9-494d-9065-54d36f93f3b2_blog_new-community-board-and-6th-meeting_3.png
+image: /assets/images/prismic/c72d0da6-72b9-494d-9065-54d36f93f3b2_blog_new-community-board-and-6th-meeting_3.png
 ---
 
 This adds a new usecase to Nimiq Blockchain by resulting in an easy-to-use voting platform with a high level of transparency and decentralization since all votes are public, not controlled by any single individual/entity and will be stored in the Nimiq Blockchain for posterity.

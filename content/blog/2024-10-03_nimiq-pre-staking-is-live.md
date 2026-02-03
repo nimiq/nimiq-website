@@ -6,7 +6,7 @@ publishedAt: "2024-10-03"
 updatedAt: 2024-10-07T00:25:22+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-pre-staking-is-live/ZwLGFrVsGrYSwavQ_StartsPre-StakingphaseBLOG-1-.png
+image: /assets/images/prismic/ZwLGFrVsGrYSwavQ_StartsPre-StakingphaseBLOG-1-.png
 ---
 
 We're excited to announce that the Nimiq Pre-staking Rewards and Giveaway Campaign is live and will run from **Monday October 7 to Sunday November 10! **The campaign is aimed at supporting a smooth migration to Nimiq's new Proof of Stake (PoS) consensus algorithm, which is planned to begin November 19 ([learn more about the migration process](https://www.nimiq.com/blog/nimiq-pos-migration-process-starts/)). This campaign rewards everyone that supports the migration by pre-staking their NIM ([rules apply](https://prestaking.nimiq.network/Nimiq_Pre-staking_Campaign_ToS.pdf)). There are 200 million NIM in rewards up for grabs!

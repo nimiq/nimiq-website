@@ -49,6 +49,36 @@
   --text-5xl: 3rem; /* 48px */
   --text-6xl: 3.75rem; /* 60px */
 
+  /* Pixel-based font sizes for legacy nimiq-css compatibility */
+  --text-10: 10px;
+  --text-11: 11px;
+  --text-12: 12px;
+  --text-13: 13px;
+  --text-14: 14px;
+  --text-16: 16px;
+  --text-17: 17px;
+  --text-18: 18px;
+  --text-20: 20px;
+  --text-22: 22px;
+  --text-24: 24px;
+  --text-28: 28px;
+  --text-32: 32px;
+  --text-40: 40px;
+  --text-44: 44px;
+  --text-48: 48px;
+  --text-53: 53px;
+  --text-54: 54px;
+  --text-56: 56px;
+  --text-62: 62px;
+  --text-64: 64px;
+  --text-96: 96px;
+  --text-112: 112px;
+  --text-120: 120px;
+  --text-200: 200px;
+  --text-300: 300px;
+  --text-360: 360px;
+  --text-400: 400px;
+
   /* ==========================================================================
      Colors
      ========================================================================== */
@@ -119,39 +149,190 @@
 
   /* Shadow */
   --nq-shadow: 0 1.125rem 2.25rem rgba(0, 0, 0, 0.07);
+
+  /* ==========================================================================
+     Spacing Scale (pixel-based for nimiq-css compatibility)
+     Usage: p-10, m-20, gap-32, w-64, h-128, size-256, etc.
+     ========================================================================== */
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-13: 13px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-22: 22px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-44: 44px;
+  --spacing-48: 48px;
+  --spacing-50: 50px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-90: 90px;
+  --spacing-96: 96px;
+  --spacing-100: 100px;
+  --spacing-112: 112px;
+  --spacing-120: 120px;
+  --spacing-125: 125px;
+  --spacing-128: 128px;
+  --spacing-145: 145px;
+  --spacing-160: 160px;
+  --spacing-200: 200px;
+  --spacing-229: 229px;
+  --spacing-240: 240px;
+  --spacing-256: 256px;
+  --spacing-300: 300px;
+  --spacing-320: 320px;
+  --spacing-360: 360px;
+  --spacing-375: 375px;
+  --spacing-400: 400px;
+  --spacing-500: 500px;
+  --spacing-600: 600px;
+  --spacing-780: 780px;
+
+  /* ==========================================================================
+     Border Radius (pixel-based for nimiq-css compatibility)
+     Usage: rounded-1, rounded-4, rounded-6, rounded-8, etc.
+     ========================================================================== */
+  --radius-1: 4px;
+  --radius-1\.5: 6px;
+  --radius-2: 8px;
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-100\%: 50%;
 }
 
 /* Gradient variables for pills and hoverables */
 :root {
-  /* Blue gradients */
+  /* Blue gradients - light mode (default) */
   --color-blue-gradient-from: oklch(0.5849 0.1438 244.29);
-  --color-blue-gradient-to: oklch(0.481 0.1164 243.72);
-  --color-blue-gradient-darkened-from: oklch(0.53 0.13 244.29);
-  --color-blue-gradient-darkened-to: oklch(0.43 0.11 243.72);
+  --color-blue-gradient-to: oklch(0.5182 0.1965 263.04);
+  --color-blue-gradient-darkened-from: oklch(0.5404 0.153 250.02);
+  --color-blue-gradient-darkened-to: oklch(0.4857 0.182 263.07);
 
-  /* Green gradients */
+  /* Green gradients - light mode */
   --color-green-gradient-from: oklch(0.6932 0.1245 178.48);
-  --color-green-gradient-to: oklch(0.5564 0.0992 178.59);
-  --color-green-gradient-darkened-from: oklch(0.64 0.12 178.48);
-  --color-green-gradient-darkened-to: oklch(0.51 0.09 178.59);
+  --color-green-gradient-to: oklch(0.6517 0.0971 176.55);
+  --color-green-gradient-darkened-from: oklch(0.6873 0.1184 180.55);
+  --color-green-gradient-darkened-to: oklch(0.6231 0.0909 178.94);
 
-  /* Orange gradients */
+  /* Orange gradients - light mode */
   --color-orange-gradient-from: oklch(0.7387 0.179 56.67);
-  --color-orange-gradient-to: oklch(0.6769 0.1633 57);
-  --color-orange-gradient-darkened-from: oklch(0.69 0.17 56.67);
-  --color-orange-gradient-darkened-to: oklch(0.63 0.15 57);
+  --color-orange-gradient-to: oklch(0.6883 0.2036 41.13);
+  --color-orange-gradient-darkened-from: oklch(0.7115 0.1903 49.18);
+  --color-orange-gradient-darkened-to: oklch(0.6387 0.2 40.09);
 
-  /* Red gradients */
+  /* Red gradients - light mode */
   --color-red-gradient-from: oklch(0.598 0.1886 30.3);
-  --color-red-gradient-to: oklch(0.515 0.1713 30.54);
-  --color-red-gradient-darkened-from: oklch(0.55 0.17 30.3);
-  --color-red-gradient-darkened-to: oklch(0.47 0.16 30.54);
+  --color-red-gradient-to: oklch(0.5599 0.1909 18.32);
+  --color-red-gradient-darkened-from: oklch(0.5653 0.1974 26.27);
+  --color-red-gradient-darkened-to: oklch(0.5344 0.1811 16.77);
 
-  /* Gold gradients */
+  /* Gold gradients - light mode */
   --color-gold-gradient-from: oklch(0.7924 0.1593 85.61);
-  --color-gold-gradient-to: oklch(0.6642 0.1329 85.55);
-  --color-gold-gradient-darkened-from: oklch(0.74 0.15 85.61);
-  --color-gold-gradient-darkened-to: oklch(0.61 0.12 85.55);
+  --color-gold-gradient-to: oklch(0.7494 0.1565 69.51);
+  --color-gold-gradient-darkened-from: oklch(0.7575 0.1547 78.24);
+  --color-gold-gradient-darkened-to: oklch(0.7143 0.1554 63.42);
+}
+
+/* Background color utilities for nimiq colors */
+.bg-darkblue {
+  background-color: var(--color-darkblue);
+}
+.bg-darkerblue {
+  background-color: var(--color-darkerblue);
+}
+
+/* Dark mode gradient variables */
+.dark,
+[data-theme='dark'],
+.bg-darkblue,
+.bg-neutral,
+.bg-darkerblue {
+  /* Blue gradients - dark mode (brighter for visibility on dark bg) */
+  --color-blue-gradient-from: oklch(0.6982 0.1694 243.83);
+  --color-blue-gradient-to: oklch(0.6045 0.1951 255.01);
+  --color-blue-gradient-darkened-from: oklch(0.6546 0.1583 243.94);
+  --color-blue-gradient-darkened-to: oklch(0.5755 0.1828 254.79);
+
+  /* Green gradients - dark mode */
+  --color-green-gradient-from: oklch(0.755 0.1426 170.23);
+  --color-green-gradient-to: oklch(0.7142 0.1457 167.35);
+  --color-green-gradient-darkened-from: oklch(0.6971 0.1299 170.59);
+  --color-green-gradient-darkened-to: oklch(0.7142 0.1457 167.35);
+
+  /* Orange gradients - dark mode */
+  --color-orange-gradient-from: oklch(0.772 0.1737 64.55);
+  --color-orange-gradient-to: oklch(0.7442 0.1811 56.46);
+  --color-orange-gradient-darkened-from: oklch(0.7438 0.1665 65.03);
+  --color-orange-gradient-darkened-to: oklch(0.7442 0.1811 56.46);
+
+  /* Red gradients - dark mode */
+  --color-red-gradient-from: oklch(0.6881 0.201 30.028);
+  --color-red-gradient-to: oklch(0.6515 0.2353 31.02);
+  --color-red-gradient-darkened-from: oklch(0.6633 0.1852 30.4);
+  --color-red-gradient-darkened-to: oklch(0.6515 0.2353 31.02);
+
+  /* Gold gradients - dark mode */
+  --color-gold-gradient-from: oklch(0.8517 0.15 83.76);
+  --color-gold-gradient-to: oklch(0.8163 0.1548 72.79);
+  --color-gold-gradient-darkened-from: oklch(0.8221 0.1507 83.64);
+  --color-gold-gradient-darkened-to: oklch(0.8163 0.1548 72.79);
+}
+
+/* Background gradient utilities */
+@layer utilities {
+  .hidden {
+    display: none !important;
+  }
+
+  .bg-gradient-green {
+    background-image: radial-gradient(
+      at 100% 100% in oklab,
+      var(--color-green-gradient-to) 0%,
+      var(--color-green-gradient-from) 100%
+    );
+  }
+
+  .bg-gradient-blue {
+    background-image: radial-gradient(
+      at 100% 100% in oklab,
+      var(--color-blue-gradient-to) 0%,
+      var(--color-blue-gradient-from) 100%
+    );
+  }
+
+  .bg-gradient-orange {
+    background-image: radial-gradient(
+      at 100% 100% in oklab,
+      var(--color-orange-gradient-to) 0%,
+      var(--color-orange-gradient-from) 100%
+    );
+  }
+
+  .bg-gradient-red {
+    background-image: radial-gradient(
+      at 100% 100% in oklab,
+      var(--color-red-gradient-to) 0%,
+      var(--color-red-gradient-from) 100%
+    );
+  }
+
+  .bg-gradient-gold {
+    background-image: radial-gradient(
+      at 100% 100% in oklab,
+      var(--color-gold-gradient-to) 0%,
+      var(--color-gold-gradient-from) 100%
+    );
+  }
 }
 
 /* ==========================================================================
@@ -252,8 +433,7 @@
   .nq-pill-green,
   .nq-pill-orange,
   .nq-pill-red,
-  .nq-pill-secondary,
-  .nq-pill-tertiary {
+  .nq-pill-secondary {
     position: relative;
     font-weight: bold;
     font-size: 0.875rem;
@@ -271,11 +451,33 @@
     color: white;
     outline: none;
     background-image: radial-gradient(at 100% 100% in oklab, var(--nq-gradient-from) 0%, var(--nq-gradient-to) 100%);
-    --nq-gradient-from: var(--color-blue-gradient-from);
-    --nq-gradient-to: var(--color-blue-gradient-to);
+    --nq-gradient-from: var(--color-blue-gradient-to);
+    --nq-gradient-to: var(--color-blue-gradient-from);
     transition:
       --nq-gradient-from 200ms var(--nq-ease),
       --nq-gradient-to 200ms var(--nq-ease);
+  }
+
+  /* nq-pill-tertiary base styles (no gradient) */
+  .nq-pill-tertiary {
+    position: relative;
+    font-weight: bold;
+    font-size: 0.875rem;
+    padding: 0.1875rem 0.8125rem;
+    border: none;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.125rem;
+    line-height: 1.5;
+    height: max-content;
+    width: max-content;
+    text-decoration: none;
+    outline: 1.5px solid var(--color-neutral-500) !important;
+    color: var(--color-neutral) !important;
+    background: var(--color-neutral-0) !important;
+    background-image: none !important;
   }
 
   .nq-pill:where([disabled]),
@@ -357,14 +559,14 @@
 
   /* nq-pill-blue */
   .nq-pill-blue {
-    --nq-gradient-from: var(--color-blue-gradient-from);
-    --nq-gradient-to: var(--color-blue-gradient-to);
+    --nq-gradient-from: var(--color-blue-gradient-to);
+    --nq-gradient-to: var(--color-blue-gradient-from);
   }
 
   .nq-pill-blue:hover,
   .nq-pill-blue:focus-visible {
-    --nq-gradient-from: var(--color-blue-gradient-darkened-from);
-    --nq-gradient-to: var(--color-blue-gradient-darkened-to);
+    --nq-gradient-from: var(--color-blue-gradient-darkened-to);
+    --nq-gradient-to: var(--color-blue-gradient-darkened-from);
   }
 
   /* nq-pill-white */
@@ -382,50 +584,50 @@
 
   /* nq-pill-green */
   .nq-pill-green {
-    --nq-gradient-from: var(--color-green-gradient-from);
-    --nq-gradient-to: var(--color-green-gradient-to);
+    --nq-gradient-from: var(--color-green-gradient-to);
+    --nq-gradient-to: var(--color-green-gradient-from);
   }
 
   .nq-pill-green:hover,
   .nq-pill-green:focus-visible {
-    --nq-gradient-from: var(--color-green-gradient-darkened-from);
-    --nq-gradient-to: var(--color-green-gradient-darkened-to);
+    --nq-gradient-from: var(--color-green-gradient-darkened-to);
+    --nq-gradient-to: var(--color-green-gradient-darkened-from);
   }
 
   /* nq-pill-red */
   .nq-pill-red {
-    --nq-gradient-from: var(--color-red-gradient-from);
-    --nq-gradient-to: var(--color-red-gradient-to);
+    --nq-gradient-from: var(--color-red-gradient-to);
+    --nq-gradient-to: var(--color-red-gradient-from);
   }
 
   .nq-pill-red:hover,
   .nq-pill-red:focus-visible {
-    --nq-gradient-from: var(--color-red-gradient-darkened-from);
-    --nq-gradient-to: var(--color-red-gradient-darkened-to);
+    --nq-gradient-from: var(--color-red-gradient-darkened-to);
+    --nq-gradient-to: var(--color-red-gradient-darkened-from);
   }
 
   /* nq-pill-gold */
   .nq-pill-gold {
-    --nq-gradient-from: var(--color-gold-gradient-from);
-    --nq-gradient-to: var(--color-gold-gradient-to);
+    --nq-gradient-from: var(--color-gold-gradient-to);
+    --nq-gradient-to: var(--color-gold-gradient-from);
   }
 
   .nq-pill-gold:hover,
   .nq-pill-gold:focus-visible {
-    --nq-gradient-from: var(--color-gold-gradient-darkened-from);
-    --nq-gradient-to: var(--color-gold-gradient-darkened-to);
+    --nq-gradient-from: var(--color-gold-gradient-darkened-to);
+    --nq-gradient-to: var(--color-gold-gradient-darkened-from);
   }
 
   /* nq-pill-orange */
   .nq-pill-orange {
-    --nq-gradient-from: var(--color-orange-gradient-from);
-    --nq-gradient-to: var(--color-orange-gradient-to);
+    --nq-gradient-from: var(--color-orange-gradient-to);
+    --nq-gradient-to: var(--color-orange-gradient-from);
   }
 
   .nq-pill-orange:hover,
   .nq-pill-orange:focus-visible {
-    --nq-gradient-from: var(--color-orange-gradient-darkened-from);
-    --nq-gradient-to: var(--color-orange-gradient-darkened-to);
+    --nq-gradient-from: var(--color-orange-gradient-darkened-to);
+    --nq-gradient-to: var(--color-orange-gradient-darkened-from);
   }
 
   /* nq-pill-secondary */
@@ -450,14 +652,7 @@
     background: color-mix(in oklch, var(--color-white) 20%, transparent);
   }
 
-  /* nq-pill-tertiary */
-  .nq-pill-tertiary {
-    outline: 1.5px solid var(--color-neutral-500);
-    color: var(--color-neutral);
-    background: var(--color-neutral-0);
-    background-image: none;
-  }
-
+  /* nq-pill-tertiary hover states */
   .nq-pill-tertiary:hover {
     background: var(--color-neutral-50);
     outline-color: var(--color-neutral-600);
@@ -608,80 +803,80 @@
 
   /* nq-hoverable-blue */
   .nq-hoverable-blue {
-    --nq-gradient-from: var(--color-blue-gradient-from);
-    --nq-gradient-to: var(--color-blue-gradient-to);
+    --nq-gradient-from: var(--color-blue-gradient-to);
+    --nq-gradient-to: var(--color-blue-gradient-from);
     color: white;
   }
 
   @media (hover: hover) {
     .nq-hoverable-blue:hover,
     .nq-hoverable-blue:focus-visible {
-      --nq-gradient-from: var(--color-blue-gradient-darkened-from);
-      --nq-gradient-to: var(--color-blue-gradient-darkened-to);
+      --nq-gradient-from: var(--color-blue-gradient-darkened-to);
+      --nq-gradient-to: var(--color-blue-gradient-darkened-from);
       --hoverable-text: var(--color-white);
     }
   }
 
   /* nq-hoverable-green */
   .nq-hoverable-green {
-    --nq-gradient-from: var(--color-green-gradient-from);
-    --nq-gradient-to: var(--color-green-gradient-to);
+    --nq-gradient-from: var(--color-green-gradient-to);
+    --nq-gradient-to: var(--color-green-gradient-from);
     color: white;
   }
 
   @media (hover: hover) {
     .nq-hoverable-green:hover,
     .nq-hoverable-green:focus-visible {
-      --nq-gradient-from: var(--color-green-gradient-darkened-from);
-      --nq-gradient-to: var(--color-green-gradient-darkened-to);
+      --nq-gradient-from: var(--color-green-gradient-darkened-to);
+      --nq-gradient-to: var(--color-green-gradient-darkened-from);
       --hoverable-text: var(--color-white);
     }
   }
 
   /* nq-hoverable-orange */
   .nq-hoverable-orange {
-    --nq-gradient-from: var(--color-orange-gradient-from);
-    --nq-gradient-to: var(--color-orange-gradient-to);
+    --nq-gradient-from: var(--color-orange-gradient-to);
+    --nq-gradient-to: var(--color-orange-gradient-from);
     color: white;
   }
 
   @media (hover: hover) {
     .nq-hoverable-orange:hover,
     .nq-hoverable-orange:focus-visible {
-      --nq-gradient-from: var(--color-orange-gradient-darkened-from);
-      --nq-gradient-to: var(--color-orange-gradient-darkened-to);
+      --nq-gradient-from: var(--color-orange-gradient-darkened-to);
+      --nq-gradient-to: var(--color-orange-gradient-darkened-from);
       --hoverable-text: var(--color-white);
     }
   }
 
   /* nq-hoverable-red */
   .nq-hoverable-red {
-    --nq-gradient-from: var(--color-red-gradient-from);
-    --nq-gradient-to: var(--color-red-gradient-to);
+    --nq-gradient-from: var(--color-red-gradient-to);
+    --nq-gradient-to: var(--color-red-gradient-from);
     color: white;
   }
 
   @media (hover: hover) {
     .nq-hoverable-red:hover,
     .nq-hoverable-red:focus-visible {
-      --nq-gradient-from: var(--color-red-gradient-darkened-from);
-      --nq-gradient-to: var(--color-red-gradient-darkened-to);
+      --nq-gradient-from: var(--color-red-gradient-darkened-to);
+      --nq-gradient-to: var(--color-red-gradient-darkened-from);
       --hoverable-text: var(--color-white);
     }
   }
 
   /* nq-hoverable-gold */
   .nq-hoverable-gold {
-    --nq-gradient-from: var(--color-gold-gradient-from);
-    --nq-gradient-to: var(--color-gold-gradient-to);
+    --nq-gradient-from: var(--color-gold-gradient-to);
+    --nq-gradient-to: var(--color-gold-gradient-from);
     color: white;
   }
 
   @media (hover: hover) {
     .nq-hoverable-gold:hover,
     .nq-hoverable-gold:focus-visible {
-      --nq-gradient-from: var(--color-gold-gradient-darkened-from);
-      --nq-gradient-to: var(--color-gold-gradient-darkened-to);
+      --nq-gradient-from: var(--color-gold-gradient-darkened-to);
+      --nq-gradient-to: var(--color-gold-gradient-darkened-from);
       --hoverable-text: var(--color-white);
     }
   }
@@ -724,6 +919,62 @@
     opacity: 1;
     bottom: 0;
   }
+  /* --------------------------------------------------------------------------
+     nq-input-box - Input box with nimiq styling
+     -------------------------------------------------------------------------- */
+  .nq-input-box {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: var(--color-neutral-200);
+    color: var(--color-neutral);
+    outline: 1.5px solid transparent;
+    outline-offset: -1.5px;
+    transition:
+      background-color 200ms ease,
+      outline-color 200ms ease;
+    width: 100%;
+  }
+
+  .nq-input-box::placeholder {
+    color: var(--color-neutral-700);
+  }
+
+  .nq-input-box:hover {
+    background: var(--color-neutral-300);
+  }
+
+  .nq-input-box:focus {
+    outline-color: var(--color-blue);
+    background: var(--color-neutral-0);
+  }
+
+  .nq-button-solid {
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    background-image: radial-gradient(
+      at 100% 100% in oklab,
+      var(--color-blue-gradient-to) 0%,
+      var(--color-blue-gradient-from) 100%
+    );
+    color: white;
+    cursor: pointer;
+    transition: opacity 200ms ease;
+  }
+
+  .nq-button-solid:hover {
+    opacity: 0.9;
+  }
+
+  .nq-button-solid:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 /* ==========================================================================
@@ -748,7 +999,7 @@
   .nq-prose-compact,
   [nq-prose],
   [nq-prose-compact] {
-    font-size: 16px;
+    /* Base font-size is inherited or set via text-* utilities (e.g., text-xl = 20px) */
   }
 
   /* Padding for non-compact prose */
@@ -1015,6 +1266,18 @@
     margin-top: var(--nq-m-size);
   }
 
+  /* Break out images from prose max-width (e.g., litepaper) */
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(p):has(> img:only-child) {
+    max-width: 100%;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(p)
+    > img:only-child {
+    max-width: 100%;
+  }
+
   :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
     :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(img, video, iframe):has(
       + figcaption
@@ -1056,7 +1319,26 @@
 
   :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
     :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(ul) {
-    list-style-type: disc;
+    list-style-type: none;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(ul)
+    li {
+    position: relative;
+  }
+
+  :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])
+    :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *)):where(ul)
+    li::before {
+    content: '';
+    position: absolute;
+    left: -1em;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-gold);
   }
 
   :is(.nq-prose, .nq-prose-compact, [nq-prose], [nq-prose-compact])

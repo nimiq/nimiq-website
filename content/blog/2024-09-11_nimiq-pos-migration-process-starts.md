@@ -6,7 +6,7 @@ publishedAt: "2024-09-11"
 updatedAt: 2024-10-06T20:56:33+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-pos-migration-process-starts/ZwL5ebVsGrYSwa2C_NimiqPoSmigrationStarts_-1-.png
+image: /assets/images/prismic/ZwL5ebVsGrYSwa2C_NimiqPoSmigrationStarts_-1-.png
 ---
 
 **NOTE: In the interest of delivering the migration within the time frame presented, the phases and their deadlines are of CRITICAL importance, so please work well within them!**

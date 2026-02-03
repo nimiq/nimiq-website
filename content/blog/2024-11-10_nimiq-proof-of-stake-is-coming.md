@@ -6,7 +6,7 @@ publishedAt: "2024-11-10"
 updatedAt: 2024-11-21T01:35:24+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-proof-of-stake-is-coming/Zy-gsK8jQArT0qC7_Prestakinghasended.png
+image: /assets/images/prismic/Zy-gsK8jQArT0qC7_Prestakinghasended.png
 ---
 
 The Nimiq Pre-Staking Campaign phase has come to an end, marking an exciting milestone on Nimiq’s path to Proof of Stake. Thanks to the overwhelming support of the Nimiq community, the base goal of 2 billion NIM was met in just 48 hours, ensuring a robust migration to Proof of Stake. Since then, the pre-staked amount has grown substantially, with over 5.7 billion NIM pre-staked by more than 1300 addresses. With over 48% of all NIM in circulation staked, this reflects the strong commitment from the Nimiq community for the migration to Proof of Stake. For some context, Ethereum holders had staked an estimated 13% of total supply at the time of transition from proof of work to proof of stake (though an individual minimum of 32ETH was required while Nimiq requires only 100 NIM). A huge thank you to everyone who participated!

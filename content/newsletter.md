@@ -20,7 +20,7 @@ form:
     - Blockchain Tech
   productsTitle: Which Nimiq products do you use?
   products:
-    - Wallet
+    - Nimiq Wallet
     - SuperSimpleSwap
     - Cryptopayment.link
     - Nimiq Pay

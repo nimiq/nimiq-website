@@ -43,7 +43,9 @@
     "valibot": "catalog:server",
     "vaul-vue": "catalog:frontend",
     "vue": "catalog:frontend",
-    "vue-router": "catalog:frontend"
+    "vue-router": "catalog:frontend",
+    "zod": "catalog:",
+    "zod-to-json-schema": "catalog:"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:lint",

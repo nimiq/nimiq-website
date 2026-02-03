@@ -6,7 +6,7 @@ publishedAt: "2019-09-10"
 updatedAt: 2022-04-20T13:05:19+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/transparency-report-2019/4039437c-c192-4891-9765-a86be598c1be_blog_transparency-report-2019_1.png
+image: /assets/images/prismic/4039437c-c192-4891-9765-a86be598c1be_blog_transparency-report-2019_1.png
 ---
 
 In line with the [last report](https://medium.com/nimiq-network/transparency-report-74d4d89933fe), we would like to present an updated overview of the assets and use of funds for the Nimiq project, as well as updated details of the distribution of NIM tokens with circulating and total supply. The period covered since the last report is August 1, 2018 through June 30, 2019. The report indicates a significant reduction in expenses and burn-rate due to reduced operational overhead (not a reduction in team size).

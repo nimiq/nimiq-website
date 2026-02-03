@@ -6,7 +6,7 @@ publishedAt: "2025-11-25"
 updatedAt: 2025-11-25T16:16:33+0000
 authors:
   - Team Nimiq
-image: /images/blog/albatross-1-anniversary-the-tech-stack/aR0ol2GnmrmGqAVc_2TheTechStackBLOG.png
+image: /assets/images/prismic/aR0ol2GnmrmGqAVc_2TheTechStackBLOG.png
 ---
 
 Since launch, Albatross has proven itself to be an efficient and robust Proof-of-Stake blockchain. It has successfully validated more than 30 million blocks, distributed **hundreds of millions of NIM** in rewards, and welcomed **+70 new validators**, including **21 pools**. There are many things to celebrate on this first anniversary, and the perfect opportunity to look beneath the surface and explore how the technologies that make Albatross work together to make it fast and reliable.

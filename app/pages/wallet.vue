@@ -10,15 +10,15 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
 <template>
   <NuxtLayout dark-header>
     <main>
-      <section class="bg-darkerblue relative" dark scheme-dark>
+      <section class="wallet-hero-section bg-darkerblue relative" dark scheme-dark>
         <HeroWallet v-bind="page.hero" />
       </section>
 
-      <section class="bg-darkerblue relative of-x-clip md:pt-16 md:pt-24" scheme-dark children:max-w-none>
+      <section class="bg-darkerblue relative overflow-x-clip md:pt-4 md:pt-6" scheme-dark children:max-w-none>
         <ShowcaseWallet :playground-url="page.playground.url" />
       </section>
 
-      <section class="px-0 pb-0 pt-40 bg-darkerblue relative" dark scheme-dark>
+      <section class="px-0 pb-0 pt-40 md:pt-[160px] bg-darkerblue relative" dark scheme-dark>
         <ShowcaseConsensus v-bind="page.consensus" />
       </section>
 
@@ -30,7 +30,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <ShowcaseCurrency v-bind="page.currencies" />
       </section>
 
-      <section class="gradient-transparent-green-transparent bg-neutral-100 relative">
+      <section class="gradient-transparent-green-transparent bg-neutral-100 relative" scheme-dark>
         <HeadlineStaking v-bind="page.staking" />
       </section>
 
@@ -39,10 +39,10 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
       </section>
 
       <section class="bg-neutral-0">
-        <GridSection :items="page.seed.items" />
+        <GridSection :items="page.seed.items" variation="threeColumnsIconsInline" />
       </section>
 
-      <section class="px-2 bg-neutral-0 relative of-x-clip">
+      <section class="px-2 bg-neutral-0 relative overflow-x-clip">
         <ShowcaseWalletWords v-bind="page.challenge" />
       </section>
 
@@ -52,3 +52,12 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
     </main>
   </NuxtLayout>
 </template>
+
+<style>
+.wallet-hero-section {
+  background-image: linear-gradient(to bottom, var(--color-darkerblue), #3d4383);
+}
+.wallet-hero-section p {
+  color: rgb(var(--nq-white) / 0.7);
+}
+</style>

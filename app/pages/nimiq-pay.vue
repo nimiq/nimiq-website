@@ -9,39 +9,61 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
 
 <template>
   <NuxtLayout>
-    <!-- Section 0: Hero + TiltedMedia + Logos (grey bg) -->
-    <section class="nq-section-gap bg-neutral-100 relative">
+    <!-- Section: Hero (grey bg) -->
+    <section class="bg-neutral-100 relative">
       <HeroPay v-bind="page.hero" />
-      <TiltedMedia v-bind="page.media" />
+    </section>
+
+    <!-- Section: TiltedMedia (grey bg with hexagons) -->
+    <TiltedMedia v-bind="page.media" />
+
+    <!-- Section: Logos (grey bg) -->
+    <section class="bg-neutral-100">
       <GridLogos v-bind="page.logos" />
     </section>
 
-    <!-- Section 1: Pay your way + Grid (white bg) -->
-    <section class="nq-section-gap bg-neutral-0">
+    <!-- Section: Pay your way headline (white bg) -->
+    <section class="nq-section-gap bg-neutral-0 relative">
       <Headline v-bind="page.intro" />
+    </section>
+
+    <!-- Section: Grid (white bg) -->
+    <section class="bg-neutral-0">
       <GridSection v-bind="page.grid" />
     </section>
 
-    <!-- Section 2: What is Nimiq pay app + Cards (white bg) -->
-    <section class="nq-section-gap bg-neutral-0">
+    <!-- Section: What is Nimiq pay app headline (white bg) -->
+    <section class="nq-section-gap bg-neutral-0 relative">
       <Headline v-bind="page.about.headline" />
-      <RichTextCards class="nq-container-xl" :items="page.about.items" />
     </section>
 
-    <!-- Section 3: How to start carousel (grey bg) -->
-    <section class="nq-section-gap bg-neutral-100">
+    <!-- Section: RichTextCards (white bg) -->
+    <section class="bg-neutral-0">
+      <RichTextCards :items="page.about.items" />
+    </section>
+
+    <!-- Section: How to start carousel (grey bg) -->
+    <section class="bg-neutral-100">
       <RichTextCarousel v-bind="page.textCarousel" variation="default" />
     </section>
 
-    <!-- Section 4: One app to pool them all + carousel (white bg) -->
-    <section class="nq-section-gap bg-neutral-0">
+    <!-- Section: One app to pool them all headline (white bg) -->
+    <section class="nq-section-gap bg-neutral-0 relative">
       <Headline v-bind="page.pooling.headline" />
+    </section>
+
+    <!-- Section: Carousel with tabs (white bg) -->
+    <section class="bg-neutral-0">
       <RichTextCarousel v-bind="page.pooling.carousel" variation="withTabs" />
     </section>
 
-    <!-- Section 5: Discover ecosystem + ZigZag (white bg) -->
-    <section class="nq-section-gap bg-neutral-0">
+    <!-- Section: Discover ecosystem headline (white bg) -->
+    <section class="nq-section-gap bg-neutral-0 relative">
       <Headline v-bind="page.discover.headline" />
+    </section>
+
+    <!-- Section: ZigZag (white bg) -->
+    <section class="bg-neutral-0">
       <ZigZag :items="page.discover.items" />
     </section>
   </NuxtLayout>

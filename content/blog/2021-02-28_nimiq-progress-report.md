@@ -6,7 +6,7 @@ publishedAt: "2021-02-28"
 updatedAt: 2022-04-20T13:06:37+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-progress-report/0451a3b2-9427-4405-8873-2849fe1b2e3a_blog_nimiq-progress-report_1.png
+image: /assets/images/prismic/0451a3b2-9427-4405-8873-2849fe1b2e3a_blog_nimiq-progress-report_1.png
 ---
 
 Last December, we shared an update on the recent progress being made by Team Nimiq. Times fly by when there is so much going on — with Nimiq and the crypto space in general! Now we have more updates for you, so get comfy, grab your favorite beverage and let’s begin!

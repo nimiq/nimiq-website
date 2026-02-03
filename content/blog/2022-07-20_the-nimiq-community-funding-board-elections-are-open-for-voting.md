@@ -6,7 +6,7 @@ publishedAt: "2022-07-20"
 updatedAt: 2023-12-07T16:46:27+0000
 authors:
   - Team Nimiq
-image: /images/blog/the-nimiq-community-funding-board-elections-are-open-for-voting/09db430c-97c4-4d6b-8edc-1fed03b36614_premier_usecase_article_1_.png
+image: /assets/images/prismic/09db430c-97c4-4d6b-8edc-1fed03b36614_premier_usecase_article_1_.png
 ---
 
 We're inviting you, as a valued member of the Nimiq community, to vote for a community representative in our Community Funding Board elections. Elections are open as of today and will close Tuesday 26th. This is a great opportunity to get your voice heard and to help shape the future of our community's ecosystem!

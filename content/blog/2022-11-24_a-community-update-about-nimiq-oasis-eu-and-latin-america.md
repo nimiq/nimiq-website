@@ -6,7 +6,7 @@ publishedAt: "2022-11-24"
 updatedAt: 2022-11-25T18:08:04+0000
 authors:
   - Team Nimiq
-image: /images/blog/a-community-update-about-nimiq-oasis-eu-and-latin-america/64ca7c19-0ab2-4ef8-939c-febdf3b7a444_new_website_article_13_.png
+image: /assets/images/prismic/64ca7c19-0ab2-4ef8-939c-febdf3b7a444_new_website_article_13_.png
 ---
 
 Dear Nimiq Community:

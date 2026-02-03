@@ -6,7 +6,7 @@ publishedAt: "2022-01-19"
 updatedAt: 2022-04-20T12:48:51+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/removing-plastic-waste-from-the-oceans-why-local-efforts-matter-and-what-the-cryptocurrency-space-can-do-to-help/0f370d26-4252-4e5d-bc58-2d2fee536471_blog_removing-plastic-waste-from-the-oceans-why-local-efforts-matter-and-what-the-cryptocurrency-space-can-do-to-help_1.jpg
+image: /assets/images/prismic/0f370d26-4252-4e5d-bc58-2d2fee536471_blog_removing-plastic-waste-from-the-oceans-why-local-efforts-matter-and-what-the-cryptocurrency-space-can-do-to-help_1.jpg
 ---
 
 NIM is the cryptocurrency for humans created by Nimiq, a non-profit and open-source project founded in the beach town of Santa Teresa, Costa Rica. Santa Teresa is a remote place that has since started to grow and is currently the center of the Silicon Paradise initiative, you can learn more about that [here](https://www.nimiq.com/siliconparadise/).

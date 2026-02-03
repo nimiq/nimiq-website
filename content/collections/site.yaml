@@ -6,34 +6,6 @@ footer:
   copyright: © Nimiq
 
 navigation:
-  - label: Apps
-    links:
-      - text: Wallet
-        href: /wallet
-      - text: Nimiq Pay
-        href: /nimiq-pay
-      - text: Crypto Map
-        href: https://map.nimiq.com
-      - text: All apps
-        href: /apps
-  - label: Tech
-    links:
-      - text: Onepager
-        href: /onepager
-      - text: Developers
-        href: https://nimiq.dev
-      - text: Litepaper
-        href: /litepaper
-      - text: Albatross
-        href: /albatross
-  - label: Community
-    links:
-      - text: Overview
-        href: /community
-      - text: Blog
-        href: /blog
-      - text: Podcast
-        href: /podcast
   - label: Project
     links:
       - text: About
@@ -44,58 +16,121 @@ navigation:
         href: /roadmap
       - text: Staking
         href: /staking
+  - label: Tech
+    links:
+      - text: Onepager
+        href: /onepager
+      - text: Developers
+        href: https://nimiq.dev
+      - text: Litepaper
+        href: /litepaper
+      - text: Albatross
+        href: /albatross
+      - text: Bug Bounty Program
+        href: /bug-bounty
+  - label: Apps
+    links:
+      - text: Wallet
+        href: /wallet
+        logo: /images/logos/nimiq-wallet.svg
+        image: /images/apps/wallet-preview.webp
+      - text: Multisig Wallet
+        href: https://multisig.nimiq.com
+        logo: /images/logos/multisig.svg
+        image: /images/apps/multisig-preview.svg
+      - text: Cryptopayment.link
+        href: https://cryptopayment.link
+        logo: /images/logos/cryptopayment.svg
+        image: /images/apps/cryptopayment-preview.svg
+      - text: Crypto Map
+        href: https://map.nimiq.com
+        logo: /images/logos/crypto-map.svg
+        image: /images/apps/crypto-map-preview.webp
+      - text: Nimiq Pay
+        href: /nimiq-pay
+        logo: /images/logos/nimiq-pay.svg
+        image: /images/apps/nimiq-pay-preview.webp
+      - text: All apps
+        href: /apps
+        logo: /images/logos/all-apps.svg
+    howTo:
+      title: How to
+      links:
+        - text: Set up Wallet
+          href: /wallet
+        - text: Connect Ledger
+          href: /wallet
+        - text: Buy NIM
+          href: /buy-and-sell
   - label: Get started
     links:
       - text: Login
         href: https://wallet.nimiq.com
+        description: Login with your login file or your 24 backup words
       - text: New wallet
         href: https://wallet.nimiq.com
+        description: Create a Nimiq wallet in less than 30 seconds
       - text: Buy NIM
         href: /buy-and-sell
+        description: Use SuperSimpleSwap, the wallet or exchange partners.
+  - label: Community
+    links:
+      - text: Overview
+        href: /community
+      - text: Blog
+        href: /blog
+      - text: Podcast
+        href: /podcast
+  - label: ...and more
+    links:
+      - text: Staking
+        href: /staking
+      - text: Contact
+        href: /contact
 
 socials:
-  - id: twitter
+  - id: x
     label: X
     link: https://twitter.com/nimiq
-    icon: logos:x
+    icon: nimiq:logos-twitter-mono
     color: '#000000'
   - id: telegram
     label: Telegram
     link: https://t.me/Nimiq
-    icon: logos:telegram
+    icon: nimiq:logos-telegram-mono
     color: '#0088cc'
   - id: reddit
     label: Reddit
     link: https://www.reddit.com/r/Nimiq
-    icon: logos:reddit-icon
+    icon: nimiq:logos-reddit-mono
     color: '#ff4500'
   - id: github
     label: Github
     link: https://github.com/nimiq
-    icon: logos:github-icon
+    icon: nimiq:logos-github-mono
     color: '#000000'
   - id: youtube
     label: Youtube
     link: https://www.youtube.com/c/nimiq
-    icon: logos:youtube-icon
+    icon: nimiq:logos-youtube-mono
     color: '#ff0000'
   - id: discord
     label: Discord
     link: https://discord.gg/nimiq
-    icon: logos:discord-icon
+    icon: nimiq:logos-discord-mono
     color: '#7289da'
   - id: forum
     label: Forum
     link: https://forum.nimiq.community
-    icon: lucide:message-circle
+    icon: nimiq:logos-nimiq-forum-mono
     color: '#f79820'
   - id: facebook
     label: Facebook
     link: https://www.facebook.com/nimiq
-    icon: logos:facebook
+    icon: nimiq:logos-facebook-mono
     color: '#1877f2'
   - id: instagram
     label: Instagram
     link: https://www.instagram.com/wearenimiq
-    icon: logos:instagram-icon
+    icon: nimiq:logos-instagram-mono
     color: '#e4405f'

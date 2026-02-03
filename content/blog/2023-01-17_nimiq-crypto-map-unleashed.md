@@ -6,7 +6,7 @@ publishedAt: "2023-01-17"
 updatedAt: 2025-07-18T09:35:56+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-crypto-map-unleashed/b53b03fd-e7fd-4ed7-bf00-00564a7c9c97_news_2_.png
+image: /assets/images/prismic/b53b03fd-e7fd-4ed7-bf00-00564a7c9c97_news_2_.png
 ---
 
 We are proud to release [map.nimiq.com](https://map.nimiq.com), a map that shows all shops accepting Nimiq and Bitcoin around the world! With this new map, we hope to increase crypto adoption and connect shop owners with crypto users. Even though there are other maps around that try to achieve the same task, we believe an easy-to-use map with up-to-date data was needed to complement our [Cryptopayment.link](https://cryptopayment.link) onboarding efforts. We hope our global community can help us populate it with new shops and use it to find shops in your area that accept Bitcoin and Nimiq.

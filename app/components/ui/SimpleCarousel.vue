@@ -10,19 +10,19 @@ const { activeIndex, scroller, slideNext, slidePrev, slideTo } = useCarousel({ o
   <div class="flex flex-col cursor-default">
     <div class="mx-auto h-full max-w-full relative rounded-$r" :class="{ shadow }">
       <div class="arrow h-full items-center absolute z-20 md:flex" hidden :class="activeIndex > 0 ? 'visible' : 'invisible'">
-        <button class="prev rounded-full bg-neutral-300 op-0 grid size-16 cursor-pointer transition-opacity place-items-center z-30 hover:op-100" tabindex="-1" aria-label="Prev slide" @click="slidePrev">
+        <button class="prev rounded-full bg-neutral-300 opacity-0 grid size-16 cursor-pointer transition-opacity place-items-center z-30 hover:opacity-100" tabindex="-1" aria-label="Prev slide" @click="slidePrev">
           <Icon name="nimiq:chevron-left" />
         </button>
       </div>
       <div class="mx-0 h-full z-10 rounded-$r">
-        <ul ref="scroller" class="max-w-[min(100vw,512px)] scroll-smooth flex h-full of-x-auto nq-scrollbar-hide rounded-$r" snap="x mandatory" @scroll.passive="() => {}">
+        <ul ref="scroller" class="max-w-[min(100vw,512px)] scroll-smooth flex h-full overflow-x-auto nq-scrollbar-hide rounded-$r" snap="x mandatory" @scroll.passive="() => {}">
           <li v-for="(slide, i) in slides" :key="i" class="grid grid-place-items-center mx-2 shrink-0 size-full rounded-$r" snap="center always" data-slide>
             <slot :slide />
           </li>
         </ul>
       </div>
-      <div class="arrow h-full items-center right-0 top-0 absolute z-20 md:flex" hidden :class="activeIndex < slides.length - 1 ? 'visible' : 'invisible'">
-        <button class="next rounded-full bg-neutral-300 op-0 grid size-16 cursor-pointer transition-opacity place-items-center z-30 hover:op-100" tabindex="-1" aria-label="Next slide" @click="slideNext">
+      <div class="arrow h-full items-center right-0 topacity-0 absolute z-20 md:flex" hidden :class="activeIndex < slides.length - 1 ? 'visible' : 'invisible'">
+        <button class="next rounded-full bg-neutral-300 opacity-0 grid size-16 cursor-pointer transition-opacity place-items-center z-30 hover:opacity-100" tabindex="-1" aria-label="Next slide" @click="slideNext">
           <Icon name="nimiq:chevron-right" />
         </button>
       </div>

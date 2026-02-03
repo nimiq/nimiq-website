@@ -6,7 +6,7 @@ publishedAt: "2024-12-23"
 updatedAt: 2024-12-23T22:08:14+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-2025-reflecting-on-our-journey-and-visioning/Z2mcBZbqstJ98y46_BlogpostNimiq2025v1.1.png
+image: /assets/images/prismic/Z2mcBZbqstJ98y46_BlogpostNimiq2025v1.1.png
 ---
 
 Nimiq has achieved a monumental milestone with the release of the eagerly anticipated upgrade to Proof of Stake. This key development has transformed Nimiq into a robust and efficient payment ecosystem with innovative features such as staking, minimal energy consumption, rapid payment transactions, and a performance level primed for global scale processing. With this final piece of the puzzle, the complete picture of a Payment Ecosystem is now fully outlined.

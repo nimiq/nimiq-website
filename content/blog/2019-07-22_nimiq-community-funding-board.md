@@ -6,7 +6,7 @@ publishedAt: "2019-07-22"
 updatedAt: 2022-04-20T13:28:06+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-community-funding-board/f646e2e3-1aa4-45de-ba70-fcee2193c046_blog_nimiq-community-funding-board_2.png
+image: /assets/images/prismic/f646e2e3-1aa4-45de-ba70-fcee2193c046_blog_nimiq-community-funding-board_2.png
 ---
 
 Nimiq’s Community Funding initiative was created to provide support, mentorship and necessary seed funding to community developers who want to create NIM-based projects and add to Nimiq’s growing ecosystem.

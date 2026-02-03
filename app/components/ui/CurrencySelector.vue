@@ -55,29 +55,29 @@ function useCurrencyOptions() {
 </script>
 
 <template>
-  <ComboboxRoot v-model="selectedCurrency" class="relative bg-transparent bg-hocus:neutral-200">
+  <ComboboxRoot v-model="selectedCurrency" class="relative bg-transparent hover:bg-neutral-200 focus:bg-neutral-200">
     <ComboboxAnchor class="w-max inline-flex-~ items-center justify-between gap-[5px]">
-      <ComboboxTrigger class="flex gap-[3px] flex-items-center px-1.5 py-[3px] rounded-1 bg-transparent transition-colors">
+      <ComboboxTrigger class="flex gap-[3px] items-center px-1.5 py-[3px] rounded-1 bg-transparent transition-colors">
         <slot name="trigger" v-bind="{ selectedCurrency }">
           <span class="text-[12px] md:text-[16px] text-current nq-label">{{ selectedCurrency.toLocaleUpperCase() }}</span>
-          <Icon class="op-60 size-[7px]" name="nimiq:triangle-down" />
+          <Icon class="opacity-60 size-[7px]" name="nimiq:triangle-down" />
         </slot>
       </ComboboxTrigger>
     </ComboboxAnchor>
 
     <ComboboxPortal>
-      <ComboboxContent class="reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade font-normal overscroll-none max-h-64 w-[168px] top-0 absolute z-10 of-hidden" position="popper" will-change="[opacity,transform]">
+      <ComboboxContent class="reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade font-normal overscroll-none max-h-64 w-[168px] top-0 absolute z-10 overflow-hidden" position="popper" will-change="[opacity,transform]">
         <ComboboxViewport class="outline-1.5 outline outline-offset--1.5 outline-white/10 px-1 pb-1 rounded-1 bg-neutral flex flex-col">
-          <label class="flex flex-items-center gap-2 px-2 pb-1.5 pt-[13px] w-full">
+          <label class="flex items-center gap-2 px-2 pb-1.5 pt-[13px] w-full">
             <Icon class="text-neutral-800" name="nimiq:magnifying-glass" />
-            <ComboboxInput class="text-16 text-white outline-1.5! outline outline-blue lh-none px-[3px] py-0.5 rounded-1 bg-transparent flex-1 w-full" placeholder="Search" />
+            <ComboboxInput class="text-16 text-white outline-1.5! outline outline-blue leading-none px-[3px] py-0.5 rounded-1 bg-transparent flex-1 w-full" placeholder="Search" />
           </label>
-          <ScrollAreaRoot class="bg-neutral flex-1 h-full relative of-hidden" var:scrollbar-size:10px>
+          <ScrollAreaRoot class="bg-neutral flex-1 h-full relative overflow-hidden" var:scrollbar-size:10px>
             <div class="h-4 w-full top-0 absolute z-2 bg-gradient-to-t from-transparent to-neutral" />
             <ScrollAreaViewport class="py-4 h-[218px] w-full">
-              <ComboboxItem v-for="option in options" :key="option.value" class="flex flex-items-center gap-2 bg-hocus:white/10 bg-reka-active:white/10 p-2 rounded-0.5 transition-colors" :value="option.value">
+              <ComboboxItem v-for="option in options" :key="option.value" class="flex items-center gap-2 hover:bg-white/10 focus:bg-white/10 bg-reka-active:white/10 p-2 rounded-0.5 transition-colors" :value="option.value">
                 <Icon class="shrink-0 size-5" :name="option.icon" />
-                <span class="text-xs md:text-sm text-white/95 lh-none">{{ option.value.toLocaleUpperCase() }}</span>
+                <span class="text-xs md:text-sm text-white/95 leading-none">{{ option.value.toLocaleUpperCase() }}</span>
               </ComboboxItem>
             </ScrollAreaViewport>
             <ScrollAreaScrollbar class="flex bg-neutral-900 p-0.5 w-2.5 select-none inset-y-0 z-20 touch-none" orientation="vertical">

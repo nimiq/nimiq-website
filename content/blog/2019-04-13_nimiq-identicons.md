@@ -6,7 +6,7 @@ publishedAt: "2019-04-13"
 updatedAt: 2022-04-20T13:29:21+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-identicons/9a91eed6-d535-4686-aabd-209593e5fffd_blog_nimiq-identicons_6.png
+image: /assets/images/prismic/9a91eed6-d535-4686-aabd-209593e5fffd_blog_nimiq-identicons_6.png
 ---
 
 On the 8th of February 2019, Lukas Stefanko announced that [WeLiveSecurity.com](https://www.welivesecurity.com/2019/02/08/first-clipper-malware-google-play/) had identified the first case of clipper malware on the Google Play store. It is no surprise that this newly discovered malware was designed to steal cryptocurrency. Nimiq is protected from clipboard hijacking **by design**, thanks to the Nimiq Identicons.

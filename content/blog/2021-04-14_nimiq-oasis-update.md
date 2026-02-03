@@ -6,7 +6,7 @@ publishedAt: "2021-04-14"
 updatedAt: 2022-04-20T13:34:01+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-oasis-update/0a378cd4-9415-4e37-ae46-d8605e02eccd_blog_nimiq-oasis-update.jpg
+image: /assets/images/prismic/0a378cd4-9415-4e37-ae46-d8605e02eccd_blog_nimiq-oasis-update.jpg
 ---
 
 With this blog post we would like to update the community about the current developments and next steps towards the launch of Nimiq OASIS and give you a short overview of the first weeks since the launch of our public beta.

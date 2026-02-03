@@ -6,7 +6,7 @@ publishedAt: "2024-04-16"
 updatedAt: 2024-04-16T13:44:31+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-pay-app-is-live-on-android-and-ios/Zh6AuUaI3ufuUOaU_FinalV.2NimiqPayBlog-2-.png
+image: /assets/images/prismic/Zh6AuUaI3ufuUOaU_FinalV.2NimiqPayBlog-2-.png
 ---
 
 Nimiq Pay doesn't just aim to enable users to send and receive NIM; it lays the foundation for Nimiq to become the most widely accepted crypto payment ecosystem by integrating methods and ideas from conventional payment apps and bringing them to the crypto world; Nimiq Pay is an app designed from the ground up with mass adoption and convenience in mind. It helps to realise Satoshi's vision of self-custodial, peer-to-peer cash without intermediaries.

@@ -6,7 +6,7 @@ publishedAt: "2019-08-18"
 updatedAt: 2022-07-09T17:26:37+0000
 authors:
   - RICHY
-image: /images/blog/nimiq-cashlinks/eed46f89-aae1-4b97-b89e-4c4c51b9c149_blog_nimiq-cashlinks_4.png
+image: /assets/images/prismic/eed46f89-aae1-4b97-b89e-4c4c51b9c149_blog_nimiq-cashlinks_4.png
 ---
 
 Cashlinks are an amazing and unique feature of the Nimiq Blockchain that allows you to introduce your friends and family to the “Crypto Space” by sending them NIM in a message over WhatsApp, SMS, Email or virtually any messaging service. When someone receives a Cashlink, they enter the world of non-custodial and peer-to-peer payments. A place where you — and only you — control your money, free of borders and censorship.

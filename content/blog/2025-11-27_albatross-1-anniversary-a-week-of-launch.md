@@ -6,7 +6,7 @@ publishedAt: "2025-11-27"
 updatedAt: 2025-11-28T18:23:23+0000
 authors:
   - Team Nimiq
-image: /images/blog/albatross-1-anniversary-a-week-of-launch/aScx5WGnmrmGqXQK_3AWeekofLaunchBLOG.png
+image: /assets/images/prismic/aScx5WGnmrmGqXQK_3AWeekofLaunchBLOG.png
 ---
 
 [In the last blog post](https://www.nimiq.com/blog/albatross-1-anniversary-the-tech-stack), we marked Albatross’s one year anniversary with an in-depth walkthrough of Nimiq’s Albatross tech stack, which makes the Proof-of-Stake consensus mechanism one of a kind.

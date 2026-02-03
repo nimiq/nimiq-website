@@ -6,7 +6,7 @@ publishedAt: "2025-10-27"
 updatedAt: 2025-10-31T21:26:44+0000
 authors:
   - Team Nimiq
-image: /images/blog/jeff-is-testing-the-new-dynamic-preview2/aOQcXJ5xUNkB1mrA_TreasuryAccumulationUpdateSeptemberv2.1.png
+image: /assets/images/prismic/aOQcXJ5xUNkB1mrA_TreasuryAccumulationUpdateSeptemberv2.1.png
 ---
 
 ## Overview

@@ -6,7 +6,7 @@ publishedAt: "2021-02-03"
 updatedAt: 2023-12-07T16:38:21+0000
 authors:
   - MAX BURGER
-image: /images/blog/nimiq-joins-blockchain-for-europe-association-/66e1fe2c-07af-4cda-a990-f9c046107408_blog_nimiq-joins-blockchain-for-europe-association-_1.png
+image: /assets/images/prismic/66e1fe2c-07af-4cda-a990-f9c046107408_blog_nimiq-joins-blockchain-for-europe-association-_1.png
 ---
 
 We are happy to announce that [Nimiq](https://www.nimiq.com/) has been accepted as a member of the Brussels-based [Blockchain for Europe](https://www.blockchain4europe.eu/) association. Blockchain for Europe represents international blockchain industry players at the EU-level and contributes to the regulatory debate by supporting European decision-makers in their goal to make blockchain technology a success. The association closely collaborates with national and global players – both at legislative as well as industry level – to support the promotion of and education about blockchain technology.

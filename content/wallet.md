@@ -57,6 +57,7 @@ staking:
   subline: "'Staking' means locking up your NIM which helps secure the network. You get new NIM as a reward."
   actions:
     - href: /staking
+      label: Learn more
       variant: arrow
   stakingNote: average return based on the current distribution. This is not financial advice.
 banner:
@@ -73,11 +74,11 @@ seed:
     headline: "24 words – better than \Lemail & password"
     subline: A unique 24-word sequence, known only to you, unlocks your wallet.
   items:
-    - headline: The 24-word sequence has never been cracked.
+    - content: The 24-word sequence has never been cracked.
       icon: nimiq:shield
-    - headline: It fits on a piece of paper and can go everywhere you go.
+    - content: It fits on a piece of paper and can go everywhere you go.
       icon: nimiq:document-filled
-    - headline: They're universal, access your crypto even on other wallets.
+    - content: They're universal, access your crypto even on other wallets.
       icon: nimiq:globe-filled
 challenge:
   headline: Try guessing the remaining words to take 10 Mil NIM.

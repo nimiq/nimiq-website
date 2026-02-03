@@ -25,7 +25,7 @@ const layers = [firstLayer, secondLayer, thirdLayer]
 </script>
 
 <template>
-  <div class="mx-0 px-0 bg-neutral-0" block children:max-w-none>
+  <div class="mx-0 px-0 bg-neutral-0 block [&>*]:max-w-none">
     <Roadmap :milestones="milestonesData" :layers :first-year :first-month />
   </div>
 </template>

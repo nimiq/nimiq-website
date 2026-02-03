@@ -6,7 +6,7 @@ publishedAt: "2020-02-07"
 updatedAt: 2023-12-07T16:36:49+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-launch-cryptopaymentlink/fa9b7be0-143e-4464-b2a3-697ed995b5bb_blog_nimiq-launch-cryptopaymentlink_1.jpg
+image: /assets/images/prismic/fa9b7be0-143e-4464-b2a3-697ed995b5bb_blog_nimiq-launch-cryptopaymentlink_1.jpg
 ---
 
 With [35% of the US workforce](https://www.morganstanley.com/ideas/freelance-economy) working as freelancers and the global gig economy ballooning to over [$4.5 trillion per year](https://www2.staffingindustry.com/row/About/Media-Center/Press-Releases/Global-Gig-Economy-Reaches-USD-4.5-Trillion), the chances are that you either are or know people who have embraced this increasingly popular way of working. On top of this, there are also [582 million entrepreneurs](https://www.smallbizgenius.net/by-the-numbers/entrepreneur-statistics/) in the world, with most of them running small businesses.

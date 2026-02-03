@@ -6,7 +6,7 @@ publishedAt: "2024-10-02"
 updatedAt: 2024-10-06T20:56:10+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-is-migrating-to-proof-of-stake-what-you-need-to-know/ZwL5V7VsGrYSwa2A_WearemigratingfromPoWtoPoSBLOGV2.0-1-.png
+image: /assets/images/prismic/ZwL5V7VsGrYSwa2A_WearemigratingfromPoWtoPoSBLOGV2.0-1-.png
 ---
 
 ## Overview

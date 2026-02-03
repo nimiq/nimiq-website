@@ -6,7 +6,7 @@ publishedAt: "2020-03-23"
 updatedAt: 2023-12-07T16:43:09+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/community-funding-board-11th-meeting/b82efd22-d79d-4a8b-845b-9dbb4b8b2e58_blog_community-funding-board-11th-meeting_1.jpg
+image: /assets/images/prismic/b82efd22-d79d-4a8b-845b-9dbb4b8b2e58_blog_community-funding-board-11th-meeting_1.jpg
 ---
 
 First off, Team Nimiq would like to thank all the candidates who put themselves forward to represent the community and all of you that cast your vote in the second set of Community Funding Board elections. We are happy to announce that MrMaestro, Vasconcelos and Ginghis Kan were all duly elected as the new Community Representatives. Here is a summary of the final results:

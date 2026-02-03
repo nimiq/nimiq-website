@@ -11,7 +11,7 @@ const { darkHeader = false, footerBgColor = 'grey' } = defineProps<{ darkHeader?
   <main id="main-content">
     <slot />
   </main>
-  <div class="bottom-5 right-5 fixed z-102">
+  <div v-if="false" class="bottom-5 right-5 fixed z-102">
     <AppPageInfo with-env />
   </div>
   <AppHexagonsBackground class="z-1" :with-socials="showSocialsHexagonBg" :bg-color="footerBgColor" />

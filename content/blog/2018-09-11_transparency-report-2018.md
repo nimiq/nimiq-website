@@ -6,7 +6,7 @@ publishedAt: "2018-09-11"
 updatedAt: 2022-04-20T13:33:30+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/transparency-report-2018/95da90ff-904e-4629-8344-9ad1bcf89717_blog_transparency-report-2018_1.png
+image: /assets/images/prismic/95da90ff-904e-4629-8344-9ad1bcf89717_blog_transparency-report-2018_1.png
 ---
 
 To provide a high degree of transparency to the Nimiq community, we would like to present an overview of the assets and use of funds for the Nimiq project as of July 31 2018, as well as details of the distribution of NIM tokens with circulating and total supply.

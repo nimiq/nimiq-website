@@ -6,7 +6,7 @@ publishedAt: "2019-12-14"
 updatedAt: 2023-12-07T16:43:46+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/december-2019-progress-progress/b77aafdb-fb38-4d2a-bf0f-c907314d4a72_blog_december-2019-progress-progress_1.png
+image: /assets/images/prismic/b77aafdb-fb38-4d2a-bf0f-c907314d4a72_blog_december-2019-progress-progress_1.png
 ---
 
 Last month we published the [first Progress Report](https://www.nimiq.com/blog/nimiq-project-progress-report-Nov-2019/). As things keep on progressing quickly, we want to share with you another progress report on our upcoming goals, latest achievements, and recent priority changes.

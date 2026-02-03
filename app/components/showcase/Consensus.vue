@@ -3,28 +3,22 @@ defineProps<{ label: string, headline: string, subline: string, thisIsYou: strin
 </script>
 
 <template>
-  <div class="flex flex-col flex-xl:row flex-justify-center m-0 max-w-none w-full">
-    <div class="flex flex-col pl-$px xl:pb-[200px] xl:pt-8 xl:w-50vw">
-      <p v-if="label" class="mb-4 w-max text-xs md:text-sm nq-label" block>
+  <div class="flex flex-col xl:flex-row justify-center m-0 max-w-none w-full">
+    <div class="flex flex-col pl-[var(--px)] xl:pb-[200px] xl:pt-8 xl:w-[50vw]">
+      <p v-if="label" class="mb-4 w-max text-xs md:text-sm nq-label block">
         {{ label }}
       </p>
       <h2 class="text-left break-keep">
         {{ headline }}
       </h2>
-      <p class="text-left">
+      <p class="text-left xl:max-w-[40ch]">
         {{ subline }}
       </p>
     </div>
-    <div class="xl:w-50vw">
+    <div class="xl:w-[50vw] min-h-[400px] xl:min-h-0 xl:h-full">
       <ClientOnly>
         <ShowcaseConsensusConsensusMap :connect-label="connect" :this-is-you="thisIsYou" :connecting />
       </ClientOnly>
     </div>
   </div>
 </template>
-
-<style scoped>
-:deep(h2 + p) {
-  --uno: 'xl:max-w-40ch';
-}
-</style>

@@ -6,7 +6,7 @@ publishedAt: "2023-03-28"
 updatedAt: 2023-06-08T10:23:41+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-proof-of-stake-testnet-release/709e8238-c3da-4abd-b194-365355ebf9a2_C3_2x.png
+image: /assets/images/prismic/709e8238-c3da-4abd-b194-365355ebf9a2_C3_2x.png
 ---
 
 It’s finally here!

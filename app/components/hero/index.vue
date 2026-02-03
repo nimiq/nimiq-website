@@ -3,13 +3,9 @@ defineProps<{ title: string, description?: string, link?: { label?: string, href
 </script>
 
 <template>
-  <div class="flex flex-col flex-md:items-center">
-    <h1 class="nq-heading md:text-center">
-      {{ title }}
-    </h1>
-    <p v-if="description || link" class="text-neutral-700 text-base md:text-lg text-md:center mt-6 max-w-prose">
-      {{ description }}
-      <a v-if="link" :href="link.href">{{ link.label }}</a>
-    </p>
-  </div>
+  <h1>{{ title }}</h1>
+  <p v-if="description || link">
+    {{ description }}
+    <a v-if="link" :href="link.href">{{ link.label }}</a>
+  </p>
 </template>

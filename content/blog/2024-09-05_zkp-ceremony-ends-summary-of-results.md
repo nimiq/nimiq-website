@@ -6,7 +6,7 @@ publishedAt: "2024-09-05"
 updatedAt: 2024-09-05T19:30:52+0000
 authors:
   - Team Nimiq
-image: /images/blog/zkp-ceremony-ends-summary-of-results/Ztm7mrzzk9ZrXDII_ZKPCeremonyEndsBlogpostv1.4.png
+image: /assets/images/prismic/Ztm7mrzzk9ZrXDII_ZKPCeremonyEndsBlogpostv1.4.png
 ---
 
 The Nimiq Network is steadily progressing toward its migration to Proof-of-Stake. Although the migration will officially occur at a specific block height, the groundwork began months ago. If you're curious about the different phases, they’re detailed [here](https://www.nimiq.com/blog/migration-process-to-nimiq-proof-of-stake/). One of the more time-consuming phases was the Zero-Knowledge Proof (ZKP) Ceremony, which started many months ago and concluded recently.

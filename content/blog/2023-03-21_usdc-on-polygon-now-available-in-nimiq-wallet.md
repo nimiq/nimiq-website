@@ -8,7 +8,7 @@ publishedAt: "2023-03-21"
 updatedAt: 2023-03-22T17:26:21+0000
 authors:
   - Team Nimiq
-image: /images/blog/usdc-on-polygon-now-available-in-nimiq-wallet/4e1e4089-c7ed-4ff1-a2e7-a517332690ec_instagram_usd.png
+image: /assets/images/prismic/4e1e4089-c7ed-4ff1-a2e7-a517332690ec_instagram_usd.png
 ---
 
 Team Nimiq is proud to announce the integration of USDC on Polygon into the [Nimiq Wallet](https://wallet.nimiq.com/) and payment ecosystem. This is the second currency addition to the Nimiq Wallet, and marks a significant milestone towards our vision for the future of payments.

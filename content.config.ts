@@ -251,6 +251,7 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema,
+        nimiqApps: z.array(appItemSchema).optional(),
         cta: headlineSchema,
       }),
     }),
@@ -271,7 +272,6 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema,
-        content: contentSchema,
       }),
     }),
 
@@ -330,7 +330,6 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema,
-        content: contentSchema,
       }),
     }),
 
@@ -389,7 +388,6 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: z.object({ headline: z.string(), subline: z.string().optional() }),
-        content: contentSchema,
       }),
     }),
 
@@ -399,7 +397,6 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: z.object({ headline: z.string(), subline: z.string().optional() }),
-        content: contentSchema,
       }),
     }),
 

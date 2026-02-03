@@ -44,60 +44,60 @@ const milestones = computed(() => {
 </script>
 
 <template>
-  <div class="roadmap w-full relative of-x-auto flex flex-col" :style="`--first-month: ${firstMonth}; --first-year: ${firstYear}; --current-year: ${currentYear}; --current-month: ${currentMonth}`">
-    <div class="layer milestone-lines w-max inset-y-0 absolute of-hidden">
+  <div class="roadmap w-full relative overflow-x-auto flex flex-col" :style="`--first-month: ${firstMonth}; --first-year: ${firstYear}; --current-year: ${currentYear}; --current-month: ${currentMonth}`">
+    <div class="layer milestone-lines w-max inset-y-0 absolute overflow-hidden">
       <div v-for="({ month, year }, i) in milestones.slice(1)" :key="i" class="text-neutral/5 relative flex flex-col" :style="`--year: ${year}; --month: ${month};`">
-        <div class="h-[calc(var(--pt)/2)] w-$vertical-lines-w bg-gradient-to-b from-$bg to-current" />
-        <div class="h-[calc(var(--pt)/2-4px)] w-$vertical-lines-w bg-current" />
-        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="58" fill="none"><path class="stroke-width-2" stroke="currentColor" stroke-linecap="square" d="M1 57v-.88a6 6 0 0 1 .82-3.02l12.42-21.33a6 6 0 0 0 0-6.04L1.82 4.4A6 6 0 0 1 1 1.38V1" /></svg>
-        <div class="w-$vertical-lines-w bg-current flex-1" />
-        <div class="h-[calc(var(--pt)/2)] w-$vertical-lines-w bg-gradient-to-t from-$bg to-current" />
+        <div class="h-[calc(var(--pt)/2)] w-[var(--vertical-lines-w)] bg-gradient-to-b from-[var(--bg)] to-current" />
+        <div class="h-[calc(var(--pt)/2-4px)] w-[var(--vertical-lines-w)] bg-current" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="58" fill="none"><path stroke="currentColor" stroke-linecap="square" stroke-width="2" d="M1 57v-.88a6 6 0 0 1 .82-3.02l12.42-21.33a6 6 0 0 0 0-6.04L1.82 4.4A6 6 0 0 1 1 1.38V1" /></svg>
+        <div class="w-[var(--vertical-lines-w)] bg-current flex-1" />
+        <div class="h-[calc(var(--pt)/2)] w-[var(--vertical-lines-w)] bg-gradient-to-t from-[var(--bg)] to-current" />
       </div>
       <div class="text-red h-full relative flex flex-col" style="--year: var(--current-year); --month: var(--current-month);">
-        <div class="h-$pt w-$vertical-lines-w bg-gradient-to-b from-$bg to-current" />
-        <div class="w-$vertical-lines-w bg-current flex-1" />
-        <div class="h-$pt w-$vertical-lines-w bg-gradient-to-t from-$bg to-current" />
+        <div class="h-[var(--pt)] w-[var(--vertical-lines-w)] bg-gradient-to-b from-[var(--bg)] to-current" />
+        <div class="w-[var(--vertical-lines-w)] bg-current flex-1" />
+        <div class="h-[var(--pt)] w-[var(--vertical-lines-w)] bg-gradient-to-t from-[var(--bg)] to-current" />
       </div>
     </div>
 
-    <header class="flex flex-items-center w-max relative of-visible ml-$ml pt-$pt">
-      <div class="pl-0 left-0 absolute z-1 w-$pl flex flex-items-center flex-justify-center">
-        <p class="text-center text-10 px-1.5 bg-neutral-100 whitespace-nowrap z-1 nq-label">
+    <header class="flex items-center w-max relative overflow-visible ml-[var(--ml)] pt-[var(--pt)]">
+      <div class="pl-0 left-0 absolute z-10 w-[var(--pl)] flex items-center justify-center">
+        <p class="text-center text-[10px] px-1.5 bg-neutral-100 whitespace-nowrap z-10 nq-label">
           {{ firstYear }}
         </p>
-        <div class="flex flex-items-center gap-1.5 -right-0.5 absolute">
-          <div v-for="i in 4" :key="i" class="bg-neutral-500 h-px w-[5px] ring-y-0.5 ring-neutral-500" />
+        <div class="flex items-center gap-1.5 -right-0.5 absolute">
+          <div v-for="i in 4" :key="i" class="bg-neutral-500 h-px w-[5px] ring-1 ring-neutral-500" />
         </div>
       </div>
-      <div class="layer pl-$pl items-center z-1 of-visible" grid-rows-1 style="grid-template-columns: repeat(calc(1 + var(--columns)), var(--columns-w))">
-        <div v-for="({ label, month, year, untilMonth, untilYear }, i) in milestones" :key="i" :style="`--year: ${year}; --month: ${month + (i > 0 ? 1 : 0)}; --until-year: ${untilYear}; --until-month:${untilMonth}`" drop-shadow first="">
-          <div class="text-10/12 text-neutral text-center flex flex-justify-center flex-items-center bg-neutral-0 bg-dark:neutral-400 px-4 rounded-1.5 h-full min-h-[52px] nq-label">
+      <div class="layer pl-[var(--pl)] items-center z-10 overflow-visible grid-rows-1" style="grid-template-columns: repeat(calc(1 + var(--columns)), var(--columns-w))">
+        <div v-for="({ label, month, year, untilMonth, untilYear }, i) in milestones" :key="i" class="drop-shadow first:first-milestone" :style="`--year: ${year}; --month: ${month + (i > 0 ? 1 : 0)}; --until-year: ${untilYear}; --until-month:${untilMonth}`">
+          <div class="text-[10px] leading-[12px] text-neutral text-center flex justify-center items-center bg-neutral-0 dark:bg-neutral-400 px-4 rounded-md h-full min-h-[52px] nq-label">
             {{ label }}
           </div>
         </div>
-        <div class="milestone-future h-full bg-repeat-x flex flex-items-center flex-justify-center" :style="`--year: ${milestones.at(-1)?.untilYear}; --month: ${Number(milestones.at(-1)?.untilMonth)}; grid-column: var(--column-start) / -1`">
-          <span class="text-12 text-neutral-900 whitespace-nowrap nq-label">{{ currentYear + 1 }}</span>
+        <div class="milestone-future h-full bg-repeat-x flex items-center justify-center" :style="`--year: ${milestones.at(-1)?.untilYear}; --month: ${Number(milestones.at(-1)?.untilMonth)}; grid-column: var(--column-start) / -1`">
+          <span class="text-xs text-neutral-900 whitespace-nowrap nq-label">{{ currentYear + 1 }}</span>
         </div>
       </div>
     </header>
 
-    <ul class="flex flex-col gap-4 ml-$ml w-max pt-6 md:pt-8 mt-2 md:mt-3">
-      <li v-for="(layer, l) in layers" :key="layer.name" class="flex flex-col flex-justify-end p-6 pr-0 rounded-l-1.5 w-max self-end relative pl-$pl" :class="layer.layerClasses">
-        <div v-for="block in layer.blocks" :key="block.name" class="mt-6 first:mt-0 flex flex-justify-end">
+    <ul class="flex flex-col gap-4 ml-[var(--ml)] w-max pt-6 md:pt-8 mt-2 md:mt-3">
+      <li v-for="(layer, l) in layers" :key="layer.name" class="flex flex-col justify-end p-6 pr-0 rounded-l-md w-max self-end relative pl-[var(--pl)]" :class="layer.layerClasses">
+        <div v-for="block in layer.blocks" :key="block.name" class="mt-6 first:mt-0 flex justify-end">
           <div class="pt-3 relative">
-            <span class="text-10 left-0 top-0 absolute nq-label" grid-row-span-full block :class="layer.text">{{ block.name }}</span>
+            <span class="text-[10px] left-0 top-0 absolute nq-label row-span-full block" :class="layer.text">{{ block.name }}</span>
             <div v-if="isNestedBlocks(block.items)" class="flex gap-2" :style="`--block-index:${l}`" :class="{ '-mr-[3px]': block.items.length > 1 }">
-              <div v-for="(subblock, i) in block.items" :key="i" class="layer force-row-height rounded-1.5 p-$p-block last:rounded-r-0" :style="getNestedBlocksStyles(block.items, i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" shadow>
+              <div v-for="(subblock, i) in block.items" :key="i" class="layer force-row-height rounded-md p-[var(--p-block)] last:rounded-r-none shadow" :style="getNestedBlocksStyles(block.items, i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]">
                 <RoadmapBlock v-for="item in subblock" :key="item.name" v-bind="item" />
               </div>
             </div>
-            <div v-else class="layer force-row-height p-4 pr-0 rounded-l-1.5" :style="getStartOfBlock(block.items)" :class="[layer.blocksClasses, block.nestedBlocksClasses]" shadow>
+            <div v-else class="layer force-row-height p-4 pr-0 rounded-l-md shadow" :style="getStartOfBlock(block.items)" :class="[layer.blocksClasses, block.nestedBlocksClasses]">
               <RoadmapBlock v-for="(item, i) in block.items" :key="i" v-bind="item" />
             </div>
           </div>
         </div>
-        <div class="text-18 bottom-6 left-6 absolute flex flex-items-center gap-3" :class="layer.text">
-          <Icon class="text-32" :name="layer.icon" />
+        <div class="text-lg bottom-6 left-6 absolute flex items-center gap-3" :class="layer.text">
+          <Icon class="text-[32px]" :name="layer.icon" />
           <span class="font-bold">{{ layer.name }}</span>
         </div>
       </li>
@@ -114,6 +114,7 @@ const milestones = computed(() => {
   --pt: 48px;
   --p-block: 16px;
   --vertical-lines-w: 2px;
+  --bg: var(--color-neutral-0);
 
   .layer {
     --until-year: var(--last-displayed-year);

@@ -6,7 +6,7 @@ publishedAt: "2018-10-29"
 updatedAt: 2022-04-20T13:30:26+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-wants-to-support-you/4833c262-c193-4ce2-9288-575c2a31e488_blog_nimiq-wants-to-support-you_1.png
+image: /assets/images/prismic/4833c262-c193-4ce2-9288-575c2a31e488_blog_nimiq-wants-to-support-you_1.png
 ---
 
 Nimiq is passionate about being inclusive and empowering people to make a difference. We know many of you in the community have amazing ideas that could add real value to the Nimiq ecosystem. However, a great idea is one thing and we understand that most of the time initial funding is needed to get it off the ground. That’s why Team Nimiq is proposing to support Nimiq community projects and help turn these visions into reality.

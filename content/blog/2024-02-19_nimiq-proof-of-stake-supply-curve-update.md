@@ -6,7 +6,7 @@ publishedAt: "2024-02-19"
 updatedAt: 2024-03-14T19:07:36+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-proof-of-stake-supply-curve-update/65d3b3ae6df829d21997f4ec_supplycurvearticle-1-.jpg
+image: /assets/images/prismic/65d3b3ae6df829d21997f4ec_supplycurvearticle-1-.jpg
 ---
 
 The original and still current emission rate curve for Nimiq ([Proof-of-Work](https://www.nimiq.com/blog/nimiq-a-frictionless-payment-protocol-native-to-the-web/)) was chosen to mirror Bitcoin's supply curve. Following the launch of the Nimiq Mainnet, [the community advocated](https://www.nimiq.com/blog/nimiq-20-supply-curve-considerations/) revisiting the emission curve to align with the then expected switch to Proof-of-Stake. After a diligent public voting process where NIM holders' votes were recorded on the Nimiq Blockchain, a new emission curve was elected and has since been waiting for release with the pending switch to Proof-of-Stake.

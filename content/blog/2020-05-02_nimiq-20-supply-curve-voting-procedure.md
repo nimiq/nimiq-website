@@ -6,7 +6,7 @@ publishedAt: "2020-05-02"
 updatedAt: 2023-12-07T16:39:33+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-20-supply-curve-voting-procedure/7b8333e7-2e54-4a5c-9126-ab0edd370fa3_blog_nimiq-20-supply-curve-voting-procedure_1.jpg
+image: /assets/images/prismic/7b8333e7-2e54-4a5c-9126-ab0edd370fa3_blog_nimiq-20-supply-curve-voting-procedure_1.jpg
 ---
 
 The decision on changing the supply curve of Nimiq is a fundamental and far reaching one. We are convinced that it is important to provide the wide range of Nimiq Stakeholders with the opportunity to be part of this process, including everyone from earliest contributors to new supporters that just discovered Nimiq. Over several months now, Team Nimiq has been working on finding and implementing a democratic, secure, and educated way to making the decision regarding the potential change of Nimiq’s Supply Curve. In a nutshell this concerns lowering the current coin supply growth rate ("inflation") by varying degrees and its shorter and longer-term considerations.

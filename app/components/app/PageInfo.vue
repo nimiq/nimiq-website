@@ -6,7 +6,7 @@ const { enablePrismicSSR } = useRuntimeConfig().public
 </script>
 
 <template>
-  <div v-if="!isProduction && (withEnv || enablePrismicSSR)" class="flex flex-items-center gap-4 flex-wrap">
+  <div v-if="!isProduction && (withEnv || enablePrismicSSR)" class="flex items-center gap-4 flex-wrap">
     <UiTooltip v-if="withEnv" class="shrink-0">
       <template #trigger>
         <div class="ring-1.5 ring-white outline outline-1.5 outline-neutral-400 capitalize text-[10px] md:text-[11px] nq-pill-lg nq-pill-tertiary">

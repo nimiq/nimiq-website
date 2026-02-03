@@ -6,7 +6,7 @@ publishedAt: "2019-02-28"
 updatedAt: 2022-04-20T13:30:16+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-makes-fiat-currencies-blockchain-compatible/55b7be96-e197-4d10-a233-0293f0856f05_blog_nimiq-makes-fiat-currencies-blockchain-compatible_1.jpg
+image: /assets/images/prismic/55b7be96-e197-4d10-a233-0293f0856f05_blog_nimiq-makes-fiat-currencies-blockchain-compatible_1.jpg
 ---
 
 Team [Nimiq](https://nimiq.com/) is thrilled to announce that we are developing a new and potentially disruptive Crypto-to-Fiat bridge in collaboration with the German [WEG Bank AG](https://www.weg-bank.de/partnerschaften.html) and Swiss-Maltese non-custodial cryptocurrency exchange [Agora.Trade](https://agora.trade/). Today we would like to introduce a high-level description of what this solution means, how this next big step in Nimiq’s journey came about and what’s been happening behind the scenes.

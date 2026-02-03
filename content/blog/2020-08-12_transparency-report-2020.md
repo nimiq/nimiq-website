@@ -6,7 +6,7 @@ publishedAt: "2020-08-12"
 updatedAt: 2022-04-20T13:05:39+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/transparency-report-2020/624a6c03-9c90-46ca-96bc-b7b0c2b3d407_blog_transparency-report-2020.png
+image: /assets/images/prismic/624a6c03-9c90-46ca-96bc-b7b0c2b3d407_blog_transparency-report-2020.png
 ---
 
 In line with the [last report](https://www.nimiq.com/blog/transparency-report-2019/), we would like to present an updated overview of the assets and use of funds for the Nimiq project, as well as updated details of the distribution of NIM tokens with circulating and total supply. The period covered since the last report is July 1, 2019 through July 31, 2020. The report indicates a stabilization of burn-rate as well as no significant change in net assets due to the beneficial clearing of the loan.

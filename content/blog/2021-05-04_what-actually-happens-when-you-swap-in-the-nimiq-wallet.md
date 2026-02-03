@@ -7,7 +7,7 @@ updatedAt: 2023-12-07T16:44:31+0000
 authors:
   - SÖREN
   - SVEN
-image: /images/blog/what-actually-happens-when-you-swap-in-the-nimiq-wallet/44813ad1-b029-403c-b5d1-55ce163571ca_blog_what-actually-happens-when-you-swap-in-the-nimiq-wallet_1.png
+image: /assets/images/prismic/44813ad1-b029-403c-b5d1-55ce163571ca_blog_what-actually-happens-when-you-swap-in-the-nimiq-wallet_1.png
 ---
 
 Hey, welcome! As Nimiq OASIS is nearing its public release with both buying and selling of NIM and BTC enabled, we thought it would be interesting for the more tech-savvy Nimiq fans out there to learn how the atomic swaps in the Nimiq Wallet actually work!

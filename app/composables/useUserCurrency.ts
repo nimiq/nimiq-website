@@ -34,12 +34,15 @@ export function useUserCurrency() {
   const currency = useStorage<FiatCurrency>('user-currency', guessUserCurrency(), undefined, { mergeDefaults: false })
   const locale = useLocale()
 
-  // SSR-safe currencyInfo with guaranteed valid locale
+  // SSR-safe currencyInfo - CurrencyInfo uses navigator.language internally
+  // which doesn't exist on server, so return null during SSR
   const currencyInfo = computed(() => {
-    if (import.meta.server) {
-      // Use simple USD formatting in SSR to avoid navigator issues
-      return new CurrencyInfo(currency.value, 'en-US')
-    }
+    // Return null during SSR - CurrencyInfo accesses navigator.language internally
+    if (import.meta.server)
+      return null
+
+    // Currency might be undefined initially
+    const currencyValue = currency.value || FiatCurrency.USD
 
     let localeValue = locale.value || 'en-US'
     // Additional sanitization: remove @posix and other invalid suffixes
@@ -51,12 +54,12 @@ export function useUserCurrency() {
       localeValue = 'en-US'
 
     try {
-      return new CurrencyInfo(currency.value, localeValue)
+      return new CurrencyInfo(currencyValue, localeValue)
     }
     catch (error) {
       // Fallback to en-US if locale is still invalid
       console.warn(`Invalid locale "${localeValue}", falling back to en-US`, error)
-      return new CurrencyInfo(currency.value, 'en-US')
+      return new CurrencyInfo(currencyValue, 'en-US')
     }
   })
 

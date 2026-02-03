@@ -6,7 +6,7 @@ publishedAt: "2019-08-14"
 updatedAt: 2022-04-20T13:27:23+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/groundbreaking-crypto-payment-solution-for-online-merchants/5f1315aa-a7ec-49c6-89a3-5146943004a8_blog_groundbreaking-crypto-payment-solution-for-online-merchants_1.png
+image: /assets/images/prismic/5f1315aa-a7ec-49c6-89a3-5146943004a8_blog_groundbreaking-crypto-payment-solution-for-online-merchants_1.png
 ---
 
 It is Nimiq’s mission to deliver the world’s easiest-to-use, censorship-resistant payment ecosystem. In this blog post, you can discover how Nimiq is working on making it super easy for online merchants to accept crypto and receive conventional money, without using a centralized exchange or payment processor. We also explain the main problems why online merchants don’t like accepting crypto payments, and the solution that Nimiq is building to address these.

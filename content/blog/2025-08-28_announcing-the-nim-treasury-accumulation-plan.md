@@ -6,7 +6,7 @@ publishedAt: "2025-08-28"
 updatedAt: 2025-08-28T14:59:51+0000
 authors:
   - Team Nimiq
-image: /images/blog/announcing-the-nim-treasury-accumulation-plan/aK-ZFGGNHVfTOYv_NIMTreasuryAccumulationPlanBLOGV3.png
+image: /assets/images/prismic/aK-ZFGGNHVfTOYv_NIMTreasuryAccumulationPlanBLOGV3.png
 ---
 
 In our last community update we spoke about the transformation underway at Nimiq and we reaffirmed our commitment to NIM. Today we are following through in a simple and deliberate way. We are launching the **NIM Treasury Accumulation Plan**, an ongoing program to accumulate NIM from the open market into treasury reserves. This is not a grand reveal. It is a practical step that aligns our balance sheet with where the project is heading.

@@ -1,17 +1,37 @@
-/* Style gold text paragraphs after Vision/Mission headings */
-article[nq-prose] h2 + p > strong:only-child {
-  color: var(--colors-gold);
+/* Hide heading anchor links on onepager (the # pseudo-element) */
+article.nq-prose :is(h2, h3)[id]::after,
+article[nq-prose] :is(h2, h3)[id]::after {
+  display: none;
+}
+
+/* Gold text styling for Vision/Mission statements */
+.text-gold {
+  color: var(--color-gold);
+}
+
+.f-text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+/* Style gold text paragraphs after Vision/Mission headings (fallback for markdown strong) */
+article.nq-prose h2 + p > strong:only-child,
+article[nq-prose] h2 + p > strong:only-child,
+article.nq-prose h3 + p > strong:only-child,
+article[nq-prose] h3 + p > strong:only-child {
+  color: var(--color-gold);
   font-size: 1.5rem;
   font-weight: 600;
   display: block;
 }
 
-table {
+article.nq-prose table,
+article[nq-prose] table {
   margin-top: 56px;
   display: block;
   overflow: auto;
   border-radius: 8px;
-  background-color: rgb(var(--nq-neutral-0));
+  background-color: var(--color-neutral-0);
   max-width: 1200px;
 
   &.large {
@@ -78,6 +98,6 @@ table {
   }
 
   .bg-grey {
-    background-color: rgb(var(--nq-neutral-100));
+    background-color: var(--color-neutral-100);
   }
 }

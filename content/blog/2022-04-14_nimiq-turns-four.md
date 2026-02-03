@@ -6,7 +6,7 @@ publishedAt: "2022-04-14"
 updatedAt: 2022-04-20T13:04:53+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-turns-four/0ce6bc58-6738-4d56-8c5f-c171e056a604_nimiq-birthday-hero.png
+image: /assets/images/prismic/0ce6bc58-6738-4d56-8c5f-c171e056a604_nimiq-birthday-hero.png
 ---
 
 “**love ai amor mohabbat hubun cinta lyubov bhalabasa amour kauna pi'ara liebe eshq upendo prema amore katresnan sarang anpu prema yeu”**

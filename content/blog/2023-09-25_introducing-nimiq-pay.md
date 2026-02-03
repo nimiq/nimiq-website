@@ -6,7 +6,7 @@ publishedAt: "2023-09-25"
 updatedAt: 2023-09-25T16:45:25+0000
 authors:
   - Team Nimiq
-image: /images/blog/introducing-nimiq-pay/be70e21d-15e5-4f5d-bd1f-b3c0bcb3bad9_introducing_pay_app_230913.jpg
+image: /assets/images/prismic/be70e21d-15e5-4f5d-bd1f-b3c0bcb3bad9_introducing_pay_app_230913.jpg
 ---
 
 Nimiq's grand vision is to provide an easy-to-use means of payment that retains the self-custodial nature, censorship-resistance, and decentralized aspects inherent to properly conceived cryptocurrencies. As smartphones dominate our daily lives, especially in financial transactions, it's only natural for Nimiq to expand in this direction.

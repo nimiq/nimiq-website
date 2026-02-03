@@ -6,7 +6,7 @@ publishedAt: "2020-02-28"
 updatedAt: 2023-12-07T16:36:03+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/community-funding-board-10th-meeting/3b64f105-dc2b-4952-ae6e-7125ec8f56eb_blog_community-funding-board-10th-meeting_1.png
+image: /assets/images/prismic/3b64f105-dc2b-4952-ae6e-7125ec8f56eb_blog_community-funding-board-10th-meeting_1.png
 ---
 
 This month the Community Funding Board focused on rewarding the great work carried out by Nimiq community members and supporting the proactive initiatives suggested.

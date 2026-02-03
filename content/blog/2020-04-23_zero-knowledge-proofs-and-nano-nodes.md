@@ -6,7 +6,7 @@ publishedAt: "2020-04-23"
 updatedAt: 2023-12-07T16:42:01+0000
 authors:
   - BRUNO FRANÇA
-image: /images/blog/zero-knowledge-proofs-and-nano-nodes/ade04f97-9ea9-4e91-aece-b6138adbe26f_blog_zero-knowledge-proofs-and-nano-nodes_1.png
+image: /assets/images/prismic/ade04f97-9ea9-4e91-aece-b6138adbe26f_blog_zero-knowledge-proofs-and-nano-nodes_1.png
 ---
 
 Looking back, nano syncing in Nimiq 1.0 worked by leveraging two technologies: light clients and NiPoPoWs. How is that going to work in Nimiq 2.0 with Proof-of-Stake? Let’s get into the technical details with this blog post series.

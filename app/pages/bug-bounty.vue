@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const page = await usePage('bugBounty')
-const content = await parseMarkdown(page.content?.richText || '')
 
 const title = page.seo?.title || page.hero?.title || 'Bug Bounty Program | Nimiq'
 const description = page.seo?.description || page.hero?.description
@@ -10,8 +9,12 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/bug-bounty' }] })
 
 <template>
   <NuxtLayout>
-    <section class="nq-section-gap bg-neutral-100">
-      <ContentRenderer class="nq-prose mx-auto max-w-prose" :value="content" article />
+    <section class="bg-neutral-100">
+      <article class="nq-prose text-xl">
+        <h1>{{ page.hero?.title }}</h1>
+        <p>{{ page.hero?.description }}</p>
+        <ContentRenderer :value="page" />
+      </article>
     </section>
   </NuxtLayout>
 </template>

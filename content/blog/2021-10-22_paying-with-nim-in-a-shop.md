@@ -6,7 +6,7 @@ publishedAt: "2021-10-22"
 updatedAt: 2022-04-20T13:32:54+0000
 authors:
   - Sven
-image: /images/blog/paying-with-nim-in-a-shop/3724314f-944c-4d03-9afd-ed91e4c999a0_blog_paying-with-nim-in-a-shop_1.png
+image: /assets/images/prismic/3724314f-944c-4d03-9afd-ed91e4c999a0_blog_paying-with-nim-in-a-shop_1.png
 ---
 
 Last week Max and I went to Vienna with one goal: to try out the Salamantex payment terminals and finally **pay with NIM in a physical shop.** So we went.

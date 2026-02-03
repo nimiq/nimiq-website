@@ -6,7 +6,7 @@ publishedAt: "2019-07-29"
 updatedAt: 2022-04-20T13:27:55+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-and-kindhumans/12d87304-24e6-4e93-93cd-7ac8e747fe26_blog_nimiq-and-kindhumans_1.png
+image: /assets/images/prismic/12d87304-24e6-4e93-93cd-7ac8e747fe26_blog_nimiq-and-kindhumans_1.png
 ---
 
 ## Introducing Kindhumans

@@ -24,8 +24,8 @@ watch(() => model.value, async () => {
 </script>
 
 <template>
-  <div class="flex flex-align-center p-0.5 rounded-full bg-neutral-200 w-max relative">
-    <label v-for="(option, i) of options" :id="String(option)" ref="labels" :key="i" class="text-12 text-neutral-800 text-reka-active:neutral text-hocus:neutral-900 flex flex-items-center lh-none px-2 py-1 rounded-full h-max cursor-pointer select-none transition-colors relative z-2 nq-label">
+  <div class="flex items-center p-0.5 rounded-full bg-neutral-200 w-max relative">
+    <label v-for="(option, i) of options" :id="String(option)" ref="labels" :key="i" class="text-12 text-neutral-800 text-reka-active:neutral hover:text-neutral-900 focus:text-neutral-900 flex items-center leading-none px-2 py-1 rounded-full h-max cursor-pointer select-none transition-colors relative z-2 nq-label">
       <input v-model="model" class="sr-only" type="radio" :value="option" @mousedown.prevent>
       {{ option }}
     </label>
@@ -35,6 +35,8 @@ watch(() => model.value, async () => {
 
 <style scoped>
 label:has(input:focus-visible) {
-  --uno: 'ring-2 ring-blue ring-offset-3';
+  box-shadow:
+    0 0 0 3px var(--color-neutral-0),
+    0 0 0 5px var(--color-blue);
 }
 </style>

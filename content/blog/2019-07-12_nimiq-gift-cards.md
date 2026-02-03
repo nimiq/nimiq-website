@@ -6,7 +6,7 @@ publishedAt: "2019-07-12"
 updatedAt: 2022-04-20T13:28:15+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-gift-cards/e8b2ce43-08a1-4e91-86eb-04d41d0521c1_blog_nimiq-gift-cards_2.png
+image: /assets/images/prismic/e8b2ce43-08a1-4e91-86eb-04d41d0521c1_blog_nimiq-gift-cards_2.png
 ---
 
 Nimiq is excited to announce a collaboration with the Canadian crypto payment processor [Bidali](https://www.bidali.com/). As an immediate outcome, this collaboration allows Nimiq users to buy items and services from known brands such as Starbucks, Uber, Amazon, and even Bubba Gump Shrimp Co using gift cards from [Bidali’s website](https://www.bidali.com/) or [NimiqGiftCards.com](http://nimiqgiftcards.com/).

@@ -6,7 +6,7 @@ publishedAt: "2023-01-09"
 updatedAt: 2023-01-09T17:56:20+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-collaborating-with-coinpay/8541bf90-c390-41ba-9369-9b1144dc5ae1_Purple_3D_and_Modern_NFTs_Items_Sold_Twitter_Post_2_.png
+image: /assets/images/prismic/8541bf90-c390-41ba-9369-9b1144dc5ae1_Purple_3D_and_Modern_NFTs_Items_Sold_Twitter_Post_2_.png
 ---
 
 We are excited to announce the collaboration of [Nimiq](http://www.nimiq.com) with [Coinpay](https://coinpay.cr/), a fintech company based in Costa Rica, starting off with the listing of NIM in the Coinpay product suite including their wallet, exchange and debit card available in many countries around the world. Learn more about Coinpay on [their website](https://coinpay.cr/).

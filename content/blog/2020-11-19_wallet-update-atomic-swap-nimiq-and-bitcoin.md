@@ -6,7 +6,7 @@ publishedAt: "2020-11-19"
 updatedAt: 2023-12-07T16:39:08+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/wallet-update-atomic-swap-nimiq-and-bitcoin/33cee702-2282-41bc-b3ad-224421a714b1_blog_wallet-update-atomic-swap-nimiq-and-bitcoin_1.png
+image: /assets/images/prismic/33cee702-2282-41bc-b3ad-224421a714b1_blog_wallet-update-atomic-swap-nimiq-and-bitcoin_1.png
 ---
 
 ## Bitcoin Support

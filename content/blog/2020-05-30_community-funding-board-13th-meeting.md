@@ -6,7 +6,7 @@ publishedAt: "2020-05-30"
 updatedAt: 2022-04-20T13:25:03+0000
 authors:
   - COMMUNITY FUNDING BOARD
-image: /images/blog/community-funding-board-13th-meeting/9e554593-a585-4d95-a2dd-d37f95506e77_blog_community-funding-board-13th-meeting_1.png
+image: /assets/images/prismic/9e554593-a585-4d95-a2dd-d37f95506e77_blog_community-funding-board-13th-meeting_1.png
 ---
 
 While COVID-19 is keeping the world in suspense, Nimiq Community continues building and the Funding Board keeps finding ways to give support. Let’s dig into the details of the May Meeting.

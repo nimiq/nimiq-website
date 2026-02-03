@@ -6,7 +6,7 @@ publishedAt: "2018-10-22"
 updatedAt: 2022-04-20T13:30:35+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/a-new-visual-identity/cc8a540f-eaa2-43cc-bc38-b0b4bd1f591b_blog_a-new-visual-identity_7.jpg
+image: /assets/images/prismic/cc8a540f-eaa2-43cc-bc38-b0b4bd1f591b_blog_a-new-visual-identity_7.jpg
 ---
 
 We have spent the last few weeks rethinking the Nimiq brand. This process brought our mission, vision, brand persona and core values to a point where we were able to develop a visual language. We’re proud to finally show you this visual language, and, along with that, we also want to share the process of how we got there.

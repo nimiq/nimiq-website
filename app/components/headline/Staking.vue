@@ -14,40 +14,45 @@ const id = `terms-note-${useId()}`
 </script>
 
 <template>
-  <div class="flex flex-col flex-md:items-center group" data-inverted>
-    <AnimatedStakingRipple class="text-green text-data-inverted:white size-[120px]" />
-    <h2 class="mt-4 md:mt-6 text-data-inverted:white text-wrap text-md:balance">
+  <div class="flex flex-col md:items-center group text-white" data-inverted>
+    <AnimatedStakingRipple class="size-[120px]" data-inverted />
+    <h2 class="mt-4 md:mt-6 text-white text-wrap md:text-balance">
       {{ headlineParts[0] }}
-      <span class="bg-green/15 bg-data-inverted:white/30 text-green text-data-inverted:white px-2.5 py-[3px] rounded-1 inline-flex-~" data-percentage>
-        ~{{ annualRewardPercentage }}<Icon class="text-14 translate-y-2" name="nimiq:asterisk" :aria-labelledby="id" />
+      <span class="bg-white/30 text-white px-2.5 py-[3px] rounded inline-flex" data-percentage>
+        ~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[2px]" name="nimiq:asterisk" :aria-labelledby="id" />
       </span>
       {{ headlineParts[1] }}
     </h2>
-    <p v-if="subline" class="data-inverted:text-white/80">
+    <p v-if="subline" class="text-white/80">
       {{ subline }}
     </p>
-    <ul v-if="actions?.length" class="flex gap-4 flex-lg:gap-5 flex-wrap">
+    <ul v-if="actions?.length" class="flex gap-4 lg:gap-5 flex-wrap">
       <li v-for="action in actions" :key="action.href">
         <NuxtLink
           class="mt-6 md:mt-8 nq-arrow nq-pill-lg md:mx-auto" :to="action.href" :class="{
-            'nq-pill-blue': action.variant === 'primary',
+            'nq-pill-blue': action.variant === 'primary' || action.variant === 'arrow',
             'nq-pill-secondary': action.variant === 'secondary',
-            'nq-pill-tertiary bg-white text-neutral': action.variant === 'tertiary',
+            'nq-pill-tertiary': action.variant === 'tertiary',
           }"
         >
           {{ action.label }}
         </NuxtLink>
       </li>
     </ul>
-    <small v-if="stakingNote" :id class="text-green-1100 text-data-inverted:white/80 text-sm:center transition-colors duration-400 mt-4 md:mt-6 sm:max-w-32ch" data-note>
-      <Icon class="size-0.4em" aria-hidden name="nimiq:asterisk" un-translate="x--8 sm:x-4 y-4 sm:y-8" /> {{ stakingNote }}
+    <small v-if="stakingNote" :id class="text-white/80 sm:text-center transition-colors duration-400 mt-4 md:mt-6 sm:max-w-[32ch]" data-note>
+      <Icon class="size-[0.4em] -translate-x-[8px] sm:translate-x-[4px] translate-y-[4px] sm:translate-y-[8px]" aria-hidden name="nimiq:asterisk" /> {{ stakingNote }}
     </small>
   </div>
 </template>
 
 <style>
 section:has(+ section.gradient-transparent-green-transparent) {
-  --uno: 'pb-15 md:pb-20';
+  padding-bottom: 15px;
+}
+@media (min-width: 768px) {
+  section:has(+ section.gradient-transparent-green-transparent) {
+    padding-bottom: 20px;
+  }
 }
 
 section.gradient-transparent-green-transparent {
@@ -87,12 +92,21 @@ section.gradient-transparent-green-transparent {
     rgb(var(--nq-neutral-0)) calc(100% - 0.1179 * var(--gradient-height)),
     rgb(var(--nq-neutral-0)) 100%
   );
-  --uno: 'bg-green pb-[320px] md:pb-[456px]';
+  background-color: var(--color-green);
+  padding-bottom: 320px;
+}
+@media (min-width: 768px) {
+  section.gradient-transparent-green-transparent {
+    padding-bottom: 456px;
+  }
 }
 </style>
 
 <style scoped>
 [group]:has([data-percentage]:hover) [data-note] {
-  --uno: 'text-neutral-800 dark:text-white';
+  color: var(--color-neutral-800);
+}
+.dark [group]:has([data-percentage]:hover) [data-note] {
+  color: white;
 }
 </style>

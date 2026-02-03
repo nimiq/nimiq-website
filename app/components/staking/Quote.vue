@@ -3,15 +3,37 @@ defineProps<{ text: string }>()
 </script>
 
 <template>
-  <div class="relative z-1 p-40 md:p-[200px]">
-    <div class="bg-green h-[200px] max-w-none pointer-events-none inset-x-0 top-0 absolute" />
-    <div class="bg h-[600px] max-w-none pointer-events-none inset-x-0 top-[200px] absolute" />
-    <div class="text-left text-md:center text-96 text-md:112 text-white" i-nimiq:duotone-safe-lock />
-    <p class="text-white text-xl md:text-2xl text-left text-md:center max-w-36ch relative z-1 mt-4 md:mt-6" v-html="text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')" />
-  </div>
+  <section class="quote-section relative z-[1]">
+    <div class="bg-green absolute inset-x-0 top-0 h-[200px] max-w-none pointer-events-none" />
+    <div class="bg absolute inset-x-0 top-[200px] h-[600px] max-w-none pointer-events-none" />
+    <Icon class="text-white text-[96px] md:text-[112px]" name="nimiq:duotone-safe-lock" />
+    <p class="quote-text text-white text-xl md:text-2xl text-left md:text-center max-w-[36ch] relative z-[1]" v-html="text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')" />
+  </section>
 </template>
 
 <style scoped>
+.quote-section {
+  /* Override to use uniform fluid padding like f-p-5xl (144-200px, 320-1920 range) */
+  --f-space-width-max: 1920;
+  --f-pt-min: 144;
+  --f-pt-max: 200;
+  --f-pb-min: 144;
+  --f-pb-max: 200;
+  --f-px-min: 144;
+  --f-px-max: 200;
+}
+
+.quote-text {
+  /* Fluid font-size like f-2xl (22-26px, 320-1920 range) */
+  font-size: clamp(22px, calc(22px + (26 - 22) * (100vw - 320px) / (1920 - 320)), 26px) !important;
+  /* Fluid line-height ~1.5 */
+  line-height: 1.5;
+  /* Fluid margin-top like f-mt-md (24-32px, 320-1920 range) */
+  margin-top: clamp(24px, calc(24px + (32 - 24) * (100vw - 320px) / (1920 - 320)), 32px);
+  /* Override section's max-width rule */
+  max-width: 36ch !important;
+}
+
 .bg {
   background: linear-gradient(
     180deg,
@@ -33,6 +55,6 @@ defineProps<{ text: string }>()
     rgba(var(--nq-green) / 0) 100%
   );
 
-  --uno: 'bg-neutral-100';
+  background-color: var(--color-neutral-100);
 }
 </style>

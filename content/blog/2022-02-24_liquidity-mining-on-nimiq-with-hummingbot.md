@@ -6,7 +6,7 @@ publishedAt: "2022-02-24"
 updatedAt: 2023-12-07T16:42:45+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/liquidity-mining-on-nimiq-with-hummingbot/fded75f1-a69c-481a-81ce-8772890dca73_blog_liquidity-mining-on-nimiq-with-hummingbot_1.png
+image: /assets/images/prismic/fded75f1-a69c-481a-81ce-8772890dca73_blog_liquidity-mining-on-nimiq-with-hummingbot_1.png
 ---
 
 Providing an easy way for newcomers to get into Nimiq is vital for the overall health of the Ecosystem. [SuperSimpleSwap](https://supersimpleswap.com/) is a great way for users in the European Union to get NIM at a steady market price. For crypto users outside of the EU, exchanges like KuCoin remain the best option. Without good liquidity in an exchange, it would become difficult to buy NIM while maintaining the expected market price. That is why having good liquidity becomes important.

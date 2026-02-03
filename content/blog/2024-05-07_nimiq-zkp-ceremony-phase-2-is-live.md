@@ -6,7 +6,7 @@ publishedAt: "2024-05-07"
 updatedAt: 2024-05-08T01:18:25+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-zkp-ceremony-phase-2-is-live/Zjp33kMTzAJOCnn3_Blogheroblack.png
+image: /assets/images/prismic/Zjp33kMTzAJOCnn3_Blogheroblack.png
 ---
 
 Following the successful completion of Phase 1 of the Zero-Knowledge Proof Setup Ceremony, we are excited to progress to the **next and last phase**.

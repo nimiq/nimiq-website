@@ -6,7 +6,7 @@ publishedAt: "2020-07-26"
 updatedAt: 2023-12-07T16:44:53+0000
 authors:
   - BRUNO FRANÇA
-image: /images/blog/zero-knowledge-proofs-and-nano-nodes-part-2/d3c60daa-2f43-4950-9b71-b214b448285c_blog_zero-knowledge-proofs-and-nano-nodes-part-2_1.png
+image: /assets/images/prismic/d3c60daa-2f43-4950-9b71-b214b448285c_blog_zero-knowledge-proofs-and-nano-nodes-part-2_1.png
 ---
 
 In [the last post](https://www.nimiq.com/blog/zero-knowledge-proofs-and-nano-nodes/) we discussed how the nano nodes in Nimiq 2.0 and Albatross are going to use SNARKs in order to vastly reduce the time that it takes to sync the blockchain. But we did not explain the inner workings of the SNARK proofs that we are going to use. In this part we will go deeper down into the technical details and explain how these proofs are created and what this means for the performance of Nimiq 2.0. Time to put on the smarty-pants glasses. 🤓

@@ -6,7 +6,7 @@ publishedAt: "2020-07-03"
 updatedAt: 2023-12-07T16:37:18+0000
 authors:
   - COMMUNITY FUNDING BOARD
-image: /images/blog/nimiq-community-funding-14th-meeting/947f432a-18e3-42f4-a4ba-abee2fffc301_blog_nimiq-community-funding-14th-meeting_1.png
+image: /assets/images/prismic/947f432a-18e3-42f4-a4ba-abee2fffc301_blog_nimiq-community-funding-14th-meeting_1.png
 ---
 
 Every month the Community Funding Board holds a meeting and discusses ways to increase and facilitate engagement and development of the Nimiq Community. The June meeting was held recently and here are the details.

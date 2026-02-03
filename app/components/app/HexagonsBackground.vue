@@ -49,10 +49,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="section" class="group mx-0 px-0 w-full relative z-2 of-x-hidden pt-12 md:pt-16" :class="bgColor === 'grey' ? 'bg-neutral-100' : 'bg-darkblue dark'">
+  <div ref="section" class="group mx-0 px-0 w-full relative z-2 overflow-x-hidden pt-12 md:pt-16" :class="bgColor === 'grey' ? 'bg-neutral-100' : 'bg-darkblue dark'">
     <div class="grid-parent max-w-none" aria-hidden="true" :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
       <div
-        v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`" class="relative flex flex-items-center flex-justify-center transition-opacity transition-duration-300 transition-ease-out" :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? item.opacity : 1 }" :class="{
+        v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`" class="relative flex items-center justify-center transition-opacity transition-duration-300 transition-ease-out" :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? item.opacity : 1 }" :class="{
           'text-[red]': item.social === 'youtube' && isVisible,
           'text-black': item.social === 'x' && isVisible,
           'text-[#1877f2]': item.social === 'facebook' && isVisible,
@@ -62,7 +62,7 @@ onMounted(() => {
         }" :data-social="item.social"
       >
         <Icon class="size-full inset-0 absolute" name="nimiq:logos-nimiq-mono" />
-        <NuxtLink v-if="item.social && isVisible && socialLinks[item.social]" class="flex flex-justify-center flex-items-center size-full inset-0 absolute z-1 transition-opacity transition-duration-300 transition-ease-out" target="_blank" external :to="socialLinks[item.social]" :aria-label="`Visit Nimiq on ${item.social === 'x' ? 'Twitter' : item.social}`">
+        <NuxtLink v-if="item.social && isVisible && socialLinks[item.social]" class="flex justify-center items-center size-full inset-0 absolute z-1 transition-opacity transition-duration-300 transition-ease-out" target="_blank" external :to="socialLinks[item.social]" :aria-label="`Visit Nimiq on ${item.social === 'x' ? 'Twitter' : item.social}`">
           <Icon v-if="item.social === 'youtube'" class="text-53 text-white" name="nimiq:logos-youtube-mono" />
           <Icon v-if="item.social === 'x'" class="text-64 text-white" name="nimiq:logos-twitter-mono" />
           <Icon v-if="item.social === 'facebook'" class="text-62 text-white" name="nimiq:logos-facebook-mono" />
@@ -76,6 +76,16 @@ onMounted(() => {
 .grid-parent {
   --hexagon-h: calc(var(--hexagon-w) / 1.1111);
   --hexagon-h-half: calc(var(--hexagon-h) / 2);
+
+  :deep(.iconify.absolute) {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Social media icons inside links should be square */
+  :deep(a .iconify) {
+    width: 1em !important;
+  }
   display: grid;
   row-gap: calc(var(--gap) / 2);
   grid-template-columns: repeat(var(--cols), var(--gap) calc(var(--hexagon-w) - (2 * var(--gap)))) var(--gap);

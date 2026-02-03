@@ -6,7 +6,7 @@ publishedAt: "2019-12-26"
 updatedAt: 2022-04-20T13:26:55+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/community-funding-board-8th-meeting/43baa003-9910-42e3-9a36-1dd94f1d77ce_blog_community-funding-board-8th-meeting_1.png
+image: /assets/images/prismic/43baa003-9910-42e3-9a36-1dd94f1d77ce_blog_community-funding-board-8th-meeting_1.png
 ---
 
 The Community Funding Board was founded with the vision to support, empower and grow the Nimiq community. This month, the board focused on expanding the scope of the Community Funding Board and deploying additional frameworks to further speed up Nimiq Ecosystem growth.

@@ -6,7 +6,7 @@ publishedAt: "2020-08-26"
 updatedAt: 2023-12-07T16:38:40+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-20-albatross-hard-fork-preparations/84e87851-7185-4ba4-b9a8-d8eeff2c5c0f_blog_nimiq-20-albatross-hard-fork-preparations_1.png
+image: /assets/images/prismic/84e87851-7185-4ba4-b9a8-d8eeff2c5c0f_blog_nimiq-20-albatross-hard-fork-preparations_1.png
 ---
 
 As you all already know, Nimiq 1.0 is going to transition to Nimiq 2.0 in the near future. With this major update the Nimiq blockchain will move from Proof-of-Work to Proof-of-Stake with a new, high-performance consensus algorithm as well as the new, [recently elected NIM supply curve](https://www.nimiq.com/blog/supply-curve-for-nimiq-20-finalized/).

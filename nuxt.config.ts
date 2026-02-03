@@ -51,6 +51,12 @@ export default defineNuxtConfig({
     },
   },
 
+  content: {
+    renderer: {
+      anchorLinks: false,
+    },
+  },
+
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
   },
@@ -63,6 +69,7 @@ export default defineNuxtConfig({
   icon: {
     customCollections: [
       { prefix: 'custom', dir: './public/assets/custom-icons' },
+      { prefix: 'oasis-regions', dir: './public/assets/oasis-regions' },
       nimiqIcons,
     ],
     serverBundle: 'local',
@@ -93,7 +100,7 @@ export default defineNuxtConfig({
     },
   },
 
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   components: [
     '~/components',
@@ -134,6 +141,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || '/',
+      apiDomain: process.env.NUXT_PUBLIC_API_DOMAIN || 'https://nimiq.com',
+      redirectAllErrors: process.env.NUXT_PUBLIC_REDIRECT_ALL_ERRORS === 'true',
       clientNetwork: 'MainAlbatross',
       validatorsApi: process.env.NUXT_PUBLIC_VALIDATORS_API || 'https://validators-api-mainnet.nuxt.dev',
       environment: environment.environment,
@@ -158,6 +167,8 @@ export default defineNuxtConfig({
     $schema: object({
       public: object({
         baseUrl: string(),
+        apiDomain: string(),
+        redirectAllErrors: boolean(),
         clientNetwork: optional(string()),
         validatorsApi: optional(string()),
         environment: object({ name: string(), isLocal: boolean(), isStudio: boolean(), isProduction: boolean() }),
@@ -181,6 +192,10 @@ export default defineNuxtConfig({
     options: {
       scrollBehaviorType: 'smooth',
     },
+  },
+
+  routeRules: {
+    '/exchanges': { redirect: '/buy-and-sell' },
   },
 
   nitro: {
@@ -244,7 +259,6 @@ export default defineNuxtConfig({
         { rel: 'dns-prefetch', href: 'https://validators-api-mainnet.nuxt.dev' },
       ],
       meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
         { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
         { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#1f2348' },

@@ -24,7 +24,7 @@ export interface DonutDatum { color: string, value: number }
 </script>
 
 <template>
-  <div class="flex flex-col flex-items-center">
+  <div class="flex flex-col items-center">
     <VisSingleContainer class="size-[280px] max-w-[280px] relative" :data :height="280" :width="280">
       <VisDonut :color :value :angle-range :corner-radius="8" :arc-width="64" :pad-angle="0.045" :show-background="false" />
       <VisTooltip v-if="slots.default" :triggers="{ [Donut.selectors.segment]: template }" />
@@ -44,7 +44,9 @@ export interface DonutDatum { color: string, value: number }
   --vis-dark-tooltip-shadow-color: none;
 
   div:has(> [data-tooltip-container]) {
-    --uno: 'shadow';
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
   }
 }
 </style>

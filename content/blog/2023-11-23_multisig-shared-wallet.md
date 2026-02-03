@@ -6,7 +6,7 @@ publishedAt: "2023-11-23"
 updatedAt: 2023-11-23T22:11:20+0000
 authors:
   - Team Nimiq
-image: /images/blog/multisig-shared-wallet/aR4h9mGnmrmGqDMU_MultisigblogpostHEADER.png
+image: /assets/images/prismic/aR4h9mGnmrmGqDMU_MultisigblogpostHEADER.png
 readingTime: 5
 ---
 

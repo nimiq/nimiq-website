@@ -6,7 +6,7 @@ publishedAt: "2019-07-04"
 updatedAt: 2022-04-20T13:28:27+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/5-community-project-funding/1832ce9a-0ffd-466f-8169-f337e391e74a_blog_5-community-project-funding_2.png
+image: /assets/images/prismic/1832ce9a-0ffd-466f-8169-f337e391e74a_blog_5-community-project-funding_2.png
 ---
 
 It has been five months since the official formation of Nimiq’s Community Project Funding Board, meaning that the current Community Representatives seats will be available for election. Team Nimiq would like to thank all three of our current Community Representatives SirChef, Chugwig, and Smitop for their dedication, support, and help in establishing the processes which will serve the Community Project Funding Board in the future. We’d also like to thank you all in advance for your assistance with a smooth transition from the current Board to the new one. The active Nimiq Community is one of the things that makes Nimiq great.

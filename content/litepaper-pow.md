@@ -27,7 +27,7 @@ Resources
 - [Nimiq 2.0 Albatross Rust implementation](https://github.com/nimiq/core-rs-albatross)
 - [Current Nimiq 1.0 Rust implementation](https://github.com/nimiq/core-rs) of the backbone node
 - [Current Nimiq 1.0 JavaScript codebase](https://github.com/nimiq-network/core-js) for browser and backbone nodes
-- [OASIS peer-to-peer fiat to crypto bridge](https://www.nimiq.com/oasis/integrate)
+- [OASIS peer-to-peer fiat to crypto bridge](/oasis)
 - [Nimiq Developer Center](https://nimiq.dev)
 
 Collaborations & Grants

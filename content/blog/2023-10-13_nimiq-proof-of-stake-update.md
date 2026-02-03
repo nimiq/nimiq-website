@@ -6,7 +6,7 @@ publishedAt: "2023-10-13"
 updatedAt: 2023-10-13T15:42:07+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-proof-of-stake-update/8df31ed9-8bd6-49ef-a9c7-8f4b534d99cf_pos_update_231005.jpg
+image: /assets/images/prismic/8df31ed9-8bd6-49ef-a9c7-8f4b534d99cf_pos_update_231005.jpg
 ---
 
 The Nimiq Proof-of-Stake Testnet was[ unveiled in Q1 of this year](https://www.nimiq.com/blog/nimiq-proof-of-stake-testnet-release/). This release signals the implementation of all major features and the network's stable operation under friendly conditions. Currently, we are focusing on handling unexpected conditions and furthering security and optimization efforts.

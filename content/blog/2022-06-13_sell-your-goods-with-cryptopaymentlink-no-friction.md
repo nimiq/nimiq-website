@@ -6,7 +6,7 @@ publishedAt: "2022-06-13"
 updatedAt: 2022-06-13T13:34:21+0000
 authors:
   - Team Nimiq
-image: /images/blog/sell-your-goods-with-cryptopaymentlink-no-friction/3a74b721-912f-4651-9b36-754275da7d0d_premier_usecase_article_3_.jpg
+image: /assets/images/prismic/3a74b721-912f-4651-9b36-754275da7d0d_premier_usecase_article_3_.jpg
 ---
 
 If you're a public-facing business and you can answer yes to these two questions, then the article below will change your life.

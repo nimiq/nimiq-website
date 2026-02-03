@@ -6,7 +6,7 @@ publishedAt: "2025-01-15"
 updatedAt: 2025-01-15T16:31:34+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-enters-into-partnership-with-coinify-a-step-/Z4R0opbqstJ99W_B_NimiqcoinifyBlogpost.png
+image: /assets/images/prismic/Z4R0opbqstJ99W_B_NimiqcoinifyBlogpost.png
 ogTitle: Nimiq's Partnership with Coinify
 ---
 

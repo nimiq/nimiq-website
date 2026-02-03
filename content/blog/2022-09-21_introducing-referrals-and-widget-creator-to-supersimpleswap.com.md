@@ -6,7 +6,7 @@ publishedAt: "2022-09-21"
 updatedAt: 2022-11-04T08:33:38+0000
 authors:
   - Team Nimiq
-image: /images/blog/introducing-referrals-and-widget-creator-to-supersimpleswap.com/38df7e44-1903-4db8-a0e2-6ccc192d4bc2_supply_curve_article_12_.jpg
+image: /assets/images/prismic/38df7e44-1903-4db8-a0e2-6ccc192d4bc2_supply_curve_article_12_.jpg
 ---
 
 SuperSimpleSwap.com is our solution to a big problem in crypto: how to easily get into and out of the crypto world without a centralized entity controlling the assets you are exchanging. It allows you to buy and sell crypto, from fiat, without giving your money or personal information to an entity you don’t necessarily trust. We believe this to be the easiest way to swap crypto and fiat, while staying as close as possible to one of the fundamental cornerstones of crypto: self-custody.

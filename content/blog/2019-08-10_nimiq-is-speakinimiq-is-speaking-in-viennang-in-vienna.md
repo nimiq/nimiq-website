@@ -6,7 +6,7 @@ publishedAt: "2019-08-10"
 updatedAt: 2022-04-20T13:27:45+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-is-speakinimiq-is-speaking-in-viennang-in-vienna/67ea4493-6890-42a1-994b-63ae24d574fe_blog_nimiq-is-speaking-in-vienna_2.jpg
+image: /assets/images/prismic/67ea4493-6890-42a1-994b-63ae24d574fe_blog_nimiq-is-speaking-in-vienna_2.jpg
 ---
 
 Team Nimiq will have a prominent appearance in the 1st International Summer School on Security & Privacy for Blockchains and Distributed Ledger Technologies. This will be jointly organized by members of the Technical University of Vienna ([TU Wien](https://tuwien.ac.at/)), [Princeton University](https://princeton.edu/) and [SBA Research Center for Information Security](https://www.sba-research.org/).

@@ -17,6 +17,7 @@ const statusMessage = computed(() => {
 
 const route = useRoute()
 const router = useRouter()
+const { redirectAllErrors } = useRuntimeConfig().public
 
 const isDeveloperPage = computed(() => {
   return route.path.startsWith('/developer') || route.path.startsWith('/developers')
@@ -27,7 +28,7 @@ const isBlogPostError = computed(() => error.message === 'Article not found')
 const isBlogPage = computed(() => route.path.startsWith('/blog') || isBlogPostError.value)
 
 onMounted(() => {
-  if (isDeveloperPage.value || process.env.REDIRECT_ALL_ERRORS === 'true') {
+  if (isDeveloperPage.value || redirectAllErrors) {
     const originalPath = encodeURIComponent(route.fullPath)
     router.push(`/developers/error?original-path=${originalPath}&status=${statusCode.value}`)
   }

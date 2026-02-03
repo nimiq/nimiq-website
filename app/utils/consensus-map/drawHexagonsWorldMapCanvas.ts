@@ -6,8 +6,15 @@ export const HEXAGONS_WORLD_MAP_HEIGHT = 52
 export const HEXAGONS_WORLD_MAP_WIDTH_PIXELS = 1037
 export const HEXAGONS_WORLD_MAP_HEIGHT_PIXELS = 531
 
-const { isMobile } = useDevice()
-export const HEXAGONS_WORLD_MAP_ASPECT_RATIO = isMobile ? HEXAGONS_WORLD_MAP_HEIGHT_PIXELS / HEXAGONS_WORLD_MAP_WIDTH_PIXELS : HEXAGONS_WORLD_MAP_WIDTH_PIXELS / HEXAGONS_WORLD_MAP_HEIGHT_PIXELS
+// Aspect ratio for the hexagons world map
+export const HEXAGONS_WORLD_MAP_ASPECT_RATIO = HEXAGONS_WORLD_MAP_WIDTH_PIXELS / HEXAGONS_WORLD_MAP_HEIGHT_PIXELS
+
+export function getHexagonsWorldMapAspectRatio() {
+  if (typeof window === 'undefined')
+    return HEXAGONS_WORLD_MAP_ASPECT_RATIO
+  const isMobile = window.innerWidth < 768
+  return isMobile ? HEXAGONS_WORLD_MAP_HEIGHT_PIXELS / HEXAGONS_WORLD_MAP_WIDTH_PIXELS : HEXAGONS_WORLD_MAP_WIDTH_PIXELS / HEXAGONS_WORLD_MAP_HEIGHT_PIXELS
+}
 export const HEXAGONS_WORLD_MAP_VERTICAL_HEXAGON_DISTANCE = 1.142
 export const HEXAGONS_WORLD_MAP_HEIGHT_HORIZONTAL_HEXAGON_OVERLAP = 0.98
 export const HEXAGONS_WORLD_MAP_SCALE = (2 * HEXAGONS_WORLD_MAP_WIDTH_PIXELS) / (HEXAGONS_WORLD_MAP_WIDTH * HEXAGONS_WORLD_MAP_HEIGHT_HORIZONTAL_HEXAGON_OVERLAP)
@@ -205,7 +212,7 @@ export function drawHexagonsWorldMap(canvas: Readonly<globalThis.Ref<HTMLCanvasE
     if (!canvas.value || !context.value)
       return
 
-    canvas.value.width = Math.round((containerHeight.value * (HEXAGONS_WORLD_MAP_ASPECT_RATIO))) * pixelRatio.value
+    canvas.value.width = Math.round((containerHeight.value * getHexagonsWorldMapAspectRatio())) * pixelRatio.value
     canvas.value.height = Math.round(containerHeight.value) * pixelRatio.value
 
     const scale = (canvas.value.height) / (3 * HEXAGONS_WORLD_MAP_HEIGHT_PIXELS)

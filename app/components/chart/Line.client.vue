@@ -25,10 +25,10 @@ function tooltip(v: T) {
 <template>
   <VisXYContainer :data :padding="{ top: 128 }">
     <VisArea color="url('/assets/vertical-stripes.svg#vertical-stripes')" :x :y />
-    <VisLine :x :y color="var(--colors-green)" />
+    <VisLine :x :y color="var(--color-green)" />
     <VisTooltip :vertical-shift="1000" />
     <VisAxis type="x" :grid-line="false" :tick-format />
-    <VisCrosshair data-crosshair color="var(--colors-blue)" :template="tooltip" />
+    <VisCrosshair data-crosshair color="var(--color-blue)" :template="tooltip" />
   </VisXYContainer>
 </template>
 
@@ -37,29 +37,29 @@ function tooltip(v: T) {
   background:
     repeating-linear-gradient(
       0deg,
-      var(--colors-neutral-300) 0,
-      var(--colors-neutral-300) 1.5px,
+      var(--color-neutral-300) 0,
+      var(--color-neutral-300) 1.5px,
       transparent 1.5px,
       transparent 64px
     ),
-    linear-gradient(0deg, var(--colors-neutral-0), var(--colors-neutral-0));
+    linear-gradient(0deg, var(--color-neutral-0), var(--color-neutral-0));
   background-size:
     100% 64px,
     100% 100%;
   background-position: 0 -20px;
 
-  --vis-crosshair-line-stroke-color: var(--colors-blue);
+  --vis-crosshair-line-stroke-color: var(--color-blue);
   --vis-crosshair-line-stroke-width: 1.5px;
-  --vis-crosshair-circle-stroke-color: var(--colors-blue);
+  --vis-crosshair-circle-stroke-color: var(--color-blue);
 
   --vis-tooltip-padding: 0;
   --vis-tooltip-background-color: transparent;
   --vis-tooltip-border-color: transparent;
 
   --vis-axis-font-family: var(--nq-font-family);
-  --vis-axis-tick-color: var(--colors-neutral-500);
-  --vis-axis-domain-color: var(--colors-neutral-500);
-  --vis-axis-tick-label-color: var(--colors-neutral-700);
+  --vis-axis-tick-color: var(--color-neutral-500);
+  --vis-axis-domain-color: var(--color-neutral-500);
+  --vis-axis-tick-label-color: var(--color-neutral-700);
   --vis-axis-tick-label-font-size: 11px;
 
   @screen md {

@@ -6,7 +6,7 @@ publishedAt: "2019-06-04"
 updatedAt: 2023-12-07T16:35:21+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/designing-for-mass-adoption/501fdd48-9850-4403-8472-9d92eb433313_blog_designing-for-mass-adoption_6.png
+image: /assets/images/prismic/501fdd48-9850-4403-8472-9d92eb433313_blog_designing-for-mass-adoption_6.png
 ---
 
 [The latest update](https://medium.com/nimiq-network/the-biggest-release-since-mainnet-launch-f8096e33dab9) introduces a variety of improvements and features for new and existing users alike. However, it is only the tip of the iceberg.

@@ -6,7 +6,7 @@ publishedAt: "2019-05-23"
 updatedAt: 2022-04-20T13:29:10+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/the-biggest-release-since-mainnet-launch/1c032a9e-2970-4080-b91f-df4631690814_blog_the-biggest-release-since-mainnet-launch_5.png
+image: /assets/images/prismic/1c032a9e-2970-4080-b91f-df4631690814_blog_the-biggest-release-since-mainnet-launch_5.png
 ---
 
 The update comes packed with new features, improved and hardened security concepts, and an open API that allows third-party apps to integrate Nimiq features and handle NIM directly in the browser. And it’s all wrapped in a brand new user interface making it easier than ever to use your NIM.

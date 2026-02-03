@@ -6,7 +6,7 @@ publishedAt: "2024-08-21"
 updatedAt: 2024-08-21T20:40:19+0000
 authors:
   - Team Nimiq
-image: /images/blog/transparency-report-2024/ZsZGT0aF0TcGJMQu_Protect4-12-.png
+image: /assets/images/prismic/ZsZGT0aF0TcGJMQu_Protect4-12-.png
 ---
 
 In line with the [last report](https://www.nimiq.com/blog/transparency-report-2023/), we would like to present an updated overview of the assets and use of funds for the Nimiq project, as well as updated details of the distribution of NIM tokens and the circulating supply. The period covered since the last report is August 1, 2023 through July 31, 2024. The report indicates a slightly increased burn-rate in-line with expectations, as well as a modest increase in net assets due to favorable crypto market value developments and diversification.

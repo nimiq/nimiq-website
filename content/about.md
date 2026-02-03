@@ -3,8 +3,7 @@ hero:
   title: About Nimiq
   description: Nimiq is a non-profit and open source project founded by some, developed by many and owned by none. It is a decentralized payment system, built on a unique blockchain.
 media:
-  src: https://www.youtube.com/watch?v=dA40oyDVtqs
-  poster: /images/pages/about/tilted-media-poster-Z2o2TpbqstJ98zcq_poster.jpg
+  src: /assets/images/prismic/Z2o2TpbqstJ98zcq_poster.jpg
 dive:
   headline:
     label: Take a deep dive
@@ -20,7 +19,7 @@ dive:
       color: purple
     - icon: nimiq:duotone-document-vertical-line
       headline: Transparency report
-      link: /nimiq-transparency-report-2025
+      link: /blog/nimiq-transparency-report-2025
       color: red
 mission:
   headline: Nimiq's Mission

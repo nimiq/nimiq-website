@@ -6,7 +6,7 @@ publishedAt: "2021-06-29"
 updatedAt: 2023-12-07T16:41:08+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-20-june-status-and-outlook/472991f3-6b26-40c1-99a1-5823500b6c33_blog_nimiq-20-june-status-and-outlook_1.png
+image: /assets/images/prismic/472991f3-6b26-40c1-99a1-5823500b6c33_blog_nimiq-20-june-status-and-outlook_1.png
 ---
 
 Team Nimiq is working on upgrading the Nimiq blockchain from the current 1.0 version to the new 2.0 version. While Nimiq 1.0 uses a proof-of-work consensus algorithm, Nimiq 2.0 will switch to our [Albatross proof-of-stake algorithm](https://www.nimiq.com/whitepaper/#albatross) and thus require magnitudes less electricity. While Nimiq 1.0 has a throughput of 15 tx/s, Nimiq 2.0 will be able to process more than 1000 on-chain tx/s. At the same time Nimiq will continue to enable browser applications to be nodes in the blockchain network and to provide a great user-experience.

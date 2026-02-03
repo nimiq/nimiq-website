@@ -6,7 +6,7 @@ publishedAt: "2022-07-13"
 updatedAt: 2022-07-13T16:28:33+0000
 authors:
   - Team Nimiq
-image: /images/blog/early-access-to-devnet-staking-in-the-nimiq-wallet/bd007117-85ce-4342-9e8c-9212c7b98803_Frame_112_6_.png
+image: /assets/images/prismic/bd007117-85ce-4342-9e8c-9212c7b98803_Frame_112_6_.png
 ---
 
 The switching of Nimiq’s protocol to Proof-of-Stake (PoS) is an upgrade long awaited by the Nimiq community. Our blockchain engineers [recently published](https://twitter.com/nimiq/status/1527004101992755202) the Nimiq Proof-of-Stake DevNet release-candidate and shared RPC access to interested devs for them to test how it fits their use cases. We've continued to fine-tune and test the DevNet and, with current RPC access ready to go, the next natural step was to begin integration of DevNet staking into the Nimiq Wallet.

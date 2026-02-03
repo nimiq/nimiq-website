@@ -14,13 +14,16 @@ hero:
   totalSupplyInfo: The number of NIM coins currently in circulation and available.
   maxSupplyLabel: Max supply
   maxSupplyInfo: The maximum amount of NIM coins that will be in circulation.
-  poweredByLogo: /images/pages/buy-and-sell/hero-powered-y-ogo-aA-jGvIqRLdaBrd0_cryptocompare.svg
+  poweredByLogo: /images/pages/buy-and-sell/cryptocompare.svg
   poweredByLink: https://www.cryptocompare.com/
   poweredByLabel: Powered by
 intro:
   label: On Exchanges
   headline: Trade NIM on exchanges
   subline: Buy and sell NIM on an exchange. Make sure to move them to self-custody afterward, for example to the Nimiq Wallet.
+  videoTutorial:
+    label: Mini video tutorial
+    videoUrl: https://www.youtube.com/watch?v=EXCHANGE_VIDEO_ID
 wallet:
   headline:
     label: In the wallet
@@ -29,12 +32,12 @@ wallet:
   content:
     title: Nimiq wallet
     description: Buying, staking, swapping, the Wallet does it all
-    screenshot: /images/pages/buy-and-sell/wallet-hover-screenshot-aGzcREMqNJQqHqgP_Wallet.webp
+    screenshot: /images/pages/buy-and-sell/wallet-screenshot.webp
     poweredByLabel: Powered by
     link: https://wallet.nimiq.com
     poweredByLogos:
-      - logo: /images/pages/buy-and-sell/wallet-hover-powered-y-ogos-0-logo-Z15zXJbqstJ98gmO_moonpay.svg
-      - logo: /images/pages/buy-and-sell/wallet-hover-powered-y-ogos-1-logo-Z15zW5bqstJ98gmN_simplex.svg
+      - logo: /images/pages/buy-and-sell/moonpay.svg
+      - logo: /images/pages/buy-and-sell/simplex.svg
 distribution:
   headline:
     label: Fair distribution

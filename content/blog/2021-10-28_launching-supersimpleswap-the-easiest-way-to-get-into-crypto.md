@@ -6,7 +6,7 @@ publishedAt: "2021-10-28"
 updatedAt: 2022-04-20T13:32:32+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/launching-supersimpleswap-the-easiest-way-to-get-into-crypto/2b483ef6-b90b-42e6-ab27-d8482ab81aad_blog_launching-supersimpleswap-the-easiest-way-to-get-into-crypto_1.png
+image: /assets/images/prismic/2b483ef6-b90b-42e6-ab27-d8482ab81aad_blog_launching-supersimpleswap-the-easiest-way-to-get-into-crypto_1.png
 ---
 
 If you're reading this article, chances are high that you are a Nimiq supporter and know about OASIS, Fastspot, TEN31 Bank, and most likely you know the Nimiq Wallet as well. There are many entities and technical concepts involved that, together, enable what we consider a true innovation: **Swap between crypto and conventional currency in a self-custodial and decentralized way.**

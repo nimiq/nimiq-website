@@ -6,7 +6,7 @@ publishedAt: "2022-07-28"
 updatedAt: 2022-07-28T16:55:40+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-community-elections-have-ended/ae6b78fc-3306-4ff9-a064-709850e18896_premier_usecase_article_6_.png
+image: /assets/images/prismic/ae6b78fc-3306-4ff9-a064-709850e18896_premier_usecase_article_6_.png
 ---
 
 The Nimiq Community Elections have now ended. We'd like to thank everybody who participated and thereby helped to shape the future of the Nimiq Ecosystem, by casting their vote and rooting for their favorite candidates. We hope you enjoyed the process – and we welcome any and all feedback on how we might improve these elections in the future. Please share any feedback you have in [this section of the Nimiq Forum](https://forum.nimiq.community/c/community/funding-board-election/46).

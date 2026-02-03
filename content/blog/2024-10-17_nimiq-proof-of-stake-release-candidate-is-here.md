@@ -6,7 +6,7 @@ publishedAt: "2024-10-17"
 updatedAt: 2024-10-17T16:55:14+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-proof-of-stake-release-candidate-is-here/ZxBofYF3NbkBXoHT_NimiqPoSreleasecandidateBLOGV2.0.png
+image: /assets/images/prismic/ZxBofYF3NbkBXoHT_NimiqPoSreleasecandidateBLOGV2.0.png
 ---
 
 Nimiq launched in 2018 with a Proof-of-Work (PoW) algorithm that utilized [NiPoPoWs](https://nipopows.com/), enabling browsers to act as peers in the blockchain network—a major leap forward in decentralized payments. But that was just the beginning. Following the successful launch of the Nimiq PoW Blockchain, the Nimiq team, together with its community began working on the future transition to Proof-of-Stake.

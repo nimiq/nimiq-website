@@ -47,7 +47,7 @@ function reset() {
 </script>
 
 <template>
-  <div class="max-w-none w-full absolute of-x-hidden" :style="`--c: ${wordsList.length};`">
+  <div class="max-w-none w-full absolute overflow-x-hidden" :style="`--c: ${wordsList.length};`">
     <div class="flex flex-col gap-6 h-full relative">
       <UiMarquee v-for="({ words }, i) in wordsList" :key="i" class="flex gap-0.5" :items="words" :should-play="containerIsVisible" :style="`--direction: ${i % 2 === 0 ? -1 : 1}`">
         <template #default="{ index: j }">
@@ -60,14 +60,14 @@ function reset() {
           </div>
         </template>
       </UiMarquee>
-      <div class="inset-0 absolute flex flex-col gap-6 flex-justify-between">
+      <div class="inset-0 absolute flex flex-col gap-6 justify-between">
         <div v-for="i in wordsList.length" :key="i" class="marquee-overlay size-full pointer-events-none z-1" />
       </div>
     </div>
   </div>
-  <div ref="container" class="dark flex flex-col px-4 px-sm:64 mx-auto pb-12 pt-8 rounded-2 max-w-[492px] relative z-1 of-hidden" shadow style="background-image: linear-gradient(to bottom, #260133, var(--colors-darkblue));">
+  <div ref="container" class="dark flex flex-col px-4 sm:px-16 mx-auto pb-12 pt-8 rounded-2 max-w-[492px] relative z-1 overflow-hidden shadow" style="background-image: linear-gradient(to bottom, #260133, var(--color-darkblue));">
     <div :class="{ 'slide-up': isChallengeFinished }">
-      <h3 class="text-center">
+      <h3 class="text-center text-white">
         {{ headline }}
       </h3>
       <p class="mt-4 text-center text-neutral-800 text-xs md:text-sm">
@@ -75,8 +75,8 @@ function reset() {
       </p>
 
       <div class="mt-8 relative">
-        <transition enter-active-class="transition-opacity duration-300ms ease-out" enter-from-class="op-0" enter-to-class="op-100" leave-active-class="transition-opacity duration-300ms ease-out" leave-from-class="op-100" leave-to-class="op-0">
-          <div v-if="isChallengeFinished" class="bg-neutral-0 bg-op-20 pointer-events-none -inset-x-16 -inset-y-4 absolute z-2 backdrop-blur-8" />
+        <transition enter-active-class="transition-opacity duration-300ms ease-out" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition-opacity duration-300ms ease-out" leave-from-class="opacity-100" leave-to-class="opacity-0">
+          <div v-if="isChallengeFinished" class="bg-neutral-0 bg-neutral-0/20 pointer-events-none -inset-x-16 -inset-y-4 absolute z-2 backdrop-blur-8" />
         </transition>
         <p class="text-center text-blue font-bold">
           {{ guessLabel }}
@@ -94,11 +94,11 @@ function reset() {
             {{ word }}
           </li>
           <li v-for="(input, i) in userInputs" :key="i" class="shrink-0">
-            <input v-model="input.value" class="border-2 border-white/30 border-hocus:blue text-center text-blue font-semibold px-0.5 outline-none caret-blue rounded-1 bg-transparent h-9 w-full transition" type="text" :aria-label="`Word ${i + 12 + 1}`" :placeholder="`${i + 12}`" un-placeholder="font-semibold text-white/30" autocomplete="off" @blur="submitWords">
+            <input v-model="input.value" class="border-2 border-white/30 hover:border-blue focus:border-blue text-center text-blue font-semibold px-0.5 outline-none caret-blue rounded-1 bg-transparent h-9 w-full transition placeholder:font-semibold placeholder:text-white/30" type="text" :aria-label="`Word ${i + 12 + 1}`" :placeholder="`${i + 12}`" autocomplete="off" @blur="submitWords">
           </li>
         </ul>
         <template v-if="isChallengeFinished">
-          <div class="dark flex flex-justify-center flex-items-center flex-col w-[492px] -inset-x-16 inset-y-0 absolute z-2" scheme-dark>
+          <div class="dark flex justify-center items-center flex-col w-[492px] -inset-x-16 inset-y-0 absolute z-2">
             <p class="challenge-over text-center text-40 text-red-neon font-retro">
               Try again
             </p>
@@ -115,7 +115,7 @@ function reset() {
 
     <div class="mt-8 relative">
       <!-- SyntheticWave inlined -->
-      <div class="flex flex-col pointer-events-none -inset-16 top-0 absolute z-0" :style="`--grid-color: var(--colors-${isChallengeFinished ? 'purple' : 'blue'})`">
+      <div class="flex flex-col pointer-events-none -inset-16 topacity-0 absolute z-0" :style="`--grid-color: var(--color-${isChallengeFinished ? 'purple' : 'blue'})`">
         <div class="grid-container flex flex-basis-200 bg-inherit relative" perspective-1200 before="absolute inset-0" />
         <div class="retro-overlay inset-0 absolute" />
       </div>
@@ -133,12 +133,12 @@ function reset() {
   --x2: 17vw;
   background-image: linear-gradient(
     90deg,
-    var(--colors-neutral-0) 0%,
-    var(--colors-neutral-0) var(--x1),
-    color-mix(in oklch, var(--colors-neutral-0) 60%, transparent) var(--x2),
-    color-mix(in oklch, var(--colors-neutral-0) 60%, transparent) calc(100% - var(--x2)),
-    var(--colors-neutral-0) calc(100% - var(--x1)),
-    var(--colors-neutral-0) 100%
+    var(--color-neutral-0) 0%,
+    var(--color-neutral-0) var(--x1),
+    color-mix(in oklch, var(--color-neutral-0) 60%, transparent) var(--x2),
+    color-mix(in oklch, var(--color-neutral-0) 60%, transparent) calc(100% - var(--x2)),
+    var(--color-neutral-0) calc(100% - var(--x1)),
+    var(--color-neutral-0) 100%
   );
   &:nth-child(2n) {
     --x1: 8vw;
@@ -181,16 +181,17 @@ function reset() {
 
 /* SyntheticWave styles */
 .grid-container:before {
-  --uno: 'content-empty absolute inset-0';
-  --uno: 'rotate-x-50 scale-173 translate-z--200';
+  content: '';
+  position: absolute;
+  inset: 0;
   background:
-    linear-gradient(to right, var(--grid-color, var(--colors-blue)) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-color, var(--colors-blue)) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-color, var(--color-blue)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color, var(--color-blue)) 1px, transparent 1px);
   background-size:
     2.5rem 10rem,
     10rem 0.75rem;
   animation: grid 16s linear infinite;
-  filter: drop-shadow(0 0 2px var(--grid-color, var(--colors-blue)));
+  filter: drop-shadow(0 0 2px var(--grid-color, var(--color-blue)));
 }
 @keyframes grid {
   from {

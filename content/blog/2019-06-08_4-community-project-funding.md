@@ -6,7 +6,7 @@ publishedAt: "2019-06-08"
 updatedAt: 2022-04-20T13:28:39+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/4-community-project-funding/97fa6f5d-531c-49cf-a00e-43d84fe06441_blog_4-community-project-funding_1.png
+image: /assets/images/prismic/97fa6f5d-531c-49cf-a00e-43d84fe06441_blog_4-community-project-funding_1.png
 ---
 
 Nimiq is fortunate to have a very engaged and active global community. Over the last months, Team Nimiq has been delighted to see an increasing number of community developers and teams that are working to expand and grow the Nimiq Ecosystem. Together, we can create the most accessible, censorship-resistant payment solution and enable barrier-free value exchange for everyone.

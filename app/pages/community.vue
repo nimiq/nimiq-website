@@ -9,36 +9,52 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
 
 <template>
   <NuxtLayout>
-    <main>
-      <section class="nq-section-gap bg-neutral-0">
-        <Hero v-bind="page.hero" />
-        <GridNewYork v-bind="page.stats" />
-      </section>
+    <section class="nq-section-gap bg-neutral-0">
+      <Hero v-bind="page.hero" />
+    </section>
 
-      <section class="nq-section-gap bg-neutral-0">
-        <Headline v-bind="page.countries.headline" />
-        <TokenFlags :flags="page.countries.flags" />
-      </section>
+    <section class="nq-section-gap bg-neutral-0">
+      <GridNewYork v-bind="page.stats" />
+    </section>
 
-      <section class="nq-section-gap bg-neutral-100">
-        <Headline v-bind="page.social.headline" />
-        <GridSocialMedia v-bind="page.social.grid" />
-        <BannerNewsletter v-bind="page.newsletter" />
-      </section>
+    <section class="nq-section-gap bg-neutral-0">
+      <Headline v-bind="page.countries.headline" />
+    </section>
 
-      <section class="nq-section-gap bg-neutral-100">
-        <Headline v-bind="page.events" />
-      </section>
+    <section class="bg-neutral-0">
+      <TokenFlags :flags="page.countries.flags" />
+    </section>
 
-      <section class="nq-section-gap bg-neutral-0">
-        <Headline v-bind="page.apps.headline" />
-        <BannerAppGallery v-bind="page.apps.gallery" />
-        <Banner v-bind="page.banner" />
-      </section>
+    <section class="nq-section-gap bg-neutral-100">
+      <Headline v-bind="page.social.headline" />
+    </section>
 
-      <section class="nq-section-gap bg-darkblue" dark scheme-dark>
-        <Headline v-bind="page.feedback" />
-      </section>
-    </main>
+    <section class="bg-neutral-100">
+      <GridSocialMedia v-bind="page.social.grid" />
+    </section>
+
+    <section class="bg-neutral-100">
+      <BannerNewsletter v-bind="page.newsletter" />
+    </section>
+
+    <section class="nq-section-gap bg-neutral-100">
+      <Headline v-bind="page.events" />
+    </section>
+
+    <section class="nq-section-gap bg-neutral-0">
+      <Headline v-bind="page.apps.headline" />
+    </section>
+
+    <section class="bg-neutral-0">
+      <BannerAppGallery v-bind="page.apps.gallery" />
+    </section>
+
+    <section class="bg-neutral-0 pt-0">
+      <Banner v-bind="page.banner" />
+    </section>
+
+    <section class="nq-section-gap bg-darkblue" dark scheme-dark>
+      <Headline v-bind="page.feedback" />
+    </section>
   </NuxtLayout>
 </template>

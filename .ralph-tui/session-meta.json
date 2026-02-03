@@ -1,0 +1,15 @@
+{
+  "id": "84ae789a-e67e-4bbe-942b-288af7e0c078",
+  "status": "completed",
+  "startedAt": "2026-01-22T20:05:15.660Z",
+  "updatedAt": "2026-01-23T05:57:37.201Z",
+  "agentPlugin": "claude",
+  "trackerPlugin": "json",
+  "prdPath": "./tasks/prd.json",
+  "currentIteration": 1,
+  "maxIterations": 10,
+  "totalTasks": 0,
+  "tasksCompleted": 1,
+  "cwd": "/Users/maxi/nimiq/website",
+  "endedAt": "2026-01-23T05:57:37.201Z"
+}

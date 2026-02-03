@@ -18,7 +18,7 @@ const appsToShow = computed(() => {
 </script>
 
 <template>
-  <NuxtLink class="grid grid-cols-1 grid-md:cols-[1fr_3fr] grid-rows-[1fr_auto] gap-x-24 gap-y-8 grid-md:gap-y-32 bg-neutral-0 w-full p-6 md:p-8 nq-hoverable" :to="cta">
+  <NuxtLink class="grid grid-cols-1 md:grid-cols-[1fr_3fr] grid-rows-[1fr_auto] gap-x-24 gap-y-8 md:gap-y-32 bg-neutral-0 w-full p-6 md:p-8 nq-hoverable" :to="cta">
     <div class="flex flex-col">
       <Icon class="size-10" name="custom:apps" />
       <h3 class="font-bold text-base md:text-lg mt-2 md:mt-3">

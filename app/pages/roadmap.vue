@@ -10,21 +10,19 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/roadmap' }] })
 <template>
   <NuxtLayout>
     <main>
-      <section class="nq-section-gap bg-neutral-100">
+      <section class="bg-neutral-0">
         <Hero v-bind="page.hero" />
       </section>
 
-      <section class="bg-neutral-100">
+      <section class="nq-no-color bg-neutral-0">
         <RoadmapSection v-bind="page.roadmap" />
       </section>
 
-      <section class="nq-section-gap bg-neutral-100">
-        <div class="flex flex-col flex-items-center text-center">
-          <h2 v-if="page.newsletter.cta" class="text-neutral-700 text-base md:text-lg mb-6">
-            {{ page.newsletter.cta }}
-          </h2>
-          <UiNewsletterEmailInput />
-        </div>
+      <section class="bg-neutral-100" data-slice-type="newsletter-subscription">
+        <h3 class="text-center">
+          {{ page.newsletter?.cta }}
+        </h3>
+        <UiNewsletterEmailInput class="text-2xl mt-8 md:mt-10 lg:mt-12 xl:mt-14" />
       </section>
     </main>
   </NuxtLayout>

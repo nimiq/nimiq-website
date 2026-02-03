@@ -6,7 +6,7 @@ publishedAt: "2022-06-08"
 updatedAt: 2022-06-12T21:07:16+0000
 authors:
   - Team Nimiq
-image: /images/blog/cryptopayment.link-version-2-is-ready-to-launch/662c1d4e-e524-4039-b449-fce27b8a3886_Sharing_Banner_2_.jpg
+image: /assets/images/prismic/662c1d4e-e524-4039-b449-fce27b8a3886_Sharing_Banner_2_.jpg
 ---
 
 Welcome back, Nimiq supporters!

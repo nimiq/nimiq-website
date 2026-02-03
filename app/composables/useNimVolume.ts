@@ -13,6 +13,11 @@ function isHistohourSupportedCurrency(currency: FiatCurrency): currency is Histo
 }
 
 export function useNimVolume() {
+  // Composables must be called at top level, even for SSR
+  const { currencyInfo } = useUserCurrency()
+  const { price } = useNimPrice()
+  const locale = useLocale()
+
   // Skip during SSR - volume data is client-side only
   if (import.meta.server) {
     return {
@@ -26,15 +31,14 @@ export function useNimVolume() {
     }
   }
 
-  const { currencyInfo } = useUserCurrency()
-  const { price } = useNimPrice()
-
   const requestCurrency = computed(() => {
+    if (!currencyInfo.value)
+      return FiatCurrency.USD
     const userCurrency = currencyInfo.value.code as FiatCurrency
     return isHistohourSupportedCurrency(userCurrency) ? userCurrency : FiatCurrency.USD
   })
 
-  const needsCurrencyConversion = computed(() => requestCurrency.value !== currencyInfo.value.code)
+  const needsCurrencyConversion = computed(() => currencyInfo.value && requestCurrency.value !== currencyInfo.value.code)
 
   const { data: volumeData, status, error, refresh } = useFetch<VolumeResponse>('/api/nim-volume', {
     query: computed(() => ({ currency: requestCurrency.value })),
@@ -46,12 +50,11 @@ export function useNimVolume() {
   const volumeChange = computed(() => volumeData.value?.volumeChange || 0)
 
   const volumeFormatted = computed(() => {
-    if (!volumeData.value)
+    if (!volumeData.value || !currencyInfo.value)
       return '0'
     let volumeInUserCurrency = volumeData.value.volume
     if (needsCurrencyConversion.value)
       volumeInUserCurrency = volumeData.value.volume * (price.value || 0)
-    const locale = useLocale()
     return formatFiat(volumeInUserCurrency, currencyInfo.value, locale.value)
   })
 

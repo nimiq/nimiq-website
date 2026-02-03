@@ -6,7 +6,7 @@ publishedAt: "2024-11-14"
 updatedAt: 2024-11-17T23:21:09+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-proof-of-stake-migration-starts-now/ZzZwmK8jQArT04_b_BLOGNimiqPoSActivationiscomingv1.2.png
+image: /assets/images/prismic/ZzZwmK8jQArT04_b_BLOGNimiqPoSActivationiscomingv1.2.png
 ---
 
 This post specifically addresses **validator operators** participating in the PoS migration. For general information on the migration, see this post:[ What You Need to Know About Nimiq's Migration to Proof of Stake](https://www.nimiq.com/blog/nimiq-is-migrating-to-proof-of-stake-what-you-need-to-know/).

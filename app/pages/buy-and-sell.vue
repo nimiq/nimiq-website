@@ -11,13 +11,22 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/buy-and-sell' }] }
   <NuxtLayout>
     <main>
       <!-- Section 0: Hero -->
-      <section class="bg-neutral-0">
+      <section>
         <HeroBuyAndSell :data="page.hero" />
       </section>
 
-      <!-- Section 1: Exchanges (headline + grid) -->
+      <!-- Section 1: Exchanges (headline + video tutorial + grid) -->
       <section class="nq-section-gap bg-neutral-0">
         <Headline v-bind="page.intro" />
+
+        <!-- Mini video tutorial button -->
+        <button v-if="page.intro.videoTutorial" class="flex items-center gap-3 mx-auto mt-6 text-blue hover:text-blue-dark transition-colors">
+          <span class="flex items-center justify-center size-8 rounded-full bg-blue/10">
+            <Icon name="nimiq:triangle-right" class="size-4 text-blue" />
+          </span>
+          <span class="font-semibold">{{ page.intro.videoTutorial.label }}</span>
+        </button>
+
         <GridExchanges class="mt-12 md:mt-16" />
       </section>
 

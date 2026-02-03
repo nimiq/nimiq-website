@@ -32,17 +32,17 @@ const isExternal = computed(() => displayLink.value?.href?.startsWith('http'))
     <h1 class="nq-heading">
       {{ displayTitle }}
     </h1>
-    <p v-if="displayDescription" class="text-neutral-700 font-400 mx-auto max-w-prose mt-2 md:mt-3 dark:text-neutral-900">
+    <p v-if="displayDescription" class="font-400 dark:text-neutral-900">
       {{ displayDescription }}
     </p>
-    <ul v-if="highlightsItems.length > 0" class="mt-2 md:mt-3 flex flex-md:justify-center flex-items-center flex-wrap gap-x-4 gap-y-1" :aria-label="`Highlights of ${displayTitle}`" role="list">
+    <ul v-if="highlightsItems.length > 0" class="mt-12 md:mt-14 lg:mt-16 flex md:justify-center items-center flex-wrap gap-x-16 gap-y-4" :aria-label="`Highlights of ${displayTitle}`" role="list">
       <li v-for="(highlight, i) in highlightsItems" :key="i" class="contents">
-        <div v-if="i > 0" class="rounded-full bg-neutral-500 size-1.5" />
-        <span class="text-lg md:text-xl text-green font-semibold">{{ highlight }}</span>
+        <div v-if="i > 0" class="rounded-full bg-neutral-500 size-[6px]" />
+        <span class="text-20 md:text-22 text-green font-semibold">{{ highlight }}</span>
       </li>
     </ul>
-    <div v-if="displayLink" class="flex flex-wrap gap-x-8 gap-y-4 flex-items-center flex-justify-center mt-6 md:mt-8" style="--nq-font-size-min:18;--nq-font-size-max:22">
-      <NuxtLink class="nq-arrow nq-pill-lg nq-pill-blue" :to="displayLink.href" :external="isExternal" :target="isExternal ? '_blank' : undefined">
+    <div v-if="displayLink" class="flex flex-wrap gap-x-32 gap-y-16 items-center mt-32 md:mt-40 lg:mt-48" style="--nq-font-size-min:18;--nq-font-size-max:22">
+      <NuxtLink class="nq-arrow nq-pill-lg nq-pill-blue dark:nq-pill-white" :to="displayLink.href" :external="isExternal" :target="isExternal ? '_blank' : undefined">
         {{ displayLink.label || 'Learn more' }}
       </NuxtLink>
     </div>

@@ -6,7 +6,7 @@ publishedAt: "2021-06-09"
 updatedAt: 2022-04-20T13:23:36+0000
 authors:
   - COMMUNITY FUNDING BOARD
-image: /images/blog/community-funding-board-18th-meeting/638569f4-4bb0-49e2-9cb2-8914300368fd_blog_community-funding-board-18th-meeting_1.png
+image: /assets/images/prismic/638569f4-4bb0-49e2-9cb2-8914300368fd_blog_community-funding-board-18th-meeting_1.png
 ---
 
 Welcome to another report of the Community Funding Board. The Nimcubator has been increasing its activity and that certainly is notable in the increasing proposals coming from this source. Without further ado, let’s get right to it.

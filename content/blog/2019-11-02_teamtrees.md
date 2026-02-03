@@ -6,7 +6,7 @@ publishedAt: "2019-11-02"
 updatedAt: 2022-04-20T13:06:47+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/teamtrees/a977c607-cbec-4a60-aea2-c1928dd4a3da_blog_teamtrees_1.jpg
+image: /assets/images/prismic/a977c607-cbec-4a60-aea2-c1928dd4a3da_blog_teamtrees_1.jpg
 ---
 
 Nimiq is joining YouTuber Mr Beast in his efforts to plant 20 Million Trees and we need the help of the Nimiq Community. When you donate $1 to plant one tree [using the Nimiq Web Shop](https://shop.nimiq.com/product/plant-a-tree-teamtrees/), the Nimiq Foundation will match this by donating an extra tree on your behalf.

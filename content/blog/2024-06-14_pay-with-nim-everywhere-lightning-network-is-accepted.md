@@ -6,7 +6,7 @@ publishedAt: "2024-06-14"
 updatedAt: 2024-06-14T22:27:50+0000
 authors:
   - Team Nimiq
-image: /images/blog/pay-with-nim-everywhere-lightning-network-is-accepted/ZmqmMZm069VX1tCE_PaywithNIMBitcoinLightning3.3blue.png
+image: /assets/images/prismic/ZmqmMZm069VX1tCE_PaywithNIMBitcoinLightning3.3blue.png
 ---
 
 Nimiq's vision is to make cryptocurrency payments as simple and accessible as possible while staying true to its decentralized nature. Nimiq Pay is the payment-focused mobile app designed with this ideal in mind. By combining different payment networks into a single and easy-to-use experience, Nimiq Pay is poised to bring cryptocurrency payments to the mainstream.

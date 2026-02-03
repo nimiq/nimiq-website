@@ -6,7 +6,7 @@ publishedAt: "2020-12-08"
 updatedAt: 2025-07-18T10:47:06+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/technical-progress-update/2c81a611-e134-4315-8846-a362b8743245_blog_technical-progress-update_1.png
+image: /assets/images/prismic/2c81a611-e134-4315-8846-a362b8743245_blog_technical-progress-update_1.png
 ---
 
 Lots of advances have been made since the last [progress report](https://www.nimiq.com/blog/nimiq-project-progress-report-Nov-2019/), so we want to provide you with the latest updates. Here is a quick summary of some important milestones achieved during 2020, followed by particular details about the work done over the recent number of months:

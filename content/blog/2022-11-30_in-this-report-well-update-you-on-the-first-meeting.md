@@ -6,7 +6,7 @@ publishedAt: "2022-11-30"
 updatedAt: 2022-11-30T18:01:28+0000
 authors:
   - Nimiq Community Funding Board
-image: /images/blog/in-this-report-well-update-you-on-the-first-meeting/a452ed94-0868-4db0-a203-674aa5b4ee01_CFB_Blog.png
+image: /assets/images/prismic/a452ed94-0868-4db0-a203-674aa5b4ee01_CFB_Blog.png
 ---
 
 We welcome our new community representatives to the new Community Funding Board election period! We're excited to have Faberto, Revolution_Coin and Albermonte on board with us. We'd like to give a big thank you to Maestro for his involvement in the previous board, and we're looking forward to working with Albermonte again, who is starting his second term.

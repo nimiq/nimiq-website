@@ -6,7 +6,7 @@ publishedAt: "2023-05-09"
 updatedAt: 2023-05-16T14:40:54+0000
 authors:
   - Team Nimiq
-image: /images/blog/a-look-into-nimiq-wallets-integration-of-usdc-through/6690b3fa-cb51-4e81-9bd0-48b54176ea2b_supply_curve_article_5_.png
+image: /assets/images/prismic/6690b3fa-cb51-4e81-9bd0-48b54176ea2b_supply_curve_article_5_.png
 ---
 
 The Nimiq Wallet now supports USDC, a stablecoin pegged to the US Dollar, allowing users to send it with fee abstraction fees. The wallet uses USDC on Polygon, a scaling solution for Ethereum, for fast and cheap transactions. By processing transactions off-chain before anchoring them to Ethereum's blockchain, Polygon offers the benefits of Ethereum's security and decentralization while reducing fees and transaction times.

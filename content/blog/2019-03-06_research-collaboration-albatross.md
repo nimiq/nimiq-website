@@ -6,7 +6,7 @@ publishedAt: "2019-03-06"
 updatedAt: 2022-04-20T13:30:08+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/research-collaboration-albatross/09cfdc36-bce9-43c5-8f3b-17e2f3d31863_blog_research-collaboration-albatross_2.png
+image: /assets/images/prismic/09cfdc36-bce9-43c5-8f3b-17e2f3d31863_blog_research-collaboration-albatross_2.png
 ---
 
 Team [Nimiq](https://nimiq.com/) is proud to present Albatross, the outcome of our research collaboration with [Trinkler Software](https://trinkler.software/). Albatross is a Proof-of-Stake consensus algorithm that is able to achieve a performance close to the theoretical maximum for single-chain Proof-of-Stake consensus algorithms. While a [technical description of the protocol](https://arxiv.org/abs/1903.01589) has been published, this blog post strives for a lighter and easy-to-understand overview.

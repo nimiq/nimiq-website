@@ -5,7 +5,7 @@ publishedAt: "2024-08-13"
 updatedAt: 2024-08-13T12:43:42+0000
 authors:
   - Team Nimiq
-image: /images/blog/stealthex-x-nimiq-ama-recap/ZramkEaF0TcGI1jm_Protect4-11-.png
+image: /assets/images/prismic/ZramkEaF0TcGI1jm_Protect4-11-.png
 ---
 
 # AMA Session Recap: StealthEX with Nimiq

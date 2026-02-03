@@ -6,7 +6,7 @@ publishedAt: "2021-01-20"
 updatedAt: 2022-04-20T13:07:06+0000
 authors:
   - COMMUNITY FUNDING BOARD
-image: /images/blog/nimiq-incubator/4b290ab8-5a40-4fe4-b61e-e4a5ff1da10d_blog_nimiq-incubator_1.png
+image: /assets/images/prismic/4b290ab8-5a40-4fe4-b61e-e4a5ff1da10d_blog_nimiq-incubator_1.png
 ---
 
 The Nimiq Incubator is a new effort that aims to connect developers with community members that bring interesting skills to the table like providing ideas, managing projects, designing, marketing and more.

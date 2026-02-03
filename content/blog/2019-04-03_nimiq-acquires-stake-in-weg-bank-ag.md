@@ -6,7 +6,7 @@ publishedAt: "2019-04-03"
 updatedAt: 2022-04-20T13:29:31+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-acquires-stake-in-weg-bank-ag/b4383170-80c6-4dc1-9361-cf984142c684_blog_nimiq-acquires-stake-in-weg-bank-ag_1.png
+image: /assets/images/prismic/b4383170-80c6-4dc1-9361-cf984142c684_blog_nimiq-acquires-stake-in-weg-bank-ag_1.png
 ---
 
 Team Nimiq is excited to announce that the project has recently acquired a 9.9% stake in German **[WEG Bank AG](https://www.weg-bank.de/).**

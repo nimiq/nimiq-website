@@ -7,13 +7,15 @@ hero:
   description: Nimiq prides itself with an amazing community from all around the world. Join the discussion and see for yourself.
 stats:
   blocks:
-    - image: /images/pages/community/new-york-first-lock-irst-mage-92da1b3e-a1ad-49b2-bfbe-5c2c9e05908d_community_hero-1.png
+    - image: /images/pages/community/community_hero-1.png
+      alt: First community Meetup in Amsterdam
       stats:
         - label: Nimiq accounts
           stat: "> 125k"
         - label: Community members
           stat: "> 24k"
-    - image: /images/pages/community/new-york-second-lock-irst-mage-4c09fac1-b25f-47bf-b76a-f267551f04ff_meetup.jpg
+    - image: /images/pages/community/meetup.jpg
+      alt: Nimiq Community gathering in Costa Rica
       stats:
         - label: Local community groups
           stat: "15"
@@ -27,7 +29,7 @@ countries:
       - href: https://t.me/joinchat/AAAAAEJW-ozFwo7Er9jpHw
         label: Check it out
         variant: arrow
-  flags: /images/pages/community/flags-flags-2c45a34d-e4dd-4504-8c0f-4ab954921443_flags_desktop.svg
+  flags: /images/pages/community/flags_desktop.svg
 social:
   headline:
     headline: Get in touch
@@ -65,9 +67,9 @@ social:
 newsletter:
   cta: "Sign up for a monthly newsletter:"
   placeholder: Enter your email address
-  afterText:
-    headline: Events & Meetups
-    description: Meet Team Nimiq on blockchain events around the world.
+events:
+  headline: Events & Meetups
+  subline: Meet Team Nimiq on blockchain events around the world.
 apps:
   headline:
     label: Build with Nimiq
@@ -87,6 +89,7 @@ banner:
       subline: To support and encourage projects the Community Fund was created. Join the developer community, apply for funding and start a project.
       link: /community-funding
       linkLabel: Learn more
+      bgColor: green
 feedback:
   headline: Feedback
   subline: Nimiq is all about transparency. A great way to find answers is asking the community. Try Telegram for general questions and GitHub for tech-related inquiries.

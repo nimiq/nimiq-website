@@ -6,7 +6,7 @@ publishedAt: "2023-12-21"
 updatedAt: 2024-03-29T09:38:22+0000
 authors:
   - Team Nimiq
-image: /images/blog/migration-process-to-nimiq-proof-of-stake/da5c9b44-bf45-4e5f-a07d-4bceb1369a13_Group_61.png
+image: /assets/images/prismic/da5c9b44-bf45-4e5f-a07d-4bceb1369a13_Group_61.png
 ---
 
 Hello Nimiq Community,

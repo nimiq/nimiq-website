@@ -3,7 +3,7 @@ packages:
 patchedDependencies:
   '@nuxt/content': patches/@nuxt__content.patch
 catalog:
-  '@nuxt/content': ^3.9.0
+  '@nuxt/content': ^3.11.0
   '@nuxt/fonts': ^0.12.1
   '@nuxt/hints': 1.0.0-alpha.3
   '@nuxthub/core': 0.10.1
@@ -26,6 +26,8 @@ catalog:
   tsx: ^4.20.6
   unist-util-visit: ^5.0.0
   vitest: ^4.0.16
+  zod: ^4.3.6
+  zod-to-json-schema: ^3.25.1
 catalogs:
   build:
     '@nuxt/kit': ^4.0.0

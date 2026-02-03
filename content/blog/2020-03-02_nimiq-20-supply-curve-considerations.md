@@ -6,7 +6,7 @@ publishedAt: "2020-03-02"
 updatedAt: 2023-12-07T16:35:37+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-20-supply-curve-considerations/9cd8a6da-436a-4f45-beb5-9657f6237bdb_blog_nimiq-20-supply-curve-considerations_1.jpg
+image: /assets/images/prismic/9cd8a6da-436a-4f45-beb5-9657f6237bdb_blog_nimiq-20-supply-curve-considerations_1.jpg
 ---
 
 The community has asked for a review of this matter on several occasions. A voiced concern has been that the rate of coin emission for the current Proof-of-Work (PoW) reward is considered too high. It currently stands at the equivalent of [~29% annualized emission rate](https://nimiq.mopsus.com/supply). Making an adjustment is not a small matter for a decentralized blockchain based cryptocurrency. Given that a PoS switch hard fork is being planned, it is a reasonable time to now actually consider and potentially implement something like this. References to such possibilities were made both in the [original whitepaper](https://medium.com/nimiq-network/nimiq-a-peer-to-peer-payment-protocol-native-to-the-web-ffd324bb084)as well as the [contribution terms](https://medium.com/nimiq-network/nimiq-network-token-sale-terms-9af2e7fd6228). Community feedback is welcome and expected as part of the decision making process. The reason we are not using the term “inflation” is because we are looking at the NIM coin supply and ecosystem from the perspective of a currency. In that context, the term “inflation” applies to the “purchasing value of money” which is not simply a matter of the money supply (but instead influenced by multiple factors that also include demand, productivity, etc).

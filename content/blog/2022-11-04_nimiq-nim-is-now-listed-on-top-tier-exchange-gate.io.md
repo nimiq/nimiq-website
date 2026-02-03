@@ -6,7 +6,7 @@ publishedAt: "2022-11-04"
 updatedAt: 2022-11-04T09:41:19+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-nim-is-now-listed-on-top-tier-exchange-gate.io/24feef41-7026-4363-86fb-0a8e14d9c52a_header_gate2.png
+image: /assets/images/prismic/24feef41-7026-4363-86fb-0a8e14d9c52a_header_gate2.png
 ---
 
 More than ever, we are committed to growing the Nimiq ecosystem with quality collaborations that make it easier for more users to be part of Nimiq. This means increasing the ways in which people can get access to NIM. And it's for this reason too that we are excited to share great news with you: listing of NIM on one of the leading exchanges worldwide: [Gate.io](https://www.gate.io/de/trade/NIM_USDT)!

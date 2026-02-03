@@ -270,5 +270,5 @@ class Star {
 </script>
 
 <template>
-  <canvas ref="canvas" class="h-[400px] w-[600px] pointer-events-none of-hidden" />
+  <canvas ref="canvas" class="h-[400px] w-[600px] pointer-events-none overflow-hidden" />
 </template>

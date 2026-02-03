@@ -64,6 +64,11 @@ html {
   /* Viewport widths for fluid spacing */
   --f-space-width-min: 320;
   --f-space-width-max: 1440;
+
+  /* Nimiq color RGB values for use with rgb(var(--nq-*)) syntax */
+  --nq-green: 33, 188, 165;
+  --nq-neutral-0: 255, 255, 255;
+  --nq-neutral-100: 247, 247, 249;
 }
 
 /* Base body styles for static content */
@@ -99,12 +104,13 @@ body:not(.nq-raw)
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
     :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
   ):where(h1) {
-  font-weight: 600;
+  font-weight: 700;
   max-width: 26ch;
   text-align: left;
   margin: 0;
   line-height: 1.3;
-  --font-size-min: 44;
+  text-wrap: balance;
+  --font-size-min: 38;
   --font-size-max: 48;
   font-size: var(--f-font-size);
 }
@@ -112,8 +118,16 @@ body:not(.nq-raw)
 body:not(.nq-raw)
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
     :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
+  ):where(h1):where(.nq-heading, [nq-heading]) {
+  --font-size-min: 36;
+  --font-size-max: 44;
+}
+
+body:not(.nq-raw)
+  :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
+    :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
   ):where(h1):where(.nq-heading-lg, [nq-heading-lg]) {
-  --font-size-min: 44;
+  --font-size-min: 36;
   --font-size-max: 64;
 }
 
@@ -135,6 +149,7 @@ body:not(.nq-raw)
   margin-top: 24px;
   max-width: 42ch;
   line-height: 1.5;
+  text-wrap: pretty;
   --font-size-min: 20;
   --font-size-max: 22;
   font-size: var(--f-font-size);
@@ -155,7 +170,7 @@ body:not(.nq-raw)
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
     :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
   ):where(h2) {
-  font-weight: 600;
+  font-weight: 700;
   max-width: 33ch;
   margin: 0;
   --font-size-min: 32;
@@ -163,6 +178,7 @@ body:not(.nq-raw)
   font-size: var(--f-font-size);
   line-height: 1.3;
   text-align: left;
+  text-wrap: balance;
 }
 
 body:not(.nq-raw)
@@ -173,11 +189,10 @@ body:not(.nq-raw)
   --font-size-max: 44;
 }
 
-*:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *)
-  body:not(.nq-raw)
+body:not(.nq-raw)
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
     :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
-  ):where(h2) {
+  ):where(h2):not([class*='text-']) {
   color: var(--color-neutral);
 }
 
@@ -200,6 +215,7 @@ body:not(.nq-raw)
   color: color-mix(in oklch, var(--color-neutral-800) 85%, transparent);
   max-width: 70ch;
   line-height: 1.5;
+  text-wrap: pretty;
   --font-size-min: 20;
   --font-size-max: 22;
   font-size: var(--f-font-size);
@@ -222,16 +238,16 @@ body:not(.nq-raw)
   ):where(h3) {
   font-weight: 600;
   line-height: 1.3;
+  text-wrap: balance;
   --font-size-min: 26;
   --font-size-max: 30;
   font-size: var(--f-font-size);
 }
 
-*:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *)
-  body:not(.nq-raw)
+body:not(.nq-raw)
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
     :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
-  ):where(h3) {
+  ):where(h3):not([class*='text-']) {
   color: var(--color-neutral);
 }
 
@@ -243,6 +259,7 @@ body:not(.nq-raw)
   + p {
   margin-top: 16px;
   line-height: 1.5;
+  text-wrap: pretty;
   --font-size-min: 18;
   --font-size-max: 20;
   font-size: var(--f-font-size);
@@ -255,16 +272,16 @@ body:not(.nq-raw)
   ):where(h4) {
   font-weight: 600;
   line-height: 1.3;
+  text-wrap: balance;
   --font-size-min: 22;
   --font-size-max: 26;
   font-size: var(--f-font-size);
 }
 
-*:not(.nq-no-color):not([nq-no-color]):not(.nq-no-color *):not([nq-no-color] *)
-  body:not(.nq-raw)
+body:not(.nq-raw)
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
     :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
-  ):where(h4) {
+  ):where(h4):not([class*='text-']) {
   color: var(--color-neutral);
 }
 
@@ -359,6 +376,29 @@ body:not(.nq-raw) :where(section, [data-section]):is(.bg-darkblue, [bg-darkblue]
 body:not(.nq-raw) :where(section, [data-section]):last-child {
   --f-pb-min: 32;
   --f-pb-max: 48;
+}
+
+/* ==========================================================================
+   Staking Section Gradient
+   Green gradient for staking sections with cubic easing
+   ========================================================================== */
+
+.staking-gradient,
+.gradient-transparent-green {
+  --gradient-length: 252px;
+  background: linear-gradient(
+    180deg,
+    var(--color-darkerblue) 0px,
+    color-mix(in oklch, var(--color-darkerblue) 97%, var(--color-green)) calc(0.14 * var(--gradient-length)),
+    color-mix(in oklch, var(--color-darkerblue) 87%, var(--color-green)) calc(0.26 * var(--gradient-length)),
+    color-mix(in oklch, var(--color-darkerblue) 72%, var(--color-green)) calc(0.38 * var(--gradient-length)),
+    color-mix(in oklch, var(--color-darkerblue) 52%, var(--color-green)) calc(0.5 * var(--gradient-length)),
+    color-mix(in oklch, var(--color-darkerblue) 30%, var(--color-green)) calc(0.62 * var(--gradient-length)),
+    color-mix(in oklch, var(--color-darkerblue) 13%, var(--color-green)) calc(0.74 * var(--gradient-length)),
+    color-mix(in oklch, var(--color-darkerblue) 3%, var(--color-green)) calc(0.86 * var(--gradient-length)),
+    var(--color-green) var(--gradient-length),
+    var(--color-green) 100%
+  );
 }
 
 /* ==========================================================================

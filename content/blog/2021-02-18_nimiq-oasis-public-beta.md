@@ -6,7 +6,7 @@ publishedAt: "2021-02-18"
 updatedAt: 2022-04-20T13:34:48+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-oasis-public-beta/5f818a32-e894-4fb4-bbe4-7c1c4de14a78_blog_nimiq-oasis-public-beta_1.png
+image: /assets/images/prismic/5f818a32-e894-4fb4-bbe4-7c1c4de14a78_blog_nimiq-oasis-public-beta_1.png
 ---
 
 Almost four years ago, Nimiq was founded with a clear-cut goal in mind: Make crypto easy and available to everyone.

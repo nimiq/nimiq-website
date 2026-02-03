@@ -6,7 +6,7 @@ publishedAt: "2019-08-31"
 updatedAt: 2022-04-20T13:05:49+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiqs-new-website/c0fce94b-41c7-49ad-95ee-d2cf0c6475d3_blog_nimiqs-new-website_1.png
+image: /assets/images/prismic/c0fce94b-41c7-49ad-95ee-d2cf0c6475d3_blog_nimiqs-new-website_1.png
 ---
 
 Team Nimiq is proud to announce the release of the new Nimiq Website!

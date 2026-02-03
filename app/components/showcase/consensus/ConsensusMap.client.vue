@@ -6,10 +6,13 @@ import type { WorldMapHexagon } from '~/utils/consensus-map/drawHexagonsWorldMap
 import init, * as Nimiq from '@nimiq/core/web'
 import { consola } from 'consola'
 import { ConsensusState } from '~/types/nimiq'
-import { drawHexagonsWorldMap, HEXAGONS_WORLD_MAP_ASPECT_RATIO, HEXAGONS_WORLD_MAP_HEIGHT_PIXELS, HEXAGONS_WORLD_MAP_SCALE } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
+import { drawHexagonsWorldMap, getHexagonsWorldMapAspectRatio, HEXAGONS_WORLD_MAP_HEIGHT_PIXELS, HEXAGONS_WORLD_MAP_SCALE } from '~/utils/consensus-map/drawHexagonsWorldMapCanvas'
 import { getHexagonCoords } from '~/utils/consensus-map/drawHexagonsWorldMapProjection'
 
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
+
+// Called during setup - safe in .client.vue
+const aspectRatio = getHexagonsWorldMapAspectRatio()
 
 function useNimiq() {
   const { clientNetwork } = useRuntimeConfig().public
@@ -86,10 +89,25 @@ const { launchNetwork, setUserPeer, consensus, peers, userPeer } = useNimiq()
 const canvas = useTemplateRef('canvas')
 
 const tooltipPosition = ref<CSSProperties>({ transform: 'translate(0, 0)' })
+const mapError = ref<Error | null>(null)
+
 onMounted(async () => {
-  await setUserPeer()
-  const { userHexagon } = drawHexagonsWorldMap(canvas as Ref<HTMLCanvasElement>, { peers, userPeer, centerOnUser: true })
-  setPositionTooltip(userHexagon)
+  try {
+    await setUserPeer()
+  }
+  catch (error) {
+    console.warn('Failed to get user location, using default:', error)
+    // Default to a location in Europe if geolocation fails
+    userPeer.value = { peerId: 'user', lat: 52.52, lng: 13.405, x: 64, y: 26 }
+  }
+  try {
+    const { userHexagon } = drawHexagonsWorldMap(canvas as Ref<HTMLCanvasElement>, { peers, userPeer, centerOnUser: true })
+    setPositionTooltip(userHexagon)
+  }
+  catch (error) {
+    console.error('Failed to draw consensus map:', error)
+    mapError.value = error as Error
+  }
 })
 
 const { pixelRatio } = useDevicePixelRatio()
@@ -147,29 +165,29 @@ async function connect() {
 </script>
 
 <template>
-  <div class="of-hidden">
-    <div class="relative xl:w-65vw" :style="`aspect-ratio: ${HEXAGONS_WORLD_MAP_ASPECT_RATIO}`">
+  <div class="overflow-hidden w-full xl:h-full">
+    <div class="w-full h-[400px] xl:h-full relative" :style="`aspect-ratio: ${aspectRatio}`">
       <div class="curtain size-full absolute z-1 xl:max-w-50vw" />
       <div class="size-full absolute">
-        <canvas ref="canvas" />
-        <div v-if="showTooltip" class="left-0 top-0 absolute z-1 animate-delay-500 animate-fade-in animate-both" :style="tooltipPosition">
-          <div class="dark left-[calc(-50%+2px)] flex flex-col flex-items-center mt-4 relative" scheme-dark>
+        <canvas ref="canvas" class="size-full" />
+        <div v-if="showTooltip" class="left-0 topacity-0 absolute z-1 animate-delay-500 animate-fade-in animate-both" :style="tooltipPosition">
+          <div class="dark left-[calc(-50%+2px)] flex flex-col items-center mt-4 relative" scheme-dark>
             <Icon class="text-12 translate-y-[3.5px]" name="nimiq:tooltip-triangle" :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" />
-            <div v-if="consensus === 'idle'" class="ring-0.2 ring-blue flex flex-items-center rounded-full bg-gradient-blue transition-colors -top-px" layout-id="connect">
+            <div v-if="consensus === 'idle'" class="ring-0.2 ring-blue flex items-center rounded-full bg-gradient-blue transition-colors -top-px" layout-id="connect">
               <span class="text-white font-bold px-4 py-2">{{ thisIsYou }}</span>
               <button class="text-blue font-bold m-1.5 px-3 py-[5px] rounded-full bg-white" layout-id="connect-label" as="button" @click="connect">
                 {{ connectLabel }}
               </button>
             </div>
-            <div v-else-if="consensus === 'connecting'" class="bg-gradient-orange ring-0.2 ring-orange flex flex-items-center gap-2 text-white font-semibold px-4 py-2 outline-none rounded-full w-max transition-colors -top-[3px]" layout-id="connect">
+            <div v-else-if="consensus === 'connecting'" class="bg-gradient-orange ring-0.2 ring-orange flex items-center gap-2 text-white font-semibold px-4 py-2 outline-none rounded-full w-max transition-colors -top-[3px]" layout-id="connect">
               <div layout-id="connect-label" as="span">
                 {{ connecting }}
               </div>
               <Icon class="animate-ease-out shrink-0 animate-scale-in animate-delay-2s" name="nimiq:spinner" />
             </div>
-            <div v-else-if="consensus === 'established'" class="bg-gradient-green flex flex-items-center gap-2 text-white font-semibold px-4 py-2 outline-none rounded-full w-max transition-colors -top-[3px] z-3" layout-id="connect">
+            <div v-else-if="consensus === 'established'" class="bg-gradient-green flex items-center gap-2 text-white font-semibold px-4 py-2 outline-none rounded-full w-max transition-colors -top-[3px] z-3" layout-id="connect">
               <div layout-id="connect-label" as="span">
-                <div class="flex flex-items-center flex-justify-between gap-2">
+                <div class="flex items-center justify-between gap-2">
                   <span>Connected</span>
                 </div>
               </div>
@@ -178,13 +196,13 @@ async function connect() {
         </div>
       </div>
 
-      <div v-if="consensus !== 'idle'" class="bottom-0 bottom-xl:32 font-semibold mx-auto p-6 rounded-1.5 bg-white bg-op-6 h-auto max-w-[400px] transition-height inset-x-0 absolute z-2 backdrop-blur-24 animate-fade-in-up animate-both animate-delay-1250ms">
+      <div v-if="consensus !== 'idle'" class="bottom-0 bottom-xl:32 font-semibold mx-auto p-6 rounded-1.5 bg-white bg-white/6 h-auto max-w-[400px] transition-height inset-x-0 absolute z-2 backdrop-blur-24 animate-fade-in-up animate-both animate-delay-1250ms">
         <transition enter-active-class="transition duration-200 ease-out" enter-from-class="translate-y--1lh" enter-to-class="translate-y-0" leave-active-class="transition duration-200 ease-out" leave-from-class="translate-y-0" leave-to-class="translate-y--1lh">
           <p v-if="consensus === 'connecting'" class="text-neutral-800 text-11 text-center w-[calc(100%-48px)] -top-px.4lh absolute nq-label">
             Did you know that
           </p>
         </transition>
-        <transition mode="out-in" enter-active-class="transition duration-200 ease-out origin-center-bottom" enter-from-class="transform translate-y-1lh op-0 blur-4 scale-95" enter-to-class="translate-y-0 op-100 blur-0 scale-100" leave-active-class="transition duration-200 ease-out origin-center-top" leave-from-class="transform translate-y-0 op-100 scale-100" leave-to-class="translate-y--1lh op-0 scale-95">
+        <transition mode="out-in" enter-active-class="transition duration-200 ease-out origin-center-bottom" enter-from-class="transform translate-y-1lh opacity-0 blur-4 scale-95" enter-to-class="translate-y-0 opacity-100 blur-0 scale-100" leave-active-class="transition duration-200 ease-out origin-center-top" leave-from-class="transform translate-y-0 opacity-100 scale-100" leave-to-class="translate-y--1lh opacity-0 scale-95">
           <p v-if="consensus === 'connecting'" :key="currentFact" class="text-white/60 text-center text-base md:text-lg h-2lh">
             {{ currentFact }}
           </p>
@@ -203,17 +221,17 @@ async function connect() {
   background-image:
     linear-gradient(
       to bottom,
-      var(--colors-neutral-0) 0%,
+      var(--color-darkerblue) 0%,
       transparent var(--curtain-size),
       transparent calc(100% - var(--curtain-size)),
-      var(--colors-neutral-0) 100%
+      var(--color-darkerblue) 100%
     ),
     linear-gradient(
       to right,
-      var(--colors-neutral-0) 0%,
+      var(--color-darkerblue) 0%,
       transparent var(--curtain-size),
       transparent calc(100% - var(--curtain-size)),
-      var(--colors-neutral-0) 100%
+      var(--color-darkerblue) 100%
     );
 }
 </style>

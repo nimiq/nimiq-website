@@ -6,7 +6,7 @@ publishedAt: "2021-04-07"
 updatedAt: 2022-04-20T13:34:10+0000
 authors:
   - NIMIQ COMMUNITY FUNDING BOARD
-image: /images/blog/community-funding-board-march-2021/21f57bff-f361-4fb7-8698-1d571f511917_blog_community-funding-board-march-2021_1.png
+image: /assets/images/prismic/21f57bff-f361-4fb7-8698-1d571f511917_blog_community-funding-board-march-2021_1.png
 ---
 
 Welcome to the first Nimiq Community Funding Board update since our community elections! This month's discussions are focused on two projects submitted by our community so let's get started.

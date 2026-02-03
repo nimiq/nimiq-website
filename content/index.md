@@ -7,8 +7,9 @@ hero:
   description: In a centralized world, Nimiq gives independence back to you.
   link:
     href: https://wallet.nimiq.com
+    label: Create Wallet
   organizations:
-    - logo: /assets/images/prismic/aQoiz7pReVYa4CmX_bluecode-logo-white.svg
+    - logo: /assets/images/prismic/aQoiy7pReVYa4CmT_cryptopayment-link-logo-white.svg
       url: https://www.bluecode.com/
     - logo: /assets/images/prismic/aQoizrpReVYa4CmW_btc-lightning-logo-white.svg
       url: https://lightning.network/
@@ -30,7 +31,7 @@ apps:
       description: Pay with NIM at more acceptance points every day
       preview: /assets/images/prismic/Zt7oXRoQrfVKl2hA_NimiqPayPreview.webp
       item: Nimiq Pay
-      link: https://www.nimiq.com/nimiq-pay/
+      link: /nimiq-pay
     - highlight: false
       title: Cryptopayment.link
       description: Start accepting NIM, BTC and USDC in seconds
@@ -75,11 +76,13 @@ staking:
   stakingNote: "average return based on the current distribution. This is not financial advice."
   actions:
     - href: /staking
-      variant: arrow
+      label: Learn more
+      variant: tertiary
 community:
   headline: Join our live community
   subline: Nimiq prides itself with an amazing community from all around the world. Join the discussion and see for yourself.
   actions:
     - href: /community
-      variant: arrow
+      label: Community
+      variant: blue
 ---

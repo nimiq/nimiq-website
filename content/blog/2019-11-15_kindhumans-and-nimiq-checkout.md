@@ -6,7 +6,7 @@ publishedAt: "2019-11-15"
 updatedAt: 2023-12-07T16:40:20+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/kindhumans-and-nimiq-checkout/dc3207e4-9a15-43fe-a5b2-33036729adc8_blog_kindhumans-and-nimiq-checkout_1.png
+image: /assets/images/prismic/dc3207e4-9a15-43fe-a5b2-33036729adc8_blog_kindhumans-and-nimiq-checkout_1.png
 ---
 
 [Kindhumans](http://kindhumans.com/) is a marketplace for ethical products guided by the principle of delivering a more responsible, mindful, and holistic consumer platform. This positive, transparent and eco-friendly mindset resonates strongly with Nimiq’s spirit. As announced before, the two projects have been contributing to record the hash of Kindhuman’s published reports on the Nimiq Blockchain so that the public can verify the genuine, untampered nature of each report. We are happy to announce that this collaboration has grown to include the new Nimiq Checkout for Crypto in Kindhuman’s online [shop](https://kindhumans.com/shop/)!

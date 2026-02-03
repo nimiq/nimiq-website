@@ -3,7 +3,7 @@ defineProps<{ headline: string, subline?: string }>()
 </script>
 
 <template>
-  <div class="flex flex-col flex-md:items-center">
+  <div class="flex flex-col md:items-center">
     <h2 class="nq-heading break-keep md:text-center">
       {{ headline }}
     </h2>

@@ -6,7 +6,7 @@ publishedAt: "2023-07-03"
 updatedAt: 2023-08-24T18:49:35+0000
 authors:
   - Team Nimiq
-image: /images/blog/cryptopayment-link-2-1-whats-new/c7a0679b-9efe-4775-ae82-69283d3e7b85_CPL_News_1_.png
+image: /assets/images/prismic/c7a0679b-9efe-4775-ae82-69283d3e7b85_CPL_News_1_.png
 ---
 
 Hello Nimiq Community,

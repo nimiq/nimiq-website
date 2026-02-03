@@ -6,7 +6,7 @@ publishedAt: "2021-12-28"
 updatedAt: 2022-04-20T13:31:36+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/nimiq-and-unstoppable-domains/a44607fa-4299-4507-aebc-3323dc64e232_blog_nimiq-and-unstoppable-domains_1.png
+image: /assets/images/prismic/a44607fa-4299-4507-aebc-3323dc64e232_blog_nimiq-and-unstoppable-domains_1.png
 ---
 
 Nimiq is happy to announce support for blockchain domain names powered by Unstoppable Domains. With this new partnership, Nimiq wallet users can send and receive crypto to user-friendly domain names such as ‘yourname.wallet’. Our goal with this step is bringing us closer to widespread adoption by lowering entry barriers to the crypto space and making it more accessible for all humans alike.

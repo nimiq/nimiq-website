@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const page = await usePage('terms')
-const content = await parseMarkdown(page.content?.richText || '')
 
 const title = page.seo?.title || page.hero?.headline || 'Terms | Nimiq'
 const description = page.seo?.description || page.hero?.subline
@@ -16,7 +15,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/terms' }] })
       </section>
 
       <section class="nq-section-gap bg-neutral-0">
-        <ContentRenderer class="f-prose text-neutral-900" :value="content" tag="article" children:mx-auto children:max-w-prose />
+        <ContentRenderer class="f-prose text-neutral-900" :value="page" tag="article" children:mx-auto children:max-w-prose />
       </section>
     </main>
   </NuxtLayout>

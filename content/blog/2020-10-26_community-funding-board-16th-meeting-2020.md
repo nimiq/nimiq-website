@@ -6,7 +6,7 @@ publishedAt: "2020-10-26"
 updatedAt: 2023-12-07T16:37:49+0000
 authors:
   - COMMUNITY FUNDING BOARD
-image: /images/blog/community-funding-board-16th-meeting-2020/9dbf3add-baf2-42b6-8eaf-1f70428ce237_blog_community-funding-board-16th-meeting-2020_1.png
+image: /assets/images/prismic/9dbf3add-baf2-42b6-8eaf-1f70428ce237_blog_community-funding-board-16th-meeting-2020_1.png
 ---
 
 Welcome to another update of the Nimiq Community Board. This month we had a very active discussion about things to come. Let’s get right to it!

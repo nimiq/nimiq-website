@@ -6,7 +6,7 @@ publishedAt: "2024-05-21"
 updatedAt: 2024-05-23T23:33:25+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-x-kucoin-early-staking-campaign-launch/ZkudwSol0Zci9TA3_BlogStakeatKucoin.png
+image: /assets/images/prismic/ZkudwSol0Zci9TA3_BlogStakeatKucoin.png
 ---
 
 Nimiq is currently running on a Proof-of-Work (PoW) system, but the landscape is set to change dramatically with the migration to Nimiqs own Proof-of-Stake (PoS) consensus mechanism. This major upgrade, the result of four years of research and development, will enable transactions to be processed at speeds of over 1000 transactions per second, with confirmation time of around one second, increasing performance and enhancing user experience significantly, all the while maintaining decentralization and censorship resistance of the network, and running nodes in the browser.

@@ -41,7 +41,7 @@ const stakingPeriodOptions = [
   { label: '5y', days: 5 * 12 * 30 },
 ]
 const selectedStakingPeriod = useLocalStorage(`${storageKey}_staking-period`, stakingPeriodOptions.at(-2))
-const autoRestake = useLocalStorage(`${storageKey}_auto-restake}`, true)
+const autoRestake = useLocalStorage(`${storageKey}_auto-restake`, true)
 
 const rewards = computed(() => calculateStakingRewards({
   amount: amount.value,
@@ -52,16 +52,16 @@ const rewards = computed(() => calculateStakingRewards({
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-4 flex-md:items-center">
-    <div class="ring-1.5 ring-neutral-400 mx-auto rounded-1 bg-neutral-0 max-w-full w-max flex flex-items-center flex-wrap" shadow>
-      <div class="grid grid-max-md:cols-1 grid-md:rows-[auto_1fr] gap-x-8 gap-y-3 grid-md:flow-col mx-auto p-8 of-auto">
+  <div class="flex flex-col gap-y-4 md:items-center">
+    <div class="ring-1.5 ring-neutral-400 mx-auto rounded-1 bg-neutral-0 max-w-full w-max flex items-center flex-wrap" shadow>
+      <div class="grid grid-max-md:cols-1 md:grid-rows-[auto_1fr] gap-x-8 gap-y-3 md:grid-flow-col mx-auto p-8 overflow-auto">
         <span class="text-max-md:center text-neutral-800 font-semibold">{{ amountLabel || 'Amount' }}</span>
-        <label class="flex flex-items-baseline gap-2 text-neutral text-hocus:blue text-focus-within:blue h-max w-max transition-colors self-end max-md:mx-auto">
+        <label class="flex items-baseline gap-2 text-neutral hover:text-blue focus:text-blue focus-within:text-blue h-max w-max transition-colors self-end max-md:mx-auto">
           <UiAmountInput v-model="amount" class="shadow-none outline-none max-w-9ch min-w-0 w-max text-blue text-xl md:text-2xl" :decimals :min="1" style="padding:0" />
-          <span class="lh-none font-bold flex-1 text-blue text-base md:text-lg">NIM</span>
+          <span class="leading-none font-bold flex-1 text-blue text-base md:text-lg">NIM</span>
         </label>
 
-        <div class="flex gap-2 flex-items-center flex-max-md:justify-center max-md:mt-2">
+        <div class="flex gap-2 items-center flex-max-md:justify-center max-md:mt-2">
           <span class="w-max">Total stake</span>
           <UiTooltip>
             <p>Choose a staking supply scenario or use live data</p>
@@ -76,7 +76,7 @@ const rewards = computed(() => calculateStakingRewards({
           </template>
         </UiRadioInput>
 
-        <div class="flex gap-2 flex-items-center flex-max-md:justify-center max-md:mt-2">
+        <div class="flex gap-2 items-center flex-max-md:justify-center max-md:mt-2">
           <p class="w-max">
             {{ periodLabel || 'Period' }}
           </p>
@@ -86,8 +86,8 @@ const rewards = computed(() => calculateStakingRewards({
         </div>
         <UiRadioInput v-model="selectedStakingPeriod" class="h-max self-end max-md:mx-auto" :options="stakingPeriodOptions" :get-label="item => item.label" :is-selected="item => item.days === selectedStakingPeriod?.days" />
       </div>
-      <div class="flex flex-col flex-md:justify-center flex-items-center flex-md:items-end bg-green/10 rounded-b-1 rounded-md:b-0 rounded-md:r-4 px-8 py-6 flex-1 self-stretch">
-        <div class="flex flex-items-center text-neutral-800">
+      <div class="flex flex-col md:justify-center items-center md:items-end bg-green/10 rounded-b-1 rounded-md:b-0 rounded-md:r-4 px-8 py-6 flex-1 self-stretch">
+        <div class="flex items-center text-neutral-800">
           <p class="mr-2">
             {{ rewardsLabel || 'Return in NIM' }}*
           </p>
@@ -98,15 +98,15 @@ const rewards = computed(() => calculateStakingRewards({
             +<UiTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
           </p>
         </div>
-        <span class="text-28 text-green lh-none font-semibold mt-3">
+        <span class="text-28 text-green leading-none font-semibold mt-3">
           +<UiTweenedNumber :value="rewards.gain" :duration="1000" /> NIM
         </span>
       </div>
     </div>
     <p class="text-max-md:center text-green-1100 font-semibold">
-      *Assuming current network conditions remain constant
+      *depends on the current total staking
     </p>
-    <label class="flex flex-items-center flex-max-md:justify-center">
+    <label class="flex items-center flex-max-md:justify-center">
       <input v-model="autoRestake" class="nq-switch" type="checkbox">
       <span class="ml-3 mr-1.5 cursor-pointer">Auto-restake rewards</span>
       <UiTooltip>

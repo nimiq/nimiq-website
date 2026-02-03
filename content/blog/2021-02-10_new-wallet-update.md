@@ -6,7 +6,7 @@ publishedAt: "2021-02-10"
 updatedAt: 2023-12-07T16:41:37+0000
 authors:
   - SÖREN SCHWERT
-image: /images/blog/new-wallet-update/06ad4392-6467-42b6-a901-8d65646f176c_blog_new-wallet-update_1.png
+image: /assets/images/prismic/06ad4392-6467-42b6-a901-8d65646f176c_blog_new-wallet-update_1.png
 ---
 
 We have updated our account-creation process in the Nimiq Keyguard. It now features a beautiful animation while you enter and confirm your password, and requires that users download the Login File for their newly created account. iOS and Safari users also receive some love!

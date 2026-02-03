@@ -6,7 +6,7 @@ publishedAt: "2024-11-20"
 updatedAt: 2024-11-19T23:25:18+0000
 authors:
   - Team Nimiq
-image: /images/blog/nimiq-proof-of-stake-is-now-live/Zz0eU68jQArT1DN0_ProofofstakeNOWLIVEv1.2-2-.png
+image: /assets/images/prismic/Zz0eU68jQArT1DN0_ProofofstakeNOWLIVEv1.2-2-.png
 readingTime: 4
 ---
 

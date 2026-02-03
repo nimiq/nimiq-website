@@ -12,11 +12,12 @@ quote:
   author: Nimiq
 calculator:
   headline:
+    label: Staking Calculator
     headline: Check your potential staking rewards
     subline: Play around with the staking calculator and find out how much NIM you could earn.
   amountLabel: Staking amount
   periodLabel: Staking period
-  rewardsLabel: Staking rewards
+  rewardsLabel: Return in NIM
 distribution:
   headline:
     label: Staking Distribution
@@ -32,7 +33,7 @@ video:
     headline: So easy, everyone can do it!
     subline: No tech skills or staking knowledge needed, stake in just three clicks. All it takes is a Nimiq Wallet and as little as 1000 NIM.
   embedUrl: https://nimiq.cdn.prismic.io/nimiq/Z21BuJbqstJ981da_ScreenRecording2024-12-26174136.mp4
-  poster: /images/pages/staking/video-poster-ZzpazK8jQArT08uI_Frame48104392.webp
+  poster: /images/pages/staking/video-poster.webp
   title: You stay in control
   description: When staking, you 'delegate' your NIM to a pool but they remain in your wallet. Unstake them at any time.
 delegate:

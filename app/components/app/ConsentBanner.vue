@@ -14,10 +14,10 @@ const open = computed(() => {
     <AlertDialogPortal>
       <AlertDialogContent
         class="nq-prose-compact outline outline-1.5 outline-neutral/10 mx-auto rounded-2 bg-neutral-0 max-w-none transition-all duration-300 ease-out inset-x-3 bottom-3 fixed z-101 p-6 md:p-8 flex flex-col" shadow style="box-shadow:
-        0 4px 6px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 6%, transparent),
-        0 -4px 6px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 6%, transparent),
-        0 -8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent),
-        0 8px 12px 0 color-mix(in srgb, var(--colors-neutral-DEFAULT) 4%, transparent);" @open-auto-focus.prevent
+        0 4px 6px 0 color-mix(in srgb, var(--color-neutral-DEFAULT) 6%, transparent),
+        0 -4px 6px 0 color-mix(in srgb, var(--color-neutral-DEFAULT) 6%, transparent),
+        0 -8px 12px 0 color-mix(in srgb, var(--color-neutral-DEFAULT) 4%, transparent),
+        0 8px 12px 0 color-mix(in srgb, var(--color-neutral-DEFAULT) 4%, transparent);" @open-auto-focus.prevent
       >
         <AlertDialogTitle class="text-lg md:text-xl text-neutral-900 leading-tight font-semibold my-0 ml-0">
           Cookie Consent
@@ -31,13 +31,13 @@ const open = computed(() => {
           </NuxtLink>
         </AlertDialogDescription>
         <div class="flex gap-4 mx-0 w-max -translate-x-[13px] mt-3 md:mt-4">
-          <AlertDialogCancel class="op-85 cursor-pointer transition-colors nq-pill-tertiary" hocus:bg-neutral-300 @click="rejectConsent">
-            <Icon class="mr-2 op-80 scale-60" name="nimiq:cross" />
+          <AlertDialogCancel class="opacity-85 cursor-pointer transition-colors nq-pill-tertiary" hover:bg-neutral-300 focus:bg-neutral-300 @click="rejectConsent">
+            <Icon class="mr-2 opacity-80 scale-60" name="nimiq:cross" />
             Reject
           </AlertDialogCancel>
 
           <AlertDialogAction class="cursor-pointer nq-pill-blue" @click="acceptConsent">
-            <Icon class="mr-2 op-80 scale-90" name="nimiq:check" />
+            <Icon class="mr-2 opacity-80 scale-90" name="nimiq:check" />
             Accept
           </AlertDialogAction>
         </div>

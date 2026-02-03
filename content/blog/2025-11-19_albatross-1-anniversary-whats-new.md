@@ -6,7 +6,7 @@ publishedAt: "2025-11-19"
 updatedAt: 2025-11-19T19:03:15+0000
 authors:
   - Team Nimiq
-image: /images/blog/albatross-1-anniversary-whats-new/aR0mAWGnmrmGqAVF_1What_sNewBLOG.png
+image: /assets/images/prismic/aR0mAWGnmrmGqAVF_1What_sNewBLOG.png
 ---
 
 Today, we are opening a small three-part series marking the anniversary of Albatross! Just a year ago, the Nimiq Proof-of-Stake blockchain went live, and we are here to celebrate it.

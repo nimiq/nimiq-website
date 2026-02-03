@@ -23,12 +23,12 @@ const selectedItem = computed(() => items.value.find(i => i.key === selectedKey.
 
 <template>
   <div>
-    <ul class="w-[calc(100%+64px)] flex gap-6 flex-xl:gap-8 flex-xl:justify-center -mx-8 pt-[18px] of-x-auto nq-scrollbar-hide lg:pr-0" snap="x normal">
+    <ul class="w-[calc(100%+64px)] flex gap-6 xl:gap-8 xl:justify-center -mx-8 pt-[18px] overflow-x-auto nq-scrollbar-hide lg:pr-0" snap="x normal">
       <li v-for="({ buttonLogo, comingSoon, comingSoonLabel, key }) in items" :key class="scroll-mx-8 xl:64 shrink-0 relative first:pl-8 last:pr-8" :data-selected="selectedKey === key ? '' : undefined">
         <p v-if="comingSoon" class="ring-1 ring-neutral-500 text-10 font-bold px-2 py-1 rounded-1 bg-neutral-400 whitespace-nowrap left-2 -top-3.5 absolute z-1 nq-label">
           {{ comingSoonLabel }}
         </p>
-        <button class="flex flex-items-center gap-1.5 rounded-2 bg-gradient-blue h-full whitespace-nowrap px-3 md:px-4 py-2 md:py-3 op-50 op-selected:100 op-hocus:not-disabled:100" :disabled="comingSoon" @click="selectedKey = key">
+        <button class="flex items-center gap-1.5 rounded-2 bg-gradient-blue h-full whitespace-nowrap px-3 md:px-4 py-2 md:py-3 opacity-50 data-[selected]:opacity-100 hover:not-disabled:opacity-100 focus:not-disabled:opacity-100" :disabled="comingSoon" @click="selectedKey = key">
           <NuxtImg v-if="key === 'Naka'" class="h-[18px] w-full" :src="buttonLogo" />
           <template v-else>
             <NuxtImg class="h-full w-6" :src="buttonLogo" />

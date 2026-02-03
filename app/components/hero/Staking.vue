@@ -7,29 +7,25 @@ const id = `terms-note-${useId()}`
 </script>
 
 <template>
-  <div class="bg-neutral-0 relative of-x-clip p-40 md:p-[200px] max-md:pb-[100px]">
-    <!-- Background layers for the green radial gradient effect -->
-    <AnimatedCircleRipple class="left--100vw left-lg:-5vw size-300vw size-lg:110vw max-w-none absolute z-0 bottom-2.5 bottom-lg:-300" />
-    <div class="h-[400px] h-lg:200 bg-neutral-0 max-w-none pointer-events-none inset-0 absolute z-1" />
-    <div class="bg-radial-green top-50vh top-lg:200 max-w-none pointer-events-none inset-0 absolute z-1" />
-    <div class="bg-linear-white-1 top-20vh top-lg:200 max-w-none pointer-events-none inset-0 absolute z-1" />
-    <div class="bg-linear-white-2 top-20vh top-lg:200 max-w-none pointer-events-none inset-0 absolute z-1" />
+  <section class="staking-hero bg-neutral-0 relative overflow-hidden px-6 py-16 md:px-12 md:py-24 lg:px-16 lg:py-32 w-full max-w-none">
+    <!-- Background gradient for the green radial effect at bottom -->
+    <div class="bg-radial-green absolute inset-0 top-[60%] z-0 pointer-events-none" />
 
     <!-- Content -->
-    <div class="flex flex-col flex-md:items-center group relative z-2">
-      <AnimatedStakingRipple class="size-[120px]" />
-      <h1 class="nq-heading text-wrap text-md:balance mt-4 md:mt-6 md:text-center">
+    <div class="flex flex-col md:items-center group relative z-[2]">
+      <AnimatedStakingRipple class="w-[120px] h-[120px]" />
+      <h1 class="nq-heading text-wrap text-balance mt-4 md:mt-6 md:text-center text-neutral">
         {{ headlineParts[0] }}
-        <span class="bg-green/15 inline-flex-~ text-green px-2.5 py-[3px] rounded-1 whitespace-nowrap" data-percentage>
-          ~{{ annualRewardPercentage }}<Icon class="text-14 translate-y-2" name="nimiq:asterisk" :aria-labelledby="id" />
+        <span class="bg-green/15 inline-flex text-green px-[10px] py-[3px] rounded whitespace-nowrap" data-percentage>
+          ~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[8px]" name="nimiq:asterisk" :aria-labelledby="id" />
         </span>
         {{ headlineParts[1] }}
       </h1>
-      <small :id class="text-green-1100 text-sm:center transition-colors duration-400 mt-4 md:mt-6 sm:max-w-40ch" data-note>
-        <Icon class="size-0.4em -translate-x-2 translate-y-1 sm:translate-x-1 sm:translate-y-2" aria-hidden name="nimiq:asterisk" /> average return based on the current distribution. This is not financial advice.
+      <small :id class="text-green-1100 sm:text-center transition-colors duration-400 mt-4 md:mt-6 sm:max-w-[32ch]" data-note>
+        <Icon class="size-[0.4em] -translate-x-[8px] sm:translate-x-[4px] translate-y-[4px] sm:translate-y-[8px]" aria-hidden name="nimiq:asterisk" /> average return based on the current distribution. This is not financial advice.
       </small>
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>
@@ -100,6 +96,6 @@ const id = `terms-note-${useId()}`
 }
 
 [group]:has([data-percentage]:hover) [data-note] {
-  --uno: 'text-neutral-800';
+  color: var(--color-neutral-800);
 }
 </style>

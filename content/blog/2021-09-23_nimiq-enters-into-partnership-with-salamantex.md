@@ -6,7 +6,7 @@ publishedAt: "2021-09-23"
 updatedAt: 2022-04-20T13:33:20+0000
 authors:
   - MAX BURGER
-image: /images/blog/nimiq-enters-into-partnership-with-salamantex/2a9fd627-dee0-4daf-a908-648e845fd1e3_blog_nimiq-enters-into-partnership-with-salamantex_1.jpg
+image: /assets/images/prismic/2a9fd627-dee0-4daf-a908-648e845fd1e3_blog_nimiq-enters-into-partnership-with-salamantex_1.jpg
 ---
 
 **With the recent update to the SALAMANTEX interface, NIM (Nimiq) is now accepted as payment currency at all connected merchants. This makes NIM part of an exclusive group of cryptocurrencies which can be used to pay for goods and services on payment terminals and in e-commerce.**

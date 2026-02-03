@@ -6,7 +6,7 @@ publishedAt: "2020-01-02"
 updatedAt: 2023-12-07T16:42:21+0000
 authors:
   - TEAM NIMIQ
-image: /images/blog/community-funding-board-9th-meeting/5bc36ed2-4b5f-4131-ac5e-d1216ed7cde6_blog_community-funding-board-9th-meeting_6.png
+image: /assets/images/prismic/5bc36ed2-4b5f-4131-ac5e-d1216ed7cde6_blog_community-funding-board-9th-meeting_6.png
 ---
 
 This month the Community Funding Board focused on creating new bounties and recognizing the contributions of even more community members through the Board’s reactive reward scheme.

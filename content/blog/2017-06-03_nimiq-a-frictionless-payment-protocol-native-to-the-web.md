@@ -6,7 +6,7 @@ publishedAt: "2017-06-03"
 updatedAt: 2022-04-20T13:30:49+0000
 authors:
   - ROBIN LINUS
-image: /images/blog/nimiq-a-frictionless-payment-protocol-native-to-the-web/1edbedbd-b564-4fd7-8c1d-2094494f3f02_blog_nimiq-a-frictionless-payment-protocol-native-to-the-web_1.png
+image: /assets/images/prismic/1edbedbd-b564-4fd7-8c1d-2094494f3f02_blog_nimiq-a-frictionless-payment-protocol-native-to-the-web_1.png
 ---
 
 ## Introduction
