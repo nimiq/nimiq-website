@@ -17,6 +17,11 @@ export default defineNuxtConfig({
     compatibilityVersion: 5,
   },
 
+  srcDir: 'app',
+  dir: {
+    app: '.',
+  },
+
   modules: [
     '@vueuse/nuxt',
     '@nuxt/eslint',
@@ -35,7 +40,7 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
     environment.useNuxtHub && '@nuxthub/core',
     '@nuxt/content',
-    'nuxt-studio',
+    environment.environment.isStudio && 'nuxt-studio',
     'nuxt-link-checker',
   ].filter(Boolean),
 
@@ -225,6 +230,45 @@ export default defineNuxtConfig({
   },
 
   hooks: {
+    // Ensure dev uses the same WOFF2-only Google Fonts as production.
+    'fonts:providers': function (providers) {
+      const base = providers.google
+      if (typeof base !== 'function')
+        return
+      providers.google = (options: unknown) => {
+        const provider = base(options as never)
+        const wrapped = async (ctx: unknown) => {
+          const resolved = await provider(ctx as never)
+          if (!resolved || typeof resolved.resolveFont !== 'function')
+            return resolved
+          return {
+            ...resolved,
+            async resolveFont(fontFamily, options) {
+              const result = await resolved.resolveFont(fontFamily, options)
+              if (!result?.fonts)
+                return result
+              const filtered = result.fonts
+                .map(font => ({
+                  ...font,
+                  src: font.src?.filter((source) => {
+                    if (!('url' in source))
+                      return true
+                    if (source.format === 'woff')
+                      return false
+                    return !source.url?.endsWith('.woff')
+                  }),
+                }))
+                .filter(font => font.src && font.src.length > 0)
+              return { ...result, fonts: filtered }
+            },
+          }
+        }
+        // Preserve provider name for unifont.
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ;(wrapped as any)._name = (provider as any)._name
+        return wrapped
+      }
+    },
     // Restore IPX cache before build
     'build:before': function () {
       if (existsSync(IPX_CACHE_DIR)) {

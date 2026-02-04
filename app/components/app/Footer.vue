@@ -6,25 +6,25 @@ const copyrightNotice = site.footer.copyright ?? ''
 
 <template>
   <footer v-if="site" class="z-10 pt-12 md:pt-16" dark data-section :class="bgColor">
-    <div class="grid gap-10 md:gap-12 grid-items-start xl:gap-[104px]">
-      <div class="flex flex-col text-xs md:text-sm" area-contact>
+    <div class="grid gap-10 md:gap-12 grid-items-start xl:gap-[104px] items-start">
+      <div class="flex flex-col text-f-sm leading-[1.5]" area-contact>
         <p>{{ site.footer.newsletterCta }}</p>
-        <UiNewsletterEmailInput class="mt-2 md:mt-3" :placeholder="site.footer.newsletterPlaceholder" />
-        <p class="mt-2 md:mt-3">
+        <UiNewsletterEmailInput class="f-mt-xs" :placeholder="site.footer.newsletterPlaceholder" />
+        <p class="f-mt-xs">
           {{ site.footer.socialMediaCta }}
         </p>
-        <UiSocialMediaLogosList class="-mx-2 opacity-60 text-lg md:text-xl" :items="site.socials" />
+        <UiSocialMediaLogosList class="flex-nowrap opacity-60 text-f-xl" :items="site.socials" />
       </div>
 
-      <div class="text-xs md:text-sm text-neutral-700 self-end" area-meta>
+      <div class="text-f-sm leading-[1.5] text-neutral-700 self-end" area-meta>
         <NuxtLink class="group flex w-max" to="/" aria-label="Go to Homepage">
           <Icon class="opacity-80 h-5! w-[84px]! group-hover:hidden group-focus:hidden" name="nimiq:logos-nimiq-horizontal-mono" />
           <Icon class="hidden h-5! w-[84px]! group-hover:block group-focus:block" name="nimiq:logos-nimiq-horizontal" />
         </NuxtLink>
-        <p class="mt-2 md:mt-3">
+        <p class="f-mt-xs">
           {{ site.footer.description }}
         </p>
-        <div class="text-neutral-800 hover:text-neutral-900 focus:text-neutral-900 transition-colors mt-2 md:mt-3 flex gap-4 items-center flex-wrap">
+        <div class="text-neutral-800 hover:text-neutral-900 focus:text-neutral-900 transition-colors mt-0 flex gap-4 items-center flex-wrap">
           <NuxtLink class="font-semibold transition-colors text-neutral-800 hover:text-neutral-900 focus:text-neutral-900" to="/privacy-policy">
             Privacy Policy
           </NuxtLink>
@@ -33,13 +33,13 @@ const copyrightNotice = site.footer.copyright ?? ''
             Cookie Policy
           </NuxtLink>
         </div>
-        <p class="text-neutral-600 mt-4 md:mt-6">
+        <p class="text-neutral-600 f-mt-md">
           {{ copyrightNotice }}
         </p>
       </div>
 
       <div v-for="(group, i) in site.navigation" :key="i" :style="`grid-area: ${['project', 'tech', 'apps', 'get-started', 'community', 'and-more'][i]}`">
-        <p class="text-[11px] md:text-xs text-neutral-700/80 w-full nq-label">
+        <p class="text-[13.2px] leading-[13.2px] text-neutral-700/80 w-full nq-label">
           {{ group.label }}
         </p>
         <ul class="mt-4 md:mt-6" :aria-label="`${group.label} links`" role="list">
@@ -85,8 +85,15 @@ footer > div {
     grid-template-columns: 2fr 1fr 1fr 1fr;
     grid-template-areas:
       'contact project tech apps'
-      'contact hr-1 hr-1 hr-1'
       'meta get-started community and-more';
+  }
+}
+
+@media (min-width: 1024px) {
+  [area-hr-1],
+  [area-hr-2],
+  [area-hr-3] {
+    display: none;
   }
 }
 </style>

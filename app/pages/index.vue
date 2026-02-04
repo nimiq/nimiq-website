@@ -15,23 +15,23 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
         <HeroHome v-bind="page.hero" />
       </section>
 
-      <!-- Section 1: Apps pill link (prod: pt=200, pb=2) -->
-      <section class="nq-section-gap bg-neutral-0" style="--pb: 2px">
+      <!-- Section 1: Apps pill link (prod: pt=200, pb=2, max-lg children) -->
+      <section class="nq-section-gap bg-neutral-0" style="--pb: 2px" max-lg:children:max-w-none>
         <UiPillLink v-bind="page.appsLink" style="--c: var(--color-blue)" />
       </section>
 
-      <!-- Section 2: Apps headline (prod: pt=24, pb=48) -->
-      <section class="nq-section-gap bg-neutral-0" style="--pt: 24px; --pb: 48px">
+      <!-- Section 2: Apps headline (prod: pt=24) -->
+      <section class="nq-section-gap bg-neutral-0" style="--pt: 24px" max-lg:children:max-w-none>
         <Headline v-bind="page.apps.headline" />
       </section>
 
-      <!-- Section 3: Apps showcase cards (prod: pt=48, pb=22, px=0) -->
-      <section class="bg-neutral-0" style="--pt: 48px; --pb: 22px; --px: 0px">
+      <!-- Section 3: Apps showcase cards (prod: pb=20, px=0) -->
+      <section class="bg-neutral-0 apps-cards-pb" style="--px: 0px" max-lg:children:max-w-none>
         <ShowcaseAppsCards :apps="page.apps.items" />
       </section>
 
-      <!-- Section 4: Apps banner (prod: pt=0, pb=200, f-px-sm) -->
-      <section class="bg-neutral-0" style="--pt: 0px; --f-px-min: 16; --f-px-max: 24">
+      <!-- Section 4: Apps banner (prod: pt=0, f-px-sm) -->
+      <section class="bg-neutral-0" style="--pt: 0px; --f-px-min: 16; --f-px-max: 21.6" max-lg:children:max-w-none>
         <ShowcaseAppsBanner :banner="page.banner" />
       </section>
 
@@ -40,23 +40,23 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
         <UiPillLink v-bind="page.techLink" style="--c: var(--color-green)" />
       </section>
 
-      <!-- Section 6: Tech headline (prod: pt=24, pb=48) -->
-      <section class="dark bg-darkerblue nq-section-gap" style="--pt: 24px; --pb: 48px">
+      <!-- Section 6: Tech headline (prod: pt=24) -->
+      <section class="dark bg-darkerblue nq-section-gap" style="--pt: 24px">
         <GridTechHeadline v-bind="page.techGrid" />
       </section>
 
-      <!-- Section 7: Tech grid items (prod: pt=48, pb=48) -->
-      <section class="dark bg-darkerblue" style="--pt: 48px; --pb: 48px">
+      <!-- Section 7: Tech grid items -->
+      <section class="dark bg-darkerblue">
         <GridTechItems :items="page.techGrid.items" />
       </section>
 
-      <!-- Section 8: Staking (prod: pt=152, pb=200) - staking has internal padding -->
-      <section class="dark gradient-transparent-green bg-darkerblue" style="--pt: 140px">
+      <!-- Section 8: Staking (prod: pt=140 mobile, 152 desktop, pb=200) - staking has internal padding -->
+      <section class="dark gradient-transparent-green bg-darkerblue staking-pt">
         <HeadlineStaking v-bind="page.staking" />
       </section>
 
-      <!-- Section 9: Community (prod: pt=200, pb=48) -->
-      <section class="nq-section-gap bg-neutral-0" style="--pb: 48px">
+      <!-- Section 9: Community -->
+      <section class="nq-section-gap bg-neutral-0">
         <Headline v-bind="page.community" />
       </section>
     </main>

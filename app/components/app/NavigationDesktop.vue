@@ -35,7 +35,7 @@ watchEffect(() => {
 
 <template>
   <NavigationMenuRoot v-if="site?.navigation" class="header-nav relative" :delay-duration="35">
-    <NavigationMenuList class="flex items-center gap-x-1">
+    <NavigationMenuList class="flex items-center">
       <!-- Apps Dropdown -->
       <NavigationMenuItem v-if="appsGroup" value="apps">
         <NavigationMenuTrigger class="trigger">

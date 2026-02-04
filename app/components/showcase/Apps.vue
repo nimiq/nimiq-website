@@ -91,7 +91,7 @@ onMounted(() => {
   </DefineLargeCard>
 
   <!-- Grid with apps and banner -->
-  <ul class="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-[22px] px-3 md:px-4">
+  <ul class="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-[22px]" f-px-sm>
     <!-- Regular apps (small cards) -->
     <li v-for="app in regularApps" :key="app.item" class="bg-neutral-300 hover:bg-neutral-0 focus:bg-neutral-0 p-0 overflow-visible isolate nq-hoverable" style="--ring-color: transparent">
       <SmallCard :app />

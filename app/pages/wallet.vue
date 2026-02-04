@@ -14,11 +14,11 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <HeroWallet v-bind="page.hero" />
       </section>
 
-      <section class="bg-darkerblue relative overflow-x-clip md:pt-4 md:pt-6" scheme-dark children:max-w-none>
+      <section class="bg-darkerblue relative overflow-x-clip md:pt-4 md:pt-6 items-stretch wallet-showcase" scheme-dark children:max-w-none>
         <ShowcaseWallet :playground-url="page.playground.url" />
       </section>
 
-      <section class="px-0 pb-0 pt-40 md:pt-[160px] bg-darkerblue relative" dark scheme-dark>
+      <section class="bg-darkerblue relative items-stretch" style="--pt:160px;--pb:0px;--px:0px" dark scheme-dark>
         <ShowcaseConsensus v-bind="page.consensus" />
       </section>
 
@@ -26,7 +26,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <Headline v-bind="page.intro" />
       </section>
 
-      <section class="bg-neutral-0">
+      <section class="bg-neutral-0 items-stretch">
         <ShowcaseCurrency v-bind="page.currencies" />
       </section>
 
@@ -38,11 +38,11 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <Headline v-bind="page.seed.headline" />
       </section>
 
-      <section class="bg-neutral-0">
+      <section class="bg-neutral-0 items-stretch">
         <GridSection :items="page.seed.items" variation="threeColumnsIconsInline" />
       </section>
 
-      <section class="px-2 bg-neutral-0 relative overflow-x-clip">
+      <section class="px-2 bg-neutral-0 relative overflow-x-clip items-stretch">
         <ShowcaseWalletWords v-bind="page.challenge" />
       </section>
 
@@ -59,5 +59,12 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
 }
 .wallet-hero-section p {
   color: rgb(var(--nq-white) / 0.7);
+}
+
+@media (min-width: 768px) {
+  .wallet-hero-section {
+    --f-pt-max: 189.3 !important;
+    --f-pb-max: 44.8 !important;
+  }
 }
 </style>

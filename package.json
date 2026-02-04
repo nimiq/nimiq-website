@@ -68,6 +68,7 @@
     "@vueuse/core": "catalog:frontend",
     "@vueuse/nuxt": "catalog:frontend",
     "agent-browser": "catalog:",
+    "better-sqlite3": "catalog:",
     "consola": "catalog:server",
     "dotenv": "catalog:",
     "drizzle-kit": "catalog:studio",

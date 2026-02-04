@@ -1,9 +1,9 @@
 footer:
   newsletterCta: Sign up for our monthly newsletter
-  newsletterPlaceholder: your@email.com
-  socialMediaCta: Join the Nimiq community
-  description: Nimiq is a blockchain payment protocol designed for payments and designed to be easy to use. It enables payments to happen directly between the payer and receiver, using the open blockchain as the backend.
-  copyright: © Nimiq
+  newsletterPlaceholder: Enter email address...
+  socialMediaCta: or follow us here
+  description: Nimiq is an Inuit word for an object or force that binds things together.
+  copyright: © Nimiq Foundation 2017-2026
 
 navigation:
   - label: Project

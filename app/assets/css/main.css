@@ -1,10 +1,3 @@
-/* Font rendering to match production */
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
 /* Accessibility: Global reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -15,6 +8,12 @@ html {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Prevent horizontal overflow from decorative elements */
+html,
+body {
+  overflow-x: hidden;
 }
 
 /* Accessibility: Focus visible styles */
@@ -64,11 +63,255 @@ html {
   /* Viewport widths for fluid spacing */
   --f-space-width-min: 320;
   --f-space-width-max: 1440;
+  --f-text-min-container: 320;
+  --f-text-max-container: 1920;
+  --f-text-unit: 1px;
+  --f-text-container: 100vw;
+  --f-mt-min-container: 320;
+  --f-mt-max-container: 1920;
+  --f-mt-unit: 1px;
+  --f-mt-container: 100vw;
 
   /* Nimiq color RGB values for use with rgb(var(--nq-*)) syntax */
   --nq-green: 33, 188, 165;
   --nq-neutral-0: 255, 255, 255;
   --nq-neutral-100: 247, 247, 249;
+}
+
+/* Fluid horizontal padding utility (matches f-px-sm in prod) */
+body:not(.nq-raw) :where(.f-px-sm, [f-px-sm]) {
+  --f-space-width-range: calc(var(--f-space-width-max) - var(--f-space-width-min));
+  --f-space-scale-factor: calc((100vw - (1px * var(--f-space-width-min))) / var(--f-space-width-range));
+  --f-px-min: 16;
+  --f-px-max: 24;
+  --f-px-range: calc(var(--f-px-max) - var(--f-px-min));
+  --f-px-fluid: calc(1px * var(--f-px-min) + var(--f-px-range) * var(--f-space-scale-factor));
+  --f-px: clamp(calc(1px * var(--f-px-min)), var(--f-px-fluid), calc(var(--f-px-max) * 1px));
+  padding-left: var(--f-px);
+  padding-right: var(--f-px);
+}
+
+/* Fluid text size utilities (match nimiq.com f-* scale) */
+:where(.text-f-2xs, .f-text-2xs, [text~='f-2xs']) {
+  --f-text-min: 10;
+  --f-text-max: 12;
+}
+:where(.text-f-xs, .f-text-xs, [text~='f-xs']) {
+  --f-text-min: 12;
+  --f-text-max: 14;
+}
+:where(.text-f-sm, .f-text-sm, [text~='f-sm']) {
+  --f-text-min: 14;
+  --f-text-max: 16;
+}
+:where(.text-f-md, .f-text-md, [text~='f-md']) {
+  --f-text-min: 16;
+  --f-text-max: 16;
+}
+:where(.text-f-lg, .f-text-lg, [text~='f-lg']) {
+  --f-text-min: 16;
+  --f-text-max: 18;
+}
+:where(.text-f-xl, .f-text-xl, [text~='f-xl']) {
+  --f-text-min: 18;
+  --f-text-max: 22;
+}
+:where(.text-f-2xl, .f-text-2xl, [text~='f-2xl']) {
+  --f-text-min: 22;
+  --f-text-max: 26;
+}
+:where(.text-f-3xl, .f-text-3xl, [text~='f-3xl']) {
+  --f-text-min: 26;
+  --f-text-max: 32;
+}
+:where(.text-f-4xl, .f-text-4xl, [text~='f-4xl']) {
+  --f-text-min: 32;
+  --f-text-max: 44;
+}
+
+:where(
+  .text-f-2xs,
+  .text-f-xs,
+  .text-f-sm,
+  .text-f-md,
+  .text-f-lg,
+  .text-f-xl,
+  .text-f-2xl,
+  .text-f-3xl,
+  .text-f-4xl,
+  .f-text-2xs,
+  .f-text-xs,
+  .f-text-sm,
+  .f-text-md,
+  .f-text-lg,
+  .f-text-xl,
+  .f-text-2xl,
+  .f-text-3xl,
+  .f-text-4xl,
+  [text~='f-2xs'],
+  [text~='f-xs'],
+  [text~='f-sm'],
+  [text~='f-md'],
+  [text~='f-lg'],
+  [text~='f-xl'],
+  [text~='f-2xl'],
+  [text~='f-3xl'],
+  [text~='f-4xl']
+) {
+  font-size: clamp(
+    calc(var(--f-text-unit, 1px) * var(--f-text-min, 16)),
+    calc(
+      calc(var(--f-text-unit, 1px) * var(--f-text-min, 16)) + (var(--f-text-max, 16) - var(--f-text-min, 16)) *
+        (var(--f-text-container, 100vw) - (var(--f-text-unit, 1px) * var(--f-text-min-container, 320))) /
+        (var(--f-text-max-container, 1920) - var(--f-text-min-container, 320))
+    ),
+    calc(var(--f-text-unit, 1px) * var(--f-text-max, 16))
+  );
+}
+
+/* Fluid margin-top utilities */
+:where(.f-mt-2xs, [f-mt-2xs]) {
+  --f-mt-min: 8;
+  --f-mt-max: 12;
+}
+:where(.f-mt-xs, [f-mt-xs]) {
+  --f-mt-min: 12;
+  --f-mt-max: 16;
+}
+:where(.f-mt-sm, [f-mt-sm]) {
+  --f-mt-min: 16;
+  --f-mt-max: 24;
+}
+:where(.f-mt-md, [f-mt-md]) {
+  --f-mt-min: 24;
+  --f-mt-max: 32;
+}
+:where(.f-mt-lg, [f-mt-lg]) {
+  --f-mt-min: 32;
+  --f-mt-max: 48;
+}
+:where(.f-mt-xl, [f-mt-xl]) {
+  --f-mt-min: 48;
+  --f-mt-max: 72;
+}
+:where(.f-mt-2xl, [f-mt-2xl]) {
+  --f-mt-min: 72;
+  --f-mt-max: 96;
+}
+
+:where(
+  .f-mt-2xs,
+  .f-mt-xs,
+  .f-mt-sm,
+  .f-mt-md,
+  .f-mt-lg,
+  .f-mt-xl,
+  .f-mt-2xl,
+  [f-mt-2xs],
+  [f-mt-xs],
+  [f-mt-sm],
+  [f-mt-md],
+  [f-mt-lg],
+  [f-mt-xl],
+  [f-mt-2xl]
+) {
+  margin-top: clamp(
+    calc(var(--f-mt-unit, 1px) * var(--f-mt-min, 16)),
+    calc(
+      calc(var(--f-mt-unit, 1px) * var(--f-mt-min, 16)) + (var(--f-mt-max, 16) - var(--f-mt-min, 16)) *
+        (var(--f-mt-container, 100vw) - (var(--f-mt-unit, 1px) * var(--f-mt-min-container, 320))) /
+        (var(--f-mt-max-container, 1920) - var(--f-mt-min-container, 320))
+    ),
+    calc(var(--f-mt-unit, 1px) * var(--f-mt-max, 16))
+  ) !important;
+}
+
+:where(.size-\[0\.4em\]) {
+  width: 0.4em;
+  height: 0.4em;
+}
+
+.size-7 {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.size-10 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.size-\[18px\] {
+  width: 18px;
+  height: 18px;
+}
+
+.text-\[18px\] {
+  font-size: 18px;
+}
+
+.pill-label {
+  font-size: 18px !important;
+  line-height: 18px !important;
+}
+
+@media (min-width: 1024px) {
+  .lg\:size-10 {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .lg\:size-\[30px\] {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.staking-note {
+  font-size: clamp(12.13px, calc(12.13px + (14 - 12.13) * ((100vw - 375px) / 905)), 14px);
+  line-height: 1.2;
+}
+
+.tech-headline {
+  letter-spacing: normal;
+}
+
+@media (min-width: 1024px) {
+  .tech-headline {
+    letter-spacing: -0.6px;
+  }
+}
+
+.staking-pt {
+  --pt: 140px !important;
+}
+
+@media (min-width: 768px) {
+  .staking-pt {
+    --pt: 152px !important;
+  }
+}
+
+.apps-cards-pb {
+  --pb: 20px !important;
+}
+
+@media (min-width: 768px) {
+  .apps-cards-pb {
+    --pb: 22px !important;
+  }
+}
+
+/* Banner card shadow/outline (matches production) */
+.nq-banner-card {
+  background: var(--color-neutral-0);
+  border-radius: 8px;
+  outline: 1px solid color-mix(in oklch, var(--color-neutral) 10%, transparent);
+  outline-offset: -1px;
+  box-shadow:
+    0 18px 38px 0 rgba(31, 35, 72, 0.07),
+    0 7px 8.5px 0 rgba(31, 35, 72, 0.04),
+    0 2px 2.5px 0 rgba(31, 35, 72, 0.02);
 }
 
 /* Base body styles for static content */
@@ -110,8 +353,9 @@ body:not(.nq-raw)
   margin: 0;
   line-height: 1.3;
   text-wrap: balance;
-  --font-size-min: 38;
+  --font-size-min: 40;
   --font-size-max: 48;
+  color: var(--color-neutral);
   font-size: var(--f-font-size);
 }
 
@@ -150,9 +394,19 @@ body:not(.nq-raw)
   max-width: 42ch;
   line-height: 1.5;
   text-wrap: pretty;
-  --font-size-min: 20;
-  --font-size-max: 22;
+  --font-size-min: 18;
+  --font-size-max: 20.8;
+  color: var(--color-neutral-700);
   font-size: var(--f-font-size);
+}
+
+body:not(.nq-raw) section.about-hero h1 + p {
+  --font-size-max: 22.33 !important;
+}
+
+body:not(.nq-raw) section.about-hero h1,
+body:not(.nq-raw) section.about-hero h1 + p {
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -235,12 +489,12 @@ body:not(.nq-raw)
 body:not(.nq-raw)
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
     :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
-  ):where(h3) {
+  ):where(h3):not([class*='text-']) {
   font-weight: 600;
   line-height: 1.3;
   text-wrap: balance;
-  --font-size-min: 26;
-  --font-size-max: 30;
+  --font-size-min: 22;
+  --font-size-max: 28;
   font-size: var(--f-font-size);
 }
 
@@ -256,7 +510,7 @@ body:not(.nq-raw)
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
     :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
   ):where(h3)
-  + p {
+  + p:not([class*='text-']) {
   margin-top: 16px;
   line-height: 1.5;
   text-wrap: pretty;
@@ -335,9 +589,43 @@ body:not(.nq-raw) :where(section, [data-section]) {
   padding: var(--pt, 0) var(--px, 0) var(--pb, 0) var(--px, 0);
 }
 
+/* Footer uses tighter section spacing on prod */
+body:not(.nq-raw) footer[data-section] {
+  --f-pt-min: 72;
+  --f-pt-max: 96;
+  --f-pb-min: 32;
+  --f-pb-max: 48;
+}
+
+/* Honor dark scheme sections for light-dark() colors */
+body:not(.nq-raw) :where(section, [data-section])[scheme-dark],
+body:not(.nq-raw) :where(section, [data-section])[scheme-dark] * {
+  color-scheme: dark;
+}
+
 @media screen and (min-width: 769px) {
   body:not(.nq-raw) :where(section, [data-section]) {
     align-items: center;
+  }
+}
+
+/* Allow sections to opt into full-width children */
+body:not(.nq-raw) :where(section, [data-section]).items-stretch {
+  align-items: stretch;
+}
+
+/* Stack utility (UnoCSS-like) */
+[stack] {
+  display: grid;
+}
+
+[stack] > * {
+  grid-area: 1 / 1;
+}
+
+@media (min-width: 1280px) {
+  .consensus-headline {
+    white-space: nowrap !important;
   }
 }
 
@@ -358,6 +646,12 @@ body:not(.nq-raw) :where(section, [data-section]) > * {
   max-width: var(--nq-max-width);
 }
 
+@media (max-width: 1024px) {
+  body:not(.nq-raw) :where(section, [data-section])[max-lg\:children\:max-w-none] > * {
+    max-width: none;
+  }
+}
+
 /* Wide sections */
 body:not(.nq-raw) :where(section, [data-section]):is(.nq-wide, [nq-wide]) {
   --nq-max-width: none;
@@ -365,11 +659,6 @@ body:not(.nq-raw) :where(section, [data-section]):is(.nq-wide, [nq-wide]) {
   width: 100%;
   margin: 0 auto;
   align-items: center;
-}
-
-/* Dark sections color scheme */
-body:not(.nq-raw) :where(section, [data-section]):is(.bg-darkblue, [bg-darkblue], .bg-darkerblue, [bg-darkerblue]) {
-  color-scheme: dark;
 }
 
 /* Last section reduced padding */
@@ -494,4 +783,12 @@ body:not(.nq-raw)
   ) {
   --f-pb-min: 160;
   --f-pb-max: 200;
+}
+
+/* Wallet showcase spacing tweak to match production */
+@media screen and (min-width: 768px) {
+  body:not(.nq-raw) :where(section, [data-section]).wallet-showcase {
+    --f-pt-min: 96;
+    --f-pt-max: 118.4;
+  }
 }

@@ -346,7 +346,7 @@
   .nq-label {
     text-transform: uppercase;
     letter-spacing: 0.17em;
-    font-size: 0.75em;
+    font-size: 0.825em;
     font-weight: 700;
     line-height: 1;
     color: var(--color-neutral-800);
@@ -984,8 +984,8 @@
 
 /* Fluid typography variables */
 :root {
-  --unit: 16px;
-  --nq-screen-width-min-em: 23.4375;
+  --unit: 1em;
+  --nq-screen-width-min-em: 20;
   --nq-screen-width-max-em: 72;
   --f-screen-range-em: calc(var(--nq-screen-width-max-em) - var(--nq-screen-width-min-em));
   --nq-prose-max-width: 780px;
@@ -996,10 +996,15 @@
      nq-prose - Rich text content styling
      -------------------------------------------------------------------------- */
   .nq-prose,
+  [nq-prose] {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #797b91;
+  }
+
   .nq-prose-compact,
-  [nq-prose],
   [nq-prose-compact] {
-    /* Base font-size is inherited or set via text-* utilities (e.g., text-xl = 20px) */
+    font-size: 1rem;
   }
 
   /* Padding for non-compact prose */

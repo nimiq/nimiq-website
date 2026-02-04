@@ -7,7 +7,7 @@ defineProps<{ item: string, label?: string, icon: string }>()
     <div class="text-[var(--c)] bg-[color-mix(in_oklch,var(--c)_20%,transparent)] size-7 lg:size-10 rounded-full grid place-content-center" aria-hidden>
       <Icon class="pill-gradient size-[18px] lg:size-[30px]" :name="icon" />
     </div>
-    <span class="text-[18px] text-neutral-700 nq-label">{{ item }}</span>
+    <span class="text-[18px] text-neutral-700 nq-label pill-label">{{ item }}</span>
   </div>
 </template>
 

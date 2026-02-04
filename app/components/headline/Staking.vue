@@ -15,11 +15,11 @@ const id = `terms-note-${useId()}`
 
 <template>
   <div class="flex flex-col md:items-center group text-white" data-inverted>
-    <AnimatedStakingRipple class="size-[120px]" data-inverted />
-    <h2 class="mt-4 md:mt-6 text-white text-wrap md:text-balance">
+    <AnimatedStakingRipple class="text-green size-[120px]" data-inverted />
+    <h2 class="f-mt-md text-white text-wrap md:text-balance">
       {{ headlineParts[0] }}
-      <span class="bg-white/30 text-white px-2.5 py-[3px] rounded inline-flex" data-percentage>
-        ~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[2px]" name="nimiq:asterisk" :aria-labelledby="id" />
+      <span class="bg-white/30 text-white px-[10px] py-[3px] rounded inline-flex" data-percentage>
+        ~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[8px]" name="nimiq:asterisk" :aria-labelledby="id" />
       </span>
       {{ headlineParts[1] }}
     </h2>
@@ -29,18 +29,18 @@ const id = `terms-note-${useId()}`
     <ul v-if="actions?.length" class="flex gap-4 lg:gap-5 flex-wrap">
       <li v-for="action in actions" :key="action.href">
         <NuxtLink
-          class="mt-6 md:mt-8 nq-arrow nq-pill-lg md:mx-auto" :to="action.href" :class="{
+          class="f-mt-lg nq-arrow nq-pill-lg md:mx-auto" :to="action.href" :class="{
             'nq-pill-blue': action.variant === 'primary' || action.variant === 'arrow',
             'nq-pill-secondary': action.variant === 'secondary',
-            'nq-pill-tertiary': action.variant === 'tertiary',
+            'nq-pill-tertiary bg-white text-neutral': action.variant === 'tertiary',
           }"
         >
           {{ action.label }}
         </NuxtLink>
       </li>
     </ul>
-    <small v-if="stakingNote" :id class="text-white/80 sm:text-center transition-colors duration-400 mt-4 md:mt-6 sm:max-w-[32ch]" data-note>
-      <Icon class="size-[0.4em] -translate-x-[8px] sm:translate-x-[4px] translate-y-[4px] sm:translate-y-[8px]" aria-hidden name="nimiq:asterisk" /> {{ stakingNote }}
+    <small v-if="stakingNote" :id class="text-white/80 sm:text-center transition-colors duration-400 f-mt-md sm:max-w-[32ch] staking-note" data-note>
+      <Icon class="size-[0.4em] -translate-x-[8px] sm:translate-x-[4px] translate-y-[4px] sm:translate-y-[8px]" style="display: block" aria-hidden name="nimiq:asterisk" /> {{ stakingNote }}
     </small>
   </div>
 </template>

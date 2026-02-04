@@ -17,7 +17,7 @@ const bgApps = computed(() => {
 
 <template>
   <div v-if="banner?.items?.[0]" class="w-full">
-    <div class="py-6 lg:py-[72px] px-8 rounded-lg bg-neutral-0 w-full relative overflow-visible max-w-none lg:max-w-[calc(var(--nq-max-width)-32px)] mx-auto outline outline-[1.5px] -outline-offset-[1.5px] outline-neutral-300/10 shadow">
+    <div class="nq-banner-card py-6 lg:py-[72px] px-8 w-full relative overflow-hidden max-w-none lg:max-w-[calc(var(--nq-max-width)-32px)] mx-auto">
       <!-- Background app logos -->
       <NuxtLink v-for="(bg, j) in bgApps" :key="j" class="size-[104px] absolute cursor-pointer" :to="bg.link" target="_blank" :aria-label="bg.name" tabindex="-1" :class="[bg.classes]" :style="{ color: bg.color }">
         <Icon class="size-full inset-0 absolute" name="nimiq:logos-nimiq-mono" />

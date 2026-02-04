@@ -44,7 +44,7 @@ const [DefineLargeCard, LargeCard] = createReusableTemplate<{ app: AppItem }>()
           'md:max-w-[245px]': app.item === 'Nimiq Pay',
         }"
       >
-        <NuxtImg class="w-full h-auto" :src="app.preview" :alt="app.title" />
+        <img :src="app.preview" :alt="app.title" loading="lazy">
       </div>
     </NuxtLink>
   </DefineSmallCard>
@@ -57,7 +57,7 @@ const [DefineLargeCard, LargeCard] = createReusableTemplate<{ app: AppItem }>()
       <Icon v-else-if="app.item === 'Multisig Wallet'" class="text-[56px] lg:ml-6" name="nimiq:logos-multisig" />
 
       <!-- Title -->
-      <h3 class="text-[22px]/[28.6px] lg:text-[28px]/[36.4px] font-semibold mt-4 text-left lg:ml-6 whitespace-nowrap">
+      <h3 class="text-[22px]/[28.6px] lg:text-[28px]/[36.4px] font-semibold mt-4 text-left lg:ml-6">
         {{ app.title }}
       </h3>
 
@@ -73,13 +73,13 @@ const [DefineLargeCard, LargeCard] = createReusableTemplate<{ app: AppItem }>()
 
       <!-- Preview image -->
       <div class="h-[196px] lg:-mb-[120px] lg:ml-auto md:row-span-full md:col-start-2 lg:h-[490px] lg:w-[640px]" :class="{ 'max-md:-mr-[128px] -mr-[128px]': app.item === 'Nimiq Wallet' || app.item === 'Multisig Wallet' }">
-        <NuxtImg :src="app.preview" :alt="app.title" :class="{ 'max-xl:scale-[1.55] scale-[1.2] max-xl:origin-top-left relative bottom-[-32px]': app.item === 'Nimiq Wallet' || app.item === 'Multisig Wallet' }" />
+        <img :src="app.preview" :alt="app.title" loading="lazy" :class="{ 'max-xl:scale-[1.55] scale-[1.2] max-xl:origin-top-left relative bottom-[-32px]': app.item === 'Nimiq Wallet' || app.item === 'Multisig Wallet' }">
       </div>
     </NuxtLink>
   </DefineLargeCard>
 
   <!-- Grid with apps -->
-  <ul class="grid grid-cols-1 lg:grid-cols-2 gap-[20px] md:gap-[22px] px-[12px] md:px-[16px]">
+  <ul class="grid grid-cols-1 lg:grid-cols-2 gap-[20px] md:gap-[22px]" f-px-sm>
     <!-- Regular apps (small cards) -->
     <li v-for="app in regularApps" :key="app.item" class="bg-neutral-300 hocus:bg-neutral-0 p-0 overflow-visible isolate nq-hoverable" style="--ring-color: transparent">
       <SmallCard :app />

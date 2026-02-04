@@ -165,8 +165,8 @@ async function connect() {
 </script>
 
 <template>
-  <div class="overflow-hidden w-full xl:h-full">
-    <div class="w-full h-[400px] xl:h-full relative" :style="`aspect-ratio: ${aspectRatio}`">
+  <div class="overflow-hidden w-full">
+    <div class="relative w-full xl:w-[65vw]" :style="`aspect-ratio: ${aspectRatio}`">
       <div class="curtain size-full absolute z-1 xl:max-w-50vw" />
       <div class="size-full absolute">
         <canvas ref="canvas" class="size-full" />
