@@ -5,3 +5,60 @@
   --font-size-max-em: 1;
   font-weight: inherit;
 }
+
+/* Blog post typography overrides (scoped) */
+body:has([view-transition-post-title]) header[data-section],
+body:has([view-transition-post-title]) article[nq-prose] {
+  --nq-prose-max-width: 920px;
+}
+
+/* Headings: ~30% smaller than current when body text is 20px */
+body:has([view-transition-post-title]) article[nq-prose] :where(h2) {
+  --font-size-min-em: 1.5;
+  --font-size-max-em: 1.7;
+  line-height: 1.25;
+  margin-bottom: 0.75lh;
+}
+
+body:has([view-transition-post-title]) article[nq-prose] :where(h3) {
+  --font-size-min-em: 1.25;
+  --font-size-max-em: 1.4;
+  line-height: 1.25;
+  margin-bottom: 0.6lh;
+}
+
+body:has([view-transition-post-title]) article[nq-prose] :where(h4) {
+  --font-size-min-em: 1.1;
+  --font-size-max-em: 1.25;
+  line-height: 1.25;
+  margin-bottom: 0.5lh;
+}
+
+/* Bold should look clearly bold */
+body:has([view-transition-post-title]) article[nq-prose] :where(strong, b) {
+  font-weight: 700;
+}
+
+/*
+List alignment fix:
+- Keep top-level list indentation constant across breakpoints.
+- Align markers vertically using em-based offsets (instead of fixed px).
+- Avoid breaking nested list layout by only targeting lists that are direct children of the article.
+*/
+body:has([view-transition-post-title]) article[nq-prose] > :where(ul, ol) > li {
+  margin-left: 20px; /* overrides the 32px/40px breakpoint shifts from nimiq-css */
+}
+
+body:has([view-transition-post-title]) article[nq-prose] > ul > li::before {
+  top: 0.6em; /* replaces fixed top: 8px feel; scales with font size */
+}
+
+body:has([view-transition-post-title]) article[nq-prose] > ol > li::before {
+  top: 0.15em; /* replaces fixed top: 2px; aligns better with first-line baseline */
+}
+
+/* Optional: slightly tighter list block spacing on blog posts */
+body:has([view-transition-post-title]) article[nq-prose] > :where(ul, ol) {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}

@@ -271,7 +271,7 @@ const isHome = route.fullPath === '/'
 
   li.link-item {
     a {
-      --uno: 'flex-1 cursor-pointer whitespace-nowrap  font-semibold rounded-4 transition-colors px-16 py-10 hocus:bg-darkblue/6 text-darkblue/60 hocus:text-darkblue';
+      --uno: 'flex-1 cursor-pointer whitespace-nowrap  font-semibold rounded-4 transition-colors px-16 py-10 hocus:bg-darkblue/6 text-darkblue/64 hocus:text-darkblue';
     }
   }
 
