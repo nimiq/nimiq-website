@@ -183,8 +183,8 @@ watchEffect(() => {
     </NavigationMenuList>
 
     <ClientOnly>
-      <div class="viewport-container absolute left-0 top-full w-full z-10" style="perspective: 2000px">
-        <NavigationMenuViewport class="viewport-panel transition-all h-[var(--reka-navigation-menu-viewport-height)] w-[var(--reka-navigation-menu-viewport-width)] mt-3 rounded-xl bg-white origin-top duration-300 ease-[cubic-bezier(0.25,0,0,1)] absolute overflow-hidden shadow-xl outline outline-1 outline-neutral-200" style="left: var(--reka-navigation-menu-viewport-left, 0)" />
+      <div class="viewport-container absolute right-0 top-full z-10 flex justify-center min-w-full" style="perspective: 2000px">
+        <NavigationMenuViewport class="viewport-panel transition-all h-[var(--reka-navigation-menu-viewport-height)] w-[var(--reka-navigation-menu-viewport-width)] mt-3 rounded-xl bg-white origin-top duration-300 ease-[cubic-bezier(0.25,0,0,1)] relative overflow-hidden shadow-xl outline outline-1 outline-neutral-200" />
       </div>
     </ClientOnly>
   </NavigationMenuRoot>

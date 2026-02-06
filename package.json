@@ -9,6 +9,7 @@
     "test": "vitest",
     "test:visual": "vitest run tests/visual-parity-runner.test.ts",
     "test:visual:serve": "npx serve tests/screenshots -p 8080",
+    "analyze:sections": "pnpm exec tsx scripts/visual-parity-fix.ts",
     "test:content": "vitest run tests/content.test.ts",
     "test:semantic": "vitest run tests/semantic.test.ts",
     "test:interaction": "vitest run tests/interaction.test.ts",

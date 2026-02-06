@@ -33,7 +33,7 @@ interface SemanticResult {
 }
 
 async function agentBrowser(cmd: string, session: string = 'default'): Promise<string> {
-  const { stdout, stderr } = await execAsync(`npx agent-browser --session ${session} ${cmd}`, { timeout: 120000 })
+  const { stdout, stderr } = await execAsync(`pnpm exec agent-browser --session ${session} ${cmd}`, { timeout: 120000 })
   if (stderr && !stderr.includes('npm warn'))
     console.warn('agent-browser stderr:', stderr)
   return stdout.trim()

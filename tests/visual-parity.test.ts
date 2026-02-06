@@ -14,7 +14,7 @@ const VIEWPORTS = [
 ]
 
 async function agentBrowser(cmd: string): Promise<string> {
-  const { stdout, stderr } = await execAsync(`npx agent-browser ${cmd}`, { timeout: 60000 })
+  const { stdout, stderr } = await execAsync(`pnpm exec agent-browser ${cmd}`, { timeout: 60000 })
   if (stderr && !stderr.includes('npm warn'))
     console.warn('agent-browser stderr:', stderr)
   return stdout.trim()
@@ -31,7 +31,8 @@ describe('visual Parity Setup', () => {
   })
 
   it('agent-browser can open pages', async () => {
-    const url = await agentBrowser(`open "${PROD}" && npx agent-browser get url`)
+    await agentBrowser(`open "${PROD}"`)
+    const url = await agentBrowser('get url')
     expect(url).toContain('nimiq.com')
   })
 

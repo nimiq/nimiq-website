@@ -8,17 +8,32 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 const execAsync = promisify(exec)
 
-const LOCAL = 'http://localhost:3000'
-const PROD = 'https://www.nimiq.com'
+const LOCAL = process.env.LOCAL_URL || 'http://localhost:3000'
+const PROD = process.env.PROD_URL || 'https://www.nimiq.com'
 const BASE_DIR = 'tests/screenshots'
 
 // Note: /developers is a separate project (developer-center) served from same domain
 // Note: /terms and /activation-terms return 404 on production (excluded from tests)
-const PAGES = ['/', '/about', '/buy-and-sell', '/staking', '/blog', '/wallet', '/community', '/nimiq-pay', '/apps', '/oasis', '/roadmap', '/cryptopaymentlink', '/newsletter', '/team', '/contact', '/litepaper', '/bug-bounty', '/onepager']
-const VIEWPORTS = [
+const STATIC_PAGES = ['/', '/about', '/buy-and-sell', '/staking', '/blog', '/wallet', '/community', '/nimiq-pay', '/apps', '/oasis', '/roadmap', '/cryptopaymentlink', '/newsletter', '/team', '/contact', '/litepaper', '/bug-bounty', '/onepager']
+const VIEWPORTS_ALL = [
   { name: 'desktop', width: 1280, height: 800 },
   { name: 'mobile', width: 375, height: 667 },
 ]
+const VIEWPORTS = (() => {
+  const raw = process.env.VISUAL_VIEWPORTS
+  if (!raw)
+    return VIEWPORTS_ALL
+
+  const wanted = new Set(
+    raw
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean),
+  )
+
+  const filtered = VIEWPORTS_ALL.filter(v => wanted.has(v.name))
+  return filtered.length > 0 ? filtered : VIEWPORTS_ALL
+})()
 
 // Block slicing configuration
 const BLOCK_HEIGHT = 500 // pixels per block
@@ -63,8 +78,164 @@ interface TestSummary {
 
 const allResults: TestResult[] = []
 
+const RUN_VISUAL = process.env.VISUAL_RUN_VISUAL !== 'false'
+const RUN_SEMANTIC = (() => {
+  const raw = process.env.VISUAL_RUN_SEMANTIC
+  if (raw === 'true')
+    return true
+  if (raw === 'false')
+    return false
+  // Default: skip semantic checks for single-page runs (faster page-by-page workflow).
+  if (process.env.TEST_PAGE)
+    return false
+  return true
+})()
+const RUN_INTERACTIONS = (() => {
+  const raw = process.env.VISUAL_RUN_INTERACTIONS
+  if (raw === 'true')
+    return true
+  if (raw === 'false')
+    return false
+  // Default: skip interactions for single-page runs (faster page-by-page workflow).
+  if (process.env.TEST_PAGE)
+    return false
+  return true
+})()
+
+function normalizePagePath(input: string): string {
+  const trimmed = input.trim()
+  if (!trimmed)
+    return '/'
+
+  let path = trimmed
+  // Allow passing full URL in env vars.
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    try {
+      path = new URL(trimmed).pathname || '/'
+    }
+    catch {
+      path = '/'
+    }
+  }
+
+  if (!path.startsWith('/'))
+    path = `/${path}`
+
+  // Remove trailing slash (except root).
+  if (path.length > 1 && path.endsWith('/'))
+    path = path.slice(0, -1)
+
+  return path
+}
+
+async function fetchSitemapPages(): Promise<string[]> {
+  const url = new URL('/sitemap.xml', PROD).toString()
+  const res = await fetch(url)
+  if (!res.ok)
+    throw new Error(`Failed to fetch sitemap: ${url} (${res.status})`)
+  const xml = await res.text()
+
+  const locMatches = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+  const pages = locMatches
+    .map(m => m[1]?.trim())
+    .filter(Boolean)
+    .map((loc) => {
+      try {
+        const u = new URL(loc!)
+        return normalizePagePath(u.pathname)
+      }
+      catch {
+        return null
+      }
+    })
+    .filter((p): p is string => Boolean(p))
+
+  return [...new Set(pages)]
+}
+
+function filterPages(pages: string[]): string[] {
+  const EXCLUDE_EXACT = new Set([
+    '/terms',
+    '/activation-terms',
+  ])
+
+  const EXCLUDE_PREFIXES = [
+    '/developers', // separate project
+    '/vote',
+    '/cards',
+    '/styleguide',
+    '/privacy-policy',
+  ]
+
+  const includeDeep = process.env.VISUAL_INCLUDE_DEEP === 'true'
+
+  return pages
+    .map(normalizePagePath)
+    .filter((p) => {
+      if (EXCLUDE_EXACT.has(p))
+        return false
+      if (EXCLUDE_PREFIXES.some(prefix => p.startsWith(prefix)))
+        return false
+      // Drop obvious non-pages.
+      if (p.includes('.'))
+        return false
+      // Sitemap contains deep pages (e.g. blog posts). Default to only top-level pages unless explicitly enabled.
+      if (!includeDeep) {
+        const depth = p === '/' ? 0 : p.split('/').filter(Boolean).length
+        if (depth > 1)
+          return false
+      }
+      return true
+    })
+}
+
+function applyLimit(pages: string[]): string[] {
+  const limitRaw = process.env.VISUAL_PAGES_LIMIT
+  if (!limitRaw)
+    return pages
+
+  const limit = Number.parseInt(limitRaw, 10)
+  if (!Number.isFinite(limit) || limit <= 0)
+    return pages
+
+  const wantRandom = process.env.VISUAL_PAGES_RANDOM === 'true'
+  if (!wantRandom)
+    return pages.slice(0, limit)
+
+  const shuffled = [...pages]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    const tmp = shuffled[i]
+    shuffled[i] = shuffled[j]
+    shuffled[j] = tmp
+  }
+  return shuffled.slice(0, limit)
+}
+
+const PAGES = await (async () => {
+  if (process.env.TEST_PAGE)
+    return [normalizePagePath(process.env.TEST_PAGE)]
+
+  if (process.env.VISUAL_PAGES) {
+    const pages = process.env.VISUAL_PAGES
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean)
+      .map(normalizePagePath)
+    return filterPages(pages)
+  }
+
+  if (process.env.VISUAL_PAGES_SOURCE === 'sitemap') {
+    const pages = filterPages(await fetchSitemapPages())
+      .sort((a, b) => a.localeCompare(b))
+    return applyLimit(pages)
+  }
+
+  return STATIC_PAGES
+})()
+
 async function agentBrowser(cmd: string, session: string = 'default'): Promise<string> {
-  const { stdout, stderr } = await execAsync(`npx agent-browser --session ${session} ${cmd}`, { timeout: 120000 })
+  const { stdout, stderr } = await execAsync(`pnpm exec agent-browser --session ${session} ${cmd}`, { timeout: 120000 })
   if (stderr && !stderr.includes('npm warn'))
     console.warn('agent-browser stderr:', stderr)
   return stdout.trim()
@@ -482,6 +653,20 @@ function parseSnapshot(snapshot: string): { headings: string[], links: string[],
   return { headings, links, buttons }
 }
 
+async function getNavTriggerRef(session: string, label: string): Promise<string> {
+  const raw = await agentBrowser('--json snapshot -i -s ".header-nav"', session)
+  const parsed = JSON.parse(raw) as any
+  const refs = parsed?.data?.refs as Record<string, { name?: string, role?: string }> | undefined
+  if (!refs)
+    throw new Error(`agent-browser snapshot JSON missing refs (${session})`)
+
+  const match = Object.entries(refs).find(([, meta]) => meta?.role === 'button' && meta?.name === label)
+  if (!match)
+    throw new Error(`Nav trigger not found: "${label}" (${session})`)
+
+  return `@${match[0]}`
+}
+
 describe('visual Parity Tests', () => {
   beforeAll(async () => {
     ensureDir(BASE_DIR)
@@ -538,6 +723,9 @@ describe('visual Parity Tests', () => {
       await agentBrowser('close', `local-${viewport.name}`).catch(() => {})
       await agentBrowser('close', `prod-${viewport.name}`).catch(() => {})
     }
+    // Close shared sessions used by semantic/interaction tests.
+    await agentBrowser('close', 'local').catch(() => {})
+    await agentBrowser('close', 'prod').catch(() => {})
   })
 
   for (const page of PAGES) {
@@ -547,7 +735,7 @@ describe('visual Parity Tests', () => {
           const pageName = page === '/' ? 'home' : page.slice(1)
           const pageDir = join(BASE_DIR, pageName, viewport.name)
 
-          // Visual comparison test
+          if (RUN_VISUAL)
           it('visual comparison', async () => {
             const startTime = Date.now()
             ensureDir(pageDir)
@@ -575,34 +763,32 @@ describe('visual Parity Tests', () => {
               const localSession = `local-${viewport.name}`
               const prodSession = `prod-${viewport.name}`
 
-              await Promise.all([
-                (async () => {
-                  await agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, localSession)
-                  await agentBrowser('set media reduced-motion', localSession).catch(() => {})
-                  await agentBrowser(`open "${LOCAL}${page}"`, localSession)
-                  await agentBrowser('wait 2000', localSession)
-                  // Disable animations for consistent screenshots
-                  await agentBrowser(`eval "${disableAnimationsCSS}"`, localSession).catch(() => {})
-                  // Remove NuxtStudio sidebar that affects layout
-                  await agentBrowser('eval "document.body.removeAttribute(\'data-studio-active\'); document.body.removeAttribute(\'data-expand-sidebar\')"', localSession).catch(() => {})
-                  // Dismiss cookie consent if present
-                  await agentBrowser('eval "document.querySelector(\'[role=alertdialog] button:last-child\')?.click()"', localSession).catch(() => {})
-                  await agentBrowser('wait 500', localSession)
-                  await agentBrowser(`screenshot --full "${localPath}"`, localSession)
-                })(),
-                (async () => {
-                  await agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, prodSession)
-                  await agentBrowser('set media reduced-motion', prodSession).catch(() => {})
-                  await agentBrowser(`open "${PROD}${page}"`, prodSession)
-                  await agentBrowser('wait 2000', prodSession)
-                  // Disable animations for consistent screenshots
-                  await agentBrowser(`eval "${disableAnimationsCSS}"`, prodSession).catch(() => {})
-                  // Dismiss cookie consent if present
-                  await agentBrowser('eval "document.querySelector(\'[role=alertdialog] button:last-child\')?.click()"', prodSession).catch(() => {})
-                  await agentBrowser('wait 500', prodSession)
-                  await agentBrowser(`screenshot --full "${prodPath}"`, prodSession)
-                })(),
-              ])
+              // Run local/prod sequentially. agent-browser can flake under parallel CLI usage.
+              await agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, localSession)
+              await agentBrowser('set media reduced-motion', localSession).catch(() => {})
+              await agentBrowser(`open "${LOCAL}${page}"`, localSession)
+              await agentBrowser('wait --load networkidle', localSession).catch(() => {})
+              await agentBrowser('wait 500', localSession)
+              // Disable animations for consistent screenshots
+              await agentBrowser(`eval "${disableAnimationsCSS}"`, localSession).catch(() => {})
+              // Remove NuxtStudio sidebar that affects layout
+              await agentBrowser('eval "document.body.removeAttribute(\'data-studio-active\'); document.body.removeAttribute(\'data-expand-sidebar\')"', localSession).catch(() => {})
+              // Dismiss cookie consent if present
+              await agentBrowser('eval "document.querySelector(\'[role=alertdialog] button:last-child\')?.click()"', localSession).catch(() => {})
+              await agentBrowser('wait 500', localSession)
+              await agentBrowser(`screenshot --full "${localPath}"`, localSession)
+
+              await agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, prodSession)
+              await agentBrowser('set media reduced-motion', prodSession).catch(() => {})
+              await agentBrowser(`open "${PROD}${page}"`, prodSession)
+              await agentBrowser('wait --load networkidle', prodSession).catch(() => {})
+              await agentBrowser('wait 500', prodSession)
+              // Disable animations for consistent screenshots
+              await agentBrowser(`eval "${disableAnimationsCSS}"`, prodSession).catch(() => {})
+              // Dismiss cookie consent if present
+              await agentBrowser('eval "document.querySelector(\'[role=alertdialog] button:last-child\')?.click()"', prodSession).catch(() => {})
+              await agentBrowser('wait 500', prodSession)
+              await agentBrowser(`screenshot --full "${prodPath}"`, prodSession)
 
               // Compare using block slicing
               const blocks = compareBlocks(localPath, prodPath, pageDir, BLOCK_HEIGHT)
@@ -642,7 +828,7 @@ describe('visual Parity Tests', () => {
             }
           }, 120000)
 
-          // Semantic content test
+          if (RUN_SEMANTIC)
           it('semantic content', async () => {
             const startTime = Date.now()
 
@@ -656,9 +842,38 @@ describe('visual Parity Tests', () => {
             }
 
             try {
+              const localSession = 'local'
+              const prodSession = 'prod'
+
+              await Promise.all([
+                agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, localSession),
+                agentBrowser(`set viewport ${viewport.width} ${viewport.height}`, prodSession),
+              ])
+
+              await Promise.all([
+                agentBrowser('set media reduced-motion', localSession).catch(() => {}),
+                agentBrowser('set media reduced-motion', prodSession).catch(() => {}),
+              ])
+
+              await Promise.all([
+                agentBrowser(`open "${LOCAL}${page}"`, localSession),
+                agentBrowser(`open "${PROD}${page}"`, prodSession),
+              ])
+
+              await Promise.all([
+                agentBrowser('wait 1500', localSession),
+                agentBrowser('wait 1500', prodSession),
+              ])
+
+              // Dismiss cookie consent if present
+              await Promise.all([
+                agentBrowser('eval "document.querySelector(\'[role=alertdialog] button:last-child\')?.click()"', localSession).catch(() => {}),
+                agentBrowser('eval "document.querySelector(\'[role=alertdialog] button:last-child\')?.click()"', prodSession).catch(() => {}),
+              ])
+
               const [localSnapshot, prodSnapshot] = await Promise.all([
-                agentBrowser('snapshot', 'local'),
-                agentBrowser('snapshot', 'prod'),
+                agentBrowser('snapshot', localSession),
+                agentBrowser('snapshot', prodSession),
               ])
 
               const localContent = parseSnapshot(localSnapshot)
@@ -704,6 +919,7 @@ describe('visual Parity Tests', () => {
   }
 
   // Interaction tests - only run on desktop
+  if (RUN_INTERACTIONS)
   describe('interactions', () => {
     const NAV_DROPDOWNS = ['Apps', 'Tech', 'Community', 'Project', 'Get started']
 
@@ -747,8 +963,8 @@ describe('visual Parity Tests', () => {
           ])
 
           await Promise.all([
-            agentBrowser(`hover "${dropdown}"`, 'local'),
-            agentBrowser(`hover "${dropdown}"`, 'prod'),
+            (async () => agentBrowser(`hover ${await getNavTriggerRef('local', dropdown)}`, 'local'))(),
+            (async () => agentBrowser(`hover ${await getNavTriggerRef('prod', dropdown)}`, 'prod'))(),
           ])
 
           await Promise.all([
