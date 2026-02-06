@@ -286,10 +286,7 @@ export default defineNuxtConfig({
       concurrency: 8,
       crawlLinks: false,
       ignore: [
-        '/nimiq-website/_ipx/s_1600x900/assets/images/gods-light.webp',
-        '/nimiq-website/_ipx/s_3200x1800/assets/images/gods-light.webp',
-        '/nimiq-website/_ipx/_/assets/images/apple-store-badge.png',
-        '/nimiq-website/_ipx/_/assets/images/google-play-badge.svg',
+        '/_ipx/**',
         // External pages built by other projects - prevent Nuxt from trying to generate them
         '/vote',
         '/cards',
