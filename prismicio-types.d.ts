@@ -144,7 +144,9 @@ export interface BlogPageDocumentDataAuthorsItem {
   name: prismic.KeyTextField;
 }
 
-type BlogPageDocumentDataBodySlice = RichTextSlice;
+type BlogPageDocumentDataBodySlice =
+  | RichTextSlice
+  | BlogVideoSlice;
 
 /**
  * Content for Blog Article documents
@@ -3398,6 +3400,93 @@ type BannerSliceSliceVariation =
 export type BannerSliceSlice = prismic.SharedSlice<
   "banner_slice",
   BannerSliceSliceVariation
+>;
+
+/**
+ * Primary content in *BlogVideo → Default → Primary*
+ */
+export interface BlogVideoSliceDefaultPrimary {
+  /**
+   * Video URL field in *BlogVideo → Default → Primary*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_video.default.primary.video
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   */
+  video: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * Poster Image field in *BlogVideo → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_video.default.primary.poster
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  poster: prismic.ImageField<never>;
+
+  /**
+   * Caption field in *BlogVideo → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_video.default.primary.caption
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  caption: prismic.KeyTextField;
+
+  /**
+   * Autoplay (muted) field in *BlogVideo → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: blog_video.default.primary.autoplay
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  autoplay: prismic.BooleanField;
+
+  /**
+   * Loop field in *BlogVideo → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: blog_video.default.primary.loop
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  loop: prismic.BooleanField;
+}
+
+/**
+ * Default variation for BlogVideo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Embed a video in blog posts
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BlogVideoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BlogVideoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *BlogVideo*
+ */
+type BlogVideoSliceVariation = BlogVideoSliceDefault;
+
+/**
+ * BlogVideo Shared Slice
+ *
+ * - **API ID**: `blog_video`
+ * - **Description**: Video embed for blog posts
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BlogVideoSlice = prismic.SharedSlice<
+  "blog_video",
+  BlogVideoSliceVariation
 >;
 
 /**
@@ -11255,6 +11344,10 @@ declare module "@prismicio/client" {
       BannerSliceSliceStaking,
       BannerSliceSliceBuyAndSell,
       BannerSliceSliceWithRibbon,
+      BlogVideoSlice,
+      BlogVideoSliceDefaultPrimary,
+      BlogVideoSliceVariation,
+      BlogVideoSliceDefault,
       BlogpostsGridSlice,
       BlogpostsGridSliceDefaultPrimary,
       BlogpostsGridSliceVariation,
