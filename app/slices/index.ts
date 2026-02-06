@@ -13,6 +13,7 @@ export const components = defineSliceZoneComponents({
   app_gallery: defineAsyncComponent(() => import('./AppGalleryCta/index.vue')),
   apps_showcase: defineAsyncComponent(() => import('./AppsShowcase/index.vue')),
   banner_slice: defineAsyncComponent(() => import('./BannerSlice/index.vue')),
+  blog_video: defineAsyncComponent(() => import('./BlogVideo/index.vue')),
   blogposts_grid: defineAsyncComponent(
     () => import('./BlogpostsGrid/index.vue'),
   ),

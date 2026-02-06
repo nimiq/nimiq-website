@@ -54,7 +54,8 @@ export default defineNuxtConfig({
     },
   },
 
-  devtools: { enabled: true },
+  // Vue Devtools can break Cloudflare (NuxtHub) prerender/build due to `localStorage` access.
+  devtools: { enabled: environment.environment.isLocal },
 
   components: [
     { path: '~/components/[UI]', pathPrefix: false },

@@ -1,0 +1,60 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "video": {
+        "__TYPE__": "LinkContent",
+        "key": "blog-video-mock",
+        "value": {
+          "__TYPE__": "FileLink",
+          "id": "mock_Media_link",
+          "kind": "file",
+          "name": "sample-video.mp4",
+          "url": "https://source.unsplash.com/daily",
+          "size": "0",
+          "text": "Sample Video"
+        }
+      },
+      "poster": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113",
+          "width": 1920,
+          "height": 1080
+        },
+        "url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113",
+        "width": 1920,
+        "height": 1080,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "credits": null,
+        "alt": "Video poster",
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "caption": {
+        "__TYPE__": "FieldContent",
+        "value": "A sample video caption",
+        "type": "Text"
+      },
+      "autoplay": {
+        "__TYPE__": "FieldContent",
+        "value": false,
+        "type": "Boolean"
+      },
+      "loop": {
+        "__TYPE__": "FieldContent",
+        "value": false,
+        "type": "Boolean"
+      }
+    },
+    "items": []
+  }
+]
