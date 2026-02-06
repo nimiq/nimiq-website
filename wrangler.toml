@@ -10,3 +10,6 @@ compatibility_flags = [
 
 # Nitro's Cloudflare preset expects an `ASSETS` binding.
 assets = { directory = "dist/public", binding = "ASSETS" }
+
+[build]
+command = "pnpm run build:nuxthub"
