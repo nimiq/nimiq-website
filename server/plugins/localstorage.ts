@@ -2,7 +2,7 @@ export default defineNitroPlugin(() => {
   // Cloudflare (unenv) may polyfill `localStorage` with a non-WebStorage shape (e.g. Map),
   // which breaks dependencies expecting `getItem/setItem` during prerender.
   const ls: any = (globalThis as any).localStorage
-  if (!ls || typeof ls.getItem === 'function')
+  if (ls && typeof ls.getItem === 'function')
     return
 
   const store = new Map<string, string>()
