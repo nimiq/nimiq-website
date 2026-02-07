@@ -3457,6 +3457,17 @@ export interface BlogVideoSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/boolean
    */
   loop: prismic.BooleanField;
+
+  /**
+   * Hide Controls field in *BlogVideo → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: blog_video.default.primary.hideControls
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  hideControls: prismic.BooleanField;
 }
 
 /**

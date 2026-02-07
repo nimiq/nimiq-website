@@ -53,6 +53,11 @@
         "__TYPE__": "FieldContent",
         "value": false,
         "type": "Boolean"
+      },
+      "hideControls": {
+        "__TYPE__": "FieldContent",
+        "value": false,
+        "type": "Boolean"
       }
     },
     "items": []

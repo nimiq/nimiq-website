@@ -8,6 +8,7 @@ interface BlogVideoSlice {
     caption: string
     autoplay: boolean
     loop: boolean
+    hideControls?: boolean
   }
 }
 
@@ -70,7 +71,7 @@ function play() {
         :loop="slice.primary.loop"
         :autoplay="slice.primary.autoplay || undefined"
         :muted="slice.primary.autoplay || undefined"
-        controls
+        :controls="!slice.primary.hideControls"
         playsinline
         w-full
         rounded-6

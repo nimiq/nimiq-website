@@ -52,6 +52,15 @@
             "placeholder_true": "Yes",
             "placeholder_false": "No"
           }
+        },
+        "hideControls": {
+          "type": "Boolean",
+          "config": {
+            "label": "Hide Controls",
+            "default_value": false,
+            "placeholder_true": "Yes",
+            "placeholder_false": "No"
+          }
         }
       },
       "items": {}
