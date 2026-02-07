@@ -5,6 +5,8 @@ interface BlogVideoSlice {
   primary: {
     video: LinkToMediaField
     poster: ImageField
+    bgColor?: 'white' | 'green'
+    aspect?: 'auto' | '16:9' | '9:16' | '1:1'
     caption: string
     autoplay: boolean
     loop: boolean
@@ -20,6 +22,29 @@ const videoEl = ref<HTMLVideoElement | null>(null)
 const videoUrl = computed(() => getUrl(slice.primary.video))
 const hasPoster = computed(() => hasImage(slice.primary.poster))
 
+const bgClass = computed(() => slice.primary.bgColor === 'green' ? 'bg-green' : 'bg-neutral-0')
+
+const aspectRatio = computed(() => {
+  switch (slice.primary.aspect) {
+    case '16:9':
+      return '16 / 9'
+    case '9:16':
+      return '9 / 16'
+    case '1:1':
+      return '1 / 1'
+    default:
+      return null
+  }
+})
+
+const aspectStyle = computed(() => {
+  if (aspectRatio.value)
+    return `aspect-ratio: ${aspectRatio.value}`
+  if (hasPoster.value)
+    return `aspect-ratio: ${getAspectRatio(slice.primary.poster)}`
+  return undefined
+})
+
 function play() {
   isPlaying.value = true
   nextTick(() => {
@@ -29,7 +54,7 @@ function play() {
 </script>
 
 <template>
-  <section bg-neutral-100 py-0>
+  <section :class="bgClass" py-0>
     <figure
       f-my-lg
       max-w="$nq-prose-max-width"
@@ -44,7 +69,7 @@ function play() {
           :field="slice.primary.poster"
           w-full
           object-cover
-          :style="`aspect-ratio: ${getAspectRatio(slice.primary.poster)}`"
+          :style="aspectStyle"
         />
         <button
           absolute
@@ -72,6 +97,7 @@ function play() {
         :autoplay="slice.primary.autoplay || undefined"
         :muted="slice.primary.autoplay || undefined"
         :controls="!slice.primary.hideControls"
+        :style="aspectStyle"
         playsinline
         w-full
         rounded-6

@@ -28,6 +28,32 @@
             "thumbnails": []
           }
         },
+        "bgColor": {
+          "type": "Select",
+          "config": {
+            "label": "BG Color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "green"
+            ],
+            "default_value": "white"
+          }
+        },
+        "aspect": {
+          "type": "Select",
+          "config": {
+            "label": "Aspect",
+            "placeholder": "",
+            "options": [
+              "auto",
+              "16:9",
+              "9:16",
+              "1:1"
+            ],
+            "default_value": "auto"
+          }
+        },
         "caption": {
           "type": "Text",
           "config": {

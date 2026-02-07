@@ -3427,6 +3427,28 @@ export interface BlogVideoSliceDefaultPrimary {
   poster: prismic.ImageField<never>;
 
   /**
+   * BG Color field in *BlogVideo → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: white
+   * - **API ID Path**: blog_video.default.primary.bgColor
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  bgColor: prismic.SelectField<"white" | "green", prismic.FieldState>;
+
+  /**
+   * Aspect field in *BlogVideo → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: auto
+   * - **API ID Path**: blog_video.default.primary.aspect
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  aspect: prismic.SelectField<"auto" | "16:9" | "9:16" | "1:1", prismic.FieldState>;
+
+  /**
    * Caption field in *BlogVideo → Default → Primary*
    *
    * - **Field Type**: Text

@@ -39,6 +39,16 @@
         "__TYPE__": "ImageContent",
         "thumbnails": {}
       },
+      "bgColor": {
+        "__TYPE__": "FieldContent",
+        "value": "white",
+        "type": "Select"
+      },
+      "aspect": {
+        "__TYPE__": "FieldContent",
+        "value": "auto",
+        "type": "Select"
+      },
       "caption": {
         "__TYPE__": "FieldContent",
         "value": "A sample video caption",
