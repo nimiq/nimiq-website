@@ -16,7 +16,7 @@ const { slice } = defineProps<{ slice: QuoteSlice, slices?: any[] }>()
     <div bg-green h-200 max-w-none pointer-events-none inset-x-0 top-0 absolute />
     <div class="bg" h-600 max-w-none pointer-events-none inset-x-0 top-200 absolute />
     <div i-nimiq:duotone-safe-lock text="left md:center 96 md:112 white" />
-    <RichText wrapper="div" :field="slice.primary.quote" text="white f-2xl left md:center" max-w-36ch relative z-1 f-mt-md />
+    <RichText wrapper="div" :field="slice.primary.quote" text="white f-text-2xl left md:center" max-w-36ch relative z-1 f-mt-md />
     <PrismicLink v-if="hasLink(slice.primary.cta)" :field="slice.primary.cta" shadow-none f-mt-sm nq-arrow nq-pill-lg nq-pill-tertiary />
   </section>
 </template>
