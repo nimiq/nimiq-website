@@ -104,6 +104,7 @@ const LINK_WHITELIST = [
   /^https:\/\/medium\.com\/@VitalikButerin\/zk-snarks-under-the-hood-b33151a013f6$/,
   /^https:\/\/medium\.com\/u\/d3191ca07046\?source=post_page-----b6b90c0bb1d5----------------------$/,
   /^https:\/\/medium\.com\/u\/57600910a883\?source=post_page-----b6b90c0bb1d5----------------------$/,
+  /^https:\/\/medium\.com\/nimiq\/the-biggest-release-since-mainnet-launch-f8096e33dab9#9017$/,
 
   // Additional URLs
   /^https:\/\/maestroi\.github\.io\/nimiq-doom$/,
