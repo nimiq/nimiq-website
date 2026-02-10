@@ -15,10 +15,17 @@ export function getImage(img?: ImageField) {
     return img.url
   return asImageSrc(img) || ''
 }
-export function getUrl(obj?: LinkToMediaField | LinkField | LinkToMediaField) {
-  if (!obj || !hasLink(obj))
+export function getUrl(obj?: LinkField | LinkToMediaField) {
+  if (!obj)
     return ''
-  return obj.url
+  const link = obj as LinkField
+  if (isFilled.link(link))
+    return link.url || ''
+
+  const media = obj as LinkToMediaField
+  if (isFilled.linkToMedia(media))
+    return media.url || ''
+  return ''
 }
 
 export function getAspectRatio({ dimensions }: ImageField) {
