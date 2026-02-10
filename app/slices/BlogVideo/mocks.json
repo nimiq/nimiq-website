@@ -5,27 +5,27 @@
     "primary": {
       "video": {
         "__TYPE__": "LinkContent",
-        "key": "blog-video-mock",
+        "key": "c7320294-18a4-4c53-89a2-5a404e84705f",
         "value": {
           "__TYPE__": "FileLink",
           "id": "mock_Media_link",
           "kind": "file",
-          "name": "sample-video.mp4",
+          "name": "mock_name",
           "url": "https://source.unsplash.com/daily",
-          "size": "0",
-          "text": "Sample Video"
+          "size": "0"
         }
       },
       "poster": {
+        "__TYPE__": "ImageContent",
         "origin": {
           "id": "main",
-          "url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113",
-          "width": 1920,
-          "height": 1080
+          "url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468",
+          "width": 4000,
+          "height": 6000
         },
-        "url": "https://images.unsplash.com/photo-1611162617474-5b21e879e113",
-        "width": 1920,
-        "height": 1080,
+        "url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468",
+        "width": 4000,
+        "height": 6000,
         "edit": {
           "zoom": 1,
           "crop": {
@@ -34,42 +34,42 @@
           },
           "background": "transparent"
         },
-        "credits": null,
-        "alt": "Video poster",
-        "__TYPE__": "ImageContent",
+        "alt": "begun",
         "thumbnails": {}
       },
       "bgColor": {
         "__TYPE__": "FieldContent",
-        "value": "white",
+        "value": "green",
         "type": "Select"
       },
       "aspect": {
         "__TYPE__": "FieldContent",
-        "value": "auto",
+        "value": "16:9",
         "type": "Select"
       },
       "caption": {
         "__TYPE__": "FieldContent",
-        "value": "A sample video caption",
+        "value": "claws",
         "type": "Text"
       },
       "autoplay": {
-        "__TYPE__": "FieldContent",
-        "value": false,
-        "type": "Boolean"
+        "__TYPE__": "BooleanContent",
+        "value": false
       },
       "loop": {
-        "__TYPE__": "FieldContent",
-        "value": false,
-        "type": "Boolean"
+        "__TYPE__": "BooleanContent",
+        "value": false
       },
       "hideControls": {
-        "__TYPE__": "FieldContent",
-        "value": false,
-        "type": "Boolean"
+        "__TYPE__": "BooleanContent",
+        "value": true
       }
     },
-    "items": []
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
   }
 ]

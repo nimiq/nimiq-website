@@ -35,7 +35,8 @@
             "placeholder": "",
             "options": [
               "white",
-              "green"
+              "green",
+              "grey"
             ],
             "default_value": "white"
           }

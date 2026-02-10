@@ -144,9 +144,7 @@ export interface BlogPageDocumentDataAuthorsItem {
   name: prismic.KeyTextField;
 }
 
-type BlogPageDocumentDataBodySlice =
-  | RichTextSlice
-  | BlogVideoSlice;
+type BlogPageDocumentDataBodySlice = RichTextSlice | BlogVideoSlice;
 
 /**
  * Content for Blog Article documents
@@ -3410,7 +3408,7 @@ export interface BlogVideoSliceDefaultPrimary {
    * Video URL field in *BlogVideo → Default → Primary*
    *
    * - **Field Type**: Link to Media
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Upload or link to a video file
    * - **API ID Path**: blog_video.default.primary.video
    * - **Documentation**: https://prismic.io/docs/fields/link-to-media
    */
@@ -3435,7 +3433,7 @@ export interface BlogVideoSliceDefaultPrimary {
    * - **API ID Path**: blog_video.default.primary.bgColor
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
-  bgColor: prismic.SelectField<"white" | "green", prismic.FieldState>;
+  bgColor: prismic.SelectField<"white" | "green" | "grey", "filled">;
 
   /**
    * Aspect field in *BlogVideo → Default → Primary*
@@ -3446,13 +3444,13 @@ export interface BlogVideoSliceDefaultPrimary {
    * - **API ID Path**: blog_video.default.primary.aspect
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
-  aspect: prismic.SelectField<"auto" | "16:9" | "9:16" | "1:1", prismic.FieldState>;
+  aspect: prismic.SelectField<"auto" | "16:9" | "9:16" | "1:1", "filled">;
 
   /**
    * Caption field in *BlogVideo → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Optional video caption
    * - **API ID Path**: blog_video.default.primary.caption
    * - **Documentation**: https://prismic.io/docs/fields/text
    */

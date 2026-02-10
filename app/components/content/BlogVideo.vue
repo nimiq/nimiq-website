@@ -5,7 +5,7 @@ interface BlogVideoSlice {
   primary: {
     video: LinkToMediaField
     poster: ImageField
-    bgColor?: 'white' | 'green'
+    bgColor?: 'white' | 'green' | 'grey'
     aspect?: 'auto' | '16:9' | '9:16' | '1:1'
     caption: string
     autoplay: boolean
@@ -22,7 +22,13 @@ const videoEl = ref<HTMLVideoElement | null>(null)
 const videoUrl = computed(() => getUrl(slice.primary.video))
 const hasPoster = computed(() => hasImage(slice.primary.poster))
 
-const bgClass = computed(() => slice.primary.bgColor === 'green' ? 'bg-green' : 'bg-neutral-0')
+const bgClass = computed(() => {
+  switch (slice.primary.bgColor) {
+    case 'green': return 'bg-green'
+    case 'grey': return 'bg-neutral-100'
+    default: return 'bg-neutral-0'
+  }
+})
 
 const aspectRatio = computed(() => {
   switch (slice.primary.aspect) {
@@ -54,14 +60,14 @@ function play() {
 </script>
 
 <template>
-  <section :class="bgClass" py-0>
+  <section :class="bgClass" py-0 data-slice-type="video-blog">
     <figure
       f-my-lg
-      max-w="$nq-prose-max-width"
+      max-w-920px
       w="[calc(100%+16px)]"
       mx="[-8px]"
       md:w-full
-      md:mx-0
+      md:mx-auto
     >
       <!-- Video with poster overlay -->
       <div v-if="hasPoster && !isPlaying && !slice.primary.autoplay" relative rounded-6 overflow-hidden bg-neutral-100>
@@ -112,3 +118,9 @@ function play() {
     </figure>
   </section>
 </template>
+
+<style scoped>
+:global(section:has(+ section[data-slice-type="video-blog"]) [nq-prose] p:last-child) {
+  padding-bottom: 0;
+}
+</style>
