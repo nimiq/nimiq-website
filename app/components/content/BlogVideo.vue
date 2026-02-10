@@ -20,6 +20,7 @@ const isPlaying = ref(false)
 const videoEl = ref<HTMLVideoElement | null>(null)
 
 const videoUrl = computed(() => getUrl(slice.primary.video))
+const hasVideo = computed(() => Boolean(videoUrl.value))
 const hasPoster = computed(() => hasImage(slice.primary.poster))
 
 const bgClass = computed(() => {
@@ -52,9 +53,23 @@ const aspectStyle = computed(() => {
 })
 
 function play() {
+  if (!hasVideo.value)
+    return
   isPlaying.value = true
   nextTick(() => {
     videoEl.value?.play()
+  })
+}
+
+if (import.meta.dev && import.meta.client) {
+  const warned = ref(false)
+  onMounted(() => {
+    if (warned.value)
+      return
+    if (!hasVideo.value) {
+      warned.value = true
+      console.warn('[BlogVideo] Missing video URL in Prismic slice; rendering poster only.', slice)
+    }
   })
 }
 </script>
@@ -69,8 +84,18 @@ function play() {
       md:w-full
       md:mx-auto
     >
+      <!-- Missing video: render poster only (avoid <video src="">) -->
+      <div v-if="!hasVideo && hasPoster" relative rounded-6 overflow-hidden bg-neutral-100>
+        <ProxiedPrismicImage
+          :field="slice.primary.poster"
+          w-full
+          object-cover
+          :style="aspectStyle"
+        />
+      </div>
+
       <!-- Video with poster overlay -->
-      <div v-if="hasPoster && !isPlaying && !slice.primary.autoplay" relative rounded-6 overflow-hidden bg-neutral-100>
+      <div v-else-if="hasPoster && !isPlaying && !slice.primary.autoplay" relative rounded-6 overflow-hidden bg-neutral-100>
         <ProxiedPrismicImage
           :field="slice.primary.poster"
           w-full
@@ -95,7 +120,7 @@ function play() {
 
       <!-- Video player -->
       <video
-        v-else
+        v-else-if="hasVideo"
         ref="videoEl"
         :src="videoUrl"
         :poster="hasPoster ? getImage(slice.primary.poster) : undefined"
