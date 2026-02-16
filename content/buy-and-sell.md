@@ -29,6 +29,9 @@ wallet:
     label: In the wallet
     headline: Buy NIM in the wallet
     subline: Use Visa or Mastercard to conveniently buy NIM in your wallet.
+  videoTutorial:
+    label: Mini video tutorial
+    videoUrl: https://www.youtube.com/watch?v=WALLET_VIDEO_ID
   content:
     title: Nimiq wallet
     description: Buying, staking, swapping, the Wallet does it all
@@ -50,7 +53,7 @@ distribution:
     - title: Crowdfunding
       percentage: 5
       description: Used to fund early development and launch, 5% of the total supply was allocated through a public crowdfunding, ensuring community-backed origins from the start.
-    - title: Early Contribtors & Team
+    - title: Early Contributors & Team
       percentage: 2.5
       description: Reserved for those who helped build the project in its earliest stages, 2.5% of the supply recognizes the work and commitment of the founding team and early contributors.
     - title: Foundation
@@ -61,10 +64,11 @@ distribution:
       description: Dedicated to social impact, 2% of the supply supports charitable initiatives and aligns with Nimiq's mission to create positive change beyond the blockchain.
 cta:
   headline: Are you interested in crypto exchange technology?
+  ctaLabel: Learn more
   cta: https://nimiq.dev
   features:
     - icon: nimiq:code
-      description: Setup banking infrastrcture
+      description: Setup banking infrastructure
     - icon: nimiq:document-filled
       description: Revolutionise the industry
     - icon: nimiq:globe-filled
@@ -73,5 +77,6 @@ noDownload:
   headline: No download, no personal data, 100% free. Create a wallet now.
   actions:
     - href: https://wallet.nimiq.com
+      label: Create a wallet
       variant: arrow
 ---

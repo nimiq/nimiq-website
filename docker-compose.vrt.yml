@@ -1,0 +1,29 @@
+services:
+  vrt:
+    image: nimiq-website-vrt:playwright-1.57.0
+    build:
+      context: .
+      dockerfile: Dockerfile.vrt
+    pull_policy: never
+    working_dir: /workspace
+    entrypoint: [/bin/bash, /workspace/scripts/vrt/docker-entrypoint.sh]
+    command: [run]
+    environment:
+      CI: '1'
+      VRT_LOCAL_URL: 'http://127.0.0.1:3000'
+      VRT_PROD_URL: 'https://nimiq.com'
+      VRT_DIFF_THRESHOLD: '0.001'
+      VRT_NUXT_MODE: preview
+    ports:
+      - '3001:3000'
+      - '51204:51204'
+    volumes:
+      - .:/workspace
+      - pnpm-store:/pnpm-store
+      - node-modules:/workspace/node_modules
+      - nuxt-cache:/workspace/.nuxt
+
+volumes:
+  pnpm-store:
+  node-modules:
+  nuxt-cache:

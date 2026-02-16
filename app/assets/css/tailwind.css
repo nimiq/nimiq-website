@@ -25,9 +25,12 @@
   /* ==========================================================================
      Font Families
      ========================================================================== */
-  --font-sans: 'Mulish', 'Mulish Fallback: Arial', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Fira Code', 'Fira Code Fallback: Arial', ui-monospace, monospace;
-  --font-retro: 'Press Start 2P', 'Press Start 2P Fallback: Arial', monospace;
+  --font-sans:
+    'Mulish', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono:
+    'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-retro: 'Press Start 2P', ui-monospace, monospace;
 
   /* Nimiq font aliases (for compatibility with nimiq-css) */
   --nq-font-sans: var(--font-sans);
@@ -346,7 +349,7 @@
   .nq-label {
     text-transform: uppercase;
     letter-spacing: 0.17em;
-    font-size: 0.825em;
+    font-size: 0.75em;
     font-weight: 700;
     line-height: 1;
     color: var(--color-neutral-800);
@@ -478,6 +481,13 @@
     color: var(--color-neutral) !important;
     background: var(--color-neutral-0) !important;
     background-image: none !important;
+  }
+
+  /* On inverted backgrounds (staking green), tertiary pill is white with no outline */
+  [data-inverted] .nq-pill-tertiary {
+    background: white !important;
+    background-image: none !important;
+    outline: none !important;
   }
 
   .nq-pill:where([disabled]),

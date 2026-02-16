@@ -8,16 +8,17 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
 </script>
 
 <template>
-  <NuxtLayout>
+  <NuxtLayout footer-bg-color="darkblue">
     <section class="nq-section-gap bg-neutral-0">
       <Hero v-bind="page.hero" />
     </section>
 
-    <section class="nq-section-gap bg-neutral-0">
+    <section class="bg-neutral-0">
       <GridNewYork v-bind="page.stats" />
     </section>
 
-    <section class="nq-section-gap bg-neutral-0">
+    <!-- Prod: S2 pt=177.6 (custom). nq-section-gap prevents S1 pb reduction -->
+    <section class="nq-section-gap bg-neutral-0" style="--f-pt-min: 144; --f-pt-max: 200">
       <Headline v-bind="page.countries.headline" />
     </section>
 
@@ -53,7 +54,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
       <Banner v-bind="page.banner" />
     </section>
 
-    <section class="nq-section-gap bg-darkblue" dark scheme-dark>
+    <section class="nq-section-gap bg-darkerblue" dark scheme-dark>
       <Headline v-bind="page.feedback" />
     </section>
   </NuxtLayout>

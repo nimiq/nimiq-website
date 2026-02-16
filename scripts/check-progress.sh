@@ -13,11 +13,10 @@ else
   echo ""
 fi
 
-# Count completed pages
+# Check baseline files
 if [ -f "@fix_plan.md" ]; then
-  COMPLETED=$(grep -c "| ✓ | ✓ |" @fix_plan.md || echo "0")
-  TOTAL=$(grep -c "^| /" @fix_plan.md || echo "0")
-  echo "📈 Pages Completed: $COMPLETED / $TOTAL"
+  echo "📋 Plan:"
+  cat @fix_plan.md
   echo ""
 else
   echo "⚠️  @fix_plan.md not found"
@@ -48,11 +47,13 @@ fi
 
 echo ""
 
-# Show recent test failures if any
-if [ -d "tests/screenshots" ]; then
-  RECENT_FAILURES=$(find tests/screenshots -name "report.html" -mtime -1 | wc -l)
-  if [ "$RECENT_FAILURES" -gt 0 ]; then
-    echo "🔍 Recent test reports (last 24h): $RECENT_FAILURES"
-    echo ""
-  fi
+if [ -f "tests/vrt/reference/home-desktop.png" ] && [ -f "tests/vrt/reference/home-mobile.png" ]; then
+  echo "✅ Baseline references exist"
+else
+  echo "⚠️  Baseline references missing - run: pnpm vrt:reference:update"
+fi
+
+if [ -d "tests/vrt/output" ]; then
+  OUTPUT_COUNT=$(find tests/vrt/output -type f | wc -l)
+  echo "🖼️  Current VRT output files: $OUTPUT_COUNT"
 fi

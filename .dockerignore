@@ -1,0 +1,15 @@
+.git
+.github
+.nuxt
+.output
+.data
+.nitro
+.cache
+node_modules
+.pnpm-store
+.vitest-attachments
+.vscode
+.DS_Store
+logs
+*.log
+dist

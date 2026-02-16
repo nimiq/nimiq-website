@@ -2,7 +2,7 @@
 import type { DonutDatum } from '../Chart/Donut.client.vue'
 import type { Validator } from '~/composables/useValidatorsInfo'
 
-defineProps<{ info?: string }>()
+defineProps<{ headline?: string, info?: string }>()
 
 const locale = useLocale()
 const percentageFormatter = new Intl.NumberFormat(locale.value, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -14,7 +14,7 @@ const data = computed(() => {
   if (!validators.value)
     return []
   const validatorsList: (DonutDatum & Validator)[] = []
-  const smallValidators = { color: 'rgb(var(--nq-neutral-400))', value: 0, name: 'Others', logo: '', balance: 0 }
+  const smallValidators = { color: 'var(--color-neutral-400)', value: 0, name: 'Others', logo: '', balance: 0 }
   for (const { dominanceRatio, accentColor, ...v } of validators.value) {
     if (dominanceRatio < 0.02) {
       smallValidators.value += dominanceRatio
@@ -50,7 +50,10 @@ const data = computed(() => {
         </div>
       </template>
     </ChartDonut>
-    <p v-if="info" class="text-center max-w-[42ch] mt-4">
+    <h3 v-if="headline" class="text-center font-bold text-xl md:text-2xl mt-4">
+      {{ headline }}
+    </h3>
+    <p v-if="info" class="text-center max-w-[42ch] mt-2">
       {{ info }}
     </p>
   </div>

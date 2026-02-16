@@ -33,6 +33,15 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/buy-and-sell' }] }
       <!-- Section 2: Wallet (headline + showcase) -->
       <section class="nq-section-gap bg-neutral-0">
         <Headline v-bind="page.wallet.headline" />
+
+        <!-- Mini video tutorial button -->
+        <button v-if="page.wallet.videoTutorial" class="flex items-center gap-3 mx-auto mt-6 text-blue hover:text-blue-dark transition-colors">
+          <span class="flex items-center justify-center size-8 rounded-full bg-blue/10">
+            <Icon name="nimiq:triangle-right" class="size-4 text-blue" />
+          </span>
+          <span class="font-semibold">{{ page.wallet.videoTutorial.label }}</span>
+        </button>
+
         <ShowcaseWalletHoverable class="mt-12 md:mt-16" :data="page.wallet.content" />
       </section>
 

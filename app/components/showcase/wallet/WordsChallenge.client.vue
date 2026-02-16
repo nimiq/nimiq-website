@@ -115,7 +115,7 @@ function reset() {
 
     <div class="mt-8 relative">
       <!-- SyntheticWave inlined -->
-      <div class="flex flex-col pointer-events-none -inset-16 topacity-0 absolute z-0" :style="`--grid-color: var(--color-${isChallengeFinished ? 'purple' : 'blue'})`">
+      <div class="flex flex-col pointer-events-none -inset-16 top-0 absolute z-0" :style="`--grid-color: var(--color-${isChallengeFinished ? 'purple' : 'blue'})`">
         <div class="grid-container flex flex-basis-200 bg-inherit relative" perspective-1200 before="absolute inset-0" />
         <div class="retro-overlay inset-0 absolute" />
       </div>

@@ -26,6 +26,28 @@ const appColor: Record<AppType, string> = {
 }
 
 const spotlightApps = ['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map']
+
+// Fixed display order for regular (non-spotlight) apps to match production
+const regularAppsOrder = [
+  'Cryptopayment.link',
+  'Nimiq Game Store',
+  'Trust Wallet',
+  'Twini',
+  'Nimiq Tip Bot',
+  'Nimiq Shop',
+  'Pixels',
+  'Nimiq FM',
+  'Nimiq Gift Cards',
+  'Nimiq DOOM',
+  'NimWorld',
+  'Nimiq 2048',
+  'Multisig Wallet',
+  'Nimtris',
+  'NIM Donations',
+  'Staking Calculator',
+  'Nimiq Sunset Cyberspace',
+]
+
 const validTypes: AppType[] = ['Insights', 'E-commerce', 'Games', 'Faucet', 'Promotion', 'Miner', 'Wallets', 'Infrastructure', 'Bots']
 
 function transformApp(app: { name: string, type: string, logo: string, link: string, description?: string, developer?: string, screenshot?: string }): NimiqApp {
@@ -52,7 +74,14 @@ export function useApps() {
     // Sort spotlight apps by their position in the spotlightApps array
     highlighted.sort((a, b) => spotlightApps.indexOf(a.name) - spotlightApps.indexOf(b.name))
 
-    const apps = [...highlighted, ...shuffle(regular)]
+    // Sort regular apps by fixed display order, unknown apps go to the end
+    regular.sort((a, b) => {
+      const ai = regularAppsOrder.indexOf(a.name)
+      const bi = regularAppsOrder.indexOf(b.name)
+      return (ai === -1 ? Infinity : ai) - (bi === -1 ? Infinity : bi)
+    })
+
+    const apps = [...highlighted, ...regular]
     return {
       apps,
       spotlightApps: highlighted,

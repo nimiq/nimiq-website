@@ -3,10 +3,10 @@ defineProps<{ cta: string, placeholder?: string }>()
 </script>
 
 <template>
-  <section class="bg-neutral-100 py-8 md:py-12">
+  <div>
     <h3 class="text-center">
       {{ cta }}
     </h3>
-    <UiNewsletterEmailInput class="text-24 mt-8 md:mt-12" />
-  </section>
+    <UiNewsletterEmailInput class="text-24 f-mt-xl" />
+  </div>
 </template>

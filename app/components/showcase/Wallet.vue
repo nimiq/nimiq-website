@@ -68,8 +68,8 @@ onMounted(() => {
 
 <template>
   <!-- Desktop -->
-  <div class="relative max-md:hidden">
-    <div class="h-[calc(100%+400px)] max-w-screen pointer-events-none -top-[400px]" />
+  <div class="w-full relative max-md:hidden">
+    <AnimatedCloudyBg class="h-[calc(100%+400px)] max-w-screen pointer-events-none -top-[400px]" />
     <div class="mx-auto size-full" stack>
       <!-- Ribbon fold -->
       <div class="self-start justify-self-end -mr-[18px] mt-12 w-11 origin-bottom-right -rotate-45 z-1 border-[22px] border-x-transparent border-t-0 border-[#EC991C]" aria-hidden />

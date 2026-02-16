@@ -46,7 +46,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/oasis' }] })
       <section id="integrate" class="nq-section-gap bg-darkerblue">
         <Headline v-if="page.openTech" class="dark" :label="page.openTech.label" :headline="page.openTech.headline" :subline="page.openTech.subline" />
         <div v-if="page.integrations" class="grid grid-cols-1 gap-8 lg:grid-cols-2 mt-16">
-          <div v-for="(integration, i) in page.integrations" :key="i" class="p-8 lg:p-10 rounded-2 ring-1 ring-neutral-800" style="background: rgb(var(--nq-neutral-900))">
+          <div v-for="(integration, i) in page.integrations" :key="i" class="p-8 lg:p-10 rounded-2 ring-1 ring-neutral-800" style="background: var(--color-neutral-900)">
             <h3 class="nq-h3 text-white mb-3">
               {{ integration.title }}
             </h3>

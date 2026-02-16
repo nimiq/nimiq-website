@@ -1,14 +1,17 @@
 <script setup lang="ts">
-defineProps<{ text: string }>()
+defineProps<{ text: string, learnMoreLink?: string }>()
 </script>
 
 <template>
-  <section class="quote-section relative z-[1]">
+  <div class="quote-section relative z-[1]">
     <div class="bg-green absolute inset-x-0 top-0 h-[200px] max-w-none pointer-events-none" />
     <div class="bg absolute inset-x-0 top-[200px] h-[600px] max-w-none pointer-events-none" />
     <Icon class="text-white text-[96px] md:text-[112px]" name="nimiq:duotone-safe-lock" />
     <p class="quote-text text-white text-xl md:text-2xl text-left md:text-center max-w-[36ch] relative z-[1]" v-html="text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')" />
-  </section>
+    <NuxtLink v-if="learnMoreLink" class="mt-6 md:mt-8 nq-arrow nq-pill-lg nq-pill-blue relative z-[1]" :to="learnMoreLink">
+      Learn more
+    </NuxtLink>
+  </div>
 </template>
 
 <style scoped>
@@ -37,22 +40,22 @@ defineProps<{ text: string }>()
 .bg {
   background: linear-gradient(
     180deg,
-    rgb(var(--nq-green)) 0%,
-    rgba(var(--nq-green) / 0.991615) 11.79%,
-    rgba(var(--nq-green) / 0.967585) 21.38%,
-    rgba(var(--nq-green) / 0.9296) 29.12%,
-    rgba(var(--nq-green) / 0.879348) 35.34%,
-    rgba(var(--nq-green) / 0.818519) 40.37%,
-    rgba(var(--nq-green) / 0.7488) 44.56%,
-    rgba(var(--nq-green) / 0.671881) 48.24%,
-    rgba(var(--nq-green) / 0.589452) 51.76%,
-    rgba(var(--nq-green) / 0.5032) 55.44%,
-    rgba(var(--nq-green) / 0.414815) 59.63%,
-    rgba(var(--nq-green) / 0.325985) 64.66%,
-    rgba(var(--nq-green) / 0.2384) 70.88%,
-    rgba(var(--nq-green) / 0.153748) 78.62%,
-    rgba(var(--nq-green) / 0.0737185) 88.21%,
-    rgba(var(--nq-green) / 0) 100%
+    rgb(33, 188, 165) 0%,
+    rgba(33, 188, 165, 0.991615) 11.79%,
+    rgba(33, 188, 165, 0.967585) 21.38%,
+    rgba(33, 188, 165, 0.9296) 29.12%,
+    rgba(33, 188, 165, 0.879348) 35.34%,
+    rgba(33, 188, 165, 0.818519) 40.37%,
+    rgba(33, 188, 165, 0.7488) 44.56%,
+    rgba(33, 188, 165, 0.671881) 48.24%,
+    rgba(33, 188, 165, 0.589452) 51.76%,
+    rgba(33, 188, 165, 0.5032) 55.44%,
+    rgba(33, 188, 165, 0.414815) 59.63%,
+    rgba(33, 188, 165, 0.325985) 64.66%,
+    rgba(33, 188, 165, 0.2384) 70.88%,
+    rgba(33, 188, 165, 0.153748) 78.62%,
+    rgba(33, 188, 165, 0.0737185) 88.21%,
+    rgba(33, 188, 165, 0) 100%
   );
 
   background-color: var(--color-neutral-100);

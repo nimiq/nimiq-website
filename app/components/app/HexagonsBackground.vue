@@ -49,7 +49,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="section" class="group mx-0 px-0 w-full relative z-2 overflow-x-hidden pt-12 md:pt-16" :class="bgColor === 'grey' ? 'bg-neutral-100' : 'bg-darkblue dark'">
+  <div ref="section" class="group mx-0 px-0 w-full relative z-2 overflow-x-hidden pt-12 md:pt-16" :class="bgColor === 'grey' ? 'bg-neutral-100' : 'bg-darkerblue dark'">
     <div class="grid-parent max-w-none" aria-hidden="true" :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
       <div
         v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`" class="relative flex items-center justify-center transition-opacity transition-duration-300 transition-ease-out" :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? item.opacity : 1 }" :class="{

@@ -1,5 +1,15 @@
 <script setup lang="ts">
-const { darkHeader = false, showSocialsHexagonBg = false, footerBgColor = 'grey' } = defineProps<{ darkHeader?: boolean, showSocialsHexagonBg?: boolean, footerBgColor?: 'grey' | 'darkblue' }>()
+const {
+  darkHeader = false,
+  headerVariant = 'default',
+  showSocialsHexagonBg = false,
+  footerBgColor = 'grey',
+} = defineProps<{
+  darkHeader?: boolean
+  headerVariant?: 'default' | 'home'
+  showSocialsHexagonBg?: boolean
+  footerBgColor?: 'grey' | 'darkblue'
+}>()
 </script>
 
 <template>
@@ -7,7 +17,7 @@ const { darkHeader = false, showSocialsHexagonBg = false, footerBgColor = 'grey'
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <NuxtRouteAnnouncer />
   <AppNavigationAnnouncementBanner />
-  <AppHeader :dark-header />
+  <AppHeader :dark-header="darkHeader" :variant="headerVariant" />
   <main id="main-content">
     <slot />
   </main>

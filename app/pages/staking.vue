@@ -9,42 +9,35 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
 
 <template>
   <NuxtLayout>
-    <!-- Section 0: Hero with white bg + radial green gradient -->
-    <HeroStaking :headline="page.hero.title" />
+    <HeroStaking :headline="page.hero.title" :link="page.hero.link" :description="page.hero.description" />
 
-    <!-- Section 1: Quote on green gradient -->
-    <StakingQuote :text="page.quote.text" />
+    <StakingQuote :text="page.quote.text" :learn-more-link="page.quote.learnMoreLink" />
 
-    <!-- Section 2: Calculator headline -->
-    <section class="staking-calculator-section bg-neutral-100 py-16 md:py-24">
+    <section class="staking-calculator-section bg-neutral-100">
       <Headline v-bind="page.calculator.headline" />
     </section>
 
-    <!-- Section 3: Calculator -->
-    <section class="bg-neutral-100 py-16 md:py-24">
+    <section class="bg-neutral-100">
       <StakingCalculator :amount-label="page.calculator.amountLabel" :period-label="page.calculator.periodLabel" :rewards-label="page.calculator.rewardsLabel" />
     </section>
 
-    <!-- Section 4: Distribution headline -->
-    <section class="bg-neutral-0 py-16 md:py-24">
+    <section class="bg-neutral-0">
       <Headline v-bind="page.distribution.headline" />
     </section>
 
-    <!-- Section 5: Distribution charts -->
-    <section class="bg-neutral-0 py-16 md:py-24">
+    <!-- Prod: pt=177.6, pb=194.3 (full, not same-bg reduced) -->
+    <section class="bg-neutral-0" style="--f-pt-min: 144; --f-pt-max: 200; --f-pb-min: 158; --f-pb-max: 200">
       <div class="flex flex-wrap gap-y-18 md:gap-x-24 lg:gap-x-40 justify-center">
-        <StakingDistribution :info="page.distribution.stakedDescription" />
-        <ValidatorDistribution :info="page.distribution.distributedDescription" />
+        <StakingDistribution :headline="page.distribution.stakedHeadline" :info="page.distribution.stakedDescription" />
+        <ValidatorDistribution :headline="page.distribution.distributedHeadline" :info="page.distribution.distributedDescription" />
       </div>
     </section>
 
-    <!-- Section 6: Video headline -->
-    <section class="bg-neutral-0 py-16 md:py-24">
+    <section class="bg-neutral-0" style="--f-pt-min: 144; --f-pt-max: 200">
       <Headline v-bind="page.video.headline" />
     </section>
 
-    <!-- Section 7: Video content -->
-    <section class="bg-neutral-0 py-16 md:py-24">
+    <section class="bg-neutral-0" style="--f-pt-min: 144; --f-pt-max: 200">
       <YouTube :embed-url="page.video.embedUrl" :poster="page.video.poster" :title="page.video.title" />
       <div v-if="page.video.description" class="flex flex-col md:items-center mt-6 md:mt-8">
         <div v-if="page.video.title" class="flex items-center gap-3">
@@ -61,28 +54,23 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
       </div>
     </section>
 
-    <!-- Section 8: Delegate headline -->
-    <section class="bg-neutral-0 py-16 md:py-24">
+    <section class="bg-neutral-0" style="--f-pt-min: 144; --f-pt-max: 200">
       <Headline v-bind="page.delegate" />
     </section>
 
-    <!-- Section 9: Validator pools list -->
-    <section class="bg-neutral-0 py-16 md:py-24">
+    <section class="bg-neutral-0">
       <ValidatorList />
     </section>
 
-    <!-- Section 10: Banner section -->
-    <section class="bg-neutral-0 pb-0 py-16 md:py-24">
+    <section class="bg-neutral-0" style="--pt: 0px; --pb: 0px">
       <BannerSection :items="page.banner.items" :overlaps-next-section="false" />
     </section>
 
-    <!-- Section 11: FAQ -->
-    <section class="bg-neutral-100 py-16 md:py-24">
+    <section class="bg-neutral-100">
       <StakingFaq :items="page.faq.items" :forum-link="page.faq.forumLink" :title="page.faq.headline" />
     </section>
 
-    <!-- Section 12: Footer hero -->
-    <section class="staking-footer-hero bg-neutral-100 py-16 md:py-24">
+    <section class="gradient-transparent-green-transparent">
       <HeadlineStaking v-bind="page.wallet" />
     </section>
   </NuxtLayout>
@@ -90,6 +78,6 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
 
 <style>
 .staking-calculator-section {
-  background: linear-gradient(180deg, rgb(var(--nq-green) / 0.1) 0%, rgb(var(--nq-neutral-100)) 20%);
+  background: linear-gradient(180deg, rgba(33, 188, 165, 0.1) 0%, rgb(247, 247, 249) 20%);
 }
 </style>

@@ -45,13 +45,19 @@ export default defineNuxtConfig({
   ].filter(Boolean),
 
   fonts: {
+    experimental: {
+      // Our typography is defined via CSS variables (Tailwind theme tokens). Enable parsing those so
+      // @nuxt/fonts can correctly resolve and serve the intended webfonts in dev/VRT.
+      processCSSVariables: true,
+    },
     families: [
-      { name: 'Mulish', provider: 'google', weights: [400, 500, 600, 700], styles: ['normal', 'italic'] },
+      // Match production homepage: only Regular is shipped, bold is synthesized via `font-weight`.
+      { name: 'Mulish', provider: 'google', weights: [400], styles: ['normal', 'italic'], global: true },
       { name: 'Fira Code', provider: 'google', weights: [400, 500, 600, 700] },
       { name: 'Press Start 2P', provider: 'google', weights: [400] },
     ],
     defaults: {
-      weights: [400, 500, 600, 700],
+      weights: [400],
       styles: ['normal', 'italic'],
     },
   },
@@ -264,7 +270,6 @@ export default defineNuxtConfig({
           }
         }
         // Preserve provider name for unifont.
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ;(wrapped as any)._name = (provider as any)._name
         return wrapped
       }
@@ -272,15 +277,30 @@ export default defineNuxtConfig({
     // Restore IPX cache before build
     'build:before': function () {
       if (existsSync(IPX_CACHE_DIR)) {
-        mkdirSync('.output/public', { recursive: true })
-        cpSync(IPX_CACHE_DIR, IPX_OUTPUT_DIR, { recursive: true })
+        // Best-effort cache restore. In clean environments (e.g. Docker) the output
+        // folder might not exist yet; don't fail the whole prepare/build if restore fails.
+        try {
+          mkdirSync(IPX_OUTPUT_DIR, { recursive: true })
+          cpSync(IPX_CACHE_DIR, IPX_OUTPUT_DIR, { recursive: true })
+        }
+        catch {
+          // Ignore cache restore errors.
+        }
       }
     },
     // Save IPX cache after build
     'build:done': function () {
       if (existsSync(IPX_OUTPUT_DIR)) {
-        rmSync(IPX_CACHE_DIR, { recursive: true, force: true })
-        cpSync(IPX_OUTPUT_DIR, IPX_CACHE_DIR, { recursive: true })
+        // Best-effort cache save. IPX can generate/cleanup files while Nuxt is finishing,
+        // so don't fail the overall build/prepare if a path disappears mid-copy.
+        try {
+          rmSync(IPX_CACHE_DIR, { recursive: true, force: true })
+          mkdirSync(IPX_CACHE_DIR, { recursive: true })
+          cpSync(IPX_OUTPUT_DIR, IPX_CACHE_DIR, { recursive: true })
+        }
+        catch {
+          // Ignore cache save errors.
+        }
       }
     },
   },

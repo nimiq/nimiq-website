@@ -21,7 +21,7 @@ function truncate(text: string) {
 
 <template>
   <div :data-state="showAllValidators ? 'open' : 'closed'" class="pb-20 w-full relative transition-[height]" :class="showAllValidators ? 'h-auto' : 'h-[448px] overflow-y-clip'" :style="`--count: ${validators?.length}`">
-    <div class="h-[228px] w-full pointer-events-none bottom-[-48px] absolute z-10 transition-opacity" :class="showAllValidators ? 'opacity-0' : 'opacity-100'" aria-hidden style="background: linear-gradient(to bottom in oklab, transparent 0%, rgb(var(--nq-neutral-0)) 100%);" />
+    <div class="h-[228px] w-full pointer-events-none bottom-[-48px] absolute z-10 transition-opacity" :class="showAllValidators ? 'opacity-0' : 'opacity-100'" aria-hidden style="background: linear-gradient(to bottom in oklab, transparent 0%, rgb(255, 255, 255) 100%);" />
     <button class="mx-auto transition-[bottom] inset-x-0 absolute z-10 nq-pill-secondary" :class="showAllValidators ? 'bottom-[42px]' : 'bottom-2'" aria-label="Expand list" @click="toggleShowAllValidators">
       <span v-if="showAllValidators">Show less</span>
       <span v-else>Show more</span>

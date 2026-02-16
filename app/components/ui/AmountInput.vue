@@ -63,5 +63,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <input v-model="formattedValue" class="leading-none font-semibold px-3 rounded-0.5 bg-transparent nq-input-box" type="text" style="field-sizing: content" focus-visible:outline="1 solid blue" inputmode="decimal" v-bind="$attrs" @blur="onBlur">
+  <input v-model="formattedValue" class="leading-none font-semibold px-3 rounded-0.5 nq-input-box" type="text" style="field-sizing: content" focus-visible:outline="1 solid blue" inputmode="decimal" v-bind="$attrs" @blur="onBlur">
 </template>

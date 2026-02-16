@@ -79,7 +79,7 @@ const error = computed(() => {
       <!-- USD/NIM Converter Form -->
       <form class="grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] items-center gap-x-6 max-md:px-6 mx-auto mt-10 h-max max-w-[560px] w-full" @submit.prevent>
         <div class="group w-full relative flex items-center gap-3">
-          <UiAmountInput :key="fiatKey" v-model="fiatAmount" class="rounded-b-0 md:rounded-2 pr-16 text-2xl max-md:-translate-y-0.5 group-focus-within:z-10 w-full" required />
+          <UiAmountInput :key="fiatKey" v-model="fiatAmount" class="rounded-b-0 md:rounded-2 pr-16 text-2xl max-md:-translate-y-0.5 group-focus-within:z-10 w-full bg-white outline-neutral/15" required />
           <div class="text-neutral-600 group-hover:text-blue/50 hocus:!text-neutral-800 group-focus-within:!text-blue right-4 absolute z-40">
             <UiCurrencySelector v-model="currency" />
           </div>
@@ -89,7 +89,7 @@ const error = computed(() => {
           =
         </p>
         <div class="group w-full relative">
-          <UiAmountInput :key="cryptoKey" v-model="cryptoAmount" class="rounded-t-0 md:rounded-2 pr-14 text-2xl group-focus-within:z-10 w-full" required />
+          <UiAmountInput :key="cryptoKey" v-model="cryptoAmount" class="rounded-t-0 md:rounded-2 pr-14 text-2xl group-focus-within:z-10 w-full bg-white outline-neutral/15" required />
           <div class="w-8 pointer-events-none inset-y-0 right-14 absolute" style="background-image: linear-gradient(to right, transparent, var(--color-neutral-0))" />
           <div class="text-neutral-600 group-hover:text-blue/50 group-focus-within:!text-blue transition-colors right-3 top-4 absolute nq-label text-xs">
             NIM

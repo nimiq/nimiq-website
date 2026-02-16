@@ -5,7 +5,7 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
 
 <template>
   <div class="pt-0 bg-neutral-0 relative z-10 overflow-x-clip px-3 md:px-4">
-    <div v-for="(item, i) in items" :key="i" class="py-6 py-lg:72 px-8 rounded-2 w-full relative overflow-hidden max-w-none max-w-lg:[calc(var(--nq-max-width)-32px)] outline outline-1.5 outline-offset--1.5 outline-neutral/10" :style="`background: var(--nq-${item.bgColor || 'green'})`" :data-inverted="item.bgColor === 'green' ? '' : undefined" shadow>
+    <div v-for="(item, i) in items" :key="i" class="py-6 py-lg:72 px-8 rounded-2 w-full shadow relative overflow-hidden max-w-none max-w-lg:[calc(var(--nq-max-width)-32px)] outline outline-1.5 outline-offset--1.5 outline-neutral/10" :style="`background: rgb(var(--nq-${item.bgColor || 'green'}))`" :data-inverted="item.bgColor === 'green' ? '' : undefined">
       <!-- Green gradient overlay -->
       <div v-if="item.bgColor === 'green'" class="rounded-1.5 pointer-events-none inset-[1.5px] absolute bg-gradient-green" />
 

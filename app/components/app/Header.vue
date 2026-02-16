@@ -2,7 +2,7 @@
 import { breakpointsTailwind, refDebounced, useWindowScroll } from '@vueuse/core'
 import { Motion } from 'motion-v'
 
-defineProps<{ darkHeader?: boolean }>()
+defineProps<{ darkHeader?: boolean, variant?: 'default' | 'home' }>()
 
 // Mobile detection - both are needed, one relies on User Agent and the other on the window size
 const { isMobileOrTablet } = useDevice()
@@ -51,7 +51,15 @@ const transitionProps = computed(() => ({
 </script>
 
 <template>
-  <Motion class="flex items-center justify-between gap-x-5 p-4 mx-4 mb-8 mt-4 inset-x-4 top-4 sticky z-[100] rounded-lg" as="header" :dark="!scrolled && darkHeader ? '' : undefined" :class="conditionalClasses" :animate="animateProps" :transition="transitionProps" :data-scrolled="scrolled ? 'true' : 'false'">
+  <Motion
+    class="flex items-center justify-between gap-x-5 p-4 mx-4 mb-8 mt-4 inset-x-4 top-4 sticky z-[100] rounded-lg"
+    as="header"
+    :class="conditionalClasses"
+    :animate="animateProps"
+    :transition="transitionProps"
+    :data-scrolled="scrolled ? 'true' : 'false'"
+    :data-header-variant="(!scrolled && variant === 'home') ? 'home' : undefined"
+  >
     <NuxtLink to="/" aria-label="Nimiq homepage" class="flex">
       <Icon class="text-[24px]" :name="darkHeader && !scrolled ? 'nimiq:logos-nimiq-white-horizontal' : 'nimiq:logos-nimiq-horizontal'" />
     </NuxtLink>

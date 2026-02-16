@@ -14,11 +14,11 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <HeroWallet v-bind="page.hero" />
       </section>
 
-      <section class="bg-darkerblue relative overflow-x-clip md:pt-4 md:pt-6 items-stretch wallet-showcase" scheme-dark children:max-w-none>
+      <section class="bg-darkerblue relative overflow-x-clip md:pt-4 md:pt-6 wallet-showcase" scheme-dark children:max-w-none>
         <ShowcaseWallet :playground-url="page.playground.url" />
       </section>
 
-      <section class="bg-darkerblue relative items-stretch" style="--pt:160px;--pb:0px;--px:0px" dark scheme-dark>
+      <section class="bg-darkerblue relative" style="--pt:160px;--pb:0px;--nq-max-width:none;padding-left:0;padding-right:0" dark scheme-dark>
         <ShowcaseConsensus v-bind="page.consensus" />
       </section>
 
@@ -58,7 +58,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
   background-image: linear-gradient(to bottom, var(--color-darkerblue), #3d4383);
 }
 .wallet-hero-section p {
-  color: rgb(var(--nq-white) / 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 @media (min-width: 768px) {

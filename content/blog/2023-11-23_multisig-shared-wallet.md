@@ -2,7 +2,7 @@
 title: Multisig Wallet App
 description: A new app that allows you to share a wallet with your friends. Read on to explore all the possibilities of Multisignature transactions.
 slug: multisig-shared-wallet
-publishedAt: "2023-11-23"
+publishedAt: "2025-11-21"
 updatedAt: 2023-11-23T22:11:20+0000
 authors:
   - Team Nimiq

@@ -5,8 +5,8 @@ const copyrightNotice = site.footer.copyright ?? ''
 </script>
 
 <template>
-  <footer v-if="site" class="z-10 pt-12 md:pt-16" dark data-section :class="bgColor">
-    <div class="grid gap-10 md:gap-12 grid-items-start xl:gap-[104px] items-start">
+  <footer v-if="site" class="z-10" dark data-section :class="bgColor === 'darkblue' ? 'bg-darkerblue' : 'bg-neutral-100'">
+    <div class="grid gap-40 md:gap-48 grid-items-start xl:gap-[104px] items-start">
       <div class="flex flex-col text-f-sm leading-[1.5]" area-contact>
         <p>{{ site.footer.newsletterCta }}</p>
         <UiNewsletterEmailInput class="f-mt-xs" :placeholder="site.footer.newsletterPlaceholder" />
@@ -51,9 +51,9 @@ const copyrightNotice = site.footer.copyright ?? ''
         </ul>
       </div>
 
-      <hr class="bg-neutral-400 h-px w-full relative sr-only" area-hr-1>
-      <hr class="bg-neutral-400 h-px w-full relative sr-only lg:hidden" area-hr-2>
-      <hr class="bg-neutral-400 h-px w-full relative sr-only md:hidden" area-hr-3>
+      <hr class="bg-neutral-400 h-px w-full sr-only" area-hr-1>
+      <hr class="bg-neutral-400 h-px w-full sr-only lg:hidden" area-hr-2>
+      <hr class="bg-neutral-400 h-px w-full sr-only md:hidden" area-hr-3>
     </div>
   </footer>
 </template>
@@ -85,12 +85,28 @@ footer > div {
     grid-template-columns: 2fr 1fr 1fr 1fr;
     grid-template-areas:
       'contact project tech apps'
+      'contact hr-1 hr-1 hr-1'
       'meta get-started community and-more';
   }
 }
 
+[area-contact] {
+  grid-area: contact;
+}
+[area-meta] {
+  grid-area: meta;
+}
+[area-hr-1] {
+  grid-area: hr-1;
+}
+[area-hr-2] {
+  grid-area: hr-2;
+}
+[area-hr-3] {
+  grid-area: hr-3;
+}
+
 @media (min-width: 1024px) {
-  [area-hr-1],
   [area-hr-2],
   [area-hr-3] {
     display: none;

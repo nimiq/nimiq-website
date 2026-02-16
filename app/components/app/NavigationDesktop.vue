@@ -3,7 +3,6 @@ import { refDebounced } from '@vueuse/core'
 
 const site = await useSite()
 
-// if we are in / then is home
 const route = useRoute()
 const isHome = route.fullPath === '/'
 
@@ -378,7 +377,7 @@ watchEffect(() => {
   }
 
   .home {
-    header[data-scrolled='false'][dark] & {
+    header[data-scrolled='false'][data-header-variant='home'] & {
       background: none;
       background-color: rgba(255, 255, 255, 0.1);
       color: white;
@@ -389,16 +388,6 @@ watchEffect(() => {
         background-color: rgba(255, 255, 255, 0.15);
       }
     }
-  }
-}
-
-header[data-scrolled='false'][dark] {
-  .trigger {
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  .trigger:where([data-state='open'], :hover, :focus-visible) {
-    color: rgba(255, 255, 255, 0.95);
   }
 }
 </style>

@@ -8,7 +8,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
 </script>
 
 <template>
-  <NuxtLayout show-socials-hexagon-bg dark-header>
+  <NuxtLayout show-socials-hexagon-bg dark-header header-variant="home">
     <main>
       <!-- Section 0: Hero (prod: pt=160, pb=0) -->
       <section class="dark text-neutral mx-0 bg-darkblue relative overflow-hidden max-md:min-h-auto min-h-auto md:min-h-[100vh] lg:min-h-[110vh] flex flex-col justify-between [&>*]:max-w-none !pt-[148px] md:!pt-[153px] lg:!pt-[160px] !pb-0">

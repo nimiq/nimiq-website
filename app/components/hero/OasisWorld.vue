@@ -40,7 +40,7 @@ const cryptoIcons = { 'Europe': [{ icon: 'nimiq:logos-nimiq-hexagon-outline-mono
 </script>
 
 <template>
-  <section class="px-0 pb-0 bg-darkerblue overflow-x-clip">
+  <div class="px-0 pb-0 bg-darkerblue overflow-x-clip">
     <div class="nq-section-gap text-center">
       <h1 class="nq-h1 text-white">
         {{ headline }}
@@ -108,7 +108,7 @@ const cryptoIcons = { 'Europe': [{ icon: 'nimiq:logos-nimiq-hexagon-outline-mono
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>
@@ -148,15 +148,15 @@ const cryptoIcons = { 'Europe': [{ icon: 'nimiq:logos-nimiq-hexagon-outline-mono
     }
 
     .europe {
-      --primary: rgb(var(--nq-orange));
-      --grey: rgb(var(--nq-neutral-600));
+      --primary: var(--color-orange);
+      --grey: var(--color-neutral-600);
       --mix: clamp(0%, calc((var(--progress) / 0.33) * 100%), 100%);
       color: color-mix(in srgb, var(--primary) calc(100% - var(--mix)), var(--grey) calc(1 * var(--mix)));
     }
 
     .central-america {
-      --primary: rgb(var(--nq-blue));
-      --grey: rgb(var(--nq-neutral-600));
+      --primary: var(--color-blue);
+      --grey: var(--color-neutral-600);
       --ramp-up: clamp(0, calc(var(--progress) / 0.33), 1);
       --ramp-down: clamp(0, calc((1 - var(--progress)) / 0.34), 1);
       --mix: clamp(0%, calc((var(--ramp-up) + var(--ramp-down) - 1) * 100%), 100%);

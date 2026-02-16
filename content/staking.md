@@ -4,12 +4,14 @@ seo:
   description: Start staking with Nimiq and earn rewards
 hero:
   title: Stake NIM and get {{ interestPerAnnum }} annually
-  description: average return based on the current distribution. This is not financial advice.
+  description: reward in NIM based on the current total stake. Past performance is not indicative of future results.
   link:
     href: https://wallet.nimiq.com
+    label: Start staking
 quote:
   text: "'**Staking**' means locking up NIM to help secure the network. Get new NIM as a reward. Unstake your NIM at any time."
   author: Nimiq
+  learnMoreLink: https://nimiq.com/staking#faq
 calculator:
   headline:
     label: Staking Calculator
@@ -22,11 +24,11 @@ distribution:
   headline:
     label: Staking Distribution
     headline: Active and decentralized staking
-    subline: A healthy network has a high staked supply, evenly distributed among the various pools and validators.
+    subline: A healthy network has a high staked supply, evenly distributed among the pools and validators.
   stakedHeadline: How much is staked
   stakedDescription: A high staked supply means a safer network but smaller rewards.
   distributedHeadline: How the stakes are distributed
-  distributedDescription: The more evenly stakes are distributed, the stronger the decentralization.
+  distributedDescription: A more even distribution of stakes leads to stronger decentralization.
 video:
   headline:
     label: Staking in the wallet
@@ -39,12 +41,20 @@ video:
 delegate:
   label: Validator pools
   headline: Let others do the work
-  subline: Not a techy? Stake with a validator. They take care of all the work, earning a small fee. You are always in control of your NIM.
+  subline: Not a techy? Stake with a validator pool. They take care of all the work for a small fee. You always stay in control of your NIM.
 banner:
   overlapsNextSection: true
   items:
-    - headline: Want to run a validator yourself? Check out the docs.
+    - headline: Run a validator yourself? Check out the docs.
+      buttonLabel: Become a validator
       link: https://www.nimiq.com/developers/build/set-up-your-own-node/becoming-a-validator
+      features:
+        - icon: nimiq:code
+          description: Solid tech knowledge required
+        - icon: nimiq:document-filled
+          description: Comprehensive docs and guides
+        - icon: nimiq:globe-filled
+          description: Active and helpful community
 faq:
   headline: What you need to know
   forumLink:
@@ -66,8 +76,9 @@ faq:
 wallet:
   headline: Stake in the Nimiq wallet and get {{ interestPerAnnum }} annually
   subline: "'Staking' means locking up your NIM which helps secure the network. You get new NIM as a reward."
-  stakingNote: average return based on the current distribution. This is not financial advice.
+  stakingNote: reward in NIM based on the current total stake. Past performance is not indicative of future results.
   actions:
     - href: https://wallet.nimiq.com
+      label: Create a wallet
       variant: arrow
 ---

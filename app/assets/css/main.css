@@ -362,6 +362,13 @@ body:not(.nq-raw)
 body:not(.nq-raw)
   :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
     :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
+  ):where(h1).text-white {
+  color: var(--color-white);
+}
+
+body:not(.nq-raw)
+  :not(:has(:is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *)):not(
+    :is(.nq-raw, [nq-raw], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact]) *
   ):where(h1):where(.nq-heading, [nq-heading]) {
   --font-size-min: 36;
   --font-size-max: 44;

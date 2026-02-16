@@ -18,7 +18,7 @@ const id = `terms-note-${useId()}`
     <AnimatedStakingRipple class="text-green size-[120px]" data-inverted />
     <h2 class="f-mt-md text-white text-wrap md:text-balance">
       {{ headlineParts[0] }}
-      <span class="bg-white/30 text-white px-[10px] py-[3px] rounded inline-flex" data-percentage>
+      <span class="bg-white/30 text-white px-[10px] py-[3px] rounded-[4px] inline-flex" data-percentage>
         ~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[8px]" name="nimiq:asterisk" :aria-labelledby="id" />
       </span>
       {{ headlineParts[1] }}
@@ -47,58 +47,50 @@ const id = `terms-note-${useId()}`
 
 <style>
 section:has(+ section.gradient-transparent-green-transparent) {
-  padding-bottom: 15px;
-}
-@media (min-width: 768px) {
-  section:has(+ section.gradient-transparent-green-transparent) {
-    padding-bottom: 20px;
-  }
+  --f-pb-min: 15;
+  --f-pb-max: 20;
 }
 
 section.gradient-transparent-green-transparent {
   --gradient-height: 352px;
   background: linear-gradient(
     180deg,
-    rgb(var(--nq-neutral-0)) 0px,
-    rgb(var(--nq-neutral-0)) calc(0.1179 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.967585) calc(0.2138 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.9296) calc(0.2912 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.879348) calc(0.3534 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.818519) calc(0.4037 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.7488) calc(0.4456 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.671881) calc(0.4824 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.589452) calc(0.5176 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.5032) calc(0.5544 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.414815) calc(0.5963 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.325985) calc(0.6466 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.2384) calc(0.7088 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.153748) calc(0.7862 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.0737185) calc(0.8821 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0) var(--gradient-height),
-    rgb(var(--nq-neutral-0) / 0) calc(100% - var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.0737185) calc(100% - 0.8821 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.153748) calc(100% - 0.7862 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.2384) calc(100% - 0.7088 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.325985) calc(100% - 0.6466 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.414815) calc(100% - 0.5963 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.5032) calc(100% - 0.5544 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.589452) calc(100% - 0.5176 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.671881) calc(100% - 0.4824 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.7488) calc(100% - 0.4456 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.818519) calc(100% - 0.4037 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.879348) calc(100% - 0.3534 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.9296) calc(100% - 0.2912 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0) / 0.967585) calc(100% - 0.2138 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0)) calc(100% - 0.1179 * var(--gradient-height)),
-    rgb(var(--nq-neutral-0)) 100%
+    #fff 0px,
+    #fff calc(0.1179 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.967585) calc(0.2138 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.9296) calc(0.2912 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.879348) calc(0.3534 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.818519) calc(0.4037 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.7488) calc(0.4456 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.671881) calc(0.4824 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.589452) calc(0.5176 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.5032) calc(0.5544 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.414815) calc(0.5963 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.325985) calc(0.6466 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.2384) calc(0.7088 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.153748) calc(0.7862 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.0737185) calc(0.8821 * var(--gradient-height)),
+    rgba(255, 255, 255, 0) var(--gradient-height),
+    rgba(255, 255, 255, 0) calc(100% - var(--gradient-height)),
+    rgba(255, 255, 255, 0.0737185) calc(100% - 0.8821 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.153748) calc(100% - 0.7862 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.2384) calc(100% - 0.7088 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.325985) calc(100% - 0.6466 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.414815) calc(100% - 0.5963 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.5032) calc(100% - 0.5544 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.589452) calc(100% - 0.5176 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.671881) calc(100% - 0.4824 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.7488) calc(100% - 0.4456 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.818519) calc(100% - 0.4037 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.879348) calc(100% - 0.3534 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.9296) calc(100% - 0.2912 * var(--gradient-height)),
+    rgba(255, 255, 255, 0.967585) calc(100% - 0.2138 * var(--gradient-height)),
+    #fff calc(100% - 0.1179 * var(--gradient-height)),
+    #fff 100%
   );
   background-color: var(--color-green);
-  padding-bottom: 320px;
-}
-@media (min-width: 768px) {
-  section.gradient-transparent-green-transparent {
-    padding-bottom: 456px;
-  }
+  --f-pb-min: 320;
+  --f-pb-max: 456;
 }
 </style>
 

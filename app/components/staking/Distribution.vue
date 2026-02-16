@@ -2,7 +2,7 @@
 import type { StyleValue } from 'vue'
 import type { DonutDatum } from '../Chart/Donut.client.vue'
 
-defineProps<{ info?: string }>()
+defineProps<{ headline?: string, info?: string }>()
 
 const target = useTemplateRef<HTMLDivElement>('target')
 const isVisible = useElementVisibility(target)
@@ -28,7 +28,10 @@ const startAngle = computed(() => (90 - 180 * (datum.value.at(0)?.value || 0)))
     <div class="ring-1.5 ring-green text-neutral font-semibold px-3 py-1.5 rounded-full bg-neutral-0 right-2 top-[196px] absolute">
       {{ formatter.format(stakingRatio ?? 0) }} staked
     </div>
-    <p v-if="info" class="text-center max-w-[42ch] mt-4">
+    <h3 v-if="headline" class="text-center font-bold text-xl md:text-2xl mt-4">
+      {{ headline }}
+    </h3>
+    <p v-if="info" class="text-center max-w-[42ch] mt-2">
       {{ info }}
     </p>
   </div>

@@ -54,7 +54,7 @@ const contentSchema = z.object({ richText: z.string(), centerHeading: z.boolean(
 const cardSchema = z.object({ content: z.string() })
 
 // Banner & pill schemas
-const bannerItemSchema = z.object({ headline: z.string(), subline: z.string().optional(), label: z.string().optional(), link: z.string().optional() })
+const bannerItemSchema = z.object({ headline: z.string(), subline: z.string().optional(), label: z.string().optional(), link: z.string().optional(), buttonLabel: z.string().optional(), features: z.array(z.object({ icon: z.string(), description: z.string() })).optional() })
 const pillLinkSchema = z.object({ item: z.string(), label: z.string().optional(), icon: z.string() })
 
 // App schemas
@@ -83,7 +83,7 @@ const appGalleryCtaSchema = z.object({ title: z.string(), description: z.string(
 // Buy-and-sell schemas
 const walletHoverSchema = z.object({ title: z.string(), description: z.string(), screenshot: z.string(), link: z.string(), poweredByLabel: z.string().optional(), poweredByLogos: z.array(z.object({ logo: z.string() })).optional() })
 const tokenDistributionItemSchema = z.object({ title: z.string(), percentage: z.number(), description: z.string() })
-const buyAndSellBannerSchema = z.object({ headline: z.string(), cta: z.string(), features: z.array(z.object({ icon: z.string(), description: z.string() })).optional() })
+const buyAndSellBannerSchema = z.object({ headline: z.string(), ctaLabel: z.string().optional(), cta: z.string(), features: z.array(z.object({ icon: z.string(), description: z.string() })).optional() })
 
 // Contact schema
 const contactSchema = z.object({ headline: z.string().optional(), subline: z.string().optional(), nameLabel: z.string().optional(), emailLabel: z.string().optional(), messageLabel: z.string().optional(), submitLabel: z.string().optional() })
@@ -170,8 +170,8 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema.extend({ nimPriceChartLabel: z.string(), marketCapLabel: z.string(), marketCapInfo: z.string(), volume24HLabel: z.string(), volume24HInfo: z.string(), totalSupplyLabel: z.string(), totalSupplyInfo: z.string(), maxSupplyLabel: z.string(), maxSupplyInfo: z.string(), poweredByLogo: z.string(), poweredByLink: z.string(), poweredByLabel: z.string() }),
-        intro: headlineSchema,
-        wallet: z.object({ headline: headlineSchema, content: walletHoverSchema }),
+        intro: headlineSchema.extend({ videoTutorial: z.object({ label: z.string(), videoUrl: z.string() }).optional() }),
+        wallet: z.object({ headline: headlineSchema, videoTutorial: z.object({ label: z.string(), videoUrl: z.string() }).optional(), content: walletHoverSchema }),
         distribution: z.object({ headline: headlineSchema, items: z.array(tokenDistributionItemSchema) }),
         cta: buyAndSellBannerSchema,
         noDownload: headlineSchema,
@@ -371,7 +371,7 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema,
-        quote: z.object({ text: z.string(), author: z.string().optional() }),
+        quote: z.object({ text: z.string(), author: z.string().optional(), learnMoreLink: z.string().optional() }),
         calculator: z.object({ headline: headlineSchema, amountLabel: z.string(), periodLabel: z.string(), rewardsLabel: z.string() }),
         distribution: z.object({ headline: headlineSchema, stakedHeadline: z.string().optional(), stakedDescription: z.string().optional(), distributedHeadline: z.string().optional(), distributedDescription: z.string().optional() }),
         video: z.object({ headline: headlineSchema, embedUrl: z.string(), poster: z.string().optional(), title: z.string().optional(), description: z.string().optional() }),

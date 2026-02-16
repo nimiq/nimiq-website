@@ -42,12 +42,12 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
     <section class="bg-neutral-100" style="--f-pt-min: 96; --f-pt-max: 128">
       <div v-if="posts?.length" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 w-full">
         <article v-for="(post, i) in posts" :key="post.slug" :class="pageIndex === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
-          <NuxtLink class="p-0 h-full relative nq-hoverable block" :to="`/blog/${post.slug}`" @click="active = post.slug">
+          <NuxtLink class="p-0 h-full relative nq-hoverable" :to="`/blog/${post.slug}`" @click="active = post.slug">
             <div class="p-4">
-              <NuxtImg v-if="post.image" class="rounded-6 w-full object-cover" :src="post.image" :alt="post.title" loading="lazy" :class="[i === 0 && pageIndex === 1 ? 'h-auto' : i === 1 ? 'h-max lg:h-[280px]' : 'h-max', { 'view-transition-post-img contain-layout': active === post.slug }]" />
+              <NuxtImg v-if="post.image" class="rounded-6 w-full object-cover" :src="post.image" :alt="post.title" loading="lazy" :class="[i === 1 && pageIndex === 1 ? 'h-max lg:h-[280px]' : 'h-max', { 'view-transition-post-img contain-layout': active === post.slug }]" />
             </div>
             <div class="flex flex-col p-24 h-full">
-              <h2 class="text-left max-w-none" :class="[{ 'view-transition-post-title contain-layout': active === post.slug }, i === 0 && pageIndex === 1 ? 'f-text-3xl' : i === 1 ? 'f-text-2xl' : 'f-text-xl']">
+              <h2 class="text-left" :class="[{ 'view-transition-post-title contain-layout': active === post.slug }, i === 0 && pageIndex === 1 ? 'f-text-3xl' : (i === 1 && pageIndex === 1) ? 'f-text-2xl' : 'f-text-xl']">
                 {{ post.title }}
               </h2>
               <p class="mt-8 line-clamp-2 text-16 text-neutral-900 text-left">
@@ -100,35 +100,6 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
 </template>
 
 <style scoped>
-/* Fluid text sizing utilities to match nimiq-css */
-.f-text-xl {
-  --f-text-min: 18;
-  --f-text-max: 22;
-  font-size: clamp(
-    calc(1px * var(--f-text-min)),
-    calc(1px * var(--f-text-min) + (var(--f-text-max) - var(--f-text-min)) * (100vw - 320px) / (1920 - 320)),
-    calc(1px * var(--f-text-max))
-  );
-}
-.f-text-2xl {
-  --f-text-min: 22;
-  --f-text-max: 26;
-  font-size: clamp(
-    calc(1px * var(--f-text-min)),
-    calc(1px * var(--f-text-min) + (var(--f-text-max) - var(--f-text-min)) * (100vw - 320px) / (1920 - 320)),
-    calc(1px * var(--f-text-max))
-  );
-}
-.f-text-3xl {
-  --f-text-min: 26;
-  --f-text-max: 32;
-  font-size: clamp(
-    calc(1px * var(--f-text-min)),
-    calc(1px * var(--f-text-min) + (var(--f-text-max) - var(--f-text-min)) * (100vw - 320px) / (1920 - 320)),
-    calc(1px * var(--f-text-max))
-  );
-}
-
 .pagination-item {
   display: flex;
   align-items: center;

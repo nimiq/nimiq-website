@@ -16,6 +16,9 @@ function getPillClass(action: Action) {
   // If variant already has nq-pill- prefix, use directly; otherwise add prefix
   if (action.variant?.startsWith('nq-pill-'))
     return action.variant
+  // "arrow" is an indicator style, not a color variant
+  if (action.variant === 'arrow')
+    return 'nq-pill-blue'
   return action.variant ? `nq-pill-${action.variant}` : 'nq-pill-blue'
 }
 </script>

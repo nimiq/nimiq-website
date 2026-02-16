@@ -19,6 +19,12 @@ logs
 .idea
 .eslintcache
 
+# pnpm store (should not be in repo, but can be created by container runs)
+.pnpm-store/
+
+# Node compile cache
+node-compile-cache/
+
 # Local env files
 .env
 .env.*
@@ -41,8 +47,7 @@ public/images/blog/
 public/images/exchanges/
 public/images/pages/
 
-# Test screenshots (except intentional changes docs)
-tests/screenshots/
-!tests/screenshots/**/INTENTIONAL_CHANGES.md
-tests/semantic-reports/
+# Visual regression generated artifacts
+tests/vrt/output/
+.vitest-attachments/
 public/assets/fonts/

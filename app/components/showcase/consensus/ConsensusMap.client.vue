@@ -90,35 +90,17 @@ const canvas = useTemplateRef('canvas')
 
 const tooltipPosition = ref<CSSProperties>({ transform: 'translate(0, 0)' })
 const mapError = ref<Error | null>(null)
-
-onMounted(async () => {
-  try {
-    await setUserPeer()
-  }
-  catch (error) {
-    console.warn('Failed to get user location, using default:', error)
-    // Default to a location in Europe if geolocation fails
-    userPeer.value = { peerId: 'user', lat: 52.52, lng: 13.405, x: 64, y: 26 }
-  }
-  try {
-    const { userHexagon } = drawHexagonsWorldMap(canvas as Ref<HTMLCanvasElement>, { peers, userPeer, centerOnUser: true })
-    setPositionTooltip(userHexagon)
-  }
-  catch (error) {
-    console.error('Failed to draw consensus map:', error)
-    mapError.value = error as Error
-  }
-})
+let cachedUserHexagon: Ref<WorldMapHexagon | undefined> | null = null
 
 const { pixelRatio } = useDevicePixelRatio()
 
-async function setPositionTooltip(userHexagon: Ref<WorldMapHexagon | undefined>) {
+async function updateTooltipPosition() {
   await nextTick()
-  if (!userPeer.value || !userHexagon.value || !canvas.value)
+  if (!userPeer.value || !cachedUserHexagon?.value || !canvas.value)
     return
 
-  const userX = userHexagon.value.left + (HEXAGONS_WORLD_MAP_SCALE / 2)
-  const userY = userHexagon.value.top + (HEXAGONS_WORLD_MAP_SCALE / 2)
+  const userX = cachedUserHexagon.value.left + (HEXAGONS_WORLD_MAP_SCALE / 2)
+  const userY = cachedUserHexagon.value.top + (HEXAGONS_WORLD_MAP_SCALE / 2)
 
   const scale = (canvas.value.height) / (2 * HEXAGONS_WORLD_MAP_HEIGHT_PIXELS)
   const centerX = (canvas.value.width / pixelRatio.value) / (2 * scale)
@@ -130,7 +112,26 @@ async function setPositionTooltip(userHexagon: Ref<WorldMapHexagon | undefined>)
   tooltipPosition.value = { transform: `translate(${finalX + 4}px, ${finalY - 36}px)` }
 }
 
-useEventListener(window, 'resize', setPositionTooltip)
+onMounted(async () => {
+  try {
+    await setUserPeer()
+  }
+  catch (error) {
+    console.warn('Failed to get user location, using default:', error)
+    userPeer.value = { peerId: 'user', lat: 52.52, lng: 13.405, x: 64, y: 26 }
+  }
+  try {
+    const { userHexagon } = drawHexagonsWorldMap(canvas as Ref<HTMLCanvasElement>, { peers, userPeer, centerOnUser: true })
+    cachedUserHexagon = userHexagon
+    updateTooltipPosition()
+  }
+  catch (error) {
+    console.error('Failed to draw consensus map:', error)
+    mapError.value = error as Error
+  }
+})
+
+useEventListener(window, 'resize', updateTooltipPosition)
 
 const showTooltip = computed(() => userPeer.value && tooltipPosition.value)
 
@@ -170,7 +171,7 @@ async function connect() {
       <div class="curtain size-full absolute z-1 xl:max-w-50vw" />
       <div class="size-full absolute">
         <canvas ref="canvas" class="size-full" />
-        <div v-if="showTooltip" class="left-0 topacity-0 absolute z-1 animate-delay-500 animate-fade-in animate-both" :style="tooltipPosition">
+        <div v-if="showTooltip" class="left-0 top-0 absolute z-1 animate-delay-500 animate-fade-in animate-both" :style="tooltipPosition">
           <div class="dark left-[calc(-50%+2px)] flex flex-col items-center mt-4 relative" scheme-dark>
             <Icon class="text-12 translate-y-[3.5px]" name="nimiq:tooltip-triangle" :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" />
             <div v-if="consensus === 'idle'" class="ring-0.2 ring-blue flex items-center rounded-full bg-gradient-blue transition-colors -top-px" layout-id="connect">

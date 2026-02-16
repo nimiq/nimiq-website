@@ -38,10 +38,10 @@ const columns = computed(() => [
 </script>
 
 <template>
-  <ul class="grid grid-cols-1 md:grid-cols-3 gap-x-8 lg:gap-x-16 gap-y-24 w-full">
+  <ul class="grid grid-cols-1 md:grid-cols-3 gap-x-[8px] lg:gap-x-16 gap-y-24 w-full">
     <li v-for="(column, i) in columns.filter(c => c.items.length)" :key="i" class="flex flex-col md:items-center">
       <span v-if="showLabels" class="text-12 md:text-14 text-neutral-700 nq-label">{{ column.label }}</span>
-      <div class="w-full f-mt-md flex flex-col gap-y-8 lg:gap-y-16">
+      <div class="w-full f-mt-md flex flex-col gap-y-[8px] lg:gap-y-16">
         <NuxtLink v-for="(social, j) in column.items" :key="j" class="social-link group nq-hoverable" :to="social.link" external target="_blank" :style="`--social-color:${social.color}`">
           <Icon class="!size-32 md:!size-40" :name="social.icon" />
           <span class="capitalize f-text-lg">{{ social.label }}</span>
@@ -57,6 +57,7 @@ const columns = computed(() => [
   flex-direction: row;
   align-items: center;
   gap: 24px;
+  background: none !important;
 }
 
 .social-link:hover,

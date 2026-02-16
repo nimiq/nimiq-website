@@ -57,7 +57,7 @@ const rewards = computed(() => calculateStakingRewards({
       <div class="grid grid-max-md:cols-1 md:grid-rows-[auto_1fr] gap-x-8 gap-y-3 md:grid-flow-col mx-auto p-8 overflow-auto">
         <span class="text-max-md:center text-neutral-800 font-semibold">{{ amountLabel || 'Amount' }}</span>
         <label class="flex items-baseline gap-2 text-neutral hover:text-blue focus:text-blue focus-within:text-blue h-max w-max transition-colors self-end max-md:mx-auto">
-          <UiAmountInput v-model="amount" class="shadow-none outline-none max-w-9ch min-w-0 w-max text-blue text-xl md:text-2xl" :decimals :min="1" style="padding:0" />
+          <UiAmountInput v-model="amount" class="shadow-none outline-none bg-transparent max-w-9ch min-w-0 w-max text-blue text-xl md:text-2xl" :decimals :min="1" style="padding:0" />
           <span class="leading-none font-bold flex-1 text-blue text-base md:text-lg">NIM</span>
         </label>
 

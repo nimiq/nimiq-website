@@ -8,10 +8,10 @@ defineProps<{ label: string, headline: string, subline: string, thisIsYou: strin
       <p v-if="label" class="mb-4 w-max block nq-label f-text-sm">
         {{ label }}
       </p>
-      <h2 class="text-left break-keep consensus-headline">
+      <h2 class="break-keep consensus-headline">
         {{ headline }}
       </h2>
-      <p class="text-left xl:max-w-[40ch]">
+      <p class="consensus-subline">
         {{ subline }}
       </p>
     </div>
@@ -22,3 +22,16 @@ defineProps<{ label: string, headline: string, subline: string, thisIsYou: strin
     </div>
   </div>
 </template>
+
+<style scoped>
+.consensus-headline,
+.consensus-subline {
+  text-align: left;
+}
+
+@media (min-width: 1280px) {
+  .consensus-subline {
+    max-width: 536px;
+  }
+}
+</style>

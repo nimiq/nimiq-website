@@ -2,7 +2,7 @@
 title: NIM Treasury Accumulation Update December 2025
 description: Reporting for the period of December, 2025
 slug: nim-treasury-accumulation-update-december-2025
-publishedAt: "2026-01-01"
+publishedAt: "2026-01-02"
 updatedAt: 2025-12-01T19:06:55+0000
 authors:
   - Team Nimiq

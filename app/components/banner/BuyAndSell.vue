@@ -1,6 +1,7 @@
 <script setup lang="ts">
 interface BannerData {
   headline: string
+  ctaLabel?: string
   cta: string
   features?: { icon: string, description: string }[]
 }
@@ -13,7 +14,11 @@ defineProps<{ data: BannerData }>()
     <h3 class="text-44 text-neutral font-bold max-w-[24ch]">
       {{ data.headline }}
     </h3>
-    <NuxtLink class="mt-4 md:mt-6 nq-arrow nq-pill-lg nq-pill-blue" :to="data.cta" />
+    <NuxtLink class="mt-4 md:mt-6 nq-arrow nq-pill-lg nq-pill-blue" :to="data.cta">
+      <template v-if="data.ctaLabel">
+        {{ data.ctaLabel }}
+      </template>
+    </NuxtLink>
     <ul v-if="data.features?.length" class="flex flex-col gap-3 md:gap-4 lg:gap-6 mt-10 lg:mt-0 lg:row-span-2">
       <li v-for="({ description, icon }, i) in data.features" :key="i" class="flex gap-3 items-center">
         <div class="rounded-full bg-gold size-8 flex items-center justify-center">
