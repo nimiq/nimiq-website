@@ -10,14 +10,14 @@ interface Props {
 
 const { newsAndAnnouncementsLabel = '', discussionsAndSupportLabel = '', cultureAndInsightsLabel = '', showLabels, items } = defineProps<Props>()
 
-const { data: site } = await useAsyncData('site', () => queryCollection('site').first())
+const site = await useSite()
 
 // Map from content IDs to site.yaml social IDs
 const socialMediaMap: Record<string, string> = { nimiq_forum: 'forum', twitter: 'x' }
 
 function getSocialById(id: string) {
   const mappedId = socialMediaMap[id] || id
-  const social = site.value?.socials?.find(s => s.id === mappedId)
+  const social = site.socials?.find(s => s.id === mappedId)
   if (!social)
     return social
   // Contact grid displays platform names - capitalize for display

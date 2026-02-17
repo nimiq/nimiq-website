@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { NimiqApp } from '~/composables/useApps'
 
-const { data } = await useApps()
-const apps = computed(() => data.value?.apps)
+const data = await useApps()
+const apps = computed(() => data.apps)
 const { madeBy, filteredApps, getSpotlightPosition } = useAppsFilter(apps)
 
 const logoConfig: Record<string, { classes?: string, invert?: boolean }> = {

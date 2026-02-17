@@ -3,22 +3,20 @@ const route = useRoute()
 const pageIndex = computed(() => Number(route.query.page) || 1)
 const itemsPerPage = 25
 
-const { data: pageData } = await useAsyncData('blog-page', () => queryCollection('blogPage').first())
-if (!pageData.value)
+const page = await usePrerenderData('blog-page', () => queryCollection('blogPage').first())
+if (!page)
   throw createError({ statusCode: 404, statusMessage: 'Blog page not found', fatal: true })
 
-const page = pageData.value
-
-const { data: totalCount } = await useAsyncData('blog-count', () => queryCollection('blog').count())
-const totalPages = computed(() => Math.ceil((totalCount.value || 0) / itemsPerPage))
-
-const { data: posts } = await useAsyncData('blog-posts', () =>
+const posts = await usePrerenderData('blog-posts-all', () =>
   queryCollection('blog')
     .select('title', 'slug', 'description', 'publishedAt', 'image', 'authors')
     .order('publishedAt', 'DESC')
-    .skip((pageIndex.value - 1) * itemsPerPage)
-    .limit(itemsPerPage)
-    .all(), { watch: [pageIndex] })
+    .all())
+const totalPages = computed(() => Math.ceil((posts.length || 0) / itemsPerPage))
+const paginatedPosts = computed(() => {
+  const start = (pageIndex.value - 1) * itemsPerPage
+  return posts.slice(start, start + itemsPerPage)
+})
 
 const active = useState('active-blog-post', () => '')
 
@@ -40,8 +38,8 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
     </section>
 
     <section class="bg-neutral-100" style="--f-pt-min: 96; --f-pt-max: 128">
-      <div v-if="posts?.length" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 w-full">
-        <article v-for="(post, i) in posts" :key="post.slug" :class="pageIndex === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
+      <div v-if="paginatedPosts.length" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 w-full">
+        <article v-for="(post, i) in paginatedPosts" :key="post.slug" :class="pageIndex === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
           <NuxtLink class="p-0 h-full relative nq-hoverable" :to="`/blog/${post.slug}`" @click="active = post.slug">
             <div class="p-4">
               <NuxtImg v-if="post.image" class="rounded-6 w-full object-cover" :src="post.image" :alt="post.title" loading="lazy" :class="[i === 1 && pageIndex === 1 ? 'h-max lg:h-[280px]' : 'h-max', { 'view-transition-post-img contain-layout': active === post.slug }]" />

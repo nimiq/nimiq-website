@@ -68,6 +68,13 @@ pnpm lint:fix     # Auto-fix linting
 pnpm typecheck    # TypeScript check
 ```
 
+### SSG Data Fetching
+
+This branch uses `nuxt-prerender-kit` and `usePrerenderData` for SSG-focused data loading.
+
+- `pnpm dev` does not validate the prerender transform behavior.
+- Always validate prerender correctness with `pnpm generate`.
+
 ### CSS: UnoCSS
 
 Uses UnoCSS with [Nimiq CSS](https://onmax.github.io/nimiq-ui/) preset. Key differences from Tailwind:
@@ -103,20 +110,19 @@ Options:
 
 ## Scripts
 
-| Command             | Description              |
-| ------------------- | ------------------------ |
-| `pnpm dev`          | Development server       |
-| `pnpm build`        | Production build         |
-| `pnpm build:studio` | NuxtHub/Cloudflare build |
-| `pnpm generate`     | Static site generation   |
-| `pnpm lint:fix`     | Auto-fix linting         |
-| `pnpm typecheck`    | TypeScript check         |
+- `pnpm dev`: Development server
+- `pnpm build`: Production build
+- `pnpm build:studio`: NuxtHub/Cloudflare build
+- `pnpm generate`: Static site generation
+- `pnpm build:github-pages`: GitHub Pages static build alias
+- `pnpm lint:fix`: Auto-fix linting
+- `pnpm typecheck`: TypeScript check
 
 ## CI/CD
 
 **Workflows:**
 
-- `ci.yml` - Linting + type checking on all branches
+- `ci.yml` - Linting + type checking + static generation on all branches
 - `github-pages.yml` - Preview deployments
 - `nuxthub.yml` - Production deployment
 
@@ -129,5 +135,5 @@ Options:
 
 1. Fork and create feature branch
 2. Make changes
-3. Run `pnpm lint` and `pnpm typecheck`
+3. Run `pnpm lint`, `pnpm typecheck`, and `pnpm generate`
 4. Submit PR

@@ -6,12 +6,12 @@ const bannerPositions = ['-bottom-10 -right-[30px] md:right-[88px] md:-bottom-11
 const bannerLogoClasses: Record<string, string> = { 'NimWorld': 'filter-brightness-0 filter-invert scale-75', 'Trust Wallet': 'scale-150' }
 
 // Load community apps for background (developer !== '@nimiq')
-const { data: appsData } = await useApps()
+const appsData = await useApps()
 // Shuffle community apps for varied display (randomized each page load)
 const bgApps = computed(() => {
-  if (!appsData.value?.communityApps)
+  if (!appsData.communityApps)
     return []
-  return shuffle(appsData.value.communityApps).slice(0, 6).map((app, i) => ({ ...app, classes: bannerPositions[i]! }))
+  return shuffle(appsData.communityApps).slice(0, 6).map((app, i) => ({ ...app, classes: bannerPositions[i]! }))
 })
 </script>
 

@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
     environment.useNuxtHub && '@nuxthub/core',
     '@nuxt/content',
+    'nuxt-prerender-kit',
     environment.environment.isStudio && 'nuxt-studio',
     'nuxt-link-checker',
   ].filter(Boolean),
@@ -84,6 +85,9 @@ export default defineNuxtConfig({
       nimiqIcons,
     ],
     serverBundle: 'local',
+    clientBundle: {
+      sizeLimitKb: 1024,
+    },
   },
 
   studio: {
@@ -237,26 +241,26 @@ export default defineNuxtConfig({
 
   hooks: {
     // Ensure dev uses the same WOFF2-only Google Fonts as production.
-    'fonts:providers': function (providers) {
-      const base = providers.google
+    'fonts:providers': function (providers: any) {
+      const base = providers.google as any
       if (typeof base !== 'function')
         return
-      providers.google = (options: unknown) => {
-        const provider = base(options as never)
-        const wrapped = async (ctx: unknown) => {
-          const resolved = await provider(ctx as never)
+      providers.google = ((options: any) => {
+        const provider = base(options)
+        const wrapped = async (ctx: any) => {
+          const resolved = await provider(ctx)
           if (!resolved || typeof resolved.resolveFont !== 'function')
             return resolved
           return {
             ...resolved,
-            async resolveFont(fontFamily, options) {
+            async resolveFont(fontFamily: any, options: any) {
               const result = await resolved.resolveFont(fontFamily, options)
               if (!result?.fonts)
                 return result
               const filtered = result.fonts
-                .map(font => ({
+                .map((font: any) => ({
                   ...font,
-                  src: font.src?.filter((source) => {
+                  src: font.src?.filter((source: any) => {
                     if (!('url' in source))
                       return true
                     if (source.format === 'woff')
@@ -264,7 +268,7 @@ export default defineNuxtConfig({
                     return !source.url?.endsWith('.woff')
                   }),
                 }))
-                .filter(font => font.src && font.src.length > 0)
+                .filter((font: any) => font.src && font.src.length > 0)
               return { ...result, fonts: filtered }
             },
           }
@@ -272,7 +276,7 @@ export default defineNuxtConfig({
         // Preserve provider name for unifont.
         ;(wrapped as any)._name = (provider as any)._name
         return wrapped
-      }
+      }) as any
     },
     // Restore IPX cache before build
     'build:before': function () {

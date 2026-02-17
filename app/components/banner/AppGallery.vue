@@ -8,12 +8,12 @@ interface Props {
 }
 defineProps<Props>()
 
-const { data: apps } = useApps()
+const apps = await useApps()
 
 const appsToShow = computed(() => {
-  if (!apps.value?.communityApps)
+  if (!apps.communityApps)
     return []
-  return apps.value.communityApps.slice(0, 6)
+  return apps.communityApps.slice(0, 6)
 })
 </script>
 

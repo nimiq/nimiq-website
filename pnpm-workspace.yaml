@@ -16,6 +16,7 @@ catalog:
   marked: ^17.0.1
   mdream: ^0.15.3
   nuxt-link-checker: ^4.3.9
+  nuxt-prerender-kit: ^0.0.4
   nuxt-studio: 1.0.0-beta.0
   pixelmatch: ^7.1.0
   playwright: ^1.57.0

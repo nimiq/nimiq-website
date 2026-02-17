@@ -4,21 +4,21 @@ import mediumZoom from 'medium-zoom'
 const route = useRoute('blog-slug')
 const slug = route.params.slug
 
-const { data: post } = await useAsyncData(`blog-${slug}`, () =>
+const post = await usePrerenderData(`blog-${slug}`, () =>
   queryCollection('blog').where('slug', '=', slug).first())
 
-if (!post.value)
+if (!post)
   throw createError({ statusCode: 404, statusMessage: 'Blog post not found', fatal: true })
 
-const { data: surroundings } = await useAsyncData(`blog-surroundings-${slug}`, () =>
-  queryCollectionItemSurroundings('blog', post.value!.path, { fields: ['title', 'slug'] }))
+const surroundings = await usePrerenderData(`blog-surroundings-${slug}`, () =>
+  queryCollectionItemSurroundings('blog', post.path, { fields: ['title', 'slug'] }))
 
-const prev = computed(() => surroundings.value?.[0])
-const next = computed(() => surroundings.value?.[1])
+const prev = computed(() => surroundings?.[0])
+const next = computed(() => surroundings?.[1])
 
 const meta = {
-  title: post.value.title,
-  description: post.value.description,
+  title: post.title,
+  description: post.description,
 }
 
 useHead({ title: meta.title })

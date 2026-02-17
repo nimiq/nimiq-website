@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { data: exchanges } = await useAsyncData('exchanges', () => queryCollection('exchanges').all())
+const exchanges = await usePrerenderData('exchanges', () => queryCollection('exchanges').all())
 </script>
 
 <template>

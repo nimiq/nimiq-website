@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { StyleValue } from 'vue'
-import type { DonutDatum } from '../Chart/Donut.client.vue'
+import type { DonutDatum } from '../chart/Donut.client.vue'
 
 defineProps<{ headline?: string, info?: string }>()
 

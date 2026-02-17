@@ -1,6 +1,6 @@
 export async function useSite() {
-  const { data: site } = await useAsyncData('site-config', () => queryCollection('site').first())
-  if (!site.value)
+  const site = await usePrerenderData('site-config', () => queryCollection('site').first())
+  if (!site)
     throw createError({ statusCode: 500, message: 'Site configuration not found' })
-  return site.value
+  return site
 }

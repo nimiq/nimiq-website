@@ -15,12 +15,12 @@ const [DefineSmallCard, SmallCard] = createReusableTemplate<{ app: AppItem }>()
 const [DefineLargeCard, LargeCard] = createReusableTemplate<{ app: AppItem }>()
 
 // BannerViewAllApps - load community apps for background (developer !== '@nimiq')
-const { data: appsData } = await useApps()
+const appsData = await useApps()
 const bgApps = ref<Array<{ name: string, type: string, logo: string, link: string, color: string, classes: string }>>([])
 onMounted(() => {
-  if (!appsData.value?.communityApps)
+  if (!appsData.communityApps)
     return
-  bgApps.value = shuffle(appsData.value.communityApps).slice(0, 6).map((app, i) => ({ ...app, classes: bannerPositions[i]! }))
+  bgApps.value = shuffle(appsData.communityApps).slice(0, 6).map((app, i) => ({ ...app, classes: bannerPositions[i]! }))
 })
 </script>
 

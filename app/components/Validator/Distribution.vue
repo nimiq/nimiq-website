@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DonutDatum } from '../Chart/Donut.client.vue'
+import type { DonutDatum } from '../chart/Donut.client.vue'
 import type { Validator } from '~/composables/useValidatorsInfo'
 
 defineProps<{ headline?: string, info?: string }>()

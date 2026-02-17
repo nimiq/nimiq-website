@@ -62,7 +62,7 @@ function transformApp(app: { name: string, type: string, logo: string, link: str
 }
 
 export function useApps() {
-  return useAsyncData('all-apps', async () => {
+  return usePrerenderData('all-apps', async () => {
     const data = await queryCollection('allApps').first()
     if (!data?.apps?.length)
       throw new Error('Failed to fetch apps data. Build cannot continue without apps.')
