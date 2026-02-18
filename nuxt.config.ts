@@ -1,4 +1,5 @@
 import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs'
+import { resolve } from 'node:path'
 import process from 'node:process'
 import nimiqIcons from 'nimiq-icons/icons.json'
 import { defineNuxtConfig } from 'nuxt/config'
@@ -28,6 +29,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxt/hints',
+    '@nuxt/a11y',
+    environment.environment.isLocal && process.env.VRT !== '1' && '@nuxt/devtools',
     '@nuxt/icon',
     '@nuxt/fonts',
     '@nuxtjs/tailwindcss',
@@ -115,11 +118,22 @@ export default defineNuxtConfig({
     },
   },
 
-  devtools: { enabled: false },
+  devtools: { enabled: environment.environment.isLocal && process.env.VRT !== '1' },
 
   components: [
     '~/components',
   ],
+
+  a11y: {
+    enabled: environment.environment.isLocal,
+    report: {
+      enabled: environment.environment.isProduction,
+      // Write outside Nuxt's buildDir (Nuxt 4 defaults to node_modules/.cache/nuxt/.nuxt)
+      // so the report ends up at a stable path.
+      output: resolve(process.cwd(), '.nuxt/a11y-report.md'),
+      failOnViolation: false,
+    },
+  },
 
   vite: {
     plugins: [wasm()],
@@ -280,6 +294,9 @@ export default defineNuxtConfig({
     },
     // Restore IPX cache before build
     'build:before': function () {
+      // Ensure a stable output dir exists for tools that write build artifacts (e.g. @nuxt/a11y report).
+      mkdirSync(resolve(process.cwd(), '.nuxt'), { recursive: true })
+
       if (existsSync(IPX_CACHE_DIR)) {
         // Best-effort cache restore. In clean environments (e.g. Docker) the output
         // folder might not exist yet; don't fail the whole prepare/build if restore fails.
@@ -312,7 +329,7 @@ export default defineNuxtConfig({
   experimental: {
     viewTransition: true,
     typedPages: true,
-    buildCache: true,
+    buildCache: environment.environment.isLocal,
   },
 
   app: {

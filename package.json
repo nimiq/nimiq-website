@@ -21,7 +21,7 @@
     "deploy:studio": "pnpm build:studio && npx wrangler deploy",
     "deploy:server": "pnpm build:server && npx wrangler deploy -c wrangler.server.jsonc",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "postinstall": "node scripts/fix-resvg-symlinks.mjs && nuxt prepare",
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --fix  --cache",
     "prepare": "nuxt prepare",
@@ -53,6 +53,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:lint",
+    "@nuxt/a11y": "catalog:",
+    "@nuxt/devtools": "catalog:",
     "@nuxt/eslint": "catalog:lint",
     "@nuxt/fonts": "catalog:",
     "@nuxt/icon": "catalog:nuxt",

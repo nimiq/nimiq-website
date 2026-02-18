@@ -32,9 +32,9 @@ start_dev_server() {
       tail -n 200 /tmp/vrt-nuxt-build.log || true
       exit 1
     fi
-    pnpm preview --host 0.0.0.0 --port 3000 > /tmp/vrt-nuxt.log 2>&1 &
+    VRT=1 pnpm preview --host 0.0.0.0 --port 3000 > /tmp/vrt-nuxt.log 2>&1 &
   else
-    pnpm dev --host 0.0.0.0 --port 3000 > /tmp/vrt-nuxt.log 2>&1 &
+    VRT=1 pnpm dev --host 0.0.0.0 --port 3000 > /tmp/vrt-nuxt.log 2>&1 &
   fi
   DEV_PID=$!
 

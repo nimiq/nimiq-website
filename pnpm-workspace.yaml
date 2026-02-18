@@ -1,7 +1,9 @@
 packages:
   - ./
 catalog:
+  '@nuxt/a11y': https://pkg.pr.new/nuxt/a11y/%40nuxt%2Fa11y@f9d51df
   '@nuxt/content': ^3.11.0
+  '@nuxt/devtools': 3.1.1
   '@nuxt/fonts': ^0.12.1
   '@nuxt/hints': 1.0.0-alpha.3
   '@nuxthub/core': 0.10.1
