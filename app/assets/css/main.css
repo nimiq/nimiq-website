@@ -35,6 +35,11 @@ body:has([view-transition-post-title]) article[nq-prose] :where(h4) {
   margin-bottom: 0.5lh;
 }
 
+/* Prevent huge computed top margins from nimiq-css heading margin variables */
+body:has([view-transition-post-title]) article[nq-prose] :where(h2, h3, h4, h5, h6):not(:first-child) {
+  margin-top: 1lh;
+}
+
 /* Bold should look clearly bold */
 body:has([view-transition-post-title]) article[nq-prose] :where(strong, b):not(:where(h1, h2, h3, h4, h5, h6) *) {
   font-weight: 700;
