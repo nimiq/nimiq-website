@@ -1,3 +1,11 @@
+@layer nq-static-content {
+  body:not(.nq-raw):not(
+      :where(.nq-no-color, [nq-no-color], .nq-prose, [nq-prose], .nq-prose-compact, [nq-prose-compact])
+    ) {
+    color: color-mix(in srgb, rgb(var(--nq-neutral-900)), transparent 15%) !important;
+  }
+}
+
 [nq-prose] h3 a {
   /* TODO Move this to nimiq-ui */
   /* Fix for /blog/introducing-nimiq-pay */
@@ -35,9 +43,9 @@ body:has([view-transition-post-title]) article[nq-prose] :where(h4) {
 }
 
 /* Bold should look clearly bold */
-body:has([view-transition-post-title]) article[nq-prose] :where(strong, b) {
+body:has([view-transition-post-title]) article[nq-prose] :where(strong, b):not(:where(h1, h2, h3, h4, h5, h6) *) {
   font-weight: 700;
-  color: color-mix(in srgb, var(--colors-neutral-900) 85%, transparent);
+  color: color-mix(in srgb, rgb(var(--nq-neutral-800)) 50%, rgb(var(--nq-neutral-900)) 50%);
 }
 
 /*
