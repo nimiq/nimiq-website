@@ -73,7 +73,7 @@ if (post.value?.data.body.at(0)?.primary) {
 }
 
 :global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6)) {
-  margin-top: 1lh;
+  margin-top: 2lh;
 }
 
 :global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6):first-child) {

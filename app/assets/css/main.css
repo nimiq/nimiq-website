@@ -37,7 +37,7 @@
 
 /* Prevent huge computed top margins from nimiq-css heading margin variables */
 :where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] :where(h2, h3, h4, h5, h6) {
-  margin-top: 1lh;
+  margin-top: 2lh;
 }
 
 :where([data-blog-post], body:has([view-transition-post-title]))
