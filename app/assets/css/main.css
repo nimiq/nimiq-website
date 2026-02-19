@@ -10,6 +10,7 @@
 body:has([view-transition-post-title]) header[data-section],
 body:has([view-transition-post-title]) article[nq-prose] {
   --nq-prose-max-width: 920px;
+  color: color-mix(in srgb, rgb(var(--nq-neutral-900)), transparent 15%);
 }
 
 /* Headings: ~30% smaller than current when body text is 20px */
@@ -35,9 +36,9 @@ body:has([view-transition-post-title]) article[nq-prose] :where(h4) {
 }
 
 /* Bold should look clearly bold */
-body:has([view-transition-post-title]) article[nq-prose] :where(strong, b) {
+body:has([view-transition-post-title]) article[nq-prose] :where(strong, b):not(:where(h1, h2, h3, h4, h5, h6) *) {
   font-weight: 700;
-  color: color-mix(in srgb, var(--colors-neutral-900) 85%, transparent);
+  color: color-mix(in srgb, rgb(var(--nq-neutral-800)) 50%, rgb(var(--nq-neutral-900)) 50%);
 }
 
 /*
