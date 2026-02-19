@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { NimiqApp } from '~/composables/useApps'
+import { TabsIndicator, TabsList, TabsRoot, TabsTrigger } from 'reka-ui'
 
 const data = await useApps()
 const apps = computed(() => data.apps)
@@ -49,25 +50,20 @@ function getHighlightedUrl(link: string) {
 </script>
 
 <template>
-  <form class="rounded-full bg-neutral-300" @submit.prevent>
-    <fieldset class="flex">
-      <p class="sr-only">
-        Filter by author of the app
-      </p>
-      <label class="py-[8px] md:py-[12px] pl-[8px] md:pl-[12px]">
-        <input id="anyone" v-model="madeBy" class="sr-only" type="radio" value="anyone">
-        <span class="text-neutral-700 text-[16px] font-semibold transition-colors px-[8px] md:px-[12px]">Anyone</span>
-      </label>
-      <label class="py-[8px] md:py-[12px]">
-        <input id="official" v-model="madeBy" class="sr-only" type="radio" value="official">
-        <span class="text-neutral-700 text-[16px] font-semibold transition-colors px-[8px] md:px-[12px]">Official</span>
-      </label>
-      <label class="py-[8px] md:py-[12px] pr-[8px] md:pr-[12px]">
-        <input id="community" v-model="madeBy" class="sr-only" type="radio" value="community">
-        <span class="text-neutral-700 text-[16px] font-semibold transition-colors px-[8px] md:px-[12px]">Community</span>
-      </label>
-    </fieldset>
-  </form>
+  <TabsRoot v-model="madeBy">
+    <TabsList class="relative flex rounded-full bg-neutral-300 p-1">
+      <TabsIndicator class="absolute inset-y-1 rounded-full bg-neutral-0 w-[--reka-tabs-indicator-size] translate-x-[--reka-tabs-indicator-position]" />
+      <TabsTrigger value="anyone" class="py-2 md:py-3 px-2 md:px-3 text-[16px] font-semibold text-neutral-700 data-[state=active]:text-neutral hover:text-neutral-900 transition-colors relative z-1 rounded-full cursor-pointer select-none">
+        Anyone
+      </TabsTrigger>
+      <TabsTrigger value="official" class="py-2 md:py-3 px-2 md:px-3 text-[16px] font-semibold text-neutral-700 data-[state=active]:text-neutral hover:text-neutral-900 transition-colors relative z-1 rounded-full cursor-pointer select-none">
+        Official
+      </TabsTrigger>
+      <TabsTrigger value="community" class="py-2 md:py-3 px-2 md:px-3 text-[16px] font-semibold text-neutral-700 data-[state=active]:text-neutral hover:text-neutral-900 transition-colors relative z-1 rounded-full cursor-pointer select-none">
+        Community
+      </TabsTrigger>
+    </TabsList>
+  </TabsRoot>
 
   <ul v-if="filteredApps.length" class="mt-[32px] md:mt-[48px] grid gap-[16px] grid-cols-1 md:grid-cols-[repeat(auto-fit,min(100%,350px))] xl:gap-[24px] 2xl:gap-[32px] justify-center">
     <li v-for="(app, i) in filteredApps" :key="i" class="w-full" :style="getSpotlightPosition(app)" :class="getSpotlightPosition(app)?.class">
@@ -115,14 +111,10 @@ function getHighlightedUrl(link: string) {
 </template>
 
 <style scoped>
-fieldset label {
-  input:checked + span {
-    color: var(--color-neutral);
-  }
-
-  input:where(:focus-visible, :hover) + span {
-    color: var(--color-neutral-900);
-  }
+[data-reka-tabs-indicator] {
+  transition:
+    width 200ms var(--nq-ease),
+    transform 300ms var(--nq-ease);
 }
 
 @media (min-width: 768px) {
