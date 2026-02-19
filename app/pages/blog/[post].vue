@@ -81,7 +81,7 @@ if (post.value?.data.body.at(0)?.primary) {
 }
 
 :global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6):not(:first-child)) {
-  --uno: 'mt-1.5lh';
+  margin-top: 1lh;
 }
 
 :global([data-blog-post] [nq-prose] :where(h2)) {
