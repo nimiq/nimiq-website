@@ -74,6 +74,12 @@ if (post.value?.data.body.at(0)?.primary) {
   --uno: 'text-1em';
 }
 
+:global([data-blog-post] [nq-prose] :where(h2, h3, h4, h5, h6) > :where(strong, b)),
+:global([data-blog-post] [nq-prose] :where(h2, h3, h4, h5, h6) :where(strong, b) > *) {
+  font-size: 1em;
+  line-height: inherit;
+}
+
 :global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6):not(:first-child)) {
   --uno: 'mt-1.5lh';
 }
