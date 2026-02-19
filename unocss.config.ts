@@ -7,7 +7,7 @@ import { presetOnmax } from 'unocss-preset-onmax'
 
 export default defineConfig({
   preflights: [
-    { getCSS: () => '@layer nq-preflight, nq-typography, nq-utilities, nq-variants;' },
+    { getCSS: () => '@layer nq-preflight, nq-static-content, nq-typography, nq-utilities, nq-variants;' },
   ],
   rules: [
     [/^area-(.*)$/, ([, t]) => ({ 'grid-area': t })],
