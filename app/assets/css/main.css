@@ -15,9 +15,18 @@
 }
 
 /* Blog post typography overrides (scoped) */
+body:has([view-transition-post-title]) {
+  background-color: rgb(var(--nq-neutral-100));
+}
+
 body:has([view-transition-post-title]) header[data-section],
 body:has([view-transition-post-title]) article[nq-prose] {
   --nq-prose-max-width: 920px;
+}
+
+body:has([view-transition-post-title]) header[data-section] {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Headings: ~30% smaller than current when body text is 20px */
