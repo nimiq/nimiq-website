@@ -72,8 +72,12 @@ if (post.value?.data.body.at(0)?.primary) {
   --uno: 'text-1em';
 }
 
-:global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6):not(:first-child)) {
+:global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6)) {
   margin-top: 1lh;
+}
+
+:global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6):first-child) {
+  margin-top: 0;
 }
 
 :global([data-blog-post] section:has([nq-prose])) {

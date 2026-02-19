@@ -7,28 +7,28 @@
 }
 
 /* Blog post typography overrides (scoped) */
-[data-blog-post] header[data-section],
-[data-blog-post] article[nq-prose] {
+:where([data-blog-post], body:has([view-transition-post-title])) header[data-section],
+:where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] {
   --nq-prose-max-width: 920px;
   color: color-mix(in srgb, rgb(var(--nq-neutral-900)), transparent 15%);
 }
 
 /* Headings: ~30% smaller than current when body text is 20px */
-[data-blog-post] article[nq-prose] :where(h2) {
+:where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] :where(h2) {
   --font-size-min-em: 1.5;
   --font-size-max-em: 1.7;
   line-height: 1.25;
   margin-bottom: 0.75lh;
 }
 
-[data-blog-post] article[nq-prose] :where(h3) {
+:where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] :where(h3) {
   --font-size-min-em: 1.25;
   --font-size-max-em: 1.4;
   line-height: 1.25;
   margin-bottom: 0.6lh;
 }
 
-[data-blog-post] article[nq-prose] :where(h4) {
+:where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] :where(h4) {
   --font-size-min-em: 1.1;
   --font-size-max-em: 1.25;
   line-height: 1.25;
@@ -36,12 +36,20 @@
 }
 
 /* Prevent huge computed top margins from nimiq-css heading margin variables */
-[data-blog-post] article[nq-prose] :where(h2, h3, h4, h5, h6):not(:first-child) {
+:where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] :where(h2, h3, h4, h5, h6) {
   margin-top: 1lh;
 }
 
+:where([data-blog-post], body:has([view-transition-post-title]))
+  article[nq-prose]
+  > :where(h2, h3, h4, h5, h6):first-child {
+  margin-top: 0;
+}
+
 /* Bold should look clearly bold */
-[data-blog-post] article[nq-prose] :where(strong, b):not(:where(h1, h2, h3, h4, h5, h6) *) {
+:where([data-blog-post], body:has([view-transition-post-title]))
+  article[nq-prose]
+  :where(strong, b):not(:where(h1, h2, h3, h4, h5, h6) *) {
   font-weight: 700;
   color: color-mix(in srgb, rgb(var(--nq-neutral-800)) 50%, rgb(var(--nq-neutral-900)) 50%);
 }
@@ -52,20 +60,20 @@ List alignment fix:
 - Align markers vertically using em-based offsets (instead of fixed px).
 - Avoid breaking nested list layout by only targeting lists that are direct children of the article.
 */
-[data-blog-post] article[nq-prose] > :where(ul, ol) > li {
+:where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] > :where(ul, ol) > li {
   margin-left: 20px; /* overrides the 32px/40px breakpoint shifts from nimiq-css */
 }
 
-[data-blog-post] article[nq-prose] > ul > li::before {
+:where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] > ul > li::before {
   top: 0.6em; /* replaces fixed top: 8px feel; scales with font size */
 }
 
-[data-blog-post] article[nq-prose] > ol > li::before {
+:where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] > ol > li::before {
   top: 0.15em; /* replaces fixed top: 2px; aligns better with first-line baseline */
 }
 
 /* Optional: slightly tighter list block spacing on blog posts */
-[data-blog-post] article[nq-prose] > :where(ul, ol) {
+:where([data-blog-post], body:has([view-transition-post-title])) article[nq-prose] > :where(ul, ol) {
   margin-top: 16px;
   margin-bottom: 16px;
 }
