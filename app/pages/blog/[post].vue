@@ -30,7 +30,7 @@ if (post.value?.data.body.at(0)?.primary) {
 
 <template>
   <NuxtLayout v-if="post">
-    <div ref="articleRef">
+    <div ref="articleRef" data-blog-post>
       <PageInfo :draft bottom-32 right-32 fixed z-102 />
 
       <header data-section max-w="$nq-prose-max-width" f-pt="96/136" px="32 lg:64" pb-0>
@@ -64,19 +64,19 @@ if (post.value?.data.body.at(0)?.primary) {
   --uno: 'z-101 rounded-8 mt-0 bg-white';
 }
 
-:global([nq-prose] > *:not(img, video, iframe, figure, blockquote, pre, code)) {
+:global([data-blog-post] [nq-prose] > *:not(img, video, iframe, figure, blockquote, pre, code)) {
   --uno: 'px-0';
 }
 
-:global([nq-prose] > :where(h2, h3, h4, h5, h6) > *) {
+:global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6) > *) {
   --uno: 'text-1em';
 }
 
-:global([nq-prose] > :where(h2, h3, h4, h5, h6):not(:first-child)) {
-  --uno: 'mt-1.5lh';
+:global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6):not(:first-child)) {
+  margin-top: 1lh;
 }
 
-:global(section:has(article[nq-prose])) {
+:global([data-blog-post] section:has([nq-prose])) {
   --uno: 'f-pt-2xl';
 }
 </style>
