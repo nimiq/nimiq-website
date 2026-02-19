@@ -30,7 +30,7 @@ if (post.value?.data.body.at(0)?.primary) {
 
 <template>
   <NuxtLayout v-if="post">
-    <div ref="articleRef">
+    <div ref="articleRef" data-blog-post>
       <PageInfo :draft bottom-32 right-32 fixed z-102 />
 
       <header data-section max-w="$nq-prose-max-width" f-pt="96/136" px="32 lg:64" pb-0>
@@ -66,62 +66,62 @@ if (post.value?.data.body.at(0)?.primary) {
   --uno: 'z-101 rounded-8 mt-0 bg-white';
 }
 
-:global([data-blog-post-prose] > article[nq-prose] > *:not(img, video, iframe, figure, blockquote, pre, code)) {
+:global([data-blog-post] [nq-prose] > *:not(img, video, iframe, figure, blockquote, pre, code)) {
   --uno: 'px-0';
 }
 
-:global([data-blog-post-prose] > article[nq-prose] > :where(h2, h3, h4, h5, h6) > *) {
+:global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6) > *) {
   --uno: 'text-1em';
 }
 
-:global([data-blog-post-prose] > article[nq-prose] > :where(h2, h3, h4, h5, h6):not(:first-child)) {
+:global([data-blog-post] [nq-prose] > :where(h2, h3, h4, h5, h6):not(:first-child)) {
   --uno: 'mt-1.5lh';
 }
 
-:global([data-blog-post-prose] > article[nq-prose] :where(h2)) {
+:global([data-blog-post] [nq-prose] :where(h2)) {
   --font-size-min-em: 1.5;
   --font-size-max-em: 1.7;
   line-height: 1.25;
   margin-bottom: 0.75lh;
 }
 
-:global([data-blog-post-prose] > article[nq-prose] :where(h3)) {
+:global([data-blog-post] [nq-prose] :where(h3)) {
   --font-size-min-em: 1.25;
   --font-size-max-em: 1.4;
   line-height: 1.25;
   margin-bottom: 0.6lh;
 }
 
-:global([data-blog-post-prose] > article[nq-prose] :where(h4)) {
+:global([data-blog-post] [nq-prose] :where(h4)) {
   --font-size-min-em: 1.1;
   --font-size-max-em: 1.25;
   line-height: 1.25;
   margin-bottom: 0.5lh;
 }
 
-:global([data-blog-post-prose] > article[nq-prose] :where(strong, b):not(:where(h1, h2, h3, h4, h5, h6) *)) {
+:global([data-blog-post] [nq-prose] :where(strong, b):not(:where(h1, h2, h3, h4, h5, h6) *)) {
   font-weight: 700;
   color: color-mix(in srgb, rgb(var(--nq-neutral-800)) 50%, rgb(var(--nq-neutral-900)) 50%);
 }
 
-:global([data-blog-post-prose] > article[nq-prose] > :where(ul, ol) > li) {
+:global([data-blog-post] [nq-prose] > :where(ul, ol) > li) {
   margin-left: 20px;
 }
 
-:global([data-blog-post-prose] > article[nq-prose] > ul > li::before) {
+:global([data-blog-post] [nq-prose] > ul > li::before) {
   top: 0.6em;
 }
 
-:global([data-blog-post-prose] > article[nq-prose] > ol > li::before) {
+:global([data-blog-post] [nq-prose] > ol > li::before) {
   top: 0.15em;
 }
 
-:global([data-blog-post-prose] > article[nq-prose] > :where(ul, ol)) {
+:global([data-blog-post] [nq-prose] > :where(ul, ol)) {
   margin-top: 16px;
   margin-bottom: 16px;
 }
 
-:global(section:has([data-blog-post-prose] > article[nq-prose])) {
+:global([data-blog-post] section:has([nq-prose])) {
   --uno: 'f-pt-2xl';
 }
 </style>
