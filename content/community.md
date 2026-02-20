@@ -67,9 +67,6 @@ social:
 newsletter:
   cta: "Sign up for a monthly newsletter:"
   placeholder: Enter your email address
-events:
-  headline: Events & Meetups
-  subline: Meet Team Nimiq on blockchain events around the world.
 apps:
   headline:
     label: Build with Nimiq
@@ -100,4 +97,5 @@ feedback:
     - href: https://github.com/nimiq
       icon: nimiq:logos-github-mono
       label: Go to GitHub
+      variant: tertiary
 ---

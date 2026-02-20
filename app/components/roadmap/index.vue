@@ -32,6 +32,31 @@ function isNestedBlocks(blocks: Block[] | Block[][]): blocks is Block[][] {
   return Array.isArray(blocks[0])
 }
 
+function getLayerTone(layer: Layer): 'blue' | 'gold' | 'orange' {
+  const source = `${layer.layerClasses || ''} ${layer.blocksClasses || ''} ${layer.text || ''}`
+  if (source.includes('gold'))
+    return 'gold'
+  if (source.includes('orange'))
+    return 'orange'
+  return 'blue'
+}
+
+function getLayerStyle(layer: Layer) {
+  const tone = getLayerTone(layer)
+  const style: Record<string, string> = {
+    backgroundColor: `color-mix(in oklch, var(--color-${tone}-500) 10%, transparent)`,
+  }
+  const paddingMatch = layer.layerClasses?.match(/pl-\[(\d+)px\]/)
+  if (paddingMatch?.[1])
+    style.paddingLeft = `${paddingMatch[1]}px`
+  return style
+}
+
+function getLayerBlocksStyle(layer: Layer) {
+  const tone = getLayerTone(layer)
+  return { backgroundColor: `var(--color-${tone})` }
+}
+
 const milestones = computed(() => {
   return _milestones.map((item, i) => {
     const currentItem = _milestones.at(i)
@@ -82,28 +107,40 @@ const milestones = computed(() => {
     </header>
 
     <ul class="flex flex-col gap-4 ml-[var(--ml)] w-max pt-6 md:pt-8 mt-2 md:mt-3">
-      <li v-for="(layer, l) in layers" :key="layer.name" class="flex flex-col justify-end p-6 pr-0 rounded-l-md w-max self-end relative pl-[var(--pl)]" :class="layer.layerClasses">
+      <li v-for="(layer, l) in layers" :key="layer.name" class="flex flex-col justify-end p-6 pr-0 rounded-l-md w-max self-end relative pl-[var(--pl)]" :style="getLayerStyle(layer)">
         <div v-for="block in layer.blocks" :key="block.name" class="mt-6 first:mt-0 flex justify-end">
           <div class="pt-3 relative">
-            <span class="text-[10px] left-0 top-0 absolute nq-label row-span-full block" :class="layer.text">{{ block.name }}</span>
+            <span class="text-[10px] left-0 top-0 absolute nq-label row-span-full block" :class="{ 'text-blue-1100': getLayerTone(layer) === 'blue', 'text-gold-1100': getLayerTone(layer) === 'gold', 'text-orange-1100': getLayerTone(layer) === 'orange' }">{{ block.name }}</span>
             <div v-if="isNestedBlocks(block.items)" class="flex gap-2" :style="`--block-index:${l}`" :class="{ '-mr-[3px]': block.items.length > 1 }">
-              <div v-for="(subblock, i) in block.items" :key="i" class="layer force-row-height rounded-md p-[var(--p-block)] last:rounded-r-none shadow" :style="getNestedBlocksStyles(block.items, i)" :class="[layer.blocksClasses, block.nestedBlocksClasses]">
+              <div v-for="(subblock, i) in block.items" :key="i" class="layer force-row-height rounded-md p-[var(--p-block)] last:rounded-r-none shadow text-white" :style="{ ...getNestedBlocksStyles(block.items, i), ...getLayerBlocksStyle(layer) }" :class="block.nestedBlocksClasses">
                 <RoadmapBlock v-for="item in subblock" :key="item.name" v-bind="item" />
               </div>
             </div>
-            <div v-else class="layer force-row-height p-4 pr-0 rounded-l-md shadow" :style="getStartOfBlock(block.items)" :class="[layer.blocksClasses, block.nestedBlocksClasses]">
+            <div v-else class="layer force-row-height p-4 pr-0 rounded-l-md shadow text-white" :style="{ ...getStartOfBlock(block.items), ...getLayerBlocksStyle(layer) }" :class="block.nestedBlocksClasses">
               <RoadmapBlock v-for="(item, i) in block.items" :key="i" v-bind="item" />
             </div>
           </div>
         </div>
-        <div class="text-lg bottom-6 left-6 absolute flex items-center gap-3" :class="layer.text">
-          <Icon class="text-[32px]" :name="layer.icon" />
+        <div class="text-lg bottom-6 left-6 absolute flex items-center gap-3" :class="{ 'text-blue-1100': getLayerTone(layer) === 'blue', 'text-gold-1100': getLayerTone(layer) === 'gold', 'text-orange-1100': getLayerTone(layer) === 'orange' }">
+          <Icon class="text-[32px] text-white !text-white" :name="layer.icon" />
           <span class="font-bold">{{ layer.name }}</span>
         </div>
       </li>
     </ul>
   </div>
 </template>
+
+<style scoped>
+.roadmap-icon {
+  color: var(--color-white) !important;
+}
+
+:deep(.roadmap .roadmap-icon svg),
+:deep(.roadmap .roadmap-icon svg *) {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+</style>
 
 <style>
 .roadmap {

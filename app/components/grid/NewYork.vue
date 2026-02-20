@@ -8,7 +8,7 @@ const [DefineStats, ReuseStat] = createReusableTemplate<{ label?: string, value?
 
 <template>
   <DefineStats v-slot="{ label, value }">
-    <div class="flex flex-col p-4 sm:p-6 rounded-1.5 bg-neutral-0 shadow ring-1.5 ring-neutral-200">
+    <div class="flex flex-col p-4 sm:p-6 rounded-1.5 bg-neutral-0 shadow-lg ring-1.5 ring-neutral-200">
       <span class="nq-label text-neutral-700 text-12">{{ label }}</span>
       <span class="mt-3 sm:mt-4 font-bold text-green text-lg md:text-xl">{{ value }}</span>
     </div>

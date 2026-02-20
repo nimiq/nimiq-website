@@ -20,7 +20,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/apps' }] })
       <ShowcaseAppsAll />
     </section>
 
-    <section class="nq-section-gap text-center bg-neutral-0 relative border-t border-neutral-400" style="--f-pb-min: 128; --f-pb-max: 196">
+    <section class="nq-section-gap text-center bg-neutral-0 relative border-t border-neutral-300" style="--f-pb-min: 128; --f-pb-max: 196">
       <Headline v-bind="page.cta" />
     </section>
   </NuxtLayout>

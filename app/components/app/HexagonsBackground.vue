@@ -3,6 +3,7 @@ const { withSocials = false, bgColor = 'darkblue' } = defineProps<{ withSocials?
 const bgClasses = { grey: 'bg-neutral-100', white: 'bg-neutral-0', darkblue: 'bg-darkerblue dark' }
 const site = await useSite()
 const socialLinks = Object.fromEntries(site.socials?.map(s => [s.id, s.link]) ?? [])
+const darkHexOpacityFactor = computed(() => bgColor === 'darkblue' ? 0.58 : 1)
 
 const rows = computed(() => 5)
 const { width } = useWindowSize()
@@ -12,6 +13,7 @@ const hexagonWidth = computed(() => gap.value * 8.75)
 
 const isVisible = shallowRef(false)
 const sectionRef = useTemplateRef<HTMLElement>('section')
+const gridParent = useTemplateRef<HTMLElement>('gridParent')
 
 useIntersectionObserver(sectionRef, ([entry]) => {
   isVisible.value = entry?.isIntersecting || false
@@ -23,6 +25,10 @@ function calculateOpacity(rowIndex: number, colIndex: number) {
   const distance = Math.abs(normalizedRow + normalizedCol - 1)
   const threshold = 0.8
   return distance > threshold ? 0 : 1 - (distance / threshold)
+}
+
+function getHexOpacity(baseOpacity: number) {
+  return Math.min(1, baseOpacity * darkHexOpacityFactor.value)
 }
 
 const socialCoords = { youtube: [2, 6], x: [3, 7], facebook: [1, 9] } as const
@@ -46,17 +52,94 @@ onMounted(() => {
   }
   items.value = result
 })
+
+// Wave animation: comet sweeps across the grid with evolving direction
+const WAVE_CYCLE = 6000 // ms per sweep
+const DIR_CYCLE = 20000 // ms per direction oscillation
+const FRONT_W = 0.08 // sharp rise width
+const TRAIL_W = 0.28 // long fading tail width
+const FRONT_BOOST = 0.3
+const TRAIL_BOOST = 0.15
+
+function getWaveBoost(diagPhase: number, horizPhase: number, waveT: number, blend: number): number {
+  // blend 0 = pure diagonal, 0.5 = half horizontal
+  const hexPhase = diagPhase * (1 - blend) + horizPhase * blend
+  let offset = hexPhase - waveT
+  if (offset > 0.5)
+    offset -= 1
+  if (offset < -0.5)
+    offset += 1
+  if (offset >= 0 && offset < FRONT_W)
+    return FRONT_BOOST * (1 - offset / FRONT_W)
+  if (offset < 0 && offset > -TRAIL_W)
+    return TRAIL_BOOST * (1 - Math.abs(offset) / TRAIL_W)
+  return 0
+}
+
+let waveT = 0
+let dirT = 0
+let lastTs = 0
+
+const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
+
+const { pause, resume } = useRafFn(({ timestamp }) => {
+  const dt = lastTs ? timestamp - lastTs : 0
+  lastTs = timestamp
+  waveT = (waveT + dt / WAVE_CYCLE) % 1
+  dirT = (dirT + dt / DIR_CYCLE) % 1
+  const blend = Math.sin(dirT * Math.PI * 2) * 0.25 + 0.25
+
+  const parent = gridParent.value
+  if (!parent)
+    return
+  const children = parent.children
+  const arr = items.value
+  const rowMax = rows.value - 1
+  const colMax = columns.value - 1
+
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i]!
+    if (item.social || !item.opacity)
+      continue
+    const nr = item.rowIndex / rowMax
+    const nc = item.colIndex / colMax
+    const boost = getWaveBoost((nr + nc) / 2, nc, waveT, blend)
+    const el = children[i] as HTMLElement | undefined
+    if (el)
+      el.style.opacity = String(getHexOpacity(Math.min(1, item.opacity + boost)))
+  }
+}, { immediate: false })
+
+watchEffect(() => {
+  if (isVisible.value && !reducedMotion.value) {
+    lastTs = 0
+    resume()
+  }
+  else {
+    pause()
+    const parent = gridParent.value
+    if (!parent)
+      return
+    items.value.forEach((item, i) => {
+      if (item.social || !item.opacity)
+        return
+      const el = parent.children[i] as HTMLElement | undefined
+      if (el)
+        el.style.opacity = String(getHexOpacity(item.opacity))
+    })
+  }
+})
 </script>
 
 <template>
   <div ref="section" class="group mx-0 px-0 w-full relative z-2 overflow-x-hidden pt-12 md:pt-16" :class="bgClasses[bgColor]">
-    <div class="grid-parent max-w-none" aria-hidden="true" :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
+    <div ref="gridParent" class="grid-parent max-w-none" aria-hidden="true" :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
       <div
-        v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`" class="relative flex items-center justify-center transition-opacity transition-duration-300 transition-ease-out" :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? item.opacity : 1 }" :class="{
+        v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`" class="relative flex items-center justify-center transition-opacity transition-duration-300 transition-ease-out" :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? getHexOpacity(item.opacity) : 1 }" :class="{
           'text-[red]': item.social === 'youtube' && isVisible,
           'text-black': item.social === 'x' && isVisible,
           'text-[#1877f2]': item.social === 'facebook' && isVisible,
-          'text-neutral-300 dark:text-neutral-500 hocus:dark:text-neutral-700 hocus:text-neutral-500': !item.social,
+          'text-neutral-300 dark:text-neutral-200 hocus:dark:text-neutral-100 hocus:text-neutral-500': !item.social,
           'opacity-0': item.social && !isVisible,
           'opacity-100': item.social && isVisible,
         }" :data-social="item.social"

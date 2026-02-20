@@ -4,11 +4,13 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
 </script>
 
 <template>
-  <div class="pt-0 bg-neutral-0 relative z-10 overflow-x-clip px-3 md:px-4">
-    <div v-for="(item, i) in items" :key="i" class="py-6 py-lg:72 px-8 rounded-2 w-full shadow relative overflow-hidden max-w-none max-w-lg:[calc(var(--nq-max-width)-32px)] outline outline-1.5 outline-offset--1.5 outline-neutral/10" :style="`background: rgb(var(--nq-${item.bgColor || 'green'}))`" :data-inverted="item.bgColor === 'green' ? '' : undefined">
-      <!-- Green gradient overlay -->
-      <div v-if="item.bgColor === 'green'" class="rounded-1.5 pointer-events-none inset-[1.5px] absolute bg-gradient-green" />
-
+  <div class="pt-0 bg-neutral-0 relative z-10 overflow-x-clip">
+    <div
+      v-for="(item, i) in items" :key="i"
+      class="py-6 py-lg:72 px-8 rounded-2 w-full shadow relative overflow-hidden outline outline-1.5 outline-offset--1.5 outline-neutral/10"
+      :class="item.bgColor === 'green' ? 'bg-gradient-green' : ''"
+      :style="item.bgColor !== 'green' ? `background: rgb(var(--nq-${item.bgColor || 'green'}))` : undefined"
+    >
       <!-- Hexagon pattern decoration -->
       <div v-if="item.backgroundPattern === 'Nimiq Hexagon'" class="text-200 md:text-300 lg:text-400 pointer-events-none absolute -bottom-2.5 bottom-lg:-0.2775em -right-0.2em right-lg:-0.25em">
         <div class="text-transparent" i-nimiq:logos-nimiq-mono>
@@ -16,23 +18,32 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
         </div>
       </div>
 
-      <div class="flex flex-wrap justify-between max-w-full w-full items-end relative z-10">
-        <div class="max-w-60ch">
-          <p v-if="item.label" class="text-12 nq-label" :class="{ 'mt-2 md:mt-3': item.bgColor === 'green', 'mt-4 md:mt-6': item.bgColor !== 'green' }">
+      <div class="max-w-full w-full relative z-10">
+        <div>
+          <p v-if="item.label" class="text-12 nq-label" :class="item.bgColor === 'green' ? 'text-white/60 mt-2 md:mt-3' : 'mt-4 md:mt-6'">
             {{ item.label }}
           </p>
-          <div :class="{ 'children:!text-white': item.bgColor === 'green' }">
-            <h3>{{ item.headline }}</h3>
-          </div>
-          <div v-if="item.subline" :class="{ 'children:text-white/70 mt-3 md:mt-4': item.bgColor === 'green', 'mt-4 md:mt-6': item.bgColor !== 'green' }">
-            <p>{{ item.subline }}</p>
-          </div>
+          <h3 class="banner-headline" :class="item.bgColor === 'green' ? '!text-white' : ''">
+            {{ item.headline }}
+          </h3>
         </div>
-        <NuxtLink v-if="item.link && item.linkLabel" class="mt-8 mt-md:24 nq-arrow nq-pill-lg lg:mr-32" :to="item.link" :class="item.bgColor === 'green' ? 'nq-pill-tertiary text-blue' : 'nq-pill-blue'">
-          {{ item.linkLabel }}
-        </NuxtLink>
-        <NuxtLink v-else-if="item.link" class="mt-8 mt-md:24 nq-arrow nq-pill-lg nq-pill-blue lg:mr-32" :to="item.link" />
+        <div v-if="item.subline || item.link" class="mt-3 md:mt-4 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <p v-if="item.subline" class="md:max-w-60ch" :class="item.bgColor === 'green' ? 'text-white/70' : ''">
+            {{ item.subline }}
+          </p>
+          <NuxtLink v-if="item.link && item.linkLabel" class="nq-arrow nq-pill-lg shrink-0 self-start md:self-end md:ml-auto" :to="item.link" :class="item.bgColor === 'green' ? 'nq-pill-tertiary text-blue' : 'nq-pill-blue'">
+            {{ item.linkLabel }}
+          </NuxtLink>
+          <NuxtLink v-else-if="item.link" class="nq-arrow nq-pill-lg nq-pill-blue shrink-0 self-start md:self-end md:ml-auto" :to="item.link" />
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.banner-headline {
+  font-size: clamp(22px, calc(22px + 6 * ((100vw - 375px) / (1440 - 375))), 28px);
+  line-height: 1.15;
+}
+</style>

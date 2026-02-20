@@ -9,43 +9,41 @@ interface Props {
 defineProps<Props>()
 
 const apps = await useApps()
-
-const appsToShow = computed(() => {
-  if (!apps.communityApps)
-    return []
-  return apps.communityApps.slice(0, 6)
-})
+const appsToShow = computed(() => apps.communityApps ? shuffle(apps.communityApps).slice(0, 6) : [])
 </script>
 
 <template>
-  <NuxtLink class="!grid grid-cols-1 md:grid-cols-[1fr_3fr] grid-rows-[1fr_auto] gap-x-96 gap-y-32 md:gap-y-128 bg-neutral-0 w-full p-6 md:p-8 nq-hoverable" :to="cta">
-    <div class="flex flex-col">
-      <Icon class="size-10" name="custom:apps" />
-      <h3 class="font-bold text-base md:text-lg mt-2 md:mt-3">
-        {{ title }}
-      </h3>
-      <p class="text-neutral-800 mt-1 md:mt-1.5">
-        {{ description }}
-      </p>
-    </div>
-
-    <div class="row-span-2 relative">
-      <div class="w-[125%] h-[145%] border-16 border-solid border-neutral-400 rounded-[24px] inset-0 absolute">
-        <ul class="grid grid-cols-3 rounded-2 bg-white size-full p-3 md:p-4 gap-3 md:gap-4">
-          <li v-for="app in appsToShow" :key="app.name" class="rounded-2" :style="`background: ${app.color}`" stack>
-            <NuxtImg class="size-[136px] md:size-[180px] object-contain mix-blend-lighten" :src="app.logo" />
-          </li>
-        </ul>
+  <NuxtLink class="relative overflow-hidden rounded-2 bg-darkblue/5 nq-hoverable h-[420px] md:h-[538px] w-full" :to="cta">
+    <!-- Left info panel -->
+    <div class="absolute z-10 flex flex-col justify-between p-10 md:p-20 inset-y-0 left-0 w-[200px] md:w-[260px]">
+      <div class="flex flex-col gap-3 md:gap-4">
+        <Icon class="size-10 md:size-12" name="custom:apps" />
+        <div>
+          <h3 class="font-bold text-darkblue text-lg md:text-xl leading-tight">
+            {{ title }}
+          </h3>
+          <p class="text-darkblue/60 mt-1.5 text-sm md:text-base leading-snug">
+            {{ description }}
+          </p>
+        </div>
+      </div>
+      <div v-if="categoriesLabel || categoriesDescription" class="flex flex-col gap-1.5 md:gap-2">
+        <p v-if="categoriesLabel" class="nq-label text-[11px] md:text-[13px] text-darkblue/60 opacity-60 whitespace-nowrap">
+          {{ categoriesLabel }}
+        </p>
+        <p v-if="categoriesDescription" class="text-darkblue/60 opacity-60 text-xs md:text-sm leading-snug whitespace-pre-line">
+          {{ categoriesDescription }}
+        </p>
       </div>
     </div>
 
-    <div class="flex flex-col">
-      <p v-if="categoriesLabel" class="nq-label">
-        {{ categoriesLabel }}
-      </p>
-      <p v-if="categoriesDescription" class="text-neutral-800 mt-2 md:mt-3">
-        {{ categoriesDescription }}
-      </p>
+    <!-- App grid - based on original main branch implementation -->
+    <div class="absolute top-10 md:top-16 left-[212px] md:left-[300px] w-[125%] h-[145%] rounded-[24px] border-[16px] border-neutral-400">
+      <ul class="grid grid-cols-3 gap-3 md:gap-4 size-full rounded-lg bg-white p-3 md:p-4">
+        <li v-for="app in appsToShow" :key="app.name" class="rounded-lg overflow-hidden" :style="`background: ${app.color}`">
+          <NuxtImg class="size-full object-contain mix-blend-lighten" :src="app.logo" />
+        </li>
+      </ul>
     </div>
   </NuxtLink>
 </template>

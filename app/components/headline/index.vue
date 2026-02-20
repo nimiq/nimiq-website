@@ -9,6 +9,10 @@ function isExternal(url: string) {
   return url.startsWith('http') || url.startsWith('mailto')
 }
 
+function isPlainTertiary(action: Action) {
+  return action.variant === 'tertiary' || action.variant === 'nq-pill-tertiary'
+}
+
 // Map Studio color property to nimiq-css pill class
 function getPillClass(action: Action) {
   if (action.color)
@@ -41,6 +45,9 @@ function getPillClass(action: Action) {
     <ul v-if="actionItems.length" class="flex gap-16 lg:gap-20 flex-wrap f-mt-md">
       <li v-for="action in actionItems" :key="action.href">
         <NuxtLink v-if="!action.label" class="nq-arrow nq-pill-lg nq-pill-blue md:mx-auto" :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined" />
+        <NuxtLink v-else-if="isPlainTertiary(action)" class="nq-arrow md:mx-auto font-semibold text-blue hover:text-blue-1100 focus:text-blue-1100 transition-colors" :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined">
+          {{ action.label }}
+        </NuxtLink>
         <NuxtLink v-else class="nq-arrow nq-pill-lg md:mx-auto" :to="action.href" :external="isExternal(action.href)" :target="isExternal(action.href) ? '_blank' : undefined" :class="getPillClass(action)">
           {{ action.label }}
         </NuxtLink>

@@ -22,12 +22,14 @@ function submitForm() {
 </script>
 
 <template>
-  <form class="max-w-[32em] w-full relative" @submit.prevent="submitForm">
+  <form class="w-full" @submit.prevent="submitForm">
     <label class="sr-only" for="newsletter-email">Email address</label>
-    <input id="newsletter-email" v-model="email" class="rounded-full relative nq-input-box" type="email" name="email" required :placeholder="placeholder || 'Enter email address...'" autocomplete="email">
-    <button class="group rounded-full size-[1.6875em] aspect-square transition-colors right-[0.1875em] top-[0.1875em] absolute bg-gradient-blue hover:opacity-90 disabled:bg-neutral-300 disabled:bg-none flex items-center justify-center disabled:cursor-not-allowed cursor-pointer" aria-label="Submit your email" type="submit" :disabled="!email">
-      <Icon class="text-[0.6875em] text-white group-disabled:text-neutral-600" name="nimiq:arrow-right" />
-    </button>
+    <div class="relative">
+      <input id="newsletter-email" v-model="email" class="rounded-full relative nq-input-box py-[0.4375rem] border-2 border-neutral-500 focus:border-2 focus:border-blue focus:!outline-none focus-visible:outline-none" type="email" name="email" required :placeholder="placeholder || 'Enter email address...'" autocomplete="email">
+      <button class="group rounded-full aspect-square transition-colors right-[0.1875em] top-[0.1875em] bottom-[0.1875em] absolute bg-gradient-blue hover:opacity-90 disabled:bg-neutral-300 disabled:bg-none flex items-center justify-center disabled:cursor-not-allowed cursor-pointer" aria-label="Submit your email" type="submit" :disabled="!email">
+        <Icon class="text-[0.5625em] text-white group-disabled:text-neutral-600" name="nimiq:arrow-right" />
+      </button>
+    </div>
     <!-- The following div is always on the dom to avoid CLS -->
     <div class="h-[0.5em] md:h-[0.75em] font-semibold mt-[0.25em] pl-[0.75em] text-[0.875em] lg:text-[0.9375em] text-red">
       <span v-if="invalidEmailMessage && email">{{ invalidEmailMessage }}</span>

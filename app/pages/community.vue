@@ -18,11 +18,11 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
     </section>
 
     <!-- Prod: S2 pt=177.6 (custom). nq-section-gap prevents S1 pb reduction -->
-    <section class="nq-section-gap bg-neutral-0" style="--f-pt-min: 144; --f-pt-max: 200">
+    <section class="nq-section-gap bg-neutral-0 border-t border-neutral-300" style="--f-pt-min: 144; --f-pt-max: 200">
       <Headline v-bind="page.countries.headline" />
     </section>
 
-    <section class="bg-neutral-0">
+    <section class="bg-neutral-0" nq-wide style="--pt: 0">
       <TokenFlags :flags="page.countries.flags" />
     </section>
 
@@ -36,10 +36,6 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
 
     <section class="bg-neutral-100">
       <BannerNewsletter v-bind="page.newsletter" />
-    </section>
-
-    <section class="nq-section-gap bg-neutral-100">
-      <Headline v-bind="page.events" />
     </section>
 
     <section class="nq-section-gap bg-neutral-0">

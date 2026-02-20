@@ -9,6 +9,24 @@ article[nq-prose] :is(h2, h3)[id]::after {
   color: var(--color-gold);
 }
 
+.onepager-prose > p {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.onepager-prose {
+  color: color-mix(in srgb, rgb(var(--nq-neutral-900)), transparent 15%);
+}
+
+.onepager-prose :where(strong, b):not(:where(h1, h2, h3, h4, h5, h6) *) {
+  font-weight: 700;
+  color: color-mix(in srgb, rgb(var(--nq-neutral-800)) 50%, rgb(var(--nq-neutral-900)) 50%);
+}
+
+.onepager-prose > :where(h2, h3):not(:first-child) {
+  margin-top: 2lh;
+}
+
 .f-text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;

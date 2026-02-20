@@ -1,34 +1,26 @@
 <script setup lang="ts">
-import { breakpointsTailwind } from '@vueuse/core'
+import { animate } from 'motion-v'
 
 const { flags } = defineProps<{ flags: string }>()
+const el = useTemplateRef<HTMLElement>('el')
+let ctrl: ReturnType<typeof animate> | undefined
 
-const { smaller } = useBreakpoints(breakpointsTailwind)
-const isMobile = computed(() => smaller('md'))
-const duration = computed(() => isMobile.value ? '60s' : '40s')
+onMounted(async () => {
+  if (!el.value || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  const img = new Image()
+  img.src = flags
+  await new Promise<void>(r => { img.onload = () => r() })
+  const tileW = Math.round((img.naturalWidth / img.naturalHeight) * el.value.clientHeight)
+  ctrl = animate(el.value, { backgroundPositionX: ['0px', `-${tileW}px`] }, { duration: 60, ease: 'linear', repeat: Infinity })
+})
+
+onUnmounted(() => ctrl?.stop())
 </script>
 
 <template>
-  <div class="flags-marquee mx-0 px-0 bg-neutral-0 w-full overflow-x-hidden h-16 md:h-20" :style="{ 'backgroundImage': `url(${flags})`, 'backgroundSize': 'auto 100%', 'backgroundRepeat': 'repeat-x', '--duration': duration }" />
+  <div
+    ref="el"
+    class="w-full h-[60px] md:h-[80px]"
+    :style="{ backgroundImage: `url(${flags})`, backgroundSize: 'auto 100%', backgroundRepeat: 'repeat-x' }"
+  />
 </template>
-
-<style scoped>
-.flags-marquee {
-  animation: scroll var(--duration, 40s) linear infinite;
-}
-
-@keyframes scroll {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flags-marquee {
-    animation: none;
-  }
-}
-</style>

@@ -14,7 +14,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/roadmap' }] })
         <Hero v-bind="page.hero" />
       </section>
 
-      <section class="nq-no-color bg-neutral-0">
+      <section class="nq-no-color bg-neutral-0" style="--px: 0; --nq-max-width: none">
         <RoadmapSection v-bind="page.roadmap" />
       </section>
 
