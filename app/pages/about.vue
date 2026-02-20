@@ -13,7 +13,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
     <section class="bg-neutral-100 about-hero">
       <Hero v-bind="page.hero" />
     </section>
-    <TiltedMedia v-bind="page.media" />
+    <TiltedMedia v-bind="page.media" animate-on-scroll />
 
     <section class="bg-neutral-100" nq-section-gap>
       <Headline v-bind="page.dive.headline" small-heading />

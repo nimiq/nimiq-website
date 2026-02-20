@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { breakpointsTailwind, refDebounced, useWindowScroll } from '@vueuse/core'
+import { breakpointsTailwind, useWindowScroll } from '@vueuse/core'
 import { Motion } from 'motion-v'
 
 defineProps<{ darkHeader?: boolean, variant?: 'default' | 'home' }>()
@@ -12,12 +12,18 @@ const showMobileMenu = computed(() => isMobileOrTablet || smaller('lg').value)
 const { y } = useWindowScroll()
 
 const scrolled = computed(() => y.value > 0)
-const rawDirection = ref<'top' | 'bottom'>()
-const direction = refDebounced(rawDirection, 100)
+const direction = ref<'top' | 'bottom'>('top')
 watch(y, (newY, oldY) => {
-  if (Math.abs(newY - oldY) < 10)
+  if (newY <= 0) {
+    direction.value = 'top'
     return
-  rawDirection.value = newY < oldY ? 'top' : 'bottom'
+  }
+
+  const previousY = oldY ?? newY
+  if (newY < previousY)
+    direction.value = 'top'
+  else if (newY > previousY)
+    direction.value = 'bottom'
 })
 
 // Animation targets for motion-v

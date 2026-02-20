@@ -12,11 +12,11 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/onepager' }] })
 <template>
   <NuxtLayout>
     <section class="bg-neutral-100 py-6 md:py-8">
-      <div class="mx-auto w-full max-w-full px-0 md:max-w-prose md:px-6">
+      <div class="mx-auto w-full max-w-full px-0 text-center md:max-w-prose md:px-6">
         <h1 class="nq-heading nq-heading-lg font-bold">
           {{ page.hero?.title }}
         </h1>
-        <p v-if="page.hero?.description" class="text-neutral-700 mt-4">
+        <p v-if="page.hero?.description" class="mx-auto mt-4 text-neutral-700">
           {{ page.hero.description }}
         </p>
       </div>

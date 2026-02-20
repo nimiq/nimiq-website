@@ -27,6 +27,13 @@ article[nq-prose] :is(h2, h3)[id]::after {
   margin-top: 2lh;
 }
 
+@media (max-width: 767px) {
+  .onepager-prose > h2 {
+    --font-size-min-em: 1.4;
+    --font-size-max-em: 1.55;
+  }
+}
+
 .f-text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;

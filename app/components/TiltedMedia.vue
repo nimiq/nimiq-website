@@ -1,8 +1,18 @@
 <script setup lang="ts">
-const { src, poster } = defineProps<{ src: string, poster?: string }>()
+import { Motion, useScroll, useSpring, useTransform } from 'motion-v'
 
-// Disabled scroll-based tilt animation for visual parity with production
-// The animation was causing inconsistent screenshot captures
+const { src, poster, animateOnScroll = false } = defineProps<{ src: string, poster?: string, animateOnScroll?: boolean }>()
+
+const sectionRef = useTemplateRef<HTMLElement>('sectionRef')
+const { scrollYProgress } = useScroll({
+  target: sectionRef,
+  offset: ['start end', 'end start'],
+})
+
+const rotateXProgress = useTransform(scrollYProgress, [0, 0.65], [30, 0])
+const translateYProgress = useTransform(scrollYProgress, [0, 0.65], [-100, 0])
+const rotateX = useSpring(rotateXProgress, { stiffness: 140, damping: 24, mass: 0.7 })
+const translateY = useSpring(translateYProgress, { stiffness: 140, damping: 24, mass: 0.7 })
 
 const isYouTube = computed(() => src.includes('youtube.com') || src.includes('youtu.be'))
 const embedUrl = computed(() => {
@@ -26,14 +36,22 @@ const playMaskStyle = {
 
 <template>
   <!-- eslint-disable-next-line vue/no-restricted-html-elements - section required to match prod structure -->
-  <section class="mx-0 px-0 bg-neutral-100 relative overflow-hidden" style="--px: 0;" :class="{ 'nq-overlaps': !isYouTube }">
+  <section ref="sectionRef" class="mx-0 px-0 bg-neutral-100 relative overflow-hidden nq-wide" style="--px: 0;" :class="{ 'nq-overlaps': !isYouTube }">
     <!-- Hexagon background decoration - invisible/subtle decorative element -->
     <div class="inset-0 absolute overflow-hidden pointer-events-none">
       <div class="w-full h-full min-h-[500px] max-w-none inset-0 absolute text-neutral-800 bg-hexagons" />
     </div>
     <!-- Tilted media content with 3D perspective transform -->
     <div class="px-32 w-full overflow-x-hidden max-md:max-w-none">
-      <div class="mx-auto h-full min-h-[500px] [&>*]:w-full" style="--rotate-x: 30deg; --translate-y: -100px; transform: perspective(1800px) rotateX(var(--rotate-x)) translateY(var(--translate-y)); transform-origin: center 70%;">
+      <Motion
+        class="mx-auto h-full min-h-[500px] [&>*]:w-full"
+        :style="{
+          transformPerspective: '1800px',
+          transformOrigin: 'center 70%',
+          rotateX: animateOnScroll ? rotateX : 30,
+          y: animateOnScroll ? translateY : -100,
+        }"
+      >
         <template v-if="isYouTube">
           <NuxtLink v-if="poster" class="mx-auto grid relative [&>*]:rounded-lg [&>*]:col-start-1 [&>*]:row-start-1" :to="src" external target="_blank">
             <img class="w-full" :src="poster" width="1280" height="720" alt="Crypto made easy video poster">
@@ -43,7 +61,7 @@ const playMaskStyle = {
           <iframe v-else class="rounded-lg w-full aspect-video" :src="embedUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
         </template>
         <NuxtImg v-else :src />
-      </div>
+      </Motion>
     </div>
   </section>
 </template>

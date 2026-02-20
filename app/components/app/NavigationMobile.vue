@@ -14,8 +14,8 @@ const copyrightNotice = site.footer.copyright ?? ''
     </DrawerTrigger>
 
     <DrawerPortal>
-      <DrawerOverlay class="bg-neutral/40 inset-0 fixed" />
-      <DrawerContent class="flex flex-col mt-6 p-6 rounded-t-2.5 bg-white h-full max-h-90dvh bottom-0 left-0 right-0 fixed z-100">
+      <DrawerOverlay class="bg-neutral/40 inset-0 fixed z-[120]" />
+      <DrawerContent class="flex flex-col p-6 rounded-t-2.5 bg-white top-40 bottom-0 left-0 right-0 fixed z-[130]">
         <div class="bg-gray-300 mx-auto mb-8 rounded-full shrink-0 h-1 w-20" />
         <div class="mb-4 flex gap-5">
           <NuxtLink class="nq-pill-secondary" to="https://wallet.nimiq.com">
