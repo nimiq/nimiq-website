@@ -8,7 +8,7 @@ const {
   darkHeader?: boolean
   headerVariant?: 'default' | 'home'
   showSocialsHexagonBg?: boolean
-  footerBgColor?: 'grey' | 'darkblue'
+  footerBgColor?: 'grey' | 'darkblue' | 'white' // keep in sync with bgClasses in Footer/HexagonsBackground
 }>()
 </script>
 

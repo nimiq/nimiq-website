@@ -8,10 +8,10 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/apps' }] })
 </script>
 
 <template>
-  <NuxtLayout>
+  <NuxtLayout footer-bg-color="white">
     <section class="bg-neutral-0 relative">
       <h1>{{ page.hero.title }}</h1>
-      <p v-if="page.hero.description" class="font-400 dark:text-neutral-900">
+      <p v-if="page.hero.description" class="font-400 text-neutral-800 dark:text-neutral-900" style="--font-size-min: 20; --font-size-max: 22">
         {{ page.hero.description }}
       </p>
     </section>
@@ -20,7 +20,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/apps' }] })
       <ShowcaseAppsAll />
     </section>
 
-    <section class="nq-section-gap text-center bg-neutral-0 relative">
+    <section class="nq-section-gap text-center bg-neutral-0 relative border-t border-neutral-400" style="--f-pb-min: 128; --f-pb-max: 196">
       <Headline v-bind="page.cta" />
     </section>
   </NuxtLayout>

@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-defineProps<{ bgColor: string }>()
+const { bgColor = 'grey' } = defineProps<{ bgColor?: keyof typeof bgClasses }>()
+const bgClasses = { grey: 'bg-neutral-100', white: 'bg-neutral-0', darkblue: 'bg-darkerblue' }
 const site = await useSite()
 const copyrightNotice = site.footer.copyright ?? ''
 </script>
 
 <template>
-  <footer v-if="site" class="z-10" dark data-section :class="bgColor === 'darkblue' ? 'bg-darkerblue' : 'bg-neutral-100'">
+  <footer v-if="site" class="z-10" dark data-section :class="bgClasses[bgColor]">
     <div class="grid gap-40 md:gap-48 grid-items-start xl:gap-[104px] items-start">
       <div class="flex flex-col text-f-sm leading-[1.5]" area-contact>
         <p>{{ site.footer.newsletterCta }}</p>

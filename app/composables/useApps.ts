@@ -94,7 +94,7 @@ export function useApps() {
 export function useAppsFilter(apps: Ref<NimiqApp[] | undefined>) {
   const madeBy = useRouteQuery<MadeBy>('made-by', 'anyone')
 
-  const filteredApps = computed(() => {
+  const baseFiltered = computed(() => {
     if (!apps.value)
       return []
     if (madeBy.value === 'official')
@@ -104,12 +104,32 @@ export function useAppsFilter(apps: Ref<NimiqApp[] | undefined>) {
     return apps.value
   })
 
-  function getSpotlightPosition(app: NimiqApp) {
+  const layout = computed(() => {
+    const h = baseFiltered.value.filter(a => a.isHighlighted).length
+    const r = baseFiltered.value.filter(a => !a.isHighlighted).length
+    if (r >= h * 2)
+      return 'zigzag' // enough regulars to skip a row between each highlighted
+    if (r >= h)
+      return 'pair' // enough regulars to pair with each highlighted (no lone cards)
+    return 'dense' // too few regulars — highlighted stack at end
+  })
+
+  const filteredApps = computed(() => {
+    const highlighted = baseFiltered.value.filter(a => a.isHighlighted)
+    const regular = baseFiltered.value.filter(a => !a.isHighlighted)
+    // zigzag/pair: highlighted first so dense auto-placement pairs regulars into their rows
+    // dense: regulars first, highlighted stack at end
+    return layout.value === 'dense' ? [...regular, ...highlighted] : [...highlighted, ...regular]
+  })
+
+  function getSpotlightPosition(app: NimiqApp): { class: string } | undefined {
     if (!app.isHighlighted)
       return undefined
     const index = spotlightApps.indexOf(app.name)
-    // Position spotlight apps at rows 1, 4, 7 (every 3rd row starting at 1)
-    return { gridRow: `${(index + 1) * 3 - 2}`, class: 'spotlight-app spotlight-span-2' }
+    const side = index % 2 === 1 ? 'spotlight-right' : 'spotlight-left'
+    // zigzag only: explicit grid-row places highlighted on odd rows, regulars fill even rows
+    const row = layout.value === 'zigzag' ? ` spotlight-row-${index}` : ''
+    return { class: `spotlight-app ${side}${row}` }
   }
 
   return { madeBy, filteredApps, getSpotlightPosition }
