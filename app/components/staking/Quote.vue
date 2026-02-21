@@ -3,14 +3,19 @@ defineProps<{ text: string, learnMoreLink?: string }>()
 </script>
 
 <template>
-  <div class="quote-section relative z-[1]">
-    <div class="bg-green absolute inset-x-0 top-0 h-[200px] max-w-none pointer-events-none" />
-    <div class="bg absolute inset-x-0 top-[200px] h-[600px] max-w-none pointer-events-none" />
-    <Icon class="text-white text-[96px] md:text-[112px]" name="nimiq:duotone-safe-lock" />
-    <p class="quote-text text-white text-xl md:text-2xl text-left md:text-center max-w-[36ch] relative z-[1]" v-html="text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')" />
-    <NuxtLink v-if="learnMoreLink" class="mt-6 md:mt-8 nq-arrow nq-pill-lg nq-pill-blue relative z-[1]" :to="learnMoreLink">
-      Learn more
-    </NuxtLink>
+  <div class="quote-section relative z-[1] items-stretch">
+    <div class="quote-bg absolute inset-y-0 left-[calc(var(--px)*-1)] w-[calc(100%+var(--px)*2)] max-w-none pointer-events-none">
+      <div class="bg-green absolute inset-x-0 top-0 h-[200px]" />
+      <div class="bg absolute inset-x-0 top-[200px] h-[600px]" />
+    </div>
+
+    <div class="quote-content relative z-[1] flex flex-col items-center">
+      <Icon class="text-white text-[96px] md:text-[112px]" name="nimiq:duotone-safe-lock" />
+      <p class="quote-text text-white text-xl md:text-2xl text-left md:text-center max-w-[36ch] relative z-[1]" v-html="text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')" />
+      <NuxtLink v-if="learnMoreLink" class="mt-6 md:mt-8 nq-arrow nq-pill-lg nq-pill-blue relative z-[1]" :to="learnMoreLink">
+        Learn more
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
@@ -22,8 +27,6 @@ defineProps<{ text: string, learnMoreLink?: string }>()
   --f-pt-max: 200;
   --f-pb-min: 144;
   --f-pb-max: 200;
-  --f-px-min: 144;
-  --f-px-max: 200;
 }
 
 .quote-text {
@@ -59,5 +62,9 @@ defineProps<{ text: string, learnMoreLink?: string }>()
   );
 
   background-color: var(--color-neutral-100);
+}
+
+.quote-bg {
+  max-width: none !important;
 }
 </style>

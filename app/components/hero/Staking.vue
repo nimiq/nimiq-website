@@ -1,17 +1,20 @@
 <script setup lang="ts">
-const { headline } = defineProps<{ headline: string, link?: { href: string, label?: string }, description?: string }>()
+const { headline, link, description } = defineProps<{ headline: string, link?: { href: string, label?: string }, description?: string }>()
 
 const { annualRewardPercentage } = useStakingInfo()
 const headlineParts = computed(() => headline.split('{{ interestPerAnnum }}'))
 const id = `terms-note-${useId()}`
+const isExternal = computed(() => /^https?:\/\//.test(link?.href || ''))
 </script>
 
 <template>
-  <div class="staking-hero bg-neutral-0 relative overflow-hidden px-6 py-16 md:px-12 md:py-24 lg:px-16 lg:py-32 w-full max-w-none">
-    <!-- Background gradient for the green radial effect at bottom -->
-    <div class="bg-radial-green absolute inset-0 top-[60%] z-0 pointer-events-none" />
+  <div class="staking-hero bg-neutral-0 relative overflow-x-clip max-lg:children:max-w-none">
+    <AnimatedCircleRipple class="w-[300vw] lg:w-[110vw] max-w-none absolute z-0 bottom-[10px] lg:bottom-[-300px] left-[-100vw] lg:left-[-5vw] pointer-events-none" style="max-width: none" />
+    <div class="h-[400px] lg:h-[200px] bg-neutral-0 max-w-none pointer-events-none inset-0 absolute z-[1]" style="max-width: none" />
+    <div class="bg-radial-green top-[50vh] lg:top-[200px] max-w-none pointer-events-none inset-0 absolute z-[1]" style="max-width: none" />
+    <div class="bg-linear-white-1 top-[20vh] lg:top-[200px] max-w-none pointer-events-none inset-0 absolute z-[1]" style="max-width: none" />
+    <div class="bg-linear-white-2 top-[20vh] lg:top-[200px] max-w-none pointer-events-none inset-0 absolute z-[1]" style="max-width: none" />
 
-    <!-- Content -->
     <div class="flex flex-col md:items-center group relative z-[2]">
       <AnimatedStakingRipple class="w-[120px] h-[120px]" />
       <h1 class="nq-heading text-wrap text-balance mt-4 md:mt-6 md:text-center text-neutral">
@@ -21,13 +24,18 @@ const id = `terms-note-${useId()}`
         </span>
         {{ headlineParts[1] }}
       </h1>
-      <NuxtLink v-if="link?.href" class="mt-6 md:mt-8 nq-arrow nq-pill-lg nq-pill-blue" :to="link.href">
+      <NuxtLink v-if="link?.href" class="f-mt-lg nq-arrow nq-pill-lg nq-pill-blue md:mx-auto" :to="link.href" :external="isExternal" :target="isExternal ? '_blank' : undefined">
         {{ link.label }}
       </NuxtLink>
-      <small :id class="text-green-1100 sm:text-center transition-colors duration-400 mt-4 md:mt-6 sm:max-w-[32ch]" data-note>
-        <Icon class="size-[0.4em] -translate-x-[8px] sm:translate-x-[4px] translate-y-[4px] sm:translate-y-[8px]" aria-hidden name="nimiq:asterisk" /> {{ description || 'average return based on the current distribution. This is not financial advice.' }}
+      <small :id class="text-green-1100 text-left sm:text-center transition-colors duration-400 f-mt-md sm:max-w-[32ch]" data-note>
+        <span class="inline-flex items-start gap-x-1 max-sm:items-start">
+          <Icon class="size-3 sm:size-[0.4em] translate-x-0 translate-y-0 sm:translate-x-[4px] sm:translate-y-[8px]" aria-hidden name="nimiq:asterisk" />
+          <span>{{ description || 'average return based on the current distribution. This is not financial advice.' }}</span>
+        </span>
       </small>
     </div>
+
+    <AnimatedBreathArrow class="breath-arrow-hero absolute left-1/2 -translate-x-1/2 bottom-8 lg:bottom-12 z-[2]" />
   </div>
 </template>
 
@@ -100,5 +108,15 @@ const id = `terms-note-${useId()}`
 
 [group]:has([data-percentage]:hover) [data-note] {
   color: var(--color-neutral-800);
+}
+
+.breath-arrow-hero {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .breath-arrow-hero {
+    display: block;
+  }
 }
 </style>
