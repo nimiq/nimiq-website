@@ -27,7 +27,7 @@ const id = `terms-note-${useId()}`
     <component :is="headlineTag" f-mt-md text="data-inverted:white wrap md:balance">
       {{ headlineParts[0] }}
       <span bg="green/15 data-inverted:white/30" text="green data-inverted:white" data-percentage px-10 py-3 rounded-4 inline-flex="~">
-        ~{{ annualRewardPercentage }}<div text-14 translate-y-8 i-nimiq:asterisk :aria-labelledby="id" /></span>
+        ~{{ annualRewardPercentage ?? '--' }}<div text-14 translate-y-8 i-nimiq:asterisk :aria-labelledby="id" /></span>
       {{ headlineParts[1] }}
     </component>
     <PrismicText v-if="hasText(subline)" wrapper="p" :field="subline" data-inverted:text="white/80" />

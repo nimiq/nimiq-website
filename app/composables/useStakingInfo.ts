@@ -1,38 +1,28 @@
-import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
-
-interface SupplyResponse {
-  total: number
-  vested: number
-  burned: number
-  max: number
-  initial: number
-  staking: number
-  minted: number
-  circulating: number
-  mined: number
-}
+import { calculateWalletAlignedRewardRatio, type StakingDistributionResponse } from '~/utils/staking-rewards'
 
 export function useStakingInfo(options: { enabled?: MaybeRef<boolean> } = {}) {
-  const validatorsApiBaseUrl = 'https://validators-api-mainnet.pages.dev'
+  const config = useRuntimeConfig()
+  const validatorsApiBaseUrl = config.public.validatorsApi
 
-  const { data: stakingRatio, state: stakingRatioState } = useQuery({
-    key: ['staking_distribution'],
+  const { data: stakingDistribution, state: stakingRatioState } = useQuery({
+    key: ['staking_distribution', validatorsApiBaseUrl],
     query: async () => {
-      const { circulating, staking } = await $fetch<SupplyResponse>(`${validatorsApiBaseUrl}/api/v1/supply`)
-      const stakedRatio = staking / circulating
-      return stakedRatio
+      return $fetch<StakingDistributionResponse>(`${validatorsApiBaseUrl}/api/v1/distribution`)
     },
     staleTime: 60 * 5 * 1e3,
     placeholderData: previousData => previousData,
     enabled: computed(() => toValue(options.enabled) ?? true),
   })
 
+  const stakingRatio = computed(() => stakingDistribution.value?.stakedRatio)
   const locale = useLocale()
   const annualRewardPercentage = computed(() => {
-    if (!stakingRatio.value)
-      return 0
-    const reward = calculateStakingRewards({ stakedSupplyRatio: stakingRatio.value })
-    return formatPercentage(reward.gainRatio, locale.value)
+    const currentlyStakedNim = stakingDistribution.value?.staked
+    if (!currentlyStakedNim)
+      return null
+
+    const rewardRatio = calculateWalletAlignedRewardRatio({ currentlyStakedNim })
+    return formatPercentage(rewardRatio, locale.value)
   })
 
   return {
