@@ -22,8 +22,8 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
   <template v-if="variation === 'default' || variation === 'iconGrid'">
     <ul class="grid grid-cols-[repeat(auto-fit,min(calc(100vw-64px),330px))] gap-8 md:gap-10 lg:gap-12 xl:gap-16">
       <li v-for="(item, i) in items" :key="i" class="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] gap-x-5 gap-y-3 lg:gap-y-4 items-center">
-        <Icon v-if="item.icon" class="size-48 lg:size-56 xl:size-64" :name="item.icon" />
-        <NuxtImg v-else-if="item.image" class="size-48 lg:size-56 xl:size-64" :src="item.image" width="64" height="64" />
+        <Icon v-if="item.icon" class="text-[48px] lg:text-[56px] xl:text-[64px]" :name="item.icon" />
+        <NuxtImg v-else-if="item.image" class="size-12 lg:size-14 xl:size-16" :src="item.image" width="64" height="64" />
         <div class="[&>*]:text-left">
           <h3>{{ item.headline }}</h3>
         </div>

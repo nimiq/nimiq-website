@@ -13,7 +13,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
     <section class="bg-neutral-100 about-hero">
       <Hero v-bind="page.hero" />
     </section>
-    <TiltedMedia v-bind="page.media" animate-on-scroll />
+    <TiltedMedia v-bind="page.media" animate-on-scroll compact-mobile-padding />
 
     <section class="bg-neutral-100" nq-section-gap>
       <Headline v-bind="page.dive.headline" small-heading />
@@ -23,12 +23,12 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
       <GridLinks :items="page.dive.items" />
     </section>
 
-    <section class="bg-neutral-0" nq-section-gap>
+    <section class="bg-neutral-0" nq-section-gap children:mx-auto children:max-w-prose>
       <Headline :headline="page.mission.headline" compact />
     </section>
 
     <section class="bg-neutral-0">
-      <ContentRenderer class="nq-prose" :value="missionContent" tag="article" children:mx-auto children:max-w-prose />
+      <ContentRenderer class="nq-prose mission-prose" :value="missionContent" tag="article" children:mx-auto children:max-w-prose children:px-0 />
     </section>
 
     <section class="bg-neutral-100" nq-section-gap>
@@ -43,8 +43,17 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
       <Headline v-bind="page.roadmap" />
     </section>
 
-    <section class="bg-neutral-100" nq-section-gap>
+    <section class="bg-neutral-100">
       <Headline v-bind="page.feedback" />
     </section>
   </NuxtLayout>
 </template>
+
+<style scoped>
+@media (max-width: 767px) {
+  :deep(.mission-prose > :not(:where(.nq-raw, .nq-raw *, .nq-not-prose, .nq-not-prose *, .shiki *))) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+</style>

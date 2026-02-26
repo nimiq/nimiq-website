@@ -16,7 +16,7 @@ const id = `terms-note-${useId()}`
 <template>
   <div class="flex flex-col md:items-center group text-white" data-inverted>
     <AnimatedStakingRipple class="text-green size-[120px]" data-inverted />
-    <h2 class="f-mt-md text-white text-wrap md:text-balance">
+    <h2 class="nq-heading f-mt-md text-white text-wrap md:text-balance">
       {{ headlineParts[0] }}
       <span class="bg-white/30 text-white px-[10px] py-[3px] rounded-[4px] inline-flex" data-percentage>
         ~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[8px]" name="nimiq:asterisk" :aria-labelledby="id" />
@@ -52,6 +52,8 @@ section:has(+ section.gradient-transparent-green-transparent) {
 }
 
 section.gradient-transparent-green-transparent {
+  position: relative;
+  overflow: hidden;
   --gradient-height: 352px;
   background: linear-gradient(
     180deg,
@@ -91,6 +93,51 @@ section.gradient-transparent-green-transparent {
   background-color: var(--color-green);
   --f-pb-min: 320;
   --f-pb-max: 456;
+}
+
+section.gradient-transparent-green-transparent::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -34%;
+  width: min(840px, 85vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.24) 24%,
+    rgba(255, 255, 255, 0) 62%
+  );
+  animation: stake-gradient-breath 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+section.gradient-transparent-green-transparent > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes stake-gradient-breath {
+  0%,
+  100% {
+    transform: translate(-50%, -4%) scale(0.96);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(-50%, 2%) scale(1.08);
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section.gradient-transparent-green-transparent::before {
+    animation: none;
+    opacity: 0.2;
+    transform: translate(-50%, -4%) scale(1);
+  }
 }
 </style>
 

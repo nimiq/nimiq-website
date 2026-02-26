@@ -30,16 +30,19 @@ function getPillClass(action: Action) {
 <template>
   <div class="flex flex-col md:items-center z-1">
     <Icon v-if="icon" class="text-54 opacity-15 mt-16 md:mt-20 lg:mt-24" :name="icon" />
-    <p v-if="label" class="mb-16 w-max block text-12 md:text-13 lg:text-14 nq-label md:mx-auto">
+    <p v-if="label" class="mb-16 w-max block text-18 nq-label md:mx-auto">
       {{ label }}
     </p>
-    <h2 v-if="headline && !smallHeading" class="break-keep">
+    <h2 v-if="headline && !smallHeading" class="nq-heading break-keep">
       {{ headline }}
     </h2>
     <h2 v-else-if="headline" class="break-keep font-normal leading-[1.3] text-[clamp(calc(14*1.25*1px),calc(14*1.25*1px+(16*1.4-14*1.25)*((100vw-375px)/(1440-375))),calc(16*1.4*1px))] text-neutral-900 max-w-none">
       {{ headline }}
     </h2>
-    <p v-if="subline" class="max-w-prose md:text-center">
+    <h4 v-if="subline && smallHeading && !headline" class="break-keep">
+      {{ subline }}
+    </h4>
+    <p v-else-if="subline" class="max-w-prose md:text-center">
       {{ subline }}
     </p>
     <ul v-if="actionItems.length" class="flex gap-16 lg:gap-20 flex-wrap f-mt-md">

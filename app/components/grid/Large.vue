@@ -8,15 +8,15 @@ defineProps<{ items: LargeGridItem[] }>()
     <NuxtLink v-for="(item, i) in items" :key="i" class="large-grid-item p-[40px] group relative nq-hoverable" :class="{ 'md:text-center': item.subline }" :style="`--c: var(--color-${item.color})`" :to="item.link">
       <div v-if="item.shape === 'Hexagons'" class="rounded-lg pointer-events-none inset-0 absolute overflow-hidden">
         <div class="hexagon-container size-full pointer-events-none relative">
-          <Icon class="text-360 -bottom-1/2 -left-[164px] absolute text-neutral-500/60 transition-colors" name="nimiq:logos-nimiq-mono" />
-          <Icon class="text-360 -right-[214px] -top-[140px] absolute text-neutral-500/60 transition-colors" name="nimiq:logos-nimiq-mono" />
+          <Icon class="text-360 -bottom-1/2 -left-[164px] absolute text-neutral-500/60 transition-colors duration-150" name="nimiq:logos-nimiq-mono" />
+          <Icon class="text-360 -right-[214px] -top-[140px] absolute text-neutral-500/60 transition-colors duration-150" name="nimiq:logos-nimiq-mono" />
         </div>
       </div>
-      <Icon v-if="item.icon && typeof item.icon === 'string'" class="nq-prose-compact text-96 md:text-120 max-w-128 text-blue mb-3 md:mb-4 transition-colors" :name="item.icon" :class="{ 'md:mx-auto': item.subline }" />
-      <h3 class="z-1 transition-colors">
+      <Icon v-if="item.icon && typeof item.icon === 'string'" class="nq-prose-compact team-grid-icon text-96 md:text-120 max-w-128 text-blue mb-3 md:mb-4 transition-colors duration-150" :name="item.icon" :class="{ 'md:mx-auto': item.subline }" />
+      <h3 class="z-1 transition-colors duration-150">
         {{ item.headline }}
       </h3>
-      <p v-if="item.subline" class="transition-colors z-1 mt-1 md:mt-1.5">
+      <p v-if="item.subline" class="transition-colors duration-150 z-1 mt-1 md:mt-1.5">
         {{ item.subline }}
       </p>
     </NuxtLink>
@@ -31,15 +31,13 @@ defineProps<{ items: LargeGridItem[] }>()
 
 .large-grid-item:where(:focus-visible, :hover) h3,
 .large-grid-item:where(:focus-visible, :hover) p {
-  color: white;
+  color: #fff !important;
+  opacity: 1;
 }
 
-.large-grid-item:where(:focus-visible, :hover) p {
-  opacity: 0.8;
-}
-
-.large-grid-item:where(:focus-visible, :hover) .hexagon-container svg {
-  color: rgba(255, 255, 255, 0.1);
+.large-grid-item:where(:focus-visible, :hover) .team-grid-icon {
+  color: #fff !important;
+  fill: #fff !important;
 }
 
 .large-grid-item:where(:focus-visible, :hover) svg[class*='text-blue'] {

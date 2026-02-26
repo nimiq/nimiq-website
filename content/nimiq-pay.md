@@ -27,13 +27,13 @@ intro:
   subline: "The Nimiq Pay app is made for one thing only: Super fast and unobstructed NIM payments."
 grid:
   items:
-    - icon: https://images.prismic.io/nimiq/c5d2b9d7-f29f-4e08-86b3-3e0c8b29fa6d_fast-transaction.svg
+    - icon: custom:fast-transaction
       headline: Focus on quick payments
-      subline: No fuzz. The Nimiq Pay app is solely  focused on fast crypto payments.
-    - icon: https://images.prismic.io/nimiq/81ec1e84-61e0-4ee5-8a9c-93f1bf81745a_cashback.svg
+      subline: No fuzz. The Nimiq Pay app is solely focused on fast crypto payments.
+    - icon: custom:cashback
       headline: Cash-back rewards
       subline: Built-in support for cash-back systems enables rewards.
-    - icon: https://images.prismic.io/nimiq/6ac5047e-fdd5-4b80-b03e-4f1fe02c8fe1_icon_have-five.svg
+    - icon: custom:partner-integrations
       headline: Partner integrations
       subline: More partners and integrations means more ways to pay, all in one app.
 about:
@@ -55,6 +55,9 @@ about:
         ![](https://images.prismic.io/nimiq/517ded61-86af-497c-8e73-68126cca062c_a3487c5f-107a-46fd-bb1d-34deb80111ab.png?auto=compress,format)
 
         For everyone from complete beginners to crypto- connoisseurs. It's the easiest way to pay.
+easyAsAlways:
+  headline: Easy as always
+  subline: Nimiq's first mobile app makes self-custodial crypto payments fast and easy.
 textCarousel:
   content: |-
     ### How to start
@@ -142,4 +145,9 @@ discover:
       secondaryButtonLabelMobile: Learn more
       secondaryButtonHref: /wallet
       image: https://images.prismic.io/nimiq/65cbfd8e9be9a5b998b5c7e3_wallet-preview.png?auto=compress,format
+cta:
+  headline: Get it now
+  subline: Download the app for iOS and Android phones.
+  playStore: https://play.google.com/store/apps/details?id=com.nimiq.pay
+  appStore: https://apps.apple.com/app/id6471844738
 ---

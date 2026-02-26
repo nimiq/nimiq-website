@@ -60,7 +60,7 @@ const dominanceStatus = computed(() => {
 </script>
 
 <template>
-  <AccordionRoot class="ring-1.5 ring-neutral-400 [&>*]:border-b [&>*]:border-neutral-400 [&>*:last-child]:border-b-0 mt-1.5 rounded-2" type="multiple">
+  <AccordionRoot class="[&>*]:border-b [&>*]:border-neutral-400 [&>*:last-child]:border-b-0 mt-1.5 rounded-2" style="outline: 1.5px solid var(--color-neutral-400)" type="multiple">
     <AccordionItem value="availability">
       <AccordionTrigger class="flex items-center gap-2 w-full bg-transparent px-3 py-2">
         <Icon class="text-10 text-neutral-600 transition-transform reka-open:rotate-90" name="nimiq:chevron-right" />

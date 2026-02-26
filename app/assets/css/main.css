@@ -11,9 +11,10 @@
 }
 
 /* Prevent horizontal overflow from decorative elements */
+/* Use clip instead of hidden to avoid breaking position:sticky (hidden creates a scroll container) */
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Accessibility: Focus visible styles */

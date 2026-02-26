@@ -140,9 +140,11 @@ export default defineContentConfig({
         intro: headlineSchema,
         grid: gridSchema,
         about: z.object({ headline: headlineSchema, items: z.array(cardSchema) }),
+        easyAsAlways: headlineSchema,
         textCarousel: textCarouselSchema,
         pooling: z.object({ headline: headlineSchema, carousel: textCarouselSchema }),
         discover: z.object({ headline: headlineSchema, items: z.array(zigzagItemSchema) }),
+        cta: headlineSchema.extend({ playStore: z.string().optional(), appStore: z.string().optional() }),
       }),
     }),
 
@@ -262,7 +264,7 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema,
-        details: z.object({ items: z.array(z.object({ headline: z.string(), description: z.string().optional() })) }),
+        details: z.object({ items: z.array(z.object({ headline: z.string(), description: z.string().optional(), image: z.string().optional() })) }),
       }),
     }),
 

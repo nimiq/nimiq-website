@@ -8,13 +8,11 @@ const validImages = computed(() => images?.filter(Boolean) || [])
     <MDC class="nq-prose-compact text-14 md:text-18 text-neutral-900" :value="content" wrapper="div" />
 
     <ClientOnly v-if="validImages.length > 0">
-      <UiSimpleCarousel :slides="validImages" style="--trigger-size:min(300px,20vw); --r: 12px" :shadow="true">
-        <template #default="{ slide }">
-          <NuxtImg v-if="slide" class="rounded-2" :src="slide" />
-        </template>
-      </UiSimpleCarousel>
+      <UiStackedCarousel v-slot="{ slide }" :slides="validImages">
+        <NuxtImg v-if="slide" class="rounded-[10px] w-full" :src="slide" />
+      </UiStackedCarousel>
       <template #fallback>
-        <NuxtImg class="rounded-2" :src="validImages[0]" />
+        <NuxtImg class="rounded-[10px]" :src="validImages[0]" />
       </template>
     </ClientOnly>
   </div>

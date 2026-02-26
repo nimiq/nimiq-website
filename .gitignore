@@ -51,3 +51,5 @@ public/images/pages/
 tests/vrt/output/
 .vitest-attachments/
 public/assets/fonts/
+.vercel
+.env*.local

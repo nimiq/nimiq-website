@@ -25,13 +25,13 @@ function handleOpenChange(open: boolean) {
     </PopoverTrigger>
 
     <PopoverPortal v-if="shouldRenderPortal">
-      <PopoverContent class="tooltip-animation flex flex-col max-w-[360px]" as-child :side-offset :collision-padding :side>
-        <div class="p-4 rounded-2 text-neutral text-dark:white" :class="dark ? 'bg-white' : 'bg-gradient-neutral shadow dark scheme-dark'">
+      <PopoverContent class="tooltip-animation z-[100] flex flex-col max-w-[360px]" :side-offset :collision-padding :side>
+        <div class="p-4 rounded-2" :class="dark ? 'bg-white text-neutral shadow' : 'bg-neutral text-neutral-0'">
           <slot />
         </div>
         <PopoverArrow as-child>
-          <div class="rotate-180" :class="{ dark }">
-            <Icon class="tooltip-animation text-darkblue -mt-px h-2 w-4 dark:text-white" aria-hidden name="nimiq:tooltip-triangle" />
+          <div class="rotate-180 -mb-px leading-[0]">
+            <Icon class="h-2 w-4" :class="dark ? 'text-white' : 'text-neutral'" aria-hidden name="nimiq:tooltip-triangle" />
           </div>
         </PopoverArrow>
       </PopoverContent>

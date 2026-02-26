@@ -26,34 +26,31 @@ watch(y, (newY, oldY) => {
     direction.value = 'bottom'
 })
 
+const hiding = computed(() => scrolled.value && direction.value === 'bottom')
+
 // Animation targets for motion-v
 const animateProps = computed(() => ({
-  opacity: scrolled.value && direction.value === 'bottom' ? 0 : 1,
+  opacity: hiding.value ? 0 : 1,
+  y: hiding.value ? '-100%' : '0%',
   backgroundColor: scrolled.value && direction.value === 'top' ? 'white' : 'transparent',
   boxShadow: scrolled.value && direction.value === 'top' ? '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)' : '0 0 0 0 transparent',
 }))
 
-// Additional styles that need conditional application
 const conditionalClasses = computed(() => ({
-  'pointer-events-none': scrolled.value && direction.value === 'bottom',
+  'pointer-events-none': hiding.value,
 }))
 
-// Transition configuration for motion-v - smooth transitions
-const transitionProps = computed(() => ({
-  default: { type: 'tween', ease: [0.25, 0, 0, 1] } as const, // Nimiq ease
-  opacity: {
-    duration: 0.3,
-    ease: [0.25, 0, 0, 1] as const,
-  },
-  backgroundColor: {
-    duration: 0.35,
-    ease: [0.25, 0, 0, 1] as const,
-  },
-  boxShadow: {
-    duration: 0.35,
-    ease: [0.25, 0, 0, 1] as const,
-  },
-}))
+// Transition: enter (scroll-up) is ease-out-quint (snappy), exit is faster with ease-out-cubic
+const transitionProps = computed(() => {
+  const isEntering = !hiding.value
+  const ease = isEntering ? [0.23, 1, 0.32, 1] as const : [0.215, 0.61, 0.355, 1] as const
+  const duration = isEntering ? 0.3 : 0.25
+  return {
+    default: { type: 'tween' as const, duration, ease },
+    backgroundColor: { duration: 0.35, ease: [0.25, 0, 0, 1] as const },
+    boxShadow: { duration: 0.35, ease: [0.25, 0, 0, 1] as const },
+  }
+})
 </script>
 
 <template>

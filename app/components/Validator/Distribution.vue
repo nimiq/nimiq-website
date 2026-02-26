@@ -50,7 +50,7 @@ const data = computed(() => {
         </div>
       </template>
     </ChartDonut>
-    <h3 v-if="headline" class="text-center font-bold text-xl md:text-2xl mt-4">
+    <h3 v-if="headline" class="text-center font-semibold text-22 mt-4 text-neutral">
       {{ headline }}
     </h3>
     <p v-if="info" class="text-center max-w-[42ch] mt-2">

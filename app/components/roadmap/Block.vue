@@ -9,7 +9,7 @@ const parsedIcon = computed(() => {
   if (!icon)
     return null
   const parts = icon.split(' ')
-  const classes = parts.slice(1).filter((item) => item && !item.startsWith('text-')).join(' ')
+  const classes = parts.slice(1).filter(item => item && !item.startsWith('text-')).join(' ')
   return { name: parts[0]!, classes }
 })
 </script>

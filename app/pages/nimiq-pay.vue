@@ -15,7 +15,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
     </section>
 
     <!-- Section: TiltedMedia (grey bg with hexagons) -->
-    <TiltedMedia v-bind="page.media" />
+    <TiltedMedia v-bind="page.media" animate-on-scroll />
 
     <!-- Section: Logos (grey bg) -->
     <section class="bg-neutral-100">
@@ -42,6 +42,11 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
       <RichTextCards :items="page.about.items" />
     </section>
 
+    <!-- Section: Easy as always headline (grey bg) -->
+    <section class="nq-section-gap bg-neutral-100 relative">
+      <Headline v-bind="page.easyAsAlways" />
+    </section>
+
     <!-- Section: How to start carousel (grey bg) -->
     <section class="bg-neutral-100">
       <RichTextCarousel v-bind="page.textCarousel" variation="default" />
@@ -65,6 +70,24 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/nimiq-pay' }] })
     <!-- Section: ZigZag (white bg) -->
     <section class="bg-neutral-0">
       <ZigZag :items="page.discover.items" />
+    </section>
+
+    <!-- Section: Get it now CTA (grey bg) -->
+    <section class="nq-section-gap bg-neutral-100 relative">
+      <Headline v-bind="page.cta">
+        <ul v-if="page.cta.appStore || page.cta.playStore" class="f-mt-md flex flex-wrap gap-32 lg:gap-40 justify-center">
+          <li v-if="page.cta.appStore">
+            <NuxtLink :to="page.cta.appStore" external target="_blank">
+              <NuxtImg class="h-[clamp(36px,calc(36px+(52-36)*((100vw-375px)/(1440-375))),52px)]" src="/assets/images/apple-store-badge.png" alt="Get it on Apple Store" />
+            </NuxtLink>
+          </li>
+          <li v-if="page.cta.playStore">
+            <NuxtLink :to="page.cta.playStore" external target="_blank">
+              <NuxtImg class="h-[clamp(36px,calc(36px+(52-36)*((100vw-375px)/(1440-375))),52px)]" src="/assets/images/google-play-badge.svg" alt="Get it on Google Play" />
+            </NuxtLink>
+          </li>
+        </ul>
+      </Headline>
     </section>
   </NuxtLayout>
 </template>

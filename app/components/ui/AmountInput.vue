@@ -1,15 +1,25 @@
 <script setup lang="ts">
-const { decimals = 0, min = 0 } = defineProps<{ decimals?: number, min?: number }>()
+const { decimals = 0, min = 0, grouping = false } = defineProps<{ decimals?: number, min?: number, grouping?: boolean }>()
 
 const amount = defineModel<number>()
 const liveValue = ref(amount.value ? `${amount.value}` : '')
 const lastEmittedValue = ref(0)
 
+function addGrouping(str: string): string {
+  if (!grouping)
+    return str
+  const [integer, decimal] = str.split('.')
+  const grouped = integer!.replace(/\B(?=(\d{3})+(?!\d))/g, '\u2019')
+  return decimal !== undefined ? `${grouped}.${decimal}` : grouped
+}
+
 const formattedValue = computed({
   get() {
-    return liveValue.value
+    return addGrouping(liveValue.value)
   },
   set(value: string) {
+    // Strip grouping characters before parsing
+    value = value.replace(/[\u2019']/g, '')
     liveValue.value = value
 
     if (!value) {
@@ -60,8 +70,14 @@ onMounted(() => {
   if (!amount.value)
     onBlur()
 })
+
+const mirror = useTemplateRef<HTMLSpanElement>('mirror')
+const { width } = useElementSize(mirror)
 </script>
 
 <template>
-  <input v-model="formattedValue" class="leading-none font-semibold px-3 rounded-0.5 nq-input-box" type="text" style="field-sizing: content" focus-visible:outline="1 solid blue" inputmode="decimal" v-bind="$attrs" @blur="onBlur">
+  <span class="inline-grid items-center">
+    <span ref="mirror" class="invisible col-start-1 row-start-1 leading-none font-semibold whitespace-pre" v-bind="$attrs">{{ formattedValue || '0' }}</span>
+    <input v-model="formattedValue" class="col-start-1 row-start-1 leading-none font-semibold min-w-0" type="text" inputmode="decimal" :style="{ width: `${width}px` }" v-bind="$attrs" @blur="onBlur">
+  </span>
 </template>

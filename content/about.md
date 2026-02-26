@@ -21,7 +21,7 @@ dive:
     - icon: nimiq:duotone-document-vertical-line
       headline: Transparency report
       link: /blog/nimiq-transparency-report-2025
-      color: red
+      color: '#fa7268'
 mission:
   headline: Nimiq's Mission
   content: |-

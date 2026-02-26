@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Motion, useScroll, useSpring, useTransform } from 'motion-v'
 
-const { src, poster, animateOnScroll = false } = defineProps<{ src: string, poster?: string, animateOnScroll?: boolean }>()
+const { src, poster, animateOnScroll = false, compactMobilePadding = false } = defineProps<{ src: string, poster?: string, animateOnScroll?: boolean, compactMobilePadding?: boolean }>()
 
 const sectionRef = useTemplateRef<HTMLElement>('sectionRef')
 const { scrollYProgress } = useScroll({
@@ -9,8 +9,8 @@ const { scrollYProgress } = useScroll({
   offset: ['start end', 'end start'],
 })
 
-const rotateXProgress = useTransform(scrollYProgress, [0, 0.65], [30, 0])
-const translateYProgress = useTransform(scrollYProgress, [0, 0.65], [-100, 0])
+const rotateXProgress = useTransform(scrollYProgress, [0, 0.38], [30, 0])
+const translateYProgress = useTransform(scrollYProgress, [0, 0.38], [-100, 0])
 const rotateX = useSpring(rotateXProgress, { stiffness: 140, damping: 24, mass: 0.7 })
 const translateY = useSpring(translateYProgress, { stiffness: 140, damping: 24, mass: 0.7 })
 
@@ -36,7 +36,12 @@ const playMaskStyle = {
 
 <template>
   <!-- eslint-disable-next-line vue/no-restricted-html-elements - section required to match prod structure -->
-  <section ref="sectionRef" class="mx-0 px-0 bg-neutral-100 relative overflow-hidden nq-wide" style="--px: 0;" :class="{ 'nq-overlaps': !isYouTube }">
+  <section
+    ref="sectionRef"
+    class="mx-0 px-0 bg-neutral-100 relative overflow-hidden nq-wide max-md:[--pb:56px]"
+    style="--px: 0;"
+    :class="{ 'nq-overlaps': !isYouTube, 'compact-mobile-padding': compactMobilePadding }"
+  >
     <!-- Hexagon background decoration - invisible/subtle decorative element -->
     <div class="inset-0 absolute overflow-hidden pointer-events-none">
       <div class="w-full h-full min-h-[500px] max-w-none inset-0 absolute text-neutral-800 bg-hexagons" />
@@ -56,6 +61,7 @@ const playMaskStyle = {
           <NuxtLink v-if="poster" class="mx-auto grid relative [&>*]:rounded-lg [&>*]:col-start-1 [&>*]:row-start-1" :to="src" external target="_blank">
             <img class="w-full" :src="poster" width="1280" height="720" alt="Crypto made easy video poster">
             <div class="w-full h-full" />
+            <div class="w-[56px] h-[56px] bg-neutral opacity-50 justify-self-center self-center translate-y-[2px] blur-[1.5px]" :style="playMaskStyle" />
             <div class="w-[56px] h-[56px] bg-white rounded-lg justify-self-center self-center" :style="playMaskStyle" />
           </NuxtLink>
           <iframe v-else class="rounded-lg w-full aspect-video" :src="embedUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
@@ -75,5 +81,11 @@ const playMaskStyle = {
   mask-repeat: no-repeat;
   mask-size: 2795px 544px;
   mask-position: right bottom;
+}
+
+@media (max-width: 767px) {
+  .compact-mobile-padding {
+    --pb: 24px !important;
+  }
 }
 </style>

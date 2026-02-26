@@ -18,7 +18,7 @@ defineProps<{ items: FaqItem[], forumLink?: ForumLink, title?: string }>()
     </h2>
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <li v-for="(item, i) in items" :key="i" class="p-4 rounded-1.5 bg-neutral-300">
-        <h3 class="text-16 font-bold">
+        <h3 class="text-17 font-bold">
           {{ item.question }}
         </h3>
         <p class="nq-prose-compact mt-2 md:mt-3">

@@ -4,7 +4,7 @@ seo:
   description: Start staking with Nimiq and earn rewards
 hero:
   title: Stake NIM and get {{ interestPerAnnum }} annually
-  description: reward in NIM based on the current total stake. Past performance is not indicative of future results.
+  description: "*average return based on the current distribution. This is not financial advice."
   link:
     href: https://wallet.nimiq.com
     label: Start staking
@@ -24,24 +24,25 @@ distribution:
   headline:
     label: Staking Distribution
     headline: Active and decentralized staking
-    subline: A healthy network has a high staked supply, evenly distributed among the pools and validators.
+    subline: A healthy network has a high staked supply, evenly distributed among the various pools and validators.
   stakedHeadline: How much is staked
   stakedDescription: A high staked supply means a safer network but smaller rewards.
   distributedHeadline: How the stakes are distributed
-  distributedDescription: A more even distribution of stakes leads to stronger decentralization.
+  distributedDescription: The more evenly stakes are distributed, the stronger the decentralization.
 video:
   headline:
     label: Staking in the wallet
     headline: So easy, everyone can do it!
     subline: No tech skills or staking knowledge needed, stake in just three clicks. All it takes is a Nimiq Wallet and as little as 1000 NIM.
   embedUrl: https://nimiq.cdn.prismic.io/nimiq/Z21BuJbqstJ981da_ScreenRecording2024-12-26174136.mp4
-  poster: /images/pages/staking/video-poster.webp
+  poster: /images/pages/staking/video-poster-desktop.webp
+  posterMobile: /images/pages/staking/video-poster-mobile.webp
   title: You stay in control
   description: When staking, you 'delegate' your NIM to a pool but they remain in your wallet. Unstake them at any time.
 delegate:
   label: Validator pools
   headline: Let others do the work
-  subline: Not a techy? Stake with a validator pool. They take care of all the work for a small fee. You always stay in control of your NIM.
+  subline: Not a techy? Stake with a validator. They take care of all the work, earning a small fee. You are always in control of your NIM.
 banner:
   overlapsNextSection: true
   items:

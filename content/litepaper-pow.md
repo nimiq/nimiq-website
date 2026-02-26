@@ -8,21 +8,21 @@ versionNumber: "1.0"
 date: "2019-08-19"
 ---
 
-Executive Summary
+## Executive Summary
 
-What is Nimiq?
+### What is Nimiq?
 
 Nimiq is a decentralized, censorship-resistant payment protocol native to the web, with its own diverse ecosystem of apps. The native NIM token is transacted within Nimiq as a store and transfer of value: it acts as digital cash. The cutting-edge, browser-first blockchain approach means that users directly connect to the blockchain with nothing more than a browser. Therefore anyone with an up-to-date browser can join the payment network directly, pay and accept payments without having to install software or rely on unnecessary intermediaries. This gives Nimiq its 'it just works' characteristic, which is further strengthened by an ethos of simplicity and ease of use. NIM is designed to be a cryptocurrency used by the masses.
 
-Nimiq's Mission & Vision
+### Nimiq's Mission & Vision
 
 Revolutionizing money by realizing the full potential of cryptocurrency. While Nimiq itself as a tech-focused project is dedicated to ushering in a new era of independent and censorship-resistant digital cash, the Nimiq Ecosystem aims to bring universal access and the ease of use of NIM to both the tech-savvy and typical Internet users. All efforts are guided by an overarching philanthropic mindset such that as NIM is increasingly adopted, its charity's ability to support good causes will grow.
 
-Project Status
+### Project Status
 
 The Nimiq Mainnet was launched on April 14, 2018 and the payment protocol is fully operational. Nimiq's browser-first blockchain has been deployed and streamlined for the web. All user interfaces are focused on simplicity, maximizing ease of use, including onboarding, easy address verification, and a simplified backup process. Nimiq is also home to a growing ecosystem of apps, and has dedicated significant efforts to advance blockchain and crypto adoption research. Nimiq has acquired a stake in German TEN31 Bank to secure a licensed ally in implementing the first version of the Open Asset Swap Interaction Scheme (Nimiq OASIS), while diversifying project assets. The project offers active support and advice to community developers, as well as limited seed funding for qualifying community projects.
 
-Resources
+### Resources
 
 - [Nimiq 2.0 Albatross Rust implementation](https://github.com/nimiq/core-rs-albatross)
 - [Current Nimiq 1.0 Rust implementation](https://github.com/nimiq/core-rs) of the backbone node
@@ -30,13 +30,13 @@ Resources
 - [OASIS peer-to-peer fiat to crypto bridge](/oasis)
 - [Nimiq Developer Center](https://nimiq.dev)
 
-Collaborations & Grants
+### Collaborations & Grants
 
 - [TEN31 Bank](https://www.ten31.com/): Collaboration on peer-to-peer fiat-to-crypto bridge
 - [Stanford University's Applied Cryptography Group](https://crypto.stanford.edu/c2rg): Research grant for blockchain research
 - Arthur Gervais at [Imperial College's Centre for Cryptocurrency Research and Engineering](https://www.imperial.ac.uk/cryptocurrency/people/): PhD research grant
 
-Research Publications
+### Research Publications
 
 - [Albatross: An optimistic consensus algorithm](https://arxiv.org/abs/1903.01589)
   A technical research paper resulting from Nimiq's collaboration with Trinkler Software. It is a new PoS consensus algorithm that is able to achieve a performance close to the theoretical maximum for a single chain.
@@ -45,7 +45,7 @@ Research Publications
 
 ![](/assets/images/prismic/66325e6f-cd73-4254-bd5f-1f129a5a7f11_whitepaper_nimiq-history.png)
 
-Motivation
+## Motivation
 
 Cryptocurrency as a valid concept has been confirmed by the growth and persistence of [Bitcoin](https://bitcoin.org/bitcoin.pdf) since its launch in 2009. More than just a technical idea, it laid the foundation for a disruptive means of transacting value not seen before in the history of humankind, by allowing "payments to be sent directly from one party to another without going through a financial institution" _Footnote: Satoshi Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System" https://bitcoin.org/bitcoin.pdf_. This brilliant concept has fostered a grand ecosystem with a broad range of ideas and technical solutions.
 
@@ -63,7 +63,7 @@ In light of these facts, Nimiq recognizes an enormous opportunity. Namely to pur
 - User experience,
 - Human psychology and behaviour.
 
-Design Approach
+## Design Approach
 
 Web apps have become the standard of the Internet and are disrupting business models of traditional software industries. From Encarta to Wikipedia, from Office to Google Docs, web apps are far more attractive because they improve the overall usability of software for the user:
 
@@ -73,7 +73,7 @@ Web apps have become the standard of the Internet and are disrupting business mo
 - **Intuitive:** By tapping into the user's familiarity with their browser it is possible to create a smooth and easy-to-use user experience that 'just works'.
 - **Future-proof:** Web apps are a clear long-lasting trend in software development, since the web has become ubiquitous even in developing countries.
 
-Crypto for Everybody
+## Crypto for Everybody
 
 Even though there are obvious advantages in using cryptocurrencies and holding your own funds, it is clear and understandable that non-tech-savvy users are drawn to **convenient and easy-to-use payment** methods.
 
@@ -83,13 +83,13 @@ Looking at the history and origins of cryptocurrencies, it is logical that the f
 
 Powered by the knowledge we now hold and in deep gratitude for the hard work of crypto pioneers, we are now standing on the shoulders of giants. Nimiq is working on outperforming the convenience of conventional payment services with an enhanced user experience that is **intuitive through simplicity**, whilst providing the privacy and censorship-resistance of decentralized cryptocurrencies to create a novel payment experience. This is the Nimiq Payment Protocol, embedded in the Nimiq Ecosystem.
 
-Open Source and Developer Accessibility
+## Open Source and Developer Accessibility
 
 _Nimiq is encompassed by a strong philanthropic mindset, it is open-source and aims to become entirely community-driven._
 
 Team Nimiq is a tech-focused team with a deeply rooted open-source mentality. The project's source code is released to the public on the [official GitHub repository](https://github.com/nimiq) to encourage peer review and interaction with developers. The project's main focus is to enable the most accessible, censorship-resistant payment solutions. This intrinsically means that Team Nimiq works to provide the framework and tools for developers to further build applications that tap into the Nimiq Payment Ecosystem. To guide and support developers on this journey, Nimiq provides the [Nimiq Developer Center](https://www.nimiq.dev)
 
-Browser-First Blockchain
+## Browser-First Blockchain
 
 It is already possible to pay online with crypto. Through intermediaries. But the heart and soul of crypto is to make ourselves as independent as possible from third parties and intermediaries.
 

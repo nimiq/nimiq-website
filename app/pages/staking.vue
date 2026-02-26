@@ -33,22 +33,21 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
       </div>
     </section>
 
-    <section class="bg-neutral-0" style="--f-pt-min: 144; --f-pt-max: 200">
+    <section class="bg-neutral-0">
       <Headline v-bind="page.video.headline" />
-    </section>
-
-    <section class="bg-neutral-0" style="--f-pt-min: 144; --f-pt-max: 200">
-      <YouTube :embed-url="page.video.embedUrl" :poster="page.video.poster" :title="page.video.title" />
+      <YouTube class="f-mt-lg" :embed-url="page.video.embedUrl" :poster="page.video.poster" :poster-mobile="page.video.posterMobile" :title="page.video.title">
+        <img class="absolute inset-0 m-auto max-h-[85%] w-auto z-10 pointer-events-none rounded-lg shadow-xl max-md:hidden" :src="page.video.posterMobile" alt="" loading="lazy">
+      </YouTube>
       <div v-if="page.video.description" class="flex flex-col md:items-center mt-6 md:mt-8">
         <div v-if="page.video.title" class="flex items-center gap-3">
           <div class="flex items-center justify-center rounded-full shrink-0 size-8" style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)">
             <Icon class="text-white text-sm" name="nimiq:shield" />
           </div>
-          <h3 class="font-semibold text-lg md:text-xl">
+          <h3 class="font-semibold text-neutral text-[22px]">
             {{ page.video.title }}
           </h3>
         </div>
-        <p class="max-w-[32ch] md:text-center mt-2">
+        <p class="max-w-[368px] md:text-center mt-4 text-lg text-neutral/60">
           {{ page.video.description }}
         </p>
       </div>
@@ -62,8 +61,8 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
       <ValidatorList />
     </section>
 
-    <section class="bg-neutral-0" style="--pt: 0px; --pb: 0px">
-      <BannerSection :items="page.banner.items" :overlaps-next-section="false" />
+    <section class="bg-neutral-0 nq-wide relative overflow-x-clip" style="--pt: 0px; --pb: 0px">
+      <StakingBanner :items="page.banner.items" />
     </section>
 
     <section class="bg-neutral-100">

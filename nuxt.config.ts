@@ -168,6 +168,9 @@ export default defineNuxtConfig({
   }),
 
   runtimeConfig: {
+    albatross: {
+      nodeRpcUrl: process.env.NUXT_ALBATROSS_NODE_RPC_URL,
+    },
     public: {
       baseUrl: process.env.NUXT_PUBLIC_BASE_URL || '/',
       apiDomain: process.env.NUXT_PUBLIC_API_DOMAIN || 'https://nimiq.com',
@@ -194,6 +197,7 @@ export default defineNuxtConfig({
 
   safeRuntimeConfig: {
     $schema: object({
+      albatross: object({ nodeRpcUrl: optional(string()) }),
       public: object({
         baseUrl: string(),
         apiDomain: string(),
@@ -228,7 +232,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    experimental: { wasm: true },
+    experimental: { wasm: true, websocket: true },
     esbuild: { options: { target: 'esnext' } },
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,

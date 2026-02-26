@@ -21,7 +21,7 @@ function getIcon(score: number) {
 </script>
 
 <template>
-  <div class="flex items-center gap-1 py-1.5 rounded-full h-max w-max nq-raw" :class="{ 'ring-1.5 ring-[color:var(--ring-c)] px-2.5': showBorder }" :style="`--c: var(--color-${getScoreColor(score)}); --ring-c: var(--color-${getScoreColor(score)}) / 0.5; color: var(--c)`">
+  <div class="flex items-center gap-1 py-1.5 rounded-full h-max w-max nq-raw" :class="{ 'px-2.5': showBorder }" :style="`--c: var(--color-${getScoreColor(score)}); color: var(--c); ${showBorder ? 'outline: 1.5px solid color-mix(in oklch, var(--c) 50%, transparent)' : ''}`">
     <Icon class="text-1.125em" :name="getIcon(score)" />
     <span class="text-1.5em font-semibold leading-none">{{ formatter.format(score * 5) }}</span>
   </div>
