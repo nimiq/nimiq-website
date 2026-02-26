@@ -2,9 +2,12 @@ const LUNA_PER_NIM = 1e5
 const TOTAL_SUPPLY_LUNA = 21e14
 const SUPPLY_DECAY = 0.9999999999960264
 
+// Wallet-aligned reward math port from:
+// https://github.com/nimiq/wallet/blob/master/src/lib/AlbatrossMath.ts
 const WALLET_GENESIS_DATE = new Date('2024-11-19T16:00:00.000Z')
 const WALLET_GENESIS_SUPPLY_LUNA = 12_893_109_654_06244
 
+// Protocol-style reward math port from @nimiq/utils/rewards-calculator.
 const PROTOCOL_MIGRATION_DATE = new Date('2024-11-19T16:45:20.000Z')
 const PROTOCOL_GENESIS_SUPPLY_MAIN_NIM = 12_893_109_654.06244
 const PROTOCOL_GENESIS_SUPPLY_TEST_NIM = 12_030_755_339.52899
