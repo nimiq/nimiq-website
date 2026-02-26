@@ -1,5 +1,5 @@
-import { calculateWalletAlignedRewardRatio } from '~/utils/staking-rewards'
 import type { StakingDistributionResponse } from '~/utils/staking-rewards'
+import { calculateWalletAlignedRewardRatio } from '~/utils/staking-rewards'
 
 export function useStakingInfo(options: { enabled?: MaybeRef<boolean> } = {}) {
   const config = useRuntimeConfig()
