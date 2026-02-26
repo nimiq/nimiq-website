@@ -36,6 +36,7 @@ const LINK_WHITELIST = [
   /^https?:\/\/(www\.)?cryptocity\.network/,
   /^https?:\/\/(www\.|v0\.)?nimiq\.fm/,
   /^https?:\/\/(www\.)?nimiq2048\.com/,
+  /^https?:\/\/(www\.)?nimstalker\.com/,
 
   // Social Media & Community
   /^https?:\/\/(twitter|x)\.com\/nimiq$/i,
