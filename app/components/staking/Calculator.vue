@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
+import { calculateProtocolStakingRewards } from '~/utils/staking-rewards'
 
 const { amountLabel, periodLabel, rewardsLabel, initialStakingAmount = 1_000_000 } = defineProps<{
   amountLabel?: string
@@ -54,7 +54,7 @@ const rewards = computed(() => {
   const ratio = stakeSupplyRatios.value[selectedStakedSupply.value]
   if (!ratio)
     return { gain: 0, gainRatio: 0 }
-  return calculateStakingRewards({
+  return calculateProtocolStakingRewards({
     amount: amount.value,
     days: selectedStakingPeriod.value!.days,
     stakedSupplyRatio: ratio,

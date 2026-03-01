@@ -1,15 +1,9 @@
 import { getCachedData } from '../utils/cache'
 
-interface SupplyResponse {
-  total: number
-  vested: number
-  burned: number
-  max: number
-  initial: number
-  staking: number
-  minted: number
+interface DistributionResponse {
+  staked: number
   circulating: number
-  mined: number
+  stakedRatio: number
 }
 
 export default defineEventHandler(async (_event) => {
@@ -17,14 +11,7 @@ export default defineEventHandler(async (_event) => {
 
   return getCachedData('staking-info', async () => {
     try {
-      const data = await $fetch<SupplyResponse>(`${validatorsApi}/api/v1/supply`)
-      const stakingRatio = data.staking / data.circulating
-
-      return {
-        circulating: data.circulating,
-        staking: data.staking,
-        stakingRatio,
-      }
+      return await $fetch<DistributionResponse>(`${validatorsApi}/api/v1/distribution`)
     }
     catch (error) {
       console.error('Failed to fetch staking info:', error)

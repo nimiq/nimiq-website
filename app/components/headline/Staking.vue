@@ -19,7 +19,8 @@ const id = `terms-note-${useId()}`
     <h2 class="nq-heading f-mt-md text-white text-wrap md:text-balance">
       {{ headlineParts[0] }}
       <span class="bg-white/30 text-white px-[10px] py-[3px] rounded-[4px] inline-flex" data-percentage>
-        ~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[8px]" name="nimiq:asterisk" :aria-labelledby="id" />
+        <template v-if="annualRewardPercentage">~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[8px]" name="nimiq:asterisk" :aria-labelledby="id" /></template>
+        <span v-else class="h-[1em] w-[120px] rounded-[2px] bg-white/20 animate-pulse" />
       </span>
       {{ headlineParts[1] }}
     </h2>

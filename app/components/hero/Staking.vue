@@ -37,7 +37,8 @@ onMounted(() => {
       <motion.h1 :initial="{ opacity: 0, y: 20 }" :animate="enter" :transition="{ duration: 0.3, ease, delay: 0.08 }" class="nq-heading text-wrap text-balance mt-4 md:mt-6 md:text-center text-neutral">
         {{ headlineParts[0] }}
         <span class="bg-green/15 inline-flex items-center text-green px-[10px] py-[3px] rounded whitespace-nowrap">
-          ~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[8px]" name="nimiq:asterisk" :aria-labelledby="id" />
+          <template v-if="annualRewardPercentage">~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[8px]" name="nimiq:asterisk" :aria-labelledby="id" /></template>
+          <span v-else class="h-[1em] w-[120px] rounded-[2px] bg-green/20 animate-pulse" />
         </span>
         {{ headlineParts[1] }}
       </motion.h1>

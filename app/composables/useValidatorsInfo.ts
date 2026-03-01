@@ -1,4 +1,4 @@
-import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
+import { calculateProtocolStakingRewards } from '~/utils/staking-rewards'
 
 export interface Validator {
   id: number
@@ -49,7 +49,7 @@ export function useValidatorsInfo() {
     const ratio = stakingRatio.value ?? 0
     return rawValidators.value.map(validator => ({
       ...validator,
-      rewardGainRatio: calculateStakingRewards({
+      rewardGainRatio: calculateProtocolStakingRewards({
         stakedSupplyRatio: ratio,
         fee: validator.fee,
       }).gainRatio,

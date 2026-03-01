@@ -1,15 +1,10 @@
-import { calculateStakingRewards } from '@nimiq/utils/rewards-calculator'
-
-interface StakingInfoResponse {
-  circulating: number
-  staking: number
-  stakingRatio: number
-}
+import type { StakingDistributionResponse } from '~/utils/staking-rewards'
+import { calculateWalletAlignedRewardRatio } from '~/utils/staking-rewards'
 
 export function useStakingInfo(options: { enabled?: MaybeRef<boolean> } = {}) {
   const enabled = computed(() => toValue(options.enabled) ?? true)
 
-  const { data, status, error, refresh } = useFetch<StakingInfoResponse>('/api/staking-info', {
+  const { data, status, error, refresh } = useFetch<StakingDistributionResponse>('/api/staking-info', {
     immediate: enabled.value,
     watch: false,
   })
@@ -20,14 +15,16 @@ export function useStakingInfo(options: { enabled?: MaybeRef<boolean> } = {}) {
       refresh()
   })
 
-  const stakingRatio = computed(() => data.value?.stakingRatio ?? null)
+  const stakingRatio = computed(() => data.value?.stakedRatio)
 
   const locale = useLocale()
   const annualRewardPercentage = computed(() => {
-    if (!stakingRatio.value)
-      return '0%'
-    const reward = calculateStakingRewards({ stakedSupplyRatio: stakingRatio.value })
-    return formatPercentage(reward.gainRatio, locale.value)
+    const currentlyStakedNim = data.value?.staked
+    if (!currentlyStakedNim)
+      return null
+
+    const rewardRatio = calculateWalletAlignedRewardRatio({ currentlyStakedNim })
+    return formatPercentage(rewardRatio, locale.value)
   })
 
   return {
