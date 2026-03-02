@@ -1,10 +1,23 @@
 <script setup lang="ts">
 const page = await usePage('staking')
+const { annualRewardPercentage } = useStakingInfo()
 
 const title = page.seo?.title || page.hero?.title || 'Nimiq Staking'
 const description = page.seo?.description || page.hero?.description
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/staking' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
+
+const walletHeadlineParts = computed(() => page.wallet.headline.split('{{ interestPerAnnum }}'))
+
+function isExternal(url: string) {
+  return url.startsWith('http') || url.startsWith('mailto')
+}
+
+function getWalletActionClass(variant?: string) {
+  if (!variant || variant === 'arrow')
+    return 'nq-pill-blue'
+  return variant.startsWith('nq-pill-') ? variant : `nq-pill-${variant}`
+}
 </script>
 
 <template>
@@ -58,11 +71,14 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
       <ValidatorList />
     </section>
 
-    <section class="bg-neutral-0 nq-wide relative overflow-x-clip" style="--pt: 0px; --pb: 0px">
-      <StakingBanner :items="page.banner.items" />
+    <section
+      class="bg-neutral-0 nq-wide relative z-10 overflow-x-clip pb-0 lg:[--pb:0px]"
+      style="--f-pt-min: 64; --f-pt-max: 72; --f-pb-min: 64; --f-pb-max: 72; --f-px-min: 32; --f-px-max: 72; --px: var(--f-px)"
+    >
+      <StakingBanner :items="page.banner.items" :overlaps-next-section="page.banner.overlapsNextSection" />
     </section>
 
-    <section class="bg-neutral-0">
+    <section class="bg-neutral-0 nq-section-gap">
       <StakingFaq :items="page.faq.items" :forum-link="page.faq.forumLink" :title="page.faq.headline" />
     </section>
 
@@ -70,8 +86,33 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
       <BannerNewsletter v-bind="page.newsletter" />
     </section>
 
-    <section class="gradient-transparent-green-transparent">
-      <HeadlineStaking v-bind="page.wallet" />
+    <section class="bg-neutral-0">
+      <div class="flex flex-col md:items-center z-1">
+        <h2 class="nq-heading break-keep">
+          {{ walletHeadlineParts[0] }}
+          <span class="bg-green/15 inline-flex items-center text-green px-[10px] py-[3px] rounded whitespace-nowrap">
+            <template v-if="annualRewardPercentage">~{{ annualRewardPercentage }}<Icon class="text-[14px] translate-y-[8px]" aria-hidden name="nimiq:asterisk" /></template>
+            <span v-else class="h-[1em] w-[120px] rounded-[2px] bg-green/20 animate-pulse" />
+          </span>
+          {{ walletHeadlineParts[1] }}
+        </h2>
+        <p class="max-w-prose md:text-center">
+          {{ page.wallet.subline }}
+        </p>
+        <ul v-if="page.wallet.actions?.length" class="flex gap-16 lg:gap-20 flex-wrap f-mt-md">
+          <li v-for="action in page.wallet.actions" :key="action.href">
+            <NuxtLink
+              class="nq-arrow nq-pill-lg md:mx-auto"
+              :class="getWalletActionClass(action.variant)"
+              :to="action.href"
+              :external="isExternal(action.href)"
+              :target="isExternal(action.href) ? '_blank' : undefined"
+            >
+              {{ action.label }}
+            </NuxtLink>
+          </li>
+        </ul>
+      </div>
     </section>
   </NuxtLayout>
 </template>
