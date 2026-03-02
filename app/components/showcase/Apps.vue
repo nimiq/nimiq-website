@@ -3,7 +3,7 @@ import { createReusableTemplate } from '@vueuse/core'
 
 const { apps } = defineProps<{ apps: AppItem[], banner?: { items: BannerItem[] } }>()
 const bannerPositions = ['-bottom-10 -right-[30px] md:right-[88px] md:-bottom-11 xl:right-[180px]', 'invisible md:visible md:-right-[18px] md:bottom-[50px] lg:bottom-[100px] lg:-right-8 xl:right-[70px] xl:bottom-[60px]', 'invisible md:visible md:left-[88px] md:-bottom-[52px] xl:left-[180px]', 'invisible md:visible md:-left-9 md:bottom-[42px] lg:bottom-[92px] xl:left-[70px] xl:bottom-[60px]', 'invisible xl:visible xl:-bottom-10 xl:-left-[30px]', 'invisible xl:visible xl:-bottom-10 xl:-right-[30px]']
-const bannerLogoClasses: Record<string, string> = { 'NimWorld': 'filter-brightness-0 filter-invert scale-75', 'Trust Wallet': 'scale-150' }
+const bannerLogoClasses: Record<string, string> = { 'NimWorld': 'brightness-0 invert scale-75', 'Trust Wallet': 'scale-150' }
 
 interface AppItem { highlight?: boolean, title: string, description: string, preview: string, item: string, link: string }
 interface BannerItem { headline: string, subline?: string, link?: string }

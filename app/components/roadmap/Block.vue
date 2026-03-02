@@ -4,13 +4,17 @@ import type { Block } from './types'
 const { icon, name, year, month, row, untilYear, untilMonth, withBg, milestone } = defineProps<Block>()
 const [DefineBlock, ReuseBlock] = createReusableTemplate()
 
+const whiteIcons = ['logos:javascript', 'logos:rust', 'logos:webassembly']
+
 // Parse icon string: "nimiq:icon-name w-24 text-inherit" → { name: "nimiq:icon-name", classes: "w-24 text-inherit" }
 const parsedIcon = computed(() => {
   if (!icon)
     return null
   const parts = icon.split(' ')
+  const iconName = parts[0]!
   const classes = parts.slice(1).filter(item => item && !item.startsWith('text-')).join(' ')
-  return { name: parts[0]!, classes }
+  const forceWhite = whiteIcons.includes(iconName)
+  return { name: iconName, classes, forceWhite }
 })
 </script>
 
@@ -18,7 +22,7 @@ const parsedIcon = computed(() => {
   <div class="leading-none w-max" :class="{ 'px-2 py-1 rounded-md bg-white/25 -mt-1 h-max -mx-2': withBg }" :style="{ '--year': year, '--month': month, 'grid-row': row || 1, '--until-year': untilYear, '--until-month': untilMonth }">
     <DefineBlock>
       <div class="flex gap-2 items-center">
-        <Icon v-if="parsedIcon" class="roadmap-icon text-sm text-white !text-white opacity-90 shrink-0" :name="parsedIcon.name" :class="parsedIcon.classes" />
+        <Icon v-if="parsedIcon" class="text-sm shrink-0" :class="[parsedIcon.classes, parsedIcon.forceWhite ? 'brightness-0 invert' : 'text-inherit opacity-70']" :name="parsedIcon.name" />
         <span v-if="name" class="text-base whitespace-nowrap" :class="{ 'leading-none': !withBg }" v-html="name" />
         <div v-if="milestone" class="milestone bottom-0 top-3 absolute flex flex-col">
           <div class="bg-white/25 flex-1 w-full" />
@@ -35,9 +39,5 @@ const parsedIcon = computed(() => {
 .milestone {
   width: var(--vertical-lines-w);
   margin-left: calc(-1 * var(--columns-w) + var(--vertical-lines-w) * 2 - var(--block-index, 0) * 6px);
-}
-
-.roadmap-icon {
-  color: var(--color-white);
 }
 </style>

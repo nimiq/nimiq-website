@@ -71,7 +71,6 @@ const milestones = computed(() => {
 // --- Desktop navigation enhancements ---
 
 const scrollEl = ref<HTMLElement>()
-const layerEls = ref<HTMLElement[]>([])
 const { x: scrollX, arrivedState } = useScroll(scrollEl)
 
 const COLUMNS_W = 19
@@ -79,13 +78,70 @@ function getMilestoneX(m: Header) {
   return ((m.year - firstYear) * 12 + m.month - firstMonth) * COLUMNS_W
 }
 
-const activeMilestone = computed(() => {
-  const x = scrollX.value + 100
-  for (let i = milestones.value.length - 1; i >= 0; i--) {
-    if (getMilestoneX(milestones.value[i]!) <= x)
-      return i
+// Track which milestone tabs are fully visible in the viewport
+const firstVisibleMilestone = ref(0)
+const lastVisibleMilestone = ref(0)
+
+function updateVisibleRange() {
+  if (!scrollEl.value) return
+  const el = scrollEl.value
+  const { left: cLeft, right: cRight } = el.getBoundingClientRect()
+  const headers = el.querySelectorAll('[data-milestone-header]')
+  let first = -1, last = -1
+  for (let i = 0; i < headers.length; i++) {
+    const { left, right } = headers[i]!.getBoundingClientRect()
+    if (left >= cLeft - 2 && right <= cRight + 2) {
+      if (first === -1) first = i
+      last = i
+    }
   }
-  return 0
+  if (first !== -1) {
+    firstVisibleMilestone.value = first
+    lastVisibleMilestone.value = last
+  }
+  else {
+    // Fallback: milestone under scroll position
+    const x = scrollX.value + 100
+    let active = 0
+    for (let i = milestones.value.length - 1; i >= 0; i--) {
+      if (getMilestoneX(milestones.value[i]!) <= x) { active = i; break }
+    }
+    firstVisibleMilestone.value = active
+    lastVisibleMilestone.value = active
+  }
+}
+
+// Sliding pill spans from first to last fully visible milestone
+const navEl = useTemplateRef<HTMLElement>('navEl')
+const pillStyle = ref<Record<string, string>>({})
+
+async function updatePill() {
+  await nextTick()
+  if (!navEl.value) return
+  const parent = navEl.value.getBoundingClientRect()
+  const buttons = navEl.value.querySelectorAll('button[data-milestone]')
+  const firstBtn = buttons[firstVisibleMilestone.value]?.getBoundingClientRect()
+  const lastBtn = buttons[lastVisibleMilestone.value]?.getBoundingClientRect()
+  if (!firstBtn || !lastBtn) return
+  const left = firstBtn.left - parent.left
+  const width = lastBtn.right - firstBtn.left
+  pillStyle.value = { width: `${width}px`, left: `${left}px` }
+}
+
+watch(scrollX, () => {
+  const prevFirst = firstVisibleMilestone.value
+  const prevLast = lastVisibleMilestone.value
+  updateVisibleRange()
+  if (prevFirst !== firstVisibleMilestone.value || prevLast !== lastVisibleMilestone.value)
+    updatePill()
+})
+onMounted(() => {
+  // Auto-scroll to current date so pill reflects progress
+  if (scrollEl.value) {
+    const x = ((currentYear - firstYear) * 12 + currentMonth - firstMonth) * COLUMNS_W
+    scrollEl.value.scrollTo({ left: Math.max(0, x - 50), behavior: 'instant' })
+  }
+  nextTick(() => { updateVisibleRange(); updatePill() })
 })
 
 function scrollToMilestone(i: number) {
@@ -101,6 +157,27 @@ function scrollToNow() {
   const x = ((currentYear - firstYear) * 12 + currentMonth - firstMonth) * COLUMNS_W
   scrollEl.value.scrollTo({ left: Math.max(0, x - 50), behavior: 'smooth' })
 }
+
+// "Now" button tracks the red line horizontally, sticks to right edge when off-screen
+const nowStyle = computed(() => {
+  scrollX.value // reactive dependency
+  if (!scrollEl.value) return {}
+  const redLine = scrollEl.value.querySelector('.text-red')
+  if (!redLine) return {}
+  const redRect = redLine.getBoundingClientRect()
+  const redCenter = redRect.left + redRect.width / 2
+  const navParent = navEl.value?.closest('nav')
+  if (!navParent) return {}
+  const navRect = navParent.getBoundingClientRect()
+  const posInNav = redCenter - navRect.left
+  const gap = 8
+  const btnWidth = 40
+  // If red line center is within the nav bounds, position there
+  if (posInNav > 0 && posInNav < navRect.width - gap - btnWidth)
+    return { left: `${posInNav}px`, transform: 'translateX(-50%)' }
+  // Otherwise stick to the right
+  return { right: `${gap}px` }
+})
 
 // Progress bar
 const progressStyle = computed(() => {
@@ -146,57 +223,28 @@ function onPointerUp() {
   isDragging.value = false
 }
 
-// Wheel → horizontal scroll
-function onWheel(e: WheelEvent) {
-  if (!scrollEl.value || !window.matchMedia('(pointer: fine)').matches)
-    return
-  if (Math.abs(e.deltaY) < Math.abs(e.deltaX))
-    return
-  const { scrollLeft, scrollWidth, clientWidth } = scrollEl.value
-  const maxScroll = scrollWidth - clientWidth
-  if ((e.deltaY < 0 && scrollLeft <= 0) || (e.deltaY > 0 && scrollLeft >= maxScroll))
-    return
-  e.preventDefault()
-  scrollEl.value.scrollLeft = Math.max(0, Math.min(maxScroll, scrollLeft + e.deltaY))
-}
-useEventListener(scrollEl, 'wheel', onWheel, { passive: false })
 
-// Sticky layer labels via JS-driven translateX
-const layerLabelStyles = computed(() => {
-  return _layers.map((_, i) => {
-    const li = layerEls.value[i]
-    if (!li || !scrollEl.value)
-      return {} as Record<string, string>
-    const offset = scrollX.value - li.offsetLeft
-    if (offset <= 0)
-      return {} as Record<string, string>
-    const maxOffset = li.scrollWidth - 200
-    return {
-      transform: `translate3d(${Math.min(offset, maxOffset)}px, 0, 0)`,
-      backgroundColor: 'rgba(255, 255, 255, 0.85)',
-      backdropFilter: 'blur(4px)',
-      borderRadius: '8px',
-      padding: '6px 12px',
-      margin: '-6px -12px',
-    }
-  })
-})
 </script>
 
 <template>
   <div class="roadmap w-full" :style="`--first-month: ${firstMonth}; --first-year: ${firstYear}; --current-year: ${currentYear}; --current-month: ${currentMonth}`">
     <!-- Milestone quick-jump nav (desktop only) -->
-    <nav class="flex max-md:hidden items-center gap-1.5 px-4 py-3 overflow-x-auto">
+    <nav class="flex max-md:hidden items-center gap-1.5 px-4 py-3 overflow-x-auto z-30 bg-neutral-0 relative">
+      <div ref="navEl" class="flex gap-0.5 items-center rounded-full bg-neutral-200 w-max relative">
+        <div class="rounded-full bg-neutral ease-out inset-y-0 absolute transition-[left,width]" :style="pillStyle" />
+        <button
+          v-for="(m, i) in milestones" :key="i"
+          data-milestone
+          class="text-[11px] px-2.5 py-1 cursor-pointer transition-colors relative z-1 whitespace-nowrap shrink-0 capitalize"
+          :class="i >= firstVisibleMilestone && i <= lastVisibleMilestone ? 'text-white font-semibold' : 'text-neutral-700'"
+          @click="scrollToMilestone(i)"
+        >
+          {{ m.label }}
+        </button>
+      </div>
       <button
-        v-for="(m, i) in milestones" :key="i"
-        class="text-[11px] px-2.5 py-1 rounded-full whitespace-nowrap transition-colors shrink-0"
-        :class="activeMilestone === i ? 'bg-neutral-800 text-white font-semibold' : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'"
-        @click="scrollToMilestone(i)"
-      >
-        {{ m.label }}
-      </button>
-      <button
-        class="text-[11px] px-2.5 py-1 rounded-full bg-red/10 text-red hover:bg-red/20 transition-colors shrink-0 ml-auto"
+        class="text-[11px] px-2.5 py-1 rounded-full bg-red/10 text-red hover:bg-red/20 transition-colors shrink-0 absolute top-1/2 -translate-y-1/2"
+        :style="nowStyle"
         @click="scrollToNow"
       >
         Now
@@ -209,6 +257,7 @@ const layerLabelStyles = computed(() => {
       <div
         ref="scrollEl"
         class="overflow-x-auto flex flex-col relative w-full"
+        style="scrollbar-width: none"
         :class="{ 'cursor-grab': !isDragging, 'cursor-grabbing': isDragging }"
         @pointerdown="onPointerDown" @pointermove="onPointerMove" @pointerup="onPointerUp" @pointercancel="onPointerUp"
       >
@@ -237,7 +286,7 @@ const layerLabelStyles = computed(() => {
             </div>
           </div>
           <div class="layer pl-[var(--pl)] items-center z-10 overflow-visible grid-rows-1" style="grid-template-columns: repeat(calc(1 + var(--columns)), var(--columns-w))">
-            <div v-for="({ label, month, year, untilMonth, untilYear }, i) in milestones" :key="i" class="drop-shadow first:first-milestone" :style="`--year: ${year}; --month: ${month + (i > 0 ? 1 : 0)}; --until-year: ${untilYear}; --until-month:${untilMonth}`">
+            <div v-for="({ label, month, year, untilMonth, untilYear }, i) in milestones" :key="i" data-milestone-header class="drop-shadow first:first-milestone" :style="`--year: ${year}; --month: ${month + (i > 0 ? 1 : 0)}; --until-year: ${untilYear}; --until-month:${untilMonth}`">
               <div class="text-[10px] leading-[12px] text-neutral text-center flex justify-center items-center bg-neutral-0 dark:bg-neutral-400 px-4 rounded-md h-full min-h-[52px] nq-label">
                 {{ label }}
               </div>
@@ -249,7 +298,7 @@ const layerLabelStyles = computed(() => {
         </header>
 
         <ul class="flex flex-col gap-4 ml-[var(--ml)] w-max pt-6 md:pt-8 mt-2 md:mt-3">
-          <li v-for="(layer, l) in layers" :key="layer.name" :ref="(el: any) => { if (el) layerEls[l] = el }" class="flex flex-col justify-end p-6 pr-0 rounded-l-md w-max self-end relative pl-[var(--pl)]" :style="getLayerStyle(layer)">
+          <li v-for="(layer, l) in layers" :key="layer.name" class="flex flex-col justify-end p-6 pr-0 rounded-l-md w-max self-end relative pl-[var(--pl)]" :style="getLayerStyle(layer)">
             <div v-for="block in layer.blocks" :key="block.name" class="mt-6 first:mt-0 flex justify-end">
               <div class="pt-3 relative">
                 <span class="text-[10px] left-0 top-0 absolute nq-label row-span-full block" :class="{ 'text-blue-1100': getLayerTone(layer) === 'blue', 'text-gold-1100': getLayerTone(layer) === 'gold', 'text-orange-1100': getLayerTone(layer) === 'orange' }">{{ block.name }}</span>
@@ -264,11 +313,10 @@ const layerLabelStyles = computed(() => {
               </div>
             </div>
             <div
-              class="text-lg bottom-6 left-6 absolute flex items-center gap-3 will-change-transform z-10"
+              class="text-lg bottom-6 left-6 absolute flex items-center gap-3"
               :class="{ 'text-blue-1100': getLayerTone(layer) === 'blue', 'text-gold-1100': getLayerTone(layer) === 'gold', 'text-orange-1100': getLayerTone(layer) === 'orange' }"
-              :style="layerLabelStyles[l]"
             >
-              <Icon class="text-[32px] text-white !text-white" :name="layer.icon" />
+              <Icon class="text-[32px] opacity-70" :name="layer.icon" />
               <span class="font-bold whitespace-nowrap">{{ layer.name }}</span>
             </div>
           </li>
@@ -276,8 +324,8 @@ const layerLabelStyles = computed(() => {
       </div>
 
       <!-- Edge fade indicators (desktop only) -->
-      <div v-show="!arrivedState.left" class="block max-md:hidden absolute inset-y-0 left-0 w-[80px] bg-gradient-to-r from-neutral-0 to-transparent pointer-events-none z-20" />
-      <div v-show="!arrivedState.right" class="block max-md:hidden absolute inset-y-0 right-0 w-[80px] bg-gradient-to-l from-neutral-0 to-transparent pointer-events-none z-20" />
+      <div v-show="!arrivedState.left" class="block max-md:hidden absolute inset-y-0 left-0 w-[40px] bg-gradient-to-r from-neutral-0 to-transparent pointer-events-none z-20" />
+      <div v-show="!arrivedState.right" class="block max-md:hidden absolute inset-y-0 right-0 w-[40px] bg-gradient-to-l from-neutral-0 to-transparent pointer-events-none z-20" />
     </div>
 
     <!-- Progress bar (desktop only) -->
@@ -288,18 +336,13 @@ const layerLabelStyles = computed(() => {
 </template>
 
 <style scoped>
-.roadmap-icon {
-  color: var(--color-white) !important;
-}
-
-:deep(.roadmap .roadmap-icon svg),
-:deep(.roadmap .roadmap-icon svg *) {
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
 </style>
 
 <style>
+.roadmap ::-webkit-scrollbar {
+  display: none;
+}
+
 .roadmap {
   --last-displayed-year: calc(var(--current-year) + 1);
   --columns-w: 19px;

@@ -8,26 +8,23 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
 </script>
 
 <template>
-  <NuxtLayout>
+  <NuxtLayout footer-bg-color="white">
     <HeroStaking :headline="page.hero.title" :link="page.hero.link" :description="page.hero.description" />
 
     <StakingQuote :text="page.quote.text" :learn-more-link="page.quote.learnMoreLink" />
 
-    <section class="staking-calculator-section bg-neutral-100">
+    <section class="staking-calculator-section bg-neutral-0">
       <Headline v-bind="page.calculator.headline" />
     </section>
 
-    <section class="bg-neutral-100">
+    <section class="bg-neutral-0">
       <StakingCalculator :amount-label="page.calculator.amountLabel" :period-label="page.calculator.periodLabel" :rewards-label="page.calculator.rewardsLabel" />
     </section>
 
-    <section class="bg-neutral-0">
-      <Headline v-bind="page.distribution.headline" />
-    </section>
-
     <!-- Prod: pt=177.6, pb=194.3 (full, not same-bg reduced) -->
-    <section class="bg-neutral-0" style="--f-pt-min: 144; --f-pt-max: 200; --f-pb-min: 158; --f-pb-max: 200">
-      <div class="flex flex-wrap gap-y-18 md:gap-x-24 lg:gap-x-40 justify-center">
+    <section class="bg-neutral-0 nq-section-gap" style="--f-pt-min: 144; --f-pt-max: 200; --f-pb-min: 158; --f-pb-max: 200">
+      <Headline v-bind="page.distribution.headline" />
+      <div class="f-mt-lg flex flex-wrap gap-y-18 md:gap-x-24 lg:gap-x-40 justify-center">
         <StakingDistribution :headline="page.distribution.stakedHeadline" :info="page.distribution.stakedDescription" />
         <ValidatorDistribution :headline="page.distribution.distributedHeadline" :info="page.distribution.distributedDescription" />
       </div>
@@ -65,8 +62,12 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
       <StakingBanner :items="page.banner.items" />
     </section>
 
-    <section class="bg-neutral-100">
+    <section class="bg-neutral-0">
       <StakingFaq :items="page.faq.items" :forum-link="page.faq.forumLink" :title="page.faq.headline" />
+    </section>
+
+    <section class="bg-neutral-0">
+      <BannerNewsletter v-bind="page.newsletter" />
     </section>
 
     <section class="gradient-transparent-green-transparent">
@@ -77,6 +78,6 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/staking' }] })
 
 <style>
 .staking-calculator-section {
-  background: linear-gradient(180deg, rgba(33, 188, 165, 0.1) 0%, rgb(247, 247, 249) 20%);
+  background: linear-gradient(180deg, rgba(33, 188, 165, 0.1) 0%, rgb(255, 255, 255) 20%);
 }
 </style>

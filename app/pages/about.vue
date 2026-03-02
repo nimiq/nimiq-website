@@ -43,7 +43,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/about' }] })
       <Headline v-bind="page.roadmap" />
     </section>
 
-    <section class="bg-neutral-100">
+    <section class="bg-neutral-100" nq-section-gap>
       <Headline v-bind="page.feedback" />
     </section>
   </NuxtLayout>

@@ -24,7 +24,7 @@ const id = `terms-note-${useId()}`
       </span>
       {{ headlineParts[1] }}
     </h2>
-    <p v-if="subline" class="text-white/80">
+    <p v-if="subline" style="color: rgba(255, 255, 255, 0.8)">
       {{ subline }}
     </p>
     <ul v-if="actions?.length" class="flex gap-4 lg:gap-5 flex-wrap">
@@ -55,45 +55,24 @@ section:has(+ section.gradient-transparent-green-transparent) {
 section.gradient-transparent-green-transparent {
   position: relative;
   overflow: hidden;
-  --gradient-height: 352px;
+  --gradient-height: 620px;
   background: linear-gradient(
     180deg,
-    #fff 0px,
-    #fff calc(0.1179 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.967585) calc(0.2138 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.9296) calc(0.2912 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.879348) calc(0.3534 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.818519) calc(0.4037 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.7488) calc(0.4456 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.671881) calc(0.4824 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.589452) calc(0.5176 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.5032) calc(0.5544 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.414815) calc(0.5963 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.325985) calc(0.6466 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.2384) calc(0.7088 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.153748) calc(0.7862 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.0737185) calc(0.8821 * var(--gradient-height)),
-    rgba(255, 255, 255, 0) var(--gradient-height),
-    rgba(255, 255, 255, 0) calc(100% - var(--gradient-height)),
-    rgba(255, 255, 255, 0.0737185) calc(100% - 0.8821 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.153748) calc(100% - 0.7862 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.2384) calc(100% - 0.7088 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.325985) calc(100% - 0.6466 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.414815) calc(100% - 0.5963 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.5032) calc(100% - 0.5544 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.589452) calc(100% - 0.5176 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.671881) calc(100% - 0.4824 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.7488) calc(100% - 0.4456 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.818519) calc(100% - 0.4037 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.879348) calc(100% - 0.3534 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.9296) calc(100% - 0.2912 * var(--gradient-height)),
-    rgba(255, 255, 255, 0.967585) calc(100% - 0.2138 * var(--gradient-height)),
-    #fff calc(100% - 0.1179 * var(--gradient-height)),
-    #fff 100%
+    transparent 0%,
+    color-mix(in oklch, var(--color-green) 14%, transparent) 20%,
+    color-mix(in oklch, var(--color-green) 30%, transparent) 34%,
+    color-mix(in oklch, var(--color-green) 42%, transparent) 48%,
+    color-mix(in oklch, var(--color-green) 54%, transparent) 56%,
+    color-mix(in oklch, var(--color-green) 46%, transparent) 68%,
+    color-mix(in oklch, var(--color-green) 28%, var(--color-neutral-0)) 78%,
+    color-mix(in oklch, var(--color-green) 14%, var(--color-neutral-0)) 90%,
+    var(--color-neutral-0) 100%
   );
-  background-color: var(--color-green);
-  --f-pb-min: 320;
-  --f-pb-max: 456;
+  background-size: 100% var(--gradient-height);
+  background-repeat: no-repeat;
+  background-color: var(--color-neutral-0);
+  --f-pb-min: 360;
+  --f-pb-max: 500;
 }
 
 section.gradient-transparent-green-transparent::before {

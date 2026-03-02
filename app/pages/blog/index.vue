@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import { motion } from 'motion-v'
+
 const route = useRoute()
+const router = useRouter()
 const pageIndex = computed(() => Number(route.query.page) || 1)
+
+watch(pageIndex, () => window.scrollTo(0, 0))
 const itemsPerPage = 25
 
 const page = await usePrerenderData('blog-page', () => queryCollection('blogPage').first())
@@ -19,6 +24,9 @@ const paginatedPosts = computed(() => {
 })
 
 const active = useState('active-blog-post', () => '')
+const hoveredSlug = ref<string | null>(null)
+
+const springTransition = { type: 'spring' as const, stiffness: 300, damping: 25 }
 
 useHead({ title: pageIndex.value === 1 ? 'Blog' : `Blog - Page ${pageIndex.value}` })
 useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
@@ -38,35 +46,47 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
     </section>
 
     <section class="bg-neutral-100" style="--f-pt-min: 96; --f-pt-max: 128">
-      <div v-if="paginatedPosts.length" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 w-full">
+      <div v-if="paginatedPosts.length" class="blog-grid grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-16 w-full">
         <article v-for="(post, i) in paginatedPosts" :key="post.slug" :class="pageIndex === 1 ? { 'md:first:col-span-2': true } : 'self-stretch'">
-          <NuxtLink class="p-0 h-full relative nq-hoverable" :to="`/blog/${post.slug}`" @click="active = post.slug">
-            <div class="p-4">
+          <NuxtLink class="p-0 h-full relative nq-hoverable" :to="`/blog/${post.slug}`" @click="active = post.slug" @mouseenter="hoveredSlug = post.slug" @mouseleave="hoveredSlug = null" @focusin="hoveredSlug = post.slug" @focusout="hoveredSlug = null">
+            <div class="p-2">
               <NuxtImg v-if="post.image" class="rounded-6 w-full object-cover" :src="post.image" :alt="post.title" loading="lazy" :class="[i === 1 && pageIndex === 1 ? 'h-max lg:h-[280px]' : 'h-max', { 'view-transition-post-img contain-layout': active === post.slug }]" />
             </div>
-            <div class="flex flex-col p-24 h-full">
-              <h2 class="text-left" :class="[{ 'view-transition-post-title contain-layout': active === post.slug }, i === 0 && pageIndex === 1 ? 'f-text-3xl' : (i === 1 && pageIndex === 1) ? 'f-text-2xl' : 'f-text-xl']">
+            <div class="flex flex-col p-6 pt-4 h-full">
+              <h2 class="text-left f-text-2xl" :class="{ 'view-transition-post-title contain-layout': active === post.slug }">
                 {{ post.title }}
               </h2>
-              <p class="mt-8 line-clamp-2 text-16 text-neutral-900 text-left">
+              <p class="mt-2 line-clamp-2 text-16 text-neutral-900 text-left">
                 {{ post.description }}
               </p>
-              <div class="flex items-center gap-x-16 flex-wrap text-12 text-neutral leading-[2] pt-16 h-max nq-label nq-hoverable-cta" :style="`--nq-content: '${page.grid.labelLearnMore}'`" :class="i === 1 ? 'mt-4' : 'mt-auto'">
-                <NuxtTime v-if="new Date(post.publishedAt).getFullYear() === new Date().getFullYear()" :datetime="post.publishedAt" month="short" day="numeric" />
-                <NuxtTime v-else :datetime="post.publishedAt" month="short" day="numeric" year="numeric" />
-                <address class="flex gap-[1ch] not-italic">
-                  <span class="text-neutral-800">{{ page.grid.labelBy }}</span>
-                  <span class="text-blue">{{ post.authors?.join(', ') || 'Team Nimiq' }}</span>
-                </address>
+              <div class="relative overflow-hidden mt-16 h-[24px]" :class="i === 1 ? 'mt-4' : 'mt-auto'">
+                <motion.div
+                  class="flex items-center gap-x-16 flex-wrap text-12 text-neutral leading-[24px] nq-label"
+                  :animate="{ opacity: hoveredSlug === post.slug ? 0 : 1, y: hoveredSlug === post.slug ? -8 : 0 }"
+                  :transition="springTransition"
+                >
+                  <NuxtTime v-if="new Date(post.publishedAt).getFullYear() === new Date().getFullYear()" :datetime="post.publishedAt" month="short" day="numeric" />
+                  <NuxtTime v-else :datetime="post.publishedAt" month="short" day="numeric" year="numeric" />
+                  <address class="flex gap-[1ch] not-italic">
+                    <span class="text-neutral-800">{{ page.grid.labelBy }}</span>
+                    <span class="text-blue">{{ post.authors?.join(', ') || 'Team Nimiq' }}</span>
+                  </address>
+                </motion.div>
+                <motion.div
+                  class="absolute inset-0 flex items-center text-blue font-bold f-text-sm"
+                  :animate="{ opacity: hoveredSlug === post.slug ? 1 : 0, y: hoveredSlug === post.slug ? 0 : 8 }"
+                  :transition="springTransition"
+                >
+                  {{ page.grid.labelLearnMore }} →
+                </motion.div>
               </div>
-              <span class="sr-only">{{ page.grid.labelLearnMore }}</span>
             </div>
           </NuxtLink>
         </article>
 
         <PaginationRoot class="mt-32 col-span-full" :page="pageIndex" :total="totalPages * itemsPerPage" :items-per-page="itemsPerPage" show-edges>
           <PaginationList v-slot="{ items }" class="flex gap-16 items-center justify-center">
-            <PaginationPrev class="pagination-item" as-child>
+            <PaginationPrev class="pagination-item" :class="{ 'pagination-disabled': pageIndex <= 1 }" as-child>
               <NuxtLink :to="pageIndex > 1 ? (pageIndex === 2 ? '/blog' : `/blog?page=${pageIndex - 1}`) : undefined">
                 <Icon class="text-[9px] opacity-70" name="nimiq:chevron-left" />
               </NuxtLink>
@@ -83,7 +103,7 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
               </PaginationEllipsis>
             </template>
 
-            <PaginationNext class="pagination-item" as-child>
+            <PaginationNext class="pagination-item" :class="{ 'pagination-disabled': pageIndex >= totalPages }" as-child>
               <NuxtLink :to="pageIndex < totalPages ? `/blog?page=${pageIndex + 1}` : undefined">
                 <Icon class="text-[9px] opacity-70" name="nimiq:chevron-right" />
               </NuxtLink>
@@ -93,11 +113,24 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
       </div>
     </section>
 
-    <BannerNewsletter :cta="page.newsletter.cta" />
+    <BannerNewsletter v-bind="page.newsletter" />
   </NuxtLayout>
 </template>
 
 <style scoped>
+/* Masonry: progressive enhancement for browsers that support it */
+@supports (grid-template-rows: masonry) {
+  .blog-grid {
+    grid-template-rows: masonry;
+  }
+}
+
+@supports (display: grid-lanes) {
+  .blog-grid {
+    display: grid-lanes;
+  }
+}
+
 .pagination-item {
   display: flex;
   align-items: center;
@@ -119,9 +152,14 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
 .pagination-item:focus {
   background-color: var(--color-neutral-200);
 }
-.pagination-item[data-state='on'] {
-  background-color: var(--color-blue);
+.pagination-item[data-selected='true'] {
+  background-color: var(--color-darkblue);
   color: white;
   box-shadow: none;
+}
+.pagination-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: default;
 }
 </style>

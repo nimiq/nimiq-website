@@ -55,9 +55,11 @@ watchEffect(() => {
                 </li>
               </ul>
 
-              <Transition mode="out-in" enter-active-class="transition-opacity duration-300 ease-out" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition-opacity duration-150 ease-in" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                <NuxtImg v-if="appsGroup.links[debouncedSelectedApp]?.image" :key="debouncedSelectedApp" class="rounded h-full w-[280px] relative object-contain object-left-top shadow" :src="appsGroup.links[debouncedSelectedApp]!.image" :alt="appsGroup.links[debouncedSelectedApp]!.text" />
-              </Transition>
+              <div class="w-[280px] h-full relative">
+                <Transition mode="out-in" enter-active-class="transition-opacity duration-300 ease-out" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition-opacity duration-150 ease-in" leave-from-class="opacity-100" leave-to-class="opacity-0">
+                  <NuxtImg v-if="appsGroup.links[debouncedSelectedApp]?.image" :key="debouncedSelectedApp" class="rounded h-full w-full object-contain object-left-top shadow" :src="appsGroup.links[debouncedSelectedApp]!.image" :alt="appsGroup.links[debouncedSelectedApp]!.text" />
+                </Transition>
+              </div>
             </div>
 
             <div v-if="appsGroup.howTo?.title && appsGroup.howTo?.links?.length" class="px-6 py-5 bg-neutral-100">
@@ -86,7 +88,7 @@ watchEffect(() => {
         </NavigationMenuTrigger>
         <NavigationMenuContent class="nav-content min-w-max left-0 top-0 absolute">
           <div>
-            <ul class="grid grid-cols-2 gap-x-2 p-6" :aria-label="`${techGroup.label} links`" role="link">
+            <ul class="grid grid-cols-2 gap-x-2 px-6 pt-6 pb-3" :aria-label="`${techGroup.label} links`" role="link">
               <li v-for="(item, index) in techGroup.links" :key="`tech-item-${index}`" class="link-item flex w-full">
                 <NavigationMenuLink as-child>
                   <NuxtLink class="font-semibold px-4 py-2.5 rounded-1 flex-1 cursor-pointer whitespace-nowrap transition-colors hover:bg-darkblue/6 focus:bg-darkblue/6 text-darkblue/60 hover:text-darkblue focus:text-darkblue" :to="item.href">
@@ -96,7 +98,7 @@ watchEffect(() => {
               </li>
             </ul>
             <hr class="bg-darkblue opacity-10 h-px w-full">
-            <div class="flex items-center justify-between gap-x-5 px-8 py-5">
+            <div class="flex items-center justify-between gap-x-5 px-8 py-3">
               <NuxtLink v-if="github" class="flex items-center gap-3 pr-1 flex-1 nq-arrow after:-ml-1 border-r-1.5 border-solid border-darkblue/10 text-[15px] text-neutral-800" :to="github.link">
                 <Icon class="text-20 opacity-70" :name="github.icon" />
                 GitHub
@@ -115,7 +117,7 @@ watchEffect(() => {
         </NavigationMenuTrigger>
         <NavigationMenuContent class="nav-content min-w-max left-0 top-0 absolute">
           <div class="p-4 grid max-w-6xl" grid-cols-1>
-            <ul class="flex flex-col pb-6" :aria-label="`${communityGroup.label} links`" role="link">
+            <ul class="flex flex-col pb-2" :aria-label="`${communityGroup.label} links`" role="link">
               <li v-for="(item, index) in communityGroup.links" :key="`community-item-${index}`" class="link-item flex w-full">
                 <NavigationMenuLink as-child>
                   <NuxtLink class="font-semibold px-4 py-2.5 rounded-1 flex-1 cursor-pointer whitespace-nowrap transition-colors hover:bg-darkblue/6 focus:bg-darkblue/6 text-darkblue/60 hover:text-darkblue focus:text-darkblue" :to="item.href">
@@ -125,7 +127,7 @@ watchEffect(() => {
               </li>
             </ul>
             <hr class="bg-darkblue opacity-10 h-px w-full">
-            <UiSocialMediaLogosList class="text-18 mt-4 opacity-80" :items="allSocials" />
+            <UiSocialMediaLogosList class="community-socials text-18 mt-2 opacity-80 grid grid-cols-5" :items="allSocials" />
           </div>
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -175,15 +177,15 @@ watchEffect(() => {
       </NavigationMenuItem>
 
       <ClientOnly>
-        <NavigationMenuIndicator class="flex items-end justify-center w-[var(--reka-navigation-menu-indicator-size)] translate-x-[var(--reka-navigation-menu-indicator-position)] transition-all duration-200 top-full absolute z-50 overflow-hidden data-[state=hidden]:opacity-0 data-[state=visible]:opacity-100">
+        <NavigationMenuIndicator class="flex items-end justify-center w-[var(--reka-navigation-menu-indicator-size)] translate-x-[var(--reka-navigation-menu-indicator-position)] transition-all duration-200 top-full mt-2 absolute z-50 overflow-hidden data-[state=hidden]:opacity-0 data-[state=visible]:opacity-100">
           <Icon class="text-neutral-200 h-3 w-6 translate-y-px relative drop-shadow" name="nimiq:tooltip-triangle" />
         </NavigationMenuIndicator>
       </ClientOnly>
     </NavigationMenuList>
 
     <ClientOnly>
-      <div class="viewport-container absolute right-0 top-full z-10 flex justify-center min-w-full" style="perspective: 2000px">
-        <NavigationMenuViewport class="viewport-panel transition-all h-[var(--reka-navigation-menu-viewport-height)] w-[var(--reka-navigation-menu-viewport-width)] mt-3 rounded-xl bg-white origin-top duration-300 ease-[cubic-bezier(0.25,0,0,1)] relative overflow-hidden shadow-xl outline outline-1 outline-neutral-200" />
+      <div class="viewport-container absolute left-0 right-0 top-full z-10" style="perspective: 2000px">
+        <NavigationMenuViewport class="viewport-panel relative transition-all h-[var(--reka-navigation-menu-viewport-height)] w-[var(--reka-navigation-menu-viewport-width)] mt-5 rounded-xl bg-white origin-top duration-300 ease-[cubic-bezier(0.25,0,0,1)] overflow-hidden shadow-xl outline outline-1 outline-neutral-200" />
       </div>
     </ClientOnly>
   </NavigationMenuRoot>
@@ -374,6 +376,21 @@ watchEffect(() => {
         color: rgb(31, 35, 72);
       }
     }
+
+    &.is-selected a {
+      background-color: rgba(31, 35, 72, 0.06);
+      color: rgb(31, 35, 72);
+    }
+  }
+
+  /* Dark header triggers (home page at top) */
+  header[data-scrolled='false'][data-header-variant='home'] & .trigger {
+    color: rgba(255, 255, 255, 0.8);
+
+    &:hover,
+    &:focus-visible {
+      color: white;
+    }
   }
 
   .home {
@@ -388,6 +405,25 @@ watchEffect(() => {
         background-color: rgba(255, 255, 255, 0.15);
       }
     }
+  }
+
+  /* Position viewport panel using Reka's computed left, clamped to not overflow */
+  .viewport-container .viewport-panel {
+    margin-left: min(
+      var(--reka-navigation-menu-viewport-left, 0px),
+      calc(100% - var(--reka-navigation-menu-viewport-width, 400px))
+    );
+  }
+
+  /* Community socials: scale down YouTube (75%) and Discord (85%) */
+  .community-socials li:has(a[title='Youtube']) span.iconify {
+    transform: scale(0.75);
+    transform-origin: center;
+  }
+
+  .community-socials li:has(a[title='Discord']) span.iconify {
+    transform: scale(0.85);
+    transform-origin: center;
   }
 }
 </style>

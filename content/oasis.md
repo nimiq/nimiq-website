@@ -43,6 +43,8 @@ howDoesItWork:
   subline: "Nimiq OASIS leverages two established concepts of blockchain-based value transfer: HTLCs and Atomic Swaps."
 youtube:
   url: https://www.youtube.com/watch?v=bspRbC4K84o
+  embedUrl: https://www.youtube.com/embed/bspRbC4K84o
+  poster: https://img.youtube.com/vi/bspRbC4K84o/maxresdefault.jpg
   title: Buy NIM with SuperSimpleSwap.com
 openTech:
   label: Integrate it

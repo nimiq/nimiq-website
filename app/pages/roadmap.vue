@@ -8,7 +8,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/roadmap' }] })
 </script>
 
 <template>
-  <NuxtLayout>
+  <NuxtLayout footer-bg-color="white">
     <main>
       <section class="bg-neutral-0">
         <Hero v-bind="page.hero" />
@@ -18,11 +18,8 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/roadmap' }] })
         <RoadmapSection v-bind="page.roadmap" />
       </section>
 
-      <section class="bg-neutral-100" data-slice-type="newsletter-subscription">
-        <h3 class="text-center">
-          {{ page.newsletter?.cta }}
-        </h3>
-        <UiNewsletterEmailInput class="text-2xl mt-8 md:mt-10 lg:mt-12 xl:mt-14" />
+      <section class="bg-neutral-0">
+        <BannerNewsletter v-bind="page.newsletter" />
       </section>
     </main>
   </NuxtLayout>

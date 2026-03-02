@@ -50,6 +50,15 @@ const stakingPeriodOptions = [
 const selectedStakingPeriod = useLocalStorage(`${storageKey}_staking-period`, stakingPeriodOptions.at(-2))
 const autoRestake = useLocalStorage(`${storageKey}_auto-restake`, true)
 
+watch(
+  () => [selectedStakedSupply.value, stakedSupplyOptions.value],
+  ([selectedSupply, options]) => {
+    if (selectedSupply && !options.includes(selectedSupply))
+      selectedStakedSupply.value = options.at(-1) as StakeSupply
+  },
+  { deep: true, immediate: true }
+)
+
 const rewards = computed(() => {
   const ratio = stakeSupplyRatios.value[selectedStakedSupply.value]
   if (!ratio)
@@ -100,13 +109,13 @@ const rewards = computed(() => {
       </div>
       <div class="flex flex-col gap-3 bg-green/10 px-8 py-6 flex-1 self-stretch justify-center max-md:items-center whitespace-nowrap">
         <div class="flex items-center justify-between text-neutral-800 w-full">
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-3">
             <p>{{ rewardsLabel || 'Return in NIM' }}*</p>
             <UiTooltip>
               <p>Estimated rewards based on current network parameters</p>
             </UiTooltip>
           </div>
-          <p class="text-green/60 font-bold">
+          <p class="text-green/60 font-bold ml-3">
             +<UiTweenedNumber :value="rewards.gainRatio * 100" :duration="1000" :decimals="2" />%
           </p>
         </div>

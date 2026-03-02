@@ -1,6 +1,6 @@
-/* Hide heading anchor links on onepager (the # pseudo-element) */
-article.nq-prose :is(h2, h3)[id]::after,
-article[nq-prose] :is(h2, h3)[id]::after {
+/* Hide heading anchor links on onepager */
+article.nq-prose :is(h2, h3)[id] > a::before,
+article[nq-prose] :is(h2, h3)[id] > a::before {
   display: none;
 }
 

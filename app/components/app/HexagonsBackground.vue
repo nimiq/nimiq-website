@@ -1,6 +1,8 @@
 <script setup lang="ts">
-const { withSocials = false, bgColor = 'darkblue' } = defineProps<{ withSocials?: boolean, bgColor?: keyof typeof bgClasses }>()
 const bgClasses = { grey: 'bg-neutral-100', white: 'bg-neutral-0', darkblue: 'bg-darkerblue dark' }
+type BgColor = keyof typeof bgClasses
+const { withSocials = false, bgColor = 'darkblue' } = defineProps<{ withSocials?: boolean, bgColor?: BgColor }>()
+const bgColorClass = computed(() => bgClasses[bgColor] ?? bgClasses.darkblue)
 const site = await useSite()
 const socialLinks = Object.fromEntries(site.socials?.map(s => [s.id, s.link]) ?? [])
 const darkHexOpacityFactor = computed(() => bgColor === 'darkblue' ? 0.58 : 1)
@@ -132,7 +134,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div ref="section" class="group mx-0 px-0 w-full relative z-2 overflow-x-hidden pt-12 md:pt-16" :class="bgClasses[bgColor]">
+  <div ref="section" class="group mx-0 px-0 w-full relative z-2 overflow-x-hidden pt-12 md:pt-16" :class="bgColorClass">
     <div ref="gridParent" class="grid-parent max-w-none" aria-hidden="true" :style="`--rows:${rows}; --cols:${columns}; --gap:${gap}px;--hexagon-w: ${hexagonWidth}px;`">
       <div
         v-for="item in items" :key="`${item.rowIndex}-${item.colIndex}`" class="relative flex items-center justify-center transition-opacity transition-duration-300 transition-ease-out" :style="{ '--row': item.rowIndex, '--col': item.colIndex, 'opacity': item.opacity && !item.social ? getHexOpacity(item.opacity) : 1 }" :class="{

@@ -28,7 +28,7 @@ const formattedStakingRatio = computed(() => stakingRatio.value === undefined ? 
 <template>
   <div ref="target" class="relative flex flex-col items-center">
     <ChartDonut :data="datum" :start-angle />
-    <div class="ring-1.5 ring-green text-neutral font-semibold px-3 py-1.5 rounded-full bg-neutral-0 right-2 top-[196px] absolute">
+    <div class="outline outline-2 outline-green text-neutral font-semibold px-3 py-1.5 rounded-full bg-neutral-0 right-2 top-[196px] absolute">
       {{ formattedStakingRatio }} staked
     </div>
     <h3 v-if="headline" class="text-center font-semibold text-22 mt-4 text-neutral">

@@ -9,7 +9,11 @@ interface Props {
 defineProps<Props>()
 
 const apps = await useApps()
-const appsToShow = computed(() => apps.communityApps ? shuffle(apps.communityApps).slice(0, 6) : [])
+const appsToShow = ref(apps.communityApps?.slice(0, 9) ?? [])
+onMounted(() => {
+  if (apps.communityApps)
+    appsToShow.value = shuffle(apps.communityApps).slice(0, 9)
+})
 </script>
 
 <template>

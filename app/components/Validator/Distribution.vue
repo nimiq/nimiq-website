@@ -33,7 +33,7 @@ const data = computed(() => {
     <ChartDonut :data="data!">
       <template #default="{ color, value, name, logo, balance }">
         <div :key="name" class="ring-1.5 flex items-center gap-4 text-neutral font-semibold p-4 rounded-2 bg-neutral-0 w-max shadow" data-tooltip-container :style="`--c: ${color}; --tw-ring-color: var(--c)`">
-          <img v-if="logo" :src="logo" class="size-10" loading="lazy">
+          <img v-if="logo" :src="logo" class="size-10" loading="eager">
           <div class="flex gap-0.5 flex-col font-semibold leading-none">
             <h3 class="text-lg">
               {{ name }}

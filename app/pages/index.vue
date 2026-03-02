@@ -56,7 +56,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/' }] })
       </section>
 
       <!-- Section 9: Community -->
-      <section class="nq-section-gap bg-neutral-0">
+      <section class="nq-section-gap bg-neutral-100">
         <Headline v-bind="page.community" />
       </section>
     </main>

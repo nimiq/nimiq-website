@@ -31,16 +31,16 @@ defineProps<{ items: LargeGridItem[] }>()
 
 .large-grid-item:where(:focus-visible, :hover) h3,
 .large-grid-item:where(:focus-visible, :hover) p {
-  color: #fff !important;
+  color: var(--color-neutral) !important;
   opacity: 1;
 }
 
 .large-grid-item:where(:focus-visible, :hover) .team-grid-icon {
-  color: #fff !important;
-  fill: #fff !important;
+  color: var(--color-neutral) !important;
+  fill: var(--color-neutral) !important;
 }
 
 .large-grid-item:where(:focus-visible, :hover) svg[class*='text-blue'] {
-  color: white;
+  color: var(--color-neutral);
 }
 </style>

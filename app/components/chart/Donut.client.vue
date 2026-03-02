@@ -11,11 +11,40 @@ const angleRange: [number, number] = [startAngle, 360 - startAngle]
 
 const value = (d: DonutDatum) => d.value
 const color = (d: DonutDatum) => d.color
+const tooltipContentCache = new WeakMap<object, HTMLElement>()
+const tooltipContentFallbackCache = new Map<string, HTMLElement>()
 
 function template(v: { data: T }) {
-  const div = document.createElement('div')
-  render(h(slots.default!, v.data), div)
-  return div.innerHTML
+  if (!slots.default)
+    return ''
+
+  const datum = v.data as unknown
+  if (datum && typeof datum === 'object') {
+    const cached = tooltipContentCache.get(datum as object)
+    if (cached)
+      return cached
+  }
+
+  const fallbackKey = JSON.stringify(datum)
+  if (fallbackKey) {
+    const cached = tooltipContentFallbackCache.get(fallbackKey)
+    if (cached)
+      return cached
+  }
+
+  const container = document.createElement('div')
+  render(h(slots.default!, v.data), container)
+  const tooltipElement = container.firstElementChild as HTMLElement | null
+  if (!tooltipElement)
+    return ''
+
+  if (datum && typeof datum === 'object') {
+    tooltipContentCache.set(datum as object, tooltipElement)
+  }
+  else if (fallbackKey) {
+    tooltipContentFallbackCache.set(fallbackKey, tooltipElement)
+  }
+  return tooltipElement
 }
 </script>
 

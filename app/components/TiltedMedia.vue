@@ -61,8 +61,9 @@ const playMaskStyle = {
           <NuxtLink v-if="poster" class="mx-auto grid relative [&>*]:rounded-lg [&>*]:col-start-1 [&>*]:row-start-1" :to="src" external target="_blank">
             <img class="w-full" :src="poster" width="1280" height="720" alt="Crypto made easy video poster">
             <div class="w-full h-full" />
-            <div class="w-[56px] h-[56px] bg-neutral opacity-50 justify-self-center self-center translate-y-[2px] blur-[1.5px]" :style="playMaskStyle" />
-            <div class="w-[56px] h-[56px] bg-white rounded-lg justify-self-center self-center" :style="playMaskStyle" />
+            <div class="size-[72px] rounded-xl bg-darkerblue/70 backdrop-blur-sm justify-self-center self-center grid place-items-center">
+              <div class="size-[32px] bg-white" :style="playMaskStyle" />
+            </div>
           </NuxtLink>
           <iframe v-else class="rounded-lg w-full aspect-video" :src="embedUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
         </template>
@@ -80,7 +81,13 @@ const playMaskStyle = {
   mask-mode: alpha;
   mask-repeat: no-repeat;
   mask-size: 2795px 544px;
-  mask-position: right bottom;
+  mask-position: right top;
+}
+
+.nq-overlaps {
+  margin-bottom: -16px;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 767px) {

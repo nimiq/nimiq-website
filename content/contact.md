@@ -3,6 +3,8 @@ hero:
   title: Talk to our community
   description: Nimiq's community is as welcoming as hard working. Together, we build tirelessly to grow the Nimiq ecosystem – app after app.
 social:
+  gridHeadline:
+    headline: Connect with us
   headline:
     headline: Get directly in touch with our experts
   grid:

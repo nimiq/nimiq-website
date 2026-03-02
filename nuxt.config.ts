@@ -66,11 +66,7 @@ export default defineNuxtConfig({
     },
   },
 
-  content: {
-    renderer: {
-      anchorLinks: false,
-    },
-  },
+  content: {},
 
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
@@ -229,6 +225,10 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/exchanges': { redirect: '/buy-and-sell' },
+    // SSR-only redirects (Cloudflare worker / Nuxt server). These do not apply to the static front-end bundle.
+    // Keep static redirect rules in the static host/CDN config as needed.
+    '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
+    '/cookie-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710/cookie-policy' },
   },
 
   nitro: {

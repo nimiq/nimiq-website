@@ -47,9 +47,6 @@ public/images/blog/
 public/images/exchanges/
 public/images/pages/
 
-# Visual regression generated artifacts
-tests/vrt/output/
-.vitest-attachments/
 public/assets/fonts/
 .vercel
 .env*.local

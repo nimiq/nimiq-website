@@ -32,8 +32,8 @@ function goToStep(stepNum: number) {
 </script>
 
 <template>
-  <div class="mx-0 px-0 overflow-x-clip [&>*]:max-w-none">
-    <div class="flex flex-col md:items-center px-[var(--px)]">
+  <div>
+    <div class="flex flex-col md:items-center px-[var(--f-px)]">
       <h2 class="nq-heading md:text-center">
         {{ headline }}
       </h2>
@@ -51,10 +51,10 @@ function goToStep(stepNum: number) {
     <ul ref="scroller" class="flex gap-4 md:gap-8 xl:gap-12 px-[calc((100%-min(87.2%,684px))/2)] mx-auto overflow-y-hidden pb-24 md:pb-28 lg:pb-32 mt-64 md:mt-80 lg:mt-96 nq-scrollbar-hide snap-x snap-mandatory" @scroll.passive="calculateStep">
       <li v-for="(item, i) in items" :key="i" class="cursor-pointer data-[state=active]:cursor-default opacity-20 data-[state=active]:opacity-100 flex flex-col shrink-0 max-w-[784px] w-full transition-opacity duration-400 snap-center snap-always" :data-state="step - 1 === i ? 'active' : undefined" @click="() => goToStep(i + 1)">
         <NuxtImg class="rounded-1.5 object-cover mb-32 md:mb-40 lg:mb-48 shadow" :src="item.image" width="1368" height="556" />
-        <p class="text-neutral-800 text-10 md:text-11 lg:text-12 px-2 md:px-8 xl:px-12 mt-auto nq-label">
+        <p class="text-neutral-900 text-10 md:text-11 lg:text-12 px-2 md:px-8 xl:px-12 mt-auto nq-label">
           {{ item.label }}
         </p>
-        <div class="px-2 md:px-8 xl:px-12 nq-prose-compact mt-8 md:mt-10 lg:mt-12 text-neutral-800 [&>*]:text-20 md:[&>*]:text-22">
+        <div class="px-2 md:px-8 xl:px-12 nq-prose-compact mt-8 md:mt-10 lg:mt-12 text-neutral-900 [&>*]:text-20 md:[&>*]:text-22">
           <p>{{ item.description }}</p>
         </div>
       </li>

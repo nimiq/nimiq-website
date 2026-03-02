@@ -41,7 +41,7 @@ const isExternal = computed(() => displayLink.value?.href?.startsWith('http'))
         <span class="text-20 md:text-22 text-green font-semibold">{{ highlight }}</span>
       </li>
     </ul>
-    <div v-if="displayLink" class="flex flex-wrap gap-x-32 gap-y-16 items-center mt-32 md:mt-40 lg:mt-48" style="--nq-font-size-min:18;--nq-font-size-max:22">
+    <div v-if="displayLink" class="flex flex-wrap gap-x-32 gap-y-16 items-center md:justify-center mt-32 md:mt-40 lg:mt-48" style="--nq-font-size-min:18;--nq-font-size-max:22">
       <NuxtLink class="nq-arrow nq-pill-lg nq-pill-blue dark:nq-pill-white" :to="displayLink.href" :external="isExternal" :target="isExternal ? '_blank' : undefined">
         {{ displayLink.label || 'Learn more' }}
       </NuxtLink>

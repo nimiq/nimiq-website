@@ -41,11 +41,11 @@ const cryptoIcons = { 'Europe': [{ icon: 'nimiq:logos-nimiq-hexagon-outline-mono
 
 <template>
   <div class="px-0 pb-0 bg-darkerblue overflow-x-clip">
-    <div class="nq-section-gap text-center">
+    <div class="text-center px-8 lg:px-20 pt-40 lg:pt-50 pb-16 md:pb-20 max-w-[73rem] mx-auto w-full">
       <h1 class="nq-h1 text-white">
         {{ headline }}
       </h1>
-      <p class="text-neutral-700 nq-text mx-auto mt-1.5 max-w-40">
+      <p class="text-neutral-700 nq-text mx-auto mt-1.5 max-w-prose">
         {{ subline }}
       </p>
       <div class="flex gap-4 justify-center flex-wrap mt-2">
@@ -113,10 +113,10 @@ const cryptoIcons = { 'Europe': [{ icon: 'nimiq:logos-nimiq-hexagon-outline-mono
 
 <style scoped>
 .world-container {
-  /* Fluid globe height: constant 20vw */
+  /* Fluid globe height: zoomed-in view */
   --min-globe-pt: 20vw;
-  /* Fluid globe height: 9vw to 25vw */
-  --max-globe-pt: clamp(9vw, calc(4.43vw + 1.43 * (100vw - 320px) / 112), 25vw);
+  /* Fluid globe height: zoomed-out view (enough to keep globe visible) */
+  --max-globe-pt: clamp(14vw, calc(4.43vw + 1.43 * (100vw - 320px) / 112), 30vw);
   height: calc((1 - var(--progress)) * var(--min-globe-pt) + var(--max-globe-pt) * var(--progress));
 
   .oval {

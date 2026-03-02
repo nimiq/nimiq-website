@@ -16,7 +16,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/cryptopaymentlink'
       </section>
 
       <!-- Section 2: TiltedMedia (has its own section wrapper) -->
-      <TiltedMedia v-if="page.tiltedMedia" v-bind="page.tiltedMedia" />
+      <TiltedMedia v-if="page.tiltedMedia" v-bind="page.tiltedMedia" animate-on-scroll />
 
       <!-- Section 3: Simple headline -->
       <section v-if="page.simpleHeadline" class="nq-section-gap bg-neutral-0 relative">
@@ -39,7 +39,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/cryptopaymentlink'
       </section>
 
       <!-- Section 7: Stepped slides -->
-      <section v-if="page.steppedSlides" class="mx-0 px-0 bg-neutral-0 overflow-x-clip [&>*]:max-w-none">
+      <section v-if="page.steppedSlides" class="bg-neutral-0 overflow-x-clip nq-wide">
         <Stepped v-bind="page.steppedSlides" />
       </section>
 

@@ -8,7 +8,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/oasis' }] })
 </script>
 
 <template>
-  <NuxtLayout>
+  <NuxtLayout dark-header footer-bg-color="white">
     <main>
       <!-- Section 0: Hero with globe + carousel -->
       <HeroOasisWorld
@@ -32,21 +32,17 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/oasis' }] })
       <!-- Section 2: How does it work + YouTube -->
       <section class="nq-section-gap nq-overlaps bg-neutral-100">
         <Headline v-if="page.howDoesItWork" :label="page.howDoesItWork.label" :headline="page.howDoesItWork.headline" :subline="page.howDoesItWork.subline" />
-        <div v-if="page.youtube" class="ring-1 ring-neutral-200 mx-auto mt-16 rounded-2 bg-neutral-0 max-w-60 w-full aspect-video grid shadow relative">
-          <a class="size-full grid place-items-center" :href="page.youtube.url" target="_blank" rel="noopener noreferrer" aria-label="Play video">
-            <Icon class="text-48 md:text-96 text-gold drop-shadow" name="nimiq:triangle-right" />
-          </a>
-          <h2 v-if="page.youtube?.title" class="text-xl md:text-2xl p-4 md:p-6 self-end">
-            {{ page.youtube.title }}
-          </h2>
-        </div>
+        <YouTube v-if="page.youtube" class="f-mt-lg" :embed-url="page.youtube.embedUrl" :poster="page.youtube.poster" :title="page.youtube.title" />
+        <h2 v-if="page.youtube?.title" class="text-xl md:text-2xl text-center mt-6">
+          {{ page.youtube.title }}
+        </h2>
       </section>
 
       <!-- Section 3: Integrate - Open Tech + Cards -->
-      <section id="integrate" class="nq-section-gap bg-darkerblue">
+      <section id="integrate" class="nq-section-gap bg-darkblue text-white" scheme-dark>
         <Headline v-if="page.openTech" class="dark" :label="page.openTech.label" :headline="page.openTech.headline" :subline="page.openTech.subline" />
         <div v-if="page.integrations" class="grid grid-cols-1 gap-8 lg:grid-cols-2 mt-16">
-          <div v-for="(integration, i) in page.integrations" :key="i" class="p-8 lg:p-10 rounded-2 ring-1 ring-neutral-800" style="background: var(--color-neutral-900)">
+          <div v-for="(integration, i) in page.integrations" :key="i" class="p-8 lg:p-10 rounded-2 ring-1 ring-white/10 bg-darkerblue">
             <h3 class="nq-h3 text-white mb-3">
               {{ integration.title }}
             </h3>
@@ -61,9 +57,9 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/oasis' }] })
       </section>
 
       <!-- Section 4: Collaborate + Contact Form -->
-      <section class="nq-section-gap bg-darkerblue">
-        <Headline v-if="page.collaborate" class="dark" :label="page.collaborate.label" :headline="page.collaborate.headline" :subline="page.collaborate.subline" />
-        <iframe class="mx-auto mt-16 rounded-1.5 h-[651px] max-w-[392px] w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
+      <section class="nq-section-gap bg-neutral-0">
+        <Headline v-if="page.collaborate" :label="page.collaborate.label" :headline="page.collaborate.headline" :subline="page.collaborate.subline" />
+        <iframe class="mx-auto mt-16 rounded-1.5 h-[800px] max-w-[392px] w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
       </section>
     </main>
   </NuxtLayout>

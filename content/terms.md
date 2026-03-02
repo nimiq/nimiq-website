@@ -1,9 +1,8 @@
 ---
-seo:
-  title: Terms
-hero:
-  headline: NET (Token) Creation and Crowdsale Terms
+headline: NET (Token) Creation and Crowdsale Terms
 ---
+
+# NET (Token) Creation and Crowdsale Terms
 
 Last Updated: June 26, 2017
 

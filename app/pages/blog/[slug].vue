@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import mediumZoom from 'medium-zoom'
-
 const route = useRoute('blog-slug')
 const slug = route.params.slug
 
@@ -23,18 +21,11 @@ const meta = {
 
 useHead({ title: meta.title })
 useSeoMeta({ ...meta, ogTitle: meta.title, ogDescription: meta.description, twitterTitle: meta.title, twitterDescription: meta.description, twitterCard: 'summary_large_image' })
-
-const articleRef = ref<HTMLElement>()
-onMounted(() => {
-  useIntersectionObserver(articleRef, () => {
-    mediumZoom(':is(header,article) img:not(a *)', { margin: 24, background: 'var(--color-neutral-0)' })
-  })
-})
 </script>
 
 <template>
   <NuxtLayout v-if="post" footer-bg-color="grey">
-    <div ref="articleRef">
+    <div>
       <header class="max-w-[var(--nq-prose-max-width)] pt-24 md:pt-[136px] px-8 lg:px-16 pb-0" data-section>
         <h1 class="view-transition-post-title" style="--nq-font-size-min: 32;--nq-font-size-max: 40">
           {{ post.title }}
@@ -79,19 +70,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-:global(article img) {
-  background-color: white;
-}
-.medium-zoom-overlay {
-  z-index: 100;
-}
-:global(.medium-zoom-image--opened) {
-  border-radius: 8px;
-  margin-top: 0;
-  background-color: white;
-  z-index: 101;
-}
-
 :global([nq-prose] > *:not(img, video, iframe, figure, blockquote, pre, code)) {
   padding-left: 0;
   padding-right: 0;

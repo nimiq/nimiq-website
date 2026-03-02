@@ -3,6 +3,9 @@ import type { Validator } from '~/composables/useValidatorsInfo'
 import { AccordionContent, AccordionItem, AccordionRoot, AccordionTrigger } from 'reka-ui'
 
 const props = defineProps<{ score: Validator['score'] }>()
+const emit = defineEmits<{
+  expandedChange: [value: boolean]
+}>()
 
 const availability = computed(() => props.score.availability)
 const reliability = computed(() => props.score.reliability)
@@ -57,13 +60,17 @@ const dominanceStatus = computed(() => {
     return `This pool controls an almost critical share of the total stake. Choose a smaller pool to improve the network's security.`
   return 'Do not stake with this pool! It controls a critical share of the total stake, making it a potential threat to the network.'
 })
+
+const openedSections = ref<string[]>([])
+
+watch(openedSections, value => emit('expandedChange', value.length > 0), { immediate: true })
 </script>
 
 <template>
-  <AccordionRoot class="[&>*]:border-b [&>*]:border-neutral-400 [&>*:last-child]:border-b-0 mt-1.5 rounded-2" style="outline: 1.5px solid var(--color-neutral-400)" type="multiple">
+  <AccordionRoot v-model="openedSections" class="[&>*]:border-b [&>*]:border-neutral-400 [&>*:last-child]:border-b-0 mt-1.5 rounded-2" style="outline: 1.5px solid var(--color-neutral-400)" type="multiple">
     <AccordionItem value="availability">
-      <AccordionTrigger class="flex items-center gap-2 w-full bg-transparent px-3 py-2">
-        <Icon class="text-10 text-neutral-600 transition-transform reka-open:rotate-90" name="nimiq:chevron-right" />
+      <AccordionTrigger class="score-accordion-trigger flex items-center gap-2 w-full bg-transparent px-3 py-2">
+        <Icon class="score-accordion-chevron text-10 text-neutral-600 origin-center transition-transform duration-200 ease-out delay-75 transform-gpu" name="nimiq:chevron-right" />
         <h4 class="text-neutral text-sm font-semibold flex-1 text-left">
           Availability
         </h4>
@@ -80,8 +87,8 @@ const dominanceStatus = computed(() => {
     </AccordionItem>
 
     <AccordionItem value="reliability">
-      <AccordionTrigger class="flex items-center gap-2 w-full bg-transparent px-3 py-2">
-        <Icon class="text-10 text-neutral-600 transition-transform reka-open:rotate-90" name="nimiq:chevron-right" />
+      <AccordionTrigger class="score-accordion-trigger flex items-center gap-2 w-full bg-transparent px-3 py-2">
+        <Icon class="score-accordion-chevron text-10 text-neutral-600 origin-center transition-transform duration-200 ease-out delay-75 transform-gpu" name="nimiq:chevron-right" />
         <h4 class="text-neutral text-sm font-semibold flex-1 text-left">
           Reliability
         </h4>
@@ -98,8 +105,8 @@ const dominanceStatus = computed(() => {
     </AccordionItem>
 
     <AccordionItem value="dominance">
-      <AccordionTrigger class="flex items-center gap-2 w-full bg-transparent px-3 py-2">
-        <Icon class="text-10 text-neutral-600 transition-transform reka-open:rotate-90" name="nimiq:chevron-right" />
+      <AccordionTrigger class="score-accordion-trigger flex items-center gap-2 w-full bg-transparent px-3 py-2">
+        <Icon class="score-accordion-chevron text-10 text-neutral-600 origin-center transition-transform duration-200 ease-out delay-75 transform-gpu" name="nimiq:chevron-right" />
         <h4 class="text-neutral text-sm font-semibold flex-1 text-left">
           Dominance
         </h4>
@@ -123,6 +130,14 @@ const dominanceStatus = computed(() => {
 }
 .content[data-state='closed'] {
   animation: slideUp 150ms ease-out both;
+}
+
+.score-accordion-trigger .score-accordion-chevron {
+  transform: rotate(0deg);
+}
+
+:deep(.score-accordion-trigger[data-state='open'] .score-accordion-chevron) {
+  transform: rotate(90deg);
 }
 
 @keyframes slideDown {

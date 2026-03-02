@@ -319,7 +319,7 @@ export default defineContentConfig({
         tryIt: headlineSchema.optional(),
         largeGrid: z.array(largeGridItemSchema).optional(),
         howDoesItWork: headlineSchema.optional(),
-        youtube: z.object({ url: z.string(), title: z.string().optional() }).optional(),
+        youtube: z.object({ url: z.string(), embedUrl: z.string(), poster: z.string().optional(), title: z.string().optional() }).optional(),
         openTech: headlineSchema.optional(),
         integrations: z.array(z.object({ title: z.string(), description: z.string(), links: z.array(z.object({ label: z.string(), href: z.string(), variant: z.string().optional() })) })).optional(),
         collaborate: headlineSchema.optional(),

@@ -1,7 +1,8 @@
 ---
-hero:
-  headline: NIM Activation Terms, NET Replacement, and Explanatory Note
+headline: NIM Activation Terms, NET Replacement, and Explanatory Note
 ---
+
+# NIM Activation Terms, NET Replacement, and Explanatory Note
 
 The following Terms shall govern the activation of NIM and the replacement of NET tokens ("Replacement", collectively called "Activation"). Upon Activation, for every 1 NET, 100 NIM shall be allocated. The allocation will be made via the Genesis Block of the Nimiq Blockchain ("Nimiq Blockchain").
 

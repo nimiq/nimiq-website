@@ -74,6 +74,8 @@ faq:
       answer: You can choose not to stake and not earn any rewards. By not staking, you miss the opportunity to help maintain the network secure and decentralized.
     - question: How long does it take to have my funds available after I un-stake?
       answer: Once you un-stake your funds, it usually takes between 12 hours to 4 days for them to become available. The exact time frame depends on your validator's status. In rare cases, validators can be "jailed" for up to 4 days, which may delay access to your funds.
+newsletter:
+  cta: Stay up to date
 wallet:
   headline: Stake in the Nimiq wallet and get {{ interestPerAnnum }} annually
   subline: "'Staking' means locking up your NIM which helps secure the network. You get new NIM as a reward."

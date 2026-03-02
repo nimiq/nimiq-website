@@ -40,9 +40,14 @@ function handleOpenChange(open: boolean) {
 </template>
 
 <style scoped>
-.tooltip-animation {
+.tooltip-animation,
+.tooltip-animation[data-state='open'] {
   transform-origin: var(--reka-tooltip-content-transform-origin);
   animation: fadeInSlideUp 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tooltip-animation[data-state='closed'] {
+  animation: fadeOutSlideDown 140ms cubic-bezier(0.4, 0, 1, 1);
 }
 
 @keyframes fadeInSlideUp {
@@ -55,6 +60,19 @@ function handleOpenChange(open: boolean) {
     opacity: 1;
     translate: 0 0;
     scale: 1;
+  }
+}
+
+@keyframes fadeOutSlideDown {
+  from {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  to {
+    opacity: 0;
+    translate: 0 4px;
+    scale: 0.98;
   }
 }
 </style>

@@ -69,10 +69,10 @@ const ease = [0.25, 0.46, 0.45, 0.94] as const
     rgba(33, 188, 165, 0.2384) 70%,
     rgba(33, 188, 165, 0.153748) 77.3%,
     rgba(33, 188, 165, 0.0737185) 85.9%,
-    rgba(33, 188, 165, 0) 100%
+    white 100%
   );
 
-  background-color: var(--color-neutral-100);
+  background-color: var(--color-white);
 }
 
 .quote-bg {

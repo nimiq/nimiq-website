@@ -8,21 +8,22 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/contact' }] })
 </script>
 
 <template>
-  <NuxtLayout>
-    <main>
-      <section class="bg-neutral-0">
-        <HeroProduct :title="page.hero.title" :description="page.hero.description" />
-      </section>
+  <NuxtLayout footer-bg-color="white">
+    <section class="bg-neutral-0">
+      <HeroProduct :title="page.hero.title" :description="page.hero.description" />
+    </section>
 
+    <section class="bg-neutral-0">
+      <Headline v-bind="page.social.gridHeadline" />
       <GridSocialMedia v-bind="page.social.grid" />
+    </section>
 
-      <section class="bg-neutral-100">
-        <Headline v-bind="page.social.headline" />
-      </section>
+    <section class="bg-neutral-0">
+      <Headline v-bind="page.social.headline" />
+    </section>
 
-      <section class="bg-neutral-100">
-        <iframe class="mx-auto rounded-md h-[651px] max-w-[392px] w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
-      </section>
-    </main>
+    <section class="bg-neutral-0">
+      <iframe class="mx-auto rounded-md h-[651px] max-w-[392px] w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
+    </section>
   </NuxtLayout>
 </template>

@@ -30,7 +30,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
         <ShowcaseCurrency v-bind="page.currencies" />
       </section>
 
-      <section class="gradient-transparent-green-transparent bg-neutral-100 relative" scheme-dark>
+      <section class="gradient-transparent-green-transparent bg-neutral-0 relative" scheme-dark>
         <HeadlineStaking v-bind="page.staking" />
       </section>
 
