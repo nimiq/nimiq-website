@@ -9,53 +9,61 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/buy-and-sell' }] }
 
 <template>
   <NuxtLayout>
-    <main>
-      <!-- Section 0: Hero -->
-      <section>
-        <HeroBuyAndSell :data="page.hero" />
-      </section>
+    <!-- Section 0: Hero -->
+    <section class="bg-neutral-0 relative overflow-x-clip" style="--px: 0px">
+      <HeroBuyAndSell :data="page.hero" />
+    </section>
 
-      <!-- Section 1: Exchanges (headline + video tutorial + grid) -->
-      <section class="nq-section-gap bg-neutral-0">
-        <Headline v-bind="page.intro" />
+    <!-- Section 1: Exchanges headline -->
+    <section class="nq-section-gap bg-neutral-0 relative">
+      <Headline v-bind="page.intro">
+        <ul v-if="page.intro.videoTutorial" class="flex gap-4 lg:gap-5 flex-wrap f-mt-md">
+          <li>
+            <UiVideoTutorialLink :label="page.intro.videoTutorial.label" :href="page.intro.videoTutorial.videoUrl" />
+          </li>
+        </ul>
+      </Headline>
+    </section>
 
-        <!-- Mini video tutorial button -->
-        <button v-if="page.intro.videoTutorial" class="flex items-center gap-3 mx-auto mt-6 text-blue hover:text-blue-dark transition-colors">
-          <span class="flex items-center justify-center size-8 rounded-full bg-blue/10">
-            <Icon name="nimiq:triangle-right" class="size-4 text-blue" />
-          </span>
-          <span class="font-semibold">{{ page.intro.videoTutorial.label }}</span>
-        </button>
+    <!-- Section 2: Exchanges grid -->
+    <section class="bg-neutral-0 pt-0">
+      <GridExchanges />
+    </section>
 
-        <GridExchanges class="mt-12 md:mt-16" />
-      </section>
+    <!-- Section 3: Wallet headline -->
+    <section class="nq-section-gap bg-neutral-0 relative">
+      <Headline v-bind="page.wallet.headline">
+        <ul v-if="page.wallet.videoTutorial" class="flex gap-4 lg:gap-5 flex-wrap f-mt-md">
+          <li>
+            <UiVideoTutorialLink :label="page.wallet.videoTutorial.label" :href="page.wallet.videoTutorial.videoUrl" />
+          </li>
+        </ul>
+      </Headline>
+    </section>
 
-      <!-- Section 2: Wallet (headline + showcase) -->
-      <section class="nq-section-gap bg-neutral-0">
-        <Headline v-bind="page.wallet.headline" />
+    <!-- Section 4: Wallet showcase -->
+    <section class="bg-neutral-0 pt-0">
+      <ShowcaseWalletHoverable :data="page.wallet.content" />
+    </section>
 
-        <!-- Mini video tutorial button -->
-        <button v-if="page.wallet.videoTutorial" class="flex items-center gap-3 mx-auto mt-6 text-blue hover:text-blue-dark transition-colors">
-          <span class="flex items-center justify-center size-8 rounded-full bg-blue/10">
-            <Icon name="nimiq:triangle-right" class="size-4 text-blue" />
-          </span>
-          <span class="font-semibold">{{ page.wallet.videoTutorial.label }}</span>
-        </button>
+    <!-- Section 5: Distribution headline -->
+    <section class="nq-section-gap bg-neutral-0 relative">
+      <Headline v-bind="page.distribution.headline" />
+    </section>
 
-        <ShowcaseWalletHoverable class="mt-12 md:mt-16" :data="page.wallet.content" />
-      </section>
+    <!-- Section 6: Distribution grid -->
+    <section class="bg-neutral-0">
+      <TokenDistribution :items="page.distribution.items" />
+    </section>
 
-      <!-- Section 3: Distribution (headline + chart + banner) -->
-      <section class="nq-section-gap bg-neutral-0">
-        <Headline class="pb-0" v-bind="page.distribution.headline" />
-        <TokenDistribution :items="page.distribution.items" />
-        <BannerBuyAndSell class="mt-8" :data="page.cta" />
-      </section>
+    <!-- Section 7: Banner -->
+    <section class="bg-neutral-0 f-px-sm relative z-10 overflow-x-clip" style="--pb: 0px">
+      <BannerBuyAndSell :data="page.cta" />
+    </section>
 
-      <!-- Section 4: No download CTA -->
-      <section class="nq-section-gap bg-neutral-100">
-        <Headline v-bind="page.noDownload" />
-      </section>
-    </main>
+    <!-- Section 8: No download CTA -->
+    <section class="nq-section-gap bg-neutral-100">
+      <Headline v-bind="page.noDownload" />
+    </section>
   </NuxtLayout>
 </template>

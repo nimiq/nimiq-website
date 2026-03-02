@@ -6,7 +6,7 @@ const validCurrencies = ['AED', 'ARS', 'AUD', 'BRL', 'CAD', 'CHF', 'CLP', 'CNY',
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
-  const currency = (query.currency as FiatCurrency) || 'USD'
+  const currency = String(query.currency || 'USD').toUpperCase() as FiatCurrency
   const type = query.type as 'now' | '1d-ago' | undefined
 
   // Validate currency

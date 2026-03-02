@@ -1,5 +1,6 @@
 <script setup lang="ts">
 interface BannerData {
+  overlapsNextSection?: boolean
   headline: string
   ctaLabel?: string
   cta: string
@@ -10,11 +11,14 @@ defineProps<{ data: BannerData }>()
 </script>
 
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-[1fr_max-content] lg:grid-flow-col ring-[1.5px] ring-neutral-300 py-64 px-32 md:px-64 lg:p-72 rounded-2 bg-neutral-0 gap-x-6 w-full relative shadow">
-    <h3 class="text-44 text-neutral font-bold max-w-[24ch]">
+  <div
+    class="grid grid-cols-1 lg:grid-cols-[1fr_max-content] lg:grid-flow-col ring-[1.5px] ring-neutral-300 py-64 px-32 md:px-64 lg:p-72 rounded-2 bg-neutral-0 gap-x-6 w-full relative shadow"
+    :class="{ 'lg:translate-y-[72px]': data.overlapsNextSection }"
+  >
+    <h3 class="text-32 md:text-40 text-neutral font-bold max-w-[24ch]">
       {{ data.headline }}
     </h3>
-    <NuxtLink class="mt-4 md:mt-6 nq-arrow nq-pill-lg nq-pill-blue" :to="data.cta">
+    <NuxtLink class="mt-7 md:mt-8 nq-arrow nq-pill-lg nq-pill-blue" :to="data.cta">
       <template v-if="data.ctaLabel">
         {{ data.ctaLabel }}
       </template>

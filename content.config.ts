@@ -83,7 +83,7 @@ const appGalleryCtaSchema = z.object({ title: z.string(), description: z.string(
 // Buy-and-sell schemas
 const walletHoverSchema = z.object({ title: z.string(), description: z.string(), screenshot: z.string(), link: z.string(), poweredByLabel: z.string().optional(), poweredByLogos: z.array(z.object({ logo: z.string() })).optional() })
 const tokenDistributionItemSchema = z.object({ title: z.string(), percentage: z.number(), description: z.string() })
-const buyAndSellBannerSchema = z.object({ headline: z.string(), ctaLabel: z.string().optional(), cta: z.string(), features: z.array(z.object({ icon: z.string(), description: z.string() })).optional() })
+const buyAndSellBannerSchema = z.object({ overlapsNextSection: z.boolean().optional(), headline: z.string(), ctaLabel: z.string().optional(), cta: z.string(), features: z.array(z.object({ icon: z.string(), description: z.string() })).optional() })
 
 // Contact schema
 const contactSchema = z.object({ headline: z.string().optional(), subline: z.string().optional(), nameLabel: z.string().optional(), emailLabel: z.string().optional(), messageLabel: z.string().optional(), submitLabel: z.string().optional() })

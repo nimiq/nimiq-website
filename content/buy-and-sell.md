@@ -63,6 +63,7 @@ distribution:
       percentage: 2
       description: Dedicated to social impact, 2% of the supply supports charitable initiatives and aligns with Nimiq's mission to create positive change beyond the blockchain.
 cta:
+  overlapsNextSection: true
   headline: Are you interested in crypto exchange technology?
   ctaLabel: Learn more
   cta: https://nimiq.dev

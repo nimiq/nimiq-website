@@ -1,8 +1,12 @@
 export function useNimPrice() {
   // Get currency at top level - composables must be called at setup time
   const { currency: userCurrency } = useUserCurrency()
-  // Fallback to USD during SSR since useStorage doesn't work server-side
-  const currency = computed(() => import.meta.server ? 'USD' : userCurrency.value)
+  // Fallback to USD during SSR since useStorage doesn't work server-side.
+  // Normalize to uppercase because API routes validate uppercase fiat codes.
+  const currency = computed(() => {
+    const value = import.meta.server ? 'USD' : (userCurrency.value || 'USD')
+    return value.toUpperCase()
+  })
 
   const { data: price, status: priceStatus, error: priceError, refresh: refreshPrice } = useFetch<number>('/api/nim-price', {
     query: computed(() => ({ currency: currency.value })),

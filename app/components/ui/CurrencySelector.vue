@@ -66,18 +66,25 @@ function useCurrencyOptions() {
     </ComboboxAnchor>
 
     <ComboboxPortal>
-      <ComboboxContent class="reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade font-normal overscroll-none max-h-64 w-[168px] top-0 absolute z-10 overflow-hidden" position="popper" will-change="[opacity,transform]">
-        <ComboboxViewport class="outline-1.5 outline outline-offset--1.5 outline-white/10 px-1 pb-1 rounded-1 bg-neutral flex flex-col">
-          <label class="flex items-center gap-2 px-2 pb-1.5 pt-[13px] w-full">
+      <ComboboxContent
+        class="reka-top:animate-slidedownandfade reka-bottom:animate-slide-up-and-fade font-normal overscroll-none max-h-80 w-[220px] top-0 absolute z-10 overflow-hidden"
+        position="popper"
+        side="top"
+        align="end"
+        :side-offset="8"
+        will-change="[opacity,transform]"
+      >
+        <ComboboxViewport class="outline-1.5 outline outline-offset--1.5 outline-white/10 px-2 pb-2 rounded-1 bg-neutral flex flex-col">
+          <label class="flex items-center gap-2 px-2 pb-2 pt-3 w-full">
             <Icon class="text-neutral-800" name="nimiq:magnifying-glass" />
-            <ComboboxInput class="text-16 text-white outline-1.5! outline outline-blue leading-none px-[3px] py-0.5 rounded-1 bg-transparent flex-1 w-full" placeholder="Search" />
+            <ComboboxInput class="text-base text-white outline-1.5! outline outline-blue leading-none px-2 py-1 rounded-1 bg-transparent flex-1 w-full" placeholder="Search" />
           </label>
           <ScrollAreaRoot class="bg-neutral flex-1 h-full relative overflow-hidden" var:scrollbar-size:10px>
             <div class="h-4 w-full top-0 absolute z-2 bg-gradient-to-t from-transparent to-neutral" />
-            <ScrollAreaViewport class="py-4 h-[218px] w-full">
-              <ComboboxItem v-for="option in options" :key="option.value" class="flex items-center gap-2 hover:bg-white/10 focus:bg-white/10 bg-reka-active:white/10 p-2 rounded-0.5 transition-colors" :value="option.value">
-                <Icon class="shrink-0 size-5" :name="option.icon" />
-                <span class="text-xs md:text-sm text-white/95 leading-none">{{ option.value.toLocaleUpperCase() }}</span>
+            <ScrollAreaViewport class="py-3 h-[280px] w-full">
+              <ComboboxItem v-for="option in options" :key="option.value" class="flex items-center gap-3 hover:bg-white/10 focus:bg-white/10 bg-reka-active:white/10 px-3 py-2.5 rounded-0.5 transition-colors" :value="option.value">
+                <Icon class="shrink-0 size-6" :name="option.icon" />
+                <span class="text-sm md:text-base text-white/95 leading-none">{{ option.value.toLocaleUpperCase() }}</span>
               </ComboboxItem>
             </ScrollAreaViewport>
             <ScrollAreaScrollbar class="flex bg-neutral-900 p-0.5 w-2.5 select-none inset-y-0 z-20 touch-none" orientation="vertical">

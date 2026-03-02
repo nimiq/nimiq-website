@@ -11,11 +11,15 @@ interface PriceHistoryResponse {
 
 export function useNimPriceHistory(currency: MaybeRef<FiatCurrency>) {
   const period = useLocalStorage<HistoricNimPricePeriod>('nim_price_period', '1y')
+  const normalizedCurrency = computed<FiatCurrency>(() => {
+    const value = toValue(currency) || 'USD'
+    return value.toUpperCase() as FiatCurrency
+  })
 
   // Local storage cache for offline support
   const cacheStorageKey = `nimiq_price_history_cache`
   const dataCache = useLocalStorage<Record<string, Record<HistoricNimPricePeriod, NimPrice[]>>>(cacheStorageKey, {})
-  const currentCacheKey = computed(() => `${toValue(currency)}`)
+  const currentCacheKey = computed(() => `${normalizedCurrency.value}`)
 
   const getCachedData = computed(() => {
     const currencyCache = dataCache.value[currentCacheKey.value]
@@ -25,9 +29,9 @@ export function useNimPriceHistory(currency: MaybeRef<FiatCurrency>) {
   })
 
   const { data: fetchedData, status, error, refresh } = useFetch<PriceHistoryResponse>('/api/nim-price-history', {
-    query: computed(() => ({ currency: toValue(currency), period: period.value })),
-    watch: [() => toValue(currency), period],
-    default: () => ({ data: [], currency: toValue(currency), period: period.value }),
+    query: computed(() => ({ currency: normalizedCurrency.value, period: period.value })),
+    watch: [normalizedCurrency, period],
+    default: () => ({ data: [], currency: normalizedCurrency.value, period: period.value }),
   })
 
   // Merge fetched data with localStorage cache
