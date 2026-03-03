@@ -10,10 +10,10 @@ const starColorMap = { gold: '#e9b213', purple: '#1F2348' }
 </script>
 
 <template>
-  <div class="ribbon-container max-w-none md:max-w-[var(--nq-max-width)] mx-auto rounded-lg size-full min-h-32 relative grid outline outline-[1.5px] outline-neutral-400 bg-neutral-0" :class="{ shadow }" style="--top: 25px">
+  <div class="ribbon-container max-w-[calc(100vw-16px)] md:max-w-[var(--nq-max-width)] mx-auto rounded-lg size-full min-h-32 relative grid outline outline-[1.5px] outline-neutral-400 bg-neutral-0" :class="{ shadow }" style="--top: -25px; --right: -32px">
     <slot name="default" />
 
-    <div class="self-start justify-self-end w-max relative z-10" :class="corner ? 'mr-0' : '-mr-8'" :style="{ top: corner ? '0px' : 'var(--top, 25px)' }">
+    <div class="self-start justify-self-end w-max relative z-10" :style="{ top: corner ? '0px' : 'var(--top, -25px)', marginRight: corner ? '0px' : 'var(--right, -32px)' }">
       <div class="w-11 origin-bottom-right -translate-y-px -rotate-45 bottom-0 right-0 absolute z-[1]" aria-hidden="true" :style="{ borderColor: `transparent transparent ${foldColorMap[color]} transparent`, borderWidth: '22px' }" />
 
       <UiFloatingStars v-if="floatingStars" class="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-[30%] z-[21]" aria-hidden="true" :color="starColorMap[color]" />

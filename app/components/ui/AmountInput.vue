@@ -70,14 +70,16 @@ onMounted(() => {
   if (!amount.value)
     onBlur()
 })
-
-const mirror = useTemplateRef<HTMLSpanElement>('mirror')
-const { width } = useElementSize(mirror)
 </script>
 
 <template>
-  <span class="inline-grid items-center">
-    <span ref="mirror" class="invisible col-start-1 row-start-1 leading-none font-semibold whitespace-pre" v-bind="$attrs">{{ formattedValue || '0' }}</span>
-    <input v-model="formattedValue" class="col-start-1 row-start-1 leading-none font-semibold min-w-0" type="text" inputmode="decimal" :style="{ width: `${width}px` }" v-bind="$attrs" @blur="onBlur">
-  </span>
+  <input
+    v-model="formattedValue"
+    class="leading-none font-semibold min-w-0"
+    type="text"
+    inputmode="decimal"
+    style="field-sizing: content"
+    v-bind="$attrs"
+    @blur="onBlur"
+  >
 </template>

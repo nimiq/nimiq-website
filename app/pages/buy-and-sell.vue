@@ -58,7 +58,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/buy-and-sell' }] }
 
     <!-- Section 7: Banner -->
     <section class="bg-neutral-0 f-px-sm relative z-10 overflow-x-clip" style="--pb: 0px">
-      <BannerBuyAndSell :data="page.cta" />
+      <BannerBuyAndSell :data="page.cta" :overlaps-next-section="page.cta.overlapsNextSection" />
     </section>
 
     <!-- Section 8: No download CTA -->

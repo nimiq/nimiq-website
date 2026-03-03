@@ -27,7 +27,7 @@ const { marketCapChange, marketCapFormatted } = useNimMarketCap()
 const { currentSupplyFormatted, maxSupplyFormatted } = useNimSupply()
 const { volumeChange, volumeFormatted, error: volumeError, volumeIsLoading } = useNimVolume()
 const { data: historicPrices, lastUpdated, period, periodOptions, isLoading: priceIsLoading } = useNimPriceHistory(currency)
-const { deltaPrice, price1DayAgoLoading, priceLoading, price } = useNimPrice()
+const { price1DayAgoLoading, priceLoading, price } = useNimPrice()
 
 const isLoading = computed(() => priceIsLoading.value || priceLoading.value || price1DayAgoLoading.value || volumeIsLoading.value)
 
@@ -59,29 +59,29 @@ const error = computed(() => {
 
     <!-- USD/NIM Converter Form -->
     <form class="grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] items-center gap-x-6 max-md:px-6 mx-auto mt-10 h-max max-w-[560px] w-full" @submit.prevent>
-      <div class="group w-full relative flex items-center gap-3">
-        <UiAmountInput :key="fiatKey" v-model="fiatAmount" class="nq-input-box rounded-b-0 md:rounded-2 pr-16 text-2xl max-md:-translate-y-0.5 group-focus-within:z-10 w-full bg-white outline-neutral/15" required />
-        <div class="text-neutral-600 group-hover:text-blue/50 hocus:!text-neutral-800 group-focus-within:!text-blue right-4 absolute z-40">
+      <div class="group w-full relative flex items-center">
+        <UiAmountInput :key="fiatKey" v-model="fiatAmount" class="nq-input-box relative z-20 rounded-b-0 md:rounded-2 pr-20 text-2xl max-md:-translate-y-0.5 group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
+        <div class="w-10 z-10 pointer-events-none absolute top-[1.5px] bottom-[1.5px] right-16 rounded-r-2" style="background-image: linear-gradient(to right, transparent, var(--color-neutral-0))" />
+        <div class="group-hover:!text-blue/50 hocus:!text-neutral-800 group-focus-within:!text-blue right-4 absolute z-40" style="color: var(--color-neutral-600)">
           <UiCurrencySelector v-model="currency" />
         </div>
-        <div class="w-8 pointer-events-none inset-y-0 right-16 absolute" style="background-image: linear-gradient(to right, transparent, var(--color-neutral-0))" />
       </div>
       <p class="text-3xl h-max max-md:hidden">
         =
       </p>
       <div class="group w-full relative">
-        <UiAmountInput :key="cryptoKey" v-model="cryptoAmount" class="nq-input-box rounded-t-0 md:rounded-2 pr-14 text-2xl group-focus-within:z-10 w-full bg-white outline-neutral/15" required />
-        <div class="w-8 pointer-events-none inset-y-0 right-14 absolute" style="background-image: linear-gradient(to right, transparent, var(--color-neutral-0))" />
-        <div class="text-neutral-600 group-hover:text-blue/50 group-focus-within:!text-blue transition-colors right-3 top-4 absolute nq-label text-xs">
-          NIM
+        <UiAmountInput :key="cryptoKey" v-model="cryptoAmount" class="nq-input-box relative z-20 rounded-t-0 md:rounded-2 pr-16 text-2xl group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
+        <div class="w-10 z-10 pointer-events-none absolute top-[1.5px] bottom-[1.5px] right-14 rounded-r-2" style="background-image: linear-gradient(to right, transparent, var(--color-neutral-0))" />
+        <div class="absolute inset-y-0 right-3 z-20 flex items-center pointer-events-none">
+          <span class="text-neutral-700 group-hover:text-blue/50 group-focus-within:!text-blue transition-colors nq-label text-[12px] md:text-[16px] leading-none">NIM</span>
         </div>
       </div>
     </form>
 
     <!-- Price chart ribbon -->
-    <UiRibbonContainer v-if="data.nimPriceChartLabel" class="z-3 md:min-h-[480px] outline-color-white/20 mt-24 w-full nq-wide max-md:w-[calc(100%+64px)] text-left" :label="data.nimPriceChartLabel" shadow corner>
-      <div class="grid grid-cols-1 md:grid-cols-[max-content_1fr] size-full relative overflow-hidden">
-        <aside ref="asideRef" class="md:border-r-1 md:border-solid md:border-neutral-400 grid grid-cols-[repeat(4,1fr)] md:grid-cols-1 grid-gap-col-20 grid-gap-row-24 w-full relative p-4 md:p-6 max-md:row-start-2 max-md:overflow-x-auto text-left">
+    <UiRibbonContainer v-if="data.nimPriceChartLabel" class="z-3 md:min-h-[480px] outline-color-white/20 mt-[96px] w-full text-left" style="--top: -25px; --right: -32px" :label="data.nimPriceChartLabel" shadow>
+      <div class="flex flex-col md:grid md:grid-cols-[max-content_1fr] size-full relative overflow-hidden">
+        <aside ref="asideRef" class="md:border-r-1 md:border-solid md:border-neutral-400 flex max-md:overflow-x-auto max-md:gap-x-5 md:flex-col md:gap-y-6 w-full relative p-4 md:p-6 text-left max-md:order-2">
           <transition enter-active-class="transition duration-200 ease-out" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition duration-200 ease-out" leave-from-class="opacity-100" leave-to-class="opacity-0">
             <div v-if="isLoading || error" class="flex items-center gap-2 text-orange text-xs md:text-sm translate-x-100% py-1 rounded-br-1.5 bg-white -right-px -top-px absolute z-30 px-2 md:px-3 border-b border-r border-neutral-400 lg:w-max">
               <Icon class="scale-90" :name="isLoading ? 'nimiq:spinner' : 'nimiq:alert'" />
@@ -89,7 +89,7 @@ const error = computed(() => {
             </div>
           </transition>
 
-          <div v-if="data.marketCapLabel" class="flex flex-col gap-2 relative z-1" :class="{ 'animate-pulse': marketCapFormatted === '0' }">
+          <div v-if="data.marketCapLabel" class="flex flex-col gap-2 relative z-1 shrink-0" :class="{ 'animate-pulse': marketCapFormatted === '0' }">
             <div v-if="marketCapFormatted === '0'" class="outline outline-1.5 outline-neutral-200 outline-offset--1.5 rounded-1.5 bg-neutral-100 h-full w-full -inset-3 absolute z--1 w-[calc(100%+24px)]" />
             <div class="flex gap-2 items-center">
               <span class="text-base md:text-lg text-neutral leading-none font-semibold whitespace-nowrap">{{ marketCapFormatted }}</span>
@@ -103,7 +103,7 @@ const error = computed(() => {
             </p>
           </div>
 
-          <div v-if="data.volume24HLabel" class="flex flex-col gap-2 relative z-1" :class="{ 'animate-pulse': volumeFormatted === '0' }">
+          <div v-if="data.volume24HLabel" class="flex flex-col gap-2 relative z-1 shrink-0" :class="{ 'animate-pulse': volumeFormatted === '0' }">
             <div v-if="volumeFormatted === '0'" class="outline outline-1.5 outline-neutral-200 outline-offset--1.5 rounded-1.5 bg-neutral-100 h-full w-full -inset-3 absolute z--1 w-[calc(100%+24px)]" />
             <div class="flex gap-2 items-center">
               <span class="text-base md:text-lg text-neutral leading-none font-semibold whitespace-nowrap">{{ volumeFormatted }}</span>
@@ -117,7 +117,7 @@ const error = computed(() => {
             </p>
           </div>
 
-          <div v-if="data.totalSupplyLabel" class="flex flex-col gap-2 relative z-1" :class="{ 'animate-pulse': currentSupplyFormatted === '0' }">
+          <div v-if="data.totalSupplyLabel" class="flex flex-col gap-2 relative z-1 shrink-0" :class="{ 'animate-pulse': currentSupplyFormatted === '0' }">
             <div v-if="currentSupplyFormatted === '0'" class="outline outline-1.5 outline-neutral-200 outline-offset--1.5 rounded-1.5 bg-neutral-100 h-full w-full -inset-3 absolute z--1 w-[calc(100%+24px)]" />
             <span class="text-base md:text-lg text-neutral leading-none font-semibold">{{ currentSupplyFormatted }}</span>
             <p class="text-[11px] md:text-xs text-neutral-800 leading-none font-normal">
@@ -125,7 +125,7 @@ const error = computed(() => {
             </p>
           </div>
 
-          <div v-if="data.maxSupplyLabel" class="flex flex-col gap-2 relative z-1" :class="{ 'animate-pulse': maxSupplyFormatted === '0' }">
+          <div v-if="data.maxSupplyLabel" class="flex flex-col gap-2 relative z-1 shrink-0" :class="{ 'animate-pulse': maxSupplyFormatted === '0' }">
             <div v-if="maxSupplyFormatted === '0'" class="outline outline-1.5 outline-neutral-200 outline-offset--1.5 rounded-1.5 bg-neutral-100 h-full w-full -inset-3 absolute z--1 w-[calc(100%+24px)]" />
             <span class="text-base md:text-lg text-neutral leading-none font-semibold">{{ maxSupplyFormatted }}</span>
             <p class="text-[11px] md:text-xs text-neutral-800 leading-none font-normal">
@@ -133,13 +133,18 @@ const error = computed(() => {
             </p>
           </div>
 
-          <div v-show="lastUpdated" class="flex md:flex-col flex-gap-col-4 flex-gap-row-8 flex-max-md:justify-start text-[10px] md:text-[11px] text-neutral-800 leading-none md:mt-auto text-left" max-md="col-span-full sticky left-0 w-[calc(100vw-80px)] w-max">
+          <div v-show="lastUpdated" class="md:flex-col gap-1 md:gap-2 text-[10px] md:text-[11px] text-neutral-800 leading-none md:mt-auto text-left shrink-0 flex max-md:hidden">
             <span>Last updated:</span>
             <NuxtTime v-if="lastUpdated" :datetime="lastUpdated" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" />
             <span v-else>Loading...</span>
           </div>
         </aside>
-        <div class="group relative pb-2 md:pb-3">
+        <div v-show="lastUpdated" class="flex gap-1 text-[10px] text-neutral-800 leading-none text-left px-4 pb-3 md:hidden order-3">
+          <span>Last updated:</span>
+          <NuxtTime v-if="lastUpdated" :datetime="lastUpdated" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" />
+          <span v-else>Loading...</span>
+        </div>
+        <div class="group relative md:pb-3 max-md:order-1">
           <ChartLine :key="asideWidth" class="rounded-2 h-full" :data="historicPrices || []" leader>
             <template #default="{ data: [ts, historicPrice] }">
               <div class="flex flex-col gap-2 f-$side f-$side-min-20 f-$side-max-24 mx-5 bg-neutral-0 top-[21px] relative isolate py-2 md:py-3">
@@ -153,28 +158,24 @@ const error = computed(() => {
             </template>
           </ChartLine>
 
-          <div class="right-8 top-8 absolute z-20">
-            <div v-if="historicPrices?.at(-1)" class="flex flex-col gap-2 f-$side f-$side-min-20 f-$side-max-24 bg-neutral-0 transition-opacity duration-200 ease-out relative isolate py-2 md:py-3 leader-hocus:opacity-0 leader-hocus:pointer-events-none">
-              <div class="inset-y-0 absolute left-[calc(var(--f-side)*-1)] w-$f-side z-0 pointer-events-none" style="background-image: linear-gradient(to right in oklab, transparent, var(--color-neutral-0))" />
-              <div class="right-[calc(var(--f-side)*-1)] w-$f-side inset-y-0 absolute w-4 md:w-6 z-0 pointer-events-none" style="background-image: linear-gradient(to right in oklab, var(--color-neutral-0), transparent)" />
-              <p class="text-blue text-2xl md:text-3xl leading-none font-semibold relative z-1">
-                {{ currencyInfo ? formatFiat(historicPrices.at(-1)![1], currencyInfo, locale) : '' }}
-              </p>
-              <div v-if="deltaPrice && currencyInfo" class="flex items-center text-[10px] md:text-[11px] text-neutral-700 leading-none font-semibold relative z-1">
-                <Icon class="mr-1 size-2" name="nimiq:triangle-up" :class="{ 'rotate-180': deltaPrice < 0 }" />
-                <span>{{ formatDecimal(Math.abs(deltaPrice), locale) }} ({{ formatPercentage(deltaPrice / historicPrices.at(-1)![1], locale) }})</span>
-              </div>
+          <div class="absolute z-20 right-4 md:right-6 bottom-20 max-md:hidden" data-allow-mismatch>
+            <div class="ml-auto flex items-center gap-2 w-max">
+              <UiPillSelector v-model="period" class="self-end justify-self-end ring-white ring-3" :options="periodOptions" />
+              <UiCurrencySelector v-model="currency" class="bg-darkblue hover:bg-neutral-200 focus:bg-neutral-200 transition-[background-color] rounded-full text-white hover:text-neutral focus:text-neutral ring-white ring-3 border border-1.5 border-neutral-200">
+                <template #trigger="{ selectedCurrency }">
+                  <span class="text-12 leading-none font-normal nq-label text-white px-2">{{ selectedCurrency.toLocaleUpperCase() }}</span>
+                </template>
+              </UiCurrencySelector>
             </div>
           </div>
-
-          <div class="flex items-center gap-2 absolute z-20 right-4 md:right-6 bottom-16" data-allow-mismatch>
-            <UiPillSelector v-model="period" class="self-end justify-self-end ring-white ring-3" :options="periodOptions" />
-            <UiCurrencySelector v-model="currency" class="bg-darkblue hover:bg-neutral-200 focus:bg-neutral-200 transition-[background-color] text-14 font-normal px-0.5 rounded-full h-full nq-label text-white hover:text-neutral focus:text-neutral ring-white ring-3 border border-1.5 border-neutral-200">
-              <template #trigger="{ selectedCurrency }">
-                {{ selectedCurrency.toLocaleUpperCase() }}
-              </template>
-            </UiCurrencySelector>
-          </div>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-3 md:hidden order-4" data-allow-mismatch>
+          <UiPillSelector v-model="period" class="ring-white ring-3" :options="periodOptions" />
+          <UiCurrencySelector v-model="currency" class="bg-darkblue hover:bg-neutral-200 focus:bg-neutral-200 transition-[background-color] rounded-full text-white hover:text-neutral focus:text-neutral ring-white ring-3 border border-1.5 border-neutral-200">
+            <template #trigger="{ selectedCurrency }">
+              <span class="text-12 leading-none font-normal nq-label text-white px-2">{{ selectedCurrency.toLocaleUpperCase() }}</span>
+            </template>
+          </UiCurrencySelector>
         </div>
       </div>
     </UiRibbonContainer>
