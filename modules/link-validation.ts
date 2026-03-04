@@ -239,6 +239,7 @@ const LINK_WHITELIST = [
   /^https:\/\/hub\.shortnim\.me\/$/,
   /^https:\/\/cashlinks\.shortnim\.me\/$/,
   /^https:\/\/synaptrack\.co\.uk\/$/,
+  /^https:\/\/nimiq\.chat$/,
 
   // Infrastructure & Services
   /^https?:\/\/(www\.)?fastspot\.freshdesk\.com\/support\/tickets\/new$/,
