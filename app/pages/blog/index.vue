@@ -2,7 +2,6 @@
 import { motion } from 'motion-v'
 
 const route = useRoute()
-const router = useRouter()
 const pageIndex = computed(() => Number(route.query.page) || 1)
 
 watch(pageIndex, () => window.scrollTo(0, 0))

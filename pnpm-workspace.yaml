@@ -10,27 +10,18 @@ catalog:
   '@nuxtjs/tailwindcss': 7.0.0-beta.1
   '@tailwindcss/typography': ^0.5.19
   '@types/js-yaml': ^4.0.9
-  '@types/pngjs': ^6.0.5
-  '@vitest/ui': ^4.0.16
   better-sqlite3: ^12.6.2
   dotenv: ^17.2.3
   js-yaml: ^4.1.0
   marked: ^17.0.1
-  mdream: ^0.15.3
+  nimiq-flags: 1.0.0-beta.162
   nuxt-link-checker: ^4.3.9
   nuxt-prerender-kit: ^0.0.4
   nuxt-studio: 1.0.0-beta.0
-  pixelmatch: ^7.1.0
-  playwright: ^1.57.0
-  pngjs: ^7.0.0
   tsx: ^4.20.6
-  unist-util-visit: ^5.0.0
-  vitest: ^4.0.16
   zod: ^4.3.6
-  zod-to-json-schema: ^3.25.1
 catalogs:
   build:
-    '@nuxt/kit': ^4.0.0
     vite-plugin-wasm: ^3.4.1
     wrangler: ^4.15.2
   frontend:
@@ -72,10 +63,8 @@ catalogs:
     '@prismicio/richtext': ^2.1.5
   server:
     consola: ^3.4.2
-    sharp: ^0.34.1
     valibot: ^1.1.0
   studio:
-    drizzle-kit: ^0.30.5
     drizzle-orm: ^0.38.3
   types:
     '@types/node': ^22.15.19

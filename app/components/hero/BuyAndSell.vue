@@ -58,22 +58,22 @@ const error = computed(() => {
     </p>
 
     <!-- USD/NIM Converter Form -->
-    <form class="grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] items-center gap-x-6 max-md:px-6 mx-auto mt-10 h-max max-w-[560px] w-full" @submit.prevent>
+    <form class="grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] items-center gap-x-6 max-md:px-6 mx-auto mt-40 h-max max-w-[560px] w-full" @submit.prevent>
       <div class="group w-full relative flex items-center">
-        <UiAmountInput :key="fiatKey" v-model="fiatAmount" class="nq-input-box relative z-20 rounded-b-0 md:rounded-2 pr-20 text-2xl max-md:-translate-y-0.5 group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
-        <div class="w-10 z-10 pointer-events-none absolute top-[1.5px] bottom-[1.5px] right-16 rounded-r-2" style="background-image: linear-gradient(to right, transparent, var(--color-neutral-0))" />
-        <div class="group-hover:!text-blue/50 hocus:!text-neutral-800 group-focus-within:!text-blue right-4 absolute z-40" style="color: var(--color-neutral-600)">
+        <UiAmountInput :key="fiatKey" v-model="fiatAmount" class="nq-input-box relative z-20 rounded-b-0 md:rounded-2 pr-64 text-2xl max-md:-translate-y-0.5 group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
+        <div class="w-32 z-30 pointer-events-none absolute inset-y-[1.5px] right-64 rounded-r-2" style="background-image: linear-gradient(to right, transparent, white)" />
+        <div class="text-neutral-700 group-hover:!text-blue/50 hocus:!text-neutral-800 group-focus-within:!text-blue right-[4px] absolute z-40">
           <UiCurrencySelector v-model="currency" />
         </div>
       </div>
-      <p class="text-3xl h-max max-md:hidden">
+      <p class="text-32 h-max max-md:hidden">
         =
       </p>
       <div class="group w-full relative">
-        <UiAmountInput :key="cryptoKey" v-model="cryptoAmount" class="nq-input-box relative z-20 rounded-t-0 md:rounded-2 pr-16 text-2xl group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
-        <div class="w-10 z-10 pointer-events-none absolute top-[1.5px] bottom-[1.5px] right-14 rounded-r-2" style="background-image: linear-gradient(to right, transparent, var(--color-neutral-0))" />
-        <div class="absolute inset-y-0 right-3 z-20 flex items-center pointer-events-none">
-          <span class="text-neutral-700 group-hover:text-blue/50 group-focus-within:!text-blue transition-colors nq-label text-[12px] md:text-[16px] leading-none">NIM</span>
+        <UiAmountInput :key="cryptoKey" v-model="cryptoAmount" class="nq-input-box relative z-20 rounded-t-0 md:rounded-2 pr-[54px] text-2xl group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
+        <div class="w-32 z-30 pointer-events-none absolute inset-y-[1.5px] right-[54px] rounded-r-2" style="background-image: linear-gradient(to right, transparent, white)" />
+        <div class="absolute inset-y-0 right-12 z-20 flex items-center pointer-events-none">
+          <span class="text-neutral-700 group-hover:text-blue/50 group-focus-within:!text-blue transition-colors nq-label text-12 md:text-16 leading-none">NIM</span>
         </div>
       </div>
     </form>
@@ -158,7 +158,7 @@ const error = computed(() => {
             </template>
           </ChartLine>
 
-          <div class="absolute z-20 right-4 md:right-6 bottom-20 max-md:hidden" data-allow-mismatch>
+          <div class="absolute z-20 right-4 md:right-6 bottom-40 max-md:hidden" data-allow-mismatch>
             <div class="ml-auto flex items-center gap-2 w-max">
               <UiPillSelector v-model="period" class="self-end justify-self-end ring-white ring-3" :options="periodOptions" />
               <UiCurrencySelector v-model="currency" class="bg-darkblue hover:bg-neutral-200 focus:bg-neutral-200 transition-[background-color] rounded-full text-white hover:text-neutral focus:text-neutral ring-white ring-3 border border-1.5 border-neutral-200">

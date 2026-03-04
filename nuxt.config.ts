@@ -1,6 +1,7 @@
 import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs'
 import { resolve } from 'node:path'
 import process from 'node:process'
+import nimiqFlags from 'nimiq-flags/icons.json'
 import nimiqIcons from 'nimiq-icons/icons.json'
 import { defineNuxtConfig } from 'nuxt/config'
 import { boolean, object, optional, string } from 'valibot'
@@ -82,6 +83,7 @@ export default defineNuxtConfig({
       { prefix: 'custom', dir: './public/assets/custom-icons' },
       { prefix: 'oasis-regions', dir: './public/assets/oasis-regions' },
       nimiqIcons,
+      nimiqFlags,
     ],
     serverBundle: 'local',
     clientBundle: {

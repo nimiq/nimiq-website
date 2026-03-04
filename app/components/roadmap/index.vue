@@ -83,15 +83,18 @@ const firstVisibleMilestone = ref(0)
 const lastVisibleMilestone = ref(0)
 
 function updateVisibleRange() {
-  if (!scrollEl.value) return
+  if (!scrollEl.value)
+    return
   const el = scrollEl.value
   const { left: cLeft, right: cRight } = el.getBoundingClientRect()
   const headers = el.querySelectorAll('[data-milestone-header]')
-  let first = -1, last = -1
+  let first = -1
+  let last = -1
   for (let i = 0; i < headers.length; i++) {
     const { left, right } = headers[i]!.getBoundingClientRect()
     if (left >= cLeft - 2 && right <= cRight + 2) {
-      if (first === -1) first = i
+      if (first === -1)
+        first = i
       last = i
     }
   }
@@ -104,7 +107,10 @@ function updateVisibleRange() {
     const x = scrollX.value + 100
     let active = 0
     for (let i = milestones.value.length - 1; i >= 0; i--) {
-      if (getMilestoneX(milestones.value[i]!) <= x) { active = i; break }
+      if (getMilestoneX(milestones.value[i]!) <= x) {
+        active = i
+        break
+      }
     }
     firstVisibleMilestone.value = active
     lastVisibleMilestone.value = active
@@ -117,12 +123,14 @@ const pillStyle = ref<Record<string, string>>({})
 
 async function updatePill() {
   await nextTick()
-  if (!navEl.value) return
+  if (!navEl.value)
+    return
   const parent = navEl.value.getBoundingClientRect()
   const buttons = navEl.value.querySelectorAll('button[data-milestone]')
   const firstBtn = buttons[firstVisibleMilestone.value]?.getBoundingClientRect()
   const lastBtn = buttons[lastVisibleMilestone.value]?.getBoundingClientRect()
-  if (!firstBtn || !lastBtn) return
+  if (!firstBtn || !lastBtn)
+    return
   const left = firstBtn.left - parent.left
   const width = lastBtn.right - firstBtn.left
   pillStyle.value = { width: `${width}px`, left: `${left}px` }
@@ -141,7 +149,10 @@ onMounted(() => {
     const x = ((currentYear - firstYear) * 12 + currentMonth - firstMonth) * COLUMNS_W
     scrollEl.value.scrollTo({ left: Math.max(0, x - 50), behavior: 'instant' })
   }
-  nextTick(() => { updateVisibleRange(); updatePill() })
+  nextTick(() => {
+    updateVisibleRange()
+    updatePill()
+  })
 })
 
 function scrollToMilestone(i: number) {
@@ -160,14 +171,17 @@ function scrollToNow() {
 
 // "Now" button tracks the red line horizontally, sticks to right edge when off-screen
 const nowStyle = computed(() => {
-  scrollX.value // reactive dependency
-  if (!scrollEl.value) return {}
+  void scrollX.value // reactive dependency
+  if (!scrollEl.value)
+    return {}
   const redLine = scrollEl.value.querySelector('.text-red')
-  if (!redLine) return {}
+  if (!redLine)
+    return {}
   const redRect = redLine.getBoundingClientRect()
   const redCenter = redRect.left + redRect.width / 2
   const navParent = navEl.value?.closest('nav')
-  if (!navParent) return {}
+  if (!navParent)
+    return {}
   const navRect = navParent.getBoundingClientRect()
   const posInNav = redCenter - navRect.left
   const gap = 8
@@ -222,8 +236,6 @@ function onPointerMove(e: PointerEvent) {
 function onPointerUp() {
   isDragging.value = false
 }
-
-
 </script>
 
 <template>

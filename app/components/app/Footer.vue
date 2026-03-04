@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+const { bgColor = 'grey' } = defineProps<{ bgColor?: BgColor }>()
 const bgClasses = { grey: 'bg-neutral-100', white: 'bg-neutral-0', darkblue: 'bg-darkerblue' }
 type BgColor = keyof typeof bgClasses
-const { bgColor = 'grey' } = defineProps<{ bgColor?: BgColor }>()
 const bgColorClass = computed(() => bgClasses[bgColor] ?? bgClasses.grey)
 const site = await useSite()
 const copyrightNotice = site.footer.copyright ?? ''
@@ -54,9 +54,9 @@ const copyrightNotice = site.footer.copyright ?? ''
         </ul>
       </div>
 
-      <hr class="bg-neutral-400 h-px w-full sr-only" area-hr-1>
-      <hr class="bg-neutral-400 h-px w-full sr-only lg:hidden" area-hr-2>
-      <hr class="bg-neutral-400 h-px w-full sr-only md:hidden" area-hr-3>
+      <hr class="bg-neutral-400 h-px sr-only" area-hr-1>
+      <hr class="bg-neutral-400 h-px sr-only lg:hidden" area-hr-2>
+      <hr class="bg-neutral-400 h-px sr-only md:hidden" area-hr-3>
     </div>
   </footer>
 </template>
