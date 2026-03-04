@@ -6,7 +6,7 @@ interface AppApiData { name: string, type: string, logo: string, link: string, d
 const communityAppsSource = defineCollectionSource({
   getKeys: async () => ['apps.json'],
   getItem: async () => {
-    const res = await fetch('https://raw.githubusercontent.com/onmax/nimiq-awesome/main/src/data/dist/nimiq-apps.json')
+    const res = await fetch('https://raw.githubusercontent.com/nimiq/awesome/main/src/data/dist/nimiq-apps.json')
     const data = await res.json() as AppApiData[]
     const communityApps = data.filter(app => app.logo && !['Wallets'].includes(app.type)).slice(0, 6)
     return { apps: communityApps }
@@ -16,7 +16,7 @@ const communityAppsSource = defineCollectionSource({
 const allAppsSource = defineCollectionSource({
   getKeys: async () => ['all-apps.json'],
   getItem: async () => {
-    const res = await fetch('https://raw.githubusercontent.com/onmax/nimiq-awesome/main/src/data/dist/nimiq-apps.json')
+    const res = await fetch('https://raw.githubusercontent.com/nimiq/awesome/main/src/data/dist/nimiq-apps.json')
     const data = await res.json() as AppApiData[]
     return { apps: data.filter(app => app.logo || app.screenshot) }
   },

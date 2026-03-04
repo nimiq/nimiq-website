@@ -37,7 +37,7 @@ cta:
     - href: https://nimiq.dev
       label: Developer Center
       variant: nq-pill-blue
-    - href: https://github.com/onmax/nimiq-awesome
+    - href: https://github.com/nimiq/awesome
       label: Explore more the Nimiq Ecosystem
       variant: nq-pill-secondary
 ---
