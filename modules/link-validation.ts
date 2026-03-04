@@ -95,6 +95,7 @@ const LINK_WHITELIST = [
 
   // Research & Academic
   /^https:\/\/crypto\.stanford\.edu\/c2rg$/,
+  /^https:\/\/www\.birmingham\.ac\.uk\/news\/2026\/new-system-tracks-blockchain-money-laundering-faster-and-more-accurately$/,
 
   // Medium Articles
   /^https:\/\/medium\.com\/nimiq\/[\w-]+$/,
@@ -237,6 +238,7 @@ const LINK_WHITELIST = [
   /^https:\/\/shortnim\.vercel\.app\/$/,
   /^https:\/\/hub\.shortnim\.me\/$/,
   /^https:\/\/cashlinks\.shortnim\.me\/$/,
+  /^https:\/\/synaptrack\.co\.uk\/$/,
 
   // Infrastructure & Services
   /^https?:\/\/(www\.)?fastspot\.freshdesk\.com\/support\/tickets\/new$/,
