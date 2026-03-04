@@ -47,7 +47,7 @@ function transformAppToAttributes(app: NimiqApp, labelTeamNimiq: string): NimiqA
 
 export function useApps({ labelTeamNimiq = 'Team Nimiq' }: UseAppsOption = {}) {
   return useAsyncData(async () => {
-    const apps = await $fetch('https://raw.githubusercontent.com/onmax/nimiq-awesome/main/src/data/dist/nimiq-apps.json')
+    const apps = await $fetch('https://raw.githubusercontent.com/nimiq/awesome/main/src/data/dist/nimiq-apps.json')
       .then(res => JSON.parse(res as any) as NimiqApp[])
 
     if (!apps)

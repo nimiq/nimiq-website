@@ -461,7 +461,7 @@ When you work with Prismic, you will create "documents" in your Prismic reposito
 - "Pages": These are the main pages of our website. The `uid` field is used to create the URL for the page. For example, if you create a page with the `uid` "about", it will be accessible at `https://nimiq.com/about`.
 - "Posts": These are blog posts. They are created in the same way as pages, but they are displayed in a different section of the website. The `uid` field is also used to create the URL for the post.
 - "Exchanges": These are the exchanges where Nimiq is listed. They are created in the same way as pages, but they are fetched from the Prismic API and displayed in a grid on the website inside the `Exchanges` component.
-- "Apps": In the past "Apps" were the same as "Exchanges", but now they have been migrated to the [nimiq-awesome repo](https://github.com/onmax/nimiq-awesome) for easier management.
+- "Apps": In the past "Apps" were the same as "Exchanges", but now they have been migrated to the [nimiq-awesome repo](https://github.com/nimiq/awesome) for easier management.
 
 ### `draft` field
 
