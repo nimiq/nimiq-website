@@ -3,19 +3,20 @@ import { Motion, useScroll, useSpring, useTransform } from 'motion-v'
 
 const { src, poster, animateOnScroll = false, compactMobilePadding = false } = defineProps<{ src: string, poster?: string, animateOnScroll?: boolean, compactMobilePadding?: boolean }>()
 
+const isMobile = useMediaQuery('(max-width: 767px)')
+const tiltDeg = computed(() => isMobile.value ? 30 : 50)
+const translateDeg = computed(() => isMobile.value ? -80 : -160)
+
 const sectionRef = useTemplateRef<HTMLElement>('sectionRef')
 const { scrollYProgress } = useScroll({
   target: sectionRef,
   offset: ['start 0.8', 'center center'],
 })
 
-const rotateXProgress = useTransform(scrollYProgress, [0, 1], [50, 0])
-const translateYProgress = useTransform(scrollYProgress, [0, 1], [-160, 0])
+const rotateXProgress = useTransform(scrollYProgress, (v: number) => (1 - v) * tiltDeg.value)
+const translateYProgress = useTransform(scrollYProgress, (v: number) => (1 - v) * translateDeg.value)
 const rotateX = useSpring(rotateXProgress, { stiffness: 140, damping: 24, mass: 0.7 })
 const translateY = useSpring(translateYProgress, { stiffness: 140, damping: 24, mass: 0.7 })
-
-const isMobile = useMediaQuery('(max-width: 767px)')
-const tiltDeg = computed(() => isMobile.value ? 30 : 50)
 
 const isYouTube = computed(() => src.includes('youtube.com') || src.includes('youtu.be'))
 const embedUrl = computed(() => {
@@ -57,7 +58,7 @@ const playMaskStyle = {
           transformPerspective: '1800px',
           transformOrigin: 'center 70%',
           rotateX: animateOnScroll ? rotateX : tiltDeg,
-          y: animateOnScroll ? translateY : -160,
+          y: animateOnScroll ? translateY : translateDeg,
         }"
       >
         <template v-if="isYouTube">
