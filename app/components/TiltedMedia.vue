@@ -3,9 +3,9 @@ import { Motion, useScroll, useSpring, useTransform } from 'motion-v'
 
 const { src, poster, animateOnScroll = false, compactMobilePadding = false } = defineProps<{ src: string, poster?: string, animateOnScroll?: boolean, compactMobilePadding?: boolean }>()
 
-const isMobile = useMediaQuery('(max-width: 767px)')
-const tiltDeg = computed(() => isMobile.value ? 30 : 50)
-const translateDeg = computed(() => isMobile.value ? -80 : -160)
+const isMobile = import.meta.client && window.matchMedia('(max-width: 767px)').matches
+const tiltDeg = isMobile ? 30 : 50
+const translateDeg = isMobile ? -80 : -160
 
 const sectionRef = useTemplateRef<HTMLElement>('sectionRef')
 const { scrollYProgress } = useScroll({
@@ -13,8 +13,8 @@ const { scrollYProgress } = useScroll({
   offset: ['start 0.8', 'center center'],
 })
 
-const rotateXProgress = useTransform(scrollYProgress, (v: number) => (1 - v) * tiltDeg.value)
-const translateYProgress = useTransform(scrollYProgress, (v: number) => (1 - v) * translateDeg.value)
+const rotateXProgress = useTransform(scrollYProgress, (v: number) => (1 - v) * tiltDeg)
+const translateYProgress = useTransform(scrollYProgress, (v: number) => (1 - v) * translateDeg)
 const rotateX = useSpring(rotateXProgress, { stiffness: 140, damping: 24, mass: 0.7 })
 const translateY = useSpring(translateYProgress, { stiffness: 140, damping: 24, mass: 0.7 })
 
