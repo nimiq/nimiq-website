@@ -8,7 +8,7 @@ defineProps<{ items: LargeGridItem[] }>()
     <NuxtLink v-for="(item, i) in items" :key="i" class="large-grid-item p-[40px] group relative nq-hoverable" :class="{ 'md:text-center': item.subline, 'colored': item.color }" :style="item.color ? `--c: var(--color-${item.color})` : undefined" :to="item.link">
       <div v-if="item.shape === 'Hexagons'" class="rounded-lg pointer-events-none inset-0 absolute overflow-hidden">
         <div class="hexagon-container size-full pointer-events-none relative">
-          <Icon class="text-360 -bottom-1/2 -left-[164px] absolute text-neutral-500/60 transition-colors duration-150" name="nimiq:logos-nimiq-mono" />
+          <Icon class="text-360 -bottom-1/2 -left-[164px] absolute text-neutral-500/60 transition-colors duration-150 max-md:hidden" name="nimiq:logos-nimiq-mono" />
           <Icon class="text-360 -right-[214px] -top-[140px] absolute text-neutral-500/60 transition-colors duration-150" name="nimiq:logos-nimiq-mono" />
         </div>
       </div>
