@@ -23,13 +23,13 @@ roadmap:
         {
           "name": "Research",
           "items": [
-            { "icon": "logos:javascript", "name": "First Blockchain in JS", "year": 2017, "month": 1 },
+            { "icon": "teenyicons:javascript-outline", "name": "First Blockchain in JS", "year": 2017, "month": 1 },
             { "icon": "nimiq:mining", "name": "Browser mining", "year": 2018, "month": 8 },
             { "icon": "nimiq:leaf-2", "name": "Albatross PoS design", "year": 2019, "month": 7 },
             { "icon": "nimiq:divergence", "name": "Fiat-crypto HTLCs ", "year": 2020, "month": 11 },
-            { "icon": "nimiq:eyeslash", "name": "ZKP system", "year": 2022, "month": 1 },
+            { "icon": "nimiq:eyeslash scale-75", "name": "ZKP system", "year": 2022, "month": 1 },
             { "icon": "nimiq:locked-lock", "name": "Passkeys", "year": 2024, "month": 2 },
-            { "name": "Interoperability", "year": 2025, "month": 2 }
+            { "icon": "nimiq:link", "name": "Interoperability", "year": 2025, "month": 2 }
           ]
         },
         {
@@ -70,10 +70,10 @@ roadmap:
             { "icon": "nimiq:logos-nimiq-wallet-horizontal-mono w-24 text-inherit", "name": "1.0", "withBg": true, "year": 2019, "month": 2 },
             { "icon": "nimiq:logos-nimiq-wallet-horizontal-mono w-24 text-inherit", "name": "2.0", "withBg": true, "year": 2020, "month": 1, "milestone": "Initial Launch" },
             { "icon": "nimiq:ledger-2", "name": "Ledger integration", "year": 2020, "month": 9, "row": 3 },
-            { "icon": "nimiq:logos-btc-mono", "name": "BTC Integration", "year": 2021, "month": 4 },
+            { "icon": "simple-icons:bitcoin", "name": "BTC Integration", "year": 2021, "month": 4 },
             { "icon": "nimiq:logos-usdc-mono", "name": "USDC Integration", "year": 2021, "month": 4, "row": 2 },
-            { "icon": "nimiq:duotone-btc-nim-swap", "name": "Crypto swaps", "year": 2022, "month": 6 },
-            { "icon": "nimiq:duotone-usdc-nim-swap", "name": "Crypto/fiat swaps", "year": 2022, "month": 12, "row": 2 },
+            { "icon": "nimiq:btc-nim-swap", "name": "Crypto swaps", "year": 2022, "month": 6 },
+            { "icon": "nimiq:usdc-nim-swap", "name": "Crypto/fiat swaps", "year": 2022, "month": 12, "row": 2 },
             { "icon": "nimiq:leaf-3", "name": "Pre-Staking", "year": 2024, "month": 5 },
             { "icon": "nimiq:leaf-2", "name": "Staking", "year": 2024, "month": 11 },
             { "icon": "nimiq:logos-usdt-mono", "name": "Stablecoins Cashlink", "year": 2025, "month": 12 }
@@ -99,7 +99,7 @@ roadmap:
               { "icon": "nimiq:logos-super-simple-swap-mono", "name": "SuperSimpleSwap", "year": 2020, "month": 11 }
             ],
             [
-              { "name": "Paused for regulatory reasons", "year": 2023, "month": 4 }
+              { "icon": "nimiq:forbidden", "name": "Paused for regulatory reasons", "year": 2023, "month": 4 }
             ]
           ]
         },
@@ -107,21 +107,21 @@ roadmap:
           "name": "Payment App",
           "items": [
             { "icon": "nimiq:logos-nimiq-pay-horizontal-mono w-[42px] text-lg", "year": 2024, "month": 4 },
-            { "name": "BTC-Lightning Support", "year": 2024, "month": 7 },
-            { "name": "Mini-App Framework", "year": 2025, "month": 12 }
+            { "icon": "nimiq:logos-lightning-bitcoin-mono", "name": "BTC-Lightning Support", "year": 2024, "month": 7 },
+            { "icon": "nimiq:widget", "name": "Mini-App Framework", "year": 2025, "month": 12 }
           ]
         },
         {
           "name": "MultiSig App",
           "items": [
-            { "name": "NIM Support", "year": 2025, "month": 12 }
+            { "icon": "nimiq:logos-nimiq-mono", "name": "NIM Support", "year": 2025, "month": 12 }
           ]
         },
         {
           "name": "Cryptopayment.link",
           "items": [
-            { "name": "First Version", "year": 2020, "month": 2 },
-            { "name": "Improved Version Released", "year": 2022, "month": 6 },
+            { "icon": "nimiq:logos-cpl-tag-mono", "name": "First Version", "year": 2020, "month": 2 },
+            { "icon": "nimiq:logos-cpl-tag-mono", "name": "Improved Version Released", "year": 2022, "month": 6 },
             { "icon": "nimiq:logos-usdc-mono", "name": "USDC Support", "year": 2023, "month": 7 },
             { "icon": "nimiq:logos-usdt-mono", "name": "USDT Support", "year": 2025, "month": 12 }
           ]

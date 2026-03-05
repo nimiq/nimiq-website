@@ -4,9 +4,8 @@ import type { Block } from './types'
 const { icon, name, year, month, row, untilYear, untilMonth, withBg, milestone } = defineProps<Block>()
 const [DefineBlock, ReuseBlock] = createReusableTemplate()
 
-const whiteIcons = ['logos:javascript', 'logos:rust', 'logos:webassembly']
+const whiteIcons = ['logos:rust', 'logos:webassembly']
 
-// Parse icon string: "nimiq:icon-name w-24 text-inherit" → { name: "nimiq:icon-name", classes: "w-24 text-inherit" }
 const parsedIcon = computed(() => {
   if (!icon)
     return null
