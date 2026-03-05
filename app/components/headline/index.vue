@@ -2,7 +2,6 @@
 interface Action { href: string, label?: string, icon?: string, variant?: string, color?: string }
 const props = defineProps<{ headline?: string, subline?: string, label?: string, icon?: string, actions?: Action[], buttons?: Action[], smallHeading?: boolean, compact?: boolean }>()
 
-// Support both actions and buttons (Studio uses buttons)
 const actionItems = computed(() => props.actions ?? props.buttons ?? [])
 
 function isExternal(url: string) {
@@ -13,14 +12,11 @@ function isPlainTertiary(action: Action) {
   return action.variant === 'tertiary' || action.variant === 'nq-pill-tertiary'
 }
 
-// Map Studio color property to nimiq-css pill class
 function getPillClass(action: Action) {
   if (action.color)
     return `nq-pill-${action.color}`
-  // If variant already has nq-pill- prefix, use directly; otherwise add prefix
   if (action.variant?.startsWith('nq-pill-'))
     return action.variant
-  // "arrow" is an indicator style, not a color variant
   if (action.variant === 'arrow')
     return 'nq-pill-blue'
   return action.variant ? `nq-pill-${action.variant}` : 'nq-pill-blue'
@@ -36,7 +32,7 @@ function getPillClass(action: Action) {
     <h2 v-if="headline && !smallHeading" class="nq-heading break-keep">
       {{ headline }}
     </h2>
-    <h2 v-else-if="headline" class="break-keep font-normal leading-[1.3] text-[clamp(calc(14*1.25*1px),calc(14*1.25*1px+(16*1.4-14*1.25)*((100vw-375px)/(1440-375))),calc(16*1.4*1px))] text-neutral-900 max-w-none">
+    <h2 v-else-if="headline" class="break-keep font-normal leading-[1.3] text-neutral-900 max-w-none" style="--font-size-min: 17.5; --font-size-max: 22.4; font-size: var(--f-font-size)">
       {{ headline }}
     </h2>
     <h4 v-if="subline && smallHeading && !headline" class="break-keep">

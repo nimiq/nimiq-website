@@ -20,15 +20,17 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
 
 <template>
   <template v-if="variation === 'default' || variation === 'iconGrid'">
-    <ul class="grid grid-cols-[repeat(auto-fit,min(calc(100vw-64px),330px))] gap-8 md:gap-10 lg:gap-12 xl:gap-16">
+    <ul class="grid grid-cols-[repeat(auto-fit,min(calc(100vw-64px),330px))] gap-16 md:gap-14 lg:gap-16 xl:gap-20">
       <li v-for="(item, i) in items" :key="i" class="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] gap-x-5 gap-y-3 lg:gap-y-4 items-center">
         <Icon v-if="item.icon" class="text-[clamp(48px,calc(48px+16*((100vw-375px)/(1440-375))),64px)]" :name="item.icon" />
         <NuxtImg v-else-if="item.image" class="size-[clamp(48px,calc(48px+16*((100vw-375px)/(1440-375))),64px)]" :src="item.image" width="64" height="64" />
         <div class="[&>*]:text-left">
-          <h3>{{ item.headline }}</h3>
+          <h3 class="font-semibold" style="--font-size-min: 18; --font-size-max: 22; font-size: var(--f-font-size)">
+            {{ item.headline }}
+          </h3>
         </div>
         <div v-if="item.subline" class="col-span-2">
-          <p class="text-[18px]">
+          <p style="--font-size-min: 14; --font-size-max: 16; font-size: var(--f-font-size)">
             {{ item.subline }}
           </p>
         </div>

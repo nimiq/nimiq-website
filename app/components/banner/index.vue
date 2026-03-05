@@ -11,7 +11,6 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
       :class="item.bgColor === 'green' ? 'bg-gradient-green' : ''"
       :style="item.bgColor !== 'green' ? `background: rgb(var(--nq-${item.bgColor || 'green'}))` : undefined"
     >
-      <!-- Hexagon pattern decoration -->
       <div v-if="item.backgroundPattern === 'Nimiq Hexagon'" class="text-200 md:text-300 lg:text-400 pointer-events-none absolute -bottom-2.5 bottom-lg:-0.2775em -right-0.2em right-lg:-0.25em">
         <div class="text-transparent" i-nimiq:logos-nimiq-mono>
           <div class="size-full bg-gradient-to-bl from-transparent via-transparent to-neutral/20" />
@@ -43,7 +42,9 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
 
 <style scoped>
 .banner-headline {
-  font-size: clamp(22px, calc(22px + 6 * ((100vw - 375px) / (1440 - 375))), 28px);
+  --font-size-min: 22;
+  --font-size-max: 28;
+  font-size: var(--f-font-size);
   line-height: 1.15;
 }
 </style>

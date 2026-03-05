@@ -34,7 +34,7 @@ function goToStep(stepNum: number) {
 <template>
   <div>
     <div class="flex flex-col md:items-center px-[var(--f-px)]">
-      <h2 class="nq-heading md:text-center">
+      <h2 class="nq-heading md:text-center text-neutral">
         {{ headline }}
       </h2>
       <p v-if="description" class="md:text-center">
@@ -44,7 +44,7 @@ function goToStep(stepNum: number) {
 
     <ul class="flex gap-1.5 mx-auto w-max mt-32 md:mt-40 lg:mt-48">
       <li v-for="i in items.length" :key="i" class="flex-1 max-w-24 w-full">
-        <button class="bg-neutral-400 hover:bg-neutral-500 focus:bg-neutral-500 mx-auto rounded-0.5 h-1 w-24 transition-colors relative before:absolute before:-inset-4" :class="step === i ? 'bg-green!' : ''" @click="() => goToStep(i)" />
+        <button class="bg-neutral-400 hover:bg-neutral-500 focus:bg-neutral-500 mx-auto rounded-[2px] h-1 w-24 transition-colors relative before:absolute before:-inset-4" :class="step === i ? 'bg-green!' : ''" @click="() => goToStep(i)" />
       </li>
     </ul>
 

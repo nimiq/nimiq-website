@@ -32,7 +32,6 @@ const ease = [0.25, 0.46, 0.45, 0.94] as const
 
 <style scoped>
 .quote-section {
-  /* Override to use uniform fluid padding like f-p-5xl (144-200px, 320-1920 range) */
   --f-space-width-max: 1920;
   --f-pt-min: 144;
   --f-pt-max: 200;
@@ -41,12 +40,11 @@ const ease = [0.25, 0.46, 0.45, 0.94] as const
 }
 
 .quote-text {
-  /* Fluid font-size (22-28px, 320-1920 range) */
-  font-size: clamp(22px, calc(22px + (28 - 22) * (100vw - 320px) / (1920 - 320)), 28px) !important;
+  --font-size-min: 22;
+  --font-size-max: 28;
+  font-size: var(--f-font-size) !important;
   line-height: 1.3;
-  /* Fluid margin-top like f-mt-md (24-32px, 320-1920 range) */
   margin-top: clamp(24px, calc(24px + (32 - 24) * (100vw - 320px) / (1920 - 320)), 32px);
-  /* Override section's max-width rule */
   max-width: 36ch !important;
 }
 
