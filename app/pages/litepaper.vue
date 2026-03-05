@@ -78,15 +78,21 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/litepaper' }] })
   animation: select-in 150ms ease-out;
 }
 
-.select-content[data-state="closed"] {
+.select-content[data-state='closed'] {
   animation: select-out 100ms ease-in;
 }
 
 @keyframes select-in {
-  from { opacity: 0; transform: scale(0.96); }
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
 }
 
 @keyframes select-out {
-  to { opacity: 0; transform: scale(0.96); }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
 }
 </style>

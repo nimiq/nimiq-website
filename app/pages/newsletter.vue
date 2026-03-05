@@ -126,11 +126,15 @@ const { execute: submitForm, status, error } = useFetch(url.href, { method: 'POS
 }
 
 @media (min-width: 640px) {
-  .newsletter-form { padding: 3rem 2.5rem; }
+  .newsletter-form {
+    padding: 3rem 2.5rem;
+  }
 }
 
 @media (min-width: 1024px) {
-  .newsletter-form { padding: 3rem; }
+  .newsletter-form {
+    padding: 3rem;
+  }
 }
 
 .newsletter-form h1,

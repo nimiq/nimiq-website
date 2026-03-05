@@ -51,7 +51,9 @@ function isConnectorActive(index: number) {
           </AccordionTrigger>
         </AccordionHeader>
         <AccordionContent class="distribution-content overflow-hidden">
-          <p class="pb-3 text-neutral-700">{{ description }}</p>
+          <p class="pb-3 text-neutral-700">
+            {{ description }}
+          </p>
         </AccordionContent>
       </AccordionItem>
     </AccordionRoot>

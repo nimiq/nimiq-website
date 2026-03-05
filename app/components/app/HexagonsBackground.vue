@@ -1,7 +1,7 @@
 <script setup lang="ts">
+const { withSocials = false, bgColor = 'darkblue' } = defineProps<{ withSocials?: boolean, bgColor?: BgColor }>()
 const bgClasses = { grey: 'bg-neutral-100', white: 'bg-neutral-0', darkblue: 'bg-darkerblue dark' }
 type BgColor = keyof typeof bgClasses
-const { withSocials = false, bgColor = 'darkblue' } = defineProps<{ withSocials?: boolean, bgColor?: BgColor }>()
 const bgColorClass = computed(() => bgClasses[bgColor] ?? bgClasses.darkblue)
 const site = await useSite()
 const socialLinks = Object.fromEntries(site.socials?.map(s => [s.id, s.link]) ?? [])

@@ -8,7 +8,7 @@ const copyrightNotice = site.footer.copyright ?? ''
 </script>
 
 <template>
-  <footer v-if="site" class="z-10" dark data-section :class="bgColorClass">
+  <footer v-if="site" class="z-10" v-bind="bgColor === 'darkblue' ? { 'dark': '', 'scheme-dark': '' } : {}" data-section :class="bgColorClass">
     <div class="grid gap-40 md:gap-48 grid-items-start xl:gap-[104px] items-start">
       <div class="flex flex-col text-f-sm leading-[1.5]" area-contact>
         <p>{{ site.footer.newsletterCta }}</p>
@@ -28,11 +28,11 @@ const copyrightNotice = site.footer.copyright ?? ''
           {{ site.footer.description }}
         </p>
         <div class="text-neutral-800 hover:text-neutral-900 focus:text-neutral-900 transition-colors mt-0 flex gap-4 items-center flex-wrap">
-          <NuxtLink class="font-semibold transition-colors text-neutral-800 hover:text-neutral-900 focus:text-neutral-900" to="/privacy-policy">
+          <NuxtLink class="transition-colors text-neutral-800 hover:text-neutral-900 focus:text-neutral-900" to="/privacy-policy">
             Privacy Policy
           </NuxtLink>
           <div class="rounded-full bg-current opacity-40 size-1" aria-hidden />
-          <NuxtLink class="font-semibold transition-colors text-neutral-800 hover:text-neutral-900 focus:text-neutral-900" to="/cookie-policy">
+          <NuxtLink class="transition-colors text-neutral-800 hover:text-neutral-900 focus:text-neutral-900" to="/cookie-policy">
             Cookie Policy
           </NuxtLink>
         </div>
@@ -47,7 +47,7 @@ const copyrightNotice = site.footer.copyright ?? ''
         </p>
         <ul class="mt-4 md:mt-6" :aria-label="`${group.label} links`" role="list">
           <li v-for="(link, j) in group.links" :key="j" class="mt-2 md:mt-3">
-            <NuxtLink class="font-semibold transition-colors text-f-sm text-neutral-800 hover:text-neutral-900 focus:text-neutral-900" :to="link.href">
+            <NuxtLink class="transition-colors text-f-sm text-neutral-800 hover:text-neutral-900 focus:text-neutral-900" :to="link.href">
               {{ link.text }}
             </NuxtLink>
           </li>

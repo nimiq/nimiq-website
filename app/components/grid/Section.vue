@@ -28,7 +28,9 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
           <h3>{{ item.headline }}</h3>
         </div>
         <div v-if="item.subline" class="col-span-2">
-          <p class="text-[18px]">{{ item.subline }}</p>
+          <p class="text-[18px]">
+            {{ item.subline }}
+          </p>
         </div>
       </li>
     </ul>

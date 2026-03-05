@@ -8,7 +8,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
 </script>
 
 <template>
-  <NuxtLayout footer-bg-color="darkblue">
+  <NuxtLayout footer-bg-color="grey">
     <section class="nq-section-gap bg-neutral-0">
       <Hero v-bind="page.hero" />
     </section>
@@ -50,7 +50,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/community' }] })
       <Banner v-bind="page.banner" />
     </section>
 
-    <section class="nq-section-gap bg-darkerblue" dark scheme-dark>
+    <section class="nq-section-gap bg-neutral-100">
       <Headline v-bind="page.feedback" />
     </section>
   </NuxtLayout>

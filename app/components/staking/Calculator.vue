@@ -56,7 +56,7 @@ watch(
     if (selectedSupply && !options.includes(selectedSupply))
       selectedStakedSupply.value = options.at(-1) as StakeSupply
   },
-  { deep: true, immediate: true }
+  { deep: true, immediate: true },
 )
 
 const rewards = computed(() => {
