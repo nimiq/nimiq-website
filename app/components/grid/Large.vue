@@ -5,7 +5,7 @@ defineProps<{ items: LargeGridItem[] }>()
 
 <template>
   <div class="grid gap-5 grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] justify-center w-full">
-    <NuxtLink v-for="(item, i) in items" :key="i" class="large-grid-item p-[40px] group relative nq-hoverable" :class="{ 'md:text-center': item.subline }" :style="`--c: var(--color-${item.color})`" :to="item.link">
+    <NuxtLink v-for="(item, i) in items" :key="i" class="large-grid-item p-[40px] group relative nq-hoverable" :class="{ 'md:text-center': item.subline, 'colored': item.color }" :style="item.color ? `--c: var(--color-${item.color})` : undefined" :to="item.link">
       <div v-if="item.shape === 'Hexagons'" class="rounded-lg pointer-events-none inset-0 absolute overflow-hidden">
         <div class="hexagon-container size-full pointer-events-none relative">
           <Icon class="text-360 -bottom-1/2 -left-[164px] absolute text-neutral-500/60 transition-colors duration-150" name="nimiq:logos-nimiq-mono" />
@@ -24,23 +24,15 @@ defineProps<{ items: LargeGridItem[] }>()
 </template>
 
 <style scoped>
-.large-grid-item.nq-hoverable:where(:focus-visible, :hover) {
+/* Colored cards: show brand color gradient on hover */
+.large-grid-item.colored:where(:focus-visible, :hover) {
   --nq-gradient-from: var(--c) !important;
   --nq-gradient-to: var(--c) !important;
 }
 
-.large-grid-item:where(:focus-visible, :hover) h3,
-.large-grid-item:where(:focus-visible, :hover) p {
-  color: var(--color-neutral) !important;
-  opacity: 1;
-}
-
-.large-grid-item:where(:focus-visible, :hover) .team-grid-icon {
-  color: var(--color-neutral) !important;
-  fill: var(--color-neutral) !important;
-}
-
-.large-grid-item:where(:focus-visible, :hover) svg[class*='text-blue'] {
-  color: var(--color-neutral);
+.large-grid-item.colored:where(:focus-visible, :hover) h3,
+.large-grid-item.colored:where(:focus-visible, :hover) p,
+.large-grid-item.colored:where(:focus-visible, :hover) .team-grid-icon {
+  color: white !important;
 }
 </style>
