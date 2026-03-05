@@ -6,13 +6,16 @@ const { src, poster, animateOnScroll = false, compactMobilePadding = false } = d
 const sectionRef = useTemplateRef<HTMLElement>('sectionRef')
 const { scrollYProgress } = useScroll({
   target: sectionRef,
-  offset: ['start end', 'end start'],
+  offset: ['start 0.8', 'center center'],
 })
 
-const rotateXProgress = useTransform(scrollYProgress, [0, 0.38], [30, 0])
-const translateYProgress = useTransform(scrollYProgress, [0, 0.38], [-100, 0])
+const rotateXProgress = useTransform(scrollYProgress, [0, 1], [50, 0])
+const translateYProgress = useTransform(scrollYProgress, [0, 1], [-160, 0])
 const rotateX = useSpring(rotateXProgress, { stiffness: 140, damping: 24, mass: 0.7 })
 const translateY = useSpring(translateYProgress, { stiffness: 140, damping: 24, mass: 0.7 })
+
+const isMobile = useMediaQuery('(max-width: 767px)')
+const tiltDeg = computed(() => isMobile.value ? 30 : 50)
 
 const isYouTube = computed(() => src.includes('youtube.com') || src.includes('youtu.be'))
 const embedUrl = computed(() => {
@@ -49,18 +52,18 @@ const playMaskStyle = {
     <!-- Tilted media content with 3D perspective transform -->
     <div class="px-32 w-full overflow-x-hidden max-md:max-w-none">
       <Motion
-        class="mx-auto h-full min-h-[500px] [&>*]:w-full"
+        class="mx-auto h-full min-h-[500px] [&>*]:w-full max-w-[73rem]"
         :style="{
           transformPerspective: '1800px',
           transformOrigin: 'center 70%',
-          rotateX: animateOnScroll ? rotateX : 30,
-          y: animateOnScroll ? translateY : -100,
+          rotateX: animateOnScroll ? rotateX : tiltDeg,
+          y: animateOnScroll ? translateY : -160,
         }"
       >
         <template v-if="isYouTube">
           <NuxtLink v-if="poster" class="mx-auto grid relative [&>*]:rounded-lg [&>*]:col-start-1 [&>*]:row-start-1" :to="src" external target="_blank">
             <img class="w-full" :src="poster" width="1280" height="720" alt="Crypto made easy video poster">
-            <div class="w-full h-full" />
+            <div class="w-full h-full border border-white/20 pointer-events-none" />
             <div class="size-[72px] rounded-xl bg-darkerblue/70 backdrop-blur-sm justify-self-center self-center grid place-items-center">
               <div class="size-[32px] bg-white" :style="playMaskStyle" />
             </div>
@@ -81,7 +84,7 @@ const playMaskStyle = {
   mask-mode: alpha;
   mask-repeat: no-repeat;
   mask-size: 2795px 544px;
-  mask-position: right top;
+  mask-position: right bottom;
 }
 
 .nq-overlaps {
