@@ -81,7 +81,7 @@ pooling:
         slide: https://images.prismic.io/nimiq/c75e72e3-7038-4bf7-b5cf-b26bd0648d9e_how-to-pay-cpl.png?auto=compress,format
         buttonLogo: https://images.prismic.io/nimiq/f8f774c0-8428-49e5-8bd4-27640bf91962_cpl-white.svg
         content: |-
-          ## How to pay with Cryptopayment.link
+          #### How to pay with Cryptopayment.link
 
           Scan the QR code to open a ready-to-go transaction. Hit 'pay', that's it.
 
@@ -99,7 +99,7 @@ pooling:
         slide: https://images.prismic.io/nimiq/a589b9f6-9f58-4dd3-ada3-551595cf1ab6_how-to-pay-naka.png?auto=compress,format
         buttonLogo: https://images.prismic.io/nimiq/44e601ff-0373-47ee-9747-7c8f74b43dee_naka-logo.png?auto=compress,format
         content: |-
-          How to pay with Naka
+          #### How to pay with Naka
 
           Scan the QR code to open a ready-to-go transaction and hit 'pay'.
 
