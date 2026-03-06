@@ -56,10 +56,7 @@ export function useNimVolume() {
     return formatFiat(volumeInUserCurrency, currencyInfo.value, locale.value)
   })
 
-  if (import.meta.client) {
-    const refreshInterval = setInterval(refresh, 5 * 60 * 1000)
-    onBeforeUnmount(() => clearInterval(refreshInterval))
-  }
+  useIntervalFn(refresh, 5 * 60 * 1000)
 
   return {
     volumeUsd,

@@ -146,12 +146,12 @@ export function useRandomAnimatedTexts(texts: MaybeRef<string[]>, { shouldPlay =
     })
   }
 
-  let intervalId: ReturnType<typeof setInterval> | null = null
+  let intervalId: ReturnType<typeof setTimeout> | null = null
   let currentInterval = getRandomInterval()
 
   const startAnimation = () => {
     if (intervalId)
-      clearInterval(intervalId)
+      clearTimeout(intervalId)
     const runUpdate = () => {
       updateAnimation()
       currentInterval = getRandomInterval()
@@ -162,7 +162,7 @@ export function useRandomAnimatedTexts(texts: MaybeRef<string[]>, { shouldPlay =
 
   const stopAnimation = () => {
     if (intervalId) {
-      clearInterval(intervalId)
+      clearTimeout(intervalId)
       intervalId = null
     }
   }

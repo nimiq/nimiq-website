@@ -60,16 +60,14 @@ export function useCarousel(options: CarouselOptions = {}) {
   })
 
   if (keyboard) {
-    onMounted(() => {
-      useEventListener('keydown', (e: KeyboardEvent) => {
-        if (!scroller.value?.contains(document.activeElement as Node))
-          return
-        e.preventDefault()
-        if (e.key === 'ArrowRight')
-          slideNext()
-        else if (e.key === 'ArrowLeft')
-          slidePrev()
-      })
+    useEventListener('keydown', (e: KeyboardEvent) => {
+      if (!scroller.value?.contains(document.activeElement as Node))
+        return
+      e.preventDefault()
+      if (e.key === 'ArrowRight')
+        slideNext()
+      else if (e.key === 'ArrowLeft')
+        slidePrev()
     })
   }
 

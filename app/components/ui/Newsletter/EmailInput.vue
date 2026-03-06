@@ -17,7 +17,7 @@ function submitForm() {
     return
   }
 
-  navigateTo({ path: '/newsletter', query: { email: email.value } })
+  return navigateTo({ path: '/newsletter', query: { email: email.value } })
 }
 </script>
 

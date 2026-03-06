@@ -31,7 +31,7 @@ watchEffect(() => {
   }
   else {
     const parent = pill.value.parentElement!.getBoundingClientRect()
-    const { width, left } = document.querySelector(`button[data-state="active"]`)?.getBoundingClientRect() || { width: 0, left: 0 }
+    const { width, left } = pill.value.parentElement!.querySelector(`button[data-state="active"]`)?.getBoundingClientRect() || { width: 0, left: 0 }
     pill.value.style.width = `${width}px`
     pill.value.style.left = `${left - parent.left}px`
     pill.value.style.transform = 'scale(1)'
@@ -42,12 +42,10 @@ watchEffect(() => {
 </script>
 
 <template>
-  <ul class="action-selector flex gap-1 self-end ring-1 ring-blue/80 p-1 rounded-full bg-white h-max relative z-10" style="box-shadow: 0 0 32px #0682CA;">
-    <li aria-hidden="true" class="contents">
-      <div ref="pill" class="rounded-full bg-darkblue transition-all duration-400 ease-in-out inset-y-[3px] absolute" />
-    </li>
+  <ul class="action-selector flex gap-1 w-max max-w-full mx-auto justify-self-center ring-1 ring-blue/80 p-1 rounded-full bg-white h-max relative z-10" style="box-shadow: 0 0 32px #0682CA;">
+    <div ref="pill" class="rounded-full bg-darkblue transition-all duration-400 ease-in-out inset-y-[3px] absolute" />
     <li v-for="({ icon, label, value, color }) in states" :key="value" class="dark" :style="{ '--c': `var(--color-${color})` }" scheme-dark>
-      <button class="flex gap-0.5 items-center p-0.5 pr-3 rounded-full bg-transparent" :aria-label="label" :data-state="value === state ? 'active' : undefined" type="button" @click="state = value">
+      <button class="flex gap-0.5 items-center p-0.5 pr-3 rounded-full bg-transparent relative z-1" :aria-label="label" :data-state="value === state ? 'active' : undefined" type="button" @click="state = value">
         <Icon class="selector-icon m-2 transition-colors" :class="value === state ? 'text-[var(--c)]' : 'text-neutral-800'" :name="icon" />
         <span class="font-semibold transition-colors" :class="value === state ? 'font-bold text-white' : ''">{{ label }}</span>
       </button>
