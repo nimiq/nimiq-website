@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Bounty - Nimiq</title>
+</head>
+<body>
+    <div class="container">
+        <!-- First Newsletter Section -->
+        <section class="newsletter-section">
+            <h2>Join Our Newsletter</h2>
+            <p>Stay updated with the latest news and updates!</p>
+            <form action="/submit-newsletter" method="post">
+                <input type="email" name="email" required placeholder="Enter your email">
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+
+        <!-- Other Content -->
+
+        <!-- Duplicate Newsletter Section (Remove this part) -->
+        <section class="newsletter-section duplicate">
+            <h2>Join Our Newsletter</h2>
+            <p>Stay updated with the latest news and updates!</p>
+            <form action="/submit-newsletter" method="post">
+                <input type="email" name="email" required placeholder="Enter your email">
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript to remove the duplicate newsletter section
+        document.addEventListener('DOMContentLoaded', function() {
+            const duplicateSection = document.querySelector('.newsletter-section.duplicate');
+            if (duplicateSection) {
+                duplicateSection.remove(); // Remove the duplicate section
+            }
+        });
+    </script>
+</body>
+</html>
