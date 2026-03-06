@@ -119,7 +119,7 @@ After the Login File was successfully downloaded, a new call-to-action appears. 
 
 **Recovery Words:** The backup of your account
 
-Both** Login File** and **Recovery Words** come with short but informative advice on the security implications and on how to best handle these presumably unknown concepts of crypto-security.
+Both**Login File** and **Recovery Words** come with short but informative advice on the security implications and on how to best handle these presumably unknown concepts of crypto-security.
 
 ## Super fast payments: The Nimiq Shop-Checkout
 

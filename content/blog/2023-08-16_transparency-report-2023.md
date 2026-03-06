@@ -37,32 +37,32 @@ The use of funds from the end of July 2022 up to the end of July 2023 breaks dow
 - ~US$ 1’666.7K (fiat + crypto equivalent at time of expense)
 - ~52.9% of total (~61.6% of non-extraordinary)
 
-**Marketing, Content, Community: **This includes expenses related to creating and distributing educational video and written content, branding and sponsorships, swag production, user and consumer surveys, community rewards and campaigns, social media management and industry conference expenses. It also includes the membership contribution to the Blockchain for Europe organization and supporting the European “Kryptostadt” and Latin American “Criptociudad” ( translate into “Cryptocity”) efforts that aid NIM adoption. In addition, this covers community programs such as the Bug Bounty Program and the Community Project Funding with a reserve of US$ 50K for the next 12 months. An amount of US$ 50K is reserved and due pending listing related pre-staking provisions.
+**Marketing, Content, Community:**This includes expenses related to creating and distributing educational video and written content, branding and sponsorships, swag production, user and consumer surveys, community rewards and campaigns, social media management and industry conference expenses. It also includes the membership contribution to the Blockchain for Europe organization and supporting the European “Kryptostadt” and Latin American “Criptociudad” ( translate into “Cryptocity”) efforts that aid NIM adoption. In addition, this covers community programs such as the Bug Bounty Program and the Community Project Funding with a reserve of US$ 50K for the next 12 months. An amount of US$ 50K is reserved and due pending listing related pre-staking provisions.
 
 - ~US$ 383.3K (fiat + crypto equivalent at time of expense)
 - ~12.2% of total (~14.2% of non-extraordinary)
 
-**Legal, Administration, Taxes: **This includes legal, tax and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from Lara Legal Corp, Annerton and additional task specific international legal counsel i.e. for pursuing required licenses, trademarking, terms of services, privacy policies, legal memorandums, etc.
+**Legal, Administration, Taxes:**This includes legal, tax and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from Lara Legal Corp, Annerton and additional task specific international legal counsel i.e. for pursuing required licenses, trademarking, terms of services, privacy policies, legal memorandums, etc.
 
 - ~US$ 136.9K (fiat + crypto equivalent at time of expense)
 - ~4.3% of total (~5.1% of non-extraordinary)
 
-**Digital Operations, Equipment: **This includes expenses related to hosting, hardware, software, licensing, communications, domains, and other development tools and platforms.
+**Digital Operations, Equipment:**This includes expenses related to hosting, hardware, software, licensing, communications, domains, and other development tools and platforms.
 
 - ~US$ 144.3K (fiat + crypto equivalent at time of expense)
 - ~4.6% of total (~5.3% of non-extraordinary)
 
-**Travel, F&B: **This includes expenses related to transportation, hotel, food/beverage, and team building.
+**Travel, F&B:**This includes expenses related to transportation, hotel, food/beverage, and team building.
 
 - ~US$ 193.8K (fiat + crypto equivalent at time of expense)
 - ~6.2% of total (~7.2% of non-extraordinary)
 
-**Physical Operations, Rent: **This includes expenses related to workspace, hackathon accommodation, and maintenance.
+**Physical Operations, Rent:**This includes expenses related to workspace, hackathon accommodation, and maintenance.
 
 - ~US$ 182.3K (fiat + crypto equivalent at time of expense)
 - ~5.8% of total (~6.7% of non-extraordinary)
 
-**Extraordinary: **This includes fees for listing integration efforts and continued setup of the technology and infrastructure as a service for Nimiq OASIS.
+**Extraordinary:**This includes fees for listing integration efforts and continued setup of the technology and infrastructure as a service for Nimiq OASIS.
 
 - ~US$ 441.5K (fiat + crypto equivalent at time of expense)
 - ~14.0% of total
@@ -79,7 +79,7 @@ This second part describes the distribution of NIM tokens, showing details of ac
 
 Live summary of NIM supply: [http://nim.sh/stats/supply.txt](http://nim.sh/stats/supply.txt)
 
-The total final NIM supply over ~100 years by design of the Nimiq Blockchain Proof-of-Work protocol (see [Nimiq Whitepaper 1.0](https://www.nimiq.com/whitepaper/?version=1.0)): **21'000'000'000 NIM. **The circulating supply as of the end of July was ~11’001’300’000 NIM (~52.4% of final total).
+The total final NIM supply over ~100 years by design of the Nimiq Blockchain Proof-of-Work protocol (see [Nimiq Whitepaper 1.0](https://www.nimiq.com/whitepaper/?version=1.0)): **21'000'000'000 NIM.**The circulating supply as of the end of July was ~11’001’300’000 NIM (~52.4% of final total).
 
 ### Details
 

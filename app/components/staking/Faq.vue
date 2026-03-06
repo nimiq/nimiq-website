@@ -12,7 +12,7 @@ defineProps<{ items: FaqItem[], forumLink?: ForumLink, title?: string }>()
 </script>
 
 <template>
-  <div class="flex flex-col md:items-center">
+  <div id="faq" class="flex flex-col md:items-center">
     <h2 v-if="title" class="w-max text-lg nq-label mb-6">
       {{ title }}
     </h2>

@@ -25,7 +25,7 @@ defineProps<{ data: WalletHover }>()
 
     <div class="row-span-2 relative">
       <div class="w-[125%] h-[145%] border-[16px] border-solid border-neutral-400 rounded-[24px] inset-0 absolute">
-        <NuxtImg class="rounded-2 w-full" :src="data.screenshot" :alt="data.title" />
+        <NuxtImg class="rounded-2 w-full" :src="data.screenshot" :alt="`Screenshot of ${data.title}`" />
       </div>
     </div>
 
@@ -35,7 +35,7 @@ defineProps<{ data: WalletHover }>()
       </p>
       <ul v-if="data.poweredByLogos?.length" class="flex gap-4 mt-2 md:mt-3">
         <li v-for="({ logo }, i) in data.poweredByLogos" :key="i">
-          <NuxtImg class="w-full h-6 md:h-8 object-contain" :src="logo" />
+          <NuxtImg class="w-full h-6 md:h-8 object-contain" :src="logo" alt="" />
         </li>
       </ul>
     </div>

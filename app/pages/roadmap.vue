@@ -9,18 +9,16 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/roadmap' }] })
 
 <template>
   <NuxtLayout footer-bg-color="white">
-    <main>
-      <section class="bg-neutral-0">
-        <Hero v-bind="page.hero" />
-      </section>
+    <section class="bg-neutral-0">
+      <Hero v-bind="page.hero" />
+    </section>
 
-      <section class="nq-no-color bg-neutral-0" style="--px: 0; --nq-max-width: none">
-        <RoadmapSection v-bind="page.roadmap" />
-      </section>
+    <section class="nq-no-color bg-neutral-0" style="--px: 0; --nq-max-width: none">
+      <RoadmapSection v-bind="page.roadmap" />
+    </section>
 
-      <section class="bg-neutral-0">
-        <BannerNewsletter v-bind="page.newsletter" />
-      </section>
-    </main>
+    <section class="bg-neutral-0">
+      <BannerNewsletter v-bind="page.newsletter" />
+    </section>
   </NuxtLayout>
 </template>

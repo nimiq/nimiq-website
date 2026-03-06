@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   const requestedCurrency = (query.currency as FiatCurrency) || FiatCurrency.USD
 
-  // Only USD, EUR, GBP supported by CryptoCompare for NIM
   const currency: HistohourSupportedCurrency = histohourSupportedCurrencies.includes(requestedCurrency as HistohourSupportedCurrency)
     ? requestedCurrency as HistohourSupportedCurrency
     : FiatCurrency.USD
@@ -42,7 +41,7 @@ export default defineEventHandler(async (event) => {
       throw createError({ statusCode: 500, message: 'Failed to fetch hourly volume data' })
 
     const points = res.Data.Data
-    const recentFirst = [...points].reverse()
+    const recentFirst = points.toReversed()
     const currentDayPoints = recentFirst.slice(0, 24)
     const previousDayPoints = recentFirst.slice(24, 48)
 
@@ -54,5 +53,5 @@ export default defineEventHandler(async (event) => {
       : 0
 
     return { volume: currentVolume, volumeChange, currency }
-  }, 300) // 5 minutes
+  }, 300)
 })

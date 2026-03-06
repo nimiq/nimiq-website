@@ -17,7 +17,7 @@ const statusMessage = computed(() => {
 
 const route = useRoute()
 const router = useRouter()
-const { redirectAllErrors } = useRuntimeConfig().public
+const { redirectAllErrors } = useSafeRuntimeConfig().public
 
 const isDeveloperPage = computed(() => {
   return route.path.startsWith('/developer') || route.path.startsWith('/developers')
@@ -58,7 +58,6 @@ const paragraph = computed(() => {
   }
 })
 
-// Error pages need proper SEO handling to prevent search engine confusion
 useSeoMeta({
   title: isBlogPostError.value ? 'Article not found' : `${statusCode.value} - ${statusMessage.value}`,
   description: computed(() => paragraph.value),
@@ -73,7 +72,6 @@ useSeoMeta({
   twitterDescription: computed(() => paragraph.value),
 })
 const stack = error.stack
-// Create error copy without stack for display (avoid showing stack twice)
 const errorWithoutStack = computed(() => {
   const { stack: _, ...rest } = { ...error }
   return rest

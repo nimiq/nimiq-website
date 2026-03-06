@@ -23,7 +23,7 @@ const ease = [0.25, 0.46, 0.45, 0.94] as const
       </motion.div>
       <motion.div v-if="learnMoreLink" :initial="{ opacity: 0, y: 16 }" :while-in-view="inView" :viewport="viewport" :transition="{ duration: 0.3, ease, delay: 0.2 }">
         <NuxtLink class="mt-6 md:mt-8 nq-arrow nq-pill-lg nq-pill-blue relative z-[1]" :to="learnMoreLink">
-          Learn more
+          Read the staking FAQ
         </NuxtLink>
       </motion.div>
     </div>

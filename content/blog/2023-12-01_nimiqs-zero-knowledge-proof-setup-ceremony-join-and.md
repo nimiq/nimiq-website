@@ -15,11 +15,11 @@ Check out our [latest blog update on Nimiq Proof-of-Stake](https://www.nimiq.com
 
 In this post, we'll dive deeper into the upcoming Zero-Knowledge Proof Setup Ceremony. This cutting-edge cryptographic process is crucial for the secure and trustless creation of proving and verifying keys, which will be used in Nimiq Proof-of-Stake for generating ZKP Proofs. Let’s start by exploring how this technology acts as a fundamental building block of the Blockchain.
 
-### Recursive Zero-Knowledge Proofs
+## Recursive Zero-Knowledge Proofs
 
 To understand how recursive ZKPs function within the blockchain, imagine a series of proofs where each new one validates the previous, creating an unbroken chain of verification. This "recursive" approach significantly reduces the time and computational resources required for syncing and leverages the constant proof size to decrease the growth of Blockchain data in comparison to a UTXO-based chain. Prover nodes, vital in this system, generate these proofs using specific proving keys. Nodes participating in the Nimiq network then use the corresponding verifying keys to verify these proofs, all without needing to access any other data, hence the term "zero-knowledge".
 
-### Introduction to the ZKP Ceremony
+## Introduction to the ZKP Ceremony
 
 Zero-knowledge proof verification ensures a smooth and efficient syncing process for users. However, as we've mentioned earlier, the foundation of this verification process lies in the proving and verifying keys. To generate these keys in a decentralized manner, a setup ceremony is essential. This ceremony helps to diminish the element of trust among multiple participants.
 
@@ -27,7 +27,7 @@ As the Nimiq Blockchain developers orchestrate this ceremony, contributors will 
 
 The beauty of this process lies in its collaborative nature. The more contributors there are, the more widely the toxic waste is distributed. This distribution is crucial because it reduces the risk of generating unsound or false proofs. If a single entity were to control all the toxic waste, the system's integrity could be compromised. However, widespread participation ensures the proofs' integrity and security. As long as a single participant is honest and destroys their toxic waste, the system’s integrity is preserved.
 
-### How to Participate
+## How to Participate
 
 The first step is to generate the key pair required to participate in the ceremony, the instructions to do so can be found [here](https://forum.nimiq.community/t/instructions-to-participate-in-the-nimiq-zero-knowledge-proof-ceremony/1935). After generating the key pair, the ceremony will unfold in two phases. Participants can join either one or both rounds, but we encourage our users to participate in both! It’s worth noting that the outcome of Phase 1 is not only beneficial for Nimiq, but is designed to be reusable in other projects, contributing to advancements in the crypto space. Phase 1 holds significance for the entire community, while Phase 2 exclusively supports Nimiq. Team Nimiq will guide contributors through every step of the setup process.
 

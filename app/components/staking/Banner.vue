@@ -8,14 +8,12 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
     class="w-full max-w-none relative pb-0"
     style="padding: var(--f-pt) var(--f-px) 0;"
   >
-    <!-- Green background from ripple only -->
     <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden">
       <AnimatedCircleRipple class="w-[110vw] absolute bottom-[-300px] left-[-5vw] pointer-events-none" style="max-width: none" />
       <div class="absolute inset-x-0 top-0 h-[200px] bg-linear-to-b from-neutral-0 to-transparent pointer-events-none" />
       <div class="absolute inset-x-0 bottom-0 h-[200px] bg-linear-to-b from-transparent to-green pointer-events-none" />
     </div>
 
-    <!-- White card — extends below the green section -->
     <div
       v-for="(item, i) in items" :key="i"
       class="staking-banner-card relative grid grid-cols-1 lg:grid-cols-[1fr_max-content] lg:grid-flow-col gap-x-8 py-16 px-8 md:p-16 lg:p-[72px] rounded-2 bg-neutral-0 shadow mx-auto"

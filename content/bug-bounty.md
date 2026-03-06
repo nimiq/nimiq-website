@@ -100,13 +100,13 @@ The Nimiq Keyguard is designed to be the place where the keys of the users are s
 
 The source code for the Keyguard is available [here](https://github.com/nimiq/keyguard) in case it can help you to find security issues with it, but please keep in mind we're looking for bugs that can be actually exploitable in the current deployment of the Keyguard (i.e. in [https://keyguard.nimiq.com/](https://keyguard.nimiq.com/)).
 
-[](https://github.com/nimiq/core-rs-albatross/)
+[Core PoS source code](https://github.com/nimiq/core-rs-albatross/)
 
 The src/ folder on the albatross branch of this repository has all the source code for our official Rust implementation that we look forward to being tested.
 
 Check out the [developers documentation](https://www.nimiq.dev) for more information and steps on running your own client. There is also a running version of this code in the testnet, you can find the instructions to test against it in the "Blockchain testnet" section below.
 
-[](https://github.com/nimiq/ledger-app-nimiq)
+[Nimiq Ledger App source code](https://github.com/nimiq/ledger-app-nimiq)
 
 The Nimiq Ledger App is designed to allow [Ledger](https://www.ledgerwallet.com) users to create a Nimiq Account with the private key safely stored in their hardware wallet.
 

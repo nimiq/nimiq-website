@@ -13,7 +13,7 @@ This adds a new usecase to Nimiq Blockchain by resulting in an easy-to-use votin
 
 The results are in for the tightly contested election for the Community Funding Board Representatives. Team Nimiq would like to thank all of the 113 members of the community who participated in the democratic process and to all the candidates who put themselves forward to represent our great community. Here is a time lapse of the voting process.
 
-![](/assets/images/prismic/510ad49b-351f-4788-bfa5-4932da6602a2_blog_new-community-board-and-6th-meeting_2.gif)
+[Animated meeting graphic](/assets/images/prismic/510ad49b-351f-4788-bfa5-4932da6602a2-blog-new-community-board-and-6th-meeting-2.gif)
 
 The voting process was held using a web application that records all votes on the Nimiq Blockchain. The voting app was built by Community Representative Chugwig and is hosted by both Chugwig and Smitop. This adds a new usecase to the Nimiq Blockchain by resulting in an easy-to-use voting platform with a high level of transparency and decentralization since all votes are public, not controlled by any single individual/entity and will be stored in the Nimiq Blockchain for posterity. Here is a summary of the final results:
 
@@ -31,8 +31,8 @@ We’d like to give special thanks to **Smitop and SirChef** for their service t
 
 Both previous and current community board members were present for the latest meeting to ensure a smooth transition between boards. The following topics were discussed:
 
-- **What if a Board member submits a project proposal for funding? **It was decided that future board members would be eligible to submit a proposal for funding. However, they would not be able to vote on it themselves due to there being a conflict of interests. To bring the number of board votes back up to six, it was decided that an alumni board member would fill the empty seat for the purposes of voting.
-- **Proactive outreach to existing Nimiq ecosystem projects. **The Board agreed to increase the scope of the Community Project Funding initiative by reaching out to existing Nimiq projects to offer technical, design and funding support. It was also agreed that those who are adding value to the Nimiq ecosystem will be sought out for rewards to recognize their efforts.
+- **What if a Board member submits a project proposal for funding?**It was decided that future board members would be eligible to submit a proposal for funding. However, they would not be able to vote on it themselves due to there being a conflict of interests. To bring the number of board votes back up to six, it was decided that an alumni board member would fill the empty seat for the purposes of voting.
+- **Proactive outreach to existing Nimiq ecosystem projects.**The Board agreed to increase the scope of the Community Project Funding initiative by reaching out to existing Nimiq projects to offer technical, design and funding support. It was also agreed that those who are adding value to the Nimiq ecosystem will be sought out for rewards to recognize their efforts.
 - **Small changes to future proposal submissions**. The Board discussed optimizing proposal submissions and decided that the ideal proposal would start out small to begin with, and that additional funding could be requested to add more features. It was also agreed that developer rewards should not take the form of one large figure. Instead, future proposals should include milestones for suggested developer rewards.
 
 ## Evaluated Projects
@@ -41,7 +41,7 @@ This month, two community projects were discussed:
 
 ### Vrimiq
 
-- **Project purpose: **To create a Nimiq focused VR social space to bring Nimiq supporters together. VRimiq is envisioned to run directly in a browser on any device and with or without a VR-headset.
+- **Project purpose:**To create a Nimiq focused VR social space to bring Nimiq supporters together. VRimiq is envisioned to run directly in a browser on any device and with or without a VR-headset.
 - **Development stage:** Concept.
 - **Project team:** Telegram user arnputz.
 - **Previously evaluated?** Yes.
@@ -55,8 +55,8 @@ The Board requested modifications to be made. The developer reward is to be remo
 ### Voting Celebration Giveaway
 
 - **Project Purpose:** To reward those that participated in the first Community Funding Board election with a NIM airdrop.
-- **Development stage: **Working product.
-- **Project team: **Chugwig.
+- **Development stage:**Working product.
+- **Project team:**Chugwig.
 - **Previously evaluated?** No.
 
 ![](/assets/images/prismic/6c911aa1-addb-4730-85a4-a023a4d79e50_blog_new-community-board-and-6th-meeting_5.png)

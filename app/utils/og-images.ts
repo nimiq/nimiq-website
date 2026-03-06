@@ -8,7 +8,7 @@ interface SetOgImageOptions {
 }
 
 export function setOgImage({ image, title, subline, type = 'page' }: SetOgImageOptions) {
-  if (useRuntimeConfig().public.useNuxtHub)
+  if (useSafeRuntimeConfig().public.useNuxtHub)
     return
 
   if (image) {
@@ -18,7 +18,7 @@ export function setOgImage({ image, title, subline, type = 'page' }: SetOgImageO
     const componentMap: Record<OgImageType, string> = {
       home: 'OgImageHome',
       page: 'OgImagePage',
-      blog: 'OgImagePage', // Use page component for blog as fallback
+      blog: 'OgImagePage',
     }
 
     defineOgImageComponent(componentMap[type], { title, subline })

@@ -84,7 +84,7 @@ const rewards = computed(() => {
 
         <div class="flex gap-2 items-center flex-max-md:justify-center max-md:mt-2">
           <span class="w-max">Total stake</span>
-          <UiTooltip>
+          <UiTooltip aria-label="More information about total stake">
             <p>Choose a staking supply scenario or use live data</p>
           </UiTooltip>
         </div>
@@ -101,7 +101,7 @@ const rewards = computed(() => {
           <p class="w-max">
             {{ periodLabel || 'Staking period' }}
           </p>
-          <UiTooltip>
+          <UiTooltip aria-label="More information about the staking period">
             <p>Select how long you plan to stake your NIM</p>
           </UiTooltip>
         </div>
@@ -111,7 +111,7 @@ const rewards = computed(() => {
         <div class="flex items-center justify-between text-neutral-800 w-full">
           <div class="flex items-center gap-3">
             <p>{{ rewardsLabel || 'Return in NIM' }}*</p>
-            <UiTooltip>
+            <UiTooltip aria-label="More information about estimated rewards">
               <p>Estimated rewards based on current network parameters</p>
             </UiTooltip>
           </div>
@@ -133,7 +133,7 @@ const rewards = computed(() => {
         <span class="nq-toggle-handle" />
       </span>
       <span class="mr-1.5">Re-stake rewards</span>
-      <UiTooltip>
+      <UiTooltip aria-label="More information about restaking rewards">
         <p>Automatically compound your staking rewards</p>
       </UiTooltip>
     </label>

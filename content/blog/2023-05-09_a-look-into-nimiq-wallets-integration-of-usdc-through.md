@@ -37,9 +37,9 @@ To reduce the fee as much as possible, the Nimiq Wallet scouts different relay s
 
 We calculate the transaction fees, convert them to USDC using the MATIC-USDC exchange rate on Uniswap, and display the fee to the user prior to the transaction. The fee potentially changes with every Polygon block, so we update it regularly until the user confirms the transaction. The final fee includes an additional 10% buffer for Uniswap, which is refunded if not used.
 
-To calculate the fees, we use the[ Quoter Contract](https://docs.uniswap.org/contracts/v3/reference/periphery/lens/Quoter) and Uniswap pool registered in the USDC Transfer Contract.
+To calculate the fees, we use the [Quoter Contract](https://docs.uniswap.org/contracts/v3/reference/periphery/lens/Quoter) and Uniswap pool registered in the USDC Transfer Contract.
 
-The fee does not depend on the amount sent, so sending 1 USDC will have the same fee as sending 1,000,000 USDC. You can view the code for the function that computes the fees [here](https://github.com/nimiq/wallet/blob/6a23f3defaeb69f76f65c8f9e56bc08995790801/src/ethers.ts#L544).[ ](https://github.com/nimiq/wallet/blob/usdc/src/ethers.ts#L327)
+The fee does not depend on the amount sent, so sending 1 USDC will have the same fee as sending 1,000,000 USDC. You can view the code for the function that computes the fees [here](https://github.com/nimiq/wallet/blob/6a23f3defaeb69f76f65c8f9e56bc08995790801/src/ethers.ts#L544).
 
 ### Step 3: The user creates the request
 

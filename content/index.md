@@ -76,7 +76,7 @@ staking:
   stakingNote: "average return based on the current distribution. This is not financial advice."
   actions:
     - href: /staking
-      label: Learn more
+      label: Explore staking
       variant: tertiary
 community:
   headline: Join our live community

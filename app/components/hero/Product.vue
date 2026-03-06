@@ -13,10 +13,8 @@ const props = defineProps<{
 const displayTitle = computed(() => props.title || props.headline || '')
 const displayDescription = computed(() => props.description || props.subline)
 const displayLink = computed(() => {
-  // Prefer linkHref/linkLabel if provided (explicit naming)
   if (props.linkHref)
     return { href: props.linkHref, label: props.linkLabel }
-  // link can be an object {href, label} or just a string URL
   if (typeof props.link === 'object')
     return props.link
   if (typeof props.link === 'string')

@@ -60,11 +60,11 @@ If you think you are up to the challenge, then you should know that:
 
 Sounds like something you want to be part of?
 
-**Well, put yourself forward as a community representative candidate before midnight, March 2 UTC. **
+**Well, put yourself forward as a community representative candidate before midnight, March 2 UTC.**
 
 ![](/assets/images/prismic/cf3b303a-aa0f-4dcd-ba77-61b0a82a2e89_blog_community-funding-board-10th-meeting_5.png)
 
-All you need to do is to email [richy@nimiq.com](mailto:Richy@Nimiq.com) or contact Richy on Telegram **@RichyBC **with a short summary of why you think you’ll make an awesome Community Funding Board Representative. Each new candidate will be announced on [Nimiq’s Twitter account](https://twitter.com/nimiq) in real-time. So make sure you keep your eyes peeled there and start thinking about which candidate you want to vote for. **Candidate submissions will close on March 2 at 23:59 UTC.**
+All you need to do is to email [richy@nimiq.com](mailto:Richy@Nimiq.com) or contact Richy on Telegram **@RichyBC**with a short summary of why you think you’ll make an awesome Community Funding Board Representative. Each new candidate will be announced on [Nimiq’s Twitter account](https://twitter.com/nimiq) in real-time. So make sure you keep your eyes peeled there and start thinking about which candidate you want to vote for. **Candidate submissions will close on March 2 at 23:59 UTC.**
 
 ## When Elections?
 

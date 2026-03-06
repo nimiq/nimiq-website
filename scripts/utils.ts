@@ -6,10 +6,6 @@ import process from 'node:process'
 import { asText, serialize, wrapMapSerializer } from '@prismicio/richtext'
 import { consola } from 'consola'
 
-/**
- * Normalize Prismic image filename
- * Reuses logic from modules/prismic-images.ts
- */
 export function normalizeFileName(fileName: string): string {
   // Extract base filename and extension, removing Prismic URL parameters
   const extensionMatch = fileName.match(/\.(jpg|jpeg|png|gif|webp|svg|avif)/i)
@@ -31,9 +27,6 @@ export function normalizeFileName(fileName: string): string {
 
 const IMAGE_FOLDER = 'assets/images/prismic'
 
-/**
- * Convert Prismic CDN URL to local path
- */
 export function prismicImageToLocalPath(url: string): string {
   if (!url?.includes('prismic'))
     return url
@@ -41,9 +34,6 @@ export function prismicImageToLocalPath(url: string): string {
   return `/${IMAGE_FOLDER}/${fileName}`
 }
 
-/**
- * Convert Prismic CDN URL to local path for blog images
- */
 export function blogImageToLocalPath(url: string, blogSlug: string): string {
   if (!url?.includes('prismic'))
     return url
@@ -57,11 +47,7 @@ function cleanHeadingText(text: string): string {
   return text.replace(/^\*\*(.+)\*\*$/, '$1')
 }
 
-/**
- * Sanitize URLs to handle malformed URIs that cause MDC parser errors
- * - Large data URIs with complex content can cause decoding issues
- * - URLs with embedded markdown syntax (e.g., %[text](url)) are malformed
- */
+// Handles malformed URIs (large data URIs, embedded markdown syntax) that cause MDC parser errors
 function sanitizeUrl(url: string, linkText: string): string {
   if (!url)
     return url
@@ -117,28 +103,18 @@ const markdownSerializer = wrapMapSerializer({
   span: ({ text }) => text,
 })
 
-/**
- * Convert Prismic rich text to markdown
- */
 export function richTextToMarkdown(richText: RichTextField): string {
   if (!richText || richText.length === 0)
     return ''
   return serialize(richText, markdownSerializer).join('')
 }
 
-/**
- * Convert rich text to plain text (for frontmatter)
- */
 export function richTextToPlainText(richText: RichTextField): string {
   if (!richText || richText.length === 0)
     return ''
   return asText(richText)
 }
 
-/**
- * Sanitize HTML links in markdown content to fix malformed URLs
- * Fixes patterns like %[text](url) that got embedded in URL encoding
- */
 export function sanitizeMarkdownHtmlLinks(markdown: string): string {
   // Fix malformed URLs in HTML href attributes
   // Pattern: href="...%[text](url)..." → href="...%2Ftext..."
@@ -152,10 +128,7 @@ export function sanitizeMarkdownHtmlLinks(markdown: string): string {
   )
 }
 
-/**
- * Convert Prismic rich text to plain text (no markdown headers)
- * Used for page YAML fields where headers are added by components
- */
+// Plain text without headers, for page YAML fields where components add their own headers
 export function richTextToPlainTextNoHeaders(richText: RichTextField): string {
   if (!richText || richText.length === 0)
     return ''
@@ -164,9 +137,6 @@ export function richTextToPlainTextNoHeaders(richText: RichTextField): string {
   return markdown.replace(/^#{1,6}\s+/gm, '').trim()
 }
 
-/**
- * Convert Prismic CDN URL to local path for exchanges
- */
 export function exchangeLogoToLocalPath(url: string, slug: string): string {
   if (!url?.includes('prismic'))
     return url
@@ -175,9 +145,6 @@ export function exchangeLogoToLocalPath(url: string, slug: string): string {
   return `/images/exchanges/${slug}.${ext}`
 }
 
-/**
- * Download image from URL and save locally
- */
 export async function downloadImage(url: string, localPath: string): Promise<void> {
   if (!url)
     return

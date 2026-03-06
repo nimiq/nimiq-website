@@ -85,11 +85,14 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
 
         <PaginationRoot class="mt-32 col-span-full" :page="pageIndex" :total="totalPages * itemsPerPage" :items-per-page="itemsPerPage" show-edges>
           <PaginationList v-slot="{ items }" class="flex gap-16 items-center justify-center">
-            <PaginationPrev class="pagination-item" :class="{ 'pagination-disabled': pageIndex <= 1 }" as-child>
-              <NuxtLink :to="pageIndex > 1 ? (pageIndex === 2 ? '/blog' : `/blog?page=${pageIndex - 1}`) : undefined">
+            <PaginationPrev v-if="pageIndex > 1" class="pagination-item" as-child>
+              <NuxtLink :to="pageIndex === 2 ? '/blog' : `/blog?page=${pageIndex - 1}`" aria-label="Previous page">
                 <Icon class="text-[9px] opacity-70" name="nimiq:chevron-left" />
               </NuxtLink>
             </PaginationPrev>
+            <span v-else class="pagination-item pagination-disabled" aria-hidden="true">
+              <Icon class="text-[9px] opacity-70" name="nimiq:chevron-left" />
+            </span>
 
             <template v-for="(pageItem, index) in items">
               <PaginationListItem v-if="pageItem.type === 'page'" :key="index" class="pagination-item" :value="pageItem.value" as-child>
@@ -102,11 +105,14 @@ useSeoMeta({ description: 'Latest articles and insights from the Nimiq team' })
               </PaginationEllipsis>
             </template>
 
-            <PaginationNext class="pagination-item" :class="{ 'pagination-disabled': pageIndex >= totalPages }" as-child>
-              <NuxtLink :to="pageIndex < totalPages ? `/blog?page=${pageIndex + 1}` : undefined">
+            <PaginationNext v-if="pageIndex < totalPages" class="pagination-item" as-child>
+              <NuxtLink :to="`/blog?page=${pageIndex + 1}`" aria-label="Next page">
                 <Icon class="text-[9px] opacity-70" name="nimiq:chevron-right" />
               </NuxtLink>
             </PaginationNext>
+            <span v-else class="pagination-item pagination-disabled" aria-hidden="true">
+              <Icon class="text-[9px] opacity-70" name="nimiq:chevron-right" />
+            </span>
           </PaginationList>
         </PaginationRoot>
       </div>

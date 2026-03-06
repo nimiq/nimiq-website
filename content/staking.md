@@ -11,7 +11,7 @@ hero:
 quote:
   text: "'**Staking**' means locking up NIM to help secure the network. Get new NIM as a reward. Unstake your NIM at any time."
   author: Nimiq
-  learnMoreLink: https://nimiq.com/staking#faq
+  learnMoreLink: /staking#faq
 calculator:
   headline:
     label: Staking Calculator

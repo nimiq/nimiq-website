@@ -19,7 +19,7 @@ To get this initiative off the ground, we are looking for three members of the N
 
 The Nimiq team proposes:
 
-- **Setting up the “Community Funding Board”: **Made up of\*\* \*\*six members: Three from the Nimiq team & three community representatives. Project funding proposals will be granted if more than 50% of the board accept the funding proposal.
+- **Setting up the “Community Funding Board”:**Made up of\*\* \*\*six members: Three from the Nimiq team & three community representatives. Project funding proposals will be granted if more than 50% of the board accept the funding proposal.
 - **Submitting “Community Funding Proposals”:** These can be submitted by anyone in the Nimiq community.
 
 ## What’s expected of board members?

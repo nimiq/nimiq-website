@@ -8,7 +8,6 @@ function handlePlaygroundError(error: Error) {
 }
 function handlePlaygroundMessage(_message: WalletPlaygroundMessage) {}
 
-// Desktop background parallax clouds
 function getScrollbarWidth(): number {
   const outer = document.createElement('div')
   outer.style.visibility = 'hidden'
@@ -67,14 +66,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Desktop -->
   <div class="w-full relative max-md:hidden">
-    <AnimatedCloudyBg class="h-[calc(100%+400px)] max-w-screen pointer-events-none -top-[400px]" />
+    <LazyAnimatedCloudyBg class="h-[calc(100%+400px)] max-w-screen pointer-events-none -top-[400px]" />
     <div class="mx-auto size-full" stack>
-      <!-- Ribbon fold -->
       <div class="self-start justify-self-end -mr-[18px] mt-12 w-11 origin-bottom-right -rotate-45 z-1 border-[22px] border-x-transparent border-t-0 border-[#EC991C]" aria-hidden />
 
-      <!-- Playground Background -->
       <div ref="containerRef" class="playground-background" :style="{ '--scrollbar-width': `${scrollbarWidth}px` }">
         <div class="metawrapper">
           <div class="metacontainer">
@@ -112,30 +108,24 @@ onMounted(() => {
       </div>
 
       <div class="pt-12 px-2.5 pb-2.5 size-full z-1">
-        <div v-if="playgroundUrl" class="rounded-1 size-full">
+        <div class="rounded-1 size-full">
           <ShowcaseWalletPlaygroundIframe :playground-url="playgroundUrl" height="600px" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
-        </div>
-        <div v-else class="rounded-1 size-full">
-          <ShowcaseWalletPlaygroundIframe height="600px" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
         </div>
       </div>
 
-      <!-- Ribbon -->
       <div class="self-start justify-self-end -mr-[18px] mt-[11px] w-max relative z-10">
-        <UiFloatingStars class="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 z-1" />
+        <LazyUiFloatingStars class="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 z-1" />
         <div class="bg-[#E9B213] text-base md:text-lg text-white rounded-1.5 rounded-br-0 font-semibold ml-auto px-5 py-4 w-max relative z-2">
           Try live preview
         </div>
       </div>
 
-      <!-- Selector -->
       <ShowcaseWalletActionSelector class="translate-y-[calc(50%-10px)] self-end" />
     </div>
 
     <ShowcaseWalletCurrencies class="mt-6 md:mt-8" />
   </div>
 
-  <!-- Mobile -->
   <div class="pb-8 relative md:hidden">
     <div class="mobile-bg left-[calc(var(--px)*-1)] w-[calc(100%+var(--px)*2)] inset-0 -top-40 absolute z--1" />
 
@@ -145,7 +135,7 @@ onMounted(() => {
         <ShowcaseWalletPlaygroundIframe :playground-url height="100%" @message="handlePlaygroundMessage" @error="handlePlaygroundError" />
       </div>
     </div>
-    <ShowcaseWalletActionSelector class="mx-auto w-max translate-y--50%" />
+    <ShowcaseWalletActionSelector class="mx-auto w-max -translate-y-1/2" />
 
     <ShowcaseWalletCurrencies class="mt-1 md:mt-1.5" />
   </div>
@@ -349,7 +339,6 @@ onMounted(() => {
   opacity: 0.2;
 }
 
-/* Mobile background */
 .mobile-bg {
   --gradient-shape: to bottom in oklch;
   --gradient-1-size: calc(100% * (1 / 1.8) + 1px);

@@ -23,9 +23,9 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
     <ul class="grid grid-cols-[repeat(auto-fit,min(calc(100vw-64px),330px))] gap-16 md:gap-14 lg:gap-16 xl:gap-20">
       <li v-for="(item, i) in items" :key="i" class="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] gap-x-5 gap-y-3 lg:gap-y-4 items-center">
         <Icon v-if="item.icon" class="text-[clamp(48px,calc(48px+16*((100vw-375px)/(1440-375))),64px)]" :name="item.icon" />
-        <NuxtImg v-else-if="item.image" class="size-[clamp(48px,calc(48px+16*((100vw-375px)/(1440-375))),64px)]" :src="item.image" width="64" height="64" />
+        <NuxtImg v-else-if="item.image" class="size-[clamp(48px,calc(48px+16*((100vw-375px)/(1440-375))),64px)]" :src="item.image" alt="" width="64" height="64" />
         <div class="[&>*]:text-left">
-          <h3 class="font-semibold" style="--font-size-min: 18; --font-size-max: 22; font-size: var(--f-font-size)">
+          <h3 class="font-semibold" style="--font-size-min: 22; --font-size-max: 28; font-size: var(--f-font-size)">
             {{ item.headline }}
           </h3>
         </div>
@@ -41,7 +41,7 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
   <template v-else-if="variation === 'threeColumnsImageText'">
     <ul class="flex flex-col lg:flex-row gap-x-6 gap-y-10 items-center w-full">
       <li v-for="(item, i) in items" :key="i" class="flex-1 w-full">
-        <NuxtImg v-if="item.image" class="w-full w-md:w-max w-lg:full flex max-h-[229px] object-contain object-md:cover object-lg:contain lg:mx-auto dark:bg-neutral-200" :src="item.image" rounded />
+        <NuxtImg v-if="item.image" class="w-full w-md:w-max w-lg:full flex max-h-[229px] object-contain object-md:cover object-lg:contain lg:mx-auto dark:bg-neutral-200" :src="item.image" alt="" rounded />
         <h3 class="text-20/26 md:text-center mt-6 min-h-2lh lg:mx-auto lg:max-w-24ch">
           {{ item.headline }}
         </h3>
@@ -52,9 +52,9 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
   <template v-else-if="variation === 'threeColumnsIconsText'">
     <ul class="flex flex-col lg:flex-row gap-y-6 lg:items-center w-full">
       <li v-for="(item, i) in items" :key="i" class="py-6 flex-1 border-b-1 border-lg:b-0 border-lg:r-1 border-last:0 border-white/15 border-solid md:mx-auto md:w-max">
-        <NuxtImg v-if="i === 0" class="rounded-2 h-20 object-contain md:mx-auto" src="/assets/images/home/email.svg" />
-        <NuxtImg v-if="i === 1" class="rounded-2 h-20 object-contain md:mx-auto" src="/assets/images/home/card.svg" />
-        <NuxtImg v-if="i === 2" class="rounded-2 h-20 object-contain md:mx-auto" src="/assets/images/home/stats.svg" />
+        <NuxtImg v-if="i === 0" class="rounded-2 h-20 object-contain md:mx-auto" src="/assets/images/home/email.svg" alt="" />
+        <NuxtImg v-if="i === 1" class="rounded-2 h-20 object-contain md:mx-auto" src="/assets/images/home/card.svg" alt="" />
+        <NuxtImg v-if="i === 2" class="rounded-2 h-20 object-contain md:mx-auto" src="/assets/images/home/stats.svg" alt="" />
         <h3 class="text-green md:text-center text-lg md:text-xl font-bold max-w-20ch mt-2 md:mt-3 lg:mx-auto">
           {{ item.headline }}
         </h3>

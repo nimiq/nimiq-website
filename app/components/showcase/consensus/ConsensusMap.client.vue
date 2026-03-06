@@ -11,11 +11,10 @@ import { getHexagonCoords } from '~/utils/consensus-map/drawHexagonsWorldMapProj
 
 defineProps<{ connectLabel: string, thisIsYou: string, connecting: string }>()
 
-// Called during setup - safe in .client.vue
 const aspectRatio = getHexagonsWorldMapAspectRatio()
 
 function useNimiq() {
-  const { clientNetwork } = useRuntimeConfig().public
+  const { clientNetwork } = useSafeRuntimeConfig().public
   const consensus = useState<ConsensusState>('nimiq-client', () => ConsensusState.Idle)
   const head = ref<PlainBlock>()
   const height = ref(0)
@@ -166,11 +165,11 @@ async function connect() {
 </script>
 
 <template>
-  <div class="overflow-hidden w-full">
-    <div class="relative w-full xl:w-[65vw]" :style="`aspect-ratio: ${aspectRatio}`">
+  <div class="overflow-hidden">
+    <div class="relative xl:w-[65vw]" :style="`aspect-ratio: ${aspectRatio}`">
       <div class="curtain size-full absolute z-1 xl:max-w-50vw" />
       <div class="size-full absolute">
-        <canvas ref="canvas" class="size-full" />
+        <canvas ref="canvas" />
         <div v-if="showTooltip" class="left-0 top-0 absolute z-1 animate-delay-500 animate-fade-in animate-both" :style="tooltipPosition">
           <div class="dark left-[calc(-50%+2px)] flex flex-col items-center mt-4 relative" scheme-dark>
             <Icon class="text-12 translate-y-[3.5px]" name="nimiq:tooltip-triangle" :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" />
@@ -222,17 +221,17 @@ async function connect() {
   background-image:
     linear-gradient(
       to bottom,
-      var(--color-darkerblue) 0%,
+      rgb(var(--nq-neutral-0) / 1) 0%,
       transparent var(--curtain-size),
       transparent calc(100% - var(--curtain-size)),
-      var(--color-darkerblue) 100%
+      rgb(var(--nq-neutral-0) / 1) 100%
     ),
     linear-gradient(
       to right,
-      var(--color-darkerblue) 0%,
+      rgb(var(--nq-neutral-0) / 1) 0%,
       transparent var(--curtain-size),
       transparent calc(100% - var(--curtain-size)),
-      var(--color-darkerblue) 100%
+      rgb(var(--nq-neutral-0) / 1) 100%
     );
 }
 </style>

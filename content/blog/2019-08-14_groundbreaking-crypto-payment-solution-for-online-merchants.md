@@ -11,13 +11,13 @@ image: /assets/images/prismic/5f1315aa-a7ec-49c6-89a3-5146943004a8_blog_groundbr
 
 It is Nimiq’s mission to deliver the world’s easiest-to-use, censorship-resistant payment ecosystem. In this blog post, you can discover how Nimiq is working on making it super easy for online merchants to accept crypto and receive conventional money, without using a centralized exchange or payment processor. We also explain the main problems why online merchants don’t like accepting crypto payments, and the solution that Nimiq is building to address these.
 
-### Summary for the impatient
+## Summary for the impatient
 
 - This first non-custodial payment solution offers unprecedented safety against hacks
 - Merchants get EUR into their SEPA account fast while practically eliminating the volatility risk
 - Users get the convenience of paying with NIM, BTC & ETH as they like
 
-## Why don’t online businesses accept crypto?
+# Why don’t online businesses accept crypto?
 
 We set out to understand why only few online merchants accept cryptocurrencies. What we learned made perfect sense to us.
 
@@ -29,7 +29,7 @@ We identified the following pain points for online merchants:
 1. The **belief that crypto is unsafe**. Merchants dread losing their money. Banks have to guarantee the funds they hold (more or less) and crypto payment services often come with lower levels of guarantee. While it has been ten years since people lost money in the financial crisis, reports about lost crypto funds appear on a somewhat regular basis. Is it any wonder that businesses still feel safer with traditional high street banks?
 1. **Time consuming payouts**. On top of the volatility, online merchants have to wait for their fiat funds to be paid out to their bank accounts. The reason are lengthy payment processes.
 
-## How Nimiq solves these merchant problems
+# How Nimiq solves these merchant problems
 
 The Nimiq ‘Open Asset Swap Interaction Scheme’ (OASIS) is key to the solution. As a first strong use case for Nimiq we are focusing our energy on applying this framework to solving the problems of one target group: online merchants.
 
@@ -45,7 +45,7 @@ In essence, with “**Nimiq Checkout**” we are building an e-commerce checkout
 - at zero risk for fraud
 - with prompt deposits into their bank accounts.
 
-## How does OASIS work?
+# How does OASIS work?
 
 Nimiq OASIS utilizes a mechanism that came to prominence in 2017. It is the basis of decentralized exchanges: the Atomic Swap. Atomic Swaps allow direct exchange with crypto currencies across blockchains, e.g. Bitcoin for Ether without the risk that comes with organizations like centralized exchanges. Eliminating the need for these organizations reduces the risk of hacks and embezzlement. In an Atomic Swap, the buyer and the seller interact through a special kind of smart contracts. This type of smart contract locks the funds of the trading partners for the intended transaction. The transaction will only execute if certain conditions are met. This lock-up allows eliminating risk associated with third-party custodians, like an exchange or payment service provider.
 

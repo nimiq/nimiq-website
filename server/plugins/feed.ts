@@ -18,12 +18,14 @@ export default defineNitroPlugin((nitroApp) => {
     const posts = await $fetch<BlogPost[]>('/api/blog-posts').catch(() => [])
 
     for (const post of posts) {
+      const image = post.image ? new URL(post.image, 'https://nimiq.com').toString() : undefined
+
       feed.addItem({
         title: post.title,
         link: `https://nimiq.com/blog/${post.slug}`,
         description: post.description,
         date: new Date(post.publishedAt),
-        image: post.image,
+        image,
         author: post.authors?.map(author => ({ name: author })),
       })
     }

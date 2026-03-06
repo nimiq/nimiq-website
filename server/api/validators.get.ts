@@ -19,16 +19,15 @@ interface Validator {
 }
 
 export default defineEventHandler(async (_event) => {
-  const { validatorsApi } = useRuntimeConfig().public
+  const { validatorsApi } = useSafeRuntimeConfig().public
 
   return getCachedData('validators', async () => {
     try {
-      const data = await $fetch<Validator[]>(`${validatorsApi}/api/v1/validators`)
-      return data
+      return $fetch<Validator[]>(`${validatorsApi}/api/v1/validators`)
     }
     catch (error) {
       console.error('Failed to fetch validators:', error)
       throw createError({ statusCode: 502, message: 'Failed to fetch validators from upstream' })
     }
-  }, 300) // 5 minutes
+  }, 300)
 })

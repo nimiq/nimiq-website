@@ -1,8 +1,13 @@
 <script setup lang="ts">
 const { dark = false, side = 'bottom' as const, sideOffset = 8, collisionPadding = 8 } = defineProps<{ dark?: boolean, side?: 'top' | 'right' | 'bottom' | 'left', sideOffset?: number, collisionPadding?: number }>()
+const attrs = useAttrs()
 
 const shouldRenderPortal = shallowRef(false)
 const isOpen = shallowRef(false)
+const triggerAttrs = computed(() => ({
+  'aria-label': 'More information',
+  ...attrs,
+}))
 
 function handleTriggerInteraction() {
   if (!shouldRenderPortal.value)
@@ -18,7 +23,7 @@ function handleOpenChange(open: boolean) {
 
 <template>
   <PopoverRoot :open="isOpen" @update:open="handleOpenChange">
-    <PopoverTrigger class="bg-transparent h-max" v-bind="$attrs" block @mouseenter="handleTriggerInteraction" @focus="handleTriggerInteraction">
+    <PopoverTrigger class="bg-transparent h-max" v-bind="triggerAttrs" block @mouseenter="handleTriggerInteraction" @focus="handleTriggerInteraction">
       <slot name="trigger">
         <Icon class="text-12 text-neutral-700" name="nimiq:info" />
       </slot>

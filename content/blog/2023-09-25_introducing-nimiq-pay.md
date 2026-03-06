@@ -35,8 +35,6 @@ The user choice of one form of payment over another is often tied to incentives 
 
 While a first campaign sponsor is already secured, this feature is an open initiative: it will be open to businesses and community members who might want to sponsor a campaign in their city, ensuring a collaborative growth of the Nimiq ecosystem. We are still in the optimization phase of the program, and encourage Nimiq Community Ambassadors from across the globe to reach out and inquire about adoption campaigns and how sponsoring will work!
 
-###
-
 ## What's Next?
 
 Nimiq Pay has already entered it's late development stage, with our team putting in their best efforts to realize the vision we've set. We'll keep you updated as significant milestones are reached. We appreciate the continued trust and support of our community and are eager to present a first version of Nimiq Pay that you can test out. Stay tuned, and here's to the exciting journey ahead!

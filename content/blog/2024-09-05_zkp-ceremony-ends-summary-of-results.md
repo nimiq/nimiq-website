@@ -69,7 +69,7 @@ IPFS is a decentralized file storage system that allows users to share and acces
 You have two options to download via BitTorrent:
 
 - **BitTorrent File**: [Torrent File](https://repo.nimiq.com/torrents/nimiq-mainnet-zkp-keys.torrent)
-- **Using a Magnet Link**: simply copy and paste <a href="magnet:?xt=urn:btih:2cc3ca7888b75f1c38f2c4013f6eb3631946e2e9&dn=nimiq-zkp-keys&tr=https%3A%2F%2F2Ftorrents.nimiq.io%2Fannounce">this link</a> into your BitTorrent client. The magnet link is a URL that contains all the information needed for the client to download the files. After pasting the link, your client will connect to peers sharing the file and start the download process.
+- **Using a Magnet Link**: simply copy and paste `magnet:?xt=urn:btih:2cc3ca7888b75f1c38f2c4013f6eb3631946e2e9&dn=nimiq-zkp-keys&tr=https%3A%2F%2F2Ftorrents.nimiq.io%2Fannounce` into your BitTorrent client. The magnet link is a URL that contains all the information needed for the client to download the files. After pasting the link, your client will connect to peers sharing the file and start the download process.
 
 ## Suggestions for Running a ZKP Ceremony
 
@@ -80,7 +80,7 @@ For those interested in running a ZKP Ceremony, we are happy to share our experi
 **Community Engagement**: Set up clear communication channels where participants can easily access information and FAQs. Have one or two team members available to answer any questions that come up. Active support will help keep everyone on track and informed.
 **Technical Requirements**: Specify the technical requirements for participants, including hardware, software, and network needs. Make sure this information is readily available and easy to understand.
 
-**Contributors' Responsibilities: **Ensure volunteers know their roles and tasks during the ceremony well. Outline what is expected, specify the tasks, and the importance of following the guidelines. Make sure the volunteers understand the expected time and effort.
+**Contributors' Responsibilities:**Ensure volunteers know their roles and tasks during the ceremony well. Outline what is expected, specify the tasks, and the importance of following the guidelines. Make sure the volunteers understand the expected time and effort.
 **Participant Readiness**: Let participants know that coordination is key—having everyone prepared for their round at the same time helps things flow more smoothly. Provide clear instructions, comprehensive documentation, and troubleshooting tips to ensure everyone is ready.
 **Clear Information and Guidelines**: Make sure all important information is clearly stated. Emphasize the need for participants to securely delete any sensitive data related to key generation. Providing detailed guidelines for every step of the process will help maintain security and clarity.
 **Plan for Unforeseen Scenarios**: Be prepared for unexpected issues. Small delays or extending the duration of rounds may be necessary to ensure a successful ceremony. Flexibility can help manage these situations effectively.

@@ -76,8 +76,8 @@ We found a font that ticks all of those boxes: Muli. It’s a very plain and sim
 
 Besides coming up with a new logo, we created a visual language around it, that we want to present in a dedicated style guide. We focus only on the logo in this article because it’s the most tangible representation of it. The new branding will be rolled out in the coming months and we’re very excited to see it in action.
 
-Here’s the link to the style guide: [nimiq.com/styleguide](http://nimiq.com/styleguide) (not accessible on most mobile devices for now).
+Here’s the link to the style guide: `nimiq.com/styleguide` (not accessible on most mobile devices for now).
 
-In case you’re on mobile, here’s a PDF fallback: [nimiq.com/styleguide/styleguide.pdf](http://nimiq.com/styleguide/styleguide.pdf)
+In case you’re on mobile, here’s a PDF fallback: `nimiq.com/styleguide/styleguide.pdf`
 
 ![](/assets/images/prismic/fc58274c-359a-4a95-96cf-62448eb78d90_blog_a-new-visual-identity_3.png)

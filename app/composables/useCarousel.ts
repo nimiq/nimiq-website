@@ -14,7 +14,7 @@ export function useCarousel(options: CarouselOptions = {}) {
   function setupSlides() {
     if (!scroller.value)
       return
-    items.value = Array.from(scroller.value.querySelectorAll('[data-slide]'))
+    items.value = [...scroller.value.querySelectorAll('[data-slide]')]
     if (initialIndex > 0 && initialIndex < items.value.length)
       nextTick(() => slideTo(initialIndex))
   }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { environment } = useRuntimeConfig().public
+const { environment } = useSafeRuntimeConfig().public
 // Disabled for visual testing - prod shows banner but user accepts it
 const showConsentBanner = environment.isProduction
 </script>

@@ -37,39 +37,39 @@ The use of funds from the end of July 2024 up to the end of July 2025 breaks dow
 - ~US$ 2’190.3K (fiat + crypto equivalent at time of expense)
 - ~52.6% of total (~60.5% of non-extraordinary)
 
-**Marketing, Content, Community: **This category covers expenses related to educational content production (video, written, and visual), branding initiatives, sponsorships, merchandise, user research, community project grants, rewards-based campaigns, social media management, and participation in industry conferences. It also includes support for regional adoption initiatives such as the European Kryptostadt, Latin American Criptociudad and Gambian Cryptocity programs, which fall under the broader "Cryptocity" adoption campaigns aimed at facilitating partnerships and driving network effects that promote real-world use of NIM. Ongoing community engagement and security initiatives are also accounted for, including the Bug Bounty Program, with a reserve of US$ 100K allocated for the next 12 months.
+**Marketing, Content, Community:**This category covers expenses related to educational content production (video, written, and visual), branding initiatives, sponsorships, merchandise, user research, community project grants, rewards-based campaigns, social media management, and participation in industry conferences. It also includes support for regional adoption initiatives such as the European Kryptostadt, Latin American Criptociudad and Gambian Cryptocity programs, which fall under the broader "Cryptocity" adoption campaigns aimed at facilitating partnerships and driving network effects that promote real-world use of NIM. Ongoing community engagement and security initiatives are also accounted for, including the Bug Bounty Program, with a reserve of US$ 100K allocated for the next 12 months.
 
 - ~US$ 759.4K (fiat + crypto equivalent at time of expense)
 - ~18.2% of total (~21.0% of non-extraordinary)
 
-**Legal, Administration, Taxes: **This includes legal, tax and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from Lara Legal Corp, Mathys & Squire, Annerton Rechtsanwälte, and additional task specific international legal counsel i.e. for pursuing required licenses, trademarking, terms of services, privacy policies, legal memorandums, etc. The increased cost reflects the trademark efforts around protecting NIM, Nimiq and Cryptocity immaterial assets in various languages and jurisdictions, as well as legal opinions for and reviews of the many requirements for the Bluecode and Naka collaborations.
+**Legal, Administration, Taxes:**This includes legal, tax and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from Lara Legal Corp, Mathys & Squire, Annerton Rechtsanwälte, and additional task specific international legal counsel i.e. for pursuing required licenses, trademarking, terms of services, privacy policies, legal memorandums, etc. The increased cost reflects the trademark efforts around protecting NIM, Nimiq and Cryptocity immaterial assets in various languages and jurisdictions, as well as legal opinions for and reviews of the many requirements for the Bluecode and Naka collaborations.
 
 - ~US$ 252.4K (fiat + crypto equivalent at time of expense)
 - ~6.1% of total (~7.0% of non-extraordinary)
 
-**Digital Operations, Equipment: **This includes expenses related to hosting, hardware, software, licensing, communications, domains, and other development tools and platforms. The decrease in this position is mainly due to lower hosting costs resulting from the switch of Proof-of-Work to the Proof-of-Stake consensus mechanism of the Nimiq Protocol.
+**Digital Operations, Equipment:**This includes expenses related to hosting, hardware, software, licensing, communications, domains, and other development tools and platforms. The decrease in this position is mainly due to lower hosting costs resulting from the switch of Proof-of-Work to the Proof-of-Stake consensus mechanism of the Nimiq Protocol.
 
 - ~US$ 146.2K (fiat + crypto equivalent at time of expense)
 - ~3.5% of total (~4.0% of non-extraordinary)
 
-**Travel, F&B: **This includes expenses related to transportation, hotel, food/beverage, and hackathons. These expenses have held steady but can be expected to increase moderately based on general inflation of costs of travel and accommodation and plans to expand team presence at industry events.
+**Travel, F&B:**This includes expenses related to transportation, hotel, food/beverage, and hackathons. These expenses have held steady but can be expected to increase moderately based on general inflation of costs of travel and accommodation and plans to expand team presence at industry events.
 
 - ~US$ 148.9K (fiat + crypto equivalent at time of expense)
 - ~3.6% of total (~4.1% of non-extraordinary)
 
-**Physical Operations, Rent: **This includes expenses related to workspace, operational security, hackathon accommodation, and maintenance. Expenses in this category decreased noticeably due to cost efficiencies in the operating and maintenance of the workspaces and hackathon locations.
+**Physical Operations, Rent:**This includes expenses related to workspace, operational security, hackathon accommodation, and maintenance. Expenses in this category decreased noticeably due to cost efficiencies in the operating and maintenance of the workspaces and hackathon locations.
 
 - ~US$ 124.5K (fiat + crypto equivalent at time of expense)
 - ~3.0% of total (~3.4% of non-extraordinary)
 
-**Extraordinary: **This includes fees for integrations on MEXC, Lunu, Coinify and stakingrewards.com, as well as market liquidity provision and funds for the PoS prestaking campaign.
+**Extraordinary:**This includes fees for integrations on MEXC, Lunu, Coinify and stakingrewards.com, as well as market liquidity provision and funds for the PoS prestaking campaign.
 
 - ~US$ 545.2K (fiat + crypto equivalent at time of expense)
 - ~13.1% of total
 
 **Total Use of Funds:** ~US$ 4’167.1K (US$ 3’621.9K non-extraordinary)
 
-The monthly burn-rate average comes in at ~US$ 302K (excluding extraordinary expenses). The increase is mostly attributable to more average monthly spending on _Marketing, Content, Community_ associated with the release of the Proof-of-Stake upgrade and the communication and campaign efforts around it. The project continued to support the growth of open efforts such as the European “Kryptostadt”, Latin American “Criptociudad” and “Cryptocity” efforts in Gambia. Efforts included creating awareness around the native Nimiq Pay iOS and Android apps that support paying with NIM wherever Bitcoin Lightning is accepted, to this day, an industry breakthrough. With increasing activities targeting the adoption of the “NIM <> BTC <> USD Stable Coin Trinity” in the payment acceptance and crypto holding process, as well as the staking of NIM, we expect a continued significant effort in that expense category going forward. As expected, total expenses related to _Product Development Contracting, Compensations_ only increased slightly. Last year's report projected that the long-standing team has reached a level of quality and capacity such that no significant further hires were anticipated. Expenses related to _Legal, Administration, Taxes,_ increased slightly as trademark efforts around Cryptocity and the legal umbrella for the merchant payment scheme partnerships are being pursued. The slight decrease in _Digital Operations, Equipment_ is attributable to lower hosting costs. _Travel, F&B_ and *Physical Operations, Rent *have held steady or decreased. The outlook for the former may point towards an increase here as the project will look to attend more industry events for positioning and visibility.
+The monthly burn-rate average comes in at ~US$ 302K (excluding extraordinary expenses). The increase is mostly attributable to more average monthly spending on _Marketing, Content, Community_ associated with the release of the Proof-of-Stake upgrade and the communication and campaign efforts around it. The project continued to support the growth of open efforts such as the European “Kryptostadt”, Latin American “Criptociudad” and “Cryptocity” efforts in Gambia. Efforts included creating awareness around the native Nimiq Pay iOS and Android apps that support paying with NIM wherever Bitcoin Lightning is accepted, to this day, an industry breakthrough. With increasing activities targeting the adoption of the “NIM <> BTC <> USD Stable Coin Trinity” in the payment acceptance and crypto holding process, as well as the staking of NIM, we expect a continued significant effort in that expense category going forward. As expected, total expenses related to _Product Development Contracting, Compensations_ only increased slightly. Last year's report projected that the long-standing team has reached a level of quality and capacity such that no significant further hires were anticipated. Expenses related to _Legal, Administration, Taxes,_ increased slightly as trademark efforts around Cryptocity and the legal umbrella for the merchant payment scheme partnerships are being pursued. The slight decrease in _Digital Operations, Equipment_ is attributable to lower hosting costs. _Travel, F&B_ and *Physical Operations, Rent*have held steady or decreased. The outlook for the former may point towards an increase here as the project will look to attend more industry events for positioning and visibility.
 
 ## NIM supply and distribution
 
@@ -79,7 +79,7 @@ This second part describes the distribution of NIM tokens, showing details of ac
 
 Live summary of NIM supply: [http://nim.sh/stats/supply.txt](http://nim.sh/stats/supply.txt)
 
-The total final NIM supply over ~100 years by design of the Nimiq Blockchain protocol (see [Nimiq Whitepaper 2.0](https://www.nimiq.com/whitepaper/?version=1.0)): **21'000'000'000 NIM. **The circulating supply as of the end of July was ~13’283’569’946 NIM (~63.3% of final total).
+The total final NIM supply over ~100 years by design of the Nimiq Blockchain protocol (see [Nimiq Whitepaper 2.0](https://www.nimiq.com/whitepaper/?version=1.0)): **21'000'000'000 NIM.**The circulating supply as of the end of July was ~13’283’569’946 NIM (~63.3% of final total).
 
 ### Details
 

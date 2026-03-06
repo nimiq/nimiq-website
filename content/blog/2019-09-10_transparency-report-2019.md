@@ -37,42 +37,42 @@ The use of funds from the end of July 2018 up to the end of June 2019 breaks dow
 
 Subtotal US$ 1’783.1K, ~48.2%
 
-**Marketing, Listings, Content, Community: **This includes expenses related to creating marketable video and written content, branding, listing integration fees, swag production, and community rewards. It also includes community programs such as the Hackerone Bug Bounty Program and the sponsorship of the BLDT Summer School Princeton & Vienna University as well as the Blockchain Research Group at Stanford University in California.
+**Marketing, Listings, Content, Community:**This includes expenses related to creating marketable video and written content, branding, listing integration fees, swag production, and community rewards. It also includes community programs such as the Hackerone Bug Bounty Program and the sponsorship of the BLDT Summer School Princeton & Vienna University as well as the Blockchain Research Group at Stanford University in California.
 
 - ~US$ 739.7K crypto
 - ~US$ 167.9K fiat
 
 Subtotal US$ 907.6K, ~24.5%
 
-**Legal, Administration: **This includes legal and administrative expenses regarding corporate restructuring, accounting, professional support from MME Legal | Tax | Compliance, Lara Legal Corp, Sielva Management, Grant Thornton Bankrevision AG and Lucris Finance AG
+**Legal, Administration:**This includes legal and administrative expenses regarding corporate restructuring, accounting, professional support from MME Legal | Tax | Compliance, Lara Legal Corp, Sielva Management, Grant Thornton Bankrevision AG and Lucris Finance AG
 
 - ~US$ 139.2K crypto
 - ~US$ 43K fiat
 
 Subtotal US$ 182.2K, ~4.9%
 
-**Digital Operations, Equipment: **This includes expenses related to hosting, hardware, software, licensing, and other development tools and platforms.
+**Digital Operations, Equipment:**This includes expenses related to hosting, hardware, software, licensing, and other development tools and platforms.
 
 - ~US$ 69.8K crypto
 - ~US$ 36.6K fiat
 
 Subtotal US$ 106.4K, ~2.9%
 
-**Travel, F&B: **This includes expenses related to transportation, hotel, food/beverage, and team building.
+**Travel, F&B:**This includes expenses related to transportation, hotel, food/beverage, and team building.
 
 - ~US$ 109.4K crypto
 - ~US$ 62.4K fiat
 
 Subtotal US$ 171.8K, ~4.6%
 
-**Physical Operations, Rent: **This includes expenses related to rent and maintenance.
+**Physical Operations, Rent:**This includes expenses related to rent and maintenance.
 
 - ~US$ 59.8K crypto
 - ~US$ 101K fiat
 
 Subtotal US$ 160.8K, ~4.4%
 
-**Investments, Infrastructure: **This includes the WEG Bank AG 9.9% stake (partially loan financed) and construction of utility infrastructure, three simple platform accommodations and additional workspace on a small portion of the ~9.5 total acres of the Nerd Campus (already resulting in ongoing rental savings).
+**Investments, Infrastructure:**This includes the WEG Bank AG 9.9% stake (partially loan financed) and construction of utility infrastructure, three simple platform accommodations and additional workspace on a small portion of the ~9.5 total acres of the Nerd Campus (already resulting in ongoing rental savings).
 
 - ~US$ 104.6K crypto
 - ~US$ 282.7K fiat

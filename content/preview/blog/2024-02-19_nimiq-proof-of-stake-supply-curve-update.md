@@ -15,7 +15,7 @@ Now, as Nimiq Proof-of-Stake is close to being launched, but has taken much long
 
 Let’s start by revisiting some of the assumptions and restrictions shared in [the previous blog post](https://www.nimiq.com/blog/nimiq-20-supply-curve-considerations/) related to the supply curve adjustment discussion.
 
-### Key principles for adjusting the curve:
+## Key principles for adjusting the curve:
 
 - The “coin supply growth” is effectively equal to the “network reward” (or “total reward”) emitted in time. Such rewards for validators are calculated based on real-world time, not on number of blocks (the percentage of coins staked from total supply does not affect the absolute emission rate).
 - The aim remains to reach a total supply of 21 billion NIM approximately 100 years from the time of mainnet launch in 2018.
@@ -24,7 +24,7 @@ Let’s start by revisiting some of the assumptions and restrictions shared in [
 - Any adjustment should consider the continued community expectation that the annualized coin supply growth should be smaller than it is now.
 - The initial staking reward (adjusted and non-adjusted) should compare reasonably within the ranges of other current PoS projects of similar maturity, for competitive reasons.
 
-## Adjusting the curve with minimal changes
+# Adjusting the curve with minimal changes
 
 The Proof-of-Work emission to date has pushed the NIM supply to a level where the community-chosen curve for Proof-of-Stake emission requires adjustment. In simple terms, going with the elected curve would lead to reaching the original target of a 21 billion NIM total supply much sooner than anticipated.
 
@@ -46,15 +46,15 @@ Alternatively, by keeping the initial annual supply growth (“Inflation”) at 
 
 The two approaches and its parameters offer boundary choices between the original intent and the current Nimiq tokenomics.
 
-### Give it a try
+## Give it a try
 
 Want to experiment and discover your own curve to make a proposal to the community? Give it a try here:
 
-<iframe style="width: min(1440px, calc(100vw - 16px)); margin-left:-24px;aspect-ratio:9 / 12"  src="https://mraveux.github.io/supply-curve/" class="md:hidden"></iframe>
+<iframe style="width: min(1440px, calc(100vw - 16px)); margin-left:-24px;aspect-ratio:9 / 12"  src="https://mraveux.github.io/supply-curve/" title="Nimiq proof-of-stake supply curve calculator" class="md:hidden"></iframe>
 
-<iframe style="width: min(1440px, calc(100vw - 16px)); margin-left:-50%;"  src="https://mraveux.github.io/supply-curve/" class=" hidden md:flex"></iframe>
+<iframe style="width: min(1440px, calc(100vw - 16px)); margin-left:-50%;"  src="https://mraveux.github.io/supply-curve/" title="Nimiq proof-of-stake supply curve calculator" class=" hidden md:flex"></iframe>
 
-### The Next Step
+## The Next Step
 
 Based on these considerations, Team Nimiq invites the community to engage in a ~30-day discussion period until March 20 2024 across Nimiq Community Channels and the [**Nimiq Community Forum**](https://forum.nimiq.community/t/supply-curve-update-discussion/1995) to affirm either of these approaches or present additional options. Following this period of discourse and the leading resulting supply curve options, Team Nimiq will organize a voting procedure similar to the previous one, enabling Nimiq community stakeholders to participate and cast their votes.
 

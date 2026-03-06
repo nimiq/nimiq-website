@@ -8,7 +8,7 @@ interface ConsentData {
 
 export function useMatomo() {
   const CONSENT_VERSION = '1.0'
-  const { public: { environment, enableDevAnalytics } } = useRuntimeConfig()
+  const { public: { environment, enableDevAnalytics } } = useSafeRuntimeConfig()
   const isDev = environment.name === 'local' && enableDevAnalytics
 
   const consentDefault = () => null
@@ -26,7 +26,6 @@ export function useMatomo() {
       return
     }
 
-    // Preserve download tracking behavior from legacy implementation
     if (import.meta.client && matomoProxy?._paq) {
       matomoProxy._paq.push(['addDownloadExtensions', 'deb|rpm|msi|sha256|asc|pub'])
     }
@@ -44,11 +43,8 @@ export function useMatomo() {
       if (matomoProxy?._paq)
         matomoProxy._paq.push(['optUserOut'])
 
-      // GTM lacks opt-out API, so we signal rejection via dataLayer
-      if (gtmProxy?.dataLayer) {
-        const event = 'consent_rejected'
-        gtmProxy.dataLayer.push({ event })
-      }
+      if (gtmProxy?.dataLayer)
+        gtmProxy.dataLayer.push({ event: 'consent_rejected' })
     }
   }
 
@@ -76,11 +72,7 @@ export function useMatomo() {
     }
 
     if (gtmProxy?.dataLayer) {
-      const event = eventName
-      const event_category = eventCategory
-      const event_action = eventAction
-      const event_label = label
-      gtmProxy.dataLayer.push({ event, event_category, event_action, event_label })
+      gtmProxy.dataLayer.push({ event: eventName, event_category: eventCategory, event_action: eventAction, event_label: label })
     }
   }
 

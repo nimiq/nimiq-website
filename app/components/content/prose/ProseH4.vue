@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { id } = defineProps<{ id?: string }>()
-const { headings } = useRuntimeConfig().public.mdc
+const { headings } = useSafeRuntimeConfig().public.mdc
 const generate = computed(() => id && (headings?.anchorLinks === true || (typeof headings?.anchorLinks === 'object' && headings?.anchorLinks?.h4)))
 </script>
 

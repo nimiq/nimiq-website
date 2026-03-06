@@ -18,7 +18,6 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, message: 'Invalid period. Must be 1y, 2y, or 5y' })
   }
 
-  // Validate currency
   if (!validCurrencies.includes(currency as unknown as typeof validCurrencies[number])) {
     throw createError({ statusCode: 400, message: 'Invalid currency' })
   }
@@ -39,12 +38,11 @@ export default defineEventHandler(async (event) => {
         { interval: 'days', aggregate: 7 },
       )
 
-      // Result is already an array of [timestamp, price] tuples
       const data: NimPrice[] = result.map(([ts, price]) => [ts, price])
       data.sort((a, b) => a[0] - b[0])
 
       return { data, currency, period }
-    }, 3600) // 1 hour
+    }, 3600)
   }
   catch (error) {
     console.error('Failed to fetch NIM price history:', error)

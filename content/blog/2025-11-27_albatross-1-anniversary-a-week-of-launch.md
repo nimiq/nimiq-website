@@ -15,7 +15,7 @@ This post recounts the intense week around Nimiq’s Albatross Proof-of-Stake la
 
 ## Nimiq.FM - **The Soundtrack of the Nimiq Blockchain**
 
-To mark Albatross’s first anniversary, we’re adding a banner on [nimiq.com](https://nimiq.com) that redirects to [nimiq.fm](https://nimiq.fm/). It will stay up until our next announcement! Nimiq FM plays a live musical interpretation of the block production, with each producer's signature shaping a different sound. Block by block, the chain forms a continuous piece of music. Explore the nimiq.fm page and enjoy the reading!
+To mark Albatross’s first anniversary, we’re adding a banner on [nimiq.com](/) that redirects to [nimiq.fm](https://nimiq.fm/). It will stay up until our next announcement! Nimiq FM plays a live musical interpretation of the block production, with each producer's signature shaping a different sound. Block by block, the chain forms a continuous piece of music. Explore the nimiq.fm page and enjoy the reading!
 
 ## A Week of Launch
 

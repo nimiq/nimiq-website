@@ -7,7 +7,7 @@ interface DistributionResponse {
 }
 
 export default defineEventHandler(async (_event) => {
-  const { validatorsApi } = useRuntimeConfig().public
+  const { validatorsApi } = useSafeRuntimeConfig().public
 
   return getCachedData('staking-info', async () => {
     try {
@@ -17,5 +17,5 @@ export default defineEventHandler(async (_event) => {
       console.error('Failed to fetch staking info:', error)
       throw createError({ statusCode: 502, message: 'Failed to fetch staking info from upstream' })
     }
-  }, 300) // 5 minutes
+  }, 300)
 })

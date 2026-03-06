@@ -33,7 +33,7 @@ _“Nimiq is a promising blockchain player that specializes in facilitating fast
 
 _"Getting accepted as a member of Blockchain for Europe is a notable milestone for Nimiq as an organization. Passing the conscientious accession procedure of the association shows that Nimiq has evolved into a respected protagonist in the blockchain space, not only when it comes to regulatory compliance, but also with regard to the teams' technological expertise. We are looking forward to a close and successful collaboration with Blockchain for Europe and will do our best to foster a healthy and prosperous ecosystem development in Europe and beyond."_
 
-### About Nimiq
+## About Nimiq
 
 Nimiq makes blockchain technology universally accessible to enable fast, easy and secure online payments. Built cross-platform for the modern desktop or mobile browsers, anyone can join this peer-to-peer payment network directly, pay and accept payments without having to install software or rely on unnecessary intermediaries. This gives Nimiq it's unique "It just works" characteristic, which is further strengthened by a strong philosophy of simplicity and ease of use. NIM is a simple, secure and censorship resistant cryptocurrency - it's modern money, native to the web and ready to deliver crypto's Netscape moment!
 

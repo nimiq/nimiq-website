@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Motion, useScroll, useSpring, useTransform } from 'motion-v'
 
-const { src, poster, animateOnScroll = false, compactMobilePadding = false } = defineProps<{ src: string, poster?: string, animateOnScroll?: boolean, compactMobilePadding?: boolean }>()
+const { src, poster, alt, title, animateOnScroll = false, compactMobilePadding = false } = defineProps<{ src: string, poster?: string, alt?: string, title?: string, animateOnScroll?: boolean, compactMobilePadding?: boolean }>()
 
 const isMobile = import.meta.client && window.matchMedia('(max-width: 767px)').matches
 const tiltDeg = isMobile ? 30 : 50
@@ -62,16 +62,16 @@ const playMaskStyle = {
         }"
       >
         <template v-if="isYouTube">
-          <NuxtLink v-if="poster" class="mx-auto grid relative [&>*]:rounded-lg [&>*]:col-start-1 [&>*]:row-start-1" :to="src" external target="_blank">
-            <img class="w-full" :src="poster" width="1280" height="720" alt="Crypto made easy video poster">
+          <NuxtLink v-if="poster" class="mx-auto grid relative [&>*]:rounded-lg [&>*]:col-start-1 [&>*]:row-start-1" :to="src" external target="_blank" :aria-label="title || 'Open media in a new tab'">
+            <img class="w-full" :src="poster" width="1280" height="720" :alt="alt || ''">
             <div class="w-full h-full border border-white/20 pointer-events-none" />
             <div class="size-[72px] rounded-xl bg-darkerblue/70 backdrop-blur-sm justify-self-center self-center grid place-items-center">
               <div class="size-[32px] bg-white" :style="playMaskStyle" />
             </div>
           </NuxtLink>
-          <iframe v-else class="rounded-lg w-full aspect-video" :src="embedUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+          <iframe v-else class="rounded-lg w-full aspect-video border-0" :src="embedUrl" :title="title || 'Embedded media'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
         </template>
-        <NuxtImg v-else :src />
+        <NuxtImg v-else :src :alt="alt || ''" />
       </Motion>
     </div>
   </section>

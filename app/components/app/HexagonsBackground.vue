@@ -55,7 +55,6 @@ onMounted(() => {
   items.value = result
 })
 
-// Wave animation: comet sweeps across the grid with evolving direction
 const WAVE_CYCLE = 6000 // ms per sweep
 const DIR_CYCLE = 20000 // ms per direction oscillation
 const FRONT_W = 0.08 // sharp rise width
@@ -167,7 +166,6 @@ watchEffect(() => {
     height: 100% !important;
   }
 
-  /* Social media icons inside links should be square */
   :deep(a .iconify) {
     width: 1em !important;
   }

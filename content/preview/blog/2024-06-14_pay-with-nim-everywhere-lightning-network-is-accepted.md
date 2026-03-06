@@ -13,7 +13,7 @@ Nimiq's vision is to make cryptocurrency payments as simple and accessible as po
 
 The new version of Nimiq Pay, supporting payments at Bitcoin Lightning acceptance points, is now available for both [**iOS**](https://apps.apple.com/app/id6471844738) and [**Android**](https://play.google.com/store/apps/details?id=com.nimiq.pay). This update expands the reach of NIM payments, allowing you to use NIM wherever Bitcoin Lightning is accepted, seamlessly and effortlessly. Download or update the app today to experience the future of crypto payments.
 
-### The Vision: One Single App to Pay Everywhere
+## The Vision: One Single App to Pay Everywhere
 
 Cryptocurrency payments are becoming more and more popular around the world every day. Still, each cryptocurrency is building its own ecosystem with its own set of users and merchants. This brings an issue as old as the internet itself: using an app for each different network.
 
@@ -21,7 +21,7 @@ Nimiq is all about bringing elegant and simple solutions to make cryptocurrency 
 
 With the initial launch of Nimiq Pay, Nimiq users tasted simple and easy mobile payments in all shops accepting NIM. Nimiq's vision is to be able to pay everywhere with NIM. To take a first step forward in this direction, Nimiq Pay is now integrating the largest payment network in the crypto world: Bitcoin Lightning Network.
 
-### What's Under the Hood
+## What's Under the Hood
 
 Even though the experience of using Nimiq Pay looks simple, a lot is happening under the hood. Here is a short technical summary of everything happening behind the scenes:
 
@@ -44,13 +44,13 @@ Below is a display of a Nimiq Lightning Network hybrid transaction. The process 
 
 ![](/assets/images/prismic/Zmqc05m069VX1s9X_Group48096085-4-.png)
 
-### The Nimiq Crypto Map
+## The Nimiq Crypto Map
 
 The Nimiq Crypto map is an ever growing registry of places that accept crypto, not just Nimiq. With this integration, the map now connects crypto users with over 3'500 places accepting payments with NIM, via Nimiq and Bitcoin Lightning. This boosts the utility of the NIM token and makes the crypto map and Nimiq Pay your one-stop-shop for self-custodial crypto payments.
 
 ![](/assets/images/prismic/ZmqlUZm069VX1tBn_image-15-.png)
 
-### What's Next
+## What's Next
 
 As you might guess, we are working on the next payment network integrations and their order of priority for the Nimiq Pay app. If you have suggestions, feel free to drop them in [the Nimiq forum](https://forum.nimiq.community/t/payment-networks-supported-on-nimiq-pay/2078) or reach out to us [via X](https://x.com/nimiq).
 

@@ -11,9 +11,9 @@ image: /assets/images/prismic/28e99852-a6c8-49dc-91dd-46501285949a_blog_nimiq-pr
 
 The Nimiq Ecosystem is maturing and a lot of progress has been made. The team is hard at work on both Nimiq 2.0 and Nimiq Checkout. We understand it can be difficult to keep up with developments and achievements since they’re spread out over the [forum](https://forum.nimiq.community/), on [Telegram](https://t.me/Nimiq), [Discord](https://discord.gg/cMHemg8)as well as [GitHub](https://github.com/nimiq). To help community members get a quick update on the high-level progress of the project, we want to share this progress report on a regular basis.
 
-If you are not familiar with [the members of Team Nimiq](https://www.nimiq.com/team/), here is a quick summary of the team structure (leaving out legal and operations):
+If you are not familiar with [the members of Team Nimiq](/team), here is a quick summary of the team structure (leaving out legal and operations):
 
-- **Core (Blockchain Development & Research): **Janosch, Jeff, Marvin, Pascal, Philipp, Richard.
+- **Core (Blockchain Development & Research):**Janosch, Jeff, Marvin, Pascal, Philipp, Richard.
 - **Frontend (UI/UX, Website, Apps):** Daniel, Julian, Matheo, Tammo, Sebastian, Sören, Sven.
 - **Communication (Marketing, Content Creation, Social Media):** Atua, Chris, Julian, Richy, Sven, Sui-Ju, Tammo.
 

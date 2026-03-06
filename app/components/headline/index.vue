@@ -35,9 +35,9 @@ function getPillClass(action: Action) {
     <h2 v-else-if="headline" class="break-keep font-normal leading-[1.3] text-neutral-900 max-w-none" style="--font-size-min: 17.5; --font-size-max: 22.4; font-size: var(--f-font-size)">
       {{ headline }}
     </h2>
-    <h4 v-if="subline && smallHeading && !headline" class="break-keep">
+    <h2 v-if="subline && smallHeading && !headline" class="break-keep">
       {{ subline }}
-    </h4>
+    </h2>
     <p v-else-if="subline" class="max-w-prose md:text-center">
       {{ subline }}
     </p>

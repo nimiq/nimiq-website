@@ -36,32 +36,32 @@ The use of funds from the end of June 2019 up to the end of July 2020 breaks dow
 - ~US$ 1’309.8K (fiat + crypto equivalent at time of expense)
 - ~35.0% of total
 
-**Marketing, Listings, Content, Community: **This includes expenses related to creating marketable video and written content, branding, listing integration fees, swag production, community rewards and influencer review fees. It also includes community programs such as the Bug Bounty Program, Community Project Funding with a reserve of $50K for the next 12 months. An additional amount of $120K is reserved and due pending listing related liquidity provisions.
+**Marketing, Listings, Content, Community:**This includes expenses related to creating marketable video and written content, branding, listing integration fees, swag production, community rewards and influencer review fees. It also includes community programs such as the Bug Bounty Program, Community Project Funding with a reserve of $50K for the next 12 months. An additional amount of $120K is reserved and due pending listing related liquidity provisions.
 
 - ~US$ 415.2K (fiat + crypto equivalent at time of expense)
 - ~11.1% of total
 
-**Legal, Administration, Taxes: **This includes legal and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from MME Legal | Tax | Compliance, Lara Legal Corp, Sielva Management, Grant Thornton Bankrevision AG and Lucris Finance AG and additional task specific legal counseling i.e. for acquiring payment service provider licenses, trademarking, terms of services, privacy policies, etc.
+**Legal, Administration, Taxes:**This includes legal and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from MME Legal | Tax | Compliance, Lara Legal Corp, Sielva Management, Grant Thornton Bankrevision AG and Lucris Finance AG and additional task specific legal counseling i.e. for acquiring payment service provider licenses, trademarking, terms of services, privacy policies, etc.
 
 - ~US$ 156.4K (fiat + crypto equivalent at time of expense)
 - ~4.2% of total
 
-**Digital Operations, Equipment: **This includes expenses related to hosting, hardware, software, licensing, and other development tools and platforms.
+**Digital Operations, Equipment:**This includes expenses related to hosting, hardware, software, licensing, and other development tools and platforms.
 
 - ~US$ 112.4K (fiat + crypto equivalent at time of expense)
 - ~3.0% of total
 
-**Travel, F&B: **This includes expenses related to transportation, hotel, food/beverage, and team building.
+**Travel, F&B:**This includes expenses related to transportation, hotel, food/beverage, and team building.
 
 - ~US$ 85.9K (fiat + crypto equivalent at time of expense)
 - ~2.3% of total
 
-**Physical Operations, Rent: **This includes expenses related to rent and maintenance.
+**Physical Operations, Rent:**This includes expenses related to rent and maintenance.
 
 - ~US$ 134.0K (fiat + crypto equivalent at time of expense)
 - ~3.6% of total
 
-**Extraordinary: Investments, Infrastructure: **This includes paying off the loan and beginning setup of the technology and infrastructure as a service for Nimiq OASIS. An additional $1 Mio is reserved for infrastructure, liquidity and market making for OASIS and related services. A further $100k is reserved as part of an anticipated TEN31 Bank dilution event.
+**Extraordinary: Investments, Infrastructure:**This includes paying off the loan and beginning setup of the technology and infrastructure as a service for Nimiq OASIS. An additional $1 Mio is reserved for infrastructure, liquidity and market making for OASIS and related services. A further $100k is reserved as part of an anticipated TEN31 Bank dilution event.
 
 - ~US$ 1’526.3K (fiat + crypto equivalent at time of expense)
 - ~40.8% of total

@@ -11,7 +11,6 @@ import environment from './lib/env'
 const IPX_CACHE_DIR = '.cache/ipx'
 const IPX_OUTPUT_DIR = '.output/public/_ipx'
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-07',
 
@@ -81,13 +80,12 @@ export default defineNuxtConfig({
   icon: {
     customCollections: [
       { prefix: 'custom', dir: './public/assets/custom-icons' },
-      { prefix: 'oasis-regions', dir: './public/assets/oasis-regions' },
       nimiqIcons,
       nimiqFlags,
     ],
     serverBundle: 'local',
     clientBundle: {
-      sizeLimitKb: 1024,
+      sizeLimitKb: 1280,
     },
   },
 
@@ -99,7 +97,6 @@ export default defineNuxtConfig({
     // Env: STUDIO_GOOGLE_CLIENT_ID, STUDIO_GOOGLE_CLIENT_SECRET
   },
 
-  // Analytics scripts - deferred until page is ready
   scripts: {
     registry: {
       matomoAnalytics: {
@@ -142,7 +139,6 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  // SEO configuration - skip for NuxtHub builds
   ...(!environment.useNuxtHub && {
     site: {
       url: process.env.NUXT_PUBLIC_SITE_URL || 'https://nimiq.com',
@@ -154,7 +150,6 @@ export default defineNuxtConfig({
     },
 
     schemaOrg: {
-      // Search engines understand the organization better with structured data
       identity: {
         type: 'Organization',
         name: 'Nimiq',
@@ -227,6 +222,7 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/exchanges': { redirect: '/buy-and-sell' },
+    '/podcast': { redirect: 'https://www.youtube.com/c/nimiq' },
     // SSR-only redirects (Cloudflare worker / Nuxt server). These do not apply to the static front-end bundle.
     // Keep static redirect rules in the static host/CDN config as needed.
     '/privacy-policy': { redirect: 'https://www.iubenda.com/privacy-policy/78537710' },
@@ -239,7 +235,7 @@ export default defineNuxtConfig({
     compressPublicAssets: { gzip: true, brotli: true },
     minify: true,
     prerender: {
-      concurrency: 8, // Parallel prerendering for faster builds
+      concurrency: 8,
       crawlLinks: true,
       failOnError: false, // TODO: Re-enable once all pages/images are ready
       ignore: [
@@ -372,10 +368,6 @@ export default defineNuxtConfig({
     },
   },
 
-  // Disable og-image generation on NuxtHub (Cloudflare) due to @resvg/resvg-js native bindings incompatibility
-  // Moved into conditional spread below to appease TS/ESLint config typing
-
-  // Feed configuration - skip for NuxtHub builds
   ...(!environment.useNuxtHub && {
     // eslint-disable-next-line ts/ban-ts-comment
     // @ts-ignore Provided by nuxt-og-image module

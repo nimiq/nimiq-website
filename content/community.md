@@ -84,8 +84,8 @@ banner:
     - label: How does it work
       headline: We fund your Nimiq project!
       subline: To support and encourage projects the Community Fund was created. Join the developer community, apply for funding and start a project.
-      link: /community-funding
-      linkLabel: Learn more
+      link: /blog/community-funding-board-re-activated
+      linkLabel: Explore funding options
       bgColor: green
 feedback:
   headline: Feedback

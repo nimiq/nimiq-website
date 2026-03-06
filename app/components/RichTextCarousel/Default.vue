@@ -9,10 +9,10 @@ const validImages = computed(() => images?.filter(Boolean) || [])
 
     <ClientOnly v-if="validImages.length > 0">
       <UiStackedCarousel v-slot="{ slide }" :slides="validImages" autoplay class="md:w-3/5">
-        <NuxtImg v-if="slide" class="rounded-[10px] w-full" :src="slide" />
+        <NuxtImg v-if="slide" class="rounded-[10px] w-full" :src="slide" alt="" />
       </UiStackedCarousel>
       <template #fallback>
-        <NuxtImg class="rounded-[10px]" :src="validImages[0]" />
+        <NuxtImg class="rounded-[10px]" :src="validImages[0]" alt="" />
       </template>
     </ClientOnly>
   </div>

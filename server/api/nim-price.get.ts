@@ -9,7 +9,6 @@ export default defineEventHandler(async (event) => {
   const currency = String(query.currency || 'USD').toUpperCase() as FiatCurrency
   const type = query.type as 'now' | '1d-ago' | undefined
 
-  // Validate currency
   if (!validCurrencies.includes(currency as unknown as typeof validCurrencies[number])) {
     throw createError({ statusCode: 400, message: 'Invalid currency' })
   }
@@ -22,14 +21,14 @@ export default defineEventHandler(async (event) => {
       return getCachedData(cacheKey, async () => {
         const res = await getHistoricExchangeRates(CryptoCurrency.NIM, currency, [oneDayAgo])
         return res.get(oneDayAgo) || 0
-      }, 3600) // Cache for 1 hour
+      }, 3600)
     }
 
     const cacheKey = `nim-price-now-${currency}`
     return getCachedData(cacheKey, async () => {
       const rates = await getExchangeRates([CryptoCurrency.NIM], [currency])
       return rates.nim[currency?.toLowerCase() as keyof typeof rates.nim] || 0
-    }, 60) // Cache for 1 minute
+    }, 60)
   }
   catch (error) {
     console.error('Failed to fetch NIM price:', error)

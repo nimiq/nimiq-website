@@ -15,7 +15,7 @@ However, Nimiq like every other crypto project has finite resources and this mea
 
 ## What is the community funding board?
 
-<iframe width="200" height="113" src="https://www.youtube.com/embed/sZu52HPofgM?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="200" height="113" src="https://www.youtube.com/embed/sZu52HPofgM?feature=oembed" title="Nimiq community funding board video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Nimiq’s vision is to grow this initiative with an ethos of ‘by the community, for the community’. That’s why the Community Funding Board is made up of three community representatives who, together with three members from the team, analyze and make judgments on which community proposals are to be supported.
 

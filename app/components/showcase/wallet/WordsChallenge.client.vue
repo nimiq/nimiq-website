@@ -3,17 +3,26 @@ defineProps<{ headline: string, subline?: string, guessLabel?: string, chanceLab
 
 const marqueeRows = 6
 const wordsPerRow = 14
-const wordsList = Array.from({ length: marqueeRows }, () => ({ words: getRandomWords(wordsPerRow) }))
+
+function createWordsRow() {
+  return { words: getRandomWords(wordsPerRow) }
+}
+
+const wordsList = Array.from({ length: marqueeRows }, createWordsRow)
 
 const container = useTemplateRef<HTMLDivElement>('container')
 const containerIsVisible = ref(false)
 useIntersectionObserver(container, ([entry]) => containerIsVisible.value = entry?.isIntersecting || false)
 const { items: animatedWords } = useRandomAnimatedTexts(wordsList.flatMap(row => row.words).map(word => word.word), { shouldPlay: containerIsVisible })
 
-const { publicAddress: prizeAddress, firstRealWords: firstRealWordsStr } = useRuntimeConfig().public.wordsChallenge
+const { publicAddress: prizeAddress, firstRealWords: firstRealWordsStr } = useSafeRuntimeConfig().public.wordsChallenge
 const firstRealWords = firstRealWordsStr.split(',')
 
-const userInputs = reactive(Array.from({ length: 12 }, () => ref('')))
+function createInput() {
+  return ref('')
+}
+
+const userInputs = reactive(Array.from({ length: 12 }, createInput))
 if (import.meta.env.DEV)
   userInputs.forEach(input => input.value = 'dummy')
 const isChallengeFinished = ref(false)
@@ -37,7 +46,7 @@ async function submitWords() {
   const userHasEnteredAllWords = userInputs.every(input => input.value)
   if (!userHasEnteredAllWords)
     return
-  sleep(300)
+  await sleep(300)
   await unlockWallet([...firstRealWords, ...userInputs.map(input => input.value)])
 }
 function reset() {
@@ -47,15 +56,15 @@ function reset() {
 </script>
 
 <template>
-  <div class="max-w-none w-full absolute overflow-x-hidden" :style="`--c: ${wordsList.length};`">
+  <div class="max-w-none w-full absolute overflow-x-hidden" :style="`--c: ${wordsList.length};`" aria-hidden="true">
     <div class="flex flex-col gap-6 h-full relative">
       <UiMarquee v-for="({ words }, i) in wordsList" :key="i" class="flex gap-0.5" :items="words" :should-play="containerIsVisible" :style="`--direction: ${i % 2 === 0 ? -1 : 1}`">
         <template #default="{ index: j }">
           <div class="p-4 rounded-1 bg-neutral-300 relative">
-            <span class="font-semibold font-mono text-lg md:text-xl">{{ animatedWords[i * marqueeRows + j]![1] }}</span>
+            <span class="font-semibold font-mono text-lg md:text-xl">{{ animatedWords[i * wordsPerRow + j]![1] }}</span>
             <div class="inset-4 absolute">
-              <span class="font-semibold font-mono text-lg md:text-xl text-neutral-800">{{ animatedWords[i * marqueeRows + j]![0] }}</span>
-              <span class="text-lg md:text-xl text-blue font-semibold font-mono">{{ animatedWords[i * marqueeRows + j]![1].value.slice(animatedWords[i * marqueeRows + j]![0].value.length) }}</span>
+              <span class="font-semibold font-mono text-lg md:text-xl text-neutral-800">{{ animatedWords[i * wordsPerRow + j]![0] }}</span>
+              <span class="text-lg md:text-xl text-blue font-semibold font-mono">{{ animatedWords[i * wordsPerRow + j]![1].value.slice(animatedWords[i * wordsPerRow + j]![0].value.length) }}</span>
             </div>
           </div>
         </template>
@@ -94,7 +103,7 @@ function reset() {
             {{ word }}
           </li>
           <li v-for="(input, i) in userInputs" :key="i" class="shrink-0">
-            <input v-model="input.value" class="border-2 border-white/30 hover:border-blue focus:border-blue text-center text-blue font-semibold px-0.5 outline-none caret-blue rounded-1 bg-transparent h-9 w-full transition placeholder:font-semibold placeholder:text-white/30" type="text" :aria-label="`Word ${i + 12 + 1}`" :placeholder="`${i + 12}`" autocomplete="off" @blur="submitWords">
+            <input v-model="input.value" class="border-2 border-white/30 hover:border-blue focus:border-blue text-center text-blue font-semibold px-0.5 outline-none caret-blue rounded-1 bg-transparent h-9 w-full transition placeholder:font-semibold placeholder:text-white/30" type="text" :aria-label="`Word ${i + firstRealWords.length + 1}`" :placeholder="`${i + firstRealWords.length + 1}`" autocomplete="off" @blur="submitWords">
           </li>
         </ul>
         <template v-if="isChallengeFinished">
@@ -114,7 +123,6 @@ function reset() {
     </div>
 
     <div class="mt-8 relative">
-      <!-- SyntheticWave inlined -->
       <div class="flex flex-col pointer-events-none -inset-16 top-0 absolute z-0" :style="`--grid-color: var(--color-${isChallengeFinished ? 'purple' : 'blue'})`">
         <div class="grid-container flex flex-basis-200 bg-inherit relative" perspective-1200 before="absolute inset-0" />
         <div class="retro-overlay inset-0 absolute" />
@@ -179,7 +187,6 @@ function reset() {
   }
 }
 
-/* SyntheticWave styles */
 .grid-container:before {
   content: '';
   position: absolute;

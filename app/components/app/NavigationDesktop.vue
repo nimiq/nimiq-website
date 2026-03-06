@@ -6,23 +6,19 @@ const site = await useSite()
 const route = useRoute()
 const isHome = route.fullPath === '/'
 
-// Get specific navigation groups
 const appsGroup = site.navigation?.find(g => g.label === 'Apps')
 const techGroup = site.navigation?.find(g => g.label === 'Tech')
 const communityGroup = site.navigation?.find(g => g.label === 'Community')
 const projectGroup = site.navigation?.find(g => g.label === 'Project')
 const getStartedGroup = site.navigation?.find(g => g.label === 'Get started')
 
-// Social media items for specific sections
 const techSocials = site.socials?.filter(s => ['reddit', 'discord', 'telegram'].includes(s.id)) ?? []
 const allSocials = site.socials ?? []
 const github = site.socials?.find(s => s.id === 'github')
 
-// Apps hover state for image preview
 const selectedApp = ref(0)
 const debouncedSelectedApp = refDebounced(selectedApp, 50)
 
-// Preload first navigation image for faster initial hover
 const firstAppImage = computed(() => appsGroup?.links?.[0]?.image)
 watchEffect(() => {
   if (import.meta.client && firstAppImage.value) {
@@ -33,9 +29,8 @@ watchEffect(() => {
 </script>
 
 <template>
-  <NavigationMenuRoot v-if="site?.navigation" class="header-nav relative" :delay-duration="35">
+  <NavigationMenuRoot v-if="site?.navigation" class="header-nav relative" aria-label="Primary navigation" :delay-duration="35">
     <NavigationMenuList class="flex items-center">
-      <!-- Apps Dropdown -->
       <NavigationMenuItem v-if="appsGroup" value="apps">
         <NavigationMenuTrigger class="trigger">
           {{ appsGroup.label }}
@@ -44,7 +39,7 @@ watchEffect(() => {
         <NavigationMenuContent class="nav-content w-max left-0 top-0 absolute">
           <div>
             <div class="flex gap-5 px-5 py-8">
-              <ul class="w-max flex flex-col" :aria-label="`${appsGroup.label} links`" role="link">
+              <ul class="w-max flex flex-col" :aria-label="`${appsGroup.label} links`">
                 <li v-for="(item, index) in appsGroup.links" :key="item.text" class="link-item group" :class="{ 'is-selected': selectedApp === index }" @focus="selectedApp = index" @mouseover="() => { if (selectedApp !== index) selectedApp = index }">
                   <NavigationMenuLink as-child>
                     <NuxtLink class="flex gap-3 items-center" :to="item.href">
@@ -80,7 +75,6 @@ watchEffect(() => {
         </NavigationMenuContent>
       </NavigationMenuItem>
 
-      <!-- Technology Dropdown -->
       <NavigationMenuItem v-if="techGroup" value="tech">
         <NavigationMenuTrigger class="trigger">
           {{ techGroup.label }}
@@ -88,7 +82,7 @@ watchEffect(() => {
         </NavigationMenuTrigger>
         <NavigationMenuContent class="nav-content min-w-max left-0 top-0 absolute">
           <div>
-            <ul class="grid grid-cols-2 gap-x-2 px-6 pt-6 pb-3" :aria-label="`${techGroup.label} links`" role="link">
+            <ul class="grid grid-cols-2 gap-x-2 px-6 pt-6 pb-3" :aria-label="`${techGroup.label} links`">
               <li v-for="(item, index) in techGroup.links" :key="`tech-item-${index}`" class="link-item flex w-full">
                 <NavigationMenuLink as-child>
                   <NuxtLink class="font-semibold px-4 py-2.5 rounded-1 flex-1 cursor-pointer whitespace-nowrap transition-colors hover:bg-darkblue/6 focus:bg-darkblue/6 text-darkblue/60 hover:text-darkblue focus:text-darkblue" :to="item.href">
@@ -109,7 +103,6 @@ watchEffect(() => {
         </NavigationMenuContent>
       </NavigationMenuItem>
 
-      <!-- Community Dropdown -->
       <NavigationMenuItem v-if="communityGroup" value="community">
         <NavigationMenuTrigger class="trigger">
           {{ communityGroup.label }}
@@ -117,7 +110,7 @@ watchEffect(() => {
         </NavigationMenuTrigger>
         <NavigationMenuContent class="nav-content min-w-max left-0 top-0 absolute">
           <div class="p-4 grid max-w-6xl" grid-cols-1>
-            <ul class="flex flex-col pb-2" :aria-label="`${communityGroup.label} links`" role="link">
+            <ul class="flex flex-col pb-2" :aria-label="`${communityGroup.label} links`">
               <li v-for="(item, index) in communityGroup.links" :key="`community-item-${index}`" class="link-item flex w-full">
                 <NavigationMenuLink as-child>
                   <NuxtLink class="font-semibold px-4 py-2.5 rounded-1 flex-1 cursor-pointer whitespace-nowrap transition-colors hover:bg-darkblue/6 focus:bg-darkblue/6 text-darkblue/60 hover:text-darkblue focus:text-darkblue" :to="item.href">
@@ -132,7 +125,6 @@ watchEffect(() => {
         </NavigationMenuContent>
       </NavigationMenuItem>
 
-      <!-- Project Dropdown -->
       <NavigationMenuItem v-if="projectGroup" value="project">
         <NavigationMenuTrigger class="trigger">
           {{ projectGroup.label }}
@@ -140,7 +132,7 @@ watchEffect(() => {
         </NavigationMenuTrigger>
         <NavigationMenuContent class="nav-content min-w-60 left-0 top-0 absolute">
           <div class="p-4 grid" grid-cols-1>
-            <ul class="flex flex-col" :aria-label="`${projectGroup.label} links`" role="link">
+            <ul class="flex flex-col" :aria-label="`${projectGroup.label} links`">
               <li v-for="(item, index) in projectGroup.links" :key="`project-item-${index}`" class="link-item flex w-full">
                 <NavigationMenuLink as-child>
                   <NuxtLink class="font-semibold px-4 py-2.5 rounded-1 flex-1 cursor-pointer whitespace-nowrap transition-colors hover:bg-darkblue/6 focus:bg-darkblue/6 text-darkblue/60 hover:text-darkblue focus:text-darkblue" :to="item.href">
@@ -153,7 +145,6 @@ watchEffect(() => {
         </NavigationMenuContent>
       </NavigationMenuItem>
 
-      <!-- Get Started CTA -->
       <NavigationMenuItem v-if="getStartedGroup" value="getstarted">
         <NavigationMenuTrigger class="ml-4 nq-pill-lg" :class="isHome ? 'home nq-pill-secondary' : 'nq-pill-blue'">
           {{ getStartedGroup.label }}
@@ -175,13 +166,13 @@ watchEffect(() => {
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>
-
-      <ClientOnly>
-        <NavigationMenuIndicator class="flex items-end justify-center w-[var(--reka-navigation-menu-indicator-size)] translate-x-[var(--reka-navigation-menu-indicator-position)] transition-all duration-200 top-full mt-2 absolute z-50 overflow-hidden data-[state=hidden]:opacity-0 data-[state=visible]:opacity-100">
-          <Icon class="text-neutral-200 h-3 w-6 translate-y-px relative drop-shadow" name="nimiq:tooltip-triangle" />
-        </NavigationMenuIndicator>
-      </ClientOnly>
     </NavigationMenuList>
+
+    <ClientOnly>
+      <NavigationMenuIndicator class="flex items-end justify-center w-[var(--reka-navigation-menu-indicator-size)] translate-x-[var(--reka-navigation-menu-indicator-position)] transition-all duration-200 top-full mt-2 absolute z-50 overflow-hidden data-[state=hidden]:opacity-0 data-[state=visible]:opacity-100">
+        <Icon class="text-neutral-200 h-3 w-6 translate-y-px relative drop-shadow" name="nimiq:tooltip-triangle" />
+      </NavigationMenuIndicator>
+    </ClientOnly>
 
     <ClientOnly>
       <div class="viewport-container absolute left-0 right-0 top-full z-10" style="perspective: 2000px">
@@ -197,21 +188,18 @@ watchEffect(() => {
     z-index: 1;
   }
 
-  /* Fallback dimensions before Reka JS calculates actual values */
   --reka-navigation-menu-viewport-width: 400px;
   --reka-navigation-menu-viewport-height: 300px;
   --reka-navigation-menu-indicator-size: 80px;
   --reka-navigation-menu-indicator-position: 0px;
   --reka-navigation-menu-viewport-left: 0px;
 
-  /* Viewport - hidden by default, shown when has open state */
   .viewport-panel:not([data-state='open']) {
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
   }
 
-  /* Viewport animation - scale in/out from top */
   .viewport-panel[data-state='open'] {
     animation: scaleIn 200ms ease;
   }
@@ -244,26 +232,22 @@ watchEffect(() => {
     }
   }
 
-  /* Content base - all content starts hidden */
   .nav-content {
     opacity: 0;
     pointer-events: none;
   }
 
-  /* Open content is visible */
   .nav-content[data-state='open'] {
     opacity: 1;
     pointer-events: auto;
     z-index: 2;
   }
 
-  /* Exiting content animates out behind entering content */
   .nav-content[data-motion='to-start'],
   .nav-content[data-motion='to-end'] {
     z-index: 1;
   }
 
-  /* Content animations - motion variants for switching */
   .nav-content[data-motion='from-start'] {
     animation: enterFromLeft 250ms ease forwards;
   }
@@ -383,7 +367,6 @@ watchEffect(() => {
     }
   }
 
-  /* Dark header triggers (home page at top) */
   header[data-scrolled='false'][data-header-variant='home'] & .trigger {
     color: rgba(255, 255, 255, 0.8);
 
@@ -407,7 +390,6 @@ watchEffect(() => {
     }
   }
 
-  /* Position viewport panel using Reka's computed left, clamped to not overflow */
   .viewport-container .viewport-panel {
     margin-left: min(
       var(--reka-navigation-menu-viewport-left, 0px),
@@ -415,7 +397,6 @@ watchEffect(() => {
     );
   }
 
-  /* Community socials: scale down YouTube (75%) and Discord (85%) */
   .community-socials li:has(a[title='Youtube']) span.iconify {
     transform: scale(0.75);
     transform-origin: center;

@@ -20,14 +20,13 @@ const datum = computed(() => {
   ] satisfies (DonutDatum & { label: string, annotation: StyleValue })[]
 })
 
-// Center the donut chart so the staked amount center points to the right
 const startAngle = computed(() => (90 - 180 * (datum.value.at(0)?.value || 0)))
 const formattedStakingRatio = computed(() => stakingRatio.value === undefined ? '--' : formatter.value.format(stakingRatio.value))
 </script>
 
 <template>
   <div ref="target" class="relative flex flex-col items-center">
-    <ChartDonut :data="datum" :start-angle />
+    <LazyChartDonut :data="datum" :start-angle />
     <div class="outline outline-2 outline-green text-neutral font-semibold px-3 py-1.5 rounded-full bg-neutral-0 right-2 top-[196px] absolute">
       {{ formattedStakingRatio }} staked
     </div>

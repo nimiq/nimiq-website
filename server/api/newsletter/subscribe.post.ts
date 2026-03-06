@@ -13,7 +13,7 @@ const NewsletterSignupSchema = object({
 const TokenSchema = object({ access_token: string(), scope: string(), api_domain: string(), token_type: string(), expires_in: number() })
 
 async function getZohoAccessToken() {
-  const { clientId, clientSecret, requestUrl, refreshToken, listkey } = useRuntimeConfig().zoho
+  const { clientId, clientSecret, requestUrl, refreshToken, listkey } = useSafeRuntimeConfig().zoho
   const formData = new FormData()
   formData.append('client_id', clientId)
   formData.append('client_secret', clientSecret)

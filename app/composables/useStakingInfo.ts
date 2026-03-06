@@ -9,7 +9,6 @@ export function useStakingInfo(options: { enabled?: MaybeRef<boolean> } = {}) {
     watch: false,
   })
 
-  // Trigger fetch when enabled changes to true
   watch(enabled, (isEnabled) => {
     if (isEnabled && !data.value)
       refresh()

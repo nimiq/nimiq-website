@@ -5,6 +5,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   nuxtApp.hook('page:finish', () => {
     zoom.detach()
-    zoom.attach(':is(.nq-prose, [nq-prose]) img:not(a *)')
+    zoom.attach(':is(.nq-prose, [nq-prose]):not(.rich-text-card) img:not(a *)')
   })
 })

@@ -13,7 +13,7 @@ The Nimiq Ecosystem is maturing and a lot of progress has been made. The team is
 
 If you are not familiar with [the members of Team Nimiq](https://www.nimiq.com/team/), here is a quick summary of the team structure (leaving out legal and operations):
 
-- **Core (Blockchain Development & Research): **Janosch, Jeff, Marvin, Pascal, Philipp, Richard.
+- **Core (Blockchain Development & Research):**Janosch, Jeff, Marvin, Pascal, Philipp, Richard.
 - **Frontend (UI/UX, Website, Apps):** Daniel, Julian, Matheo, Tammo, Sebastian, Sören, Sven.
 - **Communication (Marketing, Content Creation, Social Media):** Atua, Chris, Julian, Richy, Sven, Sui-Ju, Tammo.
 

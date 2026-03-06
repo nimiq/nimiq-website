@@ -13,7 +13,7 @@ The Nimiq Proof-of-Stake Testnet was[ unveiled in Q1 of this year](https://www.n
 
 Nimiq Proof-of-Stake continues to evolve towards its public release; to better update you about this intricate topic, we would like to first examine its main building blocks and their present status.
 
-### Validators and stakers
+## Validators and stakers
 
 Validators are the Proof-of-Stake block producers. A validator signals their willingness to participate in the block production by allocating a portion of their funds as stake. The higher its total stake, the higher the probability of being elected. Likewise, the higher the stake, the greater the number of slots assigned to the validator.
 
@@ -21,7 +21,7 @@ A set of slots is used to determine the block producers. They are allocated to a
 
 A participant who does not have the resources or knowledge to become a validator can instead sign up as a staker. A staker delegates its funds to a validator, which produces and validates blocks on its behalf. While stakers don’t need to be online to receive rewards, they are subject to punishment if their validator misbehaves and cannot withdraw their stake until their validator completes the punishment period. But even in such a situation, stakers do not lose their stake. Additionally, validators make the reward payment to their stakers off-chain.
 
-### Blockchain Overview
+## Blockchain Overview
 
 The Nimiq PoS blockchain is structured into several subsets of blocks called epochs and batches. An epoch consists of multiple batches. An epoch always ends with a closing election macro block. While, during an epoch, the set of validators remains constant, the election macro block selects a new set of elected validators for the following epoch. Batches consist of micro blocks and a closing checkpoint macro block, like in the following image.
 
@@ -29,47 +29,47 @@ The Nimiq PoS blockchain is structured into several subsets of blocks called epo
 
 Let’s analyze both in more detail.
 
-### Micro blocks
+## Micro blocks
 
 Micro blocks are produced by a selected validator and are the blocks that contain user-generated transactions. If a validator does not produce a micro block in the expected time, the validator list oversteps and creates a skip block in the expected micro block’s place. Unlike a regular micro block, a skip block does not include transactions and is signed by over two-thirds of the validators of the current epoch. This block replaces the micro block, thus ‘skipping’ past it.
 
-### Macro blocks
+## Macro blocks
 
 After a set amount of micro blocks has been produced, a macro block is added to finalize the batch. A randomly selected leader proposes macro blocks, and the remainder of the validator list vote on the proposal under a two-step voting process. The macro block is added to the chain upon an agreement of more than two-thirds of the validator set. Validators cannot split their votes so always vote with all of their slots, having greater voting power in the case of having a large number of slots.
 
 There are two types of macro blocks: election blocks provide periodical finality and renew the validator set for the upcoming epoch, and checkpoint blocks provide finality but retain the validator set.
 
-### How do we deal with malicious behavior?
+## How do we deal with malicious behavior?
 
 Validators are rewarded for participating in the block production and penalized if they fail to contribute according to the consensus. Penalties are distinguished based on the severity of the offense.
 
 For minor offenses, like delaying the block production, the slot responsible is deactivated and its rewards burned. More severe offenses on the other hand incur locking the validator, including all of its slots, in what is referred to as a jail state, where they remain for a significant amount of time. During this period, the validator cannot be re-elected, and all its rewards are burned.
 
-#### Impact on stakers
+### Impact on stakers
 
 The jail period also affect the validators’ stakers, as the locking period for the staker's stake matches with the validator's locking period. Once the validator is released, stakers can either maintain their stake along with their validator or opt to remove it once the jail period ends if their stake remains inactive.
 
-### Accounts and Transactions
+## Accounts and Transactions
 
 There are four distinct account types: Basic accounts, Vesting contracts, HTLC contracts, and the singular staking contract. The account tree hosts all accounts and contracts, documenting their balances and, where applicable, additional contract-specific data.
 
 For regular users (non-validators), transactions are your only way to interact with the blockchain. Transactions are therefore used not only for regular transfer of value but also for native functions like signing HTLCs (for Atomic Swaps), creating and redeeming Vesting contracts, initiating stakers, and more.
 
-## Node Types
+# Node Types
 
 Participants can engage in the Nimiq Proof-of-Stake network through various node types, each boasting different features and resource requirements:
 
-**History Nodes: **These nodes possess complete transaction history knowledge. In Nimiq Proof-of-Work, this type of node was referred to as a "Full node", and even though the name has changed in the Proof-of-Stake protocol, it continues to act as a keeper of the entire transaction history.
+**History Nodes:**These nodes possess complete transaction history knowledge. In Nimiq Proof-of-Work, this type of node was referred to as a "Full node", and even though the name has changed in the Proof-of-Stake protocol, it continues to act as a keeper of the entire transaction history.
 
 **Full Nodes:** These nodes maintain essential information needed for block validation and production. In the transition from Nimiq PoW to Nimiq PoS, what was once known as a "Light node" has been renamed to "Full node", yet it retains its core function of maintaining all vital blockchain information.
 
-**Light Nodes: **Light nodes quickly sync with the Blockchain since they only request details relevant to their accounts. While browsers are the typical platforms for light nodes, servers can also function as such. Previously in Nimiq Proof-of-Work, this kind of node was labeled a "Nano node".
+**Light Nodes:**Light nodes quickly sync with the Blockchain since they only request details relevant to their accounts. While browsers are the typical platforms for light nodes, servers can also function as such. Previously in Nimiq Proof-of-Work, this kind of node was labeled a "Nano node".
 
-### Browser Nodes
+## Browser Nodes
 
 Utilizing the same Rust codebase as the standard client, the Nimiq web client swiftly syncs and serves as a network node capable of directly transmitting transactions and getting verified blockchain data.
 
-## Nimiq Zero Knowledge Proof Implementation
+# Nimiq Zero Knowledge Proof Implementation
 
 The Nimiq Proof-of-Stake implementation utilizes recursive Zero Knowledge Proofs (ZKPs) to maintain constant data size for blockchain syncing, thereby enhancing speed and efficiency. If you want to learn more about ZKPs, you can read the series of blog posts we wrote on this topic:[ Intro to Zero Knowledge Proofs Part 1](https://www.nimiq.com/blog/zero-knowledge-proofs-and-nano-nodes/) and [Part 2](https://www.nimiq.com/blog/zero-knowledge-proofs-and-nano-nodes-part-2/).
 
@@ -83,7 +83,7 @@ With the incorporation of this technology, Nimiq can now sync the blockchain wit
 
 Nimiq's ZKPs enable users to sync up to the latest election block. A ZKP is approximately 1 kilobyte in size, and its verification process takes about 600ms in a modern browser. On the other hand, the process of creating a proof, or proving, is more time-intensive. Currently, it takes about 6 hours to generate a ZKP for a new epoch. These proofs are formulated and provided by prover nodes within the network.
 
-## Outlook until Mainnet
+# Outlook until Mainnet
 
 The testnet provides the community with an opportunity to explore Nimiq Proof-of-Stake’s functionality on a continuously operating chain. As community developers base their projects on the current code and new network, we invite everyone to push the network to its limits and identify potential security vulnerabilities. Team Nimiq is dedicating time and resources to strengthen the protocol and implementation, the [ZKP public bug bounty program is currently open](https://www.nimiq.com/bug-bounty-pos/) for submissions and we will open up the scope to include a wider section of the code base shortly. We aim to present a Blockchain Network that is a Mainnet Release Candidate after thorough testing.
 

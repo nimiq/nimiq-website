@@ -9,12 +9,10 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/buy-and-sell' }] }
 
 <template>
   <NuxtLayout>
-    <!-- Section 0: Hero -->
     <section class="bg-neutral-0 relative overflow-x-clip" style="--px: 0px">
       <HeroBuyAndSell :data="page.hero" />
     </section>
 
-    <!-- Section 1: Exchanges headline -->
     <section class="nq-section-gap bg-neutral-0 relative">
       <Headline v-bind="page.intro">
         <ul v-if="page.intro.videoTutorial" class="flex gap-4 lg:gap-5 flex-wrap f-mt-md">
@@ -25,12 +23,10 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/buy-and-sell' }] }
       </Headline>
     </section>
 
-    <!-- Section 2: Exchanges grid -->
     <section class="bg-neutral-0 pt-0">
       <GridExchanges />
     </section>
 
-    <!-- Section 3: Wallet headline -->
     <section class="nq-section-gap bg-neutral-0 relative">
       <Headline v-bind="page.wallet.headline">
         <ul v-if="page.wallet.videoTutorial" class="flex gap-4 lg:gap-5 flex-wrap f-mt-md">
@@ -41,27 +37,22 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/buy-and-sell' }] }
       </Headline>
     </section>
 
-    <!-- Section 4: Wallet showcase -->
     <section class="bg-neutral-0 pt-0">
       <ShowcaseWalletHoverable :data="page.wallet.content" />
     </section>
 
-    <!-- Section 5: Distribution headline -->
     <section class="nq-section-gap bg-neutral-0 relative">
       <Headline v-bind="page.distribution.headline" />
     </section>
 
-    <!-- Section 6: Distribution grid -->
     <section class="bg-neutral-0">
       <TokenDistribution :items="page.distribution.items" />
     </section>
 
-    <!-- Section 7: Banner -->
     <section class="bg-neutral-0 f-px-sm relative z-10 overflow-x-clip" style="--pb: 0px">
       <BannerBuyAndSell :data="page.cta" :overlaps-next-section="page.cta.overlapsNextSection" />
     </section>
 
-    <!-- Section 8: No download CTA -->
     <section class="nq-section-gap bg-neutral-100">
       <Headline v-bind="page.noDownload" />
     </section>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const { withEnv = false } = defineProps<{ withEnv?: boolean }>()
 
-const { isProduction, name } = useRuntimeConfig().public.environment
-const { enablePrismicSSR } = useRuntimeConfig().public
+const { isProduction, name } = useSafeRuntimeConfig().public.environment
+const { enablePrismicSSR } = useSafeRuntimeConfig().public
 </script>
 
 <template>

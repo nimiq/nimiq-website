@@ -1,8 +1,6 @@
 export function useNimPrice() {
-  // Get currency at top level - composables must be called at setup time
   const { currency: userCurrency } = useUserCurrency()
-  // Fallback to USD during SSR since useStorage doesn't work server-side.
-  // Normalize to uppercase because API routes validate uppercase fiat codes.
+  // Fallback to USD during SSR since useStorage doesn't work server-side
   const currency = computed(() => {
     const value = import.meta.server ? 'USD' : (userCurrency.value || 'USD')
     return value.toUpperCase()

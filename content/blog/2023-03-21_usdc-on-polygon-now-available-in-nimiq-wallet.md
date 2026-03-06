@@ -83,19 +83,19 @@ Ultimately, the Nimiq Wallet should support every major currency quality and cap
 
 Here are the changes to the wallet:
 
-#### USDC available
+### USDC available
 
 You can hold, receive and send Polygon USDC. And of course, you can swap USDC for NIM and BTC using SuperSimpleSwap.
 
-#### Simplified onboarding
+### Simplified onboarding
 
 The account creation was substantially streamlined. The Identicon for the first address will be auto-assigned. Effectively, a new user sets a password and downloads the Login File – that’s it.
 
-#### No more Identicon names
+### No more Identicon names
 
 The auto-created Identicon names were always quite bulky and confused especially new users. We’re ending this feature and have implemented a more straightforward way of naming the addresses: They are named after the Identicon’s background color, which also connects to the naming convention of the accounts (blue background = “Blue address”).
 
-#### Greater emphasis on swaps and asset-mobility
+### Greater emphasis on swaps and asset-mobility
 
 As a first expression of our new Wallet vision, atomic-swapping assets is now more accessible from the dashboard, illustrating how easy it is and encouraging a more fluid way of looking at these assets.
 
@@ -103,7 +103,7 @@ The bar indicating the allocation of assets was a nice concept but proved diffic
 
 ![](/assets/images/prismic/65785b99-944e-4345-831a-d427d2d0a4f0_swap_accesss_points.png)
 
-#### Overhauled Network map
+### Overhauled Network map
 
 Originally, the ‘Network’ view only showed the Nimiq Network. Now, BTC and USDC were added providing some base stats on all networks. We decided to keep the info rather light and exclusively show stats that don’t require crypto knowledge (what’s block height?) and provide value to the users, e.g. the current transaction costs.
 

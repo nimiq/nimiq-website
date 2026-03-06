@@ -44,9 +44,9 @@ This is an “Early Access” to the swap functionality and thus comes with a 30
 
 We plan to offer higher limits in the future. However, we can not yet share a date for when this will be available.
 
-**Why Bitcoin? **
+**Why Bitcoin?**
 
-Bitcoin is *the *gold standard of crypto. Every other cryptocurrency is measured against Bitcoin and compared to it often. When we launched our Mainnet in 2018, Nimiq's original architecture was inspired by Bitcoin but designed from the ground up to be **browser-based**. Having a node directly in the browser improved usability and developer accessibility due to its use of JavaScript, while at the same time reducing protocol complexity. All this together made Nimiq a better currency, suitable for day-to-day payments and applications. Ongoing improvements including scalability, energy consumption, transaction speed and cost, will continue with the upcoming Nimiq 2.0.
+Bitcoin is *the*gold standard of crypto. Every other cryptocurrency is measured against Bitcoin and compared to it often. When we launched our Mainnet in 2018, Nimiq's original architecture was inspired by Bitcoin but designed from the ground up to be **browser-based**. Having a node directly in the browser improved usability and developer accessibility due to its use of JavaScript, while at the same time reducing protocol complexity. All this together made Nimiq a better currency, suitable for day-to-day payments and applications. Ongoing improvements including scalability, energy consumption, transaction speed and cost, will continue with the upcoming Nimiq 2.0.
 
 While some focus on comparing BTC and NIM, we are convinced that there is room for both in the crypto space. As a matter of fact, Nimiq and Bitcoin complement each other as they target different use-cases and coexist perfectly:
 

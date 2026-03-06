@@ -13,7 +13,7 @@ Almost four years ago, Nimiq was founded with a clear-cut goal in mind: Make cry
 
 One fundamental aspect was the in-and-out of crypto. Without an easy way to buy and sell the new internet money, there would be no mass adoption.
 
-We are now excited to present the result of years of original research, development, and regulatory finesse: **Nimiq OASIS is finally here! **
+We are now excited to present the result of years of original research, development, and regulatory finesse: **Nimiq OASIS is finally here!**
 
 Someone entirely new to crypto can create a wallet and buy NIM and BTC directly from their bank account:
 
@@ -43,15 +43,15 @@ The public beta is fast already but will see great improvements in the future. F
 
 Buying and selling crypto with EUR is enabled not by one entity, but by the interplay of three main actors. Here’s a small run-down of who does what.
 
-**[Nimiq OASIS](https://nimiq.com/oasis)** is the underlying protocol and the actual innovation. It simulates blockchain behavior for off-chain assets. When implemented into – for example – a Euro bank, Euro becomes programmable. This is essential for non-custodial buying and selling since it allows something entirely new: Euro smart contracts.
+**[Nimiq OASIS](/blog/nimiq-oasis-launch-press-release)** is the underlying protocol and the actual innovation. It simulates blockchain behavior for off-chain assets. When implemented into – for example – a Euro bank, Euro becomes programmable. This is essential for non-custodial buying and selling since it allows something entirely new: Euro smart contracts.
 
-**[TEN31 Bank](https://ten31.com/) **is a fully licensed German Bank of which Nimiq is a shareholder. It is the first entity to implement the protocol and offer an OASIS instance for Euro. Whereas the blockchain executes a crypto smart contract, the bank executes the fiat smart contract. Whereas the blockchain executes a crypto smart contract, the bank - as the highest form of reliability in fiat - executes the fiat smart contract.
+**[TEN31 Bank](https://ten31.com/)**is a fully licensed German Bank of which Nimiq is a shareholder. It is the first entity to implement the protocol and offer an OASIS instance for Euro. Whereas the blockchain executes a crypto smart contract, the bank executes the fiat smart contract. Whereas the blockchain executes a crypto smart contract, the bank - as the highest form of reliability in fiat - executes the fiat smart contract.
 
 **[Fastspot](https://fastspot.io/)** is a liquidity service created by Nimiq that is necessary for delivering a good user experience. Atomic fiat-crypto swaps would be possible without it, but who will sell to you at the exact moment you want to buy? Fastspot provides liquidity and sets up the verifiable smart contracts for the Atomic Swap.
 
 ## A word on the tech
 
-For a more detailed explanation, we recommend checking out nimiq.com/oasis. In short, the system is inspired by the established concept of Atomic Swaps and Hashed Timelock Contracts (or HTLCs for short).
+For a more detailed explanation, we recommend checking out [our OASIS launch article](/blog/nimiq-oasis-launch-press-release). In short, the system is inspired by the established concept of Atomic Swaps and Hashed Timelock Contracts (or HTLCs for short).
 
 HTLCs are specialized smart contracts that, once funded, can only do one of two things:
 

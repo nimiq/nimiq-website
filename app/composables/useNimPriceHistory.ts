@@ -16,10 +16,8 @@ export function useNimPriceHistory(currency: MaybeRef<FiatCurrency>) {
     return value.toUpperCase() as FiatCurrency
   })
 
-  // Local storage cache for offline support
-  const cacheStorageKey = `nimiq_price_history_cache`
-  const dataCache = useLocalStorage<Record<string, Record<HistoricNimPricePeriod, NimPrice[]>>>(cacheStorageKey, {})
-  const currentCacheKey = computed(() => `${normalizedCurrency.value}`)
+  const dataCache = useLocalStorage<Record<string, Record<HistoricNimPricePeriod, NimPrice[]>>>('nimiq_price_history_cache', {})
+  const currentCacheKey = computed(() => normalizedCurrency.value)
 
   const getCachedData = computed(() => {
     const currencyCache = dataCache.value[currentCacheKey.value]
@@ -34,7 +32,6 @@ export function useNimPriceHistory(currency: MaybeRef<FiatCurrency>) {
     default: () => ({ data: [], currency: normalizedCurrency.value, period: period.value }),
   })
 
-  // Merge fetched data with localStorage cache
   watch(fetchedData, (newData) => {
     if (!newData?.data?.length)
       return
@@ -47,7 +44,6 @@ export function useNimPriceHistory(currency: MaybeRef<FiatCurrency>) {
     dataCache.value[currencyKey][periodKey] = mergedData
   }, { immediate: true })
 
-  // Return merged data (localStorage + fetched)
   const data = computed<NimPrice[]>(() => {
     const cached = getCachedData.value
     const fetched = fetchedData.value?.data || []
@@ -79,5 +75,5 @@ function mergePriceHistory(oldData: NimPrice[], newData: NimPrice[] | Map<number
   for (const [t, price] of oldData) map.set(t, price)
   const entries = newData instanceof Map ? newData.entries() : newData
   for (const [t, price] of entries) map.set(t, price)
-  return Array.from(map.entries()).sort((a, b) => a[0] - b[0])
+  return [...map.entries()].toSorted((a, b) => a[0] - b[0])
 }

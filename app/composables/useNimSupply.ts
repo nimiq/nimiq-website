@@ -3,7 +3,6 @@ import { posSupplyAt } from '@nimiq/utils/supply-calculator'
 
 export function useNimSupply() {
   const locale = useLocale()
-  // Use computed so values update if called at different times
   const currentSupply = computed(() => posSupplyAt(Date.now()))
   const supplyYesterday = computed(() => posSupplyAt(Date.now() - 24 * 60 * 60 * 1000))
 

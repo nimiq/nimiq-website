@@ -33,9 +33,9 @@ The procedure of NIM Activation will be as follows:
 
 1. SIGN INTO THE ACTIVATION TOOL https://activation.nimiq.com/
 
-2. READ AND AGREE TO ACTIVATION TERMS https://nimiq.com/activation/terms
+2. READ AND AGREE TO ACTIVATION TERMS /activation-terms
 
-3. READ AND AGREE TO THE POLICY FOR KYC PROCEDURE, DATA COLLECTION AND RETENTION https://nimiq.com/activation/privacy
+3. READ AND AGREE TO THE POLICY FOR KYC PROCEDURE, DATA COLLECTION AND RETENTION /activation/privacy.html
 
 4. FILL IN NECESSARY INFORMATION FOR THE KYC
 
@@ -59,7 +59,7 @@ After NET Holder has passed the KYC Procedure and has been admitted, he/she will
 
 V. Privacy Policy and Data Processors
 
-NET Holder understands and accepts that the KYC and Activation Procedure are subject to the terms of the policy for the [KYC Procedure, Data Collection and Retention](https://nimiq.com/activation/privacy).
+NET Holder understands and accepts that the KYC and Activation Procedure are subject to the terms of the policy for the [KYC Procedure, Data Collection and Retention](/activation/privacy.html).
 
 VI. Miscellaneous
 

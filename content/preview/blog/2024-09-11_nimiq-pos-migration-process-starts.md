@@ -35,7 +35,7 @@ For those already running a validator, the documentation for participating in th
 
 We encourage the community to spread the word and invite any tech-savvy friends who might be interested in running a validator. To incentivize the availability of a variety of Validator Pools, Community Developers running a Validator Pool will receive extra rewards. **Please keep in mind that only validators who registered during the Validator Registration Phase will be eligible for the migration. By participating as Validator in the migration you are making history and will earn the very first staking rewards issued by the protocol.** Others will have to wait until after the migration to join the network.
 
-The Validator Registration Phase is the opening of this transition. In this phase, we will establish the very first validator list for the Nimiq PoS chain. This is your chance to be one of the first validators. We invite everyone interested to **register between Thursday, September 12**,** and Sunday, October 6**. All you need to do is follow the instructions provided [**here**](https://www.nimiq.com/developers/migration/migration-validators#validator-registration-tool). **After October 6, no more validator registrations will be accepted and can result in a loss of funds!**
+The Validator Registration Phase is the opening of this transition. In this phase, we will establish the very first validator list for the Nimiq PoS chain. This is your chance to be one of the first validators. We invite everyone interested to **register between Thursday, September 12**,**and Sunday, October 6**. All you need to do is follow the instructions provided [**here**](https://www.nimiq.com/developers/migration/migration-validators#validator-registration-tool). **After October 6, no more validator registrations will be accepted and can result in a loss of funds!**
 
 ## Plans for the Pre-Staking Phase
 
@@ -51,17 +51,17 @@ The design process for the Activation Phase has been updated slightly since the 
 
 As we prepare for the transition to Proof-of-Stake, we have put together answers to some questions to help guide you through this process:
 
-**Does every Nimiq user need to run the migration tools to transition to PoS? **No, the migration is only required for those who want to benefit from and make history by being among the first validators or operating nodes at the start of PoS. Regular users don't need to take any action.
+**Does every Nimiq user need to run the migration tools to transition to PoS?**No, the migration is only required for those who want to benefit from and make history by being among the first validators or operating nodes at the start of PoS. Regular users don't need to take any action.
 
 **I own a Nimiq Wallet and hold NIM. Do I need to participate in the migration?** While all NIM holders are encouraged to participate in the migration and pre-stake to support the network, participation is not mandatory. If you choose not to participate, your wallet and transaction history will remain unaffected and automatically be transferred after the Activation Phase.
 
-**Can I log into my Nimiq Wallet with the same Login File after the transition? **Yes, your local private keys remain untouched by this process, and you can log in with the same Login File and credentials after the transition.
+**Can I log into my Nimiq Wallet with the same Login File after the transition?**Yes, your local private keys remain untouched by this process, and you can log in with the same Login File and credentials after the transition.
 
-**Do I need to be a miner to register as a validator? **No, anyone can register as a validator, regardless of whether they are a miner or not.
+**Do I need to be a miner to register as a validator?**No, anyone can register as a validator, regardless of whether they are a miner or not.
 
-**What happens if the activation doesn’t collect 80% of readiness in the first activation window? **A new activation window will open every 24 hours if 80% readiness is not reached during an activation window. This process will repeat until the readiness threshold is achieved.
+**What happens if the activation doesn’t collect 80% of readiness in the first activation window?**A new activation window will open every 24 hours if 80% readiness is not reached during an activation window. This process will repeat until the readiness threshold is achieved.
 
-**What happens if I don’t join the Pre-Staking Phase? **If you miss pre-staking to a validator, you can still participate once the PoS chain is live and delegate stake to a validator.
+**What happens if I don’t join the Pre-Staking Phase?**If you miss pre-staking to a validator, you can still participate once the PoS chain is live and delegate stake to a validator.
 
 For more detailed answers and additional questions about the migration, please visit our [**Migration FAQ**](https://www.nimiq.com/developers/migration/faqs).
 

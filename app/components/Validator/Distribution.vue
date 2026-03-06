@@ -30,10 +30,10 @@ const data = computed(() => {
 
 <template>
   <div class="flex flex-col items-center">
-    <ChartDonut :data="data!">
+    <LazyChartDonut :data="data!">
       <template #default="{ color, value, name, logo, balance }">
         <div :key="name" class="ring-1.5 flex items-center gap-4 text-neutral font-semibold p-4 rounded-2 bg-neutral-0 w-max shadow" data-tooltip-container :style="`--c: ${color}; --tw-ring-color: var(--c)`">
-          <img v-if="logo" :src="logo" class="size-10" loading="eager">
+          <img v-if="logo" :src="logo" class="size-10" alt="" loading="eager">
           <div class="flex gap-0.5 flex-col font-semibold leading-none">
             <h3 class="text-lg">
               {{ name }}
@@ -49,7 +49,7 @@ const data = computed(() => {
           </div>
         </div>
       </template>
-    </ChartDonut>
+    </LazyChartDonut>
     <h3 v-if="headline" class="text-center font-semibold text-22 mt-4 text-neutral">
       {{ headline }}
     </h3>

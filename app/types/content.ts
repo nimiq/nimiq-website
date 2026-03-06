@@ -1,5 +1,3 @@
-// Shared content types - consolidated from 47+ interfaces to ~10 base types
-
 export interface BaseItem { headline: string, subline?: string }
 export interface MediaItem extends BaseItem { image?: string, icon?: string, iconName?: string }
 export interface LinkableItem extends BaseItem { linkHref?: string, linkLabel?: string }

@@ -13,7 +13,7 @@ Welcome back, Nimiq supporters!
 
 There is some big news coming from behind-the-scenes of Nimiq's new version of [Cryptopayment.link](https://cryptopayment.link/). Nimiq's core values of simplicity, easy payments for everyone, and reducing entry barriers for new users are still going strong. Nimiq has shifted focus on creating an even more accessible and intuitive app for business owners to receive payments with a new dashboard experience and more powerful tools to maximize the software's potential. You will find a full ChangeLog after [Cryptopayment.link](https://cryptopayment.link/) has launched, but we will include some highlights here.
 
-## ** "Charge Now" function**
+## **"Charge Now" function**
 
 The most significant added feature will be the addition of the "Charge Now" function. "Charge Now" enables a simplified, built-in flow for accepting crypto when the seller and buyer are in the same physical location. It works like at a Point of Sale in a retail shop. The process starts with the seller showing a QR payment code on their device to the buyer. The buyer scans the QR code with their crypto wallet app, which can then be used to complete the transaction. [Cryptopayment.link](https://cryptopayment.link/) shows a success notification in real-time. We've added a fallback option with the payment details in case the QR code on the seller's device can't be scanned properly by the buyer.\*\* \*\*
 

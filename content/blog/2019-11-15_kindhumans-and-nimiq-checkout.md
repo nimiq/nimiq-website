@@ -31,7 +31,7 @@ To reach mass-adoption of cryptocurrency, crypto payments need to be convenientl
 
 Comparing the payment experience with NIM to ETH and BTC, a few differences are noteworthy:
 
-**Nimiq has low fees: **Scalability of the Nimiq Network keeps the Blockchain decongested. The transactions per second are due to increase from 7 to 1000+ with the transition to Nimiq 2.0.
+**Nimiq has low fees:**Scalability of the Nimiq Network keeps the Blockchain decongested. The transactions per second are due to increase from 7 to 1000+ with the transition to Nimiq 2.0.
 
 ![](/assets/images/prismic/27b7ed28-d151-4572-8fc7-2da1a8823bef_blog_kindhumans-and-nimiq-checkout_2.png)
 

@@ -12,7 +12,6 @@ const { newsAndAnnouncementsLabel = '', discussionsAndSupportLabel = '', culture
 
 const site = await useSite()
 
-// Map from content IDs to site.yaml social IDs
 const socialMediaMap: Record<string, string> = { nimiq_forum: 'forum', twitter: 'x' }
 
 function getSocialById(id: string) {
@@ -20,8 +19,6 @@ function getSocialById(id: string) {
   const social = site.socials?.find(s => s.id === mappedId)
   if (!social)
     return social
-  // Contact grid displays platform names - capitalize for display
-  // Special case: forum should display as "NimiqForum" in contact grid
   const label = mappedId === 'forum' ? 'NimiqForum' : social.label
   return { ...social, label }
 }
@@ -68,7 +65,6 @@ const columns = computed(() => [
   flex-direction: row;
   align-items: center;
   gap: 24px;
-  /* match color timing to gradient (300ms) so text doesn't turn white before bg is colored */
   transition:
     --nq-gradient-from 300ms var(--nq-ease),
     --nq-gradient-to 300ms var(--nq-ease),

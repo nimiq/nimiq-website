@@ -65,7 +65,7 @@ Our top priority is to ensure that whatever we do serves the health of the Nimiq
 
 Clarity. Confidence. A Re-imagined Strategy.
 
-As soon as possible, we will reveal** our new roadmap, along with a refreshed website and path forward.**
+As soon as possible, we will reveal**our new roadmap, along with a refreshed website and path forward.**
 
 This strategic shift has been our main focus, but it has gone hand-in-hand with ongoing development. Several new features are getting ready to launch soon, including support for multisig transactions, a revamped developer center, tools for user feedback, a new private-key backup option for the Nimiq Wallet, and an improved staking user interface.
 

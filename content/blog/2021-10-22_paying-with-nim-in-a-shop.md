@@ -15,7 +15,7 @@ First, we booked two rooms in the Hotel Vienna, also known as the [Kryptohotel](
 
 ## First payment experience
 
-To prepare for our work, Max and I met in the bar of the hotel and had a cup of coffee. That’s how we met the hotel owner for the first time and we asked: can we also pay for the coffee in NIM?? Sure! So we got our gear, set up microphone and camera and were ready to** pay with NIM in a physical shop** for the first time EVER! We got excited. :)
+To prepare for our work, Max and I met in the bar of the hotel and had a cup of coffee. That’s how we met the hotel owner for the first time and we asked: can we also pay for the coffee in NIM?? Sure! So we got our gear, set up microphone and camera and were ready to**pay with NIM in a physical shop** for the first time EVER! We got excited. :)
 
 And it worked! The hotel owner entered the amount to be paid, the terminal showed a QR code, Max scanned it, confirmed the transaction on his mobile and seconds later, a printed receipt appeared from the little machine. **Payment successful!**
 

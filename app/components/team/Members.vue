@@ -11,23 +11,23 @@ interface TeamMember {
 
 const { items } = defineProps<{ items: TeamMember[] }>()
 
-// SSR-friendly sorted list (alphabetical by fullName)
-const sortedItems = computed(() => [...items].sort((a, b) => a.fullName.localeCompare(b.fullName)))
+const sortedItems = computed(() => items.toSorted((a, b) => a.fullName.localeCompare(b.fullName)))
 
-// Client-only randomized list
 const randomizedItems = ref<TeamMember[]>([])
 const hasShuffled = ref(false)
 
 onMounted(() => {
-  randomizedItems.value = [...items].sort(() => Math.random() - 0.5)
+  randomizedItems.value = items.toSorted(() => Math.random() - 0.5)
   hasShuffled.value = true
 })
 
-// Which list to render
 const displayItems = computed(() => hasShuffled.value ? randomizedItems.value : sortedItems.value)
 </script>
 
 <template>
+  <h2 class="sr-only">
+    Team members
+  </h2>
   <ul class="columns-1 sm:columns-2 lg:columns-3 gap-0 bg-neutral-0" style="column-rule: 2px solid var(--color-neutral-400)">
     <li v-for="member in displayItems" :key="member.fullName" class="break-inside-avoid-column border-b-2 border-solid border-neutral-400">
       <div v-if="member.picture" class="px-32 max-sm:px-0 pt-32">

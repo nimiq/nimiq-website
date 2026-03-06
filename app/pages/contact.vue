@@ -14,7 +14,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/contact' }] })
     </section>
 
     <section class="bg-neutral-0">
-      <Headline v-bind="page.social.gridHeadline" />
+      <Headline v-if="page.social.gridHeadline" v-bind="page.social.gridHeadline" />
       <GridSocialMedia v-bind="page.social.grid" />
     </section>
 
@@ -23,7 +23,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/contact' }] })
     </section>
 
     <section class="bg-neutral-0">
-      <iframe class="mx-auto rounded-md h-[651px] max-w-[392px] w-full" src="https://notionforms.io/forms/nim-prospect-contact-form" frameborder="0" />
+      <iframe class="mx-auto rounded-md h-[651px] max-w-[392px] w-full border-0" src="https://notionforms.io/forms/nim-prospect-contact-form" title="Nimiq contact form" />
     </section>
   </NuxtLayout>
 </template>

@@ -7,6 +7,7 @@ const data = await useApps()
 const apps = computed(() => data.apps)
 const { madeBy, filteredApps, getSpotlightPosition } = useAppsFilter(apps)
 const requestUrl = useRequestURL()
+const { apiDomain } = useSafeRuntimeConfig().public
 
 const hoveredApp = ref<string | null>(null)
 
@@ -46,13 +47,20 @@ function getAppLink(app: NimiqApp) {
 function getHighlightedUrl(link: string) {
   try {
     const url = new URL(link)
-    return url.host === requestUrl.host ? url.pathname : link
+    const internalHosts = new Set([
+      requestUrl.host,
+      new URL(apiDomain).host,
+    ])
+    return internalHosts.has(url.host) ? url.pathname : link
   }
   catch { return link }
 }
 </script>
 
 <template>
+  <h2 class="sr-only">
+    Apps list
+  </h2>
   <TabsRoot v-model="madeBy">
     <TabsList class="relative flex w-full md:w-auto rounded-full bg-neutral-300 p-[5px]">
       <TabsIndicator class="absolute left-0 inset-y-[5px] rounded-full bg-white w-(--reka-tabs-indicator-size)" style="transform: translateX(var(--reka-tabs-indicator-position)); box-shadow: 0 1px 4px rgba(0,0,0,0.10), 0 0 1px rgba(0,0,0,0.06)" />
@@ -87,7 +95,6 @@ function getHighlightedUrl(link: string) {
         :animate="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.3, delay: Math.min(i * 0.04, 0.3) }"
       >
-        <!-- CardApp (non-highlighted) -->
         <NuxtLink
           v-if="!app.isHighlighted"
           class="w-[min(calc(100vw-var(--px,32px)*2),350px)] group p-[6px] rounded-[6px] gap-[24px] h-full nq-hoverable"
@@ -101,7 +108,7 @@ function getHighlightedUrl(link: string) {
         >
           <div class="bg-[var(--c)] mb-0 rounded-[4px] h-[160px] md:h-[240px] grid place-items-center relative">
             <Icon v-if="app.name === 'Nimiq Tip Bot'" class="text-white/80" size="80" name="nimiq:logos-telegram-mono" />
-            <NuxtImg v-else class="max-w-[45%] rounded-[4px] h-auto max-h-full min-w-[82px] object-cover" :src="app.logo" :class="getLogoClasses(app.name)" />
+            <NuxtImg v-else class="max-w-[45%] rounded-[4px] h-auto max-h-full min-w-[82px] object-cover" :src="app.logo" alt="" :class="getLogoClasses(app.name)" />
             <p class="text-[12px] text-white/70 self-start right-[12px] top-[12px] justify-self-end absolute nq-label">
               {{ app.type }}
             </p>
@@ -132,7 +139,6 @@ function getHighlightedUrl(link: string) {
           </div>
         </NuxtLink>
 
-        <!-- CardHighlighted -->
         <NuxtLink
           v-else
           class="nq-hoverable h-full flex flex-col md:flex-row rounded-[6px] overflow-hidden"
@@ -140,7 +146,7 @@ function getHighlightedUrl(link: string) {
         >
           <div class="md:w-[42%] shrink-0 p-[10px] md:p-[16px] md:pr-0 min-h-[240px]">
             <div class="size-full rounded-[4px] overflow-hidden bg-neutral-200">
-              <NuxtImg v-if="app.screenshot" class="size-full object-cover object-left-top" :src="app.screenshot" />
+              <NuxtImg v-if="app.screenshot" class="size-full object-cover object-left-top" :src="app.screenshot" :alt="`Screenshot of ${app.name}`" />
             </div>
           </div>
           <div class="flex flex-col justify-center gap-[40px] px-[26px] md:px-[48px] py-[26px] md:py-[32px] flex-1">
@@ -178,7 +184,6 @@ function getHighlightedUrl(link: string) {
   .spotlight-right {
     grid-column: -3 / span 2;
   }
-  /* odd rows (1,3,5...) for highlighted; even rows fill with regulars via grid-flow dense */
   .spotlight-row-0 {
     grid-row: 1;
   }

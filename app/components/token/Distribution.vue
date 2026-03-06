@@ -33,7 +33,6 @@ function isConnectorActive(index: number) {
 </script>
 
 <template>
-  <!-- Mobile: stacked bar + simple accordion list -->
   <div class="flex flex-col gap-6 w-full md:hidden">
     <div class="flex gap-1 h-12 rounded-1.5 overflow-hidden shadow">
       <div v-for="(item, i) in items" :key="i" :style="{ flex: item.percentage }" :class="`bg-gradient-${getColor(i)}`" />
@@ -59,7 +58,6 @@ function isConnectorActive(index: number) {
     </AccordionRoot>
   </div>
 
-  <!-- Desktop: grid with connectors -->
   <div class="grid gap-x-1.5 grid-flow-row gap-y-5 bg-neutral-0 w-full max-md:hidden" :style="{ gridTemplateColumns, gridTemplateRows: `repeat(${items.length + 1}, auto)` }">
     <div v-for="(_, i) in items" :key="i" class="rounded-1.5 h-[81px] shadow" :class="`bg-gradient-${getColor(i)}`" />
     <template v-for="({ title, description, percentage }, i) in items" :key="i">

@@ -13,7 +13,7 @@ Team Nimiq is proud to announce the release of the new Nimiq Website!
 
 With the launch of this website, we aim to onboard many new users to the Nimiq Blockchain. Long-time supporters will easily find information like the developer center, an extended and detailed roadmap, and a growing list of community apps.
 
-Visit [nimiq.com](https://nimiq.com/) and let us know what you think in Telegram, Discord, and Twitter.
+Visit [nimiq.com](/) and let us know what you think in Telegram, Discord, and Twitter.
 
 ## Nimiq’s visual identity
 
@@ -41,9 +41,9 @@ On the home page, every section links to details and resources on Nimiq. Every p
 
 To guide the users through the website, a minimal navigation bar is shown at the top. It invites new users to create an account and provides simple access to the main sections: Apps, Developer and About. The bar disappears when browsing the page to maximize space for its content.
 
-- **Apps: **You will find apps not only made by Team Nimiq, but also by the Community. You can also “add your own app” by visiting the Developer Center.
-- **Developers: **The developer center provides documentation, tutorials, and resources for both experienced devs and new devs just starting to build their own Nimiq-based apps.
-- **About: **For anyone who wants to learn about Team Nimiq and the Nimiq Community. This is the entry point for users who want to learn more about the non-technical parts of Nimiq, Nimiq’s charity efforts, the roadmap, whilst also giving quick access to blog posts.
+- **Apps:**You will find apps not only made by Team Nimiq, but also by the Community. You can also “add your own app” by visiting the Developer Center.
+- **Developers:**The developer center provides documentation, tutorials, and resources for both experienced devs and new devs just starting to build their own Nimiq-based apps.
+- **About:**For anyone who wants to learn about Team Nimiq and the Nimiq Community. This is the entry point for users who want to learn more about the non-technical parts of Nimiq, Nimiq’s charity efforts, the roadmap, whilst also giving quick access to blog posts.
 
 With this step, we’re gearing up to making Nimiq available to everyone and advancing forward towards cryptocurrency mass adoption and beyond!
 

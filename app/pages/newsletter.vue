@@ -26,7 +26,7 @@ const body = computed(() => new URLSearchParams({
   products: products.value.join(','),
 }))
 
-const { apiDomain } = useRuntimeConfig().public
+const { apiDomain } = useSafeRuntimeConfig().public
 const url = new URL('/api/newsletter/subscribe', apiDomain)
 const { execute: submitForm, status, error } = useFetch(url.href, { method: 'POST', body, watch: false, immediate: false })
 </script>

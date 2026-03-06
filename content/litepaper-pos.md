@@ -216,7 +216,7 @@ More demanding user tasks, such as backing up the account, are not forced on use
 
 Focusing on simplicity and ease of use, Nimiq is built on an serene foundation: traditional colors, a minimal, geometric sans-serif font, and common layout patterns. We strive not only to push the boundaries of technology, but also the way we design our experiences and touchpoints, adding that bit of sophistication and edge that we believe makes the difference between convenience and fascination.
 
-Nimiq is an open-source project that encourages developers to take part in the journey. Instead of dictating the way how the Nimiq ecosystem looks or feels, the intention is rather to provide the essence of our vision, stripped down to the very core, so that there's enough room for others to fill it out with their own ideas. To create a resilient visual foundation for Nimiq itself and for the community, we have gathered input from community members and conducted interviews with key stakeholders and the team from which we derived a common understanding of Nimiq as a brand: The [Nimiq Style Guide](/styleguide).
+Nimiq is an open-source project that encourages developers to take part in the journey. Instead of dictating the way how the Nimiq ecosystem looks or feels, the intention is rather to provide the essence of our vision, stripped down to the very core, so that there's enough room for others to fill it out with their own ideas. To create a resilient visual foundation for Nimiq itself and for the community, we have gathered input from community members and conducted interviews with key stakeholders and the team from which we derived a common understanding of Nimiq as a brand: our [visual identity overview](/blog/a-new-visual-identity).
 
 ### Usable Denomination
 
@@ -312,7 +312,7 @@ Before adding code to the scope of the Bug Bounty Program, it is first reviewed 
 
 Nimiq believes that in order to achieve mass adoption, the emerging crypto ecosystems will benefit from collaborating with the traditional financial system in complementary ways, providing freedom of choice. Cryptocurrencies provide a degree of censorship-resistance never seen before in the history of humankind. However, traditional centralized financial institutions are currently used and trusted by most people in the world.
 
-Nimiq has made a solid step in this direction by setting out to develop the [Nimiq Open Asset Swap Interaction Scheme (OASIS)](/oasis), a middle layer that allows fiat currency to understand and interact with blockchain logic. In its first version, this innovative approach focuses on making Euro (USD, etc) bank accounts the programmable counterparty to non-custodial cross-chain transactions. In simple terms it means that in a non-custodial (Atomic Swap) transaction to buy or sell crypto, the counterparty can now be a fiat account holder.
+Nimiq has made a solid step in this direction by setting out to develop the [Nimiq Open Asset Swap Interaction Scheme (OASIS)](/blog/nimiq-oasis-launch-press-release), a middle layer that allows fiat currency to understand and interact with blockchain logic. In its first version, this innovative approach focuses on making Euro (USD, etc) bank accounts the programmable counterparty to non-custodial cross-chain transactions. In simple terms it means that in a non-custodial (Atomic Swap) transaction to buy or sell crypto, the counterparty can now be a fiat account holder.
 
 ### Integrations
 
@@ -388,7 +388,7 @@ Please find a high level roadmap below. For more details and the goals ahead, pl
 - [Cashlink integration](https://www.nimiq.com/blog//nimiq-cashlinks) in Nimiq Wallet
 - [Nimiq 2.0](https://www.nimiq.com/whitepaper/) white paper (this one here!)
 - Testing of [Nimiq OASIS](https://www.nimiq.com/whitepaper/#peer-to-peer-fiat-crypto-bridge)
-- Gift cards with cashlinks and QR code at [nimiq.com/cards](/cards)
+- Gift cards with cashlinks and QR code as covered in [Nimiq Gift Cards](/blog/nimiq-gift-cards)
 
 ### 2020
 
@@ -404,7 +404,7 @@ Please find a high level roadmap below. For more details and the goals ahead, pl
 
 ### 2021
 
-- [OASIS](/oasis) public release
+- [OASIS](/blog/nimiq-oasis-launch-press-release) public release
 - FastSpot API public release
 - [SuperSimpleSwap.com](https://supersimpleswap.com/) public release
 - [Going live with Salamantex on Ingenico payment terminals](https://www.nimiq.com/blog/nimiq-enters-into-partnership-with-salamantex/) in Austria

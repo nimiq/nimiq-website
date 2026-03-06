@@ -17,23 +17,23 @@ Before outlining what was discussed in the meeting, we’d like to provide an up
 
 ![](/assets/images/prismic/f6960c8e-4ea4-431b-bcb9-7752e65d0369_blog_4-community-project-funding_2.png)
 
-### Key information
+## Key information
 
 - 2 months left in the current Community Funding Project term.
 - Since the start of the initiative, Team Nimiq has funded or has supported 15 different community projects.
 
-## Proposal evaluation
+# Proposal evaluation
 
 During the meeting, the Funding Board evaluated and discussed five proposals submitted by the Nimiq community.
 
-### Nimiq Trust Wallet integration
+## Nimiq Trust Wallet integration
 
 ![](/assets/images/prismic/cf20fc1b-76a8-4cad-8f28-e9d64d523b24_blog_4-community-project-funding_3.png)
 
 If you have kept up to date with Nimiq’s Medium blog, you’ll know that [Nimiq’s integration with TrustWallet](https://medium.com/nimiq-network/trust-wallet-collaboration-b6b90c0bb1d5) was announced on March 27. Team Nimiq would like to give special thanks to [Terorie](https://github.com/terorie/) and [Vasconcelos](https://github.com/lucaslg26) for moving ahead with this community funding project and executing it to such a high standard.
 
 - **Project Purpose:** To add NIM support for Trust Wallet.
-- **Development Stage: **Complete.
+- **Development Stage:**Complete.
 - **Project Team:** Terorie and Vasconcelos.
 - **Previously Evaluated?** The Board acted quickly when the proposal was submitted and approved in principle before the next Community Funding meeting.
 
@@ -45,26 +45,26 @@ As the Trust Wallet integration had already been fully complete before the Commu
 
 Trust Wallet integration project was approved and ended up receiving total funding of 750k NIM.
 
-### NimPay
+## NimPay
 
 - **Project purpose:** To create a Point of Sale solution to enable physical stores to receive NIM payments.
-- **Development stage: **Concept.
+- **Development stage:**Concept.
 - **Project team:** Discord user Daxby#6103
-- **Requested funding: **Hosting and domain costs, free security audit, help with UI/UX and mentorship.
+- **Requested funding:**Hosting and domain costs, free security audit, help with UI/UX and mentorship.
 
 The Board identified that Team Nimiq planned to work on a point of sale solution in the future and saw the opportunity to involve Daxby#6103 in its execution. This would provide Daxby#6103 with highly relevant mentorship and the opportunity to play a key role in an like-minded project.
 
 The proposal can be considered funded when it comes to Team Nimiq putting aside the time to help upskill community members.
 
-### Nimoji
+## Nimoji
 
 ![](/assets/images/prismic/ec85238d-4447-4236-9ece-faef9ead98f5_blog_4-community-project-funding_5.png)
 
 - **Project purpose**: To review existing Nimoji’s and create new ones.
-- **Development stage: **Unspecified.
-- **Project team: **Telegram user @Snrnb.
-- **Previously evaluated? **No.
-- **Requested funding: **An amount of NIM/Nimoji was provided but a the total was not specified.
+- **Development stage:**Unspecified.
+- **Project team:**Telegram user @Snrnb.
+- **Previously evaluated?**No.
+- **Requested funding:**An amount of NIM/Nimoji was provided but a the total was not specified.
 
 **Requested funding**
 
@@ -79,14 +79,14 @@ It was also agreed that the Board would propose that @Snrnb is compensated to cr
 
 The board has approved 200k NIM for @Snrnb to be hired to review current Nimojis and to create new ones.
 
-### PayNIM
+## PayNIM
 
 ![](/assets/images/prismic/6e75502f-500c-4a41-b8bc-782a1c3a1b6a_blog_4-community-project-funding_7.png)
 
 - **Project purpose:** To provide users with an easy, safe and anonymous way to send or receive NIM using an email address or Telegram.
 - **Development stage:** Working product.
 - **Project team:** Discord user homeboy.
-- **Previously evaluated? **No.
+- **Previously evaluated?**No.
 
 The funding requested by PayNIM is broken down below:
 
@@ -98,12 +98,12 @@ PayNIM’s proposal stated that part of the project plan was to improve the UX o
 
 PayNIM can, therefore, be considered partially funded with the developer receiving a 200k NIM developer grant.
 
-### Crowdfund platform based on Nimiq
+## Crowdfund platform based on Nimiq
 
 - **Project purpose:** Creation of a Nimiq crowdfunding platform and enable users to donate NIM seamlessly.
 - **Development stage:** Concept.
 - **Project team:** Discord user @alemos.
-- **Previously evaluated? **No.
+- **Previously evaluated?**No.
 
 The project requested the following funding:
 
@@ -116,11 +116,11 @@ The Community Funding Board quickly identified that the proposed project’s nam
 
 The Board will provide seed funding of 40k NIM and is open for further evaluation after 6 months of development.
 
-## Board transition
+# Board transition
 
 The Board acknowledged that the term for current Board members would be shortly drawing to a close and the process for Board transition was discussed. It was agreed that the new Board would sit in as observers on the Community Project Funding meeting in June and that the new Board would take control over the meeting in July, with the current Board being on hand to give advise (if required). The Board is also analyzing how to proceed with the selection of new community representatives.
 
-## Proposal policy change
+# Proposal policy change
 
 During the meeting, it was agreed that all future proposals submitted for evaluation by the Community Funding Board should **include the required server resources and that the costs for these should be in USD**. This is to enable the Board to assess these costs quicker and more efficiently.
 
@@ -130,7 +130,7 @@ As discussed with Nimoji and PayNIM proposals, it was agreed that the Community 
 
 “Only new work is eligible for a reward or funding”
 
-## Nimiq wants you
+# Nimiq wants you
 
 If you want to join Team Nimiq and current Nimiq ecosystem projects in enabling the most accessible, censorship-resistant payment solution, then start crafting your proposal for funding today. To get started, just read the [community guide on funding proposals](https://forum.nimiq.community/t/project-proposal-template/59) and email your PDF to [**proposals@nimiq.com**](mailto:proposals@Nimiq.com). Together, we can create a barrier-free value exchange for everyone.
 

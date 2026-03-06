@@ -6,7 +6,6 @@ export const HEXAGONS_WORLD_MAP_HEIGHT = 52
 export const HEXAGONS_WORLD_MAP_WIDTH_PIXELS = 1037
 export const HEXAGONS_WORLD_MAP_HEIGHT_PIXELS = 531
 
-// Aspect ratio for the hexagons world map
 export const HEXAGONS_WORLD_MAP_ASPECT_RATIO = HEXAGONS_WORLD_MAP_WIDTH_PIXELS / HEXAGONS_WORLD_MAP_HEIGHT_PIXELS
 
 export function getHexagonsWorldMapAspectRatio() {

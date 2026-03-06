@@ -68,19 +68,6 @@ function animate() {
     return
   ctx.value.clearRect(0, 0, canvas.value.width, canvas.value.height)
 
-  // draw debugging angles
-  // ctx.value.save()
-  // ctx.value.beginPath()
-  // for (const angle of angles) {
-  //   ctx.value.moveTo(canvas.value.width / 2, canvas.value.height / 2)
-  //   ctx.value.lineTo(
-  //     canvas.value.width / 2 + Math.cos(angle) * 100,
-  //     canvas.value.height / 2 + Math.sin(angle) * 100,
-  //   )
-  // }
-  // ctx.value.stroke()
-
-  // update & draw
   for (let i = stars.value.length - 1; i >= 0; i--) {
     const star = stars.value[i]!
     star.update()
@@ -194,7 +181,6 @@ class Star {
     const cw = canvas.value.width / pixelRatio.value
     const ch = canvas.value.height / pixelRatio.value
 
-    // 1) spawn at center
     const cx = cw / 2
     const cy = ch / 2
     this.originalX = cx
@@ -202,7 +188,6 @@ class Star {
     this.x = cx
     this.y = cy
 
-    // 2) choose a travel distance along that angle between 45–90% of radius
     const radius = Math.min(cw, ch) / 2
     const minD = radius * 0.45
     const maxD = radius * 0.9
@@ -210,11 +195,9 @@ class Star {
     this.dx = Math.cos(this.angle) * dist
     this.dy = Math.sin(this.angle) * dist
 
-    // size & opacity
     this.size = Math.random() * 2.5 + 0.75
     this.initialOpacity = Math.random() * 0.4 + 0.6
 
-    // duration 30–60s
     this.duration = Math.random() * (MAX_DURATION - MIN_DURATION) + MIN_DURATION
     this.startTime = performance.now()
     this.progress = 0
@@ -247,7 +230,6 @@ class Star {
     const rem = this.duration - elapsed
     let alpha = this.initialOpacity
 
-    // fade in/out
     if (elapsed <= this.duration * 0.1) {
       alpha *= elapsed / (this.duration * 0.1)
     }

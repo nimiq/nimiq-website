@@ -7,7 +7,7 @@ interface ConsentData {
 }
 
 export default defineNuxtRouteMiddleware((to) => {
-  const { public: { environment, enableDevAnalytics } } = useRuntimeConfig()
+  const { public: { environment, enableDevAnalytics } } = useSafeRuntimeConfig()
   const isDev = environment.name === 'local' && enableDevAnalytics
 
   const consent = useCookie<ConsentData | null>('nimiq-consent', {

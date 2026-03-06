@@ -57,7 +57,7 @@ staking:
   subline: "'Staking' means locking up your NIM which helps secure the network. You get new NIM as a reward."
   actions:
     - href: /staking
-      label: Learn more
+      label: Explore staking
       variant: arrow
   stakingNote: average return based on the current distribution. This is not financial advice.
 banner:

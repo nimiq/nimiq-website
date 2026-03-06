@@ -20,7 +20,7 @@ onMounted(() => {
     )
   }
 
-  const paths = Array.from(svgEl.value.querySelectorAll<SVGPathElement>('[data-breath-path]'))
+  const paths = [...svgEl.value.querySelectorAll<SVGPathElement>('[data-breath-path]')]
   const baseOpacities = [1, 0.7, 0.4]
   const delays = [0, 600, 1200]
   paths.forEach((path, i) => {

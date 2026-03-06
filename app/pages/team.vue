@@ -9,18 +9,16 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/team' }] })
 
 <template>
   <NuxtLayout>
-    <main>
-      <section class="nq-section-gap bg-neutral-0">
-        <Hero v-bind="page.hero" />
-      </section>
+    <section class="nq-section-gap bg-neutral-0">
+      <Hero v-bind="page.hero" />
+    </section>
 
-      <section class="bg-neutral-0">
-        <TeamMembers v-bind="page.members" />
-      </section>
+    <section class="bg-neutral-0">
+      <TeamMembers v-bind="page.members" />
+    </section>
 
-      <section class="nq-section-gap bg-neutral-100">
-        <Headline v-bind="page.cta" />
-      </section>
-    </main>
+    <section class="nq-section-gap bg-neutral-100">
+      <Headline v-bind="page.cta" />
+    </section>
   </NuxtLayout>
 </template>

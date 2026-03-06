@@ -27,7 +27,6 @@ const appColor: Record<AppType, string> = {
 
 const spotlightApps = ['Nimiq Wallet', 'Nimiq Pay App', 'Crypto Map']
 
-// Fixed display order for regular (non-spotlight) apps to match production
 const regularAppsOrder = [
   'Cryptopayment.link',
   'Nimiq Game Store',
@@ -71,10 +70,8 @@ export function useApps() {
     const highlighted = transformed.filter(app => app.isHighlighted)
     const regular = transformed.filter(app => !app.isHighlighted)
 
-    // Sort spotlight apps by their position in the spotlightApps array
     highlighted.sort((a, b) => spotlightApps.indexOf(a.name) - spotlightApps.indexOf(b.name))
 
-    // Sort regular apps by fixed display order, unknown apps go to the end
     regular.sort((a, b) => {
       const ai = regularAppsOrder.indexOf(a.name)
       const bi = regularAppsOrder.indexOf(b.name)
@@ -108,17 +105,15 @@ export function useAppsFilter(apps: Ref<NimiqApp[] | undefined>) {
     const h = baseFiltered.value.filter(a => a.isHighlighted).length
     const r = baseFiltered.value.filter(a => !a.isHighlighted).length
     if (r >= h * 2)
-      return 'zigzag' // enough regulars to skip a row between each highlighted
+      return 'zigzag'
     if (r >= h)
-      return 'pair' // enough regulars to pair with each highlighted (no lone cards)
-    return 'dense' // too few regulars — highlighted stack at end
+      return 'pair'
+    return 'dense'
   })
 
   const filteredApps = computed(() => {
     const highlighted = baseFiltered.value.filter(a => a.isHighlighted)
     const regular = baseFiltered.value.filter(a => !a.isHighlighted)
-    // zigzag/pair: highlighted first so dense auto-placement pairs regulars into their rows
-    // dense: regulars first, highlighted stack at end
     return layout.value === 'dense' ? [...regular, ...highlighted] : [...highlighted, ...regular]
   })
 
@@ -127,7 +122,6 @@ export function useAppsFilter(apps: Ref<NimiqApp[] | undefined>) {
       return undefined
     const index = spotlightApps.indexOf(app.name)
     const side = index % 2 === 1 ? 'spotlight-right' : 'spotlight-left'
-    // zigzag only: explicit grid-row places highlighted on odd rows, regulars fill even rows
     const row = layout.value === 'zigzag' ? ` spotlight-row-${index}` : ''
     return { class: `spotlight-app ${side}${row}` }
   }

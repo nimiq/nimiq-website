@@ -64,7 +64,7 @@ watch(() => blocks.value.length, () => {
   offset += BLOCK_WIDTH
 })
 
-const { clientNetwork } = useRuntimeConfig().public
+const { clientNetwork } = useSafeRuntimeConfig().public
 </script>
 
 <template>
@@ -90,7 +90,7 @@ const { clientNetwork } = useRuntimeConfig().public
 
     <div v-else class="flex justify-center px-32 w-full overflow-hidden f-mt-lg">
       <div class="flex justify-center">
-        <AlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 2 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number class="animate-batch-unshift" />
+        <LazyAlbatrossLiveviewBatch v-for="n in 7" :key="`batch-${batchNumber - 2 + n - 1}`" :batch-number="batchNumber - 3 + n - 1" :block-number class="animate-batch-unshift" />
       </div>
     </div>
   </div>

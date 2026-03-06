@@ -42,7 +42,6 @@ export function useValidatorsInfo() {
 
   const { data: rawValidators, status: validatorsRequestState, refresh } = useFetch<RawValidator[]>('/api/validators')
 
-  // Compute validators with rewardGainRatio reactively - updates when stakingRatio changes
   const validators = computed<Validator[] | null>(() => {
     if (!rawValidators.value)
       return null

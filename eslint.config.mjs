@@ -15,4 +15,17 @@ export default withNuxt(
       'vue/no-restricted-html-elements': ['error', { element: 'section', message: 'Use <div> in components. <section> only in pages.' }],
     },
   },
+  {
+    files: ['content/**/*.md'],
+    rules: {
+      'markdown/require-alt-text': 'off',
+      'markdown/no-multiple-h1': 'off',
+      'markdown/heading-increment': 'off',
+    },
+  },
+  {
+    rules: {
+      'e18e/prefer-static-regex': 'off',
+    },
+  },
 )

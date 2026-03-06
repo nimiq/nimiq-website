@@ -9,7 +9,7 @@ authors:
 image: /images/blog/supply-curve-for-nimiq-20-finalized/3ed965e6-3803-42a2-9ba6-789f10616319_blog_supply-curve-for-nimiq-20-finalized_1.jpg
 ---
 
-Nimiq stakeholders started voicing their opinions regarding the possible need to make adjustments to the NIM supply curve and its inflation towards the end of last year. After hearing the concerns and researching the matter in depth, Team Nimiq implemented a voting procedure to ensure the decision process was going to be democratic, transparent, and educated. On June 8 2020, a decision was reached through this process: the "Blue Curve" came out ahead by a large margin in a final vote in which more than 1.27 billion NIM were signed for. You can find the results [here](/vote/#rank-curves).
+Nimiq stakeholders started voicing their opinions regarding the possible need to make adjustments to the NIM supply curve and its inflation towards the end of last year. After hearing the concerns and researching the matter in depth, Team Nimiq implemented a voting procedure to ensure the decision process was going to be democratic, transparent, and educated. On June 8 2020, a decision was reached through this process: the "Blue Curve" came out ahead by a large margin in a final vote in which more than 1.27 billion NIM were signed for.
 
 If you want to learn more about the process that brought us here, you can read the following resources:
 

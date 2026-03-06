@@ -14,7 +14,7 @@ The Nimiq ecosystem has taken a significant step forward in its mission to make 
 
 We are excited to announce our partnership with Coinify, a global leader in cryptocurrency payment solutions. This collaboration accelerates adoption, simplifies merchant integrations, and expands Nimiq’s presence worldwide.
 
-### Introducing Coinify: A Trusted Name in Cryptocurrency Payments
+## Introducing Coinify: A Trusted Name in Cryptocurrency Payments
 
 Coinify is a globally recognized cryptocurrency payment provider, operating in over 170 countries and trusted by thousands of merchants. Known for its user-friendly solutions, Coinify bridges traditional finance and the crypto ecosystem with features such as:
 
@@ -26,7 +26,7 @@ Coinify is a globally recognized cryptocurrency payment provider, operating in o
 
 This robust infrastructure makes Coinify an ideal partner for advancing Nimiq’s mission.
 
-### A Perfect Partnership: How Nimiq and Coinify Complete Each Other
+## A Perfect Partnership: How Nimiq and Coinify Complete Each Other
 
 Nimiq’s focus on simplicity, security, and sustainability aligns perfectly with Coinify’s capabilities, creating a partnership that enhances both usability and scalability. Through Coinify’s extensive infrastructure, Nimiq gains access to a global merchant network, connecting thousands of businesses and significantly boosting NIM’s real-world utility.
 
@@ -34,18 +34,18 @@ With Coinify’s plug-and-play solutions, businesses can seamlessly integrate an
 
 Together, Nimiq and Coinify cultivate an ecosystem where using cryptocurrency feels as effortless as traditional payment methods.
 
-### New Features Now Available to Nimiq Users and Merchants:
+## New Features Now Available to Nimiq Users and Merchants:
 
 This partnership unlocks several benefits for the Nimiq community:
 
-1. **Direct Fiat On- and Offramp: **Users can now buy NIM using over 30 different fiat currencies and also sell NIM to seven fiat currencies, including Euro (EUR), US Dollars (USD) and Swiss Francs (CHF) via [https://www.coinify.com/trade](https://www.coinify.com/trade)
+1. **Direct Fiat On- and Offramp:**Users can now buy NIM using over 30 different fiat currencies and also sell NIM to seven fiat currencies, including Euro (EUR), US Dollars (USD) and Swiss Francs (CHF) via [https://www.coinify.com/trade](https://www.coinify.com/trade)
 1. **Increased Merchant Acceptance:** NIM is now integrated into Coinify’s network of 60,000 merchants.
 1. **Enhanced Payment Flexibility:** Merchants can settle payments in fiat or cryptocurrency.
 1. **Seamless User Experience:** A combination of Nimiq’s fast payments and Coinify’s robust solutions ensures an intuitive process.
 1. **Real-Time Exchange Rates:** Transparent and stable transactions for all parties.
 1. **Global Reach:** Nimiq is accessible to a broader audience through Coinify’s extensive network.
 
-### A Partnership for the Future
+## A Partnership for the Future
 
 This collaboration is more than a business agreement; it represents a shared vision of a future where cryptocurrency becomes a natural payment choice. For Nimiq, this partnership is a crucial milestone in the journey toward global adoption.
 

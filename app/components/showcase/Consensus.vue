@@ -15,9 +15,9 @@ defineProps<{ label: string, headline: string, subline: string, thisIsYou: strin
         {{ subline }}
       </p>
     </div>
-    <div class="xl:w-[50vw] min-h-[400px] xl:min-h-0 xl:h-full">
+    <div class="xl:w-[50vw]">
       <ClientOnly>
-        <ShowcaseConsensusMap :connect-label="connect" :this-is-you="thisIsYou" :connecting />
+        <LazyShowcaseConsensusMap :connect-label="connect" :this-is-you="thisIsYou" :connecting />
       </ClientOnly>
     </div>
   </div>

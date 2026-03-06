@@ -15,7 +15,7 @@ As part of our recent meeting, members both of the previous board and the new bo
 
 Our Community Proposals for the 19th Funding Board:
 
-### NimiqLive by Harley
+## NimiqLive by Harley
 
 [Link to proposal](https://forum.nimiq.community/t/nimiq-vision-nimiqlive-unique-funding-proposal/1623)
 
@@ -31,7 +31,7 @@ We generally like the idea and would like to support it with funding, but we hav
 
 ![](/assets/images/prismic/3d40d48a-39d1-4411-98b7-5d96e502f484_Group_22788.png)
 
-### UAH Motorsport Sponsoring by Albermonte
+## UAH Motorsport Sponsoring by Albermonte
 
 **We do not have a forum post proposal of this one**
 
@@ -45,7 +45,7 @@ If for whatever reason the racecar is not built and we cannot be shown as being 
 
 We're excited to announce that we're sponsoring the UAH Motorsports Team with a budget of 5200 USD in NIM. We believe that this kind of sponsorship can bring the right kind of attention, especially if we can support innovative teams and upcoming engineers who are building for a combustionless future in racing.
 
-### Validator as a Service by Faberto and David
+## Validator as a Service by Faberto and David
 
 [Link to proposal](https://forum.nimiq.community/t/introduction-of-faberto-for-the-community-funding-board-election/1728)
 
@@ -55,7 +55,7 @@ Instead of taking a cut of the rewards, their plan is to take a fixed fee for op
 
 They intend to open-source the project with viable documentation, with income being used to cover the infrastructure costs of the service.
 
-**Outcome: Approved with rewards for milestones **
+**Outcome: Approved with rewards for milestones**
 
 We like the idea of decentralizing staking pools and allowing services to build their own validator as a service platform based on the developed source code. Our counterproposal to pay out the reward based on milestones instead of hours has been accepted by Faberto and David and they have already started working on the project. As a precondition we made the payment dependent on the following milestones which have to be reached to get the reward. After conducting a review of Milestone 1, we are pleased to announce that it has been successfully completed already.
 
@@ -105,7 +105,7 @@ Implementation of the payment systems in frontend and backend
 
 Finalization and cleanup
 
-### Community Member awards
+## Community Member awards
 
 We are always happy to reward our most valuable community members with our Community Awards. These awards are given for special achievements that add great value to the Nimiq community, and we would like to say thank you on behalf of everyone to the following people:
 
@@ -115,7 +115,7 @@ We are always happy to reward our most valuable community members with our Commu
 
 ![](/assets/images/prismic/fcc0518b-6597-4ca3-ac0d-1a6a88eafdca_Group_22789.png)
 
-### Changes
+## Changes
 
 After discussing about it, we have decided to increase the election period of the Community Funding Board from 6 months to 12 months. This will better allow each representative to settle into their role and contribute more effectively to the Board.
 

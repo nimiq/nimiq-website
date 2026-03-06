@@ -9,9 +9,9 @@ authors:
 image: /images/blog/nimiq-pre-staking-is-live/ZwLGFrVsGrYSwavQ_StartsPre-StakingphaseBLOG-1-.png
 ---
 
-We're excited to announce that the Nimiq Pre-staking Rewards and Giveaway Campaign is live and will run from **Monday October 7 to Sunday November 10! **The campaign is aimed at supporting a smooth migration to Nimiq's new Proof of Stake (PoS) consensus algorithm, which is planned to begin November 19 ([learn more about the migration process](https://www.nimiq.com/blog/nimiq-pos-migration-process-starts/)). This campaign rewards everyone that supports the migration by pre-staking their NIM ([rules apply](https://prestaking.nimiq.network/Nimiq_Pre-staking_Campaign_ToS.pdf)). There are 200 million NIM in rewards up for grabs!
+We're excited to announce that the Nimiq Pre-staking Rewards and Giveaway Campaign is live and will run from **Monday October 7 to Sunday November 10!**The campaign is aimed at supporting a smooth migration to Nimiq's new Proof of Stake (PoS) consensus algorithm, which is planned to begin November 19 ([learn more about the migration process](https://www.nimiq.com/blog/nimiq-pos-migration-process-starts/)). This campaign rewards everyone that supports the migration by pre-staking their NIM ([rules apply](https://prestaking.nimiq.network/Nimiq_Pre-staking_Campaign_ToS.pdf)). There are 200 million NIM in rewards up for grabs!
 
-### Why Participate in Pre-Staking?
+## Why Participate in Pre-Staking?
 
 Pre-staking is an essential step for the successful transition to Nimiq PoS. A secure migration depends on maximizing the total amount of NIM pre-staked and distributing it across as many validators as possible. This campaign is designed to incentivize all Nimiq Holders to pre-stake and contribute to a more decentralized Nimiq network.
 
@@ -23,11 +23,11 @@ The migration process itself has undergone multiple rounds of testing [together 
 
 Team Nimiq has done everything possible to ensure the success of the migration, transitioning from PoW to PoS is an inherently complex process. This campaign is a token of appreciation to all Nimiq community members who support the pre-staking process, trusting in the careful preparation carried out by both the Nimiq developers and the community.
 
-### Who Can Participate?
+## Who Can Participate?
 
 Anyone holding or acquiring NIM can join in on the campaign—except for residents from countries on the [OFAC sanctions](https://sanctionssearch.ofac.treas.gov/) list and the USA.
 
-### Campaign Duration
+## Campaign Duration
 
 - **Start:** Monday October 7, 2024 (~00:01 UTC)
 - **End:** Sunday November 10, 2024 (~23:59 UTC)
@@ -36,7 +36,7 @@ The rewards and bonuses will be distributed up to 90 days after the migration ta
 
 Check out the [**FAQ**](https://www.nimiq.com/developers/migration/faqs) if you have any questions. **Be cautious of impersonators and trust only these channels**: [Nimiq’s Blog](https://www.nimiq.com/blog/), [X (formerly Twitter)](http://x.com/nimiq), [Discord](http://discord.gg/nimiq), and [Telegram](http://t.me/nimiq).
 
-### What’s Up for Grabs? 200 Million NIM!
+## What’s Up for Grabs? 200 Million NIM!
 
 The earlier you participate, the more rewards you can potentially get. Plus, it's a key way to help secure the network.
 
@@ -51,7 +51,7 @@ A total of 200 million NIM (!) are allocated in the Pre-staking Campaign:
 - 25 giveaways of 1 million NIM
 - 65 giveaways of 500’000 NIM
 
-### Get Multipliers for Higher Chances to get a Bonus:
+## Get Multipliers for Higher Chances to get a Bonus:
 
 Boost your chances of receiving bonus giveaways by earning multipliers:
 
@@ -63,7 +63,7 @@ The more you optimize your pre-staking strategy, the better your chances!
 
 [**Learn more details on the Pre-staking page!**](https://prestaking.nimiq.com/)
 
-### \*\*
+## \*\*
 
 How to Participate?\*\*
 
@@ -99,7 +99,7 @@ Decide how much NIM you want to pre-stake. And confirm stake.
 
 To become eligible for and associate your staking address with the Rewards and Bonus Giveaway Campaign, simply log in to [prestaking.nimiq.network/pre-staking](https://prestaking.nimiq.network/pre-staking) using the same account address you used for pre-staking. The registered address will also be used to distribute any rewards. You can register multiple addresses. [Click here to learn about multipliers and see all the rules for the giveaway](https://prestaking.nimiq.network/Nimiq_Pre-staking_Campaign_ToS.pdf).
 
-### Time to Spread the Word!
+## Time to Spread the Word!
 
 The moment has come for the Nimiq Community to unite and propel this campaign forward! Share it with your crypto friends and help spread the news throughout the crypto space. Let’s show everyone that Nimiq is migrating to Proof of Stake and that now is the perfect time to get involved!
 

@@ -27,7 +27,7 @@ The Nimiq Mainnet was launched on April 14, 2018 and the payment protocol is ful
 - [Nimiq 2.0 Albatross Rust implementation](https://github.com/nimiq/core-rs-albatross)
 - [Current Nimiq 1.0 Rust implementation](https://github.com/nimiq/core-rs) of the backbone node
 - [Current Nimiq 1.0 JavaScript codebase](https://github.com/nimiq-network/core-js) for browser and backbone nodes
-- [OASIS peer-to-peer fiat to crypto bridge](/oasis)
+- [OASIS peer-to-peer fiat to crypto bridge](/blog/nimiq-oasis-launch-press-release)
 - [Nimiq Developer Center](https://nimiq.dev)
 
 ### Collaborations & Grants
@@ -40,7 +40,7 @@ The Nimiq Mainnet was launched on April 14, 2018 and the payment protocol is ful
 
 - [Albatross: An optimistic consensus algorithm](https://arxiv.org/abs/1903.01589)
   A technical research paper resulting from Nimiq's collaboration with Trinkler Software. It is a new PoS consensus algorithm that is able to achieve a performance close to the theoretical maximum for a single chain.
-- [Nimiq OASIS](/oasis)
+- [Nimiq OASIS](/blog/nimiq-oasis-launch-press-release)
   The Open Asset Swap Interaction Scheme is the blueprint for a potentially disruptive crypto-to-fiat bridge, making fiat currency behave as if it were tokens on the blockchain, providing a unique way of connecting the traditional banking network with non-custodial crypto exchanges.
 
 ![](/assets/images/prismic/66325e6f-cd73-4254-bd5f-1f129a5a7f11_whitepaper_nimiq-history.png)

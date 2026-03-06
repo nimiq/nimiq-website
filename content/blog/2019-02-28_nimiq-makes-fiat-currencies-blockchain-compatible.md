@@ -9,7 +9,7 @@ authors:
 image: /assets/images/prismic/55b7be96-e197-4d10-a233-0293f0856f05_blog_nimiq-makes-fiat-currencies-blockchain-compatible_1.jpg
 ---
 
-Team [Nimiq](https://nimiq.com/) is thrilled to announce that we are developing a new and potentially disruptive Crypto-to-Fiat bridge in collaboration with the German [WEG Bank AG](https://www.weg-bank.de/partnerschaften.html) and Swiss-Maltese non-custodial cryptocurrency exchange [Agora.Trade](https://agora.trade/). Today we would like to introduce a high-level description of what this solution means, how this next big step in Nimiq’s journey came about and what’s been happening behind the scenes.
+Team [Nimiq](/) is thrilled to announce that we are developing a new and potentially disruptive Crypto-to-Fiat bridge in collaboration with the German [WEG Bank AG](https://www.weg-bank.de/partnerschaften.html) and Swiss-Maltese non-custodial cryptocurrency exchange [Agora.Trade](https://agora.trade/). Today we would like to introduce a high-level description of what this solution means, how this next big step in Nimiq’s journey came about and what’s been happening behind the scenes.
 
 This innovative approach focuses on making the Euro (USD, etc) directly behave as if it was a token on the blockchain, by providing a smart and unique way of connecting the traditional banking network with crypto exchanges. It could disrupt existing stablecoins, over-the-counter (OTC) and crypto payment processing markets by enabling an open, simple and fast way to exchange value between crypto and fiat systems. Challenging the crypto payment processors could have a profound impact on online merchants in the space and eliminate unnecessary middlemen.
 
@@ -47,8 +47,8 @@ Reto Trinkler, Co-Founder of Agora Trade, Forbes ’30 Under 30’ list maker:
 A Crypto-to-Fiat bridge powered by Nimiq OASIS could significantly change the landscape of the following markets:
 
 - **Over-the-counter market:** This is built on matching and executing large scale crypto-to-fiat transactions. The vision is to enable the solution to scale through strategic partnerships and bring increasing amounts of liquidity. This could have deep ramifications for those drawn to more conventional OTC markets. Quite simply, these entities and individuals could sooner or later have a much quicker, easier and cheaper alternative to move value between the two ecosystems.
-- **Stablecoin market: **The recent rise and popularity for alternative stablecoins to Tether has demonstrated the demand amongst crypto investors for a convenient way to hedge against the volatility of cryptocurrency markets. Nimiq OASIS could provide these users with an alternative and could be set to eat into the market share by allowing the non-custodial transfer of value between crypto and fiat.
-- **Online crypto payment processing: **In short, this market acts as a middleman to transfer funds between crypto markets and the traditional banking system. By tying directly into decentralized exchanges, this solution has the potential to eliminate the need for 3rd party custodial processors and has the potential to disrupt the business models of industry leaders. It can also make it easier and cheaper for platforms to accept crypto deposits and for merchants to adopt crypto payment methods.
+- **Stablecoin market:**The recent rise and popularity for alternative stablecoins to Tether has demonstrated the demand amongst crypto investors for a convenient way to hedge against the volatility of cryptocurrency markets. Nimiq OASIS could provide these users with an alternative and could be set to eat into the market share by allowing the non-custodial transfer of value between crypto and fiat.
+- **Online crypto payment processing:**In short, this market acts as a middleman to transfer funds between crypto markets and the traditional banking system. By tying directly into decentralized exchanges, this solution has the potential to eliminate the need for 3rd party custodial processors and has the potential to disrupt the business models of industry leaders. It can also make it easier and cheaper for platforms to accept crypto deposits and for merchants to adopt crypto payment methods.
 
 ## How NIM and the Nimiq Ecosystem can benefit
 
@@ -56,7 +56,7 @@ While this significant contribution to the cryptocurrency universe is intended a
 
 1. **Marketing:** Nimiq brands and looks to license this technology — leveraging the power of this scheme to work as a form of native marketing.
 1. **Fee percentage:** WEG Bank AG recognizes Nimiq’s critical contribution to their venture and grants the project a percentage of the fees they might collect. Nimiq intends to use this potential source of income to further promote the project and its adoption.
-1. **Zero fee trade: **Agora Trade is committed to listing NIM as first coin for cross-chain trades with ETH and BTC. In recognition of Nimiq’s contribution, Agora Trade will not charge fees for any NIM related exchange services, which creates a strong and unique incentive to use and trade NIM.
+1. **Zero fee trade:**Agora Trade is committed to listing NIM as first coin for cross-chain trades with ETH and BTC. In recognition of Nimiq’s contribution, Agora Trade will not charge fees for any NIM related exchange services, which creates a strong and unique incentive to use and trade NIM.
 
 Nimiq, WEG Bank AG and Agora Trade have already started implementing these plans and are targeting going live with first non-custodial NIM|BTC|ETH to Euro trades by Q4 2019. A post with more technical details on Nimiq OASIS will follow.
 

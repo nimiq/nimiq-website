@@ -19,7 +19,7 @@ After being open for 9 days, we now have the results. In total, 131 community me
 
 ![](/assets/images/prismic/d88d219e-e6c4-4ffa-8713-17c5224c3988_Bildschirmfoto_2022-07-27_um_17.22.07.png)
 
-Since every vote was signed with a Nimiq transaction, results are recorded immutably in the Nimiq Blockchain. A snapshot was taken at the end of the election. Ranked choices of votes were counted according to a normalized geometric progression. That means the 1st choice of every vote got 1 point per NIM, the 2nd ½ point, 3rd ¼ point per NIM and so on. You can see the results for yourself in [the Nimiq Voting app](http://nimiq.com/vote)
+Since every vote was signed with a Nimiq transaction, results are recorded immutably in the Nimiq Blockchain. A snapshot was taken at the end of the election. Ranked choices of votes were counted according to a normalized geometric progression. That means the 1st choice of every vote got 1 point per NIM, the 2nd ½ point, 3rd ¼ point per NIM and so on. You can see the results for yourself in the Nimiq Voting app.
 
 ![](/assets/images/prismic/84d0b1c3-302c-4194-b5ea-2ebc51f545a9_Bildschirmfoto_2022-07-27_um_17.24.392.png)
 

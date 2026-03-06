@@ -1,74 +1,80 @@
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
 packages:
   - ./
+patchedDependencies:
+  '@nuxt/scripts@1.0.0-beta.19': patches/@nuxt__scripts@1.0.0-beta.19.patch
 catalog:
   '@nuxt/a11y': https://pkg.pr.new/nuxt/a11y/%40nuxt%2Fa11y@f9d51df
-  '@nuxt/content': ^3.11.0
-  '@nuxt/devtools': 3.1.1
-  '@nuxt/fonts': ^0.12.1
-  '@nuxt/hints': 1.0.0-alpha.3
-  '@nuxthub/core': 0.10.1
+  '@nuxt/content': ^3.12.0
+  '@nuxt/devtools': 3.2.2
+  '@nuxt/fonts': ^0.14.0
+  '@nuxt/hints': 1.0.0-alpha.10
+  '@nuxthub/core': 0.10.7
   '@nuxtjs/tailwindcss': 7.0.0-beta.1
   '@tailwindcss/typography': ^0.5.19
   '@types/js-yaml': ^4.0.9
   better-sqlite3: ^12.6.2
-  dotenv: ^17.2.3
-  js-yaml: ^4.1.0
-  marked: ^17.0.1
+  dotenv: ^17.3.1
+  js-yaml: ^4.1.1
+  marked: ^17.0.4
   nimiq-flags: 1.0.0-beta.162
   nuxt-link-checker: ^4.3.9
-  nuxt-prerender-kit: ^0.0.4
-  nuxt-studio: 1.0.0-beta.0
-  tsx: ^4.20.6
+  nuxt-prerender-kit: ^0.0.5
+  nuxt-studio: ^1.4.0
+  tsx: ^4.21.0
   zod: ^4.3.6
 catalogs:
   build:
-    vite-plugin-wasm: ^3.4.1
-    wrangler: ^4.15.2
+    vite-plugin-wasm: ^3.5.0
+    wrangler: ^4.71.0
   frontend:
-    '@unovis/ts': 1.5.1
-    '@unovis/vue': 1.5.1
-    '@vueuse/core': ^13.5.0
-    '@vueuse/nuxt': ^13.5.0
-    '@vueuse/router': ^13.5.0
+    '@unovis/ts': 1.6.4
+    '@unovis/vue': 1.6.4
+    '@vueuse/core': ^14.2.1
+    '@vueuse/nuxt': ^14.2.1
+    '@vueuse/router': ^14.2.1
     medium-zoom: ^1.1.0
-    motion-v: ^1.5.0
-    reka-ui: ^2.2.1
+    motion-v: ^2.0.0
+    reka-ui: ^2.9.0
     vaul-vue: ^0.4.1
     vue: latest
-    vue-router: ^4.5.1
-    vue-tsc: ^2.2.10
+    vue-router: ^5.0.3
+    vue-tsc: ^3.2.5
   lint:
-    '@antfu/eslint-config': ^5.4.1
-    '@nuxt/eslint': latest
-    eslint: ^9.37.0
-    eslint-plugin-format: ^1.0.2
-    lint-staged: ^16.2.3
+    '@antfu/eslint-config': ^7.7.0
+    '@nuxt/eslint': ^1.15.2
+    eslint: ^10.0.2
+    eslint-plugin-format: ^2.0.1
+    lint-staged: ^16.3.2
     simple-git-hooks: ^2.13.1
   nimiq:
-    '@nimiq/core': ^2.1.1
+    '@nimiq/core': ^2.2.2
     '@nimiq/utils': ^0.12.4
-    nimiq-icons: ^1.0.0-beta.160
-    nimiq-rpc-client-ts: ^1.0.0-beta.35
+    nimiq-icons: ^1.0.0-beta.162
+    nimiq-rpc-client-ts: ^1.0.0-beta.40
   nuxt:
-    '@nuxt/icon': ^2.1.1
-    '@nuxt/image': 2.0.0-alpha.1
-    '@nuxt/scripts': ^0.11.10
-    '@nuxtjs/device': ^3.2.4
-    '@nuxtjs/seo': ^3.1.0
-    nuxt: ^4.2.0
+    '@nuxt/icon': ^2.2.1
+    '@nuxt/image': ^2.0.0
+    '@nuxt/scripts': 1.0.0-beta.19
+    '@nuxtjs/device': ^4.0.0
+    '@nuxtjs/seo': ^3.4.0
+    nuxt: ^4.3.1
     nuxt-module-feed: ^1.1.4
-    nuxt-safe-runtime-config: ^0.0.3
+    nuxt-safe-runtime-config: ^0.1.2
   prismic:
-    '@prismicio/client': ^7.17.2
+    '@prismicio/client': ^7.21.6
     '@prismicio/richtext': ^2.1.5
   server:
     consola: ^3.4.2
-    valibot: ^1.1.0
+    valibot: ^1.2.0
   studio:
-    drizzle-orm: ^0.38.3
+    drizzle-orm: ^0.45.1
   types:
-    '@types/node': ^22.15.19
-    typescript: ^5.8.3
+    '@types/node': ^25.3.5
+    typescript: ^5.9.3
 onlyBuiltDependencies:
   - better-sqlite3
   - '@parcel/watcher'

@@ -18,7 +18,6 @@ onMounted(() => {
 
 <template>
   <NuxtLink class="relative overflow-hidden rounded-2 bg-darkblue/5 nq-hoverable h-[420px] md:h-[538px] w-full" :to="cta">
-    <!-- Left info panel -->
     <div class="absolute z-10 flex flex-col justify-between p-10 md:p-20 inset-y-0 left-0 w-[200px] md:w-[260px]">
       <div class="flex flex-col gap-3 md:gap-4">
         <Icon class="size-10 md:size-12" name="custom:apps" />
@@ -41,11 +40,10 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- App grid - based on original main branch implementation -->
     <div class="absolute top-10 md:top-16 left-[212px] md:left-[300px] w-[80%] h-[120%] rounded-[24px] border-[16px] border-neutral-400">
       <ul class="grid grid-cols-3 gap-3 md:gap-4 size-full rounded-lg bg-white p-3 md:p-4">
         <li v-for="app in appsToShow" :key="app.name" class="rounded-lg overflow-hidden p-12" :style="`background: ${app.color}`">
-          <NuxtImg class="size-full object-contain mix-blend-lighten" :src="app.logo" />
+          <NuxtImg class="size-full object-contain mix-blend-lighten" :src="app.logo" alt="" />
         </li>
       </ul>
     </div>

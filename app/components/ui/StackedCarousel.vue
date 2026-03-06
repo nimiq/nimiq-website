@@ -212,7 +212,7 @@ function getCardStyle(slideIndex: number) {
     </div>
 
     <div v-if="slides.length > 1" class="flex items-center justify-between w-full max-w-[420px] mt-8">
-      <button class="size-8 rounded-full flex items-center justify-center bg-neutral-400 hover:bg-neutral-500 transition-colors cursor-pointer" title="Previous slide" @click="slidePrev">
+      <button class="size-8 rounded-full flex items-center justify-center bg-neutral-400 hover:bg-neutral-500 transition-colors cursor-pointer" title="Previous slide" aria-label="Previous slide" @click="slidePrev">
         <svg class="size-4 text-neutral" viewBox="0 0 16 16" fill="none"><path d="M10 3L5.5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </button>
 
@@ -222,6 +222,7 @@ function getCardStyle(slideIndex: number) {
           class="relative h-1.5 rounded-[2px] cursor-pointer transition-[width,background-color] duration-300 overflow-hidden"
           :class="activeIndex === i ? 'w-8 bg-neutral-500' : 'w-4 bg-neutral-500 hover:bg-neutral-600'"
           :title="`Go to slide ${i + 1}`"
+          :aria-label="`Go to slide ${i + 1}`"
           @click="slideTo(i)"
         >
           <span
@@ -233,7 +234,7 @@ function getCardStyle(slideIndex: number) {
         </button>
       </div>
 
-      <button class="size-8 rounded-full flex items-center justify-center bg-neutral-400 hover:bg-neutral-500 transition-colors cursor-pointer" title="Next slide" @click="slideNext">
+      <button class="size-8 rounded-full flex items-center justify-center bg-neutral-400 hover:bg-neutral-500 transition-colors cursor-pointer" title="Next slide" aria-label="Next slide" @click="slideNext">
         <svg class="size-4 text-neutral" viewBox="0 0 16 16" fill="none"><path d="M6 3L10.5 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
       </button>
     </div>

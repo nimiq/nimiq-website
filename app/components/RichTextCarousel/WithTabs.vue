@@ -28,10 +28,10 @@ const selectedItem = computed(() => items.value.find(i => i.key === selectedKey.
         <p v-if="comingSoon" class="ring-1 ring-neutral-500 text-10 font-bold px-2 py-1 rounded-1 bg-neutral-400 whitespace-nowrap left-2 -top-3.5 absolute z-1 nq-label">
           {{ comingSoonLabel }}
         </p>
-        <button class="flex items-center gap-1.5 rounded-2 bg-gradient-blue h-full whitespace-nowrap px-3 md:px-4 py-2 md:py-3 opacity-50 data-[selected]:opacity-100 hover:not-disabled:opacity-100 focus:not-disabled:opacity-100" :disabled="comingSoon" @click="selectedKey = key">
-          <NuxtImg v-if="key === 'Naka'" class="h-[18px] w-full" :src="buttonLogo" />
+        <button class="flex items-center gap-1.5 rounded-2 bg-gradient-blue h-full whitespace-nowrap px-3 md:px-4 py-2 md:py-3 opacity-50 hover:not-disabled:opacity-100 focus:not-disabled:opacity-100" :class="selectedKey === key ? 'opacity-100!' : ''" :disabled="comingSoon" :aria-label="key" @click="selectedKey = key">
+          <NuxtImg v-if="key === 'Naka'" class="h-[18px] w-full" :src="buttonLogo" alt="" />
           <template v-else>
-            <NuxtImg class="h-full w-6" :src="buttonLogo" />
+            <NuxtImg class="h-full w-6" :src="buttonLogo" alt="" />
             <span class="text-white text-lg md:text-xl font-semibold">{{ key }}</span>
           </template>
         </button>

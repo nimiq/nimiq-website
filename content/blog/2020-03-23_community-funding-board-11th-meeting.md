@@ -25,16 +25,16 @@ This month, the Community Funding Board held it’s transition meeting with both
 
 During the meeting, both old and new Community representatives weighed in with thoughts and opinions to further improve the operation of the Community Funding Board. The following topics were discussed.
 
-- **Server Costs: **Given that help with server costs are a common request from community developers, the Board had the idea of beginning a plan to implement a Community Managed Server Infrastructure Service to help support the further decentralization of community projects.The technicalities of this effort are yet to be discussed.
+- **Server Costs:**Given that help with server costs are a common request from community developers, the Board had the idea of beginning a plan to implement a Community Managed Server Infrastructure Service to help support the further decentralization of community projects.The technicalities of this effort are yet to be discussed.
 - **Process Improvements:** The Board discussed how to further expand the reach of the Board and Community Funding initiatives. It was agreed that communication channels with Board updates could be maintained better, updated more frequently and this would make it easier for the Nimiq community to be kept in the loop about the Board’s activities. The agreed-upon solution was to assign a task-leader to each communication channel, through which Community Funding Board information is distributed. This task-leader would ultimately be responsible for Board updates on their assigned channel and this covers channels like Twitter or the Nimiq forum.
 - **Open-Sourced, Close-Sourced & For-Profit Projects:** Discussion focused on how important it was for new project proposals to be able to survive or be maintained without the leadership or efforts of the original creator. In short, it was agreed that any new funding proposals submitted to the Board, should be incentivized to include a mechanism that would enable the general Nimiq community to build upon or even take over the project at a later date. The key driving force behind this decision was to strengthen the shared vision that any project funded should strive towards the ideal of ‘for the community, by the community’.
-- **Incentivizing Open-Sourced Project Proposals: **The Board discussed how proposal submissions are to be broken down into three different categories.
+- **Incentivizing Open-Sourced Project Proposals:**The Board discussed how proposal submissions are to be broken down into three different categories.
 
 **1. Open-source**
 
 **2. Closed-source**
 
-**3. For-Profit - **Any type of project that can monetize and generate revenue for the creator.
+**3. For-Profit -**Any type of project that can monetize and generate revenue for the creator.
 
 It was agreed that a higher reward could be applied to submitted proposals depending on what category the project falls into. Open-source projects attract the highest reward multiplier, followed by closed-source and for-profit. A final decision on these reward multipliers will be made in the coming few weeks. The Board also unanimously agreed that previously funded projects would not be forced to open source.
 
@@ -45,9 +45,9 @@ This month, two community projects were assessed for funding.
 ### [NIM Tip Bot](https://t.me/nimiqtip_bot)
 
 - **Project purpose:** Telegram tipping bot for NIM with simplicity and decentralization in mind.
-- **Development stage: **Working product.
+- **Development stage:**Working product.
 - **Project team:** Albermonte
-- **Previously evaluated? **No
+- **Previously evaluated?**No
 
 ![](/assets/images/prismic/1e7055e3-13c7-4669-a0f2-69ad803835ad_blog_community-funding-board-11th-meeting_4.png)
 

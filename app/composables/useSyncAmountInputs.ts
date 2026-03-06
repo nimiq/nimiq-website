@@ -1,11 +1,5 @@
 import { invoke } from '@vueuse/core'
 
-/**
- * Composable for synchronizing cryptocurrency and fiat amount inputs.
- *
- * Manages bidirectional conversion between crypto (NIM) and fiat amounts,
- * tracks which input was last edited, and updates values when price changes.
- */
 export function useSyncAmountInputs() {
   if (import.meta.server) {
     return {

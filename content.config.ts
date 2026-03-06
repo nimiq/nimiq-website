@@ -22,10 +22,6 @@ const allAppsSource = defineCollectionSource({
   },
 })
 
-// ============================================================================
-// SHARED SCHEMAS
-// ============================================================================
-
 const linkSchema = z.object({ text: z.string(), href: z.string() })
 const seoSchema = z.object({ title: z.string().optional(), description: z.string().optional() })
 const heroLinkSchema = z.object({ href: z.string(), label: z.string().optional() })
@@ -47,7 +43,7 @@ const actionSchema = z.object({ href: z.string(), label: z.string().optional(), 
 const headlineSchema = z.object({ headline: z.string(), subline: z.string().optional(), label: z.string().optional(), icon: z.string().optional(), actions: z.array(actionSchema).optional(), buttons: z.array(actionSchema).optional() })
 
 // Media schemas
-const mediaSchema = z.object({ src: z.string(), poster: z.string().optional() })
+const mediaSchema = z.object({ src: z.string(), poster: z.string().optional(), alt: z.string().optional(), title: z.string().optional() })
 
 // Content schemas
 const contentSchema = z.object({ richText: z.string(), centerHeading: z.boolean().optional() })
@@ -88,16 +84,8 @@ const buyAndSellBannerSchema = z.object({ overlapsNextSection: z.boolean().optio
 // Contact schema
 const contactSchema = z.object({ headline: z.string().optional(), subline: z.string().optional(), nameLabel: z.string().optional(), emailLabel: z.string().optional(), messageLabel: z.string().optional(), submitLabel: z.string().optional() })
 
-// ============================================================================
-// COLLECTIONS
-// ============================================================================
-
 export default defineContentConfig({
   collections: {
-    // ========================================================================
-    // PAGE COLLECTIONS
-    // ========================================================================
-
     home: defineCollection({
       type: 'page',
       source: 'index.md',
@@ -283,7 +271,7 @@ export default defineContentConfig({
       schema: z.object({
         seo: seoSchema.optional(),
         hero: heroSchema,
-        social: z.object({ headline: headlineSchema, grid: socialMediaGridSchema }),
+        social: z.object({ gridHeadline: headlineSchema.optional(), headline: headlineSchema, grid: socialMediaGridSchema }),
         form: contactSchema,
       }),
     }),
@@ -306,23 +294,6 @@ export default defineContentConfig({
           products: z.array(z.string()),
           submitButton: z.string(),
         }),
-      }),
-    }),
-
-    oasis: defineCollection({
-      type: 'page',
-      source: 'oasis.md',
-      schema: z.object({
-        seo: seoSchema.optional(),
-        hero: z.object({ headline: z.string(), subline: z.string().optional(), linkHref: z.string().optional(), linkLabel: z.string().optional(), secondaryLinkHref: z.string().optional(), secondaryLinkLabel: z.string().optional() }),
-        oasisWorld: z.object({ beTheFirstToKnowLabel: z.string().optional(), items: z.array(z.object({ kind: z.enum(['Europe', 'Central America', 'World']), title: z.string(), subline: z.string(), linkLabel: z.string().optional(), linkHref: z.string().optional() })) }).optional(),
-        tryIt: headlineSchema.optional(),
-        largeGrid: z.array(largeGridItemSchema).optional(),
-        howDoesItWork: headlineSchema.optional(),
-        youtube: z.object({ url: z.string(), embedUrl: z.string(), poster: z.string().optional(), title: z.string().optional() }).optional(),
-        openTech: headlineSchema.optional(),
-        integrations: z.array(z.object({ title: z.string(), description: z.string(), links: z.array(z.object({ label: z.string(), href: z.string(), variant: z.string().optional() })) })).optional(),
-        collaborate: headlineSchema.optional(),
       }),
     }),
 
@@ -376,10 +347,11 @@ export default defineContentConfig({
         quote: z.object({ text: z.string(), author: z.string().optional(), learnMoreLink: z.string().optional() }),
         calculator: z.object({ headline: headlineSchema, amountLabel: z.string(), periodLabel: z.string(), rewardsLabel: z.string() }),
         distribution: z.object({ headline: headlineSchema, stakedHeadline: z.string().optional(), stakedDescription: z.string().optional(), distributedHeadline: z.string().optional(), distributedDescription: z.string().optional() }),
-        video: z.object({ headline: headlineSchema, embedUrl: z.string(), poster: z.string().optional(), title: z.string().optional(), description: z.string().optional() }),
+        video: z.object({ headline: headlineSchema, embedUrl: z.string(), poster: z.string().optional(), posterMobile: z.string().optional(), title: z.string().optional(), description: z.string().optional() }),
         delegate: headlineSchema,
         banner: z.object({ overlapsNextSection: z.boolean().optional(), items: z.array(bannerItemSchema) }),
         faq: z.object({ headline: z.string().optional(), forumLink: z.object({ text: z.string(), href: z.string() }).optional(), items: z.array(z.object({ question: z.string(), answer: z.string() })) }),
+        newsletter: z.object({ cta: z.string() }).optional(),
         wallet: headlineSchema.extend({ stakingNote: z.string().optional() }),
       }),
     }),
@@ -389,7 +361,7 @@ export default defineContentConfig({
       source: 'terms.md',
       schema: z.object({
         seo: seoSchema.optional(),
-        hero: z.object({ headline: z.string(), subline: z.string().optional() }),
+        headline: z.string(),
       }),
     }),
 
@@ -398,7 +370,7 @@ export default defineContentConfig({
       source: 'activation-terms.md',
       schema: z.object({
         seo: seoSchema.optional(),
-        hero: z.object({ headline: z.string(), subline: z.string().optional() }),
+        headline: z.string(),
       }),
     }),
 
@@ -416,19 +388,11 @@ export default defineContentConfig({
       }),
     }),
 
-    // ========================================================================
-    // BLOG COLLECTION
-    // ========================================================================
-
     blog: defineCollection({
       type: 'page',
       source: 'blog/*.md',
       schema: z.object({ title: z.string(), description: z.string(), slug: z.string(), publishedAt: z.string(), updatedAt: z.string().optional(), authors: z.array(z.string()), image: z.string().optional(), readingTime: z.number().optional() }),
     }),
-
-    // ========================================================================
-    // DATA COLLECTIONS
-    // ========================================================================
 
     exchanges: defineCollection({
       type: 'data',

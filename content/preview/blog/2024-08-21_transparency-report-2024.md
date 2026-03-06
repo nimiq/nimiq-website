@@ -37,39 +37,39 @@ The use of funds from the end of July 2023 up to the end of July 2024 breaks dow
 - ~US$ 1’952.8K (fiat + crypto equivalent at time of expense)
 - ~57.4% of total (~64.0% of non-extraordinary)
 
-**Marketing, Content, Community: **This includes expenses related to creating and distributing educational video and written content, branding and sponsorships, swag production, user and consumer surveys, community project funding, rewards and campaigns, social media management and industry conference expenses. It also includes a phased out membership contribution to the Blockchain for Europe organization and supporting the European “Kryptostadt” and Latin American “Criptociudad” ( translate into “Cryptocity”) efforts that aid NIM adoption. In addition, this covers ongoing community programs such as the Bug Bounty Program and the Community Project Funding with a reserve of US$ 50K for the next 12 months. An amount of US$ 50K is reserved and due pending listing related pre-staking provisions.
+**Marketing, Content, Community:**This includes expenses related to creating and distributing educational video and written content, branding and sponsorships, swag production, user and consumer surveys, community project funding, rewards and campaigns, social media management and industry conference expenses. It also includes a phased out membership contribution to the Blockchain for Europe organization and supporting the European “Kryptostadt” and Latin American “Criptociudad” ( translate into “Cryptocity”) efforts that aid NIM adoption. In addition, this covers ongoing community programs such as the Bug Bounty Program and the Community Project Funding with a reserve of US$ 50K for the next 12 months. An amount of US$ 50K is reserved and due pending listing related pre-staking provisions.
 
 - ~US$ 431.1K (fiat + crypto equivalent at time of expense)
 - ~12.7% of total (~14.1% of non-extraordinary)
 
-**Legal, Administration, Taxes: **This includes legal, tax and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from Lara Legal Corp, Annerton Rechtsanwälte, MHP trademark & design attorneys, and additional task specific international legal counsel i.e. for pursuing required licenses, trademarking, terms of services, privacy policies, legal memorandums, etc. The increased cost reflects the trademark efforts around protecting NIM, Nimiq and Cryptocity in various languages and jurisdictions, as well as the setup of an additional European operations entity as one of the many requirements for acquiring the necessary legal umbrella for operating OASIS in the EU zone.
+**Legal, Administration, Taxes:**This includes legal, tax and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from Lara Legal Corp, Annerton Rechtsanwälte, MHP trademark & design attorneys, and additional task specific international legal counsel i.e. for pursuing required licenses, trademarking, terms of services, privacy policies, legal memorandums, etc. The increased cost reflects the trademark efforts around protecting NIM, Nimiq and Cryptocity in various languages and jurisdictions, as well as the setup of an additional European operations entity as one of the many requirements for acquiring the necessary legal umbrella for operating OASIS in the EU zone.
 
 - ~US$ 213.3K (fiat + crypto equivalent at time of expense)
 - ~6.3% of total (~7.0% of non-extraordinary)
 
-**Digital Operations, Equipment: **This includes expenses related to hosting, hardware, software, licensing, communications, domains, and other development tools and platforms. The slight increase in this position is mainly due to increased hosting costs and equipment reimbursements for the growing team.
+**Digital Operations, Equipment:**This includes expenses related to hosting, hardware, software, licensing, communications, domains, and other development tools and platforms. The slight increase in this position is mainly due to increased hosting costs and equipment reimbursements for the growing team.
 
 - ~US$ 165.6K (fiat + crypto equivalent at time of expense)
 - ~4.9% of total (~5.4% of non-extraordinary)
 
-**Travel, F&B: **This includes expenses related to transportation, hotel, food/beverage, and team building. The slight decrease in expenses here reflects a lowered cost base for hosting hackathons by adding a European location and optimizing the number of hackathons.
+**Travel, F&B:**This includes expenses related to transportation, hotel, food/beverage, and team building. The slight decrease in expenses here reflects a lowered cost base for hosting hackathons by adding a European location and optimizing the number of hackathons.
 
 - ~US$ 140.8K (fiat + crypto equivalent at time of expense)
 - ~4.1% of total (~4.6% of non-extraordinary)
 
-**Physical Operations, Rent: **This includes expenses related to workspace, operational security, hackathon accommodation, and maintenance. In line with the previous category expenses also decreased slightly.
+**Physical Operations, Rent:**This includes expenses related to workspace, operational security, hackathon accommodation, and maintenance. In line with the previous category expenses also decreased slightly.
 
 - ~US$ 146.8K (fiat + crypto equivalent at time of expense)
 - ~4.3% of total (~4.8% of non-extraordinary)
 
-**Extraordinary: **This includes fees and a bounty buffer for the HackerOne code audit and bug bounty program targeting Nimiq Proof-of-Stake. It also includes an upfront payment associated with the challenging acquisition of a legal umbrella for OASIS in the EU zone. Going forward we expect additional costs around solving this challenge as well as setup costs for the technology and infrastructure as a service for Nimiq OASIS.
+**Extraordinary:**This includes fees and a bounty buffer for the HackerOne code audit and bug bounty program targeting Nimiq Proof-of-Stake. It also includes an upfront payment associated with the challenging acquisition of a legal umbrella for OASIS in the EU zone. Going forward we expect additional costs around solving this challenge as well as setup costs for the technology and infrastructure as a service for Nimiq OASIS.
 
 - ~US$ 353.1K (fiat + crypto equivalent at time of expense)
 - ~10.4% of total
 
 **Total Use of Funds:** ~US$ 3’403.5K (US$ 3’050.4K non-extraordinary)
 
-The monthly burn-rate average comes in at ~US$ 255K (excluding extraordinary expenses). As predicted in last year's report the total expenses related to _Product Development Contracting, Compensations_ have reasonably increased due to the hiring of additional highly qualified contributors, including core, frontend, business and ecosystem developers. With these new engagements, the long-standing team has reached a level of quality and capacity such that no significant further hires are anticipated in the short- to mid-term. _Marketing, Community, Content_ expenses were more or less steady, which is mostly attributable to the holding pattern the project has been in prior to releasing the Proof-of-Stake upgrade and the pending release of OASIS in a first latin american location. The project continues to support the growth of open efforts such as the European “Kryptostadt”, Latin American “Criptociudad” and its recent addition of “Cryptocity” efforts in Gambia and Nigeria on the African continent. In addition efforts are underway to create awareness around the new native Nimiq Pay iOS and Android apps that now support paying with NIM wherever Bitcoin Lightning is accepted, an industry breakthrough by all standards. With increasing activities targeting the adoption of the “NIM <> BTC <> USD Stable Coin Trinity” in the payment acceptance and crypto holding process, we expect a corresponding rise in that expense category going forward. Expenses related to _Legal, Administration, Taxes,_ and \*Physical Operations, Rent**\* **are overall holding steady. The relative increase in _Digital Operations, Equipment_ is attributable to increased hosting costs and growing reimbursements for equipment. The relative reduction in _Travel, F&B_ is attributable to the optimization of hackathon location and frequency.
+The monthly burn-rate average comes in at ~US$ 255K (excluding extraordinary expenses). As predicted in last year's report the total expenses related to _Product Development Contracting, Compensations_ have reasonably increased due to the hiring of additional highly qualified contributors, including core, frontend, business and ecosystem developers. With these new engagements, the long-standing team has reached a level of quality and capacity such that no significant further hires are anticipated in the short- to mid-term. _Marketing, Community, Content_ expenses were more or less steady, which is mostly attributable to the holding pattern the project has been in prior to releasing the Proof-of-Stake upgrade and the pending release of OASIS in a first latin american location. The project continues to support the growth of open efforts such as the European “Kryptostadt”, Latin American “Criptociudad” and its recent addition of “Cryptocity” efforts in Gambia and Nigeria on the African continent. In addition efforts are underway to create awareness around the new native Nimiq Pay iOS and Android apps that now support paying with NIM wherever Bitcoin Lightning is accepted, an industry breakthrough by all standards. With increasing activities targeting the adoption of the “NIM <> BTC <> USD Stable Coin Trinity” in the payment acceptance and crypto holding process, we expect a corresponding rise in that expense category going forward. Expenses related to _Legal, Administration, Taxes,_ and \*Physical Operations, Rent**\***are overall holding steady. The relative increase in _Digital Operations, Equipment_ is attributable to increased hosting costs and growing reimbursements for equipment. The relative reduction in _Travel, F&B_ is attributable to the optimization of hackathon location and frequency.
 
 ## NIM supply and distribution
 
@@ -79,7 +79,7 @@ This second part describes the distribution of NIM tokens, showing details of ac
 
 Live summary of NIM supply: [http://nim.sh/stats/supply.txt](http://nim.sh/stats/supply.txt)
 
-The total final NIM supply over ~100 years by design of the Nimiq Blockchain Proof-of-Work protocol (see [Nimiq Whitepaper 1.0](https://www.nimiq.com/whitepaper/?version=1.0)): **21'000'000'000 NIM. **The circulating supply as of the end of July was ~12’220’000’000 NIM (~58.2% of final total).
+The total final NIM supply over ~100 years by design of the Nimiq Blockchain Proof-of-Work protocol (see [Nimiq Whitepaper 1.0](https://www.nimiq.com/whitepaper/?version=1.0)): **21'000'000'000 NIM.**The circulating supply as of the end of July was ~12’220’000’000 NIM (~58.2% of final total).
 
 ### Details
 

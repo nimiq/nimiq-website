@@ -55,8 +55,8 @@ During the meeting, the Board also discussed and evaluated two proposals submitt
 
 - **Project purpose:** To create a Nimiq focused VR social space to bring Nimiq supporters together. VRimiq is envisioned to run directly in a browser on any device and with or without a VR-headset.
 - **Development stage:** Concept.
-- **Project team: **Telegram user **arnputz.**
-- **Previously evaluated? **No.
+- **Project team:**Telegram user **arnputz.**
+- **Previously evaluated?**No.
 
 The project requested the following funding:
 
@@ -72,14 +72,14 @@ The project requested the following funding:
 
 The Board highlighted that server costs appeared to be exceptionally high considering that the VR rooms proposed were being built in HTML, which should be pretty quick and easy to create. Also, USD value for server costs was not given by the proposal submitter. It was also recognized that the development work for the first VR rooms should be a developer award and not a flat upfront fee (as per previous guidance).
 
-It was agreed that the Board would request a modification to the VRimiq proposal and that **arnputz **would be asked to focus the proposal on the first three months of development.
+It was agreed that the Board would request a modification to the VRimiq proposal and that **arnputz**would be asked to focus the proposal on the first three months of development.
 
 ### Nimiq Ledger Nano S promotion
 
 - **Project purpose:** To run more Nimiq Ledger giveaway promotions with Twitter influencers.
 - **Development stage:** Concept.
-- **Project team: **Tzujm33
-- **Previously evaluated? **No.
+- **Project team:**Tzujm33
+- **Previously evaluated?**No.
 - **Funding requested:** Ledger postage costs.
 
 The Board unanimously agreed that community-driven efforts could add significant value to Nimiq’s overall social media exposure. It was agreed that Tzujm33 would be approved to giveaway up to three Nimiq Ledgers per Twitter influencer, Nimiq would be in charge of dispatching Ledgers to recipients and that Tzujm33 would be gifted a free ledger for their efforts.

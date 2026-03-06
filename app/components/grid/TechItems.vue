@@ -6,7 +6,7 @@ defineProps<{ items: GridItem[] }>()
 <template>
   <ul class="flex flex-col lg:flex-row gap-y-24 lg:items-center w-full">
     <li v-for="(item, i) in items" :key="i" class="py-24 flex-1 border-b lg:border-b-0 lg:border-r last:border-0 border-white/15 border-solid md:mx-auto md:w-max">
-      <NuxtImg v-if="item.image" class="rounded-8 h-80 object-contain md:mx-auto" :src="item.image" />
+      <NuxtImg v-if="item.image" class="rounded-8 h-80 object-contain md:mx-auto" :src="item.image" alt="" />
       <Icon v-else-if="item.icon" class="h-80 md:mx-auto" :name="item.icon" />
       <h3 class="text-green md:text-center text-f-xl font-bold leading-[1.3] max-w-[20ch] f-mt-xs lg:mx-auto">
         {{ item.headline }}

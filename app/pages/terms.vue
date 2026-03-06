@@ -9,10 +9,8 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/terms' }] })
 
 <template>
   <NuxtLayout>
-    <main>
-      <section class="nq-section-gap bg-neutral-100">
-        <ContentRenderer class="nq-prose text-neutral-900" :value="page" tag="article" children:mx-auto children:max-w-prose />
-      </section>
-    </main>
+    <section class="nq-section-gap bg-neutral-100">
+      <ContentRenderer class="nq-prose text-neutral-900" :value="page" tag="article" children:mx-auto children:max-w-prose />
+    </section>
   </NuxtLayout>
 </template>

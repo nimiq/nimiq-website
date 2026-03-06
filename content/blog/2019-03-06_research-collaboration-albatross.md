@@ -9,7 +9,7 @@ authors:
 image: /assets/images/prismic/09cfdc36-bce9-43c5-8f3b-17e2f3d31863_blog_research-collaboration-albatross_2.png
 ---
 
-Team [Nimiq](https://nimiq.com/) is proud to present Albatross, the outcome of our research collaboration with [Trinkler Software](https://trinkler.software/). Albatross is a Proof-of-Stake consensus algorithm that is able to achieve a performance close to the theoretical maximum for single-chain Proof-of-Stake consensus algorithms. While a [technical description of the protocol](https://arxiv.org/abs/1903.01589) has been published, this blog post strives for a lighter and easy-to-understand overview.
+Team [Nimiq](/) is proud to present Albatross, the outcome of our research collaboration with [Trinkler Software](https://trinkler.software/). Albatross is a Proof-of-Stake consensus algorithm that is able to achieve a performance close to the theoretical maximum for single-chain Proof-of-Stake consensus algorithms. While a [technical description of the protocol](https://arxiv.org/abs/1903.01589) has been published, this blog post strives for a lighter and easy-to-understand overview.
 
 **It is important** to stress that Albatross is a consensus algorithm only. As such, it does not define the functionality built on top of it, but is only a single building block of a blockchain protocol. While Nimiq is evaluating the use of Albatross for its next generation protocol, no decisions have been made. More details about our plans for Albatross are available at the end of this post.
 
@@ -19,7 +19,7 @@ In a Proof-of-Stake (PoS) based consensus algorithm, the node eligible to append
 
 The three most important benefits of PoS over PoW are:
 
-- *a drastically reduced energy consumption: *there is no need to perform labor that is highly energy consuming to secure the blockchain,
+- *a drastically reduced energy consumption:*there is no need to perform labor that is highly energy consuming to secure the blockchain,
 - _reduced risk of centralization:_ specifically, economies of scale are less of an issue in PoS, and
 - _the equivalent of_ _51% attacks being more expensive:_ misbehaving nodes permanently lose their stake, compared to reusable hardware in PoW.
 
@@ -27,7 +27,7 @@ The three most important benefits of PoS over PoW are:
 
 We describe Albatross — our novel blockchain consensus algorithm — to be _optimistic_.
 
-This term does **not** mean that we sacrifice any security but means that it is inspired by *speculative *Byzantine-fault-tolerant (BFT) algorithms.
+This term does **not** mean that we sacrifice any security but means that it is inspired by *speculative*Byzantine-fault-tolerant (BFT) algorithms.
 
 _Classical_ BFT algorithms provide consensus in distributed systems while considering a limited number of malicious or Byzantine actors. One of the most prominent examples of such an algorithm is PBFT, which, e.g., the Tendermint cryptocurrency is leveraging at its core.
 

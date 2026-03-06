@@ -55,7 +55,7 @@ From the point of view of the funding board, it makes sense to prepare an infras
 
 Nimiq Coders are eager to start working on projects for Albatross and we want to give them the tools to easily create and quickly try out new ideas.
 
-As always, remember to visit the Nimiq Forum and share ideas for Nimiq projects you would like to see come to life. Also, make sure you check out the [recently released OASIS infosite](https://nimiq.com/oasis). Nimiq OASIS is open technology and a potential tool for developers to build on top of.
+As always, remember to visit the Nimiq Forum and share ideas for Nimiq projects you would like to see come to life. Also, make sure you check out the [OASIS launch article](/blog/nimiq-oasis-launch-press-release). Nimiq OASIS is open technology and a potential tool for developers to build on top of.
 
 Until the next one,
 

@@ -4,7 +4,6 @@ import { Motion } from 'motion-v'
 
 defineProps<{ darkHeader?: boolean, variant?: 'default' | 'home' }>()
 
-// Mobile detection - both are needed, one relies on User Agent and the other on the window size
 const { isMobileOrTablet } = useDevice()
 const { smaller } = useBreakpoints(breakpointsTailwind)
 const showMobileMenu = computed(() => isMobileOrTablet || smaller('lg').value)
@@ -28,7 +27,6 @@ watch(y, (newY, oldY) => {
 
 const hiding = computed(() => scrolled.value && direction.value === 'bottom')
 
-// Animation targets for motion-v
 const animateProps = computed(() => ({
   opacity: hiding.value ? 0 : 1,
   y: hiding.value ? '-100%' : '0%',
@@ -40,7 +38,6 @@ const conditionalClasses = computed(() => ({
   'pointer-events-none': hiding.value,
 }))
 
-// Transition: enter (scroll-up) is ease-out-quint (snappy), exit is faster with ease-out-cubic
 const transitionProps = computed(() => {
   const isEntering = !hiding.value
   const ease = isEntering ? [0.23, 1, 0.32, 1] as const : [0.215, 0.61, 0.355, 1] as const

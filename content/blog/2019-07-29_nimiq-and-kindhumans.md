@@ -31,7 +31,7 @@ Cryptography, created to encrypt data is now part of fostering transparency. How
 
 Kindhumans will record the hash of published reports on the Nimiq Blockchain and provide a link on their transparency page so that the public can verify the genuine, untampered nature of each report.
 
-<iframe width="200" height="113" src="https://www.youtube.com/embed/MAVxPPJaJTc?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="200" height="113" src="https://www.youtube.com/embed/MAVxPPJaJTc?feature=oembed" title="Kindhumans partnership video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Kindhumans and Nimiq want to give back
 

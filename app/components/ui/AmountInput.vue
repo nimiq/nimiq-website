@@ -18,7 +18,6 @@ const formattedValue = computed({
     return addGrouping(liveValue.value)
   },
   set(value: string) {
-    // Strip grouping characters before parsing
     value = value.replace(/[\u2019']/g, '')
     liveValue.value = value
 

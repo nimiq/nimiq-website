@@ -13,12 +13,10 @@ function isHistohourSupportedCurrency(currency: FiatCurrency): currency is Histo
 }
 
 export function useNimVolume() {
-  // Composables must be called at top level, even for SSR
   const { currencyInfo } = useUserCurrency()
   const { price } = useNimPrice()
   const locale = useLocale()
 
-  // Skip during SSR - volume data is client-side only
   if (import.meta.server) {
     return {
       volumeUsd: computed(() => 0),
@@ -43,7 +41,7 @@ export function useNimVolume() {
   const { data: volumeData, status, error, refresh } = useFetch<VolumeResponse>('/api/nim-volume', {
     query: computed(() => ({ currency: requestCurrency.value })),
     watch: [requestCurrency],
-    server: false, // Client-side only - needs price for conversion
+    server: false,
   })
 
   const volumeUsd = computed(() => volumeData.value?.volume || 0)
@@ -58,9 +56,8 @@ export function useNimVolume() {
     return formatFiat(volumeInUserCurrency, currencyInfo.value, locale.value)
   })
 
-  // Refresh every 5 minutes
   if (import.meta.client) {
-    const refreshInterval = setInterval(() => refresh(), 5 * 60 * 1000)
+    const refreshInterval = setInterval(refresh, 5 * 60 * 1000)
     onBeforeUnmount(() => clearInterval(refreshInterval))
   }
 

@@ -11,15 +11,15 @@ image: /assets/images/prismic/09db430c-97c4-4d6b-8edc-1fed03b36614_premier_useca
 
 We're inviting you, as a valued member of the Nimiq community, to vote for a community representative in our Community Funding Board elections. Elections are open as of today and will close Tuesday 26th. This is a great opportunity to get your voice heard and to help shape the future of our community's ecosystem!
 
-### Make sure to [head to the Nimiq Voting App](https://www.nimiq.com/vote/) and cast your vote!
+## Make sure to head to the Nimiq Voting App and cast your vote!
 
 There are seven candidates for the current Community Funding Board elections. From these seven candidates, three will be elected; and these three will help to decide on funding proposals by community projects that apply to the Community Funding Board.
 
-## Meet the Candidates
+# Meet the Candidates
 
 You can find all candidates in the dedicated section of the [Nimiq Community Forum](https://forum.nimiq.community/c/community/funding-board-election/46). But we'd like to give the candidates (in no particular order) the chance to briefly introduce themselves to you here:
 
-### Paul Gertz
+## Paul Gertz
 
 Hi there Nimiq community!
 
@@ -27,17 +27,17 @@ I’m Paul, 35 years old, I’m a web developer living in the south of France. I
 
 Currently working on a(some?) new project(s?) for the Nimiq community, I hope to share more info later this year! Nothing crazy, just illustrating ways to interact/play with the blockchain, thanks to Nimiq ease of use.
 
-### FonsL
+## FonsL
 
 My name is Fons, I am 31 years young. And I live in the Netherlands. In 2016 I became active in crypto and in particular Bitcoin. Besides Bitcoin, I also read a dozen or so whitepapers from other altcoins – in which many promises were not fulfilled. When I started to delve into Nimiq I found out how transparent it is, and what a strong vision they had for the future. This is something I didn’t see in the other projects I was observing.
 
 Since 2017/2018 I started designing for different crypto projects as a volunteer/hobby, infographics in particular. I like to translate difficult matters into something easier to understand. At the moment I design a lot for TEN31, which is really fun to do. Together with Albermonte I’m working on a mini game for Nimiq, called ‘‘Nimiq Treasury’’.
 
-### Jonathan
+## Jonathan
 
 I’m from the US and work in Information Security. I got into the crypto space back in 2020, researched a lot about blockchain tech during that time and never looked back. I stumbled across Nimiq during this period and it is one of the few projects to truly pique my interest. I’ve been mostly active on reddit and telegram trying to educate others about Nimiq and blockchain tech. Whenever I see a potential idea or partnership, I try my best to relay it to the community and the team to see if it can improve Nimiq as a whole. I’m always on the lookout for new ideas or tech.
 
-### Albermonte
+## Albermonte
 
 Hello, I’m Albermonte, I’m a 25-year-old developer living in Spain.
 
@@ -53,13 +53,13 @@ I’m currently working with FonsL on a new mini game called “Nimiq Treasury�
 
 I will continue to develop Nimiq applications and learn more and more about cutting edge technology and blockchain and apply this to new applications and games.
 
-### Stefan
+## Stefan
 
 Hi everybody, it’s Stefan here from the Nimiq community. I first set foot into this community around July 2017.
 
 Many of you probably know me because of certain projects I did like [Nimtris](https://nimtris.com/), [Twini](https://github.com/Eligioo/twinibot-telegram), the [Nimiq RPC Client for Rust](https://github.com/Eligioo/nimiq-rust-rpc-client) or generally chatting on the different social platforms. My background is tech-focused and I think this will be a valuable addition to the next board round. I’m also the Dutch Local Community Manager and support people if they have questions or inquiries of any kind.
 
-### Faberto
+## Faberto
 
 My Name is Tobi (Faberto). I'm a developer with a background in cybersecurity.
 
@@ -69,15 +69,15 @@ For Albatross I am already working on a staking service to get everyone started 
 
 As part of the CFB I can contribute my technical knowledge and experience in building projects. I do favor technically useful proposals but “fun” projects are helpful for the community as well!
 
-### Michael
+## Michael
 
 My name is Michael, but most people know me by my user name: Coin Revolution or Nimiq Maniac. Two years ago I found Nimiq through friends and since then I am fascinated by the unique technology and our great community. Since January 2021 I am a permanent member of the Nimiq Squad and in the summer of 2021 I was given the honor of being one of the Team Leaders. We are working every day to make the Nimiq Squad even more effective and successful to reach more people and bring them closer to Nimiq.
 
-## How can you participate in the elections?
+# How can you participate in the elections?
 
 The steps are simple for you to participate in the election:
 
-1- Visit [nimiq.com/vote](https://www.nimiq.com/vote/)
+1- Visit the Nimiq Voting App
 
 2- Sort the candidates in the order you prefer
 
@@ -97,7 +97,7 @@ We also prepared **[a full tutorial which can be found here](https://youtu.be/Yd
 
 ![](/assets/images/prismic/998db6f2-88b5-430d-b1bd-51993af14a7c_tutorialelections.jpg)
 
-## IMPORTANT:
+# IMPORTANT:
 
 1. You can NOT vote with funds held in exchanges or third party wallets, because they don’t support custom public messages in transactions, which are needed for the vote to be recorded on the blockchain. You can also not vote with funds in vesting contracts (please move available funds to a regular account address first).
 1. Your vote will be submitted through the Nimiq Voting app by sending 1 Luna (= 0.00001 NIM) to the preset burn address (an address that will be calculated by the voting app based on the hash of the voting setup. This makes it verifiable that the setup is not changed during or after voting). The transaction contains the vote in the form of a public message recorded on the blockchain.
@@ -105,7 +105,7 @@ We also prepared **[a full tutorial which can be found here](https://youtu.be/Yd
 1. You can change your vote by voting again with the same address.Only the last vote of an address counts, at the end of the voting period, with the balance it has at that time.
 1. Do not wait until the last minute to submit your vote. Things always take longer than expected and this way you can also correct your vote by re-submitting it – in case you made a mistake or changed your mind.
 
-## What happens after the elections?
+# What happens after the elections?
 
 Once the elections are completed, the 3 winners of the election will be announced. From then on, for at least 6 months and together with 3 members of our team, they will comprise the Community Funding Board, which meets every 1-2 months to vote on the applications for funding.
 

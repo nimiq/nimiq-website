@@ -13,7 +13,7 @@ This post specifically addresses **validator operators** participating in the Po
 
 You can find the full documentation[ here](https://www.nimiq.com/developers/migration/validator-activation). Below is a short summary of the next steps for validator operators.
 
-### Steps for Validator Operators
+## Steps for Validator Operators
 
 **Main Prerequisite:**
 

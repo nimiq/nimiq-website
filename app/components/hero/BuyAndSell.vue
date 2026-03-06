@@ -18,7 +18,6 @@ defineProps<{
   }
 }>()
 
-// SSR-safe currency and locale
 const { currency, currencyInfo } = useUserCurrency()
 const locale = useLocale()
 
@@ -57,10 +56,9 @@ const error = computed(() => {
       {{ data.description }}
     </p>
 
-    <!-- USD/NIM Converter Form -->
     <form class="grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] items-center gap-x-6 max-md:px-6 mx-auto mt-40 h-max max-w-[560px] w-full" @submit.prevent>
       <div class="group w-full relative flex items-center">
-        <UiAmountInput :key="fiatKey" v-model="fiatAmount" class="nq-input-box relative z-20 rounded-b-0 md:rounded-2 pr-64 text-2xl max-md:-translate-y-0.5 group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
+        <UiAmountInput :key="fiatKey" v-model="fiatAmount" :aria-label="`Amount in ${currency.toUpperCase()}`" class="nq-input-box relative z-20 rounded-b-0 md:rounded-2 pr-64 text-2xl max-md:-translate-y-0.5 group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
         <div class="w-32 z-30 pointer-events-none absolute inset-y-[1.5px] right-64 rounded-r-2" style="background-image: linear-gradient(to right, transparent, white)" />
         <div class="text-neutral-700 group-hover:!text-blue/50 hocus:!text-neutral-800 group-focus-within:!text-blue right-[4px] absolute z-40">
           <UiCurrencySelector v-model="currency" />
@@ -70,7 +68,7 @@ const error = computed(() => {
         =
       </p>
       <div class="group w-full relative">
-        <UiAmountInput :key="cryptoKey" v-model="cryptoAmount" class="nq-input-box relative z-20 rounded-t-0 md:rounded-2 pr-[54px] text-2xl group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
+        <UiAmountInput :key="cryptoKey" v-model="cryptoAmount" aria-label="Amount in NIM" class="nq-input-box relative z-20 rounded-t-0 md:rounded-2 pr-[54px] text-2xl group-focus-within:z-20 w-full bg-white outline-neutral/15" required />
         <div class="w-32 z-30 pointer-events-none absolute inset-y-[1.5px] right-[54px] rounded-r-2" style="background-image: linear-gradient(to right, transparent, white)" />
         <div class="absolute inset-y-0 right-12 z-20 flex items-center pointer-events-none">
           <span class="text-neutral-700 group-hover:text-blue/50 group-focus-within:!text-blue transition-colors nq-label text-12 md:text-16 leading-none">NIM</span>
@@ -78,10 +76,9 @@ const error = computed(() => {
       </div>
     </form>
 
-    <!-- Price chart ribbon -->
     <UiRibbonContainer v-if="data.nimPriceChartLabel" class="z-3 md:min-h-[480px] outline-color-white/20 mt-[96px] w-full text-left" style="--top: -25px; --right: -32px" :label="data.nimPriceChartLabel" shadow>
       <div class="flex flex-col md:grid md:grid-cols-[max-content_1fr] size-full relative overflow-hidden">
-        <aside ref="asideRef" class="md:border-r-1 md:border-solid md:border-neutral-400 flex max-md:overflow-x-auto max-md:gap-x-5 md:flex-col md:gap-y-6 w-full relative p-4 md:p-6 text-left max-md:order-2">
+        <div ref="asideRef" class="md:border-r-1 md:border-solid md:border-neutral-400 flex max-md:overflow-x-auto max-md:gap-x-5 md:flex-col md:gap-y-6 w-full relative p-4 md:p-6 text-left max-md:order-2">
           <transition enter-active-class="transition duration-200 ease-out" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition duration-200 ease-out" leave-from-class="opacity-100" leave-to-class="opacity-0">
             <div v-if="isLoading || error" class="flex items-center gap-2 text-orange text-xs md:text-sm translate-x-100% py-1 rounded-br-1.5 bg-white -right-px -top-px absolute z-30 px-2 md:px-3 border-b border-r border-neutral-400 lg:w-max">
               <Icon class="scale-90" :name="isLoading ? 'nimiq:spinner' : 'nimiq:alert'" />
@@ -138,14 +135,14 @@ const error = computed(() => {
             <NuxtTime v-if="lastUpdated" :datetime="lastUpdated" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" />
             <span v-else>Loading...</span>
           </div>
-        </aside>
+        </div>
         <div v-show="lastUpdated" class="flex gap-1 text-[10px] text-neutral-800 leading-none text-left px-4 pb-3 md:hidden order-3">
           <span>Last updated:</span>
           <NuxtTime v-if="lastUpdated" :datetime="lastUpdated" year="numeric" month="long" day="numeric" hour="2-digit" minute="2-digit" />
           <span v-else>Loading...</span>
         </div>
         <div class="group relative md:pb-3 max-md:order-1">
-          <ChartLine :key="asideWidth" class="rounded-2 h-full" :data="historicPrices || []" leader>
+          <LazyChartLine :key="asideWidth" class="rounded-2 h-full" :data="historicPrices || []" leader>
             <template #default="{ data: [ts, historicPrice] }">
               <div class="flex flex-col gap-2 f-$side f-$side-min-20 f-$side-max-24 mx-5 bg-neutral-0 top-[21px] relative isolate py-2 md:py-3">
                 <div class="inset-y-0 absolute left-[calc(var(--f-side)*-1)] w-$f-side z-0 pointer-events-none" style="background-image: linear-gradient(to right in oklab, transparent, var(--color-neutral-0))" />
@@ -156,7 +153,7 @@ const error = computed(() => {
                 <NuxtTime class="text-[10px] md:text-[11px] text-right text-neutral-700 leading-none nq-label relative z-1" :datetime="ts" year="numeric" month="long" day="numeric" />
               </div>
             </template>
-          </ChartLine>
+          </LazyChartLine>
 
           <div class="absolute z-20 right-4 md:right-6 bottom-40 max-md:hidden" data-allow-mismatch>
             <div class="ml-auto flex items-center gap-2 w-max">
@@ -182,10 +179,10 @@ const error = computed(() => {
 
     <p v-if="data.poweredByLabel && data.poweredByLogo" class="flex items-center justify-center gap-2 mt-4 md:mt-6 text-center text-xs md:text-sm">
       {{ data.poweredByLabel }}
-      <NuxtLink v-if="data.poweredByLink" :to="data.poweredByLink" external target="_blank">
-        <NuxtImg class="opacity-80 hover:opacity-100 focus:opacity-100 w-full transition-opacity h-3 md:h-4" :src="data.poweredByLogo" />
+      <NuxtLink v-if="data.poweredByLink" :to="data.poweredByLink" external target="_blank" :aria-label="data.poweredByLabel">
+        <NuxtImg class="opacity-80 hover:opacity-100 focus:opacity-100 w-full transition-opacity h-3 md:h-4" :src="data.poweredByLogo" :alt="data.poweredByLabel" />
       </NuxtLink>
-      <NuxtImg v-else class="opacity-80 w-full h-3 md:h-4" :src="data.poweredByLogo" />
+      <NuxtImg v-else class="opacity-80 w-full h-3 md:h-4" :src="data.poweredByLogo" :alt="data.poweredByLabel" />
     </p>
   </div>
 </template>

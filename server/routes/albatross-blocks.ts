@@ -10,7 +10,7 @@ export default defineWebSocketHandler({
     let shouldEnqueue = true
     const blockQueue = new Map<number, any>()
 
-    const nodeRpcUrl = useRuntimeConfig().albatross.nodeRpcUrl
+    const nodeRpcUrl = useSafeRuntimeConfig().albatross.nodeRpcUrl
     if (!nodeRpcUrl) {
       peer.send(JSON.stringify({ type: 'error', message: 'RPC node URL not configured' }))
       peer.close()

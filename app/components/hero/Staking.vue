@@ -32,7 +32,7 @@ onMounted(() => {
 
     <div class="flex flex-col md:items-center group relative z-[2]">
       <motion.div :initial="{ opacity: 0, y: 20 }" :animate="enter" :transition="{ duration: 0.3, ease }">
-        <AnimatedStakingRipple class="w-[120px] h-[120px]" />
+        <AnimatedStakingRipple class="size-[120px]" />
       </motion.div>
       <motion.h1 :initial="{ opacity: 0, y: 20 }" :animate="enter" :transition="{ duration: 0.3, ease, delay: 0.08 }" class="nq-heading text-wrap text-balance mt-4 md:mt-6 md:text-center text-neutral">
         {{ headlineParts[0] }}

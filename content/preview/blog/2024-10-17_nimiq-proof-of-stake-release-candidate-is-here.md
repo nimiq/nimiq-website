@@ -17,17 +17,17 @@ After extensive testing, security improvements, and optimizations, the Testnet h
 
 For those eager to dive in, you can find the release candidate code [here](https://github.com/nimiq/core-rs-albatross/releases/tag/v1.0.0-rc.0). Keep reading if you’d like more details on this release, validator registration, the Pre-Staking campaign, and key migration dates.
 
-### Release Candidate Criteria
+## Release Candidate Criteria
 
 Nimiq's core team has determined that, among other security and performance criteria, the Testnet must undergo continuous stress testing at maximum capacity, conducted in intervals of one week. While this scenario is unlikely under normal conditions, it provides a solid basis for analyzing the Nimiq PoS Blockchain Network under heavy load.
 
 A detailed technical discussion is beyond the scope of this blog post. Developers interested in more information about the Release Candidate are welcome to join our join our [Telegram](http://t.me/nimiq) or [Discord](http://discord.gg/nimiq) groups, where we have a dedicated channel for developers.
 
-## Next Steps for the Release Candidate
+# Next Steps for the Release Candidate
 
 The Testnet will continue to undergo rigorous testing by the development team and the Nimiq community. This includes additional stress tests, vulnerability assessments, and performance evaluations. However, this announcement marks a shift from development and feature additions toward migration preparation and fine-tuning.
 
-## What’s Next
+# What’s Next
 
 Our immediate priorities are further testing, promoting the [Pre-Staking Campaign](http://prestaking.nimiq.com), and improving documentation. With 200 million NIM in rewards, the Pre-Staking campaign is an excellent opportunity for newcomers to get involved with Nimiq before the network officially migrates to Proof-of-Stake.
 

@@ -27,8 +27,8 @@ As one of the initiators of the non-profit organization Nimiq, Philipp von Styp-
 
 We are very excited to announce the release of OASIS! From this day forward the documentation and API of Nimiq OASIS are open to the public. We will work towards growing the number of applications based on OASIS as well as expanding the reach of the Nimiq OASIS network.
 
-For more details on Nimiq OASIS visit the [informative page](https://www.nimiq.com/oasis/), watch [this video](https://www.youtube.com/watch?v=yURX6FMky-A) and test it in the [Nimiq wallet](https://wallet.nimiq.com/).
+For more details on Nimiq OASIS, watch [this video](https://www.youtube.com/watch?v=yURX6FMky-A) and test it in the [Nimiq wallet](https://wallet.nimiq.com/).
 
-**Pura Vida **🚀
+**Pura Vida**🚀
 
 Team Nimiq

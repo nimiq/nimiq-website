@@ -47,7 +47,7 @@ Nimiq started as a Proof of Work blockchain. Such blockchain operates by having 
 
 Proof of Stake is a more modern and efficient system. Instead of relying on miners, PoS allows “validators” that put up or pool a certain amount of the network token as “stake” to validate transactions. The higher the amount of NIM a validator represents with the stake, the higher is his relative contribution to securing the network. PoS is faster, uses far less energy, and allows Nimiq to scale up much more easily.
 
-**Plain language: **Think of Proof of Stake as a system where participants "prove" they have a stake in the network by holding NIM.
+**Plain language:**Think of Proof of Stake as a system where participants "prove" they have a stake in the network by holding NIM.
 
 This “skin in the game” incentivizes honesty and efficiency, making it a win-win for everyone involved.
 
@@ -69,7 +69,7 @@ Right now under Proof of Work, transactions can take over a minute to be receive
 
 One of the most exciting changes with this migration is the ability to easily stake your NIM. Staking is the process of locking up your NIM to help secure the network, and in return, you get staking rewards. This creates a great incentive to acquire and hold NIM, as holders can receive passive rewards simply by participating in the staking process.
 
-**In short: **Nimiq’s transition to Proof of Stake will make the network faster, more environmentally friendly, and let every user stake NIM to receive NIM rewards—creating a better overall experience for users, all the while not compromising decentralization.
+**In short:**Nimiq’s transition to Proof of Stake will make the network faster, more environmentally friendly, and let every user stake NIM to receive NIM rewards—creating a better overall experience for users, all the while not compromising decentralization.
 
 ## Staking Explained: How You Can Receive NIM Rewards
 

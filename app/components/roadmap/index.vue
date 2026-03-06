@@ -68,8 +68,6 @@ const milestones = computed(() => {
   })
 })
 
-// --- Desktop navigation enhancements ---
-
 const scrollEl = ref<HTMLElement>()
 const { x: scrollX, arrivedState } = useScroll(scrollEl)
 
@@ -78,7 +76,6 @@ function getMilestoneX(m: Header) {
   return ((m.year - firstYear) * 12 + m.month - firstMonth) * COLUMNS_W
 }
 
-// Track which milestone tabs are fully visible in the viewport
 const firstVisibleMilestone = ref(0)
 const lastVisibleMilestone = ref(0)
 
@@ -103,7 +100,6 @@ function updateVisibleRange() {
     lastVisibleMilestone.value = last
   }
   else {
-    // Fallback: milestone under scroll position
     const x = scrollX.value + 100
     let active = 0
     for (let i = milestones.value.length - 1; i >= 0; i--) {
@@ -117,7 +113,6 @@ function updateVisibleRange() {
   }
 }
 
-// Sliding pill spans from first to last fully visible milestone
 const navEl = useTemplateRef<HTMLElement>('navEl')
 const pillStyle = ref<Record<string, string>>({})
 
@@ -144,7 +139,6 @@ watch(scrollX, () => {
     updatePill()
 })
 onMounted(() => {
-  // Auto-scroll to current date so pill reflects progress
   if (scrollEl.value) {
     const x = ((currentYear - firstYear) * 12 + currentMonth - firstMonth) * COLUMNS_W
     scrollEl.value.scrollTo({ left: Math.max(0, x - 50), behavior: 'instant' })
@@ -169,7 +163,6 @@ function scrollToNow() {
   scrollEl.value.scrollTo({ left: Math.max(0, x - 50), behavior: 'smooth' })
 }
 
-// "Now" button tracks the red line horizontally, sticks to right edge when off-screen
 const nowStyle = computed(() => {
   void scrollX.value // reactive dependency
   if (!scrollEl.value)
@@ -186,14 +179,11 @@ const nowStyle = computed(() => {
   const posInNav = redCenter - navRect.left
   const gap = 8
   const btnWidth = 40
-  // If red line center is within the nav bounds, position there
   if (posInNav > 0 && posInNav < navRect.width - gap - btnWidth)
     return { left: `${posInNav}px`, transform: 'translateX(-50%)' }
-  // Otherwise stick to the right
   return { right: `${gap}px` }
 })
 
-// Progress bar
 const progressStyle = computed(() => {
   const el = scrollEl.value
   if (!el || el.scrollWidth <= el.clientWidth)
@@ -212,7 +202,6 @@ function onProgressClick(e: MouseEvent) {
   scrollEl.value.scrollTo({ left: ratio * (scrollEl.value.scrollWidth - scrollEl.value.clientWidth), behavior: 'smooth' })
 }
 
-// Drag-to-scroll
 const isDragging = ref(false)
 let dragStartX = 0
 let dragScrollLeft = 0
@@ -240,7 +229,6 @@ function onPointerUp() {
 
 <template>
   <div class="roadmap w-full" :style="`--first-month: ${firstMonth}; --first-year: ${firstYear}; --current-year: ${currentYear}; --current-month: ${currentMonth}`">
-    <!-- Milestone quick-jump nav (desktop only) -->
     <nav class="flex max-md:hidden items-center gap-1.5 px-4 py-3 overflow-x-auto z-30 bg-neutral-0 relative">
       <div ref="navEl" class="flex gap-0.5 items-center rounded-full bg-neutral-200 w-max relative">
         <div class="rounded-full bg-neutral ease-out inset-y-0 absolute transition-[left,width]" :style="pillStyle" />
@@ -263,13 +251,11 @@ function onPointerUp() {
       </button>
     </nav>
 
-    <!-- Scroll area wrapper (for edge fades positioning) -->
     <div class="relative">
-      <!-- Scrollable timeline -->
       <div
         ref="scrollEl"
-        class="overflow-x-auto flex flex-col relative w-full"
-        style="scrollbar-width: none"
+        class="overflow-x-auto flex flex-col relative w-full max-md:![mask-image:none]"
+        :style="{ scrollbarWidth: 'none', maskImage: `linear-gradient(to right, ${arrivedState.left ? 'black' : 'transparent'}, black 40px, black calc(100% - 40px), ${arrivedState.right ? 'black' : 'transparent'})` }"
         :class="{ 'cursor-grab': !isDragging, 'cursor-grabbing': isDragging }"
         @pointerdown="onPointerDown" @pointermove="onPointerMove" @pointerup="onPointerUp" @pointercancel="onPointerUp"
       >
@@ -334,21 +320,13 @@ function onPointerUp() {
           </li>
         </ul>
       </div>
-
-      <!-- Edge fade indicators (desktop only) -->
-      <div v-show="!arrivedState.left" class="block max-md:hidden absolute inset-y-0 left-0 w-[40px] bg-gradient-to-r from-neutral-0 to-transparent pointer-events-none z-20" />
-      <div v-show="!arrivedState.right" class="block max-md:hidden absolute inset-y-0 right-0 w-[40px] bg-gradient-to-l from-neutral-0 to-transparent pointer-events-none z-20" />
     </div>
 
-    <!-- Progress bar (desktop only) -->
     <div class="block max-md:hidden h-1 bg-neutral-200/50 relative cursor-pointer mx-4 mt-2 rounded-full" @click="onProgressClick">
       <div class="absolute h-full bg-green rounded-full transition-[left] duration-75" :style="progressStyle" />
     </div>
   </div>
 </template>
-
-<style scoped>
-</style>
 
 <style>
 .roadmap ::-webkit-scrollbar {

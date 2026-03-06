@@ -11,7 +11,7 @@ image: /assets/images/prismic/1edbedbd-b564-4fd7-8c1d-2094494f3f02_blog_nimiq-a-
 
 ## Introduction
 
-On June 6th we published the [Nimiq Beta Testnet](https://nimiq.com/betanet/) to get early community feedback and gather real-world data. Some people were missing the nerdy talk. So here it is:
+On June 6th we published the Nimiq Beta Testnet to get early community feedback and gather real-world data. Some people were missing the nerdy talk. So here it is:
 
 _Nimiq is a frictionless peer-to-peer payment protocol for the World Wide Web. It is a third-generation Blockchain protocol combining elements of Bitcoin and Ethereum, streamlined for the web platform. And without a doubt, it is [open source](https://github.com/nimiq-network/core) and fully decentralized._
 
@@ -29,8 +29,8 @@ In addition, the protocol must be streamlined for the constraints of the web:
 
 - **Compression** of Blockchain data to sync within seconds instead of hours.
 - **Instant and scalable transactions** so over-the-counter payments are practical.
-- **Simplicity **means we do only one thing and we do it better than anyone else: payments.
-- **Blockchain Parameters **streamlined for our browser-first approach.
+- **Simplicity**means we do only one thing and we do it better than anyone else: payments.
+- **Blockchain Parameters**streamlined for our browser-first approach.
 - **Cross-Chain Compatibility** with other Blockchains such as Ethereum for advanced smart contract features.
 
 ## Translating the Blockchain Primitives to the Web Platform
@@ -39,7 +39,7 @@ In addition, the protocol must be streamlined for the constraints of the web:
 
 Nimiq’s peer-to-peer network uses [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) and [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) connections.
 
-There are two types of nodes in the Nimiq network: *Backbone Nodes *and *Browser Nodes. *Both types use the same isomorphic JavaScript code base.
+There are two types of nodes in the Nimiq network: *Backbone Nodes*and *Browser Nodes.*Both types use the same isomorphic JavaScript code base.
 
 Backbone Nodes are based on NodeJS and run on servers. They communicate with each other via WebSockets, and they act as entry point and signaling server for Browser Nodes to establish browser-to-browser WebRTC connections.
 
@@ -49,7 +49,7 @@ In the long run, Browser Nodes will mainly be light-clients, and they won’t ne
 
 There are some drawbacks of this approach:
 
-1. Depending on the user’s NAT configuration, direct peer-to-peer connections may not be able to be established. They would need a *[TURN server](https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT) *to connect to other browsers. In this case, it makes more sense to connect only to Backbone Nodes via WebSockets, because the network load on TURN servers would be unnecessary high.
+1. Depending on the user’s NAT configuration, direct peer-to-peer connections may not be able to be established. They would need a *[TURN server](https://en.wikipedia.org/wiki/Traversal_Using_Relays_around_NAT)*to connect to other browsers. In this case, it makes more sense to connect only to Backbone Nodes via WebSockets, because the network load on TURN servers would be unnecessary high.
 1. Powerful browser APIs are [restricted to secure origins](https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features). So for browsers to connect, Backbone Nodes need to provide an encrypted connection via SSL. This requires a domain and an SSL certificate. For easy and cheap access to domains, we will provide dynamic DNS and [Letsencrypt](https://letsencrypt.org/) packaged in an installer.
 1. Depending on the user’s firewall configuration, connections to non-standard ports may not be able to be established. In this case, at least some nodes need to run on the standard 443 port. To avoid running the node as root, it is a good idea to use NGINX as reverse proxy.
 
@@ -79,9 +79,9 @@ The cryptographic primitives in the mainnet will be based on [WebAssembly](https
 
 **Proof-of-Work Algorithm:** We will use a more sophisticated PoW in the mainnet because SHA-256 will lead to centralized mining. The mainnet PoW should be memory-hard & low energy for truly decentralized mining with regular hardware. There is no final decision on any specific algorithm yet. We are investigating multiple candidates such as [Argon2](https://password-hashing.net/submissions/specs/Argon-v3.pdf) (too slow though) or ETHash, and we are very open to suggestions by the community.
 
-**Proof-of-Stake Algorithm: **We would strongly prefer to switch to a Proof-of-Stake Algorithm in the long run to get to a more energy-efficient Blockchain system. We are following the research of other projects such as [Ethereum](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ), and we are investigating multiple candidates such as [Ouroboros](https://eprint.iacr.org/2016/889.pdf). Just as well, we are very open to suggestions by the community.
+**Proof-of-Stake Algorithm:**We would strongly prefer to switch to a Proof-of-Stake Algorithm in the long run to get to a more energy-efficient Blockchain system. We are following the research of other projects such as [Ethereum](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ), and we are investigating multiple candidates such as [Ouroboros](https://eprint.iacr.org/2016/889.pdf). Just as well, we are very open to suggestions by the community.
 
-**Digital Signing Algorithm: **We use Ed25519 because it uses “nothing up my sleeves parameters” chosen for performance and it is becoming an industry standard.
+**Digital Signing Algorithm:**We use Ed25519 because it uses “nothing up my sleeves parameters” chosen for performance and it is becoming an industry standard.
 
 ### More Fundamental Browser APIs
 
@@ -107,7 +107,7 @@ That’s where the _[Mini-Blockchain Scheme](http://cryptonite.info/wiki/index.p
 
 ### Instant transactions
 
-Based on _“[The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments](https://lightning.network/lightning-network-paper.pdf)”_ Nimiq implements *Hashed Timelock Contracts *to enable *payment channels *and within those scalable instant off-chain transactions. This solves the scalability issues beyond micro-payments. Moreover, they enable _atomic swaps_ for cross-chain interoperability. There are also approaches to enable _onion routing_ on top the Lightning Network to provide anonymity in a way similar to the Tor Browser.
+Based on _“[The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments](https://lightning.network/lightning-network-paper.pdf)”_ Nimiq implements *Hashed Timelock Contracts*to enable *payment channels*and within those scalable instant off-chain transactions. This solves the scalability issues beyond micro-payments. Moreover, they enable _atomic swaps_ for cross-chain interoperability. There are also approaches to enable _onion routing_ on top the Lightning Network to provide anonymity in a way similar to the Tor Browser.
 
 ### Simplicity: No scripting language.
 
@@ -145,10 +145,10 @@ To stay tuned:
 
 ### Read More about Nimiq
 
-- [Website](https://nimiq.com/)
-- [Beta Testnet](https://nimiq.com/betanet)
+- [Website](/)
+- Beta Testnet
 - [Whitepaper](https://medium.com/nimiq-network/nimiq-a-peer-to-peer-payment-protocol-native-to-the-web-ffd324bb084)
-- [Team](https://nimiq.com/team)
+- [Team](/team)
 - [Contribution Terms](https://medium.com/nimiq-network/nimiq-network-token-sale-terms-9af2e7fd6228)
 
 Original Article: [https://medium.com/nimiq-network/nimiq-a-peer-to-peer-payment-protocol-native-to-the-web-ffd324bb084](https://medium.com/nimiq-network/nimiq-a-peer-to-peer-payment-protocol-native-to-the-web-ffd324bb084)

@@ -19,7 +19,7 @@ There is nothing that can contribute to the mass adoption of cryptocurrency more
 
 Both Nimiq and Trust Wallet share a vision of simplifying cryptocurrency and there are a few reasons behind Nimiq pursuing this mutually beneficial collaboration.
 
-- The community lead effort spearheaded by **[Terorie](https://github.com/terorie/) **and **[Vasconcelos](https://github.com/lucaslg26) **has empowered NIM holders by providing another great and convenient way to store tokens securely. Trust Wallet will also be the first mobile app to support NIM and enables Nimiq supporters to easily use NIM on the go.
+- The community lead effort spearheaded by **[Terorie](https://github.com/terorie/)**and **[Vasconcelos](https://github.com/lucaslg26)**has empowered NIM holders by providing another great and convenient way to store tokens securely. Trust Wallet will also be the first mobile app to support NIM and enables Nimiq supporters to easily use NIM on the go.
 - Nimiq is set to integrate the NIM faucet into the Trust Wallet multi-crypto app so that users can experience the simplicity of NIM for free.
 - Adding NIM to the fastest growing multi-coin wallet increases the visibility and reach of Nimiq in the cryptocurrency community.
 - Opens the door for research collaboration opportunities between the two projects.

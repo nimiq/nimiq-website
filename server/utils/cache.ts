@@ -1,11 +1,4 @@
-/**
- * KV-based cache utility for Studio environment.
- * Falls back to direct fetching when NuxtHub is not available (production SSG).
- *
- * Note: This utility uses dynamic import to handle cases where hub:kv
- * is not available (e.g., production static builds without NuxtHub).
- */
-
+// KV-based cache. Falls back to direct fetching when NuxtHub is unavailable (production SSG).
 let kvModule: { kv: { get: <T>(key: string) => Promise<T | null>, set: (key: string, value: unknown, opts?: { ttl?: number }) => Promise<void>, del: (key: string) => Promise<void> } } | null = null
 let kvChecked = false
 
@@ -25,7 +18,6 @@ async function getKv() {
 }
 
 export async function getCachedData<T>(key: string, fetcher: () => Promise<T>, ttlSeconds = 3600): Promise<T> {
-  // Skip caching in dev mode
   if (import.meta.dev) {
     return fetcher()
   }

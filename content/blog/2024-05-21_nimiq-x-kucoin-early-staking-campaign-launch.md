@@ -11,15 +11,15 @@ image: /assets/images/prismic/ZkudwSol0Zci9TA3_BlogStakeatKucoin.png
 
 Nimiq is currently running on a Proof-of-Work (PoW) system, but the landscape is set to change dramatically with the migration to Nimiqs own Proof-of-Stake (PoS) consensus mechanism. This major upgrade, the result of four years of research and development, will enable transactions to be processed at speeds of over 1000 transactions per second, with confirmation time of around one second, increasing performance and enhancing user experience significantly, all the while maintaining decentralization and censorship resistance of the network, and running nodes in the browser.
 
-### KuCoin Joins the Celebration
+## KuCoin Joins the Celebration
 
 As Nimiq plans to make this big switch, KuCoin is here to make sure you are part of it from the start. We are excited to have KuCoin join the Nimiq Proof-of-Stake migration as a launch partner and support this change by allowing Nimiq users to participate in staking early. KuCoin users will not only have the opportunity to stake on the day of the launch but can also earn pre-launch rewards through the special early staking offer. It’s a perfect chance to earn rewards while helping to pilot the new system.
 
-### Get Ready for More Action
+## Get Ready for More Action
 
 The excitement doesn’t end with early staking. Alongside early staking, we're hosting a ‘Predict & Earn’ contest and we've got even more surprises! These are fantastic ways to get more involved, have some fun, and make your journey into the new Nimiq ecosystem as exciting as possible.
 
-### Ready, Set, Stake!
+## Ready, Set, Stake!
 
 The countdown is on! Gear up your NIM for an enhanced staking experience on KuCoin with the new Proof-of-Stake system. Now's the perfect time to dive in, earn early rewards, and enjoy the buzz of competition.
 

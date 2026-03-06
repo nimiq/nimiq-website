@@ -78,7 +78,7 @@ Once both puzzle pieces are fully filled out, the contracts are ready and **the 
 
 In atomic swaps, ownership change happens with the publishing of the swap secret. Remember how the wallet verified in step 1 that both contracts are secured by the same unlock-hash? It is now vital that they are indeed equal. First, Fastspot claims the contract that you created and transfers the funds out into its own wallet. To do that, Fastspot must include the swap secret — the key to unlock the contracts — into that claiming transaction! Put differently, it needs to present the key to be able to unlock the funds. Since the involved blockchains, as well as the OASIS API, are public, the wallet can obtain this secret from Fastspot’s transaction or from the OASIS contract.
 
-**Side-note for developers: **Additionally to monitoring the respective blockchain or OASIS API on which the secret will be revealed, the wallet is also periodically checking the Fastspot API itself, where Fastspot reveals the secret once the contract is claimed on-chain, too.
+**Side-note for developers:**Additionally to monitoring the respective blockchain or OASIS API on which the secret will be revealed, the wallet is also periodically checking the Fastspot API itself, where Fastspot reveals the secret once the contract is claimed on-chain, too.
 
 With the knowledge of the swap secret, the wallet can now claim your funds from the other contract. So **let’s claim them!**
 
@@ -86,7 +86,7 @@ With the knowledge of the swap secret, the wallet can now claim your funds from 
 
 You already prepared the claiming transaction when you signed the funding transaction in the Keyguard. The swap secret is not part of the transaction data that is signed, so adding the secret into the transaction is still possible and does not invalidate it. Now that the transaction — called “settlement instruction” for OASIS — is complete, the wallet can broadcast it to the respective network. This immediately shows up in your transaction history as a pending incoming transaction, which means **the swap is complete!**
 
-**Side-note for developers: **Additionally to the wallet being on the lookout for the swap secret, Fastspot also offers a so-called “watchtower service”. This is a service that takes your pre-signed claiming transaction and monitors the swap progress. If it sees the secret, it will also broadcast your claiming transaction. This is a failover for when your wallet loses internet connection, your computer crashes, or you accidentally close the browser. However, it is important to remember that the watchtower is not a guarantee, but rather an additional safeguard to make sure that as many swaps as possible will be successful, which reduces the number of refunded swaps due to timeouts.
+**Side-note for developers:**Additionally to the wallet being on the lookout for the swap secret, Fastspot also offers a so-called “watchtower service”. This is a service that takes your pre-signed claiming transaction and monitors the swap progress. If it sees the secret, it will also broadcast your claiming transaction. This is a failover for when your wallet loses internet connection, your computer crashes, or you accidentally close the browser. However, it is important to remember that the watchtower is not a guarantee, but rather an additional safeguard to make sure that as many swaps as possible will be successful, which reduces the number of refunded swaps due to timeouts.
 
 ## Step 5b: Expired swaps and automatic refunds
 

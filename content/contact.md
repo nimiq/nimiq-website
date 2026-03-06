@@ -39,7 +39,7 @@ social:
         socialMediaItem: /youtube
 form:
   nameLabel: First name *
-  emailLabel: Email address *
+  emailLabel: Email address*
   messageLabel: Message *
   submitLabel: Send inquiry
 ---

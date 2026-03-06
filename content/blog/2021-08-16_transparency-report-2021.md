@@ -37,32 +37,32 @@ The use of funds from the end of July 2020 up to the end of July 2021 breaks dow
 - ~US$ 1’662.6K (fiat + crypto equivalent at time of expense)
 - ~47.1% of total (~61.6% of non-extraordinary)
 
-**Marketing, Content, Community: **This includes expenses related to creating and distributing marketable video and written content, branding, swag production, community rewards and influencer review fees. It also includes the membership contribution for the Blockchain for Europe organization and community programs such as the Bug Bounty Program, Community Project Funding with a reserve of US$ 50K for the next 12 months. An additional amount of US$ 50K is reserved and due pending listing related pre-staking provisions.
+**Marketing, Content, Community:**This includes expenses related to creating and distributing marketable video and written content, branding, swag production, community rewards and influencer review fees. It also includes the membership contribution for the Blockchain for Europe organization and community programs such as the Bug Bounty Program, Community Project Funding with a reserve of US$ 50K for the next 12 months. An additional amount of US$ 50K is reserved and due pending listing related pre-staking provisions.
 
 - ~US$ 542.9K (fiat + crypto equivalent at time of expense)
 - ~15.4% of total (~20.1% of non-extraordinary)
 
-**Legal, Administration, Taxes: **This includes legal, tax and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from Lara Legal Corp and additional task specific legal counseling i.e. for acquiring payment service provider licenses, trademarking, terms of services, privacy policies, etc.
+**Legal, Administration, Taxes:**This includes legal, tax and administrative expenses regarding corporate maintenance, contract review, accounting, professional support from Lara Legal Corp and additional task specific legal counseling i.e. for acquiring payment service provider licenses, trademarking, terms of services, privacy policies, etc.
 
 - ~US$ 143.9K (fiat + crypto equivalent at time of expense)
 - ~4.1% of total (~5.3% of non-extraordinary)
 
-**Digital Operations, Equipment: **This includes expenses related to hosting, hardware, software, licensing, communications, domains, and other development tools and platforms.
+**Digital Operations, Equipment:**This includes expenses related to hosting, hardware, software, licensing, communications, domains, and other development tools and platforms.
 
 - ~US$ 126.4K (fiat + crypto equivalent at time of expense)
 - ~3.6% of total (~4.7% of non-extraordinary)
 
-**Travel, F&B: **This includes expenses related to transportation, hotel, food/beverage, and team building.
+**Travel, F&B:**This includes expenses related to transportation, hotel, food/beverage, and team building.
 
 - ~US$ 96.8K (fiat + crypto equivalent at time of expense)
 - ~2.7% of total (~3.6% of non-extraordinary)
 
-**Physical Operations, Rent: **This includes expenses related to rent and maintenance.
+**Physical Operations, Rent:**This includes expenses related to rent and maintenance.
 
 - ~US$ 126.7K (fiat + crypto equivalent at time of expense)
 - ~3.6% of total (~4.7% of non-extraordinary)
 
-**Extraordinary: **This includes the previously anticipated anti-dilution share purchase from TEN31 Bank, integration fees for payment system integration and continued setup of the technology and infrastructure as a service for Nimiq OASIS. An additional US$ 1.5 Mio is reserved for additional infrastructure and market making for the fiat atomic swap as OASIS expands into new markets.
+**Extraordinary:**This includes the previously anticipated anti-dilution share purchase from TEN31 Bank, integration fees for payment system integration and continued setup of the technology and infrastructure as a service for Nimiq OASIS. An additional US$ 1.5 Mio is reserved for additional infrastructure and market making for the fiat atomic swap as OASIS expands into new markets.
 
 - ~US$ 827.5K (fiat + crypto equivalent at time of expense)
 - ~23.5% of total
