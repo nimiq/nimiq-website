@@ -50,10 +50,14 @@ const error = computed(() => {
 
   <div class="z-3 relative flex flex-col items-center text-center mx-auto w-full">
     <h1 class="nq-heading-lg max-w-prose">
-      {{ data.title }}
+      <slot name="title" mdc-unwrap="p">
+        {{ data.title }}
+      </slot>
     </h1>
-    <p v-if="data.description" class="text-neutral-700 text-base md:text-lg mt-6 max-w-prose">
-      {{ data.description }}
+    <p v-if="$slots.description || data.description" class="text-neutral-700 text-base md:text-lg mt-6 max-w-prose">
+      <slot name="description" mdc-unwrap="p">
+        {{ data.description }}
+      </slot>
     </p>
 
     <form class="grid grid-cols-1 md:grid-cols-[1fr_max-content_1fr] items-center gap-x-6 max-md:px-6 mx-auto mt-40 h-max max-w-[560px] w-full" @submit.prevent>

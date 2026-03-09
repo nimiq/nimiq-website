@@ -12,10 +12,14 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
             {{ item.label }}
           </p>
           <h3 class="nq-heading text-white">
-            {{ item.headline }}
+            <slot :name="`title-${i}`" mdc-unwrap="p">
+              {{ item.headline }}
+            </slot>
           </h3>
-          <p v-if="item.subline" class="mt-4 md:mt-6">
-            {{ item.subline }}
+          <p v-if="$slots[`description-${i}`] || item.subline" class="mt-4 md:mt-6">
+            <slot :name="`description-${i}`" mdc-unwrap="p">
+              {{ item.subline }}
+            </slot>
           </p>
           <NuxtLink v-if="item.link" class="mt-8 nq-arrow nq-pill-lg nq-pill-blue" :to="item.link">
             <template v-if="item.buttonLabel">

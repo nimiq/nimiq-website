@@ -22,7 +22,9 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
     >
       <div class="flex-1 flex flex-col gap-8 md:max-lg:items-center md:max-lg:text-center">
         <h3 class="text-f-3xl text-neutral font-bold max-w-[24ch] md:max-lg:max-w-[28ch]">
-          {{ item.headline }}
+          <slot :name="`title-${i}`" mdc-unwrap="p">
+            {{ item.headline }}
+          </slot>
         </h3>
         <NuxtLink v-if="item.link" class="nq-arrow nq-pill-lg nq-pill-blue w-fit md:max-lg:mx-auto" :to="item.link">
           {{ item.buttonLabel }}

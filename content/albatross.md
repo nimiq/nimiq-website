@@ -2,9 +2,6 @@
 seo:
   title: Nimiq Proof-of-Stake
   description: Nimiq's Albatross consensus algorithm running live in the Proof-of-Stake network.
-hero:
-  title: Nimiq Proof-of-Stake
-  description: Nimiq's Albatross consensus algorithm running live in the Proof-of-Stake network.
 details:
   items:
     - headline: Micro Block
@@ -23,4 +20,7 @@ details:
       image: /assets/images/albatross/batch-epoch.png
     - headline: Slot
       description: A slot is like a ticket allowing a validator to create a block. The slots for an epoch are assigned to active validators and for each block the active slot is chosen with a Verifiable Random Function (VRF). The active slot allows a validator to create a block. A validator can have multiple slots per epoch, depending on their stake.
+hero:
+  title: Nimiq Proof-of-Stake
+  description: Nimiq's Albatross consensus algorithm running live in the Proof-of-Stake network.
 ---

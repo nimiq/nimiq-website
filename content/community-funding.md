@@ -1,4 +1,7 @@
 ---
+seo:
+  title: Nimiq funds you
+  description: Everyone can apply for project and idea funding. Join a group of open-minded developers and build the future of money.
 hero:
   title: Nimiq funds you
   description: Everyone can apply for project and idea funding. Join a group of open-minded developers and build the future of money.

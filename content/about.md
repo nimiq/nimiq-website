@@ -1,4 +1,7 @@
 ---
+seo:
+  title: About Nimiq
+  description: Nimiq is a non-profit and open source project founded by some, developed by many and owned by none. It is a decentralized payment system, built on a unique blockchain.
 hero:
   title: About Nimiq
   description: Nimiq is a non-profit and open source project founded by some, developed by many and owned by none. It is a decentralized payment system, built on a unique blockchain.

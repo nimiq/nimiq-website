@@ -2,9 +2,6 @@
 seo:
   title: Nimiq Apps
   description: Discover an ever growing ecosystem, built by Team Nimiq and its amazing community.
-hero:
-  title: Nimiq Apps
-  description: Discover an ever growing ecosystem, built by Team Nimiq and its amazing community.
 nimiqApps:
   - item: Nimiq Pay
     title: Nimiq Pay App
@@ -30,6 +27,9 @@ nimiqApps:
     preview: /images/apps/multisig-preview.svg
     link: https://wallet.nimiq.com/multisig/
     highlight: true
+hero:
+  title: Nimiq Apps
+  description: Discover an ever growing ecosystem, built by Team Nimiq and its amazing community.
 cta:
   headline: Add your app
   subline: Develop with Nimiq. It's open source and easy to integrate. The developer center and the community are there to help.

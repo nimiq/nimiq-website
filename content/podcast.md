@@ -1,4 +1,7 @@
 ---
+seo:
+  title: Podcast
+  description: Frequent podcast episodes with members of Team Nimiq and special guests. Topics surrounding Nimiq's interests, Nimiq Products, Crypto Payments, Sustainability. Crypto Adoption.
 hero:
   title: Podcast
   description: Frequent podcast episodes with members of Team Nimiq and special guests. Topics surrounding Nimiq's interests, Nimiq Products, Crypto Payments, Sustainability. Crypto Adoption.

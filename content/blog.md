@@ -1,4 +1,7 @@
 ---
+seo:
+  title: Nimiq News
+  description: Discover announcements, insights and publications by Team Nimiq and guest authors.
 hero:
   title: Nimiq News
   description: Discover announcements, insights and publications by Team Nimiq and guest authors.

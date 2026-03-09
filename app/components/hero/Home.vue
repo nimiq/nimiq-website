@@ -19,10 +19,14 @@ function getOrganizationLabel(url: string) {
 <template>
   <div class="flex-grow flex flex-col justify-center z-10 [&>*]:md:mx-auto">
     <h1 class="nq-heading-lg text-white text-balance">
-      {{ title }}
+      <slot name="title" mdc-unwrap="p">
+        {{ title }}
+      </slot>
     </h1>
-    <p v-if="description" class="text-lg md:text-xl" style="color: oklch(0.5889 0.0335 281.21)">
-      {{ description }}
+    <p v-if="$slots.description || description" class="text-lg md:text-xl" style="color: oklch(0.5889 0.0335 281.21)">
+      <slot name="description" mdc-unwrap="p">
+        {{ description }}
+      </slot>
     </p>
     <NuxtLink v-if="link" class="mt-40 nq-arrow nq-pill-lg nq-pill-blue" :to="link.href" :external="isExternal" :target="isExternal ? '_blank' : undefined">
       {{ link.label || 'Create Wallet' }}

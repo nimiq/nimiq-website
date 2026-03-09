@@ -1,5 +1,5 @@
 ---
-hero:
+seo:
   title: The Team
   description: Team Nimiq is driven to contribute something to society that is meaningful, large scale and cutting edge. Join us.
 members:
@@ -121,6 +121,9 @@ members:
       role: Advisor LatAm Regulators & Fintech Bridge
       description: Adrián is a Costa Rican entrepreneur, co-founder of Carao Ventures and Terraba, pioneering companies in the fields of venture capital and e-commerce. He has advised and invested in emerging companies for the past 15 years, and taught and mentored entrepreneurs at leading universities such as MIT, Stanford and INCAE. As a board member, he has supported various innovative companies and non-profits that work for social progress. He holds a BA in Economics with Honors from the University of Texas at Austin and and MBA from the MIT School of Management and is part of the Aspen Global Leadership Network.
       linkedin: adriangarcia81
+hero:
+  title: The Team
+  description: Team Nimiq is driven to contribute something to society that is meaningful, large scale and cutting edge. Join us.
 cta:
   headline: Join the team
   subline: Become a part of the world's most awesome tech team and help to build the future of money.

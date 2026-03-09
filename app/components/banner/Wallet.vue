@@ -14,10 +14,14 @@ defineProps<WalletBannerData>()
           </p>
         </div>
         <h3 class="nq-heading">
-          {{ headline }}
+          <slot name="title" mdc-unwrap="p">
+            {{ headline }}
+          </slot>
         </h3>
         <p class="max-w-60ch mt-4 md:mt-6">
-          {{ subline }}
+          <slot name="description" mdc-unwrap="p">
+            {{ subline }}
+          </slot>
         </p>
         <NuxtLink class="mt-8 mt-md:24 self-start nq-arrow nq-pill-lg nq-pill-blue" :to="link" />
       </div>

@@ -23,10 +23,14 @@ onMounted(() => {
         <Icon class="size-10 md:size-12" name="custom:apps" />
         <div>
           <h3 class="font-bold text-darkblue text-lg md:text-xl leading-tight">
-            {{ title }}
+            <slot name="title" mdc-unwrap="p">
+              {{ title }}
+            </slot>
           </h3>
           <p class="text-darkblue/60 mt-1.5 text-sm md:text-base leading-snug">
-            {{ description }}
+            <slot name="description" mdc-unwrap="p">
+              {{ description }}
+            </slot>
           </p>
         </div>
       </div>

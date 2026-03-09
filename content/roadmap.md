@@ -1,4 +1,7 @@
 ---
+seo:
+  title: Roadmap
+  description: Browse the project's past and future.
 hero:
   title: Roadmap
   description: Browse the project's past and future.

@@ -23,12 +23,16 @@ defineProps<{ overlapsNextSection?: boolean, items: BannerItem[] }>()
             {{ item.label }}
           </p>
           <h3 class="banner-headline" :class="item.bgColor === 'green' ? '!text-white' : ''">
-            {{ item.headline }}
+            <slot :name="`title-${i}`" mdc-unwrap="p">
+              {{ item.headline }}
+            </slot>
           </h3>
         </div>
-        <div v-if="item.subline || item.link" class="mt-3 md:mt-4 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <p v-if="item.subline" class="md:max-w-60ch" :class="item.bgColor === 'green' ? 'text-white/70' : ''">
-            {{ item.subline }}
+        <div v-if="$slots[`description-${i}`] || item.subline || item.link" class="mt-3 md:mt-4 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <p v-if="$slots[`description-${i}`] || item.subline" class="md:max-w-60ch" :class="item.bgColor === 'green' ? 'text-white/70' : ''">
+            <slot :name="`description-${i}`" mdc-unwrap="p">
+              {{ item.subline }}
+            </slot>
           </p>
           <NuxtLink v-if="item.link && item.linkLabel" class="nq-arrow nq-pill-lg shrink-0 self-start md:self-end md:ml-auto" :to="item.link" :class="item.bgColor === 'green' ? 'nq-pill-tertiary text-blue' : 'nq-pill-blue'">
             {{ item.linkLabel }}

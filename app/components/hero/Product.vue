@@ -28,10 +28,14 @@ const isExternal = computed(() => displayLink.value?.href?.startsWith('http'))
 <template>
   <div>
     <h1 class="nq-heading">
-      {{ displayTitle }}
+      <slot name="title" mdc-unwrap="p">
+        {{ displayTitle }}
+      </slot>
     </h1>
-    <p v-if="displayDescription" class="font-400 dark:text-neutral-900">
-      {{ displayDescription }}
+    <p v-if="$slots.description || displayDescription" class="font-400 dark:text-neutral-900">
+      <slot name="description" mdc-unwrap="p">
+        {{ displayDescription }}
+      </slot>
     </p>
     <ul v-if="highlightsItems.length > 0" class="mt-12 md:mt-14 lg:mt-16 flex md:justify-center items-center flex-wrap gap-x-16 gap-y-4" :aria-label="`Highlights of ${displayTitle}`" role="list">
       <li v-for="(highlight, i) in highlightsItems" :key="i" class="contents">

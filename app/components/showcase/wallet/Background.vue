@@ -13,6 +13,7 @@ function getScrollbarWidth(): number {
   return width
 }
 
+const { height: windowHeight } = useWindowSize()
 const scrollbarWidth = ref(0)
 const containerRef = ref<HTMLElement | null>(null)
 const { y: scrollY } = useWindowScroll()
@@ -33,7 +34,7 @@ const currentCloudTranslations = computed(() => {
   if (!rect)
     return { one: 0, two: 0, three: 0, four: 0 }
 
-  const scrollProgress = Math.trunc(((scrollY.value - rect.top) / window.innerHeight) * 50)
+  const scrollProgress = Math.trunc(((scrollY.value - rect.top) / windowHeight.value) * 50)
   return {
     one: -scrollProgress * 2,
     two: -scrollProgress,

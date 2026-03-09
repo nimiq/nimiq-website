@@ -26,20 +26,30 @@ function getPillClass(action: Action) {
 <template>
   <div class="flex flex-col md:items-center z-1">
     <Icon v-if="icon" class="text-54 opacity-15 mt-16 md:mt-20 lg:mt-24" :name="icon" />
-    <p v-if="label" class="mb-16 w-max block text-18 nq-label md:mx-auto">
-      {{ label }}
+    <p v-if="$slots.headline || label" class="mb-16 w-max block text-18 nq-label md:mx-auto">
+      <slot name="headline" mdc-unwrap="p">
+        {{ label }}
+      </slot>
     </p>
-    <h2 v-if="headline && !smallHeading" class="nq-heading break-keep">
-      {{ headline }}
+    <h2 v-if="($slots.title || headline) && !smallHeading" class="nq-heading break-keep">
+      <slot name="title" mdc-unwrap="p">
+        {{ headline }}
+      </slot>
     </h2>
-    <h2 v-else-if="headline" class="break-keep font-normal leading-[1.3] text-neutral-900 max-w-none" style="--font-size-min: 17.5; --font-size-max: 22.4; font-size: var(--f-font-size)">
-      {{ headline }}
+    <h2 v-else-if="$slots.title || headline" class="break-keep font-normal leading-[1.3] text-neutral-900 max-w-none" style="--font-size-min: 17.5; --font-size-max: 22.4; font-size: var(--f-font-size)">
+      <slot name="title" mdc-unwrap="p">
+        {{ headline }}
+      </slot>
     </h2>
-    <h2 v-if="subline && smallHeading && !headline" class="break-keep">
-      {{ subline }}
+    <h2 v-if="($slots.description || subline) && smallHeading && !headline && !$slots.title" class="break-keep">
+      <slot name="description" mdc-unwrap="p">
+        {{ subline }}
+      </slot>
     </h2>
-    <p v-else-if="subline" class="max-w-prose md:text-center">
-      {{ subline }}
+    <p v-else-if="$slots.description || subline" class="max-w-prose md:text-center">
+      <slot name="description" mdc-unwrap="p">
+        {{ subline }}
+      </slot>
     </p>
     <ul v-if="actionItems.length" class="flex gap-16 lg:gap-20 flex-wrap f-mt-md">
       <li v-for="action in actionItems" :key="action.href">

@@ -13,10 +13,14 @@ const highlightsItems = computed(() => items?.map(i => i.highlight?.trim()).filt
 <template>
   <div>
     <h1 class="nq-heading">
-      {{ title }}
+      <slot name="title" mdc-unwrap="p">
+        {{ title }}
+      </slot>
     </h1>
-    <p v-if="description" class="font-400 dark:text-neutral-900">
-      {{ description }}
+    <p v-if="$slots.description || description" class="font-400 dark:text-neutral-900">
+      <slot name="description" mdc-unwrap="p">
+        {{ description }}
+      </slot>
     </p>
     <ul v-if="highlightsItems.length > 0" class="mt-12 md:mt-14 lg:mt-16 flex md:justify-center items-center flex-wrap gap-x-16 gap-y-4" :aria-label="`Highlights of ${title}`" role="list">
       <li v-for="(highlight, i) in highlightsItems" :key="i" class="contents">

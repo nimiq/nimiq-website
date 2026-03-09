@@ -16,7 +16,9 @@ defineProps<{ data: BannerData }>()
     :class="{ 'lg:translate-y-[72px]': data.overlapsNextSection }"
   >
     <h3 class="text-32 md:text-40 text-neutral font-bold max-w-[24ch]">
-      {{ data.headline }}
+      <slot name="title" mdc-unwrap="p">
+        {{ data.headline }}
+      </slot>
     </h3>
     <NuxtLink class="mt-7 md:mt-8 nq-arrow nq-pill-lg nq-pill-blue" :to="data.cta">
       <template v-if="data.ctaLabel">

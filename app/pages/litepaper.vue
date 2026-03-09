@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const posPage = await queryCollection('litepaperPos').first()
-const powPage = await queryCollection('litepaperPow').first()
+const posPage = await usePrerenderData('page-litepaperPos', () => queryCollection('litepaperPos').first())
+const powPage = await usePrerenderData('page-litepaperPow', () => queryCollection('litepaperPow').first())
 
 if (!posPage || !powPage)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })

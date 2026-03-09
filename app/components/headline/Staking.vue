@@ -24,8 +24,10 @@ const id = `terms-note-${useId()}`
       </span>
       {{ headlineParts[1] }}
     </h2>
-    <p v-if="subline" style="color: rgba(255, 255, 255, 0.8)">
-      {{ subline }}
+    <p v-if="$slots.description || subline" style="color: rgba(255, 255, 255, 0.8)">
+      <slot name="description" mdc-unwrap="p">
+        {{ subline }}
+      </slot>
     </p>
     <ul v-if="actions?.length" class="flex gap-4 lg:gap-5 flex-wrap">
       <li v-for="action in actions" :key="action.href">

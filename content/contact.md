@@ -1,4 +1,7 @@
 ---
+seo:
+  title: Talk to our community
+  description: Nimiq's community is as welcoming as hard working. Together, we build tirelessly to grow the Nimiq ecosystem – app after app.
 hero:
   title: Talk to our community
   description: Nimiq's community is as welcoming as hard working. Together, we build tirelessly to grow the Nimiq ecosystem – app after app.
