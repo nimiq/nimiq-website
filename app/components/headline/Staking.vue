@@ -48,31 +48,32 @@ const id = `terms-note-${useId()}`
 
 <style>
 section:has(+ section.gradient-transparent-green-transparent) {
-  --f-pb-min: 15;
-  --f-pb-max: 20;
+  --f-pb-min: 80;
+  --f-pb-max: 120;
 }
 
 section.gradient-transparent-green-transparent {
   position: relative;
   overflow: hidden;
-  --gradient-height: 620px;
+  --gradient-height: 100%;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    color-mix(in oklch, var(--color-green) 14%, transparent) 20%,
-    color-mix(in oklch, var(--color-green) 30%, transparent) 34%,
-    color-mix(in oklch, var(--color-green) 42%, transparent) 48%,
-    color-mix(in oklch, var(--color-green) 54%, transparent) 56%,
-    color-mix(in oklch, var(--color-green) 46%, transparent) 68%,
-    color-mix(in oklch, var(--color-green) 28%, var(--color-neutral-0)) 78%,
-    color-mix(in oklch, var(--color-green) 14%, var(--color-neutral-0)) 90%,
-    var(--color-neutral-0) 100%
+    color-mix(in oklch, var(--color-green) 10%, transparent) 4%,
+    color-mix(in oklch, var(--color-green) 35%, transparent) 8%,
+    color-mix(in oklch, var(--color-green) 70%, transparent) 13%,
+    var(--color-green) 20%,
+    var(--color-green) 80%,
+    color-mix(in oklch, var(--color-green) 70%, transparent) 87%,
+    color-mix(in oklch, var(--color-green) 35%, transparent) 92%,
+    color-mix(in oklch, var(--color-green) 10%, transparent) 96%,
+    transparent 100%
   );
   background-size: 100% var(--gradient-height);
   background-repeat: no-repeat;
   background-color: var(--color-neutral-0);
-  --f-pb-min: 360;
-  --f-pb-max: 500;
+  --f-pb-min: 160;
+  --f-pb-max: 200;
 }
 
 section.gradient-transparent-green-transparent::before {

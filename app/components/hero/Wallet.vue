@@ -6,7 +6,7 @@ const isExternal = computed(() => linkHref.value.startsWith('http'))
 
 <template>
   <h1 class="whitespace-pre-line" style="--font-size-max:45.87">
-    {{ title.replace(/\\L/g, '\n') }}
+    {{ title.replace(/\\L|\u2028/g, '\n') }}
   </h1>
   <p v-if="description" class="text-white/70 font-normal" style="--font-size-min:20;--font-size-max:22">
     {{ description }}

@@ -170,7 +170,7 @@ async function connect() {
       <div class="curtain size-full absolute z-1 xl:max-w-50vw" />
       <div class="size-full absolute">
         <canvas ref="canvas" />
-        <div v-if="showTooltip" class="left-0 top-0 absolute z-1 animate-delay-500 animate-fade-in animate-both" :style="tooltipPosition">
+        <div v-if="showTooltip" class="left-0 top-0 absolute z-3 animate-delay-500 animate-fade-in animate-both" :style="tooltipPosition">
           <div class="dark left-[calc(-50%+2px)] flex flex-col items-center mt-4 relative" scheme-dark>
             <Icon class="text-12 translate-y-[3.5px]" name="nimiq:tooltip-triangle" :class="{ 'text-blue': consensus === 'idle', 'text-orange': consensus === 'connecting', 'text-green': consensus === 'established' }" />
             <div v-if="consensus === 'idle'" class="ring-0.2 ring-blue flex items-center rounded-full bg-gradient-blue transition-colors -top-px" layout-id="connect">
@@ -196,9 +196,15 @@ async function connect() {
         </div>
       </div>
 
-      <div v-if="consensus !== 'idle'" class="bottom-0 bottom-xl:32 font-semibold mx-auto p-6 rounded-1.5 bg-white bg-white/6 h-auto max-w-[400px] transition-height inset-x-0 absolute z-2 backdrop-blur-24 animate-fade-in-up animate-both animate-delay-1250ms">
+      <div
+        v-if="consensus !== 'idle'"
+        class="font-semibold mx-auto p-6 rounded-1.5 h-auto max-w-[400px] transition-height inset-x-0 absolute z-2 animate-fade-in-up animate-both animate-delay-1250ms"
+        :class="consensus === 'established'
+          ? 'bottom-6 bottom-xl:40 bg-white/10 ring-1 ring-white/10 shadow-[0_24px_64px_rgba(19,35,84,0.18)] backdrop-blur-32 backdrop-saturate-150'
+          : 'bottom-0 bottom-xl:32 bg-white bg-white/6 backdrop-blur-24'"
+      >
         <transition enter-active-class="transition duration-200 ease-out" enter-from-class="translate-y--1lh" enter-to-class="translate-y-0" leave-active-class="transition duration-200 ease-out" leave-from-class="translate-y-0" leave-to-class="translate-y--1lh">
-          <p v-if="consensus === 'connecting'" class="text-neutral-800 text-11 text-center w-[calc(100%-48px)] -top-px.4lh absolute nq-label">
+          <p v-if="consensus === 'connecting'" class="text-neutral-800 text-[11px] text-center w-[calc(100%-48px)] -top-[1.4lh] absolute font-bold uppercase tracking-wider">
             Did you know that
           </p>
         </transition>
@@ -217,20 +223,21 @@ async function connect() {
 
 <style scoped>
 .curtain {
-  --curtain-size: 128px;
+  --curtain-y: 128px;
+  --curtain-x: 36px;
   background-image:
     linear-gradient(
       to bottom,
       rgb(var(--nq-neutral-0) / 1) 0%,
-      transparent var(--curtain-size),
-      transparent calc(100% - var(--curtain-size)),
+      transparent var(--curtain-y),
+      transparent calc(100% - var(--curtain-y)),
       rgb(var(--nq-neutral-0) / 1) 100%
     ),
     linear-gradient(
       to right,
       rgb(var(--nq-neutral-0) / 1) 0%,
-      transparent var(--curtain-size),
-      transparent calc(100% - var(--curtain-size)),
+      transparent var(--curtain-x),
+      transparent calc(100% - var(--curtain-x)),
       rgb(var(--nq-neutral-0) / 1) 100%
     );
 }

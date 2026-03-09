@@ -788,11 +788,3 @@ body:not(.nq-raw)
   --f-pb-min: 160;
   --f-pb-max: 200;
 }
-
-/* Wallet showcase spacing tweak to match production */
-@media screen and (min-width: 768px) {
-  body:not(.nq-raw) :where(section, [data-section]).wallet-showcase {
-    --f-pt-min: 96;
-    --f-pt-max: 118.4;
-  }
-}

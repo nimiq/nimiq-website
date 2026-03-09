@@ -63,10 +63,11 @@ withDefaults(defineProps<Props>(), { variation: 'default' })
   </template>
 
   <template v-else-if="variation === 'threeColumnsIconsInline'">
-    <ul class="flex flex-col lg:flex-row gap-y-6 md:items-center w-full">
-      <li v-for="(item, i) in items" :key="i" class="flex-1 flex gap-x-3 items-center">
-        <div class="rounded-full shrink-0 size-8" style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)" stack>
-          <Icon v-if="item.icon" class="text-16 text-white" :name="item.icon" />
+    <ul class="flex flex-col items-center gap-y-6 lg:grid lg:grid-cols-3 lg:gap-x-10 lg:w-max lg:max-w-full lg:mx-auto">
+      <li v-for="(item, i) in items" :key="i" class="flex w-full max-w-[24rem] gap-x-3 items-center max-md:justify-start max-md:text-left md:justify-center md:text-center">
+        <div class="rounded-full shrink-0 size-8 flex items-center justify-center" style="background: radial-gradient(78.95% 73.1% at 12.5% 14.72%, #0582CA 0%, rgba(5, 130, 202, 0.62) 100%)">
+          <Icon v-if="item.icon" class="block text-16 leading-none text-white" :name="item.icon" />
+          <Icon v-else class="block text-16 leading-none text-white" name="nimiq:shield" />
         </div>
         <div class="text-base md:text-lg text-neutral-900">
           {{ item.content }}

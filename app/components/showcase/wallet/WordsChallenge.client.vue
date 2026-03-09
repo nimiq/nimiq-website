@@ -1,6 +1,21 @@
 <script setup lang="ts">
 defineProps<{ headline: string, subline?: string, guessLabel?: string, chanceLabel?: string, reward?: string }>()
 
+const fallbackFirstRealWords = [
+  'coyote',
+  'flush',
+  'rug',
+  'snack',
+  'cash',
+  'artwork',
+  'question',
+  'sword',
+  'cinnamon',
+  'civil',
+  'lens',
+  'warfare',
+]
+
 const marqueeRows = 6
 const wordsPerRow = 14
 
@@ -16,7 +31,9 @@ useIntersectionObserver(container, ([entry]) => containerIsVisible.value = entry
 const { items: animatedWords } = useRandomAnimatedTexts(wordsList.flatMap(row => row.words).map(word => word.word), { shouldPlay: containerIsVisible })
 
 const { publicAddress: prizeAddress, firstRealWords: firstRealWordsStr } = useSafeRuntimeConfig().public.wordsChallenge
-const firstRealWords = firstRealWordsStr.split(',')
+const firstRealWords = firstRealWordsStr
+  ? firstRealWordsStr.split(',').map(word => word.trim()).filter(Boolean)
+  : fallbackFirstRealWords
 
 function createInput() {
   return ref('')
@@ -56,81 +73,81 @@ function reset() {
 </script>
 
 <template>
-  <div class="max-w-none w-full absolute overflow-x-hidden" :style="`--c: ${wordsList.length};`" aria-hidden="true">
-    <div class="flex flex-col gap-6 h-full relative">
-      <UiMarquee v-for="({ words }, i) in wordsList" :key="i" class="flex gap-0.5" :items="words" :should-play="containerIsVisible" :style="`--direction: ${i % 2 === 0 ? -1 : 1}`">
-        <template #default="{ index: j }">
-          <div class="p-4 rounded-1 bg-neutral-300 relative">
-            <span class="font-semibold font-mono text-lg md:text-xl">{{ animatedWords[i * wordsPerRow + j]![1] }}</span>
-            <div class="inset-4 absolute">
-              <span class="font-semibold font-mono text-lg md:text-xl text-neutral-800">{{ animatedWords[i * wordsPerRow + j]![0] }}</span>
-              <span class="text-lg md:text-xl text-blue font-semibold font-mono">{{ animatedWords[i * wordsPerRow + j]![1].value.slice(animatedWords[i * wordsPerRow + j]![0].value.length) }}</span>
+  <div ref="container" class="relative w-full max-w-none">
+    <div class="absolute left-1/2 top-1/2 w-screen -translate-x-1/2 -translate-y-1/2 overflow-x-hidden" :style="`--c: ${wordsList.length};`" aria-hidden="true">
+      <div class="flex flex-col gap-6 h-full relative">
+        <UiMarquee v-for="({ words }, i) in wordsList" :key="i" class="flex gap-0.5" :items="words" :should-play="containerIsVisible" :style="`--direction: ${i % 2 === 0 ? -1 : 1}`">
+          <template #default="{ index: j }">
+            <div class="p-4 rounded-1 bg-neutral-300 relative">
+              <span class="font-semibold font-mono text-lg md:text-xl">{{ animatedWords[i * wordsPerRow + j]![1] }}</span>
+              <div class="inset-4 absolute">
+                <span class="font-semibold font-mono text-lg md:text-xl text-neutral-800">{{ animatedWords[i * wordsPerRow + j]![0] }}</span>
+                <span class="text-lg md:text-xl text-blue font-semibold font-mono">{{ animatedWords[i * wordsPerRow + j]![1].value.slice(animatedWords[i * wordsPerRow + j]![0].value.length) }}</span>
+              </div>
             </div>
-          </div>
-        </template>
-      </UiMarquee>
-      <div class="inset-0 absolute flex flex-col gap-6 justify-between">
-        <div v-for="i in wordsList.length" :key="i" class="marquee-overlay size-full pointer-events-none z-1" />
+          </template>
+        </UiMarquee>
+        <div class="inset-0 absolute flex flex-col gap-6 justify-between">
+          <div v-for="i in wordsList.length" :key="i" class="marquee-overlay size-full pointer-events-none z-1" />
+        </div>
       </div>
     </div>
-  </div>
-  <div ref="container" class="dark flex flex-col px-4 sm:px-16 mx-auto pb-12 pt-8 rounded-2 max-w-[492px] relative z-1 overflow-hidden shadow" style="background-image: linear-gradient(to bottom, #260133, var(--color-darkblue));">
-    <div :class="{ 'slide-up': isChallengeFinished }">
-      <h3 class="text-center text-white">
-        {{ headline }}
-      </h3>
-      <p class="mt-4 text-center text-neutral-800 text-xs md:text-sm">
-        {{ subline }}
-      </p>
-
-      <div class="mt-8 relative">
-        <transition enter-active-class="transition-opacity duration-300ms ease-out" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition-opacity duration-300ms ease-out" leave-from-class="opacity-100" leave-to-class="opacity-0">
-          <div v-if="isChallengeFinished" class="bg-neutral-0 bg-neutral-0/20 pointer-events-none -inset-x-16 -inset-y-4 absolute z-2 backdrop-blur-8" />
-        </transition>
-        <p class="text-center text-blue font-bold">
-          {{ guessLabel }}
+    <div class="dark flex flex-col px-4 sm:px-16 mx-auto pb-12 pt-8 rounded-2 max-w-[492px] relative z-1 overflow-hidden shadow" style="background-image: linear-gradient(to bottom, #260133, var(--color-darkblue));">
+      <div :class="{ 'slide-up': isChallengeFinished }">
+        <h3 class="text-center text-white text-[2rem] leading-[1.15] md:text-[2.5rem]">
+          {{ headline }}
+        </h3>
+        <p class="mt-4 text-center text-neutral-800 text-sm md:text-base">
+          {{ subline }}
         </p>
 
-        <svg class="w-[90px] -left-5 top-2 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.7 228.6">
-          <g class="stroke-blue stroke-width-2" fill="none" stroke-linecap="round">
-            <path d="M76.8 10c-11 11-58.3 32.3-65.1 67-7 34.5 19.6 117 23.8 140.7M75.3 12.1C64.1 22.7 17.1 40.8 11 75c-6.3 34.5 22.7 119.8 27 143.5" />
-            <path d="M23.8 198c3.9 8.6 12.3 14.6 14 20.6m-14-20.7c3 3.9 6.2 8.3 14 20.7m2.5-24.9c-2.6 10.3-.6 18-2.4 24.9m2.4-25c-.7 5-1.2 10.3-2.4 25" />
-          </g>
-        </svg>
+        <div class="mt-8 relative">
+          <p class="text-center text-blue font-bold">
+            {{ guessLabel }}
+          </p>
 
-        <ul class="grid grid-cols-3 gap-2 mt-4 relative z-0">
-          <li v-for="word in firstRealWords" :key="word" class="py-[9px] rounded-1 bg-white/10 text-white text-center">
-            {{ word }}
-          </li>
-          <li v-for="(input, i) in userInputs" :key="i" class="shrink-0">
-            <input v-model="input.value" class="border-2 border-white/30 hover:border-blue focus:border-blue text-center text-blue font-semibold px-0.5 outline-none caret-blue rounded-1 bg-transparent h-9 w-full transition placeholder:font-semibold placeholder:text-white/30" type="text" :aria-label="`Word ${i + firstRealWords.length + 1}`" :placeholder="`${i + firstRealWords.length + 1}`" autocomplete="off" @blur="submitWords">
-          </li>
-        </ul>
-        <template v-if="isChallengeFinished">
-          <div class="dark flex justify-center items-center flex-col w-[492px] -inset-x-16 inset-y-0 absolute z-2">
-            <p class="challenge-over text-center text-40 text-red-neon font-retro">
-              Try again
-            </p>
-            <p class="delayed text-center text-white/80 text-base md:text-lg px-10 max-w-40ch mt-4 md:mt-6">
-              Even using a computer, it would take you <b class="text-white">10 lifetimes</b> to crack this wallet...
-            </p>
-            <button class="delayed mt-2 md:mt-3 nq-pill-tertiary" @click="reset">
-              Restart
-            </button>
-          </div>
-        </template>
-      </div>
-    </div>
+          <svg class="w-[90px] -left-5 top-2 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.7 228.6">
+            <g class="stroke-blue stroke-width-2" fill="none" stroke-linecap="round">
+              <path d="M76.8 10c-11 11-58.3 32.3-65.1 67-7 34.5 19.6 117 23.8 140.7M75.3 12.1C64.1 22.7 17.1 40.8 11 75c-6.3 34.5 22.7 119.8 27 143.5" />
+              <path d="M23.8 198c3.9 8.6 12.3 14.6 14 20.6m-14-20.7c3 3.9 6.2 8.3 14 20.7m2.5-24.9c-2.6 10.3-.6 18-2.4 24.9m2.4-25c-.7 5-1.2 10.3-2.4 25" />
+            </g>
+          </svg>
 
-    <div class="mt-8 relative">
-      <div class="flex flex-col pointer-events-none -inset-16 top-0 absolute z-0" :style="`--grid-color: var(--color-${isChallengeFinished ? 'purple' : 'blue'})`">
-        <div class="grid-container flex flex-basis-200 bg-inherit relative" perspective-1200 before="absolute inset-0" />
-        <div class="retro-overlay inset-0 absolute" />
+          <ul class="grid grid-cols-3 gap-2 mt-4 relative z-0">
+            <li v-for="word in firstRealWords" :key="word" class="py-[9px] rounded-1 bg-white/10 text-white text-center">
+              {{ word }}
+            </li>
+            <li v-for="(input, i) in userInputs" :key="i" class="shrink-0">
+              <input v-model="input.value" class="border-2 border-white/30 hover:border-blue focus:border-blue text-center text-blue font-semibold px-0.5 outline-none caret-blue rounded-1 bg-transparent h-9 w-full transition placeholder:font-semibold placeholder:text-white/30" type="text" :aria-label="`Word ${i + firstRealWords.length + 1}`" :placeholder="`${i + firstRealWords.length + 1}`" autocomplete="off" @blur="submitWords">
+            </li>
+          </ul>
+        </div>
       </div>
-      <p class="text-lg md:text-xl text-white/80 text-center font-semibold relative z-1">
-        {{ chanceLabel }}
-      </p>
-      <Icon class="mt-8 h-[66px] w-full relative z-1" name="custom:10-million-nim" />
+
+      <div class="mt-8 relative">
+        <div class="flex flex-col pointer-events-none -inset-16 top-0 absolute z-0" :style="`--grid-color: var(--color-${isChallengeFinished ? 'purple' : 'blue'})`">
+          <div class="grid-container flex flex-basis-200 bg-inherit relative" perspective-1200 before="absolute inset-0" />
+          <div class="retro-overlay inset-0 absolute" />
+        </div>
+        <p class="text-lg md:text-xl text-white/80 text-center font-semibold relative z-1">
+          {{ chanceLabel }}
+        </p>
+        <img class="mt-8 h-[66px] w-full object-contain object-center relative z-1" src="/assets/custom-icons/10-million-nim.svg" alt="10 Million NIM">
+      </div>
+
+      <transition enter-active-class="transition-opacity duration-300ms ease-out" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition-opacity duration-300ms ease-out" leave-from-class="opacity-100" leave-to-class="opacity-0">
+        <div v-if="isChallengeFinished" class="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 sm:px-10 text-center backdrop-blur-8 bg-[linear-gradient(to_bottom,rgba(38,1,51,0.58),rgba(30,31,84,0.72))]">
+          <p class="challenge-over text-center text-40 text-red-neon font-retro">
+            Try again
+          </p>
+          <p class="delayed text-center text-white/80 text-base md:text-lg max-w-40ch mt-4 md:mt-6">
+            Even using a computer, it would take you <b class="text-white">10 lifetimes</b> to crack this wallet...
+          </p>
+          <button class="delayed mt-2 md:mt-3 nq-pill-tertiary" @click="reset">
+            Restart
+          </button>
+        </div>
+      </transition>
     </div>
   </div>
 </template>

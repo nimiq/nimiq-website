@@ -13,7 +13,8 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
       <HeroWallet v-bind="page.hero" />
     </section>
 
-    <section class="bg-darkerblue relative overflow-x-clip md:pt-4 md:pt-6 wallet-showcase" scheme-dark children:max-w-none>
+    <section class="bg-darkerblue relative overflow-x-clip wallet-showcase" scheme-dark children:max-w-none>
+      <LazyAnimatedCloudyBg class="h-[calc(100%+400px)] max-w-screen pointer-events-none -top-[400px]" />
       <ShowcaseWallet :playground-url="page.playground.url" />
     </section>
 
@@ -29,7 +30,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
       <ShowcaseCurrency v-bind="page.currencies" />
     </section>
 
-    <section class="gradient-transparent-green-transparent bg-neutral-0 relative" scheme-dark>
+    <section class="gradient-transparent-green-transparent nq-section-gap bg-neutral-0 relative">
       <HeadlineStaking v-bind="page.staking" />
     </section>
 
@@ -41,7 +42,7 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
       <GridSection :items="page.seed.items" variation="threeColumnsIconsInline" />
     </section>
 
-    <section class="px-2 bg-neutral-0 relative overflow-x-clip items-stretch">
+    <section class="px-8 bg-neutral-0 relative overflow-x-clip" children:max-w-none>
       <ShowcaseWalletWords v-bind="page.challenge" />
     </section>
 
@@ -63,6 +64,13 @@ useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/wallet' }] })
   .wallet-hero-section {
     --f-pt-max: 189.3 !important;
     --f-pb-max: 44.8 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  section.wallet-showcase {
+    --f-pt-min: 96;
+    --f-pt-max: 128;
   }
 }
 
