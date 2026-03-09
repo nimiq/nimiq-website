@@ -205,7 +205,7 @@ const LINK_WHITELIST = [
 
   // GitHub & Raw Content
   /^https:\/\/github\.com\/(nimiq|nimiq-network)(\/.*)?$/,
-  /^https:\/\/raw\.githubusercontent\.com\/onmax\/nimiq-awesome\//,
+  /^https:\/\/raw\.githubusercontent\.com\/nimiq\/awesome\//,
 
   // External Asset CDNs
   /^https:\/\/prismic-io\.s3\.amazonaws\.com\/nimiq\//,
