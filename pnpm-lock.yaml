@@ -62,7 +62,7 @@ catalogs:
       specifier: ^0.0.5
       version: 0.0.5
     nuxt-skill-hub:
-      specifier: https://pkg.pr.new/onmax/nuxt-skill-hub@68db66d
+      specifier: https://pkg.pr.new/onmax/nuxt-skill-hub@cc60d61
       version: 1.0.0
     nuxt-studio:
       specifier: ^1.4.0
@@ -358,7 +358,7 @@ importers:
         version: 0.1.2(@nuxt/kit@4.3.1(magicast@0.5.2))(@types/json-schema@7.0.15)(@valibot/to-json-schema@1.5.0(valibot@1.2.0(typescript@5.9.3)))(eslint@10.0.2(jiti@2.6.1))(quansync@1.0.0)(valibot@1.2.0(typescript@5.9.3))(zod-to-json-schema@3.25.1(zod@4.3.6))(zod@4.3.6)
       nuxt-skill-hub:
         specifier: 'catalog:'
-        version: https://pkg.pr.new/onmax/nuxt-skill-hub@68db66d(ai@6.0.116(zod@4.3.6))(magicast@0.5.2)(unstorage@1.17.4(@netlify/blobs@8.2.0)(db0@0.3.4(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260305.1)(@opentelemetry/api@1.9.0)(better-sqlite3@12.6.2)))(ioredis@5.10.0))
+        version: https://pkg.pr.new/onmax/nuxt-skill-hub@cc60d61(ai@6.0.116(zod@4.3.6))(magicast@0.5.2)(unstorage@1.17.4(@netlify/blobs@8.2.0)(db0@0.3.4(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260305.1)(@opentelemetry/api@1.9.0)(better-sqlite3@12.6.2)))(ioredis@5.10.0))
       nuxt-studio:
         specifier: 'catalog:'
         version: 1.4.0(@netlify/blobs@8.2.0)(db0@0.3.4(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260305.1)(@opentelemetry/api@1.9.0)(better-sqlite3@12.6.2)))(ioredis@5.10.0)(magicast@0.5.2)(vue@3.5.29(typescript@5.9.3))
@@ -6540,8 +6540,8 @@ packages:
   nuxt-site-config@3.2.21:
     resolution: {integrity: sha512-WCqo4cirBc+GLPBZOU1ye5+f4xjC7Sf7qbKt/zpeCtEUqJLHDR0MoKICfsGt/8EdkSDYUo+m5BNZ1oxai0isgQ==}
 
-  nuxt-skill-hub@https://pkg.pr.new/onmax/nuxt-skill-hub@68db66d:
-    resolution: {tarball: https://pkg.pr.new/onmax/nuxt-skill-hub@68db66d}
+  nuxt-skill-hub@https://pkg.pr.new/onmax/nuxt-skill-hub@cc60d61:
+    resolution: {tarball: https://pkg.pr.new/onmax/nuxt-skill-hub@cc60d61}
     version: 1.0.0
 
   nuxt-studio@1.4.0:
@@ -15598,10 +15598,11 @@ snapshots:
       - vite
       - vue
 
-  nuxt-skill-hub@https://pkg.pr.new/onmax/nuxt-skill-hub@68db66d(ai@6.0.116(zod@4.3.6))(magicast@0.5.2)(unstorage@1.17.4(@netlify/blobs@8.2.0)(db0@0.3.4(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260305.1)(@opentelemetry/api@1.9.0)(better-sqlite3@12.6.2)))(ioredis@5.10.0)):
+  nuxt-skill-hub@https://pkg.pr.new/onmax/nuxt-skill-hub@cc60d61(ai@6.0.116(zod@4.3.6))(magicast@0.5.2)(unstorage@1.17.4(@netlify/blobs@8.2.0)(db0@0.3.4(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260305.1)(@opentelemetry/api@1.9.0)(better-sqlite3@12.6.2)))(ioredis@5.10.0)):
     dependencies:
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
       automd: 0.4.3(magicast@0.5.2)
+      consola: 3.4.2
       unagent: 0.0.8(ai@6.0.116(zod@4.3.6))(unstorage@1.17.4(@netlify/blobs@8.2.0)(db0@0.3.4(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260305.1)(@opentelemetry/api@1.9.0)(better-sqlite3@12.6.2)))(ioredis@5.10.0))
     transitivePeerDependencies:
       - '@ai-sdk/cohere'
