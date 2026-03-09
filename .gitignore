@@ -39,7 +39,7 @@ node-compile-cache/
 docs/
 
 # Generated AI agent skills
-.claude/skills/nuxt/
+.claude/skills/
 .cursor/skills/
 .codeium/skills/
 .codex/skills/

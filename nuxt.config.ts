@@ -49,6 +49,10 @@ export default defineNuxtConfig({
     'nuxt-skill-hub',
   ].filter(Boolean),
 
+  skillHub: {
+    additionalPackages: ['nuxt-studio'],
+  },
+
   fonts: {
     experimental: {
       // Our typography is defined via CSS variables (Tailwind theme tokens). Enable parsing those so
