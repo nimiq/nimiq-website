@@ -38,6 +38,12 @@ node-compile-cache/
 # Planning docs
 docs/
 
+# Generated AI agent skills
+.claude/skills/nuxt/
+.cursor/skills/
+.codeium/skills/
+.codex/skills/
+
 # Prismic cached data
 scripts/prismic-data/
 

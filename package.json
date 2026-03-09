@@ -74,6 +74,7 @@
     "nuxt-link-checker": "catalog:",
     "nuxt-module-feed": "catalog:nuxt",
     "nuxt-safe-runtime-config": "catalog:nuxt",
+    "nuxt-skill-hub": "catalog:",
     "nuxt-studio": "catalog:",
     "simple-git-hooks": "catalog:lint",
     "tsx": "catalog:",

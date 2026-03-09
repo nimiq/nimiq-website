@@ -46,6 +46,7 @@ export default defineNuxtConfig({
     'nuxt-prerender-kit',
     environment.environment.isStudio && 'nuxt-studio',
     'nuxt-link-checker',
+    'nuxt-skill-hub',
   ].filter(Boolean),
 
   fonts: {
