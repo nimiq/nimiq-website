@@ -30,19 +30,19 @@ The Proof-of-Work emission to date has pushed the NIM supply to a level where th
 
 This situation calls for an adjustment of the emission curve to reasonably maintain the intended reward balance and supply growth in time. To minimize changes to the elected curve we strive to keep as many parameters as possible fixed from the outcome of the original vote. The first option would be to keep the initial absolute reward rate (525/min). The second option would be to keep the first year emission percentage target (“Inflation”), which is derived from the planned annual supply growth which was 4.1%. While maintaining the 21 billion total supply target (reached in now 94 years), this means the only adjustment needed is the annualized reduction in reward. To align the previously selected supply curve with the current scenario, we compare these two main approaches:
 
-![](/assets/images/prismic/313fbece-f49e-4d12-b70f-7d3d688c49a4_1.png)
+![](/assets/images/media/313fbece-f49e-4d12-b70f-7d3d688c49a4_1.png)
 
 **A. Maintain initial absolute NIM reward**
 
 By keeping the initial emission at the same level as previously selected (525 NIM/min), the original annual reward reduction percentage of 1.47% would need to be increased to approximately 3%. This adjustment means that each year, the reward would lower a bit more than originally elected, extending the timeline to reach the total supply target**.**
 
-![](/assets/images/prismic/8267ed03-f12a-4ded-920e-4e3248f306ed_2.png)
+![](/assets/images/media/8267ed03-f12a-4ded-920e-4e3248f306ed_2.png)
 
 **B. Maintain Initial annual supply growth**
 
 Alternatively, by keeping the initial annual supply growth (“Inflation”) at the same level as previously selected (4.1%)), the initial emission would need to be increased to around 1000 NIM per minute. This approach means\*\* **more NIM would be distributed initially, but to reach the same total supply target, the reward would have to be decreasing faster, with the annual reduction rate increased to approximately 6%**.\*\*
 
-![](/assets/images/prismic/65d4bee13a605798c18bf3c0_Screenshot2024-02-20at08.57.54.png)
+![](/assets/images/media/65d4bee13a605798c18bf3c0_Screenshot2024-02-20at08.57.54.png)
 
 The two approaches and its parameters offer boundary choices between the original intent and the current Nimiq tokenomics.
 

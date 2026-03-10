@@ -17,7 +17,7 @@ That's why we're doing two things today. First, we're sharing the new organizati
 
 Our new structure is built around a few main bodies and teams:
 
-![](/assets/images/prismic/aQ6f47pReVYa4Qng_NimiqOrganizationOverviewimagev1.2-1-.png)
+![](/assets/images/media/aQ6f47pReVYa4Qng_NimiqOrganizationOverviewimagev1.2-1-.png)
 
 ### Foundation Board
 

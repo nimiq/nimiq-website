@@ -34,7 +34,7 @@ video:
     label: Staking in the wallet
     headline: So easy, everyone can do it!
     subline: No tech skills or staking knowledge needed, stake in just three clicks. All it takes is a Nimiq Wallet and as little as 1000 NIM.
-  embedUrl: https://nimiq.cdn.prismic.io/nimiq/Z21BuJbqstJ981da_ScreenRecording2024-12-26174136.mp4
+  embedUrl: /assets/images/media/Z21BuJbqstJ981da_ScreenRecording2024-12-26174136.mp4
   poster: /images/pages/staking/video-poster-desktop.webp
   posterMobile: /images/pages/staking/video-poster-mobile.webp
   title: You stay in control

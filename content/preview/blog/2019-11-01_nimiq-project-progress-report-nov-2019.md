@@ -48,7 +48,7 @@ If you are not familiar with [the members of Team Nimiq](https://www.nimiq.com/t
 
 After a considerable amount of research and discussion, the Core Team gave us a first glimpse of where Nimiq 2.0 is going. Pascal (our Blockchain Engineer who recently received an award for his PhD Thesis, congrats!) wrote the first draft of the Nimiq 2.0 Whitepaper. With this initial text, Sven (Technical Writer) and Richy (Community Manager) adjusted the tonality and used the beautiful designs from Overnice (Julian, lead designer) to create the Nimiq 2.0 Whitepaper Update.
 
-![](/assets/images/prismic/464e84ac-27ad-4c94-8a98-11f7f6261e4c_blog_nimiq-project-progress-report-Nov-2019_2.png)
+![](/assets/images/media/464e84ac-27ad-4c94-8a98-11f7f6261e4c_blog_nimiq-project-progress-report-Nov-2019_2.png)
 
 To switch between versions of the Whitepaper, you will now find a version selector on the [Whitepaper website](/litepaper). We think this will also come in handy in future updates.
 
@@ -64,7 +64,7 @@ The Core Team recently added a new consensus mechanism to Browser Clients called
 
 The Rust full-node has been improving since its first beta release last February. This is the result of the efforts of the Core Team over the last 6 months and our community members who tested the code and reported bugs. The Rust node is, in comparison to its JavaScript predecessor, highly performant and can be compiled to run natively on multiple platforms.
 
-![](/assets/images/prismic/9626c8bd-6ff5-411b-a894-05282045f5a6_blog_nimiq-project-progress-report-Nov-2019_3.png)
+![](/assets/images/media/9626c8bd-6ff5-411b-a894-05282045f5a6_blog_nimiq-project-progress-report-Nov-2019_3.png)
 
 Now that Jeff (Blockchain Engineer, in charge of releases) has finished cleaning up the code and is fixing the last packaging issues, the Nimiq Rust Node is ready for its release candidate version. As always, it will undergo a review process and we would like to kick it off by asking for support from the community: if you are a Rust developer or you are running a Nimiq Node and you want to support us by testing it in your setup, [visit the repository](https://github.com/nimiq/core-rs)and simply follow the instructions in the README.
 
@@ -76,7 +76,7 @@ The Front-End Team has been focusing on developing Nimiq Checkout. After a lot o
 
 Nimiq is part-owner of the German Financial institution WEG Bank AG, which recently announced its new crypto-focused venture [TEN31 Bank](https://www.ten31.com/). The new website of TEN31 Bank has been released and it prominently shows the close relationship of the Nimiq Ecosystem and the TEN31 Bank’s future endeavors.
 
-![](/assets/images/prismic/d9eed937-bd02-4797-b6da-e30eee2bc264_blog_nimiq-project-progress-report-Nov-2019_4.jpg)
+![](/assets/images/media/d9eed937-bd02-4797-b6da-e30eee2bc264_blog_nimiq-project-progress-report-Nov-2019_4.jpg)
 
 Furthermore, the recent partnership of WEG Bank AG with the major Point-of-Sale provider Salamantex is noteworthy. Nothing official has been released yet, but the possibilities are indeed exciting.
 
@@ -84,13 +84,13 @@ Furthermore, the recent partnership of WEG Bank AG with the major Point-of-Sale 
 
 We would like to publicly announce our newest addition to the Team: Matheo, a French Full Stack developer with experience in JavaScript and Vue. Matheo was actually introduced to the Team by an active community member, which makes Matheo the third member that joins the Team from the Nimiq community. He will be working on building new features and making UI improvements in the Nimiq Ecosystem. Let’s all say Hi to Matheo in the [Nimiq forum](https://forum.nimiq.community/t/say-hi-to-nimiqs-new-front-end-developer-matheo/458) and make him feel welcome.
 
-![](/assets/images/prismic/3abeaf0f-5b91-4b35-a8f3-7e491b809db2_blog_nimiq-project-progress-report-Nov-2019_5.jpg)
+![](/assets/images/media/3abeaf0f-5b91-4b35-a8f3-7e491b809db2_blog_nimiq-project-progress-report-Nov-2019_5.jpg)
 
 ### Nimiq Explanatory Video
 
 A Video that quickly and clearly explains the main vision and captures the spirit of Nimiq has been overdue. We aimed to create an informative yet [engaging video](https://youtu.be/dA40oyDVtqs) that community members could share with their friends and say: “See, this is what I’ve been trying to explain to you, a node in a browser!”.
 
-![](/assets/images/prismic/6380ec06-a3e9-4e6b-b227-eadf72c233a9_blog_nimiq-project-progress-report-Nov-2019_6.png)
+![](/assets/images/media/6380ec06-a3e9-4e6b-b227-eadf72c233a9_blog_nimiq-project-progress-report-Nov-2019_6.png)
 
 We are happy with the result and started working on the next video. Want to share your opinion on the video, suggest an idea or request a video of a specific topic? [Join the forum](https://forum.nimiq.community/) and create a topic. :)
 

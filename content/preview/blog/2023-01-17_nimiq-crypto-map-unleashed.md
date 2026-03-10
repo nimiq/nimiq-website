@@ -25,21 +25,21 @@ Cryptopayment.link is not only used in Santa Teresa, but also in other locations
 
 Currently, we only support physical shops. However, we are considering adding online shops in the near future. To use the map, visit [map.nimiq.com](http://map.nimiq.com) and scroll around to find different shops. The map is very intuitive! You can also use the search function to locate specific shops and locations.
 
-![](/assets/images/prismic/edb44a58-c20d-4f6c-8570-a064d49a455a_Screenshot_from_2022-12-19_19-49-13.png)
+![](/assets/images/media/edb44a58-c20d-4f6c-8570-a064d49a455a_Screenshot_from_2022-12-19_19-49-13.png)
 
 When many shops are close by, the map will aggregate them in a single marker. If you want to filter shops by type or accepted currencies, you can do so by using the option in the upper right corner.
 
-![](/assets/images/prismic/9632a0cd-3833-4607-be0b-4cc364075ab4_Screenshot_from_2022-12-19_19-53-19.png)
+![](/assets/images/media/9632a0cd-3833-4607-be0b-4cc364075ab4_Screenshot_from_2022-12-19_19-53-19.png)
 
 As you can see, the map not only supports Nimiq and Bitcoin, but we have also added support for additional cryptocurrencies. This helps increase the number of shops listed on the map. Any shop that accepts a cryptocurrency is a potential user of Nimiq and Cryptopayment.link, so we want to provide them with the opportunity to appear on the map.
 
 Once you apply the filter, the map will show the shops that match the conditions you selected.
 
-![](/assets/images/prismic/84748fc2-9ad3-4816-af34-d05c6483b7fb_Screenshot_from_2022-12-19_19-53-30.png)
+![](/assets/images/media/84748fc2-9ad3-4816-af34-d05c6483b7fb_Screenshot_from_2022-12-19_19-53-30.png)
 
 Besides the map view, you can also use a “List View” that shows you the same results but in a detailed fashion.
 
-![](/assets/images/prismic/f95d49fc-3e3f-44e0-8938-c5eb14559ba9_Screenshot_from_2023-01-16_10-01-46.png)
+![](/assets/images/media/f95d49fc-3e3f-44e0-8938-c5eb14559ba9_Screenshot_from_2023-01-16_10-01-46.png)
 
 We added a link to google maps to allow users to navigate to the shop of the choice. The map also retrieves data from Google Map’s API and shows information like the shop’s google rating.
 
@@ -47,7 +47,7 @@ We added a link to google maps to allow users to navigate to the shop of the cho
 
 The red button next to the “Google Button” can be used to report any issue with the shop. It is not uncommon for shops to change location or stop accepting crypto. With this button users can let us know so we can act accordingly.
 
-![](/assets/images/prismic/9caf176f-55f3-489f-aae8-b701a56a5ec0_Screenshot_from_2022-12-19_20-00-45.png)
+![](/assets/images/media/9caf176f-55f3-489f-aae8-b701a56a5ec0_Screenshot_from_2022-12-19_20-00-45.png)
 
 After reporting the issue you can click on “Back to the Map” to continue searching for places.
 
@@ -55,7 +55,7 @@ After reporting the issue you can click on “Back to the Map” to continue sea
 
 We would love for users around the world to send us information about shops that accept Bitcoin and/or Nimiq. To allow you to do that, we have added a button in the lower right corner called “Add Establishment”
 
-![](/assets/images/prismic/99e50cd5-ba8f-4865-b370-eeca1e6d5509_Screenshot_from_2022-12-19_20-04-49.png)
+![](/assets/images/media/99e50cd5-ba8f-4865-b370-eeca1e6d5509_Screenshot_from_2022-12-19_20-04-49.png)
 
 By clicking on this button, you will be directed to a screen where you can input the necessary information to add a new shop to the map. As mentioned before, one of the necessary inputs is the Google business profile of the shop. That information is necessary for the map to retrieve information from Google and to link to Google Maps. Fortunately, you can use the search function to find the shop you want to add. The other necessary data are the cryptocurrencies accepted by the shop.
 

@@ -25,7 +25,7 @@ Things are getting real, and now more than ever, it is important for the Nimiq C
   Starts**: November 19, ~7 AM UTC
   **Ends**: When 80% of the pre-staked NIM signals readiness. After 24 hours from the start, the activation resets for a new candidate transition block and activation attempt.
 
-![](/assets/images/prismic/ZuHlfhoQrfVKl_QJ_MigrationPhaseswDates.png)
+![](/assets/images/media/ZuHlfhoQrfVKl_QJ_MigrationPhaseswDates.png)
 
 ## Participate in the Validator Registration Phase
 

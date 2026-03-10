@@ -57,7 +57,7 @@ The blockchain team has been working in a new hierarchy of blocks for Albatross:
 1. Checkpoint blocks
 1. Micro blocks
 
-![](/assets/images/prismic/cdef53d2-4085-4064-af23-afc280ba23ad_blog_technical-progress-update_2.png)
+![](/assets/images/media/cdef53d2-4085-4064-af23-afc280ba23ad_blog_technical-progress-update_2.png)
 
 The previous Albatross design involved two types of blocks: micro blocks that contain transactions and macro blocks that provide finality and determine a new set of validators. "Finality" means that transactions can't be changed or reversed anymore. It is desirable that transactions reach finality fast in order to provide certainty for the recipient. On the other hand, changing the set of validators too frequently is problematic because it slows down the syncing process in two ways: it’s computationally expensive to create new election blocks and all election blocks need to be downloaded for a full sync, thus, more blocks means more time to sync.
 

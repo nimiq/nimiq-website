@@ -9,13 +9,13 @@ hero:
     href: https://wallet.nimiq.com
     label: Create Wallet
   organizations:
-    - logo: /assets/images/prismic/aQoiy7pReVYa4CmT_cryptopayment-link-logo-white.svg
+    - logo: /assets/images/media/aQoiy7pReVYa4CmT_cryptopayment-link-logo-white.svg
       url: https://www.bluecode.com/
-    - logo: /assets/images/prismic/aQoizrpReVYa4CmW_btc-lightning-logo-white.svg
+    - logo: /assets/images/media/aQoizrpReVYa4CmW_btc-lightning-logo-white.svg
       url: https://lightning.network/
-    - logo: /assets/images/prismic/aQoizLpReVYa4CmU_naka-logo-white.svg
+    - logo: /assets/images/media/aQoizLpReVYa4CmU_naka-logo-white.svg
       url: https://naka.com/
-    - logo: /assets/images/prismic/aR4LSGGnmrmGqDDI_polygon-logo.svg
+    - logo: /assets/images/media/aR4LSGGnmrmGqDDI_polygon-logo.svg
       url: https://polygon.technology/
 appsLink:
   item: The Apps
@@ -29,25 +29,25 @@ apps:
     - highlight: false
       title: Pay App
       description: Pay with NIM at more acceptance points every day
-      preview: /assets/images/prismic/Zt7oXRoQrfVKl2hA_NimiqPayPreview.webp
+      preview: /assets/images/media/Zt7oXRoQrfVKl2hA_NimiqPayPreview.webp
       item: Nimiq Pay
       link: /nimiq-pay
     - highlight: false
       title: Cryptopayment.link
       description: Start accepting NIM, BTC and USDC in seconds
-      preview: /assets/images/prismic/Zt7oXRoQrfVKl2g_CPLPreview.webp
+      preview: /assets/images/media/Zt7oXRoQrfVKl2g_CPLPreview.webp
       item: CPL
       link: https://cplink.com/
     - highlight: true
       title: Nimiq wallet
       description: Buying, staking, swapping, the wallet does it all
-      preview: /assets/images/prismic/Zt7oXhoQrfVKl2hB_NimiqWalletPreview.webp
+      preview: /assets/images/media/Zt7oXhoQrfVKl2hB_NimiqWalletPreview.webp
       item: Nimiq Wallet
       link: https://wallet.nimiq.com
     - highlight: true
       title: Multisig Wallet
       description: Share wallets with family, friends and business partners
-      preview: /assets/images/prismic/aPdOyLpReVYa3gOo_multisig-preview.svg
+      preview: /assets/images/media/aPdOyLpReVYa3gOo_multisig-preview.svg
       item: Multisig Wallet
       link: https://multisig.nimiq.com
 banner:

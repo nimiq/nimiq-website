@@ -12,14 +12,14 @@ hero:
     - highlight: Smart integrations
     - highlight: Loyalty campaigns
 media:
-  src: /assets/images/prismic/Z2odHpbqstJ98zaM_nimiq-pay-hero.webp
+  src: /assets/images/media/Z2odHpbqstJ98zaM_nimiq-pay-hero.webp
 logos:
   label: Nimiq pay app partners
   items:
-    - logo: https://images.prismic.io/nimiq/cc6ddcd1-0833-49fb-861a-8e71cd9e593d_bluecode-logo.png?auto=compress,format
+    - logo: /assets/images/media/cc6ddcd1-0833-49fb-861a-8e71cd9e593d_bluecode-logo.png
       link: https://www.bluecode.com/en
       alt: Bluecode Logo
-    - logo: https://images.prismic.io/nimiq/6b60c8e9-6dbd-42cc-a4c8-f59306aaf7ae_naka-logo.png?auto=compress,format
+    - logo: /assets/images/media/6b60c8e9-6dbd-42cc-a4c8-f59306aaf7ae_naka-logo.png
       link: https://www.naka.com/
       alt: Partner logo 2
 intro:
@@ -45,14 +45,14 @@ about:
       content: |-
         ### What is it about?
 
-        ![](https://images.prismic.io/nimiq/e00cf63e-a8f4-44a3-aa0d-d515bb993441_c44bddce-a6a8-494e-a13d-7df540c534b8.png?auto=compress,format)
+        ![](/assets/images/media/e00cf63e-a8f4-44a3-aa0d-d515bb993441_c44bddce-a6a8-494e-a13d-7df540c534b8.png
 
         Easy, straight-forward peer-to-peer payments in the real world, from restaurants to law firms.
     - bgColor: darkblue
       content: |-
         ### Who is it for?
 
-        ![](https://images.prismic.io/nimiq/517ded61-86af-497c-8e73-68126cca062c_a3487c5f-107a-46fd-bb1d-34deb80111ab.png?auto=compress,format)
+        ![](/assets/images/media/517ded61-86af-497c-8e73-68126cca062c_a3487c5f-107a-46fd-bb1d-34deb80111ab.png
 
         For everyone from complete beginners to crypto- connoisseurs. It's the easiest way to pay.
 easyAsAlways:
@@ -68,9 +68,9 @@ textCarousel:
     - Add integrations
     - Open funding and withdrawals
   items:
-    - slide: https://images.prismic.io/nimiq/fa441d32-061d-4df6-85c4-7a7bd86f843f_how-to-start-pin-code.png?auto=compress,format
-    - slide: https://images.prismic.io/nimiq/4a014a9c-2bc9-4889-b9cd-b979cfb2fd1e_how-to-start-top-up.png?auto=compress,format
-    - slide: https://images.prismic.io/nimiq/606a0cb4-078b-410b-a4d9-86ab6040efbb_how-to-start-points.png?auto=compress,format
+    - slide: /assets/images/media/fa441d32-061d-4df6-85c4-7a7bd86f843f_how-to-start-pin-code.png
+    - slide: /assets/images/media/4a014a9c-2bc9-4889-b9cd-b979cfb2fd1e_how-to-start-top-up.png
+    - slide: /assets/images/media/606a0cb4-078b-410b-a4d9-86ab6040efbb_how-to-start-points.png
 pooling:
   headline:
     headline: One app to pool them all
@@ -78,8 +78,8 @@ pooling:
   carousel:
     items:
       - key: Cryptopayment Link
-        slide: https://images.prismic.io/nimiq/c75e72e3-7038-4bf7-b5cf-b26bd0648d9e_how-to-pay-cpl.png?auto=compress,format
-        buttonLogo: https://images.prismic.io/nimiq/f8f774c0-8428-49e5-8bd4-27640bf91962_cpl-white.svg
+        slide: /assets/images/media/c75e72e3-7038-4bf7-b5cf-b26bd0648d9e_how-to-pay-cpl.png
+        buttonLogo: /assets/images/media/f8f774c0-8428-49e5-8bd4-27640bf91962_cpl-white.svg
         content: |-
           #### How to pay with Cryptopayment.link
 
@@ -90,14 +90,14 @@ pooling:
           - Earn rewards
         comingSoon: false
       - key: Cryptopayment Link
-        slide: https://images.prismic.io/nimiq/c74a28a8-ee03-48f9-a35a-199136154452_how-to-pay-qr-scan.png?auto=compress,format
+        slide: /assets/images/media/c74a28a8-ee03-48f9-a35a-199136154452_how-to-pay-qr-scan.png
         comingSoon: false
       - key: Cryptopayment Link
-        slide: https://images.prismic.io/nimiq/e5cd5576-9af6-4ab1-b6fb-64486d0f0214_how-to-pay-payment-detail.png?auto=compress,format
+        slide: /assets/images/media/e5cd5576-9af6-4ab1-b6fb-64486d0f0214_how-to-pay-payment-detail.png
         comingSoon: false
       - key: Naka
-        slide: https://images.prismic.io/nimiq/a589b9f6-9f58-4dd3-ada3-551595cf1ab6_how-to-pay-naka.png?auto=compress,format
-        buttonLogo: https://images.prismic.io/nimiq/44e601ff-0373-47ee-9747-7c8f74b43dee_naka-logo.png?auto=compress,format
+        slide: /assets/images/media/a589b9f6-9f58-4dd3-ada3-551595cf1ab6_how-to-pay-naka.png
+        buttonLogo: /assets/images/media/44e601ff-0373-47ee-9747-7c8f74b43dee_naka-logo.png
         content: |-
           #### How to pay with Naka
 
@@ -108,17 +108,17 @@ pooling:
           - Convert seamlessly
         comingSoon: false
       - key: Naka
-        slide: https://images.prismic.io/nimiq/c74a28a8-ee03-48f9-a35a-199136154452_how-to-pay-qr-scan.png?auto=compress,format
+        slide: /assets/images/media/c74a28a8-ee03-48f9-a35a-199136154452_how-to-pay-qr-scan.png
         comingSoon: false
       - key: Naka
-        slide: https://images.prismic.io/nimiq/e5cd5576-9af6-4ab1-b6fb-64486d0f0214_how-to-pay-payment-detail.png?auto=compress,format
+        slide: /assets/images/media/e5cd5576-9af6-4ab1-b6fb-64486d0f0214_how-to-pay-payment-detail.png
         comingSoon: false
       - key: Bluecode
-        buttonLogo: https://images.prismic.io/nimiq/9356ed5a-2a22-440c-b1d8-1953c464c4fe_bluecode-white.svg
+        buttonLogo: /assets/images/media/9356ed5a-2a22-440c-b1d8-1953c464c4fe_bluecode-white.svg
         comingSoon: true
         comingSoonLabel: Coming Soon
       - key: BTC Lightning
-        buttonLogo: https://images.prismic.io/nimiq/e2f41577-ccd8-4de3-8913-16458b22879d_bltc-white.svg
+        buttonLogo: /assets/images/media/e2f41577-ccd8-4de3-8913-16458b22879d_bltc-white.svg
         comingSoon: true
         comingSoonLabel: Coming Soon
 discover:
@@ -132,19 +132,19 @@ discover:
       secondaryButtonLabel: Learn more
       secondaryButtonLabelMobile: Learn more
       secondaryButtonHref: https://map.nimiq.com
-      image: https://images.prismic.io/nimiq/0e57dc13-01ed-4fab-b99e-bd80bbbeff5d_zig-zag-map.png?auto=compress,format
+      image: /assets/images/media/0e57dc13-01ed-4fab-b99e-bd80bbbeff5d_zig-zag-map.png
     - headline: Check for reward campaigns
       description: Every city can become a Cryptocity®! Our network offers the right solutions to make your city crypto-friendly.
       secondaryButtonLabel: Learn more
       secondaryButtonLabelMobile: Learn more
       secondaryButtonHref: https://cryptocity.network/
-      image: https://images.prismic.io/nimiq/cbb60157-ca26-4b50-9176-159e9ceff44d_cryptocities-logos.png?auto=compress,format
+      image: /assets/images/media/cbb60157-ca26-4b50-9176-159e9ceff44d_cryptocities-logos.png
     - headline: Combine with Nimiq wallet
       description: Connect your Nimiq Wallet to the Nimiq Pay app to benefit from fast, easy, self-custodial crypto payments.
       secondaryButtonLabel: Learn more
       secondaryButtonLabelMobile: Learn more
       secondaryButtonHref: /wallet
-      image: https://images.prismic.io/nimiq/65cbfd8e9be9a5b998b5c7e3_wallet-preview.png?auto=compress,format
+      image: /assets/images/media/65cbfd8e9be9a5b998b5c7e3_wallet-preview.png
 cta:
   headline: Get it now
   subline: Download the app for iOS and Android phones.

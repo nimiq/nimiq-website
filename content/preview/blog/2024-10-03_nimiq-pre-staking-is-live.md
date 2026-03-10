@@ -71,31 +71,31 @@ From Monday October 7 to Sunday November 10, 2024, follow these simple steps to 
 
 **1. Go to[ wallet.nimiq.com](https://wallet.nimiq.com)**
 
-![](/assets/images/prismic/Zv6t-LVsGrYSwV4a_MainV1.png)
+![](/assets/images/media/Zv6t-LVsGrYSwV4a_MainV1.png)
 
 After logging into your account, you will find important information about the campaign.
 
 **2. Find the Pre-Stake Button**
 
-![](/assets/images/prismic/Zv6vSLVsGrYSwV5X_prestake1.png)
+![](/assets/images/media/Zv6vSLVsGrYSwV5X_prestake1.png)
 
 Look for the button with a golden plant-like icon to begin the pre-staking process.
 
 **3. Select a Validator**
 
-![](/assets/images/prismic/Zv6vhLVsGrYSwV5f_pickvalidator.png)
+![](/assets/images/media/Zv6vhLVsGrYSwV5f_pickvalidator.png)
 
 Choose a validator from the list. Picking a validator with a lower amount of staked funds helps decentralize the network and grants you a bonus multiplier in the Pre-staking Giveaway.
 
 **4. Enter Your Amount**
 
-![](/assets/images/prismic/Zv7CiLVsGrYSwWEn_MainV1-1-.png)
+![](/assets/images/media/Zv7CiLVsGrYSwWEn_MainV1-1-.png)
 
 Decide how much NIM you want to pre-stake. And confirm stake.
 
 **5. Claim your points**
 
-![](/assets/images/prismic/ZwLKnbVsGrYSwavk_ClaimPoints.png)
+![](/assets/images/media/ZwLKnbVsGrYSwavk_ClaimPoints.png)
 
 To become eligible for and associate your staking address with the Rewards and Bonus Giveaway Campaign, simply log in to [prestaking.nimiq.network/pre-staking](https://prestaking.nimiq.network/pre-staking) using the same account address you used for pre-staking. The registered address will also be used to distribute any rewards. You can register multiple addresses. [Click here to learn about multipliers and see all the rules for the giveaway](https://prestaking.nimiq.network/Nimiq_Pre-staking_Campaign_ToS.pdf).
 

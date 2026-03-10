@@ -25,7 +25,7 @@ export function normalizeFileName(fileName: string): string {
     .replace(/^_+|_+$/g, '') || 'image'
 }
 
-const IMAGE_FOLDER = 'assets/images/prismic'
+const IMAGE_FOLDER = 'assets/images/media'
 
 export function prismicImageToLocalPath(url: string): string {
   if (!url?.includes('prismic'))

@@ -38,17 +38,17 @@ Let's take a step back and compare this process to a regular Bitcoin Lightning t
 
 Below is a display of a regular Lightning Network transaction that traverses the network. Notice that all sub-transactions use the same payment hash H. This ensures that all sub-transactions are either committed or reversed, guaranteeing that none of the intermediate nodes lose any funds and ensuring that the transaction either succeeds or the funds remain with the sender.
 
-![](/assets/images/prismic/Zmqcx5m069VX1s9W_Group48096084-4-.png)
+![](/assets/images/media/Zmqcx5m069VX1s9W_Group48096084-4-.png)
 
 Below is a display of a Nimiq Lightning Network hybrid transaction. The process is very similar, providing the same guarantees for success or reversal as a traditional Lightning Network transaction. Most notably, the payment hash H remains the same across networks.
 
-![](/assets/images/prismic/Zmqc05m069VX1s9X_Group48096085-4-.png)
+![](/assets/images/media/Zmqc05m069VX1s9X_Group48096085-4-.png)
 
 ## The Nimiq Crypto Map
 
 The Nimiq Crypto map is an ever growing registry of places that accept crypto, not just Nimiq. With this integration, the map now connects crypto users with over 3'500 places accepting payments with NIM, via Nimiq and Bitcoin Lightning. This boosts the utility of the NIM token and makes the crypto map and Nimiq Pay your one-stop-shop for self-custodial crypto payments.
 
-![](/assets/images/prismic/ZmqlUZm069VX1tBn_image-15-.png)
+![](/assets/images/media/ZmqlUZm069VX1tBn_image-15-.png)
 
 ## What's Next
 

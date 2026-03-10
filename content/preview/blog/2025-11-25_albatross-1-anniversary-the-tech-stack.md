@@ -17,7 +17,7 @@ As part of our three-part anniversary series, this post continues with a look be
 
 A blockchain is a system made of several layers. Each layer handles a specific part of a process, from how nodes connect to how information is stored and verified. In Albatross (Nimiq’s Proof-of-Stake algorithm), these layers were designed to stay compact, modular, and verifiable.
 
-![Nimiq's core components](/assets/images/prismic/aRug67pReVYa4kra_table-albatross.jpg)
+![Nimiq's core components](/assets/images/media/aRug67pReVYa4kra_table-albatross.jpg)
 
 Together, these layers form the foundation of Albatross. The following sections cover how they work and how their design choices interact to create an efficient system.
 
@@ -71,7 +71,7 @@ These choices make Albatross efficient and accessible while maintaining the guar
 
 ## Web Native by Design
 
-![nodes-in-different-environments](/assets/images/prismic/aR9O4mGnmrmGqFsx_whitepaper_networkPNG.png)
+![nodes-in-different-environments](/assets/images/media/aR9O4mGnmrmGqFsx_whitepaper_networkPNG.png)
 
 From the beginning, Nimiq was built for the web. The goal was for anyone with a browser to connect to the network directly. No plugins, complex setups, or special environments. Albatross carries that idea into its protocol. This means the same protocol that powers validators can also be accessed from web browsers or mobile devices, allowing users and applications to interact directly with the network.
 

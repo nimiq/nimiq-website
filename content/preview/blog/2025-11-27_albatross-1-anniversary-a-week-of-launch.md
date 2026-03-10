@@ -31,7 +31,7 @@ Tuesday morning brought an unexpected bit of sun to the rainy season. We met ear
 
 Sören had prepared a simple monitor to track validator readiness, and it quickly became the screen everyone kept glancing at. One by one, nodes turned green.
 
-![validators-monitor](/assets/images/prismic/aSdJQGGnmrmGqXb7_IMG_6468.jpeg)
+![validators-monitor](/assets/images/media/aSdJQGGnmrmGqXb7_IMG_6468.jpeg)
 
 When block **3’456’000** was reached, Albatross went live, followed by ear-to-ear smiles, a couple of cheers, and the sound of someone opening a bottle of sparkling wine.
 
@@ -55,7 +55,7 @@ The workspace was super quiet. When we have hackathons, we take the opportunity 
 
 Dinner came, and people looked defeated. After that, there was the cake. Inês thought about bringing some sweetness to the team, as everybody has been working so hard. No pictures from before devouring the cakes, sadly.
 
-![two-cakes](/assets/images/prismic/aSdJXmGnmrmGqXb-_20241125_200533.jpg)
+![two-cakes](/assets/images/media/aSdJXmGnmrmGqXb-_20241125_200533.jpg)
 
 Everyone lined up for cake, we called “the stall cake”!
 

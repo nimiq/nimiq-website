@@ -20,17 +20,17 @@ This article aims to shed light on the intricacies of the migration process, det
 
 The migration will proceed through distinct stages:
 
-![](/assets/images/prismic/b92ff7a1-517f-4a42-b3a1-1339153ac2ab_community_voting_article_46_.png)
+![](/assets/images/media/b92ff7a1-517f-4a42-b3a1-1339153ac2ab_community_voting_article_46_.png)
 
 ## Phase 1: Registration
 
-![](/assets/images/prismic/5e12d31c-d080-4f6e-9ffc-23f73f2f0f74_community_voting_article_47_.png)
+![](/assets/images/media/5e12d31c-d080-4f6e-9ffc-23f73f2f0f74_community_voting_article_47_.png)
 
 The migration starts with the registration phase on the PoW chain, where users can register as validators for the upcoming PoS blockchain. This phase is set to compile the initial validator list of the PoS chain. The first phase will run for a predetermined time window, denoted by a fixed number of blocks. In this window, each aspiring validator sends a set of transactions carrying the validator's specific data. Committing to that data by sending the validator minimum deposit will then make them eligible to become a validator for the transition. Registering as a validator is a one-way ticket to the PoS chain, and there is no option of withdrawing the deposit. Furthermore, failure to fulfill the validator duties **will result in penalties**, emphasizing the commitment required in this role.
 
 ## Phase 2: Pre-stake
 
-![](/assets/images/prismic/3093f596-b985-4105-8fb5-7d8f2f47c684_community_voting_article_47_.png)
+![](/assets/images/media/3093f596-b985-4105-8fb5-7d8f2f47c684_community_voting_article_47_.png)
 
 Following the registration phase, the network will enter the pre-stake phase within a specified block window. This stage is meant to register stake delegation to the validators, who have pre-registered in Phase 1. Any user can delegate their NIM to any registered validator, allowing them to participate in the consensus and earn rewards without direct (technical) involvement. Validators can also increase their stake by pre-staking additional NIM to their own validator address or to other validators’ addresses. It is important to note that pre-stake transactions are final until the Proof of Stake chain is launched. There will be no opportunity to withdraw or reallocate staked NIM until the completion of the migration.
 
@@ -38,11 +38,11 @@ A new feature will be added to the wallet, enabling users to easily execute pre-
 
 ## Phase 3: Activation
 
-![](/assets/images/prismic/7b80b6a5-211d-4ee4-ad69-4b0905752151_community_voting_article_50_.png)
+![](/assets/images/media/7b80b6a5-211d-4ee4-ad69-4b0905752151_community_voting_article_50_.png)
 
 The culmination of the migration is the activation phase. During this stage, pre-registered validators indicate their readiness for the PoS transition through a specific transaction. This phase starts at a specific block height which is then followed by an activation window. This window concludes in a block number that neatly aligns with an election block number on the PoS chain. If at least 80% of the allocated stake signals readiness within an activation window, the corresponding block is designated as the transition block.
 
-![](/assets/images/prismic/a50b68bb-1ebe-47d8-ba35-720e180e25f0_community_voting_article_51_.png)
+![](/assets/images/media/a50b68bb-1ebe-47d8-ba35-720e180e25f0_community_voting_article_51_.png)
 
 The network will then snapshot its state to generate the genesis block of the PoS chain, ensuring continuity and a seamless transition. Should the first activation window not meet the readiness criterion, subsequent windows will open until the 80% threshold is reached, each spanning a period equivalent to a day's worth of PoW blocks.
 
@@ -52,7 +52,7 @@ Upon reaching 80% readiness, the transition block state is captured to initiate 
 
 By this point, validators will then abide by a waiting period for confirmations within the PoW chain to ensure that the state of the transition block is final. The genesis block will then be generated with the state captured from the transition block.
 
-![](/assets/images/prismic/79507912-3478-4ea7-866e-30f242678997_community_voting_article_52_.png)
+![](/assets/images/media/79507912-3478-4ea7-866e-30f242678997_community_voting_article_52_.png)
 
 ### **After this, the PoS blockchain officially launches, and validators start the block production as per the Albatross protocol specification.**🎉
 

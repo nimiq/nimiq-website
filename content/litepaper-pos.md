@@ -24,7 +24,7 @@ There are two types of clients in the Nimiq 2.0 Network: **Backbone Clients and 
 
 ## Network
 
-![Comparison between Nimiq network and other blockchain networks. In Nimiq, the user is also a node.](/assets/images/prismic/723d9f98-20aa-45ba-ba67-ea8ae1637f66_whitepaper_network.svg)
+![Comparison between Nimiq network and other blockchain networks. In Nimiq, the user is also a node.](/assets/images/media/723d9f98-20aa-45ba-ba67-ea8ae1637f66_whitepaper_network.svg)
 
 **Backbone Clients** run on servers and desktops. They communicate with each other via the WebSocket protocol, and act as entry points and signaling servers for Browser Nodes to establish browser-to-browser WebRTC connections. Additionally, validators may span a UDP-based network to speed up signature aggregation.
 
@@ -94,7 +94,7 @@ In proof-of-work blockchains, every new block is mined (created) by a node from 
 
 Block production in Albatross is divided into epochs. As the following figure shows, each epoch consists of a constant number of micro blocks — four micro blocks in the example below — followed by a macro block. Micro blocks contain the transactions and have a single block producer that is randomly chosen from the set of validators. While anyone can volunteer to be a validator, the actual set of validators in a given epoch — the active validators – is chosen by the macro block of the preceding epoch.
 
-![Nimiq's block production](/assets/images/prismic/e75bb13b-8c05-4b61-9c19-5d4a7eb200e1_whitepaper_block-production.svg)
+![Nimiq's block production](/assets/images/media/e75bb13b-8c05-4b61-9c19-5d4a7eb200e1_whitepaper_block-production.svg)
 
 In the example above, block number 0 determines the active validators v*0, …, v_k for the epoch from block 1 to block 5. To be able to randomly choose the next block producer from the list of validators, each block contains a random beacon, depicted above by r_i. The block producer of a block uses a so-called Verifiable Random Function (VRF) to produce the next random value r_i from the previous value r*(i-1). Every other participant can then verify the correctness of the next random value.
 
@@ -212,7 +212,7 @@ More demanding user tasks, such as backing up the account, are not forced on use
 
 ### Visual Identity
 
-![Visual identity for Nimiq](/assets/images/prismic/5837648a-c81e-4ecd-8e3c-6b7071c79916_whitepaper_visual-identity.svg)
+![Visual identity for Nimiq](/assets/images/media/5837648a-c81e-4ecd-8e3c-6b7071c79916_whitepaper_visual-identity.svg)
 
 Focusing on simplicity and ease of use, Nimiq is built on an serene foundation: traditional colors, a minimal, geometric sans-serif font, and common layout patterns. We strive not only to push the boundaries of technology, but also the way we design our experiences and touchpoints, adding that bit of sophistication and edge that we believe makes the difference between convenience and fascination.
 
@@ -234,7 +234,7 @@ Each Nimiq Identicon has a background color and four different body areas: botto
 
 That means 10 x 9 x 8 x 21^4 = 140'026'320 different Nimiqons can be generated. A slight change like a typo, or a replacement by malware will radically change the look of the associated Nimiqon. The highly differentiated and instantly recognizable Nimiqons look like this:
 
-![Some examples for Identicons. Every Identicon is unique.](/assets/images/prismic/02a4e418-a355-4e0e-99c9-c3b73d807466_whitepaper_identicons.svg)
+![Some examples for Identicons. Every Identicon is unique.](/assets/images/media/02a4e418-a355-4e0e-99c9-c3b73d807466_whitepaper_identicons.svg)
 
 Every Nimiqon comes with a suggested label making it easy to describe.
 
@@ -246,7 +246,7 @@ To get started, a user can import existing accounts and create new ones. When re
 
 The concept of simplicity reaches all the way to the developer. Nimiq is making it easy to integrate payments by making it as simple as adding a JavaScript library. All major platforms and recent browsers are supported. Our Hub API supports both, async/await function calls and traditional top-level redirects with callback. At the same time, an ecosystem of wrappers and full integrations via plugins and modules is continuously growing
 
-![](/assets/images/prismic/2b5a9db3-c387-4f01-b78c-bdc5954be83d_whitepaper_nimiq-hub-architecture.svg)
+![](/assets/images/media/2b5a9db3-c387-4f01-b78c-bdc5954be83d_whitepaper_nimiq-hub-architecture.svg)
 
 The implementation of both Safe and Hub are, of course, open source and can be run self-hosted. They are intended to be an example for best practices and we encourage others to build their own solutions, enriching the Nimiq Ecosystem.
 
@@ -276,7 +276,7 @@ The convenience is underpinned with strong security measures. Your private keys 
 
 Avid users of cryptocurrencies are familiar with the complexity and potentially intimidating process of handling private keys and the need to write down and safely store mnemonic phrases on a non-volatile analog format, i.e. a piece of paper or steel in an airtight, fire-resistant container. Every time a private key is used in a raw format, there is a risk of it being stolen by a malicious party. To increase usability and safety, Nimiq provides the option of using a Login File that contains a password-encrypted version of the private key of an Account. This is formatted as a QR code and presented as an image file for the user to download and backup. This method allows users to easily store their private keys while still being able to use the 24-word representation as a secondary recovery method.
 
-![Login files examples for your Nimiq Wallet](/assets/images/prismic/d6c023df-4d1b-4d0d-b897-8900d5599358_whitepaper_login-files.svg)
+![Login files examples for your Nimiq Wallet](/assets/images/media/d6c023df-4d1b-4d0d-b897-8900d5599358_whitepaper_login-files.svg)
 
 In collaboration with Trinkler Software, this concept has been standardized as ImageWallet, so that the same format can be used for other cryptocurrencies and as a general means of authentication.
 

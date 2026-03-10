@@ -7,7 +7,7 @@ hero:
   link:
     href: https://app.supersimpleswap.com/
 tiltedMedia:
-  src: https://images.prismic.io/nimiq/7474263a-b415-415a-9c75-3e8c01555a43_hero-supersimpleswap.svg?auto=compress,format
+  src: /assets/images/media/7474263a-b415-415a-9c75-3e8c01555a43_hero-supersimpleswap.svg
 simpleHeadline:
   label: Try it
   headline: The definitive way to buy and sell

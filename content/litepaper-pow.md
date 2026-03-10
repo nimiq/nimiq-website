@@ -43,7 +43,7 @@ The Nimiq Mainnet was launched on April 14, 2018 and the payment protocol is ful
 - [Nimiq OASIS](/blog/nimiq-oasis-launch-press-release)
   The Open Asset Swap Interaction Scheme is the blueprint for a potentially disruptive crypto-to-fiat bridge, making fiat currency behave as if it were tokens on the blockchain, providing a unique way of connecting the traditional banking network with non-custodial crypto exchanges.
 
-![](/assets/images/prismic/66325e6f-cd73-4254-bd5f-1f129a5a7f11_whitepaper_nimiq-history.png)
+![](/assets/images/media/66325e6f-cd73-4254-bd5f-1f129a5a7f11_whitepaper_nimiq-history.png)
 
 ## Motivation
 

@@ -27,7 +27,7 @@ The Nimiq Multisig app is now available! It’s built to keep things simple to u
 
 The idea is simple: a group controls a single wallet, and transactions only move when the required people approve them. You sign in with your Nimiq Wallet, create a Shared Wallet, choose how many participants and approvals are needed, and then invite others through a secure link. Once everyone joins, the wallet becomes active and can send and receive NIM. From there, anyone in the group can create a transaction, and all required signers can approve it using the Keyguard.
 
-![multisig-screenshots](/assets/images/prismic/aR0H7WGnmrmGqAP4_MultisigBLOG-1-.png)
+![multisig-screenshots](/assets/images/media/aR0H7WGnmrmGqAP4_MultisigBLOG-1-.png)
 
 You can [try it out in the Multisig app](https://multisig.nimiq.com/)!
 
@@ -37,7 +37,7 @@ We also have a technical blog post coming soon that explains how the app works b
 
 Our designers and frontend team have spent the past weeks improving the staking interface. The goal was to make it easier to navigate, give the layout more breathing room, and streamline common actions. The updated design focuses on clarity and removes small friction points that users shared with us along the way.
 
-![staking-screenshots](/assets/images/prismic/aRzmimGnmrmGqAG4_Stakingv2BLOG.png)
+![staking-screenshots](/assets/images/media/aRzmimGnmrmGqAG4_Stakingv2BLOG.png)
 
 Try the new interface in the [Nimiq Wallet](https://wallet.nimiq.com/)!
 
@@ -45,7 +45,7 @@ Try the new interface in the [Nimiq Wallet](https://wallet.nimiq.com/)!
 
 We’ve also revisited the wording on the website. This is a smaller update but one that still feels worth highlighting. The new text reflects where Nimiq is today and the direction we’re moving toward, so the landing page feels more aligned with the work we have been doing.
 
-![website-screenshot](/assets/images/prismic/aR0oCGGnmrmGqAVZ_WebsiteBLOG-1-.png)
+![website-screenshot](/assets/images/media/aR0oCGGnmrmGqAVZ_WebsiteBLOG-1-.png)
 
 See the updated page on our [Nimiq website](https://www.nimiq.com/)!
 
