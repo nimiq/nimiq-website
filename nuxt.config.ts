@@ -43,7 +43,6 @@ export default defineNuxtConfig({
     'motion-v/nuxt',
     environment.useNuxtHub && '@nuxthub/core',
     '@nuxt/content',
-    'nuxt-prerender-kit',
     environment.environment.isStudio && 'nuxt-studio',
     'nuxt-link-checker',
     'nuxt-skill-hub',
@@ -95,7 +94,7 @@ export default defineNuxtConfig({
   },
 
   studio: {
-    repository: { provider: 'github', owner: 'nimiq', repo: 'website', branch: 'main' },
+    repository: { provider: 'github', owner: 'nimiq', repo: 'website', branch: 'nuxt-content' },
     // Google OAuth moderators (GitHub uses repo permissions instead)
     // Env: STUDIO_GOOGLE_MODERATORS=maximogarciamtnez@gmail.com
     // Env: STUDIO_GITHUB_CLIENT_ID, STUDIO_GITHUB_CLIENT_SECRET, STUDIO_GITHUB_TOKEN

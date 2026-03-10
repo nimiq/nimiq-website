@@ -35,7 +35,6 @@
     "nimiq-flags": "catalog:",
     "nimiq-rpc-client-ts": "catalog:nimiq",
     "nuxt": "catalog:nuxt",
-    "nuxt-prerender-kit": "catalog:",
     "reka-ui": "catalog:frontend",
     "valibot": "catalog:server",
     "vaul-vue": "catalog:frontend",

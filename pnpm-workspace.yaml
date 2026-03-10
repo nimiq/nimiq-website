@@ -22,7 +22,6 @@ catalog:
   marked: ^17.0.4
   nimiq-flags: 1.0.0-beta.162
   nuxt-link-checker: ^4.3.9
-  nuxt-prerender-kit: ^0.0.5
   nuxt-skill-hub: https://pkg.pr.new/onmax/nuxt-skill-hub@1f8125d
   nuxt-studio: ^1.4.0
   tsx: ^4.21.0

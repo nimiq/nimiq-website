@@ -7,19 +7,19 @@ const pageIndex = computed(() => Number(route.query.page) || 1)
 watch(pageIndex, () => window.scrollTo(0, 0))
 const itemsPerPage = 25
 
-const page = await usePrerenderData('blog-page', () => queryCollection('blogPage').first())
-if (!page)
+const { data: page } = await useAsyncData('blog-page', () => queryCollection('blogPage').first())
+if (!page.value)
   throw createError({ statusCode: 404, statusMessage: 'Blog page not found', fatal: true })
 
-const posts = await usePrerenderData('blog-posts-all', () =>
+const { data: posts } = await useAsyncData('blog-posts-all', () =>
   queryCollection('blog')
     .select('title', 'slug', 'description', 'publishedAt', 'image', 'authors')
     .order('publishedAt', 'DESC')
     .all())
-const totalPages = computed(() => Math.ceil((posts.length || 0) / itemsPerPage))
+const totalPages = computed(() => Math.ceil((posts.value?.length || 0) / itemsPerPage))
 const paginatedPosts = computed(() => {
   const start = (pageIndex.value - 1) * itemsPerPage
-  return posts.slice(start, start + itemsPerPage)
+  return (posts.value || []).slice(start, start + itemsPerPage)
 })
 
 const active = useState('active-blog-post', () => '')

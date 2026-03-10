@@ -2,21 +2,21 @@
 const route = useRoute('blog-slug')
 const slug = route.params.slug
 
-const post = await usePrerenderData(`blog-${slug}`, () =>
+const { data: post } = await useAsyncData(`blog-${slug}`, () =>
   queryCollection('blog').where('slug', '=', slug).first())
 
-if (!post)
+if (!post.value)
   throw createError({ statusCode: 404, statusMessage: 'Blog post not found', fatal: true })
 
-const surroundings = await usePrerenderData(`blog-surroundings-${slug}`, () =>
-  queryCollectionItemSurroundings('blog', post.path, { fields: ['title', 'slug'] }))
+const { data: surroundings } = await useAsyncData(`blog-surroundings-${slug}`, () =>
+  queryCollectionItemSurroundings('blog', post.value!.path, { fields: ['title', 'slug'] }))
 
-const prev = computed(() => surroundings?.[0])
-const next = computed(() => surroundings?.[1])
+const prev = computed(() => surroundings.value?.[0])
+const next = computed(() => surroundings.value?.[1])
 
 const meta = {
-  title: post.title,
-  description: post.description,
+  title: post.value!.title,
+  description: post.value!.description,
 }
 
 useHead({ title: meta.title })

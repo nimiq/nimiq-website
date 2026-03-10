@@ -60,13 +60,13 @@ function transformApp(app: { name: string, type: string, logo: string, link: str
   }
 }
 
-export function useApps() {
-  return usePrerenderData('all-apps', async () => {
-    const data = await queryCollection('allApps').first()
-    if (!data?.apps?.length)
+export async function useApps() {
+  const { data } = await useAsyncData('all-apps', async () => {
+    const raw = await queryCollection('allApps').first()
+    if (!raw?.apps?.length)
       throw new Error('Failed to fetch apps data. Build cannot continue without apps.')
 
-    const transformed = data.apps.map(transformApp)
+    const transformed = raw.apps.map(transformApp)
     const highlighted = transformed.filter(app => app.isHighlighted)
     const regular = transformed.filter(app => !app.isHighlighted)
 
@@ -86,6 +86,7 @@ export function useApps() {
       officialApps: apps.filter(app => app.developer === '@nimiq'),
     }
   })
+  return data.value!
 }
 
 export function useAppsFilter(apps: Ref<NimiqApp[] | undefined>) {

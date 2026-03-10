@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const posPage = await usePrerenderData('page-litepaperPos', () => queryCollection('litepaperPos').first())
-const powPage = await usePrerenderData('page-litepaperPow', () => queryCollection('litepaperPow').first())
+const { data: posPage } = await useAsyncData('page-litepaperPos', () => queryCollection('litepaperPos').first())
+const { data: powPage } = await useAsyncData('page-litepaperPow', () => queryCollection('litepaperPow').first())
 
-if (!posPage || !powPage)
+if (!posPage.value || !powPage.value)
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 
 const LitepaperVersion = { V1: '1.0', V2: '2.0' } as const
@@ -16,10 +16,10 @@ const selected = computed({
   set: (v: LitepaperVersionType) => router.replace({ query: { ...route.query, version: v } }),
 })
 
-const currentPage = computed(() => selected.value === LitepaperVersion.V1 ? powPage : posPage)
+const currentPage = computed(() => selected.value === LitepaperVersion.V1 ? powPage.value : posPage.value)
 
 const title = computed(() => `Nimiq Whitepaper v${selected.value}`)
-const description = posPage.seo?.description || posPage.subline || 'Nimiq\'s whitepaper - A simple, secure and censorship-resistant payment protocol, native to the web.'
+const description = posPage.value!.seo?.description || posPage.value!.subline || 'Nimiq\'s whitepaper - A simple, secure and censorship-resistant payment protocol, native to the web.'
 useSeoMeta({ title, description, ogTitle: title, ogDescription: description, ogUrl: 'https://nimiq.com/litepaper' })
 useHead({ link: [{ rel: 'canonical', href: 'https://nimiq.com/litepaper' }] })
 </script>
