@@ -95,10 +95,7 @@ export default defineNuxtConfig({
 
   studio: {
     repository: { provider: 'github', owner: 'nimiq', repo: 'nimiq-website', branch: 'nuxt-content' },
-    // Google OAuth moderators (GitHub uses repo permissions instead)
-    // Env: STUDIO_GOOGLE_MODERATORS=maximogarciamtnez@gmail.com
-    // Env: STUDIO_GITHUB_CLIENT_ID, STUDIO_GITHUB_CLIENT_SECRET, STUDIO_GITHUB_TOKEN
-    // Env: STUDIO_GOOGLE_CLIENT_ID, STUDIO_GOOGLE_CLIENT_SECRET
+    auth: { github: { scope: ['user:email', 'repo'] } },
   },
 
   scripts: {
