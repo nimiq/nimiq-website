@@ -40,12 +40,14 @@ const error = computed(() => {
     return volumeError.value
   return null
 })
+
+const backgroundImageSrc = '/images/pages/buy-and-sell/buy-and-sell-bg.svg'
 </script>
 
 <template>
   <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen z-0 overflow-hidden pointer-events-none" style="max-width: none">
     <div class="inset-0 absolute bg-gradient" />
-    <img src="/images/pages/buy-and-sell/buy-and-sell-bg.svg" class="h-auto w-[140vw] md:w-[110vw] absolute bottom-16 md:-bottom-64 -left-16 md:left-0" alt="" aria-hidden="true">
+    <img :src="backgroundImageSrc" class="h-auto w-[140vw] md:w-[110vw] absolute bottom-16 md:-bottom-64 -left-16 md:left-0" alt="" aria-hidden="true">
   </div>
 
   <div class="z-3 relative flex flex-col items-center text-center mx-auto w-full">
