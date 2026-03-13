@@ -23,7 +23,7 @@ Nimiq will make a best effort to meet the following SLAs for hackers participati
 - Time to bounty (from triage): 14 business days.
 - Time to resolution: Depends on severity and complexity.
 
-We'll try to keep you informed about our progress throughout the process.
+We’ll try to keep you informed about our progress throughout the process.
 
 ## Disclosure Policy
 
@@ -74,7 +74,7 @@ NOTE: When reporting vulnerabilities, please consider (1) attack scenario / expl
 Since our main interest is in finding security problems affecting our blockchain protocol, its implementations, and its Ledger Nano S hardware wallet integration, the following issues are considered out of scope:
 
 - Any issues that are outside what is defined in the "[In Scope](#in-scope)" section below.
-- As well as any issue not directly related to the code and it's functionality. For example, usability, user experience.
+- As well as any issue not directly related to the code and it’s functionality. For example, usability, user experience.
 - Security breaches that are only possible when having full access to the client machine. For example using a key tracker or reading/monitoring the computer memory.
 - Privacy related vulnerabilities (e.g. leaking your address to other peers on the network).
 - Attacks requiring MITM or physical access to a user's device.
@@ -92,21 +92,25 @@ Thank you for helping keep Nimiq and our users safe!
 
 ## In Scope
 
+Domain: [https://wallet.nimiq.com/](https://wallet.nimiq.com/)
+
 The Nimiq Wallet is the main place where our users interact with the blockchain and with the funds protected by their keys (usually stored in the Keyguard) which means we expect it to be highly secure. Examples of the kind of exploits we're interested in are: opening a fake Keyguard from the Nimiq Wallet which would allow an attacker to trick the user into entering their keys and stealing them, deleting a user's key without them explicitly wanting to, hijacking the "copy to clipboard" functionality to copy the wrong address or displaying the wrong address when the user is asked to verify the address on the Ledger Nano S/X.
 
 The source code for the Wallet is available [here](https://github.com/nimiq/wallet) in case it can help you to find security issues with it, but please keep in mind we're looking for bugs that can be actually exploitable in the current deployment of the keyguard (i.e. in [https://wallet.nimiq.com/](https://wallet.nimiq.com/)).
+
+Domain: [https://keyguard.nimiq.com/](https://keyguard.nimiq.com/)
 
 The Nimiq Keyguard is designed to be the place where the keys of the users are stored (encrypted) if they are not using a supported hardware wallet and as such it is very important for us to make sure that the Keyguard is very secure. Examples of the kind of exploits we are interested in are: unauthorized key extraction, unauthorized signing of transactions, displaying information when signing a transaction that is different from the actual data in the signed transaction, etc. These exploits need to be due to a problem in the Keyguard itself, so things like social engineering or using malware on a user computer are not considered valid reports.
 
 The source code for the Keyguard is available [here](https://github.com/nimiq/keyguard) in case it can help you to find security issues with it, but please keep in mind we're looking for bugs that can be actually exploitable in the current deployment of the Keyguard (i.e. in [https://keyguard.nimiq.com/](https://keyguard.nimiq.com/)).
 
-[Core PoS source code](https://github.com/nimiq/core-rs-albatross/)
+[Source Code](https://github.com/nimiq/core-rs-albatross/)
 
 The src/ folder on the albatross branch of this repository has all the source code for our official Rust implementation that we look forward to being tested.
 
 Check out the [developers documentation](https://www.nimiq.dev) for more information and steps on running your own client. There is also a running version of this code in the testnet, you can find the instructions to test against it in the "Blockchain testnet" section below.
 
-[Nimiq Ledger App source code](https://github.com/nimiq/ledger-app-nimiq)
+[Source Code](https://github.com/nimiq/ledger-app-nimiq)
 
 The Nimiq Ledger App is designed to allow [Ledger](https://www.ledgerwallet.com) users to create a Nimiq Account with the private key safely stored in their hardware wallet.
 
@@ -118,7 +122,7 @@ Only bugs in the Nimiq Ledger App itself are valid, more general bugs that apply
 
 [Source Code](https://github.com/nimiq/hub)
 
-The Nimiq Hub provides a unified interface for all Nimiq accounts, addresses, and contracts. It is the primary UI for Nimiq users to manage their accounts and provides websites and apps with a concise API to interact with their users' Nimiq addresses.
+The Nimiq Hub provides a unified interface for all Nimiq accounts, addresses, and contracts. It is the primary UI for Nimiq users to manage their accounts and provides websites and apps with a concise API to interact with their users’ Nimiq addresses.
 
 ## Other: Blockchain Testnet
 
@@ -194,3 +198,9 @@ Input your email to subscribe to the Bug Bounty Program Mailing List
 </section>
 <style>#zcWebOptin:disabled { opacity: 0.6 !important; cursor: not-allowed !important; }</style>
 <script>function zcScptlessSubmit(parentNode){if(parentNode.querySelector("#zc_spmSubmit")){parentNode.querySelector("#zc_spmSubmit").remove();}parentNode.submit();}</script>
+
+### Disclaimer
+
+To comply with international regulations, including FATCA and OFAC requirements, all bug bounty participants must pass a basic identity verification before receiving any payments or rewards. This may include providing identification and residency details. Payments will not be made to individuals who are citizens, residents, or located in jurisdictions subject to comprehensive sanctions under OFAC or similar restrictions that prohibit such transactions. We reserve the right to withhold participation or payment if verification cannot be completed.
+
+Nimiq reserves the right to pay out in NIM, BTC, USDC (polygon) or USDT (polygon) at its own discretion.

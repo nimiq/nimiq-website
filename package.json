@@ -9,6 +9,7 @@
     "build:studio": "NODE_OPTIONS=--max-old-space-size=4096 NUXT_ENVIRONMENT=studio NITRO_PRESET=cloudflare-module nuxt build",
     "build:server": "NODE_OPTIONS=--max-old-space-size=4096 NUXT_ENVIRONMENT=production NITRO_PRESET=cloudflare-module nuxt build",
     "generate": "NODE_OPTIONS=--max-old-space-size=4096 NUXT_ENVIRONMENT=production nuxt generate",
+    "audit:content-parity": "pnpm generate && tsx scripts/audit-content-parity.ts",
     "build:github-pages": "pnpm generate",
     "deploy:studio": "pnpm build:studio && npx wrangler deploy",
     "deploy:server": "pnpm build:server && npx wrangler deploy -c wrangler.server.jsonc",
